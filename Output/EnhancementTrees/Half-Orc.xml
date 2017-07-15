@@ -1,0 +1,555 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Enhancements>
+   <EnhancementTree>
+      <Name>Half-Orc</Name>
+       <Version>1</Version>
+       <IsRacialTree/>
+       <Requirements>
+         <Requirement>
+            <Race>Half-Orc</Race>
+         </Requirement>
+      </Requirements>
+      <Background>Half-OrcBackground</Background>
+      <Icon>Half-Orc</Icon>
+      <EnhancementTreeItem>
+         <Name>Half-Orc: Fury I</Name>
+         <InternalName>HalfOrcCore1</InternalName>
+         <Description>When below 80% health, you gain a +2 morale bonus to strength.</Description>
+         <Icon>HalfOrcOrcishFury</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>0</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>1</MinLevel>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>AbilityBonus</Type>
+              <Ability>Strength</Ability>
+              <AmountVector size="1">2</AmountVector>
+              <Stance>80% Hitpoints</Stance>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Half-Orc: Strength I</Name>
+         <InternalName>HalfOrcCore2</InternalName>
+         <Description>+1 Strength</Description>
+         <Icon>Strength</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>4</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Enhancement>HalfOrcCore1</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>AbilityBonus</Type>
+              <Ability>Strength</Ability>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Half-Orc: Fury II</Name>
+         <InternalName>HalfOrcCore3</InternalName>
+         <Description>When below 60% health, you gain a +4 morale bonus to strength.</Description>
+         <Icon>HalfOrcOrcishFury</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>7</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Enhancement>HalfOrcCore2</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>AbilityBonus</Type>
+              <Ability>Strength</Ability>
+              <AmountVector size="1">4</AmountVector>
+              <Stance>60% Hitpoints</Stance>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Half-Orc: Strength II</Name>
+         <InternalName>HalfOrcCore4</InternalName>
+         <Description>+1 Strength</Description>
+         <Icon>Strength</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>11</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Enhancement>HalfOrcCore3</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>AbilityBonus</Type>
+              <Ability>Strength</Ability>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Half-Orc: Fury III</Name>
+         <InternalName>HalfOrcCore5</InternalName>
+         <Description>When below 40% health, you gain a +8 morale bonus to strength.</Description>
+         <Icon>HalfOrcOrcishFury</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>16</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Enhancement>HalfOrcCore4</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>AbilityBonus</Type>
+              <Ability>Strength</Ability>
+              <AmountVector size="1">8</AmountVector>
+              <Stance>40% Hitpoints</Stance>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Half-Orc:Tharashk Dragonmark Focus</Name>
+         <InternalName>HalfOrcTharashkDragonmarkFocus</InternalName>
+         <Description>+[1/2/3] dragonmark use per day, +[1/2/3] Search</Description>
+         <Icon>HalfOrcTharashkDragonmarkFocus</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Feat>Least Dragonmark of Finding</Feat>
+            </Requirement>
+         </Requirements>
+          <!--Dragonmark uses-->
+          <Effect>
+              <Type>SkillBonus</Type>
+              <Skill>Search</Skill>
+              <AmountVector size="3">1 2 3</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Half-Orc: Mighty Sundering</Name>
+         <InternalName>HalfOrcMightySundering</InternalName>
+         <Description>+[1/2/3] to Sunder DC's.</Description>
+         <Icon>HalfOrcMightySundering</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <ArrowUp/>
+         <Requirements/>
+          <Effect>
+              <Type>TacticalDC</Type>
+              <Tactical>Sunder</Tactical>
+              <AmountVector size="3">1 2 3</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Half-Orc: Brute Force</Name>
+         <InternalName>HalfOrcBruteForce</InternalName>
+         <Description>Your attacks or spells make enemies more likely to attack you.</Description>
+         <Icon>HalfOrcBruteForce</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Clickie/>
+         <Requirements/>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Brutal Fighting</Name>
+               <Description>Activate this ability to cause your melee attacks to generate [25/50/75]%
+more hate, making enemies more likely to attack you. </Description>
+               <Icon>HalfOrcBrutalFighting</Icon>
+               <Cost>1</Cost>
+                <!--Hate modelling-->
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Brutal Spellcasting</Name>
+               <Description>Your damaging spells generate [25/50/75]% more hate than they normally would,
+making enemies more likely to attack you.</Description>
+               <Icon>HalfOrcBrutalSpellcasting</Icon>
+               <Cost>1</Cost>
+                <!--Hate modelling-->
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Half-Orc: Weapon Training I</Name>
+         <InternalName>HalfOrcOrcishWeaponTrainingI</InternalName>
+         <Description>+1 to hit and damage when using two handed melee weapons.</Description>
+         <Icon>HalfOrcOrcishWeaponTraining</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>1</MinSpent>
+         <ArrowUp/>
+         <Requirements/>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <AmountVector size="1">1</AmountVector>
+              <WeaponClass>TwoHanded</WeaponClass>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <AmountVector size="1">1</AmountVector>
+              <WeaponClass>TwoHanded</WeaponClass>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Half-Orc: Stubborn</Name>
+         <InternalName>HalfOrcStubborn</InternalName>
+         <Description>You gain +[1/2/3] bonus to Will saving throws.</Description>
+         <Icon>HalfOrcStubborn</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements/>
+          <Effect>
+              <Type>SaveBonus</Type>
+              <Save>Will</Save>
+              <AmountVector size="3">1 2 3</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Half-Orc: Lesser Dragonmark of Finding</Name>
+         <InternalName>HalfOrcLesserDragonmarkOfFinding</InternalName>
+         <Description>Lesser Dragonmark Spell: Knock
+(Skill = Character Level + Charisma Modifier).
+Also allows you to use your Least Dragonmark of Finding an extra time per rest.</Description>
+         <Icon>HalfOrcLesserDragonmarkOfFinding</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Clickie/>
+         <ArrowRight/>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>HalfOrcTharashkDragonmarkFocus</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>SpellLikeAbility</Type>
+              <SpellLikeAbility>Knock</SpellLikeAbility>
+          </Effect>
+          <!--Dragonmark uses-->
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Half-Orc: Lock Bash</Name>
+         <InternalName>HalfOrcLockBash</InternalName>
+         <Description>Attempt to pick a lock - with your fists.
+This ability expends a use of the Lesser Dragonmark of Finding to operates as an Open Lock
+check using your Intimidate skill and Strength modifier.</Description>
+         <Icon>HalfOrcLockBash</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>HalfOrcLesserDragonmarkOfFinding</Enhancement>
+            </Requirement>
+            <Requirement>
+               <Enhancement>HalfOrcMightySundering</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Extra Action Boost</Name>
+         <InternalName>HalfOrcExtraActionBoost</InternalName>
+         <Description>Half-Orcs keep fighting long after other races tire.
+You can use each of your action boosts 1/2/3 additional times per rest.</Description>
+         <Icon>HalfOrcExtraActionBoost</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>2</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements/>
+          <Effect>
+              <Type>ExtraActionBoost</Type>
+              <AmountVector size="3">1 2 3</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Half-Orc: Weapon Training II</Name>
+         <InternalName>HalfOrcOrcishWeaponTrainingII</InternalName>
+         <Description>+1 to hit and +2 to damage when using two handed melee weapons.</Description>
+         <Icon>HalfOrcOrcishWeaponTraining</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>HalfOrcOrcishWeaponTrainingI</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <AmountVector size="1">1</AmountVector>
+              <WeaponClass>TwoHanded</WeaponClass>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <AmountVector size="1">2</AmountVector>
+              <WeaponClass>TwoHanded</WeaponClass>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Half-Orc: Rage</Name>
+         <InternalName>HalfOrcOrcishRage</InternalName>
+         <Description>Action Boost: You become enraged, and gain a +2 Primal bonus to Strength,
+but suffer -20 Physical Resistance Rating.
+Using this ability prevents spellcasting and uncenters you. (Cooldown: 30 seconds)</Description>
+         <Icon>HalfOrcOrcishRage</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Clickie/>
+         <Requirements/>
+          <!--Not modelled-->
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Half-Orc: Greater Dragonmark of Finding</Name>
+         <InternalName>HalfOrcGreaterDragonmarkOfFinding</InternalName>
+         <Description>Greater Dragonmark Spell: Treasure Finding.
+Activate this ability to harness the bloodline of House Tharashk to cast Treasure Finding
+once per rest. Also allows you to use your Least and Lesser Marks of Finding an extra time per rest.
+Treasure Finding lets you target an unopened chest and twist fate for a chance at better
+rewards for the entire party. Chests can only be improved in this way once time, and there
+is a chance of failure based on your Charisma.
+(Cooldown: 15 seconds)</Description>
+         <Icon>HalfOrcGreaterDragonmarkOfFinding</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>HalfOrcLesserDragonmarkOfFinding</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>SpellLikeAbility</Type>
+              <SpellLikeAbility>Treasure Finding</SpellLikeAbility>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Half-Orc:Great Weapon Aptitude</Name>
+         <InternalName>HalfOrcGreatWeaponAptitude</InternalName>
+         <Description>Glancing blows produced by your two-handed weapon attacks have a [2/4/6]%
+increased chance of producing magical weapon effects such as flaming.</Description>
+         <Icon>HalfOrcGreatWeaponAptitude</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Feat>Two Handed Fighting</Feat>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>GlancingBlowEffects</Type>
+              <AmountVector size="3">2 4 6</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Half-Orc: Improved Power Attack</Name>
+         <InternalName>HalfOrcImprovedPowerAttack</InternalName>
+         <Description>Your Power Attack feat does 1/2/3 additional point of bonus damage but also
+has an additional -1/-2/-3 to your attack bonus.</Description>
+         <Icon>HalfOrcImprovedPowerAttack</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>2</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Feat>Power Attack</Feat>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <AmountVector size="3">-1 -2 -3</AmountVector>
+              <Stance>Power Attack</Stance>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <AmountVector size="3">1 2 3</AmountVector>
+              <Stance>Power Attack</Stance>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Half-Orc: Weapon Training III</Name>
+         <InternalName>HalfOrcOrcishWeaponTrainingIII</InternalName>
+         <Description>+1 to hit and damage when using two handed melee weapons.</Description>
+         <Icon>HalfOrcOrcishWeaponTraining</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>HalfOrcOrcishWeaponTrainingII</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <AmountVector size="1">1</AmountVector>
+              <WeaponClass>TwoHanded</WeaponClass>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <AmountVector size="1">1</AmountVector>
+              <WeaponClass>TwoHanded</WeaponClass>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Half-Orc: Raging Crush</Name>
+         <InternalName>HalfOrcRagingCrush</InternalName>
+         <Description>When raging, Melee Attack: This attack is guaranteed to be a Critical Hit.
+3 uses per day. (Cooldown: 15 seconds)</Description>
+         <Icon>HalfOrcRagingCrush</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Clickie/>
+         <Requirements/>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Half-Orc: Brutality</Name>
+         <InternalName>HalfOrcBrutality</InternalName>
+         <Description>When using a two handed weapon, you deal an additional 20% damage to helpless opponents.</Description>
+         <Icon>HalfOrcBrutality</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Enhancement>HalfOrcOrcishWeaponTrainingIV</Enhancement>
+            </Requirement>
+         </Requirements>
+          <!--Not modelled-->
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Half-Orc: Weapon Training IV</Name>
+         <InternalName>HalfOrcOrcishWeaponTrainingIV</InternalName>
+         <Description>+1 to hit and +2 to damage when using two handed melee weapons.</Description>
+         <Icon>HalfOrcOrcishWeaponTraining</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <ArrowLeft/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>HalfOrcOrcishWeaponTrainingIII</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <AmountVector size="1">1</AmountVector>
+              <WeaponClass>TwoHanded</WeaponClass>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <AmountVector size="1">2</AmountVector>
+              <WeaponClass>TwoHanded</WeaponClass>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Half Orc: Power Rage</Name>
+         <InternalName>HalfOrcPowerRage</InternalName>
+         <Description>When raging, you gain an additional +1/+2 Strength, but also get an additional
+-1/-2 penalty to AC. Requires 2/6 levels of the Barbarian class.</Description>
+         <Icon>HalfOrcPowerRage</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>1</Cost>
+         <Ranks>2</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Barbarian</Class>
+               <Level>2</Level>
+               <Tier>1</Tier>
+            </Requirement>
+            <Requirement>
+               <Class>Barbarian</Class>
+               <Level>6</Level>
+               <Tier>2</Tier>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>AbilityBonus</Type>
+              <Ability>Strength</Ability>
+              <AmountVector size="2">1 2</AmountVector>
+              <Stance>Rage</Stance>
+          </Effect>
+          <Effect>
+              <Type>ACBonus</Type>
+              <AmountVector size="2">-1 -2</AmountVector>
+              <Stance>Rage</Stance>
+          </Effect>
+      </EnhancementTreeItem>
+   </EnhancementTree>
+</Enhancements>

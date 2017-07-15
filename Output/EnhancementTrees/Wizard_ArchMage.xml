@@ -1,0 +1,1886 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Enhancements>
+   <EnhancementTree>
+      <Name>Arch-Mage</Name>
+       <Version>1</Version>
+       <Requirements>
+         <Requirement>
+            <Class>Wizard</Class>
+         </Requirement>
+      </Requirements>
+      <Background>WizardBackground</Background>
+      <Icon>Wizard</Icon>
+      <EnhancementTreeItem>
+         <Name>Arch-Mage: Specialization I</Name>
+         <InternalName>AMCore1</InternalName>
+         <Description>Choose a school to specialize in, gaining a Spell Like Ability from that school.
+In addition, each enhancement point spent in the Archmage tree grants +1 Spell Power
+to all spells and +2 to your Maximum Spell points.</Description>
+         <Icon>AMArchMageSpecialization</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>0</MinSpent>
+         <Clickie/>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Class>Wizard</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Abjuration I: Shield</Name>
+               <Description>Spell Like Ability: Shield
+                       Activation Cost: 1 SP. Cooldown: 6 seconds)</Description>
+               <Icon>AMAbjurationIShield</Icon>
+               <Cost>1</Cost>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Conjuration I: Grease</Name>
+               <Description>Spell Like Ability: Grease
+                       Activation Cost: 1 SP. Cooldown: 6 seconds)</Description>
+               <Icon>AMConjurationIGrease</Icon>
+               <Cost>1</Cost>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Enchantment I: Hypnotism</Name>
+               <Description>Spell Like Ability: Hypnotism
+                       Activation Cost: 1 SP. Cooldown: 6 seconds)</Description>
+               <Icon>AMEnchantmentIHyponotism</Icon>
+               <Cost>1</Cost>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Evocation I: Magic Missile</Name>
+               <Description>Spell Like Ability: Magic Missile
+                       Activation Cost: 2 SP. Cooldown: 6 seconds)</Description>
+               <Icon>AMEvocationIMagicMissile</Icon>
+               <Cost>1</Cost>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Illusion I: Invisibility</Name>
+               <Description>Spell Like Ability: Invisibility
+                       Activation Cost: 1 SP. Cooldown: 6 seconds)</Description>
+               <Icon>AMIllusionIInvisibility</Icon>
+               <Cost>1</Cost>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Necromancy I: Chill Touch</Name>
+               <Description>Spell Like Ability: Chill Touch
+                       Activation Cost: 2 SP. Cooldown: 6 seconds)</Description>
+               <Icon>AMNecromancyIChillTouch</Icon>
+               <Cost>1</Cost>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Transmutation I: Jump</Name>
+               <Description>Spell Like Ability: Jump
+                       Activation Cost: 1 SP. Cooldown: 6 seconds)</Description>
+               <Icon>AMTransmutationIJump</Icon>
+               <Cost>1</Cost>
+            </EnhancementSelection>
+         </Selector>
+          <Effect>
+              <DisplayName>Arch-Mage spell power per action point</DisplayName>
+              <Type>SpellPower</Type>
+              <SpellPower>All</SpellPower>
+              <EnhancementTree>Arch-Mage</EnhancementTree>
+              <AmountPerAP>1.0</AmountPerAP>
+          </Effect>
+          <Effect>
+              <DisplayName>Arch-Mage spell points per action point</DisplayName>
+              <Type>SpellPoints</Type>
+              <EnhancementTree>Arch-Mage</EnhancementTree>
+              <AmountPerAP>2.0</AmountPerAP>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Arch-Mage: Specialization II</Name>
+         <InternalName>AMCore2</InternalName>
+         <Description>Gain a more powerful Spell-Like Ability from the school you have specialized in.</Description>
+         <Icon>AMArchMageSpecialization</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Clickie/>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>AMCore1</Enhancement>
+            </Requirement>
+            <Requirement>
+               <Class>Wizard</Class>
+               <Level>3</Level>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Abjuration II: Resist Energy</Name>
+               <Description>Spell Like Ability: Resist Energy
+                       Activation Cost: 3 SP. Cooldown: 6 seconds)</Description>
+               <Icon>AMAbjurationIIResistEnergy</Icon>
+               <Cost>1</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Enhancement>AMCore1</Enhancement>
+                     <Selection>Abjuration I: Shield</Selection>
+                  </Requirement>
+               </Requirements>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Conjuration II: Web</Name>
+               <Description>Spell Like Ability: Web
+                       Activation Cost: 3 SP. Cooldown: 6 seconds)</Description>
+               <Icon>AMConjurationIIWeb</Icon>
+               <Cost>1</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Enhancement>AMCore1</Enhancement>
+                     <Selection>Conjuration I: Grease</Selection>
+                  </Requirement>
+               </Requirements>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Enchantment II: Otto's Resistible Dance</Name>
+               <Description>Spell Like Ability: Otto's Resistible Dance
+                       Activation Cost: 3 SP. Cooldown: 6 seconds)</Description>
+               <Icon>AMEnchantmentIIOttosResistableDance</Icon>
+               <Cost>1</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Enhancement>AMCore1</Enhancement>
+                     <Selection>Enchantment I: Hypnotism</Selection>
+                  </Requirement>
+               </Requirements>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Evocation II: Gust of Wind</Name>
+               <Description>Spell Like Ability: Gust of Wind
+(Activation Cost: 3 SP. Cooldown: 6 seconds)</Description>
+               <Icon>AMEvocationIIGustOfWind</Icon>
+               <Cost>1</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Enhancement>AMCore1</Enhancement>
+                     <Selection>Evocation I: Magic Missile</Selection>
+                  </Requirement>
+               </Requirements>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Illusion II: Blur</Name>
+               <Description>Spell Like Ability: Blur
+(Activation Cost: 3 SP. Cooldown: 6 seconds)</Description>
+               <Icon>AMIllusionIIBlur</Icon>
+               <Cost>1</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Enhancement>AMCore1</Enhancement>
+                     <Selection>Illusion I: Invisibility</Selection>
+                  </Requirement>
+               </Requirements>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Necromancy II: Command Undead</Name>
+               <Description>Spell Like Ability: Command Undead
+(Activation Cost: 3 SP. Cooldown: 6 seconds)</Description>
+               <Icon>AMNecromancyIICommandUndead</Icon>
+               <Cost>1</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Enhancement>AMCore1</Enhancement>
+                     <Selection>Necromancy I: Chill Touch</Selection>
+                  </Requirement>
+               </Requirements>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Transmutation II: Knock</Name>
+               <Description>Spell Like Ability: Knock
+(Activation Cost: 3 SP. Cooldown: 6 seconds)</Description>
+               <Icon>AMTransmutationIIKnock</Icon>
+               <Cost>1</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Enhancement>AMCore1</Enhancement>
+                     <Selection>Transmutation I: Jump</Selection>
+                  </Requirement>
+               </Requirements>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Arch-Mage: Specialization III</Name>
+         <InternalName>AMCore3</InternalName>
+         <Description>Gain a more powerful Spell-Like Ability from the school you have specialized in.</Description>
+         <Icon>AMArchMageSpecialization</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Clickie/>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>AMCore2</Enhancement>
+            </Requirement>
+            <Requirement>
+               <Class>Wizard</Class>
+               <Level>6</Level>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Abjuration III: Protection from Energy</Name>
+               <Description>Spell Like Ability: Protection from Energy
+(Activation Cost: 6 SP. Cooldown: 6 seconds)</Description>
+               <Icon>AMAbjurationIIIProtectionFromEnergy</Icon>
+               <Cost>1</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Enhancement>AMCore1</Enhancement>
+                     <Selection>Abjuration I: Shield</Selection>
+                  </Requirement>
+               </Requirements>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Conjuration III: Stinking Cloud</Name>
+               <Description>Spell Like Ability: Stinking Cloud
+(Activation Cost: 6 SP. Cooldown: 15 seconds)</Description>
+               <Icon>AMConjurationIIIStinkingCloud</Icon>
+               <Cost>1</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Enhancement>AMCore1</Enhancement>
+                     <Selection>Conjuration I: Grease</Selection>
+                  </Requirement>
+               </Requirements>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Enchantment III: Hold Person</Name>
+               <Description>Spell Like Ability: Hold Person
+(Activation Cost: 6 SP. Cooldown: 6 seconds)</Description>
+               <Icon>AMEnchantmentIIIHoldPerson</Icon>
+               <Cost>1</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Enhancement>AMCore1</Enhancement>
+                     <Selection>Enchantment I: Hypnotism</Selection>
+                  </Requirement>
+               </Requirements>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Evocation III: Chain Missile</Name>
+               <Description>Like Ability: Chain Missile
+(Activation Cost: 8 SP. Cooldown: 10 seconds)</Description>
+               <Icon>AMEvocationIIIChainMissile</Icon>
+               <Cost>1</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Enhancement>AMCore1</Enhancement>
+                     <Selection>Evocation I: Magic Missile</Selection>
+                  </Requirement>
+               </Requirements>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Illusion III: Displacement</Name>
+               <Description>Spell Like Ability: Displacement
+(Activation Cost: 6 SP. Cooldown: 6 seconds)</Description>
+               <Icon>AMIllusionIIIDisplacement</Icon>
+               <Cost>1</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Enhancement>AMCore1</Enhancement>
+                     <Selection>Illusion I: Invisibility</Selection>
+                  </Requirement>
+               </Requirements>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Necromancy III: Halt Undead</Name>
+               <Description>Spell Like Ability: Halt Undead
+(Activation Cost: 6 SP. Cooldown: 6 seconds)</Description>
+               <Icon>AMNecromancyIIIHaltUndead</Icon>
+               <Cost>1</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Enhancement>AMCore1</Enhancement>
+                     <Selection>Necromancy I: Chill Touch</Selection>
+                  </Requirement>
+               </Requirements>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Transmutation III: Haste</Name>
+               <Description>Spell Like Ability: Haste
+(Activation Cost: 6 SP. Cooldown: 6 seconds)</Description>
+               <Icon>AMTransmutationIIIHaste</Icon>
+               <Cost>1</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Enhancement>AMCore1</Enhancement>
+                     <Selection>Transmutation I: Jump</Selection>
+                  </Requirement>
+               </Requirements>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Arch-Mage: Specialization IV</Name>
+         <InternalName>AMCore4</InternalName>
+         <Description>Gain a more powerful Spell-Like Ability from the school you have specialized in.</Description>
+         <Icon>AMArchMageSpecialization</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Clickie/>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>AMCore3</Enhancement>
+            </Requirement>
+            <Requirement>
+               <Class>Wizard</Class>
+               <Level>12</Level>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Abjuration IV: Stoneskin</Name>
+               <Description>Spell Like Ability: Stoneskin
+(Activation Cost: 10 SP. Cooldown: 15 seconds)</Description>
+               <Icon>AMAbjurationIVStoneskin</Icon>
+               <Cost>1</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Enhancement>AMCore1</Enhancement>
+                     <Selection>Abjuration I: Shield</Selection>
+                  </Requirement>
+               </Requirements>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Conjuration IV: Dimension Door</Name>
+               <Description>pell Like Ability: Dimension Door
+(Activation Cost: 10 SP. Cooldown: 15 seconds)</Description>
+               <Icon>AMConjurationIVDimensionDoor</Icon>
+               <Cost>1</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Enhancement>AMCore1</Enhancement>
+                     <Selection>Conjuration I: Grease</Selection>
+                  </Requirement>
+               </Requirements>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Enchantment IV: Charm Monster</Name>
+               <Description>Spell Like Ability: Charm Monster
+(Activation Cost: 10 SP. Cooldown: 6 seconds)</Description>
+               <Icon>AMEnchantmentIVCharmMonster</Icon>
+               <Cost>1</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Enhancement>AMCore1</Enhancement>
+                     <Selection>Enchantment I: Hypnotism</Selection>
+                  </Requirement>
+               </Requirements>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Evocation IV: Fire Shield</Name>
+               <Description>Spell Like Ability: Fire Shield
+(Activation Cost: 6 SP. Cooldown: 6 seconds)</Description>
+               <Icon>AMEvocationIVFireShield</Icon>
+               <Cost>1</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Enhancement>AMCore1</Enhancement>
+                     <Selection>Evocation I: Magic Missile</Selection>
+                  </Requirement>
+               </Requirements>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Illusion IV: Phantasmal Killer</Name>
+               <Description>Spell Like Ability: Phantasmal Killer
+(Activation Cost: 10 SP. Cooldown: 6 seconds)</Description>
+               <Icon>AMIllusionIVPhantasmalKiller</Icon>
+               <Cost>1</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Enhancement>AMCore1</Enhancement>
+                     <Selection>Illusion I: Invisibility</Selection>
+                  </Requirement>
+               </Requirements>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Necromancy IV: Enervation</Name>
+               <Description>Spell Like Ability: Enervation
+(Activation Cost: 10 SP. Cooldown: 6 seconds)</Description>
+               <Icon>AMNecromancyIVEnervation</Icon>
+               <Cost>1</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Enhancement>AMCore1</Enhancement>
+                     <Selection>Necromancy I: Chill Touch</Selection>
+                  </Requirement>
+               </Requirements>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Transmutation IV: Stone to Flesh</Name>
+               <Description>Spell Like Ability: Stone to Flesh
+(Activation Cost: 10 SP. Cooldown: 6 seconds)</Description>
+               <Icon>AMTransmutationIVStoneToFlesh</Icon>
+               <Cost>1</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Enhancement>AMCore1</Enhancement>
+                     <Selection>Transmutation I: Jump</Selection>
+                  </Requirement>
+               </Requirements>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Arch-Mage: Specialization V</Name>
+         <InternalName>AMCore5</InternalName>
+         <Description>Gain a more powerful Spell-Like Ability from the school you have specialized in.</Description>
+         <Icon>AMArchMageSpecialization</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Clickie/>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>AMCore4</Enhancement>
+            </Requirement>
+            <Requirement>
+               <Class>Wizard</Class>
+               <Level>18</Level>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Abjuration V: Dismissal</Name>
+               <Description>Spell Like Ability: Dismissal
+(Activation Cost: 15 SP. Cooldown: 6 seconds)</Description>
+               <Icon>AMAbjurationVDismissal</Icon>
+               <Cost>1</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Enhancement>AMCore1</Enhancement>
+                     <Selection>Abjuration I: Shield</Selection>
+                  </Requirement>
+               </Requirements>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Conjuration V: Cloudkill</Name>
+               <Description>Spell Like Ability: Cloudkill
+(Activation Cost: 15 SP. Cooldown: 15 seconds)</Description>
+               <Icon>AMConjurationVCloudkill</Icon>
+               <Cost>1</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Enhancement>AMCore1</Enhancement>
+                     <Selection>Conjuration I: Grease</Selection>
+                  </Requirement>
+               </Requirements>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Enchantment V: Hold Monster</Name>
+               <Description>Spell Like Ability: Hold Monster
+(Activation Cost: 15 SP. Cooldown: 6 seconds)</Description>
+               <Icon>AMEnchantmentVHoldMonster</Icon>
+               <Cost>1</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Enhancement>AMCore1</Enhancement>
+                     <Selection>Enchantment I: Hypnotism</Selection>
+                  </Requirement>
+               </Requirements>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Evocation V: Cyclonic Blast</Name>
+               <Description>Spell Like Ability: Cyclonic Blast
+(Activation Cost: 15 SP. Cooldown: 8 seconds)</Description>
+               <Icon>AMEvocationVCyclonicBlast</Icon>
+               <Cost>1</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Enhancement>AMCore1</Enhancement>
+                     <Selection>Evocation I: Magic Missile</Selection>
+                  </Requirement>
+               </Requirements>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Illusion V: Shadow Walk</Name>
+               <Description>Spell Like Ability: Shadow Walk
+(Activation Cost: 15 SP. Cooldown: 6 seconds)</Description>
+               <Icon>AMIllusionVShadowWalk</Icon>
+               <Cost>1</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Enhancement>AMCore1</Enhancement>
+                     <Selection>Illusion I: Invisibility</Selection>
+                  </Requirement>
+               </Requirements>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Necromancy V: Waves of Fatigue</Name>
+               <Description>Spell Like Ability: Waves of Fatigue
+(Activation Cost: 15 SP. Cooldown: 6 seconds)</Description>
+               <Icon>AMNecromancyVWavesOfFatigue</Icon>
+               <Cost>1</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Enhancement>AMCore1</Enhancement>
+                     <Selection>Necromancy I: Chill Touch</Selection>
+                  </Requirement>
+               </Requirements>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Transmutation V: Flesh to Stone</Name>
+               <Description>Spell Like Ability: Flesh to Stone
+(Activation Cost: 15 SP. Cooldown: 6 seconds)</Description>
+               <Icon>AMTransmutationVFleshToStone</Icon>
+               <Cost>1</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Enhancement>AMCore1</Enhancement>
+                     <Selection>Transmutation I: Jump</Selection>
+                  </Requirement>
+               </Requirements>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Arch-Mage: Master of Magic</Name>
+         <InternalName>AMCore6</InternalName>
+         <Description>Through extensive training and countless hours of study, you have mastered the
+application of metamagic feats to your spells. You gain +2 Intelligence,
++5 Spellcraft, and all metamagic feats cost 1 fewer spell point to use.
+(Heighten Spell costs 1 fewer spell point per level of heightening.)</Description>
+         <Icon>AMMAsterOfMagic</Icon>
+         <XPosition>5</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>40</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Enhancement>AMCore5</Enhancement>
+            </Requirement>
+            <Requirement>
+               <Class>Wizard</Class>
+               <Level>20</Level>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>AbilityBonus</Type>
+              <Ability>Intelligence</Ability>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>SkillBonus</Type>
+              <Skill>Spell Craft</Skill>
+              <AmountVector size="1">5</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>AdditionalSpellPointCost</Type>
+              <AmountVector size="1">-1</AmountVector>
+              <Stance>Empower</Stance>
+          </Effect>
+          <Effect>
+              <Type>AdditionalSpellPointCost</Type>
+              <AmountVector size="1">-1</AmountVector>
+              <Stance>Maximize</Stance>
+          </Effect>
+          <Effect>
+              <Type>AdditionalSpellPointCost</Type>
+              <AmountVector size="1">-1</AmountVector>
+              <Stance>Extend</Stance>
+          </Effect>
+          <Effect>
+              <Type>AdditionalSpellPointCost</Type>
+              <AmountVector size="1">-1</AmountVector>
+              <Stance>Quicken</Stance>
+          </Effect>
+          <Effect>
+              <Type>AdditionalSpellPointCost</Type>
+              <AmountVector size="1">-1</AmountVector>
+              <Stance>Highten</Stance>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Arch-Mage: Subtle Spellcasting</Name>
+         <InternalName>AMSubtleSpellcasting</InternalName>
+         <Description>Your damaging spells generate 10%/20%/30% less hate than they normally would,
+making enemies less likely to attack you.</Description>
+         <Icon>AMSubtleSpellcasting</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Wizard</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
+        <Effect>
+            <Type>ThreatBonus</Type>
+            <AmountVector size="3">-10 -20 -30</AmountVector>
+        </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Arch-Mage: Energy of the Scholar</Name>
+         <InternalName>AMEnergyOfTheScholar</InternalName>
+         <Description>Your studies have increased your maximum Spell Points by an additional 30/60/90.</Description>
+         <Icon>AMEnergyOfTheScholar</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>2</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Wizard</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>SpellPoints</Type>
+              <AmountVector size="3">30 60 90</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Arch-Mage: Traditionalist Caster</Name>
+         <InternalName>AMTraditionalistCaster</InternalName>
+         <Description>+3/+6/+10 Universal Spell Power when wielding an Orb or Staff.</Description>
+         <Icon>AMTraditionalistCaster</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Wizard</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>SpellPower</Type>
+              <SpellPower>All</SpellPower>
+              <AmountVector size="3">3 6 10</AmountVector>
+              <Stance>Orb</Stance>
+          </Effect>
+          <Effect>
+              <Type>SpellPower</Type>
+              <SpellPower>All</SpellPower>
+              <AmountVector size="3">3 6 10</AmountVector>
+              <Stance>Staff</Stance>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Arch-Mage: Spell Critical: Elemental and Force I</Name>
+         <InternalName>AMSpellCriticalElementalAndForceI</InternalName>
+         <Description>Your Acid, Cold, Electric, Fire, Force and Untyped damage spells have an
+additional 1% chance to critically hit.</Description>
+         <Icon>AMSpellCriticalElementalAndForce</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>1</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Wizard</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>SpellCriticalChance</Type>
+              <SpellPower>Acid</SpellPower>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>SpellCriticalChance</Type>
+              <SpellPower>Cold</SpellPower>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>SpellCriticalChance</Type>
+              <SpellPower>Electric</SpellPower>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>SpellCriticalChance</Type>
+              <SpellPower>Fire</SpellPower>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>SpellCriticalChance</Type>
+              <SpellPower>Force</SpellPower>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>SpellCriticalChance</Type>
+              <SpellPower>Untyped</SpellPower>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Arch-Mage: Wand and Scroll Mastery</Name>
+         <InternalName>AMWandAndScrollMastery</InternalName>
+         <Description>+25%/+50%/+75% effectiveness from your wands, scrolls, and other items that
+cast spells, and +1/+2/+3 to the save DC of your offensive wands.</Description>
+         <Icon>AMWandAndScrollMastery</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Wizard</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Arch-Mage: Efficient Metamagic</Name>
+         <InternalName>AMEfficientMetamagicLeft</InternalName>
+         <Description>Choose another Metamagic feat. Reduce the spell point cost of using that Metamagic.</Description>
+         <Icon>EfficientMetamagic</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>2</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Wizard</Class>
+               <Level>2</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>AMEfficientMetamagicI</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Efficient Empower</Name>
+               <Description>Using the Empower Spell Metamagic costs you 2/4/6 fewer Spell Points.</Description>
+               <Icon>EfficientEmpower</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Feat>Empower Spell</Feat>
+                  </Requirement>
+                  <RequiresNoneOf>
+                     <Requirement>
+                        <Enhancement>AMEfficientMetamagicI</Enhancement>
+                        <Selection>Efficient Empower</Selection>
+                     </Requirement>
+                     <Requirement>
+                        <Enhancement>AMEfficientMetamagicRight</Enhancement>
+                        <Selection>Efficient Empower</Selection>
+                     </Requirement>
+                  </RequiresNoneOf>
+               </Requirements>
+                <Effect>
+                    <Type>AdditionalSpellPointCost</Type>
+                    <AmountVector size="3">-2 -4 -6</AmountVector>
+                    <Stance>Empower</Stance>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Efficient Enlarge</Name>
+               <Description>Using the Enlarge Spell Metamagic costs you 1/2/4 fewer Spell Points.</Description>
+               <Icon>EfficientEnlarge</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Feat>Enlarge Spell</Feat>
+                  </Requirement>
+                  <RequiresNoneOf>
+                     <Requirement>
+                        <Enhancement>AMEfficientMetamagicI</Enhancement>
+                        <Selection>Efficient Enlarge</Selection>
+                     </Requirement>
+                     <Requirement>
+                        <Enhancement>AMEfficientMetamagicRight</Enhancement>
+                        <Selection>Efficient Enlarge</Selection>
+                     </Requirement>
+                  </RequiresNoneOf>
+               </Requirements>
+                <Effect>
+                    <Type>AdditionalSpellPointCost</Type>
+                    <AmountVector size="3">-1 -2 -4</AmountVector>
+                    <Stance>Enlarge</Stance>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Efficient Maximize</Name>
+               <Description>Using the Maximize Spell Metamagic costs you 3/6/9 fewer Spell Points.</Description>
+               <Icon>EfficientMaximize</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Feat>Maximize Spell</Feat>
+                  </Requirement>
+                  <RequiresNoneOf>
+                     <Requirement>
+                        <Enhancement>AMEfficientMetamagicI</Enhancement>
+                        <Selection>Efficient Maximize</Selection>
+                     </Requirement>
+                     <Requirement>
+                        <Enhancement>AMEfficientMetamagicRight</Enhancement>
+                        <Selection>Efficient Maximize</Selection>
+                     </Requirement>
+                  </RequiresNoneOf>
+               </Requirements>
+                <Effect>
+                    <Type>AdditionalSpellPointCost</Type>
+                    <AmountVector size="3">-3 -6 -9</AmountVector>
+                    <Stance>Maximize</Stance>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Efficient Quicken</Name>
+               <Description>Using the Quicken Spell Metamagic costs you 1/2/4 fewer Spell Points.</Description>
+               <Icon>EfficientQuicken</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Feat>Quicken Spell</Feat>
+                  </Requirement>
+                  <RequiresNoneOf>
+                     <Requirement>
+                        <Enhancement>AMEfficientMetamagicI</Enhancement>
+                        <Selection>Efficient Quicken</Selection>
+                     </Requirement>
+                     <Requirement>
+                        <Enhancement>AMEfficientMetamagicRight</Enhancement>
+                        <Selection>Efficient Quicken</Selection>
+                     </Requirement>
+                  </RequiresNoneOf>
+               </Requirements>
+                <Effect>
+                    <Type>AdditionalSpellPointCost</Type>
+                    <AmountVector size="3">-1 -2 -4</AmountVector>
+                    <Stance>Quicken</Stance>
+                </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Arch-Mage: Efficient Metamagic</Name>
+         <InternalName>AMEfficientMetamagicI</InternalName>
+         <Description>Choose one of the following Metamagic feats. Reduce the spell point cost of
+using that Metamagic.</Description>
+         <Icon>EfficientMetamagic</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>2</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <ArrowLeft/>
+         <ArrowRight/>
+         <LongArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Wizard</Class>
+               <Level>2</Level>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Efficient Empower</Name>
+               <Description>Using the Empower Spell Metamagic costs you 2/4/6 fewer Spell Points.</Description>
+               <Icon>EfficientEmpower</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Feat>Empower Spell</Feat>
+                  </Requirement>
+               </Requirements>
+                <Effect>
+                    <Type>AdditionalSpellPointCost</Type>
+                    <AmountVector size="3">-2 -4 -6</AmountVector>
+                    <Stance>Empower</Stance>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Efficient Enlarge</Name>
+               <Description>Using the Enlarge Spell Metamagic costs you 1/2/4 fewer Spell Points.</Description>
+               <Icon>EfficientEnlarge</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Feat>Enlarge Spell</Feat>
+                  </Requirement>
+               </Requirements>
+                <Effect>
+                    <Type>AdditionalSpellPointCost</Type>
+                    <AmountVector size="3">-1 -2 -4</AmountVector>
+                    <Stance>Enlarge</Stance>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Efficient Maximize</Name>
+               <Description>Using the Maximize Spell Metamagic costs you 3/6/9 fewer Spell Points.</Description>
+               <Icon>EfficientMaximize</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Feat>Maximize Spell</Feat>
+                  </Requirement>
+               </Requirements>
+                <Effect>
+                    <Type>AdditionalSpellPointCost</Type>
+                    <AmountVector size="3">-3 -6 -9</AmountVector>
+                    <Stance>Maximize</Stance>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Efficient Quicken</Name>
+               <Description>Using the Quicken Spell Metamagic costs you 1/2/4 fewer Spell Points.</Description>
+               <Icon>EfficientQuicken</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Feat>Quicken Spell</Feat>
+                  </Requirement>
+               </Requirements>
+                <Effect>
+                    <Type>AdditionalSpellPointCost</Type>
+                    <AmountVector size="3">-1 -2 -4</AmountVector>
+                    <Stance>Quicken</Stance>
+                </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Arch-Mage: Efficient Metamagic</Name>
+         <InternalName>AMEfficientMetamagicRight</InternalName>
+         <Description>Choose another Metamagic feat. Reduce the spell point cost of using that Metamagic.</Description>
+         <Icon>EfficientMetamagic</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>2</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Enhancement>AMEfficientMetamagicI</Enhancement>
+            </Requirement>
+            <Requirement>
+               <Class>Wizard</Class>
+               <Level>2</Level>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Efficient Empower</Name>
+               <Description>Using the Empower Spell Metamagic costs you 2/4/6 fewer Spell Points.</Description>
+               <Icon>EfficientEmpower</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Feat>Empower Spell</Feat>
+                  </Requirement>
+                  <RequiresNoneOf>
+                     <Requirement>
+                        <Enhancement>AMEfficientMetamagicI</Enhancement>
+                        <Selection>Efficient Empower</Selection>
+                     </Requirement>
+                     <Requirement>
+                        <Enhancement>AMEfficientMetamagicLeft</Enhancement>
+                        <Selection>Efficient Empower</Selection>
+                     </Requirement>
+                  </RequiresNoneOf>
+               </Requirements>
+                <Effect>
+                    <Type>AdditionalSpellPointCost</Type>
+                    <AmountVector size="3">-2 -4 -6</AmountVector>
+                    <Stance>Empower</Stance>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Efficient Enlarge</Name>
+               <Description>Using the Enlarge Spell Metamagic costs you 1/2/4 fewer Spell Points.</Description>
+               <Icon>EfficientEnlarge</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Feat>Enlarge Spell</Feat>
+                  </Requirement>
+                  <RequiresNoneOf>
+                     <Requirement>
+                        <Enhancement>AMEfficientMetamagicI</Enhancement>
+                        <Selection>Efficient Enlarge</Selection>
+                     </Requirement>
+                     <Requirement>
+                        <Enhancement>AMEfficientMetamagicLeft</Enhancement>
+                        <Selection>Efficient Enlarge</Selection>
+                     </Requirement>
+                  </RequiresNoneOf>
+               </Requirements>
+                <Effect>
+                    <Type>AdditionalSpellPointCost</Type>
+                    <AmountVector size="3">-1 -2 -4</AmountVector>
+                    <Stance>Enlarge</Stance>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Efficient Maximize</Name>
+               <Description>Using the Maximize Spell Metamagic costs you 3/6/9 fewer Spell Points.</Description>
+               <Icon>EfficientMaximize</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Feat>Maximize Spell</Feat>
+                  </Requirement>
+                  <RequiresNoneOf>
+                     <Requirement>
+                        <Enhancement>AMEfficientMetamagicI</Enhancement>
+                        <Selection>Efficient Maximize</Selection>
+                     </Requirement>
+                     <Requirement>
+                        <Enhancement>AMEfficientMetamagicLeft</Enhancement>
+                        <Selection>Efficient Maximize</Selection>
+                     </Requirement>
+                  </RequiresNoneOf>
+               </Requirements>
+                <Effect>
+                    <Type>AdditionalSpellPointCost</Type>
+                    <AmountVector size="3">-3 -6 -9</AmountVector>
+                    <Stance>Maximize</Stance>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Efficient Quicken</Name>
+               <Description>Using the Quicken Spell Metamagic costs you 1/2/4 fewer Spell Points.</Description>
+               <Icon>EfficientQuicken</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Feat>Quicken Spell</Feat>
+                  </Requirement>
+                  <RequiresNoneOf>
+                     <Requirement>
+                        <Enhancement>AMEfficientMetamagicI</Enhancement>
+                        <Selection>Efficient Quicken</Selection>
+                     </Requirement>
+                     <Requirement>
+                        <Enhancement>AMEfficientMetamagicLeft</Enhancement>
+                        <Selection>Efficient Quicken</Selection>
+                     </Requirement>
+                  </RequiresNoneOf>
+               </Requirements>
+                <Effect>
+                    <Type>AdditionalSpellPointCost</Type>
+                    <AmountVector size="3">-1 -2 -4</AmountVector>
+                    <Stance>Quicken</Stance>
+                </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Arch-Mage: Spell Critical: Elemental and Force II</Name>
+         <InternalName>AMSpellCriticalElementalAndForceII</InternalName>
+         <Description>Your Acid, Cold, Electric, Fire, Force and Untyped damage spells have an
+additional 1% chance to critically hit.</Description>
+         <Icon>AMSpellCriticalElementalAndForce</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Wizard</Class>
+               <Level>2</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>AMSpellCriticalElementalAndForceI</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>SpellCriticalChance</Type>
+              <SpellPower>Acid</SpellPower>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>SpellCriticalChance</Type>
+              <SpellPower>Cold</SpellPower>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>SpellCriticalChance</Type>
+              <SpellPower>Electric</SpellPower>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>SpellCriticalChance</Type>
+              <SpellPower>Fire</SpellPower>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>SpellCriticalChance</Type>
+              <SpellPower>Force</SpellPower>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>SpellCriticalChance</Type>
+              <SpellPower>Untyped</SpellPower>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Arch-Mage: Arcane Bolt</Name>
+         <InternalName>AMArcaneBolt</InternalName>
+         <Description>Spell Like Ability: Arcane Bolt
+(Activation Cost: 8/6/4 Spell Points. Cooldown: 15/10/5 seconds)
+Scale with 100% Spell Power.</Description>
+         <Icon>AMArcaneBolt</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Clickie/>
+         <LongArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Wizard</Class>
+               <Level>3</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Arch-Mage: Spell Penetration</Name>
+         <InternalName>AMSpellPenetration</InternalName>
+         <Description>You add +1 to your Caster Level check to overcome an enemy's Spell Resistance.</Description>
+          <Icon>SpellPenetration</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>2</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Wizard</Class>
+               <Level>3</Level>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>SpellPenetrationBonus</Type>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Arch-Mage: Spell Critical: Elemental and Force III</Name>
+         <InternalName>AMSpellCriticalElementalAndForceIII</InternalName>
+         <Description>Your Acid, Cold, Electric, Fire, Force and Untyped damage spells have an
+additional 2% chance to critically hit.</Description>
+         <Icon>AMSpellCriticalElementalAndForce</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Wizard</Class>
+               <Level>3</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>AMSpellCriticalElementalAndForceII</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>SpellCriticalChance</Type>
+              <SpellPower>Acid</SpellPower>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>SpellCriticalChance</Type>
+              <SpellPower>Cold</SpellPower>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>SpellCriticalChance</Type>
+              <SpellPower>Electric</SpellPower>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>SpellCriticalChance</Type>
+              <SpellPower>Fire</SpellPower>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>SpellCriticalChance</Type>
+              <SpellPower>Force</SpellPower>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>SpellCriticalChance</Type>
+              <SpellPower>Untyped</SpellPower>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Arch-Mage: Intelligence I</Name>
+         <InternalName>AMIntelligenceI</InternalName>
+         <Description>+1 Intelligence</Description>
+         <Icon>Intelligence</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Wizard</Class>
+               <Level>3</Level>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>AbilityBonus</Type>
+              <Ability>Intelligence</Ability>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Arch-Mage: Efficient Heighten</Name>
+         <InternalName>AMEfficientHeighten</InternalName>
+         <Description>Using the Heighten Spell Metamagic costs you 1/2 fewer Spell Points per heightened level.</Description>
+         <Icon>EfficientHeighten</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>2</Cost>
+         <Ranks>2</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Enhancement>AMEfficientMetamagicI</Enhancement>
+            </Requirement>
+            <Requirement>
+               <Class>Wizard</Class>
+               <Level>4</Level>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>AdditionalSpellPointCost</Type>
+              <AmountVector size="2">-1 -2</AmountVector>
+              <Stance>Heighten</Stance>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Arch-Mage: School Mastery</Name>
+         <InternalName>AMSchoolMastery</InternalName>
+         <Description>You have attained mastery in the school of magic that you specialize in.
+The DC of spells you cast from that school are increased by 1.</Description>
+         <Icon>AMSchoolMastery</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Wizard</Class>
+               <Level>4</Level>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Primary Spell Focus: Abjuration</Name>
+               <Description>You have trained extensively in Abjuration magic, granting a +1 bonus to
+your spell DCs of that school.</Description>
+               <Icon>AMPrimarySpellFocusAbjuration</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Enhancement>AMCore1</Enhancement>
+                     <Selection>Abjuration I: Shield</Selection>
+                  </Requirement>
+               </Requirements>
+                <Effect>
+                    <Type>SpellDC</Type>
+                    <School>Abjuration</School>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Primary Spell Focus: Conjuration</Name>
+               <Description>You have trained extensively in Conjuration magic, granting a +1 bonus to
+your spell DCs of that school.</Description>
+               <Icon>AMPrimarySpellFocusConjuration</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Enhancement>AMCore1</Enhancement>
+                     <Selection>Conjuration I: Grease</Selection>
+                  </Requirement>
+               </Requirements>
+                <Effect>
+                    <Type>SpellDC</Type>
+                    <School>Conjuration</School>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Primary Spell Focus: Enchantment</Name>
+               <Description>You have trained extensively in Enchantment magic, granting a +1 bonus to
+your spell DCs of that school.</Description>
+               <Icon>AMPrimarySpellFocusEnchantment</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Enhancement>AMCore1</Enhancement>
+                     <Selection>Enchantment I: Hypnotism</Selection>
+                  </Requirement>
+               </Requirements>
+                <Effect>
+                    <Type>SpellDC</Type>
+                    <School>Enchantment</School>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Primary Spell Focus: Evocation</Name>
+               <Description>You have trained extensively in Evocation magic, granting a +1 bonus to
+your spell DCs of that school.</Description>
+               <Icon>AMPrimarySpellFocusEvocation</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Enhancement>AMCore1</Enhancement>
+                     <Selection>Evocation I: Magic Missile</Selection>
+                  </Requirement>
+               </Requirements>
+                <Effect>
+                    <Type>SpellDC</Type>
+                    <School>Evocation</School>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Primary Spell Focus: Illusion</Name>
+               <Description>You have trained extensively in Illusion magic, granting a +1 bonus to
+your spell DCs of that school.</Description>
+               <Icon>AMPrimarySpellFocusIllusion</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Enhancement>AMCore1</Enhancement>
+                     <Selection>Illusion I: Invisibility</Selection>
+                  </Requirement>
+               </Requirements>
+                <Effect>
+                    <Type>SpellDC</Type>
+                    <School>Illusion</School>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Primary Spell Focus: Necromancy</Name>
+               <Description>You have trained extensively in Necromancy magic, granting a +1 bonus to
+your spell DCs of that school.</Description>
+               <Icon>AMPrimarySpellFocusNecromancy</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Enhancement>AMCore1</Enhancement>
+                     <Selection>Necromancy I: Chill Touch</Selection>
+                  </Requirement>
+               </Requirements>
+                <Effect>
+                    <Type>SpellDC</Type>
+                    <School>Necromancy</School>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Primary Spell Focus: Transmutation</Name>
+               <Description>You have trained extensively in Transmutation magic, granting a +1 bonus to
+your spell DCs of that school.</Description>
+               <Icon>AMPrimarySpellFocusTransmutation</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Enhancement>AMCore1</Enhancement>
+                     <Selection>Transmutation I: Jump</Selection>
+                  </Requirement>
+               </Requirements>
+                <Effect>
+                    <Type>SpellDC</Type>
+                    <School>Transmutation</School>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Arch-Mage: Spell Critical: Elemental and Force IV</Name>
+         <InternalName>AMSpellCriticalElementalAndForceIV</InternalName>
+         <Description>Your Acid, Cold, Electric, Fire, Force and Untyped damage spells have an
+additional 2% chance to critically hit.</Description>
+         <Icon>AMSpellCriticalElementalAndForce</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Wizard</Class>
+               <Level>4</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>AMSpellCriticalElementalAndForceIII</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>SpellCriticalChance</Type>
+              <SpellPower>Acid</SpellPower>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>SpellCriticalChance</Type>
+              <SpellPower>Cold</SpellPower>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>SpellCriticalChance</Type>
+              <SpellPower>Electric</SpellPower>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>SpellCriticalChance</Type>
+              <SpellPower>Fire</SpellPower>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>SpellCriticalChance</Type>
+              <SpellPower>Force</SpellPower>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>SpellCriticalChance</Type>
+              <SpellPower>Untyped</SpellPower>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Arch-Mage: Intelligence II</Name>
+         <InternalName>AMIntelligenceII</InternalName>
+         <Description>+1 Intelligence</Description>
+         <Icon>Intelligence</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Wizard</Class>
+               <Level>4</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>AMIntelligenceI</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>AbilityBonus</Type>
+              <Ability>Intelligence</Ability>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Arch-Mage: Arcane Blast</Name>
+         <InternalName>AMArcaneBlast</InternalName>
+         <Description>Spell Like Ability: Arcane Blast.
+(Activation Cost: 12/8/6 Spell Points. Cooldown: 18/12/6 seconds.)
+You fire a ball of raw energy from your hand that explodes on contact with its target,
+dealing 1 to 6 hit points of force damage per caster level to all within its radius.
+A successful Reflex save reduces the damage by half.
+This ability counts as a level 4 Wizard spell. Scale with 100% Spell Power.</Description>
+         <Icon>AMArcaneBlast</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>12</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Class>Wizard</Class>
+               <Level>5</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>AMArcaneBolt</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Arch-Mage: Arcane Supremacy</Name>
+         <InternalName>AMArcaneSupremacy</InternalName>
+         <Description>Your offensive spells gain a 10% chance to trigger Arcane Supremacy.
+Arcane Supremacy: +25% Spell Critical Chance, +100% Spell Critical Damage. 12 seconds duration.
+This effect may trigger only once every 90 seconds.</Description>
+         <Icon>AMArcaneSupremacy</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>12</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Class>Wizard</Class>
+               <Level>5</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Arch-Mage: School Mastery II</Name>
+         <InternalName>AMSchoolMasteryII</InternalName>
+         <Description>You have attained new levels of mastery in the school of magic that you specialize in.
+The DC of spells you cast from that school are increased by an additional 1.</Description>
+         <Icon>AMSchoolMasteryII</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>12</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Class>Wizard</Class>
+               <Level>5</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>AMSchoolMastery</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Primary Spell Focus: Abjuration</Name>
+               <Description>You have trained extensively in Abjuration magic, granting a +1 bonus to
+your spell DCs of that school.</Description>
+               <Icon>AMPrimarySpellFocusAbjuration</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Enhancement>AMCore1</Enhancement>
+                     <Selection>Abjuration I: Shield</Selection>
+                  </Requirement>
+               </Requirements>
+                <Effect>
+                    <Type>SpellDC</Type>
+                    <School>Abjuration</School>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Primary Spell Focus: Conjuration</Name>
+               <Description>You have trained extensively in Conjuration magic, granting a +1 bonus to
+your spell DCs of that school.</Description>
+               <Icon>AMPrimarySpellFocusConjuration</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Enhancement>AMCore1</Enhancement>
+                     <Selection>Conjuration I: Grease</Selection>
+                  </Requirement>
+               </Requirements>
+                <Effect>
+                    <Type>SpellDC</Type>
+                    <School>Conjuration</School>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Primary Spell Focus: Enchantment</Name>
+               <Description>You have trained extensively in Enchantment magic, granting a +1 bonus to
+your spell DCs of that school.</Description>
+               <Icon>AMPrimarySpellFocusEnchantment</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Enhancement>AMCore1</Enhancement>
+                     <Selection>Enchantment I: Hypnotism</Selection>
+                  </Requirement>
+               </Requirements>
+                <Effect>
+                    <Type>SpellDC</Type>
+                    <School>Enchantment</School>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Primary Spell Focus: Evocation</Name>
+               <Description>You have trained extensively in Evocation magic, granting a +1 bonus to
+your spell DCs of that school.</Description>
+               <Icon>AMPrimarySpellFocusEvocation</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Enhancement>AMCore1</Enhancement>
+                     <Selection>Evocation I: Magic Missile</Selection>
+                  </Requirement>
+               </Requirements>
+                <Effect>
+                    <Type>SpellDC</Type>
+                    <School>Evocation</School>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Primary Spell Focus: Illusion</Name>
+               <Description>You have trained extensively in Illusion magic, granting a +1 bonus to
+your spell DCs of that school.</Description>
+               <Icon>AMPrimarySpellFocusIllusion</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Enhancement>AMCore1</Enhancement>
+                     <Selection>Illusion I: Invisibility</Selection>
+                  </Requirement>
+               </Requirements>
+                <Effect>
+                    <Type>SpellDC</Type>
+                    <School>Illusion</School>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Primary Spell Focus: Necromancy</Name>
+               <Description>You have trained extensively in Necromancy magic, granting a +1 bonus to
+your spell DCs of that school.</Description>
+               <Icon>AMPrimarySpellFocusNecromancy</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Enhancement>AMCore1</Enhancement>
+                     <Selection>Necromancy I: Chill Touch</Selection>
+                  </Requirement>
+               </Requirements>
+                <Effect>
+                    <Type>SpellDC</Type>
+                    <School>Necromancy</School>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Primary Spell Focus: Transmutation</Name>
+               <Description>You have trained extensively in Transmutation magic, granting a +1 bonus to
+your spell DCs of that school.</Description>
+               <Icon>AMPrimarySpellFocusTransmutation</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Enhancement>AMCore1</Enhancement>
+                     <Selection>Transmutation I: Jump</Selection>
+                  </Requirement>
+               </Requirements>
+                <Effect>
+                    <Type>SpellDC</Type>
+                    <School>Transmutation</School>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Arch-Mage: Secondary School Mastery</Name>
+         <InternalName>AMSecondarySchoolMastery</InternalName>
+         <Description>Select one of the spell schools you are not specialized in.
+The DC of spells you cast from that school are increased by 1.</Description>
+         <Icon>AMSecondarySchoolMastery</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>12</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Class>Wizard</Class>
+               <Level>5</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>AMSchoolMasteryII</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Secondary Spell Focus: Abjuration</Name>
+               <Description>You have trained extensively in Abjuration magic, granting a +1 bonus to
+your spell DCs of that school.</Description>
+               <Icon>AMPrimarySpellFocusAbjuration</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <RequiresNoneOf>
+                     <Requirement>
+                        <Enhancement>AMCore1</Enhancement>
+                        <Selection>Abjuration I: Shield</Selection>
+                     </Requirement>
+                  </RequiresNoneOf>
+               </Requirements>
+                <Effect>
+                    <Type>SpellDC</Type>
+                    <School>Abjuration</School>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Secondary Spell Focus: Conjuration</Name>
+               <Description>You have trained extensively in Conjuration magic, granting a +1 bonus to
+your spell DCs of that school.</Description>
+               <Icon>AMPrimarySpellFocusConjuration</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <RequiresNoneOf>
+                     <Requirement>
+                        <Enhancement>AMCore1</Enhancement>
+                        <Selection>Conjuration I: Grease</Selection>
+                     </Requirement>
+                  </RequiresNoneOf>
+               </Requirements>
+                <Effect>
+                    <Type>SpellDC</Type>
+                    <School>Conjuration</School>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Secondary Spell Focus: Enchantment</Name>
+               <Description>You have trained extensively in Enchantment magic, granting a +1 bonus to
+your spell DCs of that school.</Description>
+               <Icon>AMPrimarySpellFocusEnchantment</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <RequiresNoneOf>
+                     <Requirement>
+                        <Enhancement>AMCore1</Enhancement>
+                        <Selection>Enchantment I: Hypnotism</Selection>
+                     </Requirement>
+                  </RequiresNoneOf>
+               </Requirements>
+                <Effect>
+                    <Type>SpellDC</Type>
+                    <School>Enchantment</School>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Secondary Spell Focus: Evocation</Name>
+               <Description>You have trained extensively in Evocation magic, granting a +1 bonus to
+your spell DCs of that school.</Description>
+               <Icon>AMPrimarySpellFocusEvocation</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <RequiresNoneOf>
+                     <Requirement>
+                        <Enhancement>AMCore1</Enhancement>
+                        <Selection>Evocation I: Magic Missile</Selection>
+                     </Requirement>
+                  </RequiresNoneOf>
+               </Requirements>
+                <Effect>
+                    <Type>SpellDC</Type>
+                    <School>Evocation</School>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Secondary Spell Focus: Illusion</Name>
+               <Description>You have trained extensively in Illusion magic, granting a +1 bonus to
+your spell DCs of that school.</Description>
+               <Icon>AMPrimarySpellFocusIllusion</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <RequiresNoneOf>
+                     <Requirement>
+                        <Enhancement>AMCore1</Enhancement>
+                        <Selection>Illusion I: Invisibility</Selection>
+                     </Requirement>
+                  </RequiresNoneOf>
+               </Requirements>
+                <Effect>
+                    <Type>SpellDC</Type>
+                    <School>Illusion</School>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Secondary Spell Focus: Necromancy</Name>
+               <Description>You have trained extensively in Necromancy magic, granting a +1 bonus to
+your spell DCs of that school.</Description>
+               <Icon>AMPrimarySpellFocusNecromancy</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <RequiresNoneOf>
+                     <Requirement>
+                        <Enhancement>AMCore1</Enhancement>
+                        <Selection>Necromancy I: Chill Touch</Selection>
+                     </Requirement>
+                  </RequiresNoneOf>
+               </Requirements>
+                <Effect>
+                    <Type>SpellDC</Type>
+                    <School>Necromancy</School>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Secondary Spell Focus: Transmutation</Name>
+               <Description>You have trained extensively in Transmutation magic, granting a +1 bonus to
+your spell DCs of that school.</Description>
+               <Icon>AMPrimarySpellFocusTransmutation</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <RequiresNoneOf>
+                     <Requirement>
+                        <Enhancement>AMCore1</Enhancement>
+                        <Selection>Transmutation I: Jump</Selection>
+                     </Requirement>
+                  </RequiresNoneOf>
+               </Requirements>
+                <Effect>
+                    <Type>SpellDC</Type>
+                    <School>Transmutation</School>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+   </EnhancementTree>
+</Enhancements>

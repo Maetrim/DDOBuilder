@@ -1,0 +1,494 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Enhancements>
+   <EnhancementTree>
+      <Name>Shadar-Kai</Name>
+       <Version>1</Version>
+       <IsRacialTree/>
+       <Requirements>
+         <Requirement>
+            <Race>Shadar-Kai</Race>
+         </Requirement>
+      </Requirements>
+      <Background>Shadar-KaiBackground</Background>
+      <Icon>Shadar-kai</Icon>
+      <EnhancementTreeItem>
+         <Name>Shadar-Kai: Grit</Name>
+         <InternalName>ShadarKaiCore1</InternalName>
+         <Description>You gain +1 to your Fortitude saves. In addition, when you are uncounscious
+and have stabilized, you get up ten seconds faster than normal.</Description>
+         <Icon>ShadarKaiGrit</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>0</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>1</MinLevel>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>SaveBonus</Type>
+              <Save>Fortitude</Save>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shadar-Kai: Ability I</Name>
+         <InternalName>ShadarKaiCore2</InternalName>
+         <Description>Choose either Dexterity, Intelligence or Wisdom</Description>
+         <Icon>DexIntWis</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>4</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Enhancement>ShadarKaiCore1</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Dexterity</Name>
+               <Description>+1 Dexterity</Description>
+               <Icon>Dexterity</Icon>
+               <Cost>2</Cost>
+                <Effect>
+                    <Type>AbilityBonus</Type>
+                    <Ability>Dexterity</Ability>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Intelligence</Name>
+               <Description>+1 Intelligence</Description>
+               <Icon>Intelligence</Icon>
+               <Cost>2</Cost>
+                <Effect>
+                    <Type>AbilityBonus</Type>
+                    <Ability>Intelligence</Ability>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Wisdom</Name>
+               <Description>+1 Wisdom</Description>
+               <Icon>Wisdom</Icon>
+               <Cost>2</Cost>
+                <Effect>
+                    <Type>AbilityBonus</Type>
+                    <Ability>Wisdom</Ability>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shadar-Kai: Shadow Phase</Name>
+         <InternalName>ShadarKaiCore3</InternalName>
+         <Description>You become invisible and are able to move through monsters as if you were
+ethereal for six seconds. (Cooldown: 1 minute)</Description>
+         <Icon>ShadarKaiShadowPhase</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Clickie/>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>7</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Enhancement>ShadarKaiCore2</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shadar-Kai: Shadow Jaunt</Name>
+         <InternalName>ShadarKaiCore4</InternalName>
+         <Description>You become invisible and charge forward. During the jaunt, you are able to
+move through monsters as if you were ethereal. These effects last for six seconds.
+(Cooldown: 1 minute)</Description>
+         <Icon>ShadarKaiShadowJaunt</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Clickie/>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>11</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Enhancement>ShadarKaiCore3</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shadar-Kai: Empowered Jaunt</Name>
+         <InternalName>ShadarKaiCore5</InternalName>
+         <Description>The cooldown of your Shadow Jaunt and Shadow Phase abilities is reduced to 30
+seconds. In addition, when you use either ability, nearby allies become partially
+incorporeal for six seconds.</Description>
+         <Icon>ShadarKaiEmpoweredJaunt</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>16</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Enhancement>ShadarKaiCore4</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shadar-Kai: Spiked Chain Attack</Name>
+         <InternalName>ShadarKaiSpikedChainAttack</InternalName>
+         <Description>Perform an AOE melee attack for 1d6+4 damage plus 1d6 additional damage per
+level to all nearby enemies. Targets can attempt a reflex save for half damage.
+The DC is based on your level and Dexterity modifier.</Description>
+         <Icon>ShadarKaiSpikedChainAttack</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>1</MinSpent>
+         <Clickie/>
+         <ArrowUp/>
+         <Requirements/>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shadar-Kai: Keen Senses</Name>
+         <InternalName>ShadarKaiKeenSenses</InternalName>
+         <Description>+1/+2/+3 Listen, Search, and Spot</Description>
+         <Icon>ShadarKaiKeenSenses</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements/>
+          <Effect>
+              <Type>SkillBonus</Type>
+              <Skill>Listen</Skill>
+              <AmountVector size="3">1 2 3</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>SkillBonus</Type>
+              <Skill>Search</Skill>
+              <AmountVector size="3">1 2 3</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>SkillBonus</Type>
+              <Skill>Spot</Skill>
+              <AmountVector size="3">1 2 3</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shadar-Kai: Bold</Name>
+         <InternalName>ShadarKaiBold</InternalName>
+         <Description>You overcome fear quickly - fear and shaken effects are removed from you after 12/6/3 seconds.</Description>
+         <Icon>ShadarKaiBold</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements/>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shadar-Kai: Student of Pain</Name>
+         <InternalName>ShadarKaiStudentOfPain</InternalName>
+         <Description>When you take damage, you have a 5%/10%/15% chance to gain a +10 bonus to AC for 12 seconds.</Description>
+         <Icon>ShadarKaiStudentOfPain</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements/>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shadar-Kai:Stealthy</Name>
+         <InternalName>ShadarKaiStealthy</InternalName>
+         <Description>+1/+2/+3 Hide and Move Silently.
+Tier 3: Throw attacks you perform while sneaking deal +1[W] damage.</Description>
+         <Icon>ShadarKaiStealthy</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <ArrowUp/>
+         <Requirements/>
+          <Effect>
+              <Type>SkillBonus</Type>
+              <Skill>Hide</Skill>
+              <AmountVector size="3">1 2 3</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>SkillBonus</Type>
+              <Skill>Move Silently</Skill>
+              <AmountVector size="3">1 2 3</AmountVector>
+          </Effect>
+          <!--throw attacks while sneaking do +1[W]-->
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shadar-Kai: Vicious Chain</Name>
+         <InternalName>ShadarKaiViciousChain</InternalName>
+         <Description>Your Spiked Chain Attack now has a chance to cause enemies to bleed.
+Some enemies are immune to bleeding.</Description>
+         <Icon>ShadarKaiViciousChain</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>ShadarKaiSpikedChainAttack</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shadar-Kai: Improved Dodge</Name>
+         <InternalName>ShadarKaiImprovedDodge</InternalName>
+         <Description>+1%/+2%/+3% Dodge when wearing light or no armor.</Description>
+         <Icon>ShadarKaiImprovedDodge</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Feat>Dodge</Feat>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>DodgeBonus</Type>
+              <AmountVector size="3">1 2 3</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shadar-Kai: Ghostly Essence</Name>
+         <InternalName>ShadarKaiGhostlyEssence</InternalName>
+         <Description>When you are below 50% hit points and get hit by an attack,
+you gain 25% incorporeality for 6/12/18 seconds.
+This can occur once every two minutes.</Description>
+         <Icon>ShadarKaiGhostlyEssence</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <ArrowUp/>
+         <Requirements/>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shadar-Kai: Guile I</Name>
+         <InternalName>ShadarKaiGuileI</InternalName>
+         <Description>+1 Sneak Attack die.</Description>
+         <Icon>ShadarKaiGuile</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <ArrowUp/>
+         <Requirements/>
+          <Effect>
+              <Type>SneakAttackDamage</Type>
+              <Dice>
+                  <Number size="1">1</Number>
+                  <Sides size="1">6</Sides>
+              </Dice>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shadar-Kai: Shadow Smoke</Name>
+         <InternalName>ShadarKaiShadowSmoke</InternalName>
+         <Description>Use an Action Boost charge. All nearby allies gain +5/+10/+15 to Hide and
+Move Silently for twenty seconds. (Cooldown: 30 seconds)</Description>
+         <Icon>ShadarKaiShadowSmoke</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>ShadarKaiStealthy</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shadar-Kai: Slashing Chain</Name>
+         <InternalName>ShadarKaiSlashingChain</InternalName>
+         <Description>Your Spiked Chain Attack now does an aditional 1d10+10 slashing damage
+to all nearby enemies it hits.</Description>
+         <Icon>ShadarKaiSlashingChain</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowRight/>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>ShadarKaiViciousChain</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shadar-Kai: Forceful Chain</Name>
+         <InternalName>ShadarKaiForcefulChain</InternalName>
+         <Description>Your Spiked Chain Attack now has a chance to knock enemies down.</Description>
+         <Icon>ShadarKaiForcefulChain</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Enhancement>ShadarKaiSlashingChain</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shadar-Kai: Improved Ghostly Essence</Name>
+         <InternalName>ShadarKaiImprovedGhostlyEssence</InternalName>
+         <Description>When your Ghostly Essence triggers, all nearby allies becomes partially
+incorporeal for 6/12/18 seconds.</Description>
+         <Icon>ShadarKaiImprovedGhostlyEssence</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Enhancement>ShadarKaiGhostlyEssence</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shadar-Kai: Guile II</Name>
+         <InternalName>ShadarKaiGuileII</InternalName>
+         <Description>+1 Sneak Attack die.</Description>
+         <Icon>ShadarKaiGuile</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Enhancement>ShadarKaiGuileI</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>SneakAttackDamage</Type>
+              <Dice>
+                  <Number size="1">1</Number>
+                  <Sides size="1">6</Sides>
+              </Dice>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shadar-Kai: Whirling Chain</Name>
+         <InternalName>ShadarKaiWhirlingChain</InternalName>
+         <Description>Perform a 20 seconds long chain attack that deals constant damage to foes in
+the area around you and increases your defense against incoming attacks with 10 Physical
+Resistance while active. Every 4 to 5 seconds that you continue to whirl your chain,
+you deal an extra burst of damage to those in the area. The amount of this extra damage
+increases over time up to 10d10 + 60 damage.
+If you move while using Whirling Chain, the attack will be interrupted. (Cooldown: 3 minutes)</Description>
+         <Icon>ShadarKaiWhirlingChain</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>ShadarKaiSlashingChain</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shadar-Kai: Nothing is Hidden</Name>
+         <InternalName>ShadarKaiNothingIsHidden</InternalName>
+         <Description>Your senses are so acute that you no longer need to spend time searching for
+the obvious. You will automatically perform a Search check to locate traps and
+secret doors when you are in range to Spot them, although this Search check occurs
+at a -12/-8/-4 penalty.</Description>
+         <Icon>ShadarKaiNothingIsHidden</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>2</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements/>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shadar-Kai: Winter Favored</Name>
+         <InternalName>ShadarKaiWinterFavored</InternalName>
+         <Description>Toggle: Your sneak attacks deal 1d6 extra Cold damage, and you gain 5 Cold resistance.</Description>
+         <Icon>ShadarKaiWinterFavored</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Clickie/>
+         <Requirements/>
+          <Effect>
+              <Type>EnergyResistance</Type>
+              <Energy>Cold</Energy>
+              <AmountVector size="1">5</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>SneakAttackDamage</Type>
+              <Dice>
+                  <Number size="1">1</Number>
+                  <Sides size="1">6</Sides>
+              </Dice>
+              <Energy>Cold</Energy>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shadar-Kai: Gloom Stalker</Name>
+         <InternalName>ShadarKaiGloomStalker</InternalName>
+         <Description>While sneaking, your melee weapons gain the ability to envelop their
+targets in darkness, making them briefly vulnerable to sneak attacks.
+Your weapons also have a chance to blind their targets for a short time.</Description>
+         <Icon>ShadarKaiGloomStalker</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements/>
+      </EnhancementTreeItem>
+   </EnhancementTree>
+</Enhancements>

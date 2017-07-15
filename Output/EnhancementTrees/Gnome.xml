@@ -1,0 +1,717 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Enhancements>
+   <EnhancementTree>
+      <Name>Gnome</Name>
+       <Version>1</Version>
+       <IsRacialTree/>
+        <Requirements>
+         <Requirement>
+            <Race>Gnome</Race>
+         </Requirement>
+      </Requirements>
+      <Background>GnomeBackground</Background>
+      <Icon>Gnome</Icon>
+      <EnhancementTreeItem>
+         <Name>Gnome: Perseverance I</Name>
+         <InternalName>GnomeCore1</InternalName>
+         <Description>+1 Dodge, +1 Use Magic Device</Description>
+         <Icon>GnomeGnomishPerserveranceI</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>0</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>1</MinLevel>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>DodgeBonus</Type>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>SkillBonus</Type>
+              <Skill>Use Magic Device</Skill>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Gnome: Intelligence I</Name>
+         <InternalName>GnomeCore2</InternalName>
+         <Description>+1 Intelligence</Description>
+         <Icon>Intelligence</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>4</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Enhancement>GnomeCore1</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>AbilityBonus</Type>
+              <Ability>Intelligence</Ability>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Gnome: Perseverance II</Name>
+         <InternalName>GnomeCore3</InternalName>
+         <Description>+1 Dodge, +1 Use Magic Device</Description>
+         <Icon>GnomeGnomishPerserveranceII</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>7</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Enhancement>GnomeCore2</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>DodgeBonus</Type>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>SkillBonus</Type>
+              <Skill>Use Magic Device</Skill>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Gnome: Intelligence II</Name>
+         <InternalName>GnomeCore4</InternalName>
+         <Description>+1 Intelligence</Description>
+         <Icon>Intelligence</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>11</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Enhancement>GnomeCore3</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>AbilityBonus</Type>
+              <Ability>Intelligence</Ability>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Scrolls: Retain Essence</Name>
+         <InternalName>GnomeCore5</InternalName>
+         <Description>You gain a 15% racial bonus to your odds of retaining a copy of a Scroll when using it.
++2 Dodge, +1 Use Magic Device</Description>
+         <Icon>GnomeScrollsRetainEssence</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>16</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Enhancement>GnomeCore4</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>DodgeBonus</Type>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>SkillBonus</Type>
+              <Skill>Use Magic Device</Skill>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Gnome:Sivis Dragonmark Focus</Name>
+         <InternalName>GnomeSivisDragonmarkFocus</InternalName>
+         <Description>+1/+2/+3 dragonmark use per day, +1/+2/+3 Use Magic Device</Description>
+         <Icon>GnomeSivisDragonmarkFocus</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Feat>Least Dragonmark of Scribing</Feat>
+            </Requirement>
+         </Requirements>
+          <!--Dragonmark uses-->
+          <Effect>
+              <Type>SkillBonus</Type>
+              <Skill>Use Magic Device</Skill>
+              <AmountVector size="3">1 2 3</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Wand and Scroll Mastery</Name>
+         <InternalName>GnomeWandAndScrollMastery</InternalName>
+         <Description>+25%/+50%/+75% effectiveness from your wands, scrolls, and other items
+that cast spells, and +1/+2/+3 to the save DC of your offensive wands.</Description>
+         <Icon>GnomeWandAndScrollMastery</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements/>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Gnome:Keen Insight</Name>
+         <InternalName>GnomeKeenInsight</InternalName>
+         <Description>+2/+4/+6 to Will saving throws vs. Illusions</Description>
+         <Icon>GnomeKeenInsight</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements/>
+          <Effect>
+              <Type>SaveBonus</Type>
+              <Save>Illusion</Save>
+              <AmountVector size="3">2 4 6</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Gnome:Stealth or Awareness</Name>
+         <InternalName>GnomeStealthOrAwareness</InternalName>
+         <Description>Choose one</Description>
+         <Icon>Awareness</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements/>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Awareness</Name>
+               <Description>+1/+2/+3 to Listen, Spot and Search. </Description>
+               <Icon>Awareness</Icon>
+               <Cost>1</Cost>
+                <Effect>
+                    <Type>SkillBonus</Type>
+                    <Skill>Listen</Skill>
+                    <AmountVector size="3">1 2 3</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>SkillBonus</Type>
+                    <Skill>Spot</Skill>
+                    <AmountVector size="3">1 2 3</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>SkillBonus</Type>
+                    <Skill>Search</Skill>
+                    <AmountVector size="3">1 2 3</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Stealthy</Name>
+               <Description>+1/+2/+3 to Hide and Move Silently.</Description>
+               <Icon>Stealthy</Icon>
+               <Cost>1</Cost>
+                <Effect>
+                    <Type>SkillBonus</Type>
+                    <Skill>Hide</Skill>
+                    <AmountVector size="3">1 2 3</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>SkillBonus</Type>
+                    <Skill>Move Silently</Skill>
+                    <AmountVector size="3">1 2 3</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Gnome: Weapon Training I</Name>
+         <InternalName>GnomeGnomishWeaponTrainingI</InternalName>
+         <Description>+1 to hit and damage with light hammers, light maces, light picks, shortswords,
+shortbows, light crossbows, and light repeating crossbows.</Description>
+         <Icon>GnomeGnomishWeaponTrainingI</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>1</MinSpent>
+         <ArrowUp/>
+         <Requirements/>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <Weapon>Light Hammer</Weapon>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <Weapon>Light Mace</Weapon>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <Weapon>Light Pick</Weapon>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <Weapon>Shortsword</Weapon>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <Weapon>Light Crossbow</Weapon>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <Weapon>Repeating Light Crossbow</Weapon>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Weapon>Light Hammer</Weapon>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Weapon>Light Mace</Weapon>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Weapon>Light Pick</Weapon>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Weapon>Shortsword</Weapon>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Weapon>Light Crossbow</Weapon>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Weapon>Repeating Light Crossbow</Weapon>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Gnome:Lesser Dragonmark of Scribing</Name>
+         <InternalName>GnomeLessaerDragonmarkOfScribing</InternalName>
+         <Description>Lesser Dragonmark Spell: Illusory Mark of Flame.
+This spell works acts as the Symbol of Flame spell, but with Illusion as its school
+and Will as its saving throw.</Description>
+         <Icon>GnomeLessaerDragonmarkOfScribing</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Clickie/>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>GnomeSivisDragonmarkFocus</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>SpellLikeAbility</Type>
+              <SpellLikeAbility>Illusory Mark of Flame</SpellLikeAbility>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Gnome:Against the Giants</Name>
+         <InternalName>GnomeAgainstTheGiants</InternalName>
+         <Description>Gnomes have passed their tactics for eluding Giants down over generations. 
++2/+4/+6 to Saving Throws and Armor Class against Giants.</Description>
+         <Icon>GnomeAgainstTheGiants</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements/>
+          <!--not modelled as specific to giants-->
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Gnome:Color Spray</Name>
+         <InternalName>GnomeColorSpray</InternalName>
+         <Description>Enemies are sprayed with illusions of color, and must make a Will save or
+be Dazed, Blinded, and/or Silenced. The target must make a saving throw for each effect.
+Activation Cost: 10/5/2 Spell Points. Cooldown: 8 seconds.</Description>
+         <Icon>GnomeColorSpray</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Clickie/>
+         <Requirements/>
+          <Effect>
+              <Type>SpellLikeAbility</Type>
+              <SpellLikeAbility>Color Spray</SpellLikeAbility>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Gnome:Permanent Blur</Name>
+         <InternalName>GnomePermanentBlur</InternalName>
+         <Description>You gain a permanent Blur effect.</Description>
+         <Icon>GnomePermanentBlur</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements/>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Gnome: Weapon Training II</Name>
+         <InternalName>GnomeGnomishWeaponTrainingII</InternalName>
+         <Description>+1 to hit and damage with light hammers, light maces, light picks, shortswords,
+shortbows, light crossbows, and light repeating crossbows.</Description>
+         <Icon>GnomeGnomishWeaponTrainingII</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>GnomeGnomishWeaponTrainingI</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <Weapon>Light Hammer</Weapon>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <Weapon>Light Mace</Weapon>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <Weapon>Light Pick</Weapon>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <Weapon>Shortsword</Weapon>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <Weapon>Light Crossbow</Weapon>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <Weapon>Repeating Light Crossbow</Weapon>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Weapon>Light Hammer</Weapon>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Weapon>Light Mace</Weapon>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Weapon>Light Pick</Weapon>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Weapon>Shortsword</Weapon>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Weapon>Light Crossbow</Weapon>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Weapon>Repeating Light Crossbow</Weapon>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Gnome:Greater Dragonmark of Scribing</Name>
+         <InternalName>GnomeGreaterDragonmarkOfScribing</InternalName>
+         <Description>Greater Dragonmark Spell: Illusory Symbol of Stunning.
+This spell works acts as the Symbol of Stunning spell, but with Illusion as its school
+and Will as its saving throw.</Description>
+         <Icon>GnomeGreaterDragonmarkOfScribing</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>GnomeLessaerDragonmarkOfScribing</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>SpellLikeAbility</Type>
+              <SpellLikeAbility>Illusory Symbol of Stunning</SpellLikeAbility>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Gnome:Nimble Reaction</Name>
+         <InternalName>GnomeNimbleReaction</InternalName>
+         <Description>+1/+2/+3 Armor Maximum Dexterity Bonus and Maximum Dodge Bonus.</Description>
+         <Icon>GnomeNimbleReaction</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements/>
+          <Effect>
+              <Type>MaxDexBonus</Type>
+              <AmountVector size="3">1 2 3</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>MaxDodgeBonus</Type>
+              <AmountVector size="3">1 2 3</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Gnome Spell Focus: Illusion</Name>
+         <InternalName>GnomeRacialSpellFocusIllusion</InternalName>
+         <Description>+1/+2/+3 to Illusion DCs</Description>
+         <Icon>GnomeRacialSpellFocusIllusion</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements/>
+          <Effect>
+              <Type>SpellDC</Type>
+              <School>Illusion</School>
+              <AmountVector size="3">1 2 3</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Gnome: Weapon Training III</Name>
+         <InternalName>GnomeGnomishWeaponTrainingIII</InternalName>
+         <Description>+2 to hit and damage with light hammers, light maces, light picks, shortswords, shortbows, light crossbows, and light repeating crossbows.</Description>
+         <Icon>GnomeGnomishWeaponTrainingIII</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>GnomeGnomishWeaponTrainingII</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <Weapon>Light Hammer</Weapon>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <Weapon>Light Mace</Weapon>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <Weapon>Light Pick</Weapon>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <Weapon>Shortsword</Weapon>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <Weapon>Light Crossbow</Weapon>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <Weapon>Repeating Light Crossbow</Weapon>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Weapon>Light Hammer</Weapon>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Weapon>Light Mace</Weapon>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Weapon>Light Pick</Weapon>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Weapon>Shortsword</Weapon>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Weapon>Light Crossbow</Weapon>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Weapon>Repeating Light Crossbow</Weapon>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Gnome: Favored Enemy</Name>
+         <InternalName>GnomeGnomishFavoredEnemy</InternalName>
+         <Description>Gnomes have a history of racial enmity with several kinds of creatures.
+Choose a Favored Enemy feat for one of these: Gnoll or Reptilian</Description>
+         <Icon>GnomeGnomishFavoredEnemy</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements/>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Gnoll</Name>
+               <Description>You have Gnolls as a favored enemy</Description>
+               <Icon>FavoredEnemyGnoll</Icon>
+               <Cost>2</Cost>
+                <!--Favored enemy damage-->
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Reptillian</Name>
+               <Description>You have Reptiles as a favored enemy</Description>
+               <Icon>FavoredEnemyReptilian</Icon>
+               <Cost>2</Cost>
+                <!--Favored enemy damage-->
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Gnome: Weapon Training IV</Name>
+         <InternalName>GnomeGnomishWeaponTrainingIV</InternalName>
+         <Description>+2 to hit and damage with light hammers, light maces, light picks, shortswords, shortbows, light crossbows, and light repeating crossbows. 
++1 Competence Bonus to Critical Threat Range with the same weapons.</Description>
+         <Icon>GnomeGnomishWeaponTrainingIV</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Enhancement>GnomeGnomishWeaponTrainingIII</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <Weapon>Light Hammer</Weapon>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <Weapon>Light Mace</Weapon>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <Weapon>Light Pick</Weapon>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <Weapon>Shortsword</Weapon>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <Weapon>Light Crossbow</Weapon>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <Weapon>Repeating Light Crossbow</Weapon>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Weapon>Light Hammer</Weapon>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Weapon>Light Mace</Weapon>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Weapon>Light Pick</Weapon>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Weapon>Shortsword</Weapon>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Weapon>Light Crossbow</Weapon>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Weapon>Repeating Light Crossbow</Weapon>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+   </EnhancementTree>
+</Enhancements>

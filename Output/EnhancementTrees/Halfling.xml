@@ -1,0 +1,500 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Enhancements>
+   <EnhancementTree>
+      <Name>Halfling</Name>
+       <Version>1</Version>
+       <IsRacialTree/>
+        <Requirements>
+         <Requirement>
+            <Race>Halfling</Race>
+         </Requirement>
+      </Requirements>
+      <Background>HalflingBackground</Background>
+      <Icon>Halfling</Icon>
+      <EnhancementTreeItem>
+         <Name>Halfling: Luck I</Name>
+         <InternalName>HalflingCore1</InternalName>
+         <Description>+1 to all Saving Throws</Description>
+         <Icon>HalflingHalflingLuck</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>0</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>1</MinLevel>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>SaveBonus</Type>
+              <Save>All</Save>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Halfling: Dexterity I</Name>
+         <InternalName>HalflingCore2</InternalName>
+         <Description>+1 Dexterity</Description>
+         <Icon>Dexterity</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>4</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Enhancement>HalflingCore1</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>AbilityBonus</Type>
+              <Ability>Dexterity</Ability>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Halfling: Luck II</Name>
+         <InternalName>HalflingCore3</InternalName>
+         <Description>+1 to all Saving Throws</Description>
+         <Icon>HalflingHalflingLuck</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>7</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Enhancement>HalflingCore2</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>SaveBonus</Type>
+              <Save>All</Save>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Halfling: Dexterity II</Name>
+         <InternalName>HalflingCore4</InternalName>
+         <Description>+1 Dexterity</Description>
+         <Icon>Dexterity</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>11</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Enhancement>HalflingCore3</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>AbilityBonus</Type>
+              <Ability>Dexterity</Ability>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Halfling: Luck III</Name>
+         <InternalName>HalflingCore5</InternalName>
+         <Description>+1 to all Saving Throws</Description>
+         <Icon>HalflingHalflingLuck</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>16</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Enhancement>HalflingCore4</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>SaveBonus</Type>
+              <Save>All</Save>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Halfling: Jorasco Dragonmark Focus</Name>
+         <InternalName>HalflingJorascoDragonmarkFocus</InternalName>
+         <Description>+1/+2/+3 dragonmark use per day, +1/+2/+3 Heal</Description>
+         <Icon>HalflingJorascoDragonmarkFocus</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Feat>Least Dragonmark of Healing</Feat>
+            </Requirement>
+         </Requirements>
+          <!--Dragonmark uses-->
+          <Effect>
+              <Type>SkillBonus</Type>
+              <Skill>Heal</Skill>
+              <AmountVector size="3">1 2 3</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Halfling: Stealthy</Name>
+         <InternalName>HalflingStealthy</InternalName>
+         <Description>+1/+2/+3 Hide and Move Silently.
+Rank 3: Throw attacks you perform while sneaking deal +1[W] damage.</Description>
+         <Icon>HalflingStealthy</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements/>
+          <Effect>
+              <Type>SkillBonus</Type>
+              <Skill>Hide</Skill>
+              <AmountVector size="3">1 2 3</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>SkillBonus</Type>
+              <Skill>Move Silently</Skill>
+              <AmountVector size="3">1 2 3</AmountVector>
+          </Effect>
+          <!--Weapon bonus for tier 3-->
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Halfling: Acrobatic</Name>
+         <InternalName>HalflingAcrobatic</InternalName>
+         <Description>+1/+2/+3 Balance, Jump, and Tumble. +2/+4/+6 Armor Class while tumbling.</Description>
+         <Icon>HalflingAcrobatic</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <ArrowUp/>
+         <Requirements/>
+          <!--Situation tumble bonus's - not modelled-->
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Halfling: Cunning</Name>
+         <InternalName>HalflingCunning</InternalName>
+         <Description>+1/+2/+3 Bluff skill and to hit while performing Sneak Attacks.</Description>
+         <Icon>HalflingCunning</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <ArrowUp/>
+         <Requirements/>
+          <!--Situation skill bonus's - not modelled-->
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Halfling: Bold</Name>
+         <InternalName>HalflingBold</InternalName>
+         <Description>You overcome fear quickly - fear and shaken effects are removed from you
+after 12/6/3 seconds.</Description>
+         <Icon>HalflingBold</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements/>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Halfling: Lesser Dragonmark of Healing</Name>
+         <InternalName>HalflingLesserDragonmarkOfHealing</InternalName>
+         <Description>Lesser Dragonmark Spell: Cure Serious Wounds.</Description>
+         <Icon>HalflingLesserDragonmarkOfHealing</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Clickie/>
+         <ArrowRight/>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>HalflingJorascoDragonmarkFocus</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>SpellLikeAbility</Type>
+              <SpellLikeAbility>Cure Serious Wounds</SpellLikeAbility>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Halfling: Break Out The Leeches</Name>
+         <InternalName>HalflingBreakOutTheLeeches</InternalName>
+         <Description>Lesser Dragonmark Spell: Positive Energy Leeches.
+Removes one negative level, one poison, and one disease from your living target once every 3 seconds.
+Duration is equal to your Heal skill.
+This ability shares a counter with Lesser Dragonmark of Healing.</Description>
+         <Icon>HalflingBreakOutTheLeeches</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>HalflingLesserDragonmarkOfHealing</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>SpellLikeAbility</Type>
+              <SpellLikeAbility>Bring Out the Leeches</SpellLikeAbility>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Halfling: Nimble Reaction</Name>
+         <InternalName>HalflingNimbleReaction</InternalName>
+         <Description>+1/+2/+3 Armor Maximum Dexterity Bonus and Maximum Dodge Bonus</Description>
+         <Icon>HalflingNimbleReaction</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>HalflingAcrobatic</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>MaxDexBonus</Type>
+              <AmountVector size="3">1 2 3</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>MaxDodgeBonus</Type>
+              <AmountVector size="3">1 2 3</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Halfling: Guile I</Name>
+         <InternalName>HalflingGuileI</InternalName>
+         <Description>+1 Sneak attack die</Description>
+         <Icon>HalflingGuile</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>HalflingCunning</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>SneakAttackDamage</Type>
+              <Dice>
+                  <Number size="1">1</Number>
+                  <Sides size="1">6</Sides>
+              </Dice>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Halfling: Heroic Companion</Name>
+         <InternalName>HalflingHeroicCompanion</InternalName>
+         <Description>Action Boost: Grants an ally +0.25/+0.5/+1[W],
++2/+4/+6 to hit and saving throws, 0/+2%/+4% Dodge and 0/0/+10 Physical Resistance Rating.
+(Cooldown: 30 seconds)</Description>
+         <Icon>HalflingHeroicCompanion</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>2</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Clickie/>
+         <Requirements/>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Halfling: Greater Dragonmark of Healing</Name>
+         <InternalName>HalflingGreaterDragonmarkOfHealing</InternalName>
+         <Description>Greater Dragonmark Spell: Heal.</Description>
+         <Icon>HalflingGreaterDragonmarkOfHealing</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>HalflingLesserDragonmarkOfHealing</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>SpellLikeAbility</Type>
+              <SpellLikeAbility>Heal</SpellLikeAbility>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Halfling: Skillful Thrower</Name>
+         <InternalName>HalflingSkillfulThrower</InternalName>
+         <Description>You can use your Dexterity modifier for damage with returning thrown weapons.</Description>
+         <Icon>HalflingSkillfulThrower</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowUp/>
+         <Requirements/>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Weapon>Dart</Weapon>
+              <Ability>Dexterity</Ability>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Weapon>Throwing Axe</Weapon>
+              <Ability>Dexterity</Ability>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Weapon>Throwing Dagger</Weapon>
+              <Ability>Dexterity</Ability>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Weapon>Throwing Hammer</Weapon>
+              <Ability>Dexterity</Ability>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Halfling: Improved Dodge</Name>
+         <InternalName>HalflingImprovedDodge</InternalName>
+         <Description>+1%/+2%/+3% Dodge when wearing light or no armor.</Description>
+         <Icon>HalflingImprovedDodge</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>HalflingNimbleReaction</Enhancement>
+            </Requirement>
+             <Requirement>
+                 <Feat>Dodge</Feat>
+             </Requirement>
+         </Requirements>
+          <Effect>
+              <!--only in light or no armor-->
+              <Type>DodgeBonus</Type>
+              <AmountVector size="3">1 2 3</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Halfling: Guile II</Name>
+         <InternalName>HalflingGuileII</InternalName>
+         <Description>+1 Sneak attack die</Description>
+         <Icon>HalflingGuile</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>HalflingGuileI</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>SneakAttackDamage</Type>
+              <Dice>
+                  <Number size="1">1</Number>
+                  <Sides size="1">6</Sides>
+              </Dice>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Halfling: Master Thrower</Name>
+         <InternalName>HalflingMasterThrower</InternalName>
+         <Description>You gain a +1 Competence bonus to the Critical Threat Range of returning
+thrown weapons.</Description>
+         <Icon>HalflingMasterThrower</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Enhancement>HalflingSkillfulThrower</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>CriticalRange</Type>
+              <AmountVector size="1">1</AmountVector>
+              <WeaponClass>Thrown</WeaponClass>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Halfling:  Agility</Name>
+         <InternalName>HalflingAgility</InternalName>
+         <Description>Up to once per second when you are hit, you gain 1% dodge until you are missed. This effect can stack up to 5 times.</Description>
+         <Icon>HalflingAgility</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Enhancement>HalflingImprovedDodge</Enhancement>
+            </Requirement>
+         </Requirements>
+          <!--situational - not modelled-->
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Halfling: Guile III</Name>
+         <InternalName>HalflingGuileIII</InternalName>
+         <Description>+1 Sneak attack die</Description>
+         <Icon>HalflingGuile</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Enhancement>HalflingGuileII</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>SneakAttackDamage</Type>
+              <Dice>
+                  <Number size="1">1</Number>
+                  <Sides size="1">6</Sides>
+              </Dice>
+          </Effect>
+      </EnhancementTreeItem>
+   </EnhancementTree>
+</Enhancements>

@@ -1,0 +1,1120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Enhancements>
+   <EnhancementTree>
+      <Name>Dwarf</Name>
+       <Version>1</Version>
+       <IsRacialTree/>
+       <Requirements>
+         <Requirement>
+            <Race>Dwarf</Race>
+         </Requirement>
+      </Requirements>
+      <Background>DwarfBackground</Background>
+      <Icon>Dwarf</Icon>
+      <EnhancementTreeItem>
+         <Name>Dwarf: Toughness I</Name>
+         <InternalName>DwarfCore1</InternalName>
+         <Description>You gain 10 HP</Description>
+         <Icon>Toughness</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>0</MinSpent>
+         <ArrowRight/>
+         <Requirements/>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <AmountVector size="1">10</AmountVector>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Dwarf: Constitution I</Name>
+         <InternalName>DwarfCore2</InternalName>
+         <Description>+1 Constitution</Description>
+         <Icon>Constitution</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>DwarfCore1</Enhancement>
+            </Requirement>
+            <Requirement>
+               <MinLevel>4</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>AbilityBonus</Type>
+            <Ability>Constitution</Ability>
+            <AmountVector size="1">1</AmountVector>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Dwarf: Toughness II</Name>
+         <InternalName>DwarfCore3</InternalName>
+         <Description>You gain 10 HP</Description>
+         <Icon>Toughness</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>DwarfCore2</Enhancement>
+            </Requirement>
+            <Requirement>
+               <MinLevel>7</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <AmountVector size="1">10</AmountVector>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Dwarf: Constitution II</Name>
+         <InternalName>DwarfCore4</InternalName>
+         <Description>+1 Constitution</Description>
+         <Icon>Constitution</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>DwarfCore3</Enhancement>
+            </Requirement>
+            <Requirement>
+               <MinLevel>11</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>AbilityBonus</Type>
+            <Ability>Constitution</Ability>
+            <AmountVector size="1">1</AmountVector>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Dwarf: Toughness III</Name>
+         <InternalName>DwarfCore5</InternalName>
+         <Description>You gain 10 HP</Description>
+         <Icon>Toughness</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Enhancement>DwarfCore4</Enhancement>
+            </Requirement>
+            <Requirement>
+               <MinLevel>16</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <AmountVector size="1">10</AmountVector>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Dwarf: Kundarak Dragonmark Focus</Name>
+         <InternalName>DwarfKundarakDragonmarkFocus</InternalName>
+         <Description>+1/+2/+3 dragonmark use per day, +1/+2/+3 Search</Description>
+         <Icon>DwarfKundarakDragonmarkFocus</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Feat>Least Dragonmark of Warding</Feat>
+            </Requirement>
+         </Requirements>
+         <!--Dragonmark use-->
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Skill>Search</Skill>
+            <AmountVector size="3">1 2 3</AmountVector>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Dwarf: Iron Stomach</Name>
+         <InternalName>DwarfIronStomach</InternalName>
+         <Description>When you drink you gain a Remove Poison/+Remove Disease/+Heroism effect for 2 Minutes.</Description>
+         <Icon>DwarfIronStomach</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements/>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Dwarf: Stout</Name>
+         <InternalName>DwarfStout</InternalName>
+         <Description>+1/+2/+3 Balance and Saves against Poison.</Description>
+         <Icon>DwarfStout</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements/>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Skill>Balance</Skill>
+            <AmountVector size="3">1 2 3</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Save>Poison</Save>
+            <AmountVector size="3">1 2 3</AmountVector>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Dwarf: Weapon Training I</Name>
+         <InternalName>DwarfDwarvenWeaponTrainingI</InternalName>
+         <Description>Choose one</Description>
+         <Icon>DwarfAxeTraining</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>1</MinSpent>
+         <ArrowUp/>
+         <Requirements/>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Axe Training</Name>
+               <Description>+1 to hit and damage with battle axes, dwarven waraxes, hand axes, greataxes, and throwing axes. </Description>
+               <Icon>DwarfAxeTraining</Icon>
+               <Cost>2</Cost>
+                <Effect>
+                    <Type>AttackBonus</Type>
+                    <Weapon>Battle Axe</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>AttackBonus</Type>
+                    <Weapon>Dwarven Axe</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>AttackBonus</Type>
+                    <Weapon>Hand Axe</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>AttackBonus</Type>
+                    <Weapon>Great Axe</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>AttackBonus</Type>
+                    <Weapon>Throwing Axe</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <Weapon>Battle Axe</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <Weapon>Dwarven Axe</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <Weapon>Hand Axe</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <Weapon>Great Axe</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <Weapon>Throwing Axe</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Pick and Hammer Training</Name>
+               <Description>+1 to hit and damage with heavy picks, light hammer, light picks, mauls, throwing hammers, and warhammers.</Description>
+               <Icon>DwarfPickAndHammerTraining</Icon>
+               <Cost>2</Cost>
+                <Effect>
+                    <Type>AttackBonus</Type>
+                    <Weapon>Heavy Pick</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>AttackBonus</Type>
+                    <Weapon>Light Hammer</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>AttackBonus</Type>
+                    <Weapon>Light Pick</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>AttackBonus</Type>
+                    <Weapon>Maul</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>AttackBonus</Type>
+                    <Weapon>Throwing Hammer</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>AttackBonus</Type>
+                    <Weapon>Warhammer</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <Weapon>Heavy Pick</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <Weapon>Light Hammer</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <Weapon>Light Pick</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <Weapon>Maul</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <Weapon>Throwing Hammer</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <Weapon>Warhammer</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Dwarf: Armor Mastery</Name>
+         <InternalName>DwarfDwarvenArmorMastery</InternalName>
+         <Description>+1/+2/+3 Armor Class and Armor Maximum Dexterity Bonus.</Description>
+         <Icon>DwarfDwarvenArmorMastery</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <ArrowUp/>
+         <Requirements/>
+         <Effect>
+            <Type>ACBonus</Type>
+            <AmountVector size="3">1 2 3</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>MaxDexBonus</Type>
+            <AmountVector size="3">1 2 3</AmountVector>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Dwarf: Lesser Dragonmark of Warding</Name>
+         <InternalName>DwarfLesserDragonmarkOfWarding</InternalName>
+         <Description>Lesser Dragonmark Spell: Spell Resistance.
+No spell point cost. (Cooldown: 10 seconds.)</Description>
+         <Icon>DwarfLesserDragonmarkOfWarding</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Clickie/>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>DwarfKundarakDragonmarkFocus</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SpellLikeAbility</Type>
+            <SpellLikeAbility>Spell Resistance</SpellLikeAbility>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Dwarf: Tactics</Name>
+         <InternalName>DwarfDwarvenTactics</InternalName>
+         <Description>Grants a +1/+2/+3 bonus on the DC of your combat feats.</Description>
+         <Icon>DwarfDwarvenTactics</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements/>
+         <Effect>
+            <Type>TacticalDC</Type>
+             <Tactical>All</Tactical>
+            <AmountVector size="3">1 2 3</AmountVector>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Dwarf: Child of the Mountain</Name>
+         <InternalName>DwarfChildOfTheMountain</InternalName>
+         <Description>You gain 2%/3%/4% Maximum Health and +1/+2/+3 Fortitude saves,
+but suffer -1/-2/-3 to Reflex saves.</Description>
+         <Icon>DwarfChildOfTheMountain</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>2</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <ArrowUp/>
+         <Requirements/>
+         <!--rework percentages as a flag using Amount/AmountVector-->
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Percentage>2 3 4</Percentage>
+            <AmountVector size="3">2 3 4</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Save>Fortitude</Save>
+            <AmountVector size="3">1 2 3</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Save>Reflex</Save>
+            <AmountVector size="3">-1 -2 -3</AmountVector>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Dwarf: Weapon Training II</Name>
+         <InternalName>DwarfDwarvenWeaponTrainingII</InternalName>
+         <Description>Choose the same Training from Dwarven Weapon Training, Tier 1.</Description>
+         <Icon>DwarfAxeTraining</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>DwarfDwarvenWeaponTrainingI</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Axe Training</Name>
+               <Description>+1 to hit and damage with battle axes, dwarven waraxes, hand axes, and throwing axes. +1 to hit and +2 damage with greataxes. </Description>
+               <Icon>DwarfAxeTraining</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Enhancement>DwarfDwarvenWeaponTrainingI</Enhancement>
+                     <Selection>Axe Training</Selection>
+                  </Requirement>
+               </Requirements>
+                <Effect>
+                    <Type>AttackBonus</Type>
+                    <Weapon>Battle Axe</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>AttackBonus</Type>
+                    <Weapon>Dwarven Axe</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>AttackBonus</Type>
+                    <Weapon>Hand Axe</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>AttackBonus</Type>
+                    <Weapon>Great Axe</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>AttackBonus</Type>
+                    <Weapon>Throwing Axe</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <Weapon>Battle Axe</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <Weapon>Dwarven Axe</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <Weapon>Hand Axe</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <Weapon>Great Axe</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <Weapon>Throwing Axe</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Pick and Hammer Training</Name>
+               <Description>+1 to hit and damage with heavy picks, light hammer, light picks, throwing hammers, and warhammers. +1 to hit and +2 damage with mauls.</Description>
+               <Icon>DwarfPickAndHammerTraining</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Enhancement>DwarfDwarvenWeaponTrainingI</Enhancement>
+                     <Selection>Pick and Hammer Training</Selection>
+                  </Requirement>
+               </Requirements>
+                <Effect>
+                    <Type>AttackBonus</Type>
+                    <Weapon>Heavy Pick</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>AttackBonus</Type>
+                    <Weapon>Light Hammer</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>AttackBonus</Type>
+                    <Weapon>Light Pick</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>AttackBonus</Type>
+                    <Weapon>Maul</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>AttackBonus</Type>
+                    <Weapon>Throwing Hammer</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>AttackBonus</Type>
+                    <Weapon>Warhammer</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <Weapon>Heavy Pick</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <Weapon>Light Hammer</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <Weapon>Light Pick</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <Weapon>Maul</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <Weapon>Throwing Hammer</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <Weapon>Warhammer</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Dwarf: Shield Mastery</Name>
+         <InternalName>DwarfDwarvenShieldMastery</InternalName>
+         <Description>+5%/+10%/+15% Shield Armor Class and +1/+2/+3 Tower Shield Maximum Dexterity Bonus.</Description>
+         <Icon>DwarfDwarvenShieldMastery</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>2</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Enhancement>DwarfDwarvenArmorMastery</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Effect>
+             <!--This is wrong-->
+            <Type>ShieldAC</Type>
+            <Percentage>5 10 15</Percentage>
+            <AmountVector size="3">5 10 15</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>MaxDexBonusTowerShield</Type>
+            <AmountVector size="3">1 2 3</AmountVector>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Dwarf: Greater Dragonmark of Warding</Name>
+         <InternalName>DwarfGreaterDragonmarkOfWarding</InternalName>
+         <Description>Greater Dragonmark Spell: Radiant Forcefield.
+No spell point cost. (Cooldown: 1 minute.)</Description>
+         <Icon>DwarfGreaterDragonmarkOfWarding</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Clickie/>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>DwarfLesserDragonmarkOfWarding</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SpellLikeAbility</Type>
+            <SpellLikeAbility>Radiant Forcefield</SpellLikeAbility>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Dwarf: Dwarven Runes</Name>
+         <InternalName>DwarfDwarvenRunes</InternalName>
+         <Description>Gain +1/+2/+3 to saves against spell effects.</Description>
+         <Icon>DwarfDwarvenRunes</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements/>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Save>Spell</Save>
+            <AmountVector size="3">1 2 3</AmountVector>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Dwarf: Stand Like Stone</Name>
+         <InternalName>DwarfStandLikeStone</InternalName>
+         <Description>Action Boost: For 12/15/20 seconds you gain +10/+20/+30 Balance,
+Physical Resistance Rating, and stacking Energy Resistance, but have a 50% penalty
+to movement speed, sink in water, and cannot fly. (Cooldown: 3 minutes.)</Description>
+         <Icon>DwarfStandLikeStone</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Clickie/>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>DwarfChildOfTheMountain</Enhancement>
+            </Requirement>
+         </Requirements>
+          <!--Not yet modelled-->
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Dwarf: Weapon Training III</Name>
+         <InternalName>DwarfDwarvenWeaponTrainingIII</InternalName>
+         <Description>Choose the same Training from Dwarven Weapon Training, Tier 2: </Description>
+         <Icon>DwarfAxeTraining</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>DwarfDwarvenWeaponTrainingII</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Axe Training</Name>
+               <Description>+1 to hit and damage with battle axes, dwarven waraxes, hand axes, greataxes, and throwing axes. </Description>
+               <Icon>DwarfAxeTraining</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Enhancement>DwarfDwarvenWeaponTrainingI</Enhancement>
+                     <Selection>Axe Training</Selection>
+                  </Requirement>
+               </Requirements>
+                <Effect>
+                    <Type>AttackBonus</Type>
+                    <Weapon>Battle Axe</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>AttackBonus</Type>
+                    <Weapon>Dwarven Axe</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>AttackBonus</Type>
+                    <Weapon>Hand Axe</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>AttackBonus</Type>
+                    <Weapon>Great Axe</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>AttackBonus</Type>
+                    <Weapon>Throwing Axe</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <Weapon>Battle Axe</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <Weapon>Dwarven Axe</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <Weapon>Hand Axe</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <Weapon>Great Axe</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <Weapon>Throwing Axe</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Pick and Hammer Training</Name>
+               <Description>+1 to hit and damage with heavy picks, light hammer, light picks, mauls, throwing hammers, and warhammers.</Description>
+               <Icon>DwarfPickAndHammerTraining</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Enhancement>DwarfDwarvenWeaponTrainingI</Enhancement>
+                     <Selection>Pick and Hammer Training</Selection>
+                  </Requirement>
+               </Requirements>
+                <Effect>
+                    <Type>AttackBonus</Type>
+                    <Weapon>Heavy Pick</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>AttackBonus</Type>
+                    <Weapon>Light Hammer</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>AttackBonus</Type>
+                    <Weapon>Light Pick</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>AttackBonus</Type>
+                    <Weapon>Maul</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>AttackBonus</Type>
+                    <Weapon>Throwing Hammer</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>AttackBonus</Type>
+                    <Weapon>Warhammer</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <Weapon>Heavy Pick</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <Weapon>Light Hammer</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <Weapon>Light Pick</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <Weapon>Maul</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <Weapon>Throwing Hammer</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <Weapon>Warhammer</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Dwarf: Hands of Stone</Name>
+         <InternalName>DwarfHandsOfStone</InternalName>
+         <Description>Greater Dragonmark Spell: Earthgrab
+(Target corporeal creature is grabbed by earthen hands and rendered helpless.
+(Reflex DC 10 + Level + Constitution Modifier Negates.))</Description>
+         <Icon>DwarfHandsOfStone</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>DwarfGreaterDragonmarkOfWarding</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SpellLikeAbility</Type>
+            <SpellLikeAbility>Earth Grab</SpellLikeAbility>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Dwarf Fortress</Name>
+         <InternalName>DwarfFortress</InternalName>
+         <Description>While wearing full plate and using a shield, you gain +1/+2/+3 Armor Class,
+Intimidate, and Will saving throws vs. Fear, and you deal +3%/+5%/+7% additional weapon damage. </Description>
+         <Icon>DwarfFortress</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>20</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>DwarfStandLikeStone</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>ACBonus</Type>
+            <AmountVector size="3">1 2 3</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Skill>Intimidate</Skill>
+            <AmountVector size="3">1 2 3</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Save>Fear</Save>
+            <AmountVector size="3">1 2 3</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>WeaponDamageBonus</Type>
+            <!--rework percentage as a flag-->
+            <Percentage>3 5 7</Percentage>
+            <AmountVector size="3">3 5 7</AmountVector>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Dwarf: Weapon Training IV</Name>
+         <InternalName>DwarfDwarvenWeaponTrainingIV</InternalName>
+         <Description>Choose the same Training from Dwarven Weapon Training, Tier 3</Description>
+         <Icon>DwarfAxeTraining</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>DwarfDwarvenWeaponTrainingIII</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Axe Training</Name>
+               <Description>1 to hit and damage with battle axes, dwarven waraxes, hand axes, and throwing axes. +1 to hit and +2 damage with greataxes. </Description>
+               <Icon>DwarfAxeTraining</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Enhancement>DwarfDwarvenWeaponTrainingI</Enhancement>
+                     <Selection>Axe Training</Selection>
+                  </Requirement>
+               </Requirements>
+                <Effect>
+                    <Type>AttackBonus</Type>
+                    <Weapon>Battle Axe</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>AttackBonus</Type>
+                    <Weapon>Dwarven Axe</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>AttackBonus</Type>
+                    <Weapon>Hand Axe</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>AttackBonus</Type>
+                    <Weapon>Great Axe</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>AttackBonus</Type>
+                    <Weapon>Throwing Axe</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <Weapon>Battle Axe</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <Weapon>Dwarven Axe</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <Weapon>Hand Axe</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <Weapon>Great Axe</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <Weapon>Throwing Axe</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Pick and Hammer Training</Name>
+               <Description>+1 to hit and damage with heavy picks, light hammer, light picks, throwing hammers, and warhammers. +1 to hit and +2 damage with mauls.</Description>
+               <Icon>DwarfPickAndHammerTraining</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Enhancement>DwarfDwarvenWeaponTrainingI</Enhancement>
+                     <Selection>Pick and Hammer Training</Selection>
+                  </Requirement>
+               </Requirements>
+                <Effect>
+                    <Type>AttackBonus</Type>
+                    <Weapon>Heavy Pick</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>AttackBonus</Type>
+                    <Weapon>Light Hammer</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>AttackBonus</Type>
+                    <Weapon>Light Pick</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>AttackBonus</Type>
+                    <Weapon>Maul</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>AttackBonus</Type>
+                    <Weapon>Throwing Hammer</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>AttackBonus</Type>
+                    <Weapon>Warhammer</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <Weapon>Heavy Pick</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <Weapon>Light Hammer</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <Weapon>Light Pick</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <Weapon>Maul</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <Weapon>Throwing Hammer</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <Weapon>Warhammer</Weapon>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Throw Your Weight Around</Name>
+         <InternalName>DwarfThrowYourWeightAround</InternalName>
+         <Description>Choose the same Weapon Type from Dwarven Weapon Training, Tier 4</Description>
+         <Icon>DwarfThrowYourWeightAround</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Enhancement>DwarfDwarvenWeaponTrainingIV</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Axes</Name>
+               <Description>You may use your Constitution modifier to determine the damage you deal
+with battle axes, dwarven waraxes, hand axes, greataxes and throwing axes. </Description>
+               <Icon>DwarfAxes</Icon>
+               <Cost>1</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Enhancement>DwarfDwarvenWeaponTrainingI</Enhancement>
+                     <Selection>Axe Training</Selection>
+                  </Requirement>
+               </Requirements>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <Weapon>Battle Axe</Weapon>
+                    <Ability>Constitution</Ability>
+                </Effect>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <Weapon>Dwarven Axe</Weapon>
+                    <Ability>Constitution</Ability>
+                </Effect>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <Weapon>Hand Axe</Weapon>
+                    <Ability>Constitution</Ability>
+                </Effect>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <Weapon>Great Axe</Weapon>
+                    <Ability>Constitution</Ability>
+                </Effect>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <Weapon>Throwing Axe</Weapon>
+                    <Ability>Constitution</Ability>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Picks and Hammers</Name>
+               <Description>You may use your Constitution modifier to determine the damage you deal
+with heavy picks, light hammer, light picks, mauls, throwing hammers, and warhammers.</Description>
+               <Icon>DwarfPicksAndHammers</Icon>
+               <Cost>1</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Enhancement>DwarfDwarvenWeaponTrainingI</Enhancement>
+                     <Selection>Pick and Hammer Training</Selection>
+                  </Requirement>
+               </Requirements>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <Weapon>Heavy Pick</Weapon>
+                    <Ability>Constitution</Ability>
+                </Effect>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <Weapon>Light Hammer</Weapon>
+                    <Ability>Constitution</Ability>
+                </Effect>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <Weapon>Light Pick</Weapon>
+                    <Ability>Constitution</Ability>
+                </Effect>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <Weapon>Maul</Weapon>
+                    <Ability>Constitution</Ability>
+                </Effect>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <Weapon>Throwing Hammer</Weapon>
+                    <Ability>Constitution</Ability>
+                </Effect>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <Weapon>Warhammer</Weapon>
+                    <Ability>Constitution</Ability>
+                </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+   </EnhancementTree>
+</Enhancements>

@@ -1,0 +1,914 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Enhancements>
+   <EnhancementTree>
+      <Name>Shadowdancer</Name>
+      <Version>1</Version>
+      <Requirements/>
+      <IsEpicDestiny/>
+      <Icon>Shadowdancer</Icon>
+      <Background>DestinyMartial</Background>
+      <EnhancementTreeItem>
+         <Name>Shadowdancer: Shadow Training I</Name>
+         <InternalName>ShadowCore1</InternalName>
+         <Description>You gain +1 Sneak Attack die and +4 Melee and Ranged Power for each level
+of Shadowdancer.</Description>
+         <Icon>ShadowTrainingI</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>0</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>0</MinSpent>
+         <ArrowRight/>
+         <Requirements/>
+         <Effect>
+            <Type>MeleePower</Type>
+            <AmountVector size="1">4</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>RangedPower</Type>
+            <AmountVector size="1">4</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SneakAttackDamage</Type>
+            <Dice>
+               <Number size="1">1</Number>
+               <Sides size="1">6</Sides>
+            </Dice>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shadowdancer: Shadow Training II</Name>
+         <InternalName>ShadowCore2</InternalName>
+         <Description>Activate: For 30 seconds, while sneaking you gain:
+Full movement speed, +5 Attack bonus to-hit with Sneak Attacks,
++2 Sneak Attack dice, +3 Hide, +3 Move Silently.</Description>
+         <Icon>ShadowTrainingII</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>0</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>0</MinSpent>
+         <Clickie/>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>ShadowCore1</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Stance>
+            <Name>Shadow Training II</Name>
+            <Icon>ShadowTrainingII</Icon>
+             <Description>For 30 seconds, while sneaking you gain:
+Full movement speed, +5 Attack bonus to-hit with Sneak Attacks,
++2 Sneak Attack dice, +3 Hide, +3 Move Silently.</Description>
+         </Stance>
+         <Effect>
+            <Type>MeleePower</Type>
+            <AmountVector size="1">4</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>RangedPower</Type>
+            <AmountVector size="1">4</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SneakAttackDamage</Type>
+            <Dice>
+               <Number size="1">1</Number>
+               <Sides size="1">6</Sides>
+            </Dice>
+         </Effect>
+         <Effect>
+            <Type>SneakAttackDamage</Type>
+            <Dice>
+               <Number size="1">2</Number>
+               <Sides size="1">6</Sides>
+            </Dice>
+            <Stance>Shadow Training II</Stance>
+         </Effect>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Skill>Hide</Skill>
+            <AmountVector size="1">3</AmountVector>
+            <Stance>Shadow Training II</Stance>
+         </Effect>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Skill>Move Silently</Skill>
+            <AmountVector size="1">3</AmountVector>
+            <Stance>Shadow Training II</Stance>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shadowdancer: Shadow Training III</Name>
+         <InternalName>ShadowCore3</InternalName>
+         <Description>Toggle to generate 20% less melee and ranged threat. Active Ability: (Cooldown: 2 seconds) </Description>
+         <Icon>ShadowTrainingIII</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>0</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>0</MinSpent>
+         <Clickie/>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>ShadowCore2</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Stance>
+            <Name>Shadow Training III</Name>
+            <Icon>ShadowTrainingIII</Icon>
+             <Description>Toggle to generate 20% less melee and ranged threat.</Description>
+         </Stance>
+         <Effect>
+            <Type>MeleePower</Type>
+            <AmountVector size="1">4</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>RangedPower</Type>
+            <AmountVector size="1">4</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SneakAttackDamage</Type>
+            <Dice>
+               <Number size="1">1</Number>
+               <Sides size="1">6</Sides>
+            </Dice>
+         </Effect>
+         <Effect>
+            <Type>ThreatBonus</Type>
+            <AmountVector size="1">-20</AmountVector>
+            <Stance>Shadow Training III</Stance>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shadowdancer: Shadow Training IV</Name>
+         <InternalName>ShadowCore4</InternalName>
+         <Description>Activate this ability to use Shadow Walk up to 5 times per rest.
+Also, while using weapons that qualify for Weapon Finesse, you gain 3% profane
+bonus to your chance to doublestrike. This doublestrike bonus applies to attacks
+made by a dagger, handaxe, kama, kukri, light hammer, light mace, light pick,
+rapier, shortsword, sickle, when unarmed or in druid animal form.
+Active Ability: (Cooldown: 1 minute) a</Description>
+         <Icon>ShadowTrainingIV</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>0</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>0</MinSpent>
+         <Clickie/>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>ShadowCore3</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>MeleePower</Type>
+            <AmountVector size="1">4</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>RangedPower</Type>
+            <AmountVector size="1">4</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SneakAttackDamage</Type>
+            <Dice>
+               <Number size="1">1</Number>
+               <Sides size="1">6</Sides>
+            </Dice>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shadowdancer: Shadow Training V</Name>
+         <InternalName>ShadowCore5</InternalName>
+         <Description>Activate this ability to use Dimension Door 5 times per rest.
+The cooldown for Shadow Training II ability is reduced to 3 minutes.
+Active Ability: (Cooldown: 1 minute)</Description>
+         <Icon>ShadowTrainingV</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>0</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>0</MinSpent>
+         <Clickie/>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>ShadowCore4</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>MeleePower</Type>
+            <AmountVector size="1">4</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>RangedPower</Type>
+            <AmountVector size="1">4</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SneakAttackDamage</Type>
+            <Dice>
+               <Number size="1">1</Number>
+               <Sides size="1">6</Sides>
+            </Dice>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shadowdancer: Shadow Mastery</Name>
+         <InternalName>ShadowCore6</InternalName>
+         <Description>You now have Evasion. In addition, when you roll a natural 20 on a melee
+or ranged attack, you envelop the target in shadow, granting it 5% vulnerability
+to physical damage and removing its immunity to sneak attack for a short duration,
+if applicable.</Description>
+         <Icon>ShadowMastery</Icon>
+         <XPosition>5</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>0</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>0</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Enhancement>ShadowCore5</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>MeleePower</Type>
+            <AmountVector size="1">4</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>RangedPower</Type>
+            <AmountVector size="1">4</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SneakAttackDamage</Type>
+            <Dice>
+               <Number size="1">1</Number>
+               <Sides size="1">6</Sides>
+            </Dice>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shadowdancer: Stealthy</Name>
+         <InternalName>Stealthy</InternalName>
+         <Description>+[2/4/6] to Hide and Move Silently skills.
++[2/4/6] to Assassinate DC (if you have Assassinate).
+Hide in Plain Sight at rank 3.</Description>
+         <Icon>Stealthy</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>0</MinSpent>
+         <Requirements/>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Skill>Hide</Skill>
+            <AmountVector size="3">2 4 6</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Skill>Move Silently</Skill>
+            <AmountVector size="3">2 4 6</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>AssassinateDC</Type>
+            <AmountVector size="3">2 4 6</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>GrantFeat</Type>
+            <Feat>Hiding in Plain Sight</Feat>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shadowdancer: Shadow Lance</Name>
+         <InternalName>ShadowLance</InternalName>
+         <Description>Active Ability: Throws 3 spears, each dealing [6/8/10]d3 + [18/24/30]
+unholy damage and has a chance to blind target
+(Fort DC [14/16/18] + Half character level + Intelligence modifier)
+if you have Dark Shrouding charges. (Cooldown: 30 seconds)</Description>
+         <Icon>ShadowLance</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>0</MinSpent>
+         <Clickie/>
+         <Requirements/>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shadowdancer: Acrobatic</Name>
+         <InternalName>Acrobatic</InternalName>
+         <Description>+[2/4/6] to Balance, Jump and Tumble and a +[3/6/9] bonus to reflex while tumbling.</Description>
+         <Icon>Acrobatic</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>0</MinSpent>
+         <Requirements/>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Skill>Balance</Skill>
+            <AmountVector size="3">2 4 6</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Skill>Jump</Skill>
+            <AmountVector size="3">2 4 6</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Skill>Tumble</Skill>
+            <AmountVector size="3">2 4 6</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Save>Reflex</Save>
+            <AmountVector size="3">3 6 9</AmountVector>
+            <Stance>Tumbling</Stance>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shadowdancer: Technician</Name>
+         <InternalName>Technician</InternalName>
+         <Description>+[2/4/6] to Search, Spot, Disable Device, Open Lock and flanking bonus to attack.</Description>
+         <Icon>Technician</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>0</MinSpent>
+         <ArrowUp/>
+         <Requirements/>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Skill>Disable Device</Skill>
+            <AmountVector size="3">2 4 6</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Skill>Open Lock</Skill>
+            <AmountVector size="3">2 4 6</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Skill>Search</Skill>
+            <AmountVector size="3">2 4 6</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Skill>Spot</Skill>
+            <AmountVector size="3">2 4 6</AmountVector>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shadowdancer: Ability I</Name>
+         <InternalName>SDIntDex1</InternalName>
+         <Description>Choose either Dexterity or Intelligence</Description>
+         <Icon>DexInt</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>0</MinSpent>
+         <Requirements/>
+         <Selector>
+            <EnhancementSelection>
+               <Name>+1 Dexterity</Name>
+               <Description>+1 Dexterity</Description>
+               <Icon>Dexterity</Icon>
+               <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Ability>Dexterity</Ability>
+                  <AmountVector size="1">1</AmountVector>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Intelligence</Name>
+               <Description>+1 Intelligence</Description>
+               <Icon>Intelligence</Icon>
+               <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Ability>Intelligence</Ability>
+                  <AmountVector size="1">1</AmountVector>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shadowdancer: Escape Notice</Name>
+         <InternalName>EscapeNotice</InternalName>
+         <Description>A Diplomacy effect that uses the Hide skill instead of the Diplomacy skill.
+(Cooldown: 1 minute)</Description>
+         <Icon>EscapeNotice</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>4</MinSpent>
+         <Clickie/>
+         <Requirements/>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shadowdancer: Lithe</Name>
+         <InternalName>Lithe</InternalName>
+         <Description>+[2/4/6] reflex saves, AC and light armor Max Dex Bonus.</Description>
+         <Icon>Lithe</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>4</MinSpent>
+         <Requirements/>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Save>Reflex</Save>
+            <AmountVector size="3">2 4 6</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>ACBonus</Type>
+            <AmountVector size="3">2 4 6</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>MaxDexBonus</Type>
+            <AmountVector size="3">2 4 6</AmountVector>
+            <Stance>Light Armor</Stance>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shadowdancer: Skill Mastery</Name>
+         <InternalName>SkillMastery</InternalName>
+         <Description>+1 stacking to all skills.</Description>
+         <Icon>SkillMastery</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>4</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Enhancement>Technician</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Skill>All</Skill>
+            <AmountVector size="1">1</AmountVector>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shadowdancer: Ability II</Name>
+         <InternalName>SDIntDex2</InternalName>
+         <Description>Choose either Dexterity or Intelligence</Description>
+         <Icon>DexInt</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>4</MinSpent>
+         <Requirements/>
+         <Selector>
+            <EnhancementSelection>
+               <Name>+1 Dexterity</Name>
+               <Description>+1 Dexterity</Description>
+               <Icon>Dexterity</Icon>
+               <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Ability>Dexterity</Ability>
+                  <AmountVector size="1">1</AmountVector>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Intelligence</Name>
+               <Description>+1 Intelligence</Description>
+               <Icon>Intelligence</Icon>
+               <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Ability>Intelligence</Ability>
+                  <AmountVector size="1">1</AmountVector>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shadowdancer: Cloak of Shadows</Name>
+         <InternalName>CloakOfShadows</InternalName>
+         <Description>Spend a Shadow Charge to cloak in darkness, granting immunity to light
+and negative damage for 5 minutes, or until 120 damage have been absorbed.
+You can retain +1 maximum Shadow Charges.</Description>
+         <Icon>CloakOfShadows</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>8</MinSpent>
+         <Clickie/>
+         <LongArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>ShroudingStrikeShot</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shadowdancer: Shrouding Strike/Shot</Name>
+         <InternalName>ShroudingStrikeShot</InternalName>
+         <Description>Melee or Ranged Attack: Perform an attack with +[1/2/3][W] damage.
+On hit: Mark target. It if dies within the next [6/8/10] seconds, gain a Shadow Charge.
+You can retain a maximum of [2/4/6] Shadow Charges.</Description>
+         <Icon>ShroudingStrikeShot</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>8</MinSpent>
+         <Clickie/>
+         <ArrowLeft/>
+         <ArrowUp/>
+         <Requirements/>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Shrouding Strike</Name>
+               <Description>Perform a melee attack with +[1/2/3][W] damage.
+On hit: Mark target. It if dies within the next [6/8/10] seconds, gain a Shadow Charge.
+You can retain a maximum of [2/4/6] Shadow Charges.</Description>
+               <Icon>ShroudingStrikeShot</Icon>
+               <Cost>1</Cost>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Shrouding Strike</Name>
+               <Description>Perform a ranged attack with +[1/2/3][W] damage.
+On hit: Mark target. It if dies within the next [6/8/10] seconds, gain a Shadow Charge.
+You can retain a maximum of [2/4/6] Shadow Charges.</Description>
+               <Icon>ShroudingStrikeShot</Icon>
+               <Cost>1</Cost>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shadowdancer: Meld Into Darkness</Name>
+         <InternalName>MeldIntoDarkness</InternalName>
+         <Description>Active Ability: +100% Enhancement bonus to dodge for [9/12/15] seconds.
+(Cooldown: 2 minutes)</Description>
+         <Icon>MeldIntoDarkness</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>8</MinSpent>
+         <Clickie/>
+         <Requirements/>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shadowdancer: Grim Precision</Name>
+         <InternalName>GrimPrecision</InternalName>
+         <Description>Bypass [5/10/15]% enemy fortification and [1/2/3]% enemy dodge.</Description>
+         <Icon>GrimPrecision</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>8</MinSpent>
+         <ArrowUp/>
+         <Requirements/>
+         <Effect>
+            <Type>FortificationBypass</Type>
+            <AmountVector size="3">5 10 15</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>DodgeBypass</Type>
+            <AmountVector size="3">1 2 3</AmountVector>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shadowdancer: Ability III</Name>
+         <InternalName>SDIntDex3</InternalName>
+         <Description>Choose either Dexterity or Intelligence</Description>
+         <Icon>DexInt</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>8</MinSpent>
+         <Requirements/>
+         <Selector>
+            <EnhancementSelection>
+               <Name>+1 Dexterity</Name>
+               <Description>+1 Dexterity</Description>
+               <Icon>Dexterity</Icon>
+               <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Ability>Dexterity</Ability>
+                  <AmountVector size="1">1</AmountVector>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Intelligence</Name>
+               <Description>+1 Intelligence</Description>
+               <Icon>Intelligence</Icon>
+               <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Ability>Intelligence</Ability>
+                  <AmountVector size="1">1</AmountVector>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shadowdancer: Improved Invisibility</Name>
+         <InternalName>ImprovedInvisibility</InternalName>
+         <Description>Invisible for [10/20/30] seconds. Attacking does not break this effect.
+After it wears off, you retain partial concealment (displacement) for [30/60/90] seconds.</Description>
+         <Icon>ImprovedInvisibility</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>12</MinSpent>
+         <Clickie/>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>ShroudingStrikeShot</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shadowdancer: Pierce the Gloom</Name>
+         <InternalName>PierceTheGloom</InternalName>
+         <Description>Active Ability: You are accustomed to seeing clearly even in the darkest conditions.
+Activate this ability to clear any Blindness effect on yourself.
+For 30 seconds afterwards you always hit except when you roll a 1 on your attack roll.
+(Cooldown: 2 minutes)</Description>
+         <Icon>PierceTheGloom</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>12</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>GrimPrecision</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shadowdancer: Ability IV</Name>
+         <InternalName>SDIntDex4</InternalName>
+         <Description>Choose either Dexterity or Intelligence</Description>
+         <Icon>DexInt</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>12</MinSpent>
+         <Requirements/>
+         <Selector>
+            <EnhancementSelection>
+               <Name>+1 Dexterity</Name>
+               <Description>+1 Dexterity</Description>
+               <Icon>Dexterity</Icon>
+               <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Ability>Dexterity</Ability>
+                  <AmountVector size="1">1</AmountVector>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Intelligence</Name>
+               <Description>+1 Intelligence</Description>
+               <Icon>Intelligence</Icon>
+               <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Ability>Intelligence</Ability>
+                  <AmountVector size="1">1</AmountVector>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shadowdancer: Shadow Manipulation</Name>
+         <InternalName>ShadowManipulation</InternalName>
+         <Description>Active Ability: Spend a Shadow Charge to dominate the target for 1 minute
+(DC 14 + character level + INT modifier), after which it is subject to instant
+death if it fails a fortitude save (DC 14 + character level + INT modifier).
+You can retain +1 maximum Shadow Charges.
+This effect appears to work only on humanoids, living constructs and some aberrations.
+(Cooldown: 2 minutes)</Description>
+         <Icon>ShadowManipulation</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>16</MinSpent>
+         <Clickie/>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>CloakOfShadows</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shadowdancer: Untouchable</Name>
+         <InternalName>Untouchable</InternalName>
+         <Description>Gain 1% extra dodge for each Shadow Charge you hold.</Description>
+         <Icon>Untouchable</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>16</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>ImprovedInvisibility</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shadowdancer: Executioner's Strike/Shot</Name>
+         <InternalName>ExecutionersStrikeShot</InternalName>
+         <Description>Active Ability: (Cooldown: 30 seconds) Melee or ranged attack.
+Perform an attack with +[1/2/3][W] damage, +1 critical threat range and +1
+critical damage multiplier.
+On hit: You have a 35% chance to kill a living target instantly if the target
+fails a Fortitude save (DC 7 + Character level + DEX modifier + Number of Shadow Charges).
+Even on successful save target takes an additional [50/75/100] damage from this attack.</Description>
+         <Icon>ExecutionersStrikeShot</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>16</MinSpent>
+         <Clickie/>
+         <Requirements/>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shadowdancer: Sealed Soul</Name>
+         <InternalName>SealedSoul</InternalName>
+         <Description>Grants you immunity to energy drain.</Description>
+         <Icon>SealedSoul</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>16</MinSpent>
+         <Requirements/>
+         <Effect>
+            <Type>Immunity</Type>
+            <Immunity>Level Drain</Immunity>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shadowdancer: Ability V</Name>
+         <InternalName>SDIntDex5</InternalName>
+         <Description>Choose either Dexterity or Intelligence</Description>
+         <Icon>DexInt</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>16</MinSpent>
+         <Requirements/>
+         <Selector>
+            <EnhancementSelection>
+               <Name>+1 Dexterity</Name>
+               <Description>+1 Dexterity</Description>
+               <Icon>Dexterity</Icon>
+               <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Ability>Dexterity</Ability>
+                  <AmountVector size="1">1</AmountVector>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Intelligence</Name>
+               <Description>+1 Intelligence</Description>
+               <Icon>Intelligence</Icon>
+               <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Ability>Intelligence</Ability>
+                  <AmountVector size="1">1</AmountVector>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shadowdancer: Consume</Name>
+         <InternalName>Consume</InternalName>
+         <Description>Active Ability: Spend a Shadow Charge to create a field around you for 10 seconds.
+Every 2 seconds the aura causes one nearby corporeal enemy to be devoured by
+its own shadow and die (save negates), or take 80-120 damage.
+You are free to perform other action while the aura is active.
+You can retain +1 maximum Shadow Charges. (Cooldown: 2 minutes)</Description>
+         <Icon>Consume</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>6</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>ShadowManipulation</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shadowdancer: Shadow Form</Name>
+         <InternalName>ShadowForm</InternalName>
+         <Description>Active Ability: Spend a shadow charge to gain 25% incorporeal miss chance
+(and ignore incorporeal miss chance of targets), float as if affected by Feather Fall,
+have bonuses to Hide and Move Silently and deal strength damage on all melee and
+ranged attacks. You also take double damage from light effects.
+You can retain +1 maximum Shadow Charges.
+This is a toggled ability that persists until toggled off or leaving a quest.
+(Cooldown: 1 minute)</Description>
+         <Icon>ShadowForm</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>6</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Clickie/>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>Untouchable</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shadowdancer: 'Dark Imbuement' Epic Moment</Name>
+         <InternalName>DarkImbuement</InternalName>
+         <Description>Active Ability: Each time an enemy affected by your Dark Shrouding mark dies,
+you additionally gain 1 Dark Imbuement charge. When you have accumulated 20
+of these charges, you can expend them to enchant your melee and ranged attacks
+with shadowy energy. For 30 seconds, you deal an extra 2d6 unholy damage with
+every strike, the effective range of your melee attacks increases dramatically,
+and your ranged attacks have a 30% chance to explode, dealing 10d6 unholy damage
+to all enemies in a large radius around your target. (Cooldown: 5 minutes)</Description>
+         <Icon>DarkImbuement</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>6</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>ShadowForm</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shadowdancer: Ability VI</Name>
+         <InternalName>SDIntDex6</InternalName>
+         <Description>Choose either Dexterity or Intelligence</Description>
+         <Icon>DexInt</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>6</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements/>
+         <Selector>
+            <EnhancementSelection>
+               <Name>+1 Dexterity</Name>
+               <Description>+1 Dexterity</Description>
+               <Icon>Dexterity</Icon>
+               <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Ability>Dexterity</Ability>
+                  <AmountVector size="1">1</AmountVector>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Intelligence</Name>
+               <Description>+1 Intelligence</Description>
+               <Icon>Intelligence</Icon>
+               <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Ability>Intelligence</Ability>
+                  <AmountVector size="1">1</AmountVector>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+   </EnhancementTree>
+</Enhancements>

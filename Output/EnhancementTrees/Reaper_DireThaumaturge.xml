@@ -1,0 +1,845 @@
+<Enhancements>
+    <EnhancementTree>
+        <Name>Dire Thaumaturge</Name>
+        <Version>1</Version>
+        <Icon>ReaperTree</Icon>
+        <Background>Background</Background>
+        <Requirements/>
+        <IsReaperTree/>
+        <EnhancementTreeItem>
+            <Name>Reaper's Arcanum I</Name>
+            <InternalName>DireCore1</InternalName>
+            <Description>+50 Maximum Spell Points while in Reaper Difficulty.
+Every ability you take in this tree grants +4 Maximum Hit Points in Reaper Difficulty.</Description>
+            <Icon>ReapersArcanum</Icon>
+            <XPosition>0</XPosition>
+            <YPosition>0</YPosition>
+            <Cost>1</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>0</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <MinLevel>4</MinLevel>
+                </Requirement>
+            </Requirements>
+            <Effect>
+                <DisplayName>Dire Thaumaturge: HP per action point</DisplayName>
+                <Type>Hitpoints</Type>
+                <EnhancementTree>Dire Thaumaturge</EnhancementTree>
+                <AmountPerAP>4</AmountPerAP>
+                <Stance>Reaper</Stance>
+            </Effect>
+            <Effect>
+                <Type>SpellPoints</Type>
+                <AmountVector size="1">50</AmountVector>
+                <Stance>Reaper</Stance>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <Name>Reaper's Arcanum II</Name>
+            <InternalName>DireCore2</InternalName>
+            <Description>+50 Maximum Spell Points</Description>
+            <Icon>ReapersArcanum</Icon>
+            <XPosition>1</XPosition>
+            <YPosition>0</YPosition>
+            <Cost>1</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>5</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>DireCore1</Enhancement>
+                </Requirement>
+                <Requirement>
+                    <MinLevel>9</MinLevel>
+                </Requirement>
+            </Requirements>
+            <Effect>
+                <Type>SpellPoints</Type>
+                <AmountVector size="1">50</AmountVector>
+                <Stance>Reaper</Stance>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <Name>Reaper's Arcanum III</Name>
+            <InternalName>DireCore3</InternalName>
+            <Description>+1 Intelligence, Wisdom or Charisma</Description>
+            <Icon>ReapersArcanum</Icon>
+            <XPosition>2</XPosition>
+            <YPosition>0</YPosition>
+            <Cost>1</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>10</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>DireCore2</Enhancement>
+                </Requirement>
+                <Requirement>
+                    <MinLevel>15</MinLevel>
+                </Requirement>
+            </Requirements>
+            <Selector>
+                <EnhancementSelection>
+                    <Name>+1 Intelligence</Name>
+                    <Description>+1 Intelligence</Description>
+                    <Icon>Intelligence</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <AmountVector size="1">1</AmountVector>
+                        <Ability>Intelligence</Ability>
+                        <Stance>Reaper</Stance>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>+1 Wisdom</Name>
+                    <Description>+1 Wisdom</Description>
+                    <Icon>Wisdom</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <AmountVector size="1">1</AmountVector>
+                        <Ability>Wisdom</Ability>
+                        <Stance>Reaper</Stance>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>+1 Charisma</Name>
+                    <Description>+1 Charisma</Description>
+                    <Icon>Charisma</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <AmountVector size="1">1</AmountVector>
+                        <Ability>Charisma</Ability>
+                        <Stance>Reaper</Stance>
+                    </Effect>
+                </EnhancementSelection>
+            </Selector>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <Name>Reaper's Arcanum IV</Name>
+            <InternalName>DireCore4</InternalName>
+            <Description>+100 Maximum Spell Points</Description>
+            <Icon>ReapersArcanum</Icon>
+            <XPosition>3</XPosition>
+            <YPosition>0</YPosition>
+            <Cost>1</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>20</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>DireCore3</Enhancement>
+                </Requirement>
+                <Requirement>
+                    <MinLevel>21</MinLevel>
+                </Requirement>
+            </Requirements>
+            <Effect>
+                <Type>SpellPoints</Type>
+                <AmountVector size="1">100</AmountVector>
+                <Stance>Reaper</Stance>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <Name>Reaper's Arcanum V</Name>
+            <InternalName>DireCore5</InternalName>
+            <Description>+2 Universal Spell Power, +150 Maximum Spell Points</Description>
+            <Icon>ReapersArcanum</Icon>
+            <XPosition>4</XPosition>
+            <YPosition>0</YPosition>
+            <Cost>1</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>30</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>DireCore4</Enhancement>
+                </Requirement>
+                <Requirement>
+                    <MinLevel>25</MinLevel>
+                </Requirement>
+            </Requirements>
+            <Effect>
+                <Type>SpellPower</Type>
+                <SpellPower>All</SpellPower>
+                <AmountVector size="1">2</AmountVector>
+                <Stance>Reaper</Stance>
+            </Effect>
+            <Effect>
+                <Type>SpellPoints</Type>
+                <AmountVector size="1">150</AmountVector>
+                <Stance>Reaper</Stance>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <Name>Reaper's Arcanum VI</Name>
+            <InternalName>DireCore6</InternalName>
+            <Description>+4 Universal Spell Power, +200 Maximum Spell Points</Description>
+            <Icon>ReapersArcanum</Icon>
+            <XPosition>5</XPosition>
+            <YPosition>0</YPosition>
+            <Cost>1</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>40</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>DireCore5</Enhancement>
+                </Requirement>
+                <Requirement>
+                    <MinLevel>30</MinLevel>
+                </Requirement>
+            </Requirements>
+            <Effect>
+                <Type>SpellPower</Type>
+                <SpellPower>All</SpellPower>
+                <AmountVector size="1">4</AmountVector>
+                <Stance>Reaper</Stance>
+            </Effect>
+            <Effect>
+                <Type>SpellPoints</Type>
+                <AmountVector size="1">200</AmountVector>
+                <Stance>Reaper</Stance>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <Name>Reaper's Arcana I</Name>
+            <InternalName>DireArcanaI</InternalName>
+            <Description>+2/4/6 Universal Spell Power while in Reaper Difficulty</Description>
+            <Icon>ReapersArcana</Icon>
+            <XPosition>0</XPosition>
+            <YPosition>1</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>1</MinSpent>
+            <ArrowUp/>
+            <Requirements>
+                <Requirement>
+                    <MinLevel>4</MinLevel>
+                </Requirement>
+            </Requirements>
+            <Effect>
+                <Type>SpellPower</Type>
+                <SpellPower>All</SpellPower>
+                <AmountVector size="3">2 4 6</AmountVector>
+                <Stance>Reaper</Stance>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <Name>Reaper's Focus I</Name>
+            <InternalName>DireFocusI</InternalName>
+            <Description>+1 to Spell DCs while in Reaper Difficulty</Description>
+            <Icon>ReapersFocus</Icon>
+            <XPosition>1</XPosition>
+            <YPosition>1</YPosition>
+            <Cost>1</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>1</MinSpent>
+            <ArrowUp/>
+            <Requirements>
+                <Requirement>
+                    <MinLevel>4</MinLevel>
+                </Requirement>
+            </Requirements>
+            <Effect>
+                <Type>SpellDC</Type>
+                <School>All</School>
+                <AmountVector size="1">1</AmountVector>
+                <Stance>Reaper</Stance>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <Name>Reaper's Power</Name>
+            <InternalName>DirePower</InternalName>
+            <Description>While in Reaper Difficulty, activate to expend one Reaper Charge
+and gain a +15/30/45 Profane Bonus to Universal Spell Power for 30 Seconds.</Description>
+            <Icon>ReapersPower</Icon>
+            <XPosition>2</XPosition>
+            <YPosition>1</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>1</MinSpent>
+            <Clickie/>
+            <Requirements>
+                <Requirement>
+                    <MinLevel>4</MinLevel>
+                </Requirement>
+            </Requirements>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <Name>Reapers's Ability I</Name>
+            <InternalName>DireAbilityI</InternalName>
+            <Description>+1 to Intelligence, Wisdom or Charisma in Reaper Difficulty</Description>
+            <Icon>IntWisCha</Icon>
+            <XPosition>3</XPosition>
+            <YPosition>1</YPosition>
+            <Cost>1</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>1</MinSpent>
+            <ArrowUp/>
+            <Requirements>
+                <Requirement>
+                    <MinLevel>4</MinLevel>
+                </Requirement>
+            </Requirements>
+            <Selector>
+                <EnhancementSelection>
+                    <Name>+1 Intelligence</Name>
+                    <Description>+1 Intelligence</Description>
+                    <Icon>Intelligence</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <AmountVector size="1">1</AmountVector>
+                        <Ability>Intelligence</Ability>
+                        <Stance>Reaper</Stance>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>+1 Wisdom</Name>
+                    <Description>+1 Wisdom</Description>
+                    <Icon>Wisdom</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <AmountVector size="1">1</AmountVector>
+                        <Ability>Wisdom</Ability>
+                        <Stance>Reaper</Stance>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>+1 Charisma</Name>
+                    <Description>+1 Charisma</Description>
+                    <Icon>Charisma</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <AmountVector size="1">1</AmountVector>
+                        <Ability>Charisma</Ability>
+                        <Stance>Reaper</Stance>
+                    </Effect>
+                </EnhancementSelection>
+            </Selector>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <Name>Reaper's Deep Magic I</Name>
+            <InternalName>DireDeepMagicI</InternalName>
+            <Description>+1/2/3 to Spell Penetration while in Reaper Difficulty</Description>
+            <Icon>ReapersDeepMagic</Icon>
+            <XPosition>4</XPosition>
+            <YPosition>1</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>1</MinSpent>
+            <ArrowUp/>
+            <Requirements>
+                <Requirement>
+                    <MinLevel>4</MinLevel>
+                </Requirement>
+            </Requirements>
+            <Effect>
+                <Type>SpellPenetrationBonus</Type>
+                <School>All</School>
+                <AmountVector size="3">1 2 3</AmountVector>
+                <Stance>Reaper</Stance>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <Name>Reaper's Arcana II</Name>
+            <InternalName>DireArcanaII</InternalName>
+            <Description>+2/4/6 Universal Spell Power while in Reaper Difficulty</Description>
+            <Icon>ReapersArcana</Icon>
+            <XPosition>0</XPosition>
+            <YPosition>2</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>5</MinSpent>
+            <ArrowUp/>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>DireArcanaI</Enhancement>
+                </Requirement>
+                <Requirement>
+                    <MinLevel>10</MinLevel>
+                </Requirement>
+            </Requirements>
+            <Effect>
+                <Type>SpellPower</Type>
+                <SpellPower>All</SpellPower>
+                <AmountVector size="3">2 4 6</AmountVector>
+                <Stance>Reaper</Stance>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <Name>Reaper's Focus II</Name>
+            <InternalName>DireFocusII</InternalName>
+            <Description>+1 to Spell DCs while in Reaper Difficulty</Description>
+            <Icon>ReapersFocus</Icon>
+            <XPosition>1</XPosition>
+            <YPosition>2</YPosition>
+            <Cost>1</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>5</MinSpent>
+            <ArrowUp/>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>DireFocusI</Enhancement>
+                </Requirement>
+                <Requirement>
+                    <MinLevel>10</MinLevel>
+                </Requirement>
+            </Requirements>
+            <Effect>
+                <Type>SpellDC</Type>
+                <School>All</School>
+                <AmountVector size="1">1</AmountVector>
+                <Stance>Reaper</Stance>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <Name>Reaper's Ability II</Name>
+            <InternalName>DireAbilityII</InternalName>
+            <Description>+1 to Intelligence, Wisdom or Charisma in Reaper Difficulty</Description>
+            <Icon>IntWisCha</Icon>
+            <XPosition>3</XPosition>
+            <YPosition>2</YPosition>
+            <Cost>1</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>5</MinSpent>
+            <ArrowUp/>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>DireAbilityI</Enhancement>
+                </Requirement>
+                <Requirement>
+                    <MinLevel>10</MinLevel>
+                </Requirement>
+            </Requirements>
+            <Selector>
+                <EnhancementSelection>
+                    <Name>+1 Intelligence</Name>
+                    <Description>+1 Intelligence</Description>
+                    <Icon>Intelligence</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <AmountVector size="1">1</AmountVector>
+                        <Ability>Intelligence</Ability>
+                        <Stance>Reaper</Stance>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>+1 Wisdom</Name>
+                    <Description>+1 Wisdom</Description>
+                    <Icon>Wisdom</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <AmountVector size="1">1</AmountVector>
+                        <Ability>Wisdom</Ability>
+                        <Stance>Reaper</Stance>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>+1 Charisma</Name>
+                    <Description>+1 Charisma</Description>
+                    <Icon>Charisma</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <AmountVector size="1">1</AmountVector>
+                        <Ability>Charisma</Ability>
+                    </Effect>
+                </EnhancementSelection>
+            </Selector>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <Name>Reaper's Deep Magic II</Name>
+            <InternalName>DireDeepMagicII</InternalName>
+            <Description>+1/2/3 to Spell Penetration while in Reaper Difficulty</Description>
+            <Icon>ReapersDeepMagic</Icon>
+            <XPosition>4</XPosition>
+            <YPosition>2</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>5</MinSpent>
+            <ArrowUp/>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>DireDeepMagicI</Enhancement>
+                </Requirement>
+                <Requirement>
+                    <MinLevel>10</MinLevel>
+                </Requirement>
+            </Requirements>
+            <Effect>
+                <Type>SpellPenetrationBonus</Type>
+                <School>All</School>
+                <AmountVector size="3">1 2 3</AmountVector>
+                <Stance>Reaper</Stance>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <Name>Reaper's Arcana III</Name>
+            <InternalName>DireArcanaIII</InternalName>
+            <Description>+2/4/6 Universal Spell Power while in Reaper Difficulty</Description>
+            <Icon>ReapersArcana</Icon>
+            <XPosition>0</XPosition>
+            <YPosition>3</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>10</MinSpent>
+            <ArrowUp/>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>DireArcanaII</Enhancement>
+                </Requirement>
+                <Requirement>
+                    <MinLevel>10</MinLevel>
+                </Requirement>
+            </Requirements>
+            <Effect>
+                <Type>SpellPower</Type>
+                <SpellPower>All</SpellPower>
+                <AmountVector size="3">2 4 6</AmountVector>
+                <Stance>Reaper</Stance>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <Name>Reaper's Focus III</Name>
+            <InternalName>DireFocusIII</InternalName>
+            <Description>+1 to Spell DCs while in Reaper Difficulty</Description>
+            <Icon>ReapersFocus</Icon>
+            <XPosition>1</XPosition>
+            <YPosition>3</YPosition>
+            <Cost>1</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>10</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>DireFocusII</Enhancement>
+                </Requirement>
+                <Requirement>
+                    <MinLevel>17</MinLevel>
+                </Requirement>
+            </Requirements>
+            <Effect>
+                <Type>SpellDC</Type>
+                <School>All</School>
+                <AmountVector size="1">1</AmountVector>
+                <Stance>Reaper</Stance>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <Name>Reaper's Ability III</Name>
+            <InternalName>DireAbilityIII</InternalName>
+            <Description>+1 to Intelligence, Wisdom or Charisma in Reaper Difficulty</Description>
+            <Icon>IntWisCha</Icon>
+            <XPosition>3</XPosition>
+            <YPosition>3</YPosition>
+            <Cost>1</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>10</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>DireAbilityII</Enhancement>
+                </Requirement>
+                <Requirement>
+                    <MinLevel>17</MinLevel>
+                </Requirement>
+            </Requirements>
+            <Selector>
+                <EnhancementSelection>
+                    <Name>+1 Intelligence</Name>
+                    <Description>+1 Intelligence</Description>
+                    <Icon>Intelligence</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <AmountVector size="1">1</AmountVector>
+                        <Ability>Intelligence</Ability>
+                        <Stance>Reaper</Stance>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>+1 Wisdom</Name>
+                    <Description>+1 Wisdom</Description>
+                    <Icon>Wisdom</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <AmountVector size="1">1</AmountVector>
+                        <Ability>Wisdom</Ability>
+                        <Stance>Reaper</Stance>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>+1 Charisma</Name>
+                    <Description>+1 Charisma</Description>
+                    <Icon>Charisma</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <AmountVector size="1">1</AmountVector>
+                        <Ability>Charisma</Ability>
+                        <Stance>Reaper</Stance>
+                    </Effect>
+                </EnhancementSelection>
+            </Selector>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <Name>Reaper's Deep Magic III</Name>
+            <InternalName>DireDeepMagicIII</InternalName>
+            <Description>+1/2/3 to Spell Penetration while in Reaper Difficulty</Description>
+            <Icon>ReapersDeepMagic</Icon>
+            <XPosition>4</XPosition>
+            <YPosition>3</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>10</MinSpent>
+            <ArrowUp/>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>DireDeepMagicII</Enhancement>
+                </Requirement>
+                <Requirement>
+                    <MinLevel>17</MinLevel>
+                </Requirement>
+            </Requirements>
+            <Effect>
+                <Type>SpellPenetrationBonus</Type>
+                <School>All</School>
+                <AmountVector size="3">1 2 3</AmountVector>
+                <Stance>Reaper</Stance>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <Name>Reaper's Arcana IV</Name>
+            <InternalName>DireArcanaIV</InternalName>
+            <Description>+4/8/12 Universal Spell Power while in Reaper Difficulty</Description>
+            <Icon>ReapersArcana</Icon>
+            <XPosition>0</XPosition>
+            <YPosition>4</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>20</MinSpent>
+            <ArrowUp/>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>DireArcanaIII</Enhancement>
+                </Requirement>
+                <Requirement>
+                    <MinLevel>21</MinLevel>
+                </Requirement>
+            </Requirements>
+            <Effect>
+                <Type>SpellPower</Type>
+                <SpellPower>All</SpellPower>
+                <AmountVector size="3">2 4 6</AmountVector>
+                <Stance>Reaper</Stance>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <Name>Reaper's Potency</Name>
+            <InternalName>DirePotency</InternalName>
+            <Description>While in Reaper Difficulty, activate to expend one Reaper Charge
+and gain a +2/4/6 Reaper Bonus to Spell DC's for 30 seconds.</Description>
+            <Icon>ReapersPotency</Icon>
+            <XPosition>1</XPosition>
+            <YPosition>4</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>20</MinSpent>
+            <Clickie/>
+            <Requirements>
+                <Requirement>
+                    <MinLevel>21</MinLevel>
+                </Requirement>
+            </Requirements>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <Name>Reaper's Efficiency</Name>
+            <InternalName>DireEfficiency</InternalName>
+            <Description>While in Reaper Difficulty, activate to expend one Reaper Charge
+and reduce the Spell point cost of your spells by 15/30/45% for 30 seconds.</Description>
+            <Icon>ReapersEfficiency</Icon>
+            <XPosition>3</XPosition>
+            <YPosition>4</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>20</MinSpent>
+            <Clickie/>
+            <Requirements>
+                <Requirement>
+                    <MinLevel>21</MinLevel>
+                </Requirement>
+            </Requirements>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <Name>Reaper's Deep Magic IV</Name>
+            <InternalName>DireDeepMagicIV</InternalName>
+            <Description>+1/2/3 to Spell Penetration while in Reaper Difficulty</Description>
+            <Icon>ReapersDeepMagic</Icon>
+            <XPosition>4</XPosition>
+            <YPosition>4</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>20</MinSpent>
+            <ArrowUp/>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>DireDeepMagicIII</Enhancement>
+                </Requirement>
+                <Requirement>
+                    <MinLevel>21</MinLevel>
+                </Requirement>
+            </Requirements>
+            <Effect>
+                <Type>SpellPenetrationBonus</Type>
+                <School>All</School>
+                <AmountVector size="3">1 2 3</AmountVector>
+                <Stance>Reaper</Stance>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <Name>Reaper's Arcana V</Name>
+            <InternalName>DireArcanaV</InternalName>
+            <Description>+4/8/12 Universal Spell Power while in Reaper Difficulty</Description>
+            <Icon>ReapersArcana</Icon>
+            <XPosition>0</XPosition>
+            <YPosition>5</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>30</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>DireArcanaIV</Enhancement>
+                </Requirement>
+                <Requirement>
+                    <MinLevel>27</MinLevel>
+                </Requirement>
+            </Requirements>
+            <Effect>
+                <Type>SpellPower</Type>
+                <SpellPower>All</SpellPower>
+                <AmountVector size="3">2 4 6</AmountVector>
+                <Stance>Reaper</Stance>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <Name>Reaper's Focus V</Name>
+            <InternalName>DireFocusV</InternalName>
+            <Description>+1 to Spell DCs while in Reaper Difficulty</Description>
+            <Icon>ReapersFocus</Icon>
+            <XPosition>1</XPosition>
+            <YPosition>5</YPosition>
+            <Cost>1</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>30</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <MinLevel>27</MinLevel>
+                </Requirement>
+            </Requirements>
+            <Effect>
+                <Type>SpellDC</Type>
+                <School>All</School>
+                <AmountVector size="1">1</AmountVector>
+                <Stance>Reaper</Stance>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <Name>Reaper's Charge</Name>
+            <InternalName>DireCharge</InternalName>
+            <Description>+1 Maximum Reaper Charge</Description>
+            <Icon>ReapersCharge</Icon>
+            <XPosition>2</XPosition>
+            <YPosition>5</YPosition>
+            <Cost>1</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>30</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <MinLevel>27</MinLevel>
+                </Requirement>
+            </Requirements>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <Name>Reaper's Ability V</Name>
+            <InternalName>DireAbilityV</InternalName>
+            <Description>+1 to Intelligence, Wisdom or Charisma in Reaper Difficulty</Description>
+            <Icon>IntWisCha</Icon>
+            <XPosition>3</XPosition>
+            <YPosition>5</YPosition>
+            <Cost>1</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>30</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <MinLevel>27</MinLevel>
+                </Requirement>
+            </Requirements>
+            <Selector>
+                <EnhancementSelection>
+                    <Name>+1 Intelligence</Name>
+                    <Description>+1 Intelligence</Description>
+                    <Icon>Intelligence</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <AmountVector size="1">1</AmountVector>
+                        <Ability>Intelligence</Ability>
+                        <Stance>Reaper</Stance>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>+1 Wisdom</Name>
+                    <Description>+1 Wisdom</Description>
+                    <Icon>Wisdom</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <AmountVector size="1">1</AmountVector>
+                        <Ability>Wisdom</Ability>
+                        <Stance>Reaper</Stance>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>+1 Charisma</Name>
+                    <Description>+1 Charisma</Description>
+                    <Icon>Charisma</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <AmountVector size="1">1</AmountVector>
+                        <Ability>Charisma</Ability>
+                        <Stance>Reaper</Stance>
+                    </Effect>
+                </EnhancementSelection>
+            </Selector>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <Name>Reaper's Deep Magic V</Name>
+            <InternalName>DireDeepMagicV</InternalName>
+            <Description>+1/2/3 to Spell Penetration while in Reaper Difficulty</Description>
+            <Icon>ReapersDeepMagic</Icon>
+            <XPosition>4</XPosition>
+            <YPosition>5</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>30</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>DireDeepMagicIV</Enhancement>
+                </Requirement>
+                <Requirement>
+                    <MinLevel>27</MinLevel>
+                </Requirement>
+            </Requirements>
+            <Effect>
+                <Type>SpellPenetrationBonus</Type>
+                <School>All</School>
+                <AmountVector size="3">1 2 3</AmountVector>
+                <Stance>Reaper</Stance>
+            </Effect>
+        </EnhancementTreeItem>
+    </EnhancementTree>
+</Enhancements>

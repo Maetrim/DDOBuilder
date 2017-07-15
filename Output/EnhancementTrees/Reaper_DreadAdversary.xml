@@ -1,0 +1,810 @@
+<Enhancements>
+    <EnhancementTree>
+        <Name>Dread Adversary</Name>
+        <Version>1</Version>
+        <Icon>ReaperTree</Icon>
+        <Background>Background</Background>
+        <Requirements/>
+        <IsReaperTree/>
+        <EnhancementTreeItem>
+            <Name>Reaper's Offense I</Name>
+            <InternalName>DreadAdversaryCore1</InternalName>
+            <Description>+1 to hit and damage with all weapons while in Reaper Difficulty.
+Every ability you take in this tree grants +4 Maximum Hit Points in Reaper Difficulty.
+            </Description>
+            <Icon>ReapersOffense</Icon>
+            <XPosition>0</XPosition>
+            <YPosition>0</YPosition>
+            <Cost>1</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>0</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <MinLevel>4</MinLevel>
+                </Requirement>
+            </Requirements>
+            <Effect>
+                <DisplayName>Dread Adversary: HP per action point</DisplayName>
+                <Type>Hitpoints</Type>
+                <EnhancementTree>Dread Adversary</EnhancementTree>
+                <AmountPerAP>4</AmountPerAP>
+                <Stance>Reaper</Stance>
+            </Effect>
+            <Effect>
+                <Type>AttackBonus</Type>
+                <Weapon>All</Weapon>
+                <AmountVector size="1">1</AmountVector>
+                <Stance>Reaper</Stance>
+            </Effect>
+            <Effect>
+                <Type>DamageBonus</Type>
+                <Weapon>All</Weapon>
+                <AmountVector size="1">1</AmountVector>
+                <Stance>Reaper</Stance>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <Name>Reaper's Offense II</Name>
+            <InternalName>DreadAdversaryCore2</InternalName>
+            <Description>+1 to Tactics DCs, +1 to hit and damage</Description>
+            <Icon>ReapersOffense</Icon>
+            <XPosition>1</XPosition>
+            <YPosition>0</YPosition>
+            <Cost>1</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>5</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>DreadAdversaryCore1</Enhancement>
+                </Requirement>
+                <Requirement>
+                    <MinLevel>9</MinLevel>
+                </Requirement>
+            </Requirements>
+            <Effect>
+                <Type>AttackBonus</Type>
+                <Weapon>All</Weapon>
+                <AmountVector size="1">1</AmountVector>
+                <Stance>Reaper</Stance>
+            </Effect>
+            <Effect>
+                <Type>AttackBonus</Type>
+                <Weapon>All</Weapon>
+                <AmountVector size="1">1</AmountVector>
+                <Stance>Reaper</Stance>
+            </Effect>
+            <Effect>
+                <Type>TacticalDC</Type>
+                <Tactical>All</Tactical>
+                <AmountVector size="1">1</AmountVector>
+                <Stance>Reaper</Stance>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <Name>Reaper's Offense III</Name>
+            <InternalName>DreadAdversaryCore3</InternalName>
+            <Description>+1 Strength or Dexterity</Description>
+            <Icon>StrDex</Icon>
+            <XPosition>2</XPosition>
+            <YPosition>0</YPosition>
+            <Cost>1</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>10</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>DreadAdversaryCore2</Enhancement>
+                </Requirement>
+                <Requirement>
+                    <MinLevel>15</MinLevel>
+                </Requirement>
+            </Requirements>
+            <Selector>
+                <EnhancementSelection>
+                    <Name>+1 Strength</Name>
+                    <Description>+1 Strength</Description>
+                    <Icon>Strength</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <AmountVector size="1">1</AmountVector>
+                        <Ability>Strength</Ability>
+                        <Stance>Reaper</Stance>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>+1 Dexterity</Name>
+                    <Description>+1 Dexterity</Description>
+                    <Icon>Dexterity</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <AmountVector size="1">1</AmountVector>
+                        <Ability>Dexterity</Ability>
+                        <Stance>Reaper</Stance>
+                    </Effect>
+                </EnhancementSelection>
+            </Selector>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <Name>Reaper's Offense IV</Name>
+            <InternalName>DreadAdversaryCore4</InternalName>
+            <Description>+2 to hit and damage</Description>
+            <Icon>ReapersOffense</Icon>
+            <XPosition>3</XPosition>
+            <YPosition>0</YPosition>
+            <Cost>1</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>20</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>DreadAdversaryCore3</Enhancement>
+                </Requirement>
+                <Requirement>
+                    <MinLevel>21</MinLevel>
+                </Requirement>
+            </Requirements>
+            <Effect>
+                <Type>AttackBonus</Type>
+                <Weapon>All</Weapon>
+                <AmountVector size="1">2</AmountVector>
+                <Stance>Reaper</Stance>
+            </Effect>
+            <Effect>
+                <Type>AttackBonus</Type>
+                <Weapon>All</Weapon>
+                <AmountVector size="1">2</AmountVector>
+                <Stance>Reaper</Stance>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <Name>Reaper's Offense V</Name>
+            <InternalName>DreadAdversaryCore5</InternalName>
+            <Description>+1 Melee and Ranged Power</Description>
+            <Icon>ReapersOffense</Icon>
+            <XPosition>4</XPosition>
+            <YPosition>0</YPosition>
+            <Cost>1</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>30</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>DreadAdversaryCore4</Enhancement>
+                </Requirement>
+                <Requirement>
+                    <MinLevel>25</MinLevel>
+                </Requirement>
+            </Requirements>
+            <Effect>
+                <Type>RangedPower</Type>
+                <AmountVector size="1">1</AmountVector>
+                <Stance>Reaper</Stance>
+            </Effect>
+            <Effect>
+                <Type>MeleePower</Type>
+                <AmountVector size="1">1</AmountVector>
+                <Stance>Reaper</Stance>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <Name>Reaper's Offense VI</Name>
+            <InternalName>DreadAdversaryCore6</InternalName>
+            <Description>+1 to Tactics DCs, +2 Melee and Ranged Power</Description>
+            <Icon>ReapersOffense</Icon>
+            <XPosition>5</XPosition>
+            <YPosition>0</YPosition>
+            <Cost>1</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>40</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>DreadAdversaryCore5</Enhancement>
+                </Requirement>
+                <Requirement>
+                    <MinLevel>30</MinLevel>
+                </Requirement>
+            </Requirements>
+            <Effect>
+                <Type>RangedPower</Type>
+                <AmountVector size="1">2</AmountVector>
+                <Stance>Reaper</Stance>
+            </Effect>
+            <Effect>
+                <Type>MeleePower</Type>
+                <AmountVector size="1">2</AmountVector>
+                <Stance>Reaper</Stance>
+            </Effect>
+            <Effect>
+                <Type>TacticalDC</Type>
+                <Tactical>All</Tactical>
+                <AmountVector size="1">1</AmountVector>
+                <Stance>Reaper</Stance>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <Name>Reaper's Blade I</Name>
+            <InternalName>DAReapersBladeI</InternalName>
+            <Description>+1/2/3 Melee Power while in Reaper Difficulty</Description>
+            <Icon>ReapersBlade</Icon>
+            <XPosition>0</XPosition>
+            <YPosition>1</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>1</MinSpent>
+            <ArrowUp/>
+            <Requirements>
+                <Requirement>
+                    <MinLevel>4</MinLevel>
+                </Requirement>
+            </Requirements>
+            <Effect>
+                <Type>MeleePower</Type>
+                <AmountVector size="3">1 2 3</AmountVector>
+                <Stance>Reaper</Stance>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <Name>Reaper's Tactics I</Name>
+            <InternalName>DAReapersTacticsI</InternalName>
+            <Description>+1 to Tactics DCs while in Reaper Difficulty</Description>
+            <Icon>ReapersTactics</Icon>
+            <XPosition>1</XPosition>
+            <YPosition>1</YPosition>
+            <Cost>1</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>1</MinSpent>
+            <ArrowUp/>
+            <Requirements>
+                <Requirement>
+                    <MinLevel>4</MinLevel>
+                </Requirement>
+            </Requirements>
+            <Effect>
+                <Type>TacticalDC</Type>
+                <Tactical>All</Tactical>
+                <AmountVector size="1">1</AmountVector>
+                <Stance>Reaper</Stance>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <Name>Reaper's Strike</Name>
+            <InternalName>DAReapersStrike</InternalName>
+            <Description>While in Reaper Difficulty, activate to expend one Reaper Charge
+and gain a +10/20/30% Bonus to Doublestrike and Doubleshot for 30 seconds.</Description>
+            <Icon>ReapersStrike</Icon>
+            <XPosition>2</XPosition>
+            <YPosition>1</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>1</MinSpent>
+            <Clickie/>
+            <Requirements>
+                <Requirement>
+                    <MinLevel>4</MinLevel>
+                </Requirement>
+            </Requirements>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <Name>Reaper's Strength or Dexterity I</Name>
+            <InternalName>DAReapersAbilityI</InternalName>
+            <Description>+1 Strength or Dexterity while in Reaper difficulty.</Description>
+            <Icon>StrDex</Icon>
+            <XPosition>3</XPosition>
+            <YPosition>1</YPosition>
+            <Cost>1</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>1</MinSpent>
+            <ArrowUp/>
+            <Requirements>
+                <Requirement>
+                    <MinLevel>4</MinLevel>
+                </Requirement>
+            </Requirements>
+            <Selector>
+                <EnhancementSelection>
+                    <Name>+1 Strength</Name>
+                    <Description>+1 Strength</Description>
+                    <Icon>Strength</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <AmountVector size="1">1</AmountVector>
+                        <Ability>Strength</Ability>
+                        <Stance>Reaper</Stance>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>+1 Dexterity</Name>
+                    <Description>+1 Dexterity</Description>
+                    <Icon>Dexterity</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <AmountVector size="1">1</AmountVector>
+                        <Ability>Dexterity</Ability>
+                        <Stance>Reaper</Stance>
+                    </Effect>
+                </EnhancementSelection>
+            </Selector>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <Name>Reaper's Shot I</Name>
+            <InternalName>DAReapersShotI</InternalName>
+            <Description>+1/2/3 Ranged Power while in Reaper Difficulty</Description>
+            <Icon>ReapersShot</Icon>
+            <XPosition>4</XPosition>
+            <YPosition>1</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>1</MinSpent>
+            <ArrowUp/>
+            <Requirements>
+                <Requirement>
+                    <MinLevel>4</MinLevel>
+                </Requirement>
+            </Requirements>
+            <Effect>
+                <Type>RangedPower</Type>
+                <AmountVector size="3">1 2 3</AmountVector>
+                <Stance>Reaper</Stance>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <Name>Reaper's Blade II</Name>
+            <InternalName>DAReapersBladeII</InternalName>
+            <Description>+1/2/3 Melee Power while in Reaper Difficulty</Description>
+            <Icon>ReapersBlade</Icon>
+            <XPosition>0</XPosition>
+            <YPosition>2</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>5</MinSpent>
+            <ArrowUp/>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>DAReapersBladeI</Enhancement>
+                </Requirement>
+                <Requirement>
+                    <MinLevel>10</MinLevel>
+                </Requirement>
+            </Requirements>
+            <Effect>
+                <Type>MeleePower</Type>
+                <AmountVector size="3">1 2 3</AmountVector>
+                <Stance>Reaper</Stance>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <Name>Reaper's Tactics II</Name>
+            <InternalName>DAReapersTacticsII</InternalName>
+            <Description>+1 to Tactics DCs while in Reaper Difficulty</Description>
+            <Icon>ReapersTactics</Icon>
+            <XPosition>1</XPosition>
+            <YPosition>2</YPosition>
+            <Cost>1</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>5</MinSpent>
+            <ArrowUp/>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>DAReapersTacticsI</Enhancement>
+                </Requirement>
+                <Requirement>
+                    <MinLevel>10</MinLevel>
+                </Requirement>
+            </Requirements>
+            <Effect>
+                <Type>TacticalDC</Type>
+                <Tactical>All</Tactical>
+                <AmountVector size="1">1</AmountVector>
+                <Stance>Reaper</Stance>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <Name>Reaper's Strength or Dexterity II</Name>
+            <InternalName>DAReapersAbilityII</InternalName>
+            <Description>+1 Strength or Dexterity while in Reaper difficulty.</Description>
+            <Icon>StrDex</Icon>
+            <XPosition>3</XPosition>
+            <YPosition>2</YPosition>
+            <Cost>1</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>5</MinSpent>
+            <ArrowUp/>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>DAReapersAbilityI</Enhancement>
+                </Requirement>
+                <Requirement>
+                    <MinLevel>10</MinLevel>
+                </Requirement>
+            </Requirements>
+            <Selector>
+                <EnhancementSelection>
+                    <Name>+1 Strength</Name>
+                    <Description>+1 Strength</Description>
+                    <Icon>Strength</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <AmountVector size="1">1</AmountVector>
+                        <Ability>Strength</Ability>
+                        <Stance>Reaper</Stance>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>+1 Dexterity</Name>
+                    <Description>+1 Dexterity</Description>
+                    <Icon>Dexterity</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <AmountVector size="1">1</AmountVector>
+                        <Ability>Dexterity</Ability>
+                        <Stance>Reaper</Stance>
+                    </Effect>
+                </EnhancementSelection>
+            </Selector>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <Name>Reaper's Shot II</Name>
+            <InternalName>DAReapersShotII</InternalName>
+            <Description>+1/2/3 Ranged Power while in Reaper Difficulty</Description>
+            <Icon>ReapersShot</Icon>
+            <XPosition>4</XPosition>
+            <YPosition>2</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>5</MinSpent>
+            <ArrowUp/>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>DAReapersShotI</Enhancement>
+                </Requirement>
+                <Requirement>
+                    <MinLevel>10</MinLevel>
+                </Requirement>
+            </Requirements>
+            <Effect>
+                <Type>RangedPower</Type>
+                <AmountVector size="3">1 2 3</AmountVector>
+                <Stance>Reaper</Stance>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <Name>Reaper's Blade III</Name>
+            <InternalName>DAReapersBladeIII</InternalName>
+            <Description>+1/2/3 Melee Power while in Reaper Difficulty</Description>
+            <Icon>ReapersBlade</Icon>
+            <XPosition>0</XPosition>
+            <YPosition>3</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>10</MinSpent>
+            <ArrowUp/>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>DAReapersBladeII</Enhancement>
+                </Requirement>
+                <Requirement>
+                    <MinLevel>17</MinLevel>
+                </Requirement>
+            </Requirements>
+            <Effect>
+                <Type>MeleePower</Type>
+                <AmountVector size="3">1 2 3</AmountVector>
+                <Stance>Reaper</Stance>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <Name>Reaper's Tactics III</Name>
+            <InternalName>DAReapersTacticsIII</InternalName>
+            <Description>+1 to Tactics DCs while in Reaper Difficulty</Description>
+            <Icon>ReapersTactics</Icon>
+            <XPosition>1</XPosition>
+            <YPosition>3</YPosition>
+            <Cost>1</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>10</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>DAReapersTacticsII</Enhancement>
+                </Requirement>
+                <Requirement>
+                    <MinLevel>17</MinLevel>
+                </Requirement>
+            </Requirements>
+            <Effect>
+                <Type>TacticalDC</Type>
+                <Tactical>All</Tactical>
+                <AmountVector size="1">1</AmountVector>
+                <Stance>Reaper</Stance>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <Name>Reaper's Strength or Dexterity III</Name>
+            <InternalName>DAReapersAbilityIII</InternalName>
+            <Description>+1 Strength or Dexterity while in Reaper difficulty.</Description>
+            <Icon>StrDex</Icon>
+            <XPosition>3</XPosition>
+            <YPosition>3</YPosition>
+            <Cost>1</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>10</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>DAReapersAbilityII</Enhancement>
+                </Requirement>
+                <Requirement>
+                    <MinLevel>17</MinLevel>
+                </Requirement>
+            </Requirements>
+            <Selector>
+                <EnhancementSelection>
+                    <Name>+1 Strength</Name>
+                    <Description>+1 Strength</Description>
+                    <Icon>Strength</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <AmountVector size="1">1</AmountVector>
+                        <Ability>Strength</Ability>
+                        <Stance>Reaper</Stance>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>+1 Dexterity</Name>
+                    <Description>+1 Dexterity</Description>
+                    <Icon>Dexterity</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <AmountVector size="1">1</AmountVector>
+                        <Ability>Dexterity</Ability>
+                        <Stance>Reaper</Stance>
+                    </Effect>
+                </EnhancementSelection>
+            </Selector>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <Name>Reaper's Shot III</Name>
+            <InternalName>DAReapersShotIII</InternalName>
+            <Description>+1/2/3 Ranged Power while in Reaper Difficulty</Description>
+            <Icon>ReapersShot</Icon>
+            <XPosition>4</XPosition>
+            <YPosition>3</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>10</MinSpent>
+            <ArrowUp/>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>DAReapersShotII</Enhancement>
+                </Requirement>
+                <Requirement>
+                    <MinLevel>17</MinLevel>
+                </Requirement>
+            </Requirements>
+            <Effect>
+                <Type>RangedPower</Type>
+                <AmountVector size="3">1 2 3</AmountVector>
+                <Stance>Reaper</Stance>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <Name>Reaper's Blade IV</Name>
+            <InternalName>DAReapersBladeIV</InternalName>
+            <Description>+1/2/3 Melee Power while in Reaper Difficulty</Description>
+            <Icon>ReapersBlade</Icon>
+            <XPosition>0</XPosition>
+            <YPosition>4</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>20</MinSpent>
+            <ArrowUp/>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>DAReapersBladeIII</Enhancement>
+                </Requirement>
+                <Requirement>
+                    <MinLevel>21</MinLevel>
+                </Requirement>
+            </Requirements>
+            <Effect>
+                <Type>MeleePower</Type>
+                <AmountVector size="3">1 2 3</AmountVector>
+                <Stance>Reaper</Stance>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <Name>Reaper's Imbuement</Name>
+            <InternalName>DAReapersImbuement</InternalName>
+            <Description>While in Reaper Difficulty, activate to expend one Reaper Charge to
+gain Ghost Touch, bypass 5%/10%/15% of enemies' Fortification, and bypass 1/2/3%
+of their Dodge. This lasts for 30 seconds.</Description>
+            <Icon>ReapersImbuement</Icon>
+            <XPosition>1</XPosition>
+            <YPosition>4</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>20</MinSpent>
+            <Clickie/>
+            <Requirements>
+                <Requirement>
+                    <MinLevel>21</MinLevel>
+                </Requirement>
+            </Requirements>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <Name>Reaper's Deadly Strikes</Name>
+            <InternalName>DAReapersDeadlyStrikes</InternalName>
+            <Description>While in Reaper Difficulty, activate to expend one Reaper Charge
+and gain a +2/4/6 Reaper Bonus to confirm critical hits and critical hit damage for 30
+seconds.</Description>
+            <Icon>ReapersDeadlyStrikes</Icon>
+            <XPosition>3</XPosition>
+            <YPosition>4</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>20</MinSpent>
+            <Clickie/>
+            <Requirements>
+                <Requirement>
+                    <MinLevel>21</MinLevel>
+                </Requirement>
+            </Requirements>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <Name>Reaper's Shot IV</Name>
+            <InternalName>DAReapersShotIV</InternalName>
+            <Description>+1/2/3 Ranged Power while in Reaper Difficulty</Description>
+            <Icon>ReapersShot</Icon>
+            <XPosition>4</XPosition>
+            <YPosition>4</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>20</MinSpent>
+            <ArrowUp/>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>DAReapersShotIII</Enhancement>
+                </Requirement>
+                <Requirement>
+                    <MinLevel>21</MinLevel>
+                </Requirement>
+            </Requirements>
+            <Effect>
+                <Type>RangedPower</Type>
+                <AmountVector size="3">1 2 3</AmountVector>
+                <Stance>Reaper</Stance>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <Name>Reaper's Blade V</Name>
+            <InternalName>DAReapersBladeV</InternalName>
+            <Description>+1/2/3 Melee Power while in Reaper Difficulty</Description>
+            <Icon>ReapersBlade</Icon>
+            <XPosition>0</XPosition>
+            <YPosition>5</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>30</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>DAReapersBladeIV</Enhancement>
+                </Requirement>
+                <Requirement>
+                    <MinLevel>27</MinLevel>
+                </Requirement>
+            </Requirements>
+            <Effect>
+                <Type>MeleePower</Type>
+                <AmountVector size="3">1 2 3</AmountVector>
+                <Stance>Reaper</Stance>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <Name>Reaper's Tactics IV</Name>
+            <InternalName>DAReapersTacticsIV</InternalName>
+            <Description>+1 to Tactics DCs while in Reaper Difficulty</Description>
+            <Icon>ReapersTactics</Icon>
+            <XPosition>1</XPosition>
+            <YPosition>5</YPosition>
+            <Cost>1</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>30</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <MinLevel>27</MinLevel>
+                </Requirement>
+            </Requirements>
+            <Effect>
+                <Type>TacticalDC</Type>
+                <Tactical>All</Tactical>
+                <AmountVector size="1">1</AmountVector>
+                <Stance>Reaper</Stance>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <Name>Reaper's Charge</Name>
+            <InternalName>DAReapersCharge</InternalName>
+            <Description>+1 Maximum Reaper Charge</Description>
+            <Icon>ReapersCharge</Icon>
+            <XPosition>2</XPosition>
+            <YPosition>5</YPosition>
+            <Cost>1</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>30</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <MinLevel>27</MinLevel>
+                </Requirement>
+            </Requirements>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <Name>Reaper's Strength or Dexterity IV</Name>
+            <InternalName>DAReapersAbilityIV</InternalName>
+            <Description>+1 Strength or Dexterity while in Reaper difficulty.</Description>
+            <Icon>StrDex</Icon>
+            <XPosition>3</XPosition>
+            <YPosition>5</YPosition>
+            <Cost>1</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>30</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <MinLevel>27</MinLevel>
+                </Requirement>
+            </Requirements>
+            <Selector>
+                <EnhancementSelection>
+                    <Name>+1 Strength</Name>
+                    <Description>+1 Strength</Description>
+                    <Icon>Strength</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <AmountVector size="1">1</AmountVector>
+                        <Ability>Strength</Ability>
+                        <Stance>Reaper</Stance>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>+1 Dexterity</Name>
+                    <Description>+1 Dexterity</Description>
+                    <Icon>Dexterity</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <AmountVector size="1">1</AmountVector>
+                        <Ability>Dexterity</Ability>
+                        <Stance>Reaper</Stance>
+                    </Effect>
+                </EnhancementSelection>
+            </Selector>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <Name>Reaper's Shot V</Name>
+            <InternalName>DAReapersShotV</InternalName>
+            <Description>+1/2/3 Ranged Power while in Reaper Difficulty</Description>
+            <Icon>ReapersShot</Icon>
+            <XPosition>4</XPosition>
+            <YPosition>5</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>30</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>DAReapersShotIV</Enhancement>
+                </Requirement>
+                <Requirement>
+                    <MinLevel>27</MinLevel>
+                </Requirement>
+            </Requirements>
+            <Effect>
+                <Type>RangedPower</Type>
+                <AmountVector size="3">1 2 3</AmountVector>
+                <Stance>Reaper</Stance>
+            </Effect>
+        </EnhancementTreeItem>
+    </EnhancementTree>
+</Enhancements>

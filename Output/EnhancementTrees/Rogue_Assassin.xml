@@ -1,0 +1,1018 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Enhancements>
+   <EnhancementTree>
+      <Name>Assassin</Name>
+       <Version>1</Version>
+       <Requirements>
+         <Requirement>
+            <Class>Rogue</Class>
+         </Requirement>
+      </Requirements>
+      <Background>RogueBackground</Background>
+      <Icon>Rogue</Icon>
+      <EnhancementTreeItem>
+         <Name>Assassin: Knife in the Darkness</Name>
+         <InternalName>AssCore1</InternalName>
+         <Description>You gain proficiency with Kukris. You can also use your Dexterity modifier
+to hit with Daggers and Kukris</Description>
+         <Icon>AssKnifeInTheDarkness</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>0</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>WeaponProficiency</Type>
+              <Weapon>Kukri</Weapon>
+          </Effect>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <Weapon>Dagger</Weapon>
+              <Ability>Dexterity</Ability>
+          </Effect>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <Weapon>Kukri</Weapon>
+              <Ability>Dexterity</Ability>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Assassin: Dagger in the Back</Name>
+         <InternalName>AssCore2</InternalName>
+         <Description>You can now use your Dexterity for damage with Daggers and Kukris.
+If you possess the Weapon Finesse feat, this also applies to melee weapons with
+which you can use your Dexterity modifier to hit.
+This enhancement does not work with handwraps or unarmed attacks.</Description>
+         <Icon>AssDaggerInTheBack</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>AssCore1</Enhancement>
+            </Requirement>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>3</Level>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Weapon>Dagger</Weapon>
+              <Ability>Dexterity</Ability>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Weapon>Kukri</Weapon>
+              <Ability>Dexterity</Ability>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Assassin: Assassin's Trick</Name>
+         <InternalName>AssCore3</InternalName>
+         <Description>Activate: Target opponent loses 25% of their fortification and 25% of their
+immunity to sneak attacks for 15 seconds. (Cooldown: 6 seconds)</Description>
+         <Icon>AssAssassinsTrick</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Clickie/>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>AssCore2</Enhancement>
+            </Requirement>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>6</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Assassin: Nimbleness</Name>
+         <InternalName>AssCore4</InternalName>
+         <Description>On Hit: Up to once every 2 seconds, you gain 1% dodge for 6 seconds.
+This effect can stack up to 10 times.
++5 Melee Power.</Description>
+         <Icon>AssNimbleness</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>AssCore3</Enhancement>
+            </Requirement>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>12</Level>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>MeleePower</Type>
+              <AmountVector size="1">5</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Assassin: Lethality</Name>
+         <InternalName>AssCore5</InternalName>
+         <Description>While wearing light or cloth armor you gain +1 to your Critical Damage
+Multiplier for any one-handed weapon you are wielding.
+Two Weapon Fighters will get the bonus for both weapons provided they qualify.</Description>
+         <Icon>AssLethality</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>AssCore4</Enhancement>
+            </Requirement>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>18</Level>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>CriticalMultiplier</Type>
+              <AmountVector size="1">1</AmountVector>
+              <WeaponClass>OneHanded</WeaponClass>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Assassin: Deadly Shadow</Name>
+         <InternalName>AssCore6</InternalName>
+         <Description>You gain +2 Dexterity and +2 Intelligence.
+You gain 10 Melee Power and +4 Sneak Attack dice.
+You gain +4 to Reflex Saving Throws.
+You gain +2 to the DC of your Assassinate.</Description>
+         <Icon>AssDeadlyShadow</Icon>
+         <XPosition>5</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>40</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Enhancement>AssCore5</Enhancement>
+            </Requirement>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>20</Level>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>AbilityBonus</Type>
+              <Ability>Dexterity</Ability>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>AbilityBonus</Type>
+              <Ability>Intelligence</Ability>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>MeleePower</Type>
+              <AmountVector size="1">10</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>SneakAttackDamage</Type>
+              <Dice>
+                  <Number size="1">4</Number>
+                  <Sides size="1">6</Sides>
+              </Dice>
+          </Effect>
+          <Effect>
+              <Type>SaveBonus</Type>
+              <Save>Reflex</Save>
+              <AmountVector size="1">4</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>TacticalDC</Type>
+              <Tactical>Assassinate</Tactical>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Assassin: Poison Strikes I</Name>
+         <InternalName>AssPoisonStrikesI</InternalName>
+         <Description>Select one of three poisonous attacks.
+These attacks apply an "Assassin's Mark" to an opponent for 10 seconds on hit,
+enabling Weakening Strikes and Deadly Strikes (see below) to effect that opponent.
+(Cooldown: 6 seconds): </Description>
+         <Icon>AssPoisonStrikes</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>1</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Heartseeker Poison</Name>
+               <Description>Melee Poison Attack:
+On damage: -1 fort save (stacks 5 times),
+On Crit: 1d6 Con damage,
+On vorpal: Heartseeker (-5% hit points, Fort save to negate DC 10 + half Rogue level + INT modifier) </Description>
+               <Icon>AssHeartseekersPoison</Icon>
+               <Cost>2</Cost>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Ice Chill Poison</Name>
+               <Description>Melee Poison Attack:
+On damage: -1 reflex save (stacks 5 times),
+On Crit: 1d6 Dex damage,
+On vorpal: Paralysis (Fort DC 10 + half Rogue level + INT modifier negates)
+25% chance for additional save when the affected creature is damaged.</Description>
+               <Icon>AssIceChillPoison</Icon>
+               <Cost>2</Cost>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Soulshatter Poison</Name>
+               <Description>Melee Poison Attack:
+On damage: -1 Will save (stacks 5 times),
+On Crit: 1d6 Wis damage,
+On Vorpal: Shattermantle (-100 Spell Resistance for 10 seconds;
+Will save to negate, DC 10 + half Rogue level + INT modifier)</Description>
+               <Icon>AssSoulshatterPoison</Icon>
+               <Cost>2</Cost>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Assassin: Toxin Affinity</Name>
+         <InternalName>AssToxinAffinity</InternalName>
+         <Description>+1/+2/+3 Fortitude saves vs. Poisons and to the save DC of your Poison attacks</Description>
+         <Icon>AssToxinAffinity</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>SaveBonus</Type>
+              <Save>Poison</Save>
+              <AmountVector size="3">1 2 3</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Assassin: Shiv</Name>
+         <InternalName>AssShiv</InternalName>
+         <Description>Melee Attack: +1/+2/+3[W] damage.
+On hit: Makes a Bluff check, using your Bluff skill, for one second + .25 seconds per Rogue level.
+On Sneak Attack: Target also gains a -2 Fortitude Save against Poisons for 20 seconds.
+(Stacks 5 times.) (Cooldown: 12 seconds)
+Passive: Reduces the threat of all your attacks by 5/10/15%.</Description>
+         <Icon>AssShiv</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Assassin: Sneak Attack Training I</Name>
+         <InternalName>AssSneakAttackTrainingI</InternalName>
+         <Description>Grants +1 Sneak Attack die and +1 to hit when performing sneak attacks.</Description>
+         <Icon>AssSneakAttackTraining</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>1</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>SneakAttackDamage</Type>
+              <Dice>
+                  <Number size="1">4</Number>
+                  <Sides size="1">6</Sides>
+              </Dice>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Assassin: Stealthy</Name>
+         <InternalName>AssStealthy</InternalName>
+         <Description>+1/+2/+3 Hide and Move Silently. +25/50/75% movement speed while sneaking.</Description>
+         <Icon>AssStealthy</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>SkillBonus</Type>
+              <Skill>Hide</Skill>
+              <AmountVector size="3">1 2 3</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>SkillBonus</Type>
+              <Skill>Move Silently</Skill>
+              <AmountVector size="3">1 2 3</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Assassin: Poison Strikes II</Name>
+         <InternalName>AssPoisonStrikesII</InternalName>
+         <Description>Select one of three poisonous attacks.</Description>
+         <Icon>AssPoisonStrikes</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>2</Level>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Heartseeker Poison</Name>
+               <Description>Melee Poison Attack:
+On damage: -1 fort save (stacks 5 times),
+On Crit: 1d6 Con damage,
+On vorpal: Heartseeker (-5% hit points, Fort save to negate DC 10 + half Rogue level + INT modifier) </Description>
+               <Icon>AssHeartseekersPoison</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <RequiresNoneOf>
+                     <Requirement>
+                        <Enhancement>AssPoisonStrikesI</Enhancement>
+                        <Selection>Heartseeker Poison</Selection>
+                     </Requirement>
+                  </RequiresNoneOf>
+               </Requirements>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Ice Chill Poison</Name>
+               <Description>Melee Poison Attack:
+On damage: -1 reflex save (stacks 5 times),
+On Crit: 1d6 Dex damage,
+On vorpal: Paralysis (Fort DC 10 + half Rogue level + INT modifier negates)
+25% chance for additional save when the affected creature is damaged.</Description>
+               <Icon>AssIceChillPoison</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <RequiresNoneOf>
+                     <Requirement>
+                        <Enhancement>AssPoisonStrikesI</Enhancement>
+                        <Selection>Ice Chill Poison</Selection>
+                     </Requirement>
+                  </RequiresNoneOf>
+               </Requirements>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Soulshatter Poison</Name>
+               <Description>Melee Poison Attack:
+On damage: -1 Will save (stacks 5 times),
+On Crit: 1d6 Wis damage,
+On Vorpal: Shattermantle (-100 Spell Resistance for 10 seconds;
+Will save to negate, DC 10 + half Rogue level + INT modifier)</Description>
+               <Icon>AssSoulshatterPoison</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <RequiresNoneOf>
+                     <Requirement>
+                        <Enhancement>AssPoisonStrikesI</Enhancement>
+                        <Selection>Soulshatter Poison</Selection>
+                     </Requirement>
+                  </RequiresNoneOf>
+               </Requirements>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Assassin: Venomed Blades</Name>
+         <InternalName>AssVenomedBlades</InternalName>
+         <Description>Poison Stance: On hit: 1d4/1d6/1d8 poison damage with weapon attacks.
+This damage scales with 200% Melee Power.</Description>
+         <Icon>AssVenomedBlades</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>2</Level>
+            </Requirement>
+         </Requirements>
+          <Stance>
+              <Name>Venomed Blades</Name>
+              <Icon>AssVenomedBlades</Icon>
+              <Description>On hit: 1d4/1d6/1d8 poison damage with weapon attacks.
+This damage scales with 200% Melee Power.</Description>
+          </Stance>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Weapon>All</Weapon>
+              <Dice>
+                  <Number size="3">1 1 1</Number>
+                  <Sides size="3">4 6 8</Sides>
+              </Dice>
+              <Energy>Poison</Energy>
+              <Stance>Venomed Blades</Stance>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Assassin: Bleed Them Out</Name>
+         <InternalName>AssBleedThemOut</InternalName>
+         <Description>Melee Attack: Deal +1/+2/+3[W] damage and on successful damage causes your opponent to bleed.
+The bleed effect can stack up to 5 times. (Cooldown: 6 seconds)
+Note: Bleed deals 1d6 damage every 2 seconds for 14 seconds.
+This damage scales with 200% Melee Power.</Description>
+         <Icon>AssBleedThemOut</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>2</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Assassin: Sneak Attack Training II</Name>
+         <InternalName>AssSneakAttackTrainingII</InternalName>
+         <Description>Grants +1 Sneak Attack die and +1 to hit when performing Sneak Attacks.</Description>
+         <Icon>AssSneakAttackTraining</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>2</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>AssSneakAttackTrainingI</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>SneakAttackDamage</Type>
+              <Dice>
+                  <Number size="1">4</Number>
+                  <Sides size="1">6</Sides>
+              </Dice>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Assassin: Damage Boost</Name>
+         <InternalName>AssDamageBoost</InternalName>
+         <Description>Activate to gain a 10/20/30 Action Boost bonus to Melee Power and Ranged Power for 20 seconds.
+(Cooldown: 30 seconds)</Description>
+         <Icon>AssDamageBoost</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>2</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Assassin: Poison Strikes III</Name>
+         <InternalName>AssPoisonStrikesIII</InternalName>
+         <Description>Select one of three poisonous attacks.</Description>
+         <Icon>AssPoisonStrikes</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>3</Level>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Heartseeker Poison</Name>
+               <Description>Melee Poison Attack:
+On damage: -1 fort save (stacks 5 times),
+On Crit: 1d6 Con damage,
+On vorpal: Heartseeker (-5% hit points, Fort save to negate DC 10 + half Rogue level + INT modifier) </Description>
+               <Icon>AssHeartseekersPoison</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <RequiresNoneOf>
+                     <Requirement>
+                        <Enhancement>AssPoisonStrikesI</Enhancement>
+                        <Selection>Heartseeker Poison</Selection>
+                     </Requirement>
+                     <Requirement>
+                        <Enhancement>AssPoisonStrikesII</Enhancement>
+                        <Selection>Heartseeker Poison</Selection>
+                     </Requirement>
+                  </RequiresNoneOf>
+               </Requirements>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Ice Chill Poison</Name>
+               <Description>Melee Poison Attack:
+On damage: -1 reflex save (stacks 5 times),
+On Crit: 1d6 Dex damage,
+On vorpal: Paralysis (Fort DC 10 + half Rogue level + INT modifier negates)
+25% chance for additional save when the affected creature is damaged.</Description>
+               <Icon>AssIceChillPoison</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <RequiresNoneOf>
+                     <Requirement>
+                        <Enhancement>AssPoisonStrikesI</Enhancement>
+                        <Selection>Ice Chill Poison</Selection>
+                     </Requirement>
+                     <Requirement>
+                        <Enhancement>AssPoisonStrikesII</Enhancement>
+                        <Selection>Ice Chill Poison</Selection>
+                     </Requirement>
+                  </RequiresNoneOf>
+               </Requirements>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Soulshatter Poison</Name>
+               <Description>Melee Poison Attack:
+On damage: -1 Will save (stacks 5 times),
+On Crit: 1d6 Wis damage,
+On Vorpal: Shattermantle (-100 Spell Resistance for 10 seconds;
+Will save to negate, DC 10 + half Rogue level + INT modifier)</Description>
+               <Icon>AssSoulshatterPoison</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <RequiresNoneOf>
+                     <Requirement>
+                        <Enhancement>AssPoisonStrikesI</Enhancement>
+                        <Selection>Soulshatter Poison</Selection>
+                     </Requirement>
+                     <Requirement>
+                        <Enhancement>AssPoisonStrikesII</Enhancement>
+                        <Selection>Soulshatter Poison</Selection>
+                     </Requirement>
+                  </RequiresNoneOf>
+               </Requirements>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Assassin: Critical Mastery</Name>
+         <InternalName>AssCriticalMastery</InternalName>
+         <Description>+1/2/3 bonus to critical damage and to confirm critical hits.</Description>
+         <Icon>AssCriticalMastery</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>3</Level>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>CriticalAttackBonus</Type>
+              <AmountVector size="3">1 2 3</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>CriticalDamageBonus</Type>
+              <AmountVector size="3">1 2 3</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Assassin: Shadow Dagger</Name>
+         <InternalName>AssShadowDagger</InternalName>
+         <Description>Throw a dagger made of solidified shadows at your enemy.
+Deals 4d8/6d8/8d8 unholy damage and blinds the target
+(Fort DC 10/14/18 + Rogue Level + the greater of Intelligence or Dexterity bonus
++ bonuses to Assassinate Negates blindness).
+This damage scales with 400% Melee Power. (Cooldown: 30/20/10 seconds)</Description>
+         <Icon>AssShadowDagger</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>3</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Assassin: Sneak Attack Training III</Name>
+         <InternalName>AssSneakAttackTrainingIII</InternalName>
+         <Description>Grants +1 Sneak Attack die and +1 to hit when performing sneak attacks</Description>
+         <Icon>AssSneakAttackTraining</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>3</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>AssSneakAttackTrainingII</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>SneakAttackDamage</Type>
+              <Dice>
+                  <Number size="1">4</Number>
+                  <Sides size="1">6</Sides>
+              </Dice>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Assassin: Ability I</Name>
+         <InternalName>AssAbilityScoreI</InternalName>
+         <Description>Choose either Dexterity or Intelligence</Description>
+         <Icon>DexInt</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>3</Level>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>+1 Dexterity</Name>
+               <Description>+1 Dexterity</Description>
+               <Icon>Dexterity</Icon>
+               <Cost>2</Cost>
+                <Effect>
+                    <Type>AbilityBonus</Type>
+                    <Ability>Dexterity</Ability>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Intelligence</Name>
+               <Description>+1 Intelligence</Description>
+               <Icon>Intelligence</Icon>
+               <Cost>2</Cost>
+                <Effect>
+                    <Type>AbilityBonus</Type>
+                    <Ability>Intelligence</Ability>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Assassin: Execute</Name>
+         <InternalName>AssExecute</InternalName>
+         <Description>Melee Assassinate attack: +3[W] damage.
+If the target is below 30% health, deal 500 damage.
+This damage scales with 400% Melee Power. (Cooldown: 15 seconds)</Description>
+         <Icon>AssExecute</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>4</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Assassin: Killer</Name>
+         <InternalName>AssKiller</InternalName>
+         <Description>When you kill a target, gain +5% morale bonus to Doublestrike and Doubleshot for 15 seconds.
+Weak enemies will not always produce this effect.
+The killer buff can stack up to 2/3/4 times.</Description>
+         <Icon>AssKiller</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>4</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Assassin: Weakening Strikes</Name>
+         <InternalName>AssWeakeningStrikes</InternalName>
+         <Description>Your attacks reduce the Melee and Ranged Power of opponents by (10 + Rogue Level/2)
+for 10 seconds if you attack an enemy with an "Assassin's Mark."
+(Applied by Poison Strikes.)</Description>
+         <Icon>AssWeakeningStrikes</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>4</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Assassin: Sneak Attack Training IV</Name>
+         <InternalName>AssSneakAttackTrainingIV</InternalName>
+         <Description>Grants +1 Sneak Attack die and +1 to hit when performing sneak attacks</Description>
+         <Icon>AssSneakAttackTraining</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>4</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>AssSneakAttackTrainingIII</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>SneakAttackDamage</Type>
+              <Dice>
+                  <Number size="1">4</Number>
+                  <Sides size="1">6</Sides>
+              </Dice>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Assassin: Ability II</Name>
+         <InternalName>AssAbilityScoreII</InternalName>
+         <Description>Choose either Dexterity or Intelligence</Description>
+         <Icon>DexInt</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>4</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>AssAbilityScoreI</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>+1 Dexterity</Name>
+               <Description>+1 Dexterity</Description>
+               <Icon>Dexterity</Icon>
+               <Cost>2</Cost>
+                <Effect>
+                    <Type>AbilityBonus</Type>
+                    <Ability>Dexterity</Ability>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Intelligence</Name>
+               <Description>+1 Intelligence</Description>
+               <Icon>Intelligence</Icon>
+               <Cost>2</Cost>
+                <Effect>
+                    <Type>AbilityBonus</Type>
+                    <Ability>Intelligence</Ability>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Assassin: Assassinate</Name>
+         <InternalName>AssAssassinate</InternalName>
+         <Description>Stealth Melee Assassinate Attack: +10 Sneak Attack dice.
+On Sneak Attack: Kills a living target instantly Fortitude save
+(10 + Rogue level + the greater of Intelligence or Dexterity bonus + bonuses to Assassinate) negates.
+(Cooldown: 12 seconds.) </Description>
+         <Icon>AssAssassinate</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>12</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>5</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Assassin: Measure the Foe</Name>
+         <InternalName>AssMeasureTheFoe</InternalName>
+         <Description>Gain +6 Melee Power, +2 Dodge, +2 Maximum Dodge, +1 to hit and +1 to the DC's
+of your Assassinate abilities for every 4/2/1 seconds you remain stealthed.
+This effect stacks up to five times, and lasts 10 seconds after you come out of stealth.</Description>
+         <Icon>AssMeasureTheFoe</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>12</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>5</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Assassin: Deadly Strikes</Name>
+         <InternalName>AssDeadlyStrikes</InternalName>
+         <Description>+10 damage against enemies with an "Assassin's Mark".
+(Applied by Poison Strikes.)</Description>
+         <Icon>AssDeadlyStrikes</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>12</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>5</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Assassin: Knife Specialization</Name>
+         <InternalName>AssKnifeSpecialization</InternalName>
+         <Description>You gain a +1 Competence bonus to Critical Damage Multiplier with daggers and kukris.
+Daggers also gain a +1 Competence bonus to Critical Threat Range.</Description>
+         <Icon>AssKnifeSpecialization</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>12</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>5</Level>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>CriticalMultiplier</Type>
+              <AmountVector size="1">1</AmountVector>
+              <Weapon>Dagger</Weapon>
+          </Effect>
+          <Effect>
+              <Type>CriticalRange</Type>
+              <AmountVector size="1">1</AmountVector>
+              <Weapon>Dagger</Weapon>
+          </Effect>
+          <Effect>
+              <Type>CriticalMultiplier</Type>
+              <AmountVector size="1">1</AmountVector>
+              <Weapon>Kukri</Weapon>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Assassin: Light Armor Mastery</Name>
+         <InternalName>AssLightArmorMastery</InternalName>
+         <Description>You gain 1/2/3 to Maximum Dodge.
+While wearing light armor, gain 2/4/6 to the Maximum Dexterity Bonus of your armor,
+-2/4/6 armor check penalty, and gain 2/4/6 Physical Resistance Rating.</Description>
+         <Icon>AssLightArmorMastery</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>12</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>5</Level>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>DodgeCapBonus</Type>
+              <AmountVector size="3">1 2 3</AmountVector>
+              <Stance>LightArmor</Stance>
+          </Effect>
+          <Effect>
+              <Type>MaxDexBonus</Type>
+              <AmountVector size="3">1 2 3</AmountVector>
+              <Stance>LightArmor</Stance>
+          </Effect>
+          <Effect>
+              <Type>ArmorCheckPenalty</Type>
+              <AmountVector size="3">-2 -4 -6</AmountVector>
+              <Stance>LightArmor</Stance>
+          </Effect>
+          <Effect>
+              <Type>PRR</Type>
+              <AmountVector size="3">2 4 6</AmountVector>
+              <Stance>LightArmor</Stance>
+          </Effect>
+      </EnhancementTreeItem>
+   </EnhancementTree>
+</Enhancements>

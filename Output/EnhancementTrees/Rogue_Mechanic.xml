@@ -1,0 +1,1047 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Enhancements>
+   <EnhancementTree>
+      <Name>Mechanic</Name>
+       <Version>1</Version>
+       <Requirements>
+         <Requirement>
+            <Class>Rogue</Class>
+         </Requirement>
+      </Requirements>
+      <Background>RogueBackground</Background>
+      <Icon>Rogue</Icon>
+      <EnhancementTreeItem>
+         <Name>Mechanic: Arbalester</Name>
+         <InternalName>MechCore1</InternalName>
+         <Description>Increases your ranged sneak attack and Point Blank Shot range by 5 meters
+for every trained Mechanic Core enhancement.
+You also gain proficiency with great crossbows.</Description>
+         <Icon>MechArbalester</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>0</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>WeaponProficiency</Type>
+              <Weapon>Great Crossbow</Weapon>
+          </Effect>
+          <Effect>
+              <Type>SneakAttackRange</Type>
+              <AmountVector size="1">5</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>PointBlankShotRange</Type>
+              <AmountVector size="1">5</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Mechanic: Tanglefoot</Name>
+         <InternalName>MechCore2</InternalName>
+         <Description>Alchemical Trap Activate: Throws a flask of caustic liquid at your enemy,
+which explodes into a sticky mess. Enemies caught within by the goo puddle take
+4d6 acid damage every 2 seconds, Reflex DC (10 + Rogue Level + Intelligence Modifier)
+halves, and are slowed, Reflex (DC 10 + Rogue Level + Intelligence Modifier) negates.
+This damage scales with 200% Ranged Power.
+Cooldown: 30 seconds. Spell Resistance: No</Description>
+         <Icon>MechTanglefoot</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Clickie/>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>MechCore1</Enhancement>
+            </Requirement>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>3</Level>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>SneakAttackRange</Type>
+              <AmountVector size="1">5</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>PointBlankShotRange</Type>
+              <AmountVector size="1">5</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Mechanic: Targeting Sights</Name>
+         <InternalName>MechCore3</InternalName>
+         <Description>You can now use your Intelligence modifier for damage modifier with all
+crossbows and thrown weapons. You also gain proficiency with light repeating crossbows.</Description>
+         <Icon>MechTargetingSights</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>MechCore2</Enhancement>
+            </Requirement>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>6</Level>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>WeaponProficiency</Type>
+              <Weapon>Repeating Light Crossbow</Weapon>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <WeaponClass>Crossbows</WeaponClass>
+              <Ability>Intelligence</Ability>
+          </Effect>
+          <Effect>
+              <Type>SneakAttackRange</Type>
+              <AmountVector size="1">5</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>PointBlankShotRange</Type>
+              <AmountVector size="1">5</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Mechanic: Improved Detection</Name>
+         <InternalName>MechCore4</InternalName>
+         <Description>You can detect traps and search from 50% further away.
+You also gain proficiency with heavy repeating crossbows. +1 to-hit, +1 damage,
+and 1 extra Sneak Attack die with bows, crossbows, and thrown weapons.</Description>
+         <Icon>MechImprovedDetection</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>MechCore3</Enhancement>
+            </Requirement>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>12</Level>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>WeaponProficiency</Type>
+              <Weapon>Repeating Heavy Crossbow</Weapon>
+          </Effect>
+          <Effect>
+              <Type>SneakAttackRange</Type>
+              <AmountVector size="1">5</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>PointBlankShotRange</Type>
+              <AmountVector size="1">5</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <AmountVector size="1">1</AmountVector>
+              <WeaponClass>Crossbows</WeaponClass>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <AmountVector size="1">1</AmountVector>
+              <WeaponClass>Crossbows</WeaponClass>
+          </Effect>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <AmountVector size="1">1</AmountVector>
+              <WeaponClass>Thrown</WeaponClass>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <AmountVector size="1">1</AmountVector>
+              <WeaponClass>Thrown</WeaponClass>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Mechanic: Expert Builder</Name>
+         <InternalName>MechCore5</InternalName>
+         <Description>You gain a +1 Critical Multiplier for bows, crossbows, and thrown weapons.
+Critical Multiplier increases to +2 for Great Crossbows.
+In addition, this ability reduces the cooldowns of Alchemical Trap attacks by 20%.</Description>
+         <Icon>MechExpertBuilder</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>MechCore4</Enhancement>
+            </Requirement>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>18</Level>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>SneakAttackRange</Type>
+              <AmountVector size="1">5</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>PointBlankShotRange</Type>
+              <AmountVector size="1">5</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>CriticalMultiplier</Type>
+              <AmountVector size="1">1</AmountVector>
+              <WeaponClass>Crossbows</WeaponClass>
+          </Effect>
+          <Effect>
+              <Type>CriticalMultiplier</Type>
+              <AmountVector size="1">1</AmountVector>
+              <WeaponClass>Bows</WeaponClass>
+          </Effect>
+          <Effect>
+              <Type>CriticalMultiplier</Type>
+              <AmountVector size="1">1</AmountVector>
+              <Weapon>Great Crossbow</Weapon>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Mechanic: HipFlask</Name>
+         <InternalName>MechCore6</InternalName>
+         <Description>Passive: +2 Dexterity and Intelligence, +1 to hit with all crossbows,
++1 damage with all repeating crossbows, +2 damage with non-repeating crossbows,
++2 Sneak Attack dice and +2 to hit when performing Sneak Attacks
+Action Boost: You drink a potion that you've been saving for a special occasion.
+Heals you for 10d3+30 (scales with 200% Ranged Power) and adds +10 to Dodge and Maximum Dodge for 10 seconds.
+For the next 60 seconds, you gain +1d6 to all ability scores, and +2d6 to attack and damage. (Cooldown: 3 minutes)
+"A little something of your own creation. Potent stuff, drink sparingly."</Description>
+         <Icon>MechHipFlask</Icon>
+         <XPosition>5</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>40</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>MechCore5</Enhancement>
+            </Requirement>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>20</Level>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>SneakAttackRange</Type>
+              <AmountVector size="1">5</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>PointBlankShotRange</Type>
+              <AmountVector size="1">5</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Mechanic: Sharpshooter I</Name>
+         <InternalName>MechSharpshooterI</InternalName>
+         <Description>+1 to hit and damage with all bows, crossbows, and thrown weapons.
+Non-repeating crossbows increase the damage to +2 and +1 SA dice.</Description>
+         <Icon>MechSharpshooter</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>1</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <WeaponClass>Bows</WeaponClass>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <WeaponClass>Crossbows</WeaponClass>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <WeaponClass>Thrown</WeaponClass>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <WeaponClass>Bows</WeaponClass>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <WeaponClass>Crossbows</WeaponClass>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <WeaponClass>Thrown</WeaponClass>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Mechanic: Lacerating Shots</Name>
+         <InternalName>MechLaceratingShots</InternalName>
+         <Description>You have upgraded your Great Crossbow to shoot more forcefully that its
+construction would normally allow. Your Great Crossbow attacks have a 33%/66%/100%
+chance of putting a stack of Bleed on enemies. The bleed effect can stack up to 5 times.
+Note: Bleed deals 1d6 damage every 2 seconds for 14 seconds.
+This damage scales with 200% Melee Power.</Description>
+         <Icon>MechLaceratingShots</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Mechanic: Thunderstone</Name>
+         <InternalName>MechThunderstone</InternalName>
+         <Description>Alchemical Trap Attack: Throws an alchemical charge at your enemy.
+Deals 4d6/6d6/8d6 damage and dazes in area.
+Fort DC (12/16/20 + Rogue Level + Intelligence Modifier) Negates daze.
+The damage scales with 200% Ranged Power
+Cooldown: 12 seconds. Spell Resistance: No </Description>
+         <Icon>MechThunderstone</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Clickie/>
+         <LongArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Mechanic: Mechanics</Name>
+         <InternalName>MechMechanics</InternalName>
+         <Description>+1/+2/+3 Disable Device, Open Lock, and Repair.
++1/+2/+3 to Saving Throws you make against traps.</Description>
+         <Icon>MechMechanics</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>SkillBonus</Type>
+              <Skill>Disable Device</Skill>
+              <AmountVector size="3">1 2 3</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>SkillBonus</Type>
+              <Skill>Open Lock</Skill>
+              <AmountVector size="3">1 2 3</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>SkillBonus</Type>
+              <Skill>Repair</Skill>
+              <AmountVector size="3">1 2 3</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>SaveBonus</Type>
+              <Save>Traps</Save>
+              <AmountVector size="3">1 2 3</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Mechanic: Awareness</Name>
+         <InternalName>MechAwareness</InternalName>
+         <Description>+1/+2/+3 Listen, Search, and Spot</Description>
+         <Icon>Awareness</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>SkillBonus</Type>
+              <Skill>Listen</Skill>
+              <AmountVector size="3">1 2 3</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>SkillBonus</Type>
+              <Skill>Search</Skill>
+              <AmountVector size="3">1 2 3</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>SkillBonus</Type>
+              <Skill>Spot</Skill>
+              <AmountVector size="3">1 2 3</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Mechanic: Sharpshooter II</Name>
+         <InternalName>MechSharpshooterII</InternalName>
+         <Description>+1 to hit and damage with all bows, crossbows, and thrown weapons.
+Non-repeating crossbows increase the damage to +2 and +1 SA dice.</Description>
+         <Icon>MechSharpshooter</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>2</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>MechSharpshooterI</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <WeaponClass>Bows</WeaponClass>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <WeaponClass>Crossbows</WeaponClass>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <WeaponClass>Thrown</WeaponClass>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <WeaponClass>Bows</WeaponClass>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <WeaponClass>Crossbows</WeaponClass>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <WeaponClass>Thrown</WeaponClass>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Mechanic: Improved Traps</Name>
+         <InternalName>MechImprovedTraps</InternalName>
+         <Description>+1/+2/+3 to the save DC's of Alchemical Trap Attacks and Magical Traps.
+Elemental Traps that you place now have a DC equal to 65%/80%/100% of your
+Disable Device Skill instead of 50%. </Description>
+         <Icon>MechImprovedTraps</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>2</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Mechanic: Wand and Scroll Mastery</Name>
+         <InternalName>MechWandAndScrollMastery</InternalName>
+         <Description>+25%/+50%/+75% damage and healing of your wands, scrolls, and other
+items that cast spells. Adds +1/+2/+3 to the save DC's of your offensive wands.</Description>
+         <Icon>MechWandAndScrollMastery</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>2</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Mechanic: Skill Boost</Name>
+         <InternalName>MechSkillBoost</InternalName>
+         <Description>Activate to gain a +2/+4/+6 Action Boost bonus to all skills for 20 seconds.
+(Cooldown: 30 seconds)</Description>
+         <Icon>MechSkillBoost</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>2</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Mechanic: Sharpshooter III</Name>
+         <InternalName>MechSharpshooterIII</InternalName>
+         <Description>+1 to-hit and damage with all bows, crossbows, and thrown weapons.
+Non-repeating crossbows increase the damage to +2 and +1 SA dice.</Description>
+         <Icon>MechSharpshooter</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>3</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>MechSharpshooterII</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <WeaponClass>Bows</WeaponClass>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <WeaponClass>Crossbows</WeaponClass>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <WeaponClass>Thrown</WeaponClass>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <WeaponClass>Bows</WeaponClass>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <WeaponClass>Crossbows</WeaponClass>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <WeaponClass>Thrown</WeaponClass>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Mechanic: Wrack Construct</Name>
+         <InternalName>MechWrackConstruct</InternalName>
+         <Description>Choose one (Cooldown: 12/8/4 seconds):</Description>
+         <Icon>MechWrackConstruct</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Clickie/>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>3</Level>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Wracking Strike</Name>
+               <Description>Melee Attack: +1[W].
+On Damage: Deals 3d6/6d6/9d6 extra damage (scales with 200% Melee Power) to
+constructs and living constructs, and -25% fortification and immunity to sneak
+attack for 20 seconds. </Description>
+               <Icon>MechWrackingStrike</Icon>
+               <Cost>1</Cost>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Wracking Shot</Name>
+               <Description>Ranged Attack: +1[W].
+On Damage: Deals 3d6/6d6/9d6 extra damage (scales with 200% Melee Power) to
+constructs and living constructs, and -25% fortification and immunity to sneak
+attack for 20 seconds.</Description>
+               <Icon>MechWrackingShot</Icon>
+               <Cost>1</Cost>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Mechanic: Ooze Flask</Name>
+         <InternalName>MechOozeFlask</InternalName>
+         <Description>Alchemical Trap Attack: You throw a flask at your enemy that contains
+concentrated grey ooze secretions.
+Deals 4d8/8d8/12d8 acid damage (scales with 200% Melee Power), no save, and reduces
+the Armor Class and PRR of your opponent by 2/4/8 for 30 seconds,
+Fort DC 10 + Rogue Level + Intelligence Modifier) negates. 
+Cooldown: 12 seconds. Spell Resistance: No </Description>
+         <Icon>MechOozeFlask</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>3</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>MechThunderstone</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Mechanic: Use Magical Device</Name>
+         <InternalName>MechUseMagicalDevice</InternalName>
+         <Description>+1/+2/+3 Use Magic Device</Description>
+         <Icon>MechUseMagicalDevice</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>3</Level>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>SkillBonus</Type>
+              <Skill>Use Magic Device</Skill>
+              <AmountVector size="3">1 2 3</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Mechanic: Ability I</Name>
+         <InternalName>MechAbilityScoreI</InternalName>
+         <Description>Choose either Dexterity or Intelligence</Description>
+         <Icon>DexInt</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>3</Level>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>+1 Dexterity</Name>
+               <Description>+1 Dexterity</Description>
+               <Icon>Dexterity</Icon>
+               <Cost>2</Cost>
+                <Effect>
+                    <Type>AbilityBonus</Type>
+                    <Ability>Dexterity</Ability>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Intelligence</Name>
+               <Description>+1 Intelligence</Description>
+               <Icon>Intelligence</Icon>
+               <Cost>2</Cost>
+                <Effect>
+                    <Type>AbilityBonus</Type>
+                    <Ability>Intelligence</Ability>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Mechanic: Sharpshooter IV</Name>
+         <InternalName>MechSharpshooterIV</InternalName>
+         <Description>+1 to-hit and damage with all bows, crossbows, and thrown weapons.
+Non-repeating crossbows increase the damage to +2 and +1 SA dice.</Description>
+         <Icon>MechSharpshooter</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>4</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>MechSharpshooterIII</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <WeaponClass>Bows</WeaponClass>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <WeaponClass>Crossbows</WeaponClass>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <WeaponClass>Thrown</WeaponClass>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <WeaponClass>Bows</WeaponClass>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <WeaponClass>Crossbows</WeaponClass>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <WeaponClass>Thrown</WeaponClass>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Mechanic: Disable Construct</Name>
+         <InternalName>MechDisableConstruct</InternalName>
+         <Description>Activate: Target construct or living construct is dazed for 10/20/30 seconds.
+This effect is removed on damage.
+Using this ability on a target already affected by it will extend the duration.
+(Cooldown: 25 seconds)</Description>
+         <Icon>MechDisableConstruct</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>20</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>4</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>MechWrackConstruct</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Mechanic: Fletching</Name>
+         <InternalName>MechFletching</InternalName>
+         <Description>You are skilled at enhancing, salvaging, and re-purposing your arrows,
+bolts, and throwing weapons. +3/6/10 Ranged Power and your ammunition gains a
+50/65/80% chance of returning.</Description>
+         <Icon>MechFletching</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>4</Level>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>RangedPower</Type>
+              <AmountVector size="3">3 6 10</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Mechanic: Leg Shot</Name>
+         <InternalName>MechLegShot</InternalName>
+         <Description>Ranged Attack: +2[W]. On Damage: Slow your enemy's movement by 50% for 10 seconds.
+(Cooldown: 10 seconds)</Description>
+         <Icon>MechLegShot</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>4</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Mechanic: Ability II</Name>
+         <InternalName>MechAbilityScoreII</InternalName>
+         <Description>Choose either Dexterity or Intelligence</Description>
+         <Icon>DexInt</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>4</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>MechAbilityScoreI</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>+1 Dexterity</Name>
+               <Description>+1 Dexterity</Description>
+               <Icon>Dexterity</Icon>
+               <Cost>2</Cost>
+                <Effect>
+                    <Type>AbilityBonus</Type>
+                    <Ability>Dexterity</Ability>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Intelligence</Name>
+               <Description>+1 Intelligence</Description>
+               <Icon>Intelligence</Icon>
+               <Cost>2</Cost>
+                <Effect>
+                    <Type>AbilityBonus</Type>
+                    <Ability>Intelligence</Ability>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Mechanic: Sharpshooter V</Name>
+         <InternalName>MechSharpshooterV</InternalName>
+         <Description>+3 to-hit and damage with all bows, crossbows, and thrown weapons.
++3 additional damage with all non-repeating crossbows and +1 SA dice.</Description>
+         <Icon>MechSharpshooter</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>12</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>5</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>MechSharpshooterIV</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <WeaponClass>Bows</WeaponClass>
+              <AmountVector size="1">3</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <WeaponClass>Crossbows</WeaponClass>
+              <AmountVector size="1">3</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <WeaponClass>Thrown</WeaponClass>
+              <AmountVector size="1">3</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <WeaponClass>Bows</WeaponClass>
+              <AmountVector size="1">3</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <WeaponClass>Crossbows</WeaponClass>
+              <AmountVector size="1">3</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <WeaponClass>Thrown</WeaponClass>
+              <AmountVector size="1">3</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Mechanic: Rapid Fire</Name>
+         <InternalName>MechRapidFire</InternalName>
+         <Description>+3%/6%/10% Doubleshot</Description>
+         <Icon>MechRapidFire</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>12</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>5</Level>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>Doubleshot</Type>
+              <AmountVector size="2">3 6 10</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Mechanic: Time Bomb</Name>
+         <InternalName>MechTimeBomb</InternalName>
+         <Description>Alchemical Trap Attack: Quickly creates an alchemical charge at your feet.
+Deals 10/25/50 sonic and 10/25/50 fire damage per rogue level to all nearby
+enemies after 2 seconds, and knocks them to the ground.
+Reflex (DC [10/14/18] + Rogue Level + Intelligence Modifier + Trap Bonus) for half damage.
+Balance DC (Disable Device check)
+(Listed Balance DC (10 + Half Rogue Level + Intelligence Modifier + Trap Bonus) to Negate knockdown. 
+Cooldown: 20 seconds. Spell Resistance: No </Description>
+         <Icon>MechTimeBomb</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>12</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>5</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Mechanic: Sniper</Name>
+         <InternalName>MechSniper</InternalName>
+         <Description>You gain 1 extra Sneak Attack die with bows, crossbows, and thrown weapons.
+Non-repeating crossbows increase this to 3 Sneak Attack dice and also gain +2[W].
+Great Crossbows now vorpal on a 19-20.</Description>
+         <Icon>MechSniper</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>12</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>5</Level>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>VorpalRange</Type>
+              <Weapon>Great Crossbow</Weapon>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Mechanic: Mechanical Reloader</Name>
+         <InternalName>MechMechanicalReloader</InternalName>
+         <Description>+10 Ranged Power, +10% Ranged Alacrity with repeating crossbows and thrown weapons.
++30% Ranged Alacrity with non-repeating crossbows.</Description>
+         <Icon>MechMechanicalReloader</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>12</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Class>Rogue</Class>
+               <Level>5</Level>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>RangedPower</Type>
+              <AmountVector size="1">10</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>Alacrity</Type>
+              <WeaponClass>Thrown</WeaponClass>
+              <AmountVector size="1">10</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>Alacrity</Type>
+              <WeaponClass>RepeatingCrossbows</WeaponClass>
+              <AmountVector size="1">10</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>Alacrity</Type>
+              <WeaponClass>Crossbows</WeaponClass>
+              <AmountVector size="1">30</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+   </EnhancementTree>
+</Enhancements>

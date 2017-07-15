@@ -1,0 +1,1043 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Enhancements>
+   <EnhancementTree>
+      <Name>Water Savant</Name>
+       <Version>1</Version>
+       <Requirements>
+         <Requirement>
+            <Class>Sorcerer</Class>
+         </Requirement>
+      </Requirements>
+      <Background>SorcererBackground</Background>
+      <Icon>Sorcerer</Icon>
+      <EnhancementTreeItem>
+         <Name>Water Savant</Name>
+         <InternalName>WSCore1</InternalName>
+         <Description>Every point you spend in the Water Savant enhancement tree provides +0.75 Universal Spell Power.
+Passive:  +10 Cold Spell Power 
+ +1 Caster Level when casting Cold or Water spells. 
+ -10 Fire Spell Power 
+ -1 Caster Level when casting Fire spells 
+Selecting this enhancement will prevent you from spending points in the Fire Savant enhancement tree.</Description>
+         <Icon>WSWaterSavant</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>0</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Class>Sorcerer</Class>
+               <Level>1</Level>
+            </Requirement>
+            <RequiresNoneOf>
+               <Requirement>
+                  <Enhancement>FSCore1</Enhancement>
+               </Requirement>
+            </RequiresNoneOf>
+         </Requirements>
+         <Effect>
+             <DisplayName>Water Savant: Spell power per action point</DisplayName>
+             <Type>SpellPower</Type>
+            <SpellPower>All</SpellPower>
+            <EnhancementTree>Water Savant</EnhancementTree>
+            <AmountPerAP>0.75</AmountPerAP>
+         </Effect>
+          <Effect>
+              <Type>SpellPower</Type>
+              <SpellPower>Cold</SpellPower>
+              <AmountVector size="1">10</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>SpellPower</Type>
+              <SpellPower>Fire</SpellPower>
+              <AmountVector size="1">-10</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Water Savant: Water Affinity</Name>
+         <InternalName>WSCore2</InternalName>
+         <Description> Passive:  +10 Cold Spell Power 
+ +1 Caster Level when casting Cold or Water spells. 
+ -10 Fire Spell Power 
+ -1 Caster Level when casting Fire spells</Description>
+         <Icon>WSWaterAffinity</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>WSCore1</Enhancement>
+            </Requirement>
+            <Requirement>
+               <Class>Sorcerer</Class>
+               <Level>3</Level>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>SpellPower</Type>
+              <SpellPower>Cold</SpellPower>
+              <AmountVector size="1">10</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>SpellPower</Type>
+              <SpellPower>Fire</SpellPower>
+              <AmountVector size="1">-10</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Water Savant: Greater Water Affinity</Name>
+         <InternalName>WSCore3</InternalName>
+         <Description>Passive:  +10 Cold Spell Power 
+ +1 Caster Level when casting Cold or Water spells. 
+ +1 Maximum Caster Level when casting Cold or Water spells. 
+ -10 Fire Spell Power 
+ -1 Caster Level when casting Fire spells</Description>
+         <Icon>WSGreaterWaterAffinity</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>WSCore2</Enhancement>
+            </Requirement>
+            <Requirement>
+               <Class>Sorcerer</Class>
+               <Level>6</Level>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>SpellPower</Type>
+              <SpellPower>Cold</SpellPower>
+              <AmountVector size="1">10</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>SpellPower</Type>
+              <SpellPower>Fire</SpellPower>
+              <AmountVector size="1">-10</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Water Savant: Hypothermia</Name>
+         <InternalName>WSCore4</InternalName>
+         <Description>Passive: 50% Chance On Cold Spell Cast: Your target gains one stack of Lethargy (-1 to all Saving Throws. Non-bosses also move and attack 5% slower. This effect stacks up to 5 times.)  +10 Cold Spell Power 
+ +1 Caster Level when casting Cold or Water spells. 
+ +1 Maximum Caster Level when casting Cold or Water spells. 
+ -10 Fire Spell Power 
+ -1 Caster Level when casting Fire spells</Description>
+         <Icon>WSHypothermia</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>WSCore3</Enhancement>
+            </Requirement>
+            <Requirement>
+               <Class>Sorcerer</Class>
+               <Level>12</Level>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>SpellPower</Type>
+              <SpellPower>Cold</SpellPower>
+              <AmountVector size="1">10</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>SpellPower</Type>
+              <SpellPower>Fire</SpellPower>
+              <AmountVector size="1">-10</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Water Savant: Elemental Persistence</Name>
+         <InternalName>WSCore5</InternalName>
+         <Description>Passive:  Immunity to Paralysis 
+ +10 Cold Spell Power 
+ +1 Caster Level when casting Cold or Water spells. 
+ +1 Maximum Caster Level when casting Cold or Water spells. 
+ -10 Fire Spell Power 
+ -1 Caster Level when casting Fire spells.</Description>
+         <Icon>WSElementalPersistence</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>WSCore4</Enhancement>
+            </Requirement>
+            <Requirement>
+               <Class>Sorcerer</Class>
+               <Level>18</Level>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>Immunity</Type>
+              <Immunity>Paralysis</Immunity>
+          </Effect>
+          <Effect>
+              <Type>SpellPower</Type>
+              <SpellPower>Cold</SpellPower>
+              <AmountVector size="1">10</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>SpellPower</Type>
+              <SpellPower>Fire</SpellPower>
+              <AmountVector size="1">-10</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Water Savant: Elemental Apotheosis: Water</Name>
+         <InternalName>WSCore6</InternalName>
+         <Description>Activate this ability to transform into a Water Elemental.
+While in elemental form, you gain +100% fortification. If you are a Warforged,
+you are no longer considered a Living Construct, and so are immune to Repair
+spells, but can be healed normally by Positive Energy spells. 
+While in Water Elemental form, you also gain an additional +20 Cold Spell Power,
++2% Cold Spell Critical Chance, and a +1 bonus to caster level and max caster
+level for Cold and Water spells, but your air, earth and fire spells have a -3
+penalty to caster level and max caster level. You also gain a +10 racial bonus
+to Cold resistance, +20 Physical Resistance Rating, +20 Swim, and a -10 penalty
+to Fire resistance.
+While in Elemental Form, your spells also cost an additional 10% Spell Points to cast.
+You also gain the following passive benefits, even while not in elemental form: 
+ +2 Charisma 
+ +10 Cold Spell Power 
+ +1 Caster Level when casting Cold or Water spells. 
+ +1 Maximum Caster Level when casting Cold or Water spells. 
+ -10 Fire Spell Power 
+ -1 Caster Level when casting Fire spells</Description>
+         <Icon>WSElementalApotheosisWater</Icon>
+         <XPosition>5</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>40</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>WSCore5</Enhancement>
+            </Requirement>
+            <Requirement>
+               <Class>Sorcerer</Class>
+               <Level>20</Level>
+            </Requirement>
+         </Requirements>
+          <Stance>
+              <Name>Water Elemental</Name>
+              <Icon>WSElementalApotheosisWater</Icon>
+              <Description>While in elemental form, you gain +100% fortification. If you are a Warforged,
+you are no longer considered a Living Construct, and so are immune to Repair
+spells, but can be healed normally by Positive Energy spells. 
+While in Water Elemental form, you also gain an additional +20 Cold Spell Power,
++2% Cold Spell Critical Chance, and a +1 bonus to caster level and max caster
+level for Cold and Water spells, but your air, earth and fire spells have a -3
+penalty to caster level and max caster level. You also gain a +10 racial bonus
+to Cold resistance, +20 Physical Resistance Rating, +20 Swim, and a -10 penalty
+to Fire resistance.</Description>
+          </Stance>
+          <Effect>
+              <Type>Fortification</Type>
+              <AmountVector size="1">100</AmountVector>
+              <Stance>Water Elemental</Stance>
+          </Effect>
+          <Effect>
+              <Type>SpellPower</Type>
+              <SpellPower>Cold</SpellPower>
+              <AmountVector size="1">20</AmountVector>
+              <Stance>Water Elemental</Stance>
+          </Effect>
+          <Effect>
+              <Type>SpellCriticalChance</Type>
+              <SpellPower>Cold</SpellPower>
+              <AmountVector size="1">2</AmountVector>
+              <Stance>Water Elemental</Stance>
+          </Effect>
+          <Effect>
+              <Type>AbilityBonus</Type>
+              <Ability>Charisma</Ability>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>SpellPower</Type>
+              <SpellPower>Cold</SpellPower>
+              <AmountVector size="1">10</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>SpellPower</Type>
+              <SpellPower>Fire</SpellPower>
+              <AmountVector size="1">-10</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Water Savant: Cold Ray</Name>
+         <InternalName>WSColdRay</InternalName>
+         <Description>Spell Like Ability: Niac's Cold Ray
+(Activation Cost: 4/3/2 Spell Points. Cooldown: 12/8/4 seconds.)</Description>
+         <Icon>WSColdRay</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Clickie/>
+         <ExtraLongArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Sorcerer</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Water Savant: Fluidity</Name>
+         <InternalName>WSFluidity</InternalName>
+         <Description>You gain +2/+4/+6 to your Tumble and Swim skills.
+Rank 3: as well as +1 to your Reflex Saving Throw.</Description>
+         <Icon>WSFluidity</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Sorcerer</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>SkillBonus</Type>
+              <Skill>Swim</Skill>
+              <AmountVector size="3">2 4 6</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>SkillBonus</Type>
+              <Skill>Tumble</Skill>
+              <AmountVector size="3">2 4 6</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>SaveBonus</Type>
+              <Save>Reflex</Save>
+              <AmountVector size="3">0 0 1</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Water Savant: One with the Waves</Name>
+         <InternalName>WSOneWithTheWaves</InternalName>
+         <Description>You gain a +3/+6/+10 bonus to your Cold Resistance.</Description>
+         <Icon>WSOneWithTheWaves</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Sorcerer</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>EnergyResistance</Type>
+              <Energy>Cold</Energy>
+              <AmountVector size="3">3 6 10</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Water Savant: Spell Critical: Cold I</Name>
+         <InternalName>WSSpellCriticalColdI</InternalName>
+         <Description>Your Cold damage spells have an additional 2% chance to critically hit.</Description>
+         <Icon>SpellCriticalCold</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>1</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Sorcerer</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>SpellCriticalChance</Type>
+              <SpellPower>Cold</SpellPower>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Water Savant: Hoarfrost</Name>
+         <InternalName>WSHoarFrost</InternalName>
+         <Description>Whenever you cast a Cold damage spell, you gain +5 to your Cold Spell
+Power for 6 seconds. This stacks up to 1/3/5 times.</Description>
+         <Icon>WSHoarFrost</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Sorcerer</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Water Savant: Efficient Metamagic I</Name>
+         <InternalName>WSEfficientMetamagicI</InternalName>
+         <Description>Choose one of the following Metamagic feats. Reduce the spell point cost of using that Metamagic. </Description>
+         <Icon>EfficientMetamagic</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>2</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Sorcerer</Class>
+               <Level>2</Level>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Efficient Empower</Name>
+               <Description>Using the Empower Spell Metamagic costs you 2/4/6 fewer Spell Points. </Description>
+               <Icon>EfficientEmpower</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Feat>Empower Spell</Feat>
+                  </Requirement>
+               </Requirements>
+                <Effect>
+                    <Type>AdditionalSpellPointCost</Type>
+                    <AmountVector size="3">-2 -4 -6</AmountVector>
+                    <Stance>Empower</Stance>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Efficient Enlarge</Name>
+               <Description>Using the Enlarge Spell Metamagic costs you 1/2/4 fewer Spell Points. </Description>
+               <Icon>EfficientEnlarge</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Feat>Enlarge Spell</Feat>
+                  </Requirement>
+               </Requirements>
+                <Effect>
+                    <Type>AdditionalSpellPointCost</Type>
+                    <AmountVector size="3">-1 -2 -4</AmountVector>
+                    <Stance>Enlarge</Stance>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Efficient Maximize</Name>
+               <Description>Using the Maximize Spell Metamagic costs you 3/6/9 fewer Spell Points. </Description>
+               <Icon>EfficientMaximize</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Feat>Maximize Spell</Feat>
+                  </Requirement>
+               </Requirements>
+                <Effect>
+                    <Type>AdditionalSpellPointCost</Type>
+                    <AmountVector size="3">-3 -6 -9</AmountVector>
+                    <Stance>Maximize</Stance>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Efficient Quicken</Name>
+               <Description>Using the Quicken Spell Metamagic costs you 1/2/4 fewer Spell Points.</Description>
+               <Icon>EfficientQuicken</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Feat>Quicken Spell</Feat>
+                  </Requirement>
+               </Requirements>
+                <Effect>
+                    <Type>AdditionalSpellPointCost</Type>
+                    <AmountVector size="3">-1 -2 -4</AmountVector>
+                    <Stance>Quicken</Stance>
+                </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Water Savant: Pierce Cold Resistance</Name>
+         <InternalName>WSPierceColdResistance</InternalName>
+         <Description>Your Cold damage spells now bypass 5/10/15 points of your target's resistance to those damage types, if any.</Description>
+         <Icon>WSPierceColdResistance</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>2</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Sorcerer</Class>
+               <Level>2</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>WSOneWithTheWaves</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Water Savant: Spell Critical: Cold II</Name>
+         <InternalName>WSSpellCriticalColdII</InternalName>
+         <Description>Your Cold damage spells have an additional 2% chance to critically hit.</Description>
+         <Icon>SpellCriticalCold</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Sorcerer</Class>
+               <Level>2</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>WSSpellCriticalColdI</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>SpellCriticalChance</Type>
+              <SpellPower>Cold</SpellPower>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Water Savant: Absolute Zero</Name>
+         <InternalName>WSAbsoluteZero</InternalName>
+         <Description>Whenever you cast a Cold damage spell, you have a 10%/20%/30% chance to gain 3 Temporary Spell Points.</Description>
+         <Icon>WSAbsoluteZero</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Sorcerer</Class>
+               <Level>2</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>WSHoarFrost</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Water Savant: Efficient Metamagic II</Name>
+         <InternalName>WSEfficientMetamagicII</InternalName>
+         <Description>Choose another Metamagic feat. Reduce the spell point cost of using that Metamagic.</Description>
+         <Icon>EfficientMetamagic</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>2</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Sorcerer</Class>
+               <Level>3</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>WSEfficientMetamagicI</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Efficient Empower</Name>
+               <Description>Using the Empower Spell Metamagic costs you 2/4/6 fewer Spell Points. </Description>
+               <Icon>EfficientEmpower</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Feat>Empower Spell</Feat>
+                  </Requirement>
+                  <RequiresNoneOf>
+                     <Requirement>
+                        <Enhancement>WSEfficientMetamagicI</Enhancement>
+                        <Selection>Efficient Empower</Selection>
+                     </Requirement>
+                  </RequiresNoneOf>
+               </Requirements>
+                <Effect>
+                    <Type>AdditionalSpellPointCost</Type>
+                    <AmountVector size="3">-2 -4 -6</AmountVector>
+                    <Stance>Empower</Stance>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Efficient Enlarge</Name>
+               <Description>Using the Enlarge Spell Metamagic costs you 1/2/4 fewer Spell Points. </Description>
+               <Icon>EfficientEnlarge</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Feat>Enlarge Spell</Feat>
+                  </Requirement>
+                  <RequiresNoneOf>
+                     <Requirement>
+                        <Enhancement>WSEfficientMetamagicI</Enhancement>
+                        <Selection>Efficient Enlarge</Selection>
+                     </Requirement>
+                  </RequiresNoneOf>
+               </Requirements>
+                <Effect>
+                    <Type>AdditionalSpellPointCost</Type>
+                    <AmountVector size="3">-1 -2 -4</AmountVector>
+                    <Stance>Enlarge</Stance>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Efficient Maximize</Name>
+               <Description>Using the Maximize Spell Metamagic costs you 3/6/9 fewer Spell Points. </Description>
+               <Icon>EfficientMaximize</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Feat>Maximize Spell</Feat>
+                  </Requirement>
+                  <RequiresNoneOf>
+                     <Requirement>
+                        <Enhancement>WSEfficientMetamagicI</Enhancement>
+                        <Selection>Efficient Maximize</Selection>
+                     </Requirement>
+                  </RequiresNoneOf>
+               </Requirements>
+                <Effect>
+                    <Type>AdditionalSpellPointCost</Type>
+                    <AmountVector size="3">-3 -6 -9</AmountVector>
+                    <Stance>Maximize</Stance>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Efficient Quicken</Name>
+               <Description>Using the Quicken Spell Metamagic costs you 1/2/4 fewer Spell Points.</Description>
+               <Icon>EfficientQuicken</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Feat>Quicken Spell</Feat>
+                  </Requirement>
+                  <RequiresNoneOf>
+                     <Requirement>
+                        <Enhancement>WSEfficientMetamagicI</Enhancement>
+                        <Selection>Efficient Quicken</Selection>
+                     </Requirement>
+                  </RequiresNoneOf>
+               </Requirements>
+                <Effect>
+                    <Type>AdditionalSpellPointCost</Type>
+                    <AmountVector size="3">-1 -2 -4</AmountVector>
+                    <Stance>Quicken</Stance>
+                </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Water Savant: Spell Penetration</Name>
+         <InternalName>WSSpellPenetration</InternalName>
+         <Description>You add +1 to your Caster Level check to overcome an enemy's Spell Resistance.</Description>
+          <Icon>SpellPenetration</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Sorcerer</Class>
+               <Level>3</Level>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>SpellPenetrationBonus</Type>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Water Savant: Spell Critical: Cold III</Name>
+         <InternalName>WSSpellCriticalColdIII</InternalName>
+         <Description>Your Cold damage spells have an additional 2% chance to critically hit.</Description>
+         <Icon>SpellCriticalCold</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Sorcerer</Class>
+               <Level>3</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>WSSpellCriticalColdII</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>SpellCriticalChance</Type>
+              <SpellPower>Cold</SpellPower>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Water Savant: Ability I</Name>
+         <InternalName>WSAbilityScoreI</InternalName>
+         <Description>Choose either Charisma or Wisdom</Description>
+         <Icon>ChaWis</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowUp/>
+         <Requirements/>
+         <Selector>
+            <EnhancementSelection>
+               <Name>+1 Charisma</Name>
+               <Description>+1 Charisma</Description>
+               <Icon>Charisma</Icon>
+               <Cost>2</Cost>
+                <Effect>
+                    <Type>AbilityBonus</Type>
+                    <Ability>Charisma</Ability>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Wisdom</Name>
+               <Description>+1 Wisdom</Description>
+               <Icon>Wisdom</Icon>
+               <Cost>2</Cost>
+                <Effect>
+                    <Type>AbilityBonus</Type>
+                    <Ability>Wisdom</Ability>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Water Savant: Snowball Swarm</Name>
+         <InternalName>WSSnowballSwarm</InternalName>
+         <Description>Spell Like Ability: Snowball Swarm.
+(Activation Cost: 8/6/4 Spell Points. Cooldown: 15/10/5 seconds.)</Description>
+         <Icon>WSSnowballSwarm</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>20</MinSpent>
+         <Clickie/>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Sorcerer</Class>
+               <Level>4</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>WSColdRay</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Water Savant: Efficient Heighten</Name>
+         <InternalName>WSEfficientHeighten</InternalName>
+         <Description>Using the Heighten Spell Metamagic costs you 1/2 fewer Spell Points per heightened level.</Description>
+         <Icon>EfficientHeighten</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>2</Cost>
+         <Ranks>2</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Sorcerer</Class>
+               <Level>4</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>WSEfficientMetamagicII</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>AdditionalSpellPointCost</Type>
+              <AmountVector size="2">-1 -2</AmountVector>
+              <Stance>Heighten</Stance>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Water Savant: Water Breathing</Name>
+         <InternalName>WSWaterBreathing</InternalName>
+         <Description>You are no longer able to drown.</Description>
+         <Icon>WSWaterBreathing</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Sorcerer</Class>
+               <Level>4</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Water Savant: Spell Critical: Cold IV</Name>
+         <InternalName>WSSpellCriticalColdIV</InternalName>
+         <Description>Your Cold damage spells have an additional 2% chance to critically hit.</Description>
+         <Icon>SpellCriticalCold</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Sorcerer</Class>
+               <Level>4</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>WSSpellCriticalColdIII</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>SpellCriticalChance</Type>
+              <SpellPower>Cold</SpellPower>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Water Savant: Ability II</Name>
+         <InternalName>WSAbilityScoreII</InternalName>
+         <Description>Choose either Charisma or Wisdom</Description>
+         <Icon>ChaWis</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Sorcerer</Class>
+               <Level>4</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>WSAbilityScoreI</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>+1 Charisma</Name>
+               <Description>+1 Charisma</Description>
+               <Icon>Charisma</Icon>
+               <Cost>2</Cost>
+                <Effect>
+                    <Type>AbilityBonus</Type>
+                    <Ability>Charisma</Ability>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Wisdom</Name>
+               <Description>+1 Wisdom</Description>
+               <Icon>Wisdom</Icon>
+               <Cost>2</Cost>
+                <Effect>
+                    <Type>AbilityBonus</Type>
+                    <Ability>Wisdom</Ability>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Water Savant: Frost Lance</Name>
+         <InternalName>WSFrostLance</InternalName>
+         <Description>Spell Like Ability: Frost Lance.
+(Activation Cost: 12/8/6 Spell Points. Cooldown: 18/12/6 seconds.)</Description>
+         <Icon>WSFrostLance</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>12</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Class>Sorcerer</Class>
+               <Level>5</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>WSSnowballSwarm</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Water Savant: Awaken Elemental Weakness: Cold</Name>
+         <InternalName>WSAwakaenElementalWeaknessCold</InternalName>
+         <Description>You are able to curse an enemy, increasing Cold damage they take by 15%. (Activation Cost: 5 Spell Points. Cooldown: 20 seconds.)</Description>
+         <Icon>WSAwakenElementalWeaknessCold</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>12</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Class>Sorcerer</Class>
+               <Level>5</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Water Savant: Icy Prison</Name>
+         <InternalName>WSIcyPrison</InternalName>
+         <Description>You deal 500 cold damage to your opponent, with a Fortitude save
+(DC: 10 + Constitution Modifier + Sorcerer Level) for half damage, and an additional
+Reflex save or be encased in ice. Ice creatures are immune to this effect, and the
+targets gets occasional saves to attempt to escape.
+(Activation Cost: 25 Spell Points. Cooldown: 1 minute.)</Description>
+         <Icon>WSIcyPrison</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>12</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Class>Sorcerer</Class>
+               <Level>5</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>WSWaterBreathing</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Water Savant: Evocation Focus</Name>
+         <InternalName>WSEvocationFocus</InternalName>
+         <Description>You have trained extensivelly in Evocation magic, granting a +1 bonus to your spell DCs of that school.</Description>
+         <Icon>WSEvocationFocus</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>12</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Class>Sorcerer</Class>
+               <Level>5</Level>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>SpellDC</Type>
+              <School>Evocation</School>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Water Savant: Elemental Diversification</Name>
+         <InternalName>WSElementalDiversification</InternalName>
+         <Description>Choose one:</Description>
+         <Icon>FSElementalDiversification</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>12</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Class>Sorcerer</Class>
+               <Level>5</Level>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Power of Acid</Name>
+               <Description>You have extensivelly practiced with Acid magic, granting an additional +15 Acid Spell Power. </Description>
+               <Icon>FSPowerOfAcid</Icon>
+               <Cost>2</Cost>
+                <Effect>
+                    <Type>SpellPower</Type>
+                    <SpellPower>Acid</SpellPower>
+                    <AmountVector size="1">15</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Power of Force</Name>
+               <Description>You have extensivelly practiced with Force magic, granting an additional +10 Force Spell Power. </Description>
+               <Icon>FSPowerOfForce</Icon>
+               <Cost>2</Cost>
+                <Effect>
+                    <Type>SpellPower</Type>
+                    <SpellPower>Force</SpellPower>
+                    <AmountVector size="1">10</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Power of Lightning</Name>
+               <Description>You have extensivelly practiced with Electric magic, granting an additional +15 Electric and Sonic Spell Power.</Description>
+               <Icon>FSPowerOfLightning</Icon>
+               <Cost>2</Cost>
+                <Effect>
+                    <Type>SpellPower</Type>
+                    <SpellPower>Electric</SpellPower>
+                    <AmountVector size="1">15</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+   </EnhancementTree>
+</Enhancements>

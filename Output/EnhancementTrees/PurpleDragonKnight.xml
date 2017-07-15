@@ -1,0 +1,1403 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Enhancements>
+   <EnhancementTree>
+      <Name>Purple Dragon Knight</Name>
+       <Version>1</Version>
+       <IsRacialTree/>
+       <Requirements>
+         <Requirement>
+            <Race>Purple Dragon Knight</Race>
+         </Requirement>
+      </Requirements>
+      <Background>PDKBackground</Background>
+      <Icon>PurpleDragonKnight</Icon>
+      <EnhancementTreeItem>
+         <Name>Purple Dragon Knight: Versatility I</Name>
+         <InternalName>PDKCore1</InternalName>
+         <Description>Humans can select racial boosts that share a number of uses per rest,
+but are not linked with class action boost cooldowns.</Description>
+         <Icon>HumanVersatility</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>0</MinSpent>
+         <Clickie/>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>1</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Attack Boost</Name>
+               <Description>Active to gain a +6 Action Boost bonus to hit for 20 seconds.</Description>
+               <Icon>AttackBoost</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>AttackBonus</Type>
+                  <AmountVector size="1">6</AmountVector>
+                  <Duration>20</Duration>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Damage Boost</Name>
+               <Description>Activate to gain a +20% Action Boost to weapon damage for 20 seconds.</Description>
+               <Icon>DamageBoost</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>DamageBonus</Type>
+                  <Percentage>20</Percentage>
+                  <Duration>20</Duration>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Defense Boost</Name>
+               <Description>Activate to gain a +10 Action Boost to Armor Class and Physical Resistance Rating for 20 seconds.</Description>
+               <Icon>DefenseBoost</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>ACBonus</Type>
+                  <AmountVector size="1">10</AmountVector>
+                  <Duration>20</Duration>
+               </Effect>
+               <Effect>
+                  <Type>PRR</Type>
+                  <AmountVector size="1">10</AmountVector>
+                  <Duration>20</Duration>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Saves Boost</Name>
+               <Description>Activate to gain a +4 Action Boost to all Saving Throws for 20 seconds.
+While under this effect you do not automatically fail Saving Throws on a roll of a Natural 1.</Description>
+               <Icon>SavesBoost</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>SaveBonus</Type>
+                  <AmountVector size="1">4</AmountVector>
+                  <Duration>20</Duration>
+                  <NoFailOn1 size="1">1</NoFailOn1>
+                  <Save>All</Save>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Skill Boost</Name>
+               <Description>Activate to gain a +4 Action Boost to all skills for 20 seconds.</Description>
+               <Icon>SkillBoost</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>SkillBonus</Type>
+                  <AmountVector size="1">4</AmountVector>
+                  <Duration>20</Duration>
+                  <Skill>All</Skill>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Spell Power Boost</Name>
+               <Description>Activate to gain a +20 Action Boost to Universal Spell Power for 20 seconds.</Description>
+               <Icon>SpellPowerBoost</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>SpellPower</Type>
+                  <AmountVector size="1">20</AmountVector>
+                  <Duration>20</Duration>
+                  <SpellPower>All</SpellPower>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Purple Dragon Knight: Adaptability</Name>
+         <InternalName>PDKCore2</InternalName>
+         <Description>Select +1 to an ability score of your choice.</Description>
+         <Icon>HumanAdaptabilityAbility</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>4</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Enhancement>PDKCore1</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>+1 Strength</Name>
+               <Description>+1 Strength</Description>
+               <Icon>Strength</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <AmountVector size="1">1</AmountVector>
+                  <Ability>Strength</Ability>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Dexterity</Name>
+               <Description>+1 Dexterity</Description>
+               <Icon>Dexterity</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <AmountVector size="1">1</AmountVector>
+                  <Ability>Dexterity</Ability>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Constitution</Name>
+               <Description>+1 Constitution</Description>
+               <Icon>Constitution</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <AmountVector size="1">1</AmountVector>
+                  <Ability>Constitution</Ability>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Intelligence</Name>
+               <Description>+1 Intelligence</Description>
+               <Icon>Intelligence</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <AmountVector size="1">1</AmountVector>
+                  <Ability>Intelligence</Ability>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Wisdom</Name>
+               <Description>+1 Wisdom</Description>
+               <Icon>Wisdom</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <AmountVector size="1">1</AmountVector>
+                  <Ability>Wisdom</Ability>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Charisma</Name>
+               <Description>+1 Charisma</Description>
+               <Icon>Charisma</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <AmountVector size="1">1</AmountVector>
+                  <Ability>Charisma</Ability>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Purple Dragon Knight: Versatility II</Name>
+         <InternalName>PDKCore3</InternalName>
+         <Description>Humans can select racial boosts that share a number of uses per rest,
+but are not linked with class action boost cooldowns.
+Note: Choose another Action Boost that is not the same as the previous one.</Description>
+         <Icon>HumanVersatility</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Clickie/>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>7</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Enhancement>PDKCore2</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <SelectorExclusions>
+               <SelectorExclusion>
+                  <InternalName>PDKCore1</InternalName>
+               </SelectorExclusion>
+            </SelectorExclusions>
+            <EnhancementSelection>
+               <Name>Attack Boost</Name>
+               <Description>Active ato gain a +6 Action Boost bonus to hit for 20 seconds.</Description>
+               <Icon>AttackBoost</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>AttackBonus</Type>
+                  <AmountVector size="1">6</AmountVector>
+                  <Duration>20</Duration>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Damage Boost</Name>
+               <Description>Activate to gain a +20% Action Boost to weapon damage for 20 seconds.</Description>
+               <Icon>DamageBoost</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>DamageBonus</Type>
+                  <Percentage>20</Percentage>
+                  <Duration>20</Duration>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Defense Boost</Name>
+               <Description>Activate to gain a +10 Action Boost to Armor Class and Physical Resistance Rating for 20 seconds.</Description>
+               <Icon>DefenseBoost</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>ACBonus</Type>
+                  <AmountVector size="1">10</AmountVector>
+                  <Duration>20</Duration>
+               </Effect>
+               <Effect>
+                  <Type>PRR</Type>
+                  <AmountVector size="1">10</AmountVector>
+                  <Duration>20</Duration>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Saves Boost</Name>
+               <Description>Activate to gain a +4 Action Boost to all Saving Throws for 20 seconds.
+While under this effect you do not automatically fail Saving Throws on a roll of a Natural 1.</Description>
+               <Icon>SavesBoost</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>SaveBonus</Type>
+                  <AmountVector size="1">4</AmountVector>
+                  <Duration>20</Duration>
+                  <NoFailOn1 size="1">1</NoFailOn1>
+                  <Save>All</Save>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Skill Boost</Name>
+               <Description>Activate to gain a +4 Action Boost to all skills for 20 seconds.</Description>
+               <Icon>SkillBoost</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>SkillBonus</Type>
+                  <AmountVector size="1">4</AmountVector>
+                  <Duration>20</Duration>
+                  <Skill>All</Skill>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Spell Power Boost</Name>
+               <Description>Activate to gain a +20 Action Boost to Universal Spell Power for 20 seconds.</Description>
+               <Icon>SpellPowerBoost</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>SpellPower</Type>
+                  <AmountVector size="1">20</AmountVector>
+                  <Duration>20</Duration>
+                  <SpellPower>All</SpellPower>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Purple Dragon Knight: Greater Adaptability</Name>
+         <InternalName>PDKCore4</InternalName>
+         <Description>Select +1 to another ability score of your choice.
+(You may not select the same ability score as Human Adaptability.)</Description>
+         <Icon>HumanAdaptabilityAbility</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>11</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Enhancement>PDKCore3</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <SelectorExclusions>
+               <SelectorExclusion>
+                  <InternalName>PDKCore2</InternalName>
+               </SelectorExclusion>
+            </SelectorExclusions>
+            <EnhancementSelection>
+               <Name>+1 Strength</Name>
+               <Description>+1 Strength</Description>
+               <Icon>Strength</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <AmountVector size="1">1</AmountVector>
+                  <Ability>Strength</Ability>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Dexterity</Name>
+               <Description>+1 Dexterity</Description>
+               <Icon>Dexterity</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <AmountVector size="1">1</AmountVector>
+                  <Ability>Dexterity</Ability>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Constitution</Name>
+               <Description>+1 Constitution</Description>
+               <Icon>Constitution</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <AmountVector size="1">1</AmountVector>
+                  <Ability>Constitution</Ability>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Intelligence</Name>
+               <Description>+1 Intelligence</Description>
+               <Icon>Intelligence</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <AmountVector size="1">1</AmountVector>
+                  <Ability>Intelligence</Ability>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Wisdom</Name>
+               <Description>+1 Wisdom</Description>
+               <Icon>Wisdom</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <AmountVector size="1">1</AmountVector>
+                  <Ability>Wisdom</Ability>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Charisma</Name>
+               <Description>+1 Charisma</Description>
+               <Icon>Charisma</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <AmountVector size="1">1</AmountVector>
+                  <Ability>Charisma</Ability>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Purple Dragon Knight: Versatility III</Name>
+         <InternalName>PDKCore5</InternalName>
+         <Description>Humans can select racial boosts that share a number of uses per rest,
+but are not linked with class action boost cooldowns.
+Note: Choose another Action Boost that is not the same as either of the previous two.</Description>
+         <Icon>HumanVersatility</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>16</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Enhancement>PDKCore4</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <SelectorExclusions>
+               <SelectorExclusion>
+                  <InternalName>PDKCore1</InternalName>
+               </SelectorExclusion>
+               <SelectorExclusion>
+                  <InternalName>PDKCore3</InternalName>
+               </SelectorExclusion>
+            </SelectorExclusions>
+            <EnhancementSelection>
+               <Name>Attack Boost</Name>
+               <Description>Active ato gain a +6 Action Boost bonus to hit for 20 seconds.</Description>
+               <Icon>AttackBoost</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>AttackBonus</Type>
+                  <AmountVector size="1">6</AmountVector>
+                  <Duration>20</Duration>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Damage Boost</Name>
+               <Description>Activate to gain a +20% Action Boost to weapon damage for 20 seconds.</Description>
+               <Icon>DamageBoost</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>DamageBonus</Type>
+                  <Percentage>20</Percentage>
+                  <Duration>20</Duration>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Defense Boost</Name>
+               <Description>Activate to gain a +10 Action Boost to Armor Class and Physical Resistance Rating for 20 seconds.</Description>
+               <Icon>DefenseBoost</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>ACBonus</Type>
+                  <AmountVector size="1">10</AmountVector>
+                  <Duration>20</Duration>
+               </Effect>
+               <Effect>
+                  <Type>PRR</Type>
+                  <AmountVector size="1">10</AmountVector>
+                  <Duration>20</Duration>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Saves Boost</Name>
+               <Description>Activate to gain a +4 Action Boost to all Saving Throws for 20 seconds.
+While under this effect you do not automatically fail Saving Throws on a roll of a Natural 1.</Description>
+               <Icon>SavesBoost</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>SaveBonus</Type>
+                  <AmountVector size="1">4</AmountVector>
+                  <Duration>20</Duration>
+                  <NoFailOn1 size="1">1</NoFailOn1>
+                  <Save>All</Save>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Skill Boost</Name>
+               <Description>Activate to gain a +4 Action Boost to all skills for 20 seconds.</Description>
+               <Icon>SkillBoost</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>SkillBonus</Type>
+                  <AmountVector size="1">4</AmountVector>
+                  <Duration>20</Duration>
+                  <Skill>All</Skill>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Spell Power Boost</Name>
+               <Description>Activate to gain a +20 Action Boost to Universal Spell Power for 20 seconds.</Description>
+               <Icon>SpellPowerBoost</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>SpellPower</Type>
+                  <AmountVector size="1">20</AmountVector>
+                  <Duration>20</Duration>
+                  <SpellPower>All</SpellPower>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Purple Dragon Knight: Cormyrean Knight Training</Name>
+         <InternalName>PDKCormyreanKnightTraining</InternalName>
+         <Description>You now use Charisma or Strength, whichever is higher, for attack and damage
+with shortswords, longswords, bastard swords, and greatswords.
+In addition, as long as your Charisma remains higher than your Strength and you are wielding
+one of the above weapons, you receive a bonus to the DCs of your Tactical Feats equal to 1/3
+your Charisma modifier.</Description>
+         <Icon>PDKCormyreanKnightTraining</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements/>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Ability>Charisma</Ability>
+              <Weapon>Shortsword</Weapon>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Ability>Charisma</Ability>
+              <Weapon>Longsword</Weapon>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Ability>Charisma</Ability>
+              <Weapon>Bastard Sword</Weapon>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Ability>Charisma</Ability>
+              <Weapon>Greatsword</Weapon>
+          </Effect>
+          <Effect>
+              <Type>TacticalDC</Type>
+              <Tactical>All</Tactical>
+              <Ability>Charisma</Ability>
+              <Divider>3</Divider>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Purple Dragon Knight: Skill Focus</Name>
+         <InternalName>PDKSkillFocus</InternalName>
+         <Description>Humans are versatile and can excel at virtually any skill.</Description>
+         <Icon>SkillFocus</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements/>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Athletic</Name>
+               <Description>+1/+2/+3 Balance, Jump, Swim, and Tumble.</Description>
+               <Icon>SkillFocusAthletic</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>SkillBonus</Type>
+                  <AmountVector size="3">1 2 3</AmountVector>
+                  <Skill>Balance</Skill>
+               </Effect>
+               <Effect>
+                  <Type>SkillBonus</Type>
+                  <AmountVector size="3">1 2 3</AmountVector>
+                  <Skill>Jump</Skill>
+               </Effect>
+               <Effect>
+                  <Type>SkillBonus</Type>
+                  <AmountVector size="3">1 2 3</AmountVector>
+                  <Skill>Swim</Skill>
+               </Effect>
+               <Effect>
+                  <Type>SkillBonus</Type>
+                  <AmountVector size="3">1 2 3</AmountVector>
+                  <Skill>Tumble</Skill>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Awareness</Name>
+               <Description>+1/+2/+3 Listen, Search, and Spot.</Description>
+               <Icon>Awareness</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>SkillBonus</Type>
+                  <AmountVector size="3">1 2 3</AmountVector>
+                  <Skill>Listen</Skill>
+               </Effect>
+               <Effect>
+                  <Type>SkillBonus</Type>
+                  <AmountVector size="3">1 2 3</AmountVector>
+                  <Skill>Search</Skill>
+               </Effect>
+               <Effect>
+                  <Type>SkillBonus</Type>
+                  <AmountVector size="3">1 2 3</AmountVector>
+                  <Skill>Spot</Skill>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Focused</Name>
+               <Description>+1/+2/+3 Concentration and Intimidate.</Description>
+               <Icon>SkillFocusFocused</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>SkillBonus</Type>
+                  <AmountVector size="3">1 2 3</AmountVector>
+                  <Skill>Concentration</Skill>
+               </Effect>
+               <Effect>
+                  <Type>SkillBonus</Type>
+                  <AmountVector size="3">1 2 3</AmountVector>
+                  <Skill>Intimidate</Skill>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Negotiator</Name>
+               <Description>+1/+2/+3 Bluff, Diplomacy, Haggle and Perform.</Description>
+               <Icon>SkillFocusNegotiator</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>SkillBonus</Type>
+                  <AmountVector size="3">1 2 3</AmountVector>
+                  <Skill>Bluff</Skill>
+               </Effect>
+               <Effect>
+                  <Type>SkillBonus</Type>
+                  <AmountVector size="3">1 2 3</AmountVector>
+                  <Skill>Diplomacy</Skill>
+               </Effect>
+               <Effect>
+                  <Type>SkillBonus</Type>
+                  <AmountVector size="3">1 2 3</AmountVector>
+                  <Skill>Haggle</Skill>
+               </Effect>
+               <Effect>
+                  <Type>SkillBonus</Type>
+                  <AmountVector size="3">1 2 3</AmountVector>
+                  <Skill>Perform</Skill>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Nimble Fingers</Name>
+               <Description>+1/+2/+3 Disable Device and Open Lock.</Description>
+               <Icon>SkillFocusNimbleFingers</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>SkillBonus</Type>
+                  <AmountVector size="3">1 2 3</AmountVector>
+                  <Skill>Disable Device</Skill>
+               </Effect>
+               <Effect>
+                  <Type>SkillBonus</Type>
+                  <AmountVector size="3">1 2 3</AmountVector>
+                  <Skill>Open Lock</Skill>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Self Sufficient</Name>
+               <Description>+1/+2/+3 Heal and Repair.</Description>
+               <Icon>SkillFocusSelfSufficient</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>SkillBonus</Type>
+                  <AmountVector size="3">1 2 3</AmountVector>
+                  <Skill>Heal</Skill>
+               </Effect>
+               <Effect>
+                  <Type>SkillBonus</Type>
+                  <AmountVector size="3">1 2 3</AmountVector>
+                  <Skill>Repair</Skill>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Stealthy</Name>
+               <Description>+1/+2/+3 Hide and Move Silently.</Description>
+               <Icon>SkillFocusStealthy</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>SkillBonus</Type>
+                  <AmountVector size="3">1 2 3</AmountVector>
+                  <Skill>Hide</Skill>
+               </Effect>
+               <Effect>
+                  <Type>SkillBonus</Type>
+                  <AmountVector size="3">1 2 3</AmountVector>
+                  <Skill>Move Silently</Skill>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Purple Dragon Knight: Action Surge I</Name>
+         <InternalName>PDKActionSurgeI</InternalName>
+         <Description>Action Boosts also increase an ability score of your choice.</Description>
+         <Icon>ActionSurge</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <ArrowUp/>
+         <Requirements/>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Strength</Name>
+               <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Strength.</Description>
+               <Icon>Strength</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <AmountVector size="3">1 2 3</AmountVector>
+                  <Ability>Strength</Ability>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Dexterity</Name>
+               <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Dexterity.</Description>
+               <Icon>Dexterity</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <AmountVector size="3">1 2 3</AmountVector>
+                  <Ability>Dexterity</Ability>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Constitution</Name>
+               <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Constitution.</Description>
+               <Icon>Constitution</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <AmountVector size="3">1 2 3</AmountVector>
+                  <Ability>Constitution</Ability>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Intelligence</Name>
+               <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Intelligence.</Description>
+               <Icon>Intelligence</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <AmountVector size="3">1 2 3</AmountVector>
+                  <Ability>Intelligence</Ability>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Wisdom</Name>
+               <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Wisdom.</Description>
+               <Icon>Wisdom</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <AmountVector size="3">1 2 3</AmountVector>
+                  <Ability>Wisdom</Ability>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Charisma</Name>
+               <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Charisma.</Description>
+               <Icon>Charisma</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <AmountVector size="3">1 2 3</AmountVector>
+                  <Ability>Charisma</Ability>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Purple Dragon Knight: Improved Recovery I</Name>
+         <InternalName>PDKImprovedRecoveryI</InternalName>
+         <Description>+20 Positive Healing Amplification</Description>
+         <Icon>HumanImprovedRecovery</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>1</MinSpent>
+         <LongArrowUp/>
+         <Requirements/>
+          <Effect>
+              <Type>HealingAmplification</Type>
+              <AmountVector size="1">20</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Purple Dragon Knight: Don't Count Me Out</Name>
+         <InternalName>PDKDontCountMeOut</InternalName>
+         <Description>Your range of unconsciousness extends by 5/10/20 hitpoints, and you gain
+a +3/+6/+10 bonus to Physical Resistance Rating while you are under 50% health.</Description>
+         <Icon>DontCountMeOut</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements/>
+          <Effect>
+              <Type>UnconsciousRange</Type>
+              <AmountVector size="3">5 10 20</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Purple Dragon Knight: Focus</Name>
+         <InternalName>PDKPurpleDragonFocus</InternalName>
+         <Description>Whenever you use an Action Boost, you gain 5/10/15 Temporary Hit Points.</Description>
+         <Icon>PDKPurpleDragonFocus</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <ArrowRight/>
+         <ArrowUp/>
+         <Requirements/>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Purple Dragon Knight: Aura</Name>
+         <InternalName>PDKPurpleDragonAura</InternalName>
+         <Description>Your presence is reassuring to your allies.
+All nearby allies get +2 unique bonus to their Will/+Fortitude/+Reflex saving throws.</Description>
+         <Icon>PDKPurpleDragonAura</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Enhancement>PDKPurpleDragonFocus</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Purple Dragon Knight: Action Surge II</Name>
+         <InternalName>PDKActionSurgeII</InternalName>
+         <Description>Action Boosts also increase an ability score of your choice.
+Note: Cannot choose the same one as selected in the previous tier.</Description>
+         <Icon>ActionSurge</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>PDKActionSurgeI</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <SelectorExclusions>
+               <SelectorExclusion>
+                  <InternalName>PDKActionSurgeI</InternalName>
+               </SelectorExclusion>
+            </SelectorExclusions>
+            <EnhancementSelection>
+               <Name>Strength</Name>
+               <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Strength.</Description>
+               <Icon>Strength</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <AmountVector size="3">1 2 3</AmountVector>
+                  <Ability>Strength</Ability>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Dexterity</Name>
+               <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Dexterity.</Description>
+               <Icon>Dexterity</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <AmountVector size="3">1 2 3</AmountVector>
+                  <Ability>Dexterity</Ability>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Constitution</Name>
+               <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Constitution.</Description>
+               <Icon>Constitution</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <AmountVector size="3">1 2 3</AmountVector>
+                  <Ability>Constitution</Ability>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Intelligence</Name>
+               <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Intelligence.</Description>
+               <Icon>Intelligence</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <AmountVector size="3">1 2 3</AmountVector>
+                  <Ability>Intelligence</Ability>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Wisdom</Name>
+               <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Wisdom.</Description>
+               <Icon>Wisdom</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <AmountVector size="3">1 2 3</AmountVector>
+                  <Ability>Wisdom</Ability>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Charisma</Name>
+               <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Charisma.</Description>
+               <Icon>Charisma</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <AmountVector size="3">1 2 3</AmountVector>
+                  <Ability>Charisma</Ability>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Purple Dragon Knight: Fighting Style</Name>
+         <InternalName>PDKFightingStyle</InternalName>
+         <Description>Humans are adept at many different fighting styles. </Description>
+         <Icon>FightingStyle</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements/>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Ambidexterity</Name>
+               <Description>You gain +1 to hit when dual-wielding or fighting unarmed.
+Rank 2: Also gains +1% Dodge.
+Rank 3: Also gains +1 damage.</Description>
+               <Icon>Ambidexterity</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Feat>Two Weapon Fighting</Feat>
+                  </Requirement>
+               </Requirements>
+                <Effect>
+                    <Type>AttackBonus</Type>
+                    <AmountVector size="3">1 1 1</AmountVector>
+                    <Style>TwoWeaponFighting</Style>
+                </Effect>
+                <Effect>
+                    <Type>DodgeBonus</Type>
+                    <AmountVector size="3">0 1 1</AmountVector>
+                    <Style>TwoWeaponFighting</Style>
+                </Effect>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <AmountVector size="3">0 0 1</AmountVector>
+                    <Style>TwoWeaponFighting</Style>
+                </Effect>
+                <Effect>
+                    <Type>AttackBonus</Type>
+                    <AmountVector size="3">1 1 1</AmountVector>
+                    <Style>Unarmed</Style>
+                </Effect>
+                <Effect>
+                    <Type>DodgeBonus</Type>
+                    <AmountVector size="3">0 1 1</AmountVector>
+                    <Style>Unarmed</Style>
+                </Effect>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <AmountVector size="3">0 0 1</AmountVector>
+                    <Style>Unarmed</Style>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Greate Weapon Aptitude</Name>
+               <Description>Glancing blows produced by your two-handed weapon attacks have a +2%/+4%/+6%
+increased chance of producing magical weapon effects such as flaming.</Description>
+               <Icon>FightingStyleTwoHanded</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>GlancingBlowEffects</Type>
+                  <AmountVector size="3">2 4 6</AmountVector>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Shield Mastery</Name>
+               <Description>+5%/10%/15% Shield Armor Class and +1/2/3 Tower Shield Maximum Dexterity Bonus.</Description>
+               <Icon>FightingStyleShieldMastery</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>ACBonus</Type>
+                   <!--This should be a percent bonus-->
+                  <AmountVector size="3">5 10 15</AmountVector>
+               </Effect>
+               <Effect>
+                  <Type>MaxDexBonusTowerShield</Type>
+                  <AmountVector size="3">1 2 3</AmountVector>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Sniper</Name>
+               <Description>You gain +1d6/+1d6/+2d6 Ranged Sneak Attack.
+Your Point Blank Shot and Ranged Sneak Attack range is increased by 0/2/2 meters.</Description>
+               <Icon>FightingStyleSniper</Icon>
+               <Cost>2</Cost>
+               <Effect>
+                  <Type>RangedSneakAttackDamage</Type>
+                  <AmountVector size="3">1 2 3</AmountVector>
+               </Effect>
+               <Effect>
+                  <Type>PointBlankShotRange</Type>
+                  <AmountVector size="3">0 2 2</AmountVector>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Traditional caster</Name>
+               <Description>+3/+6/+10 Universal Spell Power when wielding an Orb or Staff.</Description>
+               <Icon>TraditionalCaster</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>SpellPower</Type>
+                  <AmountVector size="3">3 6 10</AmountVector>
+                  <SpellPower>All</SpellPower>
+                   <Stance>Orb</Stance>
+               </Effect>
+                <Effect>
+                    <Type>SpellPower</Type>
+                    <AmountVector size="3">3 6 10</AmountVector>
+                    <SpellPower>All</SpellPower>
+                    <Stance>Staff</Stance>
+                </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Purple Dragon Knight: Rallying Cry</Name>
+         <InternalName>PDKRallyingCry</InternalName>
+         <Description>Action Boost: You and all allies within your aura gain +10%/+15%/+20% Action Boost
+bonus to movement speed and +1/+2/+3 Action Boost bonus to Saving Throws for twenty seconds.
+This ability can be used while feared, and dispels fear effects. (Cooldown: 30 seconds)</Description>
+         <Icon>PDKRallyingCry</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>2</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Clickie/>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>PDKPurpleDragonFocus</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Purple Dragon Knight: Shield Deflection</Name>
+         <InternalName>PDKShieldDeflection</InternalName>
+         <Description>Grants use of the Shield Deflection feat.</Description>
+         <Icon>PDKShieldDeflection</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements/>
+          <Effect>
+              <Type>GrantFeat</Type>
+              <Feat>Shield Deflection</Feat>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Purple Dragon Knight: Action Surge III</Name>
+         <InternalName>PDKActionSurgeIII</InternalName>
+         <Description>Action Boosts also increase an ability score of your choice.
+Note: Cannot choose the same ones as selected in the previous tiers.</Description>
+         <Icon>ActionSurge</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>PDKActionSurgeII</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <SelectorExclusions>
+               <SelectorExclusion>
+                  <InternalName>PDKActionSurgeI</InternalName>
+               </SelectorExclusion>
+               <SelectorExclusion>
+                  <InternalName>PDKActionSurgeII</InternalName>
+               </SelectorExclusion>
+            </SelectorExclusions>
+            <EnhancementSelection>
+               <Name>Strength</Name>
+               <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Strength.</Description>
+               <Icon>Strength</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <AmountVector size="3">1 2 3</AmountVector>
+                  <Ability>Strength</Ability>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Dexterity</Name>
+               <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Dexterity.</Description>
+               <Icon>Dexterity</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <AmountVector size="3">1 2 3</AmountVector>
+                  <Ability>Dexterity</Ability>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Constitution</Name>
+               <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Constitution.</Description>
+               <Icon>Constitution</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <AmountVector size="3">1 2 3</AmountVector>
+                  <Ability>Constitution</Ability>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Intelligence</Name>
+               <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Intelligence.</Description>
+               <Icon>Intelligence</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <AmountVector size="3">1 2 3</AmountVector>
+                  <Ability>Intelligence</Ability>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Wisdom</Name>
+               <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Wisdom.</Description>
+               <Icon>Wisdom</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <AmountVector size="3">1 2 3</AmountVector>
+                  <Ability>Wisdom</Ability>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Charisma</Name>
+               <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Charisma.</Description>
+               <Icon>Charisma</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <AmountVector size="3">1 2 3</AmountVector>
+                  <Ability>Charisma</Ability>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Purple Dragon Knight: Improved Recovery II</Name>
+         <InternalName>PDKImprovedRecoveryII</InternalName>
+         <Description>+20 Positive Healing Amplification</Description>
+         <Icon>HumanImprovedRecovery</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>PDKImprovedRecoveryI</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>HealingAmplification</Type>
+              <AmountVector size="1">20</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Purple Dragon Knight: Heroism</Name>
+         <InternalName>PDKHeroism</InternalName>
+         <Description>Spell Like Ability: Cast the Heroism spell.
+Effects that grant extra Action Boost uses give you additional uses per rest of this ability.</Description>
+         <Icon>HumanHeroism</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Clickie/>
+         <ArrowUp/>
+         <Requirements/>
+          <Effect>
+              <Type>SpellLikeAbility</Type>
+              <SpellLikeAbility>Heroism</SpellLikeAbility>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Purple Dragon Knight: Final Stand</Name>
+         <InternalName>PDKFinalStand</InternalName>
+         <Description>Action Boost: You and all allies within your aura gain Temporary Hit Points
+equal to your Intimidate score for twenty seconds. If you are below 50% Health
+when you use this ability, you gain a +20 Morale bonus to Physical Resistance
+Rating for twenty seconds (Cooldown: 30 seconds)</Description>
+         <Icon>PDKFinalStand</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Clickie/>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>PDKRallyingCry</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Purple Dragon Knight: For Cormyr!</Name>
+         <InternalName>PDKForCormyr</InternalName>
+         <Description>Once per rest, you can heal to full.
+If you are below 50% health when this ability is used, you and all nearby allies gain
+a Morale bonus to weapon damage equal to your Charisma modifier for two minutes.</Description>
+         <Icon>PDKForCormyr</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>PDKFinalStand</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Purple Dragon Knight: Action Surge IV</Name>
+         <InternalName>PDKActionSurgeIV</InternalName>
+         <Description>Action Boosts also increase an ability score of your choice.
+Note: Cannot choose the same ones as selected in the previous tiers.</Description>
+         <Icon>ActionSurge</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Enhancement>PDKActionSurgeIII</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <SelectorExclusions>
+               <SelectorExclusion>
+                  <InternalName>PDKActionSurgeI</InternalName>
+               </SelectorExclusion>
+               <SelectorExclusion>
+                  <InternalName>PDKActionSurgeII</InternalName>
+               </SelectorExclusion>
+               <SelectorExclusion>
+                  <InternalName>PDKActionSurgeIII</InternalName>
+               </SelectorExclusion>
+            </SelectorExclusions>
+            <EnhancementSelection>
+               <Name>Strength</Name>
+               <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Strength.</Description>
+               <Icon>Strength</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <AmountVector size="3">1 2 3</AmountVector>
+                  <Ability>Strength</Ability>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Dexterity</Name>
+               <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Dexterity.</Description>
+               <Icon>Dexterity</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <AmountVector size="3">1 2 3</AmountVector>
+                  <Ability>Dexterity</Ability>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Constitution</Name>
+               <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Constitution.</Description>
+               <Icon>Constitution</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <AmountVector size="3">1 2 3</AmountVector>
+                  <Ability>Constitution</Ability>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Intelligence</Name>
+               <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Intelligence.</Description>
+               <Icon>Intelligence</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <AmountVector size="3">1 2 3</AmountVector>
+                  <Ability>Intelligence</Ability>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Wisdom</Name>
+               <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Wisdom.</Description>
+               <Icon>Wisdom</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <AmountVector size="3">1 2 3</AmountVector>
+                  <Ability>Wisdom</Ability>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Charisma</Name>
+               <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Charisma.</Description>
+               <Icon>Charisma</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <AmountVector size="3">1 2 3</AmountVector>
+                  <Ability>Charisma</Ability>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Purple Dragon Knight: Improved Recovery III</Name>
+         <InternalName>PDKImprovedRecoveryIII</InternalName>
+         <Description>+20 Positive Healing Amplification</Description>
+         <Icon>HumanImprovedRecovery</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Enhancement>PDKImprovedRecoveryII</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>HealingAmplification</Type>
+              <AmountVector size="1">20</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Purple Dragon Knight: Greater Heroism</Name>
+         <InternalName>PDKGreaterHeroism</InternalName>
+         <Description>Spell Like Ability: Cast the Greater Heroism spell.
+This ability shares a common pool of uses per rest with the Heroism ability.
+Effects that grant extra Action Boost uses give you additional uses per rest of this ability.</Description>
+         <Icon>HumanGreaterHeroism</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>PDKHeroism</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>SpellLikeAbility</Type>
+              <SpellLikeAbility>Greater Heroism</SpellLikeAbility>
+          </Effect>
+      </EnhancementTreeItem>
+   </EnhancementTree>
+</Enhancements>

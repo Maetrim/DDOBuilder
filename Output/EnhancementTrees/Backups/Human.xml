@@ -1,0 +1,1770 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Enhancements>
+    <EnhancementTree>
+        <Name>Human</Name>
+        <Race>Human</Race>
+        <Icon>HumanBackground</Icon>
+        <!--Human tree core items-->
+        <EnhancementTreeItem>
+            <InternalName>HumanCore1</InternalName>
+            <Name>Human Versatility</Name>
+            <Description>Humans can select racial boosts that share a number of uses per rest, but are not linked with class action boost cooldowns.</Description>
+            <Icon>HumanVersatility</Icon>
+            <XPosition>0</XPosition>
+            <YPosition>0</YPosition>
+            <Clickie/>
+            <Cost>1</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>0</MinSpent>
+            <Requirements/>
+            <Selector>
+                <EnhancementSelection>
+                    <Name>Attack Boost</Name>
+                    <Description>Active to gain a +6 Action Boost bonus to hit for 20 seconds.</Description>
+                    <Icon>AttackBoost</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AttackBonus</Type>
+                        <Amount>6</Amount>
+                        <Duration>20</Duration>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Damage Boost</Name>
+                    <Description>Activate to gain a +20% Action Boost to weapon damage for 20 seconds.</Description>
+                    <Icon>DamageBoost</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>DamageBonus</Type>
+                        <Percentage>20</Percentage>
+                        <Duration>20</Duration>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Defense Boost</Name>
+                    <Description>Activate to gain a +10 Action Boost to Armor Class and Physical Resistance Rating for 20 seconds.</Description>
+                    <Icon>DefenseBoost</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>ACBonus</Type>
+                        <Amount>10</Amount>
+                        <Duration>20</Duration>
+                    </Effect>
+                    <Effect>
+                        <Type>PRR</Type>
+                        <Amount>10</Amount>
+                        <Duration>20</Duration>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Saves Boost</Name>
+                    <Description>Activate to gain a +4 Action Boost to all Saving Throws for 20 seconds. While under this effect you do not automatically fail Saving Throws on a roll of a Natural 1.</Description>
+                    <Icon>SavesBoost</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SaveBonus</Type>
+                        <Save>All</Save>
+                        <Amount>4</Amount>
+                        <NoFailOn1/>
+                        <Duration>20</Duration>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Skill Boost</Name>
+                    <Description>Activate to gain a +4 Action Boost to all skills for 20 seconds.</Description>
+                    <Icon>SkillBoost</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>All</Skill>
+                        <Amount>4</Amount>
+                        <Duration>20</Duration>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Spell Power Boost</Name>
+                    <Description>Activate to gain a +20 Action Boost to Universal Spell Power for 20 seconds.</Description>
+                    <Icon>SpellPowerBoost</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SpellPower</Type>
+                        <SpellPower>All</SpellPower>
+                        <Amount>20</Amount>
+                        <Duration>20</Duration>
+                    </Effect>
+                </EnhancementSelection>
+            </Selector>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>HumanCore2</InternalName>
+            <Name>Human Adaptability</Name>
+            <Description>Select +1 to an ability score of your choice.</Description>
+            <Icon>HumanAdaptabilityAbility</Icon>
+            <XPosition>1</XPosition>
+            <YPosition>0</YPosition>
+            <Cost>2</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>0</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>HumanCore1</Enhancement>
+                </Requirement>
+                <Requirement>
+                    <MinLevel>3</MinLevel>
+                </Requirement>
+            </Requirements>
+            <Selector>
+                <EnhancementSelection>
+                    <Name>+1 Strength</Name>
+                    <Description>+1 Strength</Description>
+                    <Icon>Strength</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Strength</Ability>
+                        <Amount>1</Amount>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>+1 Dexterity</Name>
+                    <Description>+1 Dexterity</Description>
+                    <Icon>Dexterity</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Dexterity</Ability>
+                        <Amount>1</Amount>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>+1 Constitution</Name>
+                    <Description>+1 Constitution</Description>
+                    <Icon>Constitution</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Constitution</Ability>
+                        <Amount>1</Amount>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>+1 Intelligence</Name>
+                    <Description>+1 Intelligence</Description>
+                    <Icon>Intelligence</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Intelligence</Ability>
+                        <Amount>1</Amount>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>+1 Wisdom</Name>
+                    <Description>+1 Wisdom</Description>
+                    <Icon>Wisdom</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Wisdom</Ability>
+                        <Amount>1</Amount>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>+1 Charisma</Name>
+                    <Description>+1 Charisma</Description>
+                    <Icon>Charisma</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Charisma</Ability>
+                        <Amount>1</Amount>
+                    </Effect>
+                </EnhancementSelection>
+            </Selector>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>HumanCore3</InternalName>
+            <Name>Human Versatility</Name>
+            <Description>Humans can select racial boosts that share a number of uses per rest, but are not linked with class action boost cooldowns. Note: Choose another Action Boost that is not the same as the previous one.</Description>
+            <Icon>HumanVersatility</Icon>
+            <XPosition>2</XPosition>
+            <YPosition>0</YPosition>
+            <Clickie/>
+            <Cost>1</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>0</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>HumanCore2</Enhancement>
+                </Requirement>
+                <Requirement>
+                    <MinLevel>6</MinLevel>
+                </Requirement>
+            </Requirements>
+            <Selector>
+                <SelectorExclusions>
+                    <SelectorExclusion>
+                        <InternalName>HumanCore1</InternalName>
+                    </SelectorExclusion>
+                </SelectorExclusions>
+                <EnhancementSelection>
+                    <Name>Attack Boost</Name>
+                    <Description>Active ato gain a +6 Action Boost bonus to hit for 20 seconds.</Description>
+                    <Icon>AttackBoost</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AttackBonus</Type>
+                        <Amount>6</Amount>
+                        <Duration>20</Duration>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Damage Boost</Name>
+                    <Description>Activate to gain a +20% Action Boost to weapon damage for 20 seconds.</Description>
+                    <Icon>DamageBoost</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>DamageBonus</Type>
+                        <Percentage>20</Percentage>
+                        <Duration>20</Duration>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Defense Boost</Name>
+                    <Description>Activate to gain a +10 Action Boost to Armor Class and Physical Resistance Rating for 20 seconds.</Description>
+                    <Icon>DefenseBoost</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>ACBonus</Type>
+                        <Amount>10</Amount>
+                        <Duration>20</Duration>
+                    </Effect>
+                    <Effect>
+                        <Type>PRR</Type>
+                        <Amount>10</Amount>
+                        <Duration>20</Duration>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Saves Boost</Name>
+                    <Description>Activate to gain a +4 Action Boost to all Saving Throws for 20 seconds. While under this effect you do not automatically fail Saving Throws on a roll of a Natural 1.</Description>
+                    <Icon>SavesBoost</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SaveBonus</Type>
+                        <Save>All</Save>
+                        <Amount>4</Amount>
+                        <NoFailOn1/>
+                        <Duration>20</Duration>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Skill Boost</Name>
+                    <Description>Activate to gain a +4 Action Boost to all skills for 20 seconds.</Description>
+                    <Icon>SkillBoost</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>All</Skill>
+                        <Amount>4</Amount>
+                        <Duration>20</Duration>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Spell Power Boost</Name>
+                    <Description>Activate to gain a +20 Action Boost to Universal Spell Power for 20 seconds.</Description>
+                    <Icon>SpellPowerBoost</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SpellPower</Type>
+                        <SpellPower>All</SpellPower>
+                        <Amount>20</Amount>
+                        <Duration>20</Duration>
+                    </Effect>
+                </EnhancementSelection>
+            </Selector>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>HumanCore4</InternalName>
+            <Name>Human Greater Adaptability</Name>
+            <Description>Select +1 to another ability score of your choice. (You may not select the same ability score as Human Adaptability.)</Description>
+            <Icon>HumanAdaptabilityAbility</Icon>
+            <XPosition>3</XPosition>
+            <YPosition>0</YPosition>
+            <Cost>2</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>0</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>HumanCore3</Enhancement>
+                </Requirement>
+                <Requirement>
+                    <MinLevel>12</MinLevel>
+                </Requirement>
+            </Requirements>
+            <Selector>
+                <SelectorExclusions>
+                    <SelectorExclusion>
+                        <InternalName>HumanCore2</InternalName>
+                    </SelectorExclusion>
+                </SelectorExclusions>
+                <EnhancementSelection>
+                    <Name>+1 Strength</Name>
+                    <Description>+1 Strength</Description>
+                    <Icon>Strength</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Strength</Ability>
+                        <Amount>1</Amount>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>+1 Dexterity</Name>
+                    <Description>+1 Dexterity</Description>
+                    <Icon>Dexterity</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Dexterity</Ability>
+                        <Amount>1</Amount>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>+1 Constitution</Name>
+                    <Description>+1 Constitution</Description>
+                    <Icon>Constitution</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Constitution</Ability>
+                        <Amount>1</Amount>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>+1 Intelligence</Name>
+                    <Description>+1 Intelligence</Description>
+                    <Icon>Intelligence</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Intelligence</Ability>
+                        <Amount>1</Amount>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>+1 Wisdom</Name>
+                    <Description>+1 Wisdom</Description>
+                    <Icon>Wisdom</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Wisdom</Ability>
+                        <Amount>1</Amount>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>+1 Charisma</Name>
+                    <Description>+1 Charisma</Description>
+                    <Icon>Charisma</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Charisma</Ability>
+                        <Amount>1</Amount>
+                    </Effect>
+                </EnhancementSelection>
+            </Selector>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>HumanCore5</InternalName>
+            <Name>Human Versatility</Name>
+            <Description>Humans can select racial boosts that share a number of uses per rest, but are not linked with class action boost cooldowns. Note: Choose another Action Boost that is not the same as either of the previous two.</Description>
+            <Icon>HumanVersatility</Icon>
+            <XPosition>4</XPosition>
+            <YPosition>0</YPosition>
+            <Clickie/>
+            <Cost>1</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>0</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>HumanCore4</Enhancement>
+                </Requirement>
+                <Requirement>
+                    <MinLevel>18</MinLevel>
+                </Requirement>
+            </Requirements>
+            <Selector>
+                <SelectorExclusions>
+                    <SelectorExclusion>
+                        <InternalName>HumanCore1</InternalName>
+                    </SelectorExclusion>
+                    <SelectorExclusion>
+                        <InternalName>HumanCore3</InternalName>
+                    </SelectorExclusion>
+                </SelectorExclusions>
+                <EnhancementSelection>
+                    <Name>Attack Boost</Name>
+                    <Description>Active ato gain a +6 Action Boost bonus to hit for 20 seconds.</Description>
+                    <Icon>AttackBoost</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AttackBonus</Type>
+                        <Amount>6</Amount>
+                        <Duration>20</Duration>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Damage Boost</Name>
+                    <Description>Activate to gain a +20% Action Boost to weapon damage for 20 seconds.</Description>
+                    <Icon>DamageBoost</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>DamageBonus</Type>
+                        <Percentage>20</Percentage>
+                        <Duration>20</Duration>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Defense Boost</Name>
+                    <Description>Activate to gain a +10 Action Boost to Armor Class and Physical Resistance Rating for 20 seconds.</Description>
+                    <Icon>DefenseBoost</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>ACBonus</Type>
+                        <Amount>10</Amount>
+                        <Duration>20</Duration>
+                    </Effect>
+                    <Effect>
+                        <Type>PRR</Type>
+                        <Amount>10</Amount>
+                        <Duration>20</Duration>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Saves Boost</Name>
+                    <Description>Activate to gain a +4 Action Boost to all Saving Throws for 20 seconds. While under this effect you do not automatically fail Saving Throws on a roll of a Natural 1.</Description>
+                    <Icon>SavesBoost</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SaveBonus</Type>
+                        <Save>All</Save>
+                        <Amount>4</Amount>
+                        <NoFailOn1/>
+                        <Duration>20</Duration>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Skill Boost</Name>
+                    <Description>Activate to gain a +4 Action Boost to all skills for 20 seconds.</Description>
+                    <Icon>SkillBoost</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>All</Skill>
+                        <Amount>4</Amount>
+                        <Duration>20</Duration>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Spell Power Boost</Name>
+                    <Description>Activate to gain a +20 Action Boost to Universal Spell Power for 20 seconds.</Description>
+                    <Icon>SpellPowerBoost</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SpellPower</Type>
+                        <SpellPower>All</SpellPower>
+                        <Amount>20</Amount>
+                        <Duration>20</Duration>
+                    </Effect>
+                </EnhancementSelection>
+            </Selector>
+        </EnhancementTreeItem>
+        <!--Human Tier 1 Enhancements-->
+        <EnhancementTreeItem>
+            <InternalName>HumanDragonmarkFocus</InternalName>
+            <Name>Dragonmark Focus</Name>
+            <Description>Grants additional uses of dragonmarks and a bonus to the associated skill.</Description>
+            <Icon>DragonmarkFocus</Icon>
+            <XPosition>0</XPosition>
+            <YPosition>1</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>1</MinSpent>
+            <ArrowUp/>
+            <Requirements>
+                <RequiresOneOf>
+                    <Requirement>
+                        <Feat>Least Dragonmark of Finding</Feat>
+                    </Requirement>
+                    <Requirement>
+                        <Feat>Least Dragonmark of Making</Feat>
+                    </Requirement>
+                    <Requirement>
+                        <Feat>Least Dragonmark of Passage</Feat>
+                    </Requirement>
+                    <Requirement>
+                        <Feat>Least Dragonmark of Sentinel</Feat>
+                    </Requirement>
+                </RequiresOneOf>
+            </Requirements>
+            <Selector>
+                <EnhancementSelection>
+                    <Name>Tharashk Dragonmark Focus</Name>
+                    <Description>+1/+2/+3 dragonmark use per day +1/+2/+3 Search.</Description>
+                    <Icon>DragonmarkFocus1</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>DragonmarkUse</Type>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Search</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Cannith Dragonmark Focus</Name>
+                    <Description>+1/+2/+3 dragonmark use per day +1/+2/+3 Repair.</Description>
+                    <Icon>DragonmarkFocus2</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>DragonmarkUse</Type>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Repair</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Orien Dragonmark Focus</Name>
+                    <Description>+1/+2/+3 dragonmark use per day +1/+2/+3 Balance.</Description>
+                    <Icon>DragonmarkFocus3</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>DragonmarkUse</Type>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Balance</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Deneith Dragonmark Focus</Name>
+                    <Description>+1/+2/+3 dragonmark use per day +1/+2/+3 Intimidate.</Description>
+                    <Icon>DragonmarkFocus4</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>DragonmarkUse</Type>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Intimidate</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+            </Selector>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>HumanSkillFocus1</InternalName>
+            <Name>Skill Focus</Name>
+            <Description>Humans are versatile and can excel at virtually any skill</Description>
+            <Icon>EnhancementSkillFocus</Icon>
+            <XPosition>1</XPosition>
+            <YPosition>1</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>1</MinSpent>
+            <ArrowUp/>
+            <Requirements/>
+            <Selector>
+                <EnhancementSelection>
+                    <Name>Athletic</Name>
+                    <Description>+1/+2/+3 Balance, Jump, Swim, and Tumble.</Description>
+                    <Icon>SkillFocusAthletic</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Balance</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Jump</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Swim</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Tumble</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Awareness</Name>
+                    <Description>+1/+2/+3 Listen, Search, and Spot.</Description>
+                    <Icon>SkillFocusAwareness</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Listen</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Search</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Spot</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Focused</Name>
+                    <Description>+1/+2/+3 Concentration and Intimidate.</Description>
+                    <Icon>SkillFocusFocused</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Concentration</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Intimidate</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Negotiator</Name>
+                    <Description>+1/+2/+3 Bluff, Diplomacy, Haggle and Perform.</Description>
+                    <Icon>SkillFocusNegotiator</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Bluff</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Diplomacy</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Haggle</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Perform</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Nimble Fingers</Name>
+                    <Description>+1/+2/+3 Disable Device and Open Lock.</Description>
+                    <Icon>SkillFocusNimbleFingers</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Disable Device</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Open Lock</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Self Sufficient</Name>
+                    <Description>+1/+2/+3 Heal and Repair.</Description>
+                    <Icon>SkillFocusSelfSufficient</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Heal</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Repair</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Stealthy</Name>
+                    <Description>+1/+2/+3 Hide and Move Silently.</Description>
+                    <Icon>SkillFocusStealthy</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Hide</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Move Silently</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+            </Selector>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>HumanActionSurge1</InternalName>
+            <Name>Action Surge</Name>
+            <Description>Action Boosts also increase an ability score of your choice.</Description>
+            <Icon>ActionSurge</Icon>
+            <XPosition>2</XPosition>
+            <YPosition>1</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>1</MinSpent>
+            <ArrowUp/>
+            <Requirements/>
+            <Selector>
+                <EnhancementSelection>
+                    <Name>Strength</Name>
+                    <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Strength.</Description>
+                    <Icon>Strength</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Strength</Ability>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Dexterity</Name>
+                    <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Dexterity.</Description>
+                    <Icon>Dexterity</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Dexterity</Ability>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Constitution</Name>
+                    <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Constitution.</Description>
+                    <Icon>Constitution</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Constitution</Ability>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Intelligence</Name>
+                    <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Intelligence.</Description>
+                    <Icon>Intelligence</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Intelligence</Ability>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Wisdom</Name>
+                    <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Wisdom.</Description>
+                    <Icon>Wisdom</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Wisdom</Ability>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Charisma</Name>
+                    <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Charisma.</Description>
+                    <Icon>Charisma</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Charisma</Ability>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+            </Selector>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>HumanImprovedRecovery1</InternalName>
+            <Name>Improved Recovery</Name>
+            <Description>+20 Positive Healing Amplification.</Description>
+            <Icon>HumanImprovedRecovery</Icon>
+            <XPosition>3</XPosition>
+            <YPosition>1</YPosition>
+            <Cost>2</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>1</MinSpent>
+            <LongArrowUp/>
+            <Requirements/>
+            <Effect>
+                <Type>HealingAmplification</Type>
+                <Amount>20</Amount>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>HumanDontCountMeOut</InternalName>
+            <Name>Don't Count Me Out</Name>
+            <Description>Your range of unconsciousness extends by 5/10/20 hitpoints, and you gain a +3/+6/+10 bonus to Physical Resistance Rating while you are under 50% health.</Description>
+            <Icon>DontCountMeOut</Icon>
+            <XPosition>4</XPosition>
+            <YPosition>1</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>1</MinSpent>
+            <Requirements/>
+            <Effect>
+                <Type>UnconsciousRange</Type>
+                <AmountVector size="3">5 10 20</AmountVector>
+            </Effect>
+            <Effect>
+                <Type>PRR</Type>
+                <AmountVector size="3">3 6 10</AmountVector>
+            </Effect>
+        </EnhancementTreeItem>
+        <!--Human Tier 2 Enhancements-->
+        <EnhancementTreeItem>
+            <InternalName>HumanLesserDragonmark</InternalName>
+            <Name>Lesser Dragonmarks</Name>
+            <Description>Humans have access to the Dragonmarks of Finding, Making, Passage and Sentinel. Also allows you to use your Least Dragonmark an extra time per rest.</Description>
+            <Icon>DragonmarkFocus</Icon>
+            <XPosition>0</XPosition>
+            <YPosition>2</YPosition>
+            <Cost>2</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>5</MinSpent>
+            <ArrowUp/>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>HumanDragonmarkFocus</Enhancement>
+                </Requirement>
+                <RequiresOneOf>
+                    <Requirement>
+                        <Feat>Least Dragonmark of Finding</Feat>
+                    </Requirement>
+                    <Requirement>
+                        <Feat>Least Dragonmark of Making</Feat>
+                    </Requirement>
+                    <Requirement>
+                        <Feat>Least Dragonmark of Passage</Feat>
+                    </Requirement>
+                    <Requirement>
+                        <Feat>Least Dragonmark of Sentinel</Feat>
+                    </Requirement>
+                </RequiresOneOf>
+            </Requirements>
+            <Selector>
+                <EnhancementSelection>
+                    <Name>Lesser Dragonmark Spell: Knock</Name>
+                    <Description>Lesser Dragonmark Spell: Knock (Skill = Character Level + Charisma Modifier)</Description>
+                    <Icon>DragonmarkFocus1</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SpellLikeAbility</Type>
+                        <SpellLikeAbility>Knock</SpellLikeAbility>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Lesser Dragonmark Spell: Repair Serious Damage</Name>
+                    <Description>Lesser Dragonmark Spell: Repair Serious Damage Also grants +3 to all Crafting skills.</Description>
+                    <Icon>DragonmarkFocus2</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SpellLikeAbility</Type>
+                        <SpellLikeAbility>Repair Serious Damage</SpellLikeAbility>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Lesser Dragonmark Spell: Dimension Door</Name>
+                    <Description>Lesser Dragonmark Spell: Dimension Door.</Description>
+                    <Icon>DragonmarkFocus3</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SpellLikeAbility</Type>
+                        <SpellLikeAbility>Dimension Door</SpellLikeAbility>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Lesser Dragonmark Spell: Protection from Elements</Name>
+                    <Description>Lesser Dragonmark Spell: Protection from Elements</Description>
+                    <Icon>DragonmarkFocus4</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SpellLikeAbility</Type>
+                        <SpellLikeAbility>Protection From Elements</SpellLikeAbility>
+                    </Effect>
+                </EnhancementSelection>
+            </Selector>
+            <Effect>
+                <Type>DragonmarkUse</Type>
+                <Amount>1</Amount>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>HumanSkillFocus2</InternalName>
+            <Name>Skill Focus</Name>
+            <Description>Humans are versatile and can excel at virtually any skill</Description>
+            <Icon>EnhancementSkillFocus</Icon>
+            <XPosition>1</XPosition>
+            <YPosition>2</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>5</MinSpent>
+            <ArrowUp/>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>HumanSkillFocus1</Enhancement>
+                </Requirement>
+            </Requirements>
+            <Selector>
+                <SelectorExclusions>
+                    <SelectorExclusion>
+                        <InternalName>HumanSkillFocus1</InternalName>
+                    </SelectorExclusion>
+                </SelectorExclusions>
+                <EnhancementSelection>
+                    <Name>Athletic</Name>
+                    <Description>+1/+2/+3 Balance, Jump, Swim, and Tumble.</Description>
+                    <Icon>SkillFocusAthletic</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Balance</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Jump</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Swim</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Tumble</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Awareness</Name>
+                    <Description>+1/+2/+3 Listen, Search, and Spot.</Description>
+                    <Icon>SkillFocusAwareness</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Listen</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Search</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Spot</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Focused</Name>
+                    <Description>+1/+2/+3 Concentration and Intimidate.</Description>
+                    <Icon>SkillFocusFocused</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Concentration</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Intimidate</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Negotiator</Name>
+                    <Description>+1/+2/+3 Bluff, Diplomacy, Haggle and Perform.</Description>
+                    <Icon>SkillFocusNegotiator</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Bluff</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Diplomacy</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Haggle</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Perform</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Nimble Fingers</Name>
+                    <Description>+1/+2/+3 Disable Device and Open Lock.</Description>
+                    <Icon>SkillFocusNimbleFingers</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Disable Device</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Open Lock</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Self Sufficient</Name>
+                    <Description>+1/+2/+3 Heal and Repair.</Description>
+                    <Icon>SkillFocusSelfSufficient</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Heal</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Repair</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Stealthy</Name>
+                    <Description>+1/+2/+3 Hide and Move Silently.</Description>
+                    <Icon>SkillFocusStealthy</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Hide</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Move Silently</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+            </Selector>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>HumanActionSurge2</InternalName>
+            <Name>Action Surge</Name>
+            <Description>Action Boosts also increase an ability score of your choice.</Description>
+            <Icon>ActionSurge</Icon>
+            <XPosition>2</XPosition>
+            <YPosition>2</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>5</MinSpent>
+            <ArrowUp/>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>HumanActionSurge1</Enhancement>
+                </Requirement>
+            </Requirements>
+            <Selector>
+                <SelectorExclusions>
+                    <SelectorExclusion>
+                        <InternalName>HumanActionSurge1</InternalName>
+                    </SelectorExclusion>
+                </SelectorExclusions>
+                <EnhancementSelection>
+                    <Name>Strength</Name>
+                    <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Strength.</Description>
+                    <Icon>Strength</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Strength</Ability>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Dexterity</Name>
+                    <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Dexterity.</Description>
+                    <Icon>Dexterity</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Dexterity</Ability>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Constitution</Name>
+                    <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Constitution.</Description>
+                    <Icon>Constitution</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Constitution</Ability>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Intelligence</Name>
+                    <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Intelligence.</Description>
+                    <Icon>Intelligence</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Intelligence</Ability>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Wisdom</Name>
+                    <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Wisdom.</Description>
+                    <Icon>Wisdom</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Wisdom</Ability>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Charisma</Name>
+                    <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Charisma.</Description>
+                    <Icon>Charisma</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Charisma</Ability>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+            </Selector>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>HumanFightingStyle</InternalName>
+            <Name>Fighting Style</Name>
+            <Description>Humans are adept at many different fighting styles.</Description>
+            <Icon>FightingStyle</Icon>
+            <XPosition>4</XPosition>
+            <YPosition>2</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>5</MinSpent>
+            <Requirements/>
+            <Selector>
+                <EnhancementSelection>
+                    <Name>Ambidexterity</Name>
+                    <Description>You gain +1 to hit when dual-wielding or fighting unarmed. Rank 2: Also gains +1% Dodge. Rank 3: Also gains +1 damage.</Description>
+                    <Icon>Ambidexterity</Icon>
+                    <Cost>2</Cost>
+                    <Requirements>
+                        <Requirement>
+                            <Feat>Two Weapon Fighting</Feat>
+                        </Requirement>
+                    </Requirements>
+                    <Effect>
+                        <Type>AttackBonus</Type>
+                        <AmountVector size="3">1 1 1</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>DodgeBonus</Type>
+                        <AmountVector size="3">0 1 1</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>DamageBonus</Type>
+                        <AmountVector size="3">0 0 1</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Greate Weapon Aptitude</Name>
+                    <Description>Glancing blows produced by your two-handed weapon attacks have a +2%/+4%/+6% increased chance of producing magical weapon effects such as flaming.</Description>
+                    <Icon>FightingStyleTwoHanded</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>GlancingBlowsChance</Type>
+                        <AmountVector size="3">2 4 6</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Shield Mastery</Name>
+                    <Description>+5%/10%/15% Shield Armor Class and +1/2/3 Tower Shield Maximum Dexterity Bonus.</Description>
+                    <Icon>FightingStyleShieldMastery</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>ACBonus</Type>
+                        <AmountVector size="3">5 10 15</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>MaxDexBonusTowerShield</Type>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Sniper</Name>
+                    <Description>You gain +1d6/+1d6/+2d6 Ranged Sneak Attack. Your Point Blank Shot and Ranged Sneak Attack range is increased by 0/2/2 meters.</Description>
+                    <Icon>FightingStyleSniper</Icon>
+                    <Cost>2</Cost>
+                    <Effect>
+                        <Type>SneakAttack</Type>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>PointBlankShotRange</Type>
+                        <AmountVector size="3">0 2 4</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Traditional caster</Name>
+                    <Description>+3/+6/+10 Universal Spell Power when wielding an Orb or Staff.</Description>
+                    <Icon>TraditionalCaster</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SpellPower</Type>
+                        <SpellPower>All</SpellPower>
+                        <AmountVector size="3">3 6 10</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+            </Selector>
+        </EnhancementTreeItem>
+        <!--Human Tier 3 Enhancements-->
+        <EnhancementTreeItem>
+            <InternalName>HumanGreaterDragonmark</InternalName>
+            <Name>Greater Dragonmarks</Name>
+            <Description>Humans have access to the Dragonmarks of Finding, Making, Passage and Sentinel. Also allows you to use your Least and Lesser Marks an extra time per rest.</Description>
+            <Icon>DragonmarkFocus</Icon>
+            <XPosition>0</XPosition>
+            <YPosition>3</YPosition>
+            <Cost>2</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>10</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>HumanLesserDragonmark</Enhancement>
+                </Requirement>
+                <RequiresOneOf>
+                    <Requirement>
+                        <Feat>Least Dragonmark of Finding</Feat>
+                    </Requirement>
+                    <Requirement>
+                        <Feat>Least Dragonmark of Making</Feat>
+                    </Requirement>
+                    <Requirement>
+                        <Feat>Least Dragonmark of Passage</Feat>
+                    </Requirement>
+                    <Requirement>
+                        <Feat>Least Dragonmark of Sentinel</Feat>
+                    </Requirement>
+                </RequiresOneOf>
+            </Requirements>
+            <Selector>
+                <EnhancementSelection>
+                    <Name>Greater Dragonmark Spell: Treasure Finding</Name>
+                    <Description>Greater Dragonmark Spell: Treasure Finding</Description>
+                    <Icon>DragonmarkFocus1</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SpellLikeAbility</Type>
+                        <SpellLikeAbility>Treasure Finding</SpellLikeAbility>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Greater Dragonmark Spell: Reconstruct</Name>
+                    <Description>Greater Dragonmark Spell: Reconstruct Also grants +4 to all Crafting skills</Description>
+                    <Icon>DragonmarkFocus2</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SpellLikeAbility</Type>
+                        <SpellLikeAbility>Reconstruct</SpellLikeAbility>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Greater Dragonmark Spell: Teleport</Name>
+                    <Description>Greater Dragonmark Spell: Teleport.</Description>
+                    <Icon>DragonmarkFocus3</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SpellLikeAbility</Type>
+                        <SpellLikeAbility>Teleport</SpellLikeAbility>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Greater Dragonmark Spell: Globe of Invulnerability</Name>
+                    <Description>Greater Dragonmark Spell: Globe of Invulnerability</Description>
+                    <Icon>DragonmarkFocus4</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SpellLikeAbility</Type>
+                        <SpellLikeAbility>Globe of Invulnerability</SpellLikeAbility>
+                    </Effect>
+                </EnhancementSelection>
+            </Selector>
+            <Effect>
+                <Type>DragonmarkUse</Type>
+                <Amount>1</Amount>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>HumanSkillFocus3</InternalName>
+            <Name>Skill Focus</Name>
+            <Description>Humans are versatile and can excel at virtually any skill</Description>
+            <Icon>EnhancementSkillFocus</Icon>
+            <XPosition>1</XPosition>
+            <YPosition>3</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>10</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>HumanSkillFocus2</Enhancement>
+                </Requirement>
+            </Requirements>
+            <Selector>
+                <SelectorExclusions>
+                    <SelectorExclusion>
+                        <InternalName>HumanSkillFocus1</InternalName>
+                    </SelectorExclusion>
+                    <SelectorExclusion>
+                        <InternalName>HumanSkillFocus2</InternalName>
+                    </SelectorExclusion>
+                </SelectorExclusions>
+                <EnhancementSelection>
+                    <Name>Athletic</Name>
+                    <Description>+1/+2/+3 Balance, Jump, Swim, and Tumble.</Description>
+                    <Icon>SkillFocusAthletic</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Balance</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Jump</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Swim</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Tumble</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Awareness</Name>
+                    <Description>+1/+2/+3 Listen, Search, and Spot.</Description>
+                    <Icon>SkillFocusAwareness</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Listen</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Search</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Spot</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Focused</Name>
+                    <Description>+1/+2/+3 Concentration and Intimidate.</Description>
+                    <Icon>SkillFocusFocused</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Concentration</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Intimidate</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Negotiator</Name>
+                    <Description>+1/+2/+3 Bluff, Diplomacy, Haggle and Perform.</Description>
+                    <Icon>SkillFocusNegotiator</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Bluff</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Diplomacy</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Haggle</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Perform</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Nimble Fingers</Name>
+                    <Description>+1/+2/+3 Disable Device and Open Lock.</Description>
+                    <Icon>SkillFocusNimbleFingers</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Disable Device</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Open Lock</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Self Sufficient</Name>
+                    <Description>+1/+2/+3 Heal and Repair.</Description>
+                    <Icon>SkillFocusSelfSufficient</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Heal</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Repair</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Stealthy</Name>
+                    <Description>+1/+2/+3 Hide and Move Silently.</Description>
+                    <Icon>SkillFocusStealthy</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Hide</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Move Silently</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+            </Selector>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>HumanActionSurge3</InternalName>
+            <Name>Action Surge</Name>
+            <Description>Action Boosts also increase an ability score of your choice.</Description>
+            <Icon>ActionSurge</Icon>
+            <XPosition>2</XPosition>
+            <YPosition>3</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>10</MinSpent>
+            <ArrowUp/>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>HumanActionSurge2</Enhancement>
+                </Requirement>
+            </Requirements>
+            <Selector>
+                <SelectorExclusions>
+                    <SelectorExclusion>
+                        <InternalName>HumanActionSurge1</InternalName>
+                    </SelectorExclusion>
+                    <SelectorExclusion>
+                        <InternalName>HumanActionSurge2</InternalName>
+                    </SelectorExclusion>
+                </SelectorExclusions>
+                <EnhancementSelection>
+                    <Name>Strength</Name>
+                    <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Strength.</Description>
+                    <Icon>Strength</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Strength</Ability>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Dexterity</Name>
+                    <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Dexterity.</Description>
+                    <Icon>Dexterity</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Dexterity</Ability>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Constitution</Name>
+                    <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Constitution.</Description>
+                    <Icon>Constitution</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Constitution</Ability>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Intelligence</Name>
+                    <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Intelligence.</Description>
+                    <Icon>Intelligence</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Intelligence</Ability>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Wisdom</Name>
+                    <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Wisdom.</Description>
+                    <Icon>Wisdom</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Wisdom</Ability>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Charisma</Name>
+                    <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Charisma.</Description>
+                    <Icon>Charisma</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Charisma</Ability>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+            </Selector>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>HumanImprovedRecovery2</InternalName>
+            <Name>Improved Recovery</Name>
+            <Description>+20 Positive Healing Amplification.</Description>
+            <Icon>HumanImprovedRecovery</Icon>
+            <XPosition>3</XPosition>
+            <YPosition>3</YPosition>
+            <Cost>2</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>10</MinSpent>
+            <ArrowUp/>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>HumanImprovedRecovery1</Enhancement>
+                </Requirement>
+            </Requirements>
+            <Effect>
+                <Type>HealingAmplification</Type>
+                <Amount>20</Amount>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>HumanHeroism1</InternalName>
+            <Name>Heroism</Name>
+            <Description>Spell Like Ability: Cast the Heroism spell. Effects that grant extra Action Boost uses give you additional uses per rest of this ability</Description>
+            <Icon>HumanHeroism</Icon>
+            <XPosition>4</XPosition>
+            <YPosition>3</YPosition>
+            <Clickie/>
+            <Cost>2</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>10</MinSpent>
+            <ArrowUp/>
+            <Requirements/>
+            <Effect>
+                <Type>SpellLikeAbility</Type>
+                <SpellLikeAbility>Heroism</SpellLikeAbility>
+            </Effect>
+        </EnhancementTreeItem>
+        <!--Human Tier 4 Enhancements-->
+        <EnhancementTreeItem>
+            <InternalName>HumanActionSurge4</InternalName>
+            <Name>Action Surge</Name>
+            <Description>Action Boosts also increase an ability score of your choice.</Description>
+            <Icon>ActionSurge</Icon>
+            <XPosition>2</XPosition>
+            <YPosition>4</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>15</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>HumanActionSurge3</Enhancement>
+                </Requirement>
+            </Requirements>
+            <Selector>
+                <SelectorExclusions>
+                    <SelectorExclusion>
+                        <InternalName>HumanActionSurge1</InternalName>
+                    </SelectorExclusion>
+                    <SelectorExclusion>
+                        <InternalName>HumanActionSurge2</InternalName>
+                    </SelectorExclusion>
+                    <SelectorExclusion>
+                        <InternalName>HumanActionSurge3</InternalName>
+                    </SelectorExclusion>
+                </SelectorExclusions>
+                <EnhancementSelection>
+                    <Name>Strength</Name>
+                    <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Strength.</Description>
+                    <Icon>Strength</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Strength</Ability>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Dexterity</Name>
+                    <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Dexterity.</Description>
+                    <Icon>Dexterity</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Dexterity</Ability>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Constitution</Name>
+                    <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Constitution.</Description>
+                    <Icon>Constitution</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Constitution</Ability>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Intelligence</Name>
+                    <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Intelligence.</Description>
+                    <Icon>Intelligence</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Intelligence</Ability>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Wisdom</Name>
+                    <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Wisdom.</Description>
+                    <Icon>Wisdom</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Wisdom</Ability>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Charisma</Name>
+                    <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Charisma.</Description>
+                    <Icon>Charisma</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Charisma</Ability>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+            </Selector>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>HumanImprovedRecovery3</InternalName>
+            <Name>Improved Recovery</Name>
+            <Description>+20 Positive Healing Amplification.</Description>
+            <Icon>HumanImprovedRecovery</Icon>
+            <XPosition>3</XPosition>
+            <YPosition>4</YPosition>
+            <Cost>2</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>15</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>HumanImprovedRecovery2</Enhancement>
+                </Requirement>
+            </Requirements>
+            <Effect>
+                <Type>HealingAmplification</Type>
+                <Amount>20</Amount>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>HumanHeroism2</InternalName>
+            <Name>Greater Heroism</Name>
+            <Description>Spell Like Ability: Greater Heroism. This ability shares a common pool of uses per rest with the Heroism ability. Effects that grant extra Action Boost uses give you additional uses per rest of this ability.</Description>
+            <Icon>HumanGreaterHeroism</Icon>
+            <XPosition>4</XPosition>
+            <YPosition>4</YPosition>
+            <Clickie/>
+            <Cost>2</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>10</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>HumanHeroism1</Enhancement>
+                </Requirement>
+            </Requirements>
+            <Effect>
+                <Type>SpellLikeAbility</Type>
+                <SpellLikeAbility>Greater Heroism</SpellLikeAbility>
+            </Effect>
+        </EnhancementTreeItem>
+    </EnhancementTree>
+</Enhancements>

@@ -1,0 +1,4178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Enhancements>
+    <!--All Racial trees-->
+    <EnhancementTree>
+        <Name>Drow</Name>
+        <Race>Drow</Race>
+        <Icon>DrowBackground</Icon>
+    </EnhancementTree>
+    <EnhancementTree>
+        <Name>Dwarf</Name>
+        <Race>Dwarf</Race>
+        <Icon>DwarfBackground</Icon>
+    </EnhancementTree>
+    <EnhancementTree>
+        <Name>Elf</Name>
+        <Race>Elf</Race>
+        <Icon>ElfBackground</Icon>
+    </EnhancementTree>
+    <EnhancementTree>
+        <Name>Elven Arcane Archer</Name>
+        <Race>Elf</Race>
+        <Icon>ElfBackground</Icon>
+    </EnhancementTree>
+    <EnhancementTree>
+        <Name>Gnome</Name>
+        <Race>Gnome</Race>
+        <Icon>GnomeBackground</Icon>
+    </EnhancementTree>
+    <EnhancementTree>
+        <Name>Halfling</Name>
+        <Race>Halfling</Race>
+        <Icon>HalflingBackground</Icon>
+    </EnhancementTree>
+    <EnhancementTree>
+        <Name>Half-Elf</Name>
+        <Race>Half-Elf</Race>
+        <Icon>Half-ElfBackground</Icon>
+    </EnhancementTree>
+    <EnhancementTree>
+        <Name>Half-Orc</Name>
+        <Race>Half-Orc</Race>
+        <Icon>Half-OrcBackground</Icon>
+    </EnhancementTree>
+    <EnhancementTree>
+        <Name>Human</Name>
+        <Race>Human</Race>
+        <Icon>HumanBackground</Icon>
+        <!--Human tree core items-->
+        <EnhancementTreeItem>
+            <InternalName>HumanCore1</InternalName>
+            <Name>Human Versatility</Name>
+            <Description>Humans can select racial boosts that share a number of uses per rest, but are not linked with class action boost cooldowns.</Description>
+            <Icon>HumanVersatility</Icon>
+            <XPosition>0</XPosition>
+            <YPosition>0</YPosition>
+            <Clickie/>
+            <Cost>1</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>0</MinSpent>
+            <Requirements/>
+            <Selector>
+                <EnhancementSelection>
+                    <Name>Attack Boost</Name>
+                    <Description>Active to gain a +6 Action Boost bonus to hit for 20 seconds.</Description>
+                    <Icon>AttackBoost</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AttackBonus</Type>
+                        <Amount>6</Amount>
+                        <Duration>20</Duration>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Damage Boost</Name>
+                    <Description>Activate to gain a +20% Action Boost to weapon damage for 20 seconds.</Description>
+                    <Icon>DamageBoost</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>DamageBonus</Type>
+                        <Percentage>20</Percentage>
+                        <Duration>20</Duration>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Defense Boost</Name>
+                    <Description>Activate to gain a +10 Action Boost to Armor Class and Physical Resistance Rating for 20 seconds.</Description>
+                    <Icon>DefenseBoost</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>ACBonus</Type>
+                        <Amount>10</Amount>
+                        <Duration>20</Duration>
+                    </Effect>
+                    <Effect>
+                        <Type>PRR</Type>
+                        <Amount>10</Amount>
+                        <Duration>20</Duration>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Saves Boost</Name>
+                    <Description>Activate to gain a +4 Action Boost to all Saving Throws for 20 seconds. While under this effect you do not automatically fail Saving Throws on a roll of a Natural 1.</Description>
+                    <Icon>SavesBoost</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SaveBonus</Type>
+                        <Save>All</Save>
+                        <Amount>4</Amount>
+                        <NoFailOn1/>
+                        <Duration>20</Duration>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Skill Boost</Name>
+                    <Description>Activate to gain a +4 Action Boost to all skills for 20 seconds.</Description>
+                    <Icon>SkillBoost</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>All</Skill>
+                        <Amount>4</Amount>
+                        <Duration>20</Duration>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Spell Power Boost</Name>
+                    <Description>Activate to gain a +20 Action Boost to Universal Spell Power for 20 seconds.</Description>
+                    <Icon>SpellPowerBoost</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SpellPower</Type>
+                        <SpellPower>All</SpellPower>
+                        <Amount>20</Amount>
+                        <Duration>20</Duration>
+                    </Effect>
+                </EnhancementSelection>
+            </Selector>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>HumanCore2</InternalName>
+            <Name>Human Adaptability</Name>
+            <Description>Select +1 to an ability score of your choice.</Description>
+            <Icon>HumanAdaptabilityAbility</Icon>
+            <XPosition>1</XPosition>
+            <YPosition>0</YPosition>
+            <Cost>2</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>0</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>HumanCore1</Enhancement>
+                </Requirement>
+                <Requirement>
+                    <MinLevel>3</MinLevel>
+                </Requirement>
+            </Requirements>
+            <Selector>
+                <EnhancementSelection>
+                    <Name>+1 Strength</Name>
+                    <Description>+1 Strength</Description>
+                    <Icon>Strength</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Strength</Ability>
+                        <Amount>1</Amount>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>+1 Dexterity</Name>
+                    <Description>+1 Dexterity</Description>
+                    <Icon>Dexterity</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Dexterity</Ability>
+                        <Amount>1</Amount>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>+1 Constitution</Name>
+                    <Description>+1 Constitution</Description>
+                    <Icon>Constitution</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Constitution</Ability>
+                        <Amount>1</Amount>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>+1 Intelligence</Name>
+                    <Description>+1 Intelligence</Description>
+                    <Icon>Intelligence</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Intelligence</Ability>
+                        <Amount>1</Amount>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>+1 Wisdom</Name>
+                    <Description>+1 Wisdom</Description>
+                    <Icon>Wisdom</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Wisdom</Ability>
+                        <Amount>1</Amount>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>+1 Charisma</Name>
+                    <Description>+1 Charisma</Description>
+                    <Icon>Charisma</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Charisma</Ability>
+                        <Amount>1</Amount>
+                    </Effect>
+                </EnhancementSelection>
+            </Selector>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>HumanCore3</InternalName>
+            <Name>Human Versatility</Name>
+            <Description>Humans can select racial boosts that share a number of uses per rest, but are not linked with class action boost cooldowns. Note: Choose another Action Boost that is not the same as the previous one.</Description>
+            <Icon>HumanVersatility</Icon>
+            <XPosition>2</XPosition>
+            <YPosition>0</YPosition>
+            <Clickie/>
+            <Cost>1</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>0</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>HumanCore2</Enhancement>
+                </Requirement>
+                <Requirement>
+                    <MinLevel>6</MinLevel>
+                </Requirement>
+            </Requirements>
+            <Selector>
+                <SelectorExclusions>
+                    <SelectorExclusion>
+                        <InternalName>HumanCore1</InternalName>
+                    </SelectorExclusion>
+                </SelectorExclusions>
+                <EnhancementSelection>
+                    <Name>Attack Boost</Name>
+                    <Description>Active ato gain a +6 Action Boost bonus to hit for 20 seconds.</Description>
+                    <Icon>AttackBoost</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AttackBonus</Type>
+                        <Amount>6</Amount>
+                        <Duration>20</Duration>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Damage Boost</Name>
+                    <Description>Activate to gain a +20% Action Boost to weapon damage for 20 seconds.</Description>
+                    <Icon>DamageBoost</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>DamageBonus</Type>
+                        <Percentage>20</Percentage>
+                        <Duration>20</Duration>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Defense Boost</Name>
+                    <Description>Activate to gain a +10 Action Boost to Armor Class and Physical Resistance Rating for 20 seconds.</Description>
+                    <Icon>DefenseBoost</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>ACBonus</Type>
+                        <Amount>10</Amount>
+                        <Duration>20</Duration>
+                    </Effect>
+                    <Effect>
+                        <Type>PRR</Type>
+                        <Amount>10</Amount>
+                        <Duration>20</Duration>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Saves Boost</Name>
+                    <Description>Activate to gain a +4 Action Boost to all Saving Throws for 20 seconds. While under this effect you do not automatically fail Saving Throws on a roll of a Natural 1.</Description>
+                    <Icon>SavesBoost</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SaveBonus</Type>
+                        <Save>All</Save>
+                        <Amount>4</Amount>
+                        <NoFailOn1/>
+                        <Duration>20</Duration>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Skill Boost</Name>
+                    <Description>Activate to gain a +4 Action Boost to all skills for 20 seconds.</Description>
+                    <Icon>SkillBoost</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>All</Skill>
+                        <Amount>4</Amount>
+                        <Duration>20</Duration>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Spell Power Boost</Name>
+                    <Description>Activate to gain a +20 Action Boost to Universal Spell Power for 20 seconds.</Description>
+                    <Icon>SpellPowerBoost</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SpellPower</Type>
+                        <SpellPower>All</SpellPower>
+                        <Amount>20</Amount>
+                        <Duration>20</Duration>
+                    </Effect>
+                </EnhancementSelection>
+            </Selector>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>HumanCore4</InternalName>
+            <Name>Human Greater Adaptability</Name>
+            <Description>Select +1 to another ability score of your choice. (You may not select the same ability score as Human Adaptability.)</Description>
+            <Icon>HumanAdaptabilityAbility</Icon>
+            <XPosition>3</XPosition>
+            <YPosition>0</YPosition>
+            <Cost>2</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>0</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>HumanCore3</Enhancement>
+                </Requirement>
+                <Requirement>
+                    <MinLevel>12</MinLevel>
+                </Requirement>
+            </Requirements>
+            <Selector>
+                <SelectorExclusions>
+                    <SelectorExclusion>
+                        <InternalName>HumanCore2</InternalName>
+                    </SelectorExclusion>
+                </SelectorExclusions>
+                <EnhancementSelection>
+                    <Name>+1 Strength</Name>
+                    <Description>+1 Strength</Description>
+                    <Icon>Strength</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Strength</Ability>
+                        <Amount>1</Amount>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>+1 Dexterity</Name>
+                    <Description>+1 Dexterity</Description>
+                    <Icon>Dexterity</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Dexterity</Ability>
+                        <Amount>1</Amount>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>+1 Constitution</Name>
+                    <Description>+1 Constitution</Description>
+                    <Icon>Constitution</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Constitution</Ability>
+                        <Amount>1</Amount>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>+1 Intelligence</Name>
+                    <Description>+1 Intelligence</Description>
+                    <Icon>Intelligence</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Intelligence</Ability>
+                        <Amount>1</Amount>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>+1 Wisdom</Name>
+                    <Description>+1 Wisdom</Description>
+                    <Icon>Wisdom</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Wisdom</Ability>
+                        <Amount>1</Amount>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>+1 Charisma</Name>
+                    <Description>+1 Charisma</Description>
+                    <Icon>Charisma</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Charisma</Ability>
+                        <Amount>1</Amount>
+                    </Effect>
+                </EnhancementSelection>
+            </Selector>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>HumanCore5</InternalName>
+            <Name>Human Versatility</Name>
+            <Description>Humans can select racial boosts that share a number of uses per rest, but are not linked with class action boost cooldowns. Note: Choose another Action Boost that is not the same as either of the previous two.</Description>
+            <Icon>HumanVersatility</Icon>
+            <XPosition>4</XPosition>
+            <YPosition>0</YPosition>
+            <Clickie/>
+            <Cost>1</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>0</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>HumanCore4</Enhancement>
+                </Requirement>
+                <Requirement>
+                    <MinLevel>18</MinLevel>
+                </Requirement>
+            </Requirements>
+            <Selector>
+                <SelectorExclusions>
+                    <SelectorExclusion>
+                        <InternalName>HumanCore1</InternalName>
+                    </SelectorExclusion>
+                    <SelectorExclusion>
+                        <InternalName>HumanCore3</InternalName>
+                    </SelectorExclusion>
+                </SelectorExclusions>
+                <EnhancementSelection>
+                    <Name>Attack Boost</Name>
+                    <Description>Active ato gain a +6 Action Boost bonus to hit for 20 seconds.</Description>
+                    <Icon>AttackBoost</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AttackBonus</Type>
+                        <Amount>6</Amount>
+                        <Duration>20</Duration>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Damage Boost</Name>
+                    <Description>Activate to gain a +20% Action Boost to weapon damage for 20 seconds.</Description>
+                    <Icon>DamageBoost</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>DamageBonus</Type>
+                        <Percentage>20</Percentage>
+                        <Duration>20</Duration>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Defense Boost</Name>
+                    <Description>Activate to gain a +10 Action Boost to Armor Class and Physical Resistance Rating for 20 seconds.</Description>
+                    <Icon>DefenseBoost</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>ACBonus</Type>
+                        <Amount>10</Amount>
+                        <Duration>20</Duration>
+                    </Effect>
+                    <Effect>
+                        <Type>PRR</Type>
+                        <Amount>10</Amount>
+                        <Duration>20</Duration>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Saves Boost</Name>
+                    <Description>Activate to gain a +4 Action Boost to all Saving Throws for 20 seconds. While under this effect you do not automatically fail Saving Throws on a roll of a Natural 1.</Description>
+                    <Icon>SavesBoost</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SaveBonus</Type>
+                        <Save>All</Save>
+                        <Amount>4</Amount>
+                        <NoFailOn1/>
+                        <Duration>20</Duration>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Skill Boost</Name>
+                    <Description>Activate to gain a +4 Action Boost to all skills for 20 seconds.</Description>
+                    <Icon>SkillBoost</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>All</Skill>
+                        <Amount>4</Amount>
+                        <Duration>20</Duration>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Spell Power Boost</Name>
+                    <Description>Activate to gain a +20 Action Boost to Universal Spell Power for 20 seconds.</Description>
+                    <Icon>SpellPowerBoost</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SpellPower</Type>
+                        <SpellPower>All</SpellPower>
+                        <Amount>20</Amount>
+                        <Duration>20</Duration>
+                    </Effect>
+                </EnhancementSelection>
+            </Selector>
+        </EnhancementTreeItem>
+        <!--Human Tier 1 Enhancements-->
+        <EnhancementTreeItem>
+            <InternalName>HumanDragonmarkFocus</InternalName>
+            <Name>Dragonmark Focus</Name>
+            <Description>Grants additional uses of dragonmarks and a bonus to the associated skill.</Description>
+            <Icon>DragonmarkFocus</Icon>
+            <XPosition>0</XPosition>
+            <YPosition>1</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>1</MinSpent>
+            <ArrowUp/>
+            <Requirements>
+                <RequiresOneOf>
+                    <Requirement>
+                        <Feat>Least Dragonmark of Finding</Feat>
+                    </Requirement>
+                    <Requirement>
+                        <Feat>Least Dragonmark of Making</Feat>
+                    </Requirement>
+                    <Requirement>
+                        <Feat>Least Dragonmark of Passage</Feat>
+                    </Requirement>
+                    <Requirement>
+                        <Feat>Least Dragonmark of Sentinel</Feat>
+                    </Requirement>
+                </RequiresOneOf>
+            </Requirements>
+            <Selector>
+                <EnhancementSelection>
+                    <Name>Tharashk Dragonmark Focus</Name>
+                    <Description>+1/+2/+3 dragonmark use per day +1/+2/+3 Search.</Description>
+                    <Icon>DragonmarkFocus1</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>DragonmarkUse</Type>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Search</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Cannith Dragonmark Focus</Name>
+                    <Description>+1/+2/+3 dragonmark use per day +1/+2/+3 Repair.</Description>
+                    <Icon>DragonmarkFocus2</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>DragonmarkUse</Type>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Repair</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Orien Dragonmark Focus</Name>
+                    <Description>+1/+2/+3 dragonmark use per day +1/+2/+3 Balance.</Description>
+                    <Icon>DragonmarkFocus3</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>DragonmarkUse</Type>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Balance</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Deneith Dragonmark Focus</Name>
+                    <Description>+1/+2/+3 dragonmark use per day +1/+2/+3 Intimidate.</Description>
+                    <Icon>DragonmarkFocus4</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>DragonmarkUse</Type>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Intimidate</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+            </Selector>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>HumanSkillFocus1</InternalName>
+            <Name>Skill Focus</Name>
+            <Description>Humans are versatile and can excel at virtually any skill</Description>
+            <Icon>EnhancementSkillFocus</Icon>
+            <XPosition>1</XPosition>
+            <YPosition>1</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>1</MinSpent>
+            <ArrowUp/>
+            <Requirements/>
+            <Selector>
+                <EnhancementSelection>
+                    <Name>Athletic</Name>
+                    <Description>+1/+2/+3 Balance, Jump, Swim, and Tumble.</Description>
+                    <Icon>SkillFocusAthletic</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Balance</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Jump</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Swim</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Tumble</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Awareness</Name>
+                    <Description>+1/+2/+3 Listen, Search, and Spot.</Description>
+                    <Icon>SkillFocusAwareness</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Listen</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Search</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Spot</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Focused</Name>
+                    <Description>+1/+2/+3 Concentration and Intimidate.</Description>
+                    <Icon>SkillFocusFocused</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Concentration</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Intimidate</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Negotiator</Name>
+                    <Description>+1/+2/+3 Bluff, Diplomacy, Haggle and Perform.</Description>
+                    <Icon>SkillFocusNegotiator</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Bluff</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Diplomacy</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Haggle</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Perform</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Nimble Fingers</Name>
+                    <Description>+1/+2/+3 Disable Device and Open Lock.</Description>
+                    <Icon>SkillFocusNimbleFingers</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Disable Device</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Open Lock</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Self Sufficient</Name>
+                    <Description>+1/+2/+3 Heal and Repair.</Description>
+                    <Icon>SkillFocusSelfSufficient</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Heal</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Repair</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Stealthy</Name>
+                    <Description>+1/+2/+3 Hide and Move Silently.</Description>
+                    <Icon>SkillFocusStealthy</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Hide</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Move Silently</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+            </Selector>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>HumanActionSurge1</InternalName>
+            <Name>Action Surge</Name>
+            <Description>Action Boosts also increase an ability score of your choice.</Description>
+            <Icon>ActionSurge</Icon>
+            <XPosition>2</XPosition>
+            <YPosition>1</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>1</MinSpent>
+            <ArrowUp/>
+            <Requirements/>
+            <Selector>
+                <EnhancementSelection>
+                    <Name>Strength</Name>
+                    <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Strength.</Description>
+                    <Icon>Strength</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Strength</Ability>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Dexterity</Name>
+                    <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Dexterity.</Description>
+                    <Icon>Dexterity</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Dexterity</Ability>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Constitution</Name>
+                    <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Constitution.</Description>
+                    <Icon>Constitution</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Constitution</Ability>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Intelligence</Name>
+                    <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Intelligence.</Description>
+                    <Icon>Intelligence</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Intelligence</Ability>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Wisdom</Name>
+                    <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Wisdom.</Description>
+                    <Icon>Wisdom</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Wisdom</Ability>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Charisma</Name>
+                    <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Charisma.</Description>
+                    <Icon>Charisma</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Charisma</Ability>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+            </Selector>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>HumanImprovedRecovery1</InternalName>
+            <Name>Improved Recovery</Name>
+            <Description>+20 Positive Healing Amplification.</Description>
+            <Icon>HumanImprovedRecovery</Icon>
+            <XPosition>3</XPosition>
+            <YPosition>1</YPosition>
+            <Cost>2</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>1</MinSpent>
+            <LongArrowUp/>
+            <Requirements/>
+            <Effect>
+                <Type>HealingAmplification</Type>
+                <Amount>20</Amount>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>HumanDontCountMeOut</InternalName>
+            <Name>Don't Count Me Out</Name>
+            <Description>Your range of unconsciousness extends by 5/10/20 hitpoints, and you gain a +3/+6/+10 bonus to Physical Resistance Rating while you are under 50% health.</Description>
+            <Icon>DontCountMeOut</Icon>
+            <XPosition>4</XPosition>
+            <YPosition>1</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>1</MinSpent>
+            <Requirements/>
+            <Effect>
+                <Type>UnconsciousRange</Type>
+                <AmountVector size="3">5 10 20</AmountVector>
+            </Effect>
+            <Effect>
+                <Type>PRR</Type>
+                <AmountVector size="3">3 6 10</AmountVector>
+            </Effect>
+        </EnhancementTreeItem>
+        <!--Human Tier 2 Enhancements-->
+        <EnhancementTreeItem>
+            <InternalName>HumanLesserDragonmark</InternalName>
+            <Name>Lesser Dragonmarks</Name>
+            <Description>Humans have access to the Dragonmarks of Finding, Making, Passage and Sentinel. Also allows you to use your Least Dragonmark an extra time per rest.</Description>
+            <Icon>DragonmarkFocus</Icon>
+            <XPosition>0</XPosition>
+            <YPosition>2</YPosition>
+            <Cost>2</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>5</MinSpent>
+            <ArrowUp/>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>HumanDragonmarkFocus</Enhancement>
+                </Requirement>
+                <RequiresOneOf>
+                    <Requirement>
+                        <Feat>Least Dragonmark of Finding</Feat>
+                    </Requirement>
+                    <Requirement>
+                        <Feat>Least Dragonmark of Making</Feat>
+                    </Requirement>
+                    <Requirement>
+                        <Feat>Least Dragonmark of Passage</Feat>
+                    </Requirement>
+                    <Requirement>
+                        <Feat>Least Dragonmark of Sentinel</Feat>
+                    </Requirement>
+                </RequiresOneOf>
+            </Requirements>
+            <Selector>
+                <EnhancementSelection>
+                    <Name>Lesser Dragonmark Spell: Knock</Name>
+                    <Description>Lesser Dragonmark Spell: Knock (Skill = Character Level + Charisma Modifier)</Description>
+                    <Icon>DragonmarkFocus1</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SpellLikeAbility</Type>
+                        <SpellLikeAbility>Knock</SpellLikeAbility>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Lesser Dragonmark Spell: Repair Serious Damage</Name>
+                    <Description>Lesser Dragonmark Spell: Repair Serious Damage Also grants +3 to all Crafting skills.</Description>
+                    <Icon>DragonmarkFocus2</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SpellLikeAbility</Type>
+                        <SpellLikeAbility>Repair Serious Damage</SpellLikeAbility>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Lesser Dragonmark Spell: Dimension Door</Name>
+                    <Description>Lesser Dragonmark Spell: Dimension Door.</Description>
+                    <Icon>DragonmarkFocus3</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SpellLikeAbility</Type>
+                        <SpellLikeAbility>Dimension Door</SpellLikeAbility>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Lesser Dragonmark Spell: Protection from Elements</Name>
+                    <Description>Lesser Dragonmark Spell: Protection from Elements</Description>
+                    <Icon>DragonmarkFocus4</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SpellLikeAbility</Type>
+                        <SpellLikeAbility>Protection From Elements</SpellLikeAbility>
+                    </Effect>
+                </EnhancementSelection>
+            </Selector>
+            <Effect>
+                <Type>DragonmarkUse</Type>
+                <Amount>1</Amount>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>HumanSkillFocus2</InternalName>
+            <Name>Skill Focus</Name>
+            <Description>Humans are versatile and can excel at virtually any skill</Description>
+            <Icon>EnhancementSkillFocus</Icon>
+            <XPosition>1</XPosition>
+            <YPosition>2</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>5</MinSpent>
+            <ArrowUp/>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>HumanSkillFocus1</Enhancement>
+                </Requirement>
+            </Requirements>
+            <Selector>
+                <SelectorExclusions>
+                    <SelectorExclusion>
+                        <InternalName>HumanSkillFocus1</InternalName>
+                    </SelectorExclusion>
+                </SelectorExclusions>
+                <EnhancementSelection>
+                    <Name>Athletic</Name>
+                    <Description>+1/+2/+3 Balance, Jump, Swim, and Tumble.</Description>
+                    <Icon>SkillFocusAthletic</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Balance</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Jump</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Swim</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Tumble</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Awareness</Name>
+                    <Description>+1/+2/+3 Listen, Search, and Spot.</Description>
+                    <Icon>SkillFocusAwareness</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Listen</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Search</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Spot</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Focused</Name>
+                    <Description>+1/+2/+3 Concentration and Intimidate.</Description>
+                    <Icon>SkillFocusFocused</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Concentration</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Intimidate</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Negotiator</Name>
+                    <Description>+1/+2/+3 Bluff, Diplomacy, Haggle and Perform.</Description>
+                    <Icon>SkillFocusNegotiator</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Bluff</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Diplomacy</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Haggle</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Perform</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Nimble Fingers</Name>
+                    <Description>+1/+2/+3 Disable Device and Open Lock.</Description>
+                    <Icon>SkillFocusNimbleFingers</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Disable Device</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Open Lock</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Self Sufficient</Name>
+                    <Description>+1/+2/+3 Heal and Repair.</Description>
+                    <Icon>SkillFocusSelfSufficient</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Heal</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Repair</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Stealthy</Name>
+                    <Description>+1/+2/+3 Hide and Move Silently.</Description>
+                    <Icon>SkillFocusStealthy</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Hide</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Move Silently</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+            </Selector>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>HumanActionSurge2</InternalName>
+            <Name>Action Surge</Name>
+            <Description>Action Boosts also increase an ability score of your choice.</Description>
+            <Icon>ActionSurge</Icon>
+            <XPosition>2</XPosition>
+            <YPosition>2</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>5</MinSpent>
+            <ArrowUp/>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>HumanActionSurge1</Enhancement>
+                </Requirement>
+            </Requirements>
+            <Selector>
+                <SelectorExclusions>
+                    <SelectorExclusion>
+                        <InternalName>HumanActionSurge1</InternalName>
+                    </SelectorExclusion>
+                </SelectorExclusions>
+                <EnhancementSelection>
+                    <Name>Strength</Name>
+                    <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Strength.</Description>
+                    <Icon>Strength</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Strength</Ability>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Dexterity</Name>
+                    <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Dexterity.</Description>
+                    <Icon>Dexterity</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Dexterity</Ability>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Constitution</Name>
+                    <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Constitution.</Description>
+                    <Icon>Constitution</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Constitution</Ability>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Intelligence</Name>
+                    <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Intelligence.</Description>
+                    <Icon>Intelligence</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Intelligence</Ability>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Wisdom</Name>
+                    <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Wisdom.</Description>
+                    <Icon>Wisdom</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Wisdom</Ability>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Charisma</Name>
+                    <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Charisma.</Description>
+                    <Icon>Charisma</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Charisma</Ability>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+            </Selector>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>HumanFightingStyle</InternalName>
+            <Name>Fighting Style</Name>
+            <Description>Humans are adept at many different fighting styles.</Description>
+            <Icon>FightingStyle</Icon>
+            <XPosition>4</XPosition>
+            <YPosition>2</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>5</MinSpent>
+            <Requirements/>
+            <Selector>
+                <EnhancementSelection>
+                    <Name>Ambidexterity</Name>
+                    <Description>You gain +1 to hit when dual-wielding or fighting unarmed. Rank 2: Also gains +1% Dodge. Rank 3: Also gains +1 damage.</Description>
+                    <Icon>Ambidexterity</Icon>
+                    <Cost>2</Cost>
+                    <Requirements>
+                        <Requirement>
+                            <Feat>Two Weapon Fighting</Feat>
+                        </Requirement>
+                    </Requirements>
+                    <Effect>
+                        <Type>AttackBonus</Type>
+                        <AmountVector size="3">1 1 1</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>DodgeBonus</Type>
+                        <AmountVector size="3">0 1 1</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>DamageBonus</Type>
+                        <AmountVector size="3">0 0 1</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Greate Weapon Aptitude</Name>
+                    <Description>Glancing blows produced by your two-handed weapon attacks have a +2%/+4%/+6% increased chance of producing magical weapon effects such as flaming.</Description>
+                    <Icon>FightingStyleTwoHanded</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>GlancingBlowsChance</Type>
+                        <AmountVector size="3">2 4 6</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Shield Mastery</Name>
+                    <Description>+5%/10%/15% Shield Armor Class and +1/2/3 Tower Shield Maximum Dexterity Bonus.</Description>
+                    <Icon>FightingStyleShieldMastery</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>ACBonus</Type>
+                        <AmountVector size="3">5 10 15</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>MaxDexBonusTowerShield</Type>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Sniper</Name>
+                    <Description>You gain +1d6/+1d6/+2d6 Ranged Sneak Attack. Your Point Blank Shot and Ranged Sneak Attack range is increased by 0/2/2 meters.</Description>
+                    <Icon>FightingStyleSniper</Icon>
+                    <Cost>2</Cost>
+                    <Effect>
+                        <Type>SneakAttack</Type>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>PointBlankShotRange</Type>
+                        <AmountVector size="3">0 2 4</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Traditional caster</Name>
+                    <Description>+3/+6/+10 Universal Spell Power when wielding an Orb or Staff.</Description>
+                    <Icon>TraditionalCaster</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SpellPower</Type>
+                        <SpellPower>All</SpellPower>
+                        <AmountVector size="3">3 6 10</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+            </Selector>
+        </EnhancementTreeItem>
+        <!--Human Tier 3 Enhancements-->
+        <EnhancementTreeItem>
+            <InternalName>HumanGreaterDragonmark</InternalName>
+            <Name>Greater Dragonmarks</Name>
+            <Description>Humans have access to the Dragonmarks of Finding, Making, Passage and Sentinel. Also allows you to use your Least and Lesser Marks an extra time per rest.</Description>
+            <Icon>DragonmarkFocus</Icon>
+            <XPosition>0</XPosition>
+            <YPosition>3</YPosition>
+            <Cost>2</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>10</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>HumanLesserDragonmark</Enhancement>
+                </Requirement>
+                <RequiresOneOf>
+                    <Requirement>
+                        <Feat>Least Dragonmark of Finding</Feat>
+                    </Requirement>
+                    <Requirement>
+                        <Feat>Least Dragonmark of Making</Feat>
+                    </Requirement>
+                    <Requirement>
+                        <Feat>Least Dragonmark of Passage</Feat>
+                    </Requirement>
+                    <Requirement>
+                        <Feat>Least Dragonmark of Sentinel</Feat>
+                    </Requirement>
+                </RequiresOneOf>
+            </Requirements>
+            <Selector>
+                <EnhancementSelection>
+                    <Name>Greater Dragonmark Spell: Treasure Finding</Name>
+                    <Description>Greater Dragonmark Spell: Treasure Finding</Description>
+                    <Icon>DragonmarkFocus1</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SpellLikeAbility</Type>
+                        <SpellLikeAbility>Treasure Finding</SpellLikeAbility>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Greater Dragonmark Spell: Reconstruct</Name>
+                    <Description>Greater Dragonmark Spell: Reconstruct Also grants +4 to all Crafting skills</Description>
+                    <Icon>DragonmarkFocus2</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SpellLikeAbility</Type>
+                        <SpellLikeAbility>Reconstruct</SpellLikeAbility>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Greater Dragonmark Spell: Teleport</Name>
+                    <Description>Greater Dragonmark Spell: Teleport.</Description>
+                    <Icon>DragonmarkFocus3</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SpellLikeAbility</Type>
+                        <SpellLikeAbility>Teleport</SpellLikeAbility>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Greater Dragonmark Spell: Globe of Invulnerability</Name>
+                    <Description>Greater Dragonmark Spell: Globe of Invulnerability</Description>
+                    <Icon>DragonmarkFocus4</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SpellLikeAbility</Type>
+                        <SpellLikeAbility>Globe of Invulnerability</SpellLikeAbility>
+                    </Effect>
+                </EnhancementSelection>
+            </Selector>
+            <Effect>
+                <Type>DragonmarkUse</Type>
+                <Amount>1</Amount>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>HumanSkillFocus3</InternalName>
+            <Name>Skill Focus</Name>
+            <Description>Humans are versatile and can excel at virtually any skill</Description>
+            <Icon>EnhancementSkillFocus</Icon>
+            <XPosition>1</XPosition>
+            <YPosition>3</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>10</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>HumanSkillFocus2</Enhancement>
+                </Requirement>
+            </Requirements>
+            <Selector>
+                <SelectorExclusions>
+                    <SelectorExclusion>
+                        <InternalName>HumanSkillFocus1</InternalName>
+                    </SelectorExclusion>
+                    <SelectorExclusion>
+                        <InternalName>HumanSkillFocus2</InternalName>
+                    </SelectorExclusion>
+                </SelectorExclusions>
+                <EnhancementSelection>
+                    <Name>Athletic</Name>
+                    <Description>+1/+2/+3 Balance, Jump, Swim, and Tumble.</Description>
+                    <Icon>SkillFocusAthletic</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Balance</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Jump</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Swim</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Tumble</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Awareness</Name>
+                    <Description>+1/+2/+3 Listen, Search, and Spot.</Description>
+                    <Icon>SkillFocusAwareness</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Listen</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Search</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Spot</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Focused</Name>
+                    <Description>+1/+2/+3 Concentration and Intimidate.</Description>
+                    <Icon>SkillFocusFocused</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Concentration</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Intimidate</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Negotiator</Name>
+                    <Description>+1/+2/+3 Bluff, Diplomacy, Haggle and Perform.</Description>
+                    <Icon>SkillFocusNegotiator</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Bluff</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Diplomacy</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Haggle</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Perform</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Nimble Fingers</Name>
+                    <Description>+1/+2/+3 Disable Device and Open Lock.</Description>
+                    <Icon>SkillFocusNimbleFingers</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Disable Device</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Open Lock</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Self Sufficient</Name>
+                    <Description>+1/+2/+3 Heal and Repair.</Description>
+                    <Icon>SkillFocusSelfSufficient</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Heal</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Repair</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Stealthy</Name>
+                    <Description>+1/+2/+3 Hide and Move Silently.</Description>
+                    <Icon>SkillFocusStealthy</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Hide</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Move Silently</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+            </Selector>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>HumanActionSurge3</InternalName>
+            <Name>Action Surge</Name>
+            <Description>Action Boosts also increase an ability score of your choice.</Description>
+            <Icon>ActionSurge</Icon>
+            <XPosition>2</XPosition>
+            <YPosition>3</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>10</MinSpent>
+            <ArrowUp/>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>HumanActionSurge2</Enhancement>
+                </Requirement>
+            </Requirements>
+            <Selector>
+                <SelectorExclusions>
+                    <SelectorExclusion>
+                        <InternalName>HumanActionSurge1</InternalName>
+                    </SelectorExclusion>
+                    <SelectorExclusion>
+                        <InternalName>HumanActionSurge2</InternalName>
+                    </SelectorExclusion>
+                </SelectorExclusions>
+                <EnhancementSelection>
+                    <Name>Strength</Name>
+                    <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Strength.</Description>
+                    <Icon>Strength</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Strength</Ability>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Dexterity</Name>
+                    <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Dexterity.</Description>
+                    <Icon>Dexterity</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Dexterity</Ability>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Constitution</Name>
+                    <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Constitution.</Description>
+                    <Icon>Constitution</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Constitution</Ability>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Intelligence</Name>
+                    <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Intelligence.</Description>
+                    <Icon>Intelligence</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Intelligence</Ability>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Wisdom</Name>
+                    <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Wisdom.</Description>
+                    <Icon>Wisdom</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Wisdom</Ability>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Charisma</Name>
+                    <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Charisma.</Description>
+                    <Icon>Charisma</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Charisma</Ability>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+            </Selector>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>HumanImprovedRecovery2</InternalName>
+            <Name>Improved Recovery</Name>
+            <Description>+20 Positive Healing Amplification.</Description>
+            <Icon>HumanImprovedRecovery</Icon>
+            <XPosition>3</XPosition>
+            <YPosition>3</YPosition>
+            <Cost>2</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>10</MinSpent>
+            <ArrowUp/>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>HumanImprovedRecovery1</Enhancement>
+                </Requirement>
+            </Requirements>
+            <Effect>
+                <Type>HealingAmplification</Type>
+                <Amount>20</Amount>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>HumanHeroism1</InternalName>
+            <Name>Heroism</Name>
+            <Description>Spell Like Ability: Cast the Heroism spell. Effects that grant extra Action Boost uses give you additional uses per rest of this ability</Description>
+            <Icon>HumanHeroism</Icon>
+            <XPosition>4</XPosition>
+            <YPosition>3</YPosition>
+            <Clickie/>
+            <Cost>2</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>10</MinSpent>
+            <ArrowUp/>
+            <Requirements/>
+            <Effect>
+                <Type>SpellLikeAbility</Type>
+                <SpellLikeAbility>Heroism</SpellLikeAbility>
+            </Effect>
+        </EnhancementTreeItem>
+        <!--Human Tier 4 Enhancements-->
+        <EnhancementTreeItem>
+            <InternalName>HumanActionSurge4</InternalName>
+            <Name>Action Surge</Name>
+            <Description>Action Boosts also increase an ability score of your choice.</Description>
+            <Icon>ActionSurge</Icon>
+            <XPosition>2</XPosition>
+            <YPosition>4</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>15</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>HumanActionSurge3</Enhancement>
+                </Requirement>
+            </Requirements>
+            <Selector>
+                <SelectorExclusions>
+                    <SelectorExclusion>
+                        <InternalName>HumanActionSurge1</InternalName>
+                    </SelectorExclusion>
+                    <SelectorExclusion>
+                        <InternalName>HumanActionSurge2</InternalName>
+                    </SelectorExclusion>
+                    <SelectorExclusion>
+                        <InternalName>HumanActionSurge3</InternalName>
+                    </SelectorExclusion>
+                </SelectorExclusions>
+                <EnhancementSelection>
+                    <Name>Strength</Name>
+                    <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Strength.</Description>
+                    <Icon>Strength</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Strength</Ability>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Dexterity</Name>
+                    <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Dexterity.</Description>
+                    <Icon>Dexterity</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Dexterity</Ability>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Constitution</Name>
+                    <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Constitution.</Description>
+                    <Icon>Constitution</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Constitution</Ability>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Intelligence</Name>
+                    <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Intelligence.</Description>
+                    <Icon>Intelligence</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Intelligence</Ability>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Wisdom</Name>
+                    <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Wisdom.</Description>
+                    <Icon>Wisdom</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Wisdom</Ability>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Charisma</Name>
+                    <Description>While under the effect of any Action Boost, you gain a +1/+2/+3 Action Boost bonus to Charisma.</Description>
+                    <Icon>Charisma</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Charisma</Ability>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+            </Selector>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>HumanImprovedRecovery3</InternalName>
+            <Name>Improved Recovery</Name>
+            <Description>+20 Positive Healing Amplification.</Description>
+            <Icon>HumanImprovedRecovery</Icon>
+            <XPosition>3</XPosition>
+            <YPosition>4</YPosition>
+            <Cost>2</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>15</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>HumanImprovedRecovery2</Enhancement>
+                </Requirement>
+            </Requirements>
+            <Effect>
+                <Type>HealingAmplification</Type>
+                <Amount>20</Amount>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>HumanHeroism2</InternalName>
+            <Name>Greater Heroism</Name>
+            <Description>Spell Like Ability: Greater Heroism. This ability shares a common pool of uses per rest with the Heroism ability. Effects that grant extra Action Boost uses give you additional uses per rest of this ability.</Description>
+            <Icon>HumanGreaterHeroism</Icon>
+            <XPosition>4</XPosition>
+            <YPosition>4</YPosition>
+            <Clickie/>
+            <Cost>2</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>10</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>HumanHeroism1</Enhancement>
+                </Requirement>
+            </Requirements>
+            <Effect>
+                <Type>SpellLikeAbility</Type>
+                <SpellLikeAbility>Greater Heroism</SpellLikeAbility>
+            </Effect>
+        </EnhancementTreeItem>
+    </EnhancementTree>
+    <EnhancementTree>
+        <Name>Warforged</Name>
+        <Race>Warforged</Race>
+        <Icon>WarforgedBackground</Icon>
+    </EnhancementTree>
+    <EnhancementTree>
+        <Name>Bladeforged</Name>
+        <Race>Bladeforged</Race>
+        <Icon>BladeforgedBackground</Icon>
+    </EnhancementTree>
+    <EnhancementTree>
+        <Name>Deep Gnome</Name>
+        <Race>Deep Gnome</Race>
+        <Icon>DeepGnomeBackground</Icon>
+    </EnhancementTree>
+    <EnhancementTree>
+        <Name>Morninglord</Name>
+        <Race>Morninglord</Race>
+        <Icon>MorninglordBackground</Icon>
+    </EnhancementTree>
+    <EnhancementTree>
+        <Name>Purple Dragon Knight</Name>
+        <Race>Purple Dragon Knight</Race>
+        <Icon>PDKBackground</Icon>
+    </EnhancementTree>
+    <EnhancementTree>
+        <Name>Shadar-Kai</Name>
+        <Race>Shadar-Kai</Race>
+        <Icon>Shadar-KaiBackground</Icon>
+    </EnhancementTree>
+    <!--Artificer trees-->
+    <EnhancementTree>
+        <Name>Arcanotechnician</Name>
+        <Class>Artificer</Class>
+        <Icon>ArtificerBackground</Icon>
+    </EnhancementTree>
+    <EnhancementTree>
+        <Name>Battle Engineer</Name>
+        <Class>Artificer</Class>
+        <Icon>ArtificerBackground</Icon>
+    </EnhancementTree>
+    <!--Barabarian trees-->
+    <EnhancementTree>
+        <Name>Frenzied Berserker</Name>
+        <Class>Barbarian</Class>
+        <Icon>BarbarianBackground</Icon>
+    </EnhancementTree>
+    <EnhancementTree>
+        <Name>Occult Slayer</Name>
+        <Class>Barbarian</Class>
+        <Icon>BarbarianBackground</Icon>
+    </EnhancementTree>
+    <EnhancementTree>
+        <Name>Ravager</Name>
+        <Class>Barbarian</Class>
+        <Icon>BarbarianBackground</Icon>
+    </EnhancementTree>
+    <!--Bard trees-->
+    <EnhancementTree>
+        <Name>Swashbuckler</Name>
+        <Class>Bard</Class>
+        <Icon>BardBackground</Icon>
+    </EnhancementTree>
+    <EnhancementTree>
+        <Name>Spellsinger</Name>
+        <Class>Bard</Class>
+        <Icon>BardBackground</Icon>
+    </EnhancementTree>
+    <EnhancementTree>
+        <Name>Warchanter</Name>
+        <Class>Bard</Class>
+        <Icon>BardBackground</Icon>
+    </EnhancementTree>
+    <!--Cleric trees-->
+    <EnhancementTree>
+        <Name>Divine Disciple</Name>
+        <Class>Cleric</Class>
+        <Icon>ClericBackground</Icon>
+    </EnhancementTree>
+    <EnhancementTree>
+        <Name>Radiant Servant</Name>
+        <Class>Cleric</Class>
+        <Icon>ClericBackground</Icon>
+    </EnhancementTree>
+    <EnhancementTree>
+        <Name>Warpriest</Name>
+        <Class>Cleric</Class>
+        <Icon>ClericBackground</Icon>
+    </EnhancementTree>
+    <!--Druid trees-->
+    <EnhancementTree>
+        <Name>Nature's Warrior</Name>
+        <Class>Druid</Class>
+        <Icon>DruidBackground</Icon>
+    </EnhancementTree>
+    <EnhancementTree>
+        <Name>Season's Herald</Name>
+        <Class>Druid</Class>
+        <Icon>DruidBackground</Icon>
+    </EnhancementTree>
+    <!--Favored Soul trees-->
+    <EnhancementTree>
+        <Name>Angel of Vengeance</Name>
+        <Class>Favored Soul</Class>
+        <Icon>FavoredSoulBackground</Icon>
+    </EnhancementTree>
+    <EnhancementTree>
+        <Name>Warpriest</Name>
+        <Class>Favored Soul</Class>
+        <Icon>FavoredSoulBackground</Icon>
+    </EnhancementTree>
+    <!--Fighter trees-->
+    <EnhancementTree>
+        <Name>Kensei</Name>
+        <Class>Fighter</Class>
+        <Icon>FighterBackground</Icon>
+        <!--Kensei tree core items-->
+        <EnhancementTreeItem>
+            <InternalName>KenseiCore1</InternalName>
+            <Name>Kensei Focus</Name>
+            <Description>Select a group of weapons as your Kensei focus. You gain +1 to hit with these weapons, and many Kensei abilities require that you use one of these weapons.</Description>
+            <Icon>KenseiFocus</Icon>
+            <XPosition>0</XPosition>
+            <YPosition>0</YPosition>
+            <Cost>1</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>0</MinSpent>
+            <Requirements/>
+            <Selector>
+                <EnhancementSelection>
+                    <Name>Kensei Focus: Archery</Name>
+                    <Description>You focus your Kensei training in the use of bows. You gain +1 to hit with longbows and shortbows</Description>
+                    <Icon>KenseiFocusArchery</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AttackBonus</Type>
+                        <Amount>1</Amount>
+                        <WeaponClass>Bows</WeaponClass>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Kensei Focus: Axes</Name>
+                    <Description>You focus your Kensei training in the use of axes. You gain +1 to hit with battleaxes, greataxes, handaxes, and throwing axes. Dwarves also receive this bonus with dwarven waraxes. (The Exotic Weapon Mastery enhancement will add dwarven waraxes to this list of weapons if you are not a dwarf.)</Description>
+                    <Icon>KenseiFocusAxes</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AttackBonus</Type>
+                        <Amount>1</Amount>
+                        <WeaponClass>Axe</WeaponClass>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Kensei Focus: Crossbows</Name>
+                    <Description>You focus your Kensei training in the use of crossbows. You gain +1 to hit with heavy crossbows, and light crossbows. (The Exotic Weapon Mastery enhancement will add great crossbows and repeating crossbows to this list of weapons.)</Description>
+                    <Icon>KenseiFocusCrossbows</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AttackBonus</Type>
+                        <Amount>1</Amount>
+                        <WeaponClass>Crossbows</WeaponClass>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Kensei Focus: Druidic Weapons</Name>
+                    <Description>You focus your Kensei training in the use of druidic weapons. You gain +1 to hit with clubs, daggers, darts, quarterstaves, scimitars, sickles, and when using unarmed combat.</Description>
+                    <Icon>KenseiFocusDruidicWeapons</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AttackBonus</Type>
+                        <Amount>1</Amount>
+                        <WeaponClass>Druidic</WeaponClass>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Kensei Focus: Heavy Blades</Name>
+                    <Description>You focus your Kensei training in the use of heavy blades. You gain +1 to hit with falchions, greatswords, longswords, and scimitars. (The Exotic Weapon Mastery enhancement will add bastard swords and khopeshes to this list of weapons.)</Description>
+                    <Icon>KenseiFocusHeavyBlades</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AttackBonus</Type>
+                        <Amount>1</Amount>
+                        <WeaponClass>HeavyBlades</WeaponClass>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Kensei Focus: Light Blades</Name>
+                    <Description>You focus your Kensei training in the use of light blades. You gain +1 to hit with daggers, kukri, rapiers, shortswords, and throwing daggers.</Description>
+                    <Icon>KenseiFocusLightBlades</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AttackBonus</Type>
+                        <Amount>1</Amount>
+                        <WeaponClass>LightBlades</WeaponClass>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Kensei Focus: Maces and Clubs</Name>
+                    <Description>You focus your Kensei training in the use of maces and clubs. You gain +1 to hit with clubs, light maces, heavy maces, greatclubs, morningstars, and quarterstaves.</Description>
+                    <Icon>KenseiFocusMacesAndClubs</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AttackBonus</Type>
+                        <Amount>1</Amount>
+                        <WeaponClass>MacesAndClubs</WeaponClass>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Kensei Focus: Martial Arts</Name>
+                    <Description>You focus your Kensei training in the use of monk weapons. You gain +1 to hit with kama, quarterstaves, shuriken, and when using unarmed combat.</Description>
+                    <Icon>KenseiFocusMartialArts</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AttackBonus</Type>
+                        <Amount>1</Amount>
+                        <WeaponClass>MartialArts</WeaponClass>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Kensei Focus: Picks and Hammers</Name>
+                    <Description>You focus your Kensei training in the use of picks and hammers. You gain +1 to hit with light picks, heavy picks, light hammers, warhammers, mauls, and throwing hammers.</Description>
+                    <Icon>KenseiFocusPicksAndHammers</Icon>
+                    <Cost>1</Cost>
+                    <Effect>
+                        <Type>AttackBonus</Type>
+                        <Amount>1</Amount>
+                        <WeaponClass>PicksAndHammers</WeaponClass>
+                    </Effect>
+                </EnhancementSelection>
+            </Selector>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>KenseiCore2</InternalName>
+            <Name>Spiritual Bond</Name>
+            <Description>When you have a weapon equipped in your main hand that is part of your Focus, it gains On Vorpal: If this weapon has fewer stacks of Battle Meditation than the number of Kensei Core Abilities you possess, it gains one stack of Battle Meditation: This weapon gains a +1 Insight bonus to Enhancement bonus for 20 seconds. This stacks up to 10 times. On timer expiration, 1 stack of Meditative Focus is removed at a time</Description>
+            <Icon>SpiritualBond</Icon>
+            <XPosition>1</XPosition>
+            <YPosition>0</YPosition>
+            <Cost>1</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>5</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <Class>Fighter</Class>
+                    <Level>3</Level>
+                </Requirement>
+                <Requirement>
+                    <Enhancement>KenseiCore1</Enhancement>
+                </Requirement>
+            </Requirements>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>KenseiCore3</InternalName>
+            <Name>Strike With No Thought</Name>
+            <Description>Passive: Your weapons gain +1 competence bonus to Critical Damage Multiplier. When you have a weapon equipped in your main hand that is part of your Focus, you gain 1% Doublestrike or 1% Doubleshot (depending on whether your Focus is melee or ranged). Each Core Ability you acquire from this tree increases this bonus by 1%.</Description>
+            <Icon>StrikeWithNoThought</Icon>
+            <XPosition>2</XPosition>
+            <YPosition>0</YPosition>
+            <Cost>1</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>10</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <Class>Fighter</Class>
+                    <Level>6</Level>
+                </Requirement>
+                <Requirement>
+                    <Enhancement>KenseiCore2</Enhancement>
+                </Requirement>
+            </Requirements>
+            <Effect>
+                <Type>CriticalRange</Type>
+                <Amount>1</Amount>
+            </Effect>
+            <Effect>
+                <Type>Doublestrike</Type>
+                <Amount>1</Amount>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>KenseiCore4</InternalName>
+            <Name>Power Surge</Name>
+            <Description>Action Boost: You gain +8 Psionic bonus to all attributes for 60 seconds. If you possess the ability to generate Ki, you gain On Hit: +2 Ki.</Description>
+            <Icon>KenseiPowerSurge</Icon>
+            <XPosition>3</XPosition>
+            <YPosition>0</YPosition>
+            <Cost>1</Cost>
+            <Ranks>1</Ranks>
+            <Clickie/>
+            <MinSpent>20</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <Class>Fighter</Class>
+                    <Level>12</Level>
+                </Requirement>
+                <Requirement>
+                    <Enhancement>KenseiCore3</Enhancement>
+                </Requirement>
+            </Requirements>
+            <!--Psyonic bonus +8 toallatributes-->
+            <Effect>
+                <Type>Doublestrike</Type>
+                <Amount>1</Amount>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>KenseiCore5</InternalName>
+            <Name>One Cut</Name>
+            <Description>Activate: Your currently equipped primary weapon gains x1 Critical Damage Multiplier for 15 secs.(Cooldown: 1 minute) Passive: +20 Melee Power and Ranged Power.</Description>
+            <Icon>KenseiOneCut</Icon>
+            <XPosition>4</XPosition>
+            <YPosition>0</YPosition>
+            <Cost>1</Cost>
+            <Ranks>1</Ranks>
+            <Clickie/>
+            <MinSpent>30</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <Class>Fighter</Class>
+                    <Level>18</Level>
+                </Requirement>
+                <Requirement>
+                    <Enhancement>KenseiCore4</Enhancement>
+                </Requirement>
+            </Requirements>
+            <Effect>
+                <Type>Doublestrike</Type>
+                <Amount>1</Amount>
+            </Effect>
+            <Effect>
+                <Type>MeleePower</Type>
+                <Amount>20</Amount>
+            </Effect>
+            <Effect>
+                <Type>RangedPower</Type>
+                <Amount>20</Amount>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>KenseiCore6</InternalName>
+            <Name>Alacrity</Name>
+            <Description>You gain +2 to all ability scores, 15% doublestrike and doubleshot, 4 additional action boost uses ans +2 to the DCs of all tactical feats.</Description>
+            <Icon>KenseiAlacrity</Icon>
+            <XPosition>5</XPosition>
+            <YPosition>0</YPosition>
+            <Cost>1</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>40</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <Class>Fighter</Class>
+                    <Level>20</Level>
+                </Requirement>
+                <Requirement>
+                    <Enhancement>KenseiCore5</Enhancement>
+                </Requirement>
+            </Requirements>
+            <Effect>
+                <Type>AbilityBonus</Type>
+                <Ability>All</Ability>
+                <Amount>2</Amount>
+            </Effect>
+            <Effect>
+                <Type>Doublestrike</Type>
+                <Amount>16</Amount>
+            </Effect>
+            <Effect>
+                <Type>Doubleshot</Type>
+                <Amount>15</Amount>
+            </Effect>
+            <Effect>
+                <Type>ActionBoosts</Type>
+                <Amount>4</Amount>
+            </Effect>
+            <Effect>
+                <Type>TacticalDCs</Type>
+                <Amount>2</Amount>
+            </Effect>
+        </EnhancementTreeItem>
+        <!--Kensei Tier 1 Enhancements-->
+        <EnhancementTreeItem>
+            <InternalName>KenseiExtraActionBoost</InternalName>
+            <Name>Extra Action Boost</Name>
+            <Description>+1/+2/+3 extra action boost</Description>
+            <Icon>KenseiExtraActionBoost</Icon>
+            <XPosition>0</XPosition>
+            <YPosition>1</YPosition>
+            <Cost>2</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>1</MinSpent>
+            <Requirements/>
+            <Effect>
+                <Type>ActionBoost</Type>
+                <AmountVector size="3">1 2 3</AmountVector>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>KenseiWeaponGroupSecializationI</InternalName>
+            <Name>Weapon Group Specialization</Name>
+            <Description>You gain +1 to hit and damage with your Focus group. This bonus does not apply to exotic weapons unless you also take Exotic Weapon Mastery. (Dwarves do not need to take Exotic Weapon Mastery to apply this bonus to Dwarven Axes.) Repeating crossbows only gain +1 to hit, not damage.</Description>
+            <Icon>KenseiFocus</Icon>
+            <XPosition>1</XPosition>
+            <YPosition>1</YPosition>
+            <Cost>2</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>1</MinSpent>
+            <ArrowRight/>
+            <ArrowUp/>
+            <Requirements/>
+            <Selector>
+                <EnhancementSelection>
+                    <Name>Kensei Focus: Archery</Name>
+                    <Description>You focus your Kensei training in the use of bows. You gain +1 to hit with longbows and shortbows</Description>
+                    <Icon>KenseiFocusArchery</Icon>
+                    <Cost>2</Cost>
+                    <Requirements>
+                        <Requirement>
+                            <Enhancement>KenseiCore1</Enhancement>
+                            <Selection>Kensei Focus: Archery</Selection>
+                        </Requirement>
+                    </Requirements>
+                    <Effect>
+                        <Type>AttackBonus</Type>
+                        <Amount>1</Amount>
+                        <WeaponClass>Bows</WeaponClass>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Kensei Focus: Axes</Name>
+                    <Description>You focus your Kensei training in the use of axes. You gain +1 to hit with battleaxes, greataxes, handaxes, and throwing axes. Dwarves also receive this bonus with dwarven waraxes. (The Exotic Weapon Mastery enhancement will add dwarven waraxes to this list of weapons if you are not a dwarf.)</Description>
+                    <Icon>KenseiFocusAxes</Icon>
+                    <Cost>2</Cost>
+                    <Requirements>
+                        <Requirement>
+                            <Enhancement>KenseiCore1</Enhancement>
+                            <Selection>Kensei Focus: Axes</Selection>
+                        </Requirement>
+                    </Requirements>
+                    <Effect>
+                        <Type>AttackBonus</Type>
+                        <Amount>1</Amount>
+                        <WeaponClass>Axe</WeaponClass>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Kensei Focus: Crossbows</Name>
+                    <Description>You focus your Kensei training in the use of crossbows. You gain +1 to hit with heavy crossbows, and light crossbows. (The Exotic Weapon Mastery enhancement will add great crossbows and repeating crossbows to this list of weapons.)</Description>
+                    <Icon>KenseiFocusCrossbows</Icon>
+                    <Cost>2</Cost>
+                    <Requirements>
+                        <Requirement>
+                            <Enhancement>KenseiCore1</Enhancement>
+                            <Selection>Kensei Focus: Crossbows</Selection>
+                        </Requirement>
+                    </Requirements>
+                    <Effect>
+                        <Type>AttackBonus</Type>
+                        <Amount>1</Amount>
+                        <WeaponClass>Crossbows</WeaponClass>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Kensei Focus: Druidic Weapons</Name>
+                    <Description>You focus your Kensei training in the use of druidic weapons. You gain +1 to hit with clubs, daggers, darts, quarterstaves, scimitars, sickles, and when using unarmed combat.</Description>
+                    <Icon>KenseiFocusDruidicWeapons</Icon>
+                    <Cost>2</Cost>
+                    <Requirements>
+                        <Requirement>
+                            <Enhancement>KenseiCore1</Enhancement>
+                            <Selection>Kensei Focus: Druidic Weapons</Selection>
+                        </Requirement>
+                    </Requirements>
+                    <Effect>
+                        <Type>AttackBonus</Type>
+                        <Amount>1</Amount>
+                        <WeaponClass>Druidic</WeaponClass>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Kensei Focus: Heavy Blades</Name>
+                    <Description>You focus your Kensei training in the use of heavy blades. You gain +1 to hit with falchions, greatswords, longswords, and scimitars. (The Exotic Weapon Mastery enhancement will add bastard swords and khopeshes to this list of weapons.)</Description>
+                    <Icon>KenseiFocusHeavyBlades</Icon>
+                    <Cost>2</Cost>
+                    <Requirements>
+                        <Requirement>
+                            <Enhancement>KenseiCore1</Enhancement>
+                            <Selection>Kensei Focus: Heavy Blades</Selection>
+                        </Requirement>
+                    </Requirements>
+                    <Effect>
+                        <Type>AttackBonus</Type>
+                        <Amount>1</Amount>
+                        <WeaponClass>HeavyBlades</WeaponClass>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Kensei Focus: Light Blades</Name>
+                    <Description>You focus your Kensei training in the use of light blades. You gain +1 to hit with daggers, kukri, rapiers, shortswords, and throwing daggers.</Description>
+                    <Icon>KenseiFocusLightBlades</Icon>
+                    <Cost>2</Cost>
+                    <Requirements>
+                        <Requirement>
+                            <Enhancement>KenseiCore1</Enhancement>
+                            <Selection>Kensei Focus: Light Blades</Selection>
+                        </Requirement>
+                    </Requirements>
+                    <Effect>
+                        <Type>AttackBonus</Type>
+                        <Amount>1</Amount>
+                        <WeaponClass>LightBlades</WeaponClass>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Kensei Focus: Maces and Clubs</Name>
+                    <Description>You focus your Kensei training in the use of maces and clubs. You gain +1 to hit with clubs, light maces, heavy maces, greatclubs, morningstars, and quarterstaves.</Description>
+                    <Icon>KenseiFocusMacesAndClubs</Icon>
+                    <Cost>2</Cost>
+                    <Requirements>
+                        <Requirement>
+                            <Enhancement>KenseiCore1</Enhancement>
+                            <Selection>Kensei Focus: Maces and Clubs</Selection>
+                        </Requirement>
+                    </Requirements>
+                    <Effect>
+                        <Type>AttackBonus</Type>
+                        <Amount>1</Amount>
+                        <WeaponClass>MacesAndClubs</WeaponClass>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Kensei Focus: Martial Arts</Name>
+                    <Description>You focus your Kensei training in the use of monk weapons. You gain +1 to hit with kama, quarterstaves, shuriken, and when using unarmed combat.</Description>
+                    <Icon>KenseiFocusMartialArts</Icon>
+                    <Cost>2</Cost>
+                    <Requirements>
+                        <Requirement>
+                            <Enhancement>KenseiCore1</Enhancement>
+                            <Selection>Kensei Focus: Martial Arts</Selection>
+                        </Requirement>
+                    </Requirements>
+                    <Effect>
+                        <Type>AttackBonus</Type>
+                        <Amount>1</Amount>
+                        <WeaponClass>MartialArts</WeaponClass>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Kensei Focus: Picks and Hammers</Name>
+                    <Description>You focus your Kensei training in the use of picks and hammers. You gain +1 to hit with light picks, heavy picks, light hammers, warhammers, mauls, and throwing hammers.</Description>
+                    <Icon>KenseiFocusPicksAndHammers</Icon>
+                    <Cost>2</Cost>
+                    <Requirements>
+                        <Requirement>
+                            <Enhancement>KenseiCore1</Enhancement>
+                            <Selection>Kensei Focus: Picks and Hammers</Selection>
+                        </Requirement>
+                    </Requirements>
+                    <Effect>
+                        <Type>AttackBonus</Type>
+                        <Amount>1</Amount>
+                        <WeaponClass>PicksAndHammers</WeaponClass>
+                    </Effect>
+                </EnhancementSelection>
+            </Selector>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>KenseiExoticWeaponMastery</InternalName>
+            <Name>Exotic Weapon Mastery</Name>
+            <Description>Adds exotic weapons to your Kensei Focus. Axes: Adds dwarven axe if you are not a dwarf. (This has no effect if you are a dwarf.) Crossbows: Adds great crossbows, heavy repeating crossbows, and light repeating crossbows. Heavy Blades: Adds bastard swords and khopesh. Note: This enhancement does not grant exotic proficiency.</Description>
+            <Icon>KenseiExoticWeaponMastery</Icon>
+            <XPosition>2</XPosition>
+            <YPosition>1</YPosition>
+            <Cost>2</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>1</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>KenseiWeaponGroupSecializationI</Enhancement>
+                </Requirement>
+            </Requirements>
+            <!--Handle exotic weapon mastery-->
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>KenseiActionBoostI</InternalName>
+            <Name>Action Boost</Name>
+            <Description>Choose an action boost, cooldown 30 seconds.</Description>
+            <Icon>KenseiActionBoost</Icon>
+            <XPosition>3</XPosition>
+            <YPosition>1</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>1</MinSpent>
+            <Clickie/>
+            <ArrowUp/>
+            <Requirements/>
+            <Selector>
+                <EnhancementSelection>
+                    <Name>Attack Boost</Name>
+                    <Description>Activate to gain +4/+6/+8 Action Boost bonus to hit and damage for 20 seconds. </Description>
+                    <Icon>KenseiAttackBoost</Icon>
+                    <Cost>1</Cost>
+                    <Requirements/>
+                    <Effect>
+                        <Type>AttackBonus</Type>
+                        <AmountVector size="3">4 6 8</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>DamageBonus</Type>
+                        <AmountVector size="3">4 6 8</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Haste Boost</Name>
+                    <Description>Activate to gain +10%/+20%/+30% Action Boost bonus to attack speed for 20 seconds.</Description>
+                    <Icon>KenseiHasteBoost</Icon>
+                    <Cost>2</Cost>
+                    <!--Handle attack speed bonus here-->
+                </EnhancementSelection>
+            </Selector>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>KenseiReedInTheWind</InternalName>
+            <Name>Reed In The Wind</Name>
+            <Description>Focus Melee Attack: Deals +1/2/3[W] damage. If you successfully damage your target you gain a +3%/6%/9% Insight bonus to Dodge for 6 seconds. (Cooldown: 15 seconds.)</Description>
+            <Icon>KenseiReedInTheWind</Icon>
+            <XPosition>4</XPosition>
+            <YPosition>1</YPosition>
+            <Cost>2</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>1</MinSpent>
+            <Clickie/>
+            <Requirements/>
+        </EnhancementTreeItem>
+        <!--Kensei Tier 2 Enhancements-->
+        <EnhancementTreeItem>
+            <InternalName>KenseiTactics</InternalName>
+            <Name>Tactics</Name>
+            <Description>+1/2/3 to the DC's of your Tactical abilities.</Description>
+            <Icon>KenseiTactics</Icon>
+            <XPosition>0</XPosition>
+            <YPosition>2</YPosition>
+            <Cost>2</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>5</MinSpent>
+            <Requirements/>
+            <Effect>
+                <Type>TacticalDC</Type>
+                <AmountVector size="3">1 2 3</AmountVector>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>KenseiWeaponGroupSecializationII</InternalName>
+            <Name>Weapon Group Specialization</Name>
+            <Description>You gain +1 to hit and +2 damage with one handed weapons, bows and repeating crossbows. You gain +1 to hit and +3 damage with two handed weapons and non-repeating crossbows. These bonuses only apply to weapons in your focus group.</Description>
+            <Icon>KenseiFocus</Icon>
+            <XPosition>1</XPosition>
+            <YPosition>2</YPosition>
+            <Cost>2</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>5</MinSpent>
+            <ArrowUp/>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>KenseiWeaponGroupSecializationI</Enhancement>
+                </Requirement>
+            </Requirements>
+            <Selector>
+                <EnhancementSelection>
+                    <Name>Kensei Focus: Archery</Name>
+                    <Description>You focus your Kensei training in the use of bows. You gain +1 to hit with longbows and shortbows</Description>
+                    <Icon>KenseiFocusArchery</Icon>
+                    <Cost>2</Cost>
+                    <Requirements>
+                        <Requirement>
+                            <Enhancement>KenseiCore1</Enhancement>
+                            <Selection>Kensei Focus: Archery</Selection>
+                        </Requirement>
+                    </Requirements>
+                    <Effect>
+                        <Type>AttackBonus</Type>
+                        <Amount>1</Amount>
+                        <WeaponClass>Bows</WeaponClass>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Kensei Focus: Axes</Name>
+                    <Description>You focus your Kensei training in the use of axes. You gain +1 to hit with battleaxes, greataxes, handaxes, and throwing axes. Dwarves also receive this bonus with dwarven waraxes. (The Exotic Weapon Mastery enhancement will add dwarven waraxes to this list of weapons if you are not a dwarf.)</Description>
+                    <Icon>KenseiFocusAxes</Icon>
+                    <Cost>2</Cost>
+                    <Requirements>
+                        <Requirement>
+                            <Enhancement>KenseiCore1</Enhancement>
+                            <Selection>Kensei Focus: Axes</Selection>
+                        </Requirement>
+                    </Requirements>
+                    <Effect>
+                        <Type>AttackBonus</Type>
+                        <Amount>1</Amount>
+                        <WeaponClass>Axe</WeaponClass>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Kensei Focus: Crossbows</Name>
+                    <Description>You focus your Kensei training in the use of crossbows. You gain +1 to hit with heavy crossbows, and light crossbows. (The Exotic Weapon Mastery enhancement will add great crossbows and repeating crossbows to this list of weapons.)</Description>
+                    <Icon>KenseiFocusCrossbows</Icon>
+                    <Cost>2</Cost>
+                    <Requirements>
+                        <Requirement>
+                            <Enhancement>KenseiCore1</Enhancement>
+                            <Selection>Kensei Focus: Crossbows</Selection>
+                        </Requirement>
+                    </Requirements>
+                    <Effect>
+                        <Type>AttackBonus</Type>
+                        <Amount>1</Amount>
+                        <WeaponClass>Crossbows</WeaponClass>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Kensei Focus: Druidic Weapons</Name>
+                    <Description>You focus your Kensei training in the use of druidic weapons. You gain +1 to hit with clubs, daggers, darts, quarterstaves, scimitars, sickles, and when using unarmed combat.</Description>
+                    <Icon>KenseiFocusDruidicWeapons</Icon>
+                    <Cost>2</Cost>
+                    <Requirements>
+                        <Requirement>
+                            <Enhancement>KenseiCore1</Enhancement>
+                            <Selection>Kensei Focus: Druidic Weapons</Selection>
+                        </Requirement>
+                    </Requirements>
+                    <Effect>
+                        <Type>AttackBonus</Type>
+                        <Amount>1</Amount>
+                        <WeaponClass>Druidic</WeaponClass>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Kensei Focus: Heavy Blades</Name>
+                    <Description>You focus your Kensei training in the use of heavy blades. You gain +1 to hit with falchions, greatswords, longswords, and scimitars. (The Exotic Weapon Mastery enhancement will add bastard swords and khopeshes to this list of weapons.)</Description>
+                    <Icon>KenseiFocusHeavyBlades</Icon>
+                    <Cost>2</Cost>
+                    <Requirements>
+                        <Requirement>
+                            <Enhancement>KenseiCore1</Enhancement>
+                            <Selection>Kensei Focus: Heavy Blades</Selection>
+                        </Requirement>
+                    </Requirements>
+                    <Effect>
+                        <Type>AttackBonus</Type>
+                        <Amount>1</Amount>
+                        <WeaponClass>HeavyBlades</WeaponClass>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Kensei Focus: Light Blades</Name>
+                    <Description>You focus your Kensei training in the use of light blades. You gain +1 to hit with daggers, kukri, rapiers, shortswords, and throwing daggers.</Description>
+                    <Icon>KenseiFocusLightBlades</Icon>
+                    <Cost>2</Cost>
+                    <Requirements>
+                        <Requirement>
+                            <Enhancement>KenseiCore1</Enhancement>
+                            <Selection>Kensei Focus: Light Blades</Selection>
+                        </Requirement>
+                    </Requirements>
+                    <Effect>
+                        <Type>AttackBonus</Type>
+                        <Amount>1</Amount>
+                        <WeaponClass>LightBlades</WeaponClass>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Kensei Focus: Maces and Clubs</Name>
+                    <Description>You focus your Kensei training in the use of maces and clubs. You gain +1 to hit with clubs, light maces, heavy maces, greatclubs, morningstars, and quarterstaves.</Description>
+                    <Icon>KenseiFocusMacesAndClubs</Icon>
+                    <Cost>2</Cost>
+                    <Requirements>
+                        <Requirement>
+                            <Enhancement>KenseiCore1</Enhancement>
+                            <Selection>Kensei Focus: Maces and Clubs</Selection>
+                        </Requirement>
+                    </Requirements>
+                    <Effect>
+                        <Type>AttackBonus</Type>
+                        <Amount>1</Amount>
+                        <WeaponClass>MacesAndClubs</WeaponClass>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Kensei Focus: Martial Arts</Name>
+                    <Description>You focus your Kensei training in the use of monk weapons. You gain +1 to hit with kama, quarterstaves, shuriken, and when using unarmed combat.</Description>
+                    <Icon>KenseiFocusMartialArts</Icon>
+                    <Cost>2</Cost>
+                    <Requirements>
+                        <Requirement>
+                            <Enhancement>KenseiCore1</Enhancement>
+                            <Selection>Kensei Focus: Martial Arts</Selection>
+                        </Requirement>
+                    </Requirements>
+                    <Effect>
+                        <Type>AttackBonus</Type>
+                        <Amount>1</Amount>
+                        <WeaponClass>MartialArts</WeaponClass>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Kensei Focus: Picks and Hammers</Name>
+                    <Description>You focus your Kensei training in the use of picks and hammers. You gain +1 to hit with light picks, heavy picks, light hammers, warhammers, mauls, and throwing hammers.</Description>
+                    <Icon>KenseiFocusPicksAndHammers</Icon>
+                    <Cost>2</Cost>
+                    <Requirements>
+                        <Requirement>
+                            <Enhancement>KenseiCore1</Enhancement>
+                            <Selection>Kensei Focus: Picks and Hammers</Selection>
+                        </Requirement>
+                    </Requirements>
+                    <Effect>
+                        <Type>AttackBonus</Type>
+                        <Amount>1</Amount>
+                        <WeaponClass>PicksAndHammers</WeaponClass>
+                    </Effect>
+                </EnhancementSelection>
+            </Selector>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>KenseiImprovedDodge</InternalName>
+            <Name>Improved Dodge</Name>
+            <Description>+1%/+2%/+3% Dodge when wearing light or no armor. Note: Does not stack with Tempest: Improved Dodge.</Description>
+            <Icon>KenseiImprovedDodge</Icon>
+            <XPosition>2</XPosition>
+            <YPosition>2</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>5</MinSpent>
+            <Requirements/>
+            <ArrowUp/>
+            <Effect>
+                <Type>DodgeBonus</Type>
+                <AmountVector size="3">1 2 3</AmountVector>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>KenseiTBD</InternalName>
+            <Name>TBD</Name>
+            <Description>Description missing</Description>
+            <Icon>KenseiTBD</Icon>
+            <XPosition>3</XPosition>
+            <YPosition>2</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>5</MinSpent>
+            <ArrowUp/>
+            <Clickie/>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>KenseiActionBoostI</Enhancement>
+                </Requirement>
+            </Requirements>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>KenseiAsceticTraining</InternalName>
+            <Name>Ascetic Training</Name>
+            <Description>Your training gives various benefits.</Description>
+            <Icon>KenseiAsceticTraining</Icon>
+            <XPosition>4</XPosition>
+            <YPosition>2</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>5</MinSpent>
+            <Requirements/>
+            <Selector>
+                <EnhancementSelection>
+                    <Name>Agility</Name>
+                    <Description>+1/+2/+3 Concentration, Reflex Saves, and Dodge cap (in light or no armor). Note: Does not stack with Ninja Spy: Agility.</Description>
+                    <Icon>KenseiAgility</Icon>
+                    <Cost>1</Cost>
+                    <Requirements/>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Concentration</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SaveBonus</Type>
+                        <Skill>Reflex</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <!---Only applies in light or no armourr-->
+                        <Type>DodgeCap</Type>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Conditioning</Name>
+                    <Description>+1/+2/+3 Fortitude Saves, +5/+10/+15 HP and Fortification</Description>
+                    <Icon>KenseiConditioning</Icon>
+                    <Cost>1</Cost>
+                    <Requirements/>
+                    <Effect>
+                        <Type>SaveBonus</Type>
+                        <Save>Fortitude</Save>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>Hitpoints</Type>
+                        <AmountVector size="3">5 10 15</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>Fortification</Type>
+                        <AmountVector size="3">5 10 15</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Contemplation</Name>
+                    <Description>+1/+2/+3 Concentration and Will Saves. Rank 3: Your passive ki regeneration is increased by 1.</Description>
+                    <Icon>KenseiContemplation</Icon>
+                    <Cost>1</Cost>
+                    <Requirements/>
+                    <Effect>
+                        <Type>SkillBonus</Type>
+                        <Skill>Concentration</Skill>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>SaveBonus</Type>
+                        <Save>Will</Save>
+                        <AmountVector size="3">1 2 3</AmountVector>
+                    </Effect>
+                    <Effect>
+                        <Type>KiRegeneration</Type>
+                        <AmountVector size="3">0 0 1</AmountVector>
+                    </Effect>
+                </EnhancementSelection>
+            </Selector>
+        </EnhancementTreeItem>
+        <!--Kensei Tier 3 Enhancements-->
+        <EnhancementTreeItem>
+            <InternalName>KenseiCriticalMastery</InternalName>
+            <Name>Critical Mastery</Name>
+            <Description>+1/+2/+3 to confirm critical hits and critical hit damage (before weapon multipliers)</Description>
+            <Icon>KenseiCriticalMastery</Icon>
+            <XPosition>0</XPosition>
+            <YPosition>3</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>10</MinSpent>
+            <Requirements/>
+            <ArrowUp/>
+            <Effect>
+                <Type>CriticalAttackBonus</Type>
+                <AmountVector size="3">1 2 3</AmountVector>
+            </Effect>
+            <Effect>
+                <Type>CriticalDamageBonus</Type>
+                <AmountVector size="3">1 2 3</AmountVector>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>KenseiWeaponGroupSecializationIII</InternalName>
+            <Name>Weapon Group Specialization</Name>
+            <Description>Gain +1 to hit and +2 damage with weapons in your Focus group.</Description>
+            <Icon>KenseiFocus</Icon>
+            <XPosition>1</XPosition>
+            <YPosition>3</YPosition>
+            <Cost>2</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>10</MinSpent>
+            <ArrowUp/>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>KenseiWeaponGroupSecializationII</Enhancement>
+                </Requirement>
+            </Requirements>
+            <Selector>
+                <EnhancementSelection>
+                    <Name>Kensei Focus: Archery</Name>
+                    <Description>You focus your Kensei training in the use of bows. You gain +1 to hit with longbows and shortbows</Description>
+                    <Icon>KenseiFocusArchery</Icon>
+                    <Cost>2</Cost>
+                    <Requirements>
+                        <Requirement>
+                            <Enhancement>KenseiCore1</Enhancement>
+                            <Selection>Kensei Focus: Archery</Selection>
+                        </Requirement>
+                    </Requirements>
+                    <Effect>
+                        <Type>AttackBonus</Type>
+                        <Amount>1</Amount>
+                        <WeaponClass>Bows</WeaponClass>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Kensei Focus: Axes</Name>
+                    <Description>You focus your Kensei training in the use of axes. You gain +1 to hit with battleaxes, greataxes, handaxes, and throwing axes. Dwarves also receive this bonus with dwarven waraxes. (The Exotic Weapon Mastery enhancement will add dwarven waraxes to this list of weapons if you are not a dwarf.)</Description>
+                    <Icon>KenseiFocusAxes</Icon>
+                    <Cost>2</Cost>
+                    <Requirements>
+                        <Requirement>
+                            <Enhancement>KenseiCore1</Enhancement>
+                            <Selection>Kensei Focus: Axes</Selection>
+                        </Requirement>
+                    </Requirements>
+                    <Effect>
+                        <Type>AttackBonus</Type>
+                        <Amount>1</Amount>
+                        <WeaponClass>Axe</WeaponClass>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Kensei Focus: Crossbows</Name>
+                    <Description>You focus your Kensei training in the use of crossbows. You gain +1 to hit with heavy crossbows, and light crossbows. (The Exotic Weapon Mastery enhancement will add great crossbows and repeating crossbows to this list of weapons.)</Description>
+                    <Icon>KenseiFocusCrossbows</Icon>
+                    <Cost>2</Cost>
+                    <Requirements>
+                        <Requirement>
+                            <Enhancement>KenseiCore1</Enhancement>
+                            <Selection>Kensei Focus: Crossbows</Selection>
+                        </Requirement>
+                    </Requirements>
+                    <Effect>
+                        <Type>AttackBonus</Type>
+                        <Amount>1</Amount>
+                        <WeaponClass>Crossbows</WeaponClass>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Kensei Focus: Druidic Weapons</Name>
+                    <Description>You focus your Kensei training in the use of druidic weapons. You gain +1 to hit with clubs, daggers, darts, quarterstaves, scimitars, sickles, and when using unarmed combat.</Description>
+                    <Icon>KenseiFocusDruidicWeapons</Icon>
+                    <Cost>2</Cost>
+                    <Requirements>
+                        <Requirement>
+                            <Enhancement>KenseiCore1</Enhancement>
+                            <Selection>Kensei Focus: Druidic Weapons</Selection>
+                        </Requirement>
+                    </Requirements>
+                    <Effect>
+                        <Type>AttackBonus</Type>
+                        <Amount>1</Amount>
+                        <WeaponClass>Druidic</WeaponClass>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Kensei Focus: Heavy Blades</Name>
+                    <Description>You focus your Kensei training in the use of heavy blades. You gain +1 to hit with falchions, greatswords, longswords, and scimitars. (The Exotic Weapon Mastery enhancement will add bastard swords and khopeshes to this list of weapons.)</Description>
+                    <Icon>KenseiFocusHeavyBlades</Icon>
+                    <Cost>2</Cost>
+                    <Requirements>
+                        <Requirement>
+                            <Enhancement>KenseiCore1</Enhancement>
+                            <Selection>Kensei Focus: Heavy Blades</Selection>
+                        </Requirement>
+                    </Requirements>
+                    <Effect>
+                        <Type>AttackBonus</Type>
+                        <Amount>1</Amount>
+                        <WeaponClass>HeavyBlades</WeaponClass>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Kensei Focus: Light Blades</Name>
+                    <Description>You focus your Kensei training in the use of light blades. You gain +1 to hit with daggers, kukri, rapiers, shortswords, and throwing daggers.</Description>
+                    <Icon>KenseiFocusLightBlades</Icon>
+                    <Cost>2</Cost>
+                    <Requirements>
+                        <Requirement>
+                            <Enhancement>KenseiCore1</Enhancement>
+                            <Selection>Kensei Focus: Light Blades</Selection>
+                        </Requirement>
+                    </Requirements>
+                    <Effect>
+                        <Type>AttackBonus</Type>
+                        <Amount>1</Amount>
+                        <WeaponClass>LightBlades</WeaponClass>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Kensei Focus: Maces and Clubs</Name>
+                    <Description>You focus your Kensei training in the use of maces and clubs. You gain +1 to hit with clubs, light maces, heavy maces, greatclubs, morningstars, and quarterstaves.</Description>
+                    <Icon>KenseiFocusMacesAndClubs</Icon>
+                    <Cost>2</Cost>
+                    <Requirements>
+                        <Requirement>
+                            <Enhancement>KenseiCore1</Enhancement>
+                            <Selection>Kensei Focus: Maces and Clubs</Selection>
+                        </Requirement>
+                    </Requirements>
+                    <Effect>
+                        <Type>AttackBonus</Type>
+                        <Amount>1</Amount>
+                        <WeaponClass>MacesAndClubs</WeaponClass>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Kensei Focus: Martial Arts</Name>
+                    <Description>You focus your Kensei training in the use of monk weapons. You gain +1 to hit with kama, quarterstaves, shuriken, and when using unarmed combat.</Description>
+                    <Icon>KenseiFocusMartialArts</Icon>
+                    <Cost>2</Cost>
+                    <Requirements>
+                        <Requirement>
+                            <Enhancement>KenseiCore1</Enhancement>
+                            <Selection>Kensei Focus: Martial Arts</Selection>
+                        </Requirement>
+                    </Requirements>
+                    <Effect>
+                        <Type>AttackBonus</Type>
+                        <Amount>1</Amount>
+                        <WeaponClass>MartialArts</WeaponClass>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Kensei Focus: Picks and Hammers</Name>
+                    <Description>You focus your Kensei training in the use of picks and hammers. You gain +1 to hit with light picks, heavy picks, light hammers, warhammers, mauls, and throwing hammers.</Description>
+                    <Icon>KenseiFocusPicksAndHammers</Icon>
+                    <Cost>2</Cost>
+                    <Requirements>
+                        <Requirement>
+                            <Enhancement>KenseiCore1</Enhancement>
+                            <Selection>Kensei Focus: Picks and Hammers</Selection>
+                        </Requirement>
+                    </Requirements>
+                    <Effect>
+                        <Type>AttackBonus</Type>
+                        <Amount>1</Amount>
+                        <WeaponClass>PicksAndHammers</WeaponClass>
+                    </Effect>
+                </EnhancementSelection>
+            </Selector>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>KenseiAthleticMastery</InternalName>
+            <Name>Athletic Mastery</Name>
+            <Description>+1/+2/+3 Maximum Dexterity bonus and Dodge cap. -1/-2/-3 Armor Check Penalty. (works with all armor types)</Description>
+            <Icon>KenseiAthleticMastery</Icon>
+            <XPosition>2</XPosition>
+            <YPosition>3</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>10</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <Feat>Mobility</Feat>
+                </Requirement>
+                <Requirement>
+                    <Enhancement>KenseiImprovedDodge</Enhancement>
+                </Requirement>
+            </Requirements>
+            <Effect>
+                <Type>MaxDexterityBonus</Type>
+                <AmountVector size="3">1 2 3</AmountVector>
+            </Effect>
+            <Effect>
+                <Type>DodgeCapBonus</Type>
+                <AmountVector size="3">1 2 3</AmountVector>
+            </Effect>
+            <Effect>
+                <Type>ArmorCheckPenalty</Type>
+                <AmountVector size="3">-1 -2 -3</AmountVector>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>KenseiShatteringStrike</InternalName>
+            <Name>Shattering Strike</Name>
+            <Description>Select a melee or ranged special attack that deals extra damage and reduces an opponent's fortification. Choose one: (Cooldown: 10 seconds.)
+            </Description>
+            <Icon>KenseiShatteringStrike</Icon>
+            <XPosition>3</XPosition>
+            <YPosition>3</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>10</MinSpent>
+            <Clickie/>
+            <LongArrowUp/>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>KenseiTBD</Enhancement>
+                </Requirement>
+            </Requirements>
+            <Selector>
+                <EnhancementSelection>
+                    <Name>Shattering Shot</Name>
+                    <Description>Focus Ranged Attack: Deals +1/+2/+3[W] damage. On Damage: Target loses 15% fortification for 10 seconds. (no save)</Description>
+                    <Icon>KenseiShatteringShot</Icon>
+                    <Cost>1</Cost>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Shattering Strike</Name>
+                    <Description>Focus Melee Attack: Deals +1/2/3[W] damage. On Damage: Target loses 15% fortification for 10 seconds. (no save)</Description>
+                    <Icon>KenseiShatteringStrike</Icon>
+                    <Cost>1</Cost>
+                </EnhancementSelection>
+            </Selector>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>KenseiAbilityI</InternalName>
+            <Name>Kensei Ability I</Name>
+            <Description>Select +1 to an ability score of your choice.</Description>
+            <Icon>KenseiAbility</Icon>
+            <XPosition>4</XPosition>
+            <YPosition>3</YPosition>
+            <Cost>2</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>10</MinSpent>
+            <ArrowUp/>
+            <Requirements/>
+            <Selector>
+                <EnhancementSelection>
+                    <Name>+1 Strength</Name>
+                    <Description>+1 Strength</Description>
+                    <Icon>Strength</Icon>
+                    <Cost>2</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Strength</Ability>
+                        <Amount>1</Amount>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>+1 Dexterity</Name>
+                    <Description>+1 Dexterity</Description>
+                    <Icon>Dexterity</Icon>
+                    <Cost>2</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Dexterity</Ability>
+                        <Amount>1</Amount>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>+1 Wisdom</Name>
+                    <Description>+1 Wisdom</Description>
+                    <Icon>Wisdom</Icon>
+                    <Cost>2</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Wisdom</Ability>
+                        <Amount>1</Amount>
+                    </Effect>
+                </EnhancementSelection>
+            </Selector>
+        </EnhancementTreeItem>
+        <!--Kensei Tier 4 Enhancements-->
+        <EnhancementTreeItem>
+            <InternalName>KenseiWeaponGroupSecializationIV</InternalName>
+            <Name>Weapon Group Specialization</Name>
+            <Description>You gain +1 to hit and +2 damage with one handed weapons, bows and repeating crossbows. You gain +1 to hit and +4 damage with two handed weapons and non-repeating crossbows. These bonuses only apply to weapons in your focus group.</Description>
+            <Icon>KenseiFocus</Icon>
+            <XPosition>1</XPosition>
+            <YPosition>4</YPosition>
+            <Cost>2</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>20</MinSpent>
+            <ArrowUp/>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>KenseiWeaponGroupSecializationIII</Enhancement>
+                </Requirement>
+            </Requirements>
+            <Selector>
+                <EnhancementSelection>
+                    <Name>Kensei Focus: Archery</Name>
+                    <Description>You focus your Kensei training in the use of bows. You gain +1 to hit with longbows and shortbows</Description>
+                    <Icon>KenseiFocusArchery</Icon>
+                    <Cost>2</Cost>
+                    <Requirements>
+                        <Requirement>
+                            <Enhancement>KenseiCore1</Enhancement>
+                            <Selection>Kensei Focus: Archery</Selection>
+                        </Requirement>
+                    </Requirements>
+                    <Effect>
+                        <Type>AttackBonus</Type>
+                        <Amount>1</Amount>
+                        <WeaponClass>Bows</WeaponClass>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Kensei Focus: Axes</Name>
+                    <Description>You focus your Kensei training in the use of axes. You gain +1 to hit with battleaxes, greataxes, handaxes, and throwing axes. Dwarves also receive this bonus with dwarven waraxes. (The Exotic Weapon Mastery enhancement will add dwarven waraxes to this list of weapons if you are not a dwarf.)</Description>
+                    <Icon>KenseiFocusAxes</Icon>
+                    <Cost>2</Cost>
+                    <Requirements>
+                        <Requirement>
+                            <Enhancement>KenseiCore1</Enhancement>
+                            <Selection>Kensei Focus: Axes</Selection>
+                        </Requirement>
+                    </Requirements>
+                    <Effect>
+                        <Type>AttackBonus</Type>
+                        <Amount>1</Amount>
+                        <WeaponClass>Axe</WeaponClass>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Kensei Focus: Crossbows</Name>
+                    <Description>You focus your Kensei training in the use of crossbows. You gain +1 to hit with heavy crossbows, and light crossbows. (The Exotic Weapon Mastery enhancement will add great crossbows and repeating crossbows to this list of weapons.)</Description>
+                    <Icon>KenseiFocusCrossbows</Icon>
+                    <Cost>2</Cost>
+                    <Requirements>
+                        <Requirement>
+                            <Enhancement>KenseiCore1</Enhancement>
+                            <Selection>Kensei Focus: Crossbows</Selection>
+                        </Requirement>
+                    </Requirements>
+                    <Effect>
+                        <Type>AttackBonus</Type>
+                        <Amount>1</Amount>
+                        <WeaponClass>Crossbows</WeaponClass>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Kensei Focus: Druidic Weapons</Name>
+                    <Description>You focus your Kensei training in the use of druidic weapons. You gain +1 to hit with clubs, daggers, darts, quarterstaves, scimitars, sickles, and when using unarmed combat.</Description>
+                    <Icon>KenseiFocusDruidicWeapons</Icon>
+                    <Cost>2</Cost>
+                    <Requirements>
+                        <Requirement>
+                            <Enhancement>KenseiCore1</Enhancement>
+                            <Selection>Kensei Focus: Druidic Weapons</Selection>
+                        </Requirement>
+                    </Requirements>
+                    <Effect>
+                        <Type>AttackBonus</Type>
+                        <Amount>1</Amount>
+                        <WeaponClass>Druidic</WeaponClass>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Kensei Focus: Heavy Blades</Name>
+                    <Description>You focus your Kensei training in the use of heavy blades. You gain +1 to hit with falchions, greatswords, longswords, and scimitars. (The Exotic Weapon Mastery enhancement will add bastard swords and khopeshes to this list of weapons.)</Description>
+                    <Icon>KenseiFocusHeavyBlades</Icon>
+                    <Cost>2</Cost>
+                    <Requirements>
+                        <Requirement>
+                            <Enhancement>KenseiCore1</Enhancement>
+                            <Selection>Kensei Focus: Heavy Blades</Selection>
+                        </Requirement>
+                    </Requirements>
+                    <Effect>
+                        <Type>AttackBonus</Type>
+                        <Amount>1</Amount>
+                        <WeaponClass>HeavyBlades</WeaponClass>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Kensei Focus: Light Blades</Name>
+                    <Description>You focus your Kensei training in the use of light blades. You gain +1 to hit with daggers, kukri, rapiers, shortswords, and throwing daggers.</Description>
+                    <Icon>KenseiFocusLightBlades</Icon>
+                    <Cost>2</Cost>
+                    <Requirements>
+                        <Requirement>
+                            <Enhancement>KenseiCore1</Enhancement>
+                            <Selection>Kensei Focus: Light Blades</Selection>
+                        </Requirement>
+                    </Requirements>
+                    <Effect>
+                        <Type>AttackBonus</Type>
+                        <Amount>1</Amount>
+                        <WeaponClass>LightBlades</WeaponClass>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Kensei Focus: Maces and Clubs</Name>
+                    <Description>You focus your Kensei training in the use of maces and clubs. You gain +1 to hit with clubs, light maces, heavy maces, greatclubs, morningstars, and quarterstaves.</Description>
+                    <Icon>KenseiFocusMacesAndClubs</Icon>
+                    <Cost>2</Cost>
+                    <Requirements>
+                        <Requirement>
+                            <Enhancement>KenseiCore1</Enhancement>
+                            <Selection>Kensei Focus: Maces and Clubs</Selection>
+                        </Requirement>
+                    </Requirements>
+                    <Effect>
+                        <Type>AttackBonus</Type>
+                        <Amount>1</Amount>
+                        <WeaponClass>MacesAndClubs</WeaponClass>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Kensei Focus: Martial Arts</Name>
+                    <Description>You focus your Kensei training in the use of monk weapons. You gain +1 to hit with kama, quarterstaves, shuriken, and when using unarmed combat.</Description>
+                    <Icon>KenseiFocusMartialArts</Icon>
+                    <Cost>2</Cost>
+                    <Requirements>
+                        <Requirement>
+                            <Enhancement>KenseiCore1</Enhancement>
+                            <Selection>Kensei Focus: Martial Arts</Selection>
+                        </Requirement>
+                    </Requirements>
+                    <Effect>
+                        <Type>AttackBonus</Type>
+                        <Amount>1</Amount>
+                        <WeaponClass>MartialArts</WeaponClass>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Kensei Focus: Picks and Hammers</Name>
+                    <Description>You focus your Kensei training in the use of picks and hammers. You gain +1 to hit with light picks, heavy picks, light hammers, warhammers, mauls, and throwing hammers.</Description>
+                    <Icon>KenseiFocusPicksAndHammers</Icon>
+                    <Cost>2</Cost>
+                    <Requirements>
+                        <Requirement>
+                            <Enhancement>KenseiCore1</Enhancement>
+                            <Selection>Kensei Focus: Picks and Hammers</Selection>
+                        </Requirement>
+                    </Requirements>
+                    <Effect>
+                        <Type>AttackBonus</Type>
+                        <Amount>1</Amount>
+                        <WeaponClass>PicksAndHammers</WeaponClass>
+                    </Effect>
+                </EnhancementSelection>
+            </Selector>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>KenseiAbilityII</InternalName>
+            <Name>Kensei Ability II</Name>
+            <Description>Select +1 to an ability score of your choice.</Description>
+            <Icon>KenseiAbility</Icon>
+            <XPosition>4</XPosition>
+            <YPosition>4</YPosition>
+            <Cost>2</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>20</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <Enhancement>KenseiAbilityI</Enhancement>
+                </Requirement>
+            </Requirements>
+            <Selector>
+                <EnhancementSelection>
+                    <Name>+1 Strength</Name>
+                    <Description>+1 Strength</Description>
+                    <Icon>Strength</Icon>
+                    <Cost>2</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Strength</Ability>
+                        <Amount>1</Amount>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>+1 Dexterity</Name>
+                    <Description>+1 Dexterity</Description>
+                    <Icon>Dexterity</Icon>
+                    <Cost>2</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Dexterity</Ability>
+                        <Amount>1</Amount>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>+1 Wisdom</Name>
+                    <Description>+1 Wisdom</Description>
+                    <Icon>Wisdom</Icon>
+                    <Cost>2</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Wisdom</Ability>
+                        <Amount>1</Amount>
+                    </Effect>
+                </EnhancementSelection>
+            </Selector>
+        </EnhancementTreeItem>
+        <!--Kensei Tier 5 Enhancements-->
+    </EnhancementTree>
+    <EnhancementTree>
+        <Name>Stalwart Defender</Name>
+        <Class>Fighter</Class>
+        <Icon>FighterBackground</Icon>
+    </EnhancementTree>
+    <EnhancementTree>
+        <Name>Vanguard</Name>
+        <Class>Fighter</Class>
+        <Icon>FighterBackground</Icon>
+    </EnhancementTree>
+    <!--Monk trees-->
+    <EnhancementTree>
+        <Name>Henshin Mystic</Name>
+        <Class>Monk</Class>
+        <Icon>MonkBackground</Icon>
+    </EnhancementTree>
+    <EnhancementTree>
+        <Name>Ninja Spy</Name>
+        <Class>Monk</Class>
+        <Icon>MonkBackground</Icon>
+    </EnhancementTree>
+    <EnhancementTree>
+        <Name>Shintao</Name>
+        <Class>Monk</Class>
+        <Icon>MonkBackground</Icon>
+    </EnhancementTree>
+    <!--Paladin trees-->
+    <EnhancementTree>
+        <Name>Knight of the Chalice</Name>
+        <Class>Paladin</Class>
+        <Icon>PaladinBackground</Icon>
+    </EnhancementTree>
+    <EnhancementTree>
+        <Name>Sacred Defender</Name>
+        <Class>Paladin</Class>
+        <Icon>PaladinBackground</Icon>
+    </EnhancementTree>
+    <EnhancementTree>
+        <Name>Vanguard</Name>
+        <Class>Paladin</Class>
+        <Icon>PaladinBackground</Icon>
+    </EnhancementTree>
+    <!--Harper agent tree-->
+    <EnhancementTree>
+        <Name>Harper Agent</Name>
+        <Class>All</Class>
+        <Icon>HarperBackground</Icon>
+        <!--Human tree core items-->
+        <EnhancementTreeItem>
+            <InternalName>HarperCore1</InternalName>
+            <Name>Agent of Good I</Name>
+            <Description>+1 to hit vs. Evil, +1 Universal Spell Power.</Description>
+            <Icon>AgentOfGood</Icon>
+            <XPosition>0</XPosition>
+            <YPosition>0</YPosition>
+            <Cost>1</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>0</MinSpent>
+            <Requirements/>
+            <Effect>
+                <Type>AttackBonus</Type>
+                <Amount>1</Amount>
+                <!--Handle vs evil here-->
+            </Effect>
+            <Effect>
+                <Type>SpellPower</Type>
+                <SpellPower>All</SpellPower>
+                <Amount>1</Amount>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>HarperCore2</InternalName>
+            <Name>Harper Training I</Name>
+            <Description>Select +1 to an ability score of your choice.</Description>
+            <Icon>HarperTraining</Icon>
+            <XPosition>1</XPosition>
+            <YPosition>0</YPosition>
+            <Cost>2</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>5</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <MinLevel>3</MinLevel>
+                </Requirement>
+                <Requirement>
+                    <Enhancement>HarperCore1</Enhancement>
+                </Requirement>
+            </Requirements>
+            <Selector>
+                <EnhancementSelection>
+                    <Name>+1 Dexterity</Name>
+                    <Description>+1 Dexterity</Description>
+                    <Icon>Dexterity</Icon>
+                    <Cost>2</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Dexterity</Ability>
+                        <Amount>1</Amount>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>+1 Intelligence</Name>
+                    <Description>+1 Intelligence</Description>
+                    <Icon>Intelligence</Icon>
+                    <Cost>2</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Intelligence</Ability>
+                        <Amount>1</Amount>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>+1 Charisma</Name>
+                    <Description>+1 Charisma</Description>
+                    <Icon>Charisma</Icon>
+                    <Cost>2</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Charisma</Ability>
+                        <Amount>1</Amount>
+                    </Effect>
+                </EnhancementSelection>
+            </Selector>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>HarperCore3</InternalName>
+            <Name>Agent of Good II</Name>
+            <Description>+2 to hit and damage vs. Evil, +5 Universal Spell Power.</Description>
+            <Icon>AgentOfGood</Icon>
+            <XPosition>2</XPosition>
+            <YPosition>0</YPosition>
+            <Cost>1</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>10</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <MinLevel>6</MinLevel>
+                </Requirement>
+                <Requirement>
+                    <Enhancement>HarperCore2</Enhancement>
+                </Requirement>
+            </Requirements>
+            <Effect>
+                <Type>AttackBonus</Type>
+                <Amount>2</Amount>
+                <!--Handle vs evil here-->
+            </Effect>
+            <Effect>
+                <Type>SpellPower</Type>
+                <SpellPower>All</SpellPower>
+                <Amount>5</Amount>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>HarperCore4</InternalName>
+            <Name>Harper Training II</Name>
+            <Description>Select +1 to an ability score of your choice.</Description>
+            <Icon>HarperTraining</Icon>
+            <XPosition>3</XPosition>
+            <YPosition>0</YPosition>
+            <Cost>2</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>20</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <MinLevel>12</MinLevel>
+                </Requirement>
+                <Requirement>
+                    <Enhancement>HarperCore3</Enhancement>
+                </Requirement>
+            </Requirements>
+            <Selector>
+                <EnhancementSelection>
+                    <Name>+1 Dexterity</Name>
+                    <Description>+1 Dexterity</Description>
+                    <Icon>Dexterity</Icon>
+                    <Cost>2</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Dexterity</Ability>
+                        <Amount>1</Amount>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>+1 Intelligence</Name>
+                    <Description>+1 Intelligence</Description>
+                    <Icon>Intelligence</Icon>
+                    <Cost>2</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Intelligence</Ability>
+                        <Amount>1</Amount>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>+1 Charisma</Name>
+                    <Description>+1 Charisma</Description>
+                    <Icon>Charisma</Icon>
+                    <Cost>2</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Charisma</Ability>
+                        <Amount>1</Amount>
+                    </Effect>
+                </EnhancementSelection>
+            </Selector>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>HarperCore5</InternalName>
+            <Name>Agent of Good III</Name>
+            <Description>+3 to hit and damage vs. Evil. +10 Universal Spell Power.</Description>
+            <Icon>AgentOfGood</Icon>
+            <XPosition>4</XPosition>
+            <YPosition>0</YPosition>
+            <Cost>1</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>30</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <MinLevel>18</MinLevel>
+                </Requirement>
+                <Requirement>
+                    <Enhancement>HarperCore4</Enhancement>
+                </Requirement>
+            </Requirements>
+            <Effect>
+                <Type>AttackBonus</Type>
+                <Amount>3</Amount>
+                <!--Handle vs evil here-->
+            </Effect>
+            <Effect>
+                <Type>SpellPower</Type>
+                <SpellPower>All</SpellPower>
+                <Amount>10</Amount>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>HarperCore6</InternalName>
+            <Name>Harper's Freedom</Name>
+            <Description>Dispel most detrimental effects from you and add +10 to all saving throws for 20 seconds. Cooldown: 5 minutes.</Description>
+            <Icon>HarpersFreedom</Icon>
+            <XPosition>5</XPosition>
+            <YPosition>0</YPosition>
+            <Cost>1</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>40</MinSpent>
+            <Requirements>
+                <Requirement>
+                    <MinLevel>20</MinLevel>
+                </Requirement>
+                <Requirement>
+                    <Enhancement>HarperCore5</Enhancement>
+                </Requirement>
+            </Requirements>
+            <!--Handle +10 to all saving throws clickie-->
+        </EnhancementTreeItem>
+        <!--Harper Tier 1 Enhancements-->
+        <EnhancementTreeItem>
+            <InternalName>HarperEnchantment</InternalName>
+            <Name>Harper Enchantment</Name>
+            <Description>Your weapon gains an additional +1 to its Enhancement bonus. You gain +20 to your maximum Spell Points.</Description>
+            <Icon>HarperEnchantment</Icon>
+            <XPosition>0</XPosition>
+            <YPosition>1</YPosition>
+            <Cost>2</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>1</MinSpent>
+            <Requirements/>
+            <Effect>
+                <Type>WeaponEnchantment</Type>
+                <Amount>1</Amount>
+            </Effect>
+            <Effect>
+                <Type>SpellPoints</Type>
+                <Amount>20</Amount>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>WeatheredTraveler</InternalName>
+            <Name>Weathered Traveler</Name>
+            <Description>[+1/+2/+3] Energy resistance.</Description>
+            <Icon>WeatheredTraveler</Icon>
+            <XPosition>1</XPosition>
+            <YPosition>1</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>1</MinSpent>
+            <Requirements/>
+            <Effect>
+                <Type>ResistEnergy</Type>
+                <Energy>All</Energy>
+                <AmountVector size="3">1 2 3</AmountVector>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>TravelersToughness</InternalName>
+            <Name>Traveler's Toughness</Name>
+            <Description>[+5/+10/+15] maximum hit points.</Description>
+            <Icon>TravelersToughness</Icon>
+            <XPosition>2</XPosition>
+            <YPosition>1</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>1</MinSpent>
+            <Requirements/>
+            <Effect>
+                <Type>Hitpoints</Type>
+                <AmountVector size="3">5 10 15</AmountVector>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>StrategicCombatI</InternalName>
+            <Name>Strategic Combat I</Name>
+            <Description>You can use your Intelligence modifier to hit with Melee and Missile weapons. Note: This does not function while unarmed, on shields, or using handwraps.</Description>
+            <Icon>StrategicCombatI</Icon>
+            <XPosition>3</XPosition>
+            <YPosition>1</YPosition>
+            <Cost>2</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>1</MinSpent>
+            <Requirements/>
+            <!--Handle bonus to hit-->
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>HarperAwareness</InternalName>
+            <Name>Awareness</Name>
+            <Description>+[1/2/3] to Listen, Search, and Spot. Rank 3: +1 save vs. traps.</Description>
+            <Icon>SkillFocusAwareness</Icon>
+            <XPosition>4</XPosition>
+            <YPosition>1</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>1</MinSpent>
+            <Requirements/>
+            <Effect>
+                <Type>SkillBonus</Type>
+                <Skill>Listen</Skill>
+                <AmountVector size="3">1 2 3</AmountVector>
+            </Effect>
+            <Effect>
+                <Type>SkillBonus</Type>
+                <Skill>Search</Skill>
+                <AmountVector size="3">1 2 3</AmountVector>
+            </Effect>
+            <Effect>
+                <Type>SkillBonus</Type>
+                <Skill>Spot</Skill>
+                <AmountVector size="3">1 2 3</AmountVector>
+            </Effect>
+            <Effect>
+                <Type>SaveBonus</Type>
+                <Save>Traps</Save>
+                <AmountVector size="3">0 0 1</AmountVector>
+            </Effect>
+        </EnhancementTreeItem>
+        <!--Harper Tier 2 Enhancements-->
+        <EnhancementTreeItem>
+            <InternalName>HarperHeroicCompanion</InternalName>
+            <Name>Heroic Companion</Name>
+            <Description>Action Boost: Grants an ally +0.25/+0.5/+1[W], +2/+4/+6 to hit and saving throws, 0/+2%/+4% Dodge and 0/0/+10 Physical Resistance Rating. (Cooldown: 30 seconds). Antireq: Cannot be taken with the Halfling racial enhancement.</Description>
+            <Icon>HeroicCompanion</Icon>
+            <XPosition>0</XPosition>
+            <YPosition>2</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <Clickie/>
+            <MinSpent>5</MinSpent>
+            <Requirements>
+                <RequiresNoneOf>
+                    <Requirement>
+                        <Enhancement>HalflingHeroicCompanion</Enhancement>
+                    </Requirement>
+                </RequiresNoneOf>
+            </Requirements>
+            <!--Handle heroic companion buffs here-->
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>HarperMagicalEndurance</InternalName>
+            <Name>Magical Endurance</Name>
+            <Description>[+30/+60/+100] maximum Spell Points.</Description>
+            <Icon>MagicalEndurance</Icon>
+            <XPosition>1</XPosition>
+            <YPosition>2</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>5</MinSpent>
+            <Requirements/>
+            <Effect>
+                <Type>SpellPoints</Type>
+                <AmountVector size="3">30 60 100</AmountVector>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>HarperVersatileAdeptI</InternalName>
+            <Name>Versatile Adept I</Name>
+            <Description>[+1/+2/+3] Melee Power, Ranged Power, and Universal Spell Power</Description>
+            <Icon>VersatileAdept</Icon>
+            <XPosition>2</XPosition>
+            <YPosition>2</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>5</MinSpent>
+            <Requirements/>
+            <Effect>
+                <Type>MeleePower</Type>
+                <AmountVector size="3">1 2 3</AmountVector>
+            </Effect>
+            <Effect>
+                <Type>RangedPower</Type>
+                <AmountVector size="3">1 2 3</AmountVector>
+            </Effect>
+            <Effect>
+                <Type>SpellPower</Type>
+                <SpellPower>All</SpellPower>
+                <AmountVector size="3">1 2 3</AmountVector>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>HarperKnowTheAngles</InternalName>
+            <Name>Know the Angles</Name>
+            <Description>Activation cost: [45/30/15] spell points. Cooldown: 20 seconds. Antirequisite: Divine Might. You gain an Insight bonus to damage and the DC of tactical feats equal to 1/2 of your Intelligence modifier for [30/60/120] seconds</Description>
+            <Icon>KnowTheAngles</Icon>
+            <XPosition>3</XPosition>
+            <YPosition>2</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <Clickie/>
+            <MinSpent>5</MinSpent>
+            <Requirements/>
+            <!--Cannot train if divine might trained-->
+            <!--Handle damage and DC bonus-->
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>HarperLeadership</InternalName>
+            <Name>Harper Leadership</Name>
+            <Description>Your hirelings, summoned, and charmed creatures gain [+2/+3/+4] to all ability scores.</Description>
+            <Icon>HarperLeadership</Icon>
+            <XPosition>4</XPosition>
+            <YPosition>2</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>5</MinSpent>
+            <Requirements/>
+            <!--Handle hireling bonus here-->
+        </EnhancementTreeItem>
+        <!--Harper Tier 3 Enhancements-->
+        <EnhancementTreeItem>
+            <InternalName>HarperHighlySkilled</InternalName>
+            <Name>Highly Skilled</Name>
+            <Description>[+1/+2/+3] to all skills.</Description>
+            <Icon>HarperHighlySkilled</Icon>
+            <XPosition>0</XPosition>
+            <YPosition>3</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>10</MinSpent>
+            <Requirements/>
+            <Effect>
+                <Type>SkillBonus</Type>
+                <Skill>All</Skill>
+                <AmountVector size="3">1 2 3</AmountVector>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>HarperKnowYourFoe</InternalName>
+            <Name>Know Your Foe</Name>
+            <Description>You gain a new Favored Enemy feat, dealing extra damage against those enemies: Aberration / Construct / Dragon / Evil Outsider / Giant / Monstrous Humanoid / Undead.</Description>
+            <Icon>KnowYourFoe</Icon>
+            <XPosition>1</XPosition>
+            <YPosition>3</YPosition>
+            <Cost>2</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>10</MinSpent>
+            <Requirements/>
+            <Selector>
+                <EnhancementSelection>
+                    <Name>Favored Enemy: Aberration</Name>
+                    <Description>You deal extra damage to aberrations</Description>
+                    <Icon>FavoredEnemyAberration</Icon>
+                    <Cost>2</Cost>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Favored Enemy: Construct</Name>
+                    <Description>You deal extra damage to constructs</Description>
+                    <Icon>FavoredEnemyConstruct</Icon>
+                    <Cost>2</Cost>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Favored Enemy: Dragon</Name>
+                    <Description>You deal extra damage to dragons</Description>
+                    <Icon>FavoredEnemyDragon</Icon>
+                    <Cost>2</Cost>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Favored Enemy: Evil Outsider</Name>
+                    <Description>You deal extra damage to evil outsiders</Description>
+                    <Icon>FavoredEnemyEvilOutsider</Icon>
+                    <Cost>2</Cost>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Favored Enemy: Giant</Name>
+                    <Description>You deal extra damage to giants</Description>
+                    <Icon>FavoredEnemyGiant</Icon>
+                    <Cost>2</Cost>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Favored Enemy: Monstrous Humanoid</Name>
+                    <Description>You deal extra damage to monstrous humanoids</Description>
+                    <Icon>FavoredEnemyMonstrousHumanoid</Icon>
+                    <Cost>2</Cost>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Favored Enemy: Undead</Name>
+                    <Description>You deal extra damage to undead</Description>
+                    <Icon>FavoredEnemyUndead</Icon>
+                    <Cost>2</Cost>
+                </EnhancementSelection>
+            </Selector>
+            <Effect>
+                <Type>SkillBonus</Type>
+                <Skill>All</Skill>
+                <AmountVector size="3">1 2 3</AmountVector>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>HarperVersatileAdeptII</InternalName>
+            <Name>Versatile Adept II</Name>
+            <Description>[+1/+2/+3] Melee Power, Ranged Power, and Universal Spell Power</Description>
+            <Icon>VersatileAdept</Icon>
+            <XPosition>2</XPosition>
+            <YPosition>3</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>10</MinSpent>
+            <Requirements/>
+            <Effect>
+                <Type>MeleePower</Type>
+                <AmountVector size="3">1 2 3</AmountVector>
+            </Effect>
+            <Effect>
+                <Type>RangedPower</Type>
+                <AmountVector size="3">1 2 3</AmountVector>
+            </Effect>
+            <Effect>
+                <Type>SpellPower</Type>
+                <SpellPower>All</SpellPower>
+                <AmountVector size="3">1 2 3</AmountVector>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>StrategicCombatII</InternalName>
+            <Name>Strategic Combat II</Name>
+            <Description>You can use your Intelligence modifier for damage with Melee and Missile weapons. Note: This does not function while unarmed, on shields, or using handwraps.</Description>
+            <Icon>StrategicCombatI</Icon>
+            <XPosition>3</XPosition>
+            <YPosition>3</YPosition>
+            <Cost>2</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>10</MinSpent>
+            <Requirements/>
+            <!--Handlebonus dmg-->
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>HarperAbilityScoreI</InternalName>
+            <Name>Ability Score</Name>
+            <Description>Select +1 to an ability score of your choice.</Description>
+            <Icon>HarperAbilityScore</Icon>
+            <XPosition>4</XPosition>
+            <YPosition>3</YPosition>
+            <Cost>2</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>10</MinSpent>
+            <Requirements/>
+            <Selector>
+                <EnhancementSelection>
+                    <Name>+1 Dexterity</Name>
+                    <Description>+1 Dexterity</Description>
+                    <Icon>Dexterity</Icon>
+                    <Cost>2</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Dexterity</Ability>
+                        <Amount>1</Amount>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>+1 Intelligence</Name>
+                    <Description>+1 Intelligence</Description>
+                    <Icon>Intelligence</Icon>
+                    <Cost>2</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Intelligence</Ability>
+                        <Amount>1</Amount>
+                    </Effect>
+                </EnhancementSelection>
+            </Selector>
+        </EnhancementTreeItem>
+        <!--Harper Tier 4 Enhancements-->
+        <EnhancementTreeItem>
+            <InternalName>HarperThroatDagger</InternalName>
+            <Name>Throat Dagger</Name>
+            <Description>Activation cost: [3/2/1] spell points. Cooldown: [60/30/15] seconds. SLA: Damages an enemy from afar for 1d4+4 Piercing damage per character level. Damaged non-boss enemies cannot cast spells for 6 seconds. Metamagic: Quicken, Enlarge (no extra cost). Spell resistance: No</Description>
+            <Icon>ThroatDagger</Icon>
+            <XPosition>0</XPosition>
+            <YPosition>4</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <Clickie/>
+            <MinSpent>20</MinSpent>
+            <Requirements/>
+            <!--Thoat dagger effects here-->
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>HarperVigorOfLifeI</InternalName>
+            <Name>Vigor of Life I</Name>
+            <Description>+20 positive healing amplification. -10% (?) less damage from negative energy</Description>
+            <Icon>VigorOfLifeI</Icon>
+            <XPosition>1</XPosition>
+            <YPosition>4</YPosition>
+            <Cost>2</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>20</MinSpent>
+            <Requirements/>
+            <Effect>
+                <Type>HealingAmplification</Type>
+                <Amount>20</Amount>
+            </Effect>
+            <!--Handle negative energy resistance percent-->
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>HarperVersatileAdeptIII</InternalName>
+            <Name>Versatile Adept III</Name>
+            <Description>[+1/+2/+3] Melee Power, Ranged Power, and Universal Spell Power</Description>
+            <Icon>VersatileAdept</Icon>
+            <XPosition>2</XPosition>
+            <YPosition>4</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>20</MinSpent>
+            <Requirements/>
+            <Effect>
+                <Type>MeleePower</Type>
+                <AmountVector size="3">1 2 3</AmountVector>
+            </Effect>
+            <Effect>
+                <Type>RangedPower</Type>
+                <AmountVector size="3">1 2 3</AmountVector>
+            </Effect>
+            <Effect>
+                <Type>SpellPower</Type>
+                <SpellPower>All</SpellPower>
+                <AmountVector size="3">1 2 3</AmountVector>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>HarperMusicOfAusterity</InternalName>
+            <Name>Music of Austerity</Name>
+            <Description>Like Eschew Materials, your spells no longer need common material components. This does not increase their Spell Point cost.</Description>
+            <Icon>MusicOfAusterity</Icon>
+            <XPosition>3</XPosition>
+            <YPosition>4</YPosition>
+            <Cost>2</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>20</MinSpent>
+            <Requirements/>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>HarperAbilityScoreII</InternalName>
+            <Name>Ability Score</Name>
+            <Description>Select +1 to an ability score of your choice.</Description>
+            <Icon>HarperAbilityScore</Icon>
+            <XPosition>4</XPosition>
+            <YPosition>4</YPosition>
+            <Cost>2</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>20</MinSpent>
+            <Requirements/>
+            <Selector>
+                <EnhancementSelection>
+                    <Name>+1 Dexterity</Name>
+                    <Description>+1 Dexterity</Description>
+                    <Icon>Dexterity</Icon>
+                    <Cost>2</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Dexterity</Ability>
+                        <Amount>1</Amount>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>+1 Intelligence</Name>
+                    <Description>+1 Intelligence</Description>
+                    <Icon>Intelligence</Icon>
+                    <Cost>2</Cost>
+                    <Effect>
+                        <Type>AbilityBonus</Type>
+                        <Ability>Intelligence</Ability>
+                        <Amount>1</Amount>
+                    </Effect>
+                </EnhancementSelection>
+            </Selector>
+        </EnhancementTreeItem>
+        <!--Harper Tier 5 Enhancements-->
+        <EnhancementTreeItem>
+            <InternalName>HarperEnchantWeapon</InternalName>
+            <Name>Enchant your weapon</Name>
+            <Description>Choose how you would like to enchant your weapon +1 and Improved deception +10 universal spell power +3 to hit and damage, +2 vs evil, weapon bypasses Good damage reduction</Description>
+            <Icon>HarperEnchantWeapon</Icon>
+            <XPosition>1</XPosition>
+            <YPosition>5</YPosition>
+            <Cost>2</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>30</MinSpent>
+            <Requirements/>
+            <Selector>
+                <EnhancementSelection>
+                    <Name>Harper Enchantment of Deception</Name>
+                    <Description>Your weapon gains an additional +1 to its Enhancement bonus and Improved Deception.</Description>
+                    <Icon>HarperEnchantWeapon</Icon>
+                    <Cost>2</Cost>
+                    <Effect>
+                        <Type>WeaponEnchantment</Type>
+                        <Amount>1</Amount>
+                    </Effect>
+                    <!--Handle improved deception here-->
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Harper Enchantment of Magic</Name>
+                    <Description>Your weapon gains a +10 Harper bonus to Universal Spell Power. </Description>
+                    <Icon>HarperEnchantmentOfMagic</Icon>
+                    <Cost>2</Cost>
+                    <Effect>
+                        <Type>SpellPower</Type>
+                        <SpellPOwer>All</SpellPOwer>
+                        <Amount>10</Amount>
+                    </Effect>
+                </EnhancementSelection>
+                <EnhancementSelection>
+                    <Name>Harper Enchantment of Righteousness</Name>
+                    <Description>Your weapon gains stacking +3 Enhancement bonus to attack and damage, an additional +2 to attack bonus and damage against evil creatures, and your weapon is considered Good-aligned.</Description>
+                    <Icon>HarperRighteousness</Icon>
+                    <Cost>2</Cost>
+                    <Effect>
+                        <Type>WeaponEnchantment</Type>
+                        <Amount>3</Amount>
+                    </Effect>
+                    <!--Handle +2 vs evil-->
+                    <Effect>
+                        <Type>DRBypass</Type>
+                        <DR>Good</DR>
+                    </Effect>
+                </EnhancementSelection>
+            </Selector>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>HarperVersatileAdeptIV</InternalName>
+            <Name>Versatile Adept IV</Name>
+            <Description>[+2/+4/+6] Melee Power, Ranged Power, and Universal Spell Power</Description>
+            <Icon>VersatileAdept</Icon>
+            <XPosition>2</XPosition>
+            <YPosition>5</YPosition>
+            <Cost>1</Cost>
+            <Ranks>3</Ranks>
+            <MinSpent>30</MinSpent>
+            <Requirements/>
+            <Effect>
+                <Type>MeleePower</Type>
+                <AmountVector size="3">2 4 6</AmountVector>
+            </Effect>
+            <Effect>
+                <Type>RangedPower</Type>
+                <AmountVector size="3">2 4 6</AmountVector>
+            </Effect>
+            <Effect>
+                <Type>SpellPower</Type>
+                <SpellPower>All</SpellPower>
+                <AmountVector size="3">2 4 6</AmountVector>
+            </Effect>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>HarperMagicOfPatience</InternalName>
+            <Name>Magic of Patience</Name>
+            <Description>Your spells benefit from the Extend Spell metamagic feat. This does not increase their Spell Point cost. (This does not stack with the actual Extend metamagic feat.)</Description>
+            <Icon>MagicOfPatience</Icon>
+            <XPosition>3</XPosition>
+            <YPosition>5</YPosition>
+            <Cost>2</Cost>
+            <Ranks>1</Ranks>
+            <MinSpent>30</MinSpent>
+            <Requirements/>
+        </EnhancementTreeItem>
+        <EnhancementTreeItem>
+            <InternalName>HarperMomentOfClarity</InternalName>
+            <Name>Moment of Clarity</Name>
+            <Description>Cooldown: 5 minutes. Activate: For the next 10 seconds the DC of your spells and your tactical feats is increased by +10. Passive: +1 DC for your spells</Description>
+            <Icon>HarperMomentOfClarity</Icon>
+            <XPosition>4</XPosition>
+            <YPosition>5</YPosition>
+            <Cost>2</Cost>
+            <Ranks>1</Ranks>
+            <Clickie/>
+            <MinSpent>30</MinSpent>
+            <Requirements/>
+            <Effect>
+                <Type>DBonusC</Type>
+                <School>All</School>
+                <Amount>1</Amount>
+            </Effect>
+            <!--Handle +10 spell DC for duration-->
+        </EnhancementTreeItem>
+    </EnhancementTree>
+    <!--Ranger trees-->
+    <EnhancementTree>
+        <Name>Arcane Archer</Name>
+        <Class>Ranger</Class>
+        <Icon>RangerBackground</Icon>
+    </EnhancementTree>
+    <EnhancementTree>
+        <Name>Deepwood Stalker</Name>
+        <Class>Ranger</Class>
+        <Icon>RangerBackground</Icon>
+    </EnhancementTree>
+    <EnhancementTree>
+        <Name>Tempest</Name>
+        <Class>Ranger</Class>
+        <Icon>RangerBackground</Icon>
+    </EnhancementTree>
+    <!--Rogue trees-->
+    <EnhancementTree>
+        <Name>Assassin</Name>
+        <Class>Rogue</Class>
+        <Icon>RogueBackground</Icon>
+    </EnhancementTree>
+    <EnhancementTree>
+        <Name>Mechanic</Name>
+        <Class>Rogue</Class>
+        <Icon>RogueBackground</Icon>
+    </EnhancementTree>
+    <EnhancementTree>
+        <Name>Thief-Acrobat</Name>
+        <Class>Rogue</Class>
+        <Icon>RogueBackground</Icon>
+    </EnhancementTree>
+    <!--Sorcerer trees-->
+    <EnhancementTree>
+        <Name>Air Savant</Name>
+        <Class>Sorcerer</Class>
+        <Icon>SorcererBackground</Icon>
+    </EnhancementTree>
+    <EnhancementTree>
+        <Name>Earth Savant</Name>
+        <Class>Sorcerer</Class>
+        <Icon>SorcererBackground</Icon>
+    </EnhancementTree>
+    <EnhancementTree>
+        <Name>Eldritch Knight</Name>
+        <Class>Sorcerer</Class>
+        <Icon>SorcererBackground</Icon>
+    </EnhancementTree>
+    <EnhancementTree>
+        <Name>Fire Savant</Name>
+        <Class>Sorcerer</Class>
+        <Icon>SorcererBackground</Icon>
+    </EnhancementTree>
+    <EnhancementTree>
+        <Name>Water Savant</Name>
+        <Class>Sorcerer</Class>
+        <Icon>SorcererBackground</Icon>
+    </EnhancementTree>
+    <!--Warlock trees-->
+    <EnhancementTree>
+        <Name>Enlightened Spirit</Name>
+        <Class>Warlock</Class>
+        <Icon>WarlockBackground</Icon>
+    </EnhancementTree>
+    <EnhancementTree>
+        <Name>Soul Eater</Name>
+        <Class>Warlock</Class>
+        <Icon>WarlockBackground</Icon>
+    </EnhancementTree>
+    <EnhancementTree>
+        <Name>Tainted Scholar</Name>
+        <Class>Warlock</Class>
+        <Icon>WarlockBackground</Icon>
+    </EnhancementTree>
+    <!--Wizard trees-->
+    <EnhancementTree>
+        <Name>Arch-Mage</Name>
+        <Class>Wizard</Class>
+        <Icon>WizardBackground</Icon>
+    </EnhancementTree>
+    <EnhancementTree>
+        <Name>Eldritch Knight</Name>
+        <Class>Wizard</Class>
+        <Icon>WizardBackground</Icon>
+    </EnhancementTree>
+    <EnhancementTree>
+        <Name>Pale Master</Name>
+        <Class>Wizard</Class>
+        <Icon>WizardBackground</Icon>
+    </EnhancementTree>
+</Enhancements>

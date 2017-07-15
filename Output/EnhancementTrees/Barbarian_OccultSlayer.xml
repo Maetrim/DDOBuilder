@@ -1,0 +1,711 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Enhancements>
+   <EnhancementTree>
+      <Name>Occult Slayer</Name>
+       <Version>1</Version>
+       <Requirements>
+         <Requirement>
+            <Class>Barbarian</Class>
+         </Requirement>
+      </Requirements>
+      <Background>BarbarianBackground</Background>
+      <Icon>Barbarian</Icon>
+      <EnhancementTreeItem>
+         <Name>Occult Slayer: Weapon Bond</Name>
+         <InternalName>OSCore1</InternalName>
+         <Description>You build a psychic bond with your weapons.
+You strengthen this bond by damaging enemies with attacks.
+Each attack adds 1 to your weapon bond, up to a maximum of 200.
+Dying resets your weapon bond to zero.</Description>
+         <Icon>OSWeaponBond</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>0</MinSpent>
+         <Clickie/>
+         <ArrowRight/>
+         <Requirements/>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Occult Slayer: Resistance</Name>
+         <InternalName>OSCore2</InternalName>
+         <Description>+1 to all saving throws. </Description>
+         <Icon>OSResistance</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Class>Barbarian</Class>
+               <Level>3</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>OSCore1</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>SaveBonus</Type>
+              <Save>All</Save>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Occult Slayer: Elemental Defense</Name>
+         <InternalName>OSCore3</InternalName>
+         <Description>When enemy spells deal elemental damage to you, there's a 25% chance you'll gain
+25 temporary hitpoints for 30 seconds.
+This can trigger up to once every 12 seconds.</Description>
+         <Icon>OSElementalDefense</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Class>Barbarian</Class>
+               <Level>6</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>OSCore2</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Occult Slayer: Blank Thoughts</Name>
+         <InternalName>OSCore4</InternalName>
+         <Description>You gain the Slippery Mind feat and improve your barbarian damage reduction.</Description>
+         <Icon>OSBlankThoughts</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Class>Barbarian</Class>
+               <Level>12</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>OSCore3</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>GrantFeat</Type>
+              <Feat>Slippery Mind</Feat>
+          </Effect>
+          <Effect>
+              <Type>DR</Type>
+              <DR>All</DR>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Occult Slayer: Force Ward</Name>
+         <InternalName>OSCore5</InternalName>
+         <Description>You gain immunity to magic missiles and +5% Competence bonus to entirely
+avoid incoming Force damage.</Description>
+         <Icon>OSForceWard</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Class>Barbarian</Class>
+               <Level>18</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>OSCore4</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>Immunity</Type>
+              <Immunity>Magic Missiles</Immunity>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Occult Slayer: Mind Over Magic</Name>
+         <InternalName>OSCore6</InternalName>
+         <Description>You have Spell Resistance equal to your Constitution score. </Description>
+         <Icon>OSMindOverMagic</Icon>
+         <XPosition>5</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>40</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Barbarian</Class>
+               <Level>20</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>OSCore5</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>SpellResistance</Type>
+              <Ability>Constitution</Ability>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Occult Slayer: Extend Rage</Name>
+         <InternalName>OSExtendRage</InternalName>
+         <Description>Your barbarian rage lasts [25/50/75]% longer</Description>
+         <Icon>OSExtendRage</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements/>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Occult Slayer: Ear Smash</Name>
+         <InternalName>OSEarSmash</InternalName>
+         <Description>Melee Attack: Deals +0.5/+1/+1.5[W] damage.
+Damaged enemies can't cast spells for 2/4/6 seconds. (Cooldown: 12 seconds)</Description>
+         <Icon>OSEarSmash</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Clickie/>
+         <ArrowUp/>
+         <Requirements/>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Occult Slayer: Parrying Bond</Name>
+         <InternalName>OSParryingBond</InternalName>
+         <Description>While Weapon Bond 10+: +[2/4/6] Competence bonus to AC and +[1/2/3] Magical Resistance.</Description>
+         <Icon>OSParryingBond</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <ArrowUp/>
+         <Requirements/>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Occult Slayer: Uncanny Dodger</Name>
+         <InternalName>OSUncannyDodger</InternalName>
+         <Description>You gain +[1/2/3]% Dodge</Description>
+         <Icon>OSUncannyDodger</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements/>
+          <Effect>
+              <Type>DodgeBonus</Type>
+              <AmountVector size="3">1 2 3</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Occult Slayer: Awareness</Name>
+         <InternalName>OSAwareness</InternalName>
+         <Description>+[1/2/3] Listen, Search and Spot.
+Rank 3: +1 Reflex Saving Throw</Description>
+         <Icon>Awareness</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements/>
+          <Effect>
+              <Type>SkillBonus</Type>
+              <Skill>Listen</Skill>
+              <AmountVector size="3">1 2 3</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>SkillBonus</Type>
+              <Skill>Search</Skill>
+              <AmountVector size="3">1 2 3</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>SkillBonus</Type>
+              <Skill>Spot</Skill>
+              <AmountVector size="3">1 2 3</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>SaveBonus</Type>
+              <Save>Reflex</Save>
+              <AmountVector size="3">0 0 1</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Occult Slayer: Willpower Rage</Name>
+         <InternalName>OSWillpowerRage</InternalName>
+         <Description>You gain +[1/2/3] to Will saving throws while raged</Description>
+         <Icon>OSWillpowerRage</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Barbarian</Class>
+               <Level>2</Level>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>SaveBonus</Type>
+              <Save>Will</Save>
+              <AmountVector size="3">1 2 3</AmountVector>
+              <Stance>Rage</Stance>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Occult Slayer: Knockout</Name>
+         <InternalName>OSKnockout</InternalName>
+         <Description>Knockout puts enemies to sleep for 6/12/18 seconds. On Vorpal, enemies are stunned instead.</Description>
+         <Icon>OSKnockout</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Barbarian</Class>
+               <Level>2</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>OSEarSmash</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Occult Slayer: Guarding Bond</Name>
+         <InternalName>OSGuardingBond</InternalName>
+         <Description>You gain +4 Physical and Magical Resistance at Weapon Bond 30+. </Description>
+         <Icon>OSGuardingBond</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Barbarian</Class>
+               <Level>2</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>OSParryingBond</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>PRR</Type>
+              <AmountVector size="1">4</AmountVector>
+              <Stance>WeaponBond</Stance>
+          </Effect>
+          <Effect>
+              <Type>MRR</Type>
+              <AmountVector size="1">4</AmountVector>
+              <Stance>WeaponBond</Stance>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Occult Slayer: Lessons of Travel</Name>
+         <InternalName>OSLessonsOfTravel</InternalName>
+         <Description>+[2/4/6] energy resistance against Acid, Cold, Electric, Fire and Sonic damage.</Description>
+         <Icon>OSLessonsOfTravel</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Barbarian</Class>
+               <Level>2</Level>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>EnergyResistance</Type>
+              <Energy>Acid</Energy>
+              <AmountVector size="3">2 4 6</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>EnergyResistance</Type>
+              <Energy>Cold</Energy>
+              <AmountVector size="3">2 4 6</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>EnergyResistance</Type>
+              <Energy>Electric</Energy>
+              <AmountVector size="3">2 4 6</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>EnergyResistance</Type>
+              <Energy>Fire</Energy>
+              <AmountVector size="3">2 4 6</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>EnergyResistance</Type>
+              <Energy>Sonic</Energy>
+              <AmountVector size="3">2 4 6</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Occult Slayer: Antimagic Boost</Name>
+         <InternalName>OSAntimagicBoost</InternalName>
+         <Description>Action Boost: +[2/4/6] Action Boost bonus to saving throws vs. magic
+(Cooldown: 30 seconds)</Description>
+         <Icon>OSAntimagicBoost</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Class>Barbarian</Class>
+               <Level>2</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Occult Slayer: Bond of Retribution</Name>
+         <InternalName>OSBondOfRetribution</InternalName>
+         <Description>While below 50% health, you gain +1 critical damage multiplier on attack rolls of 19-20.</Description>
+         <Icon>OSBondOfRetribution</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <LongArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Barbarian</Class>
+               <Level>3</Level>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>CriticalMultiplier</Type>
+              <AmountVector size="1">1</AmountVector>
+              <DieRoll>19</DieRoll>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Occult Slayer: Lessons of Nature</Name>
+         <InternalName>OSLessonsOfNature</InternalName>
+         <Description>You gain +[2/4/6] to save vs. both disease and poison.
+Rank 3: You don't fail disease or poison saving throws on a roll of 1.</Description>
+         <Icon>OSLessonsOfNature</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Barbarian</Class>
+               <Level>3</Level>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>SaveBonus</Type>
+              <Save>Disease</Save>
+              <AmountVector size="3">2 4 6</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>SaveBonus</Type>
+              <Save>Poison</Save>
+              <AmountVector size="3">2 4 6</AmountVector>
+              <!--No fail save on poison on a 1-->
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Occult Slayer: Arcane Encumbrance</Name>
+         <InternalName>OSArcaneEncumbrance</InternalName>
+         <Description>When enemies damage you with spells, there's a [10/20/30]% chance they'll be
+knocked down. (Does not affect bosses.)</Description>
+         <Icon>OSArcaneEncumbrance</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Barbarian</Class>
+               <Level>3</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Occult Slayer: Kinetic Bond</Name>
+         <InternalName>OSKineticBond</InternalName>
+         <Description>At weapon bond strength 45+, you deal 1d20 force damage with your attacks,
+scaling with 200% Melee Power. This damage can trigger up to once every 3/2/1 seconds. </Description>
+         <Icon>OSKineticBond</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Barbarian</Class>
+               <Level>3</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>OSLessonsOfTravel</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Occult Slayer: Ability I</Name>
+         <InternalName>OSAbilityScoreI</InternalName>
+         <Description>Choose either Constitution or Wisdom</Description>
+         <Icon>Constitution</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Barbarian</Class>
+               <Level>3</Level>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>+1 Constitution</Name>
+               <Description>+1 Constitution</Description>
+               <Icon>Constitution</Icon>
+               <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Ability>Constitution</Ability>
+                  <AmountVector size="1">1</AmountVector>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Wisdom</Name>
+               <Description>+1 Wisdom</Description>
+               <Icon>Wisdom</Icon>
+               <Cost>2</Cost>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Occult Slayer: Vicious Strike</Name>
+         <InternalName>OSViciousStrike</InternalName>
+         <Description>Melee Attack: Deals +1/+1.5/+2[W] damage and inflicts Feedback on the enemy for 6/12/18 seconds.
+(Cooldown: 12 seconds)</Description>
+         <Icon>OSViciousStrike</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>2</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>20</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Class>Barbarian</Class>
+               <Level>4</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>OSArcaneEncumbrance</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Occult Slayer: Driving Force</Name>
+         <InternalName>OSDrivingForce</InternalName>
+         <Description>Cooldown: [48/36/24] seconds. </Description>
+         <Icon>OSDrivingForce</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>20</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Class>Barbarian</Class>
+               <Level>4</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Occult Slayer: Ability II</Name>
+         <InternalName>OSAbilityScoreII</InternalName>
+         <Description>Choose either Constitution or Wisdom</Description>
+         <Icon>Constitution</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Barbarian</Class>
+               <Level>4</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>OSAbilityScoreI</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>+1 Constitution</Name>
+               <Description>+1 Constitution</Description>
+               <Icon>Constitution</Icon>
+               <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Ability>Constitution</Ability>
+                  <AmountVector size="1">1</AmountVector>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Wisdom</Name>
+               <Description>+1 Wisdom</Description>
+               <Icon>Wisdom</Icon>
+               <Cost>2</Cost>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Occult Slayer: Bond of Destruction</Name>
+         <InternalName>OSBondOfDestruction</InternalName>
+         <Description>Your Bond of Retribution no longer has a health requirement</Description>
+         <Icon>OSBondOfDestruction</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>12</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Class>Barbarian</Class>
+               <Level>5</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>OSBondOfRetribution</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Occult Slayer: Vampiric Bond</Name>
+         <InternalName>OSVampiricBond</InternalName>
+         <Description>At Weapon Bond 100+, your weapon provides you 20 temporary hitpoints when you damage
+an enemy. These Temporary hit Points scales with 200% Melee Power. This can
+trigger at most once every 12/9/6 seconds.</Description>
+         <Icon>OSVampiricBond</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>12</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Class>Barbarian</Class>
+               <Level>5</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Occult Slayer: Seeker's Strike</Name>
+         <InternalName>OSSeekersStrike</InternalName>
+         <Description>Melee Attack, Expend 50 stacks of Weapon Bond: Make a melee weapon attack
+for +1/3/5[W] damage. This attack has a +1 critical threat range and a +1 critical multiplier.
+(Cooldown: [27/9/3] seconds)</Description>
+         <Icon>OSSeekersStrike</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>2</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>12</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Class>Barbarian</Class>
+               <Level>5</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Occult Slayer: Occult Metalline</Name>
+         <InternalName>OSOccultMetalline</InternalName>
+         <Description>Your bonded weapon gains Occult Metalline.</Description>
+         <Icon>OSOccultMetalline</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>12</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Class>Barbarian</Class>
+               <Level>5</Level>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>DRBypass</Type>
+              <DR>Metalline</DR>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Occult Slayer: One Spirit</Name>
+         <InternalName>OSOneSpirit</InternalName>
+         <Description>Expend 100 Weapon Bond. You heal for 400 positive energy.
+This healing scales with 100% Melee Power. (Cooldown: [120/60/15] seconds)</Description>
+         <Icon>OSOneSpirit</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>12</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Class>Barbarian</Class>
+               <Level>5</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+   </EnhancementTree>
+</Enhancements>

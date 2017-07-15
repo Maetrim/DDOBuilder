@@ -1,0 +1,736 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Enhancements>
+   <EnhancementTree>
+      <Name>Radiant Servant</Name>
+       <Version>1</Version>
+       <Requirements>
+         <Requirement>
+            <Class>Cleric</Class>
+         </Requirement>
+      </Requirements>
+      <Background>ClericBackground</Background>
+      <Icon>Cleric</Icon>
+      <EnhancementTreeItem>
+         <Name>Radiant Servant: Healing Domain</Name>
+         <InternalName>RSCore1</InternalName>
+         <Description>For each action point spent in this tree, you gain 0.5 Universal Spell Power
+and 1 Positive Energy Spell Power. (These stack, effectively giving 1.5 Positive
+Spell Power per point)</Description>
+         <Icon>RSHEalingDomain</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>0</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Class>Cleric</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <DisplayName>Radiant Servant: Spell power per action point</DisplayName>
+              <Type>SpellPower</Type>
+              <SpellPower>All</SpellPower>
+              <EnhancementTree>Radiant Servant</EnhancementTree>
+              <AmountPerAP>0.5</AmountPerAP>
+          </Effect>
+          <Effect>
+              <DisplayName>Radiant Servant: Positive spell power per action point</DisplayName>
+              <Type>SpellPower</Type>
+              <SpellPower>Positive</SpellPower>
+              <EnhancementTree>Radiant Servant</EnhancementTree>
+              <AmountPerAP>1.0</AmountPerAP>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Radiant Servant: Pacifism</Name>
+         <InternalName>RSCore2</InternalName>
+         <Description>Toggle: You gain 25 Positive Energy Spell Power and 3% Positive Energy
+Spell Critical Chance, but have -50 Spell Power and cannot critically hit with other
+spell damage types, and deal -1[W] damage</Description>
+         <Icon>RSPacifism</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Clickie/>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>RSCore1</Enhancement>
+            </Requirement>
+            <Requirement>
+               <Class>Cleric</Class>
+               <Level>3</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Radiant Servant: Positive Energy Burst</Name>
+         <InternalName>RSCore3</InternalName>
+         <Description>You gain +1% Positive Energy Spell Critical Chance.
+Channel Divinity: A wave of positive energy that expands from the caster,
+healing 1d8 plus 1 per Cleric level to all nearby allies, as well as removing
+1d4 negative levels and 1d6 points of ability damage.
+Undead are instead damaged by the energy, taking 1d8 points of damage per
+Cleric level - a successful Will save reduces the damage by half.
+(Metamagic: Empower, Empower Heal, Maximize, Quicken. Spell Resistance: Yes)</Description>
+         <Icon>RSPositiveEnergyBurst</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Clickie/>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>RSCore2</Enhancement>
+            </Requirement>
+            <Requirement>
+               <Class>Cleric</Class>
+               <Level>6</Level>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>SpellCriticalChance</Type>
+              <SpellPower>Positive</SpellPower>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Radiant Servant: Improved Empower Healing</Name>
+         <InternalName>RSCore4</InternalName>
+         <Description>You gain +1% Positive Energy Spell Critical Chance.
+The Empower Healing Spell metamagic now grants +100 Positive Energy Spell Power instead of +75.</Description>
+         <Icon>RSImprovedEmpowerHealing</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>RSCore3</Enhancement>
+            </Requirement>
+            <Requirement>
+               <Class>Cleric</Class>
+               <Level>12</Level>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>SpellCriticalChance</Type>
+              <SpellPower>Positive</SpellPower>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>SpellPower</Type>
+              <SpellPower>Positive</SpellPower>
+              <AmountVector size="1">25</AmountVector>
+              <Stance>Empower Healing</Stance>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Radiant Servant: Positive Energy Shield</Name>
+         <InternalName>RSCore5</InternalName>
+         <Description>You gain +1% Positive Energy Spell Critical Chance.
+ Channel Divinity: Your living ally receives temporary hit points equal to your Heal skill.
+ While these hit points remain, your target receives +10% Sacred bonus to
+ healing they receive from positive energy. (Cooldown: 30 seconds)</Description>
+         <Icon>RSPositiveEnergyShield</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Clickie/>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>RSCore4</Enhancement>
+            </Requirement>
+            <Requirement>
+               <Class>Cleric</Class>
+               <Level>18</Level>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>SpellCriticalChance</Type>
+              <SpellPower>Positive</SpellPower>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Radiant Servant</Name>
+         <InternalName>RSCore6</InternalName>
+         <Description>You gain +2 Wisdom. Every fifth positive energy spell you cast deals
+maximum healing and has +50% chance to critical.</Description>
+         <Icon>RSRadiantServant</Icon>
+         <XPosition>5</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>40</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Enhancement>RSCore5</Enhancement>
+            </Requirement>
+            <Requirement>
+               <Class>Cleric</Class>
+               <Level>20</Level>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>AbilityBonus</Type>
+              <Ability>Wisdom</Ability>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Radiant Servant: Extra Turning</Name>
+         <InternalName>RSExtraTurning</InternalName>
+         <Description>+1/+2/+3 Turn Undead per rest.</Description>
+         <Icon>RSExtraTurning</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Cleric</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>ExtraTurns</Type>
+              <AmountVector size="3">1 2 3</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Radiant Servant: Wand Mastery</Name>
+         <InternalName>RSWandMastery</InternalName>
+         <Description>+25%/+50%/+75% effectiveness of your wands, scrolls, and other items
+that cast spells, and +1/+2/+3 to the save DCs of your offensive wands.</Description>
+         <Icon>RSWandMastery</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Cleric</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Radiant Servant: Divine Cleansing</Name>
+         <InternalName>RSDivineCleansing</InternalName>
+         <Description>Channel Divinity: Removes harmful effects from your target. Leaves a
+lingering immunity to natural and magical diseases and poisons for 12 seconds
+per Cleric level. (Cooldown: 2 seconds)
+Rank 1: Removes all Disease and Poison effects.
+Rank 2: Removes all Blindness, Curse, Disease and Poison effects.
+Rank 3: Removes all Blindness, Curse, Disease, Paralysis, Petrification and Poison effects.</Description>
+         <Icon>RSDivineCleansing</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>2</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Clickie/>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Cleric</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Radiant Servant: Bliss</Name>
+         <InternalName>RSBliss</InternalName>
+         <Description>When you use a Turn Attempt for any reason, you gain 3/4/5 Temporary Hit
+Points for each Healing Core Ability you possess.</Description>
+         <Icon>RSBliss</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>2</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Cleric</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Radiant Servant: Altruism</Name>
+         <InternalName>RSAltruism</InternalName>
+         <Description>+1/+2/+3 Concentration, Diplomacy and Heal.
+Rank 3: You also gain +10 Positive Energy Spell Power.</Description>
+         <Icon>RSAltruism</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Cleric</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>SkillBonus</Type>
+              <Skill>Concentration</Skill>
+              <AmountVector size="3">1 2 3</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>SkillBonus</Type>
+              <Skill>Diplomacy</Skill>
+              <AmountVector size="3">1 2 3</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>SkillBonus</Type>
+              <Skill>Heal</Skill>
+              <AmountVector size="3">1 2 3</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>SpellPower</Type>
+              <SpellPower>Positive</SpellPower>
+              <AmountVector size="3">0 0 10</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Radiant Servant: Improved Turning</Name>
+         <InternalName>RSImprovedTurning</InternalName>
+         <Description>You count as 1/2/3 levels higher when turning undead.
+This increases the maximum level of creature you can turn and also increases the
+total number of hit dice you can turn. In addition, you add an additional
+2/4/6 to the number of hit dice you can turn.</Description>
+         <Icon>RSImprovedTurning</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <ArrowRight/>
+         <LongArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Cleric</Class>
+               <Level>2</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>RSExtraTurning</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>TurnLevelBonus</Type>
+              <AmountVector size="3">1 2 3</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>TurnBonus</Type>
+              <AmountVector size="3">2 4 6</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Radiant Servant: Mighty Turning</Name>
+         <InternalName>RSMightyTurning</InternalName>
+         <Description>Undead that you successfully turn are instead destroyed</Description>
+         <Icon>RSMightyTurning</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Enhancement>RSImprovedTurning</Enhancement>
+            </Requirement>
+            <Requirement>
+               <Class>Cleric</Class>
+               <Level>2</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Radiant Servant: Purge Dark Magics</Name>
+         <InternalName>RSPurgeDarkMagics</InternalName>
+         <Description>Channel Divinity: Dispels 1/2/3 hostile magical effects from your target.
+(Cooldown: 6 seconds)</Description>
+         <Icon>RSPurgeDarkMagics</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Class>Cleric</Class>
+               <Level>2</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>RSDivineCleansing</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Radiant Servant: Divine Healing</Name>
+         <InternalName>RSDivineHealing</InternalName>
+         <Description>Divine Healing: Your target heals 1d4/2d4/4d4 hp every 2 seconds for 2
+seconds per point of Heal skill you possess. (Cooldown: 2 seconds)</Description>
+         <Icon>RSDivineHealing</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>2</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Clickie/>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Cleric</Class>
+               <Level>2</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Radiant Servant: Efficient Empower Healing</Name>
+         <InternalName>RSEfficientEmpowerHealing</InternalName>
+         <Description>Healing spells cast while the Empower Healing Spell feat is activated
+cost 1/2/4 fewer spell points.</Description>
+         <Icon>EfficientEmpowerHealing</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>2</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Cleric</Class>
+               <Level>2</Level>
+            </Requirement>
+            <Requirement>
+               <Feat>Empower Healing Spell</Feat>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>AdditionalSpellPointCost</Type>
+              <AmountVector size="3">-1 -2 -4</AmountVector>
+              <Stance>Empower Healing</Stance>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Radiant Servant: Intense Healing</Name>
+         <InternalName>RSIntenseHealing</InternalName>
+         <Description>Your Positive Energy Spells are cast at +1/+2/+3 caster level.</Description>
+         <Icon>RSIntenseHealing</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>2</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Cleric</Class>
+               <Level>3</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Radiant Servant: Unyielding Sovereignty</Name>
+         <InternalName>RSUnyieldingSovereignty</InternalName>
+         <Description>Activate: Fully heals all hit point damage done to a targeted ally,
+and removes ability damage, death penalty effects, negative levels, and the
+conditions blinded, dazed, deafened, diseased, exhausted, fatigued, feebleminded,
+insanity, nauseated, poisoned, and stunned. (Cooldown: 5 minutes)</Description>
+         <Icon>RSUnyieldingSovereignty</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Class>Cleric</Class>
+               <Level>3</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Radiant Servant: Martyrdom</Name>
+         <InternalName>RSMartyrdom</InternalName>
+         <Description>Toggle: When you are killed, four turn attempts are expended.
+All nearby living allies and enemy undead receive 250/500/1000 positive energy
+healing and are affected by your Divine Cleansing ability if you possess it.
+This healing effect is unaffected by Spell Power.
+(This ability has no effect if you have insufficient turn attempts when you die.)
+This ability toggles off on death.</Description>
+         <Icon>RSMartyrdom</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>2</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Clickie/>
+         <LongArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Cleric</Class>
+               <Level>3</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>RSDivineHealing</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Radiant Servant: Ability I</Name>
+         <InternalName>RSAbilityScoreI</InternalName>
+         <Description>Choose either Charisma or Wisdom</Description>
+         <Icon>ChaWis</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Cleric</Class>
+               <Level>3</Level>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>+1 Charisma</Name>
+               <Description>+1 Charisma</Description>
+               <Icon>Charisma</Icon>
+               <Cost>2</Cost>
+                <Effect>
+                    <Type>AbilityBonus</Type>
+                    <Ability>Charisma</Ability>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Wisdom</Name>
+               <Description>+1 Wisdom</Description>
+               <Icon>Wisdom</Icon>
+               <Cost>2</Cost>
+                <Effect>
+                    <Type>AbilityBonus</Type>
+                    <Ability>Wisdom</Ability>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Radiant Servant: Endless Turning</Name>
+         <InternalName>RSEndlessTurning</InternalName>
+         <Description>Turn Undead uses regenerate at a rate of one every 120 seconds, or
+10%/20%/30% faster if it already regenerates.</Description>
+         <Icon>RSEndlessTurning</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>2</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Enhancement>RSImprovedTurning</Enhancement>
+            </Requirement>
+            <Requirement>
+               <Class>Cleric</Class>
+               <Level>4</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Radiant Servant: Incredible Healing</Name>
+         <InternalName>RSIncredibleHealing</InternalName>
+         <Description>The maximum caster level of your Positive Energy Spells are increased by 1/2/3.</Description>
+         <Icon>RSIncredibleHealing</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>2</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>20</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Cleric</Class>
+               <Level>4</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>RSIntenseHealing</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Radiant Servant: Divine Health</Name>
+         <InternalName>RSDivineHealth</InternalName>
+         <Description>You are immune to natural, magical, and supernatural diseases.</Description>
+         <Icon>RSDivineHealth</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Cleric</Class>
+               <Level>4</Level>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>Immunity</Type>
+              <Immunity>Natural Disease</Immunity>
+          </Effect>
+          <Effect>
+              <Type>Immunity</Type>
+              <Immunity>Magical Disease</Immunity>
+          </Effect>
+          <Effect>
+              <Type>Immunity</Type>
+              <Immunity>Super-Natural Disease</Immunity>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Radiant Servant: Ability II</Name>
+         <InternalName>RSAbilityScoreII</InternalName>
+         <Description>Choose either Charisma or Wisdom</Description>
+         <Icon>ChaWis</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Cleric</Class>
+               <Level>4</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>RSAbilityScoreI</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>+1 Charisma</Name>
+               <Description>+1 Charisma</Description>
+               <Icon>Charisma</Icon>
+               <Cost>2</Cost>
+                <Effect>
+                    <Type>AbilityBonus</Type>
+                    <Ability>Charisma</Ability>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Wisdom</Name>
+               <Description>+1 Wisdom</Description>
+               <Icon>Wisdom</Icon>
+               <Cost>2</Cost>
+                <Effect>
+                    <Type>AbilityBonus</Type>
+                    <Ability>Wisdom</Ability>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Radiant Servant: Positive Energy Aura</Name>
+         <InternalName>RSPositiveEnergyAura</InternalName>
+         <Description>Channel Divinity: A positive energy aura envelops you in an aura of healing,
+positive energy, and affects a number of targets equal to Cleric level.
+Allies within the aura are healed 1 hit point per 3 Cleric levels as long as
+they remain within it. Undead enemies are damaged for the same amount.
+(Cooldown: 6 seconds)</Description>
+         <Icon>RSPositiveEnergyAura</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>12</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Class>Cleric</Class>
+               <Level>5</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Radiant Servant: Cure Focus</Name>
+         <InternalName>RSCureFocus</InternalName>
+         <Description>Your Cure Wounds spells have no maximum caster level.</Description>
+         <Icon>RSCureFocus</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>12</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Class>Cleric</Class>
+               <Level>5</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>RSIncredibleHealing</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Radiant Servant: Reactive Heal</Name>
+         <InternalName>RSReactiveHeal</InternalName>
+         <Description>Channel Divinity: The next time your target falls below half hit points,
+they receive 250 positive energy healing. A target can only benefit from a
+Reactive Heal once every 3 minutes (reset by resting). This healing effect i
+unaffected by spell power. (Cooldown: 6 seconds)</Description>
+         <Icon>RSReactiveHeal</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>12</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Class>Cleric</Class>
+               <Level>5</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>RSMartyrdom</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+   </EnhancementTree>
+</Enhancements>

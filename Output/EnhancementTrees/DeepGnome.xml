@@ -1,0 +1,770 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Enhancements>
+   <EnhancementTree>
+      <Name>Deep Gnome</Name>
+       <Version>1</Version>
+       <IsRacialTree/>
+       <Requirements>
+         <Requirement>
+            <Race>Deep Gnome</Race>
+         </Requirement>
+      </Requirements>
+      <Background>DeepGnomeBackground</Background>
+      <Icon>DeepGnome</Icon>
+      <EnhancementTreeItem>
+         <Name>Deep Gnome: Wariness I</Name>
+         <InternalName>DeepGnomeCore1</InternalName>
+         <Description>+1 Dodge, +2 Magical Resistance Rating</Description>
+         <Icon>DeepGnomeWariness</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>0</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>1</MinLevel>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>DodgeBonus</Type>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>MRR</Type>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Deep Gnome: Wisdom I</Name>
+         <InternalName>DeepGnomeCore2</InternalName>
+         <Description>Select either Intelligence or Wisdom</Description>
+         <Icon>Wisdom</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>4</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Enhancement>DeepGnomeCore1</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Intelligence</Name>
+               <Description>+1 Intelligence</Description>
+               <Icon>Intelligence</Icon>
+               <Cost>2</Cost>
+                <Effect>
+                    <Type>AbilityBonus</Type>
+                    <Ability>Intelligence</Ability>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Wisdom</Name>
+               <Description>+1 Wisdom</Description>
+               <Icon>Wisdom</Icon>
+               <Cost>2</Cost>
+                <Effect>
+                    <Type>AbilityBonus</Type>
+                    <Ability>Wisdom</Ability>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Deep Gnome: Wariness II</Name>
+         <InternalName>DeepGnomeCore3</InternalName>
+         <Description>+1 Dodge, +2 Magical Resistance Rating</Description>
+         <Icon>DeepGnomeWarinessII</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>7</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Enhancement>DeepGnomeCore2</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>DodgeBonus</Type>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>MRR</Type>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Deep Gnome: Wisdom II</Name>
+         <InternalName>DeepGnomeCore4</InternalName>
+         <Description>Select either Intelligence or Wisdom</Description>
+         <Icon>Wisdom</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>11</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Enhancement>DeepGnomeCore3</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Intelligence</Name>
+               <Description>+1 Intelligence</Description>
+               <Icon>Intelligence</Icon>
+               <Cost>2</Cost>
+                <Effect>
+                    <Type>AbilityBonus</Type>
+                    <Ability>Intelligence</Ability>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Wisdom</Name>
+               <Description>+1 Wisdom</Description>
+               <Icon>Wisdom</Icon>
+               <Cost>2</Cost>
+                <Effect>
+                    <Type>AbilityBonus</Type>
+                    <Ability>Wisdom</Ability>
+                    <AmountVector size="1">1</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Scrolls: Retain Essence</Name>
+         <InternalName>DeepGnomeCore5</InternalName>
+         <Description>You gain a 15% racial bonus to your odds of retaining a copy of a Scroll when using it.
++2 Dodge, +2 Magical Resistance Rating</Description>
+         <Icon>DeepGnomeScrollsRetainEssence</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>16</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Enhancement>DeepGnomeCore4</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>DodgeBonus</Type>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>MRR</Type>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Deep Gnome: Illusory Escape</Name>
+         <InternalName>DeepGnomeIllusoryEscape</InternalName>
+         <Description>When you tumble, you will phase out of reality briefly, passing through enemies as you do so.</Description>
+         <Icon>DeepGnomeIllusoryEscape</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements/>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Wand and Scroll Mastery</Name>
+         <InternalName>DeepGnomeWandAndScrollMastery</InternalName>
+         <Description>+25%/+50%/+75% effectiveness from your wands, scrolls, and other items that cast spells,
+and +1/+2/+3 to the save DC of your offensive wands.</Description>
+         <Icon>DeepGnomeWandAndScrollMastery</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements/>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Deep Gnome: Underdark Experience</Name>
+         <InternalName>DeepGnomeUnderdarkExperience</InternalName>
+         <Description>+1/+2/+3 to all saves.</Description>
+         <Icon>DeepGnomeUnderdarkExperience</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements/>
+          <Effect>
+              <Type>SaveBonus</Type>
+              <Save>All</Save>
+              <AmountVector size="3">1 2 3</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Deep Gnome: Stealth or Awareness</Name>
+         <InternalName>DeepGnomeStealthOrAwareness</InternalName>
+         <Description>Choose one: </Description>
+         <Icon>Awareness</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements/>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Awareness</Name>
+               <Description>+1/+2/+3 to Listen, Spot and Search. </Description>
+               <Icon>Awareness</Icon>
+               <Cost>1</Cost>
+                <Effect>
+                    <Type>SkillBonus</Type>
+                    <Skill>Listen</Skill>
+                    <AmountVector size="3">1 2 3</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>SkillBonus</Type>
+                    <Skill>Spot</Skill>
+                    <AmountVector size="3">1 2 3</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>SkillBonus</Type>
+                    <Skill>Search</Skill>
+                    <AmountVector size="3">1 2 3</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Stealthy</Name>
+               <Description>+1/+2/+3 to Hide and Move Silently.</Description>
+               <Icon>Stealthy</Icon>
+               <Cost>1</Cost>
+                <Effect>
+                    <Type>SkillBonus</Type>
+                    <Skill>Hide</Skill>
+                    <AmountVector size="3">1 2 3</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>SkillBonus</Type>
+                    <Skill>Move Silently</Skill>
+                    <AmountVector size="3">1 2 3</AmountVector>
+                </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Deep Gnome: Weapon Training I</Name>
+         <InternalName>DeepGnomeGnomishWeaponTrainingI</InternalName>
+         <Description>+1 to hit and damage with light hammers, light maces, light picks, shortswords,
+shortbows, light crossbows, and light repeating crossbows.</Description>
+         <Icon>GnomeGnomishWeaponTrainingI</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>1</MinSpent>
+         <ArrowUp/>
+         <Requirements/>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <Weapon>Light Hammer</Weapon>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <Weapon>Light Mace</Weapon>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <Weapon>Light Pick</Weapon>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <Weapon>Shortsword</Weapon>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <Weapon>Light Crossbow</Weapon>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <Weapon>Repeating Light Crossbow</Weapon>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Weapon>Light Hammer</Weapon>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Weapon>Light Mace</Weapon>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Weapon>Light Pick</Weapon>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Weapon>Shortsword</Weapon>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Weapon>Light Crossbow</Weapon>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Weapon>Repeating Light Crossbow</Weapon>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Deep Gnome: Conjure Stone</Name>
+         <InternalName>DeepGnomeConjureStone</InternalName>
+         <Description>Conjure a boulder and hurl it at an enemy, dealing 6d4/12d4/20d4 bludgeoning
+damage and knocking down enemy on failed reflex save DC 10/15/20 + INT modifier.
+Activation Cost: 25/15/5 Spell points. Cooldown: 10/8/6 seconds.</Description>
+         <Icon>DeepGnomeConjureStone</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Clickie/>
+         <Requirements/>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Deep Gnome: Hardy Nature</Name>
+         <InternalName>DeepGnomeHardyNature</InternalName>
+         <Description> +2/+4/+6 to Armor Class and +1/+2/+3 Physical Resistance Rating.</Description>
+         <Icon>DeepGnomeHardyNature</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements/>
+          <Effect>
+              <Type>ACBonus</Type>
+              <AmountVector size="3">2 4 6</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>PRR</Type>
+              <AmountVector size="3">1 2 3</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Deep Gnome: Color Spray</Name>
+         <InternalName>DeepGnomeColorSpray</InternalName>
+         <Description>Enemies are sprayed with illusions of color, and must make a Will save
+or be Dazed, Blinded, and/or Silenced. The target must make a saving throw for each effect.
+Activation Cost: 10/5/2 Spell Points. Cooldown: 8 seconds</Description>
+         <Icon>DeepGnomeColorSpray</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Clickie/>
+         <Requirements/>
+          <Effect>
+              <Type>SpellLikeAbility</Type>
+              <SpellLikeAbility>Color Spray</SpellLikeAbility>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Deep Gnome: Permanent Blur</Name>
+         <InternalName>DeepGnomePermanentBlur</InternalName>
+         <Description>You gain a permanent Blur effect.</Description>
+         <Icon>GnomePermanentBlur</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements/>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Deep Gnome: Weapon Training II</Name>
+         <InternalName>DeepGnomeGnomishWeaponTrainingII</InternalName>
+         <Description>+1 to hit and damage with light hammers, light maces, light picks, shortswords,
+shortbows, light crossbows, and light repeating crossbows.</Description>
+         <Icon>GnomeGnomishWeaponTrainingII</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>DeepGnomeGnomishWeaponTrainingI</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <Weapon>Light Hammer</Weapon>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <Weapon>Light Mace</Weapon>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <Weapon>Light Pick</Weapon>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <Weapon>Shortsword</Weapon>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <Weapon>Light Crossbow</Weapon>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <Weapon>Repeating Light Crossbow</Weapon>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Weapon>Light Hammer</Weapon>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Weapon>Light Mace</Weapon>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Weapon>Light Pick</Weapon>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Weapon>Shortsword</Weapon>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Weapon>Light Crossbow</Weapon>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Weapon>Repeating Light Crossbow</Weapon>
+              <AmountVector size="1">1</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Deep Gnome: Spellcraft</Name>
+         <InternalName>DeepGnomeSpellcraft</InternalName>
+         <Description>+5/+10/+20 Spellcraft</Description>
+         <Icon>DeepGnomeSpellcraft</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements/>
+          <Effect>
+              <Type>SkillBonus</Type>
+              <Skill>Spell Craft</Skill>
+              <AmountVector size="3">5 10 20</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Deep Gnome: Nimble Reaction</Name>
+         <InternalName>DeepGnomeNimbleReaction</InternalName>
+         <Description>+1/+2/+3 Armor Maximum Dexterity Bonus and Maximum Dodge Bonus.</Description>
+         <Icon>GnomeNimbleReaction</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements/>
+          <Effect>
+              <Type>MaxDexBonus</Type>
+              <AmountVector size="3">1 2 3</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>MaxDodgeBonus</Type>
+              <AmountVector size="3">1 2 3</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Deep Gnome: Stoneskin</Name>
+         <InternalName>DeepGnomeStoneskin</InternalName>
+         <Description>You get Stoneskin as an SLA.
+Activation Cost: 10 Spell Points. Cooldown: 20/15/10 seconds.</Description>
+         <Icon>DeepGnomeStoneskin</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Clickie/>
+         <Requirements/>
+          <Effect>
+              <Type>SpellLikeAbility</Type>
+              <SpellLikeAbility>Stoneskin</SpellLikeAbility>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Deep Gnome Spell Focus: Illusion</Name>
+         <InternalName>DeepGnomeRacialSpellFocusIllusion</InternalName>
+         <Description>+1/+2/+3 to Illusion DCs</Description>
+         <Icon>DeepGnomeRacialSpellFocusIllusion</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements/>
+          <Effect>
+              <Type>SpellDC</Type>
+              <School>Illusion</School>
+              <AmountVector size="3">1 2 3</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Deep Gnome: Weapon Training III</Name>
+         <InternalName>DeepGnomeGnomishWeaponTrainingIII</InternalName>
+         <Description>+2 to hit and damage with light hammers, light maces, light picks, shortswords,
+shortbows, light crossbows, and light repeating crossbows.</Description>
+         <Icon>GnomeGnomishWeaponTrainingIII</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>DeepGnomeGnomishWeaponTrainingII</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <Weapon>Light Hammer</Weapon>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <Weapon>Light Mace</Weapon>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <Weapon>Light Pick</Weapon>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <Weapon>Shortsword</Weapon>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <Weapon>Light Crossbow</Weapon>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <Weapon>Repeating Light Crossbow</Weapon>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Weapon>Light Hammer</Weapon>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Weapon>Light Mace</Weapon>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Weapon>Light Pick</Weapon>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Weapon>Shortsword</Weapon>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Weapon>Light Crossbow</Weapon>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Weapon>Repeating Light Crossbow</Weapon>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Deep Gnome: Phantasmal Killer</Name>
+         <InternalName>DeepGnomePhantasmalKiller</InternalName>
+         <Description>You gain Phantasmal Killer as an SLA.
+Activation Cost: 25/15/5 Spell Points. Cooldown: 16 seconds</Description>
+         <Icon>DeepGnomePhantasmalKiller</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>20</MinSpent>
+         <Clickie/>
+         <Requirements/>
+          <Effect>
+              <Type>SpellLikeAbility</Type>
+              <SpellLikeAbility>Phantasmal Killer</SpellLikeAbility>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Deep Gnome: Favored Enemy</Name>
+         <InternalName>DeepGnomeGnomishFavoredEnemy</InternalName>
+         <Description>Gnomes have a history of racial enmity with several kinds of creatures.
+Choose a Favored Enemy feat for one of these: Goblinoid or Reptilian</Description>
+         <Icon>GnomeGnomishFavoredEnemy</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements/>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Favored Enemy:Goblinoid</Name>
+               <Description/>
+               <Icon>FavoredEnemyGoblinoid</Icon>
+               <Cost>2</Cost>
+                <!--favored enemy damage bonus-->
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Favored Enemy: Reptilian</Name>
+               <Description/>
+               <Icon>FavoredEnemyReptilian</Icon>
+               <Cost>2</Cost>
+                <!--favored enemy damage bonus-->
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Deep Gnome: Weapon Training IV</Name>
+         <InternalName>DeepGnomeGnomishWeaponTrainingIV</InternalName>
+         <Description>+2 to hit and damage with light hammers, light maces, light picks, shortswords,
+shortbows, light crossbows, and light repeating crossbows.
++1 Competence Bonus to Critical Threat Range with the same weapons.</Description>
+         <Icon>GnomeGnomishWeaponTrainingIV</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Enhancement>DeepGnomeGnomishWeaponTrainingIII</Enhancement>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <Weapon>Light Hammer</Weapon>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <Weapon>Light Mace</Weapon>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <Weapon>Light Pick</Weapon>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <Weapon>Shortsword</Weapon>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <Weapon>Light Crossbow</Weapon>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <Weapon>Repeating Light Crossbow</Weapon>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Weapon>Light Hammer</Weapon>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Weapon>Light Mace</Weapon>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Weapon>Light Pick</Weapon>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Weapon>Shortsword</Weapon>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Weapon>Light Crossbow</Weapon>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Weapon>Repeating Light Crossbow</Weapon>
+              <AmountVector size="1">2</AmountVector>
+          </Effect>
+      </EnhancementTreeItem>
+   </EnhancementTree>
+</Enhancements>
