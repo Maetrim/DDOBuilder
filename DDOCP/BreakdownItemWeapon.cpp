@@ -230,6 +230,50 @@ void BreakdownItemWeapon::UpdateFeatEffectRevoked(
     }
 }
 
+void BreakdownItemWeapon::UpdateItemEffect(
+        Character * pCharacter,
+        const std::string & itemName,
+        const Effect & effect)
+{
+    // handle special affects that change our list of available stats
+    if (AffectsUs(effect))
+    {
+        // pass through to all our sub breakdowns
+        //m_baseDamage.UpdateItemEffect(pCharacter, itemName, effect);
+        m_attackBonus.UpdateItemEffect(pCharacter, itemName, effect);
+        m_damageBonus.UpdateItemEffect(pCharacter, itemName, effect);
+        //m_vorpalRange.UpdateItemEffect(pCharacter, itemName, effect);
+        //m_criticalThreatRange.UpdateItemEffect(pCharacter, itemName, effect);
+        m_criticalAttackBonus.UpdateItemEffect(pCharacter, itemName, effect);
+        m_criticalDamageBonus.UpdateItemEffect(pCharacter, itemName, effect);
+        //m_criticalMultiplier.UpdateItemEffect(pCharacter, itemName, effect);
+        //m_specialMultiplier.UpdateItemEffect(pCharacter, itemName, effect);
+        m_attackSpeed.UpdateItemEffect(pCharacter, itemName, effect);
+    }
+}
+
+void BreakdownItemWeapon::UpdateItemEffectRevoked(
+        Character * pCharacter,
+        const std::string & itemName,
+        const Effect & effect)
+{
+    // handle special affects that change our list of available stats
+    if (AffectsUs(effect))
+    {
+        // pass through to all our sub breakdowns
+        //m_baseDamage.UpdateItemEffectRevoked(pCharacter, itemName, effect);
+        m_attackBonus.UpdateItemEffectRevoked(pCharacter, itemName, effect);
+        m_damageBonus.UpdateItemEffectRevoked(pCharacter, itemName, effect);
+        //m_vorpalRange.UpdateItemEffectRevoked(pCharacter, itemName, effect);
+        //m_criticalThreatRange.UpdateItemEffectRevoked(pCharacter, itemName, effect);
+        m_criticalAttackBonus.UpdateItemEffectRevoked(pCharacter, itemName, effect);
+        m_criticalDamageBonus.UpdateItemEffectRevoked(pCharacter, itemName, effect);
+        //m_criticalMultiplier.UpdateItemEffectRevoked(pCharacter, itemName, effect);
+        //m_specialMultiplier.UpdateItemEffectRevoked(pCharacter, itemName, effect);
+        m_attackSpeed.UpdateItemEffectRevoked(pCharacter, itemName, effect);
+    }
+}
+
 void BreakdownItemWeapon::UpdateEnhancementEffect(
         Character * pCharacter,
         const std::string & enhancementName,

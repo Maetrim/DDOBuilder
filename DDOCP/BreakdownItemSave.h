@@ -28,6 +28,8 @@ class BreakdownItemSave:
         // BreakdownObserver overrides
         virtual void UpdateFeatEffect(Character * pCharacater, const std::string & featName,  const Effect & effect) override;
         virtual void UpdateFeatEffectRevoked(Character * pCharacater, const std::string & featName, const Effect & effect) override;
+        virtual void UpdateItemEffect(Character * charData, const std::string & itemName,  const Effect & effect) override;
+        virtual void UpdateItemEffectRevoked(Character * charData, const std::string & itemName, const Effect & effect) override;
         virtual void UpdateEnhancementEffect(Character * charData, const std::string & enhancementName,  const EffectTier & effect) override;
         virtual void UpdateEnhancementEffectRevoked(Character * charData, const std::string & enhancementName, const EffectTier & effect) override;
         virtual void UpdateTotalChanged(BreakdownItem * item, BreakdownType type) override;

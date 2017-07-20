@@ -46,3 +46,30 @@ void Augment::Write(XmlLib::SaxWriter * writer) const
     DL_WRITE(Augment_PROPERTIES)
     writer->EndElement();
 }
+
+bool Augment::IsCompatibleWithSlot(AugmentType type) const
+{
+    // by default it has to match
+    bool compatible = (Type() == type);
+    // all augments types must match exactly unless they are compound colour slots
+    switch (type)
+    {
+        case Augment_Green:
+            // green augments slots can take blue, yellow or white
+            compatible = (Type() == Augment_Blue || Type() == Augment_Yellow || Type() == Augment_White);
+            break;
+        case Augment_Orange:
+            // orange augments slots can take red, yellow or white
+            compatible = (Type() == Augment_Red || Type() == Augment_Yellow || Type() == Augment_White);
+            break;
+        case Augment_Purple:
+            // purple augments slots can take blue, red or white
+            compatible = (Type() == Augment_Blue || Type() == Augment_Red || Type() == Augment_White);
+            break;
+        default:
+            // all others covered by (Type() == type)
+            break;
+    }
+    return compatible;
+}
+

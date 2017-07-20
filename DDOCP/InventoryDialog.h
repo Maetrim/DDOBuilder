@@ -51,6 +51,8 @@ class CInventoryDialog :
     public:
         CInventoryDialog(CWnd* pParent);
 
+        void SetGearSet(const EquippedGear & gear);
+
     ///////////////////////////////////////////////////////////////////
     // MFC
 
@@ -89,13 +91,14 @@ class CInventoryDialog :
         CBitmap m_cachedDisplay;
         CImage m_imageBackground;
         CImage m_imageBackgroundDisabled;
-        std::list<InventoryHitBox> m_hitBoxes;
+        std::vector<InventoryHitBox> m_hitBoxes;
         CInfoTip m_tooltip;
         bool m_showingTip;
         bool m_tipCreated;
         InventorySlotType m_tooltipItem;
         InventorySlotType m_selectedItem;
         CImage m_selectedImage;
+        EquippedGear m_gearSet;
 };
 
 //{{AFX_INSERT_LOCATION}}

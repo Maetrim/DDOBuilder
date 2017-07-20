@@ -2,11 +2,13 @@
 //
 #pragma once
 #include "Resource.h"
+#include "InventoryDialog.h"
 
 class Character;
 
 class CEquipmentView :
-    public CFormView
+    public CFormView,
+    public InventoryObserver
 {
     public:
         enum { IDD = IDD_EQUIPMENT_VIEW };
@@ -33,16 +35,20 @@ class CEquipmentView :
         afx_msg void OnButtonActiveGearSet();
         DECLARE_MESSAGE_MAP()
 
+        // InventoryObserver overrides
+        virtual void UpdateSlotLeftClicked(CInventoryDialog * dialog, InventorySlotType slot) override;
+        virtual void UpdateSlotRightClicked(CInventoryDialog * dialog, InventorySlotType slot) override;
     private:
         void PopulateCombobox();
         void EnableControls();
         void PopulateGear();
+        std::string SelectedGearSet() const;
         CComboBox m_comboGearSelections;
         CButton m_buttonNew;
         CButton m_buttonCopy;
         CButton m_buttonDelete;
         CButton m_buttonActiveGearSet;
-        CDialog * m_inventoryView;
+        CInventoryDialog * m_inventoryView;
 
         CDocument * m_pDocument;
         Character * m_pCharacter;

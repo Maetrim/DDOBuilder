@@ -45,6 +45,7 @@ void BreakdownItemSpellSchool::CreateOtherEffects()
             "Base DC",
             1,
             10,
+            Bonus_Unknown,
             "");        // no tree
     AddOtherEffect(amountTrained);
 }

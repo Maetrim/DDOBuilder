@@ -7,6 +7,7 @@
 #include "InventoryDialog.h"
 #include "GlobalSupportFunctions.h"
 #include "GearSetNameDialog.h"
+#include "ItemSelectDialog.h"
 
 namespace
 {
@@ -83,6 +84,12 @@ void CEquipmentView::OnInitialUpdate()
     m_inventoryView->Create(CInventoryDialog::IDD, this);
     m_inventoryView->MoveWindow(&rctInventory);
     m_inventoryView->ShowWindow(SW_SHOW);
+    m_inventoryView->AttachObserver(this);
+    if (m_pCharacter != NULL)
+    {
+        m_inventoryView->SetGearSet(m_pCharacter->ActiveGearSet());
+    }
+
     EnableControls();
 }
 
@@ -150,6 +157,15 @@ LRESULT CEquipmentView::OnNewDocument(WPARAM wParam, LPARAM lParam)
     PopulateCombobox();
     PopulateGear();
     EnableControls();
+    if (m_pCharacter != NULL)
+    {
+        m_inventoryView->SetGearSet(m_pCharacter->ActiveGearSet());
+    }
+    else
+    {
+        EquippedGear emptyGear;
+        m_inventoryView->SetGearSet(emptyGear);
+    }
     return 0L;
 }
 
@@ -211,6 +227,20 @@ void CEquipmentView::PopulateCombobox()
     m_comboGearSelections.UnlockWindowUpdate();
 }
 
+std::string CEquipmentView::SelectedGearSet() const
+{
+    std::string gearSet;
+    int sel = m_comboGearSelections.GetCurSel();
+    if (sel != CB_ERR)
+    {
+        const std::list<EquippedGear> & setups = m_pCharacter->GearSetups();
+        std::list<EquippedGear>::const_iterator it = setups.begin();
+        std::advance(it, sel);
+        gearSet = (*it).Name();
+    }
+    return gearSet;
+}
+
 void CEquipmentView::EnableControls()
 {
     // controls disabled if no document
@@ -226,12 +256,12 @@ void CEquipmentView::EnableControls()
     else
     {
         const std::list<EquippedGear> & setups = m_pCharacter->GearSetups();
-        m_comboGearSelections.EnableWindow(setups.size() > 0);
-        m_buttonNew.EnableWindow(TRUE);                 // can always create a new one
-        m_buttonCopy.EnableWindow(setups.size() > 0);   // can only copy a layout if one exists
-        m_buttonDelete.EnableWindow(setups.size() > 0); // can only delete if one exists
+        //m_comboGearSelections.EnableWindow(setups.size() > 0);
+        //m_buttonNew.EnableWindow(TRUE);                 // can always create a new one
+        //m_buttonCopy.EnableWindow(setups.size() > 0);   // can only copy a layout if one exists
+        //m_buttonDelete.EnableWindow(setups.size() > 0); // can only delete if one exists
         m_inventoryView->EnableWindow(setups.size() > 0);
-        m_buttonActiveGearSet.EnableWindow(FALSE);
+        //m_buttonActiveGearSet.EnableWindow(FALSE);
     }
 }
 
@@ -290,3 +320,28 @@ void CEquipmentView::OnButtonActiveGearSet()
 void CEquipmentView::PopulateGear()
 {
 }
+
+// InventoryObserver overrides
+void CEquipmentView::UpdateSlotLeftClicked(
+        CInventoryDialog * dialog,
+        InventorySlotType slot)
+{
+    // determine the item selected in this slot already (if any)
+    EquippedGear gear = m_pCharacter->GetGearSet(SelectedGearSet());
+    Item item = gear.ItemInSlot(slot);
+    CItemSelectDialog dlg(this, slot, item);
+    if (dlg.DoModal() == IDOK)
+    {
+        gear.SetItem(slot, dlg.SelectedItem());
+        m_pCharacter->SetGear(SelectedGearSet(), gear);
+        m_inventoryView->SetGearSet(gear);
+    }
+}
+
+void CEquipmentView::UpdateSlotRightClicked(
+        CInventoryDialog * dialog,
+        InventorySlotType slot)
+{
+    AfxMessageBox("Inventory right clicked");
+}
+

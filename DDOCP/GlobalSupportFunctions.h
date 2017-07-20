@@ -78,12 +78,14 @@ const std::list<Feat> & StanceFeats();
 const std::list<EnhancementTree> & EnhancementTrees();
 const std::list<Spell> & Spells();
 const std::list<Item> & Items();
+const std::list<Augment> & Augments();
 std::vector<Spell> FilterSpells(ClassType ct, int level);
 Spell FindSpellByName(const std::string & name);
 const EnhancementTree & GetEnhancementTree(const std::string & treeName);
 const EnhancementTreeItem * FindEnhancement(const std::string & internalName, std::string * treeName = NULL);
 std::vector<TrainableFeatTypes> ClassSpecificFeatTypes(ClassType type);
 std::vector<TrainableFeatTypes> RaceSpecificFeatTypes(RaceType type);
+const Augment & FindAugmentByName(const std::string & name);
 
 AbilityType StatFromSkill(SkillType skill);
 int ArmorCheckPenalty_Multiplier(SkillType skill);
@@ -110,6 +112,7 @@ enum ImageType
     IT_feat,
     IT_spell,
     IT_ui,
+    IT_item,
 };
 HRESULT LoadImageFile(ImageType type, const std::string & name, CImage * pImage, bool loadDefaultOnFail = true);
 bool ImageFileExists(ImageType type, const std::string & name);

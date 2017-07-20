@@ -128,6 +128,7 @@ void CDDOCPDoc::Dump(CDumpContext& dc) const
 
 BOOL CDDOCPDoc::OnOpenDocument(LPCTSTR lpszPathName)
 {
+    CWaitCursor longOperation;
     bool ok = false;
     try
     {

@@ -14,6 +14,8 @@ class Augment :
         Augment(void);
         void Write(XmlLib::SaxWriter * writer) const;
 
+        bool IsCompatibleWithSlot(AugmentType type) const;
+
     protected:
         XmlLib::SaxContentElementInterface * StartElement(
                 const XmlLib::SaxString & name,

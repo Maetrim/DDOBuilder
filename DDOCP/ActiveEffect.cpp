@@ -13,6 +13,8 @@ ActiveEffect::ActiveEffect() :
     m_effectName("Not setup"),
     m_numStacks(0),
     m_amount(0),
+    m_bonusType(Bonus_Unknown),
+    m_bHasAmountVector(false),
     m_bHasDice(false),
     m_bHasEnergy(false),
     m_energy(Energy_Unknown),
@@ -28,11 +30,14 @@ ActiveEffect::ActiveEffect(
         const std::string & name,
         size_t stacks,
         double amount,
+        BonusType bonusType,
         const std::string & tree) :
     m_type(type),
     m_effectName(name),
     m_numStacks(stacks),
     m_amount(amount),
+    m_bonusType(bonusType),
+    m_bHasAmountVector(false),
     m_bHasDice(false),
     m_bHasEnergy(false),
     m_energy(Energy_Unknown),
@@ -48,11 +53,14 @@ ActiveEffect::ActiveEffect(
         const std::string & name,
         size_t stacks,
         const Dice & dice,
+        BonusType bonusType,
         const std::string & tree) :
     m_type(type),
     m_effectName(name),
     m_numStacks(stacks),
     m_amount(0),            // not used
+    m_bonusType(bonusType),
+    m_bHasAmountVector(false),
     m_dice(dice),
     m_bHasDice(true),
     m_bHasEnergy(false),
@@ -68,11 +76,14 @@ ActiveEffect::ActiveEffect(
         ActiveEffectType type,
         const std::string & name,
         size_t stacks,
+        BonusType bonusType,
         const std::vector<double> & amounts) :
     m_type(type),
     m_effectName(name),
     m_numStacks(stacks),
     m_amount(0),                // not used
+    m_bonusType(bonusType),
+    m_bHasAmountVector(true),
     m_amounts(amounts),
     m_bHasDice(false),
     m_bHasEnergy(false),
@@ -88,11 +99,14 @@ ActiveEffect::ActiveEffect(
         const std::string & name,
         double amountPerLevel,
         size_t stacks,
+        BonusType bonusType,
         ClassType classType) :
     m_type(type),
     m_effectName(name),
     m_numStacks(stacks),
     m_amount(0),                // not used
+    m_bonusType(bonusType),
+    m_bHasAmountVector(false),
     m_bHasDice(false),
     m_bHasEnergy(false),
     m_energy(Energy_Unknown),
@@ -135,10 +149,11 @@ CString ActiveEffect::AmountAsText() const
     }
     else
     {
+        double value = (m_bHasAmountVector ? m_amounts[m_numStacks-1] : m_amount);
         switch (m_type)
         {
         case ET_enhancement:
-            text.Format("%.2f", (double)m_amounts[m_numStacks-1]);
+            text.Format("%.2f", value);
             break;
         case ET_enhancementPerLevel:
             text.Format("%.2f", m_amountPerLevel * m_numStacks);
@@ -146,7 +161,7 @@ CString ActiveEffect::AmountAsText() const
         default:
         case ET_feat:
         case ET_enhancementPerAP:
-            text.Format("%.2f", m_amount * m_numStacks);
+            text.Format("%.2f", value * m_numStacks);
             break;
         }
     }
@@ -206,21 +221,19 @@ void ActiveEffect::SetStacks(size_t count)
 
 double ActiveEffect::TotalAmount() const
 {
+    double value = (m_bHasAmountVector ? m_amounts[m_numStacks-1] : m_amount);
     switch (m_type)
     {
-    case ET_enhancement:
-        return (double)m_amounts[m_numStacks-1];        // 0 based
     case ET_enhancementPerLevel:
         ASSERT(m_numStacks > 0);
-        return m_amountPerLevel * m_numStacks;
+        value = m_amountPerLevel * m_numStacks;
     default:
     case ET_feat:
     case ET_enhancementPerAP:
         ASSERT(m_numStacks > 0);
-        return m_amount * m_numStacks;
+        value = m_amount * m_numStacks;
     }
-    ASSERT(false);
-    return 0;
+    return value;
 }
 
 void ActiveEffect::AddFeat(const std::string & featName)
@@ -265,21 +278,30 @@ bool ActiveEffect::IsActive(const Character * pCharacter) const
     return active;
 }
 
+BonusType ActiveEffect::Bonus() const
+{
+    return m_bonusType;
+}
+
 bool ActiveEffect::operator<=(const ActiveEffect & other) const
 {
     bool lessThanOrEqual = false;
     // must be the same type of bonus to allow a lessThan
     if (m_type == other.m_type
-            && m_effectName == other.m_effectName)
+            //&& m_effectName == other.m_effectName
+            && m_bonusType == other.m_bonusType)
     {
         // comes down to the amount field
-        if (m_type != ET_enhancement)
+        if (m_bHasAmountVector == other.m_bHasAmountVector)
         {
-            lessThanOrEqual = (m_amount <= other.m_amount);
-        }
-        else
-        {
-            lessThanOrEqual = (m_amounts <= other.m_amounts);
+            if (m_bHasAmountVector)
+            {
+                lessThanOrEqual = (m_amounts <= other.m_amounts);
+            }
+            else
+            {
+                lessThanOrEqual = (m_amount <= other.m_amount);
+            }
         }
     }
     return lessThanOrEqual;
@@ -290,15 +312,20 @@ bool ActiveEffect::operator==(const ActiveEffect & other) const
     bool equal = false;
     // must be the same type of bonus to allow a lessThan
     if (m_type == other.m_type
-            && m_effectName == other.m_effectName)
+            && m_effectName == other.m_effectName
+            && m_bonusType == other.m_bonusType)
     {
-        if (m_type != ET_enhancement)
+        // comes down to the amount field
+        if (m_bHasAmountVector == other.m_bHasAmountVector)
         {
-            equal = (m_amount == other.m_amount);
-        }
-        else
-        {
-            equal = (m_amounts == other.m_amounts);
+            if (m_bHasAmountVector)
+            {
+                equal = (m_amounts == other.m_amounts);
+            }
+            else
+            {
+                equal = (m_amount == other.m_amount);
+            }
         }
     }
     return equal;

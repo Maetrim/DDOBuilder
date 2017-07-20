@@ -2,6 +2,7 @@
 //
 #pragma once
 #include <list>
+#include "Augment.h"
 #include "EnhancementTree.h"
 #include "Feat.h"
 #include "Item.h"
@@ -37,10 +38,9 @@ class CDDOCPApp :
         const std::list<Feat> & StanceFeats() const;
 
         const std::list<EnhancementTree> & EnhancementTrees() const;
-
         const std::list<Spell> & Spells() const;
-
         const std::list<Item> & Items() const;
+        const std::list<Augment> & Augments() const;
 
         virtual void PreLoadState();
         virtual void LoadCustomState();
@@ -56,6 +56,7 @@ class CDDOCPApp :
         void LoadEnhancements(const std::string & path);
         void LoadSpells(const std::string & path);
         void LoadItems(const std::string & path);
+        void LoadAugments(const std::string & path);
         void VerifyFeats();     // verify that all feats are consistent
         void SeparateFeats();   // breaks them out into groups based on type
         void VerifyEnhancements();     // verify that all enhancements are consistent
@@ -75,6 +76,7 @@ class CDDOCPApp :
         std::list<EnhancementTree> m_enhancementTrees;
         std::list<Spell> m_spells;
         std::list<Item> m_items;
+        std::list<Augment> m_augments;
 };
 
 extern CDDOCPApp theApp;

@@ -70,6 +70,7 @@ void BreakdownItemSkill::CreateOtherEffects()
                     "Trained ranks",
                     1,
                     amount,
+                    Bonus_Unknown,
                     "");        // no tree
             AddOtherEffect(amountTrained);
         }
@@ -90,6 +91,7 @@ void BreakdownItemSkill::CreateOtherEffects()
                     abilityName,
                     1,
                     amount,
+                    Bonus_Unknown,
                     "");        // no tree
             AddOtherEffect(abilityMod);
         }
@@ -102,6 +104,7 @@ void BreakdownItemSkill::CreateOtherEffects()
                     "Skill tome",
                     1,
                     amount,
+                    Bonus_Unknown,
                     "");        // no tree
             AddOtherEffect(tome);
         }
@@ -114,10 +117,11 @@ void BreakdownItemSkill::CreateOtherEffects()
             ASSERT(pBI != NULL);
             pBI->AttachObserver(this);  // need to know about changes to this effect
             ActiveEffect acp(
-                    ET_equipment,
+                    ET_item,
                     "Armor check penalty",
                     1,
                     pBI->Total() * multiplier,
+                    Bonus_Unknown,
                     "");        // no tree
             AddOtherEffect(acp);
         }

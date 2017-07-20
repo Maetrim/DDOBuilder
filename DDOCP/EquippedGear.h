@@ -4,6 +4,7 @@
 #pragma once
 #include "XmlLib\DLMacros.h"
 #include "Item.h"
+#include "InventorySlotTypes.h"
 
 class EquippedGear :
     public XmlLib::SaxContentElement
@@ -11,6 +12,9 @@ class EquippedGear :
     public:
         EquippedGear(const std::string & name = "");
         void Write(XmlLib::SaxWriter * writer) const;
+
+        Item ItemInSlot(InventorySlotType slot) const;
+        void SetItem(InventorySlotType slot, const Item & item);
 
     protected:
         XmlLib::SaxContentElementInterface * StartElement(

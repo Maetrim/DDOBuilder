@@ -401,6 +401,16 @@ void Character::NotifyFeatEffectRevoked(const std::string & featName, const Effe
     NotifyAll(&CharacterObserver::UpdateFeatEffectRevoked, this, featName, effect);
 }
 
+void Character::NotifyItemEffect(const std::string & itemName, const Effect & effect)
+{
+    NotifyAll(&CharacterObserver::UpdateItemEffect, this, itemName, effect);
+}
+
+void Character::NotifyItemEffectRevoked(const std::string & itemName, const Effect & effect)
+{
+    NotifyAll(&CharacterObserver::UpdateItemEffectRevoked, this, itemName, effect);
+}
+
 void Character::NotifyNewStance(const Stance & stance)
 {
     NotifyAll(&CharacterObserver::UpdateNewStance, this, stance);
@@ -1130,6 +1140,7 @@ void Character::NowActive()
     NotifyAllReaperEnhancementEffects();
     NotifyAllDestinyEffects();
     NotifyAllTwistEffects();
+    ApplyGearEffects();     // apply effects from equipped gear
 }
 
 std::list<TrainedFeat> Character::AutomaticFeats(
@@ -3066,6 +3077,7 @@ void Character::EpicDestiny_SetActiveDestiny(const std::string & treeName)
             ApplyAllEffects(pNewActive->TreeName(), pNewActive->Enhancements());
         }
         // active tree affects available twists
+        DetermineFatePoints(); // as we did a tree reset we lost the fate points, recalculate then back in
         NotifyAvailableTwistsChanged();
         m_pDocument->SetModifiedFlag(TRUE);
     }
@@ -3566,3 +3578,142 @@ void Character::AddGearSet(const EquippedGear & gear)
 void Character::DeleteGearSet(const std::string & name)
 {
 }
+
+EquippedGear Character::GetGearSet(const std::string & name)
+{
+    EquippedGear gear;
+    std::list<EquippedGear>::const_iterator it = m_GearSetups.begin();
+    bool found = false;
+    while (!found && it != m_GearSetups.end())
+    {
+        if ((*it).Name() == name)
+        {
+            gear = (*it);
+            found = true;
+        }
+        ++it;
+    }
+    return gear;
+}
+
+EquippedGear Character::ActiveGearSet()
+{
+    return GetGearSet(ActiveGear());
+}
+
+void Character::SetGear(const std::string & name, const EquippedGear & gear)
+{
+    if (name == ActiveGear())
+    {
+        // first revoke all gear effects as the gear is about to change
+        RevokeGearEffects();        // always for active gear
+    }
+    // update the gear entry
+    std::list<EquippedGear>::iterator it = m_GearSetups.begin();
+    bool found = false;
+    while (!found && it != m_GearSetups.end())
+    {
+        if ((*it).Name() == name)
+        {
+            (*it) = gear;
+            found = true;
+        }
+        ++it;
+    }
+    ASSERT(found);
+
+    // now apply the gear effects if its the active gear set
+    if (name == ActiveGear())
+    {
+        ApplyGearEffects();         // always for active gear
+    }
+}
+
+void Character::RevokeGearEffects()
+{
+    EquippedGear gear = ActiveGearSet();
+    // iterate the items
+    for (size_t i = Inventory_Unknown + 1; i < Inventory_Count; ++i)
+    {
+        Item item = gear.ItemInSlot((InventorySlotType)i);
+        // revoke the items effects
+        const std::vector<Effect> & effects = item.Effects();
+        std::vector<Effect>::const_iterator it = effects.begin();
+        while (it != effects.end())
+        {
+            NotifyItemEffectRevoked(item.Name(), (*it));
+            ++it;
+        }
+        // do the same for any augment slots
+        const std::vector<ItemAugment> & augments = item.Augments();
+        for (size_t ai = 0; ai < augments.size(); ++ai)
+        {
+            if (augments[ai].HasSelectedAugment())
+            {
+                // there is an augment in this position
+                const Augment & augment = FindAugmentByName(augments[ai].SelectedAugment());
+                // name is:
+                // <item>:<augment type>:<Augment name>
+                std::stringstream ss;
+                ss << item.Name()
+                        << " : " << EnumEntryText(augments[ai].Type(), augmentTypeMap)
+                        << " : " << augment.Name();
+                // now revoke the augments effects
+                std::string name;
+                name = ss.str();
+                const std::list<Effect> & effects = augment.Effects();
+                std::list<Effect>::const_iterator it = effects.begin();
+                while (it != effects.end())
+                {
+                    NotifyItemEffectRevoked(name, (*it));
+                    ++it;
+                }
+            }
+        }
+    }
+}
+
+void Character::ApplyGearEffects()
+{
+    EquippedGear gear = ActiveGearSet();
+    // iterate the items
+    for (size_t i = Inventory_Unknown + 1; i < Inventory_Count; ++i)
+    {
+        Item item = gear.ItemInSlot((InventorySlotType)i);
+        // apply the items effects
+        const std::vector<Effect> & effects = item.Effects();
+        std::vector<Effect>::const_iterator it = effects.begin();
+        while (it != effects.end())
+        {
+            NotifyItemEffect(item.Name(), (*it));
+            ++it;
+        }
+        // do the same for any augment slots
+        const std::vector<ItemAugment> & augments = item.Augments();
+        for (size_t ai = 0; ai < augments.size(); ++ai)
+        {
+            if (augments[ai].HasSelectedAugment())
+            {
+                // there is an augment in this position
+                const Augment & augment = FindAugmentByName(augments[ai].SelectedAugment());
+                // name is:
+                // <item>:<augment type>:<Augment name>
+                std::stringstream ss;
+                ss << item.Name()
+                        << " : " << EnumEntryText(augments[ai].Type(), augmentTypeMap)
+                        << " : " << augment.Name();
+                // now notify the augments effects
+                std::string name;
+                name = ss.str();
+                const std::list<Effect> & effects = augment.Effects();
+                std::list<Effect>::const_iterator it = effects.begin();
+                while (it != effects.end())
+                {
+                    NotifyItemEffect(name, (*it));
+                    ++it;
+                }
+            }
+        }
+    }
+}
+

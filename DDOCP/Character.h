@@ -64,6 +64,8 @@ class CharacterObserver :
         virtual void UpdateFatePointsChanged(Character * charData) {};
         virtual void UpdateEpicCompletionistChanged(Character * charData) {};
         virtual void UpdateAvailableTwistsChanged(Character * charData) {};
+        virtual void UpdateItemEffect(Character * charData, const std::string & itemName,  const Effect & effect) {};
+        virtual void UpdateItemEffectRevoked(Character * charData, const std::string & itemName, const Effect & effect) {};
 };
 
 class Character :
@@ -207,6 +209,9 @@ class Character :
         // gear support
         void AddGearSet(const EquippedGear & gear);
         void DeleteGearSet(const std::string & name);
+        EquippedGear GetGearSet(const std::string & name);
+        EquippedGear ActiveGearSet();
+        void SetGear(const std::string & name, const EquippedGear & gear);
 
      protected:
         // notifications
@@ -230,6 +235,8 @@ class Character :
         void NotifyFatePointsChanged();
         void NotifyEpicCompletionistChanged();
         void NotifyAvailableTwistsChanged();
+        void NotifyItemEffect(const std::string & itemName, const Effect & effect);
+        void NotifyItemEffectRevoked(const std::string & itemName, const Effect & effect);
 
         void NotifyAllLoadedEffects();
         void NotifyAllEnhancementEffects();
@@ -326,6 +333,8 @@ class Character :
         void DetermineEpicCompletionist();
         void CountBonusAP();
         void DetermineFatePoints();
+        void RevokeGearEffects();
+        void ApplyGearEffects();
         CDDOCPDoc * m_pDocument;
         int m_bonusActionPoints;
         int m_racialTreeSpend;

@@ -56,6 +56,7 @@ void BreakdownItemHitpoints::CreateOtherEffects()
                         className,
                         classLevels[ci],
                         ClassHitpoints((ClassType)ci),
+                        Bonus_Unknown,
                         "");        // no tree
                 AddOtherEffect(classBonus);
             }
@@ -72,6 +73,7 @@ void BreakdownItemHitpoints::CreateOtherEffects()
                     "Constitution bonus",
                     MAX_LEVEL,  // con bonus applies for every level
                     bonus,
+                    Bonus_Unknown,
                     "");        // no tree
             AddOtherEffect(conBonus);
         }

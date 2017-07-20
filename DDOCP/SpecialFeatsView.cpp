@@ -124,7 +124,7 @@ void CSpecialFeatsView::CreateFeatWindows(
 #pragma warning(disable: 4407) // warning C4407: cast between different pointer to member representations, compiler may generate incorrect code
 BEGIN_MESSAGE_MAP(CSpecialFeatsView, CFormView)
     ON_WM_SIZE()
-    ON_WM_ERASEBKGND()
+    //ON_WM_ERASEBKGND()
     ON_REGISTERED_MESSAGE(UWM_NEW_DOCUMENT, OnNewDocument)
 END_MESSAGE_MAP()
 #pragma warning(pop)
@@ -188,7 +188,7 @@ size_t CSpecialFeatsView::PositionWindows(
     itemRect += CPoint(itemRect.Width() + c_controlSpacing, 0);
     for (size_t fi = 0; fi < dialogs.size(); ++fi)
     {
-        dialogs[fi]->MoveWindow(itemRect, FALSE);
+        dialogs[fi]->MoveWindow(itemRect);
         // move rectangle across for next set of controls
         itemRect += CPoint(itemRect.Width() + c_controlSpacing, 0);
         if (itemRect.right > (cx - c_controlSpacing)

@@ -61,6 +61,7 @@ void BreakdownItemTactical::CreateOtherEffects()
                 "Base DC",
                 1,
                 10,
+                Bonus_Unknown,
                 "");        // no tree
         AddOtherEffect(base);
 
@@ -78,6 +79,7 @@ void BreakdownItemTactical::CreateOtherEffects()
                     bonusName,
                     1,
                     bonus,
+                    Bonus_Unknown,
                     "");        // no tree
             feat.SetBreakdownDependency(StatToBreakdown(ability)); // so we know which effect to update
             AddOtherEffect(feat);
@@ -94,6 +96,7 @@ void BreakdownItemTactical::CreateOtherEffects()
                         "Rogue levels",
                         1,
                         classLevels[Class_Rogue],
+                        Bonus_Unknown,
                         "");        // no tree
                 AddOtherEffect(feat);
             }

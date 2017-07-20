@@ -5,6 +5,7 @@
 #include "Dice.h"
 
 #include "AbilityTypes.h"
+#include "BonusTypes.h"
 #include "ClassTypes.h"
 #include "DamageReductionTypes.h"
 #include "EnergyTypes.h"
@@ -282,6 +283,7 @@ class Effect :
                 DL_OPTIONAL_SIMPLE(_, double, AmountPerAP, 0.0) \
                 DL_OPTIONAL_STRING(_, SpellLikeAbility) \
                 DL_OPTIONAL_ENUM(_, AbilityType, Ability, Ability_Unknown, abilityTypeMap) \
+                DL_OPTIONAL_ENUM(_, BonusType, Bonus, Bonus_Unknown, bonusTypeMap) \
                 DL_OPTIONAL_ENUM(_, ClassType, Class, Class_Unknown, classTypeMap) \
                 DL_OPTIONAL_ENUM(_, DamageReductionType, DR, DR_Unknown, drTypeMap) \
                 DL_OPTIONAL_ENUM(_, EnergyType, Energy, Energy_Unknown, energyTypeMap) \

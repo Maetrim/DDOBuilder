@@ -10,10 +10,12 @@
 #include "ChildFrm.h"
 #include "DDOCPDoc.h"
 #include "DDOCPView.h"
+#include "AugmentsFile.h"
 #include "EnhancementsFile.h"
 #include "FeatsFile.h"
 #include "ItemsFile.h"
 #include "SpellsFile.h"
+#include "LocalSettingsStore.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -55,6 +57,9 @@ CDDOCPApp::CDDOCPApp()
 // CDDOCPApp initialization
 BOOL CDDOCPApp::InitInstance()
 {
+    //  store settings in a file in local ini file, not in the registry
+    CSettingsStoreSP::SetRuntimeClass(RUNTIME_CLASS(CLocalSettingsStore));
+
     // InitCommonControlsEx() is required on Windows XP if an application
     // manifest specifies use of ComCtl32.dll version 6 or later to enable
     // visual styles.  Otherwise, any window creation will fail.
@@ -222,6 +227,7 @@ void CDDOCPApp::LoadData()
     LoadEnhancements(path);
     LoadSpells(path);
     LoadItems(path);
+    LoadAugments(path);
     VerifyFeats();
     VerifyEnhancements();
     VerifySpells();
@@ -270,6 +276,17 @@ void CDDOCPApp::LoadItems(const std::string & path)
     ItemsFile file(itemPath);
     file.ReadFiles();
     m_items = file.Items();
+}
+
+void CDDOCPApp::LoadAugments(const std::string & path)
+{
+    // create the filename to load from
+    std::string filename = path;
+    filename += "Augments.xml";
+
+    AugmentsFile file(filename);
+    file.Read();
+    m_augments = file.Augments();
 }
 
 void CDDOCPApp::VerifyFeats()
@@ -395,6 +412,11 @@ const std::list<Spell> & CDDOCPApp::Spells() const
 const std::list<Item> & CDDOCPApp::Items() const
 {
     return m_items;
+}
+
+const std::list<Augment> & CDDOCPApp::Augments() const
+{
+    return m_augments;
 }
 
 // CDDOCPApp message handlers

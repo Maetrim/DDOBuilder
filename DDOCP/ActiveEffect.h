@@ -3,6 +3,7 @@
 // these are the effects in the list for any given breakdown
 #pragma once
 
+#include "BonusTypes.h"
 #include "BreakdownTypes.h"
 #include "ClassTypes.h"
 #include "Dice.h"
@@ -23,29 +24,7 @@ enum ActiveEffectType
     ET_enhancement,
     ET_enhancementPerAP,
     ET_enhancementPerLevel,
-
-    // only the highest of these effects stack if multiple present
-    ET_artifact,
-    ET_armor,
-    ET_competence,
-    ET_deflection,
-    ET_enchantment,
-    //ET_enhancement,
-    ET_equipment,
-    ET_exceptional,
-    ET_guild,
-    ET_insightful,
-    ET_implement,
-    ET_luck,
-    ET_mythic,
-    ET_penalty,
-    ET_profane,
-    ET_quality,
-    ET_raging,
-    ET_resistance,
-    ET_spooky,
-    ET_unique,
-    ET_vitality,
+    ET_item,
 };
 
 class Character;
@@ -59,23 +38,27 @@ class ActiveEffect
                 const std::string & name,
                 size_t stacks,
                 double amount,
+                BonusType bonusType,
                 const std::string & tree);
         ActiveEffect(
                 ActiveEffectType type,
                 const std::string & name,
                 size_t stacks,
                 const Dice & dice,
+                BonusType bonusType,
                 const std::string & tree);
         ActiveEffect(
                 ActiveEffectType type,
                 const std::string & name,
                 size_t stacks,
+                BonusType bonusType,
                 const std::vector<double> & amounts);
         ActiveEffect(
                 ActiveEffectType type,
                 const std::string & name,
                 double amountPerLevel,
                 size_t stacks,
+                BonusType bonusType,
                 ClassType classType);
         ActiveEffectType Type() const;
         CString Name() const;
@@ -87,6 +70,8 @@ class ActiveEffect
         const std::vector<std::string> & Stances() const;
         const std::string & Tree() const;
         bool IsActive(const Character * pCharacter) const;
+        BonusType Bonus() const;
+
         // for comparison and removal of duplicate entries
         bool operator<=(const ActiveEffect & other) const;
         bool operator==(const ActiveEffect & other) const;
@@ -105,6 +90,8 @@ class ActiveEffect
         std::string m_effectName;
         size_t m_numStacks;
         double m_amount;
+        BonusType m_bonusType;
+        bool m_bHasAmountVector;
         std::vector<double> m_amounts;
         bool m_bHasDice;                    // true if m_dice is valid
         Dice m_dice;

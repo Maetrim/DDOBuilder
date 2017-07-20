@@ -53,6 +53,7 @@ void BreakdownItemCasterLevel::CreateOtherEffects()
                     (LPCTSTR)text,
                     1,
                     classLevels[m_class],
+                    Bonus_Unknown,
                     "");        // no tree
             AddOtherEffect(levels);
         }

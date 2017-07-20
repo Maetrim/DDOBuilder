@@ -86,6 +86,7 @@ void BreakdownItemSave::CreateOtherEffects()
                             className,
                             1,
                             ClassSave(m_saveType, (ClassType)ci, classLevels[ci]),
+                            Bonus_Unknown,
                             "");        // no tree
                     AddOtherEffect(classBonus);
                 }
@@ -107,6 +108,7 @@ void BreakdownItemSave::CreateOtherEffects()
                             "Divine Grace (Charisma)",
                             1,
                             bonus,
+                            Bonus_Unknown,
                             "");        // no tree
                     feat.SetBreakdownDependency(StatToBreakdown(Ability_Charisma)); // so we know which effect to update
                     AddOtherEffect(feat);
@@ -129,6 +131,7 @@ void BreakdownItemSave::CreateOtherEffects()
                         bonusName,
                         1,
                         bonus,
+                        Bonus_Unknown,
                         "");        // no tree
                 feat.SetBreakdownDependency(StatToBreakdown(ability)); // so we know which effect to update
                 AddOtherEffect(feat);
@@ -143,6 +146,7 @@ void BreakdownItemSave::CreateOtherEffects()
                     (LPCTSTR)(m_pBaseBreakdown->Title() + " Save"),
                     1,
                     bonus,
+                    Bonus_Unknown,
                     "");        // no tree
             AddOtherEffect(statBonus);
         }
@@ -250,6 +254,65 @@ void BreakdownItemSave::UpdateFeatEffectRevoked(
         {
             // pass through to the base class
             BreakdownItem::UpdateFeatEffectRevoked(pCharacter, featName, effect);
+        }
+    }
+}
+
+void BreakdownItemSave::UpdateItemEffect(
+        Character * pCharacter,
+        const std::string & itemName,
+        const Effect & effect)
+{
+    // handle special affects that change our list of available stats
+    if (AffectsUs(effect))
+    {
+        if (effect.HasNoFailOn1())
+        {
+            if (effect.NoFailOn1()[0] != 0)
+            {
+                ++m_noFailOn1Count;
+            }
+        }
+        if (effect.HasAbility())
+        {
+            // add to the list of available stats for this weapon
+            ASSERT(effect.HasAbility());
+            AddAbility(effect.Ability());  // duplicates are fine
+            CreateOtherEffects();
+        }
+        else
+        {
+            // pass through to the base class
+            BreakdownItem::UpdateItemEffect(pCharacter, itemName, effect);
+        }
+    }
+}
+
+void BreakdownItemSave::UpdateItemEffectRevoked(
+        Character * pCharacter,
+        const std::string & itemName,
+        const Effect & effect)
+{
+    // handle special affects that change our list of available stats
+    if (AffectsUs(effect))
+    {
+        if (effect.HasNoFailOn1())
+        {
+            if (effect.NoFailOn1()[0] != 0)
+            {
+                --m_noFailOn1Count;
+            }
+        }
+        if (effect.HasAbility())
+        {
+            ASSERT(effect.HasAbility());
+            RemoveFirstAbility(effect.Ability());
+            CreateOtherEffects();
+        }
+        else
+        {
+            // pass through to the base class
+            BreakdownItem::UpdateItemEffectRevoked(pCharacter, itemName, effect);
         }
     }
 }

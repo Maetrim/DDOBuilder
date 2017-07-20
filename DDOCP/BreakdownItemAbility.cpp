@@ -51,6 +51,7 @@ void BreakdownItemAbility::CreateOtherEffects()
                     "Base",
                     1,
                     amount,
+                    Bonus_Unknown,
                     "");        // no tree
             AddOtherEffect(tome);
         }
@@ -63,6 +64,7 @@ void BreakdownItemAbility::CreateOtherEffects()
                     "Racial Modifier",
                     1,
                     amount,
+                    Bonus_Unknown,
                     "");        // no tree
             AddOtherEffect(tome);
         }
@@ -75,6 +77,7 @@ void BreakdownItemAbility::CreateOtherEffects()
                     "Ability Tome",
                     1,
                     amount,
+                    Bonus_Unknown,
                     "");        // no tree
             AddOtherEffect(tome);
         }
@@ -87,6 +90,7 @@ void BreakdownItemAbility::CreateOtherEffects()
                     "Level Ups",
                     (int)amount,
                     1,
+                    Bonus_Unknown,
                     "");        // no tree
             AddOtherEffect(tome);
         }

@@ -141,6 +141,35 @@ void CSpellsPage::UpdateFeatEffectRevoked(
     }
 }
 
+void CSpellsPage::UpdateItemEffect(
+        Character * charData,
+        const std::string & itemName,
+        const Effect & effect)
+{
+    // only interested in Effect_GrantSpell
+    if (effect.Type() == Effect_GrantSpell
+            && effect.Class() == m_classType)
+    {
+        m_spells.AddFixedSpell(
+                effect.Spell(),
+                effect.SpellLevel());
+    }
+}
+
+void CSpellsPage::UpdateItemEffectRevoked(
+        Character * charData,
+        const std::string & itemName,
+        const Effect & effect)
+{
+    if (effect.Type() == Effect_GrantSpell
+            && effect.Class() == m_classType)
+    {
+        m_spells.RevokeFixedSpell(
+                effect.Spell(),
+                effect.SpellLevel());
+    }
+}
+
 void CSpellsPage::UpdateEnhancementEffect(
         Character * charData,
         const std::string & enhancementName,

@@ -136,7 +136,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
     EnableAutoHidePanes(CBRS_ALIGN_ANY);
 
     // Enable enhanced windows management dialog
-    EnableWindowsDialog(ID_WINDOW_MANAGER, ID_WINDOW_MANAGER, TRUE);
+    //EnableWindowsDialog(ID_WINDOW_MANAGER, ID_WINDOW_MANAGER, TRUE);
 
     // Enable toolbar and docking window menu replacement
     EnablePaneMenu(TRUE, ID_VIEW_CUSTOMIZE, strCustomize, ID_VIEW_TOOLBAR);
@@ -421,7 +421,7 @@ BOOL CMainFrame::OnCmdMsg(
 
 void CMainFrame::CreateViews()
 {
-    int dockingWindowId = 1;
+    int dockingWindowId = 1000;
     // create the floating views
     CCustomDockablePane * pBreakdownsPane = CreateDockablePane(
             "Breakdowns",
@@ -493,161 +493,6 @@ void CMainFrame::CreateViews()
             RUNTIME_CLASS(CStancesView),
             dockingWindowId++);
     pStancesPane->SetDocumentAndCharacter(GetActiveDocument(), NULL);
-}
-
-/////////////////////////////////////////////////////////////////////////////
-// ProgressBar operations
-
-// Prepare progress bar
-void CMainFrame::BeginProgress(CString fixedText, CString variableText)
-{
-    // find the rectangle of the pane where we want the status bar
-    CSize size;
-    CString text = fixedText + variableText;
-
-    if (text.GetLength() == 0)
-    {
-        BeginProgress(0, fixedText, variableText);
-    }
-    else
-    {
-        // if we have text, the we need to move the position of the
-        // progress control to give room for the text to be displayed
-        CDC * pDC = NULL;
-
-        pDC = GetDC();
-        ASSERT(pDC) ;
-        pDC->SaveDC();
-        pDC->SelectObject(m_wndStatusBar.GetFont());
-        size = pDC->GetTextExtent(text);
-        VERIFY(pDC->RestoreDC(-1));
-        VERIFY(ReleaseDC(pDC));
-
-        BeginProgress(size.cx, fixedText, variableText);
-    }
-}
-
-void CMainFrame::BeginProgress(int width, CString fixedText, CString variableText)
-{
-    // find the rectangle of the pane where we want the status bar
-    CRect rc;
-    CString text = fixedText + variableText;
-
-    if (m_wndStatusBar.m_hWnd != NULL)
-    {
-        m_wndStatusBar.GetItemRect(0, &rc);
-        rc.left += width + 5;
-        
-        m_wndStatusBar.SetPaneText(0, text);
-        
-        VERIFY(m_ctlProgress.Create(WS_CHILD | WS_VISIBLE | PBS_SMOOTH, rc, &m_wndStatusBar, 1));
-
-        m_ctlProgress.SetRange(0, 100);
-        m_ctlProgress.SetPos(0);
-    }
-}
-
-// Set progress bar
-void CMainFrame::SetProgress(int nProg, CString fixedText, CString variableText)
-{
-    CString text = fixedText + variableText;
-
-    ASSERT(nProg <= 100);
-
-    if (m_ctlProgress.m_hWnd != NULL)
-    {
-        m_ctlProgress.SetPos(nProg);
-
-        if (text != "")
-        {
-            // if we have text, the we need to check whether it will fit
-            // into the space provided for it - if it doesn't fit, we'll
-            // need to cut the string into the right size
-            CSize   size;
-            CDC     *pDC = NULL;
-            CRect   rctPane,
-                    rctProgress,
-                    rctParent;
-            int     textMaxWidth    = 0;
-
-            m_wndStatusBar.GetItemRect(0, &rctPane);
-            m_ctlProgress.GetWindowRect(&rctProgress);
-            m_ctlProgress.GetParent()->GetWindowRect(&rctParent);
-            rctProgress -= CPoint(rctParent.left, rctParent.top);
-
-            textMaxWidth = rctProgress.left - rctPane.left - 5;
-
-            pDC = GetDC();
-            ASSERT(pDC) ;
-            pDC->SaveDC();
-            pDC->SelectObject(m_wndStatusBar.GetFont());
-
-            size = pDC->GetTextExtent(text);
-
-            // is text too big?
-            if (size.cx > textMaxWidth)
-            {
-                // yes, it is - so cut it down from the middle
-                CString left    = "",
-                        right   = "";
-                int     middle  = 0;
-
-                // split string into half
-                middle = variableText.GetLength()/2;
-
-                // left half, right half
-                left = variableText.Left(middle);
-                right = variableText.Right(variableText.GetLength()-middle);
-
-                // still too big (yes, will be the first time round)
-                while (size.cx > textMaxWidth)
-                {
-                    // remove one character from the left half
-                    left = left.Left(left.GetLength()-1);
-                    text = fixedText + left + "..." + right;
-
-                    // get new size
-                    size = pDC->GetTextExtent(text);
-
-                    // does it fit now?
-                    if (size.cx <= textMaxWidth)
-                    {
-                        // yes, it fits, so we can break
-                        break;
-                    }
-
-                    // remove one character from the right half
-                    right = right.Right(right.GetLength()-1);
-                    text = fixedText + left + "..." + right;
-
-                    // get new size
-                    size = pDC->GetTextExtent(text);
-
-                    // does it fit now?
-                    if (size.cx <= textMaxWidth)
-                    {
-                        // yes, it fits, so we can break
-                        break;
-                    }
-                }
-            }
-            
-            VERIFY(pDC->RestoreDC(-1));
-            VERIFY(ReleaseDC(pDC));
-
-            m_wndStatusBar.SetPaneText(0, text);
-        }
-    }
-}
-
-// Clear up progress bar
-void CMainFrame::EndProgress()
-{
-    if (m_ctlProgress.m_hWnd != NULL)
-    {
-        m_ctlProgress.DestroyWindow();
-        m_wndStatusBar.SetPaneText(0, "");
-    }
 }
 
 void CMainFrame::SetActiveDocumentAndCharacter(CDocument * pDoc, Character * pCharacter)

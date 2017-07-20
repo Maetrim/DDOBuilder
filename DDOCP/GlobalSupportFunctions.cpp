@@ -306,6 +306,12 @@ const std::list<Item> & Items()
     return pApp->Items();
 }
 
+const std::list<Augment> & Augments()
+{
+    CDDOCPApp * pApp = dynamic_cast<CDDOCPApp*>(AfxGetApp());
+    return pApp->Augments();
+}
+
 std::vector<Spell> FilterSpells(ClassType ct, int level)
 {
     // return the list of spells for this class at this level
@@ -545,6 +551,22 @@ std::vector<TrainableFeatTypes> RaceSpecificFeatTypes(RaceType type)
         // all other races do not have special feat types
     }
     return types;
+}
+
+const Augment & FindAugmentByName(const std::string & name)
+{
+    static Augment badAugment;
+    const std::list<Augment> & augments = Augments();
+    std::list<Augment>::const_iterator it = augments.begin();
+    while (it != augments.end())
+    {
+        if ((*it).Name() == name)
+        {
+            return (*it);
+        }
+        ++it;
+    }
+    return badAugment;
 }
 
 AbilityType StatFromSkill(SkillType skill)
@@ -1457,6 +1479,9 @@ HRESULT LoadImageFile(
         break;
     case IT_ui:
         location += "UIImages\\";
+        break;
+    case IT_item:
+        location += "ItemImages\\";
         break;
     }
     std::string filename = location;

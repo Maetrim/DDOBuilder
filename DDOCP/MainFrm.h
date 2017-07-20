@@ -31,11 +31,6 @@ class CMainFrame :
         virtual BOOL LoadFrame(UINT nIDResource, DWORD dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE, CWnd* pParentWnd = NULL, CCreateContext* pContext = NULL);
         virtual BOOL OnCmdMsg(UINT nID, int nCode, void* pExtra, AFX_CMDHANDLERINFO* pHandlerInfo);
 
-        void BeginProgress(CString fixedText, CString variableText = "");
-        void BeginProgress(int width, CString fixedText, CString variableText = "");
-        void SetProgress(int nProg, CString fixedText = "", CString variableText = "");
-        void EndProgress();
-
     protected:
         afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
         afx_msg void OnWindowManager();
@@ -52,7 +47,6 @@ class CMainFrame :
         CMFCToolBar       m_wndToolBar;
         CMFCStatusBar     m_wndStatusBar;
         CMFCToolBarImages m_UserImages;
-        CProgressCtrl     m_ctlProgress;
         std::vector<CCustomDockablePane*> m_dockablePanes;
         // never display these toolbars, just to get icons into UI
         CMFCToolBar       m_menuToolbar;

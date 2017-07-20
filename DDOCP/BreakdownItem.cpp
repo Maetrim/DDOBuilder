@@ -635,6 +635,7 @@ bool BreakdownItem::GetActiveEffect(
                 featName,
                 effect.AmountPerLevel(),
                 levels,
+                effect.HasBonus() ? effect.Bonus() : Bonus_Unknown,
                 effect.Class());        // no tree
     }
     else if (effect.HasAmount())
@@ -645,6 +646,7 @@ bool BreakdownItem::GetActiveEffect(
                 featName,
                 1,
                 effect.Amount(),
+                effect.HasBonus() ? effect.Bonus() : Bonus_Unknown,
                 "");        // no tree
     }
     else if (effect.HasAmountVector())
@@ -657,6 +659,7 @@ bool BreakdownItem::GetActiveEffect(
                 ET_enhancement,     // handled as an enhancement for this type
                 featName,
                 1,
+                effect.HasBonus() ? effect.Bonus() : Bonus_Unknown,
                 effect.AmountVector());
     }
     else if (effect.HasAbility())   // some feat effects can have amount and ability, amount always takes precedence
@@ -672,6 +675,7 @@ bool BreakdownItem::GetActiveEffect(
                 featName,
                 1,
                 BaseStatToBonus(pBI->Total()),
+                effect.HasBonus() ? effect.Bonus() : Bonus_Unknown,
                 "");        // no tree
     }
     else if (effect.HasDiceRoll())
@@ -683,6 +687,7 @@ bool BreakdownItem::GetActiveEffect(
                 featName,
                 1,
                 effect.DiceRoll(),
+                effect.HasBonus() ? effect.Bonus() : Bonus_Unknown,
                 "");
     }
     else if (effect.HasDivider())
@@ -712,6 +717,7 @@ bool BreakdownItem::GetActiveEffect(
                     featName,
                     1,
                     amount,
+                    effect.HasBonus() ? effect.Bonus() : Bonus_Unknown,
                     "");
         }
         else
@@ -788,6 +794,52 @@ void BreakdownItem::UpdateFeatEffectRevoked(
     }
 }
 
+void BreakdownItem::UpdateItemEffect(
+        Character * pCharacter,
+        const std::string & itemName,
+        const Effect & effect)
+{
+    // see if this item effect applies to us, if so add it
+    if (AffectsUs(effect))
+    {
+        std::string name(itemName);
+        if (effect.HasDisplayName())
+        {
+            name = effect.DisplayName();
+        }
+        // yup, it applies to us, add it in
+        ActiveEffect item;
+        if (GetActiveEffect(pCharacter, name, effect, &item))
+        {
+            // may not get an affect if the amount applied is 0
+            AddItemEffect(item);
+        }
+    }
+}
+
+void BreakdownItem::UpdateItemEffectRevoked(
+        Character * pCharacter,
+        const std::string & itemName,
+        const Effect & effect)
+{
+    // see if this item effect applies to us, if so revoke it
+    if (AffectsUs(effect))
+    {
+        std::string name(itemName);
+        if (effect.HasDisplayName())
+        {
+            name = effect.DisplayName();
+        }
+        // yup, it applies to us, revoke it
+        ActiveEffect item;
+        if (GetActiveEffect(pCharacter, name, effect, &item))
+        {
+            // may not get an affect if the amount applied is 0
+            RevokeItemEffect(item);
+        }
+    }
+}
+
 void BreakdownItem::UpdateEnhancementEffect(
         Character * charData,
         const std::string & enhancementName,
@@ -812,6 +864,7 @@ void BreakdownItem::UpdateEnhancementEffect(
                     ET_enhancement,
                     name,
                     effect.m_tier,
+                    effect.m_effect.HasBonus() ? effect.m_effect.Bonus() : Bonus_Unknown,
                     effect.m_effect.AmountVector());
         }
         else if (effect.m_effect.HasAmountPerLevel())
@@ -823,6 +876,7 @@ void BreakdownItem::UpdateEnhancementEffect(
                     name,
                     effect.m_effect.AmountPerLevel(),
                     classLevels[effect.m_effect.Class()],
+                    effect.m_effect.HasBonus() ? effect.m_effect.Bonus() : Bonus_Unknown,
                     effect.m_effect.Class());
         }
         else
@@ -836,6 +890,7 @@ void BreakdownItem::UpdateEnhancementEffect(
                     name,
                     spentInTree,
                     effect.m_effect.AmountPerAP(),
+                    effect.m_effect.HasBonus() ? effect.m_effect.Bonus() : Bonus_Unknown,
                     effect.m_effect.EnhancementTree());
         }
         if (effect.m_effect.HasFeat())
@@ -879,6 +934,7 @@ void BreakdownItem::UpdateEnhancementEffectRevoked(
                     ET_enhancement,
                     name,
                     effect.m_tier,
+                    effect.m_effect.HasBonus() ? effect.m_effect.Bonus() : Bonus_Unknown,
                     effect.m_effect.AmountVector());
         }
         else
@@ -891,6 +947,7 @@ void BreakdownItem::UpdateEnhancementEffectRevoked(
                     name,
                     spentInTree,
                     effect.m_effect.AmountPerAP(),
+                    effect.m_effect.HasBonus() ? effect.m_effect.Bonus() : Bonus_Unknown,
                     effect.m_effect.EnhancementTree());
         }
         if (effect.m_effect.HasFeat())

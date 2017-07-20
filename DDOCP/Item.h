@@ -6,13 +6,19 @@
 #include "Augment.h"
 #include "Effect.h"
 #include "EquipmentSlot.h"
+#include "InventorySlotTypes.h"
+#include "ItemAugment.h"
 
 class Item :
     public XmlLib::SaxContentElement
 {
     public:
         Item(void);
+        Item(const XmlLib::SaxString & objectName);
         void Write(XmlLib::SaxWriter * writer) const;
+
+        bool CanEquipToSlot(InventorySlotType slot) const;
+        void AddImage(CImageList * pIL) const;
 
     protected:
         XmlLib::SaxContentElementInterface * StartElement(
@@ -46,8 +52,10 @@ class Item :
                 DL_OBJECT(_, EquipmentSlot, Slots) \
                 DL_OPTIONAL_SIMPLE(_, size_t, MinLevel, 0) \
                 DL_OBJECT_VECTOR(_, Effect, Effects) \
-                DL_OBJECT_VECTOR(_, Augment, Augments)
+                DL_OBJECT_VECTOR(_, ItemAugment, Augments)
 
         DL_DECLARE_ACCESS(Item_PROPERTIES)
         DL_DECLARE_VARIABLES(Item_PROPERTIES)
+
+        friend class CItemSelectDialog;
 };

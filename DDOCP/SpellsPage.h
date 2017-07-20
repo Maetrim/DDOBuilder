@@ -19,12 +19,14 @@ class CSpellsPage :
         void SetTrainableSpells(const std::vector<size_t> & spellsPerLevel);
 
     protected:
-        void UpdateSpellTrained(Character * charData, const TrainedSpell & spell) override;
-        void UpdateSpellRevoked(Character * charData, const TrainedSpell & spell) override;
-        void UpdateFeatEffect(Character * charData, const std::string & featName,  const Effect & effect) override;
-        void UpdateFeatEffectRevoked(Character * charData, const std::string & featName, const Effect & effect) override;
-        void UpdateEnhancementEffect(Character * charData, const std::string & enhancementName,  const EffectTier & effect) override;
-        void UpdateEnhancementEffectRevoked(Character * charData, const std::string & enhancementName, const EffectTier & effect) override;
+        virtual void UpdateSpellTrained(Character * charData, const TrainedSpell & spell) override;
+        virtual void UpdateSpellRevoked(Character * charData, const TrainedSpell & spell) override;
+        virtual void UpdateFeatEffect(Character * charData, const std::string & featName,  const Effect & effect) override;
+        virtual void UpdateFeatEffectRevoked(Character * charData, const std::string & featName, const Effect & effect) override;
+        virtual void UpdateItemEffect(Character * charData, const std::string & itemName, const Effect & effect) override;
+        virtual void UpdateItemEffectRevoked(Character * charData, const std::string & itemName, const Effect & effect) override;
+        virtual void UpdateEnhancementEffect(Character * charData, const std::string & enhancementName,  const EffectTier & effect) override;
+        virtual void UpdateEnhancementEffectRevoked(Character * charData, const std::string & enhancementName, const EffectTier & effect) override;
 
     private:
         //{{AFX_VIRTUAL(CSpellsPage)

@@ -61,6 +61,7 @@ void BreakdownItemSpellPoints::CreateOtherEffects()
                             (LPCSTR)bonusName,
                             1,
                             classSpellPoints,
+                            Bonus_Unknown,
                             "");        // no tree
                     AddOtherEffect(classSps);
                     // if we have class spell points we must have bonus class ability spell points
@@ -83,6 +84,7 @@ void BreakdownItemSpellPoints::CreateOtherEffects()
                                 (LPCSTR)bonusName,
                                 1,
                                 abilitySps,
+                                Bonus_Unknown,
                                 "");        // no tree
                         AddOtherEffect(abilitySpBonus);
                     }

@@ -42,22 +42,23 @@ CInventoryDialog::CInventoryDialog(CWnd* pParent) :
     //{{AFX_DATA_INIT(CInventoryDialog)
     //}}AFX_DATA_INIT
     // there are a fixed list of hit boxes which are hard coded here
+    // order is important as used for drawing items (declare in same order as enum InventorySlotType)
+    m_hitBoxes.push_back(InventoryHitBox(Inventory_Arrows, CRect(164, 237, 196, 269)));
+    m_hitBoxes.push_back(InventoryHitBox(Inventory_Armor, CRect(30, 78, 62, 110)));
+    m_hitBoxes.push_back(InventoryHitBox(Inventory_Belt, CRect(164, 124, 196, 156)));
+    m_hitBoxes.push_back(InventoryHitBox(Inventory_Boots, CRect(72, 180, 104, 212)));
+    m_hitBoxes.push_back(InventoryHitBox(Inventory_Bracers, CRect(30, 124, 62, 156)));
+    m_hitBoxes.push_back(InventoryHitBox(Inventory_Cloak, CRect(164, 78, 196, 110)));
+    m_hitBoxes.push_back(InventoryHitBox(Inventory_Gloves, CRect(117, 180, 149, 212)));
+    m_hitBoxes.push_back(InventoryHitBox(Inventory_Goggles, CRect(30, 35, 62, 67)));
     m_hitBoxes.push_back(InventoryHitBox(Inventory_Helmet, CRect(72, 24, 104, 56)));
     m_hitBoxes.push_back(InventoryHitBox(Inventory_Necklace, CRect(117, 24, 149, 56)));
-    m_hitBoxes.push_back(InventoryHitBox(Inventory_Trinket, CRect(164, 35, 196, 67)));
-    m_hitBoxes.push_back(InventoryHitBox(Inventory_Cloak, CRect(164, 78, 196, 110)));
-    m_hitBoxes.push_back(InventoryHitBox(Inventory_Belt, CRect(164, 124, 196, 156)));
-    m_hitBoxes.push_back(InventoryHitBox(Inventory_Ring2, CRect(164, 168, 196, 200)));
-    m_hitBoxes.push_back(InventoryHitBox(Inventory_Gloves, CRect(117, 180, 149, 212)));
-    m_hitBoxes.push_back(InventoryHitBox(Inventory_Boots, CRect(72, 180, 104, 212)));
+    m_hitBoxes.push_back(InventoryHitBox(Inventory_Quiver, CRect(117, 237, 149, 269)));
     m_hitBoxes.push_back(InventoryHitBox(Inventory_Ring1, CRect(30, 169, 62, 200)));
-    m_hitBoxes.push_back(InventoryHitBox(Inventory_Bracers, CRect(30, 124, 62, 156)));
-    m_hitBoxes.push_back(InventoryHitBox(Inventory_Armor, CRect(30, 78, 62, 110)));
-    m_hitBoxes.push_back(InventoryHitBox(Inventory_Goggles, CRect(30, 35, 62, 67)));
+    m_hitBoxes.push_back(InventoryHitBox(Inventory_Ring2, CRect(164, 168, 196, 200)));
+    m_hitBoxes.push_back(InventoryHitBox(Inventory_Trinket, CRect(164, 35, 196, 67)));
     m_hitBoxes.push_back(InventoryHitBox(Inventory_Weapon1, CRect(30, 237, 62, 269)));
     m_hitBoxes.push_back(InventoryHitBox(Inventory_Weapon2, CRect(72, 237, 104, 269)));
-    m_hitBoxes.push_back(InventoryHitBox(Inventory_Quiver, CRect(117, 237, 149, 269)));
-    m_hitBoxes.push_back(InventoryHitBox(Inventory_Arrows, CRect(164, 237, 196, 269)));
 
     // load images used
     LoadImageFile(IT_ui, "Inventory", &m_imageBackground);
@@ -71,6 +72,12 @@ void CInventoryDialog::DoDataExchange(CDataExchange* pDX)
     CDialog::DoDataExchange(pDX);
     //{{AFX_DATA_MAP(CInventoryDialog)
     //}}AFX_DATA_MAP
+}
+
+void CInventoryDialog::SetGearSet(const EquippedGear & gear)
+{
+    m_gearSet = gear;
+    Invalidate();
 }
 
 BOOL CInventoryDialog::OnInitDialog()
@@ -131,6 +138,22 @@ void CInventoryDialog::OnPaint()
     }
 
     // now iterate the current inventory and draw the item icons
+    for (size_t i = Inventory_Unknown + 1; i < Inventory_Count; ++i)
+    {
+        Item item = m_gearSet.ItemInSlot((InventorySlotType)i);
+        if (item.Name() != "")
+        {
+            CImage image;
+            LoadImageFile(IT_item, item.Icon(), &image);
+            CRect itemRect = m_hitBoxes[i - 1].Rect();
+            image.TransparentBlt(
+                    memoryDc.GetSafeHdc(),
+                    itemRect.left,
+                    itemRect.top,
+                    32,
+                    32);
+        }
+    }
 
     // now add the highlight to the selected item
     if (m_selectedItem != Inventory_Unknown)
@@ -173,6 +196,9 @@ void CInventoryDialog::OnLButtonDown(UINT nFlags, CPoint point)
     {
         m_selectedItem = slotClicked;
         Invalidate();       // re-draw
+    }
+    else
+    {
         if (slotClicked != Inventory_Unknown)
         {
             NotifySlotLeftClicked(slotClicked);
@@ -188,6 +214,9 @@ void CInventoryDialog::OnRButtonDown(UINT nFlags, CPoint point)
     {
         m_selectedItem = slotClicked;
         Invalidate();       // re-draw
+    }
+    else
+    {
         if (slotClicked != Inventory_Unknown)
         {
             NotifySlotRightClicked(slotClicked);
@@ -202,7 +231,7 @@ InventorySlotType CInventoryDialog::FindByPoint(CRect * pRect) const
     ScreenToClient(&point);
     // see if we need to highlight the item under the cursor
     InventorySlotType slot = Inventory_Unknown;
-    std::list<InventoryHitBox>::const_iterator it = m_hitBoxes.begin();
+    std::vector<InventoryHitBox>::const_iterator it = m_hitBoxes.begin();
     while (slot == Inventory_Unknown && it != m_hitBoxes.end())
     {
         if ((*it).IsInRect(point))
@@ -296,7 +325,7 @@ CRect CInventoryDialog::GetItemRect(InventorySlotType slot) const
     // iterate the list of hit boxes looking for the item that matches
     CRect itemRect(0, 0, 0, 0);
     bool found = false;
-    std::list<InventoryHitBox>::const_iterator it = m_hitBoxes.begin();
+    std::vector<InventoryHitBox>::const_iterator it = m_hitBoxes.begin();
     while (!found && it != m_hitBoxes.end())
     {
         if ((*it).Slot() == slot)

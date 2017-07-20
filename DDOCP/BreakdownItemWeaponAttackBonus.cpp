@@ -52,6 +52,7 @@ void BreakdownItemWeaponAttackBonus::CreateOtherEffects()
                     "Base Attack Bonus",
                     1,
                     amount,
+                    Bonus_Unknown,
                     "");        // no tree
             AddOtherEffect(amountTrained);
         }
@@ -64,6 +65,7 @@ void BreakdownItemWeaponAttackBonus::CreateOtherEffects()
                     "Non proficient penalty",
                     1,
                     -4,
+                    Bonus_Unknown,
                     "");        // no tree
             AddOtherEffect(amountTrained);
 
@@ -74,10 +76,11 @@ void BreakdownItemWeaponAttackBonus::CreateOtherEffects()
             if (pBI->Total() != 0)
             {
                 ActiveEffect acp(
-                        ET_equipment,
+                        ET_item,
                         "Armor check penalty",
                         1,
                         pBI->Total(),
+                        Bonus_Unknown,
                         "");        // no tree
                 AddOtherEffect(acp);
             }
@@ -99,6 +102,7 @@ void BreakdownItemWeaponAttackBonus::CreateOtherEffects()
                     bonusName,
                     1,
                     bonus,
+                    Bonus_Unknown,
                     "");        // no tree
             feat.SetBreakdownDependency(StatToBreakdown(ability)); // so we know which effect to update
             AddOtherEffect(feat);
@@ -186,6 +190,63 @@ void BreakdownItemWeaponAttackBonus::UpdateFeatEffectRevoked(
         {
             // pass through to the base class
             BreakdownItem::UpdateFeatEffectRevoked(pCharacter, featName, effect);
+        }
+    }
+}
+
+void BreakdownItemWeaponAttackBonus::UpdateItemEffect(
+        Character * pCharacter,
+        const std::string & itemName,
+        const Effect & effect)
+{
+    // handle checking for weapon proficiency
+    if (effect.Type() == Effect_WeaponProficiency)
+    {
+        ++m_proficientCount;
+        CreateOtherEffects();
+    }
+    if (AffectsUs(effect))
+    {
+        // handle special affects that change our list of available stats
+        if (effect.HasAbility())
+        {
+            // add to the list of available stats for this weapon
+            ASSERT(effect.HasAbility());
+            AddAbility(effect.Ability());  // duplicates are fine
+            CreateOtherEffects();
+        }
+        else
+        {
+            // pass through to the base class
+            BreakdownItem::UpdateItemEffect(pCharacter, itemName, effect);
+        }
+    }
+}
+
+void BreakdownItemWeaponAttackBonus::UpdateItemEffectRevoked(
+        Character * pCharacter,
+        const std::string & itemName,
+        const Effect & effect)
+{
+    // handle checking for weapon proficiency
+    if (effect.Type() == Effect_WeaponProficiency)
+    {
+        --m_proficientCount;
+        CreateOtherEffects();
+    }
+    if (AffectsUs(effect))
+    {
+        // handle special affects that change our list of available stats
+        if (effect.HasAbility())
+        {
+            ASSERT(effect.HasAbility());
+            RemoveFirstAbility(effect.Ability());
+            CreateOtherEffects();
+        }
+        else
+        {
+            // pass through to the base class
+            BreakdownItem::UpdateItemEffectRevoked(pCharacter, itemName, effect);
         }
     }
 }

@@ -16,5 +16,6 @@ protected:
 // Implementation
 protected:
     DECLARE_MESSAGE_MAP()
+    CStatic m_staticVersion;
 };
 

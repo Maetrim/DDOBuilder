@@ -61,6 +61,7 @@ void BreakdownItemWeaponDamageBonus::CreateOtherEffects()
                         bonusName,
                         1,
                         bonus,
+                        Bonus_Unknown,
                         "");        // no tree
                 feat.SetBreakdownDependency(StatToBreakdown(ability)); // so we know which effect to update
                 AddOtherEffect(feat);
@@ -127,6 +128,51 @@ void BreakdownItemWeaponDamageBonus::UpdateFeatEffectRevoked(
         {
             // pass through to the base class
             BreakdownItem::UpdateFeatEffectRevoked(pCharacter, featName, effect);
+        }
+    }
+}
+
+void BreakdownItemWeaponDamageBonus::UpdateItemEffect(
+        Character * pCharacter,
+        const std::string & itemName,
+        const Effect & effect)
+{
+    // handle special affects that change our list of available stats
+    if (AffectsUs(effect))
+    {
+        if (effect.HasAbility())
+        {
+            // add to the list of available stats for this weapon
+            ASSERT(effect.HasAbility());
+            AddAbility(effect.Ability());  // duplicates are fine
+            CreateOtherEffects();
+        }
+        else
+        {
+            // pass through to the base class
+            BreakdownItem::UpdateItemEffect(pCharacter, itemName, effect);
+        }
+    }
+}
+
+void BreakdownItemWeaponDamageBonus::UpdateItemEffectRevoked(
+        Character * pCharacter,
+        const std::string & itemName,
+        const Effect & effect)
+{
+    // handle special affects that change our list of available stats
+    if (AffectsUs(effect))
+    {
+        if (effect.HasAbility())
+        {
+            ASSERT(effect.HasAbility());
+            RemoveFirstAbility(effect.Ability());
+            CreateOtherEffects();
+        }
+        else
+        {
+            // pass through to the base class
+            BreakdownItem::UpdateItemEffectRevoked(pCharacter, itemName, effect);
         }
     }
 }

@@ -85,17 +85,19 @@ class BreakdownItem :
         std::list<ActiveEffect> m_itemEffects;        // highest of a given type counts
 
         // CharacterObserver overrides
-        void UpdateClassChanged(Character * charData, ClassType type, size_t level) override;
-        void UpdateStanceActivated(Character * charData, const std::string & stanceName) override;
-        void UpdateStanceDeactivated(Character * charData, const std::string & stanceName) override;
-        void UpdateFeatTrained(Character * charData, const std::string & featName) override;
-        void UpdateFeatRevoked(Character * charData, const std::string & featName) override;
-        void UpdateFeatEffect(Character * pCharacater, const std::string & featName,  const Effect & effect) override;
-        void UpdateFeatEffectRevoked(Character * pCharacater, const std::string & featName, const Effect & effect) override;
-        void UpdateEnhancementEffect(Character * charData, const std::string & enhancementName,  const EffectTier & effect) override;
-        void UpdateEnhancementEffectRevoked(Character * charData, const std::string & enhancementName, const EffectTier & effect) override;
-        void UpdateEnhancementTrained(Character * charData, const std::string & enhancementName, bool isTier5) override;
-        void UpdateEnhancementRevoked(Character * charData, const std::string & enhancementName, bool isTier5) override;
+        virtual void UpdateClassChanged(Character * charData, ClassType type, size_t level) override;
+        virtual void UpdateStanceActivated(Character * charData, const std::string & stanceName) override;
+        virtual void UpdateStanceDeactivated(Character * charData, const std::string & stanceName) override;
+        virtual void UpdateFeatTrained(Character * charData, const std::string & featName) override;
+        virtual void UpdateFeatRevoked(Character * charData, const std::string & featName) override;
+        virtual void UpdateFeatEffect(Character * pCharacater, const std::string & featName,  const Effect & effect) override;
+        virtual void UpdateFeatEffectRevoked(Character * pCharacater, const std::string & featName, const Effect & effect) override;
+        virtual void UpdateEnhancementEffect(Character * charData, const std::string & enhancementName,  const EffectTier & effect) override;
+        virtual void UpdateEnhancementEffectRevoked(Character * charData, const std::string & enhancementName, const EffectTier & effect) override;
+        virtual void UpdateEnhancementTrained(Character * charData, const std::string & enhancementName, bool isTier5) override;
+        virtual void UpdateEnhancementRevoked(Character * charData, const std::string & enhancementName, bool isTier5) override;
+        virtual void UpdateItemEffect(Character * charData, const std::string & itemName,  const Effect & effect) override;
+        virtual void UpdateItemEffectRevoked(Character * charData, const std::string & itemName, const Effect & effect) override;
 
         // BreakdownObserver overrides (may be specialised in inheriting classes)
         virtual void UpdateTotalChanged(BreakdownItem * item, BreakdownType type) override;
