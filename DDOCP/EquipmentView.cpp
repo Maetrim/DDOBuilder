@@ -328,7 +328,11 @@ void CEquipmentView::UpdateSlotLeftClicked(
 {
     // determine the item selected in this slot already (if any)
     EquippedGear gear = m_pCharacter->GetGearSet(SelectedGearSet());
-    Item item = gear.ItemInSlot(slot);
+    Item item;
+    if (gear.HasItemInSlot(slot))
+    {
+        item = gear.ItemInSlot(slot);
+    }
     CItemSelectDialog dlg(this, slot, item);
     if (dlg.DoModal() == IDOK)
     {

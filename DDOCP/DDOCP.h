@@ -5,6 +5,7 @@
 #include "Augment.h"
 #include "EnhancementTree.h"
 #include "Feat.h"
+#include "GuildBuff.h"
 #include "Item.h"
 #include "Spell.h"
 
@@ -41,6 +42,7 @@ class CDDOCPApp :
         const std::list<Spell> & Spells() const;
         const std::list<Item> & Items() const;
         const std::list<Augment> & Augments() const;
+        const std::list<GuildBuff> & GuildBuffs() const;
 
         virtual void PreLoadState();
         virtual void LoadCustomState();
@@ -57,12 +59,11 @@ class CDDOCPApp :
         void LoadSpells(const std::string & path);
         void LoadItems(const std::string & path);
         void LoadAugments(const std::string & path);
+        void LoadGuildBuffs(const std::string & path);
         void VerifyFeats();     // verify that all feats are consistent
         void SeparateFeats();   // breaks them out into groups based on type
         void VerifyEnhancements();     // verify that all enhancements are consistent
         void VerifySpells();    // verify all spells are consistent
-        void EnsureWorkspaceExists();
-        void RestoreDefaultWorkspace();
         CCustomContextMenuManager m_ourMenuManager; // construction of object replaces default implementation created in InitContextMenuManager
         // global data loaded at start up
         std::list<Feat> m_allFeats;
@@ -77,6 +78,7 @@ class CDDOCPApp :
         std::list<Spell> m_spells;
         std::list<Item> m_items;
         std::list<Augment> m_augments;
+        std::list<GuildBuff> m_guildBuffs;
 };
 
 extern CDDOCPApp theApp;

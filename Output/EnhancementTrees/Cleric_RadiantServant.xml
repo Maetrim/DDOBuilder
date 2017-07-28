@@ -1,9 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Enhancements>
    <EnhancementTree>
       <Name>Radiant Servant</Name>
-       <Version>1</Version>
-       <Requirements>
+      <Version>1</Version>
+      <Requirements>
          <Requirement>
             <Class>Cleric</Class>
          </Requirement>
@@ -29,20 +29,22 @@ Spell Power per point)</Description>
                <Level>1</Level>
             </Requirement>
          </Requirements>
-          <Effect>
-              <DisplayName>Radiant Servant: Spell power per action point</DisplayName>
-              <Type>SpellPower</Type>
-              <SpellPower>All</SpellPower>
-              <EnhancementTree>Radiant Servant</EnhancementTree>
-              <AmountPerAP>0.5</AmountPerAP>
-          </Effect>
-          <Effect>
-              <DisplayName>Radiant Servant: Positive spell power per action point</DisplayName>
-              <Type>SpellPower</Type>
-              <SpellPower>Positive</SpellPower>
-              <EnhancementTree>Radiant Servant</EnhancementTree>
-              <AmountPerAP>1.0</AmountPerAP>
-          </Effect>
+         <Effect>
+            <DisplayName>Radiant Servant: Spell power per action point</DisplayName>
+            <Bonus>Enhancement</Bonus>
+            <Type>SpellPower</Type>
+            <SpellPower>All</SpellPower>
+            <EnhancementTree>Radiant Servant</EnhancementTree>
+            <AmountPerAP>0.5</AmountPerAP>
+         </Effect>
+         <Effect>
+            <DisplayName>Radiant Servant: Positive spell power per action point</DisplayName>
+            <Bonus>Enhancement</Bonus>
+            <Type>SpellPower</Type>
+            <SpellPower>Positive</SpellPower>
+            <EnhancementTree>Radiant Servant</EnhancementTree>
+            <AmountPerAP>1.0</AmountPerAP>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Radiant Servant: Pacifism</Name>
@@ -95,11 +97,12 @@ Cleric level - a successful Will save reduces the damage by half.
                <Level>6</Level>
             </Requirement>
          </Requirements>
-          <Effect>
-              <Type>SpellCriticalChance</Type>
-              <SpellPower>Positive</SpellPower>
-              <AmountVector size="1">1</AmountVector>
-          </Effect>
+         <Effect>
+            <Type>SpellCriticalChance</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>Positive</SpellPower>
+            <AmountVector size="1">1</AmountVector>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Radiant Servant: Improved Empower Healing</Name>
@@ -122,17 +125,19 @@ The Empower Healing Spell metamagic now grants +100 Positive Energy Spell Power 
                <Level>12</Level>
             </Requirement>
          </Requirements>
-          <Effect>
-              <Type>SpellCriticalChance</Type>
-              <SpellPower>Positive</SpellPower>
-              <AmountVector size="1">1</AmountVector>
-          </Effect>
-          <Effect>
-              <Type>SpellPower</Type>
-              <SpellPower>Positive</SpellPower>
-              <AmountVector size="1">25</AmountVector>
-              <Stance>Empower Healing</Stance>
-          </Effect>
+         <Effect>
+            <Type>SpellCriticalChance</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>Positive</SpellPower>
+            <AmountVector size="1">1</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>Positive</SpellPower>
+            <AmountVector size="1">25</AmountVector>
+            <Stance>Empower Healing</Stance>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Radiant Servant: Positive Energy Shield</Name>
@@ -158,11 +163,12 @@ The Empower Healing Spell metamagic now grants +100 Positive Energy Spell Power 
                <Level>18</Level>
             </Requirement>
          </Requirements>
-          <Effect>
-              <Type>SpellCriticalChance</Type>
-              <SpellPower>Positive</SpellPower>
-              <AmountVector size="1">1</AmountVector>
-          </Effect>
+         <Effect>
+            <Type>SpellCriticalChance</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>Positive</SpellPower>
+            <AmountVector size="1">1</AmountVector>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Radiant Servant</Name>
@@ -184,11 +190,12 @@ maximum healing and has +50% chance to critical.</Description>
                <Level>20</Level>
             </Requirement>
          </Requirements>
-          <Effect>
-              <Type>AbilityBonus</Type>
-              <Ability>Wisdom</Ability>
-              <AmountVector size="1">2</AmountVector>
-          </Effect>
+         <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Ability>Wisdom</Ability>
+            <AmountVector size="1">2</AmountVector>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Radiant Servant: Extra Turning</Name>
@@ -207,10 +214,11 @@ maximum healing and has +50% chance to critical.</Description>
                <Level>1</Level>
             </Requirement>
          </Requirements>
-          <Effect>
-              <Type>ExtraTurns</Type>
-              <AmountVector size="3">1 2 3</AmountVector>
-          </Effect>
+         <Effect>
+            <Type>ExtraTurns</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Radiant Servant: Wand Mastery</Name>
@@ -289,26 +297,30 @@ Rank 3: You also gain +10 Positive Energy Spell Power.</Description>
                <Level>1</Level>
             </Requirement>
          </Requirements>
-          <Effect>
-              <Type>SkillBonus</Type>
-              <Skill>Concentration</Skill>
-              <AmountVector size="3">1 2 3</AmountVector>
-          </Effect>
-          <Effect>
-              <Type>SkillBonus</Type>
-              <Skill>Diplomacy</Skill>
-              <AmountVector size="3">1 2 3</AmountVector>
-          </Effect>
-          <Effect>
-              <Type>SkillBonus</Type>
-              <Skill>Heal</Skill>
-              <AmountVector size="3">1 2 3</AmountVector>
-          </Effect>
-          <Effect>
-              <Type>SpellPower</Type>
-              <SpellPower>Positive</SpellPower>
-              <AmountVector size="3">0 0 10</AmountVector>
-          </Effect>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Skill>Concentration</Skill>
+            <AmountVector size="3">1 2 3</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Skill>Diplomacy</Skill>
+            <AmountVector size="3">1 2 3</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Skill>Heal</Skill>
+            <AmountVector size="3">1 2 3</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>Positive</SpellPower>
+            <AmountVector size="3">0 0 10</AmountVector>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Radiant Servant: Improved Turning</Name>
@@ -334,14 +346,16 @@ total number of hit dice you can turn. In addition, you add an additional
                <Enhancement>RSExtraTurning</Enhancement>
             </Requirement>
          </Requirements>
-          <Effect>
-              <Type>TurnLevelBonus</Type>
-              <AmountVector size="3">1 2 3</AmountVector>
-          </Effect>
-          <Effect>
-              <Type>TurnBonus</Type>
-              <AmountVector size="3">2 4 6</AmountVector>
-          </Effect>
+         <Effect>
+            <Type>TurnLevelBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>TurnBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">2 4 6</AmountVector>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Radiant Servant: Mighty Turning</Name>
@@ -425,11 +439,12 @@ cost 1/2/4 fewer spell points.</Description>
                <Feat>Empower Healing Spell</Feat>
             </Requirement>
          </Requirements>
-          <Effect>
-              <Type>AdditionalSpellPointCost</Type>
-              <AmountVector size="3">-1 -2 -4</AmountVector>
-              <Stance>Empower Healing</Stance>
-          </Effect>
+         <Effect>
+            <Type>AdditionalSpellPointCost</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">-1 -2 -4</AmountVector>
+            <Stance>Empower Healing</Stance>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Radiant Servant: Intense Healing</Name>
@@ -520,22 +535,24 @@ This ability toggles off on death.</Description>
                <Description>+1 Charisma</Description>
                <Icon>Charisma</Icon>
                <Cost>2</Cost>
-                <Effect>
-                    <Type>AbilityBonus</Type>
-                    <Ability>Charisma</Ability>
-                    <AmountVector size="1">1</AmountVector>
-                </Effect>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Ability>Charisma</Ability>
+                  <AmountVector size="1">1</AmountVector>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>+1 Wisdom</Name>
                <Description>+1 Wisdom</Description>
                <Icon>Wisdom</Icon>
                <Cost>2</Cost>
-                <Effect>
-                    <Type>AbilityBonus</Type>
-                    <Ability>Wisdom</Ability>
-                    <AmountVector size="1">1</AmountVector>
-                </Effect>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Ability>Wisdom</Ability>
+                  <AmountVector size="1">1</AmountVector>
+               </Effect>
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
@@ -597,18 +614,21 @@ This ability toggles off on death.</Description>
                <Level>4</Level>
             </Requirement>
          </Requirements>
-          <Effect>
-              <Type>Immunity</Type>
-              <Immunity>Natural Disease</Immunity>
-          </Effect>
-          <Effect>
-              <Type>Immunity</Type>
-              <Immunity>Magical Disease</Immunity>
-          </Effect>
-          <Effect>
-              <Type>Immunity</Type>
-              <Immunity>Super-Natural Disease</Immunity>
-          </Effect>
+         <Effect>
+            <Type>Immunity</Type>
+            <Bonus>Enhancement</Bonus>
+            <Immunity>Natural Disease</Immunity>
+         </Effect>
+         <Effect>
+            <Type>Immunity</Type>
+            <Bonus>Enhancement</Bonus>
+            <Immunity>Magical Disease</Immunity>
+         </Effect>
+         <Effect>
+            <Type>Immunity</Type>
+            <Bonus>Enhancement</Bonus>
+            <Immunity>Super-Natural Disease</Immunity>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Radiant Servant: Ability II</Name>
@@ -635,22 +655,24 @@ This ability toggles off on death.</Description>
                <Description>+1 Charisma</Description>
                <Icon>Charisma</Icon>
                <Cost>2</Cost>
-                <Effect>
-                    <Type>AbilityBonus</Type>
-                    <Ability>Charisma</Ability>
-                    <AmountVector size="1">1</AmountVector>
-                </Effect>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Ability>Charisma</Ability>
+                  <AmountVector size="1">1</AmountVector>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>+1 Wisdom</Name>
                <Description>+1 Wisdom</Description>
                <Icon>Wisdom</Icon>
                <Cost>2</Cost>
-                <Effect>
-                    <Type>AbilityBonus</Type>
-                    <Ability>Wisdom</Ability>
-                    <AmountVector size="1">1</AmountVector>
-                </Effect>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Ability>Wisdom</Ability>
+                  <AmountVector size="1">1</AmountVector>
+               </Effect>
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>

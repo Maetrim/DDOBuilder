@@ -71,3 +71,13 @@ int Dice::Bonus(size_t index) const
         return 0;
     }
 }
+
+bool Dice::operator==(const Dice & other) const
+{
+    bool equal = (m_Number == other.m_Number)
+            && (m_Sides == other.m_Sides)
+            && (HasBonus() == other.HasBonus())
+            && m_Bonus == other.m_Bonus;
+    return equal;
+}
+

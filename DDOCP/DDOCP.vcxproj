@@ -44,13 +44,14 @@
     <IncludePath>$(SolutionDir);$(SolutionDir)3rdPartyLibraries\boost_1_45_0;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Output;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)Output\</OutDir>
-    <TargetName>$(ProjectName)D</TargetName>
+    <TargetName>DDOBuilderD</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>$(SolutionDir);$(SolutionDir)3rdPartyLibraries\boost_1_45_0;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Output;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)Output\</OutDir>
+    <TargetName>DDOBuilder</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -198,6 +199,7 @@
     <None Include="..\Output\Feats.xml">
       <SubType>Designer</SubType>
     </None>
+    <None Include="..\Output\GuildBuffs.xml" />
     <None Include="..\Output\Spells.xml" />
     <None Include="Change History.txt" />
     <None Include="DDOCP.reg" />
@@ -227,6 +229,7 @@
     <ClInclude Include="BonusTypes.h" />
     <ClInclude Include="BreakdownItem.h" />
     <ClInclude Include="BreakdownItemAbility.h" />
+    <ClInclude Include="BreakdownItemAssassinate.h" />
     <ClInclude Include="BreakdownItemCasterLevel.h" />
     <ClInclude Include="BreakdownItemEnergyAbsorption.h" />
     <ClInclude Include="BreakdownItemEnergyResistance.h" />
@@ -282,6 +285,8 @@
     <ClInclude Include="GlobalSupportFunctions.h" />
     <ClInclude Include="GroupLine.h" />
     <ClInclude Include="GroupTypes.h" />
+    <ClInclude Include="GuildBuff.h" />
+    <ClInclude Include="GuildBuffsFile.h" />
     <ClInclude Include="ImmunityTypes.h" />
     <ClInclude Include="InfoTip.h" />
     <ClInclude Include="InventoryDialog.h" />
@@ -291,6 +296,7 @@
     <ClInclude Include="ItemEditorDialog.h" />
     <ClInclude Include="ItemSelectDialog.h" />
     <ClInclude Include="ItemsFile.h" />
+    <ClInclude Include="LevelButton.h" />
     <ClInclude Include="LevelTraining.h" />
     <ClInclude Include="LevelUpView.h" />
     <ClInclude Include="LocalSettingsStore.h" />
@@ -354,6 +360,7 @@
     <ClCompile Include="AutomaticAcquisition.cpp" />
     <ClCompile Include="BreakdownItem.cpp" />
     <ClCompile Include="BreakdownItemAbility.cpp" />
+    <ClCompile Include="BreakdownItemAssassinate.cpp" />
     <ClCompile Include="BreakdownItemCasterLevel.cpp" />
     <ClCompile Include="BreakdownItemEnergyAbsorption.cpp" />
     <ClCompile Include="BreakdownItemEnergyResistance.cpp" />
@@ -411,6 +418,8 @@
     <ClCompile Include="GearSetNameDialog.cpp" />
     <ClCompile Include="GlobalSupportFunctions.cpp" />
     <ClCompile Include="GroupLine.cpp" />
+    <ClCompile Include="GuildBuff.cpp" />
+    <ClCompile Include="GuildBuffsFile.cpp" />
     <ClCompile Include="InfoTip.cpp" />
     <ClCompile Include="InventoryDialog.cpp" />
     <ClCompile Include="Item.cpp" />
@@ -418,6 +427,7 @@
     <ClCompile Include="ItemEditorDialog.cpp" />
     <ClCompile Include="ItemSelectDialog.cpp" />
     <ClCompile Include="ItemsFile.cpp" />
+    <ClCompile Include="LevelButton.cpp" />
     <ClCompile Include="LevelTraining.cpp">
       <PreprocessToFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</PreprocessToFile>
     </ClCompile>

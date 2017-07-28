@@ -52,11 +52,10 @@ void BreakdownItemHitpoints::CreateOtherEffects()
                 std::string className = EnumEntryText((ClassType)ci, classTypeMap);
                 className += " Levels";
                 ActiveEffect classBonus(
-                        ET_class,
+                        Bonus_class,
                         className,
                         classLevels[ci],
                         ClassHitpoints((ClassType)ci),
-                        Bonus_Unknown,
                         "");        // no tree
                 AddOtherEffect(classBonus);
             }
@@ -69,11 +68,10 @@ void BreakdownItemHitpoints::CreateOtherEffects()
         if (bonus != 0)
         {
             ActiveEffect conBonus(
-                    ET_ability,
+                    Bonus_ability,
                     "Constitution bonus",
                     MAX_LEVEL,  // con bonus applies for every level
                     bonus,
-                    Bonus_Unknown,
                     "");        // no tree
             AddOtherEffect(conBonus);
         }

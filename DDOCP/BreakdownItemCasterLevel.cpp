@@ -49,11 +49,10 @@ void BreakdownItemCasterLevel::CreateOtherEffects()
                     EnumEntryText(m_class, classTypeMap),
                     classLevels[m_class]);
             ActiveEffect levels(
-                    ET_class,
+                    Bonus_class,
                     (LPCTSTR)text,
                     1,
                     classLevels[m_class],
-                    Bonus_Unknown,
                     "");        // no tree
             AddOtherEffect(levels);
         }

@@ -13,6 +13,7 @@ class EquippedGear :
         EquippedGear(const std::string & name = "");
         void Write(XmlLib::SaxWriter * writer) const;
 
+        bool HasItemInSlot(InventorySlotType slot) const;
         Item ItemInSlot(InventorySlotType slot) const;
         void SetItem(InventorySlotType slot, const Item & item);
 

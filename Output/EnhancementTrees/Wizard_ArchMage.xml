@@ -1,9 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Enhancements>
    <EnhancementTree>
       <Name>Arch-Mage</Name>
-       <Version>1</Version>
-       <Requirements>
+      <Version>1</Version>
+      <Requirements>
          <Requirement>
             <Class>Wizard</Class>
          </Requirement>
@@ -81,19 +81,21 @@ to all spells and +2 to your Maximum Spell points.</Description>
                <Cost>1</Cost>
             </EnhancementSelection>
          </Selector>
-          <Effect>
-              <DisplayName>Arch-Mage spell power per action point</DisplayName>
-              <Type>SpellPower</Type>
-              <SpellPower>All</SpellPower>
-              <EnhancementTree>Arch-Mage</EnhancementTree>
-              <AmountPerAP>1.0</AmountPerAP>
-          </Effect>
-          <Effect>
-              <DisplayName>Arch-Mage spell points per action point</DisplayName>
-              <Type>SpellPoints</Type>
-              <EnhancementTree>Arch-Mage</EnhancementTree>
-              <AmountPerAP>2.0</AmountPerAP>
-          </Effect>
+         <Effect>
+            <DisplayName>Arch-Mage spell power per action point</DisplayName>
+            <Type>SpellPower</Type>
+             <Bonus>Enhancement</Bonus>
+            <SpellPower>All</SpellPower>
+            <EnhancementTree>Arch-Mage</EnhancementTree>
+            <AmountPerAP>1.0</AmountPerAP>
+         </Effect>
+         <Effect>
+            <DisplayName>Arch-Mage spell points per action point</DisplayName>
+                      <Bonus>Enhancement</Bonus>
+   <Type>SpellPoints</Type>
+            <EnhancementTree>Arch-Mage</EnhancementTree>
+            <AmountPerAP>2.0</AmountPerAP>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Arch-Mage: Specialization II</Name>
@@ -210,6 +212,7 @@ to all spells and +2 to your Maximum Spell points.</Description>
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
+      <Bonus>Enhancement</Bonus>
       <EnhancementTreeItem>
          <Name>Arch-Mage: Specialization III</Name>
          <InternalName>AMCore3</InternalName>
@@ -577,41 +580,48 @@ application of metamagic feats to your spells. You gain +2 Intelligence,
                <Level>20</Level>
             </Requirement>
          </Requirements>
-          <Effect>
-              <Type>AbilityBonus</Type>
-              <Ability>Intelligence</Ability>
-              <AmountVector size="1">2</AmountVector>
-          </Effect>
-          <Effect>
-              <Type>SkillBonus</Type>
-              <Skill>Spell Craft</Skill>
-              <AmountVector size="1">5</AmountVector>
-          </Effect>
-          <Effect>
-              <Type>AdditionalSpellPointCost</Type>
-              <AmountVector size="1">-1</AmountVector>
-              <Stance>Empower</Stance>
-          </Effect>
-          <Effect>
-              <Type>AdditionalSpellPointCost</Type>
-              <AmountVector size="1">-1</AmountVector>
-              <Stance>Maximize</Stance>
-          </Effect>
-          <Effect>
-              <Type>AdditionalSpellPointCost</Type>
-              <AmountVector size="1">-1</AmountVector>
-              <Stance>Extend</Stance>
-          </Effect>
-          <Effect>
-              <Type>AdditionalSpellPointCost</Type>
-              <AmountVector size="1">-1</AmountVector>
-              <Stance>Quicken</Stance>
-          </Effect>
-          <Effect>
-              <Type>AdditionalSpellPointCost</Type>
-              <AmountVector size="1">-1</AmountVector>
-              <Stance>Highten</Stance>
-          </Effect>
+         <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Ability>Intelligence</Ability>
+            <AmountVector size="1">2</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Skill>Spell Craft</Skill>
+            <AmountVector size="1">5</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>AdditionalSpellPointCost</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="1">-1</AmountVector>
+            <Stance>Empower</Stance>
+         </Effect>
+         <Effect>
+            <Type>AdditionalSpellPointCost</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="1">-1</AmountVector>
+            <Stance>Maximize</Stance>
+         </Effect>
+         <Effect>
+            <Type>AdditionalSpellPointCost</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="1">-1</AmountVector>
+            <Stance>Extend</Stance>
+         </Effect>
+         <Effect>
+            <Type>AdditionalSpellPointCost</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="1">-1</AmountVector>
+            <Stance>Quicken</Stance>
+         </Effect>
+         <Effect>
+            <Type>AdditionalSpellPointCost</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="1">-1</AmountVector>
+            <Stance>Highten</Stance>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Arch-Mage: Subtle Spellcasting</Name>
@@ -630,10 +640,11 @@ making enemies less likely to attack you.</Description>
                <Level>1</Level>
             </Requirement>
          </Requirements>
-        <Effect>
+         <Effect>
             <Type>ThreatBonus</Type>
+            <Bonus>Enhancement</Bonus>
             <AmountVector size="3">-10 -20 -30</AmountVector>
-        </Effect>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Arch-Mage: Energy of the Scholar</Name>
@@ -651,10 +662,11 @@ making enemies less likely to attack you.</Description>
                <Level>1</Level>
             </Requirement>
          </Requirements>
-          <Effect>
-              <Type>SpellPoints</Type>
-              <AmountVector size="3">30 60 90</AmountVector>
-          </Effect>
+         <Effect>
+            <Type>SpellPoints</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">30 60 90</AmountVector>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Arch-Mage: Traditionalist Caster</Name>
@@ -672,18 +684,20 @@ making enemies less likely to attack you.</Description>
                <Level>1</Level>
             </Requirement>
          </Requirements>
-          <Effect>
-              <Type>SpellPower</Type>
-              <SpellPower>All</SpellPower>
-              <AmountVector size="3">3 6 10</AmountVector>
-              <Stance>Orb</Stance>
-          </Effect>
-          <Effect>
-              <Type>SpellPower</Type>
-              <SpellPower>All</SpellPower>
-              <AmountVector size="3">3 6 10</AmountVector>
-              <Stance>Staff</Stance>
-          </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>All</SpellPower>
+            <AmountVector size="3">3 6 10</AmountVector>
+            <Stance>Orb</Stance>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>All</SpellPower>
+            <AmountVector size="3">3 6 10</AmountVector>
+            <Stance>Staff</Stance>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Arch-Mage: Spell Critical: Elemental and Force I</Name>
@@ -703,36 +717,42 @@ additional 1% chance to critically hit.</Description>
                <Level>1</Level>
             </Requirement>
          </Requirements>
-          <Effect>
-              <Type>SpellCriticalChance</Type>
-              <SpellPower>Acid</SpellPower>
-              <AmountVector size="1">1</AmountVector>
-          </Effect>
-          <Effect>
-              <Type>SpellCriticalChance</Type>
-              <SpellPower>Cold</SpellPower>
-              <AmountVector size="1">1</AmountVector>
-          </Effect>
-          <Effect>
-              <Type>SpellCriticalChance</Type>
-              <SpellPower>Electric</SpellPower>
-              <AmountVector size="1">1</AmountVector>
-          </Effect>
-          <Effect>
-              <Type>SpellCriticalChance</Type>
-              <SpellPower>Fire</SpellPower>
-              <AmountVector size="1">1</AmountVector>
-          </Effect>
-          <Effect>
-              <Type>SpellCriticalChance</Type>
-              <SpellPower>Force</SpellPower>
-              <AmountVector size="1">1</AmountVector>
-          </Effect>
-          <Effect>
-              <Type>SpellCriticalChance</Type>
-              <SpellPower>Untyped</SpellPower>
-              <AmountVector size="1">1</AmountVector>
-          </Effect>
+         <Effect>
+            <Type>SpellCriticalChance</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>Acid</SpellPower>
+            <AmountVector size="1">1</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SpellCriticalChance</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>Cold</SpellPower>
+            <AmountVector size="1">1</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SpellCriticalChance</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>Electric</SpellPower>
+            <AmountVector size="1">1</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SpellCriticalChance</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>Fire</SpellPower>
+            <AmountVector size="1">1</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SpellCriticalChance</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>Force</SpellPower>
+            <AmountVector size="1">1</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SpellCriticalChance</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>Untyped</SpellPower>
+            <AmountVector size="1">1</AmountVector>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Arch-Mage: Wand and Scroll Mastery</Name>
@@ -792,11 +812,12 @@ cast spells, and +1/+2/+3 to the save DC of your offensive wands.</Description>
                      </Requirement>
                   </RequiresNoneOf>
                </Requirements>
-                <Effect>
-                    <Type>AdditionalSpellPointCost</Type>
-                    <AmountVector size="3">-2 -4 -6</AmountVector>
-                    <Stance>Empower</Stance>
-                </Effect>
+               <Effect>
+                  <Type>AdditionalSpellPointCost</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AmountVector size="3">-2 -4 -6</AmountVector>
+                  <Stance>Empower</Stance>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Efficient Enlarge</Name>
@@ -818,11 +839,12 @@ cast spells, and +1/+2/+3 to the save DC of your offensive wands.</Description>
                      </Requirement>
                   </RequiresNoneOf>
                </Requirements>
-                <Effect>
-                    <Type>AdditionalSpellPointCost</Type>
-                    <AmountVector size="3">-1 -2 -4</AmountVector>
-                    <Stance>Enlarge</Stance>
-                </Effect>
+               <Effect>
+                  <Type>AdditionalSpellPointCost</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AmountVector size="3">-1 -2 -4</AmountVector>
+                  <Stance>Enlarge</Stance>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Efficient Maximize</Name>
@@ -844,11 +866,12 @@ cast spells, and +1/+2/+3 to the save DC of your offensive wands.</Description>
                      </Requirement>
                   </RequiresNoneOf>
                </Requirements>
-                <Effect>
-                    <Type>AdditionalSpellPointCost</Type>
-                    <AmountVector size="3">-3 -6 -9</AmountVector>
-                    <Stance>Maximize</Stance>
-                </Effect>
+               <Effect>
+                  <Type>AdditionalSpellPointCost</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AmountVector size="3">-3 -6 -9</AmountVector>
+                  <Stance>Maximize</Stance>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Efficient Quicken</Name>
@@ -870,11 +893,12 @@ cast spells, and +1/+2/+3 to the save DC of your offensive wands.</Description>
                      </Requirement>
                   </RequiresNoneOf>
                </Requirements>
-                <Effect>
-                    <Type>AdditionalSpellPointCost</Type>
-                    <AmountVector size="3">-1 -2 -4</AmountVector>
-                    <Stance>Quicken</Stance>
-                </Effect>
+               <Effect>
+                  <Type>AdditionalSpellPointCost</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AmountVector size="3">-1 -2 -4</AmountVector>
+                  <Stance>Quicken</Stance>
+               </Effect>
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
@@ -909,11 +933,12 @@ using that Metamagic.</Description>
                      <Feat>Empower Spell</Feat>
                   </Requirement>
                </Requirements>
-                <Effect>
-                    <Type>AdditionalSpellPointCost</Type>
-                    <AmountVector size="3">-2 -4 -6</AmountVector>
-                    <Stance>Empower</Stance>
-                </Effect>
+               <Effect>
+                  <Type>AdditionalSpellPointCost</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AmountVector size="3">-2 -4 -6</AmountVector>
+                  <Stance>Empower</Stance>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Efficient Enlarge</Name>
@@ -925,11 +950,12 @@ using that Metamagic.</Description>
                      <Feat>Enlarge Spell</Feat>
                   </Requirement>
                </Requirements>
-                <Effect>
-                    <Type>AdditionalSpellPointCost</Type>
-                    <AmountVector size="3">-1 -2 -4</AmountVector>
-                    <Stance>Enlarge</Stance>
-                </Effect>
+               <Effect>
+                  <Type>AdditionalSpellPointCost</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AmountVector size="3">-1 -2 -4</AmountVector>
+                  <Stance>Enlarge</Stance>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Efficient Maximize</Name>
@@ -941,11 +967,12 @@ using that Metamagic.</Description>
                      <Feat>Maximize Spell</Feat>
                   </Requirement>
                </Requirements>
-                <Effect>
-                    <Type>AdditionalSpellPointCost</Type>
-                    <AmountVector size="3">-3 -6 -9</AmountVector>
-                    <Stance>Maximize</Stance>
-                </Effect>
+               <Effect>
+                  <Type>AdditionalSpellPointCost</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AmountVector size="3">-3 -6 -9</AmountVector>
+                  <Stance>Maximize</Stance>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Efficient Quicken</Name>
@@ -957,11 +984,12 @@ using that Metamagic.</Description>
                      <Feat>Quicken Spell</Feat>
                   </Requirement>
                </Requirements>
-                <Effect>
-                    <Type>AdditionalSpellPointCost</Type>
-                    <AmountVector size="3">-1 -2 -4</AmountVector>
-                    <Stance>Quicken</Stance>
-                </Effect>
+               <Effect>
+                  <Type>AdditionalSpellPointCost</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AmountVector size="3">-1 -2 -4</AmountVector>
+                  <Stance>Quicken</Stance>
+               </Effect>
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
@@ -1005,11 +1033,12 @@ using that Metamagic.</Description>
                      </Requirement>
                   </RequiresNoneOf>
                </Requirements>
-                <Effect>
-                    <Type>AdditionalSpellPointCost</Type>
-                    <AmountVector size="3">-2 -4 -6</AmountVector>
-                    <Stance>Empower</Stance>
-                </Effect>
+               <Effect>
+                  <Type>AdditionalSpellPointCost</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AmountVector size="3">-2 -4 -6</AmountVector>
+                  <Stance>Empower</Stance>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Efficient Enlarge</Name>
@@ -1031,11 +1060,12 @@ using that Metamagic.</Description>
                      </Requirement>
                   </RequiresNoneOf>
                </Requirements>
-                <Effect>
-                    <Type>AdditionalSpellPointCost</Type>
-                    <AmountVector size="3">-1 -2 -4</AmountVector>
-                    <Stance>Enlarge</Stance>
-                </Effect>
+               <Effect>
+                  <Type>AdditionalSpellPointCost</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AmountVector size="3">-1 -2 -4</AmountVector>
+                  <Stance>Enlarge</Stance>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Efficient Maximize</Name>
@@ -1057,11 +1087,12 @@ using that Metamagic.</Description>
                      </Requirement>
                   </RequiresNoneOf>
                </Requirements>
-                <Effect>
-                    <Type>AdditionalSpellPointCost</Type>
-                    <AmountVector size="3">-3 -6 -9</AmountVector>
-                    <Stance>Maximize</Stance>
-                </Effect>
+               <Effect>
+                  <Type>AdditionalSpellPointCost</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AmountVector size="3">-3 -6 -9</AmountVector>
+                  <Stance>Maximize</Stance>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Efficient Quicken</Name>
@@ -1083,11 +1114,12 @@ using that Metamagic.</Description>
                      </Requirement>
                   </RequiresNoneOf>
                </Requirements>
-                <Effect>
-                    <Type>AdditionalSpellPointCost</Type>
-                    <AmountVector size="3">-1 -2 -4</AmountVector>
-                    <Stance>Quicken</Stance>
-                </Effect>
+               <Effect>
+                  <Type>AdditionalSpellPointCost</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AmountVector size="3">-1 -2 -4</AmountVector>
+                  <Stance>Quicken</Stance>
+               </Effect>
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
@@ -1112,36 +1144,42 @@ additional 1% chance to critically hit.</Description>
                <Enhancement>AMSpellCriticalElementalAndForceI</Enhancement>
             </Requirement>
          </Requirements>
-          <Effect>
-              <Type>SpellCriticalChance</Type>
-              <SpellPower>Acid</SpellPower>
-              <AmountVector size="1">1</AmountVector>
-          </Effect>
-          <Effect>
-              <Type>SpellCriticalChance</Type>
-              <SpellPower>Cold</SpellPower>
-              <AmountVector size="1">1</AmountVector>
-          </Effect>
-          <Effect>
-              <Type>SpellCriticalChance</Type>
-              <SpellPower>Electric</SpellPower>
-              <AmountVector size="1">1</AmountVector>
-          </Effect>
-          <Effect>
-              <Type>SpellCriticalChance</Type>
-              <SpellPower>Fire</SpellPower>
-              <AmountVector size="1">1</AmountVector>
-          </Effect>
-          <Effect>
-              <Type>SpellCriticalChance</Type>
-              <SpellPower>Force</SpellPower>
-              <AmountVector size="1">1</AmountVector>
-          </Effect>
-          <Effect>
-              <Type>SpellCriticalChance</Type>
-              <SpellPower>Untyped</SpellPower>
-              <AmountVector size="1">1</AmountVector>
-          </Effect>
+         <Effect>
+            <Type>SpellCriticalChance</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>Acid</SpellPower>
+            <AmountVector size="1">1</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SpellCriticalChance</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>Cold</SpellPower>
+            <AmountVector size="1">1</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SpellCriticalChance</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>Electric</SpellPower>
+            <AmountVector size="1">1</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SpellCriticalChance</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>Fire</SpellPower>
+            <AmountVector size="1">1</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SpellCriticalChance</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>Force</SpellPower>
+            <AmountVector size="1">1</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SpellCriticalChance</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>Untyped</SpellPower>
+            <AmountVector size="1">1</AmountVector>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Arch-Mage: Arcane Bolt</Name>
@@ -1167,8 +1205,8 @@ Scale with 100% Spell Power.</Description>
       <EnhancementTreeItem>
          <Name>Arch-Mage: Spell Penetration</Name>
          <InternalName>AMSpellPenetration</InternalName>
-         <Description>You add +1 to your Caster Level check to overcome an enemy's Spell Resistance.</Description>
-          <Icon>SpellPenetration</Icon>
+         <Description>You add +1/2/3 to your Caster Level check to overcome an enemy's Spell Resistance.</Description>
+         <Icon>SpellPenetration</Icon>
          <XPosition>2</XPosition>
          <YPosition>3</YPosition>
          <Cost>2</Cost>
@@ -1180,10 +1218,11 @@ Scale with 100% Spell Power.</Description>
                <Level>3</Level>
             </Requirement>
          </Requirements>
-          <Effect>
-              <Type>SpellPenetrationBonus</Type>
-              <AmountVector size="1">1</AmountVector>
-          </Effect>
+         <Effect>
+            <Type>SpellPenetrationBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Arch-Mage: Spell Critical: Elemental and Force III</Name>
@@ -1206,36 +1245,42 @@ additional 2% chance to critically hit.</Description>
                <Enhancement>AMSpellCriticalElementalAndForceII</Enhancement>
             </Requirement>
          </Requirements>
-          <Effect>
-              <Type>SpellCriticalChance</Type>
-              <SpellPower>Acid</SpellPower>
-              <AmountVector size="1">2</AmountVector>
-          </Effect>
-          <Effect>
-              <Type>SpellCriticalChance</Type>
-              <SpellPower>Cold</SpellPower>
-              <AmountVector size="1">2</AmountVector>
-          </Effect>
-          <Effect>
-              <Type>SpellCriticalChance</Type>
-              <SpellPower>Electric</SpellPower>
-              <AmountVector size="1">2</AmountVector>
-          </Effect>
-          <Effect>
-              <Type>SpellCriticalChance</Type>
-              <SpellPower>Fire</SpellPower>
-              <AmountVector size="1">2</AmountVector>
-          </Effect>
-          <Effect>
-              <Type>SpellCriticalChance</Type>
-              <SpellPower>Force</SpellPower>
-              <AmountVector size="1">2</AmountVector>
-          </Effect>
-          <Effect>
-              <Type>SpellCriticalChance</Type>
-              <SpellPower>Untyped</SpellPower>
-              <AmountVector size="1">2</AmountVector>
-          </Effect>
+         <Effect>
+            <Type>SpellCriticalChance</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>Acid</SpellPower>
+            <AmountVector size="1">2</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SpellCriticalChance</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>Cold</SpellPower>
+            <AmountVector size="1">2</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SpellCriticalChance</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>Electric</SpellPower>
+            <AmountVector size="1">2</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SpellCriticalChance</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>Fire</SpellPower>
+            <AmountVector size="1">2</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SpellCriticalChance</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>Force</SpellPower>
+            <AmountVector size="1">2</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SpellCriticalChance</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>Untyped</SpellPower>
+            <AmountVector size="1">2</AmountVector>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Arch-Mage: Intelligence I</Name>
@@ -1254,11 +1299,12 @@ additional 2% chance to critically hit.</Description>
                <Level>3</Level>
             </Requirement>
          </Requirements>
-          <Effect>
-              <Type>AbilityBonus</Type>
-              <Ability>Intelligence</Ability>
-              <AmountVector size="1">1</AmountVector>
-          </Effect>
+         <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Ability>Intelligence</Ability>
+            <AmountVector size="1">1</AmountVector>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Arch-Mage: Efficient Heighten</Name>
@@ -1279,11 +1325,12 @@ additional 2% chance to critically hit.</Description>
                <Level>4</Level>
             </Requirement>
          </Requirements>
-          <Effect>
-              <Type>AdditionalSpellPointCost</Type>
-              <AmountVector size="2">-1 -2</AmountVector>
-              <Stance>Heighten</Stance>
-          </Effect>
+         <Effect>
+            <Type>AdditionalSpellPointCost</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="2">-1 -2</AmountVector>
+            <Stance>Heighten</Stance>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Arch-Mage: School Mastery</Name>
@@ -1316,11 +1363,12 @@ your spell DCs of that school.</Description>
                      <Selection>Abjuration I: Shield</Selection>
                   </Requirement>
                </Requirements>
-                <Effect>
-                    <Type>SpellDC</Type>
-                    <School>Abjuration</School>
-                    <AmountVector size="1">1</AmountVector>
-                </Effect>
+               <Effect>
+                  <Type>SpellDC</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <School>Abjuration</School>
+                  <AmountVector size="1">1</AmountVector>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Primary Spell Focus: Conjuration</Name>
@@ -1334,11 +1382,12 @@ your spell DCs of that school.</Description>
                      <Selection>Conjuration I: Grease</Selection>
                   </Requirement>
                </Requirements>
-                <Effect>
-                    <Type>SpellDC</Type>
-                    <School>Conjuration</School>
-                    <AmountVector size="1">1</AmountVector>
-                </Effect>
+               <Effect>
+                  <Type>SpellDC</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <School>Conjuration</School>
+                  <AmountVector size="1">1</AmountVector>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Primary Spell Focus: Enchantment</Name>
@@ -1352,11 +1401,12 @@ your spell DCs of that school.</Description>
                      <Selection>Enchantment I: Hypnotism</Selection>
                   </Requirement>
                </Requirements>
-                <Effect>
-                    <Type>SpellDC</Type>
-                    <School>Enchantment</School>
-                    <AmountVector size="1">1</AmountVector>
-                </Effect>
+               <Effect>
+                  <Type>SpellDC</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <School>Enchantment</School>
+                  <AmountVector size="1">1</AmountVector>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Primary Spell Focus: Evocation</Name>
@@ -1370,11 +1420,12 @@ your spell DCs of that school.</Description>
                      <Selection>Evocation I: Magic Missile</Selection>
                   </Requirement>
                </Requirements>
-                <Effect>
-                    <Type>SpellDC</Type>
-                    <School>Evocation</School>
-                    <AmountVector size="1">1</AmountVector>
-                </Effect>
+               <Effect>
+                  <Type>SpellDC</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <School>Evocation</School>
+                  <AmountVector size="1">1</AmountVector>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Primary Spell Focus: Illusion</Name>
@@ -1388,11 +1439,12 @@ your spell DCs of that school.</Description>
                      <Selection>Illusion I: Invisibility</Selection>
                   </Requirement>
                </Requirements>
-                <Effect>
-                    <Type>SpellDC</Type>
-                    <School>Illusion</School>
-                    <AmountVector size="1">1</AmountVector>
-                </Effect>
+               <Effect>
+                  <Type>SpellDC</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <School>Illusion</School>
+                  <AmountVector size="1">1</AmountVector>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Primary Spell Focus: Necromancy</Name>
@@ -1406,11 +1458,12 @@ your spell DCs of that school.</Description>
                      <Selection>Necromancy I: Chill Touch</Selection>
                   </Requirement>
                </Requirements>
-                <Effect>
-                    <Type>SpellDC</Type>
-                    <School>Necromancy</School>
-                    <AmountVector size="1">1</AmountVector>
-                </Effect>
+               <Effect>
+                  <Type>SpellDC</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <School>Necromancy</School>
+                  <AmountVector size="1">1</AmountVector>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Primary Spell Focus: Transmutation</Name>
@@ -1424,11 +1477,12 @@ your spell DCs of that school.</Description>
                      <Selection>Transmutation I: Jump</Selection>
                   </Requirement>
                </Requirements>
-                <Effect>
-                    <Type>SpellDC</Type>
-                    <School>Transmutation</School>
-                    <AmountVector size="1">1</AmountVector>
-                </Effect>
+               <Effect>
+                  <Type>SpellDC</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <School>Transmutation</School>
+                  <AmountVector size="1">1</AmountVector>
+               </Effect>
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
@@ -1452,36 +1506,42 @@ additional 2% chance to critically hit.</Description>
                <Enhancement>AMSpellCriticalElementalAndForceIII</Enhancement>
             </Requirement>
          </Requirements>
-          <Effect>
-              <Type>SpellCriticalChance</Type>
-              <SpellPower>Acid</SpellPower>
-              <AmountVector size="1">2</AmountVector>
-          </Effect>
-          <Effect>
-              <Type>SpellCriticalChance</Type>
-              <SpellPower>Cold</SpellPower>
-              <AmountVector size="1">2</AmountVector>
-          </Effect>
-          <Effect>
-              <Type>SpellCriticalChance</Type>
-              <SpellPower>Electric</SpellPower>
-              <AmountVector size="1">2</AmountVector>
-          </Effect>
-          <Effect>
-              <Type>SpellCriticalChance</Type>
-              <SpellPower>Fire</SpellPower>
-              <AmountVector size="1">2</AmountVector>
-          </Effect>
-          <Effect>
-              <Type>SpellCriticalChance</Type>
-              <SpellPower>Force</SpellPower>
-              <AmountVector size="1">2</AmountVector>
-          </Effect>
-          <Effect>
-              <Type>SpellCriticalChance</Type>
-              <SpellPower>Untyped</SpellPower>
-              <AmountVector size="1">2</AmountVector>
-          </Effect>
+         <Effect>
+            <Type>SpellCriticalChance</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>Acid</SpellPower>
+            <AmountVector size="1">2</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SpellCriticalChance</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>Cold</SpellPower>
+            <AmountVector size="1">2</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SpellCriticalChance</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>Electric</SpellPower>
+            <AmountVector size="1">2</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SpellCriticalChance</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>Fire</SpellPower>
+            <AmountVector size="1">2</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SpellCriticalChance</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>Force</SpellPower>
+            <AmountVector size="1">2</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SpellCriticalChance</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>Untyped</SpellPower>
+            <AmountVector size="1">2</AmountVector>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Arch-Mage: Intelligence II</Name>
@@ -1502,11 +1562,12 @@ additional 2% chance to critically hit.</Description>
                <Enhancement>AMIntelligenceI</Enhancement>
             </Requirement>
          </Requirements>
-          <Effect>
-              <Type>AbilityBonus</Type>
-              <Ability>Intelligence</Ability>
-              <AmountVector size="1">1</AmountVector>
-          </Effect>
+         <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Ability>Intelligence</Ability>
+            <AmountVector size="1">1</AmountVector>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Arch-Mage: Arcane Blast</Name>
@@ -1599,11 +1660,12 @@ your spell DCs of that school.</Description>
                      <Selection>Abjuration I: Shield</Selection>
                   </Requirement>
                </Requirements>
-                <Effect>
-                    <Type>SpellDC</Type>
-                    <School>Abjuration</School>
-                    <AmountVector size="1">1</AmountVector>
-                </Effect>
+               <Effect>
+                  <Type>SpellDC</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <School>Abjuration</School>
+                  <AmountVector size="1">1</AmountVector>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Primary Spell Focus: Conjuration</Name>
@@ -1617,11 +1679,12 @@ your spell DCs of that school.</Description>
                      <Selection>Conjuration I: Grease</Selection>
                   </Requirement>
                </Requirements>
-                <Effect>
-                    <Type>SpellDC</Type>
-                    <School>Conjuration</School>
-                    <AmountVector size="1">1</AmountVector>
-                </Effect>
+               <Effect>
+                  <Type>SpellDC</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <School>Conjuration</School>
+                  <AmountVector size="1">1</AmountVector>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Primary Spell Focus: Enchantment</Name>
@@ -1635,11 +1698,12 @@ your spell DCs of that school.</Description>
                      <Selection>Enchantment I: Hypnotism</Selection>
                   </Requirement>
                </Requirements>
-                <Effect>
-                    <Type>SpellDC</Type>
-                    <School>Enchantment</School>
-                    <AmountVector size="1">1</AmountVector>
-                </Effect>
+               <Effect>
+                  <Type>SpellDC</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <School>Enchantment</School>
+                  <AmountVector size="1">1</AmountVector>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Primary Spell Focus: Evocation</Name>
@@ -1653,11 +1717,12 @@ your spell DCs of that school.</Description>
                      <Selection>Evocation I: Magic Missile</Selection>
                   </Requirement>
                </Requirements>
-                <Effect>
-                    <Type>SpellDC</Type>
-                    <School>Evocation</School>
-                    <AmountVector size="1">1</AmountVector>
-                </Effect>
+               <Effect>
+                  <Type>SpellDC</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <School>Evocation</School>
+                  <AmountVector size="1">1</AmountVector>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Primary Spell Focus: Illusion</Name>
@@ -1671,11 +1736,12 @@ your spell DCs of that school.</Description>
                      <Selection>Illusion I: Invisibility</Selection>
                   </Requirement>
                </Requirements>
-                <Effect>
-                    <Type>SpellDC</Type>
-                    <School>Illusion</School>
-                    <AmountVector size="1">1</AmountVector>
-                </Effect>
+               <Effect>
+                  <Type>SpellDC</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <School>Illusion</School>
+                  <AmountVector size="1">1</AmountVector>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Primary Spell Focus: Necromancy</Name>
@@ -1689,11 +1755,12 @@ your spell DCs of that school.</Description>
                      <Selection>Necromancy I: Chill Touch</Selection>
                   </Requirement>
                </Requirements>
-                <Effect>
-                    <Type>SpellDC</Type>
-                    <School>Necromancy</School>
-                    <AmountVector size="1">1</AmountVector>
-                </Effect>
+               <Effect>
+                  <Type>SpellDC</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <School>Necromancy</School>
+                  <AmountVector size="1">1</AmountVector>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Primary Spell Focus: Transmutation</Name>
@@ -1707,11 +1774,12 @@ your spell DCs of that school.</Description>
                      <Selection>Transmutation I: Jump</Selection>
                   </Requirement>
                </Requirements>
-                <Effect>
-                    <Type>SpellDC</Type>
-                    <School>Transmutation</School>
-                    <AmountVector size="1">1</AmountVector>
-                </Effect>
+               <Effect>
+                  <Type>SpellDC</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <School>Transmutation</School>
+                  <AmountVector size="1">1</AmountVector>
+               </Effect>
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
@@ -1754,11 +1822,12 @@ your spell DCs of that school.</Description>
                      </Requirement>
                   </RequiresNoneOf>
                </Requirements>
-                <Effect>
-                    <Type>SpellDC</Type>
-                    <School>Abjuration</School>
-                    <AmountVector size="1">1</AmountVector>
-                </Effect>
+               <Effect>
+                  <Type>SpellDC</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <School>Abjuration</School>
+                  <AmountVector size="1">1</AmountVector>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Secondary Spell Focus: Conjuration</Name>
@@ -1774,11 +1843,12 @@ your spell DCs of that school.</Description>
                      </Requirement>
                   </RequiresNoneOf>
                </Requirements>
-                <Effect>
-                    <Type>SpellDC</Type>
-                    <School>Conjuration</School>
-                    <AmountVector size="1">1</AmountVector>
-                </Effect>
+               <Effect>
+                  <Type>SpellDC</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <School>Conjuration</School>
+                  <AmountVector size="1">1</AmountVector>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Secondary Spell Focus: Enchantment</Name>
@@ -1794,11 +1864,12 @@ your spell DCs of that school.</Description>
                      </Requirement>
                   </RequiresNoneOf>
                </Requirements>
-                <Effect>
-                    <Type>SpellDC</Type>
-                    <School>Enchantment</School>
-                    <AmountVector size="1">1</AmountVector>
-                </Effect>
+               <Effect>
+                  <Type>SpellDC</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <School>Enchantment</School>
+                  <AmountVector size="1">1</AmountVector>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Secondary Spell Focus: Evocation</Name>
@@ -1814,11 +1885,12 @@ your spell DCs of that school.</Description>
                      </Requirement>
                   </RequiresNoneOf>
                </Requirements>
-                <Effect>
-                    <Type>SpellDC</Type>
-                    <School>Evocation</School>
-                    <AmountVector size="1">1</AmountVector>
-                </Effect>
+               <Effect>
+                  <Type>SpellDC</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <School>Evocation</School>
+                  <AmountVector size="1">1</AmountVector>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Secondary Spell Focus: Illusion</Name>
@@ -1834,11 +1906,12 @@ your spell DCs of that school.</Description>
                      </Requirement>
                   </RequiresNoneOf>
                </Requirements>
-                <Effect>
-                    <Type>SpellDC</Type>
-                    <School>Illusion</School>
-                    <AmountVector size="1">1</AmountVector>
-                </Effect>
+               <Effect>
+                  <Type>SpellDC</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <School>Illusion</School>
+                  <AmountVector size="1">1</AmountVector>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Secondary Spell Focus: Necromancy</Name>
@@ -1854,11 +1927,12 @@ your spell DCs of that school.</Description>
                      </Requirement>
                   </RequiresNoneOf>
                </Requirements>
-                <Effect>
-                    <Type>SpellDC</Type>
-                    <School>Necromancy</School>
-                    <AmountVector size="1">1</AmountVector>
-                </Effect>
+               <Effect>
+                  <Type>SpellDC</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <School>Necromancy</School>
+                  <AmountVector size="1">1</AmountVector>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Secondary Spell Focus: Transmutation</Name>
@@ -1874,11 +1948,12 @@ your spell DCs of that school.</Description>
                      </Requirement>
                   </RequiresNoneOf>
                </Requirements>
-                <Effect>
-                    <Type>SpellDC</Type>
-                    <School>Transmutation</School>
-                    <AmountVector size="1">1</AmountVector>
-                </Effect>
+               <Effect>
+                  <Type>SpellDC</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <School>Transmutation</School>
+                  <AmountVector size="1">1</AmountVector>
+               </Effect>
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>

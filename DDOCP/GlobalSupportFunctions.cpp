@@ -312,6 +312,12 @@ const std::list<Augment> & Augments()
     return pApp->Augments();
 }
 
+const std::list<GuildBuff> & GuildBuffs()
+{
+    CDDOCPApp * pApp = dynamic_cast<CDDOCPApp*>(AfxGetApp());
+    return pApp->GuildBuffs();
+}
+
 std::vector<Spell> FilterSpells(ClassType ct, int level)
 {
     // return the list of spells for this class at this level
@@ -1997,3 +2003,96 @@ void MakeGrayScale(CImage * pImage, COLORREF transparent)
     }
 }
 
+CString TrainableFeatTypeLabel(TrainableFeatTypes type)
+{
+    CString text("Unknown");
+    switch (type)
+    {
+    case TFT_Automatic:
+        text = "Automatic";
+        break;
+    case TFT_Standard:
+        text = "Standard";
+        break;
+    case TFT_Special:
+        text = "Special";
+        break;
+    case TFT_ArtificerBonus:
+        text = "Artificer Bonus";
+        break;
+    case TFT_BelovedOf:
+        text = "Beloved Of Faith";
+        break;
+    case TFT_ChildOf:
+        text = "Child Of Faith";
+        break;
+    case TFT_DamageReduction:
+        text = "Damage Reduction";
+        break;
+    case TFT_Deity:
+        text = "Deity";
+        break;
+    case TFT_DragonbornRacial:
+        text = "Dragonborn Racial";
+        break;
+    case TFT_DruidWildShape:
+        text = "Druid Wild Shape";
+        break;
+    case TFT_EnergyResistance:
+        text = "Energy Resistance";
+        break;
+    case TFT_EpicDestinyFeat:
+        text = "Epic Destiny Feat";
+        break;
+    case TFT_EpicFeat:
+        text = "Epic Feat";
+        break;
+    case TFT_FighterBonus:
+        text = "Fighter Bonus Feat";
+        break;
+    case TFT_FollowerOf:
+        text = "Follower of Faith";
+        break;
+    case TFT_HalfElfDilettanteBonus:
+        text = "Half-Elf Dilettante";
+        break;
+    case TFT_HumanBonus:
+        text = "Human Bonus";
+        break;
+    case TFT_LegendaryFeat:
+        text = "Legendary";
+        break;
+    case TFT_MonkBonus:
+    case TFT_MonkBonus6:
+        text = "Monk Bonus";
+        break;
+    case TFT_MonkPhilosphy:
+        text = "Monk Philosophy";
+        break;
+    case TFT_PDKBonus:
+        text = "Purple Dragon Knight Bonus";
+        break;
+    case TFT_RangerFavoredEnemy:
+        text = "Favored Enemy";
+        break;
+    case TFT_RogueSpecialAbility:
+        text = "Rogue Special Ability";
+        break;
+    case TFT_WarlockPact:
+        text = "Pact";
+        break;
+    case TFT_WarlockPactAbility:
+        text = "Warlock Pact Ability";
+        break;
+    case TFT_WarlockPactSaveBonus:
+        text = "Warlock Save Bonus";
+        break;
+    case TFT_WarlockPactSpell:
+        text = "Warlock Pact Spell";
+        break;
+    case TFT_WizardMetamagic:
+        text = "Metamagic";
+        break;
+    }
+    return text;
+}

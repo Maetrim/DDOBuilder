@@ -15,6 +15,8 @@ class BreakdownItemSkill :
                 BreakdownItem * pAbility);
         virtual ~BreakdownItemSkill();
 
+        SkillType Skill() const;
+
         // required overrides
         virtual CString Title() const override;
         virtual CString Value() const override;

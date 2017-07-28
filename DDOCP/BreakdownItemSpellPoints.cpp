@@ -57,11 +57,10 @@ void BreakdownItemSpellPoints::CreateOtherEffects()
                             EnumEntryText((ClassType)ci, classTypeMap),
                             classLevels[ci]);
                     ActiveEffect classSps(
-                            ET_class,
+                            Bonus_class,
                             (LPCSTR)bonusName,
                             1,
                             classSpellPoints,
-                            Bonus_Unknown,
                             "");        // no tree
                     AddOtherEffect(classSps);
                     // if we have class spell points we must have bonus class ability spell points
@@ -80,11 +79,10 @@ void BreakdownItemSpellPoints::CreateOtherEffects()
                                 EnumEntryText((ClassType)ci, classTypeMap),
                                 EnumEntryText((AbilityType)at, abilityTypeMap));
                         ActiveEffect abilitySpBonus(
-                                ET_ability,
+                                Bonus_ability,
                                 (LPCSTR)bonusName,
                                 1,
                                 abilitySps,
-                                Bonus_Unknown,
                                 "");        // no tree
                         AddOtherEffect(abilitySpBonus);
                     }

@@ -36,7 +36,6 @@ CInventoryDialog::CInventoryDialog(CWnd* pParent) :
     m_pCharacter(NULL),
     m_bitmapSize(CSize(0, 0)),
     m_tipCreated(false),
-    m_selectedItem(Inventory_Unknown),
     m_tooltipItem(Inventory_Unknown)
 {
     //{{AFX_DATA_INIT(CInventoryDialog)
@@ -64,7 +63,6 @@ CInventoryDialog::CInventoryDialog(CWnd* pParent) :
     LoadImageFile(IT_ui, "Inventory", &m_imageBackground);
     LoadImageFile(IT_ui, "Inventory", &m_imageBackgroundDisabled);
     MakeGrayScale(&m_imageBackgroundDisabled, c_transparentColour);
-    LoadImageFile(IT_ui, "InventorySelectedSlot", &m_selectedImage);      // 42 * 42
 }
 
 void CInventoryDialog::DoDataExchange(CDataExchange* pDX)
@@ -133,16 +131,14 @@ void CInventoryDialog::OnPaint()
                 CRect(0, 0, c_sizeX, c_sizeY),
                 CPoint(0, 0),
                 SRCCOPY);
-        // no selection if we are disabled
-        m_selectedItem = Inventory_Unknown;
     }
 
     // now iterate the current inventory and draw the item icons
     for (size_t i = Inventory_Unknown + 1; i < Inventory_Count; ++i)
     {
-        Item item = m_gearSet.ItemInSlot((InventorySlotType)i);
-        if (item.Name() != "")
+        if (m_gearSet.HasItemInSlot((InventorySlotType)i))
         {
+            Item item = m_gearSet.ItemInSlot((InventorySlotType)i);
             CImage image;
             LoadImageFile(IT_item, item.Icon(), &image);
             CRect itemRect = m_hitBoxes[i - 1].Rect();
@@ -153,24 +149,6 @@ void CInventoryDialog::OnPaint()
                     32,
                     32);
         }
-    }
-
-    // now add the highlight to the selected item
-    if (m_selectedItem != Inventory_Unknown)
-    {
-        // show the highlight
-        CRect itemRect = GetItemRect(m_selectedItem);
-        ASSERT(itemRect.Width() == 32);
-        ASSERT(itemRect.Height() == 32);
-        // expand the rectangle to the size of the image
-        itemRect.InflateRect(8, 8, 8, 8);
-        itemRect += CPoint(2, 2);       // adjust relative to view location
-        m_selectedImage.TransparentBlt(
-                memoryDc.GetSafeHdc(),
-                itemRect.left,
-                itemRect.top,
-                42,
-                42);
     }
 
     // now draw to display
@@ -192,17 +170,9 @@ void CInventoryDialog::OnLButtonDown(UINT nFlags, CPoint point)
 {
     CDialog::OnLButtonDown(nFlags, point);
     InventorySlotType slotClicked = FindByPoint(NULL);
-    if (slotClicked != m_selectedItem)
+    if (slotClicked != Inventory_Unknown)
     {
-        m_selectedItem = slotClicked;
-        Invalidate();       // re-draw
-    }
-    else
-    {
-        if (slotClicked != Inventory_Unknown)
-        {
-            NotifySlotLeftClicked(slotClicked);
-        }
+        NotifySlotLeftClicked(slotClicked);
     }
 }
 
@@ -210,19 +180,12 @@ void CInventoryDialog::OnRButtonDown(UINT nFlags, CPoint point)
 {
     CDialog::OnRButtonDown(nFlags, point);
     InventorySlotType slotClicked = FindByPoint(NULL);
-    if (slotClicked != m_selectedItem)
+    if (slotClicked != Inventory_Unknown)
     {
-        m_selectedItem = slotClicked;
-        Invalidate();       // re-draw
-    }
-    else
-    {
-        if (slotClicked != Inventory_Unknown)
-        {
-            NotifySlotRightClicked(slotClicked);
-        }
+        NotifySlotRightClicked(slotClicked);
     }
 }
+
 
 InventorySlotType CInventoryDialog::FindByPoint(CRect * pRect) const
 {
@@ -258,7 +221,10 @@ void CInventoryDialog::OnMouseMove(UINT nFlags, CPoint point)
     {
         // over a new item or a different item
         m_tooltipItem = slot;
-        //ShowTip(*item, itemRect);
+        if (m_gearSet.HasItemInSlot(slot))
+        {
+            ShowTip(m_gearSet.ItemInSlot(slot), itemRect);
+        }
     }
     else
     {
@@ -270,7 +236,7 @@ void CInventoryDialog::OnMouseMove(UINT nFlags, CPoint point)
         }
     }
     // as the mouse is over the enhancement tree, ensure the status bar message prompts available actions
-    //GetMainFrame()->SetStatusBarPromptText("Left click to train highlighted enhancement, right click to revoke last enhancement trained in this tree");
+    GetMainFrame()->SetStatusBarPromptText("Left click to choose / edit gear");
 }
 
 LRESULT CInventoryDialog::OnMouseLeave(WPARAM wParam, LPARAM lParam)
@@ -281,43 +247,43 @@ LRESULT CInventoryDialog::OnMouseLeave(WPARAM wParam, LPARAM lParam)
     return 0;
 }
 
-void CInventoryDialog::ShowTip(const EnhancementTreeItem & item, CRect itemRect)
+void CInventoryDialog::ShowTip(const Item & item, CRect itemRect)
 {
-//    if (m_showingTip)
-//    {
-//        m_tooltip.Hide();
-//    }
-//    ClientToScreen(&itemRect);
-//    CPoint tipTopLeft(itemRect.left, itemRect.bottom + 2);
-//    SetTooltipText(item, tipTopLeft);
-//    m_showingTip = true;
-//    // track the mouse so we know when it leaves our window
-//    TRACKMOUSEEVENT tme;
-//    tme.cbSize = sizeof(tme);
-//    tme.hwndTrack = m_hWnd;
-//    tme.dwFlags = TME_LEAVE;
-//    tme.dwHoverTime = 1;
-//    _TrackMouseEvent(&tme);
+    if (m_showingTip)
+    {
+        m_tooltip.Hide();
+    }
+    ClientToScreen(&itemRect);
+    CPoint tipTopLeft(itemRect.left, itemRect.bottom + 2);
+    SetTooltipText(item, tipTopLeft);
+    m_showingTip = true;
+    // track the mouse so we know when it leaves our window
+    TRACKMOUSEEVENT tme;
+    tme.cbSize = sizeof(tme);
+    tme.hwndTrack = m_hWnd;
+    tme.dwFlags = TME_LEAVE;
+    tme.dwHoverTime = 1;
+    _TrackMouseEvent(&tme);
 }
 
 void CInventoryDialog::HideTip()
 {
-    // tip not shown if not over an assay
-    //if (m_tipCreated && m_showingTip)
-    //{
-    //    m_tooltip.Hide();
-    //    m_showingTip = false;
-    //    m_tooltipItem = NULL;
-    //}
+    // tip not shown if not over a gear slot
+    if (m_tipCreated && m_showingTip)
+    {
+        m_tooltip.Hide();
+        m_showingTip = false;
+        m_tooltipItem = Inventory_Unknown;
+    }
 }
 
 void CInventoryDialog::SetTooltipText(
-        const EnhancementTreeItem & item,
+        const Item & item,
         CPoint tipTopLeft)
 {
-    //m_tooltip.SetOrigin(tipTopLeft);
-    //m_tooltip.SetEnhancementTreeItem(*m_pCharacter, &item, m_pCharacter->APSpentInTree(m_tree.Name()));
-    //m_tooltip.Show();
+    m_tooltip.SetOrigin(tipTopLeft);
+    m_tooltip.SetItem(*m_pCharacter, &item);
+    m_tooltip.Show();
 }
 
 CRect CInventoryDialog::GetItemRect(InventorySlotType slot) const

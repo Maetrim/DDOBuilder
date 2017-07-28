@@ -41,11 +41,10 @@ void BreakdownItemSpellSchool::CreateOtherEffects()
     m_otherEffects.clear();
     // all spell DC's start at a base of 10
     ActiveEffect amountTrained(
-            ET_base,
+            Bonus_base,
             "Base DC",
             1,
             10,
-            Bonus_Unknown,
             "");        // no tree
     AddOtherEffect(amountTrained);
 }

@@ -7,7 +7,9 @@ class Character;
 class EnhancementSelection;
 class EnhancementTreeItem;
 class Feat;
+class Item;
 class Stance;
+class LevelTraining;
 
 class CInfoTip :
         public CWnd
@@ -32,6 +34,13 @@ class CInfoTip :
         void SetStanceItem(
                 const Character & charData,
                 const Stance * pItem);
+        void SetItem(
+                const Character & charData,
+                const Item * pItem);
+        void SetLevelItem(
+                const Character & charData,
+                size_t level,
+                const LevelTraining * levelData);
 
         void SetOrigin(CPoint point);
         void Show();

@@ -1,1124 +1,1180 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Enhancements>
-  <EnhancementTree>
-    <Name>Stalwart Defender</Name>
-    <Version>1</Version>
-    <Requirements>
-      <Requirement>
-        <Class>Fighter</Class>
-      </Requirement>
-    </Requirements>
-    <Icon>Fighter</Icon>
-    <Background>FighterBackground</Background>
-    <EnhancementTreeItem>
-      <Name>Toughness</Name>
-      <InternalName>SDCore1</InternalName>
-      <Description>You gain +1 Hit Point for each action point you spend in this tree.
-Each Stalwart Defender Core Ability you possess grants +3% Fortification.</Description>
-      <Icon>Toughness</Icon>
-      <XPosition>0</XPosition>
-      <YPosition>0</YPosition>
-      <Cost>1</Cost>
-      <Ranks>1</Ranks>
-      <MinSpent>0</MinSpent>
-      <ArrowRight/>
+   <EnhancementTree>
+      <Name>Stalwart Defender</Name>
+      <Version>1</Version>
       <Requirements>
-        <Requirement>
-          <Class>Fighter</Class>
-          <Level>1</Level>
-        </Requirement>
+         <Requirement>
+            <Class>Fighter</Class>
+         </Requirement>
       </Requirements>
-        <Effect>
+      <Icon>Fighter</Icon>
+      <Background>FighterBackground</Background>
+      <EnhancementTreeItem>
+         <Name>Toughness</Name>
+         <InternalName>SDCore1</InternalName>
+         <Description>You gain +1 Hit Point for each action point you spend in this tree.
+Each Stalwart Defender Core Ability you possess grants +3% Fortification.</Description>
+         <Icon>Toughness</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>0</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Class>Fighter</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
+         <Effect>
             <DisplayName>Stalwart Defender: Hitpoint per action point</DisplayName>
+            <Bonus>Enhancement</Bonus>
             <Type>Hitpoints</Type>
             <EnhancementTree>Stalwart Defender</EnhancementTree>
             <AmountPerAP>1.0</AmountPerAP>
-        </Effect>
-        <Effect>
+         </Effect>
+         <Effect>
             <Type>Fortification</Type>
+            <Bonus>Enhancement</Bonus>
             <AmountVector size="1">3</AmountVector>
-        </Effect>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Stalwart Defense</Name>
-      <InternalName>SDCore2</InternalName>
-      <Description>Defensive Combat Stance:  +10 Physical and Magical Resistance 
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Stalwart Defense</Name>
+         <InternalName>SDCore2</InternalName>
+         <Description>Defensive Combat Stance:  +10 Physical and Magical Resistance 
  +50% bonus to threat generation 
  Cannot be used while Raged 
  Sacred Defense and Stalwart Defense can't be active at the same time
 </Description>
-      <Icon>SDStalwartDefense</Icon>
-      <XPosition>1</XPosition>
-      <YPosition>0</YPosition>
-      <Cost>1</Cost>
-      <Ranks>1</Ranks>
-      <MinSpent>5</MinSpent>
-      <Clickie/>
-      <ArrowRight/>
-        <Stance>
+         <Icon>SDStalwartDefense</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Clickie/>
+         <ArrowRight/>
+         <Stance>
             <Name>Stalwart Defense</Name>
             <Icon>SDStalwartDefense</Icon>
             <Description>Defensive Combat Stance:  +10 Physical and Magical Resistance 
 +50% bonus to threat generation</Description>
             <IncompatibleStance>Rage</IncompatibleStance>
             <IncompatibleStance>Sacred Defense</IncompatibleStance>
-        </Stance>
-      <Requirements>
-        <Requirement>
-          <Class>Fighter</Class>
-          <Level>3</Level>
-        </Requirement>
-        <Requirement>
-          <Enhancement>SDCore1</Enhancement>
-        </Requirement>
-      </Requirements>
-        <Effect>
+         </Stance>
+         <Requirements>
+            <Requirement>
+               <Class>Fighter</Class>
+               <Level>3</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>SDCore1</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Effect>
             <Type>Fortification</Type>
+            <Bonus>Enhancement</Bonus>
             <AmountVector size="1">3</AmountVector>
-        </Effect>
-        <Effect>
+         </Effect>
+         <Effect>
             <Type>PRR</Type>
+            <Bonus>Enhancement</Bonus>
             <AmountVector size="1">10</AmountVector>
             <Stance>Stalwart Defense</Stance>
-        </Effect>
-        <Effect>
+         </Effect>
+         <Effect>
             <Type>MRR</Type>
+            <Bonus>Enhancement</Bonus>
             <AmountVector size="1">10</AmountVector>
             <Stance>Stalwart Defense</Stance>
-        </Effect>
-        <Effect>
+         </Effect>
+         <Effect>
             <Type>ThreatBonus</Type>
+            <Bonus>Enhancement</Bonus>
             <AmountVector size="1">50</AmountVector>
             <Stance>Stalwart Defense</Stance>
-        </Effect>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Overbalance</Name>
-      <InternalName>SDCore3</InternalName>
-      <Description>Your shields gain On Vorpal: Knock an opponent to the ground.</Description>
-      <Icon>SDOverbalance</Icon>
-      <XPosition>2</XPosition>
-      <YPosition>0</YPosition>
-      <Cost>1</Cost>
-      <Ranks>1</Ranks>
-      <MinSpent>10</MinSpent>
-      <ArrowRight/>
-      <Requirements>
-        <Requirement>
-          <Class>Fighter</Class>
-          <Level>5</Level>
-        </Requirement>
-        <Requirement>
-          <Enhancement>SDCore2</Enhancement>
-        </Requirement>
-      </Requirements>
-        <Effect>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Overbalance</Name>
+         <InternalName>SDCore3</InternalName>
+         <Description>Your shields gain On Vorpal: Knock an opponent to the ground.</Description>
+         <Icon>SDOverbalance</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Class>Fighter</Class>
+               <Level>5</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>SDCore2</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Effect>
             <Type>Fortification</Type>
+            <Bonus>Enhancement</Bonus>
             <AmountVector size="1">3</AmountVector>
-        </Effect>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Stand Fast</Name>
-      <InternalName>SDCore4</InternalName>
-      <Description>Shield Action Boost: You gain a +20 bonus to saves vs. Fear and a +20
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Stand Fast</Name>
+         <InternalName>SDCore4</InternalName>
+         <Description>Shield Action Boost: You gain a +20 bonus to saves vs. Fear and a +20
 bonus to Balance and +4 bonus to all saves for 20 seconds. This ability
 can be used while feared or knocked down to end those effects.
 (Cooldown: 30 seconds.)</Description>
-      <Icon>SDStandFast</Icon>
-      <XPosition>3</XPosition>
-      <YPosition>0</YPosition>
-      <Cost>1</Cost>
-      <Ranks>1</Ranks>
-      <MinSpent>20</MinSpent>
-      <Clickie/>
-      <ArrowRight/>
-      <Requirements>
-        <Requirement>
-          <Class>Fighter</Class>
-          <Level>12</Level>
-        </Requirement>
-        <Requirement>
-          <Enhancement>SDCore3</Enhancement>
-        </Requirement>
-      </Requirements>
-        <Effect>
+         <Icon>SDStandFast</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Clickie/>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Class>Fighter</Class>
+               <Level>12</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>SDCore3</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Effect>
             <Type>Fortification</Type>
+            <Bonus>Enhancement</Bonus>
             <AmountVector size="1">3</AmountVector>
-        </Effect>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Defensive Sweep</Name>
-      <InternalName>SDCore5</InternalName>
-      <Description>Shield Action Boost: You generate +50% threat and your basic attacks
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Defensive Sweep</Name>
+         <InternalName>SDCore5</InternalName>
+         <Description>Shield Action Boost: You generate +50% threat and your basic attacks
 strike two targets per swing instead of one for 20 seconds.
 (Cooldown: 30 seconds.)</Description>
-      <Icon>SDDefensiveSweep</Icon>
-      <XPosition>4</XPosition>
-      <YPosition>0</YPosition>
-      <Cost>1</Cost>
-      <Ranks>1</Ranks>
-      <MinSpent>30</MinSpent>
-      <Clickie/>
-      <ArrowRight/>
-      <Requirements>
-        <Requirement>
-          <Class>Fighter</Class>
-          <Level>18</Level>
-        </Requirement>
-        <Requirement>
-          <Enhancement>SDCore4</Enhancement>
-        </Requirement>
-      </Requirements>
-        <Effect>
+         <Icon>SDDefensiveSweep</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Clickie/>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Class>Fighter</Class>
+               <Level>18</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>SDCore4</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Effect>
             <Type>Fortification</Type>
+            <Bonus>Enhancement</Bonus>
             <AmountVector size="1">3</AmountVector>
-        </Effect>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Last Stand</Name>
-      <InternalName>SDCore6</InternalName>
-      <Description>Passive: You gain +2 Strength +6 Constitution +10 Physical and Magical
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Last Stand</Name>
+         <InternalName>SDCore6</InternalName>
+         <Description>Passive: You gain +2 Strength +6 Constitution +10 Physical and Magical
 Resist Ratings and +2 to the DCs of all Tactical Feats.
 Shield Action Boost: Your gain +100% Maximum hit points, +50 Physical and
 Magical Resistance Rating, and On Attacked: You are healed for 1d10 positive
 energy healing. This Action Boost does not share a cooldown with other Action
 Boost abilities, and can be used while helpless. (Cooldown: 3 minutes.)</Description>
-      <Icon>SDLastStand</Icon>
-      <XPosition>5</XPosition>
-      <YPosition>0</YPosition>
-      <Cost>1</Cost>
-      <Ranks>1</Ranks>
-      <MinSpent>40</MinSpent>
-      <Clickie/>
-      <Requirements>
-        <Requirement>
-          <Class>Fighter</Class>
-          <Level>20</Level>
-        </Requirement>
-        <Requirement>
-          <Enhancement>SDCore5</Enhancement>
-        </Requirement>
-      </Requirements>
-        <Effect>
+         <Icon>SDLastStand</Icon>
+         <XPosition>5</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>40</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Class>Fighter</Class>
+               <Level>20</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>SDCore5</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Effect>
             <Type>Fortification</Type>
+            <Bonus>Enhancement</Bonus>
             <AmountVector size="1">3</AmountVector>
-        </Effect>
-        <Effect>
+         </Effect>
+         <Effect>
             <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
             <Ability>Strength</Ability>
             <AmountVector size="1">2</AmountVector>
-        </Effect>
-        <Effect>
+         </Effect>
+         <Effect>
             <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
             <Ability>Constitution</Ability>
             <AmountVector size="1">6</AmountVector>
-        </Effect>
-        <Effect>
+         </Effect>
+         <Effect>
             <Type>PRR</Type>
+            <Bonus>Enhancement</Bonus>
             <AmountVector size="1">10</AmountVector>
-        </Effect>
-        <Effect>
+         </Effect>
+         <Effect>
             <Type>MRR</Type>
+            <Bonus>Enhancement</Bonus>
             <AmountVector size="1">10</AmountVector>
-        </Effect>
-        <Effect>
+         </Effect>
+         <Effect>
             <Type>TacticalDC</Type>
+            <Bonus>Enhancement</Bonus>
             <Tactical>All</Tactical>
             <AmountVector size="1">10</AmountVector>
-        </Effect>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Item Defense</Name>
-      <InternalName>SDItemDefense</InternalName>
-      <Description>You have a [25/50/75]% chance to negate potential item wear.</Description>
-      <Icon>SDItemDefense</Icon>
-      <XPosition>0</XPosition>
-      <YPosition>1</YPosition>
-      <Cost>1</Cost>
-      <Ranks>3</Ranks>
-      <MinSpent>1</MinSpent>
-      <Requirements>
-        <Requirement>
-          <Class>Fighter</Class>
-          <Level>1</Level>
-        </Requirement>
-      </Requirements>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Improved Stalwart Defense I</Name>
-      <InternalName>SDImprovedStalwartDefenseI</InternalName>
-      <Description>Improves your Stalwart Defense stance. </Description>
-      <Icon>SDImprovedStalwartDefense</Icon>
-      <XPosition>1</XPosition>
-      <YPosition>1</YPosition>
-      <Cost>1</Cost>
-      <Ranks>3</Ranks>
-      <MinSpent>1</MinSpent>
-      <ArrowUp/>
-      <Requirements>
-        <Requirement>
-          <Class>Fighter</Class>
-          <Level>1</Level>
-        </Requirement>
-      </Requirements>
-      <Selector>
-        <EnhancementSelection>
-          <Name>Durable Defense</Name>
-          <Description>While in Stalwart Defense, you gain a +[5/10/15] Competence bonus
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Item Defense</Name>
+         <InternalName>SDItemDefense</InternalName>
+         <Description>You have a [25/50/75]% chance to negate potential item wear.</Description>
+         <Icon>SDItemDefense</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Fighter</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Improved Stalwart Defense I</Name>
+         <InternalName>SDImprovedStalwartDefenseI</InternalName>
+         <Description>Improves your Stalwart Defense stance. </Description>
+         <Icon>SDImprovedStalwartDefense</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Fighter</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Durable Defense</Name>
+               <Description>While in Stalwart Defense, you gain a +[5/10/15] Competence bonus
 to Physical and Magical Resistance Rating. </Description>
-          <Icon>SDDurableDefense</Icon>
-          <Cost>1</Cost>
-            <Effect>
-                <Type>PRR</Type>
-                <AmountVector size="3">5 10 15</AmountVector>
-                <Stance>Stalwart Defense</Stance>
-            </Effect>
-            <Effect>
-                <Type>MRR</Type>
-                <AmountVector size="3">5 10 15</AmountVector>
-                <Stance>Stalwart Defense</Stance>
-            </Effect>
-        </EnhancementSelection>
-        <EnhancementSelection>
-          <Name>Inciting Defense</Name>
-          <Description>While in Stalwart Defense, you gain a [50/100/150]% Competence bonus to melee threat generation. </Description>
-          <Icon>SDIncitingDefense</Icon>
-          <Cost>1</Cost>
-            <Effect>
-                <Type>ThreatBonus</Type>
-                <AmountVector size="3">50 100 150</AmountVector>
-                <Stance>Stalwart Defense</Stance>
-            </Effect>
-        </EnhancementSelection>
-        <EnhancementSelection>
-          <Name>Resilient Defense</Name>
-          <Description>While in Stalwart Defense, you gain a +[1/2/3] Competence bonus to all Saving Throws.</Description>
-          <Icon>SDResilientDefense</Icon>
-          <Cost>1</Cost>
-            <Effect>
-                <Type>SaveBonus</Type>
-                <Save>All</Save>
-                <AmountVector size="3">1 2 3</AmountVector>
-                <Stance>Stalwart Defense</Stance>
-            </Effect>
-        </EnhancementSelection>
-      </Selector>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Stalwart Defensive Mastery</Name>
-      <InternalName>SDStalwartDefensiveMastery</InternalName>
-      <Description>+[1/2/3] Armor Class and Armor Maximum Dexterity Bonus.</Description>
-      <Icon>SDStalwartDefensiveMastery</Icon>
-      <XPosition>2</XPosition>
-      <YPosition>1</YPosition>
-      <Cost>1</Cost>
-      <Ranks>3</Ranks>
-      <MinSpent>1</MinSpent>
-      <ArrowUp/>
-      <Requirements>
-        <Requirement>
-          <Class>Fighter</Class>
-          <Level>1</Level>
-        </Requirement>
-      </Requirements>
-        <Effect>
+               <Icon>SDDurableDefense</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>PRR</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AmountVector size="3">5 10 15</AmountVector>
+                  <Stance>Stalwart Defense</Stance>
+               </Effect>
+               <Effect>
+                  <Type>MRR</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AmountVector size="3">5 10 15</AmountVector>
+                  <Stance>Stalwart Defense</Stance>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Inciting Defense</Name>
+               <Description>While in Stalwart Defense, you gain a [50/100/150]% Competence bonus to melee threat generation. </Description>
+               <Icon>SDIncitingDefense</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>ThreatBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AmountVector size="3">50 100 150</AmountVector>
+                  <Stance>Stalwart Defense</Stance>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Resilient Defense</Name>
+               <Description>While in Stalwart Defense, you gain a +[1/2/3] Competence bonus to all Saving Throws.</Description>
+               <Icon>SDResilientDefense</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>SaveBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Save>All</Save>
+                  <AmountVector size="3">1 2 3</AmountVector>
+                  <Stance>Stalwart Defense</Stance>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Stalwart Defensive Mastery</Name>
+         <InternalName>SDStalwartDefensiveMastery</InternalName>
+         <Description>+[1/2/3] Armor Class and Armor Maximum Dexterity Bonus.</Description>
+         <Icon>SDStalwartDefensiveMastery</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Fighter</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
+         <Effect>
             <Type>ACBonus</Type>
+            <Bonus>Enhancement</Bonus>
             <AmountVector size="3">1 2 3</AmountVector>
-        </Effect>
-        <Effect>
+         </Effect>
+         <Effect>
             <Type>MaxDexBonus</Type>
+            <Bonus>Enhancement</Bonus>
             <AmountVector size="3">1 2 3</AmountVector>
-        </Effect>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Defense Boost</Name>
-      <InternalName>SDDefenseBoost</InternalName>
-      <Description>Activate to gain a +[5/10/15] Action Boost bonus to Armor Class and
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Defense Boost</Name>
+         <InternalName>SDDefenseBoost</InternalName>
+         <Description>Activate to gain a +[5/10/15] Action Boost bonus to Armor Class and
 Physical Resistance Rating for 20 seconds. (Cooldown: 30 seconds.)</Description>
-      <Icon>SDDefenseBoost</Icon>
-      <XPosition>3</XPosition>
-      <YPosition>1</YPosition>
-      <Cost>1</Cost>
-      <Ranks>3</Ranks>
-      <MinSpent>1</MinSpent>
-      <Clickie/>
-      <Requirements>
-        <Requirement>
-          <Class>Fighter</Class>
-          <Level>1</Level>
-        </Requirement>
-      </Requirements>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Threatening Countenance</Name>
-      <InternalName>SDThreateningCountenance</InternalName>
-      <Description>+[1/2/3] Haggle, Intimidate, and +[20/40/60]% melee threat generation.</Description>
-      <Icon>SDThreateningCountenance</Icon>
-      <XPosition>4</XPosition>
-      <YPosition>1</YPosition>
-      <Cost>1</Cost>
-      <Ranks>3</Ranks>
-      <MinSpent>1</MinSpent>
-      <Requirements>
-        <Requirement>
-          <Class>Fighter</Class>
-          <Level>1</Level>
-        </Requirement>
-      </Requirements>
-        <Effect>
+         <Icon>SDDefenseBoost</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Class>Fighter</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Threatening Countenance</Name>
+         <InternalName>SDThreateningCountenance</InternalName>
+         <Description>+[1/2/3] Haggle, Intimidate, and +[20/40/60]% melee threat generation.</Description>
+         <Icon>SDThreateningCountenance</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Fighter</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
+         <Effect>
             <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
             <Skill>Haggle</Skill>
             <AmountVector size="3">1 2 3</AmountVector>
-        </Effect>
-        <Effect>
+         </Effect>
+         <Effect>
             <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
             <Skill>Intimidate</Skill>
             <AmountVector size="3">1 2 3</AmountVector>
-        </Effect>
-        <Effect>
+         </Effect>
+         <Effect>
             <Type>ThreatBonus</Type>
+            <Bonus>Enhancement</Bonus>
             <AmountVector size="3">20 40 60</AmountVector>
-        </Effect>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Improved Stalwart Defense II</Name>
-      <InternalName>SDImprovedStalwartDefenseII</InternalName>
-      <Description>Improves your Stalwart Defense stance.
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Improved Stalwart Defense II</Name>
+         <InternalName>SDImprovedStalwartDefenseII</InternalName>
+         <Description>Improves your Stalwart Defense stance.
 Choose one of the options you did not pick at tier 1.</Description>
-      <Icon>SDImprovedStalwartDefense</Icon>
-      <XPosition>1</XPosition>
-      <YPosition>2</YPosition>
-      <Cost>1</Cost>
-      <Ranks>3</Ranks>
-      <MinSpent>5</MinSpent>
-      <ArrowUp/>
-      <Requirements>
-        <Requirement>
-          <Class>Fighter</Class>
-          <Level>2</Level>
-        </Requirement>
-        <Requirement>
-          <Enhancement>SDImprovedStalwartDefenseI</Enhancement>
-        </Requirement>
-      </Requirements>
-      <Selector>
-          <SelectorExclusions>
-              <SelectorExclusion>
-                  <InternalName>SDImprovedStalwartDefenseI</InternalName>
-              </SelectorExclusion>
-          </SelectorExclusions>
-          <EnhancementSelection>
-          <Name>Durable Defense</Name>
-          <Description>While in Stalwart Defense, you gain a +[5/10/15] Competence bonus
-to Physical and Magical Resistance Rating.</Description>
-          <Icon>SDDurableDefense</Icon>
-          <Cost>1</Cost>
-            <Effect>
-                <Type>PRR</Type>
-                <AmountVector size="3">5 10 15</AmountVector>
-                <Stance>Stalwart Defense</Stance>
-            </Effect>
-            <Effect>
-                <Type>MRR</Type>
-                <AmountVector size="3">5 10 15</AmountVector>
-                <Stance>Stalwart Defense</Stance>
-            </Effect>
-        </EnhancementSelection>
-        <EnhancementSelection>
-          <Name>Inciting Defense</Name>
-          <Description>While in Stalwart Defense, you gain a [50/100/150]% Competence bonus
-to melee threat generation.</Description>
-          <Icon>SDIncitingDefense</Icon>
-          <Cost>1</Cost>
-            <Effect>
-                <Type>ThreatBonus</Type>
-                <AmountVector size="3">50 100 150</AmountVector>
-                <Stance>Stalwart Defense</Stance>
-            </Effect>
-        </EnhancementSelection>
-        <EnhancementSelection>
-            <Name>Resilient Defense</Name>
-            <Description>While in Stalwart Defense, you gain a +[1/2/3] Competence bonus
-to all Saving Throws.</Description>
-            <Icon>SDResilientDefense</Icon>
-            <Cost>1</Cost>
-            <Effect>
-                <Type>SaveBonus</Type>
-                <Save>All</Save>
-                <AmountVector size="3">1 2 3</AmountVector>
-                <Stance>Stalwart Defense</Stance>
-            </Effect>
-        </EnhancementSelection>
-      </Selector>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Stalwart Shield Mastery</Name>
-      <InternalName>SDStalwartShieldMastery</InternalName>
-      <Description>+5%/+10%/+15% Shield Armor Class and +[1/2/3] Tower Shield Maximum Dexterity Bonus.</Description>
-      <Icon>SDStalwartShieldMastery</Icon>
-      <XPosition>2</XPosition>
-      <YPosition>2</YPosition>
-      <Cost>1</Cost>
-      <Ranks>3</Ranks>
-      <MinSpent>5</MinSpent>
-      <Requirements>
-        <Requirement>
-          <Class>Fighter</Class>
-          <Level>2</Level>
-        </Requirement>
-        <Requirement>
-          <Enhancement>SDStalwartDefensiveMastery</Enhancement>
-        </Requirement>
-      </Requirements>
-        <Effect>
-            <Type>ShieldACBonus</Type>
-            <Percent>Huh?</Percent>
-            <AmountVector size="3">5 10 15</AmountVector>
-        </Effect>
-        <Effect>
-            <Type>MaxDexBonusTowerShield</Type>
-            <AmountVector size="3">1 2 3</AmountVector>
-        </Effect>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Armor Expertise</Name>
-      <InternalName>SDArmorExpertise</InternalName>
-      <Description>Armor you equip gains +[1/2/3] to its Enhancement Bonus.</Description>
-      <Icon>SDArmorExpertise</Icon>
-      <XPosition>3</XPosition>
-      <YPosition>2</YPosition>
-      <Cost>1</Cost>
-      <Ranks>3</Ranks>
-      <MinSpent>5</MinSpent>
-      <ArrowUp/>
-      <Requirements>
-        <Requirement>
-          <Class>Fighter</Class>
-          <Level>2</Level>
-        </Requirement>
-      </Requirements>
-        <Effect>
-            <Type>EnchantArmor</Type>
-            <AmountVector size="3">1 2 3</AmountVector>
-        </Effect>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Instinctive Defense</Name>
-      <InternalName>SDInstinctiveDefense</InternalName>
-      <Description>You take [5/10/15]% less extra damage when struck while helpless.
-(Additional damage while helpless varies by difficulty setting from 5% to 25%.)</Description>
-      <Icon>SDInstinctiveDefense</Icon>
-      <XPosition>4</XPosition>
-      <YPosition>2</YPosition>
-      <Cost>1</Cost>
-      <Ranks>3</Ranks>
-      <MinSpent>5</MinSpent>
-      <Requirements>
-        <Requirement>
-          <Class>Fighter</Class>
-          <Level>2</Level>
-        </Requirement>
-      </Requirements>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Improved Stalwart Defense III</Name>
-      <InternalName>SDImprovedStalwartDefenseIII</InternalName>
-      <Description>Improves your Stalwart Defense stance.
-Pick the third option left.</Description>
-      <Icon>SDImprovedStalwartDefense</Icon>
-      <XPosition>1</XPosition>
-      <YPosition>3</YPosition>
-      <Cost>1</Cost>
-      <Ranks>3</Ranks>
-      <MinSpent>10</MinSpent>
-      <Requirements>
-        <Requirement>
-          <Class>Fighter</Class>
-          <Level>3</Level>
-        </Requirement>
-        <Requirement>
-          <Enhancement>SDImprovedStalwartDefenseII</Enhancement>
-        </Requirement>
-      </Requirements>
-      <Selector>
-          <SelectorExclusions>
-              <SelectorExclusion>
-                  <InternalName>SDImprovedStalwartDefenseI</InternalName>
-              </SelectorExclusion>
-              <SelectorExclusion>
-                  <InternalName>SDImprovedStalwartDefenseII</InternalName>
-              </SelectorExclusion>
-          </SelectorExclusions>
-          <EnhancementSelection>
-          <Name>Durable Defense</Name>
-          <Description>While in Stalwart Defense, you gain a +[5/10/15] Competence bonus
-to Physical and Magical Resistance Rating.</Description>
-          <Icon>SDDurableDefense</Icon>
-          <Cost>1</Cost>
-            <Effect>
-                <Type>PRR</Type>
-                <AmountVector size="3">5 10 15</AmountVector>
-                <Stance>Stalwart Defense</Stance>
-            </Effect>
-            <Effect>
-                <Type>MRR</Type>
-                <AmountVector size="3">5 10 15</AmountVector>
-                <Stance>Stalwart Defense</Stance>
-            </Effect>
-        </EnhancementSelection>
-        <EnhancementSelection>
-          <Name>Inciting Defense</Name>
-          <Description>While in Stalwart Defense, you gain a [50/100/150]% Competence bonus
-to melee threat generation.</Description>
-          <Icon>SDIncitingDefense</Icon>
-          <Cost>1</Cost>
-            <Effect>
-                <Type>ThreatBonus</Type>
-                <AmountVector size="3">50 100 150</AmountVector>
-                <Stance>Stalwart Defense</Stance>
-            </Effect>
-        </EnhancementSelection>
-        <EnhancementSelection>
-            <Name>Resilient Defense</Name>
-            <Description>While in Stalwart Defense, you gain a +[1/2/3] Competence bonus
-to all Saving Throws.</Description>
-            <Icon>SDResilientDefense</Icon>
-            <Cost>1</Cost>
-            <Effect>
-                <Type>SaveBonus</Type>
-                <Save>All</Save>
-                <AmountVector size="3">1 2 3</AmountVector>
-                <Stance>Stalwart Defense</Stance>
-            </Effect>
-        </EnhancementSelection>
-      </Selector>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Greater Stalwart Defense</Name>
-      <InternalName>SDGreaterStalwartDefenseI</InternalName>
-      <Description>Further improves your Stalwart Defense stance. </Description>
-      <Icon>SDGreaterStalwartDefense</Icon>
-      <XPosition>2</XPosition>
-      <YPosition>3</YPosition>
-      <Cost>1</Cost>
-      <Ranks>3</Ranks>
-      <MinSpent>10</MinSpent>
-      <ArrowUp/>
-      <Requirements>
-        <Requirement>
-          <Class>Fighter</Class>
-          <Level>3</Level>
-        </Requirement>
-      </Requirements>
-      <Selector>
-        <EnhancementSelection>
-          <Name>Hardy Defense</Name>
-          <Description>While wearing medium armor, heavy armor, or wielding a shield and in
-Stalwart Defense, you gain a you gain a +[2/4/6] Competence bonus to Constitution. </Description>
-          <Icon>SDHardyDefense</Icon>
-          <Cost>1</Cost>
-          <Effect>
-              <Type>AbilityBonus</Type>
-              <Ability>Constitution</Ability>
-              <AmountVector size="3">2 4 6</AmountVector>
-              <Stance>Stalwart Defense</Stance>
-              <Stance>SwordAndBoard</Stance>
-              <Stance>MediumOrHeavy</Stance>
-          </Effect>
-        </EnhancementSelection>
-        <EnhancementSelection>
-          <Name>Strong Defense</Name>
-          <Description>While wearing medium armor, heavy armor, or wielding a shield and in
-Stalwart Defense, you gain a +[2/4/6] Competence bonus to Strength. </Description>
-          <Icon>SDStrongDefense</Icon>
-          <Cost>1</Cost>
-            <Effect>
-                <Type>AbilityBonus</Type>
-                <Ability>Strength</Ability>
-                <AmountVector size="3">2 4 6</AmountVector>
-                <Stance>Stalwart Defense</Stance>
-                <Stance2>SwordAndBoard</Stance2>
-                <Stance3>MediumOrHeavy</Stance3>
-            </Effect>
-        </EnhancementSelection>
-        <EnhancementSelection>
-          <Name>Tenacious Defense</Name>
-          <Description>While wearing medium armor, heavy armor, or wielding a shield and in
-Stalwart Defense, you gain a +10%/+15%/+20% Competence bonus to maximum hit points.</Description>
-          <Icon>SDTenaciousDefense</Icon>
-          <Cost>1</Cost>
-            <Effect>
-                <Type>Hitpoints</Type>
-                <Percent>Huh?</Percent>
-                <AmountVector size="3">10 15 20</AmountVector>
-                <Stance>Stalwart Defense</Stance>
-                <Stance>SwordAndBoard</Stance>
-                <Stance>MediumOrHeavy</Stance>
-            </Effect>
-        </EnhancementSelection>
-      </Selector>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Shield Expertise</Name>
-      <InternalName>SDShieldExpertise</InternalName>
-      <Description>Shields and weapons you equip gain +[1/2/3] to their Enhancement bonus.</Description>
-      <Icon>SDShieldExpertise</Icon>
-      <XPosition>3</XPosition>
-      <YPosition>3</YPosition>
-      <Cost>1</Cost>
-      <Ranks>3</Ranks>
-      <MinSpent>10</MinSpent>
-      <Requirements>
-        <Requirement>
-          <Class>Fighter</Class>
-          <Level>3</Level>
-        </Requirement>
-        <Requirement>
-          <Enhancement>SDArmorExpertise</Enhancement>
-        </Requirement>
-      </Requirements>
-        <Effect>
-            <Type>WeaponEnchantment</Type>
-            <AmountVector size="3">1 2 3</AmountVector>
-        </Effect>
-        <Effect>
-            <Type>ShieldEnchantment</Type>
-            <AmountVector size="3">1 2 3</AmountVector>
-        </Effect>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Stalwart Defender: Ability I</Name>
-      <InternalName>SDStrCon1</InternalName>
-      <Description>Choose either Strength or Constitution</Description>
-      <Icon>StrCon</Icon>
-      <XPosition>4</XPosition>
-      <YPosition>3</YPosition>
-      <Cost>2</Cost>
-      <Ranks>1</Ranks>
-      <MinSpent>10</MinSpent>
-      <ArrowUp/>
-      <Requirements>
-        <Requirement>
-          <Class>Fighter</Class>
-          <Level>3</Level>
-        </Requirement>
-      </Requirements>
-      <Selector>
-        <EnhancementSelection>
-          <Name>+1 Strength</Name>
-          <Description>+1 Strength</Description>
-          <Icon>Strength</Icon>
-          <Cost>2</Cost>
-            <Effect>
-                <Type>AbilityBonus</Type>
-                <Ability>Strength</Ability>
-                <AmountVector size="1">1</AmountVector>
-            </Effect>
-        </EnhancementSelection>
-        <EnhancementSelection>
-          <Name>+1 Constitution</Name>
-          <Description>+1 Constitution</Description>
-          <Icon>Constitution</Icon>
-          <Cost>2</Cost>
-            <Effect>
-                <Type>AbilityBonus</Type>
-                <Ability>Constitution</Ability>
-                <AmountVector size="1">1</AmountVector>
-            </Effect>
-        </EnhancementSelection>
-      </Selector>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Counterattack</Name>
-      <InternalName>SDCounterAttack</InternalName>
-      <Description>Action Boost: You gain On Shield Block: Your next attack within 3 seconds
-gains +1[W] that stacks 1/2/3 times. (Cooldown: 30 seconds.)</Description>
-      <Icon>SDCounterAttack</Icon>
-      <XPosition>0</XPosition>
-      <YPosition>4</YPosition>
-      <Cost>1</Cost>
-      <Ranks>3</Ranks>
-      <MinSpent>20</MinSpent>
-      <Clickie/>
-      <Requirements>
-        <Requirement>
-          <Class>Fighter</Class>
-          <Level>4</Level>
-        </Requirement>
-      </Requirements>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Swift Defense</Name>
-      <InternalName>SDSwiftDefense</InternalName>
-      <Description>Stalwart Defense increases your movement speed by 10%</Description>
-      <Icon>SDSwiftDefense</Icon>
-      <XPosition>1</XPosition>
-      <YPosition>4</YPosition>
-      <Cost>1</Cost>
-      <Ranks>1</Ranks>
-      <MinSpent>20</MinSpent>
-      <Requirements>
-        <Requirement>
-          <Class>Fighter</Class>
-          <Level>4</Level>
-        </Requirement>
-      </Requirements>
-        <Effect>
-            <Type>MovementSpeed</Type>
-            <AmountVector size="1">10</AmountVector>
-        </Effect>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Greater Stalwart Defense II</Name>
-      <InternalName>SDGreaterStalwartDefenseII</InternalName>
-      <Description>Further improves your Stalwart Defense stance.
-Choose one of the options you did not pick at tier 3.</Description>
-      <Icon>SDGreaterStalwartDefense</Icon>
-      <XPosition>2</XPosition>
-      <YPosition>4</YPosition>
-      <Cost>1</Cost>
-      <Ranks>3</Ranks>
-      <MinSpent>20</MinSpent>
-      <ArrowUp/>
-      <Requirements>
-        <Requirement>
-          <Class>Fighter</Class>
-          <Level>4</Level>
-        </Requirement>
-        <Requirement>
-          <Enhancement>SDGreaterStalwartDefenseI</Enhancement>
-        </Requirement>
-      </Requirements>
-        <Selector>
+         <Icon>SDImprovedStalwartDefense</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Fighter</Class>
+               <Level>2</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>SDImprovedStalwartDefenseI</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Selector>
             <SelectorExclusions>
-                <SelectorExclusion>
-                    <InternalName>SDGreaterStalwartDefenseI</InternalName>
-                </SelectorExclusion>
+               <SelectorExclusion>
+                  <InternalName>SDImprovedStalwartDefenseI</InternalName>
+               </SelectorExclusion>
             </SelectorExclusions>
             <EnhancementSelection>
-                <Name>Hardy Defense</Name>
-                <Description>While wearing medium armor, heavy armor, or wielding a shield and in
+               <Name>Durable Defense</Name>
+               <Description>While in Stalwart Defense, you gain a +[5/10/15] Competence bonus
+to Physical and Magical Resistance Rating.</Description>
+               <Icon>SDDurableDefense</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>PRR</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AmountVector size="3">5 10 15</AmountVector>
+                  <Stance>Stalwart Defense</Stance>
+               </Effect>
+               <Effect>
+                  <Type>MRR</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AmountVector size="3">5 10 15</AmountVector>
+                  <Stance>Stalwart Defense</Stance>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Inciting Defense</Name>
+               <Description>While in Stalwart Defense, you gain a [50/100/150]% Competence bonus
+to melee threat generation.</Description>
+               <Icon>SDIncitingDefense</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>ThreatBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AmountVector size="3">50 100 150</AmountVector>
+                  <Stance>Stalwart Defense</Stance>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Resilient Defense</Name>
+               <Description>While in Stalwart Defense, you gain a +[1/2/3] Competence bonus
+to all Saving Throws.</Description>
+               <Icon>SDResilientDefense</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>SaveBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Save>All</Save>
+                  <AmountVector size="3">1 2 3</AmountVector>
+                  <Stance>Stalwart Defense</Stance>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Stalwart Shield Mastery</Name>
+         <InternalName>SDStalwartShieldMastery</InternalName>
+         <Description>+5%/+10%/+15% Shield Armor Class and +[1/2/3] Tower Shield Maximum Dexterity Bonus.</Description>
+         <Icon>SDStalwartShieldMastery</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Fighter</Class>
+               <Level>2</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>SDStalwartDefensiveMastery</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>ShieldACBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Percent>Huh?</Percent>
+            <AmountVector size="3">5 10 15</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>MaxDexBonusTowerShield</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Armor Expertise</Name>
+         <InternalName>SDArmorExpertise</InternalName>
+         <Description>Armor you equip gains +[1/2/3] to its Enhancement Bonus.</Description>
+         <Icon>SDArmorExpertise</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Fighter</Class>
+               <Level>2</Level>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>EnchantArmor</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Instinctive Defense</Name>
+         <InternalName>SDInstinctiveDefense</InternalName>
+         <Description>You take [5/10/15]% less extra damage when struck while helpless.
+(Additional damage while helpless varies by difficulty setting from 5% to 25%.)</Description>
+         <Icon>SDInstinctiveDefense</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Fighter</Class>
+               <Level>2</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Improved Stalwart Defense III</Name>
+         <InternalName>SDImprovedStalwartDefenseIII</InternalName>
+         <Description>Improves your Stalwart Defense stance.
+Pick the third option left.</Description>
+         <Icon>SDImprovedStalwartDefense</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Fighter</Class>
+               <Level>3</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>SDImprovedStalwartDefenseII</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <SelectorExclusions>
+               <SelectorExclusion>
+                  <InternalName>SDImprovedStalwartDefenseI</InternalName>
+               </SelectorExclusion>
+               <SelectorExclusion>
+                  <InternalName>SDImprovedStalwartDefenseII</InternalName>
+               </SelectorExclusion>
+            </SelectorExclusions>
+            <EnhancementSelection>
+               <Name>Durable Defense</Name>
+               <Description>While in Stalwart Defense, you gain a +[5/10/15] Competence bonus
+to Physical and Magical Resistance Rating.</Description>
+               <Icon>SDDurableDefense</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>PRR</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AmountVector size="3">5 10 15</AmountVector>
+                  <Stance>Stalwart Defense</Stance>
+               </Effect>
+               <Effect>
+                  <Type>MRR</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AmountVector size="3">5 10 15</AmountVector>
+                  <Stance>Stalwart Defense</Stance>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Inciting Defense</Name>
+               <Description>While in Stalwart Defense, you gain a [50/100/150]% Competence bonus
+to melee threat generation.</Description>
+               <Icon>SDIncitingDefense</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>ThreatBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AmountVector size="3">50 100 150</AmountVector>
+                  <Stance>Stalwart Defense</Stance>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Resilient Defense</Name>
+               <Description>While in Stalwart Defense, you gain a +[1/2/3] Competence bonus
+to all Saving Throws.</Description>
+               <Icon>SDResilientDefense</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>SaveBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Save>All</Save>
+                  <AmountVector size="3">1 2 3</AmountVector>
+                  <Stance>Stalwart Defense</Stance>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Greater Stalwart Defense</Name>
+         <InternalName>SDGreaterStalwartDefenseI</InternalName>
+         <Description>Further improves your Stalwart Defense stance. </Description>
+         <Icon>SDGreaterStalwartDefense</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Fighter</Class>
+               <Level>3</Level>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Hardy Defense</Name>
+               <Description>While wearing medium armor, heavy armor, or wielding a shield and in
+Stalwart Defense, you gain a you gain a +[2/4/6] Competence bonus to Constitution. </Description>
+               <Icon>SDHardyDefense</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Ability>Constitution</Ability>
+                  <AmountVector size="3">2 4 6</AmountVector>
+                  <Stance>Stalwart Defense</Stance>
+                  <Stance>SwordAndBoard</Stance>
+                  <Stance>MediumOrHeavy</Stance>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Strong Defense</Name>
+               <Description>While wearing medium armor, heavy armor, or wielding a shield and in
+Stalwart Defense, you gain a +[2/4/6] Competence bonus to Strength. </Description>
+               <Icon>SDStrongDefense</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Ability>Strength</Ability>
+                  <AmountVector size="3">2 4 6</AmountVector>
+                  <Stance>Stalwart Defense</Stance>
+                  <Stance2>SwordAndBoard</Stance2>
+                  <Stance3>MediumOrHeavy</Stance3>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Tenacious Defense</Name>
+               <Description>While wearing medium armor, heavy armor, or wielding a shield and in
+Stalwart Defense, you gain a +10%/+15%/+20% Competence bonus to maximum hit points.</Description>
+               <Icon>SDTenaciousDefense</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>Hitpoints</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Percent>Huh?</Percent>
+                  <AmountVector size="3">10 15 20</AmountVector>
+                  <Stance>Stalwart Defense</Stance>
+                  <Stance>SwordAndBoard</Stance>
+                  <Stance>MediumOrHeavy</Stance>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shield Expertise</Name>
+         <InternalName>SDShieldExpertise</InternalName>
+         <Description>Shields and weapons you equip gain +[1/2/3] to their Enhancement bonus.</Description>
+         <Icon>SDShieldExpertise</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Fighter</Class>
+               <Level>3</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>SDArmorExpertise</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>WeaponEnchantment</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>ShieldEnchantment</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Stalwart Defender: Ability I</Name>
+         <InternalName>SDStrCon1</InternalName>
+         <Description>Choose either Strength or Constitution</Description>
+         <Icon>StrCon</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Fighter</Class>
+               <Level>3</Level>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>+1 Strength</Name>
+               <Description>+1 Strength</Description>
+               <Icon>Strength</Icon>
+               <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Ability>Strength</Ability>
+                  <AmountVector size="1">1</AmountVector>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Constitution</Name>
+               <Description>+1 Constitution</Description>
+               <Icon>Constitution</Icon>
+               <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Ability>Constitution</Ability>
+                  <AmountVector size="1">1</AmountVector>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Counterattack</Name>
+         <InternalName>SDCounterAttack</InternalName>
+         <Description>Action Boost: You gain On Shield Block: Your next attack within 3 seconds
+gains +1[W] that stacks 1/2/3 times. (Cooldown: 30 seconds.)</Description>
+         <Icon>SDCounterAttack</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>20</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Class>Fighter</Class>
+               <Level>4</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Swift Defense</Name>
+         <InternalName>SDSwiftDefense</InternalName>
+         <Description>Stalwart Defense increases your movement speed by 10%</Description>
+         <Icon>SDSwiftDefense</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Fighter</Class>
+               <Level>4</Level>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>MovementSpeed</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="1">10</AmountVector>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Greater Stalwart Defense II</Name>
+         <InternalName>SDGreaterStalwartDefenseII</InternalName>
+         <Description>Further improves your Stalwart Defense stance.
+Choose one of the options you did not pick at tier 3.</Description>
+         <Icon>SDGreaterStalwartDefense</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>20</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Fighter</Class>
+               <Level>4</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>SDGreaterStalwartDefenseI</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <SelectorExclusions>
+               <SelectorExclusion>
+                  <InternalName>SDGreaterStalwartDefenseI</InternalName>
+               </SelectorExclusion>
+            </SelectorExclusions>
+            <EnhancementSelection>
+               <Name>Hardy Defense</Name>
+               <Description>While wearing medium armor, heavy armor, or wielding a shield and in
 Stalwart Defense, you gain a you gain a +[2/4/6] Competence bonus to Constitution.
                 </Description>
-                <Icon>SDHardyDefense</Icon>
-                <Cost>1</Cost>
-                <Effect>
-                    <Type>AbilityBonus</Type>
-                    <Ability>Constitution</Ability>
-                    <AmountVector size="3">2 4 6</AmountVector>
-                    <Stance>Stalwart Defense</Stance>
-                    <Stance>SwordAndBoard</Stance>
-                    <Stance>MediumOrHeavy</Stance>
-                </Effect>
+               <Icon>SDHardyDefense</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Ability>Constitution</Ability>
+                  <AmountVector size="3">2 4 6</AmountVector>
+                  <Stance>Stalwart Defense</Stance>
+                  <Stance>SwordAndBoard</Stance>
+                  <Stance>MediumOrHeavy</Stance>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
-                <Name>Strong Defense</Name>
-                <Description>While wearing medium armor, heavy armor, or wielding a shield and in
+               <Name>Strong Defense</Name>
+               <Description>While wearing medium armor, heavy armor, or wielding a shield and in
 Stalwart Defense, you gain a +[2/4/6] Competence bonus to Strength.
                 </Description>
-                <Icon>SDStrongDefense</Icon>
-                <Cost>1</Cost>
-                <Effect>
-                    <Type>AbilityBonus</Type>
-                    <Ability>Strength</Ability>
-                    <AmountVector size="3">2 4 6</AmountVector>
-                    <Stance>Stalwart Defense</Stance>
-                    <Stance>SwordAndBoard</Stance>
-                    <Stance>MediumOrHeavy</Stance>
-                </Effect>
+               <Icon>SDStrongDefense</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Ability>Strength</Ability>
+                  <AmountVector size="3">2 4 6</AmountVector>
+                  <Stance>Stalwart Defense</Stance>
+                  <Stance>SwordAndBoard</Stance>
+                  <Stance>MediumOrHeavy</Stance>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
-                <Name>Tenacious Defense</Name>
-                <Description>While wearing medium armor, heavy armor, or wielding a shield and in
+               <Name>Tenacious Defense</Name>
+               <Description>While wearing medium armor, heavy armor, or wielding a shield and in
 Stalwart Defense, you gain a +10%/+15%/+20% Competence bonus to maximum hit points.
                 </Description>
-                <Icon>SDTenaciousDefense</Icon>
-                <Cost>1</Cost>
-                <Effect>
-                    <Type>Hitpoints</Type>
-                    <Percent>Huh?</Percent>
-                    <AmountVector size="3">10 15 20</AmountVector>
-                    <Stance>Stalwart Defense</Stance>
-                    <Stance>SwordAndBoard</Stance>
-                    <Stance>MediumOrHeavy</Stance>
-                </Effect>
+               <Icon>SDTenaciousDefense</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>Hitpoints</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Percent>Huh?</Percent>
+                  <AmountVector size="3">10 15 20</AmountVector>
+                  <Stance>Stalwart Defense</Stance>
+                  <Stance>SwordAndBoard</Stance>
+                  <Stance>MediumOrHeavy</Stance>
+               </Effect>
             </EnhancementSelection>
-        </Selector>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Reinforced Defense I</Name>
-      <InternalName>SDReinforcedDefenseI</InternalName>
-      <Description>Improves the armor class bonus you receive from shields or armor.</Description>
-      <Icon>SDReinforcedDefense</Icon>
-      <XPosition>3</XPosition>
-      <YPosition>4</YPosition>
-      <Cost>1</Cost>
-      <Ranks>3</Ranks>
-      <MinSpent>20</MinSpent>
-      <ArrowUp/>
-      <Requirements>
-        <Requirement>
-          <Class>Fighter</Class>
-          <Level>4</Level>
-        </Requirement>
-      </Requirements>
-      <Selector>
-        <EnhancementSelection>
-          <Name>Reinforced Armor</Name>
-          <Description>The Armor Class bonus you gain from armor or docents is increased by [15/30/50]%</Description>
-          <Icon>SDReinforcedArmor</Icon>
-          <Cost>1</Cost>
-            <Effect>
-                <Type>ArmorACBonus</Type>
-                <Percent>Huh?</Percent>
-                <AmountVector size="3">15 30 50</AmountVector>
-                <Stance>Stalwart Defense</Stance>
-            </Effect>
-        </EnhancementSelection>
-        <EnhancementSelection>
-          <Name>Reinforced Shield</Name>
-          <Description>The Armor Class bonus you gain from using a shield is increased by [15/30/50]%. 
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Reinforced Defense I</Name>
+         <InternalName>SDReinforcedDefenseI</InternalName>
+         <Description>Improves the armor class bonus you receive from shields or armor.</Description>
+         <Icon>SDReinforcedDefense</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>20</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Fighter</Class>
+               <Level>4</Level>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Reinforced Armor</Name>
+               <Description>The Armor Class bonus you gain from armor or docents is increased by [15/30/50]%</Description>
+               <Icon>SDReinforcedArmor</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>ArmorACBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Percent>Huh?</Percent>
+                  <AmountVector size="3">15 30 50</AmountVector>
+                  <Stance>Stalwart Defense</Stance>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Reinforced Shield</Name>
+               <Description>The Armor Class bonus you gain from using a shield is increased by [15/30/50]%. 
 Note: This stacks with Reinforced Defense from Sacred Defender.</Description>
-          <Icon>SDReinforcedShield</Icon>
-          <Cost>1</Cost>
-            <Effect>
-                <Type>ShieldACBonus</Type>
-                <Percent>Huh?</Percent>
-                <AmountVector size="3">15 30 50</AmountVector>
-                <Stance>Stalwart Defense</Stance>
-            </Effect>
-        </EnhancementSelection>
-      </Selector>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Stalwart Defender: Ability II</Name>
-      <InternalName>SDStrCon2</InternalName>
-      <Description>Choose either Strength or Constitution</Description>
-      <Icon>StrCon</Icon>
-      <XPosition>4</XPosition>
-      <YPosition>4</YPosition>
-      <Cost>2</Cost>
-      <Ranks>1</Ranks>
-      <MinSpent>20</MinSpent>
-      <Requirements>
-        <Requirement>
-          <Class>Fighter</Class>
-          <Level>4</Level>
-        </Requirement>
-        <Requirement>
-          <Enhancement>SDStrCon1</Enhancement>
-        </Requirement>
-      </Requirements>
-        <Selector>
+               <Icon>SDReinforcedShield</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>ShieldACBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Percent>Huh?</Percent>
+                  <AmountVector size="3">15 30 50</AmountVector>
+                  <Stance>Stalwart Defense</Stance>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Stalwart Defender: Ability II</Name>
+         <InternalName>SDStrCon2</InternalName>
+         <Description>Choose either Strength or Constitution</Description>
+         <Icon>StrCon</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Fighter</Class>
+               <Level>4</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>SDStrCon1</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Selector>
             <EnhancementSelection>
-                <Name>+1 Strength</Name>
-                <Description>+1 Strength</Description>
-                <Icon>Strength</Icon>
-                <Cost>2</Cost>
-                <Effect>
-                    <Type>AbilityBonus</Type>
-                    <Ability>Strength</Ability>
-                    <AmountVector size="1">1</AmountVector>
-                </Effect>
+               <Name>+1 Strength</Name>
+               <Description>+1 Strength</Description>
+               <Icon>Strength</Icon>
+               <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Ability>Strength</Ability>
+                  <AmountVector size="1">1</AmountVector>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
-                <Name>+1 Constitution</Name>
-                <Description>+1 Constitution</Description>
-                <Icon>Constitution</Icon>
-                <Cost>2</Cost>
-                <Effect>
-                    <Type>AbilityBonus</Type>
-                    <Ability>Constitution</Ability>
-                    <AmountVector size="1">1</AmountVector>
-                </Effect>
+               <Name>+1 Constitution</Name>
+               <Description>+1 Constitution</Description>
+               <Icon>Constitution</Icon>
+               <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Ability>Constitution</Ability>
+                  <AmountVector size="1">1</AmountVector>
+               </Effect>
             </EnhancementSelection>
-        </Selector>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Reprisal</Name>
-      <InternalName>SDReprisal</InternalName>
-      <Description>You gain On Attacked: Your next attack gains +1 damage.
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Reprisal</Name>
+         <InternalName>SDReprisal</InternalName>
+         <Description>You gain On Attacked: Your next attack gains +1 damage.
 This effect can stack up to 3/6/10 times (timer 30 sec).</Description>
-      <Icon>SDReprisal</Icon>
-      <XPosition>0</XPosition>
-      <YPosition>5</YPosition>
-      <Cost>1</Cost>
-      <Ranks>3</Ranks>
-      <MinSpent>30</MinSpent>
-      <Tier5/>
-      <Requirements>
-        <Requirement>
-          <Class>Fighter</Class>
-          <Level>5</Level>
-        </Requirement>
-      </Requirements>
-        <Stance>
+         <Icon>SDReprisal</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <Class>Fighter</Class>
+               <Level>5</Level>
+            </Requirement>
+         </Requirements>
+         <Stance>
             <Name>Reprisal</Name>
             <Icon>SDReprisal</Icon>
             <Description>Your next attack gains +1 damage.
 This effect can stack up to 3/6/10 times</Description>
-        </Stance>
-        <Effect>
+         </Stance>
+         <Effect>
             <Type>DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
             <AmountVector size="3">3 6 10</AmountVector>
             <Stance>Reprisal</Stance>
-        </Effect>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Block and Cut</Name>
-      <InternalName>SDBlockAndCut</InternalName>
-      <Description>Shield Melee Attack: Performs a melee attack with your main hand weapon
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Block and Cut</Name>
+         <InternalName>SDBlockAndCut</InternalName>
+         <Description>Shield Melee Attack: Performs a melee attack with your main hand weapon
 that deals +[1/2/3][W]. On Damage: You gain a [10/15/25]% Morale bonus to
 melee doublestrike for 10 seconds. (Cooldown: 20 seconds.)</Description>
-      <Icon>SDBlockAndCut</Icon>
-      <XPosition>1</XPosition>
-      <YPosition>5</YPosition>
-      <Cost>1</Cost>
-      <Ranks>3</Ranks>
-      <MinSpent>30</MinSpent>
-      <Clickie/>
-      <Tier5/>
-      <Requirements>
-        <Requirement>
-          <Class>Fighter</Class>
-          <Level>5</Level>
-        </Requirement>
-      </Requirements>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Greater Stalwart Defense III</Name>
-      <InternalName>SDGreaterStalwartDefenseIII</InternalName>
-      <Description>Further improves your Stalwart Defense stance.
+         <Icon>SDBlockAndCut</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>30</MinSpent>
+         <Clickie/>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <Class>Fighter</Class>
+               <Level>5</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Greater Stalwart Defense III</Name>
+         <InternalName>SDGreaterStalwartDefenseIII</InternalName>
+         <Description>Further improves your Stalwart Defense stance.
 Choose the option you didn't chose at Tier 3 or 4.</Description>
-      <Icon>SDGreaterStalwartDefense</Icon>
-      <XPosition>2</XPosition>
-      <YPosition>5</YPosition>
-      <Cost>1</Cost>
-      <Ranks>3</Ranks>
-      <MinSpent>30</MinSpent>
-      <Tier5/>
-      <Requirements>
-        <Requirement>
-          <Class>Fighter</Class>
-          <Level>5</Level>
-        </Requirement>
-        <Requirement>
-          <Enhancement>SDGreaterStalwartDefenseII</Enhancement>
-        </Requirement>
-      </Requirements>
-        <Selector>
+         <Icon>SDGreaterStalwartDefense</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <Class>Fighter</Class>
+               <Level>5</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>SDGreaterStalwartDefenseII</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Selector>
             <SelectorExclusions>
-                <SelectorExclusion>
-                    <InternalName>SDGreaterStalwartDefenseI</InternalName>
-                </SelectorExclusion>
-                <SelectorExclusion>
-                    <InternalName>SDGreaterStalwartDefenseII</InternalName>
-                </SelectorExclusion>
+               <SelectorExclusion>
+                  <InternalName>SDGreaterStalwartDefenseI</InternalName>
+               </SelectorExclusion>
+               <SelectorExclusion>
+                  <InternalName>SDGreaterStalwartDefenseII</InternalName>
+               </SelectorExclusion>
             </SelectorExclusions>
             <EnhancementSelection>
-                <Name>Hardy Defense</Name>
-                <Description>While wearing medium armor, heavy armor, or wielding a shield and in
+               <Name>Hardy Defense</Name>
+               <Description>While wearing medium armor, heavy armor, or wielding a shield and in
 Stalwart Defense, you gain a you gain a +[2/4/6] Competence bonus to Constitution.
                 </Description>
-                <Icon>SDHardyDefense</Icon>
-                <Cost>1</Cost>
-                <Effect>
-                    <Type>AbilityBonus</Type>
-                    <Ability>Constitution</Ability>
-                    <AmountVector size="3">2 4 6</AmountVector>
-                    <Stance>Stalwart Defense</Stance>
-                    <Stance>SwordAndBoard</Stance>
-                    <Stance>MediumOrHeavy</Stance>
-                </Effect>
+               <Icon>SDHardyDefense</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Ability>Constitution</Ability>
+                  <AmountVector size="3">2 4 6</AmountVector>
+                  <Stance>Stalwart Defense</Stance>
+                  <Stance>SwordAndBoard</Stance>
+                  <Stance>MediumOrHeavy</Stance>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
-                <Name>Strong Defense</Name>
-                <Description>While wearing medium armor, heavy armor, or wielding a shield and in
+               <Name>Strong Defense</Name>
+               <Description>While wearing medium armor, heavy armor, or wielding a shield and in
 Stalwart Defense, you gain a +[2/4/6] Competence bonus to Strength.
                 </Description>
-                <Icon>SDStrongDefense</Icon>
-                <Cost>1</Cost>
-                <Effect>
-                    <Type>AbilityBonus</Type>
-                    <Ability>Strength</Ability>
-                    <AmountVector size="3">2 4 6</AmountVector>
-                    <Stance>Stalwart Defense</Stance>
-                    <Stance>SwordAndBoard</Stance>
-                    <Stance>MediumOrHeavy</Stance>
-                </Effect>
+               <Icon>SDStrongDefense</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Ability>Strength</Ability>
+                  <AmountVector size="3">2 4 6</AmountVector>
+                  <Stance>Stalwart Defense</Stance>
+                  <Stance>SwordAndBoard</Stance>
+                  <Stance>MediumOrHeavy</Stance>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
-                <Name>Tenacious Defense</Name>
-                <Description>While wearing medium armor, heavy armor, or wielding a shield and in
+               <Name>Tenacious Defense</Name>
+               <Description>While wearing medium armor, heavy armor, or wielding a shield and in
 Stalwart Defense, you gain a +10%/+15%/+20% Competence bonus to maximum hit points.
                 </Description>
-                <Icon>SDTenaciousDefense</Icon>
-                <Cost>1</Cost>
-                <Effect>
-                    <Type>Hitpoints</Type>
-                    <Percent>Huh?</Percent>
-                    <AmountVector size="3">10 15 20</AmountVector>
-                    <Stance>Stalwart Defense</Stance>
-                    <Stance>SwordAndBoard</Stance>
-                    <Stance>MediumOrHeavy</Stance>
-                </Effect>
+               <Icon>SDTenaciousDefense</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>Hitpoints</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Percent>Huh?</Percent>
+                  <AmountVector size="3">10 15 20</AmountVector>
+                  <Stance>Stalwart Defense</Stance>
+                  <Stance>SwordAndBoard</Stance>
+                  <Stance>MediumOrHeavy</Stance>
+               </Effect>
             </EnhancementSelection>
-        </Selector>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Reinforced Defense II</Name>
-      <InternalName>SDReinforcedDefenseII</InternalName>
-      <Description>Improves the armor class bonus you receive from shields or armor.
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Reinforced Defense II</Name>
+         <InternalName>SDReinforcedDefenseII</InternalName>
+         <Description>Improves the armor class bonus you receive from shields or armor.
 (Cannot choose same as Reinforced Defense from Tier 4.)</Description>
-      <Icon>SDReinforcedDefense</Icon>
-      <XPosition>3</XPosition>
-      <YPosition>5</YPosition>
-      <Cost>1</Cost>
-      <Ranks>3</Ranks>
-      <MinSpent>30</MinSpent>
-      <Tier5/>
-      <Requirements>
-        <Requirement>
-          <Class>Fighter</Class>
-          <Level>5</Level>
-        </Requirement>
-        <Requirement>
-          <Enhancement>SDReinforcedDefenseI</Enhancement>
-        </Requirement>
-      </Requirements>
-        <Selector>
+         <Icon>SDReinforcedDefense</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <Class>Fighter</Class>
+               <Level>5</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>SDReinforcedDefenseI</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Selector>
             <SelectorExclusions>
-                <SelectorExclusion>
-                    <InternalName>SDReinforcedDefenseI</InternalName>
-                </SelectorExclusion>
+               <SelectorExclusion>
+                  <InternalName>SDReinforcedDefenseI</InternalName>
+               </SelectorExclusion>
             </SelectorExclusions>
             <EnhancementSelection>
-                <Name>Reinforced Armor</Name>
-                <Description>The Armor Class bonus you gain from armor or docents is increased by [15/30/50]%</Description>
-                <Icon>SDReinforcedArmor</Icon>
-                <Cost>1</Cost>
-                <Effect>
-                    <Type>ArmorACBonus</Type>
-                    <Percent>Huh?</Percent>
-                    <AmountVector size="3">15 30 50</AmountVector>
-                    <Stance>Stalwart Defense</Stance>
-                </Effect>
+               <Name>Reinforced Armor</Name>
+               <Description>The Armor Class bonus you gain from armor or docents is increased by [15/30/50]%</Description>
+               <Icon>SDReinforcedArmor</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>ArmorACBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Percent>Huh?</Percent>
+                  <AmountVector size="3">15 30 50</AmountVector>
+                  <Stance>Stalwart Defense</Stance>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
-                <Name>Reinforced Shield</Name>
-                <Description>The Armor Class bonus you gain from using a shield is increased by [15/30/50]%.
+               <Name>Reinforced Shield</Name>
+               <Description>The Armor Class bonus you gain from using a shield is increased by [15/30/50]%.
 Note: This stacks with Reinforced Defense from Sacred Defender.
                 </Description>
-                <Icon>SDReinforcedShield</Icon>
-                <Cost>1</Cost>
-                <Effect>
-                    <Type>ShieldACBonus</Type>
-                    <Percent>Huh?</Percent>
-                    <AmountVector size="3">15 30 50</AmountVector>
-                    <Stance>Stalwart Defense</Stance>
-                </Effect>
+               <Icon>SDReinforcedShield</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>ShieldACBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Percent>Huh?</Percent>
+                  <AmountVector size="3">15 30 50</AmountVector>
+                  <Stance>Stalwart Defense</Stance>
+               </Effect>
             </EnhancementSelection>
-        </Selector>
-    </EnhancementTreeItem>
-  </EnhancementTree>
+         </Selector>
+      </EnhancementTreeItem>
+   </EnhancementTree>
 </Enhancements>

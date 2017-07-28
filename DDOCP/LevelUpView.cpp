@@ -24,6 +24,8 @@ namespace
         SLC_Total,
     };
     COLORREF f_skillOverspendColour = RGB(0xE9, 0x96, 0x7A); // dark salmon
+    const int c_levelButtonSizeX = 44;
+    const int c_levelButtonSizeY = 54;
 }
 
 IMPLEMENT_DYNCREATE(CLevelUpView, CFormView)
@@ -66,11 +68,6 @@ CLevelUpView::~CLevelUpView()
 void CLevelUpView::DoDataExchange(CDataExchange* pDX)
 {
     CFormView::DoDataExchange(pDX);
-    for (size_t i = 0; i < MAX_LEVEL; ++i)
-    {
-        DDX_Control(pDX, IDC_LEVEL1 + i, m_buttonLevel[i]);
-        m_buttonLevel[i].m_bTopImage = true;
-    }
     DDX_Control(pDX, IDC_COMBO_CLASS1, m_comboClass[0]);
     DDX_Control(pDX, IDC_COMBO_CLASS2, m_comboClass[1]);
     DDX_Control(pDX, IDC_COMBO_CLASS3, m_comboClass[2]);
@@ -114,7 +111,6 @@ BEGIN_MESSAGE_MAP(CLevelUpView, CFormView)
     ON_BN_CLICKED(IDC_BUTTON_SKILL_PLUS, OnButtonSkillPlus)
     ON_BN_CLICKED(IDC_BUTTON_SKILL_MINUS, OnButtonSkillMinus)
     ON_CONTROL_RANGE(CBN_SELENDOK, IDC_COMBO_FEATSELECT1, IDC_COMBO_FEATSELECT3, OnFeatSelection)
-    ON_CONTROL_RANGE(BN_CLICKED, IDC_LEVEL1, IDC_LEVEL30, OnButtonLevel)
     ON_WM_ERASEBKGND()
     ON_NOTIFY(NM_CUSTOMDRAW, IDC_LIST_SKILLS, OnCustomDrawSkills)
     ON_WM_CTLCOLOR()
@@ -122,6 +118,7 @@ BEGIN_MESSAGE_MAP(CLevelUpView, CFormView)
     ON_WM_MOUSEMOVE()
     ON_MESSAGE(WM_MOUSELEAVE, OnMouseLeave)
     ON_WM_CAPTURECHANGED()
+    ON_WM_LBUTTONDOWN()
 END_MESSAGE_MAP()
 #pragma warning(pop)
 
@@ -173,6 +170,19 @@ void CLevelUpView::OnInitialUpdate()
     CFormView::OnInitialUpdate();
     m_tooltip.Create(this);
     m_tipCreated = true;
+
+    // create the level buttons
+    CRect itemRect(
+            c_controlSpacing,
+            c_controlSpacing,
+            c_levelButtonSizeX + c_controlSpacing,
+            c_levelButtonSizeY + c_controlSpacing);
+    for (size_t i = 0 ; i < MAX_LEVEL; ++i)
+    {
+        m_buttonLevels[i].SetLevel(i + 1);
+        m_buttonLevels[i].Create("", WS_CHILD | WS_VISIBLE, itemRect, this, IDC_LEVEL1 + i);
+        itemRect += CPoint(0, itemRect.Height() + c_controlSpacing);
+    }
 
     // setup the list control columns
     m_listSkills.InsertColumn(SLC_name, "Skill", LVCFMT_LEFT, 100);
@@ -237,13 +247,13 @@ void CLevelUpView::OnSize(UINT nType, int cx, int cy)
     {
         // ensure space for level select buttons
         CRect rctButton;
-        m_buttonLevel[0].GetWindowRect(&rctButton);
+        m_buttonLevels[0].GetWindowRect(&rctButton);
         ScreenToClient(&rctButton);
         rctButton -= rctButton.TopLeft();
         rctButton += CPoint(c_controlSpacing, c_controlSpacing);
         for (size_t bi = 0; bi < MAX_LEVEL; ++bi)
         {
-            m_buttonLevel[bi].MoveWindow(rctButton);
+            m_buttonLevels[bi].MoveWindow(rctButton);
             rctButton += CPoint(0, rctButton.Height() + c_controlSpacing);
             if (rctButton.bottom > cy - c_controlSpacing
                     && bi < MAX_LEVEL - 1)  // no need to move on if its the last one
@@ -253,6 +263,7 @@ void CLevelUpView::OnSize(UINT nType, int cx, int cy)
                 rctButton += CPoint(rctButton.Width() + c_controlSpacing, c_controlSpacing);
             }
         }
+
         // position all the controls above
         // [level] [heroic classes] [combo1] [combo2] [combo3]
         // [level] [Feat type 1] [Feat type 2] [Feat type 3]
@@ -484,26 +495,36 @@ void CLevelUpView::SetLevelButtonStates()
 {
     for (size_t i = 0; i < MAX_LEVEL; ++i)
     {
-        m_buttonLevel[i].SetCheck(m_level == i ? BST_CHECKED : BST_UNCHECKED);
+        m_buttonLevels[i].SetSelected(m_level == i);
         ClassType type = Class_Unknown;
         if (m_pCharacter != NULL)
         {
             const LevelTraining & ld = m_pCharacter->LevelData(i);
             type = ld.HasClass() ? ld.Class() : Class_Unknown;
-            m_buttonLevel[i].EnableWindow(TRUE);
+            m_buttonLevels[i].EnableWindow(TRUE);
+            // there are issues with this level if not all feats have been
+            // trained
+            std::vector<TrainableFeatTypes> trainable = m_pCharacter->TrainableFeatTypeAtLevel(i);
+            bool hasIssue = false;
+            for (size_t tft = 0; tft < trainable.size(); ++tft)
+            {
+                TrainedFeat tf = m_pCharacter->GetTrainedFeat(
+                        i,
+                        trainable[tft]);
+                if (tf.FeatName().empty())
+                {
+                    hasIssue = true;
+                }
+            }
+            m_buttonLevels[i].SetIssueState(hasIssue);
         }
         else
         {
             // no character, buttons disabled
-            m_buttonLevel[i].EnableWindow(FALSE);
+            m_buttonLevels[i].EnableWindow(FALSE);
+            m_buttonLevels[i].SetIssueState(false);
         }
-        CImage image;
-        HRESULT result = LoadImageFile(
-                IT_ui,
-                (LPCTSTR)EnumEntryText(type, classTypeMap),
-                &image);
-        m_buttonLevel[i].SetImage(image.Detach());
-        m_buttonLevel[m_level].Invalidate(FALSE);    // button must redraw
+        m_buttonLevels[i].SetClass(type);
     }
 }
 
@@ -729,7 +750,7 @@ void CLevelUpView::EnableControls()
         m_comboClass[2].EnableWindow(FALSE);
         for (size_t i = 0; i < MAX_CLASS_LEVEL; ++i)
         {
-            m_buttonLevel[i].EnableWindow(FALSE);
+            m_buttonLevels[i].EnableWindow(FALSE);
         }
     }
 }
@@ -1094,95 +1115,7 @@ void CLevelUpView::DetermineTrainableFeats()
         if (fi < m_trainable.size())
         {
             // we have a label that shows what type of feat selection the combo is
-            CString text;
-            switch (m_trainable[fi])
-            {
-            case TFT_Automatic:
-                text = "Automatic";
-                break;
-            case TFT_Standard:
-                text = "Standard";
-                break;
-            case TFT_Special:
-                text = "Special";
-                break;
-            case TFT_ArtificerBonus:
-                text = "Artificer Bonus";
-                break;
-            case TFT_BelovedOf:
-                text = "Beloved Of Faith";
-                break;
-            case TFT_ChildOf:
-                text = "Child Of Faith";
-                break;
-            case TFT_DamageReduction:
-                text = "Damage Reduction";
-                break;
-            case TFT_Deity:
-                text = "Deity";
-                break;
-            case TFT_DragonbornRacial:
-                text = "Dragonborn Racial";
-                break;
-            case TFT_DruidWildShape:
-                text = "Druid Wild Shape";
-                break;
-            case TFT_EnergyResistance:
-                text = "Energy Resistance";
-                break;
-            case TFT_EpicDestinyFeat:
-                text = "Epic Destiny Feat";
-                break;
-            case TFT_EpicFeat:
-                text = "Epic Feat";
-                break;
-            case TFT_FighterBonus:
-                text = "Fighter Bonus Feat";
-                break;
-            case TFT_FollowerOf:
-                text = "Follower of Faith";
-                break;
-            case TFT_HalfElfDilettanteBonus:
-                text = "Half-Elf Dilettante";
-                break;
-            case TFT_HumanBonus:
-                text = "Human Bonus";
-                break;
-            case TFT_LegendaryFeat:
-                text = "Legendary";
-                break;
-            case TFT_MonkBonus:
-            case TFT_MonkBonus6:
-                text = "Monk Bonus";
-                break;
-            case TFT_MonkPhilosphy:
-                text = "Monk Philosophy";
-                break;
-            case TFT_PDKBonus:
-                text = "Purple Dragon Knight Bonus";
-                break;
-            case TFT_RangerFavoredEnemy:
-                text = "Favored Enemy";
-                break;
-            case TFT_RogueSpecialAbility:
-                text = "Rogue Special Ability";
-                break;
-            case TFT_WarlockPact:
-                text = "Pact";
-                break;
-            case TFT_WarlockPactAbility:
-                text = "Warlock Pact Ability";
-                break;
-            case TFT_WarlockPactSaveBonus:
-                text = "Warlock Save Bonus";
-                break;
-            case TFT_WarlockPactSpell:
-                text = "Warlock Pact Spell";
-                break;
-            case TFT_WizardMetamagic:
-                text = "Metamagic";
-                break;
-            }
+            CString text = TrainableFeatTypeLabel(m_trainable[fi]);
             // show the trainable feat type description
             m_staticFeatDescription[fi].SetWindowText(text);
             m_staticFeatDescription[fi].EnableWindow(TRUE);
@@ -1323,6 +1256,18 @@ void CLevelUpView::OnFeatSelection(UINT nID)
                 item.pszText,
                 m_trainable[typeIndex],
                 m_level);
+    }
+}
+
+void CLevelUpView::OnLButtonDown(UINT nFlags, CPoint point)
+{
+    // determine which level button (if any) has been clicked on.
+    CWnd * pWnd = ChildWindowFromPoint(point);
+    CLevelButton * pLevelButton = dynamic_cast<CLevelButton*>(pWnd);
+    if (pLevelButton != NULL)
+    {
+        // yes, its a level button
+        OnButtonLevel(pLevelButton->GetDlgCtrlID());
     }
 }
 
@@ -1544,22 +1489,6 @@ LRESULT CLevelUpView::OnUpdateComplete(WPARAM wParam, LPARAM lParam)
     return 0L;
 }
 
-BOOL CLevelUpView::PreTranslateMessage(MSG* pMsg)
-{
-    BOOL ret = CFormView::PreTranslateMessage(pMsg);
-    // for some odd reason doing this stops the combo box's from
-    // processing messages correctly
-    //if (pMsg->message == WM_MOUSEMOVE)
-    //{
-    //    // we always process mouse move messages so that we can tell when the mouse is over
-    //    // the CComboBoxEx controls and show the relevant info tip correctly
-    //    CPoint point;
-    //    GetCursorPos(&point);
-    //    ScreenToClient(&point);
-    //    OnMouseMove(0, point);  // we don't care about the shift, alt key states
-    //}
-    return ret;
-}
 void CLevelUpView::OnMouseMove(UINT nFlags, CPoint point)
 {
     // determine which control the mouse is over
@@ -1589,7 +1518,18 @@ void CLevelUpView::OnMouseMove(UINT nFlags, CPoint point)
         {
             m_pTooltipItem = pWnd;
             pWnd->GetWindowRect(&itemRect);
-            ShowTip(index, itemRect);
+            ShowFeatTip(index, itemRect);
+        }
+        else
+        {
+            // showing a tip for a level button?
+            CLevelButton * pLevelButton = dynamic_cast<CLevelButton*>(pWnd);
+            if (pLevelButton != NULL)
+            {
+                m_pTooltipItem = pWnd;
+                pWnd->GetWindowRect(&itemRect);
+                ShowLevelTip(pWnd->GetDlgCtrlID() - IDC_LEVEL1, itemRect);
+            }
         }
     }
     else
@@ -1629,7 +1569,7 @@ LRESULT CLevelUpView::OnMouseLeave(WPARAM wParam, LPARAM lParam)
     return 0;
 }
 
-void CLevelUpView::ShowTip(size_t featIndex, CRect itemRect)
+void CLevelUpView::ShowFeatTip(size_t featIndex, CRect itemRect)
 {
     if (m_showingTip)
     {
@@ -1653,7 +1593,7 @@ void CLevelUpView::ShowTip(size_t featIndex, CRect itemRect)
         {
             //ClientToScreen(&itemRect);
             CPoint tipTopLeft(itemRect.left, itemRect.bottom + 2);
-            SetTooltipText(featName, tipTopLeft);
+            SetFeatTooltipText(featName, tipTopLeft);
             m_showingTip = true;
             // track the mouse so we know when it leaves our window
             TRACKMOUSEEVENT tme;
@@ -1663,6 +1603,27 @@ void CLevelUpView::ShowTip(size_t featIndex, CRect itemRect)
             tme.dwHoverTime = 1;
             _TrackMouseEvent(&tme);
         }
+    }
+}
+
+void CLevelUpView::ShowLevelTip(size_t level, CRect itemRect)
+{
+    if (m_showingTip)
+    {
+        m_tooltip.Hide();
+    }
+    if (m_pCharacter != NULL)
+    {
+        CPoint tipTopLeft(itemRect.left, itemRect.bottom + 2);
+        SetLevelTooltipText(level, tipTopLeft);
+        m_showingTip = true;
+        // track the mouse so we know when it leaves our window
+        TRACKMOUSEEVENT tme;
+        tme.cbSize = sizeof(tme);
+        tme.hwndTrack = m_hWnd;
+        tme.dwFlags = TME_LEAVE;
+        tme.dwHoverTime = 1;
+        _TrackMouseEvent(&tme);
     }
 }
 
@@ -1677,7 +1638,7 @@ void CLevelUpView::HideTip()
     }
 }
 
-void CLevelUpView::SetTooltipText(
+void CLevelUpView::SetFeatTooltipText(
         const CString & featName,
         CPoint tipTopLeft)
 {
@@ -1685,5 +1646,16 @@ void CLevelUpView::SetTooltipText(
     const Feat & feat = FindFeat((LPCTSTR)featName);
     m_tooltip.SetOrigin(tipTopLeft);
     m_tooltip.SetFeatItem(*m_pCharacter, &feat);
+    m_tooltip.Show();
+}
+
+void CLevelUpView::SetLevelTooltipText(
+        size_t level,
+        CPoint tipTopLeft)
+{
+    // look up the selected feat for this control
+    const LevelTraining & levelData = m_pCharacter->LevelData(level);
+    m_tooltip.SetOrigin(tipTopLeft);
+    m_tooltip.SetLevelItem(*m_pCharacter, level, &levelData);
     m_tooltip.Show();
 }

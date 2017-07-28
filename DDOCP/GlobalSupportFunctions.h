@@ -79,6 +79,7 @@ const std::list<EnhancementTree> & EnhancementTrees();
 const std::list<Spell> & Spells();
 const std::list<Item> & Items();
 const std::list<Augment> & Augments();
+const std::list<GuildBuff> & GuildBuffs();
 std::vector<Spell> FilterSpells(ClassType ct, int level);
 Spell FindSpellByName(const std::string & name);
 const EnhancementTree & GetEnhancementTree(const std::string & treeName);
@@ -118,3 +119,4 @@ HRESULT LoadImageFile(ImageType type, const std::string & name, CImage * pImage,
 bool ImageFileExists(ImageType type, const std::string & name);
 CMainFrame * GetMainFrame();
 void MakeGrayScale(CImage * pImage, COLORREF transparent = RGB(0, 0, 0));
+CString TrainableFeatTypeLabel(TrainableFeatTypes type);

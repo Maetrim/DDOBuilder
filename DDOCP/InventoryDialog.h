@@ -80,9 +80,9 @@ class CInventoryDialog :
     private:
         void RenderInventoryItem(CDC * pDC);
         InventorySlotType FindByPoint(CRect * pRect = NULL) const;
-        void ShowTip(const EnhancementTreeItem & item, CRect itemRect);
+        void ShowTip(const Item & item, CRect itemRect);
         void HideTip();
-        void SetTooltipText(const EnhancementTreeItem & item, CPoint tipTopLeft);
+        void SetTooltipText(const Item & item, CPoint tipTopLeft);
         CRect GetItemRect(InventorySlotType slot) const;
         void NotifySlotLeftClicked(InventorySlotType slot);
         void NotifySlotRightClicked(InventorySlotType slot);
@@ -96,8 +96,6 @@ class CInventoryDialog :
         bool m_showingTip;
         bool m_tipCreated;
         InventorySlotType m_tooltipItem;
-        InventorySlotType m_selectedItem;
-        CImage m_selectedImage;
         EquippedGear m_gearSet;
 };
 

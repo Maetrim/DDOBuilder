@@ -1,9 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Enhancements>
    <EnhancementTree>
       <Name>Spellsinger</Name>
-       <Version>1</Version>
-       <Requirements>
+      <Version>1</Version>
+      <Requirements>
          <Requirement>
             <Class>Bard</Class>
          </Requirement>
@@ -22,13 +22,14 @@
          <MinSpent>0</MinSpent>
          <ArrowRight/>
          <Requirements/>
-          <Effect>
-              <DisplayName>Spellsinger: Spell power per action point</DisplayName>
-              <Type>SpellPower</Type>
-              <SpellPower>All</SpellPower>
-              <EnhancementTree>Spellsinger</EnhancementTree>
-              <AmountPerAP>1.0</AmountPerAP>
-          </Effect>
+         <Effect>
+            <DisplayName>Spellsinger: Spell power per action point</DisplayName>
+            <Bonus>Enhancement</Bonus>
+            <Type>SpellPower</Type>
+            <SpellPower>All</SpellPower>
+            <EnhancementTree>Spellsinger</EnhancementTree>
+            <AmountPerAP>1.0</AmountPerAP>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Spellsinger: Music of the Sewers</Name>
@@ -166,20 +167,22 @@ Haunted: -2 on all Saving Throws, Skill checks and attack rolls.</Description>
 Rank 3: You gain the Magical Training feat. </Description>
                <Icon>SSMagicalStudies</Icon>
                <Cost>1</Cost>
-                <Effect>
-                    <Type>SpellPoints</Type>
-                    <AmountVector size="3">30 60 100</AmountVector>
-                </Effect>
+               <Effect>
+                  <Type>SpellPoints</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AmountVector size="3">30 60 100</AmountVector>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Musical Studies</Name>
                <Description>+[1/2/3] Bard Songs per rest</Description>
                <Icon>SSMusicalStudies</Icon>
                <Cost>1</Cost>
-                <Effect>
-                    <Type>SongBonus</Type>
-                    <AmountVector size="3">1 2 3</AmountVector>
-                </Effect>
+               <Effect>
+                  <Type>SongBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AmountVector size="3">1 2 3</AmountVector>
+               </Effect>
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
@@ -194,10 +197,11 @@ Rank 3: You gain the Magical Training feat. </Description>
          <Ranks>3</Ranks>
          <MinSpent>1</MinSpent>
          <Requirements/>
-          <Effect>
-              <Type>ExtendedSong</Type>
-              <AmountVector size="3">20 40 60</AmountVector>
-          </Effect>
+         <Effect>
+            <Type>ExtendedSong</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">20 40 60</AmountVector>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Spellsinger: Sonic Blast</Name>
@@ -212,10 +216,11 @@ Cooldown: [12/8/4] seconds.</Description>
          <MinSpent>1</MinSpent>
          <Clickie/>
          <Requirements/>
-          <Effect>
-              <Type>SpellLikeAbility</Type>
-              <SpellLikeAbility>Sonic Blast</SpellLikeAbility>
-          </Effect>
+         <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellLikeAbility>Sonic Blast</SpellLikeAbility>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Spellsinger: Charlatan</Name>
@@ -228,21 +233,24 @@ Cooldown: [12/8/4] seconds.</Description>
          <Ranks>3</Ranks>
          <MinSpent>1</MinSpent>
          <Requirements/>
-          <Effect>
-              <Type>SkillBonus</Type>
-              <Skill>Concentration</Skill>
-              <AmountVector size="3">1 2 3</AmountVector>
-          </Effect>
-          <Effect>
-              <Type>SkillBonus</Type>
-              <Skill>Haggle</Skill>
-              <AmountVector size="3">1 2 3</AmountVector>
-          </Effect>
-          <Effect>
-              <Type>SkillBonus</Type>
-              <Skill>Perform</Skill>
-              <AmountVector size="3">1 2 3</AmountVector>
-          </Effect>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Skill>Concentration</Skill>
+            <AmountVector size="3">1 2 3</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Skill>Haggle</Skill>
+            <AmountVector size="3">1 2 3</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Skill>Perform</Skill>
+            <AmountVector size="3">1 2 3</AmountVector>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Spellsinger: Sharp Note</Name>
@@ -290,11 +298,12 @@ damage for 60 seconds</Description>
                <Description>+[1/2/3] Will Saving Throws.</Description>
                <Icon>SSWillfull</Icon>
                <Cost>1</Cost>
-                <Effect>
-                    <Type>SaveBonus</Type>
-                    <Save>Will</Save>
-                    <AmountVector size="3">1 2 3</AmountVector>
-                </Effect>
+               <Effect>
+                  <Type>SaveBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Save>Will</Save>
+                  <AmountVector size="3">1 2 3</AmountVector>
+               </Effect>
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
@@ -374,33 +383,36 @@ that cast spells, and +[1/2/3] to the DCs of your offensive wands.</Description>
                <Description>+1 to DC's of Illusion spells. </Description>
                <Icon>SSBlueMarigoldCrown</Icon>
                <Cost>2</Cost>
-                <Effect>
-                    <Type>SpellDC</Type>
-                    <School>Illusion</School>
-                    <AmountVector size="1">1</AmountVector>
-                </Effect>
+               <Effect>
+                  <Type>SpellDC</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <School>Illusion</School>
+                  <AmountVector size="1">1</AmountVector>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Violet Marigold Crown</Name>
                <Description>+1 to DC's of Evocation spells. </Description>
                <Icon>SSVioletMarigoldCrown</Icon>
                <Cost>2</Cost>
-                <Effect>
-                    <Type>SpellDC</Type>
-                    <School>Evocation</School>
-                    <AmountVector size="1">1</AmountVector>
-                </Effect>
+               <Effect>
+                  <Type>SpellDC</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <School>Evocation</School>
+                  <AmountVector size="1">1</AmountVector>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Yellow Marigold Crown</Name>
                <Description>+1 to DC's of Enchantment spells.</Description>
                <Icon>SSYellowMarigoldCrown</Icon>
                <Cost>2</Cost>
-                <Effect>
-                    <Type>SpellDC</Type>
-                    <School>Enchantment</School>
-                    <AmountVector size="1">1</AmountVector>
-                </Effect>
+               <Effect>
+                  <Type>SpellDC</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <School>Enchantment</School>
+                  <AmountVector size="1">1</AmountVector>
+               </Effect>
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
@@ -474,10 +486,11 @@ Cooldown: [12/9/6] seconds.</Description>
                <Level>3</Level>
             </Requirement>
          </Requirements>
-          <Effect>
-              <Type>SpellLikeAbility</Type>
-              <SpellLikeAbility>Shout</SpellLikeAbility>
-          </Effect>
+         <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellLikeAbility>Shout</SpellLikeAbility>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Spellsinger: Spell Song Trance</Name>
@@ -516,11 +529,12 @@ seconds plus 6 seconds per bard level.</Description>
                <Level>3</Level>
             </Requirement>
          </Requirements>
-          <Effect>
-              <Type>AbilityBonus</Type>
-              <Ability>Charisma</Ability>
-              <AmountVector size="1">1</AmountVector>
-          </Effect>
+         <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Ability>Charisma</Ability>
+            <AmountVector size="1">1</AmountVector>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Spellsinger: Sustaining Song</Name>
@@ -571,10 +585,11 @@ Penetration for four minutes. </Description>
                <Description>+[1/2/3] to your level when trying to overcome enemy's Spell Resistance</Description>
                <Icon>SpellPenetration</Icon>
                <Cost>1</Cost>
-                <Effect>
-                    <Type>SpellPenetrationBonus</Type>
-                    <AmountVector size="3">1 2 3</AmountVector>
-                </Effect>
+               <Effect>
+                  <Type>SpellPenetrationBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AmountVector size="3">1 2 3</AmountVector>
+               </Effect>
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
@@ -635,11 +650,12 @@ spells cast by you and all nearby allies for 60 seconds plus 30 seconds per bard
                <Level>4</Level>
             </Requirement>
          </Requirements>
-          <Effect>
-              <Type>AbilityBonus</Type>
-              <Ability>Charisma</Ability>
-              <AmountVector size="1">1</AmountVector>
-          </Effect>
+         <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Ability>Charisma</Ability>
+            <AmountVector size="1">1</AmountVector>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Spellsinger: Song of Capering</Name>
@@ -694,21 +710,23 @@ A successful Will save negates this effect.</Description>
                <Description>+65/+130/+200 Spell Points</Description>
                <Icon>SSAdvancedMagicalStudies</Icon>
                <Cost>1</Cost>
-                <Effect>
-                    <Type>SpellPoints</Type>
-                    <AmountVector size="3">65 130 200</AmountVector>
-                </Effect>
+               <Effect>
+                  <Type>SpellPoints</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AmountVector size="3">65 130 200</AmountVector>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Advanced Musical Studies</Name>
                <Description>+1/+2/+3 Bard Songs per rest</Description>
                <Icon>SSAdvancedMusicalStudies</Icon>
                <Cost>1</Cost>
-                <Effect>
-                    <Type>SongBonus</Type>
-                    <School>Illusion</School>
-                    <AmountVector size="3">1 2 3</AmountVector>
-                </Effect>
+               <Effect>
+                  <Type>SongBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <School>Illusion</School>
+                  <AmountVector size="3">1 2 3</AmountVector>
+               </Effect>
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
@@ -732,16 +750,18 @@ A successful Will save negates this effect.</Description>
                <Level>5</Level>
             </Requirement>
          </Requirements>
-          <Effect>
-              <Type>SkillBonus</Type>
-              <Skill>Concentration</Skill>
-              <AmountVector size="3">1 2 3</AmountVector>
-          </Effect>
-          <Effect>
-              <Type>SkillBonus</Type>
-              <Skill>Perform</Skill>
-              <AmountVector size="3">1 2 3</AmountVector>
-          </Effect>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Skill>Concentration</Skill>
+            <AmountVector size="3">1 2 3</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Skill>Perform</Skill>
+            <AmountVector size="3">1 2 3</AmountVector>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Spellsinger: Spell Song Vigor</Name>
@@ -797,10 +817,11 @@ spell points over time.</Description>
 Activation cost: [30/25/20] SP. Cooldown: [20/16/12] seconds.</Description>
                <Icon>SSHornOfThunder</Icon>
                <Cost>2</Cost>
-                <Effect>
-                    <Type>SpellLikeAbility</Type>
-                    <SpellLikeAbility>Horn of Thunder</SpellLikeAbility>
-                </Effect>
+               <Effect>
+                  <Type>SpellLikeAbility</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <SpellLikeAbility>Horn of Thunder</SpellLikeAbility>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Mass Hold</Name>
@@ -808,10 +829,11 @@ Activation cost: [30/25/20] SP. Cooldown: [20/16/12] seconds.</Description>
 Activation cost: 50 SP. Cooldown: [60/40/20] seconds.</Description>
                <Icon>SSMassHold</Icon>
                <Cost>2</Cost>
-                <Effect>
-                    <Type>SpellLikeAbility</Type>
-                    <SpellLikeAbility>Hold Monster, Mass</SpellLikeAbility>
-                </Effect>
+               <Effect>
+                  <Type>SpellLikeAbility</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <SpellLikeAbility>Hold Monster, Mass</SpellLikeAbility>
+               </Effect>
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>

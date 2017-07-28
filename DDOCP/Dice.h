@@ -15,6 +15,7 @@ class Dice :
         size_t Sides(size_t index) const;
         int Bonus(size_t index) const;
 
+        bool operator==(const Dice & other) const;
     protected:
         XmlLib::SaxContentElementInterface * StartElement(
                 const XmlLib::SaxString & name,

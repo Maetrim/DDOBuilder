@@ -38,11 +38,6 @@ void Effect::EndElement()
 {
     SaxContentElement::EndElement();
     DL_END(Effect_PROPERTIES)
-    // double check everything that was read
-    if (m_Type == Effect_SpellCriticalChance && !HasSpellPower())
-    {
-        ASSERT(FALSE);
-    }
 }
 
 void Effect::Write(XmlLib::SaxWriter * writer) const

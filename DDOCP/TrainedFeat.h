@@ -12,6 +12,7 @@ class TrainedFeat :
         TrainedFeat();
         void Write(XmlLib::SaxWriter * writer) const;
         bool operator<(const TrainedFeat & other) const;
+        bool operator==(const TrainedFeat & other) const;
 
     protected:
         XmlLib::SaxContentElementInterface * StartElement(

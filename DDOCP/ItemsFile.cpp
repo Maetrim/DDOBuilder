@@ -60,6 +60,12 @@ bool ItemsFile::ReadFile(const std::string & filename)
         ::OutputDebugString(fullFilename.c_str());
         ::OutputDebugString("\n");
     }
+    catch (...)
+    {
+        ::OutputDebugString("Bad item file: ");
+        ::OutputDebugString(fullFilename.c_str());
+        ::OutputDebugString("\n");
+    }
     return ok;
 }
 

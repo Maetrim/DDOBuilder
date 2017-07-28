@@ -14,7 +14,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
     DDX_Control(pDX, IDC_STATIC_VERSION, m_staticVersion);
 
     CString text;
-    text.Format("DDOCP, Version %s", BUILDINFO_VERSION);
+    text.Format("DDOBuilder, Version %s", BUILDINFO_VERSION);
     m_staticVersion.SetWindowText(text);
 }
 

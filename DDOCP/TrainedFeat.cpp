@@ -59,3 +59,10 @@ bool TrainedFeat::operator<(const TrainedFeat & other) const
     }
 }
 
+bool TrainedFeat::operator==(const TrainedFeat & other) const
+{
+    return m_FeatName == other.m_FeatName
+            && m_Type == other.m_Type
+            && m_LevelTrainedAt == other.m_LevelTrainedAt;
+}
+

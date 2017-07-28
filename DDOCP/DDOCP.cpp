@@ -13,6 +13,7 @@
 #include "AugmentsFile.h"
 #include "EnhancementsFile.h"
 #include "FeatsFile.h"
+#include "GuildBuffsFile.h"
 #include "ItemsFile.h"
 #include "SpellsFile.h"
 #include "LocalSettingsStore.h"
@@ -70,8 +71,6 @@ BOOL CDDOCPApp::InitInstance()
     InitCtrls.dwICC = ICC_WIN95_CLASSES;
     InitCommonControlsEx(&InitCtrls);
 
-    EnsureWorkspaceExists();
-
     CWinAppEx::InitInstance();
 
     // Initialize OLE libraries
@@ -94,7 +93,7 @@ BOOL CDDOCPApp::InitInstance()
     // of your final executable, you should remove from the following
     // the specific initialization routines you do not need
     // Change the registry key under which our settings are stored
-    SetRegistryKey(_T("DDO Character Planner"));
+    SetRegistryKey(_T("DDOBuilder"));
     LoadStdProfileSettings(10);  // Load standard INI file options (including MRU)
 
     //InitContextMenuManager();    // we construct our own custom one
@@ -228,6 +227,7 @@ void CDDOCPApp::LoadData()
     LoadSpells(path);
     LoadItems(path);
     LoadAugments(path);
+    LoadGuildBuffs(path);
     VerifyFeats();
     VerifyEnhancements();
     VerifySpells();
@@ -287,6 +287,17 @@ void CDDOCPApp::LoadAugments(const std::string & path)
     AugmentsFile file(filename);
     file.Read();
     m_augments = file.Augments();
+}
+
+void CDDOCPApp::LoadGuildBuffs(const std::string & path)
+{
+    // create the filename to load from
+    std::string filename = path;
+    filename += "GuildBuffs.xml";
+
+    GuildBuffsFile file(filename);
+    file.Read();
+    m_guildBuffs = file.GuildBuffs();
 }
 
 void CDDOCPApp::VerifyFeats()
@@ -419,71 +430,11 @@ const std::list<Augment> & CDDOCPApp::Augments() const
     return m_augments;
 }
 
-// CDDOCPApp message handlers
-void CDDOCPApp::EnsureWorkspaceExists()
+const std::list<GuildBuff> & CDDOCPApp::GuildBuffs() const
 {
-    // look at the registry and see if a previous workspace layout exists
-    // if not, install the default layout so the app starts with something
-    // sensible rather than all the windows in bad places
-    HKEY hTemp = NULL;
-    LONG ret = ::RegOpenKeyEx(
-            HKEY_CURRENT_USER,
-            "Software\\DDO Character Planner\\DDOCP\\Workspace",
-            0,
-            KEY_READ,
-            &hTemp);
-    bool exists = (ret == ERROR_SUCCESS);
-    if (exists)
-    {
-        RegCloseKey(hTemp);
-    }
-    else
-    {
-        RestoreDefaultWorkspace();
-    }
+    return m_guildBuffs;
 }
 
-void CDDOCPApp::RestoreDefaultWorkspace()
-{
-    HKEY hSource = NULL;
-    LONG ret = ::RegOpenKeyEx(
-            HKEY_CURRENT_USER,
-            "Software\\DDO Character Planner\\DDOCP\\DefaultWorkspace",
-            0,
-            KEY_READ,
-            &hSource);
-    if (ret == ERROR_SUCCESS)
-    {
-        HKEY hDestinationParent = NULL;
-        ret = ::RegOpenKeyEx(
-                HKEY_CURRENT_USER,
-                "Software\\DDO Character Planner\\DDOCP",
-                0,
-                KEY_WRITE | KEY_CREATE_SUB_KEY,
-                &hDestinationParent);
-        if (ret == ERROR_SUCCESS)
-        {
-            HKEY hDestination = NULL;
-            DWORD disposition;
-            ret = ::RegCreateKeyEx(
-                    hDestinationParent,
-                    "Workspace",
-                    0,
-                    "",
-                    REG_OPTION_NON_VOLATILE,
-                    KEY_WRITE,
-                    0,
-                    &hDestination,
-                    &disposition);
-            if (ret == ERROR_SUCCESS)
-            {
-                // copy all key sub elements to "Workspace"
-                SHCopyKey(hSource, NULL, hDestination, 0);
-                RegCloseKey(hDestination);
-            }
-            RegCloseKey(hDestinationParent);
-        }
-        RegCloseKey(hSource);
-    }
-}
+// CDDOCPApp message handlers
+
 

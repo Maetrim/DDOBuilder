@@ -64,6 +64,30 @@ void EquippedGear::Write(XmlLib::SaxWriter * writer) const
     writer->EndElement();
 }
 
+bool EquippedGear::HasItemInSlot(InventorySlotType slot) const
+{
+    switch (slot)
+    {
+    case Inventory_Arrows:  return HasArrow();
+    case Inventory_Armor:   return HasArmor();
+    case Inventory_Belt:    return HasBelt();
+    case Inventory_Boots:   return HasBoots();
+    case Inventory_Bracers: return HasBracers();
+    case Inventory_Cloak:   return HasCloak();
+    case Inventory_Gloves:  return HasGloves();
+    case Inventory_Goggles: return HasGoggles();
+    case Inventory_Helmet:  return HasHelmet();
+    case Inventory_Necklace:return HasNecklace();
+    case Inventory_Quiver:  return HasQuiver();
+    case Inventory_Ring1:   return HasRing1();
+    case Inventory_Ring2:   return HasRing2();
+    case Inventory_Trinket: return HasTrinket();
+    case Inventory_Weapon1: return HasMainHand();
+    case Inventory_Weapon2: return HasOffHand();
+    }
+    return false;
+}
+
 Item EquippedGear::ItemInSlot(InventorySlotType slot) const
 {
     Item noItem;

@@ -33,6 +33,7 @@ class CBreakdownsView :
         afx_msg void OnDividerClicked();
         afx_msg void OnMouseMove(UINT nFlags, CPoint point);
         afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
+        afx_msg void OnEndtrackBreakdownList(NMHDR* pNMHDR, LRESULT* pResult);
         DECLARE_MESSAGE_MAP()
 
     private:

@@ -40,7 +40,7 @@ enum BreakdownType
     Breakdown_Threat,
     Breakdown_DodgeBypass,
     Breakdown_FortificationBypass,
-    Breakdown_TacticalAssassinate,
+    Breakdown_Assassinate,
     Breakdown_TacticalStunningBlow,
     Breakdown_TacticalSunder,
     Breakdown_TacticalTrip,

@@ -57,11 +57,10 @@ void BreakdownItemWeaponDamageBonus::CreateOtherEffects()
                 // should now have the best option
                 std::string bonusName = "Ability bonus (" + EnumEntryText(ability, abilityTypeMap) + ")";
                 ActiveEffect feat(
-                        ET_ability,
+                        Bonus_ability,
                         bonusName,
                         1,
                         bonus,
-                        Bonus_Unknown,
                         "");        // no tree
                 feat.SetBreakdownDependency(StatToBreakdown(ability)); // so we know which effect to update
                 AddOtherEffect(feat);

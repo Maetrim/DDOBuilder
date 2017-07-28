@@ -62,6 +62,8 @@ class CDDOCPView :
         afx_msg void OnSelendokComboAbilityLevel20();
         afx_msg void OnSelendokComboAbilityLevel24();
         afx_msg void OnSelendokComboAbilityLevel28();
+        afx_msg void OnButtonGuildBuffs();
+        afx_msg void OnKillFocusGuildLevel();
         afx_msg void OnSize(UINT nType, int cx, int cy);
         afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
         DECLARE_MESSAGE_MAP()
@@ -114,6 +116,8 @@ class CDDOCPView :
         CComboBox m_comboTomeInt;
         CComboBox m_comboTomeWis;
         CComboBox m_comboTomeCha;
+        CButton m_buttonGuildBuffs;
+        CEdit m_editGuildLevel;
         CStatic m_staticAvailableSpend;
         CComboBox m_comboAILevel4;
         CComboBox m_comboAILevel8;

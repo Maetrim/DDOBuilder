@@ -31,6 +31,7 @@ class Item :
                 DL_STRING(_, Name) \
                 DL_STRING(_, Icon) \
                 DL_STRING(_, Description) \
+                DL_SIMPLE(_, size_t, MinLevel, 0) \
                 DL_OPTIONAL_SIMPLE(_, size_t, Enchantment, 0) \
                 DL_OPTIONAL_SIMPLE(_, size_t, AC, 0) \
                 DL_OPTIONAL_SIMPLE(_, size_t, AC_CompositePlating, 0) \
@@ -50,7 +51,6 @@ class Item :
                 DL_OPTIONAL_ENUM(_, AbilityType, AttackModifier, Ability_Unknown, abilityTypeMap) \
                 DL_OPTIONAL_ENUM(_, AbilityType, DamageModifier, Ability_Unknown, abilityTypeMap) \
                 DL_OBJECT(_, EquipmentSlot, Slots) \
-                DL_OPTIONAL_SIMPLE(_, size_t, MinLevel, 0) \
                 DL_OBJECT_VECTOR(_, Effect, Effects) \
                 DL_OBJECT_VECTOR(_, ItemAugment, Augments)
 

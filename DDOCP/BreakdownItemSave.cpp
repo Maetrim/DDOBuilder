@@ -82,11 +82,10 @@ void BreakdownItemSave::CreateOtherEffects()
                     std::string className = EnumEntryText((ClassType)ci, classTypeMap);
                     className += " Levels";
                     ActiveEffect classBonus(
-                            ET_class,
+                            Bonus_class,
                             className,
                             1,
                             ClassSave(m_saveType, (ClassType)ci, classLevels[ci]),
-                            Bonus_Unknown,
                             "");        // no tree
                     AddOtherEffect(classBonus);
                 }
@@ -104,11 +103,10 @@ void BreakdownItemSave::CreateOtherEffects()
                 {
                     // should now have the best option
                     ActiveEffect feat(
-                            ET_ability,
+                            Bonus_ability,
                             "Divine Grace (Charisma)",
                             1,
                             bonus,
-                            Bonus_Unknown,
                             "");        // no tree
                     feat.SetBreakdownDependency(StatToBreakdown(Ability_Charisma)); // so we know which effect to update
                     AddOtherEffect(feat);
@@ -127,11 +125,10 @@ void BreakdownItemSave::CreateOtherEffects()
                 // should now have the best option
                 std::string bonusName = "Ability bonus (" + EnumEntryText(ability, abilityTypeMap) + ")";
                 ActiveEffect feat(
-                        ET_ability,
+                        Bonus_ability,
                         bonusName,
                         1,
                         bonus,
-                        Bonus_Unknown,
                         "");        // no tree
                 feat.SetBreakdownDependency(StatToBreakdown(ability)); // so we know which effect to update
                 AddOtherEffect(feat);
@@ -142,11 +139,10 @@ void BreakdownItemSave::CreateOtherEffects()
             // show the base save value used in our total
             double bonus = m_pBaseBreakdown->Total();
             ActiveEffect statBonus(
-                    ET_base,
+                    Bonus_base,
                     (LPCTSTR)(m_pBaseBreakdown->Title() + " Save"),
                     1,
                     bonus,
-                    Bonus_Unknown,
                     "");        // no tree
             AddOtherEffect(statBonus);
         }

@@ -14,6 +14,7 @@ namespace
         CO_Source = 0,
         CO_Stacks,
         CO_Value,
+        CO_BonusType,
     };
 }
 
@@ -260,20 +261,28 @@ void BreakdownItem::AddActiveItems(
         // only add active items when it has an active stance flag
         if ((*it).IsActive(m_pCharacter))
         {
-            // put the effect name into the control
-            CString effectName = (*it).Name();
-            size_t index = pControl->InsertItem(
-                    pControl->GetItemCount(),
-                    effectName,
-                    0);
+            // only list it if its non-zero
+            if ((*it).TotalAmount() != 0)
+            {
+                // put the effect name into the control
+                CString effectName = (*it).Name();
+                size_t index = pControl->InsertItem(
+                        pControl->GetItemCount(),
+                        effectName,
+                        0);
 
-            // the number of stacks of it
-            CString stacks = (*it).Stacks();
-            pControl->SetItemText(index, CO_Stacks, stacks);
+                // the number of stacks of it
+                CString stacks = (*it).Stacks();
+                pControl->SetItemText(index, CO_Stacks, stacks);
 
-            // and the total amount the number of stacks contribute
-            CString amount  = (*it).AmountAsText();
-            pControl->SetItemText(index, CO_Value, amount);
+                // and the total amount the number of stacks contribute
+                CString amount  = (*it).AmountAsText();
+                pControl->SetItemText(index, CO_Value, amount);
+
+                // add the bonus type
+                CString bonus = EnumEntryText((*it).Bonus(), bonusTypeMap);
+                pControl->SetItemText(index, CO_BonusType, bonus);
+            }
         }
         ++it;
     }
@@ -290,20 +299,28 @@ void BreakdownItem::AddDeactiveItems(
         // only add inactive items when it has a stance flag
         if (!(*it).IsActive(m_pCharacter))
         {
-            // put the effect name into the control
-            CString effectName = (*it).Name();
-            size_t index = pControl->InsertItem(
-                    pControl->GetItemCount(),
-                    effectName,
-                    0);
+            // only list it if its non-zero
+            if ((*it).TotalAmount() != 0)
+            {
+                // put the effect name into the control
+                CString effectName = (*it).Name();
+                size_t index = pControl->InsertItem(
+                        pControl->GetItemCount(),
+                        effectName,
+                        0);
 
-            // the number of stacks of it
-            CString stacks = (*it).Stacks();
-            pControl->SetItemText(index, CO_Stacks, stacks);
+                // the number of stacks of it
+                CString stacks = (*it).Stacks();
+                pControl->SetItemText(index, CO_Stacks, stacks);
 
-            // and the total amount the number of stacks contribute
-            CString amount  = (*it).AmountAsText();
-            pControl->SetItemText(index, CO_Value, amount);
+                // and the total amount the number of stacks contribute
+                CString amount  = (*it).AmountAsText();
+                pControl->SetItemText(index, CO_Value, amount);
+
+                // add the bonus type
+                CString bonus = EnumEntryText((*it).Bonus(), bonusTypeMap);
+                pControl->SetItemText(index, CO_BonusType, bonus);
+            }
         }
         ++it;
     }
@@ -566,7 +583,7 @@ bool BreakdownItem::UpdateTreeItemTotals(std::list<ActiveEffect> * list)
     std::list<ActiveEffect>::iterator it = list->begin();
     while (it != list->end())
     {
-        if ((*it).Type() == ET_enhancementPerAP)
+        if ((*it).IsAmountPerAP())
         {
             size_t spent = m_pCharacter->APSpentInTree((*it).Tree());
             if (spent != (*it).Stacks())
@@ -631,22 +648,20 @@ bool BreakdownItem::GetActiveEffect(
         ASSERT(effect.HasClass());
         size_t levels = m_pCharacter->ClassLevels(MAX_LEVEL)[effect.Class()];
         *activeEffect = ActiveEffect(
-                ET_enhancementPerLevel,
+                effect.Bonus(),
                 featName,
                 effect.AmountPerLevel(),
                 levels,
-                effect.HasBonus() ? effect.Bonus() : Bonus_Unknown,
                 effect.Class());        // no tree
     }
     else if (effect.HasAmount())
     {
         // it is a feat that handles the amount as a regular amount
         *activeEffect = ActiveEffect(
-                ET_feat,
+                effect.Bonus(),
                 featName,
                 1,
                 effect.Amount(),
-                effect.HasBonus() ? effect.Bonus() : Bonus_Unknown,
                 "");        // no tree
     }
     else if (effect.HasAmountVector())
@@ -656,10 +671,9 @@ bool BreakdownItem::GetActiveEffect(
         // happens
         size_t count = pCharacter->GetSpecialFeatTrainedCount(featName);
         *activeEffect = ActiveEffect(
-                ET_enhancement,     // handled as an enhancement for this type
+                effect.Bonus(),
                 featName,
                 1,
-                effect.HasBonus() ? effect.Bonus() : Bonus_Unknown,
                 effect.AmountVector());
     }
     else if (effect.HasAbility())   // some feat effects can have amount and ability, amount always takes precedence
@@ -671,11 +685,10 @@ bool BreakdownItem::GetActiveEffect(
         ASSERT(pBI != NULL);
         pBI->AttachObserver(this);  // need to know about changes to this stat
         *activeEffect = ActiveEffect(
-                ET_feat,
+                effect.Bonus(),
                 featName,
                 1,
                 BaseStatToBonus(pBI->Total()),
-                effect.HasBonus() ? effect.Bonus() : Bonus_Unknown,
                 "");        // no tree
     }
     else if (effect.HasDiceRoll())
@@ -683,11 +696,10 @@ bool BreakdownItem::GetActiveEffect(
         // a Dice roll bonus to the breakdown. May have additional sub item effects
         // such as it is "Fire" damage
         *activeEffect = ActiveEffect(
-                ET_feat,
+                effect.Bonus(),
                 featName,
                 1,
                 effect.DiceRoll(),
-                effect.HasBonus() ? effect.Bonus() : Bonus_Unknown,
                 "");
     }
     else if (effect.HasDivider())
@@ -713,11 +725,10 @@ bool BreakdownItem::GetActiveEffect(
         if (amount > 0)
         {
             *activeEffect = ActiveEffect(
-                    ET_feat,
+                    effect.Bonus(),
                     featName,
                     1,
                     amount,
-                    effect.HasBonus() ? effect.Bonus() : Bonus_Unknown,
                     "");
         }
         else
@@ -856,27 +867,33 @@ void BreakdownItem::UpdateEnhancementEffect(
         bool hasActiveEffect = true;
         ActiveEffect activeEffect;
 
-        ASSERT(!effect.m_effect.HasAmount());    // enhancements always use AmountVector
         // could be an enhancement based on AP spend in a tree
         if (effect.m_effect.HasAmountVector())
         {
             activeEffect = ActiveEffect(
-                    ET_enhancement,
+                    effect.m_effect.Bonus(),
                     name,
                     effect.m_tier,
-                    effect.m_effect.HasBonus() ? effect.m_effect.Bonus() : Bonus_Unknown,
                     effect.m_effect.AmountVector());
+        }
+        else if (effect.m_effect.HasAmount())
+        {
+            activeEffect = ActiveEffect(
+                    effect.m_effect.Bonus(),
+                    name,
+                    effect.m_tier,
+                    effect.m_effect.Amount(),
+                    "");
         }
         else if (effect.m_effect.HasAmountPerLevel())
         {
             ASSERT(effect.m_effect.HasClass());
             std::vector<size_t> classLevels = m_pCharacter->ClassLevels(MAX_LEVEL);
             activeEffect = ActiveEffect(
-                    ET_enhancementPerLevel,
+                    effect.m_effect.Bonus(),
                     name,
                     effect.m_effect.AmountPerLevel(),
                     classLevels[effect.m_effect.Class()],
-                    effect.m_effect.HasBonus() ? effect.m_effect.Bonus() : Bonus_Unknown,
                     effect.m_effect.Class());
         }
         else
@@ -886,11 +903,10 @@ void BreakdownItem::UpdateEnhancementEffect(
             ASSERT(effect.m_effect.HasAmountPerAP());
             size_t spentInTree = charData->APSpentInTree(effect.m_effect.EnhancementTree());
             activeEffect = ActiveEffect(
-                    ET_enhancementPerAP,
+                    effect.m_effect.Bonus(),
                     name,
                     spentInTree,
                     effect.m_effect.AmountPerAP(),
-                    effect.m_effect.HasBonus() ? effect.m_effect.Bonus() : Bonus_Unknown,
                     effect.m_effect.EnhancementTree());
         }
         if (effect.m_effect.HasFeat())
@@ -931,11 +947,19 @@ void BreakdownItem::UpdateEnhancementEffectRevoked(
         if (effect.m_effect.HasAmountVector())
         {
             activeEffect = ActiveEffect(
-                    ET_enhancement,
+                    effect.m_effect.Bonus(),
                     name,
                     effect.m_tier,
-                    effect.m_effect.HasBonus() ? effect.m_effect.Bonus() : Bonus_Unknown,
                     effect.m_effect.AmountVector());
+        }
+        else if (effect.m_effect.HasAmount())
+        {
+            activeEffect = ActiveEffect(
+                    effect.m_effect.Bonus(),
+                    name,
+                    effect.m_tier,
+                    effect.m_effect.Amount(),
+                    "");
         }
         else
         {
@@ -943,11 +967,10 @@ void BreakdownItem::UpdateEnhancementEffectRevoked(
             ASSERT(effect.m_effect.HasAmountPerAP());
             size_t spentInTree = charData->APSpentInTree(effect.m_effect.EnhancementTree());
             activeEffect = ActiveEffect(
-                    ET_enhancementPerAP,
+                    effect.m_effect.Bonus(),
                     name,
                     spentInTree,
                     effect.m_effect.AmountPerAP(),
-                    effect.m_effect.HasBonus() ? effect.m_effect.Bonus() : Bonus_Unknown,
                     effect.m_effect.EnhancementTree());
         }
         if (effect.m_effect.HasFeat())

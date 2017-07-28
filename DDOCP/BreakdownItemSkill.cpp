@@ -66,11 +66,10 @@ void BreakdownItemSkill::CreateOtherEffects()
         if (amount > 0)
         {
             ActiveEffect amountTrained(
-                    ET_base,
+                    Bonus_levelUps,
                     "Trained ranks",
                     1,
                     amount,
-                    Bonus_Unknown,
                     "");        // no tree
             AddOtherEffect(amountTrained);
         }
@@ -87,11 +86,10 @@ void BreakdownItemSkill::CreateOtherEffects()
             abilityName.resize(3);          // cut down to 1st 3 characters, e.g. Strength becomes Str
             abilityName += " Modifier";
             ActiveEffect abilityMod(
-                    ET_ability,
+                    Bonus_ability,
                     abilityName,
                     1,
                     amount,
-                    Bonus_Unknown,
                     "");        // no tree
             AddOtherEffect(abilityMod);
         }
@@ -100,11 +98,10 @@ void BreakdownItemSkill::CreateOtherEffects()
         if (amount > 0)
         {
             ActiveEffect tome(
-                    ET_tome,
+                    Bonus_inherent,
                     "Skill tome",
                     1,
                     amount,
-                    Bonus_Unknown,
                     "");        // no tree
             AddOtherEffect(tome);
         }
@@ -117,11 +114,10 @@ void BreakdownItemSkill::CreateOtherEffects()
             ASSERT(pBI != NULL);
             pBI->AttachObserver(this);  // need to know about changes to this effect
             ActiveEffect acp(
-                    ET_item,
+                    Bonus_penalty,
                     "Armor check penalty",
                     1,
                     pBI->Total() * multiplier,
-                    Bonus_Unknown,
                     "");        // no tree
             AddOtherEffect(acp);
         }
@@ -169,13 +165,27 @@ bool BreakdownItemSkill::AffectsUs(const Effect & effect) const
     // see if this effect applies to us
     if (effect.Type() == Effect_SkillBonus)
     {
-        // it is an ability bonus, it way well affect us
-        ASSERT(effect.HasSkill());    // its expected
-        if (effect.Skill() == Skill_All
-                || effect.Skill() == m_skill)
+        if (effect.HasSkill()
+                && (effect.Skill() == Skill_All
+                || effect.Skill() == m_skill))
         {
             isUs = true;
+        }
+        // bonus could be by ability, i.e. all Dexterity skills
+        if (effect.HasAbility())
+        {
+            AbilityType at = StatFromSkill(m_skill);
+            if (at == effect.Ability())
+            {
+                isUs = true;
+            }
         }
     }
     return isUs;
 }
+
+SkillType BreakdownItemSkill::Skill() const
+{
+    return m_skill;
+}
+

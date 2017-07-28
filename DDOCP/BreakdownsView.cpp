@@ -5,6 +5,7 @@
 #include "GlobalSupportFunctions.h"
 
 #include "BreakdownItemAbility.h"
+#include "BreakdownItemAssassinate.h"
 #include "BreakdownItemCasterLevel.h"
 #include "BreakdownItemEnergyAbsorption.h"
 #include "BreakdownItemEnergyResistance.h"
@@ -65,6 +66,8 @@ BEGIN_MESSAGE_MAP(CBreakdownsView, CFormView)
     ON_BN_CLICKED(IDC_DIVIDER, OnDividerClicked)
     ON_WM_MOUSEMOVE()
     ON_WM_LBUTTONUP()
+    ON_NOTIFY(HDN_ENDTRACK, IDC_ITEM_BREAKDOWN, OnEndtrackBreakdownList)
+    ON_NOTIFY(HDN_DIVIDERDBLCLICK, IDC_ITEM_BREAKDOWN, OnEndtrackBreakdownList)
 END_MESSAGE_MAP()
 #pragma warning(pop)
 
@@ -104,7 +107,7 @@ void CBreakdownsView::OnInitialUpdate()
 {
     CFormView::OnInitialUpdate();
     BreakdownItem::SetBreakdownViewPointer(this);
-    
+
     m_treeSizePercent = AfxGetApp()->GetProfileInt(f_treeSizeKey, f_treeSizeEntry, 75);
     m_itemBreakdownTree.CreateEx(
             WS_EX_CLIENTEDGE,
@@ -120,6 +123,9 @@ void CBreakdownsView::OnInitialUpdate()
     m_itemBreakdownList.InsertColumn(0, "Breakdown source", LVCFMT_LEFT, 220);
     m_itemBreakdownList.InsertColumn(1, "Stacks", LVCFMT_LEFT, 50);
     m_itemBreakdownList.InsertColumn(2, "Value", LVCFMT_LEFT, 50);
+    m_itemBreakdownList.InsertColumn(3, "Bonus Type", LVCFMT_LEFT, 50);
+    m_itemBreakdownList.SetExtendedStyle(m_itemBreakdownList.GetExtendedStyle() | LVS_EX_FULLROWSELECT | LVS_EX_LABELTIP);
+    LoadColumnWidthsByName(&m_itemBreakdownList, "BreakdownList_%s");
     CreateBreakdowns();
 }
 
@@ -753,9 +759,8 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
                 "Assassinate",
                 hTacticalParent,
                 TVI_LAST);
-        BreakdownItem * pAssassinate = new BreakdownItemTactical(
-                Breakdown_TacticalAssassinate,
-                Tactical_Assassinate,
+        BreakdownItem * pAssassinate = new BreakdownItemAssassinate(
+                Breakdown_Assassinate,
                 &m_itemBreakdownTree,
                 hItem);
         m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pAssassinate);
@@ -1753,4 +1758,12 @@ void CBreakdownsView::CalculatePercent(CPoint point)
     CRect rctWnd;
     GetClientRect(&rctWnd);
     OnSize(SIZE_RESTORED, rctWnd.Width(), rctWnd.Height());
+}
+
+void CBreakdownsView::OnEndtrackBreakdownList(NMHDR* pNMHDR, LRESULT* pResult)
+{
+    // just save the column widths to registry so restored next time we run
+    UNREFERENCED_PARAMETER(pNMHDR);
+    UNREFERENCED_PARAMETER(pResult);
+    SaveColumnWidthsByName(&m_itemBreakdownList, "BreakdownList_%s");
 }

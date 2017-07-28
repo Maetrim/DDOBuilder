@@ -14,17 +14,7 @@ BreakdownItemTactical::BreakdownItemTactical(
     BreakdownItem(type, treeList, hItem),
     m_tacticalType(tactical)
 {
-    if (m_tacticalType != Tactical_Assassinate)
-    {
-        AddAbility(Ability_Strength);
-
-    }
-    else
-    {
-        // assassinate uses best of dexterity/intelligence
-        AddAbility(Ability_Dexterity);
-        AddAbility(Ability_Intelligence);
-    }
+    AddAbility(Ability_Strength);
 }
 
 BreakdownItemTactical::~BreakdownItemTactical()
@@ -57,11 +47,10 @@ void BreakdownItemTactical::CreateOtherEffects()
         m_otherEffects.clear();
         // all tactical effects have a base DC
         ActiveEffect base(
-                ET_base,
+                Bonus_base,
                 "Base DC",
                 1,
                 10,
-                Bonus_Unknown,
                 "");        // no tree
         AddOtherEffect(base);
 
@@ -75,31 +64,13 @@ void BreakdownItemTactical::CreateOtherEffects()
             // should now have the best option
             std::string bonusName = "Ability bonus (" + EnumEntryText(ability, abilityTypeMap) + ")";
             ActiveEffect feat(
-                    ET_ability,
+                    Bonus_ability,
                     bonusName,
                     1,
                     bonus,
-                    Bonus_Unknown,
                     "");        // no tree
             feat.SetBreakdownDependency(StatToBreakdown(ability)); // so we know which effect to update
             AddOtherEffect(feat);
-        }
-
-        // assassinate also includes Rogue level
-        if (m_tacticalType == Tactical_Assassinate)
-        {
-            std::vector<size_t> classLevels = m_pCharacter->ClassLevels(MAX_LEVEL);
-            if (classLevels[Class_Rogue] != 0)
-            {
-                ActiveEffect feat(
-                        ET_class,
-                        "Rogue levels",
-                        1,
-                        classLevels[Class_Rogue],
-                        Bonus_Unknown,
-                        "");        // no tree
-                AddOtherEffect(feat);
-            }
         }
     }
 }
@@ -118,21 +89,6 @@ bool BreakdownItemTactical::AffectsUs(const Effect & effect) const
     }
     return isUs;
 }
-
-void BreakdownItemTactical::UpdateClassChanged(
-        Character * charData,
-        ClassType type, size_t
-        level)
-{
-    BreakdownItem::UpdateClassChanged(charData, type, level);
-    if (m_tacticalType == Tactical_Assassinate)
-    {
-        // need to re-create other effects list
-        CreateOtherEffects();
-        Populate();
-    }
-}
-
 
 // BreakdownObserver overrides
 void BreakdownItemTactical::UpdateTotalChanged(BreakdownItem * item, BreakdownType type)

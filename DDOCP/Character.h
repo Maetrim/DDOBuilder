@@ -213,6 +213,10 @@ class Character :
         EquippedGear ActiveGearSet();
         void SetGear(const std::string & name, const EquippedGear & gear);
 
+        // guild support
+        void ToggleApplyGuildBuffs();
+        void SetGuildLevel(size_t level);
+
      protected:
         // notifications
         void NotifyAvailableBuildPointsChanged();
@@ -264,6 +268,8 @@ class Character :
                 DL_ENUM(_, AlignmentType, Alignment, Alignment_LawfulGood, alignmentTypeMap) \
                 DL_ENUM(_, RaceType, Race, Race_Human, raceTypeMap) \
                 DL_OBJECT(_, AbilitySpend, BuildPoints) \
+                DL_SIMPLE(_, size_t, GuildLevel, 0) \
+                DL_FLAG(_, ApplyGuildBuffs) \
                 DL_SIMPLE(_, size_t, StrTome, 0) \
                 DL_SIMPLE(_, size_t, DexTome, 0) \
                 DL_SIMPLE(_, size_t, ConTome, 0) \
@@ -335,8 +341,10 @@ class Character :
         void DetermineFatePoints();
         void RevokeGearEffects();
         void ApplyGearEffects();
+        void ApplyGuildBuffs();
         CDDOCPDoc * m_pDocument;
         int m_bonusActionPoints;
         int m_racialTreeSpend;
         int m_otherTreeSpend;
+        size_t m_previousGuildLevel;
 };

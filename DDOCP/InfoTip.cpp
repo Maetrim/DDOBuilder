@@ -4,9 +4,11 @@
 #include "stdafx.h"
 #include "InfoTip.h"
 
+#include "Character.h"
 #include "EnhancementTreeItem.h"
 #include "Feat.h"
 #include "GlobalSupportFunctions.h"
+#include "LevelTraining.h"
 
 namespace
 {
@@ -321,6 +323,135 @@ void CInfoTip::SetStanceItem(
         ++it;
     }
     m_bRequirementMet.resize(m_requirements.size(), true);
+    m_cost = "";
+}
+
+void CInfoTip::SetItem(
+        const Character & charData,
+        const Item * pItem)
+{
+    m_image.Destroy();
+    if (S_OK != LoadImageFile(IT_item, pItem->Icon(), &m_image, false))
+    {
+        // see if its a feat icon we need to use
+        LoadImageFile(IT_feat, pItem->Icon(), &m_image);
+    }
+    m_image.SetTransparentColor(c_transparentColour);
+    m_title = pItem->Name().c_str();
+    m_description = pItem->Description().c_str();
+    // actual carriage return are actual \n in text, convert to correct character
+    GenerateLineBreaks(&m_title);
+    GenerateLineBreaks(&m_description);
+    // add the augments to the description
+    std::vector<ItemAugment> augments = pItem->Augments();
+    for (size_t i = 0; i < augments.size(); ++i)
+    {
+        CString augmentText("\n");
+        augmentText += EnumEntryText(augments[i].Type(), augmentTypeMap);
+        augmentText += ": ";
+        if (augments[i].HasSelectedAugment())
+        {
+            augmentText += augments[i].SelectedAugment().c_str();
+        }
+        else
+        {
+            augmentText += "Empty augment slot";
+        }
+        m_description += augmentText;
+    }
+
+    m_requirements.clear();
+    m_bRequirementMet.clear();
+    m_cost = "";
+}
+
+void CInfoTip::SetLevelItem(
+        const Character & charData,
+        size_t level,
+        const LevelTraining * levelData)
+{
+    // icon is the class level
+    m_image.Destroy();
+    CString icon = EnumEntryText(
+            levelData->HasClass() ? levelData->Class() : Class_Unknown,
+            classTypeMap);
+    LoadImageFile(IT_ui, (LPCTSTR)icon, &m_image, true);
+    m_image.SetTransparentColor(c_transparentColour);
+    m_title = icon;
+    m_description = "";
+    // The description field is the list of feats that can/have been trained
+    // along with the list of skills and skill points available
+    std::vector<TrainableFeatTypes> trainable = charData.TrainableFeatTypeAtLevel(level);
+    if (trainable.size() > 0)
+    {
+        for (size_t tft = 0; tft < trainable.size(); ++tft)
+        {
+            CString label = TrainableFeatTypeLabel(trainable[tft]);
+            label += ": ";
+            TrainedFeat tf = charData.GetTrainedFeat(
+                    level,
+                    trainable[tft]);
+            if (tf.FeatName().empty())
+            {
+                label += "Empty Feat Slot\n";
+            }
+            else
+            {
+                label += tf.FeatName().c_str();
+                label += "\n";
+            }
+            m_description += label;
+        }
+    }
+    else
+    {
+        m_description += "No trainable feats at this level\n";
+    }
+    // now show how many skill points we have at this level unless its an epic level
+    if (levelData->HasClass() && levelData->Class() != Class_Epic)
+    {
+        // blank line between feats and skills
+        m_description += "\n";
+
+        CString text;
+        text.Format("Skill Points Available %d of %d",
+                levelData->SkillPointsAvailable() - levelData->SkillPointsSpent(),
+                levelData->SkillPointsAvailable());
+        m_description += text;
+        // show what skills (if any) points have been spent on
+        const std::list<TrainedSkill> & ts = levelData->TrainedSkills();
+        std::list<TrainedSkill>::const_iterator it = ts.begin();
+        std::vector<size_t> skillRanks(Skill_Count, 0);
+        while (it != ts.end())
+        {
+            skillRanks[(*it).Skill()]++;
+            ++it;
+        }
+        for (size_t i = 0; i < Skill_Count; ++i)
+        {
+            if (skillRanks[i] != 0)
+            {
+                // this skill as been trained, list it
+                bool classSkill = IsClassSkill(levelData->Class(), (SkillType)i);
+                if (classSkill)
+                {
+                    text.Format("\n%s: %d Ranks",
+                            EnumEntryText((SkillType)i, skillTypeMap),
+                            skillRanks[i]);
+                }
+                else
+                {
+                    text.Format("\n%s: %.1f Ranks (%d spent)",
+                            EnumEntryText((SkillType)i, skillTypeMap),
+                            skillRanks[i] * 0.5,
+                            skillRanks[i]);
+                }
+                m_description += text;
+            }
+        }
+    }
+    m_requirements.clear();
+    m_bRequirementMet.clear();
     m_cost = "";
 }
 

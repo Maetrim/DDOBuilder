@@ -19,7 +19,7 @@ BreakdownItemWeapon::BreakdownItemWeapon(
     m_attackBonus(Breakdown_WeaponAttackBonus, Effect_AttackBonus, "Attack Bonus", treeList, hSubItems[0]),
     m_damageBonus(Breakdown_WeaponDamageBonus, Effect_DamageBonus, "Damage Bonus", treeList, hSubItems[1]),
     m_criticalAttackBonus(Breakdown_WeaponAttackBonus, Effect_CriticalAttackBonus, "Critical Attack Bonus", treeList, hSubItems[2]),
-    m_criticalDamageBonus(Breakdown_WeaponDamageBonus, Effect_CriticalDamageBonus, "Critical Damage Bonus", treeList, hSubItems[3]),
+    m_criticalDamageBonus(Breakdown_WeaponDamageBonus, Effect_Seeker, "Critical Damage Bonus", treeList, hSubItems[3]),
     m_attackSpeed(Breakdown_WeaponAttackSpeed, Effect_AttackSpeed, "Attack Speed", treeList, hSubItems[4])
 {
     // we need to update if any of our sub-items update also

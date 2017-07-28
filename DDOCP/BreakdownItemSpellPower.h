@@ -22,6 +22,8 @@ class BreakdownItemSpellPower :
         virtual void CreateOtherEffects() override;
         virtual bool AffectsUs(const Effect & effect) const override;
     private:
+        BreakdownType SpellPowerBreakdown() const;
+
         CString m_title;
         EffectType m_effect;
         SpellPowerType m_spellPowerType;

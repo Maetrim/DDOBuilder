@@ -35,12 +35,11 @@ enum EffectType
     Effect_ArmorCheckPenalty,
     Effect_APBonus,
     Effect_Alacrity,
-    Effect_AssassinateDC,
+    Effect_Assassinate,
     Effect_AttackBonus,
     Effect_AttackSpeed,
     Effect_CasterLevel,
     Effect_CriticalAttackBonus,
-    Effect_CriticalDamageBonus,
     Effect_CriticalMultiplier,
     Effect_CriticalRange,
     Effect_DamageBonus,
@@ -105,6 +104,7 @@ enum EffectType
     Effect_RustSusceptability,
     Effect_SaveBonus,
     Effect_SecondaryShieldBash,
+    Effect_Seeker,
     Effect_SkillBonus,
     Effect_SneakAttackDamage,
     Effect_SneakAttackRange,
@@ -142,12 +142,11 @@ const XmlLib::enumMapEntry<EffectType> effectTypeMap[] =
     {Effect_ArmorCheckPenalty, L"ArmorCheckPenalty"},
     {Effect_APBonus, L"APBonus"},
     {Effect_Alacrity, L"Alacrity"},
-    {Effect_AssassinateDC, L"AssassinateDC"},
+    {Effect_Assassinate, L"Assassinate"},
     {Effect_AttackBonus, L"AttackBonus"},
     {Effect_AttackSpeed, L"AttackSpeed"},
     {Effect_CasterLevel, L"CasterLevel"},
     {Effect_CriticalAttackBonus, L"CriticalAttackBonus"},
-    {Effect_CriticalDamageBonus, L"CriticalDamageBonus"},
     {Effect_CriticalMultiplier, L"CriticalMultiplier"},
     {Effect_CriticalRange, L"CriticalRange"},
     {Effect_DamageBonus, L"DamageBonus"},
@@ -212,6 +211,7 @@ const XmlLib::enumMapEntry<EffectType> effectTypeMap[] =
     {Effect_RustSusceptability, L"RustSusceptability"},
     {Effect_SaveBonus, L"SaveBonus"},
     {Effect_SecondaryShieldBash, L"SecondaryShieldBash"},
+    {Effect_Seeker, L"Seeker"},
     {Effect_SkillBonus, L"SkillBonus"},
     {Effect_SneakAttackDamage, L"SneakAttackDamage"},
     {Effect_SneakAttackRange, L"SneakAttackRange"},
@@ -261,6 +261,7 @@ class Effect :
         #define Effect_PROPERTIES(_) \
                 DL_OPTIONAL_STRING(_, DisplayName) \
                 DL_ENUM(_, EffectType, Type, Effect_Unknown, effectTypeMap) \
+                DL_ENUM(_, BonusType, Bonus, Bonus_Unknown, bonusTypeMap) \
                 DL_OPTIONAL_SIMPLE(_, double, Amount, 0) \
                 DL_OPTIONAL_SIMPLE(_, int, Percentage, 0) \
                 DL_OPTIONAL_SIMPLE(_, int, AmountPerLevel, 0) \
@@ -283,7 +284,6 @@ class Effect :
                 DL_OPTIONAL_SIMPLE(_, double, AmountPerAP, 0.0) \
                 DL_OPTIONAL_STRING(_, SpellLikeAbility) \
                 DL_OPTIONAL_ENUM(_, AbilityType, Ability, Ability_Unknown, abilityTypeMap) \
-                DL_OPTIONAL_ENUM(_, BonusType, Bonus, Bonus_Unknown, bonusTypeMap) \
                 DL_OPTIONAL_ENUM(_, ClassType, Class, Class_Unknown, classTypeMap) \
                 DL_OPTIONAL_ENUM(_, DamageReductionType, DR, DR_Unknown, drTypeMap) \
                 DL_OPTIONAL_ENUM(_, EnergyType, Energy, Energy_Unknown, energyTypeMap) \

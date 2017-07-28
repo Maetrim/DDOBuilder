@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Enhancements>
    <EnhancementTree>
       <!--Arcane Archer is both a Ranger Tree, Half-Elf, Morninglord and an Elf tree-->
       <Name>Arcane Archer</Name>
-       <Version>1</Version>
-       <Requirements>
+      <Version>1</Version>
+      <Requirements>
          <RequiresOneOf>
             <Requirement>
                <Class>Ranger</Class>
@@ -56,11 +56,12 @@ treated as Implements in your hands, granting Spell Power.</Description>
                </Requirement>
             </RequiresOneOf>
          </Requirements>
-          <Effect>
-              <Type>EnchantWeapon</Type>
-              <WeaponClass>Bows</WeaponClass>
-              <AmountVector size="1">1</AmountVector>
-          </Effect>
+         <Effect>
+            <Type>EnchantWeapon</Type>
+            <Bonus>Enhancement</Bonus>
+            <WeaponClass>Bows</WeaponClass>
+            <AmountVector size="1">1</AmountVector>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Arcane Archer: Morphic Arrows</Name>
@@ -98,31 +99,35 @@ and slashing damage. Activation Cost: 20 spell points. Cooldown: 10 seconds.</De
                </Requirement>
             </RequiresOneOf>
          </Requirements>
-          <Stance>
-              <Name>Morphic Arrows</Name>
-              <Icon>AAMorphicArrows</Icon>
-              <Stance>Your arrows deal bludgeoning, piercing and slashing damage.</Stance>
-          </Stance>
-          <Effect>
-              <Type>EnchantWeapon</Type>
-              <WeaponClass>Bows</WeaponClass>
-              <AmountVector size="1">1</AmountVector>
-          </Effect>
-          <Effect>
-              <Type>DRBypass</Type>
-              <DR>Bludgeoning</DR>
-              <Stance>Morphic Arrows</Stance>
-          </Effect>
-          <Effect>
-              <Type>DRBypass</Type>
-              <DR>Piercing</DR>
-              <Stance>Morphic Arrows</Stance>
-          </Effect>
-          <Effect>
-              <Type>DRBypass</Type>
-              <DR>Slashing</DR>
-              <Stance>Morphic Arrows</Stance>
-          </Effect>
+         <Stance>
+            <Name>Morphic Arrows</Name>
+            <Icon>AAMorphicArrows</Icon>
+            <Description>Your arrows deal bludgeoning, piercing and slashing damage.</Description>
+         </Stance>
+         <Effect>
+            <Type>EnchantWeapon</Type>
+            <Bonus>Enhancement</Bonus>
+            <WeaponClass>Bows</WeaponClass>
+            <AmountVector size="1">1</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>DRBypass</Type>
+            <Bonus>Enhancement</Bonus>
+            <DR>Bludgeoning</DR>
+            <Stance>Morphic Arrows</Stance>
+         </Effect>
+         <Effect>
+            <Type>DRBypass</Type>
+            <Bonus>Enhancement</Bonus>
+            <DR>Piercing</DR>
+            <Stance>Morphic Arrows</Stance>
+         </Effect>
+         <Effect>
+            <Type>DRBypass</Type>
+            <Bonus>Enhancement</Bonus>
+            <DR>Slashing</DR>
+            <Stance>Morphic Arrows</Stance>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Arcane Archer: Metalline Arrows</Name>
@@ -160,20 +165,22 @@ Activation Cost: 20 spell points. Cooldown: 10 seconds.</Description>
                </Requirement>
             </RequiresOneOf>
          </Requirements>
-          <Stance>
-              <Name>Metalline Arrows</Name>
-              <Icon>AAMetallineArrows</Icon>
-              <Description>Your arrows bypass all metallic damage reduction</Description>
-          </Stance>
-          <Effect>
-              <Type>EnchantWeapon</Type>
-              <WeaponClass>Bows</WeaponClass>
-              <AmountVector size="1">1</AmountVector>
-          </Effect>
-          <Effect>
-              <Type>DRBypass</Type>
-              <DR>Metalline</DR>
-          </Effect>
+         <Stance>
+            <Name>Metalline Arrows</Name>
+            <Icon>AAMetallineArrows</Icon>
+            <Description>Your arrows bypass all metallic damage reduction</Description>
+         </Stance>
+         <Effect>
+            <Type>EnchantWeapon</Type>
+            <Bonus>Enhancement</Bonus>
+            <WeaponClass>Bows</WeaponClass>
+            <AmountVector size="1">1</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>DRBypass</Type>
+            <Bonus>Enhancement</Bonus>
+            <DR>Metalline</DR>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Arcane Archer: Aligned Arrows</Name>
@@ -211,21 +218,23 @@ damage reduction. Activation Cost: 20 spell points. Cooldown: 10 seconds.</Descr
                </Requirement>
             </RequiresOneOf>
          </Requirements>
-          <Stance>
-              <Name>Aligned Arrows</Name>
-              <Icon>AAAlignedArrows</Icon>
-              <Description>Your arrows bypass all alignment based damage reduction.</Description>
-          </Stance>
-          <Effect>
-              <Type>EnchantWeapon</Type>
-              <WeaponClass>Bows</WeaponClass>
-              <AmountVector size="1">1</AmountVector>
-          </Effect>
-          <Effect>
-              <Type>DRBypass</Type>
-              <DR>Alignment</DR>
-              <Stance>Aligned Arrows</Stance>
-          </Effect>
+         <Stance>
+            <Name>Aligned Arrows</Name>
+            <Icon>AAAlignedArrows</Icon>
+            <Description>Your arrows bypass all alignment based damage reduction.</Description>
+         </Stance>
+         <Effect>
+            <Type>EnchantWeapon</Type>
+            <Bonus>Enhancement</Bonus>
+            <WeaponClass>Bows</WeaponClass>
+            <AmountVector size="1">1</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>DRBypass</Type>
+            <Bonus>Enhancement</Bonus>
+            <DR>Alignment</DR>
+            <Stance>Aligned Arrows</Stance>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Arcane Archer: Shadow Arrows</Name>
@@ -265,26 +274,29 @@ Passive: Equipped bows gains a +1 Competence bonus to Critical Damage Multiplier
                </Requirement>
             </RequiresOneOf>
          </Requirements>
-          <Stance>
-              <Name>Shadow Arrows</Name>
-              <Icon>AAShadowArrows</Icon>
-              <Description>+5% Doubleshot chance with bows</Description>
-          </Stance>
-          <Effect>
-              <Type>EnchantWeapon</Type>
-              <WeaponClass>Bows</WeaponClass>
-              <AmountVector size="1">1</AmountVector>
-          </Effect>
-          <Effect>
-              <Type>Doubleshot</Type>
-              <AmountVector size="1">5</AmountVector>
-              <Stance>Shadow Arrows</Stance>
-          </Effect>
-          <Effect>
-              <Type>CriticalMultiplier</Type>
-              <AmountVector size="1">1</AmountVector>
-              <WeaponClass>Bows</WeaponClass>
-          </Effect>
+         <Stance>
+            <Name>Shadow Arrows</Name>
+            <Icon>AAShadowArrows</Icon>
+            <Description>+5% Doubleshot chance with bows</Description>
+         </Stance>
+         <Effect>
+            <Type>EnchantWeapon</Type>
+            <Bonus>Enhancement</Bonus>
+            <WeaponClass>Bows</WeaponClass>
+            <AmountVector size="1">1</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>Doubleshot</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="1">5</AmountVector>
+            <Stance>Shadow Arrows</Stance>
+         </Effect>
+         <Effect>
+            <Type>CriticalMultiplier</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="1">1</AmountVector>
+            <WeaponClass>Bows</WeaponClass>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Arcane Archer: Master of Imbuement</Name>
@@ -319,20 +331,23 @@ Passive: Equipped bows gains a +1 Competence bonus to Critical Damage Multiplier
                </Requirement>
             </RequiresOneOf>
          </Requirements>
-          <Effect>
-              <Type>EnchantWeapon</Type>
-              <WeaponClass>Bows</WeaponClass>
-              <AmountVector size="1">1</AmountVector>
-          </Effect>
-          <Effect>
-              <Type>AbilityBonus</Type>
-              <Ability>Dexterity</Ability>
-              <AmountVector size="1">4</AmountVector>
-          </Effect>
-          <Effect>
-              <Type>Doubleshot</Type>
-              <AmountVector size="1">20</AmountVector>
-          </Effect>
+         <Effect>
+            <Type>EnchantWeapon</Type>
+            <Bonus>Enhancement</Bonus>
+            <WeaponClass>Bows</WeaponClass>
+            <AmountVector size="1">1</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Ability>Dexterity</Ability>
+            <AmountVector size="1">4</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>Doubleshot</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="1">20</AmountVector>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Arcane Archer: Conjure Arrows</Name>
@@ -433,15 +448,17 @@ Antirequisite: Cannot take Rank 3 if you already have the Magical Training feat.
                </Requirement>
             </RequiresOneOf>
          </Requirements>
-          <Effect>
-              <Type>SpellPoints</Type>
-              <AmountVector size="3">30 60 100</AmountVector>
-          </Effect>
-          <Effect>
-              <Type>GrantFeat</Type>
-              <Feat>Magical Training</Feat>
-              <!--Handle only for tier 3 if feat not trained-->
-          </Effect>
+         <Effect>
+            <Type>SpellPoints</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">30 60 100</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Enhancement</Bonus>
+            <Feat>Magical Training</Feat>
+            <!--Handle only for tier 3 if feat not trained-->
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Arcane Archer: Elemental Arrows I</Name>
@@ -477,11 +494,11 @@ Passive: +5 Universal Spell Power</Description>
                </Requirement>
             </RequiresOneOf>
          </Requirements>
-          <Stance>
-              <Name>Elemental Arrows</Name>
-              <Icon>AAElementalArrows</Icon>
-              <Description>Your arrows are imbued with elemental damage of your choice</Description>
-          </Stance>
+         <Stance>
+            <Name>Elemental Arrows</Name>
+            <Icon>AAElementalArrows</Icon>
+            <Description>Your arrows are imbued with elemental damage of your choice</Description>
+         </Stance>
          <Selector>
             <EnhancementSelection>
                <Name>Corrosive Arrows</Name>
@@ -489,16 +506,17 @@ Passive: +5 Universal Spell Power</Description>
 dealing 1d8 acid damage on hit, scaling with Spell Power. </Description>
                <Icon>AACorrosiveArrows</Icon>
                <Cost>2</Cost>
-                <Effect>
-                    <Type>DamageBonus</Type>
-                    <WeaponClass>Bows</WeaponClass>
-                    <Dice>
-                        <Number size="1">1</Number>
-                        <Sides size="1">8</Sides>
-                    </Dice>
-                    <Energy>Acid</Energy>
-                    <Stance>Elemental Arrows</Stance>
-                </Effect>
+               <Effect>
+                  <Type>DamageBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <WeaponClass>Bows</WeaponClass>
+                  <Dice>
+                     <Number size="1">1</Number>
+                     <Sides size="1">8</Sides>
+                  </Dice>
+                  <Energy>Acid</Energy>
+                  <Stance>Elemental Arrows</Stance>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Flaming Arrows</Name>
@@ -506,16 +524,17 @@ dealing 1d8 acid damage on hit, scaling with Spell Power. </Description>
 dealing 1d8 fire damage on hit, scaling with Spell Power. </Description>
                <Icon>AAFlamingArrows</Icon>
                <Cost>2</Cost>
-                <Effect>
-                    <Type>DamageBonus</Type>
-                    <WeaponClass>Bows</WeaponClass>
-                    <Dice>
-                        <Number size="1">1</Number>
-                        <Sides size="1">8</Sides>
-                    </Dice>
-                    <Energy>Fire</Energy>
-                    <Stance>Elemental Arrows</Stance>
-                </Effect>
+               <Effect>
+                  <Type>DamageBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <WeaponClass>Bows</WeaponClass>
+                  <Dice>
+                     <Number size="1">1</Number>
+                     <Sides size="1">8</Sides>
+                  </Dice>
+                  <Energy>Fire</Energy>
+                  <Stance>Elemental Arrows</Stance>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Frost Arrows</Name>
@@ -523,16 +542,17 @@ dealing 1d8 fire damage on hit, scaling with Spell Power. </Description>
 dealing 1d8 cold damage on hit, scaling with Spell Power. </Description>
                <Icon>AAFrostArrows</Icon>
                <Cost>2</Cost>
-                <Effect>
-                    <Type>DamageBonus</Type>
-                    <WeaponClass>Bows</WeaponClass>
-                    <Dice>
-                        <Number size="1">1</Number>
-                        <Sides size="1">8</Sides>
-                    </Dice>
-                    <Energy>Cold</Energy>
-                    <Stance>Elemental Arrows</Stance>
-                </Effect>
+               <Effect>
+                  <Type>DamageBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <WeaponClass>Bows</WeaponClass>
+                  <Dice>
+                     <Number size="1">1</Number>
+                     <Sides size="1">8</Sides>
+                  </Dice>
+                  <Energy>Cold</Energy>
+                  <Stance>Elemental Arrows</Stance>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Shock Arrows</Name>
@@ -540,23 +560,25 @@ dealing 1d8 cold damage on hit, scaling with Spell Power. </Description>
 dealing 1d8 electrical damage on hit, scaling with Spell Power.</Description>
                <Icon>AAShockArrows</Icon>
                <Cost>2</Cost>
-                <Effect>
-                    <Type>DamageBonus</Type>
-                    <WeaponClass>Bows</WeaponClass>
-                    <Dice>
-                        <Number size="1">1</Number>
-                        <Sides size="1">8</Sides>
-                    </Dice>
-                    <Energy>Electric</Energy>
-                    <Stance>Elemental Arrows</Stance>
-                </Effect>
+               <Effect>
+                  <Type>DamageBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <WeaponClass>Bows</WeaponClass>
+                  <Dice>
+                     <Number size="1">1</Number>
+                     <Sides size="1">8</Sides>
+                  </Dice>
+                  <Energy>Electric</Energy>
+                  <Stance>Elemental Arrows</Stance>
+               </Effect>
             </EnhancementSelection>
          </Selector>
-          <Effect>
-              <Type>SpellPower</Type>
-              <SpellPower>All</SpellPower>
-              <AmountVector size="1">5</AmountVector>
-          </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>All</SpellPower>
+            <AmountVector size="1">5</AmountVector>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Arcane Archer: Awareness</Name>
@@ -588,26 +610,30 @@ dealing 1d8 electrical damage on hit, scaling with Spell Power.</Description>
                </Requirement>
             </RequiresOneOf>
          </Requirements>
-          <Effect>
-              <Type>SkillBonus</Type>
-              <Skill>Listen</Skill>
-              <AmountVector size="3">1 2 3</AmountVector>
-          </Effect>
-          <Effect>
-              <Type>SkillBonus</Type>
-              <Skill>Search</Skill>
-              <AmountVector size="3">1 2 3</AmountVector>
-          </Effect>
-          <Effect>
-              <Type>SkillBonus</Type>
-              <Skill>Spot</Skill>
-              <AmountVector size="3">1 2 3</AmountVector>
-          </Effect>
-          <Effect>
-              <Type>AttackBonus</Type>
-              <Weapon>All</Weapon>
-              <AmountVector size="3">1 2 3</AmountVector>
-          </Effect>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Skill>Listen</Skill>
+            <AmountVector size="3">1 2 3</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Skill>Search</Skill>
+            <AmountVector size="3">1 2 3</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Skill>Spot</Skill>
+            <AmountVector size="3">1 2 3</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Weapon>All</Weapon>
+            <AmountVector size="3">1 2 3</AmountVector>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Arcane Archer: Dispelling Shot</Name>
@@ -678,32 +704,34 @@ Force Arrows dice. This damage also scales with Spell Power.</Description>
                </Requirement>
             </RequiresOneOf>
          </Requirements>
-          <Stance>
-              <Name>Force Arrows</Name>
-              <Icon>AAForceArrows</Icon>
-              <Description>Your arrows gain On Hit: 1d4/1d6/1d6+(1d10-3d10 on crit) force damage and the
+         <Stance>
+            <Name>Force Arrows</Name>
+            <Icon>AAForceArrows</Icon>
+            <Description>Your arrows gain On Hit: 1d4/1d6/1d6+(1d10-3d10 on crit) force damage and the
 Ghost Touch ability.</Description>
-          </Stance>
-          <Effect>
-              <Type>DamageBonus</Type>
-              <WeaponClass>Bows</WeaponClass>
-              <Dice>
-                  <Number size="3">1 1 1</Number>
-                  <Sides size="3">4 6 6</Sides>
-              </Dice>
-              <Energy>Force</Energy>
-              <Stance>Force Arrows</Stance>
-          </Effect>
-          <Effect>
-              <Type>CriticalDamageBonus</Type>
-              <WeaponClass>Bows</WeaponClass>
-              <Dice>
-                  <Number size="3">1 2 3</Number>
-                  <Sides size="3">10 10 10</Sides>
-              </Dice>
-              <Energy>Force</Energy>
-              <Stance>Force Arrows</Stance>
-          </Effect>
+         </Stance>
+         <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <WeaponClass>Bows</WeaponClass>
+            <Dice>
+               <Number size="3">1 1 1</Number>
+               <Sides size="3">4 6 6</Sides>
+            </Dice>
+            <Energy>Force</Energy>
+            <Stance>Force Arrows</Stance>
+         </Effect>
+         <Effect>
+            <Type>Seeker</Type>
+            <Bonus>Enhancement</Bonus>
+            <WeaponClass>Bows</WeaponClass>
+            <Dice>
+               <Number size="3">1 2 3</Number>
+               <Sides size="3">10 10 10</Sides>
+            </Dice>
+            <Energy>Force</Energy>
+            <Stance>Force Arrows</Stance>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Arcane Archer: Inferno Shot</Name>
@@ -791,16 +819,17 @@ dealing 1d8 acid damage on hit, scaling with Spell Power. </Description>
                      </Requirement>
                   </RequiresNoneOf>
                </Requirements>
-                <Effect>
-                    <Type>DamageBonus</Type>
-                    <WeaponClass>Bows</WeaponClass>
-                    <Dice>
-                        <Number size="1">1</Number>
-                        <Sides size="1">8</Sides>
-                    </Dice>
-                    <Energy>Acid</Energy>
-                    <Stance>Elemental Arrows</Stance>
-                </Effect>
+               <Effect>
+                  <Type>DamageBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <WeaponClass>Bows</WeaponClass>
+                  <Dice>
+                     <Number size="1">1</Number>
+                     <Sides size="1">8</Sides>
+                  </Dice>
+                  <Energy>Acid</Energy>
+                  <Stance>Elemental Arrows</Stance>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Flaming Arrows</Name>
@@ -816,16 +845,17 @@ dealing 1d8 fire damage on hit, scaling with Spell Power. </Description>
                      </Requirement>
                   </RequiresNoneOf>
                </Requirements>
-                <Effect>
-                    <Type>DamageBonus</Type>
-                    <WeaponClass>Bows</WeaponClass>
-                    <Dice>
-                        <Number size="1">1</Number>
-                        <Sides size="1">8</Sides>
-                    </Dice>
-                    <Energy>Fire</Energy>
-                    <Stance>Elemental Arrows</Stance>
-                </Effect>
+               <Effect>
+                  <Type>DamageBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <WeaponClass>Bows</WeaponClass>
+                  <Dice>
+                     <Number size="1">1</Number>
+                     <Sides size="1">8</Sides>
+                  </Dice>
+                  <Energy>Fire</Energy>
+                  <Stance>Elemental Arrows</Stance>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Frost Arrows</Name>
@@ -841,16 +871,17 @@ dealing 1d8 cold damage on hit, scaling with Spell Power. </Description>
                      </Requirement>
                   </RequiresNoneOf>
                </Requirements>
-                <Effect>
-                    <Type>DamageBonus</Type>
-                    <WeaponClass>Bows</WeaponClass>
-                    <Dice>
-                        <Number size="1">1</Number>
-                        <Sides size="1">8</Sides>
-                    </Dice>
-                    <Energy>Cold</Energy>
-                    <Stance>Elemental Arrows</Stance>
-                </Effect>
+               <Effect>
+                  <Type>DamageBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <WeaponClass>Bows</WeaponClass>
+                  <Dice>
+                     <Number size="1">1</Number>
+                     <Sides size="1">8</Sides>
+                  </Dice>
+                  <Energy>Cold</Energy>
+                  <Stance>Elemental Arrows</Stance>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Shock Arrows</Name>
@@ -866,23 +897,24 @@ dealing 1d8 electrical damage on hit, scaling with Spell Power.</Description>
                      </Requirement>
                   </RequiresNoneOf>
                </Requirements>
-                <Effect>
-                    <Type>DamageBonus</Type>
-                    <WeaponClass>Bows</WeaponClass>
-                    <Dice>
-                        <Number size="1">1</Number>
-                        <Sides size="1">8</Sides>
-                    </Dice>
-                    <Energy>Electric</Energy>
-                    <Stance>Elemental Arrows</Stance>
-                </Effect>
+               <Effect>
+                  <Type>DamageBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <WeaponClass>Bows</WeaponClass>
+                  <Dice>
+                     <Number size="1">1</Number>
+                     <Sides size="1">8</Sides>
+                  </Dice>
+                  <Energy>Electric</Energy>
+                  <Stance>Elemental Arrows</Stance>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Elemental Damage</Name>
                <Description>+2 Damage dice with Elemental Arrows (Corrosive, Frost, Shock, Flaming, Force)</Description>
                <Icon>AAImprovedElementalArrows</Icon>
                <Cost>2</Cost>
-                <!--How to handle additional damage dice?-->
+               <!--How to handle additional damage dice?-->
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
@@ -1004,11 +1036,12 @@ Passive: +1 bonus to DC of Enchantment Spells</Description>
                </Requirement>
             </RequiresOneOf>
          </Requirements>
-          <Effect>
-              <Type>SpellDC</Type>
-              <School>Enchantment</School>
-              <AmountVector size="1">1</AmountVector>
-          </Effect>
+         <Effect>
+            <Type>SpellDC</Type>
+            <Bonus>Enhancement</Bonus>
+            <School>Enchantment</School>
+            <AmountVector size="1">1</AmountVector>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Arcane Archer: Soul Magic</Name>
@@ -1042,11 +1075,12 @@ temporary spell points that last for one minute.
                </Requirement>
             </RequiresOneOf>
          </Requirements>
-          <Effect>
-              <Type>SpellPower</Type>
-              <SpellPower>All</SpellPower>
-              <AmountVector size="1">10</AmountVector>
-          </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>All</SpellPower>
+            <AmountVector size="1">10</AmountVector>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Arcane Archer: Elemental Arrows III</Name>
@@ -1103,16 +1137,17 @@ dealing 1d8 acid damage on hit, scaling with Spell Power. </Description>
                      </Requirement>
                   </RequiresNoneOf>
                </Requirements>
-                <Effect>
-                    <Type>DamageBonus</Type>
-                    <WeaponClass>Bows</WeaponClass>
-                    <Dice>
-                        <Number size="1">1</Number>
-                        <Sides size="1">8</Sides>
-                    </Dice>
-                    <Energy>Acid</Energy>
-                    <Stance>Elemental Arrows</Stance>
-                </Effect>
+               <Effect>
+                  <Type>DamageBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <WeaponClass>Bows</WeaponClass>
+                  <Dice>
+                     <Number size="1">1</Number>
+                     <Sides size="1">8</Sides>
+                  </Dice>
+                  <Energy>Acid</Energy>
+                  <Stance>Elemental Arrows</Stance>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Flaming Arrows</Name>
@@ -1132,16 +1167,17 @@ dealing 1d8 fire damage on hit, scaling with Spell Power. </Description>
                      </Requirement>
                   </RequiresNoneOf>
                </Requirements>
-                <Effect>
-                    <Type>DamageBonus</Type>
-                    <WeaponClass>Bows</WeaponClass>
-                    <Dice>
-                        <Number size="1">1</Number>
-                        <Sides size="1">8</Sides>
-                    </Dice>
-                    <Energy>Fire</Energy>
-                    <Stance>Elemental Arrows</Stance>
-                </Effect>
+               <Effect>
+                  <Type>DamageBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <WeaponClass>Bows</WeaponClass>
+                  <Dice>
+                     <Number size="1">1</Number>
+                     <Sides size="1">8</Sides>
+                  </Dice>
+                  <Energy>Fire</Energy>
+                  <Stance>Elemental Arrows</Stance>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Frost Arrows</Name>
@@ -1161,16 +1197,17 @@ dealing 1d8 cold damage on hit, scaling with Spell Power. </Description>
                      </Requirement>
                   </RequiresNoneOf>
                </Requirements>
-                <Effect>
-                    <Type>DamageBonus</Type>
-                    <WeaponClass>Bows</WeaponClass>
-                    <Dice>
-                        <Number size="1">1</Number>
-                        <Sides size="1">8</Sides>
-                    </Dice>
-                    <Energy>Cold</Energy>
-                    <Stance>Elemental Arrows</Stance>
-                </Effect>
+               <Effect>
+                  <Type>DamageBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <WeaponClass>Bows</WeaponClass>
+                  <Dice>
+                     <Number size="1">1</Number>
+                     <Sides size="1">8</Sides>
+                  </Dice>
+                  <Energy>Cold</Energy>
+                  <Stance>Elemental Arrows</Stance>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Shock Arrows</Name>
@@ -1190,16 +1227,17 @@ dealing 1d8 electrical damage on hit, scaling with Spell Power.</Description>
                      </Requirement>
                   </RequiresNoneOf>
                </Requirements>
-                <Effect>
-                    <Type>DamageBonus</Type>
-                    <WeaponClass>Bows</WeaponClass>
-                    <Dice>
-                        <Number size="1">1</Number>
-                        <Sides size="1">8</Sides>
-                    </Dice>
-                    <Energy>Electric</Energy>
-                    <Stance>Elemental Arrows</Stance>
-                </Effect>
+               <Effect>
+                  <Type>DamageBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <WeaponClass>Bows</WeaponClass>
+                  <Dice>
+                     <Number size="1">1</Number>
+                     <Sides size="1">8</Sides>
+                  </Dice>
+                  <Energy>Electric</Energy>
+                  <Stance>Elemental Arrows</Stance>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Elemental Damage</Name>
@@ -1214,14 +1252,15 @@ dealing 1d8 electrical damage on hit, scaling with Spell Power.</Description>
                      </Requirement>
                   </RequiresNoneOf>
                </Requirements>
-                <!--How to handle additional damage dice?-->
+               <!--How to handle additional damage dice?-->
             </EnhancementSelection>
          </Selector>
-          <Effect>
-              <Type>SpellPower</Type>
-              <SpellPower>All</SpellPower>
-              <AmountVector size="1">5</AmountVector>
-          </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>All</SpellPower>
+            <AmountVector size="1">5</AmountVector>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Arcane Archer: Ability I</Name>
@@ -1260,22 +1299,24 @@ dealing 1d8 electrical damage on hit, scaling with Spell Power.</Description>
                <Description>+1 Dexterity</Description>
                <Icon>Dexterity</Icon>
                <Cost>2</Cost>
-                <Effect>
-                    <Type>AbilityBonus</Type>
-                    <Ability>Dexterity</Ability>
-                    <AmountVector size="1">1</AmountVector>
-                </Effect>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Ability>Dexterity</Ability>
+                  <AmountVector size="1">1</AmountVector>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>+1 Wisdom</Name>
                <Description>+1 Wisdom</Description>
                <Icon>Wisdom</Icon>
                <Cost>2</Cost>
-                <Effect>
-                    <Type>AbilityBonus</Type>
-                    <Ability>Wisdom</Ability>
-                    <AmountVector size="1">1</AmountVector>
-                </Effect>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Ability>Wisdom</Ability>
+                  <AmountVector size="1">1</AmountVector>
+               </Effect>
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
@@ -1315,11 +1356,12 @@ Instant kill does not affect bosses.</Description>
                </Requirement>
             </RequiresOneOf>
          </Requirements>
-          <Effect>
-              <Type>SpellDC</Type>
-              <School>Enchantment</School>
-              <AmountVector size="1">1</AmountVector>
-          </Effect>
+         <Effect>
+            <Type>SpellDC</Type>
+            <Bonus>Enhancement</Bonus>
+            <School>Enchantment</School>
+            <AmountVector size="1">1</AmountVector>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Arcane Archer: Paralyzing Arrows</Name>
@@ -1359,11 +1401,12 @@ Passive: +1 bonus to DC of Enchantment Spells.</Description>
                <Enhancement>AATerrorArrows</Enhancement>
             </Requirement>
          </Requirements>
-          <Effect>
-              <Type>SpellDC</Type>
-              <School>Enchantment</School>
-              <AmountVector size="1">1</AmountVector>
-          </Effect>
+         <Effect>
+            <Type>SpellDC</Type>
+            <Bonus>Enhancement</Bonus>
+            <School>Enchantment</School>
+            <AmountVector size="1">1</AmountVector>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Arcane Archer: Smiting Arrows</Name>
@@ -1401,11 +1444,12 @@ Instant kill does not affect bosses.</Description>
                </Requirement>
             </RequiresOneOf>
          </Requirements>
-          <Effect>
-              <Type>SpellDC</Type>
-              <School>Enchantment</School>
-              <AmountVector size="1">1</AmountVector>
-          </Effect>
+         <Effect>
+            <Type>SpellDC</Type>
+            <Bonus>Enhancement</Bonus>
+            <School>Enchantment</School>
+            <AmountVector size="1">1</AmountVector>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Arcane Archer: Elemental Arrows IV</Name>
@@ -1466,16 +1510,17 @@ dealing 1d8 acid damage on hit, scaling with Spell Power. </Description>
                      </Requirement>
                   </RequiresNoneOf>
                </Requirements>
-                <Effect>
-                    <Type>DamageBonus</Type>
-                    <WeaponClass>Bows</WeaponClass>
-                    <Dice>
-                        <Number size="1">1</Number>
-                        <Sides size="1">8</Sides>
-                    </Dice>
-                    <Energy>Acid</Energy>
-                    <Stance>Elemental Arrows</Stance>
-                </Effect>
+               <Effect>
+                  <Type>DamageBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <WeaponClass>Bows</WeaponClass>
+                  <Dice>
+                     <Number size="1">1</Number>
+                     <Sides size="1">8</Sides>
+                  </Dice>
+                  <Energy>Acid</Energy>
+                  <Stance>Elemental Arrows</Stance>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Flaming Arrows</Name>
@@ -1499,16 +1544,17 @@ dealing 1d8 fire damage on hit, scaling with Spell Power. </Description>
                      </Requirement>
                   </RequiresNoneOf>
                </Requirements>
-                <Effect>
-                    <Type>DamageBonus</Type>
-                    <WeaponClass>Bows</WeaponClass>
-                    <Dice>
-                        <Number size="1">1</Number>
-                        <Sides size="1">8</Sides>
-                    </Dice>
-                    <Energy>Fire</Energy>
-                    <Stance>Elemental Arrows</Stance>
-                </Effect>
+               <Effect>
+                  <Type>DamageBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <WeaponClass>Bows</WeaponClass>
+                  <Dice>
+                     <Number size="1">1</Number>
+                     <Sides size="1">8</Sides>
+                  </Dice>
+                  <Energy>Fire</Energy>
+                  <Stance>Elemental Arrows</Stance>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Frost Arrows</Name>
@@ -1532,16 +1578,17 @@ dealing 1d8 cold damage on hit, scaling with Spell Power. </Description>
                      </Requirement>
                   </RequiresNoneOf>
                </Requirements>
-                <Effect>
-                    <Type>DamageBonus</Type>
-                    <WeaponClass>Bows</WeaponClass>
-                    <Dice>
-                        <Number size="1">1</Number>
-                        <Sides size="1">8</Sides>
-                    </Dice>
-                    <Energy>Cold</Energy>
-                    <Stance>Elemental Arrows</Stance>
-                </Effect>
+               <Effect>
+                  <Type>DamageBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <WeaponClass>Bows</WeaponClass>
+                  <Dice>
+                     <Number size="1">1</Number>
+                     <Sides size="1">8</Sides>
+                  </Dice>
+                  <Energy>Cold</Energy>
+                  <Stance>Elemental Arrows</Stance>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Shock Arrows</Name>
@@ -1565,16 +1612,17 @@ dealing 1d8 electrical damage on hit, scaling with Spell Power.</Description>
                      </Requirement>
                   </RequiresNoneOf>
                </Requirements>
-                <Effect>
-                    <Type>DamageBonus</Type>
-                    <WeaponClass>Bows</WeaponClass>
-                    <Dice>
-                        <Number size="1">1</Number>
-                        <Sides size="1">8</Sides>
-                    </Dice>
-                    <Energy>Electric</Energy>
-                    <Stance>Elemental Arrows</Stance>
-                </Effect>
+               <Effect>
+                  <Type>DamageBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <WeaponClass>Bows</WeaponClass>
+                  <Dice>
+                     <Number size="1">1</Number>
+                     <Sides size="1">8</Sides>
+                  </Dice>
+                  <Energy>Electric</Energy>
+                  <Stance>Elemental Arrows</Stance>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Elemental Damage</Name>
@@ -1593,14 +1641,15 @@ dealing 1d8 electrical damage on hit, scaling with Spell Power.</Description>
                      </Requirement>
                   </RequiresNoneOf>
                </Requirements>
-                <!--How to handle additional damage dice?-->
+               <!--How to handle additional damage dice?-->
             </EnhancementSelection>
          </Selector>
-          <Effect>
-              <Type>SpellPower</Type>
-              <SpellPower>All</SpellPower>
-              <AmountVector size="1">5</AmountVector>
-          </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>All</SpellPower>
+            <AmountVector size="1">5</AmountVector>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Arcane Archer: Ability II</Name>
@@ -1641,22 +1690,24 @@ dealing 1d8 electrical damage on hit, scaling with Spell Power.</Description>
                <Description>+1 Dexterity</Description>
                <Icon>Dexterity</Icon>
                <Cost>2</Cost>
-                <Effect>
-                    <Type>AbilityBonus</Type>
-                    <Ability>Dexterity</Ability>
-                    <AmountVector size="1">1</AmountVector>
-                </Effect>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Ability>Dexterity</Ability>
+                  <AmountVector size="1">1</AmountVector>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>+1 Wisdom</Name>
                <Description>+1 Wisdom</Description>
                <Icon>Wisdom</Icon>
                <Cost>2</Cost>
-                <Effect>
-                    <Type>AbilityBonus</Type>
-                    <Ability>Wisdom</Ability>
-                    <AmountVector size="1">1</AmountVector>
-                </Effect>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Ability>Wisdom</Ability>
+                  <AmountVector size="1">1</AmountVector>
+               </Effect>
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
@@ -1695,11 +1746,12 @@ dealing 1d8 electrical damage on hit, scaling with Spell Power.</Description>
                <MinLevel>12</MinLevel>
             </Requirement>
          </Requirements>
-          <Effect>
-              <Type>SpellPower</Type>
-              <SpellPower>All</SpellPower>
-              <AmountVector size="1">10</AmountVector>
-          </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>All</SpellPower>
+            <AmountVector size="1">10</AmountVector>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Arcane Archer: Arrow of Slaying</Name>
@@ -1820,11 +1872,12 @@ and loses one stack on expiration.)</Description>
 Passive: +5 Universal Spell Power</Description>
                <Icon>AAImprovedElementalArrows</Icon>
                <Cost>2</Cost>
-                <Effect>
-                    <Type>SpellPower</Type>
-                    <SpellPower>All</SpellPower>
-                    <AmountVector size="1">5</AmountVector>
-                </Effect>
+               <Effect>
+                  <Type>SpellPower</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <SpellPower>All</SpellPower>
+                  <AmountVector size="1">5</AmountVector>
+               </Effect>
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
@@ -1863,11 +1916,12 @@ This is considered a Magic Weapon effect. (Does not stack with the spell Enchant
                <MinLevel>12</MinLevel>
             </Requirement>
          </Requirements>
-          <Effect>
-              <Type>EnchantWeapon</Type>
-              <WeaponClass>Bows</WeaponClass>
-              <AmountVector size="1">2</AmountVector>
-          </Effect>
+         <Effect>
+            <Type>EnchantWeapon</Type>
+            <Bonus>Enhancement</Bonus>
+            <WeaponClass>Bows</WeaponClass>
+            <AmountVector size="1">2</AmountVector>
+         </Effect>
       </EnhancementTreeItem>
    </EnhancementTree>
 </Enhancements>

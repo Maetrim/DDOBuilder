@@ -48,11 +48,10 @@ void BreakdownItemWeaponAttackBonus::CreateOtherEffects()
         if (amount > 0)
         {
             ActiveEffect amountTrained(
-                    ET_base,
+                    Bonus_base,
                     "Base Attack Bonus",
                     1,
                     amount,
-                    Bonus_Unknown,
                     "");        // no tree
             AddOtherEffect(amountTrained);
         }
@@ -61,11 +60,10 @@ void BreakdownItemWeaponAttackBonus::CreateOtherEffects()
         {
             // non-proficient penalty
             ActiveEffect amountTrained(
-                    ET_feat,
+                    Bonus_penalty,
                     "Non proficient penalty",
                     1,
                     -4,
-                    Bonus_Unknown,
                     "");        // no tree
             AddOtherEffect(amountTrained);
 
@@ -76,11 +74,10 @@ void BreakdownItemWeaponAttackBonus::CreateOtherEffects()
             if (pBI->Total() != 0)
             {
                 ActiveEffect acp(
-                        ET_item,
+                        Bonus_penalty,
                         "Armor check penalty",
                         1,
                         pBI->Total(),
-                        Bonus_Unknown,
                         "");        // no tree
                 AddOtherEffect(acp);
             }
@@ -98,11 +95,10 @@ void BreakdownItemWeaponAttackBonus::CreateOtherEffects()
             // should now have the best option
             std::string bonusName = "Ability bonus (" + EnumEntryText(ability, abilityTypeMap) + ")";
             ActiveEffect feat(
-                    ET_ability,
+                    Bonus_ability,
                     bonusName,
                     1,
                     bonus,
-                    Bonus_Unknown,
                     "");        // no tree
             feat.SetBreakdownDependency(StatToBreakdown(ability)); // so we know which effect to update
             AddOtherEffect(feat);

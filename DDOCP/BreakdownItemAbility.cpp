@@ -47,11 +47,10 @@ void BreakdownItemAbility::CreateOtherEffects()
         if (amount != 0)
         {
             ActiveEffect tome(
-                    ET_ability,
+                    Bonus_ability,
                     "Base",
                     1,
                     amount,
-                    Bonus_Unknown,
                     "");        // no tree
             AddOtherEffect(tome);
         }
@@ -60,11 +59,10 @@ void BreakdownItemAbility::CreateOtherEffects()
         if (amount != 0)
         {
             ActiveEffect tome(
-                    ET_racial,
+                    Bonus_racial,
                     "Racial Modifier",
                     1,
                     amount,
-                    Bonus_Unknown,
                     "");        // no tree
             AddOtherEffect(tome);
         }
@@ -73,11 +71,10 @@ void BreakdownItemAbility::CreateOtherEffects()
         if (amount > 0)
         {
             ActiveEffect tome(
-                    ET_tome,
+                    Bonus_inherent,
                     "Ability Tome",
                     1,
                     amount,
-                    Bonus_Unknown,
                     "");        // no tree
             AddOtherEffect(tome);
         }
@@ -86,11 +83,10 @@ void BreakdownItemAbility::CreateOtherEffects()
         if (amount > 0)
         {
             ActiveEffect tome(
-                    ET_levelUp,
+                    Bonus_levelUps,
                     "Level Ups",
                     (int)amount,
                     1,
-                    Bonus_Unknown,
                     "");        // no tree
             AddOtherEffect(tome);
         }

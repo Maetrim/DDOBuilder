@@ -47,6 +47,14 @@ enum AugmentType
     Augment_LegendarySlavelordsBonus,
     Augment_LegendarySlavelordsSetBonus,
     Augment_LegendarySlavelordsAugmentSlot,
+    // specials
+    Augment_Erudition,
+    Augment_Prowess,
+    Augment_Subterfuge,
+    Augment_Avithoul,
+    Augment_DunRobarPrefix,
+    Augment_DunRobarSuffix,
+    Augment_Szind,
 };
 const XmlLib::enumMapEntry<AugmentType> augmentTypeMap[] =
 {
@@ -83,5 +91,13 @@ const XmlLib::enumMapEntry<AugmentType> augmentTypeMap[] =
     {Augment_LegendarySlavelordsBonus, L"Legendary Slavelords Bonus"},
     {Augment_LegendarySlavelordsSetBonus, L"Legendary Slavelords Set Bonus"},
     {Augment_LegendarySlavelordsAugmentSlot, L"Legendary Slavelords Augment Slot"},
+
+    {Augment_Erudition, L"Erudition"},
+    {Augment_Prowess, L"Prowess"},
+    {Augment_Subterfuge, L"Subterfuge"},
+    {Augment_Avithoul, L"Avithoul"},
+    {Augment_DunRobarPrefix, L"Dun'Robar Prefix"},
+    {Augment_DunRobarSuffix,L"Dun'Robar Suffix"},
+    {Augment_Szind, L"Szind"},
     {AugmentType(0), NULL}
 };

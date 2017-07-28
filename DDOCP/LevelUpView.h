@@ -5,6 +5,7 @@
 #include "Character.h"
 #include "SortHeaderCtrl.h"
 #include "InfoTip.h"
+#include "LevelButton.h"
 
 class CLevelUpView :
     public CFormView,
@@ -44,13 +45,13 @@ class CLevelUpView :
         afx_msg void OnButtonSkillPlus();
         afx_msg void OnButtonSkillMinus();
         afx_msg void OnFeatSelection(UINT nID);
-        afx_msg void OnButtonLevel(UINT nID);
         afx_msg void OnCustomDrawSkills(NMHDR* pNMHDR, LRESULT* pResult);
         afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
         afx_msg LRESULT OnUpdateComplete(WPARAM wParam, LPARAM lParam);
         afx_msg void OnMouseMove(UINT nFlags, CPoint point);
+        afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
         afx_msg LRESULT OnMouseLeave(WPARAM wParam, LPARAM lParam);
-        virtual BOOL PreTranslateMessage(MSG* pMsg);
+        afx_msg void OnButtonLevel(UINT nID);
         DECLARE_MESSAGE_MAP()
 
         // DocumentObserver overrides
@@ -78,12 +79,14 @@ class CLevelUpView :
         void PopulateCombobox(size_t index, const std::string & selection);
         void PopulateSkills();
         void PopulateAutomaticFeats();
-        void ShowTip(size_t featIndex, CRect itemRect);
+        void ShowFeatTip(size_t featIndex, CRect itemRect);
+        void ShowLevelTip(size_t level, CRect itemRect);
         void HideTip();
-        void SetTooltipText(const CString & featName, CPoint tipTopLeft);
+        void SetFeatTooltipText(const CString & featName, CPoint tipTopLeft);
+        void SetLevelTooltipText(size_t level, CPoint tipTopLeft);
 
         Character * m_pCharacter;
-        CMFCButton m_buttonLevel[MAX_LEVEL];
+        CLevelButton m_buttonLevels[MAX_LEVEL];
         CStatic m_staticClass;
         CComboBox m_comboClass[3];
         CStatic m_staticFeatDescription[3];

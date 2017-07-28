@@ -1,9 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Enhancements>
    <EnhancementTree>
       <Name>Ravager</Name>
-       <Version>1</Version>
-       <Requirements>
+      <Version>1</Version>
+      <Requirements>
          <Requirement>
             <Class>Barbarian</Class>
          </Requirement>
@@ -44,14 +44,15 @@ This damage scales with 100% Melee Power.</Description>
                <Enhancement>RavCore1</Enhancement>
             </Requirement>
          </Requirements>
-          <Effect>
-              <Type>DamageBonus</Type>
-              <WeaponClass>Melee</WeaponClass>
-              <Dice>
-                  <Number size="1">1</Number>
-                  <Sides size="1">6</Sides>
-              </Dice>
-          </Effect>
+         <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <WeaponClass>Melee</WeaponClass>
+            <Dice>
+               <Number size="1">1</Number>
+               <Sides size="1">6</Sides>
+            </Dice>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Ravager: Demoralizing Success</Name>
@@ -76,14 +77,16 @@ a failed DC 20 Will saving throw. You then inflict Vulnerable Will for
                <Enhancement>RavCore2</Enhancement>
             </Requirement>
          </Requirements>
-          <Effect>
-              <Type>Hitpoints</Type>
-              <AmountVector size="1">30</AmountVector>
-          </Effect>
-          <Effect>
-              <Type>HealingAmplification</Type>
-              <AmountVector size="1">10</AmountVector>
-          </Effect>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="1">30</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>HealingAmplification</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="1">10</AmountVector>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Ravager: Pain Touch II</Name>
@@ -106,14 +109,15 @@ This damage scales with 100% Melee Power.</Description>
                <Enhancement>RavCore3</Enhancement>
             </Requirement>
          </Requirements>
-          <Effect>
-              <Type>DamageBonus</Type>
-              <WeaponClass>Melee</WeaponClass>
-              <Dice>
-                  <Number size="1">1</Number>
-                  <Sides size="1">6</Sides>
-              </Dice>
-          </Effect>
+         <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <WeaponClass>Melee</WeaponClass>
+            <Dice>
+               <Number size="1">1</Number>
+               <Sides size="1">6</Sides>
+            </Dice>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Ravager: Subsiding Fury</Name>
@@ -172,20 +176,23 @@ Doesn't affect bosses. (Cost 1 Rage. Cooldown: 30 seconds)</Description>
          <MinSpent>1</MinSpent>
          <ArrowUp/>
          <Requirements/>
-          <Effect>
-              <Type>SkillBonus</Type>
-              <Skill>Intimidate</Skill>
-              <AmountVector size="3">1 2 3</AmountVector>
-          </Effect>
-          <Effect>
-              <Type>SkillBonus</Type>
-              <Skill>Haggle</Skill>
-              <AmountVector size="3">1 2 3</AmountVector>
-          </Effect>
-          <Effect>
-              <Type>PRR</Type>
-              <AmountVector size="3">1 2 3</AmountVector>
-          </Effect>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Skill>Intimidate</Skill>
+            <AmountVector size="3">1 2 3</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Skill>Haggle</Skill>
+            <AmountVector size="3">1 2 3</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>PRR</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Ravager: Hate</Name>
@@ -231,11 +238,12 @@ Doesn't affect bosses. (Cost 1 Rage. Cooldown: 30 seconds)</Description>
                <Feat>Power Attack</Feat>
             </Requirement>
          </Requirements>
-          <Effect>
-              <Type>DamageBonus</Type>
-              <AmountVector size="3">1 2 3</AmountVector>
-              <Stance>Power Attack</Stance>
-          </Effect>
+         <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Stance>Power Attack</Stance>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Ravager: Hardy Rage</Name>
@@ -250,6 +258,7 @@ Doesn't affect bosses. (Cost 1 Rage. Cooldown: 30 seconds)</Description>
          <Requirements/>
          <Effect>
             <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
             <Ability>Constitution</Ability>
             <AmountVector size="3">1 2 3</AmountVector>
             <Stance>Rage</Stance>
@@ -442,6 +451,7 @@ for 5/10/15 seconds. Damage stacks fade one at a time.</Description>
                <Cost>2</Cost>
                <Effect>
                   <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
                   <Ability>Constitution</Ability>
                   <AmountVector size="1">1</AmountVector>
                </Effect>
@@ -548,6 +558,7 @@ This bane damage scales with 200% Melee Power</Description>
                <Cost>2</Cost>
                <Effect>
                   <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
                   <Ability>Constitution</Ability>
                   <AmountVector size="1">1</AmountVector>
                </Effect>
@@ -628,14 +639,16 @@ Blood Strength has a one-second cooldown when you kill an enemy.</Description>
                <Level>5</Level>
             </Requirement>
          </Requirements>
-          <Effect>
-              <Type>Immunity</Type>
-              <Immunity>Knockdown</Immunity>
-          </Effect>
-          <Effect>
-              <Type>Immunity</Type>
-              <Immunity>Slippery Surfaces</Immunity>
-          </Effect>
+         <Effect>
+            <Type>Immunity</Type>
+            <Bonus>Enhancement</Bonus>
+            <Immunity>Knockdown</Immunity>
+         </Effect>
+         <Effect>
+            <Type>Immunity</Type>
+            <Bonus>Enhancement</Bonus>
+            <Immunity>Slippery Surfaces</Immunity>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Ravager: Critical Rage</Name>
@@ -657,11 +670,12 @@ Blood Strength has a one-second cooldown when you kill an enemy.</Description>
                <Level>5</Level>
             </Requirement>
          </Requirements>
-          <Effect>
-              <Type>CriticalRange</Type>
-              <AmountVector size="2">1 2</AmountVector>
-              <Stance>Rage</Stance>
-          </Effect>
+         <Effect>
+            <Type>CriticalRange</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="2">1 2</AmountVector>
+            <Stance>Rage</Stance>
+         </Effect>
       </EnhancementTreeItem>
    </EnhancementTree>
 </Enhancements>

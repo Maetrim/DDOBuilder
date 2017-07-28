@@ -87,7 +87,7 @@ DDOCPDoc.h, DDOCPDoc.cpp - the document
     The Document will have the following strings:
         File extension:      ddocp
         File type ID:        DDOCP.Document
-        Main frame caption:  DDO Character Planner
+        Main frame caption:  DDOBuilder
         Doc type name:       DDOCP
         Filter name:         DDOCP Files (*.ddocp)
         File new short name: DDOCP

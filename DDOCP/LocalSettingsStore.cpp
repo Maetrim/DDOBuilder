@@ -150,7 +150,7 @@ std::string CLocalSettingsStore::IniFilename()
         _makepath_s(path, _MAX_PATH, drive, folder, NULL, NULL);
 
         m_iniFilename = path;
-        m_iniFilename += "DDOCharacterPlanner.ini";
+        m_iniFilename += "DDOBuilder.ini";
     }
     return m_iniFilename;
 }

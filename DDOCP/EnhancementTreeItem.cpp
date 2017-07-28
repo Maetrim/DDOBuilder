@@ -32,7 +32,6 @@ XmlLib::SaxContentElementInterface * EnhancementTreeItem::StartElement(
             SaxContentElement::StartElement(name, attributes);
 
     DL_START(EnhancementTreeItem_PROPERTIES)
-
     return subHandler;
 }
 

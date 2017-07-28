@@ -82,6 +82,8 @@ BEGIN_MESSAGE_MAP(CDDOCPView, CFormView)
     ON_CBN_SELENDOK(IDC_COMBO_LEVEL28_ABILITY, OnSelendokComboAbilityLevel28)
     ON_WM_SIZE()
     ON_WM_CTLCOLOR()
+    ON_BN_CLICKED(IDC_CHECK_GUILD_BUFFS, OnButtonGuildBuffs)
+    ON_EN_KILLFOCUS(IDC_EDIT_GUILD_LEVEL, OnKillFocusGuildLevel)
 END_MESSAGE_MAP()
 #pragma warning(pop)
 
@@ -134,6 +136,8 @@ void CDDOCPView::DoDataExchange(CDataExchange* pDX)
     DDX_Control(pDX, IDC_BUTTON_WIS_MINUS, m_buttonWisMinus);
     DDX_Control(pDX, IDC_BUTTON_CHA_PLUS, m_buttonChaPlus);
     DDX_Control(pDX, IDC_BUTTON_CHA_MINUS, m_buttonChaMinus);
+    DDX_Control(pDX, IDC_CHECK_GUILD_BUFFS, m_buttonGuildBuffs);
+    DDX_Control(pDX, IDC_EDIT_GUILD_LEVEL, m_editGuildLevel);
     DDX_Control(pDX, IDC_STATIC_AVAILABLE_POINTS, m_staticAvailableSpend);
     DDX_Control(pDX, IDC_COMBO_LEVEL4_ABILITY, m_comboAILevel4);
     DDX_Control(pDX, IDC_COMBO_LEVEL8_ABILITY, m_comboAILevel8);
@@ -313,6 +317,12 @@ void CDDOCPView::RestoreControls()
     SelectComboboxEntry(m_pCharacter->Level20(), &m_comboAILevel20);
     SelectComboboxEntry(m_pCharacter->Level24(), &m_comboAILevel24);
     SelectComboboxEntry(m_pCharacter->Level28(), &m_comboAILevel28);
+
+    // guild level
+    CString level;
+    level.Format("%d", m_pCharacter->GuildLevel());
+    m_editGuildLevel.SetWindowText(level);
+    m_buttonGuildBuffs.SetCheck(m_pCharacter->HasApplyGuildBuffs() ? BST_CHECKED : BST_UNCHECKED);
 }
 
 void CDDOCPView::EnableButtons()
@@ -700,4 +710,19 @@ void CDDOCPView::UpdateClassChanged(
 void CDDOCPView::OnSize(UINT nType, int cx, int cy)
 {
     __super::OnSize(nType, cx, cy);
+}
+
+void CDDOCPView::OnButtonGuildBuffs()
+{
+    // toggle the enabled guild buffs status
+    m_pCharacter->ToggleApplyGuildBuffs();
+}
+
+void CDDOCPView::OnKillFocusGuildLevel()
+{
+    // change the guild level
+    CString text;
+    m_editGuildLevel.GetWindowText(text);
+    size_t level = atoi(text);      // its ES_NUMBER so guaranteed to work
+    m_pCharacter->SetGuildLevel(level);
 }

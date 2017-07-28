@@ -9,13 +9,11 @@
 //============================================================================
 // ActiveEffect
 ActiveEffect::ActiveEffect() :
+    m_bonusType(Bonus_Unknown),
     m_type(ET_unknown),
     m_effectName("Not setup"),
     m_numStacks(0),
     m_amount(0),
-    m_bonusType(Bonus_Unknown),
-    m_bHasAmountVector(false),
-    m_bHasDice(false),
     m_bHasEnergy(false),
     m_energy(Energy_Unknown),
     m_tree(""),
@@ -26,19 +24,16 @@ ActiveEffect::ActiveEffect() :
 }
 
 ActiveEffect::ActiveEffect(
-        ActiveEffectType type,
+        BonusType bonusType,
         const std::string & name,
         size_t stacks,
         double amount,
-        BonusType bonusType,
         const std::string & tree) :
-    m_type(type),
+    m_bonusType(bonusType),
+    m_type(ET_amount),
     m_effectName(name),
     m_numStacks(stacks),
     m_amount(amount),
-    m_bonusType(bonusType),
-    m_bHasAmountVector(false),
-    m_bHasDice(false),
     m_bHasEnergy(false),
     m_energy(Energy_Unknown),
     m_tree(tree),
@@ -49,20 +44,17 @@ ActiveEffect::ActiveEffect(
 }
 
 ActiveEffect::ActiveEffect(
-        ActiveEffectType type,
+        BonusType bonusType,
         const std::string & name,
         size_t stacks,
         const Dice & dice,
-        BonusType bonusType,
         const std::string & tree) :
-    m_type(type),
+    m_bonusType(bonusType),
+    m_type(ET_dice),
     m_effectName(name),
     m_numStacks(stacks),
     m_amount(0),            // not used
-    m_bonusType(bonusType),
-    m_bHasAmountVector(false),
     m_dice(dice),
-    m_bHasDice(true),
     m_bHasEnergy(false),
     m_energy(Energy_Unknown),
     m_tree(tree),
@@ -73,19 +65,16 @@ ActiveEffect::ActiveEffect(
 }
 
 ActiveEffect::ActiveEffect(
-        ActiveEffectType type,
+        BonusType bonusType,
         const std::string & name,
         size_t stacks,
-        BonusType bonusType,
         const std::vector<double> & amounts) :
-    m_type(type),
+    m_bonusType(bonusType),
+    m_type(ET_amountVector),
     m_effectName(name),
     m_numStacks(stacks),
     m_amount(0),                // not used
-    m_bonusType(bonusType),
-    m_bHasAmountVector(true),
     m_amounts(amounts),
-    m_bHasDice(false),
     m_bHasEnergy(false),
     m_energy(Energy_Unknown),
     m_bt(Breakdown_Unknown),
@@ -95,31 +84,32 @@ ActiveEffect::ActiveEffect(
 }
 
 ActiveEffect::ActiveEffect(
-        ActiveEffectType type,
+        BonusType bonusType,
         const std::string & name,
         double amountPerLevel,
         size_t stacks,
-        BonusType bonusType,
         ClassType classType) :
-    m_type(type),
+    m_bonusType(bonusType),
+    m_type(ET_amountPerLevel),
     m_effectName(name),
     m_numStacks(stacks),
     m_amount(0),                // not used
-    m_bonusType(bonusType),
-    m_bHasAmountVector(false),
-    m_bHasDice(false),
     m_bHasEnergy(false),
     m_energy(Energy_Unknown),
     m_bt(Breakdown_Unknown),
     m_amountPerLevel(amountPerLevel),
     m_class(classType)
 {
-    ASSERT(type == ET_enhancementPerLevel);
 }
 
-ActiveEffectType ActiveEffect::Type() const
+BonusType ActiveEffect::Bonus() const
 {
-    return m_type;
+    return m_bonusType;
+}
+
+bool ActiveEffect::IsAmountPerAP() const
+{
+    return (m_type == ET_amountPerAp);
 }
 
 CString ActiveEffect::Name() const
@@ -137,8 +127,9 @@ CString ActiveEffect::Stacks() const
 CString ActiveEffect::AmountAsText() const
 {
     CString text;
-    if (m_bHasDice)
+    switch (m_type)
     {
+    case ET_dice:
         text.Format("%dD%d", m_dice.Number(), m_dice.Sides());
         // optional effects such as its Fire damage
         if (m_bHasEnergy)
@@ -146,24 +137,32 @@ CString ActiveEffect::AmountAsText() const
             text += " ";
             text += EnumEntryText(m_energy, energyTypeMap);
         }
-    }
-    else
-    {
-        double value = (m_bHasAmountVector ? m_amounts[m_numStacks-1] : m_amount);
-        switch (m_type)
+        break;
+    case ET_amount:
+        text.Format("%.2f", m_amount * m_numStacks);
+        break;
+    case ET_amountVector:
         {
-        case ET_enhancement:
-            text.Format("%.2f", value);
-            break;
-        case ET_enhancementPerLevel:
-            text.Format("%.2f", m_amountPerLevel * m_numStacks);
-            break;
-        default:
-        case ET_feat:
-        case ET_enhancementPerAP:
-            text.Format("%.2f", value * m_numStacks);
-            break;
+            size_t index = m_numStacks-1;
+            if (index >= m_amounts.size())
+            {
+                index = m_amounts.size()-1;
+                ::OutputDebugString("ActiveEffect ");
+                ::OutputDebugString((LPCTSTR)Name());
+                ::OutputDebugString(" has more stacks than amount vector\n");
+            }
+            text.Format("%.2f", m_amounts[index]);
         }
+        break;
+    case ET_amountPerLevel:
+        text.Format("%.2f", m_amountPerLevel * m_numStacks);
+        break;
+    case ET_amountPerAp:
+        text.Format("%.2f", m_amount * m_numStacks);
+        break;
+    default:
+        text = "???";
+        break;
     }
     return text;
 }
@@ -196,7 +195,7 @@ bool ActiveEffect::HasBreakdownDependency(BreakdownType bt) const
 
 bool ActiveEffect::HasClass(ClassType type) const
 {
-    if (m_type == ET_enhancementPerLevel)
+    if (m_type == ET_amountPerLevel)
     {
         return (type == m_class);
     }
@@ -221,17 +220,36 @@ void ActiveEffect::SetStacks(size_t count)
 
 double ActiveEffect::TotalAmount() const
 {
-    double value = (m_bHasAmountVector ? m_amounts[m_numStacks-1] : m_amount);
+    double value = 0.0;
     switch (m_type)
     {
-    case ET_enhancementPerLevel:
-        ASSERT(m_numStacks > 0);
-        value = m_amountPerLevel * m_numStacks;
-    default:
-    case ET_feat:
-    case ET_enhancementPerAP:
-        ASSERT(m_numStacks > 0);
+    case ET_dice:
+        break;
+    case ET_amount:
         value = m_amount * m_numStacks;
+        break;
+    case ET_amountVector:
+        {
+            size_t index = m_numStacks-1;
+            if (index >= m_amounts.size())
+            {
+                index = m_amounts.size()-1;
+                ::OutputDebugString("ActiveEffect ");
+                ::OutputDebugString((LPCTSTR)Name());
+                ::OutputDebugString(" has more stacks than amount vector\n");
+            }
+            value = m_amounts[index];
+        }
+        break;
+    case ET_amountPerLevel:
+        value = m_amountPerLevel * m_numStacks;
+        break;
+    case ET_amountPerAp:
+        value = m_amount * m_numStacks;
+        break;
+    default:
+        value = 0.0;
+        break;
     }
     return value;
 }
@@ -278,29 +296,20 @@ bool ActiveEffect::IsActive(const Character * pCharacter) const
     return active;
 }
 
-BonusType ActiveEffect::Bonus() const
-{
-    return m_bonusType;
-}
-
 bool ActiveEffect::operator<=(const ActiveEffect & other) const
 {
     bool lessThanOrEqual = false;
-    // must be the same type of bonus to allow a lessThan
-    if (m_type == other.m_type
-            //&& m_effectName == other.m_effectName
-            && m_bonusType == other.m_bonusType)
+    if (m_bonusType != Bonus_stacking)   // stacking items always stack
     {
-        // comes down to the amount field
-        if (m_bHasAmountVector == other.m_bHasAmountVector)
+        // must be the same type of bonus to allow a lessThan
+        if (m_type == other.m_type
+                //&& m_effectName == other.m_effectName
+                && m_bonusType == other.m_bonusType)
         {
-            if (m_bHasAmountVector)
+            // comes down to the amount field
+            if (m_type == other.m_type)
             {
-                lessThanOrEqual = (m_amounts <= other.m_amounts);
-            }
-            else
-            {
-                lessThanOrEqual = (m_amount <= other.m_amount);
+                lessThanOrEqual = (TotalAmount() <= other.TotalAmount());
             }
         }
     }
@@ -315,17 +324,24 @@ bool ActiveEffect::operator==(const ActiveEffect & other) const
             && m_effectName == other.m_effectName
             && m_bonusType == other.m_bonusType)
     {
-        // comes down to the amount field
-        if (m_bHasAmountVector == other.m_bHasAmountVector)
+        switch (m_type)
         {
-            if (m_bHasAmountVector)
-            {
-                equal = (m_amounts == other.m_amounts);
-            }
-            else
-            {
-                equal = (m_amount == other.m_amount);
-            }
+        case ET_dice:
+            equal = (m_dice == other.m_dice);
+            break;
+        case ET_amount:
+        case ET_amountPerAp:
+            equal = (m_amount == other.m_amount);
+            break;
+        case ET_amountVector:
+            equal = (m_amounts == other.m_amounts);
+            break;
+        case ET_amountPerLevel:
+            equal = (m_amountPerLevel == other.m_amountPerLevel);
+            break;
+        default:
+            equal = false;
+            break;
         }
     }
     return equal;

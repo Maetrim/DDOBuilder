@@ -23,7 +23,8 @@ Character::Character(CDDOCPDoc * pDoc) :
     m_SpecialFeats(L"SpecialFeats"),
     m_bonusActionPoints(0),
     m_racialTreeSpend(0),
-    m_otherTreeSpend(0)
+    m_otherTreeSpend(0),
+    m_previousGuildLevel(0)
 {
     DL_INIT(Character_PROPERTIES)
     // make sure we have MAX_LEVEL default LevelTraining objects in the list
@@ -78,6 +79,9 @@ void Character::EndElement()
     {
         m_Twists.pop_front();
     }
+    // keep older files working
+    m_hasGuildLevel = true; // default guild level is 0
+
     SaxContentElement::EndElement();
     DL_END(Character_PROPERTIES)
     ASSERT(m_Levels.size() == MAX_LEVEL);
@@ -307,15 +311,7 @@ void Character::UpdateFeats(size_t level, std::list<TrainedFeat> * allFeats)
 {
     std::list<LevelTraining>::iterator it = m_Levels.begin();
     std::advance(it, level);
-    // first revoke the feats at this level then apply the new ones
     std::list<TrainedFeat> oldFeats = (*it).AutomaticFeats().Feats();
-    std::list<TrainedFeat>::iterator ofit = oldFeats.begin();
-    while (ofit != oldFeats.end())
-    {
-        const Feat & feat = FindFeat((*ofit).FeatName());
-        RevokeFeatEffects(feat);
-        ++ofit;
-    }
 
     // add the trained feats for this level as they can affect the available automatic feats
     const std::list<TrainedFeat> & trainedFeats = (*it).TrainedFeats().Feats();
@@ -323,17 +319,29 @@ void Character::UpdateFeats(size_t level, std::list<TrainedFeat> * allFeats)
 
     FeatsListObject flo(L"AutomaticFeats");
     std::list<TrainedFeat> automaticFeats = AutomaticFeats(level, *allFeats);
-    flo.Set_Feats(automaticFeats);
-    allFeats->insert(allFeats->end(), automaticFeats.begin(), automaticFeats.end());
-    // now apply the new automatic feats
-    std::list<TrainedFeat>::iterator afit = automaticFeats.begin();
-    while (afit != automaticFeats.end())
+    if (automaticFeats != oldFeats)
     {
-        const Feat & feat = FindFeat((*afit).FeatName());
-        ApplyFeatEffects(feat);
-        ++afit;
+        // first revoke the feats at this level then apply the new ones
+        std::list<TrainedFeat>::iterator ofit = oldFeats.begin();
+        while (ofit != oldFeats.end())
+        {
+            const Feat & feat = FindFeat((*ofit).FeatName());
+            RevokeFeatEffects(feat);
+            ++ofit;
+        }
+
+        flo.Set_Feats(automaticFeats);
+        allFeats->insert(allFeats->end(), automaticFeats.begin(), automaticFeats.end());
+        // now apply the new automatic feats
+        std::list<TrainedFeat>::iterator afit = automaticFeats.begin();
+        while (afit != automaticFeats.end())
+        {
+            const Feat & feat = FindFeat((*afit).FeatName());
+            ApplyFeatEffects(feat);
+            ++afit;
+        }
+        (*it).Set_AutomaticFeats(flo);
     }
-    (*it).Set_AutomaticFeats(flo);
 }
 
 void Character::NotifyAvailableBuildPointsChanged()
@@ -1141,6 +1149,8 @@ void Character::NowActive()
     NotifyAllDestinyEffects();
     NotifyAllTwistEffects();
     ApplyGearEffects();     // apply effects from equipped gear
+    m_previousGuildLevel = 0;   // ensure all effects apply
+    ApplyGuildBuffs();
 }
 
 std::list<TrainedFeat> Character::AutomaticFeats(
@@ -1970,7 +1980,7 @@ size_t Character::TotalPointsAvailable(const std::string & treeName, TreeType ty
 size_t Character::AvailableActionPoints(const std::string & treeName, TreeType type) const
 {
     // for actions points we need to track:
-    // how many bonus action points the character has (m_bonusActionPoints
+    // how many bonus action points the character has (m_bonusActionPoints)
     // how many action points have been spent in the racial tree (m_racialTreeSpend)
     // how many action points have been spent in other trees (m_otherTreeSpend)
     size_t aps = 0;
@@ -3635,38 +3645,41 @@ void Character::RevokeGearEffects()
     // iterate the items
     for (size_t i = Inventory_Unknown + 1; i < Inventory_Count; ++i)
     {
-        Item item = gear.ItemInSlot((InventorySlotType)i);
-        // revoke the items effects
-        const std::vector<Effect> & effects = item.Effects();
-        std::vector<Effect>::const_iterator it = effects.begin();
-        while (it != effects.end())
+        if (gear.HasItemInSlot((InventorySlotType)i))
         {
-            NotifyItemEffectRevoked(item.Name(), (*it));
-            ++it;
-        }
-        // do the same for any augment slots
-        const std::vector<ItemAugment> & augments = item.Augments();
-        for (size_t ai = 0; ai < augments.size(); ++ai)
-        {
-            if (augments[ai].HasSelectedAugment())
+            Item item = gear.ItemInSlot((InventorySlotType)i);
+            // revoke the items effects
+            const std::vector<Effect> & effects = item.Effects();
+            std::vector<Effect>::const_iterator it = effects.begin();
+            while (it != effects.end())
             {
-                // there is an augment in this position
-                const Augment & augment = FindAugmentByName(augments[ai].SelectedAugment());
-                // name is:
-                // <item>:<augment type>:<Augment name>
-                std::stringstream ss;
-                ss << item.Name()
-                        << " : " << EnumEntryText(augments[ai].Type(), augmentTypeMap)
-                        << " : " << augment.Name();
-                // now revoke the augments effects
-                std::string name;
-                name = ss.str();
-                const std::list<Effect> & effects = augment.Effects();
-                std::list<Effect>::const_iterator it = effects.begin();
-                while (it != effects.end())
+                NotifyItemEffectRevoked(item.Name(), (*it));
+                ++it;
+            }
+            // do the same for any augment slots
+            const std::vector<ItemAugment> & augments = item.Augments();
+            for (size_t ai = 0; ai < augments.size(); ++ai)
+            {
+                if (augments[ai].HasSelectedAugment())
                 {
-                    NotifyItemEffectRevoked(name, (*it));
-                    ++it;
+                    // there is an augment in this position
+                    const Augment & augment = FindAugmentByName(augments[ai].SelectedAugment());
+                    // name is:
+                    // <item>:<augment type>:<Augment name>
+                    std::stringstream ss;
+                    ss << item.Name()
+                            << " : " << EnumEntryText(augments[ai].Type(), augmentTypeMap)
+                            << " : " << augment.Name();
+                    // now revoke the augments effects
+                    std::string name;
+                    name = ss.str();
+                    const std::list<Effect> & effects = augment.Effects();
+                    std::list<Effect>::const_iterator it = effects.begin();
+                    while (it != effects.end())
+                    {
+                        NotifyItemEffectRevoked(name, (*it));
+                        ++it;
+                    }
                 }
             }
         }
@@ -3679,41 +3692,147 @@ void Character::ApplyGearEffects()
     // iterate the items
     for (size_t i = Inventory_Unknown + 1; i < Inventory_Count; ++i)
     {
-        Item item = gear.ItemInSlot((InventorySlotType)i);
-        // apply the items effects
-        const std::vector<Effect> & effects = item.Effects();
-        std::vector<Effect>::const_iterator it = effects.begin();
-        while (it != effects.end())
+        if (gear.HasItemInSlot((InventorySlotType)i))
         {
-            NotifyItemEffect(item.Name(), (*it));
-            ++it;
-        }
-        // do the same for any augment slots
-        const std::vector<ItemAugment> & augments = item.Augments();
-        for (size_t ai = 0; ai < augments.size(); ++ai)
-        {
-            if (augments[ai].HasSelectedAugment())
+            Item item = gear.ItemInSlot((InventorySlotType)i);
+            // apply the items effects
+            const std::vector<Effect> & effects = item.Effects();
+            std::vector<Effect>::const_iterator it = effects.begin();
+            while (it != effects.end())
             {
-                // there is an augment in this position
-                const Augment & augment = FindAugmentByName(augments[ai].SelectedAugment());
-                // name is:
-                // <item>:<augment type>:<Augment name>
-                std::stringstream ss;
-                ss << item.Name()
-                        << " : " << EnumEntryText(augments[ai].Type(), augmentTypeMap)
-                        << " : " << augment.Name();
-                // now notify the augments effects
-                std::string name;
-                name = ss.str();
-                const std::list<Effect> & effects = augment.Effects();
-                std::list<Effect>::const_iterator it = effects.begin();
-                while (it != effects.end())
+                NotifyItemEffect(item.Name(), (*it));
+                ++it;
+            }
+            // do the same for any augment slots
+            const std::vector<ItemAugment> & augments = item.Augments();
+            for (size_t ai = 0; ai < augments.size(); ++ai)
+            {
+                if (augments[ai].HasSelectedAugment())
                 {
-                    NotifyItemEffect(name, (*it));
-                    ++it;
+                    // there is an augment in this position
+                    const Augment & augment = FindAugmentByName(augments[ai].SelectedAugment());
+                    // name is:
+                    // <item>:<augment type>:<Augment name>
+                    std::stringstream ss;
+                    ss << item.Name()
+                            << " : " << EnumEntryText(augments[ai].Type(), augmentTypeMap)
+                            << " : " << augment.Name();
+                    // now notify the augments effects
+                    std::string name;
+                    name = ss.str();
+                    const std::list<Effect> & effects = augment.Effects();
+                    std::list<Effect>::const_iterator it = effects.begin();
+                    while (it != effects.end())
+                    {
+                        NotifyItemEffect(name, (*it));
+                        ++it;
+                    }
                 }
             }
         }
     }
 }
 
+void Character::ApplyGuildBuffs()
+{
+    // we only apply or revoke the effects within the m_previousGuildLevel to GuildLevel range
+    if (HasApplyGuildBuffs())
+    {
+        if (m_previousGuildLevel != GuildLevel())
+        {
+            // there has been a change in guild level find the list of guild buffs
+            // that have changed. Then either apply or revoke them depending
+            // on the direction of level change
+            bool revoke = (m_previousGuildLevel > GuildLevel());
+            size_t minLevel = min(m_previousGuildLevel, GuildLevel());
+            size_t maxLevel = max(m_previousGuildLevel, GuildLevel());
+            std::list<GuildBuff> guildBuffs = GuildBuffs(); // all known guild buffs
+            std::list<GuildBuff>::iterator it = guildBuffs.begin();
+            while (it != guildBuffs.end())
+            {
+                // remove the buff if it is not in the required level range of change
+                if ((*it).Level() <= minLevel
+                        || (*it).Level() > maxLevel)
+                {
+                    // this buff is not in the range of those changed, exclude it
+                    it = guildBuffs.erase(it);
+                }
+                else
+                {
+                    // on to the next buff to check
+                    ++it;
+                }
+            }
+            // now apply or revoke the buffs left in the list
+            it = guildBuffs.begin();
+            while (it != guildBuffs.end())
+            {
+                const std::list<Effect> & effects = (*it).Effects();
+                std::list<Effect>::const_iterator eit = effects.begin();
+                while (eit != effects.end())
+                {
+                    if (revoke)
+                    {
+                        NotifyItemEffectRevoked((*it).Name(), (*eit));
+                    }
+                    else
+                    {
+                        NotifyItemEffect((*it).Name(), (*eit));
+                    }
+                    ++eit;
+                }
+                ++it;
+            }
+        }
+    }
+    else
+    {
+        // guild buffs are no longer applied all, existing buffs need to be revoked
+        size_t minLevel = 0;
+        size_t maxLevel = GuildLevel();
+        std::list<GuildBuff> guildBuffs = GuildBuffs(); // all known guild buffs
+        std::list<GuildBuff>::iterator it = guildBuffs.begin();
+        while (it != guildBuffs.end())
+        {
+            // remove the buff if it is not in the required level range of revoke
+            if ((*it).Level() <= minLevel
+                    || (*it).Level() > maxLevel)
+            {
+                // this buff is not in the range of those changed, exclude it
+                it = guildBuffs.erase(it);
+            }
+            else
+            {
+                // on to the next buff to check
+                ++it;
+            }
+        }
+        // now revoke the buffs left in the list
+        it = guildBuffs.begin();
+        while (it != guildBuffs.end())
+        {
+            const std::list<Effect> & effects = (*it).Effects();
+            std::list<Effect>::const_iterator eit = effects.begin();
+            while (eit != effects.end())
+            {
+                NotifyItemEffectRevoked((*it).Name(), (*eit));
+                ++eit;
+            }
+            ++it;
+        }
+    }
+}
+
+void Character::ToggleApplyGuildBuffs()
+{
+    SetValue_ApplyGuildBuffs(!HasApplyGuildBuffs());
+    // apply changes
+    ApplyGuildBuffs();
+}
+
+void Character::SetGuildLevel(size_t level)
+{
+    Set_GuildLevel(level);
+    // apply changes
+    ApplyGuildBuffs();
+}
