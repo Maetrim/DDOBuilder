@@ -52,7 +52,11 @@ class Item :
                 DL_OPTIONAL_ENUM(_, AbilityType, DamageModifier, Ability_Unknown, abilityTypeMap) \
                 DL_OBJECT(_, EquipmentSlot, Slots) \
                 DL_OBJECT_VECTOR(_, Effect, Effects) \
-                DL_OBJECT_VECTOR(_, ItemAugment, Augments)
+                DL_OBJECT_VECTOR(_, ItemAugment, Augments) \
+                DL_ENUM_LIST(_, AugmentType, PrimaryUpgrade, Augment_Unknown, augmentTypeMap) \
+                DL_ENUM_LIST(_, AugmentType, SecondaryUpgrade, Augment_Unknown, augmentTypeMap) \
+                DL_ENUM_LIST(_, AugmentType, LegendarySlavelordUpgrade, Augment_Unknown, augmentTypeMap)
+
 
         DL_DECLARE_ACCESS(Item_PROPERTIES)
         DL_DECLARE_VARIABLES(Item_PROPERTIES)

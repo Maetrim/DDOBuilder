@@ -7,17 +7,6 @@
 #include "GlobalSupportFunctions.h"
 #include "TreeListCtrl.h"
 
-namespace
-{
-    enum ColumnOrder
-    {
-        CO_Source = 0,
-        CO_Stacks,
-        CO_Value,
-        CO_BonusType,
-    };
-}
-
 int BreakdownItem::BaseStatToBonus(double ability)
 {
     ability -= 10;      // 10 = no bonus
@@ -905,9 +894,9 @@ void BreakdownItem::UpdateEnhancementEffect(
             activeEffect = ActiveEffect(
                     effect.m_effect.Bonus(),
                     name,
-                    spentInTree,
                     effect.m_effect.AmountPerAP(),
                     effect.m_effect.EnhancementTree());
+            activeEffect.SetStacks(spentInTree);
         }
         if (effect.m_effect.HasFeat())
         {
@@ -961,17 +950,29 @@ void BreakdownItem::UpdateEnhancementEffectRevoked(
                     effect.m_effect.Amount(),
                     "");
         }
+        else if (effect.m_effect.HasAmountPerLevel())
+        {
+            ASSERT(effect.m_effect.HasClass());
+            std::vector<size_t> classLevels = m_pCharacter->ClassLevels(MAX_LEVEL);
+            activeEffect = ActiveEffect(
+                    effect.m_effect.Bonus(),
+                    name,
+                    effect.m_effect.AmountPerLevel(),
+                    classLevels[effect.m_effect.Class()],
+                    effect.m_effect.Class());
+        }
         else
         {
+            // it is an AP spend in tree version
             ASSERT(effect.m_effect.HasEnhancementTree());
             ASSERT(effect.m_effect.HasAmountPerAP());
             size_t spentInTree = charData->APSpentInTree(effect.m_effect.EnhancementTree());
             activeEffect = ActiveEffect(
                     effect.m_effect.Bonus(),
                     name,
-                    spentInTree,
                     effect.m_effect.AmountPerAP(),
                     effect.m_effect.EnhancementTree());
+            activeEffect.SetStacks(spentInTree);
         }
         if (effect.m_effect.HasFeat())
         {
@@ -992,21 +993,10 @@ void BreakdownItem::UpdateEnhancementEffectRevoked(
     }
 }
 
-void BreakdownItem::UpdateEnhancementTrained(
+void BreakdownItem::UpdateAPSpentInTreeChanged(
         Character * charData,
-        const std::string & enhancementName,
-        bool isTier5)
+        const std::string & treeName)
 {
-    // some items may need to update their totals if they give amount per AP spent
-    UpdateTreeItemTotals();
-}
-
-void BreakdownItem::UpdateEnhancementRevoked(
-        Character * charData,
-        const std::string & enhancementName,
-        bool isTier5)
-{
-    // some items may need to update their totals if they give amount per AP spent
     UpdateTreeItemTotals();
 }
 

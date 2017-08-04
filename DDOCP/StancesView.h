@@ -49,7 +49,7 @@ class CStancesView :
 
         void ShowTip(const CStanceButton & item, CRect itemRect);
         void HideTip();
-        void SetTooltipText(const CStanceButton & item, CPoint tipTopLeft);
+        void SetTooltipText(const CStanceButton & item, CPoint tipTopLeft, CPoint tipAlternate);
 
         CDocument * m_pDocument;
         Character * m_pCharacter;

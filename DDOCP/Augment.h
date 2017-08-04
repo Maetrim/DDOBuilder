@@ -27,7 +27,7 @@ class Augment :
                 DL_STRING(_, Name) \
                 DL_STRING(_, Description) \
                 DL_SIMPLE(_, size_t, MinLevel, 0) \
-                DL_ENUM(_, AugmentType, Type, Augment_Unknown, augmentTypeMap) \
+                DL_ENUM_LIST(_, AugmentType, Type, Augment_Unknown, augmentTypeMap) \
                 DL_OBJECT_LIST(_, Effect, Effects)
 
         DL_DECLARE_ACCESS(Augment_PROPERTIES)

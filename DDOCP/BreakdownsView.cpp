@@ -54,6 +54,7 @@ void CBreakdownsView::DoDataExchange(CDataExchange* pDX)
     CFormView::DoDataExchange(pDX);
     DDX_Control(pDX, IDC_ITEM_BREAKDOWN, m_itemBreakdownList);
     DDX_Control(pDX, IDC_DIVIDER, m_divider);
+    DDX_Control(pDX, IDC_BUTTON_CLIPBOARD, m_buttonClipboard);
 }
 
 #pragma warning(push)
@@ -68,6 +69,7 @@ BEGIN_MESSAGE_MAP(CBreakdownsView, CFormView)
     ON_WM_LBUTTONUP()
     ON_NOTIFY(HDN_ENDTRACK, IDC_ITEM_BREAKDOWN, OnEndtrackBreakdownList)
     ON_NOTIFY(HDN_DIVIDERDBLCLICK, IDC_ITEM_BREAKDOWN, OnEndtrackBreakdownList)
+    ON_BN_CLICKED(IDC_BUTTON_CLIPBOARD, OnButtonClipboardCopy)
 END_MESSAGE_MAP()
 #pragma warning(pop)
 
@@ -127,6 +129,8 @@ void CBreakdownsView::OnInitialUpdate()
     m_itemBreakdownList.SetExtendedStyle(m_itemBreakdownList.GetExtendedStyle() | LVS_EX_FULLROWSELECT | LVS_EX_LABELTIP);
     LoadColumnWidthsByName(&m_itemBreakdownList, "BreakdownList_%s");
     CreateBreakdowns();
+    // Image for copy to clipboard button
+    m_buttonClipboard.SetImage(IDB_BITMAP_COPYTOCLIPBOARD);
 }
 
 void CBreakdownsView::OnSize(UINT nType, int cx, int cy)
@@ -142,7 +146,7 @@ void CBreakdownsView::OnSize(UINT nType, int cx, int cy)
         // |                                 |  |
         // |                                 |  |
         // +---------------------------------+  v
-        // [-- -------Drag divider-----------]
+        // [-- -------Drag divider--------][c]
         // +---------------------------------+
         // |   Selected Item breakdown List  |
         // |                                 |
@@ -150,18 +154,23 @@ void CBreakdownsView::OnSize(UINT nType, int cx, int cy)
         // +---------------------------------+
         // control area configured by the m_treeSizePercent variable which is a percentage
         CRect rctDivider;
+        CRect rctButtonClipboard;
         m_divider.GetWindowRect(rctDivider);
+        m_buttonClipboard.GetWindowRect(rctButtonClipboard);
         // position the divider at its percentage location
         rctDivider -= rctDivider.TopLeft();
         rctDivider.left = c_controlSpacing;
-        rctDivider.right = cx - c_controlSpacing;
+        rctDivider.right = cx - c_controlSpacing - rctButtonClipboard.Width() - c_controlSpacing;
         int verticalSpace = cy - (c_controlSpacing * 4) - rctDivider.Height();
         rctDivider += CPoint (0, c_controlSpacing * 2 + (verticalSpace * m_treeSizePercent) / 100);
+        rctButtonClipboard -= rctButtonClipboard.TopLeft();
+        rctButtonClipboard += CPoint(cx - rctButtonClipboard.Width() - c_controlSpacing,c_controlSpacing * 2 + (verticalSpace * m_treeSizePercent) / 100);
         // all other items placed relative to the divider
         CRect rctTree(c_controlSpacing, c_controlSpacing, cx - c_controlSpacing, rctDivider.top - c_controlSpacing);
         CRect rctList(c_controlSpacing, rctDivider.bottom + c_controlSpacing, cx - c_controlSpacing, cy - c_controlSpacing);
         m_itemBreakdownTree.MoveWindow(rctTree);
         m_divider.MoveWindow(rctDivider);
+        m_buttonClipboard.MoveWindow(rctButtonClipboard);
         m_itemBreakdownList.MoveWindow(rctList);
     }
 }
@@ -441,6 +450,7 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
             0,
             TVI_ROOT);
     m_itemBreakdownTree.SetItemData(hParent, 0);
+
     {
         HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
                 "Hitpoints",
@@ -452,8 +462,21 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
                 FindBreakdown(Breakdown_Constitution));
         m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pHP);
         m_items.push_back(pHP);
+        {
+            HTREEITEM hUnconsciousRange = m_itemBreakdownTree.InsertItem(
+                    "Unconscious Range",
+                    hItem,
+                    TVI_LAST);
+            BreakdownItem * pUR = new BreakdownItemSimple(
+                    Breakdown_UnconsciousRange,
+                    Effect_UnconsciousRange,
+                    "Unconscious Range",
+                    &m_itemBreakdownTree,
+                    hUnconsciousRange);
+            m_itemBreakdownTree.SetItemData(hUnconsciousRange, (DWORD)(void*)pUR);
+            m_items.push_back(pUR);
+        }
     }
-
     // defensive physical items
     // defensive items are:
     //      AC
@@ -910,6 +933,7 @@ void CBreakdownsView::CreateMagicalBreakdowns()
         AddSpellPower(SpellPower_Repair, "Repair Spell power", hItem);
         AddSpellPower(SpellPower_Rust, "Rust Spell power", hItem);
         AddSpellPower(SpellPower_Sonic, "Sonic Spell power", hItem);
+        AddSpellPower(SpellPower_Untyped, "Untyped Spell power", hItem);
         AddSpellPower(SpellPower_Water, "Water Spell power", hItem);
     }
 
@@ -1324,7 +1348,7 @@ void CBreakdownsView::AddSpellCriticalChance(
             TVI_LAST);
     BreakdownItem * pSPItem = new BreakdownItemSpellPower(
             Breakdown_SpellCriticalChance,
-            Effect_SpellCriticalChance,
+            Effect_SpellLore,
             type,
             name.c_str(),
             &m_itemBreakdownTree,
@@ -1658,11 +1682,14 @@ void CBreakdownsView::OnSelChangedBreakdownTree(NMHDR* pNMHDR, LRESULT* pResult)
         {
             BreakdownItem * pItem = static_cast<BreakdownItem *>((void*)itemData);
             pItem->PopulateBreakdownControl(&m_itemBreakdownList);
+            m_buttonClipboard.EnableWindow(TRUE);
         }
         else
         {
             // just empty the control
             m_itemBreakdownList.DeleteAllItems();
+            // no specific item selected, therefore for clipboard copy
+            m_buttonClipboard.EnableWindow(FALSE);
         }
     }
 }
@@ -1766,4 +1793,93 @@ void CBreakdownsView::OnEndtrackBreakdownList(NMHDR* pNMHDR, LRESULT* pResult)
     UNREFERENCED_PARAMETER(pNMHDR);
     UNREFERENCED_PARAMETER(pResult);
     SaveColumnWidthsByName(&m_itemBreakdownList, "BreakdownList_%s");
+}
+
+void CBreakdownsView::OnButtonClipboardCopy()
+{
+    // build up column data so we can align the clipboard text output
+    std::vector<CString> columns[CO_count];
+    // title is the selected breakdown and its total
+    HTREEITEM hItem = m_itemBreakdownTree.GetSelectedItem();
+    if (hItem != NULL)
+    {
+        DWORD itemData = m_itemBreakdownTree.GetItemData(hItem);
+        if (itemData != 0)      // headings don't have items to display
+        {
+            BreakdownItem * pItem = static_cast<BreakdownItem *>((void*)itemData);
+            // first item is the breakdown item and total
+            columns[CO_Source].push_back(pItem->Title());
+            columns[CO_Value].push_back(pItem->Value());
+            columns[CO_Stacks].push_back("");
+            columns[CO_BonusType].push_back("");
+            // now add headings in the list control
+            CHeaderCtrl* pHeaderCtrl = m_itemBreakdownList.GetHeaderCtrl();
+            int nColumnCount = pHeaderCtrl->GetItemCount();
+            ASSERT(nColumnCount == CO_count);
+            for (int column = 0; column < nColumnCount; ++column)
+            {
+                HDITEM item;
+                char itemText[100];
+                item.mask = HDI_TEXT;
+                item.pszText = itemText;
+                item.cchTextMax = 100;
+                pHeaderCtrl->GetItem(column, &item);
+                columns[column].push_back(item.pszText);
+            }
+            // now add the content
+            size_t count = (size_t)m_itemBreakdownList.GetItemCount();
+            for (size_t i = 0; i < count; ++i)
+            {
+                CString itemText;
+                for (int column = 0; column < nColumnCount; ++column)
+                {
+                    itemText = m_itemBreakdownList.GetItemText(i, column);
+                    columns[column].push_back(itemText);
+                }
+            }
+            // now pad all items in each column to the same size
+            int maxWidth[CO_count] = {0, 0, 0, 0};
+            for (size_t i = 0; i < columns[0].size(); ++i)
+            {
+                for (int column = 0; column < nColumnCount; ++column)
+                {
+                    maxWidth[column] = max(maxWidth[column], columns[column][i].GetLength());
+                }
+            }
+            for (size_t i = 0; i < columns[0].size(); ++i)
+            {
+                CString padded;
+                for (int column = 0; column < nColumnCount; ++column)
+                {
+                    padded.Format("%*s", maxWidth[column] + 2, columns[column][i]); // 2 extra spaces
+                    columns[column][i] = padded;
+                }
+            }
+            // now generate the total clipboard text, ensure mono-spaced
+            CString clipboardText;
+            clipboardText += "[code]\n";
+            for (size_t i = 0; i < columns[0].size(); ++i)
+            {
+                CString padded;
+                for (int column = 0; column < nColumnCount; ++column)
+                {
+                    clipboardText += columns[column][i];
+                }
+                clipboardText += "\n";
+            }
+            clipboardText += "[/code]\n";
+            // now place the text on the clipboard
+            if (OpenClipboard())
+            {
+                HGLOBAL clipbuffer = GlobalAlloc(GMEM_DDESHARE, clipboardText.GetLength()+1);
+                ASSERT(clipbuffer != NULL);
+                char *buffer = (char*)GlobalLock(clipbuffer);
+                strcpy_s(buffer, clipboardText.GetLength()+1, clipboardText);
+                GlobalUnlock(clipbuffer);
+                EmptyClipboard();
+                SetClipboardData(CF_TEXT, clipbuffer);
+                CloseClipboard();
+            }
+        }
+    }
 }

@@ -255,7 +255,8 @@ void CInventoryDialog::ShowTip(const Item & item, CRect itemRect)
     }
     ClientToScreen(&itemRect);
     CPoint tipTopLeft(itemRect.left, itemRect.bottom + 2);
-    SetTooltipText(item, tipTopLeft);
+    CPoint tipAlternate(itemRect.left, itemRect.top - 2);
+    SetTooltipText(item, tipTopLeft, tipAlternate);
     m_showingTip = true;
     // track the mouse so we know when it leaves our window
     TRACKMOUSEEVENT tme;
@@ -279,9 +280,10 @@ void CInventoryDialog::HideTip()
 
 void CInventoryDialog::SetTooltipText(
         const Item & item,
-        CPoint tipTopLeft)
+        CPoint tipTopLeft,
+        CPoint tipAlternate)
 {
-    m_tooltip.SetOrigin(tipTopLeft);
+    m_tooltip.SetOrigin(tipTopLeft, tipAlternate);
     m_tooltip.SetItem(*m_pCharacter, &item);
     m_tooltip.Show();
 }

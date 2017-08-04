@@ -59,6 +59,7 @@ class CharacterObserver :
         virtual void UpdateEnhancementRevoked(Character * charData, const std::string & enhancementName, bool isTier5) {};
         virtual void UpdateEnhancementTreeReset(Character * charData) {};
         virtual void UpdateActionPointsChanged(Character * charData) {};
+        virtual void UpdateAPSpentInTreeChanged(Character * charData, const std::string & treeName) {};
         virtual void UpdateSpellTrained(Character * charData, const TrainedSpell & spell) {};
         virtual void UpdateSpellRevoked(Character * charData, const TrainedSpell & spell) {};
         virtual void UpdateFatePointsChanged(Character * charData) {};
@@ -132,7 +133,7 @@ class Character :
                 const std::list<TrainedFeat> & currentFeats) const;
         std::vector<TrainableFeatTypes> TrainableFeatTypeAtLevel(size_t level) const;
         std::list<TrainedFeat> CurrentFeats(size_t level) const;
-        std::list<Feat> TrainableFeats(
+        std::vector<Feat> TrainableFeats(
                 TrainableFeatTypes type,
                 size_t level,
                 const std::string & includeThisFeat) const;
@@ -161,6 +162,9 @@ class Character :
                 const std::string & selection) const;
 
         // enhancement support
+        bool IsEnhancementTrained(
+                const std::string & enhancementName,
+                const std::string & selection) const;
         std::list<TrainedEnhancement> CurrentEnhancements() const;
         void Enhancement_TrainEnhancement(
                 const std::string & treeName,
@@ -253,6 +257,7 @@ class Character :
         void NotifyEnhancementRevoked(const std::string & enhancementName, bool isTier5, bool bActiveTree);
         void NotifyEnhancementTreeReset();
         void NotifyActionPointsChanged();
+        void NotifyAPSpentInTreeChanged(const std::string & treeName);
         void NotifySpellTrained(const TrainedSpell & spell);
         void NotifySpellRevoked(const TrainedSpell & spell);
 

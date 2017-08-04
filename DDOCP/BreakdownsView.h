@@ -34,6 +34,7 @@ class CBreakdownsView :
         afx_msg void OnMouseMove(UINT nFlags, CPoint point);
         afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
         afx_msg void OnEndtrackBreakdownList(NMHDR* pNMHDR, LRESULT* pResult);
+        afx_msg void OnButtonClipboardCopy();
         DECLARE_MESSAGE_MAP()
 
     private:
@@ -65,6 +66,7 @@ class CBreakdownsView :
         std::vector<BreakdownItem *> m_items;
         MfcControls::CTreeListCtrl m_itemBreakdownTree;
         MfcControls::CGroupLine m_divider;
+        CMFCButton m_buttonClipboard;
         CListCtrl m_itemBreakdownList;
         bool m_bDraggingDivider;
         int m_treeSizePercent;             // percentage of space used

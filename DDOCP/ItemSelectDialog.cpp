@@ -35,12 +35,17 @@ void CItemSelectDialog::DoDataExchange(CDataExchange* pDX)
         DDX_Control(pDX, IDC_STATIC_AUGMENT_TYPE1 + i, m_augmentType[i]);
         DDX_Control(pDX, IDC_COMBO_AUGMENT1 + i, m_comboAugmentDropList[i]);
     }
+    for (size_t i = 0; i < MAX_Upgrades; ++i)
+    {
+        DDX_Control(pDX, IDC_STATIC_UPGRADE_TYPE1 + i, m_upgradeType[i]);
+        DDX_Control(pDX, IDC_COMBO_UPGRADE1 + i, m_comboUpgradeDropList[i]);
+    }
 }
-
 
 BEGIN_MESSAGE_MAP(CItemSelectDialog, CDialog)
     ON_NOTIFY(LVN_ITEMCHANGED, IDC_ITEM_LIST, OnItemSelected)
     ON_CONTROL_RANGE(CBN_SELENDOK, IDC_COMBO_AUGMENT1, IDC_COMBO_AUGMENT1 + MAX_Augments, OnAugmentSelect)
+    ON_CONTROL_RANGE(CBN_SELENDOK, IDC_COMBO_UPGRADE1, IDC_COMBO_UPGRADE1 + MAX_Upgrades, OnUpgradeSelect)
 END_MESSAGE_MAP()
 
 // CItemSelectDialog message handlers
@@ -168,6 +173,33 @@ void CItemSelectDialog::EnableControls()
             m_comboAugmentDropList[i].ShowWindow(SW_HIDE);
         }
     }
+    // now show any upgrade slots
+    size_t upgradeIndex = 0;
+    if (m_item.PrimaryUpgrade().size() > 0)
+    {
+        // we have a primary upgrade list
+        PopulatePrimaryUpgradeList(upgradeIndex);
+        ++upgradeIndex;
+    }
+    if (m_item.SecondaryUpgrade().size() > 0)
+    {
+        // we have a primary upgrade list
+        PopulateSecondaryUpgradeList(upgradeIndex);
+        ++upgradeIndex;
+    }
+    if (m_item.LegendarySlavelordUpgrade().size() > 0)
+    {
+        // we have a primary upgrade list
+        PopulateLegendarySlavelordUpgradeList(upgradeIndex);
+        ++upgradeIndex;
+    }
+    // add other upgrade types here
+    // now hide the unused
+    for (;upgradeIndex < MAX_Upgrades; ++upgradeIndex)
+    {
+        m_upgradeType[upgradeIndex].ShowWindow(SW_HIDE);
+        m_comboUpgradeDropList[upgradeIndex].ShowWindow(SW_HIDE);
+    }
 }
 
 void CItemSelectDialog::PopulateAugmentList(
@@ -258,3 +290,121 @@ void CItemSelectDialog::OnAugmentSelect(UINT nID)
         m_item.Set_Augments(augments);
     }
 }
+
+void CItemSelectDialog::PopulatePrimaryUpgradeList(size_t controlIndex)
+{
+    m_upgradeTypeModelled[controlIndex] = Upgrade_Primary;
+    // set the text of the display item
+    m_upgradeType[controlIndex].SetWindowText("Primary Upgrade");
+    // add the entries to the drop list control
+    PopulateDropList(controlIndex, m_item.PrimaryUpgrade());
+    // finally ensure the control is displayed
+    m_upgradeType[controlIndex].ShowWindow(SW_SHOW);
+    m_comboUpgradeDropList[controlIndex].ShowWindow(SW_SHOW);
+}
+
+void CItemSelectDialog::PopulateSecondaryUpgradeList(size_t controlIndex)
+{
+    m_upgradeTypeModelled[controlIndex] = Upgrade_Secondary;
+    // set the text of the display item
+    m_upgradeType[controlIndex].SetWindowText("Secondary Upgrade");
+    // add the entries to the drop list control
+    PopulateDropList(controlIndex, m_item.SecondaryUpgrade());
+    // finally ensure the control is displayed
+    m_upgradeType[controlIndex].ShowWindow(SW_SHOW);
+    m_comboUpgradeDropList[controlIndex].ShowWindow(SW_SHOW);
+}
+
+void CItemSelectDialog::PopulateLegendarySlavelordUpgradeList(size_t controlIndex)
+{
+    m_upgradeTypeModelled[controlIndex] = Upgrade_LegendarySlavelords;
+    // set the text of the display item
+    m_upgradeType[controlIndex].SetWindowText("Legendary Slavelords Upgrade");
+    // add the entries to the drop list control
+    PopulateDropList(controlIndex, m_item.LegendarySlavelordUpgrade());
+    // finally ensure the control is displayed
+    m_upgradeType[controlIndex].ShowWindow(SW_SHOW);
+    m_comboUpgradeDropList[controlIndex].ShowWindow(SW_SHOW);
+}
+
+void CItemSelectDialog::PopulateDropList(size_t controlIndex, const std::list<AugmentType> & types)
+{
+    m_comboUpgradeDropList[controlIndex].ResetContent();
+    std::list<AugmentType>::const_iterator it = types.begin();
+    size_t index = 0;
+    while (it != types.end())
+    {
+        CString entry = EnumEntryText((*it), augmentTypeMap);
+        char buffer[_MAX_PATH];
+        strcpy_s(buffer, entry);
+        COMBOBOXEXITEM item;
+        item.mask = CBEIF_TEXT;
+        item.iItem = index;
+        item.iImage = 0;
+        item.iSelectedImage = 0;
+        item.pszText = buffer;
+        item.lParam = index;
+        size_t pos = m_comboUpgradeDropList[controlIndex].InsertItem(&item);
+        // move on to the next item
+        ++index;
+        ++it;
+    }
+}
+
+void CItemSelectDialog::OnUpgradeSelect(UINT nID)
+{
+    // an upgrade selection has been made. Determine which augment slot type
+    // needs to be added and remove the upgrade list from the item. This action
+    // cannot be undone. The user will have to reselect he base item to undo this
+    size_t controlIndex = nID - IDC_COMBO_UPGRADE1;
+    int selection = m_comboUpgradeDropList[controlIndex].GetCurSel();
+    // now find what was selected
+    std::list<AugmentType> augments;
+    switch (m_upgradeTypeModelled[controlIndex])
+    {
+    case Upgrade_Primary:
+        augments = m_item.PrimaryUpgrade();
+        break;
+    case Upgrade_Secondary:
+        augments = m_item.SecondaryUpgrade();
+        break;
+    case Upgrade_LegendarySlavelords:
+        augments = m_item.LegendarySlavelordUpgrade();
+        break;
+    default:
+        ASSERT(FALSE);
+        break;
+    }
+    // determine the augment type to add
+    ASSERT(selection >= 0 && selection < (int)augments.size());
+    std::list<AugmentType>::iterator it = augments.begin();
+    std::advance(it, selection);
+
+    std::vector<ItemAugment> currentAugments = m_item.Augments();
+    ItemAugment newAugment;
+    newAugment.Set_Type((*it));
+    currentAugments.push_back(newAugment);
+    m_item.Set_Augments(currentAugments);
+
+    // now ensure the upgrade cannot be selected again
+    std::list<AugmentType> empty;
+    switch (m_upgradeTypeModelled[controlIndex])
+    {
+    case Upgrade_Primary:
+        m_item.Set_PrimaryUpgrade(empty);
+        break;
+    case Upgrade_Secondary:
+        m_item.Set_SecondaryUpgrade(empty);
+        break;
+    case Upgrade_LegendarySlavelords:
+        m_item.Set_LegendarySlavelordUpgrade(empty);
+        break;
+    default:
+        ASSERT(FALSE);
+        break;
+    }
+    // now get all controls re-repopulate
+    EnableControls();
+}
+
+

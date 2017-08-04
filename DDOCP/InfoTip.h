@@ -42,7 +42,7 @@ class CInfoTip :
                 size_t level,
                 const LevelTraining * levelData);
 
-        void SetOrigin(CPoint point);
+        void SetOrigin(CPoint origin, CPoint alternate);
         void Show();
         void Hide();
 
@@ -56,6 +56,7 @@ class CInfoTip :
     private:
         void GenerateLineBreaks(CString * text);
         CPoint m_origin;
+        CPoint m_alternate;
         CFont m_standardFont;
         CFont m_boldFont;
         CImage m_image;

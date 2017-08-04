@@ -37,6 +37,10 @@ namespace XmlLib
 // type Xname() const;
 // void SetXname(type newValue);
 //---------------------------------------------------------------------
+#define DL_ENUM_LIST(_, type, xname, def, map) DL_ENUM_LIST_##_(type, xname, def, map)
+// const std::list<type> & Xname() const;
+// void SetXname(const std::list<type> & newValue);
+//---------------------------------------------------------------------
 #define DL_OPTIONAL_ENUM(_, type, xname, def, map) DL_OPTIONAL_ENUM_##_(type, xname, def, map)
 // bool HasXname() const;
 // bool ClearXname() const;
@@ -123,6 +127,11 @@ namespace XmlLib
         type xname() const; \
         private: \
         void DL_CAT(Set_,xname)(type newValue);
+#define DL_ENUM_LIST_ACCESS(type, xname, def, map) \
+        public: \
+        const std::list<type> & xname() const; \
+        private: \
+        void DL_CAT(Set_,xname)(const std::list<type> & newValue);
 #define DL_OPTIONAL_ENUM_ACCESS(type, xname, def, map) \
         public: \
         type xname() const; \
@@ -187,6 +196,8 @@ namespace XmlLib
 #define DL_ENUM_VARIABLE(type, xname, def, map) \
         DL_OPTIONAL_GENERIC_VARIABLE(xname) \
         type DL_CAT(m_,xname);
+#define DL_ENUM_LIST_VARIABLE(type, xname, def, map) \
+        std::list<type> DL_CAT(m_,xname);
 #define DL_OPTIONAL_ENUM_VARIABLE(type, xname, def, map) \
         DL_OPTIONAL_GENERIC_VARIABLE(xname) \
         type DL_CAT(m_,xname);
@@ -229,6 +240,7 @@ namespace XmlLib
         const XmlLib::SaxString DL_CAT(f_sax,xname) = DL_CAT(L,DL_STRINGIZE(xname));
 #define DL_FLAG_DEFINE_NAME(xname) DL_GENERIC_DEFINE_NAME(xname)
 #define DL_ENUM_DEFINE_NAME(type, xname, def, map) DL_GENERIC_DEFINE_NAME(xname)
+#define DL_ENUM_LIST_DEFINE_NAME(type, xname, def, map) DL_GENERIC_DEFINE_NAME(xname)
 #define DL_OPTIONAL_ENUM_DEFINE_NAME(type, xname, def, map) DL_GENERIC_DEFINE_NAME(xname)
 #define DL_SIMPLE_DEFINE_NAME(type, xname, def) DL_GENERIC_DEFINE_NAME(xname)
 #define DL_OPTIONAL_SIMPLE_DEFINE_NAME(type, xname, def) DL_GENERIC_DEFINE_NAME(xname)
@@ -255,6 +267,8 @@ namespace XmlLib
 #define DL_ENUM_INIT(type, xname, def, map) \
         DL_OPTIONAL_GENERIC_INIT(xname) \
         DL_CAT(m_,xname) = def;
+#define DL_ENUM_LIST_INIT(type, xname, def, map) \
+        DL_CAT(m_,xname).clear();
 #define DL_OPTIONAL_ENUM_INIT(type, xname, def, map) \
         DL_OPTIONAL_GENERIC_INIT(xname) \
         DL_CAT(m_,xname) = def;
@@ -310,6 +324,15 @@ namespace XmlLib
             return DL_CAT(m_,xname); \
         } \
         void DL_ELEMENT::DL_CAT(Set_,xname)(type newValue) \
+        { \
+            DL_CAT(m_,xname) = newValue; \
+        }
+#define DL_ENUM_LIST_DEFINE_ACCESS(type, xname, def, map) \
+        const std::list<type> & DL_ELEMENT::xname() const \
+        { \
+            return DL_CAT(m_,xname); \
+        } \
+        void DL_ELEMENT::DL_CAT(Set_,xname)(const std::list<type> & newValue) \
         { \
             DL_CAT(m_,xname) = newValue; \
         }
@@ -470,6 +493,12 @@ namespace XmlLib
             subHandler = HandleEnumElement(&DL_CAT(m_,xname),map); \
             DL_CAT(m_has, xname) = true; \
         }
+#define DL_ENUM_LIST_START(type, xname, def, map) \
+        if (subHandler == NULL && name == DL_CAT(f_sax,xname)) \
+        { \
+            DL_CAT(m_,xname).push_back((type)0); \
+            subHandler = HandleEnumElement(&DL_CAT(m_,xname).back(),map); \
+        }
 #define DL_OPTIONAL_ENUM_START(type, xname, def, map) \
         if (subHandler == NULL && name == DL_CAT(f_sax,xname)) \
         { \
@@ -557,6 +586,18 @@ namespace XmlLib
                 SAXASSERT(false, DL_STRINGIZE(DL_ELEMENT) "::" DL_STRINGIZE(DL_CAT(m_,xname)) " had bad loaded enum value") \
             } \
         }
+#define DL_ENUM_LIST_END(type, xname, def, map) \
+        { \
+            std::list<type>::const_iterator it = DL_CAT(m_,xname).begin(); \
+            while (it != DL_CAT(m_,xname).end()) \
+            { \
+                if ((int)(*it) < 0) \
+                { \
+                    SAXASSERT(false, DL_STRINGIZE(DL_ELEMENT) "::" DL_STRINGIZE(DL_CAT(m_,xname)) " had bad loaded enum value") \
+                } \
+                ++it; \
+            } \
+        }
 #define DL_OPTIONAL_ENUM_END(type, xname, def, map) \
         if (DL_CAT(m_has,xname)) \
         { \
@@ -595,6 +636,15 @@ namespace XmlLib
         }
 #define DL_ENUM_WRITE(type, xname, def, map) \
         writer->WriteEnumElement(DL_CAT(f_sax,xname), DL_CAT(m_,xname), map);
+#define DL_ENUM_LIST_WRITE(type, xname, def, map) \
+        { \
+            std::list<type>::const_iterator it = DL_CAT(m_,xname).begin(); \
+            while (it != DL_CAT(m_,xname).end()) \
+            { \
+                writer->WriteEnumElement(DL_CAT(f_sax,xname), (*it), map); \
+                ++it; \
+            } \
+        }
 #define DL_OPTIONAL_ENUM_WRITE(type, xname, def, map) \
         if (DL_CAT(m_has,xname)) \
         { \

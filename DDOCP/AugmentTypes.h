@@ -16,8 +16,8 @@ enum AugmentType
     Augment_Orange,
     Augment_Purple,
     Augment_Red,
-    Augment_White,
     Augment_Yellow,
+    Augment_Colorless,
     // special crafting augment slots
     // heroic green steel
     Augment_GreensteelItemTier1,
@@ -55,6 +55,7 @@ enum AugmentType
     Augment_DunRobarPrefix,
     Augment_DunRobarSuffix,
     Augment_Szind,
+    Augment_GoatskinOptional,
 };
 const XmlLib::enumMapEntry<AugmentType> augmentTypeMap[] =
 {
@@ -64,8 +65,8 @@ const XmlLib::enumMapEntry<AugmentType> augmentTypeMap[] =
     {Augment_Orange, L"Orange"},
     {Augment_Purple, L"Purple"},
     {Augment_Red, L"Red"},
-    {Augment_White, L"White"},
     {Augment_Yellow, L"Yellow"},
+    {Augment_Colorless, L"Colorless"},
     {Augment_GreensteelItemTier1, L"GreensteelItemTier1"},
     {Augment_GreensteelItemTier2, L"GreensteelItemTier2"},
     {Augment_GreensteelItemTier3, L"GreensteelItemTier3"},
@@ -99,5 +100,6 @@ const XmlLib::enumMapEntry<AugmentType> augmentTypeMap[] =
     {Augment_DunRobarPrefix, L"Dun'Robar Prefix"},
     {Augment_DunRobarSuffix,L"Dun'Robar Suffix"},
     {Augment_Szind, L"Szind"},
+    {Augment_GoatskinOptional, L"Goatskin Optional"},
     {AugmentType(0), NULL}
 };

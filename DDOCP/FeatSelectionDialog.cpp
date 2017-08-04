@@ -195,7 +195,8 @@ void CFeatSelectionDialog::ShowTip(CRect itemRect)
     }
     ClientToScreen(&itemRect);
     CPoint tipTopLeft(itemRect.left, itemRect.bottom + 2);
-    SetTooltipText(tipTopLeft);
+    CPoint tipAlternate(itemRect.left, itemRect.top - 2);
+    SetTooltipText(tipTopLeft, tipAlternate);
     m_showingTip = true;
     // track the mouse so we know when it leaves our window
     // (us when disabled, our button when enabled)
@@ -218,9 +219,10 @@ void CFeatSelectionDialog::HideTip()
 }
 
 void CFeatSelectionDialog::SetTooltipText(
-        CPoint tipTopLeft)
+        CPoint tipTopLeft,
+        CPoint tipAlternate)
 {
-    m_tooltip.SetOrigin(tipTopLeft);
+    m_tooltip.SetOrigin(tipTopLeft, tipAlternate);
     m_tooltip.SetFeatItem(*m_pCharacter, &m_feat);
     m_tooltip.Show();
 }

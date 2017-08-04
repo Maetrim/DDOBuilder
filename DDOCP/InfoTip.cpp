@@ -69,6 +69,27 @@ void CInfoTip::Show()
     GetWindowSize(pDC, &windowSize);
     ReleaseDC(pDC);
 
+    // before actually showing the tip, determine whether it fits on the screen
+    // if it extends below the bottom or past the right we move the window
+    // accordingly to make sure it is visible. Do this for the monitor the
+    // origin point for this tooltip is on.
+    HMONITOR hMonitor = MonitorFromPoint(m_origin, MONITOR_DEFAULTTONEAREST);
+    MONITORINFOEX monitorInfo;
+    memset(&monitorInfo, 0, sizeof(MONITORINFOEX));
+    monitorInfo.cbSize = sizeof(MONITORINFOEX);
+    GetMonitorInfo(hMonitor, &monitorInfo);
+    CRect monitorSize(monitorInfo.rcWork);
+    if (m_origin.x + windowSize.cx > monitorSize.right)
+    {
+        // move the tip left to ensure all text visible
+        m_origin.x = monitorSize.right - windowSize.cx;
+    }
+    if (m_origin.y + windowSize.cy > monitorSize.bottom)
+    {
+        // move the tip above the origin position to ensure content visible
+        m_origin.y = m_alternate.y - windowSize.cy; // alternate position
+    }
+
     SetWindowPos(
             &wndTop, //Most, 
             m_origin.x, 
@@ -88,9 +109,10 @@ void CInfoTip::Show()
     //::ReleaseDC(NULL, hdc);
 }
 
-void CInfoTip::SetOrigin(CPoint point)
+void CInfoTip::SetOrigin(CPoint origin, CPoint alternate)
 {
-    m_origin = point;
+    m_origin = origin;
+    m_alternate = alternate;
 }
 
 void CInfoTip::Hide()
@@ -376,8 +398,11 @@ void CInfoTip::SetLevelItem(
             levelData->HasClass() ? levelData->Class() : Class_Unknown,
             classTypeMap);
     LoadImageFile(IT_ui, (LPCTSTR)icon, &m_image, true);
+    std::vector<size_t> classLevels = charData.ClassLevels(level);
     m_image.SetTransparentColor(c_transparentColour);
-    m_title = icon;
+    m_title.Format("%s (%d)",
+            icon,
+            levelData->HasClass() ? classLevels[levelData->Class()] : 0);
     m_description = "";
     // The description field is the list of feats that can/have been trained
     // along with the list of skills and skill points available
@@ -419,6 +444,7 @@ void CInfoTip::SetLevelItem(
                 levelData->SkillPointsAvailable());
         m_description += text;
         // show what skills (if any) points have been spent on
+        // and whether they have been overspent on
         const std::list<TrainedSkill> & ts = levelData->TrainedSkills();
         std::list<TrainedSkill>::const_iterator it = ts.begin();
         std::vector<size_t> skillRanks(Skill_Count, 0);
@@ -431,7 +457,7 @@ void CInfoTip::SetLevelItem(
         {
             if (skillRanks[i] != 0)
             {
-                // this skill as been trained, list it
+                // this skill has been trained, list it
                 bool classSkill = IsClassSkill(levelData->Class(), (SkillType)i);
                 if (classSkill)
                 {
@@ -445,6 +471,12 @@ void CInfoTip::SetLevelItem(
                             EnumEntryText((SkillType)i, skillTypeMap),
                             skillRanks[i] * 0.5,
                             skillRanks[i]);
+                }
+                // has it been over trained?
+                if (charData.SkillAtLevel((SkillType)i, level, false)
+                        > charData.MaxSkillForLevel((SkillType)i, level))
+                {
+                    text  += " SKILL OVER TRAINED";
                 }
                 m_description += text;
             }

@@ -40,8 +40,8 @@ class CSelectionSelectDialog :
     private:
         void ShowTip(size_t index, CRect itemRect);
         void HideTip();
-        void SetTooltipText(const EnhancementSelection & item, CPoint tipTopLeft);
-        enum Hack {c_maxSelections = 16};
+        void SetTooltipText(const EnhancementSelection & item, CPoint tipTopLeft, CPoint tipAlternate);
+        enum {c_maxSelections = 16};
         const Character & m_charData;
         const EnhancementTreeItem & m_item;
         const std::string & m_treeName;

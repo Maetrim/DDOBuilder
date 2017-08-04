@@ -45,7 +45,7 @@ class CFeatSelectionDialog :
         void LoadFeatBitmap();
         void ShowTip(CRect itemRect);
         void HideTip();
-        void SetTooltipText(CPoint tipTopLeft);
+        void SetTooltipText(CPoint tipTopLeft, CPoint tipAlternate);
         CMFCButtonMMRelay m_featButton;
         Character * m_pCharacter;
         Feat m_feat;

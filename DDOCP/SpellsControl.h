@@ -99,7 +99,7 @@ class CSpellsControl :
         const SpellHitBox * FindByPoint(CRect * pRect = NULL) const;
         void ShowTip(const SpellHitBox & item, CRect itemRect);
         void HideTip();
-        void SetTooltipText(const SpellHitBox & item, CPoint tipTopLeft);
+        void SetTooltipText(const SpellHitBox & item, CPoint tipTopLeft, CPoint tipAlternate);
         void RemoveTrained(
                 std::vector<Spell> * spells,
                 std::string * currentSelection);

@@ -15,12 +15,12 @@ class CSpellTip :
         BOOL Create(CWnd * parent);
         void SetSpell(Character * pCharacter, const Spell & spell, ClassType ct);
 
-        void SetOrigin(CPoint point);
+        void SetOrigin(CPoint origin, CPoint alternate);
         void Show();
         void Hide();
 
     protected:
-        BOOL GetWindowRegion(CDC * pDC, HRGN * hRegion, CSize * size);
+        BOOL GetWindowSize(CDC * pDC, CSize * size);
         //{{AFX_MSG(CSpellTip)
         afx_msg void OnPaint();
         //}}AFX_MSG
@@ -29,6 +29,7 @@ class CSpellTip :
     private:
         void GenerateLineBreaks(CString * text);
         CPoint m_origin;
+        CPoint m_alternate;
         CFont m_standardFont;
         CFont m_boldFont;
         CImage m_image;

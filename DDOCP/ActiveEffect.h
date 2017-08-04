@@ -20,7 +20,12 @@ class ActiveEffect
                 const std::string & name,
                 size_t stacks,
                 double amount,
-                const std::string & tree);
+                const std::string & tree);  // standard amount
+        ActiveEffect(
+                BonusType bonusType,
+                const std::string & name,
+                double amount,
+                const std::string & tree);  // amount per AP
         ActiveEffect(
                 BonusType bonusType,
                 const std::string & name,

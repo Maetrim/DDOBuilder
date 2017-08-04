@@ -88,7 +88,7 @@ class CDestinyTreeDialog :
         const EnhancementTreeItem * FindByPoint(CRect * pRect = NULL) const;
         void ShowTip(const EnhancementTreeItem & item, CRect itemRect);
         void HideTip();
-        void SetTooltipText(const EnhancementTreeItem & item, CPoint tipTopLeft);
+        void SetTooltipText(const EnhancementTreeItem & item, CPoint tipTopLeft, CPoint tipAlternate);
         EnhancementTree m_tree;
         TreeType m_type;
         Character * m_pCharacter;

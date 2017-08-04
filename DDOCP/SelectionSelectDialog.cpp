@@ -201,7 +201,8 @@ void CSelectionSelectDialog::ShowTip(size_t index, CRect itemRect)
         m_tooltip.Hide();
     }
     CPoint tipTopLeft(itemRect.left, itemRect.bottom + 2);
-    SetTooltipText((*it), tipTopLeft);
+    CPoint tipAlternate(itemRect.left, itemRect.top - 2);
+    SetTooltipText((*it), tipTopLeft, tipAlternate);
     m_showingTip = true;
     // track the mouse so we know when it leaves our window
     TRACKMOUSEEVENT tme;
@@ -225,9 +226,10 @@ void CSelectionSelectDialog::HideTip()
 
 void CSelectionSelectDialog::SetTooltipText(
         const EnhancementSelection & item,
-        CPoint tipTopLeft)
+        CPoint tipTopLeft,
+        CPoint tipAlternate)
 {
-    m_tooltip.SetOrigin(tipTopLeft);
+    m_tooltip.SetOrigin(tipTopLeft, tipAlternate);
     m_tooltip.SetEnhancementSelectionItem(m_charData, &item, m_item.Ranks());
     m_tooltip.Show();
 }

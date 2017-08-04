@@ -391,7 +391,8 @@ void CSpellsControl::ShowTip(const SpellHitBox & item, CRect itemRect)
     }
     ClientToScreen(&itemRect);
     CPoint tipTopLeft(itemRect.left, itemRect.bottom);
-    SetTooltipText(item, tipTopLeft);
+    CPoint tipAlternate(itemRect.left, itemRect.top);
+    SetTooltipText(item, tipTopLeft, tipAlternate);
     m_showingTip = true;
     // track the mouse so we know when it leaves our window
     TRACKMOUSEEVENT tme;
@@ -415,7 +416,8 @@ void CSpellsControl::HideTip()
 
 void CSpellsControl::SetTooltipText(
         const SpellHitBox & item,
-        CPoint tipTopLeft)
+        CPoint tipTopLeft,
+        CPoint tipAlternate)
 {
     // find the spell to show info about
     std::string spellName;
@@ -448,7 +450,7 @@ void CSpellsControl::SetTooltipText(
     }
     // now we have the spell name, look it up
     Spell spell = FindSpellByName(spellName);
-    m_tooltip.SetOrigin(tipTopLeft);
+    m_tooltip.SetOrigin(tipTopLeft, tipAlternate);
     m_tooltip.SetSpell(
             m_pCharacter,
             spell,

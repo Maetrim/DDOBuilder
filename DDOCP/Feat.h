@@ -28,6 +28,7 @@ class Feat :
         void VerifyObject(
                 const std::list<EnhancementTree> & allTrees,
                 const std::list<Feat> & allfeats) const;
+        bool operator<(const Feat & other) const;
         void AddImage(CImageList * pIL) const;
 
     protected:

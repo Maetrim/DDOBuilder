@@ -20,7 +20,8 @@ BreakdownItemWeapon::BreakdownItemWeapon(
     m_damageBonus(Breakdown_WeaponDamageBonus, Effect_DamageBonus, "Damage Bonus", treeList, hSubItems[1]),
     m_criticalAttackBonus(Breakdown_WeaponAttackBonus, Effect_CriticalAttackBonus, "Critical Attack Bonus", treeList, hSubItems[2]),
     m_criticalDamageBonus(Breakdown_WeaponDamageBonus, Effect_Seeker, "Critical Damage Bonus", treeList, hSubItems[3]),
-    m_attackSpeed(Breakdown_WeaponAttackSpeed, Effect_AttackSpeed, "Attack Speed", treeList, hSubItems[4])
+    m_attackSpeed(Breakdown_WeaponAttackSpeed, Effect_AttackSpeed, "Attack Speed", treeList, hSubItems[4]),
+    m_centeredCount(0)     // assume not centered with this weapon
 {
     // we need to update if any of our sub-items update also
     //m_baseDamage.AttachObserver(this);
@@ -73,6 +74,11 @@ BreakdownItemWeapon::~BreakdownItemWeapon()
 {
 }
 
+bool BreakdownItemWeapon::IsCentering() const
+{
+    return (m_centeredCount > 0);
+}
+
 void BreakdownItemWeapon::SetCharacter(Character * charData, bool observe)
 {
     BreakdownItem::SetCharacter(charData, observe);
@@ -90,6 +96,10 @@ void BreakdownItemWeapon::SetCharacter(Character * charData, bool observe)
 // required overrides
 CString BreakdownItemWeapon::Title() const
 {
+    if (m_centeredCount > 0)
+    {
+        return m_title + " (Centered when using)";
+    }
     return m_title;
 }
 
@@ -205,6 +215,13 @@ void BreakdownItemWeapon::UpdateFeatEffect(
         //m_criticalMultiplier.UpdateFeatEffect(pCharacter, featName, effect);
         //m_specialMultiplier.UpdateFeatEffect(pCharacter, featName, effect);
         m_attackSpeed.UpdateFeatEffect(pCharacter, featName, effect);
+
+        // we handle whether we are centered or not
+        if (effect.Type() == Effect_CenteredWeapon)
+        {
+            ++m_centeredCount;
+            Populate();
+        }
     }
 }
 
@@ -227,6 +244,13 @@ void BreakdownItemWeapon::UpdateFeatEffectRevoked(
         //m_criticalMultiplier.UpdateFeatEffectRevoked(pCharacter, featName, effect);
         //m_specialMultiplier.UpdateFeatEffectRevoked(pCharacter, featName, effect);
         m_attackSpeed.UpdateFeatEffectRevoked(pCharacter, featName, effect);
+
+        // we handle whether we are centered or not
+        if (effect.Type() == Effect_CenteredWeapon)
+        {
+            --m_centeredCount;
+            Populate();
+        }
     }
 }
 
@@ -249,6 +273,13 @@ void BreakdownItemWeapon::UpdateItemEffect(
         //m_criticalMultiplier.UpdateItemEffect(pCharacter, itemName, effect);
         //m_specialMultiplier.UpdateItemEffect(pCharacter, itemName, effect);
         m_attackSpeed.UpdateItemEffect(pCharacter, itemName, effect);
+
+        // we handle whether we are centered or not
+        if (effect.Type() == Effect_CenteredWeapon)
+        {
+            ++m_centeredCount;
+            Populate();
+        }
     }
 }
 
@@ -271,6 +302,13 @@ void BreakdownItemWeapon::UpdateItemEffectRevoked(
         //m_criticalMultiplier.UpdateItemEffectRevoked(pCharacter, itemName, effect);
         //m_specialMultiplier.UpdateItemEffectRevoked(pCharacter, itemName, effect);
         m_attackSpeed.UpdateItemEffectRevoked(pCharacter, itemName, effect);
+
+        // we handle whether we are centered or not
+        if (effect.Type() == Effect_CenteredWeapon)
+        {
+            --m_centeredCount;
+            Populate();
+        }
     }
 }
 
@@ -293,6 +331,13 @@ void BreakdownItemWeapon::UpdateEnhancementEffect(
         //m_criticalMultiplier.UpdateEnhancementEffect(pCharacter, enhancementName, effect);
         //m_specialMultiplier.UpdateEnhancementEffect(pCharacter, enhancementName, effect);
         m_attackSpeed.UpdateEnhancementEffect(pCharacter, enhancementName, effect);
+
+        // we handle whether we are centered or not
+        if (effect.m_effect.Type() == Effect_CenteredWeapon)
+        {
+            ++m_centeredCount;
+            Populate();
+        }
     }
 }
 
@@ -315,6 +360,13 @@ void BreakdownItemWeapon::UpdateEnhancementEffectRevoked(
         //m_criticalMultiplier.UpdateEnhancementEffectRevoked(pCharacter, enhancementName, effect);
         //m_specialMultiplier.UpdateEnhancementEffectRevoked(pCharacter, enhancementName, effect);
         m_attackSpeed.UpdateEnhancementEffectRevoked(pCharacter, enhancementName, effect);
+
+        // we handle whether we are centered or not
+        if (effect.m_effect.Type() == Effect_CenteredWeapon)
+        {
+            --m_centeredCount;
+            Populate();
+        }
     }
 }
 
@@ -441,7 +493,12 @@ bool BreakdownItemWeapon::IsCrossbow() const
     case Weapon_GreatCrossbow:
     case Weapon_RepeatingHeavyCrossbow:
     case Weapon_RepeatingLightCrossbow:
-        // TBD: special case for great/repeating
+        if (m_pCharacter->IsEnhancementTrained("KenseiCore1", "Kensei Focus: Crossbows")
+                && m_pCharacter->IsEnhancementTrained("KenseiExoticWeaponMastery", ""))
+        {
+            isUs = true;
+        }
+        break;
     case Weapon_HeavyCrossbow:
     case Weapon_LightCrossbow:
        isUs = true;
@@ -532,7 +589,12 @@ bool BreakdownItemWeapon::IsHeavyBladeWeapon() const
     {
     case Weapon_BastardSword:
     case Weapon_Khopesh:
-        // TBD: these are only available if relevant exotic weapon enhancement taken
+        if (m_pCharacter->IsEnhancementTrained("KenseiCore1", "Kensei Focus: Heavy Blades")
+                && m_pCharacter->IsEnhancementTrained("KenseiExoticWeaponMastery", ""))
+        {
+            isUs = true;
+        }
+        break;
     case Weapon_Falchion:
     case Weapon_GreatSword:
     case Weapon_Longsword:
@@ -619,7 +681,18 @@ bool BreakdownItemWeapon::IsAxe() const
     switch (m_weaponType)
     {
     case Weapon_DwarvenAxe:
-        // TBD: special case for Dwarven axe
+        // You get Dwarven axe if you are a dwarf or you have the enhancements
+        // for the axe group as your focus weapons as a Kensei
+        if (m_pCharacter->Race() == Race_Dwarf)
+        {
+            isUs = true;
+        }
+        if (m_pCharacter->IsEnhancementTrained("KenseiCore1", "Kensei Focus: Axes")
+                && m_pCharacter->IsEnhancementTrained("KenseiExoticWeaponMastery", ""))
+        {
+            isUs = true;
+        }
+        break;
     case Weapon_BattleAxe:
     case Weapon_GreatAxe:
     case Weapon_HandAxe:

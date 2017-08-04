@@ -40,7 +40,7 @@ traverse chasms that make normal adventurers balk.</Description>
       <Acquire>Automatic</Acquire>
       <AutomaticAcquisition>
          <Class>Monk</Class>
-         <Level>2</Level>
+         <Level>1</Level>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
          <Class>Monk</Class>
@@ -585,6 +585,12 @@ by right-clicking the mouse.</Description>
       <AutomaticAcquisition>
          <Level>1</Level>
       </AutomaticAcquisition>
+       <Effect>
+           <DisplayName>Standard Death at</DisplayName>
+           <Type>UnconsciousRange</Type>
+           <Bonus>Base</Bonus>
+           <Amount>-10</Amount>
+       </Effect>
    </Feat>
    <Feat>
       <Name>Augment Summoning</Name>
@@ -5334,7 +5340,7 @@ chance by 1%. Stacks with Mental Toughness. </Description>
          <Amount>105</Amount>
       </Effect>
       <Effect>
-         <Type>SpellCriticalChance</Type>
+         <Type>SpellLore</Type>
          <Bonus>Feat</Bonus>
          <SpellPower>All</SpellPower>
          <Amount>1</Amount>
@@ -6398,6 +6404,32 @@ at the cost of -2 Dexterity and -10% movement speed.</Description>
          <Stance>Mountain Stance</Stance>
       </Effect>
       <!--Handle +1 ki per hit-->
+       <!--Weapon centering for monks added to this feat-->
+       <Effect>
+           <Type>CenteredWeapon</Type>
+           <Bonus>Feat</Bonus>
+           <Weapon>Kama</Weapon>
+       </Effect>
+       <Effect>
+           <Type>CenteredWeapon</Type>
+           <Bonus>Feat</Bonus>
+           <Weapon>Shuriken</Weapon>
+       </Effect>
+       <Effect>
+           <Type>CenteredWeapon</Type>
+           <Bonus>Feat</Bonus>
+           <Weapon>Handwraps</Weapon>
+       </Effect>
+       <Effect>
+           <Type>CenteredWeapon</Type>
+           <Bonus>Feat</Bonus>
+           <Weapon>Quarterstaff</Weapon>
+       </Effect>
+       <Effect>
+           <Type>CenteredWeapon</Type>
+           <Bonus>Feat</Bonus>
+           <Weapon>Unarmed</Weapon>
+       </Effect>
    </Feat>
    <Feat>
       <Name>Ocean Stance</Name>
@@ -6717,7 +6749,7 @@ spell points pool drops below 12.</Description>
          <Amount>80</Amount>
       </Effect>
       <Effect>
-         <Type>SpellCriticalChance</Type>
+         <Type>SpellLore</Type>
          <Bonus>Feat</Bonus>
          <SpellPower>All</SpellPower>
          <Amount>5</Amount>
@@ -7725,7 +7757,7 @@ Also increases your spell critical chance by 1%. </Description>
          <Amount>105</Amount>
       </Effect>
       <Effect>
-         <Type>SpellCriticalChance</Type>
+         <Type>SpellLore</Type>
          <Bonus>Feat</Bonus>
          <SpellPower>All</SpellPower>
          <Amount>1</Amount>
@@ -13534,12 +13566,12 @@ You treat shortbows and longbows as if they were ki weapons.</Description>
          <Ability>Wisdom</Ability>
       </Effect>
       <Effect>
-         <Type>KiWeapon</Type>
+         <Type>CenteredWeapon</Type>
          <Bonus>Feat</Bonus>
          <Weapon>Longbow</Weapon>
       </Effect>
       <Effect>
-         <Type>KiWeapon</Type>
+         <Type>CenteredWeapon</Type>
          <Bonus>Feat</Bonus>
          <Weapon>Shortbow</Weapon>
       </Effect>
@@ -14050,35 +14082,35 @@ and Sonic Spells per stack of this past life.</Description>
       <Sphere>Arcane</Sphere>
       <Icon>EpicPastLifeEnergyCriticals</Icon>
       <Effect>
-         <Type>SpellCriticalChance</Type>
+         <Type>SpellLore</Type>
          <Bonus>Feat</Bonus>
          <SpellPower>Acid</SpellPower>
          <Amount>3</Amount>
          <Stance>Energy Criticals</Stance>
       </Effect>
       <Effect>
-         <Type>SpellCriticalChance</Type>
+         <Type>SpellLore</Type>
          <Bonus>Feat</Bonus>
          <SpellPower>Cold</SpellPower>
          <Amount>3</Amount>
          <Stance>Energy Criticals</Stance>
       </Effect>
       <Effect>
-         <Type>SpellCriticalChance</Type>
+         <Type>SpellLore</Type>
          <Bonus>Feat</Bonus>
          <SpellPower>Electric</SpellPower>
          <Amount>3</Amount>
          <Stance>Energy Criticals</Stance>
       </Effect>
       <Effect>
-         <Type>SpellCriticalChance</Type>
+         <Type>SpellLore</Type>
          <Bonus>Feat</Bonus>
          <SpellPower>Fire</SpellPower>
          <Amount>3</Amount>
          <Stance>Energy Criticals</Stance>
       </Effect>
       <Effect>
-         <Type>SpellCriticalChance</Type>
+         <Type>SpellLore</Type>
          <Bonus>Feat</Bonus>
          <SpellPower>Sonic</SpellPower>
          <Amount>3</Amount>
@@ -14994,7 +15026,7 @@ saving throws on a roll of 1.</Description>
          <Amount>200</Amount>
       </Effect>
       <Effect>
-         <Type>SpellCriticalChance</Type>
+         <Type>SpellLore</Type>
          <Bonus>Feat</Bonus>
          <SpellPower>All</SpellPower>
          <Amount>1</Amount>

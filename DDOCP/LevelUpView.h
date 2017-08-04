@@ -82,8 +82,8 @@ class CLevelUpView :
         void ShowFeatTip(size_t featIndex, CRect itemRect);
         void ShowLevelTip(size_t level, CRect itemRect);
         void HideTip();
-        void SetFeatTooltipText(const CString & featName, CPoint tipTopLeft);
-        void SetLevelTooltipText(size_t level, CPoint tipTopLeft);
+        void SetFeatTooltipText(const CString & featName, CPoint tipTopLeft, CPoint tipAlternate);
+        void SetLevelTooltipText(size_t level, CPoint tipTopLeft, CPoint tipAlternate);
 
         Character * m_pCharacter;
         CLevelButton m_buttonLevels[MAX_LEVEL];

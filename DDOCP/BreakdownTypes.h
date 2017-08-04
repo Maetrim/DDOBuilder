@@ -26,6 +26,7 @@ enum BreakdownType
     Breakdown_ArmorCheckPenalty,
     Breakdown_MovementSpeed,
     Breakdown_Hitpoints,
+    Breakdown_UnconsciousRange,
     Breakdown_PRR,
     Breakdown_MRR,
     Breakdown_AC,

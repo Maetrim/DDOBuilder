@@ -520,6 +520,11 @@ void Character::NotifyActionPointsChanged()
     NotifyAll(&CharacterObserver::UpdateActionPointsChanged, this);
 }
 
+void Character::NotifyAPSpentInTreeChanged(const std::string & treeName)
+{
+    NotifyAll(&CharacterObserver::UpdateAPSpentInTreeChanged, this, treeName);
+}
+
 void Character::NotifySpellTrained(const TrainedSpell & spell)
 {
     NotifyAll(&CharacterObserver::UpdateSpellTrained, this, spell);
@@ -1790,12 +1795,12 @@ std::vector<TrainableFeatTypes> Character::TrainableFeatTypeAtLevel(
     return trainable;
 }
 
-std::list<Feat> Character::TrainableFeats(
+std::vector<Feat> Character::TrainableFeats(
         TrainableFeatTypes type,
         size_t level,
         const std::string & includeThisFeat) const
 {
-    std::list<Feat> trainable;
+    std::vector<Feat> trainable;
     // iterate the list of all feats and see if the character qualifies
     // to train it
     CDDOCPApp * pApp = dynamic_cast<CDDOCPApp*>(AfxGetApp());
@@ -1937,6 +1942,15 @@ void Character::RevokeFeatEffects(const Feat & feat)
 }
 
 // enhancement support
+bool Character::IsEnhancementTrained(
+        const std::string & enhancementName,
+        const std::string & selection) const
+{
+    // return true if this enhancement and selection is trained
+    bool isTrained = (IsTrained(enhancementName, selection) != NULL);
+    return isTrained;
+}
+
 std::list<TrainedEnhancement> Character::CurrentEnhancements() const
 {
     // return a list of all current enhancements trained
@@ -2192,6 +2206,7 @@ void Character::Enhancement_TrainEnhancement(
     ApplyEnhancementEffects(treeName, enhancementName, selection, ranks);
     NotifyEnhancementTrained(enhancementName, pTreeItem->HasTier5(), true);
     NotifyActionPointsChanged();
+    NotifyAPSpentInTreeChanged(treeName);
 }
 
 void Character::Enhancement_RevokeEnhancement(
@@ -2241,6 +2256,7 @@ void Character::Enhancement_RevokeEnhancement(
         }
         NotifyEnhancementRevoked(revokedEnhancement, wasTier5, true);
         NotifyActionPointsChanged();
+        NotifyAPSpentInTreeChanged(treeName);
     }
 }
 
@@ -2270,6 +2286,7 @@ void Character::Enhancement_ResetEnhancementTree(const std::string & treeName)
         }
         NotifyEnhancementTreeReset();
         NotifyActionPointsChanged();
+        NotifyAPSpentInTreeChanged(treeName);
     }
 }
 
@@ -2846,6 +2863,7 @@ void Character::Reaper_TrainEnhancement(
     // now notify all and sundry about the enhancement effects
     ApplyEnhancementEffects(treeName, enhancementName, selection, ranks);
     NotifyEnhancementTrained(enhancementName, false, true);
+    NotifyAPSpentInTreeChanged(treeName);
     m_pDocument->SetModifiedFlag(TRUE);
 }
 
@@ -2875,6 +2893,7 @@ void Character::Reaper_RevokeEnhancement(
                 revokedEnhancementSelection);
         RevokeEnhancementEffects(displayName, ranks, effects);
         NotifyEnhancementRevoked(revokedEnhancement, false, true);
+        NotifyAPSpentInTreeChanged(treeName);
         m_pDocument->SetModifiedFlag(TRUE);
     }
 }
@@ -2904,6 +2923,7 @@ void Character::Reaper_ResetEnhancementTree(const std::string & treeName)
             ++it;
         }
         NotifyEnhancementTreeReset();
+        NotifyAPSpentInTreeChanged(treeName);
         m_pDocument->SetModifiedFlag(TRUE);
     }
 }
@@ -3169,6 +3189,7 @@ void Character::EpicDestiny_TrainEnhancement(
         // this item affects the available twists
         NotifyAvailableTwistsChanged();
     }
+    NotifyAPSpentInTreeChanged(treeName);
     m_pDocument->SetModifiedFlag(TRUE);
 }
 
@@ -3212,6 +3233,7 @@ void Character::EpicDestiny_RevokeEnhancement(
             // this item affects the available twists
             NotifyAvailableTwistsChanged();
         }
+        NotifyAPSpentInTreeChanged(treeName);
         m_pDocument->SetModifiedFlag(TRUE);
     }
 }
@@ -3241,6 +3263,7 @@ void Character::EpicDestiny_ResetEnhancementTree(const std::string & treeName)
             ++it;
         }
         NotifyEnhancementTreeReset();
+        NotifyAPSpentInTreeChanged(treeName);
         m_pDocument->SetModifiedFlag(TRUE);
     }
 }

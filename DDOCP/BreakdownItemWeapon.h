@@ -26,6 +26,8 @@ class BreakdownItemWeapon :
                 const std::vector<HTREEITEM> & hSubItems);
         virtual ~BreakdownItemWeapon();
 
+        bool IsCentering() const;
+
         // required overrides
         virtual CString Title() const override;
         virtual CString Value() const override;
@@ -73,4 +75,5 @@ class BreakdownItemWeapon :
         //BreakdownItemWeaponCriticalMultiplier m_criticalMultiplier;
         //BreakdownItemWeaponSpecialMultiplier m_specialMultiplier;   // e.g. extra multiplier on a 19-20
         BreakdownItemSimple m_attackSpeed;
+        size_t m_centeredCount;
 };

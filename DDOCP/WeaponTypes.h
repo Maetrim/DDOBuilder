@@ -52,6 +52,7 @@ enum WeaponType
     Weapon_ThrowingAxe,
     Weapon_ThrowingDagger,
     Weapon_ThrowingHammer,
+    Weapon_Unarmed,
     Weapon_Warhammer,
     // special types that are not specific weapons but work the same
     Weapon_EldritchBlast,
@@ -103,6 +104,7 @@ const XmlLib::enumMapEntry<WeaponType> weaponTypeMap[] =
     {Weapon_ThrowingAxe, L"Throwing Axe"},
     {Weapon_ThrowingDagger, L"Throwing Dagger"},
     {Weapon_ThrowingHammer, L"Throwing Hammer"},
+    {Weapon_Unarmed, L"Unarmed"},
     {Weapon_Warhammer, L"Warhammer"},
     // special types
     {Weapon_EldritchBlast, L"EldritchBlast"},

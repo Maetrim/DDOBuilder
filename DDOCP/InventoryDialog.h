@@ -82,7 +82,7 @@ class CInventoryDialog :
         InventorySlotType FindByPoint(CRect * pRect = NULL) const;
         void ShowTip(const Item & item, CRect itemRect);
         void HideTip();
-        void SetTooltipText(const Item & item, CPoint tipTopLeft);
+        void SetTooltipText(const Item & item, CPoint tipTopLeft, CPoint tipAlternate);
         CRect GetItemRect(InventorySlotType slot) const;
         void NotifySlotLeftClicked(InventorySlotType slot);
         void NotifySlotRightClicked(InventorySlotType slot);

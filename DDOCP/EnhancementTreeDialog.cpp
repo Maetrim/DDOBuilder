@@ -777,7 +777,8 @@ void CEnhancementTreeDialog::ShowTip(const EnhancementTreeItem & item, CRect ite
     }
     ClientToScreen(&itemRect);
     CPoint tipTopLeft(itemRect.left, itemRect.bottom + 2);
-    SetTooltipText(item, tipTopLeft);
+    CPoint tipAlternate(itemRect.left, itemRect.top - 2);
+    SetTooltipText(item, tipTopLeft, tipAlternate);
     m_showingTip = true;
     // track the mouse so we know when it leaves our window
     TRACKMOUSEEVENT tme;
@@ -801,13 +802,14 @@ void CEnhancementTreeDialog::HideTip()
 
 void CEnhancementTreeDialog::SetTooltipText(
         const EnhancementTreeItem & item,
-        CPoint tipTopLeft)
+        CPoint tipTopLeft,
+        CPoint tipAlternate)
 {
     // different tooltip if the item is trained or not
     // if its trained, we need to show the selected sub-item tooltip
     const TrainedEnhancement * te = m_pCharacter->IsTrained(item.InternalName(), "");
     const EnhancementSelection * es = NULL;
-    m_tooltip.SetOrigin(tipTopLeft);
+    m_tooltip.SetOrigin(tipTopLeft, tipAlternate);
     if (te != NULL)
     {
         // this item is trained, we may need to show the selected sub-item tooltip text

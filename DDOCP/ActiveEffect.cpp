@@ -46,6 +46,26 @@ ActiveEffect::ActiveEffect(
 ActiveEffect::ActiveEffect(
         BonusType bonusType,
         const std::string & name,
+        double amount,
+        const std::string & tree) :
+    m_bonusType(bonusType),
+    m_type(ET_amountPerAp),
+    m_effectName(name),
+    m_numStacks(0),
+    m_amount(amount),
+    m_bHasEnergy(false),
+    m_energy(Energy_Unknown),
+    m_tree(tree),
+    m_bt(Breakdown_Unknown),
+    m_amountPerLevel(0),
+    m_class(Class_Unknown)
+{
+    // stacks is set immediately after this is constructed
+}
+
+ActiveEffect::ActiveEffect(
+        BonusType bonusType,
+        const std::string & name,
         size_t stacks,
         const Dice & dice,
         const std::string & tree) :

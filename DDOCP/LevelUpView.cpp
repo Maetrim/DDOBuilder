@@ -6,6 +6,7 @@
 #include "DDOCP.h"
 #include "FeatSelectionDialog.h"
 #include "GlobalSupportFunctions.h"
+#include <algorithm>
 
 namespace
 {
@@ -103,6 +104,7 @@ BEGIN_MESSAGE_MAP(CLevelUpView, CFormView)
     ON_NOTIFY(NM_CLICK, IDC_LIST_SKILLS, OnLeftClickListSkills)
     ON_NOTIFY(NM_RCLICK, IDC_LIST_SKILLS, OnRightClickListSkills)
     ON_NOTIFY(LVN_ITEMCHANGED, IDC_LIST_SKILLS, OnItemchangedListSkills)
+    ON_NOTIFY(NM_CUSTOMDRAW, IDC_LIST_SKILLS, OnCustomDrawSkills)
     ON_CBN_SELENDOK(IDC_COMBO_CLASS1, OnClass1Selected)
     ON_CBN_SELENDOK(IDC_COMBO_CLASS2, OnClass2Selected)
     ON_CBN_SELENDOK(IDC_COMBO_CLASS3, OnClass3Selected)
@@ -112,7 +114,6 @@ BEGIN_MESSAGE_MAP(CLevelUpView, CFormView)
     ON_BN_CLICKED(IDC_BUTTON_SKILL_MINUS, OnButtonSkillMinus)
     ON_CONTROL_RANGE(CBN_SELENDOK, IDC_COMBO_FEATSELECT1, IDC_COMBO_FEATSELECT3, OnFeatSelection)
     ON_WM_ERASEBKGND()
-    ON_NOTIFY(NM_CUSTOMDRAW, IDC_LIST_SKILLS, OnCustomDrawSkills)
     ON_WM_CTLCOLOR()
     ON_REGISTERED_MESSAGE(UWM_UPDATE_COMPLETE, OnUpdateComplete)
     ON_WM_MOUSEMOVE()
@@ -159,7 +160,7 @@ LRESULT CLevelUpView::OnNewDocument(
             m_pCharacter->AttachObserver(this);
             m_level = 0;        // default to level 1 when document changed
         }
-        // ensure all controls correct state, even for no document
+        // ensure all controls show correct state, even for no document
         PopulateControls();
     }
     return 0L;
@@ -515,6 +516,19 @@ void CLevelUpView::SetLevelButtonStates()
                 {
                     hasIssue = true;
                 }
+                // can have an issue if the level skills are over spent
+                // this can happen if you train skill levels in the wrong order
+                // e.g. at level 2 you put 5 points into a class skill, then
+                // at level 1 you put additional skill points into that skill
+                // taking the total past what is allowed at level 2.
+                for (size_t si = Skill_Unknown + 1; si < Skill_Count; ++si)
+                {
+                    if (m_pCharacter->SkillAtLevel((SkillType)si, i, false)
+                            > m_pCharacter->MaxSkillForLevel((SkillType)si, i))
+                    {
+                        hasIssue = true;
+                    }
+                }
             }
             m_buttonLevels[i].SetIssueState(hasIssue);
         }
@@ -800,7 +814,7 @@ void CLevelUpView::OnEndtrackListAutomaticFeats(NMHDR* pNMHDR, LRESULT* pResult)
 
 void CLevelUpView::OnColumnclickListSkills(NMHDR* pNMHDR, LRESULT* pResult)
 {
-    // allow he user to sort the skills list based on the selected column
+    // allow the user to sort the skills list based on the selected column
     // skill selected is identified by the item data which maps to the SkillType enum
     // when the control was populated.
     NM_LISTVIEW* pNMListView = (NM_LISTVIEW*)pNMHDR;
@@ -939,6 +953,7 @@ void CLevelUpView::OnDoubleClickListSkills(NMHDR*, LRESULT* pResult)
 
 void CLevelUpView::OnLeftClickListSkills(NMHDR*, LRESULT* pResult)
 {
+    // this doesn't current work properly
     //// this is a short cut to a skill point spend on the clicked skill
     //if (m_selectedSkill == m_listSkills.GetSelectionMark())
     //{
@@ -949,6 +964,7 @@ void CLevelUpView::OnLeftClickListSkills(NMHDR*, LRESULT* pResult)
 
 void CLevelUpView::OnRightClickListSkills(NMHDR*, LRESULT* pResult)
 {
+    // this doesn't current work properly
     //// this is a short cut to a skill point revoke on the clicked skill
     //if (m_selectedSkill == m_listSkills.GetSelectionMark())
     //{
@@ -1130,6 +1146,7 @@ void CLevelUpView::DetermineTrainableFeats()
         }
         else
         {
+            // no feat to train in this slot, disable and hide the controls
             m_staticFeatDescription[fi].EnableWindow(FALSE);
             m_staticFeatDescription[fi].ShowWindow(SW_HIDE);
             m_comboFeatSelect[fi].EnableWindow(FALSE);
@@ -1144,10 +1161,11 @@ void CLevelUpView::PopulateCombobox(
 {
     // its a valid selection
     // get a list of the available feats at current level that the user can train
-    std::list<Feat> availableFeats = m_pCharacter->TrainableFeats(
+    std::vector<Feat> availableFeats = m_pCharacter->TrainableFeats(
             m_trainable[comboIndex],
             m_level,
             selection);
+    std::sort(availableFeats.begin(), availableFeats.end());
 
     // lock the window to stop flickering while updates are done
     m_comboFeatSelect[comboIndex].LockWindowUpdate();
@@ -1161,7 +1179,7 @@ void CLevelUpView::PopulateCombobox(
             ILC_COLOR32,
             0,
             availableFeats.size());
-    std::list<Feat>::const_iterator it = availableFeats.begin();
+    std::vector<Feat>::const_iterator it = availableFeats.begin();
     while (it != availableFeats.end())
     {
         (*it).AddImage(&m_imagesFeats[comboIndex]);
@@ -1415,30 +1433,21 @@ void CLevelUpView::OnCustomDrawSkills(NMHDR* pNMHDR, LRESULT* pResult)
         }
         else if (CDDS_ITEMPREPAINT == pLVCD->nmcd.dwDrawStage)
         {
-            // this is the pre-paint stage, we need each sub-item pre-paint
-            *pResult = CDRF_NOTIFYSUBITEMDRAW;
-        }
-        else if ((CDDS_ITEMPREPAINT | CDDS_SUBITEM) == pLVCD->nmcd.dwDrawStage)
-        {
-            // this is the pre-paint stage, this is what we need
-            if (pLVCD->iSubItem == SLC_Total)
+            // determine if a skill overspend is present
+            int item = pLVCD->nmcd.dwItemSpec;
+            SkillType skill = (SkillType)m_listSkills.GetItemData(item);
+            double skillValue = m_pCharacter->SkillAtLevel(
+                    skill,
+                    m_level,
+                    false);     // skill tome not included
+            // work out how high the skill can go for this level
+            double maxSkill = m_pCharacter->MaxSkillForLevel(
+                    skill,
+                    m_level);
+            if (skillValue > maxSkill)
             {
-                // determine if a skill overspend is present
-                int item = pLVCD->nmcd.dwItemSpec;
-                SkillType skill = (SkillType)m_listSkills.GetItemData(item);
-                double skillValue = m_pCharacter->SkillAtLevel(
-                        skill,
-                        m_level,
-                        false);     // skill tome not included
-                // work out how high the skill can go for this level
-                double maxSkill = m_pCharacter->MaxSkillForLevel(
-                        skill,
-                        m_level);
-                if (skillValue > maxSkill)
-                {
-                    // overspend on skill, change the background colour
-                    pLVCD->clrTextBk = f_skillOverspendColour;
-                }
+                // overspend on skill, change the background colour
+                pLVCD->clrTextBk = f_skillOverspendColour;
             }
             else
             {
@@ -1454,7 +1463,7 @@ HBRUSH CLevelUpView::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
     HBRUSH hbr = CFormView::OnCtlColor(pDC, pWnd, nCtlColor);
     // colour the control based on whether the user has over spent
     // the number of skill points available at this level. This can happen
-    // if the adjust the number of points spent in intelligence or change
+    // if they adjust the number of points spent in intelligence/tome value or change
     // classes.
     bool setWarning = false;
     if (pWnd == &m_editSkillPoints)
@@ -1593,7 +1602,8 @@ void CLevelUpView::ShowFeatTip(size_t featIndex, CRect itemRect)
         {
             //ClientToScreen(&itemRect);
             CPoint tipTopLeft(itemRect.left, itemRect.bottom + 2);
-            SetFeatTooltipText(featName, tipTopLeft);
+            CPoint tipAlternate(itemRect.left, itemRect.top - 2);
+            SetFeatTooltipText(featName, tipTopLeft, tipAlternate);
             m_showingTip = true;
             // track the mouse so we know when it leaves our window
             TRACKMOUSEEVENT tme;
@@ -1615,7 +1625,8 @@ void CLevelUpView::ShowLevelTip(size_t level, CRect itemRect)
     if (m_pCharacter != NULL)
     {
         CPoint tipTopLeft(itemRect.left, itemRect.bottom + 2);
-        SetLevelTooltipText(level, tipTopLeft);
+        CPoint tipAlternate(itemRect.left, itemRect.top - 2);
+        SetLevelTooltipText(level, tipTopLeft, tipAlternate);
         m_showingTip = true;
         // track the mouse so we know when it leaves our window
         TRACKMOUSEEVENT tme;
@@ -1640,22 +1651,24 @@ void CLevelUpView::HideTip()
 
 void CLevelUpView::SetFeatTooltipText(
         const CString & featName,
-        CPoint tipTopLeft)
+        CPoint tipTopLeft,
+        CPoint tipAlternate)
 {
     // look up the selected feat for this control
     const Feat & feat = FindFeat((LPCTSTR)featName);
-    m_tooltip.SetOrigin(tipTopLeft);
+    m_tooltip.SetOrigin(tipTopLeft, tipAlternate);
     m_tooltip.SetFeatItem(*m_pCharacter, &feat);
     m_tooltip.Show();
 }
 
 void CLevelUpView::SetLevelTooltipText(
         size_t level,
-        CPoint tipTopLeft)
+        CPoint tipTopLeft,
+        CPoint tipAlternate)
 {
     // look up the selected feat for this control
     const LevelTraining & levelData = m_pCharacter->LevelData(level);
-    m_tooltip.SetOrigin(tipTopLeft);
+    m_tooltip.SetOrigin(tipTopLeft, tipAlternate);
     m_tooltip.SetLevelItem(*m_pCharacter, level, &levelData);
     m_tooltip.Show();
 }

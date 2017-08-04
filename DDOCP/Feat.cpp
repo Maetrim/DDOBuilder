@@ -62,6 +62,13 @@ void Feat::CreateRequirementStrings(
     m_RequirementsToTrain.CreateRequirementStrings(charData, requirements, met);
 }
 
+bool Feat::operator<(const Feat & other) const
+{
+    // (assumes all feat names are unique)
+    // sort by name
+    return (Name() < other.Name());
+}
+
 void Feat::AddImage(CImageList * pIL) const
 {
     CImage image;

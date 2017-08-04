@@ -15,6 +15,16 @@ namespace MfcControls
     class CTreeListCtrl;
 };
 
+enum ColumnOrder
+{
+    CO_Source = 0,
+    CO_Stacks,
+    CO_Value,
+    CO_BonusType,
+
+    CO_count
+};
+
 class CBreakdownsView;
 class BreakdownItem;
 
@@ -94,10 +104,9 @@ class BreakdownItem :
         virtual void UpdateFeatEffectRevoked(Character * pCharacater, const std::string & featName, const Effect & effect) override;
         virtual void UpdateEnhancementEffect(Character * charData, const std::string & enhancementName,  const EffectTier & effect) override;
         virtual void UpdateEnhancementEffectRevoked(Character * charData, const std::string & enhancementName, const EffectTier & effect) override;
-        virtual void UpdateEnhancementTrained(Character * charData, const std::string & enhancementName, bool isTier5) override;
-        virtual void UpdateEnhancementRevoked(Character * charData, const std::string & enhancementName, bool isTier5) override;
         virtual void UpdateItemEffect(Character * charData, const std::string & itemName,  const Effect & effect) override;
         virtual void UpdateItemEffectRevoked(Character * charData, const std::string & itemName, const Effect & effect) override;
+        virtual void UpdateAPSpentInTreeChanged(Character * charData, const std::string & treeName) override;
 
         // BreakdownObserver overrides (may be specialised in inheriting classes)
         virtual void UpdateTotalChanged(BreakdownItem * item, BreakdownType type) override;

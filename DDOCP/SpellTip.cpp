@@ -62,12 +62,30 @@ BOOL CSpellTip::Create(CWnd* pParentWnd)
 void CSpellTip::Show()
 {
     CDC * pDC = GetDC();
-    HRGN hRegion;
     CSize windowSize;
-    GetWindowRegion(pDC, &hRegion, &windowSize);
+    GetWindowSize(pDC, &windowSize);
     ReleaseDC(pDC);
 
-    ::SetWindowRgn(m_hWnd, hRegion, TRUE); // window now owns the region we created
+    // before actually showing the tip, determine whether it fits on the screen
+    // if it extends below the bottom or past the right we move the window
+    // accordingly to make sure it is visible. Do this for the monitor the
+    // origin point for this tooltip is on.
+    HMONITOR hMonitor = MonitorFromPoint(m_origin, MONITOR_DEFAULTTONEAREST);
+    MONITORINFOEX monitorInfo;
+    memset(&monitorInfo, 0, sizeof(MONITORINFOEX));
+    monitorInfo.cbSize = sizeof(MONITORINFOEX);
+    GetMonitorInfo(hMonitor, &monitorInfo);
+    CRect monitorSize(monitorInfo.rcWork);
+    if (m_origin.x + windowSize.cx > monitorSize.right)
+    {
+        // move the tip left to ensure all text visible
+        m_origin.x = monitorSize.right - windowSize.cx;
+    }
+    if (m_origin.y + windowSize.cy > monitorSize.bottom)
+    {
+        // move the tip above the origin position to ensure content visible
+        m_origin.y = m_alternate.y - windowSize.cy; // alternate position
+    }
 
     SetWindowPos(
             &wndTopMost, 
@@ -88,9 +106,10 @@ void CSpellTip::Show()
     //::ReleaseDC(NULL, hdc);
 }
 
-void CSpellTip::SetOrigin(CPoint point)
+void CSpellTip::SetOrigin(CPoint origin, CPoint alternate)
 {
-    m_origin = point;
+    m_origin = origin;
+    m_alternate = alternate;
 }
 
 void CSpellTip::Hide()
@@ -105,8 +124,6 @@ void CSpellTip::OnPaint()
     CRect rc;
     CBrush tooltipColourBrush;
     CBrush frameBrush;
-    HRGN hRegion;
-    CRgn * pRegion;
 
     // Get the client rectangle
     GetClientRect(rc);
@@ -115,13 +132,9 @@ void CSpellTip::OnPaint()
     frameBrush.CreateSolidBrush(::GetSysColor(COLOR_INFOTEXT));
     tooltipColourBrush.CreateSolidBrush(::GetSysColor(COLOR_INFOBK));
 
-    // Get the window region
-    GetWindowRegion(&dc, &hRegion, NULL);
-    pRegion = CRgn::FromHandle(hRegion);
-
     // Draw the frame
-    dc.FillRgn(pRegion, &tooltipColourBrush);
-    dc.FrameRgn(pRegion, &frameBrush, 1, 1);
+    dc.FillRect(rc, &tooltipColourBrush);
+    dc.DrawEdge(rc, BDR_SUNKENOUTER, BF_RECT);
     dc.SetBkMode(TRANSPARENT);
 
     dc.SaveDC();
@@ -191,11 +204,10 @@ void CSpellTip::OnPaint()
             DT_LEFT | DT_EXPANDTABS | DT_NOPREFIX);
 
     // Clean up GDI
-    ::DeleteObject(hRegion);
     dc.RestoreDC(-1);
 }
 
-BOOL CSpellTip::GetWindowRegion(CDC* pDC, HRGN* hRegion, CSize * size)
+BOOL CSpellTip::GetWindowSize(CDC* pDC, CSize * size)
 {
     ASSERT(pDC != NULL);
     ASSERT(hRegion != NULL);
@@ -263,7 +275,6 @@ BOOL CSpellTip::GetWindowRegion(CDC* pDC, HRGN* hRegion, CSize * size)
             max(topWidth, bottomWidth) + m_csMetas.cx,
             max(m_rcDescription.Height(), metasHeight));
 
-    *hRegion = ::CreateRectRgn(0, 0, rcWnd.Width(), rcWnd.Height());
     // Set the window size
     if (size != NULL)
     {
