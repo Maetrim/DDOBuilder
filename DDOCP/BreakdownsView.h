@@ -44,6 +44,7 @@ class CBreakdownsView :
         void CreateSkillBreakdowns();
         void CreatePhysicalBreakdowns();
         void CreateMagicalBreakdowns();
+        void CreateTurnUndeadBreakdowns();
         void CreateEnergyResistancesBreakdowns();
         void CreateWeaponBreakdowns();
         void CreateHirelingBreakdowns();

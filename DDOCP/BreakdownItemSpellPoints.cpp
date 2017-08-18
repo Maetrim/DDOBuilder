@@ -105,10 +105,11 @@ bool BreakdownItemSpellPoints::AffectsUs(const Effect & effect) const
 // CharacterObserver overrides
 void BreakdownItemSpellPoints::UpdateClassChanged(
         Character * charData,
-        ClassType type,
+        ClassType classFrom,
+        ClassType classTo,
         size_t level)
 {
-    BreakdownItem::UpdateClassChanged(charData, type, level);
+    BreakdownItem::UpdateClassChanged(charData, classFrom, classTo, level);
     // if a class has changed, just recreate our other effects
     // this will update spell point totals
     CreateOtherEffects();

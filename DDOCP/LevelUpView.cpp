@@ -7,6 +7,7 @@
 #include "FeatSelectionDialog.h"
 #include "GlobalSupportFunctions.h"
 #include <algorithm>
+#include "MouseHook.h"
 
 namespace
 {
@@ -37,8 +38,11 @@ CLevelUpView::CLevelUpView() :
     m_skillBeingEdited(Skill_Unknown),
     m_level(0),
     m_canPostMessage(true),
-    m_pTooltipItem(NULL),
-    m_selectedSkill(-1)
+    m_showingTip(false),
+    m_tipCreated(false),
+    m_selectedSkill(-1),
+    m_automaticHandle(0),
+    m_hoverItem(-1)
 {
     m_imagesSkills.Create(
             32,             // all icons are 32x32 pixels
@@ -99,6 +103,7 @@ BEGIN_MESSAGE_MAP(CLevelUpView, CFormView)
     ON_NOTIFY(HDN_DIVIDERDBLCLICK, IDC_LIST_SKILLS, OnEndtrackListSkills)
     ON_NOTIFY(HDN_ENDTRACK, IDC_LIST_AUTOFEATS, OnEndtrackListAutomaticFeats)
     ON_NOTIFY(HDN_DIVIDERDBLCLICK, IDC_LIST_AUTOFEATS, OnEndtrackListAutomaticFeats)
+    ON_NOTIFY(NM_HOVER, IDC_LIST_AUTOFEATS, OnHoverAutomaticFeats)
     ON_NOTIFY(LVN_COLUMNCLICK, IDC_LIST_SKILLS, OnColumnclickListSkills)
     ON_NOTIFY(NM_DBLCLK, IDC_LIST_SKILLS, OnDoubleClickListSkills)
     ON_NOTIFY(NM_CLICK, IDC_LIST_SKILLS, OnLeftClickListSkills)
@@ -116,10 +121,11 @@ BEGIN_MESSAGE_MAP(CLevelUpView, CFormView)
     ON_WM_ERASEBKGND()
     ON_WM_CTLCOLOR()
     ON_REGISTERED_MESSAGE(UWM_UPDATE_COMPLETE, OnUpdateComplete)
-    ON_WM_MOUSEMOVE()
-    ON_MESSAGE(WM_MOUSELEAVE, OnMouseLeave)
+    //ON_WM_MOUSEMOVE()
     ON_WM_CAPTURECHANGED()
     ON_WM_LBUTTONDOWN()
+    ON_MESSAGE(WM_MOUSEENTER, OnMouseEnter)
+    ON_MESSAGE(WM_MOUSELEAVE, OnMouseLeave)
 END_MESSAGE_MAP()
 #pragma warning(pop)
 
@@ -183,6 +189,14 @@ void CLevelUpView::OnInitialUpdate()
         m_buttonLevels[i].SetLevel(i + 1);
         m_buttonLevels[i].Create("", WS_CHILD | WS_VISIBLE, itemRect, this, IDC_LEVEL1 + i);
         itemRect += CPoint(0, itemRect.Height() + c_controlSpacing);
+        CRect rect(itemRect);
+        ClientToScreen(&rect);
+        m_hookLevelHandles[i] = GetMouseHook()->AddRectangleToMonitor(
+                this->GetSafeHwnd(),
+                rect,           // screen coordinates,
+                WM_MOUSEENTER,
+                WM_MOUSELEAVE,
+                false);
     }
 
     // setup the list control columns
@@ -222,7 +236,12 @@ void CLevelUpView::OnInitialUpdate()
 
     m_listAutomaticFeats.InsertColumn(0, "Automatic Feats", LVCFMT_LEFT, 100);
     LoadColumnWidthsByName(&m_listAutomaticFeats, "LevelUpAutoFeats_%s");
-    m_listAutomaticFeats.SetExtendedStyle(m_listAutomaticFeats.GetExtendedStyle() | LVS_EX_FULLROWSELECT | LVS_EX_LABELTIP);
+    m_listAutomaticFeats.SetExtendedStyle(
+            m_listAutomaticFeats.GetExtendedStyle()
+            | LVS_EX_FULLROWSELECT
+            | LVS_EX_TRACKSELECT
+            //| LVS_EX_LABELTIP); // stop hover tooltips from working
+            );
 
     // put the available skill tome values in the skill tome select combo box
     size_t index = m_comboSkillTome.AddString("No Tome");
@@ -239,6 +258,20 @@ void CLevelUpView::OnInitialUpdate()
     m_comboSkillTome.SetItemData(index, 5);
 
     PopulateControls();
+
+    // add the mouse hook areas used for feat tooltips
+    for (size_t i = 0; i < 3; ++i)
+    {
+        CRect rect;
+        m_comboFeatSelect[i].GetWindowRect(&rect);
+        rect.bottom = rect.top + 32 + GetSystemMetrics(SM_CYBORDER) * 4;
+        m_hookFeatHandles[i] = GetMouseHook()->AddRectangleToMonitor(
+                this->GetSafeHwnd(),
+                rect,           // screen coordinates,
+                WM_MOUSEENTER,
+                WM_MOUSELEAVE,
+                false);
+    }
 }
 
 void CLevelUpView::OnSize(UINT nType, int cx, int cy)
@@ -376,6 +409,26 @@ void CLevelUpView::OnSize(UINT nType, int cx, int cy)
         m_buttonAutoSpend.MoveWindow(rctSkillControls[4]);
         m_listSkills.MoveWindow(rctSkills, TRUE);
         m_listAutomaticFeats.MoveWindow(rctAutoFeats, TRUE);
+
+        // update the mouse hook handles for tooltips
+        for (size_t i = 0; i < 3; ++i)
+        {
+            CRect rect;
+            m_comboFeatSelect[i].GetWindowRect(&rect);
+            // gives the wrong rectangle, ensure large enough
+            rect.bottom = rect.top + 32 + GetSystemMetrics(SM_CYBORDER) * 4;
+            GetMouseHook()->UpdateRectangle(
+                    m_hookFeatHandles[i],
+                    rect);          // screen coordinates,
+        }
+        for (size_t i = 0; i < MAX_LEVEL; ++i)
+        {
+            CRect rect;
+            m_buttonLevels[i].GetWindowRect(&rect);
+            GetMouseHook()->UpdateRectangle(
+                    m_hookLevelHandles[i],
+                    rect);          // screen coordinates,
+        }
     }
 }
 
@@ -413,7 +466,8 @@ void CLevelUpView::UpdateClassChoiceChanged(Character * pCharacter)
 
 void CLevelUpView::UpdateClassChanged(
         Character * pCharacter,
-        ClassType type,
+        ClassType classFrom,
+        ClassType classTo,
         size_t level)
 {
     PopulateControls();
@@ -810,6 +864,50 @@ void CLevelUpView::OnEndtrackListAutomaticFeats(NMHDR* pNMHDR, LRESULT* pResult)
     UNREFERENCED_PARAMETER(pNMHDR);
     UNREFERENCED_PARAMETER(pResult);
     SaveColumnWidthsByName(&m_listAutomaticFeats, "LevelUpAutoFeats_%s");
+}
+
+void CLevelUpView::OnHoverAutomaticFeats(NMHDR* pNMHDR, LRESULT* pResult)
+{
+    // the user it hovering over a list control item. Identify it and display
+    // the feat tooltip for this item
+    CPoint mousePosition;
+    GetCursorPos(&mousePosition);
+    m_listAutomaticFeats.ScreenToClient(&mousePosition);
+
+    LVHITTESTINFO hitInfo;
+    hitInfo.pt = mousePosition;
+    if (m_listAutomaticFeats.SubItemHitTest(&hitInfo) >= 0)
+    {
+        if (m_hoverItem != hitInfo.iItem)
+        {
+            // the item under the hover has changed
+            m_hoverItem = hitInfo.iItem;
+            // mouse is over a valid automatic feat, get the items rectangle and
+            // show the feat tooltip
+            CRect rect;
+            m_listAutomaticFeats.GetItemRect(hitInfo.iItem, &rect, LVIR_BOUNDS);
+            const LevelTraining & levelData = m_pCharacter->LevelData(m_level);
+            HideTip();
+            // get the feat items text
+            CString featName;
+            featName = m_listAutomaticFeats.GetItemText(hitInfo.iItem, 0);
+            m_listAutomaticFeats.ClientToScreen(&rect);
+            CPoint tipTopLeft(rect.left, rect.bottom);
+            CPoint tipAlternate(rect.left, rect.top);
+            SetFeatTooltipText(featName, tipTopLeft, tipAlternate);
+            m_showingTip = true;
+            // make sure we don't stack multiple monitoring of the same rectangle
+            if (m_automaticHandle == 0)
+            {
+                m_automaticHandle = GetMouseHook()->AddRectangleToMonitor(
+                        this->GetSafeHwnd(),
+                        rect,           // screen coordinates,
+                        WM_MOUSEENTER,
+                        WM_MOUSELEAVE,
+                        true);
+            }
+        }
+    }
 }
 
 void CLevelUpView::OnColumnclickListSkills(NMHDR* pNMHDR, LRESULT* pResult)
@@ -1250,6 +1348,12 @@ void CLevelUpView::PopulateAutomaticFeats()
             ++imageIndex;
             ++it;
         }
+        if (imageIndex > 0)
+        {
+            // start with an item selected in the list so that tooltip work
+            m_listAutomaticFeats.SetItemState(0, LVIS_SELECTED | LVIS_FOCUSED, LVIS_SELECTED | LVIS_FOCUSED);
+            m_listAutomaticFeats.SetSelectionMark(0);
+        }
     }
     m_listAutomaticFeats.UnlockWindowUpdate();
 }
@@ -1498,83 +1602,51 @@ LRESULT CLevelUpView::OnUpdateComplete(WPARAM wParam, LPARAM lParam)
     return 0L;
 }
 
-void CLevelUpView::OnMouseMove(UINT nFlags, CPoint point)
+LRESULT CLevelUpView::OnMouseEnter(WPARAM wParam, LPARAM lParam)
 {
-    // determine which control the mouse is over
-    // if its a combo box, display an info tip for the selected feat
-    CRect itemRect;
-    CWnd * pWnd = ChildWindowFromPoint(point);
-    if (pWnd != NULL
-            && pWnd != m_pTooltipItem)
+    // is it an enter over a feat combo box?
+    bool done = false;
+    for (size_t i = 0; i < 3; ++i)
     {
-        size_t index = 999;
-        if (pWnd == &m_staticFeatDescription[0]
-                && m_staticFeatDescription[0].IsWindowVisible())
+        if (wParam == m_hookFeatHandles[i]
+                && m_staticFeatDescription[i].IsWindowVisible())
         {
-            index = 0;
+            CRect itemRect;
+            m_comboFeatSelect[i].GetWindowRect(&itemRect);
+            ShowFeatTip(i, itemRect);
+            done = true;
+            break;
         }
-        if (pWnd == &m_staticFeatDescription[1]
-                && m_staticFeatDescription[1].IsWindowVisible())
+    }
+    if (!done)
+    {
+        for (size_t i = 0; i < MAX_LEVEL; ++ i)
         {
-            index = 1;
-        }
-        if (pWnd == &m_staticFeatDescription[2]
-                && m_staticFeatDescription[2].IsWindowVisible())
-        {
-            index = 2;
-        }
-        if (index != 999)
-        {
-            m_pTooltipItem = pWnd;
-            pWnd->GetWindowRect(&itemRect);
-            ShowFeatTip(index, itemRect);
-        }
-        else
-        {
-            // showing a tip for a level button?
-            CLevelButton * pLevelButton = dynamic_cast<CLevelButton*>(pWnd);
-            if (pLevelButton != NULL)
+            if (wParam == m_hookLevelHandles[i]
+                    && m_buttonLevels[i].IsWindowVisible())
             {
-                m_pTooltipItem = pWnd;
-                pWnd->GetWindowRect(&itemRect);
-                ShowLevelTip(pWnd->GetDlgCtrlID() - IDC_LEVEL1, itemRect);
+                CRect itemRect;
+                m_buttonLevels[i].GetWindowRect(&itemRect);
+                ShowLevelTip(i, itemRect);
+                done = true;
+                break;
             }
         }
     }
-    else
-    {
-        if (m_showingTip
-                && pWnd != m_pTooltipItem)
-        {
-            HideTip();
-        }
-    }
+    return 0;
 }
 
 LRESULT CLevelUpView::OnMouseLeave(WPARAM wParam, LPARAM lParam)
 {
     // hide any tooltip when the mouse leave the area its being shown for
-    // don't hide if we are over the same window we are showing the tip for
-    CPoint point;
-    GetCursorPos(&point);
-    ScreenToClient(&point);
-    CWnd * pWnd = ChildWindowFromPoint(point);
-    if (pWnd != m_pTooltipItem)
+    HideTip();
+    if (wParam == m_automaticHandle)
     {
-        // its over a different window
-        HideTip();
+        // no longer monitoring this location
+        GetMouseHook()->DeleteRectangleToMonitor(m_automaticHandle);
+        m_automaticHandle = 0;
+        m_hoverItem = -1;
     }
-    else
-    {
-        // need to track the mouse again
-        TRACKMOUSEEVENT tme;
-        tme.cbSize = sizeof(tme);
-        tme.hwndTrack = m_hWnd;
-        tme.dwFlags = TME_LEAVE;
-        tme.dwHoverTime = 1;
-        _TrackMouseEvent(&tme);
-    }
-
     return 0;
 }
 
@@ -1600,18 +1672,10 @@ void CLevelUpView::ShowFeatTip(size_t featIndex, CRect itemRect)
         CString featName = buffer;
         if (!featName.IsEmpty())
         {
-            //ClientToScreen(&itemRect);
             CPoint tipTopLeft(itemRect.left, itemRect.bottom + 2);
             CPoint tipAlternate(itemRect.left, itemRect.top - 2);
             SetFeatTooltipText(featName, tipTopLeft, tipAlternate);
             m_showingTip = true;
-            // track the mouse so we know when it leaves our window
-            TRACKMOUSEEVENT tme;
-            tme.cbSize = sizeof(tme);
-            tme.hwndTrack = m_hWnd;
-            tme.dwFlags = TME_LEAVE;
-            tme.dwHoverTime = 1;
-            _TrackMouseEvent(&tme);
         }
     }
 }
@@ -1628,13 +1692,6 @@ void CLevelUpView::ShowLevelTip(size_t level, CRect itemRect)
         CPoint tipAlternate(itemRect.left, itemRect.top - 2);
         SetLevelTooltipText(level, tipTopLeft, tipAlternate);
         m_showingTip = true;
-        // track the mouse so we know when it leaves our window
-        TRACKMOUSEEVENT tme;
-        tme.cbSize = sizeof(tme);
-        tme.hwndTrack = m_hWnd;
-        tme.dwFlags = TME_LEAVE;
-        tme.dwHoverTime = 1;
-        _TrackMouseEvent(&tme);
     }
 }
 
@@ -1645,7 +1702,6 @@ void CLevelUpView::HideTip()
     {
         m_tooltip.Hide();
         m_showingTip = false;
-        m_pTooltipItem = NULL;
     }
 }
 

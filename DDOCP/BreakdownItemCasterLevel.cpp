@@ -72,10 +72,15 @@ bool BreakdownItemCasterLevel::AffectsUs(const Effect & effect) const
     return isUs;
 }
 
-void BreakdownItemCasterLevel::UpdateClassChanged(Character * charData, ClassType type, size_t level)
+void BreakdownItemCasterLevel::UpdateClassChanged(
+        Character * charData,
+        ClassType classFrom,
+        ClassType classTo,
+        size_t level)
 {
-    BreakdownItem::UpdateClassChanged(charData, type, level);
-    if (type == m_class)
+    BreakdownItem::UpdateClassChanged(charData, classFrom, classTo, level);
+    if (classFrom == m_class
+            || classTo == m_class)
     {
         CreateOtherEffects();
         Populate();

@@ -590,6 +590,8 @@ void CDestinyTreeDialog::OnLButtonDown(UINT nFlags, CPoint point)
                             *item,
                             m_tree.Name(),
                             m_type);
+                    // no tooltips while a dialog is displayed
+                    GetMouseHook()->SetDisabledState(true);
                     if (dlg.DoModal() == IDOK)
                     {
                         // they made a valid selection
@@ -600,6 +602,7 @@ void CDestinyTreeDialog::OnLButtonDown(UINT nFlags, CPoint point)
                                 dlg.Cost());
                         Invalidate();
                     }
+                    GetMouseHook()->SetDisabledState(false);
                 }
                 else
                 {

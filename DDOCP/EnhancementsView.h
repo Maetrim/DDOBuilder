@@ -37,7 +37,7 @@ class CEnhancementsView :
 
         // CharacterObserver overrides
         void UpdateAlignmentChanged(Character * charData, AlignmentType alignmen) override;
-        void UpdateClassChanged(Character * charData, ClassType type, size_t level) override;
+        virtual void UpdateClassChanged(Character * charData, ClassType classFrom, ClassType classTo, size_t level) override;
         void UpdateRaceChanged(Character * charData, RaceType race) override;
         void UpdateEnhancementTrained(Character * charData, const std::string & enhancementName, bool isTier5) override;
         void UpdateEnhancementRevoked(Character * charData, const std::string & enhancementName, bool isTier5) override;

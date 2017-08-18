@@ -22,7 +22,7 @@ class BreakdownItemWeaponAttackBonus :
         virtual bool AffectsUs(const Effect & effect) const override;
 
         // BreakdownObserver overrides
-        virtual void UpdateClassChanged(Character * charData, ClassType type, size_t level) override;
+        virtual void UpdateClassChanged(Character * charData, ClassType classFrom, ClassType classTo, size_t level) override;
         virtual void UpdateFeatEffect(Character * pCharacater, const std::string & featName,  const Effect & effect) override;
         virtual void UpdateFeatEffectRevoked(Character * pCharacater, const std::string & featName, const Effect & effect) override;
         virtual void UpdateItemEffect(Character * charData, const std::string & itemName, const Effect & effect) override;

@@ -125,10 +125,11 @@ bool BreakdownItemWeaponAttackBonus::AffectsUs(const Effect & effect) const
 
 void BreakdownItemWeaponAttackBonus::UpdateClassChanged(
         Character * charData,
-        ClassType type,
+        ClassType classFrom,
+        ClassType classTo,
         size_t level)
 {
-    BreakdownItem::UpdateClassChanged(charData, type, level);
+    BreakdownItem::UpdateClassChanged(charData, classFrom, classTo, level);
     // if a class has changed, then the BAB may have changed
     CreateOtherEffects();
 }

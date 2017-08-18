@@ -95,7 +95,7 @@ class BreakdownItem :
         std::list<ActiveEffect> m_itemEffects;        // highest of a given type counts
 
         // CharacterObserver overrides
-        virtual void UpdateClassChanged(Character * charData, ClassType type, size_t level) override;
+        virtual void UpdateClassChanged(Character * charData, ClassType classFrom, ClassType classTo, size_t level) override;
         virtual void UpdateStanceActivated(Character * charData, const std::string & stanceName) override;
         virtual void UpdateStanceDeactivated(Character * charData, const std::string & stanceName) override;
         virtual void UpdateFeatTrained(Character * charData, const std::string & featName) override;

@@ -210,7 +210,6 @@ void CSpellTip::OnPaint()
 BOOL CSpellTip::GetWindowSize(CDC* pDC, CSize * size)
 {
     ASSERT(pDC != NULL);
-    ASSERT(hRegion != NULL);
     // an Spell item looks like this:
     // +------------------------------------------+----------+
     // | +----+                        SP Cost xx |Metamagics|

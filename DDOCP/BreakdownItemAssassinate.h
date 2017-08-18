@@ -20,7 +20,7 @@ class BreakdownItemAssassinate:
         virtual bool AffectsUs(const Effect & effect) const override;
     private:
         // CharacterObserver overrides
-        virtual void UpdateClassChanged(Character * charData, ClassType type, size_t level) override;
+        virtual void UpdateClassChanged(Character * charData, ClassType classFrom, ClassType classTo, size_t level) override;
         // BreakdownObserver overrides
         virtual void UpdateTotalChanged(BreakdownItem * item, BreakdownType type) override;
 

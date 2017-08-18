@@ -56,6 +56,12 @@ enum AugmentType
     Augment_DunRobarSuffix,
     Augment_Szind,
     Augment_GoatskinOptional,
+    Augment_SkullduggeryVariant,
+    Augment_ShadesHood,
+    Augment_BlackDragonHelmVariant,
+    Augment_BlueDragonHelmVariant,
+    Augment_WhiteDragonHelmVariant,
+    Augment_PrisonersManacles,
 };
 const XmlLib::enumMapEntry<AugmentType> augmentTypeMap[] =
 {
@@ -101,5 +107,11 @@ const XmlLib::enumMapEntry<AugmentType> augmentTypeMap[] =
     {Augment_DunRobarSuffix,L"Dun'Robar Suffix"},
     {Augment_Szind, L"Szind"},
     {Augment_GoatskinOptional, L"Goatskin Optional"},
+    {Augment_SkullduggeryVariant, L"Skullduggery Variant"},
+    {Augment_ShadesHood, L"ShadesHood"},
+    {Augment_BlackDragonHelmVariant, L"Black Dragon Helm Variant"},
+    {Augment_BlueDragonHelmVariant, L"Blue Dragon Helm Variant"},
+    {Augment_WhiteDragonHelmVariant, L"White Dragon Helm Variant"},
+    {Augment_PrisonersManacles, L"Manacles Variant"},
     {AugmentType(0), NULL}
 };

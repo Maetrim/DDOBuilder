@@ -197,4 +197,31 @@ class Subject :
             }
             EndNotification();
         }
+
+        template <typename F, typename P, typename D1, typename D2, typename D3>
+        void NotifyAll(F f, P * a, const D1 & d1, const D2 & d2, const D3 & d3) const
+        {
+            CriticalSectionLock lock(&m_critsec);
+            BeginNotification();
+            for (ObserverList::const_iterator it = ObserversBegin(); it != ObserversEnd(); it++)
+            {
+                if (*it != NULL)
+                {
+                    T * p = dynamic_cast<T*>(*it);
+                    if (p != NULL)
+                    {
+                        try
+                        {
+                            (p->*f)(a, d1, d2, d3);
+                        }
+                        catch(...)
+                        {
+                            // ignore any exception in the observer
+                            ::OutputDebugString("Exception ignored\n");
+                        }
+                    }
+                }
+            }
+            EndNotification();
+        }
 };

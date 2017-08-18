@@ -160,6 +160,7 @@ void BreakdownItem::PopulateBreakdownControl(CListCtrl * pControl)
     AddDeactiveItems(m_otherEffects, pControl);
     AddDeactiveItems(m_featEffects, pControl);
     AddDeactiveItems(m_enhancementEffects, pControl);
+    AddDeactiveItems(m_itemEffects, pControl);
     if (nonStackingEffects.size() > 0)
     {
         // separate these non-stacking effects from the main list
@@ -1019,13 +1020,21 @@ void BreakdownItem::UpdateTotalChanged(BreakdownItem * item, BreakdownType type)
     }
 }
 
-void BreakdownItem::UpdateClassChanged(Character * charData, ClassType type, size_t level)
+void BreakdownItem::UpdateClassChanged(
+        Character * charData,
+        ClassType classFrom,
+        ClassType classTo,
+        size_t level)
 {
     bool itemChanged = false;
-    itemChanged |= UpdateEffectAmounts(&m_otherEffects, type);
-    itemChanged |= UpdateEffectAmounts(&m_featEffects, type);
-    itemChanged |= UpdateEffectAmounts(&m_enhancementEffects, type);
-    itemChanged |= UpdateEffectAmounts(&m_itemEffects, type);
+    itemChanged |= UpdateEffectAmounts(&m_otherEffects, classFrom);
+    itemChanged |= UpdateEffectAmounts(&m_featEffects, classFrom);
+    itemChanged |= UpdateEffectAmounts(&m_enhancementEffects, classFrom);
+    itemChanged |= UpdateEffectAmounts(&m_itemEffects, classFrom);
+    itemChanged |= UpdateEffectAmounts(&m_otherEffects, classTo);
+    itemChanged |= UpdateEffectAmounts(&m_featEffects, classTo);
+    itemChanged |= UpdateEffectAmounts(&m_enhancementEffects, classTo);
+    itemChanged |= UpdateEffectAmounts(&m_itemEffects, classTo);
 
     if (itemChanged)
     {

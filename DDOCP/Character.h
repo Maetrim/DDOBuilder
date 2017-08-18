@@ -41,7 +41,7 @@ class CharacterObserver :
         virtual void UpdateSkillSpendChanged(Character * charData, size_t level, SkillType skill) {};
         virtual void UpdateSkillTomeChanged(Character * charData, SkillType skill) {};
         virtual void UpdateClassChoiceChanged(Character * charData) {};
-        virtual void UpdateClassChanged(Character * charData, ClassType type, size_t level) {};
+        virtual void UpdateClassChanged(Character * charData, ClassType classFrom, ClassType classTo, size_t level) {};
         virtual void UpdateAbilityValueChanged(Character * charData, AbilityType ability) {};
         virtual void UpdateAbilityTomeChanged(Character * charData, AbilityType ability) {};
         virtual void UpdateRaceChanged(Character * charData, RaceType race) {};
@@ -147,6 +147,7 @@ class Character :
         std::list<TrainedSpell> TrainedSpells(ClassType classType, size_t level) const;
         void TrainSpell(ClassType classType, size_t level, const std::string & spellName);
         void RevokeSpell(ClassType classType, size_t level, const std::string & spellName);
+        bool IsSpellTrained(const std::string & spellName) const;
 
         // stances
         void ActivateStance(const Stance & stance);
@@ -228,7 +229,7 @@ class Character :
         void NotifySkillSpendChanged(size_t level, SkillType skill);
         void NotifySkillTomeChanged(SkillType skill);
         void NotifyClassChoiceChanged();
-        void NotifyClassChanged(ClassType type, size_t level);
+        void NotifyClassChanged(ClassType classFrom, ClassType classTo, size_t level);
         void NotifyAbilityValueChanged(AbilityType ability);
         void NotifyAbilityTomeChanged(AbilityType ability);
         void NotifyRaceChanged(RaceType race);

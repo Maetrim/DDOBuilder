@@ -3,6 +3,7 @@
 #include "Resource.h"
 #include "InventorySlotTypes.h"
 #include "Item.h"
+#include "PersistantSize.h"
 
 class CItemSelectDialog : public CDialog
 {
@@ -23,6 +24,9 @@ class CItemSelectDialog : public CDialog
         afx_msg void OnItemSelected(NMHDR* pNMHDR, LRESULT* pResult);
         afx_msg void OnAugmentSelect(UINT nID);
         afx_msg void OnUpgradeSelect(UINT nID);
+        afx_msg void OnSize(UINT nType, int cx, int cy);
+        afx_msg void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
+        afx_msg void OnEndtrackListItems(NMHDR* pNMHDR, LRESULT* pResult);
 
     public:
         DECLARE_MESSAGE_MAP()
@@ -63,4 +67,5 @@ class CItemSelectDialog : public CDialog
         CImageList m_itemImages;
         bool m_bInitialising;
         UpgradeType m_upgradeTypeModelled[MAX_Upgrades];
+        CPersistantSize m_sizer;
 };

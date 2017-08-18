@@ -45,6 +45,7 @@ enum BreakdownType
     Breakdown_TacticalStunningBlow,
     Breakdown_TacticalSunder,
     Breakdown_TacticalTrip,
+    Breakdown_TacticalStunningShield,
     // skills
     Breakdown_SkillBalance,
     Breakdown_SkillBluff,
@@ -113,4 +114,7 @@ enum BreakdownType
     Breakdown_HirelingMeleePower,
     Breakdown_HirelingRangedPower,
     Breakdown_HirelingSpellPower,
+    // Turn Undead
+    Breakdown_TurnUndeadLevel,
+    Breakdown_TurnUndeadHitDice,
 };

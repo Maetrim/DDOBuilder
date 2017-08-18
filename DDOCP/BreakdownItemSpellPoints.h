@@ -22,10 +22,10 @@ class BreakdownItemSpellPoints :
         virtual bool AffectsUs(const Effect & effect) const override;
 
         // CharacterObserver overrides
-        virtual void UpdateClassChanged(Character * charData, ClassType type, size_t level) override;
+        virtual void UpdateClassChanged(Character * charData, ClassType classFrom, ClassType classTo, size_t level) override;
         // BreakdownObserver overrides (may be specialised in inheriting classes)
         virtual void UpdateTotalChanged(BreakdownItem * item, BreakdownType type) override;
-private:
+    private:
         CString m_title;
         EffectType m_effect;
 };

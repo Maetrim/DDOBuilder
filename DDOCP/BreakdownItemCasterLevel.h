@@ -19,7 +19,7 @@ class BreakdownItemCasterLevel :
         virtual void CreateOtherEffects() override;
         virtual bool AffectsUs(const Effect & effect) const override;
     protected:
-        void UpdateClassChanged(Character * charData, ClassType type, size_t level) override;
+        virtual void UpdateClassChanged(Character * charData, ClassType classFrom, ClassType classTo, size_t level) override;
     private:
         ClassType m_class;
 };

@@ -1,6 +1,7 @@
 // MainFrm.h
 //
 #pragma once
+#include "MouseHook.h"
 #include <vector>
 
 class CCustomDockablePane;
@@ -31,6 +32,8 @@ class CMainFrame :
         virtual BOOL LoadFrame(UINT nIDResource, DWORD dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE, CWnd* pParentWnd = NULL, CCreateContext* pContext = NULL);
         virtual BOOL OnCmdMsg(UINT nID, int nCode, void* pExtra, AFX_CMDHANDLERINFO* pHandlerInfo);
 
+        MouseHook * GetMouseHook();
+
     protected:
         afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
         afx_msg void OnWindowManager();
@@ -53,4 +56,6 @@ class CMainFrame :
 
         CDocument * m_pDocument;
         Character * m_pCharacter;
+
+        MouseHook m_mouseHook;
 };

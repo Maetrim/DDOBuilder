@@ -70,7 +70,7 @@ class CDDOCPView :
 
         // Character overrides
         void UpdateAvailableBuildPointsChanged(Character * pCharacter) override;
-        void UpdateClassChanged(Character * pCharacter, ClassType type, size_t level) override;
+        virtual void UpdateClassChanged(Character * charData, ClassType classFrom, ClassType classTo, size_t level) override;
 
     private:
         void PopulateComboboxes();

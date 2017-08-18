@@ -96,3 +96,8 @@ void LevelTraining::RevokeSkill(SkillType skill)
     --m_SkillPointsSpent;
 }
 
+std::string LevelTraining::FeatName(TrainableFeatTypes type) const
+{
+    return m_TrainedFeats.FeatName(type);
+}
+

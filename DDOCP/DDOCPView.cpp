@@ -699,7 +699,8 @@ void CDDOCPView::UpdateAvailableBuildPointsChanged(Character * pCharacter)
 
 void CDDOCPView::UpdateClassChanged(
         Character * pCharacter,
-        ClassType type,
+        ClassType classFrom,
+        ClassType classTo,
         size_t level)
 {
     // level up view changed a class selection, keep our overall build description

@@ -17,6 +17,8 @@
 #include "BreakdownItemSpellPower.h"
 #include "BreakdownItemSpellSchool.h"
 #include "BreakdownItemTactical.h"
+#include "BreakdownItemTurnUndeadLevel.h"
+#include "BreakdownItemTurnUndeadHitDice.h"
 #include "BreakdownItemWeapon.h"
 
 namespace
@@ -182,6 +184,7 @@ void CBreakdownsView::CreateBreakdowns()
     CreateSkillBreakdowns();
     CreatePhysicalBreakdowns();
     CreateMagicalBreakdowns();
+    CreateTurnUndeadBreakdowns();
     CreateEnergyResistancesBreakdowns();
     CreateWeaponBreakdowns();
     CreateHirelingBreakdowns();
@@ -828,6 +831,19 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
         m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pTrip);
         m_items.push_back(pTrip);
     }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Stunning Shield",
+                hTacticalParent,
+                TVI_LAST);
+        BreakdownItem * pSS = new BreakdownItemTactical(
+                Breakdown_TacticalStunningShield,
+                Tactical_StunningShield,
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pSS);
+        m_items.push_back(pSS);
+    }
 }
 
 void CBreakdownsView::CreateMagicalBreakdowns()
@@ -996,6 +1012,41 @@ void CBreakdownsView::CreateMagicalBreakdowns()
         AddSpellSchool(SpellSchool_Necromancy, "Necromancy DC", hItem);
         AddSpellSchool(SpellSchool_Transmutation, "Transmutation DC", hItem);
     }
+}
+
+void CBreakdownsView::CreateTurnUndeadBreakdowns()
+{
+    // insert the Turn Undead tree item
+    HTREEITEM hParent = m_itemBreakdownTree.InsertItem(
+            "Turn Undead", 
+            0,
+            TVI_ROOT);
+    m_itemBreakdownTree.SetItemData(hParent, 0);
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Turn Undead Level",
+                hParent,
+                TVI_LAST);
+        BreakdownItem * pTUL = new BreakdownItemTurnUndeadLevel(
+                Breakdown_TurnUndeadLevel,
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pTUL);
+        m_items.push_back(pTUL);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Turn Undead Hit Dice",
+                hParent,
+                TVI_LAST);
+        BreakdownItem * pTUHD = new BreakdownItemTurnUndeadHitDice(
+                Breakdown_TurnUndeadHitDice,
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pTUHD);
+        m_items.push_back(pTUHD);
+    }
+
 }
 
 void CBreakdownsView::AddCasterLevels(HTREEITEM hParent)

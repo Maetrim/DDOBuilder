@@ -210,6 +210,9 @@ void CDDOCPDoc::OnCloseDocument()
 
 void CDDOCPDoc::OnEditEnhancementTreeEditor()
 {
+    // no tooltips while a dialog is displayed
+    GetMouseHook()->SetDisabledState(true);
     CEnhancementEditorDialog dlg(NULL, &m_characterData);
     dlg.DoModal();
+    GetMouseHook()->SetDisabledState(false);
 }

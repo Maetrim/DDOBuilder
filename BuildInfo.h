@@ -1,8 +1,8 @@
 // BuildInfo.h
 //
 #define BUILDINFO_COMPANY "RIGamortis Software"
-#define BUILDINFO_YEAR "2016"
-#define BUILDINFO_COPYRIGHT "© Roger Allen"
+#define BUILDINFO_YEAR "2017"
+#define BUILDINFO_COPYRIGHT "© Maetrim"
 #define BUILDINFO_PRODUCT "DDOCP"
 
 // Version number changes to the appropriate level(s) should be made here
@@ -10,7 +10,7 @@
 #define BUILDINFO_VERSION_MAJOR 1
 #define BUILDINFO_VERSION_MINOR 0
 #define BUILDINFO_VERSION_MODIF 0
-#define BUILDINFO_VERSION_BUILD 0
+#define BUILDINFO_VERSION_BUILD 4
 
 // Macro used to make combination strings automatically from the above
 // -------------------------------------------------------------------

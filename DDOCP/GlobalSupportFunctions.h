@@ -10,6 +10,7 @@
 
 class Character;
 class CMainFrame;
+class MouseHook;
 
 void LoadColumnWidthsByName(
         CListCtrl * control, 
@@ -80,6 +81,7 @@ const std::list<Spell> & Spells();
 const std::list<Item> & Items();
 const std::list<Augment> & Augments();
 const std::list<GuildBuff> & GuildBuffs();
+MouseHook * GetMouseHook();
 std::vector<Spell> FilterSpells(ClassType ct, int level);
 Spell FindSpellByName(const std::string & name);
 const EnhancementTree & GetEnhancementTree(const std::string & treeName);

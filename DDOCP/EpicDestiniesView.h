@@ -4,8 +4,8 @@
 #include "Resource.h"
 #include <vector>
 #include "Character.h"
-
-class EnhancementTree;
+#include "EnhancementTree.h"
+#include "InfoTip.h"
 
 class CEpicDestiniesView :
     public CFormView,
@@ -34,6 +34,8 @@ class CEpicDestiniesView :
         afx_msg void OnButtonMakeActiveDestiny();
         afx_msg void OnTomeOfFateSelect();
         afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
+        afx_msg LRESULT OnMouseEnter(WPARAM wParam, LPARAM lParam);
+        afx_msg LRESULT OnMouseLeave(WPARAM wParam, LPARAM lParam);
         DECLARE_MESSAGE_MAP()
 
         // CharacterObserver overrides
@@ -49,6 +51,9 @@ class CEpicDestiniesView :
         void PopulateCombobox();
         void EnableControls();
         void MoveFatePointControls();
+        void ShowTip(const EnhancementTreeItem & item, CRect itemRect);
+        void HideTip();
+        void SetTooltipText(const EnhancementTreeItem & item, CPoint tipTopLeft, CPoint tipAlternate);
 
         CDocument * m_pDocument;
         Character * m_pCharacter;
@@ -61,4 +66,8 @@ class CEpicDestiniesView :
         CStatic m_labelTomeOfFate;
         CComboBox m_comboTomeOfFate;
         std::vector<CDialog *> m_twistsOfFate;
+        UINT m_hookTwistHandles[MAX_TWISTS];
+        CInfoTip m_tooltip;
+        bool m_showingTip;
+        bool m_tipCreated;
 };

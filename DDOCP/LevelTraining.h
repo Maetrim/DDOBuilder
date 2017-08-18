@@ -17,6 +17,7 @@ class LevelTraining :
         void TrainFeat(const std::string & featName, TrainableFeatTypes type, size_t level);
         std::string RevokeFeat(TrainableFeatTypes type);
         void RevokeAllFeats(TrainableFeatTypes type);
+        std::string FeatName(TrainableFeatTypes type) const;
 
         void TrainSkill(SkillType skill);
         void RevokeSkill(SkillType skill);

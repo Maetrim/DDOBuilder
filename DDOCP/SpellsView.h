@@ -33,12 +33,12 @@ class CSpellsView :
         DECLARE_MESSAGE_MAP()
 
         // CharacterObserver overrides
-        void UpdateClassChanged(Character * charData, ClassType type, size_t level) override;
+        virtual void UpdateClassChanged(Character * charData, ClassType classFrom, ClassType classTo, size_t level) override;
     private:
         void DetermineSpellViews();
 
         CPropertySheet m_spellsSheet;
-        std::vector<CSpellsPage*> m_pagePointers;
+        std::vector<CPropertyPage*> m_pagePointers;
         CDocument * m_pDocument;
         Character * m_pCharacter;
 };

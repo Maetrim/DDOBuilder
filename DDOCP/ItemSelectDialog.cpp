@@ -46,6 +46,10 @@ BEGIN_MESSAGE_MAP(CItemSelectDialog, CDialog)
     ON_NOTIFY(LVN_ITEMCHANGED, IDC_ITEM_LIST, OnItemSelected)
     ON_CONTROL_RANGE(CBN_SELENDOK, IDC_COMBO_AUGMENT1, IDC_COMBO_AUGMENT1 + MAX_Augments, OnAugmentSelect)
     ON_CONTROL_RANGE(CBN_SELENDOK, IDC_COMBO_UPGRADE1, IDC_COMBO_UPGRADE1 + MAX_Upgrades, OnUpgradeSelect)
+    ON_WM_SIZE()
+    ON_WM_GETMINMAXINFO()
+    ON_NOTIFY(HDN_ENDTRACK, IDC_ITEM_LIST, OnEndtrackListItems)
+    ON_NOTIFY(HDN_DIVIDERDBLCLICK, IDC_ITEM_LIST, OnEndtrackListItems)
 END_MESSAGE_MAP()
 
 // CItemSelectDialog message handlers
@@ -75,10 +79,18 @@ BOOL CItemSelectDialog::OnInitDialog()
     case Inventory_Weapon1: text = "Weapon"; break;
     case Inventory_Weapon2: text = "Weapon, Shield, Orb"; break;
     }
+    // add list control columns
+    m_availableItemsCtrl.InsertColumn(0, "Item Name", LVCFMT_LEFT, 150);
+    m_availableItemsCtrl.InsertColumn(1, "Level", LVCFMT_LEFT, 50);
     PopulateAvailableItemList();
     m_staticType.SetWindowText(text);
+    m_availableItemsCtrl.SetExtendedStyle(
+            m_availableItemsCtrl.GetExtendedStyle() | LVS_EX_FULLROWSELECT | LVS_EX_LABELTIP);
+    LoadColumnWidthsByName(&m_availableItemsCtrl, "ItemSelectDialog_%s");
 
     EnableControls();
+
+    m_sizer.Hook(GetSafeHwnd(), "ItemSelectDialog");
 
     m_bInitialising = false;
     return TRUE;  // return TRUE unless you set the focus to a control
@@ -124,7 +136,7 @@ void CItemSelectDialog::PopulateAvailableItemList()
     it = m_availableItems.begin();
     while (it != m_availableItems.end())
     {
-        m_availableItemsCtrl.InsertItem(
+        int item = m_availableItemsCtrl.InsertItem(
                 m_availableItemsCtrl.GetItemCount(),
                 (*it).Name().c_str(),
                 itemIndex);
@@ -132,6 +144,10 @@ void CItemSelectDialog::PopulateAvailableItemList()
         {
             sel = itemIndex;
         }
+        CString level;
+        level.Format("%d", (*it).MinLevel());
+        m_availableItemsCtrl.SetItemText(item, 1, level);
+
         ++itemIndex;
         ++it;
     }
@@ -139,6 +155,7 @@ void CItemSelectDialog::PopulateAvailableItemList()
     {
         m_availableItemsCtrl.SetSelectionMark(sel);
         m_availableItemsCtrl.SetItemState(sel, LVIS_SELECTED, LVIS_SELECTED);
+        m_availableItemsCtrl.EnsureVisible(sel, FALSE);
     }
     else
     {
@@ -407,4 +424,33 @@ void CItemSelectDialog::OnUpgradeSelect(UINT nID)
     EnableControls();
 }
 
+void CItemSelectDialog::OnSize(UINT nType, int cx, int cy)
+{
+    CDialog::OnSize(nType, cx, cy);
+    if (IsWindow(m_staticType.GetSafeHwnd()))
+    {
+        // assign half the space to each set of controls:
+        // +----------------------++-------------------+
+        // | Item select control  || Augments section  |
+        // |                      ||                   |
+        // +----------------------++-------------------+
+        //                         [OK] [CANCEL]
 
+        // TBD!
+    }
+}
+
+void CItemSelectDialog::OnGetMinMaxInfo(MINMAXINFO* lpMMI)
+{
+    // minimum size
+    lpMMI->ptMinTrackSize.x = 640;
+    lpMMI->ptMinTrackSize.y = 465;
+}
+
+void CItemSelectDialog::OnEndtrackListItems(NMHDR* pNMHDR, LRESULT* pResult)
+{
+    // just save the column widths to registry so restored next time we run
+    UNREFERENCED_PARAMETER(pNMHDR);
+    UNREFERENCED_PARAMETER(pResult);
+    SaveColumnWidthsByName(&m_availableItemsCtrl, "ItemSelectDialog_%s");
+}

@@ -10,7 +10,6 @@
 #include "DamageReductionTypes.h"
 #include "EnergyTypes.h"
 #include "FavoredEnemyTypes.h"
-#include "ImmunityTypes.h"
 #include "SaveTypes.h"
 #include "SkillTypes.h"
 #include "SpellPowerTypes.h"
@@ -20,7 +19,6 @@
 #include "WeaponTypes.h"
 #include "MeleeStyleTypes.h"
 #include "WeaponDamageTypes.h"
-#include "ImmunityTypes.h"
 
 // add new feat effects here and update the map for the text saved for that
 // effect type so it will be loaded/saved correctly.
@@ -123,7 +121,9 @@ enum EffectType
     Effect_TacticalDC,
     Effect_ThreatBonus,
     Effect_TurnBonus,
+    Effect_TurnDiceBonus,
     Effect_TurnLevelBonus,
+    Effect_TurnMaxDice,
     Effect_TwistOfFate,
     Effect_UnconsciousRange,
     Effect_VorpalRange,
@@ -232,7 +232,9 @@ const XmlLib::enumMapEntry<EffectType> effectTypeMap[] =
     {Effect_TacticalDC, L"TacticalDC"},
     {Effect_ThreatBonus, L"ThreatBonus"},
     {Effect_TurnBonus, L"TurnBonus"},
+    {Effect_TurnDiceBonus, L"TurnDiceBonus"},
     {Effect_TurnLevelBonus, L"TurnLevelBonus"},
+    {Effect_TurnMaxDice, L"TurnMaxDice"},
     {Effect_TwistOfFate, L"TwistOfFate"},
     {Effect_UnconsciousRange, L"UnconsciousRange"},
     {Effect_VorpalRange, L"VorpalRange"},
@@ -267,32 +269,28 @@ class Effect :
                 DL_ENUM(_, EffectType, Type, Effect_Unknown, effectTypeMap) \
                 DL_ENUM(_, BonusType, Bonus, Bonus_Unknown, bonusTypeMap) \
                 DL_OPTIONAL_SIMPLE(_, double, Amount, 0) \
-                DL_OPTIONAL_SIMPLE(_, int, Percentage, 0) \
-                DL_OPTIONAL_SIMPLE(_, int, AmountPerLevel, 0) \
+                DL_OPTIONAL_VECTOR(_, double, AmountVector) \
+                DL_OPTIONAL_SIMPLE(_, double, AmountPerLevel, 0.0) \
+                DL_OPTIONAL_SIMPLE(_, double, AmountPerAP, 0.0) \
+                DL_FLAG(_, Percent) \
                 DL_OPTIONAL_OBJECT(_, Dice, DiceRoll) \
                 DL_OPTIONAL_SIMPLE(_, size_t, DieRoll, 20) \
-                DL_OPTIONAL_SIMPLE(_, size_t, AppliesFrom, 0) \
                 DL_OPTIONAL_SIMPLE(_, size_t, Duration, 0) \
-                DL_OPTIONAL_SIMPLE(_, size_t, Cooldown, 0) \
-                DL_OPTIONAL_VECTOR(_, double, AmountVector) \
                 DL_OPTIONAL_SIMPLE(_, int, Divider, 0) \
                 DL_OPTIONAL_STRING(_, Base) \
                 DL_OPTIONAL_STRING(_, Feat) \
-                DL_FLAG(_, MustBeCentred) \
                 DL_OPTIONAL_VECTOR(_, size_t, NoFailOn1) \
-                DL_FLAG(_, AmountPerActionPoint) \
                 DL_OPTIONAL_STRING(_, Spell) \
                 DL_OPTIONAL_SIMPLE(_, int, SpellLevel, 0) \
                 DL_STRING_VECTOR(_, Stance) \
                 DL_OPTIONAL_STRING(_, EnhancementTree) \
-                DL_OPTIONAL_SIMPLE(_, double, AmountPerAP, 0.0) \
                 DL_OPTIONAL_STRING(_, SpellLikeAbility) \
+                DL_OPTIONAL_STRING(_, Immunity) \
                 DL_OPTIONAL_ENUM(_, AbilityType, Ability, Ability_Unknown, abilityTypeMap) \
                 DL_OPTIONAL_ENUM(_, ClassType, Class, Class_Unknown, classTypeMap) \
                 DL_OPTIONAL_ENUM(_, DamageReductionType, DR, DR_Unknown, drTypeMap) \
                 DL_OPTIONAL_ENUM(_, EnergyType, Energy, Energy_Unknown, energyTypeMap) \
                 DL_OPTIONAL_ENUM(_, FavoredEnemyType, FavoredEnemy, FavoredEnemy_Unknown, favoredEnemyTypeMap) \
-                DL_OPTIONAL_ENUM(_, ImmunityType, Immunity, Immunity_Unknown, immunityTypeMap) \
                 DL_OPTIONAL_ENUM(_, MeleeStyle, Style, MeleeStyle_Unknown, meleeStyleMap) \
                 DL_OPTIONAL_ENUM(_, SaveType, Save, Save_Unknown, saveTypeMap) \
                 DL_OPTIONAL_ENUM(_, SkillType, Skill, Skill_Unknown, skillTypeMap) \

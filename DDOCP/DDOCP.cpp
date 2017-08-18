@@ -13,6 +13,7 @@
 #include "AugmentsFile.h"
 #include "EnhancementsFile.h"
 #include "FeatsFile.h"
+#include "GlobalSupportFunctions.h"
 #include "GuildBuffsFile.h"
 #include "ItemsFile.h"
 #include "SpellsFile.h"
@@ -185,8 +186,11 @@ int CDDOCPApp::ExitInstance()
 // App command to run the dialog
 void CDDOCPApp::OnAppAbout()
 {
+    // no tooltips while a dialog is displayed
+    GetMouseHook()->SetDisabledState(true);
     CAboutDlg aboutDlg;
     aboutDlg.DoModal();
+    GetMouseHook()->SetDisabledState(false);
 }
 
 // CDDOCPApp customization load/save methods

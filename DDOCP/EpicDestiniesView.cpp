@@ -7,6 +7,7 @@
 #include "DestinyTreeDialog.h"
 #include "TwistOfFateDialog.h"
 #include "GlobalSupportFunctions.h"
+#include "MouseHook.h"
 
 namespace
 {
@@ -23,7 +24,9 @@ IMPLEMENT_DYNCREATE(CEpicDestiniesView, CFormView)
 CEpicDestiniesView::CEpicDestiniesView() :
     CFormView(CEpicDestiniesView::IDD),
     m_pCharacter(NULL),
-    m_pDocument(NULL)
+    m_pDocument(NULL),
+    m_showingTip(false),
+    m_tipCreated(false)
 {
 
 }
@@ -61,6 +64,8 @@ BEGIN_MESSAGE_MAP(CEpicDestiniesView, CFormView)
     ON_BN_CLICKED(IDC_CHECK_MAKE_ACTIVE_DESTINY, OnButtonMakeActiveDestiny)
     ON_CBN_SELENDOK(IDC_COMBO_TOME_OF_FATE, OnTomeOfFateSelect)
     ON_WM_CTLCOLOR()
+    ON_MESSAGE(WM_MOUSEENTER, OnMouseEnter)
+    ON_MESSAGE(WM_MOUSELEAVE, OnMouseLeave)
 END_MESSAGE_MAP()
 #pragma warning(pop)
 
@@ -81,6 +86,9 @@ void CEpicDestiniesView::Dump(CDumpContext& dc) const
 void CEpicDestiniesView::OnInitialUpdate()
 {
     CFormView::OnInitialUpdate();
+    m_tooltip.Create(this);
+    m_tipCreated = true;
+
     // create the twists of fate sub views
     CRect rctTwistsLabel;
     m_labelTwistsOfFate.GetWindowRect(&rctTwistsLabel);
@@ -98,6 +106,12 @@ void CEpicDestiniesView::OnInitialUpdate()
         dlg->MoveWindow(&itemRect);
         dlg->ShowWindow(SW_HIDE);   // start hidden
         m_twistsOfFate.push_back(dlg);
+        m_hookTwistHandles[twist] = GetMouseHook()->AddRectangleToMonitor(
+                this->GetSafeHwnd(),
+                itemRect,           // screen coordinates,
+                WM_MOUSEENTER,
+                WM_MOUSELEAVE,
+                false);
         // move rectangle down for next twist of fate
         itemRect += CPoint(0, itemRect.Height() + c_controlSpacing);
     }
@@ -133,6 +147,21 @@ void CEpicDestiniesView::OnSize(UINT nType, int cx, int cy)
         }
         // fate point controls move depending on number of available twists
         MoveFatePointControls();
+        // limit to visible area
+        for (size_t i = 0; i < MAX_TWISTS; ++i)
+        {
+            CRect rect;
+            m_twistsOfFate[i]->GetWindowRect(&rect);
+            ScreenToClient(&rect);
+            if (rect.right > cx)
+            {
+                rect.right = cx;
+            }
+            ClientToScreen(&rect);
+            GetMouseHook()->UpdateRectangle(
+                    m_hookTwistHandles[i],
+                    rect);          // screen coordinates,
+        }
     }
 }
 
@@ -519,4 +548,109 @@ HBRUSH CEpicDestiniesView::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
     }
 
     return hbr;
+}
+
+LRESULT CEpicDestiniesView::OnMouseEnter(WPARAM wParam, LPARAM lParam)
+{
+    if (m_pCharacter != NULL)
+    {
+        // we are over a twist, show a tooltip if its visible and trained
+        for (size_t i = 0; i < MAX_TWISTS; ++i)
+        {
+            if (wParam == m_hookTwistHandles[i]
+                    && m_twistsOfFate[i]->IsWindowVisible())
+            {
+                const TrainedEnhancement * te = m_pCharacter->TrainedTwist(i);
+                if (te != NULL)
+                {
+                    const EnhancementTreeItem * item = FindEnhancement(te->EnhancementName());
+                    if (item != NULL)
+                    {
+                        CRect itemRect;
+                        m_twistsOfFate[i]->GetWindowRect(&itemRect);
+                        ShowTip(*item, itemRect);
+                    }
+                }
+                break;
+            }
+        }
+    }
+    return 0;
+}
+
+LRESULT CEpicDestiniesView::OnMouseLeave(WPARAM wParam, LPARAM lParam)
+{
+    // hide any tooltip when the mouse leave the area its being shown for
+    HideTip();
+    return 0;
+}
+
+void CEpicDestiniesView::ShowTip(const EnhancementTreeItem & item, CRect itemRect)
+{
+    if (m_showingTip)
+    {
+        m_tooltip.Hide();
+    }
+    CPoint tipTopLeft(itemRect.left, itemRect.bottom + 2);
+    CPoint tipAlternate(itemRect.left, itemRect.top - 2);
+    SetTooltipText(item, tipTopLeft, tipAlternate);
+    m_showingTip = true;
+}
+
+void CEpicDestiniesView::HideTip()
+{
+    // tip not shown if not over an assay
+    if (m_tipCreated && m_showingTip)
+    {
+        m_tooltip.Hide();
+        m_showingTip = false;
+    }
+}
+
+void CEpicDestiniesView::SetTooltipText(
+        const EnhancementTreeItem & item,
+        CPoint tipTopLeft,
+        CPoint tipAlternate)
+{
+    const TrainedEnhancement * te = m_pCharacter->IsTrained(item.InternalName(), "");
+    const EnhancementSelection * es = NULL;
+    m_tooltip.SetOrigin(tipTopLeft, tipAlternate);
+    if (te != NULL)
+    {
+        // this item is trained, we may need to show the selected sub-item tooltip text
+        if (te->HasSelection())
+        {
+            const Selector & selector = item.Selections();
+            const std::list<EnhancementSelection> & selections = selector.Selections();
+            // find the selected item
+            std::list<EnhancementSelection>::const_iterator it = selections.begin();
+            while (it != selections.end())
+            {
+                if ((*it).Name() == te->Selection())
+                {
+                    es = &(*it);
+                    break;
+                }
+                ++it;
+            }
+        }
+    }
+    if (es != NULL)
+    {
+        m_tooltip.SetEnhancementSelectionItem(
+                *m_pCharacter,
+                es,
+                te->Ranks());
+    }
+    else
+    {
+        // its a top level item without sub-options
+        std::string treeName;
+        FindEnhancement(te->EnhancementName(), &treeName);
+        m_tooltip.SetEnhancementTreeItem(
+                *m_pCharacter,
+                &item,
+                m_pCharacter->APSpentInTree(treeName));
+    }
+    m_tooltip.Show();
 }

@@ -1303,10 +1303,15 @@ you from non-damaging spells.</Description>
       </AutomaticAcquisition>
       <Icon>DiamondSoul</Icon>
       <Effect>
+         <DisplayName>Class Levels(Monk)</DisplayName>
          <Type>SpellResistance</Type>
          <Bonus>Feat</Bonus>
-         <!--Handle base type-->
-         <Base>MonkLevel</Base>
+         <AmountPerLevel>1</AmountPerLevel>
+         <Class>Monk</Class>
+      </Effect>
+      <Effect>
+         <Type>SpellResistance</Type>
+         <Bonus>Feat</Bonus>
          <Amount>10</Amount>
       </Effect>
    </Feat>
@@ -2858,20 +2863,22 @@ Your attack will deal 1 to 6 additional cold damage (D&amp;D Dice: 1d6).</Descri
       </Effect>
    </Feat>
    <Feat>
-      <Name>Flurry of Blows</Name>
-      <Description>While centered (unarmored, unencumbered, and either unarmed or wielding
-monk weapons such as the kama, quarterstaff, or shuriken), you get an increase
-to your attack bonus, and a 2% dodge bonus at monk levels 1, 2, and 4 for a
-total of 6%.
-The attack bonus increase starts at 1 (at level 1) and increases by 1 for every
-four additional monk levels. Some rare items are enchanted as 'Ki Weapons' and
-can be used with your monk abilities, and certain feats or enhancements can
-further expand the list of weapons available to your monk.</Description>
+      <Name>Flurry of Blows - Dodge Bonus</Name>
+      <Description>While centered you get a 2% dodge bonus at monk levels 1, 2, and 4 for a total of 6%.</Description>
+      <MaxTimesAcquire>3</MaxTimesAcquire>
       <Requirements/>
       <Acquire>Automatic</Acquire>
       <AutomaticAcquisition>
          <Class>Monk</Class>
          <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Monk</Class>
+         <Level>2</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Monk</Class>
+         <Level>4</Level>
       </AutomaticAcquisition>
       <Icon>FlurryOfBlows</Icon>
       <Effect>
@@ -2881,58 +2888,47 @@ further expand the list of weapons available to your monk.</Description>
          <Stance>Centered</Stance>
       </Effect>
       <Effect>
-         <Type>DodgeBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>2</Amount>
-         <Class>Monk</Class>
-         <AppliesFrom>2</AppliesFrom>
-         <Stance>Centered</Stance>
-      </Effect>
-      <Effect>
-         <Type>DodgeBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>2</Amount>
-         <Class>Monk</Class>
-         <AppliesFrom>4</AppliesFrom>
-         <Stance>Centered</Stance>
-      </Effect>
-      <Effect>
          <Type>AttackBonus</Type>
          <Bonus>Feat</Bonus>
          <Amount>1</Amount>
          <Stance>Centered</Stance>
       </Effect>
+   </Feat>
+   <Feat>
+      <Name>Flurry of Blows - Attack Bonus</Name>
+      <Description>While centered you get an increase to your attack bonus.
+The attack bonus increase starts at 1 (at level 1) and increases by 1 for every
+four additional monk levels.</Description>
+      <MaxTimesAcquire>5</MaxTimesAcquire>
+      <Requirements/>
+      <Acquire>Automatic</Acquire>
+      <AutomaticAcquisition>
+         <Class>Monk</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Monk</Class>
+         <Level>5</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Monk</Class>
+         <Level>9</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Monk</Class>
+         <Level>13</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Monk</Class>
+         <Level>17</Level>
+      </AutomaticAcquisition>
+      <Icon>FlurryOfBlows</Icon>
       <Effect>
          <Type>AttackBonus</Type>
          <Bonus>Feat</Bonus>
          <Amount>1</Amount>
-         <Class>Monk</Class>
-         <AppliesFrom>5</AppliesFrom>
          <Stance>Centered</Stance>
-      </Effect>
-      <Effect>
-         <Type>AttackBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>1</Amount>
-         <Class>Monk</Class>
-         <AppliesFrom>9</AppliesFrom>
-         <Stance>Centered</Stance>
-      </Effect>
-      <Effect>
-         <Type>AttackBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>1</Amount>
-         <Class>Monk</Class>
-         <AppliesFrom>13</AppliesFrom>
-         <Stance>Centered</Stance>
-      </Effect>
-      <Effect>
-         <Type>AttackBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>1</Amount>
-         <Class>Monk</Class>
-         <AppliesFrom>17</AppliesFrom>
-         <Stance>Centered</Stance>
+         <Weapon>All</Weapon>
       </Effect>
    </Feat>
    <Feat>
@@ -5558,23 +5554,30 @@ A successful Balance check negates this effect. (DC 14 + Str mod)</Description>
    </Feat>
    <Feat>
       <Name>Improved Turning</Name>
-      <Description>This feat gives clerics and paladins a better chance at turning the undead.</Description>
+      <Description>This feat gives clerics and paladins a better chance at turning the undead.
+You Turn Undead as if you were 1 level higher.</Description>
       <Requirements>
          <Requirement>
             <Feat>Turn Undead</Feat>
          </Requirement>
-         <Requirement>
-            <Class>Cleric</Class>
-            <Level>1</Level>
-         </Requirement>
-         <Requirement>
-            <Class>Paladin</Class>
-            <Level>4</Level>
-         </Requirement>
+         <RequiresOneOf>
+             <Requirement>
+                <Class>Cleric</Class>
+                <Level>1</Level>
+             </Requirement>
+             <Requirement>
+                <Class>Paladin</Class>
+                <Level>4</Level>
+             </Requirement>
+         </RequiresOneOf>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>ImprovedTurning</Icon>
-      <!--Handle improved turning-->
+      <Effect>
+          <Type>TurnLevelBonus</Type>
+          <Bonus>Feat</Bonus>
+          <Amount>1</Amount>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Improved Two Handed Fighting</Name>
@@ -14604,7 +14607,7 @@ in the form of a free Feat</Description>
       <Icon>InherentMeleePower</Icon>
       <Effect>
          <Type>MeleePower</Type>
-         <Bonus>Feat</Bonus>
+         <Bonus>Inherent</Bonus>
          <Amount>1</Amount>
          <Style>All</Style>
       </Effect>
@@ -14620,7 +14623,7 @@ in the form of a free Feat.</Description>
       <Icon>InherentRangedPower</Icon>
       <Effect>
          <Type>RangedPower</Type>
-         <Bonus>Feat</Bonus>
+         <Bonus>Inherent</Bonus>
          <Amount>1</Amount>
       </Effect>
    </Feat>
@@ -14635,7 +14638,7 @@ Resistance Rating, in the form of a free Feat.</Description>
       <Icon>InherentMagicResistance</Icon>
       <Effect>
          <Type>MRR</Type>
-         <Bonus>Feat</Bonus>
+         <Bonus>Inherent</Bonus>
          <Amount>1</Amount>
       </Effect>
    </Feat>
@@ -14650,7 +14653,7 @@ in the form of a free Feat.</Description>
       <Icon>InherentSpellPower</Icon>
       <Effect>
          <Type>SpellPower</Type>
-         <Bonus>Feat</Bonus>
+         <Bonus>Inherent</Bonus>
          <SpellPower>All</SpellPower>
          <Amount>1</Amount>
       </Effect>
@@ -14666,7 +14669,7 @@ Physical Resistance Rating, in the form of a free Feat.</Description>
       <Icon>InherentPhysicalResistance</Icon>
       <Effect>
          <Type>PRR</Type>
-         <Bonus>Feat</Bonus>
+         <Bonus>Inherent</Bonus>
          <Amount>1</Amount>
       </Effect>
    </Feat>
@@ -20387,6 +20390,47 @@ Hit Dice affected by Turn Undead.</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>Aureon</Icon>
+      <Stance>
+         <Name>>Aureon's Instruction</Name>
+         <Icon>Aureon</Icon>
+         <Description>You are a devoted follower of Aureon, and your faith has been rewarded.
+Activate this ability to channel the power of Aureon's wisdom for 24 seconds
+plus 6 seconds per Religious Lore feat you have. In this state, you gain
++4 Wisdom, +3 to Spell Penetration, +2 to your effective level for Turn Undead,
++4 to maximum Hit Dice affected when using Turn Undead, and +4 to the total
+Hit Dice affected by Turn Undead.</Description>
+      </Stance>
+       <Effect>
+           <Type>AbilityBonus</Type>
+           <Bonus>Feat</Bonus>
+           <Amount>4</Amount>
+           <Ability>Wisdom</Ability>
+           <Stance>Aureon's Instruction</Stance>
+       </Effect>
+       <Effect>
+           <Type>SpellPenetrationBonus</Type>
+           <Bonus>Feat</Bonus>
+           <Amount>3</Amount>
+           <Stance>Aureon's Instruction</Stance>
+       </Effect>
+       <Effect>
+           <Type>TurnLevelBonus</Type>
+           <Bonus>Feat</Bonus>
+           <Amount>2</Amount>
+           <Stance>Aureon's Instruction</Stance>
+       </Effect>
+       <Effect>
+           <Type>TurnMaxDice</Type>
+           <Bonus>Feat</Bonus>
+           <Amount>4</Amount>
+           <Stance>Aureon's Instruction</Stance>
+       </Effect>
+       <Effect>
+           <Type>TurnDiceBonus</Type>
+           <Bonus>Feat</Bonus>
+           <Amount>4</Amount>
+           <Stance>Aureon's Instruction</Stance>
+       </Effect>
    </Feat>
    <Feat>
       <Name>The Blood is The Life</Name>
@@ -21101,7 +21145,9 @@ You gain damage reduction 10/silver.</Description>
       <Description>You're a cultural master! You have leveled to 20 in every race 3 times
 and for your efforts you are awarded this Feat in all future incarnations
 of this character. When more races are added, this feat will deactivate and
-you will need to gain those past lives before this benefit reactivates.</Description>
+you will need to gain those past lives before this benefit reactivates.
+
++2 to all abilities and skills</Description>
       <Requirements>
          <Requirement>
             <Feat>Past Life: Dragonborn</Feat>
@@ -21147,7 +21193,7 @@ you will need to gain those past lives before this benefit reactivates.</Descrip
       <Acquire>Automatic</Acquire>
       <Icon>Completionist</Icon>
       <AutomaticAcquisition>
-         <Race>All</Race>
+         <SpecificLevel>1</SpecificLevel>
       </AutomaticAcquisition>
       <Effect>
          <Type>AbilityBonus</Type>

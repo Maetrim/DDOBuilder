@@ -54,7 +54,8 @@ bool AutomaticAcquisition::VerifyObject(std::stringstream * ss) const
     ok = HasBAB()
             || HasClass()
             || HasLevel()
-            || HasRace();
+            || HasRace()
+            || HasSpecificLevel();
     if (!ok)
     {
         (*ss) << "AutomaticAcquisition has missing elements.\n";

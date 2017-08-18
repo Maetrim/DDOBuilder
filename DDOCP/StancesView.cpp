@@ -133,17 +133,35 @@ void CStancesView::CreateStanceWindows()
     AddStance(reaper);
 
     // standard special stances that are always present. These may not be shown in the UI (TBD)
-    Stance clothArmor("Cloth/No Armor", "ClothArmorProficiency", "You are wearing cloth or no armor");
+    Stance clothArmor("Cloth/No Armor", "ClothArmorProficiency", "This stance is only visible due to development\nWill be hidden in final build\nYou are wearing cloth or no armor");
     AddStance(clothArmor);
-    Stance lightArmor("Light Armor", "LightArmorProficiency", "You are wearing light armor");
+    Stance lightArmor("Light Armor", "LightArmorProficiency", "This stance is only visible due to development\nWill be hidden in final build\nYou are wearing light armor");
     AddStance(lightArmor);
-    Stance mediumArmor("Medium Armor", "MediumArmorProficiency", "You are wearing medium armor");
+    Stance mediumArmor("Medium Armor", "MediumArmorProficiency", "This stance is only visible due to development\nWill be hidden in final build\nYou are wearing medium armor");
     AddStance(mediumArmor);
-    Stance heavyArmor("Heavy Armor", "HeavyArmorProficiency", "You are wearing heavy armor");
+    Stance heavyArmor("Heavy Armor", "HeavyArmorProficiency", "This stance is only visible due to development\nWill be hidden in final build\nYou are wearing heavy armor");
     AddStance(heavyArmor);
-    Stance centered("Centered", "Centered", "You are centered");
+    Stance centered("Centered", "Centered", "This stance is only visible due to development\nWill be hidden in final build\nYou are centered");
     AddStance(centered);
 
+    Stance twf("TwoWeaponFighting", "TwoWeaponFighting", "This stance is only visible due to development\nWill be hidden in final build\nYou are fighting with a weapon in each hand");
+    AddStance(twf);
+    Stance thf("TwoHandedFighting", "TwoHandedFighting", "This stance is only visible due to development\nWill be hidden in final build\nYou are fighting with a single weapon in both hands");
+    AddStance(thf);
+    Stance swf("SingleWeaponFighting", "SingleWeaponFighting", "This stance is only visible due to development\nWill be hidden in final build\nYou are fighting with a single weapon");
+    AddStance(swf);
+    Stance unarmed("Unarmed", "ADanceOfFlowers", "This stance is only visible due to development\nWill be hidden in final build\nYou are fighting with handwraps or fists");
+    AddStance(unarmed);
+    Stance sab("SwordAndBoard", "SDLastStand", "This stance is only visible due to development\nWill be hidden in final build\nYou are fighting with a weapon and shield");
+    AddStance(sab);
+    Stance staff("Staff", "HMSoundingStaff", "This stance is only visible due to development\nWill be hidden in final build\nYou are fighting with a staff");
+    AddStance(staff);
+    Stance orb("Orb", "EfficientMetamagic", "This stance is only visible due to development\nWill be hidden in final build\nYou are fighting with an Orb in your off hand");
+    AddStance(orb);
+    Stance runearm("RunArm", "BEBattleEngineer", "This stance is only visible due to development\nWill be hidden in final build\nYou are fighting with a Rune-Arm in your off hand");
+    AddStance(runearm);
+    Stance Swashbuckling("Swashbuckling", "SBEvasiveManeuvers", "This stance is only visible due to development\nWill be hidden in final build\nYou are Swashbuckling");
+    AddStance(Swashbuckling);
     // look at all the trained feats and see which are stances
     // add an entry for each
     std::list<TrainedFeat> currentFeats = m_pCharacter->CurrentFeats(MAX_LEVEL);

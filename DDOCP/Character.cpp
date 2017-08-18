@@ -369,9 +369,9 @@ void Character::NotifyClassChoiceChanged()
     NotifyAll(&CharacterObserver::UpdateClassChoiceChanged, this);
 }
 
-void Character::NotifyClassChanged(ClassType type, size_t level)
+void Character::NotifyClassChanged(ClassType classFrom, ClassType classTo, size_t level)
 {
-    NotifyAll(&CharacterObserver::UpdateClassChanged, this, type, level);
+    NotifyAll(&CharacterObserver::UpdateClassChanged, this, classFrom, classTo, level);
 }
 
 void Character::NotifyAbilityValueChanged(AbilityType ability)
@@ -812,10 +812,11 @@ void Character::SetClass1(size_t level, ClassType type)
 {
     if (Class1() != Class_Unknown)
     {
+        ClassType classFrom = Class1();
         if (RevokeClass(Class1()))
         {
             // if a class got revoked keep the class list up to date
-            NotifyClassChanged(type, -1);
+            NotifyClassChanged(classFrom, type, -1);
         }
     }
     Set_Class1(type);
@@ -835,10 +836,11 @@ void Character::SetClass2(size_t level, ClassType type)
 {
     if (Class2() != Class_Unknown)
     {
+        ClassType classFrom = Class2();
         if (RevokeClass(Class2()))
         {
             // if a class got revoked keep the class list up to date
-            NotifyClassChanged(type, -1);
+            NotifyClassChanged(classFrom, type, -1);
         }
     }
     Set_Class2(type);
@@ -857,10 +859,11 @@ void Character::SetClass3(size_t level, ClassType type)
 {
     if (Class3() != Class_Unknown)
     {
+        ClassType classFrom = Class3();
         if (RevokeClass(Class3()))
         {
             // if a class got revoked keep the class list up to date
-            NotifyClassChanged(type, -1);
+            NotifyClassChanged(classFrom, type, -1);
         }
     }
     Set_Class3(type);
@@ -871,11 +874,13 @@ void Character::SetClass3(size_t level, ClassType type)
 
 void Character::SetClass(size_t level, ClassType type)
 {
+    ClassType classFrom = Class_Unknown;;
     if (level < MAX_CLASS_LEVEL)    // 0 based
     {
         ASSERT(m_Levels.size() == MAX_LEVEL);
         std::list<LevelTraining>::iterator it = m_Levels.begin();
         std::advance(it, level);
+        classFrom = (*it).Class();
         (*it).Set_Class(type);
         size_t available = SkillPoints(
                 type,
@@ -907,7 +912,7 @@ void Character::SetClass(size_t level, ClassType type)
         }
         m_pDocument->SetModifiedFlag(TRUE);
     }
-    NotifyClassChanged(type, level);    // must be done before feat updates to keep spell lists kosher
+    NotifyClassChanged(classFrom, type, level);    // must be done before feat updates to keep spell lists kosher
     UpdateFeats();
 }
 
@@ -1120,26 +1125,31 @@ void Character::TrainFeat(
         TrainableFeatTypes type,
         size_t level)
 {
-    // first revoke any previous trained feat in this slot at level
+    // ensure re-selection of same feat in same slot does not change anything
+    // as this can cause enhancements and feats to be revoked.
     std::list<LevelTraining>::iterator it = m_Levels.begin();
     std::advance(it, level);
-    std::string lostFeat = (*it).RevokeFeat(type);
-    if (!lostFeat.empty())
+    if (featName != (*it).FeatName(type))
     {
-        const Feat & feat = FindFeat(lostFeat);
-        RevokeFeatEffects(feat);
-    }
-    // train new
-    (*it).TrainFeat(featName, type, level);
-    const Feat & feat = FindFeat(featName);
-    ApplyFeatEffects(feat);
+        // first revoke any previous trained feat in this slot at level
+        std::string lostFeat = (*it).RevokeFeat(type);
+        if (!lostFeat.empty())
+        {
+            const Feat & feat = FindFeat(lostFeat);
+            RevokeFeatEffects(feat);
+        }
+        // train new
+        (*it).TrainFeat(featName, type, level);
+        const Feat & feat = FindFeat(featName);
+        ApplyFeatEffects(feat);
 
-    NotifyFeatTrained(featName);
-    // some automatic feats may have changed due to the trained feat
-    UpdateFeats();
-    // a feat change can invalidate a feat selection at at later level
-    VerifyTrainedFeats();
-    m_pDocument->SetModifiedFlag(TRUE);
+        NotifyFeatTrained(featName);
+        // some automatic feats may have changed due to the trained feat
+        UpdateFeats();
+        // a feat change can invalidate a feat selection at at later level
+        VerifyTrainedFeats();
+        m_pDocument->SetModifiedFlag(TRUE);
+    }
 }
 
 void Character::NowActive()
@@ -1179,6 +1189,7 @@ std::list<TrainedFeat> Character::AutomaticFeats(
         while (!acquire && aait != aa.end())
         {
             // see if we meet the acquire criteria
+            bool meetsSpecificLevel = true;
             bool meetsRace = false;
             if ((*aait).HasRace())
             {
@@ -1229,11 +1240,16 @@ std::list<TrainedFeat> Character::AutomaticFeats(
                     meetsLevel = true;
                 }
             }
+            if ((*aait).HasSpecificLevel())
+            {
+                meetsSpecificLevel = ((*aait).SpecificLevel() == level);
+            }
             // if we meet the auto acquire criteria, make sure
             // we also meet the feats Requirements
             if (meetsRace
                     && meetsClass
-                    && meetsLevel)
+                    && meetsLevel
+                    && meetsSpecificLevel)
             {
                 if ((*aait).HasIgnoreRequirements())
                 {
@@ -2832,6 +2848,25 @@ void Character::RevokeSpell(
     ASSERT(found);
     NotifySpellRevoked(spell);
     m_pDocument->SetModifiedFlag(TRUE);
+}
+
+bool Character::IsSpellTrained(const std::string & spellName) const
+{
+    bool found = false;
+    std::vector<TrainedSpell>::const_iterator it = m_TrainedSpells.begin();
+    while (!found && it != m_TrainedSpells.end())
+    {
+        if ((*it).SpellName() == spellName)
+        {
+            found = true;
+            break;
+        }
+        else
+        {
+            ++it;
+        }
+    }
+    return found;
 }
 
 void Character::Reaper_TrainEnhancement(

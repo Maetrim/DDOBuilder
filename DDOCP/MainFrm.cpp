@@ -622,7 +622,14 @@ void CMainFrame::SetStatusBarPromptText(const CString & text)
 
 void CMainFrame::OnItemEditor()
 {
+    // no tooltips while a dialog is displayed
+    GetMouseHook()->SetDisabledState(true);
     CItemEditorDialog dlg(NULL);
     dlg.DoModal();
+    GetMouseHook()->SetDisabledState(false);
 }
 
+MouseHook * CMainFrame::GetMouseHook()
+{
+    return &m_mouseHook;
+}

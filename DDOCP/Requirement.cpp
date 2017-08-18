@@ -388,7 +388,14 @@ void Requirement::CreateRequirementStrings(
     if (HasFeat())
     {
         // must have this feat previously trained at the current level to train
-        description.Format("Requires: %s", Feat().c_str());
+        if (HasAmount())
+        {
+            description.Format("Requires: %s(%d)", Feat().c_str(), Amount());
+        }
+        else
+        {
+            description.Format("Requires: %s", Feat().c_str());
+        }
         requirements->push_back(description);
         std::list<TrainedFeat> currentFeats = charData.CurrentFeats(MAX_LEVEL);
         met->push_back(TrainedCount(currentFeats, Feat()) > 0);

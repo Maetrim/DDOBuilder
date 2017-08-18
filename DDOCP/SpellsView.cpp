@@ -6,6 +6,8 @@
 #include <numeric>
 
 #include "SpellsPage.h"
+#include "SpellLikeAbilityPage.h"
+#include "ImmunitiesPage.h"
 
 namespace
 {
@@ -23,7 +25,7 @@ CSpellsView::CSpellsView() :
     // a NULL pointer for every class
     // we maintain this vector at this size to avoid page re-creation/destruction
     // on each class change
-    m_pagePointers.resize(Class_Count, NULL);
+    m_pagePointers.resize(Class_Count + 1, NULL);
 }
 
 CSpellsView::~CSpellsView()
@@ -122,7 +124,21 @@ LRESULT CSpellsView::OnNewDocument(WPARAM wParam, LPARAM lParam)
     {
         if (m_pagePointers[i] != NULL)
         {
-            m_pagePointers[i]->SetCharacter(m_pCharacter);
+            CSpellLikeAbilityPage * pSLAPage = dynamic_cast<CSpellLikeAbilityPage*>(m_pagePointers[i]);
+            if (pSLAPage != NULL)
+            {
+                pSLAPage->SetCharacter(m_pCharacter);
+            }
+            CImmunitiesPage * pImmunityPage = dynamic_cast<CImmunitiesPage*>(m_pagePointers[i]);
+            if (pImmunityPage != NULL)
+            {
+                pImmunityPage->SetCharacter(m_pCharacter);
+            }
+            CSpellsPage * pSpellPage = dynamic_cast<CSpellsPage*>(m_pagePointers[i]);
+            if (pSpellPage != NULL)
+            {
+                pSpellPage->SetCharacter(m_pCharacter);
+            }
         }
     }
     return 0L;
@@ -140,7 +156,8 @@ BOOL CSpellsView::OnEraseBkgnd(CDC* pDC)
 
 void CSpellsView::UpdateClassChanged(
         Character * charData,
-        ClassType type,
+        ClassType classFrom,
+        ClassType classTo,
         size_t level)
 {
     // if a class has changed or the number of levels in a given
@@ -160,11 +177,18 @@ void CSpellsView::DetermineSpellViews()
     // get the number of pages already inserted
     size_t numPages = m_spellsSheet.GetPageCount();
 
-    // add the default page if not currently present
-    if (m_pagePointers[0] == NULL)
-    {   //?? Use correct SLA view here
-        CSpellsPage * page = new CSpellsPage(Class_Unknown, Ability_Unknown, IDS_SLA);
+    // we have pages for spell like abilities and immunities
+    // add the default page for spell like abilities
+    if (m_pagePointers[0] == NULL)  // 0 is in effect Class_Unknown
+    {
+        CSpellLikeAbilityPage * page = new CSpellLikeAbilityPage();
         m_pagePointers[0] = page;
+        m_spellsSheet.AddPage(page);
+    }
+    if (m_pagePointers[Class_Count] == NULL)
+    {
+        CImmunitiesPage * page = new CImmunitiesPage();
+        m_pagePointers[Class_Count] = page;
         m_spellsSheet.AddPage(page);
     }
 
@@ -179,7 +203,7 @@ void CSpellsView::DetermineSpellViews()
         // no levels as no character
         classLevels.resize(Class_Count, 0); // 0 levels in each
     }
-    for (size_t ci = 0; ci < Class_Count; ++ci)
+    for (size_t ci = Class_Unknown + 1; ci < Class_Count; ++ci)
     {
         // get the number of spells available for this class at this level
         std::vector<size_t> spellSlots = SpellSlotsForClass((ClassType)ci, classLevels[ci]);
@@ -234,11 +258,11 @@ void CSpellsView::DetermineSpellViews()
                 {
                     // add the page
                     m_pagePointers[ci] = page;
+                    m_spellsSheet.AddPage(page);
+                    page->SetCharacter(m_pCharacter);
+                    page->SetTrainableSpells(spellSlots);
                 }
-                m_spellsSheet.AddPage(page);
             }
-            m_pagePointers[ci]->SetCharacter(m_pCharacter);
-            m_pagePointers[ci]->SetTrainableSpells(spellSlots);
         }
         else
         {

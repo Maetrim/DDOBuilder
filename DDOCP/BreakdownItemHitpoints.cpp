@@ -91,10 +91,11 @@ bool BreakdownItemHitpoints::AffectsUs(const Effect & effect) const
 
 void BreakdownItemHitpoints::UpdateClassChanged(
         Character * charData,
-        ClassType type, size_t
-        level)
+        ClassType classFrom,
+        ClassType classTo,
+        size_t level)
 {
-    BreakdownItem::UpdateClassChanged(charData, type, level);
+    BreakdownItem::UpdateClassChanged(charData, classFrom, classTo, level);
     // need to re-create other effects list (class hp)
     CreateOtherEffects();
     Populate();

@@ -318,6 +318,13 @@ const std::list<GuildBuff> & GuildBuffs()
     return pApp->GuildBuffs();
 }
 
+MouseHook * GetMouseHook()
+{
+    CWnd * pWnd = AfxGetMainWnd();
+    CMainFrame * pMainWnd = dynamic_cast<CMainFrame*>(pWnd);
+    return pMainWnd->GetMouseHook();
+}
+
 std::vector<Spell> FilterSpells(ClassType ct, int level)
 {
     // return the list of spells for this class at this level

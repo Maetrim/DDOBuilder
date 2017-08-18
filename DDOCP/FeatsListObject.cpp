@@ -99,3 +99,18 @@ void FeatsListObject::RevokeAllFeats(TrainableFeatTypes type)
         }
     }
 }
+
+std::string FeatsListObject::FeatName(TrainableFeatTypes type) const
+{
+    std::list<TrainedFeat>::const_iterator it = m_Feats.begin();
+    while (it != m_Feats.end())
+    {
+        if ((*it).Type() == type)
+        {
+            return (*it).FeatName();
+        }
+        ++it;
+    }
+    return "";
+}
+

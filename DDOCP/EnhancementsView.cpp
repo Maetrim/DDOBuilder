@@ -484,7 +484,8 @@ void CEnhancementsView::UpdateAlignmentChanged(Character * charData, AlignmentTy
 
 void CEnhancementsView::UpdateClassChanged(
         Character * charData,
-        ClassType type,
+        ClassType classFrom,
+        ClassType classTo,
         size_t level)
 {
     // if a class has changed so whether we need to update our windows

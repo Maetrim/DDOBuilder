@@ -15,6 +15,7 @@ class FeatsListObject :
         void TrainFeat(const std::string & featName, TrainableFeatTypes type, size_t level);
         std::string RevokeFeat(TrainableFeatTypes type);
         void RevokeAllFeats(TrainableFeatTypes type);
+        std::string FeatName(TrainableFeatTypes type) const;
 
     protected:
         XmlLib::SaxContentElementInterface * StartElement(

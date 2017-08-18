@@ -32,6 +32,7 @@ class CLevelUpView :
         afx_msg LRESULT OnNewDocument(WPARAM wParam, LPARAM lParam);
         afx_msg void OnEndtrackListSkills(NMHDR* pNMHDR, LRESULT* pResult);
         afx_msg void OnEndtrackListAutomaticFeats(NMHDR* pNMHDR, LRESULT* pResult);
+        afx_msg void OnHoverAutomaticFeats(NMHDR* pNMHDR, LRESULT* pResult);
         afx_msg void OnColumnclickListSkills(NMHDR* pNMHDR, LRESULT* pResult);
         afx_msg void OnDoubleClickListSkills(NMHDR*, LRESULT* pResult);
         afx_msg void OnLeftClickListSkills(NMHDR*, LRESULT* pResult);
@@ -48,8 +49,8 @@ class CLevelUpView :
         afx_msg void OnCustomDrawSkills(NMHDR* pNMHDR, LRESULT* pResult);
         afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
         afx_msg LRESULT OnUpdateComplete(WPARAM wParam, LPARAM lParam);
-        afx_msg void OnMouseMove(UINT nFlags, CPoint point);
         afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
+        afx_msg LRESULT OnMouseEnter(WPARAM wParam, LPARAM lParam);
         afx_msg LRESULT OnMouseLeave(WPARAM wParam, LPARAM lParam);
         afx_msg void OnButtonLevel(UINT nID);
         DECLARE_MESSAGE_MAP()
@@ -59,7 +60,7 @@ class CLevelUpView :
         void UpdateSkillSpendChanged(Character * pCharacter, size_t level, SkillType skill) override;
         void UpdateSkillTomeChanged(Character * pCharacter, SkillType skill) override;
         void UpdateClassChoiceChanged(Character * pCharacter) override;
-        void UpdateClassChanged(Character * pCharacter, ClassType type, size_t level) override;
+        virtual void UpdateClassChanged(Character * charData, ClassType classFrom, ClassType classTo, size_t level) override;
         void UpdateAbilityValueChanged(Character * pCharacter, AbilityType ability) override;
         void UpdateAbilityTomeChanged(Character * pCharacter, AbilityType ability) override;
         void UpdateRaceChanged(Character * pCharacter, RaceType race) override;
@@ -111,6 +112,10 @@ class CLevelUpView :
         CInfoTip m_tooltip;
         bool m_showingTip;
         bool m_tipCreated;
-        const CWnd * m_pTooltipItem;
         int m_selectedSkill;
+
+        UINT m_hookFeatHandles[3];
+        UINT m_hookLevelHandles[MAX_LEVEL];
+        UINT m_automaticHandle;
+        int m_hoverItem;
 };
