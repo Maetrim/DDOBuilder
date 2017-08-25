@@ -27,6 +27,7 @@ enum EffectType
     Effect_Unknown = 0,
     Effect_AbilityBonus,
     Effect_ACBonus,
+    Effect_ACBonusShield,
     Effect_AdditionalSpellPointCost,
     Effect_ArcaneSpellFailure,
     Effect_ArcaneSpellFailureShields,
@@ -138,6 +139,7 @@ const XmlLib::enumMapEntry<EffectType> effectTypeMap[] =
     {Effect_Unknown, L"Unknown"},
     {Effect_AbilityBonus, L"AbilityBonus"},
     {Effect_ACBonus, L"ACBonus"},
+    {Effect_ACBonusShield, L"ACBonusShield"},
     {Effect_AdditionalSpellPointCost, L"AdditionalSpellPointCost"},
     {Effect_ArcaneSpellFailure, L"ArcaneSpellFailure"},
     {Effect_ArcaneSpellFailureShields, L"ArcaneSpellFailureShields"},
@@ -288,7 +290,7 @@ class Effect :
                 DL_OPTIONAL_STRING(_, Immunity) \
                 DL_OPTIONAL_ENUM(_, AbilityType, Ability, Ability_Unknown, abilityTypeMap) \
                 DL_OPTIONAL_ENUM(_, ClassType, Class, Class_Unknown, classTypeMap) \
-                DL_OPTIONAL_ENUM(_, DamageReductionType, DR, DR_Unknown, drTypeMap) \
+                DL_ENUM_LIST(_, DamageReductionType, DR, DR_Unknown, drTypeMap) \
                 DL_OPTIONAL_ENUM(_, EnergyType, Energy, Energy_Unknown, energyTypeMap) \
                 DL_OPTIONAL_ENUM(_, FavoredEnemyType, FavoredEnemy, FavoredEnemy_Unknown, favoredEnemyTypeMap) \
                 DL_OPTIONAL_ENUM(_, MeleeStyle, Style, MeleeStyle_Unknown, meleeStyleMap) \

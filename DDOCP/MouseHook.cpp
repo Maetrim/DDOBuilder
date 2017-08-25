@@ -50,6 +50,27 @@ void MouseHook::ProcessMessage(int nCode, WPARAM wParam, LPARAM lParam)
             // post a message to the relevant window
             MOUSEHOOKSTRUCT * pMHS = (MOUSEHOOKSTRUCT*)(lParam);
             CPoint mouse = pMHS->pt;        // mouse location in screen coordinates
+            // notify all leave areas before any enter areas
+            // this stops an enter notification being cancelled for a leave from
+            // a different area.
+            for (size_t i = 0; i < m_areasOfInterest.size(); ++i)
+            {
+                if (!m_areasOfInterest[i].m_rectangle.PtInRect(mouse))
+                {
+                    // was it in the rectangle before? if so, notify
+                    if (m_areasOfInterest[i].m_bIn)
+                    {
+                        // no longer inside, notify
+                        m_areasOfInterest[i].m_bIn = false;
+                        // post message as we do not want to wait for it to be processed right now
+                        PostMessage(
+                                m_areasOfInterest[i].m_whoToNotify,
+                                m_areasOfInterest[i].m_exitNotification,
+                                m_areasOfInterest[i].m_areaHandle,
+                                0L);
+                    }
+                }
+            }
             for (size_t i = 0; i < m_areasOfInterest.size(); ++i)
             {
                 if (m_areasOfInterest[i].m_rectangle.PtInRect(mouse))
@@ -63,21 +84,6 @@ void MouseHook::ProcessMessage(int nCode, WPARAM wParam, LPARAM lParam)
                         PostMessage(
                                 m_areasOfInterest[i].m_whoToNotify,
                                 m_areasOfInterest[i].m_enterNotification,
-                                m_areasOfInterest[i].m_areaHandle,
-                                0L);
-                    }
-                }
-                else
-                {
-                    // was it in the rectangle before? if so, notify
-                    if (m_areasOfInterest[i].m_bIn)
-                    {
-                        // no longer inside, notify
-                        m_areasOfInterest[i].m_bIn = false;
-                        // post message as we do not want to wait for it to be processed right now
-                        PostMessage(
-                                m_areasOfInterest[i].m_whoToNotify,
-                                m_areasOfInterest[i].m_exitNotification,
                                 m_areasOfInterest[i].m_areaHandle,
                                 0L);
                     }

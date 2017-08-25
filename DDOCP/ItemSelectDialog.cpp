@@ -7,6 +7,15 @@
 
 // CItemSelectDialog dialog
 
+namespace
+{
+    enum ItemListColumns
+    {
+        ILC_name = 0,
+        ILC_level,
+    };
+}
+
 IMPLEMENT_DYNAMIC(CItemSelectDialog, CDialog)
 
 CItemSelectDialog::CItemSelectDialog(
@@ -30,6 +39,7 @@ void CItemSelectDialog::DoDataExchange(CDataExchange* pDX)
     CDialog::DoDataExchange(pDX);
     DDX_Control(pDX, IDC_ITEM_TYPE, m_staticType);
     DDX_Control(pDX, IDC_ITEM_LIST, m_availableItemsCtrl);
+    VERIFY(m_sortHeader.SubclassWindow(m_availableItemsCtrl.GetHeaderCtrl()->GetSafeHwnd()));
     for (size_t i = 0; i < MAX_Augments; ++i)
     {
         DDX_Control(pDX, IDC_STATIC_AUGMENT_TYPE1 + i, m_augmentType[i]);
@@ -50,6 +60,7 @@ BEGIN_MESSAGE_MAP(CItemSelectDialog, CDialog)
     ON_WM_GETMINMAXINFO()
     ON_NOTIFY(HDN_ENDTRACK, IDC_ITEM_LIST, OnEndtrackListItems)
     ON_NOTIFY(HDN_DIVIDERDBLCLICK, IDC_ITEM_LIST, OnEndtrackListItems)
+    ON_NOTIFY(LVN_COLUMNCLICK, IDC_ITEM_LIST, OnColumnclickListItems)
 END_MESSAGE_MAP()
 
 // CItemSelectDialog message handlers
@@ -87,6 +98,7 @@ BOOL CItemSelectDialog::OnInitDialog()
     m_availableItemsCtrl.SetExtendedStyle(
             m_availableItemsCtrl.GetExtendedStyle() | LVS_EX_FULLROWSELECT | LVS_EX_LABELTIP);
     LoadColumnWidthsByName(&m_availableItemsCtrl, "ItemSelectDialog_%s");
+    m_sortHeader.SetSortArrow(0, TRUE);
 
     EnableControls();
 
@@ -147,6 +159,7 @@ void CItemSelectDialog::PopulateAvailableItemList()
         CString level;
         level.Format("%d", (*it).MinLevel());
         m_availableItemsCtrl.SetItemText(item, 1, level);
+        m_availableItemsCtrl.SetItemData(item, itemIndex);
 
         ++itemIndex;
         ++it;
@@ -270,6 +283,7 @@ void CItemSelectDialog::OnItemSelected(NMHDR* pNMHDR, LRESULT* pResult)
         {
             // item selection has changed, select it
             int sel = pNMListView->iItem;
+            sel = m_availableItemsCtrl.GetItemData(sel);
             if (sel >= 0 && sel < (int)m_availableItems.size())
             {
                 std::list<Item>::const_iterator it = m_availableItems.begin();
@@ -453,4 +467,93 @@ void CItemSelectDialog::OnEndtrackListItems(NMHDR* pNMHDR, LRESULT* pResult)
     UNREFERENCED_PARAMETER(pNMHDR);
     UNREFERENCED_PARAMETER(pResult);
     SaveColumnWidthsByName(&m_availableItemsCtrl, "ItemSelectDialog_%s");
+}
+
+void CItemSelectDialog::OnColumnclickListItems(NMHDR* pNMHDR, LRESULT* pResult)
+{
+    // allow the user to sort the skills list based on the selected column
+    // skill selected is identified by the item data which maps to the SkillType enum
+    // when the control was populated.
+    NM_LISTVIEW* pNMListView = (NM_LISTVIEW*)pNMHDR;
+
+    size_t columnToSort = pNMListView->iSubItem;
+    int column;
+    bool bAscending;
+    m_sortHeader.GetSortArrow(&column, &bAscending);
+    if (column == columnToSort)
+    {
+        // just change sort direction
+        bAscending = !bAscending;
+    }
+    else
+    {
+        // just change the column
+        column = columnToSort;
+    }
+    m_sortHeader.SetSortArrow(column, bAscending);
+    m_availableItemsCtrl.SortItems(CItemSelectDialog::SortCompareFunction, (long)GetSafeHwnd());
+
+    *pResult = 0;
+}
+
+int CItemSelectDialog::SortCompareFunction(
+        LPARAM lParam1,
+        LPARAM lParam2,
+        LPARAM lParamSort)
+{
+    // this is a static function so we need to make our own this pointer
+    CWnd * pWnd = CWnd::FromHandle((HWND)lParamSort);
+    CItemSelectDialog * pThis = static_cast<CItemSelectDialog*>(pWnd);
+
+    int sortResult = 0;
+    size_t index1 = lParam1; // item data index
+    size_t index2 = lParam2; // item data index
+
+    // need to find the actual current entry in the list control to compare the
+    // text content
+    index1 = FindItemIndexByItemData(&pThis->m_availableItemsCtrl, index1);
+    index2 = FindItemIndexByItemData(&pThis->m_availableItemsCtrl, index2);
+
+    // get the current sort settings
+    int column;
+    bool bAscending;
+    pThis->m_sortHeader.GetSortArrow(&column, &bAscending);
+
+    // get the control text entries for the column being sorted
+    CString index1Text = pThis->m_availableItemsCtrl.GetItemText(index1, column);
+    CString index2Text = pThis->m_availableItemsCtrl.GetItemText(index2, column);
+
+    // some columns are converted to numeric to do the sort
+    // while others are compared as ASCII
+    switch (column)
+    {
+    case ILC_name:
+        // ASCII sorts
+        sortResult = (index1Text < index2Text) ? -1 : 1;
+        break;
+    case ILC_level:
+        {
+            // numeric sorts
+            double val1 = atof(index1Text);
+            double val2 = atof(index2Text);
+            if (val1 == val2)
+            {
+                // if numeric match, sort by item name instead
+                index1Text = pThis->m_availableItemsCtrl.GetItemText(index1, ILC_name);
+                index2Text = pThis->m_availableItemsCtrl.GetItemText(index2, ILC_name);
+                sortResult = (index1Text < index2Text) ? -1 : 1;
+            }
+            else
+            {
+                sortResult = (val1 < val2) ? -1 : 1;
+            }
+        }
+        break;
+    }
+    if (!bAscending)
+    {
+        // switch sort direction result
+        sortResult = -sortResult;
+    }
+    return sortResult;
 }

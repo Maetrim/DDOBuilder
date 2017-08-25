@@ -38,6 +38,24 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWndEx)
     ON_UPDATE_COMMAND_UI_RANGE(ID_VIEW_APPLOOK_WIN_2000, ID_VIEW_APPLOOK_WINDOWS_7, &CMainFrame::OnUpdateApplicationLook)
     ON_WM_CLOSE()
     ON_COMMAND(ID_EDIT_ITEMEDITOR, &CMainFrame::OnItemEditor)
+    ON_UPDATE_COMMAND_UI(ID_DOCK_BREAKDOWNS, OnUpdateDockPane)
+    ON_UPDATE_COMMAND_UI(ID_DOCK_LEVELUP, OnUpdateDockPane)
+    ON_UPDATE_COMMAND_UI(ID_DOCK_SPECIALFEATS, OnUpdateDockPane)
+    ON_UPDATE_COMMAND_UI(ID_DOCK_ENHANCEMENTS, OnUpdateDockPane)
+    ON_UPDATE_COMMAND_UI(ID_DOCK_EQUIPMENT, OnUpdateDockPane)
+    ON_UPDATE_COMMAND_UI(ID_DOCK_SPELLS, OnUpdateDockPane)
+    ON_UPDATE_COMMAND_UI(ID_DOCK_REAPER, OnUpdateDockPane)
+    ON_UPDATE_COMMAND_UI(ID_DOCK_EPICDESTINIES, OnUpdateDockPane)
+    ON_UPDATE_COMMAND_UI(ID_DOCK_STANCES, OnUpdateDockPane)
+    ON_COMMAND(ID_DOCK_BREAKDOWNS, OnDockPane)
+    ON_COMMAND(ID_DOCK_LEVELUP, OnDockPane)
+    ON_COMMAND(ID_DOCK_SPECIALFEATS, OnDockPane)
+    ON_COMMAND(ID_DOCK_ENHANCEMENTS, OnDockPane)
+    ON_COMMAND(ID_DOCK_EQUIPMENT, OnDockPane)
+    ON_COMMAND(ID_DOCK_SPELLS, OnDockPane)
+    ON_COMMAND(ID_DOCK_REAPER, OnDockPane)
+    ON_COMMAND(ID_DOCK_EPICDESTINIES, OnDockPane)
+    ON_COMMAND(ID_DOCK_STANCES, OnDockPane)
 END_MESSAGE_MAP()
 
 static UINT indicators[] =
@@ -421,13 +439,12 @@ BOOL CMainFrame::OnCmdMsg(
 
 void CMainFrame::CreateViews()
 {
-    int dockingWindowId = 1000;
     // create the floating views
     CCustomDockablePane * pBreakdownsPane = CreateDockablePane(
             "Breakdowns",
             GetActiveDocument(),
             RUNTIME_CLASS(CBreakdownsView),
-            dockingWindowId++);
+            ID_DOCK_BREAKDOWNS);
     pBreakdownsPane->SetDocumentAndCharacter(GetActiveDocument(), NULL);
 
     // create the floating views
@@ -435,7 +452,7 @@ void CMainFrame::CreateViews()
             "Level Up",
             GetActiveDocument(),
             RUNTIME_CLASS(CLevelUpView),
-            dockingWindowId++);
+            ID_DOCK_LEVELUP);
     pLevelUpPane->SetDocumentAndCharacter(GetActiveDocument(), NULL);
 
     // create the floating views
@@ -443,7 +460,7 @@ void CMainFrame::CreateViews()
             "Special Feats",
             GetActiveDocument(),
             RUNTIME_CLASS(CSpecialFeatsView),
-            dockingWindowId++);
+            ID_DOCK_SPECIALFEATS);
     pSpecialFeatsPane->SetDocumentAndCharacter(GetActiveDocument(), NULL);
 
     // create the floating views
@@ -451,7 +468,7 @@ void CMainFrame::CreateViews()
             "Enhancements",
             GetActiveDocument(),
             RUNTIME_CLASS(CEnhancementsView),
-            dockingWindowId++);
+            ID_DOCK_ENHANCEMENTS);
     pEnhancementsPane->SetDocumentAndCharacter(GetActiveDocument(), NULL);
 
     // create the floating views
@@ -459,7 +476,7 @@ void CMainFrame::CreateViews()
             "Equipment",
             GetActiveDocument(),
             RUNTIME_CLASS(CEquipmentView),
-            dockingWindowId++);
+            ID_DOCK_EQUIPMENT);
     pEquipmentPane->SetDocumentAndCharacter(GetActiveDocument(), NULL);
 
     // create the floating views
@@ -467,7 +484,7 @@ void CMainFrame::CreateViews()
             "Spells",
             GetActiveDocument(),
             RUNTIME_CLASS(CSpellsView),
-            dockingWindowId++);
+            ID_DOCK_SPELLS);
     pSpellsPane->SetDocumentAndCharacter(GetActiveDocument(), NULL);
 
     // create the floating views
@@ -475,7 +492,7 @@ void CMainFrame::CreateViews()
             "Reaper Enhancements",
             GetActiveDocument(),
             RUNTIME_CLASS(CReaperEnhancementsView),
-            dockingWindowId++);
+            ID_DOCK_REAPER);
     pReaperPane->SetDocumentAndCharacter(GetActiveDocument(), NULL);
 
     // create the floating views
@@ -483,7 +500,7 @@ void CMainFrame::CreateViews()
             "Epic Destinies",
             GetActiveDocument(),
             RUNTIME_CLASS(CEpicDestiniesView),
-            dockingWindowId++);
+            ID_DOCK_EPICDESTINIES);
     pEpicDestiniesPane->SetDocumentAndCharacter(GetActiveDocument(), NULL);
 
     // create the floating views
@@ -491,8 +508,10 @@ void CMainFrame::CreateViews()
             "Stances",
             GetActiveDocument(),
             RUNTIME_CLASS(CStancesView),
-            dockingWindowId++);
+            ID_DOCK_STANCES);
     pStancesPane->SetDocumentAndCharacter(GetActiveDocument(), NULL);
+
+    // next window id is 1009 if you add one
 }
 
 void CMainFrame::SetActiveDocumentAndCharacter(CDocument * pDoc, Character * pCharacter)
@@ -632,4 +651,20 @@ void CMainFrame::OnItemEditor()
 MouseHook * CMainFrame::GetMouseHook()
 {
     return &m_mouseHook;
+}
+
+void CMainFrame::OnUpdateDockPane(CCmdUI* pCmdUI)
+{
+    size_t index = pCmdUI->m_nID - ID_DOCK_BREAKDOWNS;  // now 0...n
+    ASSERT(index < m_dockablePanes.size());
+    pCmdUI->SetCheck(m_dockablePanes[index]->IsVisible());
+    pCmdUI->Enable(TRUE);           // always enabled
+}
+
+void CMainFrame::OnDockPane()
+{
+    const MSG * pMsg = GetCurrentMessage();
+    size_t index = LOWORD(pMsg->wParam) - ID_DOCK_BREAKDOWNS;  // now 0...n
+    ASSERT(index < m_dockablePanes.size());
+    m_dockablePanes[index]->ShowPane(!m_dockablePanes[index]->IsVisible(), FALSE, TRUE);
 }

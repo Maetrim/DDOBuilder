@@ -14,7 +14,15 @@ BreakdownItemTactical::BreakdownItemTactical(
     BreakdownItem(type, treeList, hItem),
     m_tacticalType(tactical)
 {
-    AddAbility(Ability_Strength);
+    if (type != Breakdown_TacticalStunningFist)
+    {
+        AddAbility(Ability_Strength);
+    }
+    else
+    {
+        // stunning fist uses wisdom for its ability bonus
+        AddAbility(Ability_Wisdom);
+    }
 }
 
 BreakdownItemTactical::~BreakdownItemTactical()
@@ -72,6 +80,18 @@ void BreakdownItemTactical::CreateOtherEffects()
             feat.SetBreakdownDependency(StatToBreakdown(ability)); // so we know which effect to update
             AddOtherEffect(feat);
         }
+
+        // stunning fits also includes 1/2 character level (always 15 currently)
+        if (Type() == Breakdown_TacticalStunningFist)
+        {
+            ActiveEffect feat(
+                    Bonus_base,
+                    "1/2 Character Level",
+                    1,
+                    MAX_LEVEL / 2,
+                    "");        // no tree
+            AddOtherEffect(feat);
+        }
     }
 }
 
@@ -86,6 +106,11 @@ bool BreakdownItemTactical::AffectsUs(const Effect & effect) const
     {
         isUs = (effect.Tactical() == m_tacticalType
                 || effect.Tactical() == Tactical_All);
+        if (effect.Tactical() == Tactical_StunningBlow
+                && Type() == Breakdown_TacticalStunningFist)
+        {
+            // anything that affects stunning blow also affects stunning fist
+        }
     }
     return isUs;
 }

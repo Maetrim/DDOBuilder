@@ -14,8 +14,7 @@ enum DamageReductionType
     DR_Unknown = 0,
     DR_Adamantine,
     DR_Alignment,
-    DR_All,
-    DR_Bludgeoning,
+    DR_Bludgeon,
     DR_Byeshk,
     DR_Chaotic,
     DR_ColdIron,
@@ -24,17 +23,17 @@ enum DamageReductionType
     DR_Good,
     DR_Lawful,
     DR_Magic,
-    DR_Piercing,
+    DR_Metalline,
+    DR_Pierce,
     DR_Silver,
-    DR_Slashing,
+    DR_Slash,
 };
 const XmlLib::enumMapEntry<DamageReductionType> drTypeMap[] =
 {
     {DR_Unknown, L"Unknown"},
     {DR_Adamantine, L"Adamantine"},
     {DR_Alignment, L"Alignment"},
-    {DR_All, L"All"},
-    {DR_Bludgeoning, L"Bludgeoning"},
+    {DR_Bludgeon, L"Bludgeon"},
     {DR_Byeshk, L"Byeshk"},
     {DR_Chaotic, L"Chaotic"},
     {DR_ColdIron, L"Cold Iron"},
@@ -43,8 +42,9 @@ const XmlLib::enumMapEntry<DamageReductionType> drTypeMap[] =
     {DR_Good, L"Good"},
     {DR_Lawful, L"Lawful"},
     {DR_Magic, L"Magic"},
-    {DR_Piercing, L"Piercing"},
+    {DR_Metalline, L"Metalline"},
+    {DR_Pierce, L"Pierce"},
     {DR_Silver, L"Silver"},
-    {DR_Slashing, L"Slashing"},
+    {DR_Slash, L"Slash"},
     {DamageReductionType(0), NULL}
 };

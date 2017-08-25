@@ -214,7 +214,6 @@ void CImmunitiesPage::RevokeImmunity(
     ImmunityItem item(immunity, source);
     // find the item in the list and remove
     bool found = false;
-    m_immunities.push_back(item);
     std::list<ImmunityItem>::iterator it = m_immunities.begin();
     while (it != m_immunities.end())
     {

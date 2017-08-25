@@ -3295,9 +3295,8 @@ but suffer -1/-2/-3 to Reflex saves.</Description>
             </Requirement>
          </Requirements>
          <Effect>
-            <!--This is wrong-->
             <Bonus>Enhancement</Bonus>
-            <Type>ShieldAC</Type>
+            <Type>ACBonusShield</Type>
             <Percentage>5 10 15</Percentage>
             <AmountVector size="3">5 10 15</AmountVector>
          </Effect>
@@ -17412,7 +17411,6 @@ This can trigger up to once every 12 seconds.</Description>
          <Effect>
             <Type>DR</Type>
             <Bonus>Enhancement</Bonus>
-            <DR>All</DR>
             <AmountVector size="1">1</AmountVector>
          </Effect>
       </EnhancementTreeItem>
@@ -17757,7 +17755,7 @@ Rank 3: You don't fail disease or poison saving throws on a roll of 1.</Descript
             <Bonus>Enhancement</Bonus>
             <Save>Poison</Save>
             <AmountVector size="3">2 4 6</AmountVector>
-            <!--No fail save on poison on a 1-->
+            <NoFailOn1 size="3">0 0 1</NoFailOn1>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -18916,7 +18914,7 @@ Rank 3: You gain the Magical Training feat. </Description>
          <MinSpent>1</MinSpent>
          <Requirements/>
          <Effect>
-            <Type>ExtendedSong</Type>
+            <Type>SongDuration</Type>
             <Bonus>Enhancement</Bonus>
             <AmountVector size="3">20 40 60</AmountVector>
          </Effect>
@@ -24105,7 +24103,6 @@ Passive: +2 Armor Class, +5 Fire Spell Power, +5 Light Spell Power</Description>
          <Effect>
             <Type>DR</Type>
             <Bonus>Enhancement</Bonus>
-            <DR>All</DR>
             <AmountVector size="1">5</AmountVector>
          </Effect>
          <Effect>
@@ -31635,7 +31632,7 @@ to all Saving Throws.</Description>
             </Requirement>
          </Requirements>
          <Effect>
-            <Type>ShieldACBonus</Type>
+            <Type>ACBonusShield</Type>
             <Bonus>Enhancement</Bonus>
             <Percent>Huh?</Percent>
             <AmountVector size="3">5 10 15</AmountVector>
@@ -32065,7 +32062,7 @@ Note: This stacks with Reinforced Defense from Sacred Defender.</Description>
                <Icon>SDReinforcedShield</Icon>
                <Cost>1</Cost>
                <Effect>
-                  <Type>ShieldACBonus</Type>
+                  <Type>ACBonusShield</Type>
                   <Bonus>Enhancement</Bonus>
                   <Percent>Huh?</Percent>
                   <AmountVector size="3">15 30 50</AmountVector>
@@ -32303,7 +32300,7 @@ Note: This stacks with Reinforced Defense from Sacred Defender.
                <Icon>SDReinforcedShield</Icon>
                <Cost>1</Cost>
                <Effect>
-                  <Type>ShieldACBonus</Type>
+                  <Type>ACBonusShield</Type>
                   <Bonus>Enhancement</Bonus>
                   <Percent>Huh?</Percent>
                   <AmountVector size="3">15 30 50</AmountVector>
@@ -40216,19 +40213,19 @@ and slashing damage. Activation Cost: 20 spell points. Cooldown: 10 seconds.</De
          <Effect>
             <Type>DRBypass</Type>
             <Bonus>Enhancement</Bonus>
-            <DR>Bludgeoning</DR>
+            <DR>Bludgeon</DR>
             <Stance>Morphic Arrows</Stance>
          </Effect>
          <Effect>
             <Type>DRBypass</Type>
             <Bonus>Enhancement</Bonus>
-            <DR>Piercing</DR>
+            <DR>Pierce</DR>
             <Stance>Morphic Arrows</Stance>
          </Effect>
          <Effect>
             <Type>DRBypass</Type>
             <Bonus>Enhancement</Bonus>
-            <DR>Slashing</DR>
+            <DR>Slash</DR>
             <Stance>Morphic Arrows</Stance>
          </Effect>
       </EnhancementTreeItem>
@@ -58701,7 +58698,7 @@ by positive energy or repair effects, but take double damage from light effects.
          <Effect>
             <Type>DR</Type>
             <Bonus>Enhancement</Bonus>
-            <DR>Slashing</DR>
+            <DR>Slash</DR>
             <AmountVector size="1">5</AmountVector>
             <Stance>Shroud of the Zombie</Stance>
          </Effect>
@@ -59558,7 +59555,7 @@ While in Shroud of the Archlich, you gain an additional +2 Intelligence and +10 
          <Effect>
             <Type>DR</Type>
             <Bonus>Enhancement</Bonus>
-            <DR>Slashing</DR>
+            <DR>Slash</DR>
             <AmountVector size="1">5</AmountVector>
             <Stance>Shroud of the Zombie</Stance>
          </Effect>
@@ -74450,7 +74447,7 @@ free (extend, quicken). The effect does not stack with Resist Energy spell.</Des
          <ArrowUp/>
          <Requirements/>
          <Effect>
-            <Type>ShieldACBonus</Type>
+            <Type>ACBonusShield</Type>
             <Bonus>Destiny</Bonus>
             <Percent/>
             <AmountVector size="3">15 30 50</AmountVector>
@@ -74597,7 +74594,7 @@ Smite Evil uses regenerate [10/20/30]% faster.
          <MinSpent>4</MinSpent>
          <Requirements/>
          <Effect>
-            <Type>SmiteEvilBonus</Type>
+            <Type>ExtraSmite</Type>
             <Bonus>Destiny</Bonus>
             <AmountVector size="3">1 2 3</AmountVector>
          </Effect>

@@ -807,6 +807,19 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
     }
     {
         HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Stunning Fist",
+                hTacticalParent,
+                TVI_LAST);
+        BreakdownItem * pSF = new BreakdownItemTactical(
+                Breakdown_TacticalStunningFist,
+                Tactical_StunningFist,
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pSF);
+        m_items.push_back(pSF);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
                 "Sunder",
                 hTacticalParent,
                 TVI_LAST);
@@ -945,6 +958,7 @@ void CBreakdownsView::CreateMagicalBreakdowns()
         AddSpellPower(SpellPower_Force, "Force Spell power", hItem);
         AddSpellPower(SpellPower_Light, "Light Spell power", hItem);
         AddSpellPower(SpellPower_Negative, "Negative Spell power", hItem);
+        AddSpellPower(SpellPower_Physical, "Physical Spell power", hItem);
         AddSpellPower(SpellPower_Positive, "Positive Spell power", hItem);
         AddSpellPower(SpellPower_Repair, "Repair Spell power", hItem);
         AddSpellPower(SpellPower_Rust, "Rust Spell power", hItem);
@@ -968,6 +982,7 @@ void CBreakdownsView::CreateMagicalBreakdowns()
         AddSpellCriticalChance(SpellPower_Force, "Force Critical Chance", hItem);
         AddSpellCriticalChance(SpellPower_Light, "Light Critical Chance", hItem);
         AddSpellCriticalChance(SpellPower_Negative, "Negative Critical Chance", hItem);
+        AddSpellCriticalChance(SpellPower_Physical, "Physical Critical Chance", hItem);
         AddSpellCriticalChance(SpellPower_Positive, "Positive Critical Chance", hItem);
         AddSpellCriticalChance(SpellPower_Repair, "Repair Critical Chance", hItem);
         AddSpellCriticalChance(SpellPower_Rust, "Rust Critical Chance", hItem);
@@ -990,6 +1005,7 @@ void CBreakdownsView::CreateMagicalBreakdowns()
         AddSpellCriticalMultiplier(SpellPower_Force, "Force Critical Multiplier", hItem);
         AddSpellCriticalMultiplier(SpellPower_Light, "Light Critical Multiplier", hItem);
         AddSpellCriticalMultiplier(SpellPower_Negative, "Negative Critical Multiplier", hItem);
+        AddSpellCriticalMultiplier(SpellPower_Physical, "Physical Critical Multiplier", hItem);
         AddSpellCriticalMultiplier(SpellPower_Positive, "Positive Critical Multiplier", hItem);
         AddSpellCriticalMultiplier(SpellPower_Repair, "Repair Critical Multiplier", hItem);
         AddSpellCriticalMultiplier(SpellPower_Rust, "Rust Critical Multiplier", hItem);

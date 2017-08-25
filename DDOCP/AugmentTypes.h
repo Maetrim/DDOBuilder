@@ -62,6 +62,8 @@ enum AugmentType
     Augment_BlueDragonHelmVariant,
     Augment_WhiteDragonHelmVariant,
     Augment_PrisonersManacles,
+    Augment_IntricateFieldOptics,
+    Augment_PrismaticCloak,
 };
 const XmlLib::enumMapEntry<AugmentType> augmentTypeMap[] =
 {
@@ -113,5 +115,7 @@ const XmlLib::enumMapEntry<AugmentType> augmentTypeMap[] =
     {Augment_BlueDragonHelmVariant, L"Blue Dragon Helm Variant"},
     {Augment_WhiteDragonHelmVariant, L"White Dragon Helm Variant"},
     {Augment_PrisonersManacles, L"Manacles Variant"},
+    {Augment_IntricateFieldOptics, L"Field Optics Variant"},
+    {Augment_PrismaticCloak, L"Cloak Variant"},
     {AugmentType(0), NULL}
 };

@@ -13,6 +13,7 @@ enum TacticalType
     Tactical_All,
     Tactical_Trip,
     Tactical_StunningBlow,
+    Tactical_StunningFist,
     Tactical_Sunder,
     Tactical_StunningShield,
 };
@@ -22,6 +23,7 @@ const XmlLib::enumMapEntry<TacticalType> tacticalTypeMap[] =
     {Tactical_All, L"All"},
     {Tactical_Trip, L"Trip"},
     {Tactical_StunningBlow, L"Stunning Blow"},
+    {Tactical_StunningFist, L"Stunning Fist"},
     {Tactical_Sunder, L"Sunder"},
     {Tactical_StunningShield, L"Stunning Shield"},
     {TacticalType(0), NULL}

@@ -4,6 +4,7 @@
 #include "InventorySlotTypes.h"
 #include "Item.h"
 #include "PersistantSize.h"
+#include "SortHeaderCtrl.h"
 
 class CItemSelectDialog : public CDialog
 {
@@ -27,11 +28,13 @@ class CItemSelectDialog : public CDialog
         afx_msg void OnSize(UINT nType, int cx, int cy);
         afx_msg void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
         afx_msg void OnEndtrackListItems(NMHDR* pNMHDR, LRESULT* pResult);
+        afx_msg void OnColumnclickListItems(NMHDR* pNMHDR, LRESULT* pResult);
 
     public:
         DECLARE_MESSAGE_MAP()
 
     private:
+        static int CALLBACK SortCompareFunction(LPARAM lParam1, LPARAM lParam2, LPARAM lParamSort);
         void PopulateAvailableItemList();
         void EnableControls();
         void PopulateAugmentList(
@@ -59,6 +62,7 @@ class CItemSelectDialog : public CDialog
         };
         CStatic m_staticType;
         CListCtrl m_availableItemsCtrl;
+        CSortHeaderCtrl m_sortHeader;
         CStatic m_augmentType[MAX_Augments];
         CComboBoxEx m_comboAugmentDropList[MAX_Augments];
         CStatic m_upgradeType[MAX_Upgrades];

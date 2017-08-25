@@ -43,6 +43,7 @@ enum BreakdownType
     Breakdown_FortificationBypass,
     Breakdown_Assassinate,
     Breakdown_TacticalStunningBlow,
+    Breakdown_TacticalStunningFist,
     Breakdown_TacticalSunder,
     Breakdown_TacticalTrip,
     Breakdown_TacticalStunningShield,

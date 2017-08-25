@@ -43,6 +43,8 @@ class CMainFrame :
         afx_msg void OnUpdateApplicationLook(CCmdUI* pCmdUI);
         afx_msg void OnClose();
         afx_msg void OnItemEditor();
+        afx_msg void OnUpdateDockPane(CCmdUI* pCmdUI);
+        afx_msg void OnDockPane();
         DECLARE_MESSAGE_MAP()
 
     protected:  // control bar embedded members
