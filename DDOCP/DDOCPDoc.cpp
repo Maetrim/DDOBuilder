@@ -208,11 +208,20 @@ void CDDOCPDoc::OnCloseDocument()
     __super::OnCloseDocument();
 }
 
+BOOL CDDOCPDoc::SaveModified()
+{
+    // stop tooltips showing while a possible Save Modified message box displayed
+    GetMouseHook()->SaveState();
+    BOOL ret = CDocument::SaveModified();
+    GetMouseHook()->RestoreState();
+    return ret;
+}
+
 void CDDOCPDoc::OnEditEnhancementTreeEditor()
 {
     // no tooltips while a dialog is displayed
-    GetMouseHook()->SetDisabledState(true);
+    GetMouseHook()->SaveState();
     CEnhancementEditorDialog dlg(NULL, &m_characterData);
     dlg.DoModal();
-    GetMouseHook()->SetDisabledState(false);
+    GetMouseHook()->RestoreState();
 }

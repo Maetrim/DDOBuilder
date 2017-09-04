@@ -32,16 +32,17 @@ class MouseHook
                 bool bStartsInside);
         void DeleteRectangleToMonitor(UINT handle);
         bool UpdateRectangle(UINT handle, const CRect & rect);
-        void SetDisabledState(bool state);
+        void SaveState();
+        void RestoreState();
 
     private:
         static LRESULT CALLBACK MouseProc(_In_ int nCode, _In_ WPARAM wParam, _In_ LPARAM lParam);
         void ProcessMessage(int nCode, WPARAM wParam, LPARAM lParam);
+        BOOL IsUnderMouse(const CPoint & mouse, HWND hwnd) const;
         static MouseHook * theHook;     // so static function can find the object
         HHOOK m_hookHandle;
         std::vector<AreaOfInterest> m_areasOfInterest;
         size_t m_nextHandle;
-        bool m_bDisableReporting;
-
+        std::vector<AreaOfInterest> m_savedState;
 };
 

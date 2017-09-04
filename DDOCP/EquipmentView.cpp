@@ -269,7 +269,7 @@ void CEquipmentView::EnableControls()
 void CEquipmentView::OnButtonNew()
 {
     // no tooltips while a dialog is displayed
-    GetMouseHook()->SetDisabledState(true);
+    GetMouseHook()->SaveState();
     // create a new gear set that they must name
     CGearSetNameDialog dlg(this, m_pCharacter);
     if (dlg.DoModal() == IDOK)
@@ -286,7 +286,7 @@ void CEquipmentView::OnButtonNew()
         // have the correct enable state
         EnableControls();
     }
-    GetMouseHook()->SetDisabledState(false);
+    GetMouseHook()->RestoreState();
 }
 
 void CEquipmentView::OnButtonCopy()
@@ -338,7 +338,7 @@ void CEquipmentView::UpdateSlotLeftClicked(
         item = gear.ItemInSlot(slot);
     }
     // no tooltips while a dialog is displayed
-    GetMouseHook()->SetDisabledState(true);
+    GetMouseHook()->SaveState();
     CItemSelectDialog dlg(this, slot, item);
     if (dlg.DoModal() == IDOK)
     {
@@ -346,7 +346,7 @@ void CEquipmentView::UpdateSlotLeftClicked(
         m_pCharacter->SetGear(SelectedGearSet(), gear);
         m_inventoryView->SetGearSet(gear);
     }
-    GetMouseHook()->SetDisabledState(false);
+    GetMouseHook()->RestoreState();
 }
 
 void CEquipmentView::UpdateSlotRightClicked(

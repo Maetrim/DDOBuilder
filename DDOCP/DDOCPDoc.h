@@ -17,11 +17,12 @@ class CDDOCPDoc :
 
     public:
         virtual ~CDDOCPDoc();
-        virtual BOOL OnNewDocument();
-        virtual void Serialize(CArchive& ar);
-        virtual BOOL OnOpenDocument(LPCTSTR lpszPathName);
-        virtual BOOL OnSaveDocument(LPCTSTR lpszPathName);
-        virtual void OnCloseDocument();
+        virtual BOOL OnNewDocument() override;
+        virtual void Serialize(CArchive& ar) override;
+        virtual BOOL OnOpenDocument(LPCTSTR lpszPathName) override;
+        virtual BOOL OnSaveDocument(LPCTSTR lpszPathName) override;
+        virtual void OnCloseDocument() override;
+        virtual BOOL SaveModified() override;
 #ifdef SHARED_HANDLERS
         virtual void InitializeSearchContent();
         virtual void OnDrawThumbnail(CDC& dc, LPRECT lprcBounds);

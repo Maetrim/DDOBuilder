@@ -5,6 +5,7 @@
 #include "Item.h"
 #include "PersistantSize.h"
 #include "SortHeaderCtrl.h"
+#include "InfoTip.h"
 
 class CItemSelectDialog : public CDialog
 {
@@ -29,6 +30,8 @@ class CItemSelectDialog : public CDialog
         afx_msg void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
         afx_msg void OnEndtrackListItems(NMHDR* pNMHDR, LRESULT* pResult);
         afx_msg void OnColumnclickListItems(NMHDR* pNMHDR, LRESULT* pResult);
+        afx_msg void OnHoverListItems(NMHDR* pNMHDR, LRESULT* pResult);
+        afx_msg LRESULT OnMouseLeave(WPARAM wParam, LPARAM lParam);
 
     public:
         DECLARE_MESSAGE_MAP()
@@ -45,6 +48,10 @@ class CItemSelectDialog : public CDialog
         void PopulateSecondaryUpgradeList(size_t controlIndex);
         void PopulateLegendarySlavelordUpgradeList(size_t controlIndex);
         void PopulateDropList(size_t controlIndex, const std::list<AugmentType> & types);
+
+        void ShowTip(const Item & item, CRect itemRect);
+        void HideTip();
+        void SetTooltipText(const Item & item, CPoint tipTopLeft, CPoint tipAlternate);
 
         InventorySlotType m_slot;
         Item m_item;
@@ -72,4 +79,10 @@ class CItemSelectDialog : public CDialog
         bool m_bInitialising;
         UpgradeType m_upgradeTypeModelled[MAX_Upgrades];
         CPersistantSize m_sizer;
+        // item tooltips
+        CInfoTip m_tooltip;
+        bool m_showingTip;
+        bool m_tipCreated;
+        int m_hoverItem;
+        UINT m_hoverHandle;
 };

@@ -6,8 +6,7 @@
 MouseHook * MouseHook::theHook = NULL;
 
 MouseHook::MouseHook() :
-    m_nextHandle(0),
-    m_bDisableReporting(false)
+    m_nextHandle(0)
 {
     // we install the hook in the constructor
     m_hookHandle = SetWindowsHookEx(
@@ -39,54 +38,52 @@ LRESULT CALLBACK MouseHook::MouseProc(_In_ int nCode, _In_ WPARAM wParam, _In_ L
 
 void MouseHook::ProcessMessage(int nCode, WPARAM wParam, LPARAM lParam)
 {
-    // can be disabled when a dialog is displayed
-    if (!m_bDisableReporting)
+    // were only interested in mouse move messages as we notify when the mouse
+    // enters or leaves the specified rectangles.
+    if (wParam == WM_MOUSEMOVE)
     {
-        // were only interested in mouse move messages as we notify when the mouse
-        // enters or leaves the specified rectangles.
-        if (wParam == WM_MOUSEMOVE)
+        // look through each item and see if its in/out state has changed. If it has
+        // post a message to the relevant window
+        MOUSEHOOKSTRUCT * pMHS = (MOUSEHOOKSTRUCT*)(lParam);
+        CPoint mouse = pMHS->pt;        // mouse location in screen coordinates
+        // notify all leave areas before any enter areas
+        // this stops an enter notification being cancelled for a leave from
+        // a different area.
+        for (size_t i = 0; i < m_areasOfInterest.size(); ++i)
         {
-            // look through each item and see if its in/out state has changed. If it has
-            // post a message to the relevant window
-            MOUSEHOOKSTRUCT * pMHS = (MOUSEHOOKSTRUCT*)(lParam);
-            CPoint mouse = pMHS->pt;        // mouse location in screen coordinates
-            // notify all leave areas before any enter areas
-            // this stops an enter notification being cancelled for a leave from
-            // a different area.
-            for (size_t i = 0; i < m_areasOfInterest.size(); ++i)
+            // was it in the rectangle before? if so, notify
+            if (m_areasOfInterest[i].m_bIn)
             {
-                if (!m_areasOfInterest[i].m_rectangle.PtInRect(mouse))
+                if (!IsUnderMouse(mouse, m_areasOfInterest[i].m_whoToNotify)
+                        || !m_areasOfInterest[i].m_rectangle.PtInRect(mouse))
                 {
-                    // was it in the rectangle before? if so, notify
-                    if (m_areasOfInterest[i].m_bIn)
-                    {
-                        // no longer inside, notify
-                        m_areasOfInterest[i].m_bIn = false;
-                        // post message as we do not want to wait for it to be processed right now
-                        PostMessage(
-                                m_areasOfInterest[i].m_whoToNotify,
-                                m_areasOfInterest[i].m_exitNotification,
-                                m_areasOfInterest[i].m_areaHandle,
-                                0L);
-                    }
+                    // no longer inside, notify
+                    m_areasOfInterest[i].m_bIn = false;
+                    // post message as we do not want to wait for it to be processed right now
+                    PostMessage(
+                            m_areasOfInterest[i].m_whoToNotify,
+                            m_areasOfInterest[i].m_exitNotification,
+                            m_areasOfInterest[i].m_areaHandle,
+                            0L);
                 }
             }
-            for (size_t i = 0; i < m_areasOfInterest.size(); ++i)
+        }
+        for (size_t i = 0; i < m_areasOfInterest.size(); ++i)
+        {
+            // is it now in the rectangle, notify if it was not previously inside
+            if (!m_areasOfInterest[i].m_bIn)
             {
-                if (m_areasOfInterest[i].m_rectangle.PtInRect(mouse))
+                if (IsUnderMouse(mouse, m_areasOfInterest[i].m_whoToNotify)
+                        && m_areasOfInterest[i].m_rectangle.PtInRect(mouse))
                 {
-                    // is it now in the rectangle, notify if it was not previously inside
-                    if (!m_areasOfInterest[i].m_bIn)
-                    {
-                        // now inside, notify
-                        m_areasOfInterest[i].m_bIn = true;
-                        // post message as we do not want to wait for it to be processed right now
-                        PostMessage(
-                                m_areasOfInterest[i].m_whoToNotify,
-                                m_areasOfInterest[i].m_enterNotification,
-                                m_areasOfInterest[i].m_areaHandle,
-                                0L);
-                    }
+                    // now inside, notify
+                    m_areasOfInterest[i].m_bIn = true;
+                    // post message as we do not want to wait for it to be processed right now
+                    PostMessage(
+                            m_areasOfInterest[i].m_whoToNotify,
+                            m_areasOfInterest[i].m_enterNotification,
+                            m_areasOfInterest[i].m_areaHandle,
+                            0L);
                 }
             }
         }
@@ -145,11 +142,29 @@ bool MouseHook::UpdateRectangle(UINT handle, const CRect & rect)
     return found;
 }
 
-void MouseHook::SetDisabledState(bool state)
+void MouseHook::SaveState()
 {
-    // reporting of enter / leave messages needs to be disabled when a dialog
-    // is being displayed as we do not want tooltips being shown / hidden for
-    // controls behind the active dialog.
-    m_bDisableReporting = state;
+    m_savedState = m_areasOfInterest;
+    m_areasOfInterest.clear();
+}
+
+void MouseHook::RestoreState()
+{
+    m_areasOfInterest = m_savedState;
+}
+
+BOOL MouseHook::IsUnderMouse(const CPoint & mouse, HWND hwnd) const
+{
+    HWND ptWnd = WindowFromPoint(mouse);
+    while (ptWnd != NULL)
+    {
+        if (ptWnd == hwnd)
+        {
+            return true;        // yup, the window is under the mouse
+        }
+        // navigate up a window level to the parent
+        ptWnd = GetParent(ptWnd);   // turns to NULL when at top of list
+    }
+    return false;
 }
 

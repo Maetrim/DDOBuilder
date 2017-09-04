@@ -91,22 +91,12 @@ void CInfoTip::Show()
     }
 
     SetWindowPos(
-            &wndTop, //Most, 
-            m_origin.x, 
-            m_origin.y, 
-            windowSize.cx, 
-            windowSize.cy, 
+            &wndTop,
+            m_origin.x,
+            m_origin.y,
+            windowSize.cx,
+            windowSize.cy,
             SWP_NOACTIVATE | SWP_SHOWWINDOW);
-
-    // debug help code to identify why info tip does not show from a dialog
-
-    //HDC hdc = ::GetDC(NULL);
-    //::DrawEdge(
-    //        hdc,
-    //        CRect(m_origin.x, m_origin.y, m_origin.x + windowSize.cx, m_origin.y + windowSize.cy),
-    //        EDGE_RAISED,
-    //        BF_RECT);
-    //::ReleaseDC(NULL, hdc);
 }
 
 void CInfoTip::SetOrigin(CPoint origin, CPoint alternate)
@@ -170,6 +160,19 @@ void CInfoTip::OnPaint()
         top += dc.GetTextExtent(m_requirements[ri]).cy;
     }
     dc.SetTextColor(RGB(0, 0, 0));    // ensure black for the rest
+    // optional Effect Descriptions list shown above description, these can word wrap
+    for (size_t ed = 0; ed < m_effectDescriptions.size(); ++ed)
+    {
+        CRect rctEd;
+        // measure
+        dc.DrawText(m_effectDescriptions[ed], &rctEd, DT_CALCRECT | DT_LEFT | DT_EXPANDTABS | DT_NOPREFIX);
+        rctEd += CPoint(2, top);
+        dc.DrawText(m_effectDescriptions[ed], &rctEd, DT_LEFT | DT_EXPANDTABS | DT_NOPREFIX);
+        CString text = m_effectDescriptions[ed].Left(m_effectDescriptions[ed].Find(':'));   // get the effect name to draw in bold
+        rctEd += CPoint(1, 0);
+        dc.DrawText(text, &rctEd, DT_LEFT | DT_EXPANDTABS | DT_NOPREFIX);
+        top += rctEd.Height();
+    }
     CRect rcDescription(c_controlSpacing, top, rc.right, rc.bottom);
     dc.DrawText(m_description, &rcDescription, DT_LEFT | DT_EXPANDTABS | DT_NOPREFIX);
     // Clean up GDI
@@ -185,6 +188,9 @@ BOOL CInfoTip::GetWindowSize(CDC* pDC, CSize * size)
     // | |icon|                                    Ranks n |
     // | +----+                                            |
     // | [requirements list if any]                        |
+    // | [EffectDescription1 (if any)                     ]|
+    // | [EffectDescription2                              ]|
+    // | [EffectDescription..n                            ]|
     // | +------------------------------------------------+|
     // | |Description                                     ||
     // | +------------------------------------------------+|
@@ -216,6 +222,18 @@ BOOL CInfoTip::GetWindowSize(CDC* pDC, CSize * size)
                 0,
                 0,
                 rctRequirement.Height());
+    }
+    // optional Effect Descriptions list shown above description, these can word wrap
+    for (size_t ed = 0; ed < m_effectDescriptions.size(); ++ed)
+    {
+        CRect rctEd;
+        pDC->DrawText(m_effectDescriptions[ed], &rctEd, DT_CALCRECT | DT_LEFT | DT_EXPANDTABS | DT_NOPREFIX);
+        topWidth = max(topWidth, (size_t)rctEd.Width());
+        rcWnd.InflateRect(
+                0,
+                0,
+                0,
+                rctEd.Height());
     }
     CRect rcDescription;
     pDC->DrawText(m_description, &rcDescription, DT_CALCRECT | DT_LEFT | DT_EXPANDTABS | DT_NOPREFIX);
@@ -252,6 +270,7 @@ void CInfoTip::SetEnhancementTreeItem(
     GenerateLineBreaks(&m_title);
     GenerateLineBreaks(&m_description);
     m_requirements.clear();
+    m_effectDescriptions.clear();
     m_bRequirementMet.clear();
     // add the required spent in tree to requirements list
     if (spentInTree < pItem->MinSpent())
@@ -282,6 +301,7 @@ void CInfoTip::SetEnhancementSelectionItem(
     // actual carriage return are actual \n in text, convert to correct character
     GenerateLineBreaks(&m_title);
     GenerateLineBreaks(&m_description);
+    m_effectDescriptions.clear();
     m_requirements.clear();
     m_bRequirementMet.clear();
     pItem->CreateRequirementStrings(charData, &m_requirements, &m_bRequirementMet);
@@ -301,6 +321,7 @@ void CInfoTip::SetFeatItem(
     // actual carriage return are actual \n in text, convert to correct character
     GenerateLineBreaks(&m_title);
     GenerateLineBreaks(&m_description);
+    m_effectDescriptions.clear();
     m_requirements.clear();
     m_bRequirementMet.clear();
     pItem->CreateRequirementStrings(charData, &m_requirements, &m_bRequirementMet);
@@ -331,6 +352,7 @@ void CInfoTip::SetStanceItem(
     // actual carriage return are actual \n in text, convert to correct character
     GenerateLineBreaks(&m_title);
     GenerateLineBreaks(&m_description);
+    m_effectDescriptions.clear();
     m_requirements.clear();
     m_bRequirementMet.clear();
     // list the stances which cannot be active if this one is
@@ -349,7 +371,6 @@ void CInfoTip::SetStanceItem(
 }
 
 void CInfoTip::SetItem(
-        const Character & charData,
         const Item * pItem)
 {
     m_image.Destroy();
@@ -364,11 +385,22 @@ void CInfoTip::SetItem(
     // actual carriage return are actual \n in text, convert to correct character
     GenerateLineBreaks(&m_title);
     GenerateLineBreaks(&m_description);
-    // add the augments to the description
+    // now do the same for any effect descriptions
+    m_effectDescriptions.clear();
+    const std::list<EffectDescription> & eds = pItem->EffectDescriptions();
+    std::list<EffectDescription>::const_iterator it = eds.begin();
+    while (it != eds.end())
+    {
+        CString processedDescription = CreateEffectDescription(*it);
+        GenerateLineBreaks(&processedDescription);
+        m_effectDescriptions.push_back(processedDescription);
+        ++it;
+    }
+    // add the augments to the effect description list
     std::vector<ItemAugment> augments = pItem->Augments();
     for (size_t i = 0; i < augments.size(); ++i)
     {
-        CString augmentText("\n");
+        CString augmentText;
         augmentText += EnumEntryText(augments[i].Type(), augmentTypeMap);
         augmentText += ": ";
         if (augments[i].HasSelectedAugment())
@@ -379,7 +411,7 @@ void CInfoTip::SetItem(
         {
             augmentText += "Empty augment slot";
         }
-        m_description += augmentText;
+        m_effectDescriptions.push_back(augmentText);
     }
 
     m_requirements.clear();
@@ -520,3 +552,46 @@ void CInfoTip::GenerateLineBreaks(CString * text)
         }
     }
 }
+
+CString CInfoTip::CreateEffectDescription(const EffectDescription & ed) const
+{
+    CString description;
+    // first look up the effect description from the global loaded list
+    description = GetEffectDescription(ed.EffectName());
+    // now replace the fields %1, %2, %3, %4 and %5 to those provided
+    // to construct the full end effect description.
+    ASSERT(!ed.HasDescription());   // must not have a description
+    CString value1;
+    CString value2;
+    CString value3;
+    CString value4;
+    CString value5;
+    if (ed.HasValue1())
+    {
+        value1 = ed.Value1().c_str();
+    }
+    if (ed.HasValue2())
+    {
+        value2 = ed.Value2().c_str();
+    }
+    if (ed.HasValue3())
+    {
+        value3 = ed.Value3().c_str();
+    }
+    if (ed.HasValue4())
+    {
+        value4 = ed.Value4().c_str();
+    }
+    if (ed.HasValue5())
+    {
+        value5 = ed.Value5().c_str();
+    }
+    // now replace into description
+    description.Replace("%1", value1);
+    description.Replace("%2", value2);
+    description.Replace("%3", value3);
+    description.Replace("%4", value4);
+    description.Replace("%5", value5);
+    return description;
+}
+

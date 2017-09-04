@@ -342,6 +342,11 @@ void Character::UpdateFeats(size_t level, std::list<TrainedFeat> * allFeats)
         }
         (*it).Set_AutomaticFeats(flo);
     }
+    else
+    {
+        // still need them in the list even if we do not revoke/train
+        allFeats->insert(allFeats->end(), automaticFeats.begin(), automaticFeats.end());
+    }
 }
 
 void Character::NotifyAvailableBuildPointsChanged()
@@ -880,7 +885,7 @@ void Character::SetClass(size_t level, ClassType type)
         ASSERT(m_Levels.size() == MAX_LEVEL);
         std::list<LevelTraining>::iterator it = m_Levels.begin();
         std::advance(it, level);
-        classFrom = (*it).Class();
+        classFrom = (*it).HasClass() ? (*it).Class() : Class_Unknown;
         (*it).Set_Class(type);
         size_t available = SkillPoints(
                 type,

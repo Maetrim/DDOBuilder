@@ -33,6 +33,7 @@ XmlLib::SaxContentElementInterface * EnhancementTree::StartElement(
 
     DL_START(EnhancementTree_PROPERTIES)
 
+    ASSERT(subHandler != NULL || wasFlag);
     return subHandler;
 }
 

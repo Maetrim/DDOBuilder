@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "ItemSelectDialog.h"
 #include "GlobalSupportFunctions.h"
+#include "MouseHook.h"
 
 // CItemSelectDialog dialog
 
@@ -25,7 +26,11 @@ CItemSelectDialog::CItemSelectDialog(
     CDialog(CItemSelectDialog::IDD, pParent),
     m_slot(slot),
     m_item(item),
-    m_bInitialising(false)
+    m_bInitialising(false),
+    m_showingTip(false),
+    m_tipCreated(false),
+    m_hoverItem(-1),
+    m_hoverHandle(0)
 {
 
 }
@@ -39,7 +44,10 @@ void CItemSelectDialog::DoDataExchange(CDataExchange* pDX)
     CDialog::DoDataExchange(pDX);
     DDX_Control(pDX, IDC_ITEM_TYPE, m_staticType);
     DDX_Control(pDX, IDC_ITEM_LIST, m_availableItemsCtrl);
-    VERIFY(m_sortHeader.SubclassWindow(m_availableItemsCtrl.GetHeaderCtrl()->GetSafeHwnd()));
+    if (!pDX->m_bSaveAndValidate)
+    {
+        VERIFY(m_sortHeader.SubclassWindow(m_availableItemsCtrl.GetHeaderCtrl()->GetSafeHwnd()));
+    }
     for (size_t i = 0; i < MAX_Augments; ++i)
     {
         DDX_Control(pDX, IDC_STATIC_AUGMENT_TYPE1 + i, m_augmentType[i]);
@@ -61,6 +69,8 @@ BEGIN_MESSAGE_MAP(CItemSelectDialog, CDialog)
     ON_NOTIFY(HDN_ENDTRACK, IDC_ITEM_LIST, OnEndtrackListItems)
     ON_NOTIFY(HDN_DIVIDERDBLCLICK, IDC_ITEM_LIST, OnEndtrackListItems)
     ON_NOTIFY(LVN_COLUMNCLICK, IDC_ITEM_LIST, OnColumnclickListItems)
+    ON_NOTIFY(NM_HOVER, IDC_ITEM_LIST, OnHoverListItems)
+    ON_MESSAGE(WM_MOUSELEAVE, OnMouseLeave)
 END_MESSAGE_MAP()
 
 // CItemSelectDialog message handlers
@@ -68,6 +78,9 @@ BOOL CItemSelectDialog::OnInitDialog()
 {
     CDialog::OnInitDialog();
     m_bInitialising = true;
+
+    m_tooltip.Create(this);
+    m_tipCreated = true;
 
     // show item type of selection
     CString text;
@@ -96,7 +109,11 @@ BOOL CItemSelectDialog::OnInitDialog()
     PopulateAvailableItemList();
     m_staticType.SetWindowText(text);
     m_availableItemsCtrl.SetExtendedStyle(
-            m_availableItemsCtrl.GetExtendedStyle() | LVS_EX_FULLROWSELECT | LVS_EX_LABELTIP);
+            m_availableItemsCtrl.GetExtendedStyle()
+            | LVS_EX_FULLROWSELECT
+            | LVS_EX_TRACKSELECT
+            //| LVS_EX_LABELTIP); // stop hover tooltips from working
+            );
     LoadColumnWidthsByName(&m_availableItemsCtrl, "ItemSelectDialog_%s");
     m_sortHeader.SetSortArrow(0, TRUE);
 
@@ -291,7 +308,7 @@ void CItemSelectDialog::OnItemSelected(NMHDR* pNMHDR, LRESULT* pResult)
                 m_item = (*it);
                 // update the other controls
                 EnableControls();
-                // item selected, can no click ok!
+                // item selected, can now click ok!
                 GetDlgItem(IDOK)->EnableWindow(TRUE);
             }
         }
@@ -556,4 +573,96 @@ int CItemSelectDialog::SortCompareFunction(
         sortResult = -sortResult;
     }
     return sortResult;
+}
+
+void CItemSelectDialog::OnHoverListItems(NMHDR* pNMHDR, LRESULT* pResult)
+{
+    // the user it hovering over a list control item. Identify it and display
+    // the feat tooltip for this item
+    CPoint mousePosition;
+    GetCursorPos(&mousePosition);
+    m_availableItemsCtrl.ScreenToClient(&mousePosition);
+
+    LVHITTESTINFO hitInfo;
+    hitInfo.pt = mousePosition;
+    if (m_availableItemsCtrl.SubItemHitTest(&hitInfo) >= 0)
+    {
+        if (m_hoverItem != hitInfo.iItem)
+        {
+            // the item under the hover has changed
+            m_hoverItem = hitInfo.iItem;
+            // mouse is over a valid automatic feat, get the items rectangle and
+            // show the feat tooltip
+            CRect rect;
+            m_availableItemsCtrl.GetItemRect(hitInfo.iItem, &rect, LVIR_BOUNDS);
+            HideTip();
+            // get the item index
+            size_t itemIndex = m_availableItemsCtrl.GetItemData(hitInfo.iItem);
+            m_availableItemsCtrl.ClientToScreen(&rect);
+            CPoint tipTopLeft(rect.left, rect.bottom);
+            CPoint tipAlternate(rect.left, rect.top);
+            std::list<Item>::const_iterator it = m_availableItems.begin();
+            std::advance(it, itemIndex);
+            SetTooltipText((*it), tipTopLeft, tipAlternate);
+            m_showingTip = true;
+            // make sure we don't stack multiple monitoring of the same rectangle
+            if (m_hoverHandle == 0)
+            {
+                m_hoverHandle = GetMouseHook()->AddRectangleToMonitor(
+                        this->GetSafeHwnd(),
+                        rect,           // screen coordinates,
+                        WM_MOUSEENTER,
+                        WM_MOUSELEAVE,
+                        true);
+            }
+        }
+    }
+    *pResult = 1;   // stop the hover selecting the item
+}
+
+LRESULT CItemSelectDialog::OnMouseLeave(WPARAM wParam, LPARAM lParam)
+{
+    // hide any tooltip when the mouse leaves the area its being shown for
+    HideTip();
+    if (wParam == m_hoverHandle)
+    {
+        // no longer monitoring this location
+        GetMouseHook()->DeleteRectangleToMonitor(m_hoverHandle);
+        m_hoverHandle = 0;
+        m_hoverItem = -1;
+    }
+    return 0;
+}
+
+void CItemSelectDialog::ShowTip(const Item & item, CRect itemRect)
+{
+    if (m_showingTip)
+    {
+        m_tooltip.Hide();
+    }
+    ClientToScreen(&itemRect);
+    CPoint tipTopLeft(itemRect.left, itemRect.bottom + 2);
+    CPoint tipAlternate(itemRect.left, itemRect.top - 2);
+    SetTooltipText(item, tipTopLeft, tipAlternate);
+    m_showingTip = true;
+}
+
+void CItemSelectDialog::HideTip()
+{
+    // tip not shown if not over a gear slot
+    if (m_tipCreated && m_showingTip)
+    {
+        m_tooltip.Hide();
+        m_showingTip = false;
+    }
+}
+
+void CItemSelectDialog::SetTooltipText(
+        const Item & item,
+        CPoint tipTopLeft,
+        CPoint tipAlternate)
+{
+    m_tooltip.SetOrigin(tipTopLeft, tipAlternate);
+    m_tooltip.SetItem(&item);
+    m_tooltip.Show();
 }

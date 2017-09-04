@@ -81,6 +81,7 @@ const std::list<Spell> & Spells();
 const std::list<Item> & Items();
 const std::list<Augment> & Augments();
 const std::list<GuildBuff> & GuildBuffs();
+const std::list<EffectDescription> & EffectDescriptions();
 MouseHook * GetMouseHook();
 std::vector<Spell> FilterSpells(ClassType ct, int level);
 Spell FindSpellByName(const std::string & name);
@@ -89,6 +90,7 @@ const EnhancementTreeItem * FindEnhancement(const std::string & internalName, st
 std::vector<TrainableFeatTypes> ClassSpecificFeatTypes(ClassType type);
 std::vector<TrainableFeatTypes> RaceSpecificFeatTypes(RaceType type);
 const Augment & FindAugmentByName(const std::string & name);
+CString GetEffectDescription(const std::string & effectName);
 
 AbilityType StatFromSkill(SkillType skill);
 int ArmorCheckPenalty_Multiplier(SkillType skill);

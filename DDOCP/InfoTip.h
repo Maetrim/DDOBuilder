@@ -4,6 +4,7 @@
 #include <vector>
 
 class Character;
+class EffectDescription;
 class EnhancementSelection;
 class EnhancementTreeItem;
 class Feat;
@@ -35,7 +36,6 @@ class CInfoTip :
                 const Character & charData,
                 const Stance * pItem);
         void SetItem(
-                const Character & charData,
                 const Item * pItem);
         void SetLevelItem(
                 const Character & charData,
@@ -55,6 +55,7 @@ class CInfoTip :
 
     private:
         void GenerateLineBreaks(CString * text);
+        CString CreateEffectDescription(const EffectDescription & ed) const;
         CPoint m_origin;
         CPoint m_alternate;
         CFont m_standardFont;
@@ -64,6 +65,7 @@ class CInfoTip :
         CString m_description;
         std::vector<CString> m_requirements;
         std::vector<bool> m_bRequirementMet;
+        std::vector<CString> m_effectDescriptions;
         CString m_cost;
         CString m_ranks;
 };

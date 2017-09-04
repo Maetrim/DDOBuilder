@@ -318,6 +318,12 @@ const std::list<GuildBuff> & GuildBuffs()
     return pApp->GuildBuffs();
 }
 
+const std::list<EffectDescription> & EffectDescriptions()
+{
+    CDDOCPApp * pApp = dynamic_cast<CDDOCPApp*>(AfxGetApp());
+    return pApp->EffectDescriptions();
+}
+
 MouseHook * GetMouseHook()
 {
     CWnd * pWnd = AfxGetMainWnd();
@@ -580,6 +586,40 @@ const Augment & FindAugmentByName(const std::string & name)
         ++it;
     }
     return badAugment;
+}
+
+CString GetEffectDescription(const std::string & effectName)
+{
+    CString description;
+    const std::list<EffectDescription> & eds = EffectDescriptions();
+    bool found = false;
+    std::list<EffectDescription>::const_iterator it = eds.begin();
+    while (!found && it != eds.end())
+    {
+        if ((*it).EffectName() == effectName)
+        {
+             // this is the effect description were looking for
+            ASSERT((*it).HasDescription());
+            description = (*it).Description().c_str();
+            found = true;
+        }
+        ++it;
+    }
+    if (!found)
+    {
+        // not found, either named incorrectly or entry does not yet exist
+        // in the file
+        std::stringstream ss;
+        ss << "Failed to find EffectDescription named " << effectName <<"\n";
+        ::OutputDebugString(ss.str().c_str());
+        // put in a default description that will display in the UI
+        description = "Description missing: The description for the effect type:\n"
+                "Type: %bonus%\n"
+                "Value1: %value1%\n"
+                "Value2: %value2%\n"
+                "is missing from the EffectDescriptions.xml file.";
+    }
+    return description;
 }
 
 AbilityType StatFromSkill(SkillType skill)

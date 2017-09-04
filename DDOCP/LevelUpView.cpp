@@ -78,7 +78,10 @@ void CLevelUpView::DoDataExchange(CDataExchange* pDX)
     DDX_Control(pDX, IDC_COMBO_CLASS3, m_comboClass[2]);
     DDX_Control(pDX, IDC_LIST_SKILLS, m_listSkills);
     DDX_Control(pDX, IDC_COMBO_SKILLTOME, m_comboSkillTome);
-    VERIFY(m_sortHeader.SubclassWindow(m_listSkills.GetHeaderCtrl()->GetSafeHwnd()));
+    if (!pDX->m_bSaveAndValidate)
+    {
+        VERIFY(m_sortHeader.SubclassWindow(m_listSkills.GetHeaderCtrl()->GetSafeHwnd()));
+    }
     DDX_Control(pDX, IDC_EDIT_SKILLPOINTS, m_editSkillPoints);
     DDX_Control(pDX, IDC_BUTTON_SKILL_PLUS, m_buttonPlus);
     DDX_Control(pDX, IDC_BUTTON_SKILL_MINUS, m_buttonMinus);
@@ -121,7 +124,6 @@ BEGIN_MESSAGE_MAP(CLevelUpView, CFormView)
     ON_WM_ERASEBKGND()
     ON_WM_CTLCOLOR()
     ON_REGISTERED_MESSAGE(UWM_UPDATE_COMPLETE, OnUpdateComplete)
-    //ON_WM_MOUSEMOVE()
     ON_WM_CAPTURECHANGED()
     ON_WM_LBUTTONDOWN()
     ON_MESSAGE(WM_MOUSEENTER, OnMouseEnter)
@@ -1383,13 +1385,16 @@ void CLevelUpView::OnFeatSelection(UINT nID)
 
 void CLevelUpView::OnLButtonDown(UINT nFlags, CPoint point)
 {
-    // determine which level button (if any) has been clicked on.
-    CWnd * pWnd = ChildWindowFromPoint(point);
-    CLevelButton * pLevelButton = dynamic_cast<CLevelButton*>(pWnd);
-    if (pLevelButton != NULL)
+    if (m_pCharacter != NULL)
     {
-        // yes, its a level button
-        OnButtonLevel(pLevelButton->GetDlgCtrlID());
+        // determine which level button (if any) has been clicked on.
+        CWnd * pWnd = ChildWindowFromPoint(point);
+        CLevelButton * pLevelButton = dynamic_cast<CLevelButton*>(pWnd);
+        if (pLevelButton != NULL)
+        {
+            // yes, its a level button
+            OnButtonLevel(pLevelButton->GetDlgCtrlID());
+        }
     }
 }
 

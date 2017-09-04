@@ -595,7 +595,7 @@ void CEnhancementTreeDialog::OnLButtonDown(UINT nFlags, CPoint point)
                             m_tree.Name(),
                             m_type);
                     // no tooltips while a dialog is displayed
-                    GetMouseHook()->SetDisabledState(true);
+                    GetMouseHook()->SaveState();
                     if (dlg.DoModal() == IDOK)
                     {
                         // they made a valid selection
@@ -622,7 +622,7 @@ void CEnhancementTreeDialog::OnLButtonDown(UINT nFlags, CPoint point)
                         }
                         Invalidate();
                     }
-                GetMouseHook()->SetDisabledState(false);
+                    GetMouseHook()->RestoreState();
                 }
                 else
                 {
