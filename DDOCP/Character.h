@@ -81,6 +81,7 @@ class Character :
         void NowActive();   // called when active MDI changed
 
         // active point build affected
+        size_t BaseAbilityValue(AbilityType ability) const;
         void SpendOnAbility(AbilityType ability);
         void RevokeSpendOnAbility(AbilityType ability);
 
@@ -99,6 +100,7 @@ class Character :
         size_t AbilityAtLevel(AbilityType ability, size_t level) const;
         int LevelUpsAtLevel(AbilityType ability, size_t level) const;
         int TomeAtLevel(AbilityType ability, size_t level) const;
+        AbilityType AbilityLevelUp(size_t level) const;
 
         void SetCharacterName(const CString & name);
         void SetRace(RaceType race);
@@ -221,6 +223,9 @@ class Character :
         // guild support
         void ToggleApplyGuildBuffs();
         void SetGuildLevel(size_t level);
+
+        // general support functions
+        std::string GetBuildDescription() const;
 
      protected:
         // notifications
@@ -353,4 +358,6 @@ class Character :
         int m_racialTreeSpend;
         int m_otherTreeSpend;
         size_t m_previousGuildLevel;
+
+        friend class CDDOCPDoc;
 };

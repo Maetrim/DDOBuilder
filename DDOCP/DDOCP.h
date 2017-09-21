@@ -3,7 +3,6 @@
 #pragma once
 #include <list>
 #include "Augment.h"
-#include "EffectDescription.h"
 #include "EnhancementTree.h"
 #include "Feat.h"
 #include "GuildBuff.h"
@@ -44,7 +43,6 @@ class CDDOCPApp :
         const std::list<Item> & Items() const;
         const std::list<Augment> & Augments() const;
         const std::list<GuildBuff> & GuildBuffs() const;
-        const std::list<EffectDescription> & EffectDescriptions() const;
 
         virtual void PreLoadState();
         virtual void LoadCustomState();
@@ -62,7 +60,6 @@ class CDDOCPApp :
         void LoadItems(const std::string & path);
         void LoadAugments(const std::string & path);
         void LoadGuildBuffs(const std::string & path);
-        void LoadEffectDescriptions(const std::string & path);
         void VerifyFeats();     // verify that all feats are consistent
         void SeparateFeats();   // breaks them out into groups based on type
         void VerifyEnhancements();     // verify that all enhancements are consistent
@@ -82,7 +79,6 @@ class CDDOCPApp :
         std::list<Item> m_items;
         std::list<Augment> m_augments;
         std::list<GuildBuff> m_guildBuffs;
-        std::list<EffectDescription> m_effectDescriptions;
 };
 
 extern CDDOCPApp theApp;

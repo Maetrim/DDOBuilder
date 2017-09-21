@@ -7,6 +7,8 @@
 #include "DDOCP.h"
 #endif
 
+#include "BreakdownItem.h"
+#include "BreakdownItemSave.h"
 #include "DDOCPDoc.h"
 #include "GlobalSupportFunctions.h"
 #include "MainFrm.h"
@@ -28,6 +30,7 @@ IMPLEMENT_DYNCREATE(CDDOCPDoc, CDocument)
 
 BEGIN_MESSAGE_MAP(CDDOCPDoc, CDocument)
     ON_COMMAND(ID_EDIT_ENHANCEMENTTREEEDITOR, &CDDOCPDoc::OnEditEnhancementTreeEditor)
+    ON_COMMAND(ID_FORUMEXPORT_EXPORTTOCLIPBOARD, &CDDOCPDoc::OnForumExportToClipboard)
 END_MESSAGE_MAP()
 
 // CDDOCPDoc construction/destruction
@@ -225,3 +228,491 @@ void CDDOCPDoc::OnEditEnhancementTreeEditor()
     dlg.DoModal();
     GetMouseHook()->RestoreState();
 }
+
+void CDDOCPDoc::OnForumExportToClipboard()
+{
+    std::stringstream forumExport;
+    forumExport << "[code]\r\n";
+    AddCharacterHeader(forumExport);
+    AddSaves(forumExport);
+    AddEnergyResistances(forumExport);
+    AddFeatSelections(forumExport);
+    AddSkills(forumExport);
+    AddEnhancements(forumExport);
+    forumExport << "[/code]\r\n";
+
+    CString clipboardText = forumExport.str().c_str();
+    // now place the text on the clipboard
+    if (OpenClipboard(NULL))
+    {
+        HGLOBAL clipbuffer = GlobalAlloc(GMEM_DDESHARE, clipboardText.GetLength()+1);
+        ASSERT(clipbuffer != NULL);
+        char *buffer = (char*)GlobalLock(clipbuffer);
+        strcpy_s(buffer, clipboardText.GetLength()+1, clipboardText);
+        GlobalUnlock(clipbuffer);
+        EmptyClipboard();
+        SetClipboardData(CF_TEXT, clipbuffer);
+        CloseClipboard();
+    }
+}
+
+void CDDOCPDoc::AddCharacterHeader(std::stringstream & forumExport)
+{
+    // Character Name: [.................................]
+    // Classes: [x][class1], [y][class2], [z][class3] and [10]Epic
+    // Race: [...............] Alignment: [..............]
+    //
+    //      Start Final
+    // Str: [...] [...]     HP:    [....]       AC: [...]
+    // Dex: [...] [...]     PRR:   [....]       DR: [........................]
+    // Con: [...] [...]     MRR:   [....]       +Healing Amp: [...]
+    // Int: [...] [...]     Dodge: [...]%/[MAX] -Healing Amp: [...]
+    // Wis: [...] [...]     Fort:  [...]%       Repair Amp:   [...]
+    // Cha: [...] [...]     SR:    [...]        BAB:   [..]
+
+     // first line is the character name
+    forumExport << "Character name: " << m_characterData.Name() << "\r\n";
+
+    // Classes line
+    forumExport << "Classes: " << m_characterData.GetBuildDescription() << "\r\n";
+
+    // Race/Alignment line
+    std::string race = EnumEntryText(m_characterData.Race(), raceTypeMap);
+    forumExport << "Race: ";
+    forumExport.fill(' ');
+    forumExport.width(21);
+    forumExport << std::left << race;
+    std::string alignment = EnumEntryText(m_characterData.Alignment(), alignmentTypeMap);
+    forumExport << "Alignment: ";
+    forumExport << std::left << alignment << "\r\n";
+    // blank line
+    forumExport << "\r\n";
+    forumExport << "     Start Final\r\n";
+
+    AddAbilityValues(forumExport, Ability_Strength);
+    AddBreakdown(forumExport, "      HP: ", 10, Breakdown_Hitpoints);
+    AddBreakdown(forumExport, "      AC: ", 5, Breakdown_AC);
+    forumExport << "\r\n";
+
+    AddAbilityValues(forumExport, Ability_Dexterity);
+    AddBreakdown(forumExport, "      PRR: ", 9, Breakdown_PRR);
+    //AddBreakdown(forumExport, "      AC: ", 5, Breakdown_AC); // TBD DR BREAKDOWN
+    forumExport << "\r\n";
+
+    AddAbilityValues(forumExport, Ability_Constitution);
+    AddBreakdown(forumExport, "      MRR: ", 9, Breakdown_MRR);
+    AddBreakdown(forumExport, "      +Healing Amp: ", 5, Breakdown_HealingAmplification);
+    forumExport << "\r\n";
+
+    AddAbilityValues(forumExport, Ability_Intelligence);
+    AddBreakdown(forumExport, "      Dodge: ", 4, Breakdown_Dodge);
+    AddBreakdown(forumExport, "/", 1, Breakdown_DodgeCap);
+    AddBreakdown(forumExport, "      -Healing Amp: ", 5, Breakdown_NegativeHealingAmplification);
+    forumExport << "\r\n";
+
+    AddAbilityValues(forumExport, Ability_Wisdom);
+    AddBreakdown(forumExport, "      Fort: ", 7, Breakdown_Fortification);
+    AddBreakdown(forumExport, "%      Repair Amp:   ", 5, Breakdown_RepairAmplification);
+    forumExport << "\r\n";
+
+    AddAbilityValues(forumExport, Ability_Charisma);
+    AddBreakdown(forumExport, "      SR: ", 10, Breakdown_SpellResistance);
+    forumExport << "\r\n\r\n";
+}
+
+void CDDOCPDoc::AddSaves(std::stringstream & forumExport)
+{
+    forumExport << "Saves:\r\n";
+    AddBreakdown(forumExport, "Fortitude:        ", 3, Breakdown_SaveFortitude);
+    AddBreakdown(forumExport, "\r\n  vs Poison:      ", 3, Breakdown_SavePoison);
+    AddBreakdown(forumExport, "\r\n  vs Disease:     ", 3, Breakdown_SaveDisease);
+    forumExport << "\r\n";
+
+    AddBreakdown(forumExport, "Will:             ", 3, Breakdown_SaveWill);
+    AddBreakdown(forumExport, "\r\n  vs Enchantment: ", 3, Breakdown_SaveEnchantment);
+    AddBreakdown(forumExport, "\r\n  vs Illusion:    ", 3, Breakdown_SaveIllusion);
+    AddBreakdown(forumExport, "\r\n  vs Fear:        ", 3, Breakdown_SaveFear);
+    forumExport << "\r\n";
+
+    AddBreakdown(forumExport, "Reflex:           ", 3, Breakdown_SaveReflex);
+    AddBreakdown(forumExport, "\r\n  vs Traps:       ", 3, Breakdown_SaveTraps);
+    AddBreakdown(forumExport, "\r\n  vs Spell:       ", 3, Breakdown_SaveSpell);
+    AddBreakdown(forumExport, "\r\n  vs Magic:       ", 3, Breakdown_SaveMagic);
+    forumExport << "\r\n";
+
+    forumExport << "Marked with a * is no fail on a 1 if required DC met\r\n";
+    forumExport << "\r\n";
+}
+
+void CDDOCPDoc::AddAbilityValues(std::stringstream & forumExport, AbilityType ability)
+{
+    size_t baseValue = m_characterData.BaseAbilityValue(ability);
+    BreakdownItem * pBI = FindBreakdown(StatToBreakdown(ability));
+    size_t buffedValue = (size_t)pBI->Total();      // whole numbers only
+    // get the stat name and limit to first 3 character
+    std::string name = (EnumEntryText(ability, abilityTypeMap));
+    name.resize(3);
+    forumExport.width(3);
+    forumExport << name;
+    forumExport << ": ";
+    forumExport.width(5);
+    forumExport << std::right << baseValue << " ";
+    forumExport.width(5);
+    forumExport << std::right << buffedValue;
+}
+
+void CDDOCPDoc::AddBreakdown(
+        std::stringstream & forumExport,
+        const std::string & header,
+        size_t width,
+        BreakdownType bt)
+{
+    BreakdownItem * pBI = FindBreakdown(bt);
+    size_t value = (size_t)pBI->Total();      // whole numbers only
+    forumExport << header;
+    forumExport.width(width);
+    forumExport << std::right << value;
+    BreakdownItemSave * pBIS = dynamic_cast<BreakdownItemSave *>(pBI);
+    if (pBIS != NULL)
+    {
+        if (pBIS->HasNoFailOn1())
+        {
+            forumExport << "*";
+        }
+    }
+}
+
+void CDDOCPDoc::AddFeatSelections(std::stringstream & forumExport)
+{
+    forumExport << "Lvl Class            Feats\r\n";
+    for (size_t level = 0; level < MAX_LEVEL; ++level)
+    {
+        const LevelTraining & levelData = m_characterData.LevelData(level);
+        std::vector<size_t> classLevels = m_characterData.ClassLevels(level);
+        CString className;
+        className.Format("%s(%d)",
+                EnumEntryText(levelData.HasClass() ? levelData.Class() : Class_Unknown, classTypeMap),
+                levelData.HasClass() ? classLevels[levelData.Class()] : 0);
+        forumExport.width(3);
+        forumExport << std::right << (level + 1) << " ";
+        forumExport.fill(' ');
+        forumExport.width(17);
+        forumExport << std::left << className;
+        // now add the trainable feat types and their selections
+        std::vector<TrainableFeatTypes> trainable = m_characterData.TrainableFeatTypeAtLevel(level);
+        if (trainable.size() > 0)
+        {
+            for (size_t tft = 0; tft < trainable.size(); ++tft)
+            {
+                CString label = TrainableFeatTypeLabel(trainable[tft]);
+                label += ": ";
+                TrainedFeat tf = m_characterData.GetTrainedFeat(
+                        level,
+                        trainable[tft]);
+                if (tf.FeatName().empty())
+                {
+                    label += "Empty Feat Slot";
+                }
+                else
+                {
+                    label += tf.FeatName().c_str();
+                }
+                if (tft > 0)
+                {
+                    forumExport << "                     ";
+                }
+                forumExport << label;
+                forumExport << "\r\n";
+            }
+        }
+        // also need to show ability adjustment on every 4th level
+        AbilityType ability = m_characterData.AbilityLevelUp(level + 1);
+        if (ability != Ability_Unknown)
+        {
+            if (trainable.size() > 0)
+            {
+                forumExport << "                     ";
+            }
+            forumExport << EnumEntryText(ability, abilityTypeMap);
+            forumExport << ": +1 Level up\r\n";
+        }
+        else if (trainable.size() == 0)
+        {
+            forumExport << "\r\n";
+        }
+    }
+    // blank line after
+    forumExport << "\r\n";
+}
+
+void CDDOCPDoc::AddSkills(std::stringstream & forumExport)
+{
+    // Example Output:
+    // Skill Points     18  9  9  9 10 10 10 10 10 10 11 11 11 11 11 12 12 12 12 12
+    // Skill Name       01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 Total
+    // Disable Device    4  1        3                                              xxx
+    // Use Magic Device                                                             xxx
+
+    forumExport << "Skill Points    ";
+    for (size_t level = 0; level < MAX_CLASS_LEVEL; ++level)
+    {
+        const LevelTraining & levelData = m_characterData.LevelData(level);
+        forumExport.width(3);
+        forumExport << std::right << levelData.SkillPointsAvailable();
+    }
+    forumExport << "\r\n";
+    forumExport << "Skill Name       01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20  Total Buffed\r\n";
+    forumExport << "------------------------------------------------------------------------------------------\r\n";
+    for (size_t skill = Skill_Unknown + 1; skill < Skill_Count; ++skill)
+    {
+        CString skillName;
+        skillName.Format("%-16s", EnumEntryText((SkillType)skill, skillTypeMap));
+        forumExport << skillName;
+        // now add the number of skill points spent on this skill at each heroic level
+        for (size_t level = 0; level < MAX_CLASS_LEVEL; ++level)
+        {
+            const LevelTraining & levelData = m_characterData.LevelData(level);
+            const std::list<TrainedSkill> & ts = levelData.TrainedSkills();
+            std::list<TrainedSkill>::const_iterator it = ts.begin();
+            std::vector<size_t> skillRanks(Skill_Count, 0);
+            while (it != ts.end())
+            {
+                skillRanks[(*it).Skill()]++;
+                ++it;
+            }
+            if (skillRanks[skill] > 0)
+            {
+                forumExport.fill(' ');
+                forumExport.width(3);
+                forumExport << std::right << skillRanks[skill];
+            }
+            else
+            {
+                // no trained ranks at this level, blank field
+                forumExport << "   ";
+            }
+        }
+        double total = m_characterData.SkillAtLevel((SkillType)skill, MAX_CLASS_LEVEL, false);
+        forumExport.precision(1);          // max 1 dp
+        forumExport.width(7);              // xxx.y
+        forumExport << std::fixed << std::right << total;
+        // now add the total for this skill
+        BreakdownType bt = SkillToBreakdown((SkillType)skill);
+        BreakdownItem * pBI = FindBreakdown(bt);
+        forumExport.width(7);              // xxx.y
+        forumExport << std::fixed << std::right << pBI->Total();
+        forumExport << "\r\n";     // end of this skill line
+    }
+    forumExport << "------------------------------------------------------------------------------------------\r\n";
+    // blank line after
+    forumExport << "\r\n";
+}
+
+void CDDOCPDoc::AddEnergyResistances(std::stringstream & forumExport)
+{
+    // Energy Resistance/Absorbance
+    // Energy       Resistance and Absorbance
+    // --------------------------------------
+    // Acid:             [...]         [...]%
+    // Cold:             [...]         [...]%
+    // Electric:         [...]         [...]%
+    // Fire:             [...]         [...]%
+    // Sonic:            [...]         [...]%
+    // Light:            [...]         [...]%
+    // Negative:         [...]         [...]%
+    // Poison:           [...]         [...]%
+    // etc
+    forumExport << "Energy       Resistance and Absorbance\r\n";
+    forumExport << "--------------------------------------\r\n";
+    AddEnergyResistances(forumExport, "Acid:", Breakdown_EnergyResistanceAcid, Breakdown_EnergyAbsorptionAcid);
+    AddEnergyResistances(forumExport, "Cold:", Breakdown_EnergyResistanceCold, Breakdown_EnergyAbsorptionCold);
+    AddEnergyResistances(forumExport, "Electric:", Breakdown_EnergyResistanceElectric, Breakdown_EnergyAbsorptionElectric);
+    AddEnergyResistances(forumExport, "Fire:", Breakdown_EnergyResistanceFire, Breakdown_EnergyAbsorptionFire);
+    AddEnergyResistances(forumExport, "Force:", Breakdown_EnergyResistanceForce, Breakdown_EnergyAbsorptionForce);
+    AddEnergyResistances(forumExport, "Light:", Breakdown_EnergyResistanceLight, Breakdown_EnergyAbsorptionLight);
+    AddEnergyResistances(forumExport, "Negative:", Breakdown_EnergyResistanceNegative, Breakdown_EnergyAbsorptionNegative);
+    AddEnergyResistances(forumExport, "Poison:", Breakdown_EnergyResistancePoison, Breakdown_EnergyAbsorptionPoison);
+    AddEnergyResistances(forumExport, "Positive:", Breakdown_EnergyResistancePositive, Breakdown_EnergyAbsorptionPositive);
+    AddEnergyResistances(forumExport, "Repair:", Breakdown_EnergyResistanceRepair, Breakdown_EnergyAbsorptionRepair);
+    AddEnergyResistances(forumExport, "Rust:", Breakdown_EnergyResistanceRust, Breakdown_EnergyAbsorptionRust);
+    AddEnergyResistances(forumExport, "Sonic:", Breakdown_EnergyResistanceSonic, Breakdown_EnergyAbsorptionSonic);
+    forumExport << "\r\n";
+}
+
+void CDDOCPDoc::AddEnergyResistances(
+        std::stringstream & forumExport,
+        const std::string & name,
+        BreakdownType bt1,
+        BreakdownType bt2)
+{
+    forumExport.width(13);
+    forumExport.fill(' ');
+    forumExport << std::left << name;
+    BreakdownItem * pB1 = FindBreakdown(bt1);
+    forumExport.width(10);
+    forumExport << std::right << (int)pB1->Total();
+    forumExport << "    ";
+    BreakdownItem * pB2 = FindBreakdown(bt2);
+    forumExport.width(10);
+    forumExport << std::right << (int)pB2->Total();
+    forumExport << "%\r\n";
+}
+
+void CDDOCPDoc::AddEnhancements(std::stringstream & forumExport)
+{
+    forumExport << "Enhancements: 80 APs";
+    if (m_characterData.BonusActionPoints() > 0)
+    {
+        forumExport << " and ";
+        forumExport.width(1);
+        forumExport << m_characterData.BonusActionPoints();
+        forumExport << " Racial APs";
+    }
+    forumExport << "\r\n";
+    forumExport << "------------------------------------------------------------------------------------------\r\n";
+    const SelectedEnhancementTrees & trees = m_characterData.SelectedTrees();
+    for (size_t ti = 0; ti < MAX_ENHANCEMENT_TREES; ++ti)
+    {
+        const std::string & treeName = trees.Tree(ti);
+        if (!SelectedEnhancementTrees::IsNotSelected(treeName))
+        {
+            // this is a tree we have to list
+            EnhancementSpendInTree * treeSpend = m_characterData.Enhancement_FindTree(treeName);
+            if (treeSpend != NULL
+                    && treeSpend->Spent() > 0)
+            {
+                // tree can be selected and have no enhancements trained, thus not be present
+                AddEnhancementTree(forumExport, *treeSpend);
+            }
+        }
+    }
+
+    // now add the active epic destiny tree
+    std::string activeDestiny = m_characterData.ActiveEpicDestiny();
+    if (activeDestiny != "")
+    {
+        forumExport << "\r\n";
+        forumExport << "Active Destiny Tree\r\n";
+        forumExport << "------------------------------------------------------------------------------------------\r\n";
+        // this is a tree we have to list
+        EpicDestinySpendInTree * treeSpend = m_characterData.EpicDestiny_FindTree(activeDestiny);
+        if (treeSpend != NULL)
+        {
+            // tree can be selected and have no enhancements trained, thus not be present
+            AddEpicDestinyTree(forumExport, *treeSpend);
+        }
+    }
+}
+
+void CDDOCPDoc::AddEnhancementTree(
+        std::stringstream & forumExport,
+        const EnhancementSpendInTree & treeSpend)
+{
+    // TreeName: <name> - Points spent : xxx
+    // <List of enhancements by display name>
+    forumExport << treeSpend.TreeName() << " - Points spent: " << treeSpend.Spent() << "\r\n";
+    const std::list<TrainedEnhancement> & enhancements = treeSpend.Enhancements();
+    // output each enhancement by buy index
+    size_t buyIndex = 0;
+    bool found = true;
+    while (found)
+    {
+        // find the object with this buy index
+        found = false;
+        std::list<TrainedEnhancement>::const_iterator it = enhancements.begin();
+        while (!found && it != enhancements.end())
+        {
+            found = (*it).HasBuyIndex(buyIndex);
+            if (found)
+            {
+                break;
+            }
+            ++it;
+        }
+        if (found)
+        {
+            // Found it, output it
+            forumExport.width(2);
+            forumExport << std::right << (buyIndex + 1) << " ";
+            const EnhancementTreeItem * item = FindEnhancement((*it).EnhancementName());
+            if (item != NULL)
+            {
+                // show the tier of the enhancement
+                switch (item->YPosition())
+                {
+                case 0: forumExport << "Core  "; break;
+                case 1: forumExport << "Tier1 "; break;
+                case 2: forumExport << "Tier2 "; break;
+                case 3: forumExport << "Tier3 "; break;
+                case 4: forumExport << "Tier4 "; break;
+                case 5: forumExport << "Tier5 "; break;
+                case 6: forumExport << "Tier6 "; break;
+                }
+                forumExport << item->DisplayName((*it).HasSelection() ? (*it).Selection() : "") << "\r\n";
+            }
+            else
+            {
+                forumExport << "Error - Unknown enhancement\r\n";
+            }
+        }
+        ++buyIndex;
+    }
+    forumExport << "------------------------------------------------------------------------------------------\r\n";
+}
+
+void CDDOCPDoc::AddEpicDestinyTree(
+        std::stringstream & forumExport,
+        const EpicDestinySpendInTree & treeSpend)
+{
+    // TreeName: <name> - Points spent : xxx
+    // <List of enhancements by display name>
+    forumExport << treeSpend.TreeName() << " - Points spent: " << treeSpend.Spent() << "\r\n";
+    const std::list<TrainedEnhancement> & enhancements = treeSpend.Enhancements();
+    // output each enhancement by buy index
+    size_t buyIndex = 0;
+    bool found = true;
+    while (found)
+    {
+        // find the object with this buy index
+        found = false;
+        std::list<TrainedEnhancement>::const_iterator it = enhancements.begin();
+        while (!found && it != enhancements.end())
+        {
+            found = (*it).HasBuyIndex(buyIndex);
+            if (found)
+            {
+                break;
+            }
+            ++it;
+        }
+        if (found)
+        {
+            // Found it, output it
+            forumExport.width(2);
+            forumExport << std::right << (buyIndex + 1) << " ";
+            const EnhancementTreeItem * item = FindEnhancement((*it).EnhancementName());
+            if (item != NULL)
+            {
+                // show the tier of the enhancement
+                switch (item->YPosition())
+                {
+                case 0: forumExport << "Core  "; break;
+                case 1: forumExport << "Tier1 "; break;
+                case 2: forumExport << "Tier2 "; break;
+                case 3: forumExport << "Tier3 "; break;
+                case 4: forumExport << "Tier4 "; break;
+                case 5: forumExport << "Tier5 "; break;
+                case 6: forumExport << "Tier6 "; break;
+                }
+                forumExport << item->DisplayName((*it).HasSelection() ? (*it).Selection() : "") << "\r\n";
+            }
+            else
+            {
+                forumExport << "Error - Unknown enhancement\r\n";
+            }
+        }
+        ++buyIndex;
+    }
+    forumExport << "------------------------------------------------------------------------------------------\r\n";
+}
+

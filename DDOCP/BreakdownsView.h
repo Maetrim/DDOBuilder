@@ -53,8 +53,8 @@ class CBreakdownsView :
         void AddSpellCriticalChance(SpellPowerType type, const std::string & name, HTREEITEM hParent);
         void AddSpellCriticalMultiplier(SpellPowerType type, const std::string & name, HTREEITEM hParent);
         void AddSpellSchool(SpellSchoolType type, const std::string & name, HTREEITEM hParent);
-        void AddEnergyResistance(EnergyType type, const std::string & name, HTREEITEM hParent);
-        void AddEnergyAbsorption(EnergyType type, const std::string & name, HTREEITEM hParent);
+        void AddEnergyResistance(BreakdownType bt, EnergyType type, const std::string & name, HTREEITEM hParent);
+        void AddEnergyAbsorption(BreakdownType bt, EnergyType type, const std::string & name, HTREEITEM hParent);
         void AddWeapons(HTREEITEM hParent);
         void AddWeapon(WeaponType weaponType, HTREEITEM hParent);
         //void AddWeaponToHitBreakdowns(HTREEITEM hParent);

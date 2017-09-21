@@ -110,7 +110,7 @@ void BreakdownItemSkill::CreateOtherEffects()
         int multiplier = ArmorCheckPenalty_Multiplier(m_skill);
         if (multiplier != 0)
         {
-            BreakdownItem * pBI = m_pBreakdownView->FindBreakdown(Breakdown_ArmorCheckPenalty);
+            BreakdownItem * pBI = FindBreakdown(Breakdown_ArmorCheckPenalty);
             ASSERT(pBI != NULL);
             pBI->AttachObserver(this);  // need to know about changes to this effect
             ActiveEffect acp(

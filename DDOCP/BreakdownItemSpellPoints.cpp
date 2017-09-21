@@ -68,7 +68,7 @@ void BreakdownItemSpellPoints::CreateOtherEffects()
                     // Your casting ability grants you a number of bonus spell points equal
                     // to (caster level + 9) * (casting ability modifier)
                     AbilityType at = ClassCastingStat((ClassType)ci);
-                    BreakdownItem * pBI = m_pBreakdownView->FindBreakdown(StatToBreakdown(at));
+                    BreakdownItem * pBI = FindBreakdown(StatToBreakdown(at));
                     ASSERT(pBI != NULL);
                     pBI->AttachObserver(this);  // need to know about changes to this stat
                     int abilityBonus = BaseStatToBonus(pBI->Total());

@@ -56,7 +56,7 @@ CString BreakdownItemSave::Value() const
     value.Format(
             "%4d",
             (int)Total());
-    if (m_noFailOn1Count > 0)
+    if (HasNoFailOn1())
     {
         value += " (No fail on 1)";
     }
@@ -95,7 +95,7 @@ void BreakdownItemSave::CreateOtherEffects()
             if (count > 0)
             {
                 // character has divine grace feat trained. Add charisma bonus for this save
-                BreakdownItem * pBI = m_pBreakdownView->FindBreakdown(StatToBreakdown(Ability_Charisma));
+                BreakdownItem * pBI = FindBreakdown(StatToBreakdown(Ability_Charisma));
                 ASSERT(pBI != NULL);
                 pBI->AttachObserver(this); // watch for any changes
                 int bonus = BaseStatToBonus(pBI->Total());
@@ -117,7 +117,7 @@ void BreakdownItemSave::CreateOtherEffects()
         {
             // Base ability bonus to save
             AbilityType ability = LargestStatBonus();
-            BreakdownItem * pBI = m_pBreakdownView->FindBreakdown(StatToBreakdown(ability));
+            BreakdownItem * pBI = FindBreakdown(StatToBreakdown(ability));
             ASSERT(pBI != NULL);
             int bonus = BaseStatToBonus(pBI->Total());
             if (bonus != 0) // only add to list if non zero
@@ -372,3 +372,19 @@ void BreakdownItemSave::UpdateEnhancementEffectRevoked(
         }
     }
 }
+
+bool BreakdownItemSave::HasNoFailOn1() const
+{
+    if (m_pBaseBreakdown != NULL)
+    {
+        // saves which are based on a main save type (Will, Reflex and Fortitude)
+        // will have a no fail on a 1 if their base save also has a no fail on a 1
+        BreakdownItemSave * pBB = dynamic_cast<BreakdownItemSave*>(m_pBaseBreakdown);
+        if (pBB->HasNoFailOn1())
+        {
+            return true;
+        }
+    }
+    return (m_noFailOn1Count > 0);
+}
+

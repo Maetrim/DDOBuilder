@@ -11,7 +11,6 @@
 #include "DDOCPDoc.h"
 #include "DDOCPView.h"
 #include "AugmentsFile.h"
-#include "EffectDescriptionsFile.h"
 #include "EnhancementsFile.h"
 #include "FeatsFile.h"
 #include "GlobalSupportFunctions.h"
@@ -233,7 +232,6 @@ void CDDOCPApp::LoadData()
     LoadItems(path);
     LoadAugments(path);
     LoadGuildBuffs(path);
-    LoadEffectDescriptions(path);
     VerifyFeats();
     VerifyEnhancements();
     VerifySpells();
@@ -304,17 +302,6 @@ void CDDOCPApp::LoadGuildBuffs(const std::string & path)
     GuildBuffsFile file(filename);
     file.Read();
     m_guildBuffs = file.GuildBuffs();
-}
-
-void CDDOCPApp::LoadEffectDescriptions(const std::string & path)
-{
-    // create the filename to load from
-    std::string filename = path;
-    filename += "EffectDescriptions.xml";
-
-    EffectDescriptionsFile file(filename);
-    file.Read();
-    m_effectDescriptions = file.EffectDescriptions();
 }
 
 void CDDOCPApp::VerifyFeats()
@@ -450,11 +437,6 @@ const std::list<Augment> & CDDOCPApp::Augments() const
 const std::list<GuildBuff> & CDDOCPApp::GuildBuffs() const
 {
     return m_guildBuffs;
-}
-
-const std::list<EffectDescription> & CDDOCPApp::EffectDescriptions() const
-{
-    return m_effectDescriptions;
 }
 
 // CDDOCPApp message handlers

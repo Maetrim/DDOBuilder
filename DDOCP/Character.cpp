@@ -15,6 +15,26 @@ namespace
     DL_DEFINE_NAMES(Character_PROPERTIES)
 
     const unsigned f_verCurrent = 1;
+
+
+    struct ClassEntry
+    {
+        ClassType type;
+        size_t levels;
+    };
+    bool SortClassEntry(const ClassEntry & a, const ClassEntry & b)
+    {
+        if (a.levels == b.levels)
+        {
+            // same level, sort on class name
+            return (a.type < b.type);
+        }
+        else
+        {
+            // sort on number of class levels
+            return (a.levels > b.levels);
+        }
+    }
 }
 
 Character::Character(CDDOCPDoc * pDoc) :
@@ -947,6 +967,13 @@ void Character::RevokeSkillPoint(
 }
 
 // active point build affected
+size_t Character::BaseAbilityValue(AbilityType ability) const
+{
+    const AbilitySpend & as = BuildPoints();
+    size_t value = 8 + RacialModifier(Race(), ability) + as.GetAbilitySpend(ability);
+    return value;
+}
+
 void Character::SpendOnAbility(AbilityType ability)
 {
     m_BuildPoints.SpendOnAbility(ability);
@@ -1423,6 +1450,21 @@ int Character::TomeAtLevel(
         }
     }
     return tv;
+}
+
+AbilityType Character::AbilityLevelUp(size_t level) const
+{
+    switch (level)
+    {
+        case 4:     return Level4();
+        case 8:     return Level8();
+        case 12:    return Level12();
+        case 16:    return Level16();
+        case 20:    return Level20();
+        case 24:    return Level24();
+        case 28:    return Level28();
+    }
+    return Ability_Unknown;
 }
 
 double Character::MaxSkillForLevel(
@@ -3899,3 +3941,45 @@ void Character::SetGuildLevel(size_t level)
     // apply changes
     ApplyGuildBuffs();
 }
+
+std::string Character::GetBuildDescription() const
+{
+    // determine how many levels of each class have been trained
+    std::vector<size_t> classLevels = ClassLevels(MAX_LEVEL);
+
+    // levels in each non zero class listed, sorted by count then name
+    // unknown listed also as shows how many need to be trained
+    std::vector<ClassEntry> classes;
+    for (size_t ci = Class_Unknown; ci < Class_Count; ++ci)
+    {
+        if (classLevels[ci] > 0)
+        {
+            // we have levels trained in this class, add it
+            ClassEntry data;
+            data.type = (ClassType)ci;
+            data.levels = classLevels[ci];
+            classes.push_back(data);
+        }
+    }
+    // now that we have the full list, sort them into increasing order
+    // now create the text to display
+    std::stringstream ss;
+    if (classes.size() > 0)
+    {
+        std::sort(classes.begin(), classes.end(), SortClassEntry);
+        for (size_t ci = 0; ci < classes.size(); ++ci)
+        {
+            if (ci > 0)
+            {
+                // 2nd or following items separated by a ","
+                ss << ", ";
+            }
+            ss << classes[ci].levels
+                    << " "
+                    << (LPCSTR)EnumEntryText(classes[ci].type, classTypeMap);
+        }
+        // e.g. "10 Epic, 8 Fighter, 6 Monk, 6 Ranger"
+    }
+    return ss.str();
+}
+

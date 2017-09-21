@@ -7,7 +7,9 @@
 #include "TrainedFeat.h"
 #include "DDOCP.h"
 #include "AlignmentTypes.h"
+#include "BreakdownTypes.h"
 
+class BreakdownItem;
 class Character;
 class CMainFrame;
 class MouseHook;
@@ -81,7 +83,6 @@ const std::list<Spell> & Spells();
 const std::list<Item> & Items();
 const std::list<Augment> & Augments();
 const std::list<GuildBuff> & GuildBuffs();
-const std::list<EffectDescription> & EffectDescriptions();
 MouseHook * GetMouseHook();
 std::vector<Spell> FilterSpells(ClassType ct, int level);
 Spell FindSpellByName(const std::string & name);
@@ -90,7 +91,6 @@ const EnhancementTreeItem * FindEnhancement(const std::string & internalName, st
 std::vector<TrainableFeatTypes> ClassSpecificFeatTypes(ClassType type);
 std::vector<TrainableFeatTypes> RaceSpecificFeatTypes(RaceType type);
 const Augment & FindAugmentByName(const std::string & name);
-CString GetEffectDescription(const std::string & effectName);
 
 AbilityType StatFromSkill(SkillType skill);
 int ArmorCheckPenalty_Multiplier(SkillType skill);
@@ -124,3 +124,9 @@ bool ImageFileExists(ImageType type, const std::string & name);
 CMainFrame * GetMainFrame();
 void MakeGrayScale(CImage * pImage, COLORREF transparent = RGB(0, 0, 0));
 CString TrainableFeatTypeLabel(TrainableFeatTypes type);
+// support functions for breakdowns only
+int BaseStatToBonus(double ability);
+BreakdownType StatToBreakdown(AbilityType ability);
+BreakdownType SkillToBreakdown(SkillType skill);
+BreakdownItem * FindBreakdown(BreakdownType type);
+

@@ -9,7 +9,6 @@
 #include "EnhancementsView.h"
 #include "EpicDestiniesView.h"
 #include "EquipmentView.h"
-#include "ItemEditorDialog.h"
 #include "LevelUpView.h"
 #include "ReaperEnhancementsView.h"
 #include "SpecialFeatsView.h"
@@ -37,7 +36,6 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWndEx)
     ON_COMMAND_RANGE(ID_VIEW_APPLOOK_WIN_2000, ID_VIEW_APPLOOK_WINDOWS_7, &CMainFrame::OnApplicationLook)
     ON_UPDATE_COMMAND_UI_RANGE(ID_VIEW_APPLOOK_WIN_2000, ID_VIEW_APPLOOK_WINDOWS_7, &CMainFrame::OnUpdateApplicationLook)
     ON_WM_CLOSE()
-    ON_COMMAND(ID_EDIT_ITEMEDITOR, &CMainFrame::OnItemEditor)
     ON_UPDATE_COMMAND_UI(ID_DOCK_BREAKDOWNS, OnUpdateDockPane)
     ON_UPDATE_COMMAND_UI(ID_DOCK_LEVELUP, OnUpdateDockPane)
     ON_UPDATE_COMMAND_UI(ID_DOCK_SPECIALFEATS, OnUpdateDockPane)
@@ -373,6 +371,8 @@ CCustomDockablePane* CMainFrame::CreateDockablePane(
     createContext.m_pNewViewClass = runtimeClass;
 
     CCustomDockablePane* pane = new CCustomDockablePane;
+    // Assorted functionality is applied to all panes
+    m_dockablePanes.push_back(pane);
 
     pane->Create(
             _T(paneTitle),
@@ -386,9 +386,6 @@ CCustomDockablePane* CMainFrame::CreateDockablePane(
             &createContext);
     pane->EnableDocking(CBRS_ALIGN_ANY);
     DockPane(pane);
-
-    // Assorted functionality is applied to all panes
-    m_dockablePanes.push_back(pane);
 
     return pane;
 }
@@ -409,7 +406,10 @@ BOOL CMainFrame::OnCmdMsg(
         for (size_t x = 0; bReturn == FALSE && x < m_dockablePanes.size(); x++)
         {
             CView * pView = m_dockablePanes[x]->GetView();
-            bReturn = pView->OnCmdMsg(nID, nCode, pExtra, pHandlerInfo);
+            if (pView != NULL)
+            {
+                bReturn = pView->OnCmdMsg(nID, nCode, pExtra, pHandlerInfo);
+            }
         }
     }
 
@@ -423,7 +423,10 @@ BOOL CMainFrame::OnCmdMsg(
             while (pos != NULL && bReturn == FALSE)
             {
                 CView * pView = pDoc->GetNextView(pos);
-                bReturn = pView->OnCmdMsg(nID, nCode, pExtra, pHandlerInfo);
+                if (pView != NULL)
+                {
+                    bReturn = pView->OnCmdMsg(nID, nCode, pExtra, pHandlerInfo);
+                }
             }
         }
     }
@@ -639,15 +642,6 @@ void CMainFrame::SetStatusBarPromptText(const CString & text)
             TRUE);
 }
 
-void CMainFrame::OnItemEditor()
-{
-    // no tooltips while a dialog is displayed
-    GetMouseHook()->SaveState();
-    CItemEditorDialog dlg(NULL);
-    dlg.DoModal();
-    GetMouseHook()->RestoreState();
-}
-
 MouseHook * CMainFrame::GetMouseHook()
 {
     return &m_mouseHook;
@@ -668,3 +662,15 @@ void CMainFrame::OnDockPane()
     ASSERT(index < m_dockablePanes.size());
     m_dockablePanes[index]->ShowPane(!m_dockablePanes[index]->IsVisible(), FALSE, TRUE);
 }
+
+BreakdownItem * CMainFrame::FindBreakdown(BreakdownType type)
+{
+    CWnd * pWnd = m_dockablePanes[0]->GetView(); // it is the first created
+    CBreakdownsView * pView = dynamic_cast<CBreakdownsView*>(pWnd);
+    if (pView != NULL)
+    {
+        return pView->FindBreakdown(type);
+    }
+    return NULL;
+}
+

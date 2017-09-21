@@ -4,7 +4,6 @@
 #include <vector>
 
 class Character;
-class EffectDescription;
 class EnhancementSelection;
 class EnhancementTreeItem;
 class Feat;
@@ -55,7 +54,6 @@ class CInfoTip :
 
     private:
         void GenerateLineBreaks(CString * text);
-        CString CreateEffectDescription(const EffectDescription & ed) const;
         CPoint m_origin;
         CPoint m_alternate;
         CFont m_standardFont;

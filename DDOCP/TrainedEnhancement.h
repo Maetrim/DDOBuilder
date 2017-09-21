@@ -11,7 +11,8 @@ class TrainedEnhancement :
         void Write(XmlLib::SaxWriter * writer) const;
 
         void AddRank(size_t buyIndex, bool isTier5);
-        bool IsYourBuyIndex(size_t buyIndex) const;
+        bool IsLastBuyIndex(size_t buyIndex) const;
+        bool HasBuyIndex(size_t buyIndex) const;
         void RevokeRank();
 
         void SetCost(size_t cost);

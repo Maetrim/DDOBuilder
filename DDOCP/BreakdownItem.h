@@ -50,8 +50,6 @@ class BreakdownItem :
                 HTREEITEM hItem);
         virtual ~BreakdownItem();
 
-        static void SetBreakdownViewPointer(const CBreakdownsView *);
-
         virtual void SetCharacter(Character * charData, bool observe);
 
         BreakdownType Type() const;
@@ -63,11 +61,6 @@ class BreakdownItem :
 
         void AddAbility(AbilityType ability);
         void RemoveFirstAbility(AbilityType ability);
-
-        // support functions for breakdowns only
-        static int BaseStatToBonus(double ability);
-        static BreakdownType StatToBreakdown(AbilityType ability);
-        static BreakdownType SkillToBreakdown(SkillType skill);
 
     protected:
         void AddOtherEffect(const ActiveEffect & effect);
@@ -124,7 +117,6 @@ class BreakdownItem :
         HTREEITEM m_hItem;
         BreakdownType m_type;
     protected:
-        static const CBreakdownsView * m_pBreakdownView;   // used to allow breakdowns to lookup other breakdowns
         AbilityType LargestStatBonus();
         std::vector<AbilityType> m_mainAbility; // ability types that are used for this breakdown (highest of those listed)
 

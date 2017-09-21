@@ -387,11 +387,11 @@ void CInfoTip::SetItem(
     GenerateLineBreaks(&m_description);
     // now do the same for any effect descriptions
     m_effectDescriptions.clear();
-    const std::list<EffectDescription> & eds = pItem->EffectDescriptions();
-    std::list<EffectDescription>::const_iterator it = eds.begin();
+    const std::list<std::string> & eds = pItem->EffectDescription();
+    std::list<std::string>::const_iterator it = eds.begin();
     while (it != eds.end())
     {
-        CString processedDescription = CreateEffectDescription(*it);
+        CString processedDescription = (*it).c_str();
         GenerateLineBreaks(&processedDescription);
         m_effectDescriptions.push_back(processedDescription);
         ++it;
@@ -551,47 +551,5 @@ void CInfoTip::GenerateLineBreaks(CString * text)
             }
         }
     }
-}
-
-CString CInfoTip::CreateEffectDescription(const EffectDescription & ed) const
-{
-    CString description;
-    // first look up the effect description from the global loaded list
-    description = GetEffectDescription(ed.EffectName());
-    // now replace the fields %1, %2, %3, %4 and %5 to those provided
-    // to construct the full end effect description.
-    ASSERT(!ed.HasDescription());   // must not have a description
-    CString value1;
-    CString value2;
-    CString value3;
-    CString value4;
-    CString value5;
-    if (ed.HasValue1())
-    {
-        value1 = ed.Value1().c_str();
-    }
-    if (ed.HasValue2())
-    {
-        value2 = ed.Value2().c_str();
-    }
-    if (ed.HasValue3())
-    {
-        value3 = ed.Value3().c_str();
-    }
-    if (ed.HasValue4())
-    {
-        value4 = ed.Value4().c_str();
-    }
-    if (ed.HasValue5())
-    {
-        value5 = ed.Value5().c_str();
-    }
-    // now replace into description
-    description.Replace("%1", value1);
-    description.Replace("%2", value2);
-    description.Replace("%3", value3);
-    description.Replace("%4", value4);
-    description.Replace("%5", value5);
-    return description;
 }
 

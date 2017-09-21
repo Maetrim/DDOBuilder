@@ -23,25 +23,6 @@ namespace
 {
     const int c_controlSpacing = 3;
     const size_t c_maxTomeValue = 7;    // max tome is +7 at level 27
-
-    struct ClassEntry
-    {
-        ClassType type;
-        size_t levels;
-    };
-    bool SortClassEntry(const ClassEntry & a, const ClassEntry & b)
-    {
-        if (a.levels == b.levels)
-        {
-            // same level, sort on class name
-            return (a.type < b.type);
-        }
-        else
-        {
-            // sort on number of class levels
-            return (a.levels > b.levels);
-        }
-    }
     COLORREF f_abilityOverspendColour = RGB(0xE9, 0x96, 0x7A); // dark salmon
 }
 
@@ -349,9 +330,8 @@ void CDDOCPView::DisplayAbilityValue(
         AbilityType ability,
         CEdit * control)
 {
-    const AbilitySpend & as = m_pCharacter->BuildPoints();
+    size_t value = m_pCharacter->BaseAbilityValue(ability);
     CString text;
-    size_t value = 8 + RacialModifier(m_pCharacter->Race(), ability) + as.GetAbilitySpend(ability);
     text.Format("%d", value);
     control->SetWindowText(text);
 }
@@ -649,45 +629,8 @@ void CDDOCPView::OnSelendokComboAbilityLevel28()
 
 void CDDOCPView::UpdateBuildDescription()
 {
-    // determine how many levels of each class have been trained
-    std::vector<size_t> classLevels = m_pCharacter->ClassLevels(MAX_LEVEL);
-
-    // levels in each non zero class listed, sorted by count then name
-    // unknown listed also as shows how many need to be trained
-    std::vector<ClassEntry> classes;
-    for (size_t ci = Class_Unknown; ci < Class_Count; ++ci)
-    {
-        if (classLevels[ci] > 0)
-        {
-            // we have levels trained in this class, add it
-            ClassEntry data;
-            data.type = (ClassType)ci;
-            data.levels = classLevels[ci];
-            classes.push_back(data);
-        }
-    }
-    // now that we have the full list, sort them into increasing order
-    if (classes.size() > 0)
-    {
-        std::sort(classes.begin(), classes.end(), SortClassEntry);
-        // now create the text to display
-        std::stringstream ss;
-        for (size_t ci = 0; ci < classes.size(); ++ci)
-        {
-            if (ci > 0)
-            {
-                // 2nd or following items separated by a ","
-                ss << ", ";
-            }
-            ss << classes[ci].levels
-                    << " "
-                    << (LPCSTR)EnumEntryText(classes[ci].type, classTypeMap);
-        }
-        // e.g. "10 Epic, 8 Fighter, 6 Monk, 6 Ranger"
-        CString text;
-        text = ss.str().c_str();
-        m_staticBuildDescription.SetWindowText(text);
-    }
+    CString text = m_pCharacter->GetBuildDescription().c_str();
+    m_staticBuildDescription.SetWindowText(text);
 }
 
 // Character overrides

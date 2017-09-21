@@ -111,7 +111,7 @@ int ReaperSpendInTree::RevokeEnhancement(
         std::list<TrainedEnhancement>::iterator it = m_Enhancements.begin();
         while (item == NULL && it != m_Enhancements.end())
         {
-            if ((*it).IsYourBuyIndex(buyIndex))
+            if ((*it).IsLastBuyIndex(buyIndex))
             {
                 item = &(*it);
                 break;

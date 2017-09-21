@@ -68,7 +68,7 @@ void BreakdownItemWeaponAttackBonus::CreateOtherEffects()
             AddOtherEffect(amountTrained);
 
             // also apply any armor check penalty
-            BreakdownItem * pBI = m_pBreakdownView->FindBreakdown(Breakdown_ArmorCheckPenalty);
+            BreakdownItem * pBI = FindBreakdown(Breakdown_ArmorCheckPenalty);
             ASSERT(pBI != NULL);
             pBI->AttachObserver(this);  // need to know about changes to this effect
             if (pBI->Total() != 0)
@@ -87,7 +87,7 @@ void BreakdownItemWeaponAttackBonus::CreateOtherEffects()
         // but other stats may also be allowed for this particular weapon. look through
         // the list of those available and get the one with the largest value
         AbilityType ability = LargestStatBonus();
-        BreakdownItem * pBI = m_pBreakdownView->FindBreakdown(StatToBreakdown(ability));
+        BreakdownItem * pBI = FindBreakdown(StatToBreakdown(ability));
         ASSERT(pBI != NULL);
         int bonus = BaseStatToBonus(pBI->Total());
         if (bonus != 0) // only add to list if non zero

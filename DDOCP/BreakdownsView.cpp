@@ -110,7 +110,6 @@ LRESULT CBreakdownsView::OnNewDocument(WPARAM wParam, LPARAM lParam)
 void CBreakdownsView::OnInitialUpdate()
 {
     CFormView::OnInitialUpdate();
-    BreakdownItem::SetBreakdownViewPointer(this);
 
     m_treeSizePercent = AfxGetApp()->GetProfileInt(f_treeSizeKey, f_treeSizeEntry, 75);
     m_itemBreakdownTree.CreateEx(
@@ -243,7 +242,7 @@ void CBreakdownsView::CreateSavesBreakdowns()
                     hItem,
                     TVI_LAST);
             BreakdownItem * pPS = new BreakdownItemSave(
-                    Breakdown_SaveFortitude,
+                    Breakdown_SavePoison,
                     Save_Poison,
                     &m_itemBreakdownTree,
                     hSubItem,
@@ -258,7 +257,7 @@ void CBreakdownsView::CreateSavesBreakdowns()
                     hItem,
                     TVI_LAST);
             BreakdownItem * pPS = new BreakdownItemSave(
-                    Breakdown_SaveFortitude,
+                    Breakdown_SaveDisease,
                     Save_Disease,
                     &m_itemBreakdownTree,
                     hSubItem,
@@ -320,7 +319,7 @@ void CBreakdownsView::CreateSavesBreakdowns()
                     hItem,
                     TVI_LAST);
             BreakdownItem * pSS = new BreakdownItemSave(
-                    Breakdown_SaveSpell,
+                    Breakdown_SaveMagic,
                     Save_Magic,
                     &m_itemBreakdownTree,
                     hSubItem,
@@ -1201,18 +1200,18 @@ void CBreakdownsView::CreateEnergyResistancesBreakdowns()
                 "Resistances",
                 hParent,
                 TVI_LAST);
-        AddEnergyResistance(Energy_Acid, "Acid Resistance", hItem);
-        AddEnergyResistance(Energy_Cold, "Cold Resistance", hItem);
-        AddEnergyResistance(Energy_Electric, "Electric Resistance", hItem);
-        AddEnergyResistance(Energy_Fire, "Fire Resistance", hItem);
-        AddEnergyResistance(Energy_Force, "Force Resistance", hItem);
-        AddEnergyResistance(Energy_Light, "Light Resistance", hItem);
-        AddEnergyResistance(Energy_Negative, "Negative Resistance", hItem);
-        AddEnergyResistance(Energy_Poison, "Poison Resistance", hItem);
-        AddEnergyResistance(Energy_Positive, "Positive Resistance", hItem);
-        AddEnergyResistance(Energy_Repair, "Repair Resistance", hItem);
-        AddEnergyResistance(Energy_Rust, "Rust Resistance", hItem);
-        AddEnergyResistance(Energy_Sonic, "Sonic Resistance", hItem);
+        AddEnergyResistance(Breakdown_EnergyResistanceAcid, Energy_Acid, "Acid Resistance", hItem);
+        AddEnergyResistance(Breakdown_EnergyResistanceCold, Energy_Cold, "Cold Resistance", hItem);
+        AddEnergyResistance(Breakdown_EnergyResistanceElectric, Energy_Electric, "Electric Resistance", hItem);
+        AddEnergyResistance(Breakdown_EnergyResistanceFire, Energy_Fire, "Fire Resistance", hItem);
+        AddEnergyResistance(Breakdown_EnergyResistanceForce, Energy_Force, "Force Resistance", hItem);
+        AddEnergyResistance(Breakdown_EnergyResistanceLight, Energy_Light, "Light Resistance", hItem);
+        AddEnergyResistance(Breakdown_EnergyResistanceNegative, Energy_Negative, "Negative Resistance", hItem);
+        AddEnergyResistance(Breakdown_EnergyResistancePoison, Energy_Poison, "Poison Resistance", hItem);
+        AddEnergyResistance(Breakdown_EnergyResistancePositive, Energy_Positive, "Positive Resistance", hItem);
+        AddEnergyResistance(Breakdown_EnergyResistanceRepair, Energy_Repair, "Repair Resistance", hItem);
+        AddEnergyResistance(Breakdown_EnergyResistanceRust, Energy_Rust, "Rust Resistance", hItem);
+        AddEnergyResistance(Breakdown_EnergyResistanceSonic, Energy_Sonic, "Sonic Resistance", hItem);
     }
     {
         // Absorptions
@@ -1220,18 +1219,18 @@ void CBreakdownsView::CreateEnergyResistancesBreakdowns()
                 "Absorption",
                 hParent,
                 TVI_LAST);
-        AddEnergyAbsorption(Energy_Acid, "Acid Absorption", hItem);
-        AddEnergyAbsorption(Energy_Cold, "Cold Absorption", hItem);
-        AddEnergyAbsorption(Energy_Electric, "Electric Absorption", hItem);
-        AddEnergyAbsorption(Energy_Fire, "Fire Absorption", hItem);
-        AddEnergyAbsorption(Energy_Force, "Force Absorption", hItem);
-        AddEnergyAbsorption(Energy_Light, "Light Absorption", hItem);
-        AddEnergyAbsorption(Energy_Negative, "Negative Absorption", hItem);
-        AddEnergyAbsorption(Energy_Poison, "Poison Absorption", hItem);
-        AddEnergyAbsorption(Energy_Positive, "Positive Absorption", hItem);
-        AddEnergyAbsorption(Energy_Repair, "Repair Absorption", hItem);
-        AddEnergyAbsorption(Energy_Rust, "Rust Absorption", hItem);
-        AddEnergyAbsorption(Energy_Sonic, "Sonic Absorption", hItem);
+        AddEnergyAbsorption(Breakdown_EnergyAbsorptionAcid, Energy_Acid, "Acid Absorption", hItem);
+        AddEnergyAbsorption(Breakdown_EnergyAbsorptionCold, Energy_Cold, "Cold Absorption", hItem);
+        AddEnergyAbsorption(Breakdown_EnergyAbsorptionElectric, Energy_Electric, "Electric Absorption", hItem);
+        AddEnergyAbsorption(Breakdown_EnergyAbsorptionFire, Energy_Fire, "Fire Absorption", hItem);
+        AddEnergyAbsorption(Breakdown_EnergyAbsorptionForce, Energy_Force, "Force Absorption", hItem);
+        AddEnergyAbsorption(Breakdown_EnergyAbsorptionLight, Energy_Light, "Light Absorption", hItem);
+        AddEnergyAbsorption(Breakdown_EnergyAbsorptionNegative, Energy_Negative, "Negative Absorption", hItem);
+        AddEnergyAbsorption(Breakdown_EnergyAbsorptionPoison, Energy_Poison, "Poison Absorption", hItem);
+        AddEnergyAbsorption(Breakdown_EnergyAbsorptionPositive, Energy_Positive, "Positive Absorption", hItem);
+        AddEnergyAbsorption(Breakdown_EnergyAbsorptionRepair, Energy_Repair, "Repair Absorption", hItem);
+        AddEnergyAbsorption(Breakdown_EnergyAbsorptionRust, Energy_Rust, "Rust Absorption", hItem);
+        AddEnergyAbsorption(Breakdown_EnergyAbsorptionSonic, Energy_Sonic, "Sonic Absorption", hItem);
     }
 }
 
@@ -1465,6 +1464,7 @@ void CBreakdownsView::AddSpellSchool(
 }
 
 void CBreakdownsView::AddEnergyResistance(
+        BreakdownType bt,
         EnergyType type,
         const std::string & name,
         HTREEITEM hParent)
@@ -1474,7 +1474,7 @@ void CBreakdownsView::AddEnergyResistance(
             hParent,
             TVI_LAST);
     BreakdownItem * pERItem = new BreakdownItemEnergyResistance(
-            Breakdown_EnergyResistance,
+            bt,
             Effect_EnergyResistance,
             type,
             name.c_str(),
@@ -1485,6 +1485,7 @@ void CBreakdownsView::AddEnergyResistance(
 }
 
 void CBreakdownsView::AddEnergyAbsorption(
+        BreakdownType bt,
         EnergyType type,
         const std::string & name,
         HTREEITEM hParent)
@@ -1494,7 +1495,7 @@ void CBreakdownsView::AddEnergyAbsorption(
             hParent,
             TVI_LAST);
     BreakdownItem * pERItem = new BreakdownItemEnergyAbsorption(
-            Breakdown_EnergyAbsorption,
+            bt,
             Effect_EnergyAbsorbance,
             type,
             name.c_str(),
@@ -1924,7 +1925,7 @@ void CBreakdownsView::OnButtonClipboardCopy()
             }
             // now generate the total clipboard text, ensure mono-spaced
             CString clipboardText;
-            clipboardText += "[code]\n";
+            clipboardText += "[code]\r\n";
             for (size_t i = 0; i < columns[0].size(); ++i)
             {
                 CString padded;
@@ -1932,9 +1933,9 @@ void CBreakdownsView::OnButtonClipboardCopy()
                 {
                     clipboardText += columns[column][i];
                 }
-                clipboardText += "\n";
+                clipboardText += "\r\n";
             }
-            clipboardText += "[/code]\n";
+            clipboardText += "[/code]\r\n";
             // now place the text on the clipboard
             if (OpenClipboard())
             {

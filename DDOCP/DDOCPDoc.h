@@ -4,6 +4,7 @@
 #include "XmlLib\SaxContentElement.h"
 #include "XmlLib\SaxWriter.h"
 #include "Character.h"
+#include "BreakdownTypes.h"
 
 class CDDOCPDoc :
     public CDocument,
@@ -33,6 +34,7 @@ class CDDOCPDoc :
         virtual void Dump(CDumpContext& dc) const;
 #endif
         afx_msg void OnEditEnhancementTreeEditor();
+        afx_msg void OnForumExportToClipboard();
 
     protected:
         DECLARE_MESSAGE_MAP()
@@ -47,6 +49,20 @@ class CDDOCPDoc :
         void SetSearchContent(const CString& value);
 #endif // SHARED_HANDLERS
     private:
-
+        void AddCharacterHeader(std::stringstream & forumExport);
+        void AddAbilityValues(std::stringstream & forumExport, AbilityType ability);
+        void AddBreakdown(
+                std::stringstream & forumExport,
+                const std::string & header,
+                size_t width,
+                BreakdownType bt);
+        void AddSaves(std::stringstream & forumExport);
+        void AddFeatSelections(std::stringstream & forumExport);
+        void AddSkills(std::stringstream & forumExport);
+        void AddEnergyResistances(std::stringstream & forumExport);
+        void AddEnergyResistances(std::stringstream & forumExport, const std::string & name, BreakdownType bt1, BreakdownType bt2);
+        void AddEnhancements(std::stringstream & forumExport);
+        void AddEnhancementTree(std::stringstream & forumExport, const EnhancementSpendInTree & treeSpend);
+        void AddEpicDestinyTree(std::stringstream & forumExport, const EpicDestinySpendInTree & treeSpend);
         Character m_characterData;
 };

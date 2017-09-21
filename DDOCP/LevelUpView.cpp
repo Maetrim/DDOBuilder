@@ -1625,7 +1625,7 @@ LRESULT CLevelUpView::OnMouseEnter(WPARAM wParam, LPARAM lParam)
     }
     if (!done)
     {
-        for (size_t i = 0; i < MAX_LEVEL; ++ i)
+        for (size_t i = 0; i < MAX_LEVEL; ++i)
         {
             if (wParam == m_hookLevelHandles[i]
                     && m_buttonLevels[i].IsWindowVisible())

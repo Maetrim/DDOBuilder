@@ -547,7 +547,7 @@ void CSpellsControl::OnLButtonDown(UINT nFlags, CPoint point)
                 CRect comboRect(item->Rect());
                 comboRect += CPoint(0, c_spellSlotImageSize);
                 comboRect.right = comboRect.left + 250;
-                comboRect.bottom = comboRect.top + 640;   // 20 items visible in drop list
+                comboRect.bottom = comboRect.top + 960;   // 20 items visible in drop list
                 m_comboSpellSelect.MoveWindow(comboRect);
                 m_comboSpellSelect.SetCurSel(sel);
                 m_comboSpellSelect.SetDroppedWidth(350); // wider to show extra text

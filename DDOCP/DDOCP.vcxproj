@@ -108,7 +108,9 @@
     <None Include="..\Output\Augments.xml">
       <SubType>Designer</SubType>
     </None>
-    <None Include="..\Output\EffectDescriptions.xml" />
+    <None Include="..\Output\EffectDescriptions.xml">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="..\Output\Enhancements.xml">
       <SubType>Designer</SubType>
     </None>
@@ -333,6 +335,7 @@
     <None Include="..\Output\ItemImages\Cloak_PrismaticCloakRed.png" />
     <None Include="..\Output\ItemImages\Cloak_PrismaticCloakViolet.png" />
     <None Include="..\Output\ItemImages\Cloak_SagesMantle.png" />
+    <None Include="..\Output\ItemImages\Cloak_SkirmishersCloak.png" />
     <None Include="..\Output\ItemImages\Cloak_Symphony.png" />
     <None Include="..\Output\ItemImages\Docent.png" />
     <None Include="..\Output\ItemImages\Gloves_BackstabbersGloves.png" />
@@ -382,6 +385,7 @@
     <None Include="..\Output\ItemImages\Goggles_LensesOfTheWoodsman.png" />
     <None Include="..\Output\ItemImages\Goggles_SagesSpectacles.png" />
     <None Include="..\Output\ItemImages\Goggles_Shadowsight.png" />
+    <None Include="..\Output\ItemImages\Goggles_SkirmishersLenses.png" />
     <None Include="..\Output\ItemImages\Goggles_VisionsOfPrecision.png" />
     <None Include="..\Output\ItemImages\Helmet_DragonMasque.png" />
     <None Include="..\Output\ItemImages\Helmet_Eloquence.png" />
@@ -488,6 +492,7 @@
     <None Include="..\Output\ItemImages\Shield_Small1.png" />
     <None Include="..\Output\ItemImages\Shield_Small2.png" />
     <None Include="..\Output\ItemImages\Trinket_BrokenMusicBox.png" />
+    <None Include="..\Output\ItemImages\Trinket_EpicBlastingChime.png" />
     <None Include="..\Output\ItemImages\Trinket_EpicBloodstone.png" />
     <None Include="..\Output\ItemImages\Trinket_EpicBrawnsSpirits.png" />
     <None Include="..\Output\ItemImages\Trinket_EpicDragonsEye.png" />
@@ -633,13 +638,16 @@
     <None Include="..\Output\Items\Cloak_MithralCloakOfTheBear.item" />
     <None Include="..\Output\Items\Cloak_MithralCloakOfTheDragon.item" />
     <None Include="..\Output\Items\Cloak_MithralCloakOfTheWolf.item" />
-    <None Include="..\Output\Items\Cloak_MysteriousCloak.item" />
+    <None Include="..\Output\Items\Cloak_MysteriousCloak.item">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="..\Output\Items\Cloak_PrismaticCloakBlue.item" />
     <None Include="..\Output\Items\Cloak_PrismaticCloakGreen.item" />
     <None Include="..\Output\Items\Cloak_PrismaticCloakGrey.item" />
     <None Include="..\Output\Items\Cloak_PrismaticCloakRed.item" />
     <None Include="..\Output\Items\Cloak_PrismaticCloakViolet.item" />
     <None Include="..\Output\Items\Cloak_SagesMantle.item" />
+    <None Include="..\Output\Items\Cloak_SkirmishersCloak.item" />
     <None Include="..\Output\Items\Cloak_StormreaversTablecloth.item" />
     <None Include="..\Output\Items\Cloak_Symphony.item" />
     <None Include="..\Output\Items\Gloves_BackstabbersGloves.item" />
@@ -689,6 +697,7 @@
     <None Include="..\Output\Items\Goggles_LensesOfTheWoodsman.item" />
     <None Include="..\Output\Items\Goggles_SagesSpectacles.item" />
     <None Include="..\Output\Items\Goggles_Shadowsight.item" />
+    <None Include="..\Output\Items\Goggles_SkirmishersLenses.item" />
     <None Include="..\Output\Items\Goggles_VisionsOfPrecision.item" />
     <None Include="..\Output\Items\Helmet_CannithCrafted.item" />
     <None Include="..\Output\Items\Helmet_DragonMasque.item" />
@@ -811,6 +820,7 @@
     <None Include="..\Output\Items\Trinket_BoltInsignia.item" />
     <None Include="..\Output\Items\Trinket_BrokenMusicBox.item" />
     <None Include="..\Output\Items\Trinket_CannithCrafted.item" />
+    <None Include="..\Output\Items\Trinket_EpicBlastingChime.item" />
     <None Include="..\Output\Items\Trinket_EpicBloodstone.item" />
     <None Include="..\Output\Items\Trinket_EpicBrawnsSpirits.item" />
     <None Include="..\Output\Items\Trinket_EpicDragonsEye.item" />
@@ -845,6 +855,7 @@
     <None Include="..\Output\Spells.xml" />
     <None Include="Change History.txt" />
     <None Include="DDOCP.reg" />
+    <None Include="ForumLayout.txt" />
     <None Include="ReadMe.txt" />
     <None Include="res\CopyToClipboard.bmp" />
     <None Include="res\DDOCP.ico" />
@@ -904,8 +915,6 @@
     <ClInclude Include="DestinyTreeDialog.h" />
     <ClInclude Include="Dice.h" />
     <ClInclude Include="Effect.h" />
-    <ClInclude Include="EffectDescription.h" />
-    <ClInclude Include="EffectDescriptionsFile.h" />
     <ClInclude Include="EnergyTypes.h" />
     <ClInclude Include="EnhancementEditorDialog.h" />
     <ClInclude Include="EnhancementSelection.h" />
@@ -940,7 +949,6 @@
     <ClInclude Include="InventorySlotTypes.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="ItemAugment.h" />
-    <ClInclude Include="ItemEditorDialog.h" />
     <ClInclude Include="ItemSelectDialog.h" />
     <ClInclude Include="ItemsFile.h" />
     <ClInclude Include="LevelButton.h" />
@@ -1048,8 +1056,6 @@
       <PreprocessToFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</PreprocessToFile>
     </ClCompile>
     <ClCompile Include="Effect.cpp" />
-    <ClCompile Include="EffectDescription.cpp" />
-    <ClCompile Include="EffectDescriptionsFile.cpp" />
     <ClCompile Include="EnhancementEditorDialog.cpp" />
     <ClCompile Include="EnhancementSelection.cpp" />
     <ClCompile Include="EnhancementSelectionButton.cpp" />
@@ -1083,7 +1089,6 @@
     <ClCompile Include="InventoryDialog.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="ItemAugment.cpp" />
-    <ClCompile Include="ItemEditorDialog.cpp" />
     <ClCompile Include="ItemSelectDialog.cpp" />
     <ClCompile Include="ItemsFile.cpp" />
     <ClCompile Include="LevelButton.cpp" />

@@ -5,7 +5,6 @@
 #include "XmlLib\DLMacros.h"
 #include "Augment.h"
 #include "Effect.h"
-#include "EffectDescription.h"
 #include "EquipmentSlot.h"
 #include "InventorySlotTypes.h"
 #include "ItemAugment.h"
@@ -33,7 +32,7 @@ class Item :
                 DL_STRING(_, Icon) \
                 DL_STRING(_, Description) \
                 DL_SIMPLE(_, size_t, MinLevel, 0) \
-                DL_OBJECT_LIST(_, EffectDescription, EffectDescriptions) \
+                DL_STRING_LIST(_, EffectDescription) \
                 DL_OPTIONAL_SIMPLE(_, size_t, Enchantment, 0) \
                 DL_OPTIONAL_SIMPLE(_, size_t, AC, 0) \
                 DL_OPTIONAL_SIMPLE(_, size_t, AC_CompositePlating, 0) \

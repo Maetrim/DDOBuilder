@@ -49,7 +49,7 @@ void BreakdownItemWeaponDamageBonus::CreateOtherEffects()
         AbilityType ability = LargestStatBonus();
         if (ability != Ability_Unknown)
         {
-            BreakdownItem * pBI = m_pBreakdownView->FindBreakdown(StatToBreakdown(ability));
+            BreakdownItem * pBI = FindBreakdown(StatToBreakdown(ability));
             ASSERT(pBI != NULL);
             int bonus = BaseStatToBonus(pBI->Total());
             if (bonus != 0) // only add to list if non zero

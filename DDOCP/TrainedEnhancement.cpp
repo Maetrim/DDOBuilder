@@ -68,13 +68,27 @@ void TrainedEnhancement::RevokeRank()
     m_BuyIndex.pop_back();
 }
 
-bool TrainedEnhancement::IsYourBuyIndex(size_t buyIndex) const
+bool TrainedEnhancement::IsLastBuyIndex(size_t buyIndex) const
 {
     // return true if buyIndex is the last element in our m_BuyIndex vector
     bool isUs = false;
     if (m_BuyIndex.size() > 0)
     {
         if (m_BuyIndex.at(m_BuyIndex.size() - 1) == buyIndex)
+        {
+            isUs = true;
+        }
+    }
+    return isUs;
+}
+
+bool TrainedEnhancement::HasBuyIndex(size_t buyIndex) const
+{
+    // return true if the given buyIndex is present in m_BuyIndex
+    BOOL isUs = false;
+    for (size_t i = 0; i < m_BuyIndex.size(); ++i)
+    {
+        if (m_BuyIndex[i] == buyIndex)
         {
             isUs = true;
         }

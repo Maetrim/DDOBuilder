@@ -64,7 +64,7 @@ void BreakdownItemTactical::CreateOtherEffects()
 
         // Base ability bonus to tactical DC
         AbilityType ability = LargestStatBonus();
-        BreakdownItem * pBI = m_pBreakdownView->FindBreakdown(StatToBreakdown(ability));
+        BreakdownItem * pBI = FindBreakdown(StatToBreakdown(ability));
         ASSERT(pBI != NULL);
         int bonus = BaseStatToBonus(pBI->Total());
         if (bonus != 0) // only add to list if non zero

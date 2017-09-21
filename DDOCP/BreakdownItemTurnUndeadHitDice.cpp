@@ -44,9 +44,9 @@ void BreakdownItemTurnUndeadHitDice::CreateOtherEffects()
         // your base level is the higher off:
         // effective cleric level or effective paladin level - 3
         // get the caster level breakdowns for cleric and paladin
-        BreakdownItem * pCB = m_pBreakdownView->FindBreakdown(Breakdown_CasterLevel_Cleric);
+        BreakdownItem * pCB = FindBreakdown(Breakdown_CasterLevel_Cleric);
         pCB->AttachObserver(this);
-        BreakdownItem * pPB = m_pBreakdownView->FindBreakdown(Breakdown_CasterLevel_Paladin);
+        BreakdownItem * pPB = FindBreakdown(Breakdown_CasterLevel_Paladin);
         pPB->AttachObserver(this);
         double clericLevels = pCB->Total();
         double paladinLevels = pPB->Total() - 3;
@@ -72,7 +72,7 @@ void BreakdownItemTurnUndeadHitDice::CreateOtherEffects()
         }
 
         // also includes your charisma modifier
-        BreakdownItem * pBI = m_pBreakdownView->FindBreakdown(StatToBreakdown(Ability_Charisma));
+        BreakdownItem * pBI = FindBreakdown(StatToBreakdown(Ability_Charisma));
         ASSERT(pBI != NULL);
         pBI->AttachObserver(this);  // need to know about changes
         int bonus = BaseStatToBonus(pBI->Total());

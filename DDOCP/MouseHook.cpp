@@ -6,7 +6,7 @@
 MouseHook * MouseHook::theHook = NULL;
 
 MouseHook::MouseHook() :
-    m_nextHandle(0)
+    m_nextHandle(1)
 {
     // we install the hook in the constructor
     m_hookHandle = SetWindowsHookEx(

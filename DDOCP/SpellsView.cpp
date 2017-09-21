@@ -263,6 +263,15 @@ void CSpellsView::DetermineSpellViews()
                     page->SetTrainableSpells(spellSlots);
                 }
             }
+            else
+            {
+                // ensure the page is updated with the correct number of spells
+                CSpellsPage * page = dynamic_cast<CSpellsPage *>(m_pagePointers[ci]);
+                if (page != NULL)
+                {
+                    page->SetTrainableSpells(spellSlots);
+                }
+            }
         }
         else
         {

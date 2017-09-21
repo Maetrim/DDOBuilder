@@ -53,7 +53,7 @@ class CEnhancementsView :
         void UpdateTrees(const std::string & enhancementName);
         enum MaxSupportTrees
         {
-            MST_Number = 6
+            MST_Number = MAX_ENHANCEMENT_TREES
         };
         CDocument * m_pDocument;
         Character * m_pCharacter;

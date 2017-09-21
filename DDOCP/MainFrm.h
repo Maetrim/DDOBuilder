@@ -1,9 +1,11 @@
 // MainFrm.h
 //
 #pragma once
+#include "BreakdownTypes.h"
 #include "MouseHook.h"
 #include <vector>
 
+class BreakdownItem;
 class CCustomDockablePane;
 class Character;
 
@@ -27,6 +29,7 @@ class CMainFrame :
 
         void SetStatusBarPromptText(const CString & text);
         void SetActiveDocumentAndCharacter(CDocument * pDoc, Character * pCharacter);
+        BreakdownItem * FindBreakdown(BreakdownType type);
 
         virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
         virtual BOOL LoadFrame(UINT nIDResource, DWORD dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE, CWnd* pParentWnd = NULL, CCreateContext* pContext = NULL);
@@ -42,7 +45,6 @@ class CMainFrame :
         afx_msg void OnApplicationLook(UINT id);
         afx_msg void OnUpdateApplicationLook(CCmdUI* pCmdUI);
         afx_msg void OnClose();
-        afx_msg void OnItemEditor();
         afx_msg void OnUpdateDockPane(CCmdUI* pCmdUI);
         afx_msg void OnDockPane();
         DECLARE_MESSAGE_MAP()

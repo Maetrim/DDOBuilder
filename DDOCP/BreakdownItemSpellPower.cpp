@@ -78,7 +78,7 @@ void BreakdownItemSpellPower::CreateOtherEffects()
     if (m_pCharacter != NULL)
     {
         BreakdownType bt = SpellPowerBreakdown();
-        BreakdownItemSkill * pBI = dynamic_cast<BreakdownItemSkill*>(m_pBreakdownView->FindBreakdown(bt));
+        BreakdownItemSkill * pBI = dynamic_cast<BreakdownItemSkill*>(FindBreakdown(bt));
         CString text;
         text.Format("%s skill bonus",
                 EnumEntryText(pBI->Skill(), skillTypeMap));

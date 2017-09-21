@@ -318,12 +318,6 @@ const std::list<GuildBuff> & GuildBuffs()
     return pApp->GuildBuffs();
 }
 
-const std::list<EffectDescription> & EffectDescriptions()
-{
-    CDDOCPApp * pApp = dynamic_cast<CDDOCPApp*>(AfxGetApp());
-    return pApp->EffectDescriptions();
-}
-
 MouseHook * GetMouseHook()
 {
     CWnd * pWnd = AfxGetMainWnd();
@@ -586,40 +580,6 @@ const Augment & FindAugmentByName(const std::string & name)
         ++it;
     }
     return badAugment;
-}
-
-CString GetEffectDescription(const std::string & effectName)
-{
-    CString description;
-    const std::list<EffectDescription> & eds = EffectDescriptions();
-    bool found = false;
-    std::list<EffectDescription>::const_iterator it = eds.begin();
-    while (!found && it != eds.end())
-    {
-        if ((*it).EffectName() == effectName)
-        {
-             // this is the effect description were looking for
-            ASSERT((*it).HasDescription());
-            description = (*it).Description().c_str();
-            found = true;
-        }
-        ++it;
-    }
-    if (!found)
-    {
-        // not found, either named incorrectly or entry does not yet exist
-        // in the file
-        std::stringstream ss;
-        ss << "Failed to find EffectDescription named " << effectName <<"\n";
-        ::OutputDebugString(ss.str().c_str());
-        // put in a default description that will display in the UI
-        description = "Description missing: The description for the effect type:\n"
-                "Type: %bonus%\n"
-                "Value1: %value1%\n"
-                "Value2: %value2%\n"
-                "is missing from the EffectDescriptions.xml file.";
-    }
-    return description;
 }
 
 AbilityType StatFromSkill(SkillType skill)
@@ -2095,7 +2055,7 @@ CString TrainableFeatTypeLabel(TrainableFeatTypes type)
         text = "Epic Feat";
         break;
     case TFT_FighterBonus:
-        text = "Fighter Bonus Feat";
+        text = "Fighter Bonus";
         break;
     case TFT_FollowerOf:
         text = "Follower of Faith";
@@ -2143,3 +2103,126 @@ CString TrainableFeatTypeLabel(TrainableFeatTypes type)
     }
     return text;
 }
+
+int BaseStatToBonus(double ability)
+{
+    ability -= 10;      // 10 = no bonus
+    int bonus;
+    if (ability < 10)
+    {
+        bonus = (int)ceil((ability - 1) / 2);
+    }
+    else
+    {
+        bonus = (int)floor(ability / 2);
+    }
+    return bonus;
+}
+
+BreakdownType StatToBreakdown(AbilityType ability)
+{
+    BreakdownType bt = Breakdown_Unknown;
+    switch (ability)
+    {
+    case Ability_Strength:
+        bt = Breakdown_Strength;
+        break;
+    case Ability_Dexterity:
+        bt = Breakdown_Dexterity;
+        break;
+    case Ability_Constitution:
+        bt = Breakdown_Constitution;
+        break;
+    case Ability_Intelligence:
+        bt = Breakdown_Intelligence;
+        break;
+    case Ability_Wisdom:
+        bt = Breakdown_Wisdom;
+        break;
+    case Ability_Charisma:
+        bt = Breakdown_Charisma;
+        break;
+    }
+    return bt;
+}
+
+BreakdownType SkillToBreakdown(SkillType skill)
+{
+    BreakdownType bt = Breakdown_Unknown;
+    switch (skill)
+    {
+    case Skill_Balance:
+        bt = Breakdown_SkillBalance;
+        break;
+    case Skill_Bluff:
+        bt = Breakdown_SkillBluff;
+        break;
+    case Skill_Concentration:
+        bt = Breakdown_SkillConcentration;
+        break;
+    case Skill_Diplomacy:
+        bt = Breakdown_SkillDiplomacy;
+        break;
+    case Skill_DisableDevice:
+        bt = Breakdown_SkillDisableDevice;
+        break;
+    case Skill_Haggle:
+        bt = Breakdown_SkillHaggle;
+        break;
+    case Skill_Heal:
+        bt = Breakdown_SkillHeal;
+        break;
+    case Skill_Hide:
+        bt = Breakdown_SkillHide;
+        break;
+    case Skill_Intimidate:
+        bt = Breakdown_SkillIntimidate;
+        break;
+    case Skill_Jump:
+        bt = Breakdown_SkillJump;
+        break;
+    case Skill_Listen:
+        bt = Breakdown_SkillListen;
+        break;
+    case Skill_MoveSilently:
+        bt = Breakdown_SkillMoveSilently;
+        break;
+    case Skill_OpenLock:
+        bt = Breakdown_SkillOpenLock;
+        break;
+    case Skill_Perform:
+        bt = Breakdown_SkillPerform;
+        break;
+    case Skill_Repair:
+        bt = Breakdown_SkillRepair;
+        break;
+    case Skill_Search:
+        bt = Breakdown_SkillSearch;
+        break;
+    case Skill_SpellCraft:
+        bt = Breakdown_SkillSpellCraft;
+        break;
+    case Skill_Spot:
+        bt = Breakdown_SkillSpot;
+        break;
+    case Skill_Swim:
+        bt = Breakdown_SkillSwim;
+        break;
+    case Skill_Tumble:
+        bt = Breakdown_SkillTumble;
+        break;
+    case Skill_UMD:
+        bt = Breakdown_SkillUMD;
+        break;
+    }
+    return bt;
+}
+
+BreakdownItem * FindBreakdown(BreakdownType type)
+{
+    // we have to get the relevant view from the main frame class
+    CWnd * pWnd = AfxGetMainWnd();
+    CMainFrame * pMainWnd = dynamic_cast<CMainFrame*>(pWnd);
+    return pMainWnd->FindBreakdown(type);
+}
+
