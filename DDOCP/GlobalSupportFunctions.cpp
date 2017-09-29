@@ -3,6 +3,7 @@
 #include "stdafx.h"
 #include "GlobalSupportFunctions.h"
 
+#include "BreakdownItem.h"
 #include "Character.h"
 #include "DDOCP.h"
 #include "MainFrm.h"
@@ -494,6 +495,8 @@ std::vector<TrainableFeatTypes> ClassSpecificFeatTypes(ClassType type)
             break;
         case Class_Cleric:
             types.push_back(TFT_FollowerOf);    // level 1
+            types.push_back(TFT_Domain);        // level 2
+            types.push_back(TFT_DomainFeat);    // level 5/9/14
             types.push_back(TFT_Deity);         // level 6
             break;
         case Class_Druid:
@@ -501,9 +504,11 @@ std::vector<TrainableFeatTypes> ClassSpecificFeatTypes(ClassType type)
             break;
         case Class_FavoredSoul:
             types.push_back(TFT_FollowerOf);    // level 1
+            types.push_back(TFT_FavoredSoulBattle); // level 2
             types.push_back(TFT_ChildOf);       // level 3
             types.push_back(TFT_EnergyResistance); // level 5/10/15
             types.push_back(TFT_Deity);         // level 6
+            types.push_back(TFT_FavoredSoulHeart); // level 7
             types.push_back(TFT_BelovedOf);     // level 12
             types.push_back(TFT_DamageReduction); // level 20
             break;
@@ -1158,6 +1163,14 @@ bool IsInGroup(TrainableFeatTypes type, const FeatGroup & group)
         inGroup = group.HasIsDeity();
         break;
 
+    case TFT_Domain:
+        inGroup = group.HasIsDomain();
+        break;
+
+    case TFT_DomainFeat:
+        inGroup = group.HasIsDomainFeat();
+        break;
+
     case TFT_DragonbornRacial:
         inGroup = group.HasIsDragonbornRacial();
         break;
@@ -1177,6 +1190,14 @@ bool IsInGroup(TrainableFeatTypes type, const FeatGroup & group)
     case TFT_EpicFeat:
         inGroup = group.HasIsStandardFeat() // regular feats can be trained in epic
                 || group.HasIsEpicFeat();
+        break;
+
+    case TFT_FavoredSoulBattle:
+        inGroup = group.HasIsBattle();
+        break;
+
+    case TFT_FavoredSoulHeart:
+        inGroup = group.HasIsHeart();
         break;
 
     case TFT_FollowerOf:
@@ -1940,10 +1961,24 @@ AbilityType ClassCastingStat(ClassType ct)
         break;
     case Class_Cleric:
     case Class_Druid:
-    case Class_FavoredSoul:
     case Class_Paladin:
     case Class_Ranger:
         at = Ability_Wisdom;
+        break;
+    case Class_FavoredSoul:
+        // for favored souls this is the higher of either Charisma or Wisdom
+        {
+            BreakdownItem * bic = FindBreakdown(Breakdown_Charisma);
+            BreakdownItem * biw = FindBreakdown(Breakdown_Wisdom);
+            if (bic->Total() > biw->Total())
+            {
+                at = Ability_Charisma;
+            }
+            else
+            {
+                at = Ability_Wisdom;
+            }
+        }
         break;
     }
     ASSERT(at != Ability_Unknown);
@@ -2039,6 +2074,12 @@ CString TrainableFeatTypeLabel(TrainableFeatTypes type)
     case TFT_Deity:
         text = "Deity";
         break;
+    case TFT_Domain:
+        text = "Domain";
+        break;
+    case TFT_DomainFeat:
+        text = "Domain Feat";
+        break;
     case TFT_DragonbornRacial:
         text = "Dragonborn Racial";
         break;
@@ -2046,13 +2087,19 @@ CString TrainableFeatTypeLabel(TrainableFeatTypes type)
         text = "Druid Wild Shape";
         break;
     case TFT_EnergyResistance:
-        text = "Energy Resistance";
+        text = "Energy Absorbance"; // changed in U36 patch 2
         break;
     case TFT_EpicDestinyFeat:
         text = "Epic Destiny Feat";
         break;
     case TFT_EpicFeat:
         text = "Epic Feat";
+        break;
+    case TFT_FavoredSoulBattle:
+        text = "Battle Feat";
+        break;
+    case TFT_FavoredSoulHeart:
+        text = "Heart Feat";
         break;
     case TFT_FighterBonus:
         text = "Fighter Bonus";

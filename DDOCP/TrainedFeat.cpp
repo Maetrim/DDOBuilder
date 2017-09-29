@@ -61,6 +61,7 @@ bool TrainedFeat::operator<(const TrainedFeat & other) const
 
 bool TrainedFeat::operator==(const TrainedFeat & other) const
 {
+    // ignore revoked feat for comparison
     return m_FeatName == other.m_FeatName
             && m_Type == other.m_Type
             && m_LevelTrainedAt == other.m_LevelTrainedAt;

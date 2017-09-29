@@ -43,7 +43,7 @@ void BreakdownItemSpellPoints::CreateOtherEffects()
     if (m_pCharacter != NULL)
     {
         std::vector<size_t> classLevels = m_pCharacter->ClassLevels(MAX_LEVEL);
-        for (size_t ci = 0; ci < classLevels.size(); ++ci)
+        for (size_t ci = Class_Unknown; ci < Class_Count; ++ci)
         {
             // class level spell points
             if (classLevels[ci] > 0) // must have some levels in the class

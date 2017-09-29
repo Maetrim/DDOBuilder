@@ -64,5 +64,6 @@ class CDDOCPDoc :
         void AddEnhancements(std::stringstream & forumExport);
         void AddEnhancementTree(std::stringstream & forumExport, const EnhancementSpendInTree & treeSpend);
         void AddEpicDestinyTree(std::stringstream & forumExport, const EpicDestinySpendInTree & treeSpend);
+        void AddTwistsOfFate(std::stringstream & forumExport);
         Character m_characterData;
 };

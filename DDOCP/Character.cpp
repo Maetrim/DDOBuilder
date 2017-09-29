@@ -660,7 +660,7 @@ void Character::SetRace(RaceType race)
     Set_Race(race);
     UpdateFeats();
     NotifyRaceChanged(race);
-    DetermineBuildPoints();     // switching too/from drop can affect the number of build points
+    DetermineBuildPoints();     // switching too/from Drow can affect the number of build points
     m_pDocument->SetModifiedFlag(TRUE);
     // revoking a racial feat can invalidate a feat selection in other levels (e.g. loss of Dodge)
     VerifyTrainedFeats();
@@ -1584,7 +1584,7 @@ std::vector<size_t> Character::ClassLevels(
 {
     // return a vector of the number of class levels trained in each class
     // at the specified level
-    std::vector<size_t> classLevels(Class_Count, 0);    // 0 for each class at start
+    std::vector<size_t> classLevels(Class_Count + 2, 0);    // 0 for each class at start
     std::list<LevelTraining>::const_iterator it = m_Levels.begin();
     size_t currentLevel = 0;
     while (it != m_Levels.end() && currentLevel <= level)
@@ -1595,6 +1595,7 @@ std::vector<size_t> Character::ClassLevels(
         ++it;
         ++currentLevel;
     }
+    classLevels[Class_All] = level;
     return classLevels;
 }
 
@@ -1661,10 +1662,22 @@ std::vector<TrainableFeatTypes> Character::TrainableFeatTypeAtLevel(
 
     case Class_Cleric:
         // clerics get a Follower of (faith) selection at level 1
+        // domain selection at level 2
+        // domain feats at 5, 9 and 14
         // and a deity feat at level 6
         if (classLevels[Class_Cleric] == 1)
         {
             trainable.push_back(TFT_FollowerOf);
+        }
+        if (classLevels[Class_Cleric] == 2)
+        {
+            trainable.push_back(TFT_Domain);
+        }
+        if (classLevels[Class_Cleric] == 5
+                || classLevels[Class_Cleric] == 9
+                || classLevels[Class_Cleric] == 14)
+        {
+            trainable.push_back(TFT_DomainFeat);
         }
         if (classLevels[Class_Cleric] == 6)
         {
@@ -1687,13 +1700,19 @@ std::vector<TrainableFeatTypes> Character::TrainableFeatTypeAtLevel(
 
     case Class_FavoredSoul:
         // favored souls can select a follower of faith at level 1
+        // battle feat at level 2
         // a child of feat at level 3
         // a deity feat at level 6
+        // heart feat at level 7
         // a beloved of feat at level 12
         // and a damage reduction feat at level 20
         if (classLevels[Class_FavoredSoul] == 1)
         {
             trainable.push_back(TFT_FollowerOf);
+        }
+        if (classLevels[Class_FavoredSoul] == 2)
+        {
+            trainable.push_back(TFT_FavoredSoulBattle);
         }
         if (classLevels[Class_FavoredSoul] == 3)
         {
@@ -1702,6 +1721,10 @@ std::vector<TrainableFeatTypes> Character::TrainableFeatTypeAtLevel(
         if (classLevels[Class_FavoredSoul] == 6)
         {
             trainable.push_back(TFT_Deity);
+        }
+        if (classLevels[Class_FavoredSoul] == 7)
+        {
+            trainable.push_back(TFT_FavoredSoulHeart);
         }
         if (classLevels[Class_FavoredSoul] == 12)
         {
@@ -2420,7 +2443,13 @@ std::list<Effect> Character::GetEnhancementEffects(
     return effects;
 }
 
-void Character::DetermineBuildPoints()
+void Character::SetBuildPoints(size_t buildPoints)
+{
+    m_BuildPoints.Set_AvailableSpend(buildPoints);
+    NotifyAvailableBuildPointsChanged();
+}
+
+size_t Character::DetermineBuildPoints()
 {
     // determine how many build points the current past life count
     // allows this character to have
@@ -2456,10 +2485,10 @@ void Character::DetermineBuildPoints()
     }
     else
     {
-        // all other races go 32->34->36
+        // all other races go 28/32->34->36
         switch (numPastLifeFeats)
         {
-            case 0: buildPoints = 32; break;
+            case 0: buildPoints = m_BuildPoints.AvailableSpend(); break; // 28 or 32 depending on user selection
             case 1: buildPoints = 34; break;
             // all other past life counts is the maximum build points
             default: buildPoints = 36; break;
@@ -2471,6 +2500,7 @@ void Character::DetermineBuildPoints()
         m_BuildPoints.Set_AvailableSpend(buildPoints);
         NotifyAvailableBuildPointsChanged();
     }
+    return buildPoints;
 }
 
 void Character::CountBonusAP()
@@ -2763,7 +2793,9 @@ bool Character::IsFeatTrainable(
         else
         {
             // no group means its only in TFT_Standard
-            canTrain = (type == TFT_Standard);
+            canTrain = (type == TFT_Standard)
+                    || (type == TFT_HumanBonus) // equivalent to a standard feat
+                    || (type == TFT_PDKBonus);  // equivalent to a standard feat
         }
     }
     if (canTrain)

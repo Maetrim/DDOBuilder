@@ -85,7 +85,7 @@ bool TrainedEnhancement::IsLastBuyIndex(size_t buyIndex) const
 bool TrainedEnhancement::HasBuyIndex(size_t buyIndex) const
 {
     // return true if the given buyIndex is present in m_BuyIndex
-    BOOL isUs = false;
+    bool isUs = false;
     for (size_t i = 0; i < m_BuyIndex.size(); ++i)
     {
         if (m_BuyIndex[i] == buyIndex)

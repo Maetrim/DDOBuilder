@@ -65,6 +65,8 @@ BEGIN_MESSAGE_MAP(CDDOCPView, CFormView)
     ON_WM_CTLCOLOR()
     ON_BN_CLICKED(IDC_CHECK_GUILD_BUFFS, OnButtonGuildBuffs)
     ON_EN_KILLFOCUS(IDC_EDIT_GUILD_LEVEL, OnKillFocusGuildLevel)
+    ON_BN_CLICKED(IDC_RADIO_28PT, &CDDOCPView::OnBnClickedRadio28pt)
+    ON_BN_CLICKED(IDC_RADIO_32PT, &CDDOCPView::OnBnClickedRadio32pt)
 END_MESSAGE_MAP()
 #pragma warning(pop)
 
@@ -84,6 +86,10 @@ void CDDOCPView::DoDataExchange(CDataExchange* pDX)
 {
     CFormView::DoDataExchange(pDX);
     DDX_Control(pDX, IDC_STATIC_BUILD, m_staticBuildDescription);
+    DDX_Control(pDX, IDC_RADIO_28PT, m_button28Pt);
+    DDX_Control(pDX, IDC_RADIO_32PT, m_button32Pt);
+    DDX_Control(pDX, IDC_RADIO_34PT, m_button34Pt);
+    DDX_Control(pDX, IDC_RADIO_36PT, m_button36Pt);
     DDX_Control(pDX, IDC_NAME, m_editName);
     DDX_Control(pDX, IDC_COMBO_RACE, m_comboRace);
     DDX_Control(pDX, IDC_COMBO_ALIGNMENT, m_comboAlignment);
@@ -136,6 +142,8 @@ void CDDOCPView::OnInitialUpdate()
     m_pCharacter->AttachObserver(this);
 
     PopulateComboboxes();
+    UpdateRadioPoints();
+
     RestoreControls();      // puts controls to values of loaded data
     EnableButtons();
     UpdateBuildDescription();
@@ -637,6 +645,7 @@ void CDDOCPView::UpdateBuildDescription()
 void CDDOCPView::UpdateAvailableBuildPointsChanged(Character * pCharacter)
 {
     // show the now available build points
+    UpdateRadioPoints();
     UpdateAvailableSpend();
 }
 
@@ -649,6 +658,11 @@ void CDDOCPView::UpdateClassChanged(
     // level up view changed a class selection, keep our overall build description
     // up to date.
     UpdateBuildDescription();
+}
+
+void CDDOCPView::UpdateRaceChanged(Character * charData, RaceType race)
+{
+    UpdateRadioPoints();
 }
 
 void CDDOCPView::OnSize(UINT nType, int cx, int cy)
@@ -669,4 +683,76 @@ void CDDOCPView::OnKillFocusGuildLevel()
     m_editGuildLevel.GetWindowText(text);
     size_t level = atoi(text);      // its ES_NUMBER so guaranteed to work
     m_pCharacter->SetGuildLevel(level);
+}
+
+void CDDOCPView::UpdateRadioPoints()
+{
+    // although these are a group of 4 radio controls for selecting the number
+    // of builds points the user has to spend there are a couple of rules that
+    // apply to them as follows:
+    // For any race other than Drow the builds point labels are: 28, 32, 34 and 36
+    // for Drow they are: 28, 28, 30 and 32
+
+    // if the character has no past lives buttons 28 and 32 are available, 34/36 disabled
+    // if the character has 1 past life all buttons are disabled but the relevant number
+    // of build points available is checked.
+    size_t buildPoints = m_pCharacter->DetermineBuildPoints();
+    if (m_pCharacter->Race() == Race_Drow)
+    {
+        // for a Drow these buttons are always disabled
+        // as its either 28, 30 (1 past life) or 32 (2+ past lives)
+        m_button28Pt.SetWindowText("28");
+        m_button32Pt.SetWindowText("28");
+        m_button34Pt.SetWindowText("30");
+        m_button36Pt.SetWindowText("32");
+
+        m_button28Pt.SetCheck(buildPoints == 28 ? BST_CHECKED : BST_UNCHECKED);
+        m_button32Pt.SetCheck(BST_UNCHECKED);
+        m_button34Pt.SetCheck(buildPoints == 30 ? BST_CHECKED : BST_UNCHECKED);
+        m_button36Pt.SetCheck(buildPoints == 32 ? BST_CHECKED : BST_UNCHECKED);
+
+        m_button28Pt.EnableWindow(FALSE);
+        m_button32Pt.EnableWindow(FALSE);
+        m_button34Pt.EnableWindow(FALSE);
+        m_button36Pt.EnableWindow(FALSE);
+    }
+    else
+    {
+        m_button28Pt.SetWindowText("28");
+        m_button32Pt.SetWindowText("32");
+        m_button34Pt.SetWindowText("34");
+        m_button36Pt.SetWindowText("36");
+
+        m_button28Pt.SetCheck(buildPoints == 28 ? BST_CHECKED : BST_UNCHECKED);
+        m_button32Pt.SetCheck(buildPoints == 32 ? BST_CHECKED : BST_UNCHECKED);
+        m_button34Pt.SetCheck(buildPoints == 34 ? BST_CHECKED : BST_UNCHECKED);
+        m_button36Pt.SetCheck(buildPoints == 36 ? BST_CHECKED : BST_UNCHECKED);
+
+        if (buildPoints < 34)
+        {
+            // user can select between 28 or 32 points
+            // if they want 34/36 they need to train past lives
+            m_button28Pt.EnableWindow(TRUE);
+            m_button32Pt.EnableWindow(TRUE);
+        }
+        else
+        {
+            m_button28Pt.EnableWindow(FALSE);
+            m_button32Pt.EnableWindow(FALSE);
+        }
+        m_button34Pt.EnableWindow(FALSE);   // never selectable, controlled by past lives
+        m_button36Pt.EnableWindow(FALSE);   // never selectable, controlled by past lives
+    }
+}
+
+void CDDOCPView::OnBnClickedRadio28pt()
+{
+    // set the number of build points to 28
+    m_pCharacter->SetBuildPoints(28);
+}
+
+void CDDOCPView::OnBnClickedRadio32pt()
+{
+    // set the number of build points to 32
+    m_pCharacter->SetBuildPoints(32);
 }

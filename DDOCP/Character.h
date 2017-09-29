@@ -84,6 +84,8 @@ class Character :
         size_t BaseAbilityValue(AbilityType ability) const;
         void SpendOnAbility(AbilityType ability);
         void RevokeSpendOnAbility(AbilityType ability);
+        size_t DetermineBuildPoints();
+        void SetBuildPoints(size_t buildPoints);
 
         // ability tomes
         void SetAbilityTome(AbilityType ability, size_t value);
@@ -346,7 +348,6 @@ class Character :
         void RevokeAllEffects(
                 const std::string & treename,
                 const std::list<TrainedEnhancement> & enhancements);
-        void DetermineBuildPoints();
         void DetermineEpicCompletionist();
         void CountBonusAP();
         void DetermineFatePoints();

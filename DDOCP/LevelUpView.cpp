@@ -17,13 +17,15 @@ namespace
 
     enum SkillListColumns
     {
-        SLC_name,
-        SLC_Ability,
+        SLC_name = 0,
+        SLC_Spend,
         SLC_Tome,
+        SLC_Ability,
         SLC_Max,
         SLC_CrossClassAtLevel,
-        SLC_Spend,
         SLC_Total,
+
+        SLC_Count
     };
     COLORREF f_skillOverspendColour = RGB(0xE9, 0x96, 0x7A); // dark salmon
     const int c_levelButtonSizeX = 44;
@@ -202,13 +204,33 @@ void CLevelUpView::OnInitialUpdate()
     }
 
     // setup the list control columns
-    m_listSkills.InsertColumn(SLC_name, "Skill", LVCFMT_LEFT, 100);
-    m_listSkills.InsertColumn(SLC_Ability, "Ability", LVCFMT_LEFT, 100);
-    m_listSkills.InsertColumn(SLC_Tome, "Tome", LVCFMT_LEFT, 100);
-    m_listSkills.InsertColumn(SLC_Max, "Max", LVCFMT_LEFT, 100);
-    m_listSkills.InsertColumn(SLC_CrossClassAtLevel, "xClass", LVCFMT_LEFT, 100);
-    m_listSkills.InsertColumn(SLC_Spend, "Spent at Level", LVCFMT_LEFT, 100);
-    m_listSkills.InsertColumn(SLC_Total, "Total", LVCFMT_LEFT, 100);
+    for (size_t i = 0 ; i < SLC_Count; ++i)
+    {
+        switch (i)
+        {
+        case SLC_name:
+            m_listSkills.InsertColumn(SLC_name, "Skill", LVCFMT_LEFT, 100);
+            break;
+        case SLC_Ability:
+            m_listSkills.InsertColumn(SLC_Ability, "Ability", LVCFMT_LEFT, 100);
+            break;
+        case SLC_Tome:
+            m_listSkills.InsertColumn(SLC_Tome, "Tome", LVCFMT_LEFT, 100);
+            break;
+        case SLC_Max:
+            m_listSkills.InsertColumn(SLC_Max, "Max", LVCFMT_LEFT, 100);
+            break;
+        case SLC_CrossClassAtLevel:
+            m_listSkills.InsertColumn(SLC_CrossClassAtLevel, "xClass", LVCFMT_LEFT, 100);
+            break;
+        case SLC_Spend:
+            m_listSkills.InsertColumn(SLC_Spend, "Spent at Level", LVCFMT_LEFT, 100);
+            break;
+        case SLC_Total:
+            m_listSkills.InsertColumn(SLC_Total, "Total", LVCFMT_LEFT, 100);
+            break;
+        }
+    }
     LoadColumnWidthsByName(&m_listSkills, "LevelUpSkills_%s");
     m_listSkills.SetImageList(&m_imagesSkills, LVSIL_SMALL);
     m_listSkills.SetImageList(&m_imagesSkills, LVSIL_NORMAL);

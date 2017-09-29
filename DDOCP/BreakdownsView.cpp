@@ -926,6 +926,7 @@ void CBreakdownsView::CreateMagicalBreakdowns()
             "Caster Levels", 
             hParent,
             TVI_LAST);
+    m_itemBreakdownTree.SetItemData(hCasterLevels, 0);
     AddCasterLevels(hCasterLevels);
     {
         HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
@@ -948,6 +949,7 @@ void CBreakdownsView::CreateMagicalBreakdowns()
                 "Spell Powers",
                 hParent,
                 TVI_LAST);
+        m_itemBreakdownTree.SetItemData(hItem, 0);
         AddSpellPower(SpellPower_Acid, "Acid Spell power", hItem);
         AddSpellPower(SpellPower_Alignment, "Alignment Spell power", hItem);
         AddSpellPower(SpellPower_Cold, "Cold Spell power", hItem);
@@ -972,6 +974,7 @@ void CBreakdownsView::CreateMagicalBreakdowns()
                 "Spell Critical Chance",
                 hParent,
                 TVI_LAST);
+        m_itemBreakdownTree.SetItemData(hItem, 0);
         AddSpellCriticalChance(SpellPower_Acid, "Acid Critical Chance", hItem);
         AddSpellCriticalChance(SpellPower_Alignment, "Alignment Critical Chance", hItem);
         AddSpellCriticalChance(SpellPower_Cold, "Cold Critical Chance", hItem);
@@ -995,6 +998,7 @@ void CBreakdownsView::CreateMagicalBreakdowns()
                 "Spell Critical Multipliers",
                 hParent,
                 TVI_LAST);
+        m_itemBreakdownTree.SetItemData(hItem, 0);
         AddSpellCriticalMultiplier(SpellPower_Acid, "Acid Critical Multiplier", hItem);
         AddSpellCriticalMultiplier(SpellPower_Alignment, "Alignment Critical Multiplier", hItem);
         AddSpellCriticalMultiplier(SpellPower_Cold, "Cold Critical Multiplier", hItem);
@@ -1018,6 +1022,7 @@ void CBreakdownsView::CreateMagicalBreakdowns()
                 "Spell School DCs",
                 hParent,
                 TVI_LAST);
+        m_itemBreakdownTree.SetItemData(hItem, 0);
         AddSpellSchool(SpellSchool_Abjuration, "Abjuration DC", hItem);
         AddSpellSchool(SpellSchool_Conjuration, "Conjuration DC", hItem);
         AddSpellSchool(SpellSchool_Divination, "Divination DC", hItem);
@@ -1200,6 +1205,7 @@ void CBreakdownsView::CreateEnergyResistancesBreakdowns()
                 "Resistances",
                 hParent,
                 TVI_LAST);
+        m_itemBreakdownTree.SetItemData(hItem, 0);
         AddEnergyResistance(Breakdown_EnergyResistanceAcid, Energy_Acid, "Acid Resistance", hItem);
         AddEnergyResistance(Breakdown_EnergyResistanceCold, Energy_Cold, "Cold Resistance", hItem);
         AddEnergyResistance(Breakdown_EnergyResistanceElectric, Energy_Electric, "Electric Resistance", hItem);
@@ -1219,6 +1225,7 @@ void CBreakdownsView::CreateEnergyResistancesBreakdowns()
                 "Absorption",
                 hParent,
                 TVI_LAST);
+        m_itemBreakdownTree.SetItemData(hItem, 0);
         AddEnergyAbsorption(Breakdown_EnergyAbsorptionAcid, Energy_Acid, "Acid Absorption", hItem);
         AddEnergyAbsorption(Breakdown_EnergyAbsorptionCold, Energy_Cold, "Cold Absorption", hItem);
         AddEnergyAbsorption(Breakdown_EnergyAbsorptionElectric, Energy_Electric, "Electric Absorption", hItem);

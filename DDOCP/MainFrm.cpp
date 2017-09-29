@@ -69,7 +69,7 @@ CMainFrame::CMainFrame() :
     m_pDocument(NULL),
     m_pCharacter(NULL)
 {
-    // TODO: add member initialization code here
+    CopyDefaultIniToDDOBuilderIni();
     theApp.m_nAppLook = theApp.GetInt(_T("ApplicationLook"), ID_VIEW_APPLOOK_VS_2008);
 }
 
@@ -674,3 +674,57 @@ BreakdownItem * CMainFrame::FindBreakdown(BreakdownType type)
     return NULL;
 }
 
+void CMainFrame::CopyDefaultIniToDDOBuilderIni()
+{
+    // before any settings are read from the ini file, we need to check to see if it
+    // exists or not. If it does not exist, we copy the "Default.ini" file as
+    // the ini file to be used. This allows new and existing users to get good
+    // default settings on startup (new users get the defaults, old users get
+    // their previous settings)
+    // load all the images for the skills and add to the image list
+    char fullPath[MAX_PATH];
+    ::GetModuleFileName(
+            NULL,
+            fullPath,
+            MAX_PATH);
+
+    char drive[_MAX_DRIVE];
+    char folder[_MAX_PATH];
+    _splitpath_s(fullPath,
+            drive, _MAX_DRIVE,
+            folder, _MAX_PATH,
+            NULL, 0,        // filename
+            NULL, 0);       // extension
+
+    char path[_MAX_PATH];
+    _makepath_s(path, _MAX_PATH, drive, folder, NULL, NULL);
+    std::string filename = path;
+    filename += "DDOBuilder.ini";
+    bool exists = false;
+    WIN32_FIND_DATA findFileData;
+    HANDLE hFind = FindFirstFile(filename.c_str(), &findFileData);
+    if (hFind != INVALID_HANDLE_VALUE)
+    {
+        FindClose(hFind);
+        exists = true;
+    }
+    if (!exists)
+    {
+        // copy the "Default.ini" file to "DDOBuilder.ini"
+        std::string defaultIni = path;
+        defaultIni += "Default.ini";
+        // does Default.ini file exist?
+        WIN32_FIND_DATA findFileData;
+        HANDLE hFind = FindFirstFile(defaultIni.c_str(), &findFileData);
+        if (hFind != INVALID_HANDLE_VALUE)
+        {
+            FindClose(hFind);
+            exists = true;
+        }
+        if (exists)
+        {
+            // we can do the copy step
+            ::CopyFile(defaultIni.c_str(), filename.c_str(), TRUE);
+        }
+    }
+}

@@ -239,6 +239,7 @@ void CDDOCPDoc::OnForumExportToClipboard()
     AddFeatSelections(forumExport);
     AddSkills(forumExport);
     AddEnhancements(forumExport);
+    AddTwistsOfFate(forumExport);
     forumExport << "[/code]\r\n";
 
     CString clipboardText = forumExport.str().c_str();
@@ -714,5 +715,51 @@ void CDDOCPDoc::AddEpicDestinyTree(
         ++buyIndex;
     }
     forumExport << "------------------------------------------------------------------------------------------\r\n";
+    forumExport << "\r\n";
+}
+
+void CDDOCPDoc::AddTwistsOfFate(std::stringstream & forumExport)
+{
+    // Twists of Fate - xx of yy fate points spent
+    // Twist 1 - Tier X: Selected twist
+    // Twist 2 - Tier X: Selected twist
+    // Twist 3 - Tier X: Selected twist
+    // Twist 4 - Tier X: Selected twist
+    // Twist 5 - Tier X: Selected twist
+    int totalFatePoints = m_characterData.FatePoints();
+    size_t spentFatePoints = m_characterData.SpentFatePoints();
+    forumExport << "Twists of fate - " << spentFatePoints << " of " << totalFatePoints;
+    forumExport << " Fate points spent.\r\n";
+    for (size_t twist = 0; twist < MAX_TWISTS; ++twist)
+    {
+        if (twist == MAX_TWISTS - 1
+                && !m_characterData.HasEpicCompletionist())
+        {
+            // don't show last twist
+            break;
+        }
+        forumExport.width(1);
+        size_t tier = m_characterData.TwistTier(twist);
+        forumExport << "Twist " << (twist + 1) << " - Tier " << tier << ": ";
+        const TrainedEnhancement * tt = m_characterData.TrainedTwist(twist);
+        if (tt != NULL)
+        {
+            const EnhancementTreeItem * item = FindEnhancement(tt->EnhancementName());
+            if (item != NULL)
+            {
+                forumExport << item->DisplayName(tt->HasSelection() ? tt->Selection() : "");
+            }
+            else
+            {
+                forumExport << "Trained twist not found";
+            }
+        }
+        else
+        {
+            forumExport << "Twist slot empty";
+        }
+        forumExport << "\r\n";
+    }
+    forumExport << "\r\n";
 }
 

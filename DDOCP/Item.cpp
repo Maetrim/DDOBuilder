@@ -103,6 +103,13 @@ void Item::AddImage(CImageList * pIL) const
             &image);
     if (result == S_OK)
     {
+        if (image.GetHeight() != 32
+                || image.GetWidth() != 32)
+        {
+            ::OutputDebugString("Image file incorrect size - ");
+            ::OutputDebugString(m_Icon.c_str());
+            ::OutputDebugString("\n");
+        }
         CBitmap bitmap;
         bitmap.Attach(image.Detach());
         int ret = pIL->Add(&bitmap, RGB(255, 128, 255));  // standard mask color (purple)

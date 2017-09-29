@@ -21,11 +21,14 @@ class FeatGroup :
 
         #define FeatGroup_PROPERTIES(_) \
                 DL_FLAG(_, IsArtificerBonus) \
+                DL_FLAG(_, IsBattle) \
                 DL_FLAG(_, IsBelovedOf) \
                 DL_FLAG(_, IsChildOf) \
                 DL_FLAG(_, IsDamageReduction) \
                 DL_FLAG(_, IsDilettante) \
                 DL_FLAG(_, IsDeity) \
+                DL_FLAG(_, IsDomain) \
+                DL_FLAG(_, IsDomainFeat) \
                 DL_FLAG(_, IsDragonbornRacial) \
                 DL_FLAG(_, IsDruidWildShape) \
                 DL_FLAG(_, IsEnergyResistance) \
@@ -34,6 +37,7 @@ class FeatGroup :
                 DL_FLAG(_, IsFavoredEnemy) \
                 DL_FLAG(_, IsFighterBonus) \
                 DL_FLAG(_, IsFollowerOf) \
+                DL_FLAG(_, IsHeart) \
                 DL_FLAG(_, IsRogueSpecialAbility) \
                 DL_FLAG(_, IsStandardFeat) \
                 DL_FLAG(_, IsLegendaryFeat) \

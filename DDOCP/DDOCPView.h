@@ -66,11 +66,14 @@ class CDDOCPView :
         afx_msg void OnKillFocusGuildLevel();
         afx_msg void OnSize(UINT nType, int cx, int cy);
         afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
+        afx_msg void OnBnClickedRadio28pt();
+        afx_msg void OnBnClickedRadio32pt();
         DECLARE_MESSAGE_MAP()
 
         // Character overrides
-        void UpdateAvailableBuildPointsChanged(Character * pCharacter) override;
+        virtual void UpdateAvailableBuildPointsChanged(Character * pCharacter) override;
         virtual void UpdateClassChanged(Character * charData, ClassType classFrom, ClassType classTo, size_t level) override;
+        virtual void UpdateRaceChanged(Character * charData, RaceType race) override;
 
     private:
         void PopulateComboboxes();
@@ -80,9 +83,14 @@ class CDDOCPView :
         void DisplaySpendCost(AbilityType ability, CEdit * control);
         void UpdateAvailableSpend();
         void UpdateBuildDescription();
+        void UpdateRadioPoints();
 
         Character * m_pCharacter;
         CStatic m_staticBuildDescription;
+        CButton m_button28Pt;
+        CButton m_button32Pt;
+        CButton m_button34Pt;
+        CButton m_button36Pt;
         CEdit m_editName;
         CComboBox m_comboRace;
         CComboBox m_comboAlignment;

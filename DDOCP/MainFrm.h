@@ -49,6 +49,8 @@ class CMainFrame :
         afx_msg void OnDockPane();
         DECLARE_MESSAGE_MAP()
 
+        void CopyDefaultIniToDDOBuilderIni();
+
     protected:  // control bar embedded members
         CMFCMenuBar       m_wndMenuBar;
         CMFCToolBar       m_wndToolBar;
