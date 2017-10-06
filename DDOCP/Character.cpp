@@ -939,6 +939,8 @@ void Character::SetClass(size_t level, ClassType type)
     }
     NotifyClassChanged(classFrom, type, level);    // must be done before feat updates to keep spell lists kosher
     UpdateFeats();
+    VerifyTrainedFeats();
+    AutoTrainSingleSelectionFeats();
 }
 
 void Character::SpendSkillPoint(
@@ -1155,7 +1157,8 @@ void Character::SetAbilityLevelUp(
 void Character::TrainFeat(
         const std::string & featName,
         TrainableFeatTypes type,
-        size_t level)
+        size_t level,
+        bool autoTrained)
 {
     // ensure re-selection of same feat in same slot does not change anything
     // as this can cause enhancements and feats to be revoked.
@@ -1181,6 +1184,10 @@ void Character::TrainFeat(
         // a feat change can invalidate a feat selection at at later level
         VerifyTrainedFeats();
         m_pDocument->SetModifiedFlag(TRUE);
+        if (!autoTrained)
+        {
+            AutoTrainSingleSelectionFeats();
+        }
     }
 }
 
@@ -1189,6 +1196,7 @@ void Character::NowActive()
     // keep all views up to date
     DetermineBuildPoints();
     DetermineFatePoints();
+    AutoTrainSingleSelectionFeats();
 
     NotifyAllLoadedEffects();
     NotifyAllEnhancementEffects();
@@ -1488,8 +1496,7 @@ double Character::MaxSkillForLevel(
     else
     {
         // some skills must be a class skill to be trained
-        if (skill == Skill_Perform
-                || skill == Skill_DisableDevice
+        if (skill == Skill_DisableDevice
                 || skill == Skill_OpenLock)
         {
             // this skill cannot be trained unless its a class skill for
@@ -1599,6 +1606,12 @@ std::vector<size_t> Character::ClassLevels(
     return classLevels;
 }
 
+size_t Character::ClassLevels(ClassType ct) const
+{
+    std::vector<size_t> classLevels(ClassLevels(MAX_LEVEL));
+    return classLevels[ct];
+}
+
 std::vector<TrainableFeatTypes> Character::TrainableFeatTypeAtLevel(
         size_t level) const
 {
@@ -1616,6 +1629,12 @@ std::vector<TrainableFeatTypes> Character::TrainableFeatTypeAtLevel(
             // TFT_Epic handles for level 21+
             trainable.push_back(TFT_Standard);
         }
+    }
+    if (Race() == Race_Aasimar
+            && level == 0)
+    {
+        // Aasimars get a bond feat at level 1
+        trainable.push_back(TFT_AasimarBond);
     }
     if (Race() == Race_Human
             && level == 0)
@@ -1667,7 +1686,10 @@ std::vector<TrainableFeatTypes> Character::TrainableFeatTypeAtLevel(
         // and a deity feat at level 6
         if (classLevels[Class_Cleric] == 1)
         {
-            trainable.push_back(TFT_FollowerOf);
+            if (NotPresentInEarlierLevel(level, TFT_FollowerOf))
+            {
+                trainable.push_back(TFT_FollowerOf);
+            }
         }
         if (classLevels[Class_Cleric] == 2)
         {
@@ -1681,7 +1703,10 @@ std::vector<TrainableFeatTypes> Character::TrainableFeatTypeAtLevel(
         }
         if (classLevels[Class_Cleric] == 6)
         {
-            trainable.push_back(TFT_Deity);
+            if (NotPresentInEarlierLevel(level, TFT_Deity))
+            {
+                trainable.push_back(TFT_Deity);
+            }
         }
         break;
 
@@ -1708,7 +1733,10 @@ std::vector<TrainableFeatTypes> Character::TrainableFeatTypeAtLevel(
         // and a damage reduction feat at level 20
         if (classLevels[Class_FavoredSoul] == 1)
         {
-            trainable.push_back(TFT_FollowerOf);
+            if (NotPresentInEarlierLevel(level, TFT_FollowerOf))
+            {
+                trainable.push_back(TFT_FollowerOf);
+            }
         }
         if (classLevels[Class_FavoredSoul] == 2)
         {
@@ -1720,7 +1748,10 @@ std::vector<TrainableFeatTypes> Character::TrainableFeatTypeAtLevel(
         }
         if (classLevels[Class_FavoredSoul] == 6)
         {
-            trainable.push_back(TFT_Deity);
+            if (NotPresentInEarlierLevel(level, TFT_Deity))
+            {
+                trainable.push_back(TFT_Deity);
+            }
         }
         if (classLevels[Class_FavoredSoul] == 7)
         {
@@ -1801,11 +1832,17 @@ std::vector<TrainableFeatTypes> Character::TrainableFeatTypeAtLevel(
         // and a deity feat at level 6
         if (classLevels[Class_Paladin] == 1)
         {
-            trainable.push_back(TFT_FollowerOf);
+            if (NotPresentInEarlierLevel(level, TFT_FollowerOf))
+            {
+                trainable.push_back(TFT_FollowerOf);
+            }
         }
         if (classLevels[Class_Paladin] == 6)
         {
-            trainable.push_back(TFT_Deity);
+            if (NotPresentInEarlierLevel(level, TFT_Deity))
+            {
+                trainable.push_back(TFT_Deity);
+            }
         }
         break;
 
@@ -1844,9 +1881,9 @@ std::vector<TrainableFeatTypes> Character::TrainableFeatTypeAtLevel(
         {
             trainable.push_back(TFT_WarlockPactAbility);
         }
-        // warlocks can select pact spells at levels 2, 5, 9, 14, 17 and 19
-        if (classLevels[Class_Warlock] == 2
-                || classLevels[Class_Warlock] == 5
+        // warlocks can select pact spells at levels 1, 5, 9, 14, 17 and 19
+        // note that the pact spell at level 1 is handled by the pact feat
+        if (classLevels[Class_Warlock] == 5
                 || classLevels[Class_Warlock] == 9
                 || classLevels[Class_Warlock] == 14
                 || classLevels[Class_Warlock] == 17
@@ -2445,7 +2482,9 @@ std::list<Effect> Character::GetEnhancementEffects(
 
 void Character::SetBuildPoints(size_t buildPoints)
 {
+    m_BuildPoints.Set_UserSelectedSpend(buildPoints);
     m_BuildPoints.Set_AvailableSpend(buildPoints);
+    m_pDocument->SetModifiedFlag(TRUE);
     NotifyAvailableBuildPointsChanged();
 }
 
@@ -2488,7 +2527,16 @@ size_t Character::DetermineBuildPoints()
         // all other races go 28/32->34->36
         switch (numPastLifeFeats)
         {
-            case 0: buildPoints = m_BuildPoints.AvailableSpend(); break; // 28 or 32 depending on user selection
+            case 0:
+                if (m_BuildPoints.HasUserSelectedSpend())
+                {
+                    buildPoints = m_BuildPoints.UserSelectedSpend(); break; // 28 or 32 depending on user selection
+                }
+                else
+                {
+                    buildPoints = 28;
+                }
+                break;
             case 1: buildPoints = 34; break;
             // all other past life counts is the maximum build points
             default: buildPoints = 36; break;
@@ -3503,7 +3551,7 @@ bool Character::CanUpgradeTwist(size_t twistIndex) const
 {
     ASSERT(twistIndex < MAX_TWISTS);
     // we can only upgrade this twist if we have enough fate points
-    // first  twist costs 1,2,3,4 to upgrade
+    // 1st twist costs 1,2,3,4 to upgrade
     // 2nd twist costs 2,3,4,5 to upgrade
     // 3rd twist costs 3,4,5,6 to upgrade...
     // and we are not at the maximum tier
@@ -3872,7 +3920,8 @@ void Character::ApplyGearEffects()
 
 void Character::ApplyGuildBuffs()
 {
-    // we only apply or revoke the effects within the m_previousGuildLevel to GuildLevel range
+    // we only apply or revoke the effects within the m_previousGuildLevel to
+    // GuildLevel range
     if (HasApplyGuildBuffs())
     {
         if (m_previousGuildLevel != GuildLevel())
@@ -4015,3 +4064,82 @@ std::string Character::GetBuildDescription() const
     return ss.str();
 }
 
+void Character::AutoTrainSingleSelectionFeats()
+{
+    bool featsTrained = false;      // set to true if need to display auto trained feats
+    std::stringstream ss;
+    ss << "The following feats at the indicated levels were automatically\n"
+            "trained for you as there is only a single selection available.\n"
+            "\n";
+    for (size_t level = 0; level < MAX_CLASS_LEVEL; ++level)
+    {
+        std::vector<TrainableFeatTypes> tfts = TrainableFeatTypeAtLevel(level);
+        for (size_t i = 0; i < tfts.size(); ++i)
+        {
+            // only check for certain trainable feat types
+            bool check = false;
+            switch (tfts[i])
+            {
+            case TFT_BelovedOf:
+            case TFT_ChildOf:
+            case TFT_DamageReduction:
+            case TFT_Deity:
+            case TFT_DomainFeat:
+            case TFT_WarlockPactSaveBonus:
+            case TFT_WarlockPactSpell:
+                check = true;
+                break;
+            default:
+                // don't check for these feat types
+                break;
+            }
+            if (check)
+            {
+                // must not have a feat trained in this feat slot to do an auto train
+                const LevelTraining & lt = LevelData(level);
+                const FeatsListObject & tf = lt.TrainedFeats();
+                if (tf.FeatName(tfts[i]).empty())
+                {
+                    std::vector<Feat> availableFeats = TrainableFeats(
+                            tfts[i],
+                            level,
+                            "");
+                    if (availableFeats.size() == 1)
+                    {
+                        ss << "Level " << (level + 1) << ": ";
+                        std::string label = TrainableFeatTypeLabel(tfts[i]);
+                        label += ": ";
+                        ss << label << ": ";
+                        ss << availableFeats[0].Name();
+                        ss << "\n";
+                        TrainFeat(availableFeats[0].Name(), tfts[i], level, true);
+                        featsTrained = true;
+                    }
+                }
+            }
+        }
+    }
+    if (featsTrained)
+    {
+        AfxMessageBox(ss.str().c_str(), MB_ICONEXCLAMATION);
+    }
+}
+
+bool Character::NotPresentInEarlierLevel(size_t level, TrainableFeatTypes type) const
+{
+    // return true if the given feat type does not occur for any of the previous
+    // levels.
+    bool notPresent = true;
+    for (size_t li = 0; li < level; ++li)
+    {
+        std::vector<TrainableFeatTypes> tfts = Character::TrainableFeatTypeAtLevel(li);
+        for (size_t i = 0; i < tfts.size(); ++i)
+        {
+            if (tfts[i] == type)
+            {
+                notPresent = false;
+            }
+        }
+    }
+    return notPresent;
+}

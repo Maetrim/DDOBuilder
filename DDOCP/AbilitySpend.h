@@ -29,6 +29,7 @@ class AbilitySpend :
 
         // spends are in base ability points, range from 0->10
         #define AbilitySpend_PROPERTIES(_) \
+                DL_OPTIONAL_SIMPLE(_, size_t, UserSelectedSpend, 28) \
                 DL_SIMPLE(_, size_t, AvailableSpend, 28) \
                 DL_SIMPLE(_, size_t, StrSpend, 0) \
                 DL_SIMPLE(_, size_t, DexSpend, 0) \

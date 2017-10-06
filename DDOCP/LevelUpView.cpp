@@ -254,7 +254,7 @@ void CLevelUpView::OnInitialUpdate()
                 at,
                 abilityTypeMap);
         text.resize(3);     // truncate to 1st 3 characters, e.g. "Strength" becomes "Str"
-        m_listSkills.SetItemText(index, 1, text.c_str());
+        m_listSkills.SetItemText(index, SLC_Ability, text.c_str());
     }
     m_sortHeader.SetSortArrow(0, TRUE);
 

@@ -662,6 +662,7 @@ void CDDOCPView::UpdateClassChanged(
 
 void CDDOCPView::UpdateRaceChanged(Character * charData, RaceType race)
 {
+    // build points can change when Drow selected
     UpdateRadioPoints();
 }
 
@@ -694,7 +695,7 @@ void CDDOCPView::UpdateRadioPoints()
     // for Drow they are: 28, 28, 30 and 32
 
     // if the character has no past lives buttons 28 and 32 are available, 34/36 disabled
-    // if the character has 1 past life all buttons are disabled but the relevant number
+    // if the character has 1+ past life all buttons are disabled but the relevant number
     // of build points available is checked.
     size_t buildPoints = m_pCharacter->DetermineBuildPoints();
     if (m_pCharacter->Race() == Race_Drow)

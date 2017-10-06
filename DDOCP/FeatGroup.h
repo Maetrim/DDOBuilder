@@ -20,6 +20,7 @@ class FeatGroup :
         virtual void EndElement();
 
         #define FeatGroup_PROPERTIES(_) \
+                DL_FLAG(_, IsAasimarBond) \
                 DL_FLAG(_, IsArtificerBonus) \
                 DL_FLAG(_, IsBattle) \
                 DL_FLAG(_, IsBelovedOf) \

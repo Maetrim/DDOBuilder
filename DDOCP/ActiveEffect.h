@@ -40,6 +40,11 @@ class ActiveEffect
         ActiveEffect(
                 BonusType bonusType,
                 const std::string & name,
+                ClassType classType,
+                const std::vector<double> & amounts);
+        ActiveEffect(
+                BonusType bonusType,
+                const std::string & name,
                 double amountPerLevel,
                 size_t stacks,
                 ClassType classType);
@@ -77,6 +82,7 @@ class ActiveEffect
             ET_amountPerLevel,
             ET_amountPerAp,
             ET_dice,
+            ET_amountVectorPerClassLevel,
         } m_type;
         double Amount() const;
         BonusType m_bonusType;

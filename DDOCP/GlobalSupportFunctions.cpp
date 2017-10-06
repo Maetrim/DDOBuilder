@@ -554,6 +554,9 @@ std::vector<TrainableFeatTypes> RaceSpecificFeatTypes(RaceType type)
     std::vector<TrainableFeatTypes> types;
     switch (type)
     {
+    case Race_Aasimar:
+        types.push_back(TFT_AasimarBond);
+        break;
     case Race_HalfElf:
         types.push_back(TFT_HalfElfDilettanteBonus);
         break;
@@ -1060,6 +1063,10 @@ int RacialModifier(
         {
             mod = +2;
         }
+        if (race == Race_Aasimar)
+        {
+            mod = +1;
+        }
         break;
     case Ability_Charisma:
         if (race == Race_Dwarf
@@ -1074,6 +1081,10 @@ int RacialModifier(
                 || race == Race_Dragonborn)
         {
             mod = +2;
+        }
+        if (race == Race_Aasimar)
+        {
+            mod = +1;
         }
         break;
     }
@@ -1141,6 +1152,10 @@ bool IsInGroup(TrainableFeatTypes type, const FeatGroup & group)
     case TFT_HumanBonus:
     case TFT_PDKBonus:
         inGroup = group.HasIsStandardFeat();
+        break;
+
+    case TFT_AasimarBond:
+        inGroup = group.HasIsAasimarBond();
         break;
 
     case TFT_ArtificerBonus:
@@ -2058,6 +2073,9 @@ CString TrainableFeatTypeLabel(TrainableFeatTypes type)
         break;
     case TFT_Special:
         text = "Special";
+        break;
+    case TFT_AasimarBond:
+        text = "Aasimar Bond";
         break;
     case TFT_ArtificerBonus:
         text = "Artificer Bonus";

@@ -240,6 +240,7 @@ void CDDOCPDoc::OnForumExportToClipboard()
     AddSkills(forumExport);
     AddEnhancements(forumExport);
     AddTwistsOfFate(forumExport);
+    AddSpellPowers(forumExport);
     forumExport << "[/code]\r\n";
 
     CString clipboardText = forumExport.str().c_str();
@@ -763,3 +764,54 @@ void CDDOCPDoc::AddTwistsOfFate(std::stringstream & forumExport)
     forumExport << "\r\n";
 }
 
+void CDDOCPDoc::AddSpellPowers(std::stringstream & forumExport)
+{
+    // Spell Power        Base    Critical Chance    Critical Multiplier
+    forumExport << "Spell Power        Base    Critical Chance    Critical Multiplier.\r\n";
+    forumExport << "------------------------------------------------------------------\r\n";
+    AddSpellPower(forumExport, "Acid     ", Breakdown_SpellPowerAcid, Breakdown_SpellCriticalChanceAcid, Breakdown_SpellCriticalMultiplierAcid);
+    AddSpellPower(forumExport, "Alignment", Breakdown_SpellPowerAlignment, Breakdown_SpellCriticalChanceAlignment, Breakdown_SpellCriticalMultiplierAlignment);
+    AddSpellPower(forumExport, "Cold     ", Breakdown_SpellPowerCold, Breakdown_SpellCriticalChanceCold, Breakdown_SpellCriticalMultiplierCold);
+    AddSpellPower(forumExport, "Earth    ", Breakdown_SpellPowerEarth, Breakdown_SpellCriticalChanceEarth, Breakdown_SpellCriticalMultiplierEarth);
+    AddSpellPower(forumExport, "Electric ", Breakdown_SpellPowerElectric, Breakdown_SpellCriticalChanceElectric, Breakdown_SpellCriticalMultiplierElectric);
+    AddSpellPower(forumExport, "Fire     ", Breakdown_SpellPowerFire, Breakdown_SpellCriticalChanceFire, Breakdown_SpellCriticalMultiplierFire);
+    AddSpellPower(forumExport, "Force    ", Breakdown_SpellPowerForce, Breakdown_SpellCriticalChanceForce, Breakdown_SpellCriticalMultiplierForce);
+    AddSpellPower(forumExport, "Light    ", Breakdown_SpellPowerLight, Breakdown_SpellCriticalChanceLight, Breakdown_SpellCriticalMultiplierLight);
+    AddSpellPower(forumExport, "Negative ", Breakdown_SpellPowerNegative, Breakdown_SpellCriticalChanceNegative, Breakdown_SpellCriticalMultiplierNegative);
+    AddSpellPower(forumExport, "Physical ", Breakdown_SpellPowerPhysical, Breakdown_SpellCriticalChancePhysical, Breakdown_SpellCriticalMultiplierPhysical);
+    AddSpellPower(forumExport, "Positive ", Breakdown_SpellPowerPositive, Breakdown_SpellCriticalChancePositive, Breakdown_SpellCriticalMultiplierPositive);
+    AddSpellPower(forumExport, "Repair   ", Breakdown_SpellPowerRepair, Breakdown_SpellCriticalChanceRepair, Breakdown_SpellCriticalMultiplierRepair);
+    AddSpellPower(forumExport, "Rust     ", Breakdown_SpellPowerRust, Breakdown_SpellCriticalChanceRust, Breakdown_SpellCriticalMultiplierRust);
+    AddSpellPower(forumExport, "Sonic    ", Breakdown_SpellPowerSonic, Breakdown_SpellCriticalChanceSonic, Breakdown_SpellCriticalMultiplierSonic);
+    AddSpellPower(forumExport, "Untyped  ", Breakdown_SpellPowerUntyped, Breakdown_SpellCriticalChanceUntyped, Breakdown_SpellCriticalMultiplierUntyped);
+    AddSpellPower(forumExport, "Water    ", Breakdown_SpellPowerWater, Breakdown_SpellCriticalChanceWater, Breakdown_SpellCriticalMultiplierWater);
+    forumExport << "------------------------------------------------------------------\r\n";
+    forumExport << "\r\n";
+}
+
+void CDDOCPDoc::AddSpellPower(
+        std::stringstream & forumExport,
+        const std::string & label,
+        BreakdownType btPower,
+        BreakdownType btCrit,
+        BreakdownType btMult)
+{
+    forumExport << label;
+    // spell power
+    forumExport << "          ";
+    BreakdownItem * pBPower = FindBreakdown(btPower);
+    forumExport.width(4);
+    forumExport << std::right << (int)pBPower->Total();
+    // spell critical chance
+    forumExport << "     ";
+    BreakdownItem * pBCrit = FindBreakdown(btCrit);
+    forumExport.width(3);
+    forumExport << std::right << (int)pBCrit->Total();
+    forumExport << "%";
+    // multiplier
+    forumExport << "               ";
+    BreakdownItem * pBMult = FindBreakdown(btCrit);
+    forumExport.width(3);
+    forumExport << std::right << (int)pBMult->Total();
+    forumExport << "\r\n";
+}

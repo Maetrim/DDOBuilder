@@ -106,6 +106,25 @@ ActiveEffect::ActiveEffect(
 ActiveEffect::ActiveEffect(
         BonusType bonusType,
         const std::string & name,
+        ClassType classType,
+        const std::vector<double> & amounts) :
+    m_bonusType(bonusType),
+    m_type(ET_amountVectorPerClassLevel),
+    m_effectName(name),
+    m_numStacks(0),
+    m_amount(0),                // not used
+    m_amounts(amounts),
+    m_bHasEnergy(false),
+    m_energy(Energy_Unknown),
+    m_bt(Breakdown_Unknown),
+    m_amountPerLevel(0),
+    m_class(classType)
+{
+}
+
+ActiveEffect::ActiveEffect(
+        BonusType bonusType,
+        const std::string & name,
         double amountPerLevel,
         size_t stacks,
         ClassType classType) :
@@ -162,6 +181,7 @@ CString ActiveEffect::AmountAsText() const
         text.Format("%.2f", m_amount * m_numStacks);
         break;
     case ET_amountVector:
+    case ET_amountVectorPerClassLevel: // handled the same
         {
             size_t index = m_numStacks-1;
             if (index >= m_amounts.size())
@@ -215,7 +235,8 @@ bool ActiveEffect::HasBreakdownDependency(BreakdownType bt) const
 
 bool ActiveEffect::HasClass(ClassType type) const
 {
-    if (m_type == ET_amountPerLevel)
+    if (m_type == ET_amountPerLevel
+            || m_type == ET_amountVectorPerClassLevel)
     {
         return (type == m_class);
     }
@@ -249,6 +270,7 @@ double ActiveEffect::TotalAmount() const
         value = m_amount * m_numStacks;
         break;
     case ET_amountVector:
+    case ET_amountVectorPerClassLevel:
         {
             size_t index = m_numStacks-1;
             if (index >= m_amounts.size())
@@ -358,6 +380,10 @@ bool ActiveEffect::operator==(const ActiveEffect & other) const
             break;
         case ET_amountPerLevel:
             equal = (m_amountPerLevel == other.m_amountPerLevel);
+            break;
+        case ET_amountVectorPerClassLevel:
+            equal = (m_amounts == other.m_amounts)
+                    && (m_class == other.m_class);
             break;
         default:
             equal = false;

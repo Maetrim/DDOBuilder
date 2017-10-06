@@ -98,6 +98,7 @@ class Character :
         // support query functions
         const LevelTraining & LevelData(size_t level) const;
         std::vector<size_t> ClassLevels(size_t level) const;
+        size_t ClassLevels(ClassType ct) const;
         size_t BaseAttackBonus(size_t level) const;
         size_t AbilityAtLevel(AbilityType ability, size_t level) const;
         int LevelUpsAtLevel(AbilityType ability, size_t level) const;
@@ -131,7 +132,7 @@ class Character :
         void TrainSpecialFeat(const std::string & featName);
         void RevokeSpecialFeat(const std::string & featName);
         void SetAbilityLevelUp(size_t level, AbilityType ability);
-        void TrainFeat(const std::string & featName, TrainableFeatTypes type, size_t level);
+        void TrainFeat(const std::string & featName, TrainableFeatTypes type, size_t level, bool autoTrained = false);
         std::list<TrainedFeat> AutomaticFeats(
                 size_t level,
                 const std::list<TrainedFeat> & currentFeats) const;
@@ -324,6 +325,8 @@ class Character :
         void UpdateFeats(size_t level, std::list<TrainedFeat> * allFeats);
         void ApplyFeatEffects(const Feat & feat);
         void RevokeFeatEffects(const Feat & feat);
+        void AutoTrainSingleSelectionFeats();
+        bool NotPresentInEarlierLevel(size_t level, TrainableFeatTypes type) const;
         void VerifyTrainedFeats();
         void ApplyEnhancementEffects(
                 const std::string & treeName,

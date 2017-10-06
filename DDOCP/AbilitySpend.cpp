@@ -68,6 +68,10 @@ void AbilitySpend::EndElement()
     {
         SAXASSERT(false, DL_STRINGIZE(DL_ELEMENT) "::m_ChaSpend had invalid value");
     }
+    if (!m_hasUserSelectedSpend)
+    {
+        m_hasUserSelectedSpend = true;
+    }
 }
 
 void AbilitySpend::Write(XmlLib::SaxWriter * writer) const

@@ -112,7 +112,7 @@ class BreakdownItem :
         void RemoveNonStacking(std::list<ActiveEffect> * effects, std::list<ActiveEffect> * nonStackingEffects) const;
         void AddEffect(std::list<ActiveEffect> * effectList, const ActiveEffect & effect);
         void RevokeEffect(std::list<ActiveEffect> * effectList, const ActiveEffect & effect);
-        bool GetActiveEffect(Character * pCharacter, const std::string & featName, const Effect & effect, ActiveEffect * activeEffect);
+        bool GetActiveEffect(Character * pCharacter, const std::string & name, const Effect & effect, ActiveEffect * activeEffect);
         MfcControls::CTreeListCtrl * m_pTreeList;
         HTREEITEM m_hItem;
         BreakdownType m_type;

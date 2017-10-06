@@ -50,7 +50,8 @@ void FeatGroup::Write(XmlLib::SaxWriter * writer) const
 bool FeatGroup::VerifyObject(std::stringstream * ss) const
 {
     // if a feat has a grouping object, at least one of the flags must be set for it
-    bool ok = HasIsArtificerBonus()
+    bool ok = HasIsAasimarBond()
+            || HasIsArtificerBonus()
             || HasIsBattle()
             || HasIsBelovedOf()
             || HasIsChildOf()

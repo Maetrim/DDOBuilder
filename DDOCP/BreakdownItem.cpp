@@ -506,7 +506,7 @@ bool BreakdownItem::UpdateEffectAmounts(std::list<ActiveEffect> * list, ClassTyp
 
 bool BreakdownItem::GetActiveEffect(
         Character * pCharacter,
-        const std::string & featName,
+        const std::string & name,
         const Effect & effect,
         ActiveEffect * activeEffect)
 {
@@ -519,7 +519,7 @@ bool BreakdownItem::GetActiveEffect(
         size_t levels = m_pCharacter->ClassLevels(MAX_LEVEL)[effect.Class()];
         *activeEffect = ActiveEffect(
                 effect.Bonus(),
-                featName,
+                name,
                 effect.AmountPerLevel(),
                 levels,
                 effect.Class());        // no tree
@@ -529,22 +529,37 @@ bool BreakdownItem::GetActiveEffect(
         // it is a feat that handles the amount as a regular amount
         *activeEffect = ActiveEffect(
                 effect.Bonus(),
-                featName,
+                name,
                 1,
                 effect.Amount(),
                 "");        // no tree
     }
     else if (effect.HasAmountVector())
     {
-        // it is a feat that handles the amount based on count trained
-        // amount can be 0 at a given tier, breakdown does not display if that
-        // happens
-        size_t count = pCharacter->GetSpecialFeatTrainedCount(featName);
-        *activeEffect = ActiveEffect(
-                effect.Bonus(),
-                featName,
-                1,
-                effect.AmountVector());
+        if (effect.HasClass())
+        {
+            // its an amount that gets looked up from an amount vector
+            // based on the specified class
+            *activeEffect = ActiveEffect(
+                    effect.Bonus(),
+                    name,
+                    effect.Class(),
+                    effect.AmountVector());
+            size_t count = m_pCharacter->ClassLevels(effect.Class());
+            activeEffect->SetStacks(count);
+        }
+        else
+        {
+            // it is a feat that handles the amount based on count trained
+            // amount can be 0 at a given tier, breakdown does not display if that
+            // happens
+            size_t count = pCharacter->GetSpecialFeatTrainedCount(name);
+            *activeEffect = ActiveEffect(
+                    effect.Bonus(),
+                    name,
+                    1,
+                    effect.AmountVector());
+        }
     }
     else if (effect.HasAbility())   // some feat effects can have amount and ability, amount always takes precedence
     {
@@ -556,7 +571,7 @@ bool BreakdownItem::GetActiveEffect(
         pBI->AttachObserver(this);  // need to know about changes to this stat
         *activeEffect = ActiveEffect(
                 effect.Bonus(),
-                featName,
+                name,
                 1,
                 BaseStatToBonus(pBI->Total()),
                 "");        // no tree
@@ -567,7 +582,7 @@ bool BreakdownItem::GetActiveEffect(
         // such as it is "Fire" damage
         *activeEffect = ActiveEffect(
                 effect.Bonus(),
-                featName,
+                name,
                 1,
                 effect.DiceRoll(),
                 "");
@@ -596,7 +611,7 @@ bool BreakdownItem::GetActiveEffect(
         {
             *activeEffect = ActiveEffect(
                     effect.Bonus(),
-                    featName,
+                    name,
                     1,
                     amount,
                     "");
@@ -734,64 +749,12 @@ void BreakdownItem::UpdateEnhancementEffect(
         {
             name = effect.m_effect.DisplayName();
         }
-        bool hasActiveEffect = true;
         ActiveEffect activeEffect;
-
-        // could be an enhancement based on AP spend in a tree
-        if (effect.m_effect.HasAmountVector())
-        {
-            activeEffect = ActiveEffect(
-                    effect.m_effect.Bonus(),
-                    name,
-                    effect.m_tier,
-                    effect.m_effect.AmountVector());
-        }
-        else if (effect.m_effect.HasAmount())
-        {
-            activeEffect = ActiveEffect(
-                    effect.m_effect.Bonus(),
-                    name,
-                    effect.m_tier,
-                    effect.m_effect.Amount(),
-                    "");
-        }
-        else if (effect.m_effect.HasAmountPerLevel())
-        {
-            ASSERT(effect.m_effect.HasClass());
-            std::vector<size_t> classLevels = m_pCharacter->ClassLevels(MAX_LEVEL);
-            activeEffect = ActiveEffect(
-                    effect.m_effect.Bonus(),
-                    name,
-                    effect.m_effect.AmountPerLevel(),
-                    classLevels[effect.m_effect.Class()],
-                    effect.m_effect.Class());
-        }
-        else
-        {
-            // it is an AP spend in tree version
-            ASSERT(effect.m_effect.HasEnhancementTree());
-            ASSERT(effect.m_effect.HasAmountPerAP());
-            size_t spentInTree = charData->APSpentInTree(effect.m_effect.EnhancementTree());
-            activeEffect = ActiveEffect(
-                    effect.m_effect.Bonus(),
-                    name,
-                    effect.m_effect.AmountPerAP(),
-                    effect.m_effect.EnhancementTree());
-            activeEffect.SetStacks(spentInTree);
-        }
-        if (effect.m_effect.HasFeat())
-        {
-            activeEffect.AddFeat(effect.m_effect.Feat());
-        }
-        if (effect.m_effect.Stance().size() > 0)
-        {
-            for (size_t i = 0; i < effect.m_effect.Stance().size(); ++i)
-            {
-                activeEffect.AddStance(effect.m_effect.Stance()[i]);
-            }
-        }
+        bool hasActiveEffect = GetActiveEffect(charData, name, effect.m_effect, &activeEffect);
         if (hasActiveEffect)
         {
+            // make sure it starts with the right number of stacks
+            activeEffect.SetStacks(effect.m_tier);
             AddEnhancementEffect(activeEffect);
         }
     }
@@ -810,63 +773,8 @@ void BreakdownItem::UpdateEnhancementEffectRevoked(
         {
             name = effect.m_effect.DisplayName();
         }
-        bool hasActiveEffect = true;
         ActiveEffect activeEffect;
-
-        // could be an enhancement based on spend in a tree
-        if (effect.m_effect.HasAmountVector())
-        {
-            activeEffect = ActiveEffect(
-                    effect.m_effect.Bonus(),
-                    name,
-                    effect.m_tier,
-                    effect.m_effect.AmountVector());
-        }
-        else if (effect.m_effect.HasAmount())
-        {
-            activeEffect = ActiveEffect(
-                    effect.m_effect.Bonus(),
-                    name,
-                    effect.m_tier,
-                    effect.m_effect.Amount(),
-                    "");
-        }
-        else if (effect.m_effect.HasAmountPerLevel())
-        {
-            ASSERT(effect.m_effect.HasClass());
-            std::vector<size_t> classLevels = m_pCharacter->ClassLevels(MAX_LEVEL);
-            activeEffect = ActiveEffect(
-                    effect.m_effect.Bonus(),
-                    name,
-                    effect.m_effect.AmountPerLevel(),
-                    classLevels[effect.m_effect.Class()],
-                    effect.m_effect.Class());
-        }
-        else
-        {
-            // it is an AP spend in tree version
-            ASSERT(effect.m_effect.HasEnhancementTree());
-            ASSERT(effect.m_effect.HasAmountPerAP());
-            size_t spentInTree = charData->APSpentInTree(effect.m_effect.EnhancementTree());
-            activeEffect = ActiveEffect(
-                    effect.m_effect.Bonus(),
-                    name,
-                    effect.m_effect.AmountPerAP(),
-                    effect.m_effect.EnhancementTree());
-            activeEffect.SetStacks(spentInTree);
-        }
-        if (effect.m_effect.HasFeat())
-        {
-            activeEffect.AddFeat(effect.m_effect.Feat());
-        }
-
-        if (effect.m_effect.Stance().size() > 0)
-        {
-            for (size_t i = 0; i < effect.m_effect.Stance().size(); ++i)
-            {
-                activeEffect.AddStance(effect.m_effect.Stance()[i]);
-            }
-        }
+        bool hasActiveEffect = GetActiveEffect(charData, name, effect.m_effect, &activeEffect);
         if (hasActiveEffect)
         {
             RevokeEnhancementEffect(activeEffect);

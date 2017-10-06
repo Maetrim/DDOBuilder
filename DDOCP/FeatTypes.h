@@ -38,6 +38,7 @@ enum TrainableFeatTypes
     TFT_Standard,
     TFT_Special,
 
+    TFT_AasimarBond,
     TFT_ArtificerBonus,
     TFT_BelovedOf,
     TFT_ChildOf,
@@ -45,6 +46,7 @@ enum TrainableFeatTypes
     TFT_Deity,
     TFT_Domain,
     TFT_DomainFeat,
+    TFT_DragonbornRacial,
     TFT_DruidWildShape,
     TFT_EnergyResistance,
     TFT_EpicDestinyFeat,
@@ -67,7 +69,6 @@ enum TrainableFeatTypes
     TFT_WarlockPactSaveBonus,
     TFT_WarlockPactSpell,
     TFT_WizardMetamagic,
-    TFT_DragonbornRacial,
 };
 
 const XmlLib::enumMapEntry<TrainableFeatTypes> trainableFeatTypesMap[] =

@@ -10,6 +10,7 @@
 enum RaceType
 {
     Race_Unknown = 0,
+    Race_Aasimar,
     Race_Drow,
     Race_Dwarf,
     Race_Dragonborn,
@@ -32,6 +33,7 @@ enum RaceType
 const XmlLib::enumMapEntry<RaceType> raceTypeMap[] =
 {
     {Race_Unknown, L"Unknown"},
+    {Race_Aasimar, L"Aasimar"},
     {Race_Drow, L"Drow"},
     {Race_Dwarf, L"Dwarf"},
     {Race_Dragonborn, L"Dragonborn"},

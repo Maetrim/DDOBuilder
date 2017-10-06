@@ -65,5 +65,12 @@ class CDDOCPDoc :
         void AddEnhancementTree(std::stringstream & forumExport, const EnhancementSpendInTree & treeSpend);
         void AddEpicDestinyTree(std::stringstream & forumExport, const EpicDestinySpendInTree & treeSpend);
         void AddTwistsOfFate(std::stringstream & forumExport);
+        void AddSpellPowers(std::stringstream & forumExport);
+        void AddSpellPower(
+                std::stringstream & forumExport,
+                const std::string & label,
+                BreakdownType btPower,
+                BreakdownType btCrit,
+                BreakdownType btMult);
         Character m_characterData;
 };

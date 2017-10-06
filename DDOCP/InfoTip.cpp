@@ -273,13 +273,10 @@ void CInfoTip::SetEnhancementTreeItem(
     m_effectDescriptions.clear();
     m_bRequirementMet.clear();
     // add the required spent in tree to requirements list
-    if (spentInTree < pItem->MinSpent())
-    {
-        CString text;
-        text.Format("Requires: %d AP spent in tree", pItem->MinSpent());
-        m_requirements.push_back(text);
-        m_bRequirementMet.push_back(false);
-    }
+    CString text;
+    text.Format("Requires: %d AP spent in tree", pItem->MinSpent());
+    m_requirements.push_back(text);
+    m_bRequirementMet.push_back(spentInTree >= pItem->MinSpent());
     pItem->CreateRequirementStrings(
             charData,
             &m_requirements,
