@@ -77,19 +77,23 @@ void BreakdownItemSpellPower::CreateOtherEffects()
     m_otherEffects.clear();
     if (m_pCharacter != NULL)
     {
-        BreakdownType bt = SpellPowerBreakdown();
-        BreakdownItemSkill * pBI = dynamic_cast<BreakdownItemSkill*>(FindBreakdown(bt));
-        CString text;
-        text.Format("%s skill bonus",
-                EnumEntryText(pBI->Skill(), skillTypeMap));
-        pBI->AttachObserver(this);      // need to observe changes
-        ActiveEffect levels(
-                Bonus_skill,
-                (LPCTSTR)text,
-                1,
-                pBI->Total(),
-                "");        // no tree
-        AddOtherEffect(levels);
+        if (Type() == Effect_SpellPower)
+        {
+            // specific skill only affects spell power (used for critical and multiplier also)
+            BreakdownType bt = SpellPowerBreakdown();
+            BreakdownItemSkill * pBI = dynamic_cast<BreakdownItemSkill*>(FindBreakdown(bt));
+            CString text;
+            text.Format("%s skill bonus",
+                    EnumEntryText(pBI->Skill(), skillTypeMap));
+            pBI->AttachObserver(this);      // need to observe changes
+            ActiveEffect levels(
+                    Bonus_skill,
+                    (LPCTSTR)text,
+                    1,
+                    pBI->Total(),
+                    "");        // no tree
+            AddOtherEffect(levels);
+        }
     }
 }
 

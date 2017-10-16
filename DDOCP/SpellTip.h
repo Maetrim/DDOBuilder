@@ -13,7 +13,12 @@ class CSpellTip :
         virtual ~CSpellTip();
 
         BOOL Create(CWnd * parent);
-        void SetSpell(Character * pCharacter, const Spell & spell, ClassType ct);
+        void SetSpell(
+                Character * pCharacter,
+                const Spell & spell,
+                ClassType ct,
+                size_t spellLevel,
+                size_t maxSpellLevel);
 
         void SetOrigin(CPoint origin, CPoint alternate);
         void Show();
@@ -37,4 +42,5 @@ class CSpellTip :
         ClassType m_class;
         CRect m_rcDescription;
         CSize m_csMetas;
+        size_t m_DC;
 };

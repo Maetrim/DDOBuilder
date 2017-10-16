@@ -71,13 +71,14 @@ void BreakdownItemWeaponAttackBonus::CreateOtherEffects()
             BreakdownItem * pBI = FindBreakdown(Breakdown_ArmorCheckPenalty);
             ASSERT(pBI != NULL);
             pBI->AttachObserver(this);  // need to know about changes to this effect
-            if (pBI->Total() != 0)
+            double total = max(0, pBI->Total()); // ACP cannot be a bonus!
+            if (total != 0)
             {
                 ActiveEffect acp(
                         Bonus_penalty,
                         "Armor check penalty",
                         1,
-                        pBI->Total(),
+                        -total,
                         "");        // no tree
                 AddOtherEffect(acp);
             }

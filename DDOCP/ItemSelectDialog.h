@@ -1,6 +1,7 @@
 // ItemSelectDialog.h
 #pragma once
 #include "Resource.h"
+#include "RaceTypes.h"
 #include "InventorySlotTypes.h"
 #include "Item.h"
 #include "PersistantSize.h"
@@ -10,7 +11,7 @@
 class CItemSelectDialog : public CDialog
 {
     public:
-        CItemSelectDialog(CWnd* pParent, InventorySlotType slot, const Item & item);   // standard constructor
+        CItemSelectDialog(CWnd* pParent, InventorySlotType slot, const Item & item, RaceType race);   // standard constructor
         virtual ~CItemSelectDialog();
 
         Item SelectedItem();
@@ -32,7 +33,11 @@ class CItemSelectDialog : public CDialog
         afx_msg void OnColumnclickListItems(NMHDR* pNMHDR, LRESULT* pResult);
         afx_msg void OnHoverListItems(NMHDR* pNMHDR, LRESULT* pResult);
         afx_msg LRESULT OnMouseLeave(WPARAM wParam, LPARAM lParam);
-
+        afx_msg void OnRadioCloth();
+        afx_msg void OnRadioLight();
+        afx_msg void OnRadioMedium();
+        afx_msg void OnRadioHeavy();
+        afx_msg void OnRadioDocent();
     public:
         DECLARE_MESSAGE_MAP()
 
@@ -52,9 +57,11 @@ class CItemSelectDialog : public CDialog
         void ShowTip(const Item & item, CRect itemRect);
         void HideTip();
         void SetTooltipText(const Item & item, CPoint tipTopLeft, CPoint tipAlternate);
+        void SetArmorButtonStates();
 
         InventorySlotType m_slot;
         Item m_item;
+        RaceType m_race;
 
         enum
         {
@@ -68,6 +75,11 @@ class CItemSelectDialog : public CDialog
             Upgrade_LegendarySlavelords,    // legendary slave lord items
         };
         CStatic m_staticType;
+        CButton m_buttonCloth;
+        CButton m_buttonLight;
+        CButton m_buttonMedium;
+        CButton m_buttonHeavy;
+        CButton m_buttonDocent;
         CListCtrl m_availableItemsCtrl;
         CSortHeaderCtrl m_sortHeader;
         CStatic m_augmentType[MAX_Augments];
@@ -79,6 +91,7 @@ class CItemSelectDialog : public CDialog
         bool m_bInitialising;
         UpgradeType m_upgradeTypeModelled[MAX_Upgrades];
         CPersistantSize m_sizer;
+        ArmorType m_armorType;
         // item tooltips
         CInfoTip m_tooltip;
         bool m_showingTip;

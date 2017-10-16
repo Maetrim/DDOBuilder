@@ -54,42 +54,60 @@ void Item::Write(XmlLib::SaxWriter * writer) const
     writer->EndElement();
 }
 
-bool Item::CanEquipToSlot(InventorySlotType slot) const
+bool Item::CanEquipToSlot(InventorySlotType slot, ArmorType armor) const
 {
     bool canEquipToSlot = false;
     switch (slot)
     {
     case Inventory_Arrows:
-        return m_Slots.HasArrow();
+        canEquipToSlot = m_Slots.HasArrow();
+        break;
     case Inventory_Armor:
-        return m_Slots.HasArmor();
+        if (m_Slots.HasArmor())
+        {
+            canEquipToSlot = (m_Armor == armor);
+        }
+        break;
     case Inventory_Belt:
-        return m_Slots.HasBelt();
+        canEquipToSlot = m_Slots.HasBelt();
+        break;
     case Inventory_Boots:
-        return m_Slots.HasBoots();
+        canEquipToSlot = m_Slots.HasBoots();
+        break;
     case Inventory_Bracers:
-        return m_Slots.HasBracers();
+        canEquipToSlot = m_Slots.HasBracers();
+        break;
     case Inventory_Cloak:
-        return m_Slots.HasCloak();
+        canEquipToSlot = m_Slots.HasCloak();
+        break;
     case Inventory_Gloves:
-        return m_Slots.HasGloves();
+        canEquipToSlot = m_Slots.HasGloves();
+        break;
     case Inventory_Goggles:
-        return m_Slots.HasGoggles();
+        canEquipToSlot = m_Slots.HasGoggles();
+        break;
     case Inventory_Helmet:
-        return m_Slots.HasHelmet();
+        canEquipToSlot = m_Slots.HasHelmet();
+        break;
     case Inventory_Necklace:
-        return m_Slots.HasNecklace();
+        canEquipToSlot = m_Slots.HasNecklace();
+        break;
     case Inventory_Quiver:
-        return m_Slots.HasQuiver();
+        canEquipToSlot = m_Slots.HasQuiver();
+        break;
     case Inventory_Ring1:
     case Inventory_Ring2:
-        return m_Slots.HasRing();
+        canEquipToSlot = m_Slots.HasRing();
+        break;
     case Inventory_Trinket:
-        return m_Slots.HasTrinket();
+        canEquipToSlot = m_Slots.HasTrinket();
+        break;
     case Inventory_Weapon1:
-        return m_Slots.HasWeapon1();
+        canEquipToSlot = m_Slots.HasWeapon1();
+        break;
     case Inventory_Weapon2:
-        return m_Slots.HasWeapon2();
+        canEquipToSlot = m_Slots.HasWeapon2();
+        break;
     }
     return canEquipToSlot;
 }

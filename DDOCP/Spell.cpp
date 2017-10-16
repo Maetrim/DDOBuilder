@@ -4,6 +4,8 @@
 #include "Spell.h"
 #include "XmlLib\SaxWriter.h"
 #include "GlobalSupportFunctions.h"
+#include "BreakdownItemAbility.h"
+#include "BreakdownItemSpellSchool.h"
 
 #define DL_ELEMENT Spell
 
@@ -161,3 +163,63 @@ void Spell::VerifyObject() const
         ::OutputDebugString(ss.str().c_str());
     }
 }
+
+size_t Spell::DC(
+        const Character & charData,
+        ClassType ct,
+        size_t spellLevel,
+        size_t maxSpellLevel) const
+{
+    size_t dc = 0;
+    BreakdownType bt = Breakdown_Unknown;
+    switch (m_School)
+    {
+    case SpellSchool_Abjuration:
+        bt = Breakdown_SpellSchoolAbjuration;
+        break;
+    case SpellSchool_Conjuration:
+        bt = Breakdown_SpellSchoolConjuration;
+        break;
+    case SpellSchool_Divination:
+        bt = Breakdown_SpellSchoolDivination;
+        break;
+    case SpellSchool_Enchantment:
+        bt = Breakdown_SpellSchoolEnchantment;
+        break;
+    case SpellSchool_Evocation:
+        bt = Breakdown_SpellSchoolEvocation;
+        break;
+    case SpellSchool_Illusion:
+        bt = Breakdown_SpellSchoolIllusion;
+        break;
+    case SpellSchool_Necromancy:
+        bt = Breakdown_SpellSchoolNecromancy;
+        break;
+    case SpellSchool_Transmutation:
+        bt = Breakdown_SpellSchoolTransmutation;
+        break;
+    }
+    // DC = breakdown amount + class ability amount + spell level
+    // + maxSpellLevel - spellLevel) if heightened
+    BreakdownItem * pBI = FindBreakdown(bt);
+    BreakdownItemSpellSchool * pBISpellSchool = dynamic_cast<BreakdownItemSpellSchool *>(pBI);
+    if (pBI != NULL)
+    {
+        AbilityType at = ClassCastingStat(ct);
+        BreakdownItem * pCS = FindBreakdown(StatToBreakdown(at));
+        BreakdownItemAbility * pBIAbility = dynamic_cast<BreakdownItemAbility *>(pCS);
+        if (pBIAbility != NULL)
+        {
+            // we have all the information we need now
+            dc = (size_t)pBISpellSchool->Total()        // lose fractions
+                    + (size_t)pBIAbility->Total()       // lose fractions
+                    + spellLevel;
+            if (charData.IsStanceActive("Heighten"))
+            {
+                dc += (maxSpellLevel - spellLevel);
+            }
+        }
+    }
+    return dc;
+}
+

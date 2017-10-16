@@ -7,6 +7,8 @@
 #include "EnergyTypes.h"
 #include "SpellSchoolTypes.h"
 
+class Character;
+
 class Spell :
     public XmlLib::SaxContentElement
 {
@@ -21,6 +23,8 @@ class Spell :
         std::vector<std::string> Metamagics() const;
 
         void VerifyObject() const;
+
+        size_t DC(const Character & charData, ClassType ct, size_t spellLevel, size_t maxSpellLevel) const;
     protected:
         XmlLib::SaxContentElementInterface * StartElement(
                 const XmlLib::SaxString & name,

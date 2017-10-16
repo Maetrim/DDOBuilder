@@ -28,7 +28,8 @@ class Stance :
                 DL_STRING(_, Name) \
                 DL_STRING(_, Icon) \
                 DL_STRING(_, Description) \
-                DL_STRING_LIST(_, IncompatibleStance)
+                DL_STRING_LIST(_, IncompatibleStance) \
+                DL_FLAG(_, AutoControlled)
 
         DL_DECLARE_ACCESS(Stance_PROPERTIES)
         DL_DECLARE_VARIABLES(Stance_PROPERTIES)

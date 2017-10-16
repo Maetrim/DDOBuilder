@@ -37,10 +37,13 @@ class CStancesView :
 
     private:
         // Character observers
-        virtual void UpdateNewStance(Character * charData, const Stance & stance);
-        virtual void UpdateRevokeStance(Character * charData, const Stance & stance);
-        virtual void UpdateStanceActivated(Character * charData, const std::string & stanceName);
-        virtual void UpdateStanceDeactivated(Character * charData, const std::string & stanceName);
+        virtual void UpdateNewStance(Character * charData, const Stance & stance) override;
+        virtual void UpdateRevokeStance(Character * charData, const Stance & stance) override;
+        virtual void UpdateStanceActivated(Character * charData, const std::string & stanceName) override;
+        virtual void UpdateStanceDeactivated(Character * charData, const std::string & stanceName) override;
+        virtual void UpdateFeatEffect(Character * charData, const std::string & featName,  const Effect & effect) override;
+        virtual void UpdateEnhancementEffect(Character * charData, const std::string & enhancementName,  const EffectTier & effect) override;
+        virtual void UpdateItemEffect(Character * charData, const std::string & itemName,  const Effect & effect) override;
 
         void CreateStanceWindows();
         void AddStance(const Stance & stance);

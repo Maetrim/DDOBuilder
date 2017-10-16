@@ -1630,7 +1630,8 @@ std::vector<TrainableFeatTypes> Character::TrainableFeatTypeAtLevel(
             trainable.push_back(TFT_Standard);
         }
     }
-    if (Race() == Race_Aasimar
+    if ((Race() == Race_Aasimar
+            || Race() == Race_ScourgeAasimar)
             && level == 0)
     {
         // Aasimars get a bond feat at level 1
@@ -2040,10 +2041,13 @@ void Character::ApplyFeatEffects(const Feat & feat)
     }
     NotifyFeatTrained(feat.Name());
     // if we have just trained a feat that is also a stance
-    // at a stance selection button for it
-    if (feat.HasStanceData())
+    // add a stance selection button for each
+    const std::list<Stance> & stances = feat.StanceData();
+    std::list<Stance>::const_iterator sit = stances.begin();
+    while (sit != stances.end())
     {
-        NotifyNewStance(feat.StanceData());
+        NotifyNewStance((*sit));
+        ++sit;
     }
 }
 
@@ -2058,9 +2062,13 @@ void Character::RevokeFeatEffects(const Feat & feat)
         ++feit;
     }
     NotifyFeatRevoked(feat.Name());
-    if (feat.HasStanceData())
+    // revoke any stances this feat has
+    const std::list<Stance> & stances = feat.StanceData();
+    std::list<Stance>::const_iterator sit = stances.begin();
+    while (sit != stances.end())
     {
-        NotifyRevokeStance(feat.StanceData());
+        NotifyRevokeStance((*sit));
+        ++sit;
     }
 }
 
@@ -3874,11 +3882,23 @@ void Character::RevokeGearEffects()
 void Character::ApplyGearEffects()
 {
     EquippedGear gear = ActiveGearSet();
+    Item noArmor = FindItem("No Armor Effects");;
     // iterate the items
     for (size_t i = Inventory_Unknown + 1; i < Inventory_Count; ++i)
     {
         if (gear.HasItemInSlot((InventorySlotType)i))
         {
+            if (i == Inventory_Armor)
+            {
+                // need to remove the no armor effects
+                const std::vector<Effect> & effects = noArmor.Effects();
+                std::vector<Effect>::const_iterator it = effects.begin();
+                while (it != effects.end())
+                {
+                    NotifyItemEffectRevoked(noArmor.Name(), (*it));
+                    ++it;
+                }
+            }
             Item item = gear.ItemInSlot((InventorySlotType)i);
             // apply the items effects
             const std::vector<Effect> & effects = item.Effects();
@@ -3912,6 +3932,21 @@ void Character::ApplyGearEffects()
                         NotifyItemEffect(name, (*it));
                         ++it;
                     }
+                }
+            }
+        }
+        else
+        {
+            // if the armor slot is empty, notify some default effects equivalent to no armor
+            if (i == Inventory_Armor)
+            {
+                // apply the items effects
+                const std::vector<Effect> & effects = noArmor.Effects();
+                std::vector<Effect>::const_iterator it = effects.begin();
+                while (it != effects.end())
+                {
+                    NotifyItemEffect(noArmor.Name(), (*it));
+                    ++it;
                 }
             }
         }

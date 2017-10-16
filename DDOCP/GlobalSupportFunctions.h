@@ -77,7 +77,6 @@ const std::list<Feat> & RacialPastLifeFeats();
 const std::list<Feat> & IconicPastLifeFeats();
 const std::list<Feat> & EpicPastLifeFeats();
 const std::list<Feat> & SpecialFeats();
-const std::list<Feat> & StanceFeats();
 const std::list<EnhancementTree> & EnhancementTrees();
 const std::list<Spell> & Spells();
 const std::list<Item> & Items();
@@ -110,6 +109,7 @@ size_t ClassSave(SaveType st, ClassType ct, size_t level);
 std::vector<size_t> SpellSlotsForClass(ClassType ct, size_t level);
 size_t ClassSpellPoints(ClassType ct, size_t level);
 AbilityType ClassCastingStat(ClassType ct);
+const Item & FindItem(const std::string & itemName);
 
 enum ImageType
 {

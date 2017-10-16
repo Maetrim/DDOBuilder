@@ -14,7 +14,9 @@ namespace
 }
 
 CSpellTip::CSpellTip() :
-    m_origin(CPoint(0, 0))
+    m_origin(CPoint(0, 0)),
+    m_class(Class_Unknown),
+    m_DC(0)
 {
     // create the fonts used
     LOGFONT lf;
@@ -94,16 +96,6 @@ void CSpellTip::Show()
             windowSize.cx, 
             windowSize.cy, 
             SWP_NOACTIVATE | SWP_SHOWWINDOW);
-
-    // debug help code to identify why info tip does not show from a dialog
-
-    //HDC hdc = ::GetDC(NULL);
-    //::DrawEdge(
-    //        hdc,
-    //        CRect(m_origin.x, m_origin.y, m_origin.x + windowSize.cx, m_origin.y + windowSize.cy),
-    //        EDGE_RAISED,
-    //        BF_RECT);
-    //::ReleaseDC(NULL, hdc);
 }
 
 void CSpellTip::SetOrigin(CPoint origin, CPoint alternate)
@@ -169,7 +161,7 @@ void CSpellTip::OnPaint()
     // draw spell DC
     text.Format("%s DC %d",
             EnumEntryText(m_spell.School(), spellSchoolTypeMap),
-            -1);            //?? DC needs to be used
+            m_DC);
     dc.TextOut(
             left + 32 + c_controlSpacing + csName.cx + c_controlSpacing,
             top + standardLine.cy + c_controlSpacing,
@@ -288,10 +280,13 @@ BOOL CSpellTip::GetWindowSize(CDC* pDC, CSize * size)
 void CSpellTip::SetSpell(
         Character * charData,
         const Spell & spell,
-        ClassType ct)
+        ClassType ct,
+        size_t spellLevel,
+        size_t maxSpellLevel)
 {
     m_image.Destroy();
     m_spell = spell;
     m_class = ct;
     LoadImageFile(IT_spell, m_spell.Icon(), &m_image);
+    m_DC = m_spell.DC(*charData, ct, spellLevel, maxSpellLevel);
 }

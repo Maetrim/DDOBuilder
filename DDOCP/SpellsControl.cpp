@@ -419,6 +419,8 @@ void CSpellsControl::SetTooltipText(
         CPoint tipTopLeft,
         CPoint tipAlternate)
 {
+    size_t spellLevel = 1;
+    size_t maxSpellLevel = 1;
     // find the spell to show info about
     std::string spellName;
     if (item.SpellIndex() >= 0)
@@ -432,6 +434,8 @@ void CSpellsControl::SetTooltipText(
             std::list<TrainedSpell>::const_iterator si = spells.begin();
             std::advance(si, item.SpellIndex());
             spellName = (*si).SpellName();
+            spellLevel = (*si).Level();
+            maxSpellLevel = SpellSlotsForClass(m_class, m_pCharacter->ClassLevels(m_class)).size();
         }
         else
         {
@@ -447,6 +451,8 @@ void CSpellsControl::SetTooltipText(
         std::list<FixedSpell>::const_iterator si = m_fixedSpells[item.SpellLevel()-1].begin();
         std::advance(si, spellIndex);
         spellName = (*si).Name();
+        spellLevel = (*si).Level();
+        maxSpellLevel = SpellSlotsForClass(m_class, m_pCharacter->ClassLevels(m_class)).size();
     }
     // now we have the spell name, look it up
     Spell spell = FindSpellByName(spellName);
@@ -454,7 +460,9 @@ void CSpellsControl::SetTooltipText(
     m_tooltip.SetSpell(
             m_pCharacter,
             spell,
-            m_class);
+            m_class,
+            spellLevel,
+            maxSpellLevel);
     m_tooltip.Show();
 }
 

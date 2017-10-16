@@ -319,7 +319,9 @@ void CSLAControl::SetTooltipText(
     m_tooltip.SetSpell(
             m_pCharacter,
             spell,
-            Class_Unknown);
+            Class_Unknown,
+            1,
+            1);
     m_tooltip.Show();
 }
 

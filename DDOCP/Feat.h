@@ -41,7 +41,7 @@ class Feat :
         #define Feat_PROPERTIES(_) \
                 DL_STRING(_, Name) \
                 DL_STRING(_, Description) \
-                DL_OPTIONAL_OBJECT(_, Stance, StanceData) \
+                DL_OBJECT_LIST(_, Stance, StanceData) \
                 DL_OPTIONAL_SIMPLE(_, size_t, MaxTimesAcquire, 1) \
                 DL_OPTIONAL_OBJECT(_, FeatGroup, Group) \
                 DL_OPTIONAL_STRING(_, Sphere) \

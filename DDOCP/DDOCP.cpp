@@ -365,13 +365,15 @@ void CDDOCPApp::SeparateFeats()
             // has to be a bog standard feat
             m_standardFeats.push_back((*it));
         }
-        // also add it to the list of stance feats if it is a stance
-        if ((*it).HasStanceData())
-        {
-            m_stanceFeats.push_back((*it));
-        }
         ++it;
     }
+    // now sort them in to order
+    m_epicPastLifeFeats.sort();
+    m_heroicPastLifeFeats.sort();
+    m_racialPastLifeFeats.sort();
+    m_iconicPastLifeFeats.sort();
+    m_specialFeats.sort();
+    m_standardFeats.sort();
 }
 
 const std::list<Feat> & CDDOCPApp::AllFeats() const
@@ -407,11 +409,6 @@ const std::list<Feat> & CDDOCPApp::EpicPastLifeFeats() const
 const std::list<Feat> & CDDOCPApp::SpecialFeats() const
 {
     return m_specialFeats;
-}
-
-const std::list<Feat> & CDDOCPApp::StanceFeats() const
-{
-    return m_stanceFeats;
 }
 
 const std::list<EnhancementTree> & CDDOCPApp::EnhancementTrees() const

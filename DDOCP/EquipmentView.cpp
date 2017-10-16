@@ -339,7 +339,7 @@ void CEquipmentView::UpdateSlotLeftClicked(
     }
     // no tooltips while a dialog is displayed
     GetMouseHook()->SaveState();
-    CItemSelectDialog dlg(this, slot, item);
+    CItemSelectDialog dlg(this, slot, item, m_pCharacter->Race());
     if (dlg.DoModal() == IDOK)
     {
         gear.SetItem(slot, dlg.SelectedItem());

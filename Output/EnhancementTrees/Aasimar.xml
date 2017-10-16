@@ -357,9 +357,14 @@ Must have your Bond Feat active to use.</Description>
       <MinSpent>5</MinSpent>
       <Clickie/>
       <Requirements/>
+        <Stance>
+          <Name>Aasimar: Divine Purpose</Name>
+          <Icon>DivinePurpose</Icon>
+          <Description>NYI</Description>
+        </Stance>
       <Selector>
         <EnhancementSelection>
-          <Name>Protector</Name>
+          <Name>Divine Purpose: Protector</Name>
           <Description>You sprout ethereal wings, the marks of the Protector.
 For one minute, you gain a Determination Bonus to Healing Amplification and
 Positive Spell Power equal to your Character Level.</Description>
@@ -367,7 +372,7 @@ Positive Spell Power equal to your Character Level.</Description>
           <Cost>1</Cost>
         </EnhancementSelection>
         <EnhancementSelection>
-          <Name>Fallen</Name>
+          <Name>Divine Purpose: Fallen</Name>
           <Description>You sprout weird wings of a Fallen Aasimar.
 For one minute, you gain +2 Primal bonus to Strength and +5% Primal bonus to Doublestrike.</Description>
           <Icon>Fallen</Icon>
@@ -392,12 +397,26 @@ For one minute, you gain +2 Primal bonus to Strength and +5% Primal bonus to Dou
           <Description>+1/2/3 Charisma while your Divine Purpose is active.</Description>
           <Icon>DivineResolve</Icon>
           <Cost>1</Cost>
+            <Effect>
+                <Type>AbilityBonus</Type>
+                <Bonus>Enhancement</Bonus>
+                <AmountVector size="3">1 2 3</AmountVector>
+                <Ability>Charisma</Ability>
+                <Stance>Divine Purpose</Stance>
+            </Effect>
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Strength</Name>
           <Description>+1/2/3 Strength while your Divine Purpose is active.</Description>
           <Icon>DivineResolveStr</Icon>
           <Cost>1</Cost>
+            <Effect>
+                <Type>AbilityBonus</Type>
+                <Bonus>Enhancement</Bonus>
+                <AmountVector size="3">1 2 3</AmountVector>
+                <Ability>Strength</Ability>
+                <Stance>Divine Purpose</Stance>
+            </Effect>
         </EnhancementSelection>
       </Selector>
     </EnhancementTreeItem>

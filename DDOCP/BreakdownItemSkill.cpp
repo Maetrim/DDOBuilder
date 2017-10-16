@@ -113,11 +113,12 @@ void BreakdownItemSkill::CreateOtherEffects()
             BreakdownItem * pBI = FindBreakdown(Breakdown_ArmorCheckPenalty);
             ASSERT(pBI != NULL);
             pBI->AttachObserver(this);  // need to know about changes to this effect
+            double total = max(0, pBI->Total()); // ACP cannot be a bonus!
             ActiveEffect acp(
                     Bonus_penalty,
                     "Armor check penalty",
                     1,
-                    pBI->Total() * multiplier,
+                    -total * multiplier,        // its a penalty (ACPs are positive)
                     "");        // no tree
             AddOtherEffect(acp);
         }

@@ -283,12 +283,6 @@ const std::list<Feat> & SpecialFeats()
     return pApp->SpecialFeats();
 }
 
-const std::list<Feat> & StanceFeats()
-{
-    CDDOCPApp * pApp = dynamic_cast<CDDOCPApp*>(AfxGetApp());
-    return pApp->StanceFeats();
-}
-
 const std::list<EnhancementTree> & EnhancementTrees()
 {
     CDDOCPApp * pApp = dynamic_cast<CDDOCPApp*>(AfxGetApp());
@@ -555,6 +549,7 @@ std::vector<TrainableFeatTypes> RaceSpecificFeatTypes(RaceType type)
     switch (type)
     {
     case Race_Aasimar:
+    case Race_ScourgeAasimar:
         types.push_back(TFT_AasimarBond);
         break;
     case Race_HalfElf:
@@ -1066,6 +1061,10 @@ int RacialModifier(
         if (race == Race_Aasimar)
         {
             mod = +1;
+        }
+        if (race == Race_ScourgeAasimar)
+        {
+            mod = +2;
         }
         break;
     case Ability_Charisma:
@@ -2289,5 +2288,21 @@ BreakdownItem * FindBreakdown(BreakdownType type)
     CWnd * pWnd = AfxGetMainWnd();
     CMainFrame * pMainWnd = dynamic_cast<CMainFrame*>(pWnd);
     return pMainWnd->FindBreakdown(type);
+}
+
+const Item & FindItem(const std::string & itemName)
+{
+    const std::list<Item> & items = Items();
+    std::list<Item>::const_iterator it = items.begin();
+    while (it != items.end())
+    {
+        if ((*it).Name() == itemName)
+        {
+            return (*it);
+        }
+        ++it;
+    }
+    ASSERT(FALSE);   // required item not found
+    throw "Error";
 }
 

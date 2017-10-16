@@ -72,5 +72,7 @@ class CDDOCPDoc :
                 BreakdownType btPower,
                 BreakdownType btCrit,
                 BreakdownType btMult);
+        void AddSpells(std::stringstream & forumExport);
+        void AddGear(std::stringstream & forumExport);
         Character m_characterData;
 };

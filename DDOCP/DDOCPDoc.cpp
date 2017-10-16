@@ -15,6 +15,7 @@
 #include <propkey.h>
 #include "XmlLib\SaxReader.h"
 #include "EnhancementEditorDialog.h"
+#include <numeric>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -241,6 +242,8 @@ void CDDOCPDoc::OnForumExportToClipboard()
     AddEnhancements(forumExport);
     AddTwistsOfFate(forumExport);
     AddSpellPowers(forumExport);
+    AddSpells(forumExport);
+    AddGear(forumExport);
     forumExport << "[/code]\r\n";
 
     CString clipboardText = forumExport.str().c_str();
@@ -813,5 +816,110 @@ void CDDOCPDoc::AddSpellPower(
     BreakdownItem * pBMult = FindBreakdown(btCrit);
     forumExport.width(3);
     forumExport << std::right << (int)pBMult->Total();
+    forumExport << "\r\n";
+}
+
+void CDDOCPDoc::AddSpells(std::stringstream & forumExport)
+{
+    bool first = true;
+    // check each possible class
+    std::vector<size_t> classLevels = m_characterData.ClassLevels(MAX_LEVEL);
+    for (size_t ci = Class_Unknown + 1; ci < Class_Count; ++ci)
+    {
+        if (classLevels[ci] > 0)
+        {
+            std::vector<size_t> spellSlots = SpellSlotsForClass((ClassType)ci, classLevels[ci]);
+            // must have at least 1 spell slot at any level to display the
+            // required spells for this class
+            size_t slotCount = std::accumulate(spellSlots.begin(), spellSlots.end(), 0);
+            if (slotCount > 0)
+            {
+                if (first)
+                {
+                    forumExport << "Spells                                      School         DC     \r\n";
+                    forumExport << "------------------------------------------------------------------\r\n";
+                    first = false;
+                }
+                forumExport << EnumEntryText((ClassType)ci, classTypeMap) << " Spells\r\n";
+                for (size_t spellLevel = 0; spellLevel < spellSlots.size(); ++spellLevel)
+                {
+                    std::list<TrainedSpell> trainedSpells = m_characterData.TrainedSpells((ClassType)ci, spellLevel + 1); // 1 based
+                    // now output each spell
+                    std::list<TrainedSpell>::const_iterator it = trainedSpells.begin();
+                    while (it != trainedSpells.end())
+                    {
+                        forumExport.width(1);
+                        forumExport << "L" << (spellLevel + 1) << ": ";
+                        forumExport.width(40);
+                        forumExport << std::left << (*it).SpellName();
+                        // spell school
+                        Spell spell = FindSpellByName((*it).SpellName());
+                        forumExport.width(15);
+                        forumExport << std::left << EnumEntryText(spell.School(), spellSchoolTypeMap);
+                        // calculate the spell DC also
+                        size_t spellDC = spell.DC(m_characterData, (ClassType)ci, spellLevel, spellSlots.size());
+                        forumExport.width(3);
+                        forumExport << std::right << spellDC;
+                        forumExport << "\r\n";
+                        ++it;
+                    }
+                }
+            }
+        }
+    }
+    if (!first)
+    {
+        forumExport << "------------------------------------------------------------------\r\n";
+        forumExport << "\r\n";
+    }
+}
+
+void CDDOCPDoc::AddGear(std::stringstream & forumExport)
+{
+    forumExport << "Equipped Gear                                                     \r\n";
+    forumExport << "------------------------------------------------------------------\r\n";
+    EquippedGear gear = m_characterData.ActiveGearSet();
+    for (size_t gi = Inventory_Unknown; gi < Inventory_Count; ++gi)
+    {
+        if (gear.HasItemInSlot((InventorySlotType)gi))
+        {
+            Item item = gear.ItemInSlot((InventorySlotType)gi);
+            forumExport.width(10);
+            forumExport << std::left << EnumEntryText((InventorySlotType)gi, InventorySlotTypeMap);
+            forumExport << "    ";
+            forumExport << item.Name();
+            forumExport << "\r\n";
+            // show effect descriptions up to the first encountered ":" character
+            const std::list<std::string> & eds = item.EffectDescription();
+            std::list<std::string>::const_iterator it = eds.begin();
+            while (it != eds.end())
+            {
+                std::string processedDescription = (*it);
+                processedDescription = processedDescription.substr(0, processedDescription.find(':'));
+                forumExport << "              ";
+                forumExport << processedDescription;
+                forumExport << "\r\n";
+                ++it;
+            }
+            // show any augment slots also
+            std::vector<ItemAugment> augments = item.Augments();
+            for (size_t i = 0; i < augments.size(); ++i)
+            {
+                forumExport << "              ";
+                forumExport << EnumEntryText(augments[i].Type(), augmentTypeMap);
+                forumExport << ": ";
+                if (augments[i].HasSelectedAugment())
+                {
+                    forumExport << augments[i].SelectedAugment();
+                }
+                else
+                {
+                    forumExport << "Empty augment slot";
+                }
+                forumExport << "\r\n";
+            }
+        }
+    }
+    forumExport << "------------------------------------------------------------------\r\n";
     forumExport << "\r\n";
 }

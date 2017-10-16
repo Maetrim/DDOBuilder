@@ -132,18 +132,6 @@ void CStancesView::CreateStanceWindows()
     Stance reaper("Reaper", "ReaperTree", "Activate to view your characters abilities when running in Reaper mode");
     AddStance(reaper);
 
-    // standard special stances that are always present. These may not be shown in the UI (TBD)
-    Stance clothArmor("Cloth/No Armor", "ClothArmorProficiency", "This stance is only visible due to development\nWill be hidden in final build\nYou are wearing cloth or no armor");
-    AddStance(clothArmor);
-    Stance lightArmor("Light Armor", "LightArmorProficiency", "This stance is only visible due to development\nWill be hidden in final build\nYou are wearing light armor");
-    AddStance(lightArmor);
-    Stance mediumArmor("Medium Armor", "MediumArmorProficiency", "This stance is only visible due to development\nWill be hidden in final build\nYou are wearing medium armor");
-    AddStance(mediumArmor);
-    Stance heavyArmor("Heavy Armor", "HeavyArmorProficiency", "This stance is only visible due to development\nWill be hidden in final build\nYou are wearing heavy armor");
-    AddStance(heavyArmor);
-    Stance centered("Centered", "Centered", "This stance is only visible due to development\nWill be hidden in final build\nYou are centered");
-    AddStance(centered);
-
     Stance twf("TwoWeaponFighting", "TwoWeaponFighting", "This stance is only visible due to development\nWill be hidden in final build\nYou are fighting with a weapon in each hand");
     AddStance(twf);
     Stance thf("TwoHandedFighting", "TwoHandedFighting", "This stance is only visible due to development\nWill be hidden in final build\nYou are fighting with a single weapon in both hands");
@@ -170,9 +158,12 @@ void CStancesView::CreateStanceWindows()
     {
         // look up the feat associated with this
         Feat feat = FindFeat((*fit).FeatName());
-        if (feat.HasStanceData())
+        const std::list<Stance> & stances = feat.StanceData();
+        std::list<Stance>::const_iterator sit = stances.begin();
+        while (sit != stances.end())
         {
-            AddStance(feat.StanceData());
+            AddStance((*sit));
+            ++sit;
         }
         ++fit;
     }
@@ -315,6 +306,43 @@ void CStancesView::UpdateStanceDeactivated(Character * charData, const std::stri
     }
 }
 
+void CStancesView::UpdateFeatEffect(
+        Character * charData,
+        const std::string & featName,
+        const Effect & effect)
+{
+    // all handled the same way
+    UpdateItemEffect(charData, featName, effect);
+}
+
+void CStancesView::UpdateEnhancementEffect(
+        Character * charData,
+        const std::string & enhancementName,
+        const EffectTier & effect)
+{
+    // all handled the same way
+    UpdateItemEffect(charData, enhancementName, effect.m_effect);
+}
+
+void CStancesView::UpdateItemEffect(
+        Character * charData,
+        const std::string & itemName,
+        const Effect & effect)
+{
+    // see if this is an activate stance effect
+    if (effect.Type() == Effect_ActivateStance)
+    {
+        ASSERT(effect.Stance().size() == 1);
+        for (size_t i = 0; i < m_stancebuttons.size(); ++i)
+        {
+            if (m_stancebuttons[i]->GetStance().Name() == effect.Stance()[0])
+            {
+                m_pCharacter->ActivateStance(m_stancebuttons[i]->GetStance());
+            }
+        }
+    }
+}
+
 void CStancesView::OnLButtonDown(UINT nFlags, CPoint point)
 {
     // determine which stance, if any was clicked on.
@@ -326,14 +354,22 @@ void CStancesView::OnLButtonDown(UINT nFlags, CPoint point)
         CStanceButton * pStance = dynamic_cast<CStanceButton*>(pWnd);
         if (pStance != NULL)
         {
-            // yup, they clicked on a stance, now change its activation state
-            if (pStance->IsSelected())
+            if (!pStance->GetStance().HasAutoControlled())
             {
-                m_pCharacter->DeactivateStance(pStance->GetStance());
+                // yup, they clicked on a stance, now change its activation state
+                if (pStance->IsSelected())
+                {
+                    m_pCharacter->DeactivateStance(pStance->GetStance());
+                }
+                else
+                {
+                    m_pCharacter->ActivateStance(pStance->GetStance());
+                }
             }
             else
             {
-                m_pCharacter->ActivateStance(pStance->GetStance());
+                // show action is not available
+                ::MessageBeep(0xFFFFFFFF);
             }
         }
     }
@@ -353,7 +389,14 @@ void CStancesView::OnMouseMove(UINT nFlags, CPoint point)
         // over a new item or a different item
         m_pTooltipItem = pStance;
         ShowTip(*pStance, itemRect);
-        GetMainFrame()->SetStatusBarPromptText("Click to toggle stance state.");
+        if (pStance->GetStance().HasAutoControlled())
+        {
+            GetMainFrame()->SetStatusBarPromptText("This stances state is controlled by the software. Cannot be manually changed.");
+        }
+        else
+        {
+            GetMainFrame()->SetStatusBarPromptText("Click to toggle stance state.");
+        }
     }
     else
     {
