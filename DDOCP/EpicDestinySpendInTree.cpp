@@ -39,6 +39,11 @@ void EpicDestinySpendInTree::EndElement()
 {
     SaxContentElement::EndElement();
     DL_END(EpicDestinySpendInTree_PROPERTIES)
+    // fix old files with incorrect typo in tree name
+    if (m_TreeName == "Gransmaster of Flowers")
+    {
+        m_TreeName = "Grandmaster of Flowers";
+    }
 }
 
 void EpicDestinySpendInTree::Write(XmlLib::SaxWriter * writer) const

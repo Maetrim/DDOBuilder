@@ -1630,8 +1630,7 @@ std::vector<TrainableFeatTypes> Character::TrainableFeatTypeAtLevel(
             trainable.push_back(TFT_Standard);
         }
     }
-    if ((Race() == Race_Aasimar
-            || Race() == Race_ScourgeAasimar)
+    if (Race() == Race_Aasimar
             && level == 0)
     {
         // Aasimars get a bond feat at level 1

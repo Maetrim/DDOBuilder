@@ -112,6 +112,50 @@ void BreakdownItemSave::CreateOtherEffects()
                     AddOtherEffect(feat);
                 }
             }
+            else
+            {
+                // now check for the half elf: Paladin Dilettante feat
+                count = TrainedCount(m_pCharacter->CurrentFeats(MAX_LEVEL), "Half-Elf Dilettante: Paladin");
+                if (count > 0)
+                {
+                    // yes, they have it. Work out what the max capped charisma bonus to saves is
+                    // its 2 + any enhancement upgrades
+                    int maxBonus = 2; // default max bonus is 2
+                    if (m_pCharacter->IsEnhancementTrained("HalfElfImprovedDilettanteI", "Improved Dilettante: Paladin"))
+                    {
+                        maxBonus++;
+                    }
+                    if (m_pCharacter->IsEnhancementTrained("HalfElfImprovedDilettanteII", "Improved Dilettante: Paladin"))
+                    {
+                        maxBonus++;
+                    }
+                    if (m_pCharacter->IsEnhancementTrained("HalfElfImprovedDilettanteIII", "Improved Dilettante: Paladin"))
+                    {
+                        maxBonus++;
+                    }
+                    BreakdownItem * pBI = FindBreakdown(StatToBreakdown(Ability_Charisma));
+                    ASSERT(pBI != NULL);
+                    pBI->AttachObserver(this); // watch for any changes
+                    int bonus = BaseStatToBonus(pBI->Total());
+                    // cap it if required
+                    bonus = min(bonus, maxBonus);
+                    if (bonus != 0) // only add to list if non zero
+                    {
+                        CString text;
+                        text.Format(
+                                "Lesser Divine Grace (Charisma) (Capped @ %d)",
+                                maxBonus);
+                        // should now have the best option
+                        ActiveEffect feat(
+                                Bonus_ability,
+                                (LPCTSTR)text,
+                                1,
+                                bonus,
+                                "");        // no tree
+                        AddOtherEffect(feat);
+                    }
+                }
+            }
         }
         if (m_ability != Ability_Unknown)
         {
@@ -184,6 +228,38 @@ void BreakdownItemSave::UpdateClassChanged(
     // need to re-create other effects list
     CreateOtherEffects();
     Populate();
+}
+
+void BreakdownItemSave::UpdateEnhancementTrained(
+        Character * charData,
+        const std::string & enhancementName,
+        bool isTier5)
+{
+    BreakdownItem::UpdateEnhancementTrained(charData, enhancementName, isTier5);
+    if (enhancementName == "HalfElfImprovedDilettanteI"
+            || enhancementName == "HalfElfImprovedDilettanteII"
+            || enhancementName == "HalfElfImprovedDilettanteIII")
+    {
+        // need to re-create other effects list
+        CreateOtherEffects();
+        Populate();
+    }
+}
+
+void BreakdownItemSave::UpdateEnhancementRevoked(
+        Character * charData,
+        const std::string & enhancementName,
+        bool isTier5)
+{
+    BreakdownItem::UpdateEnhancementTrained(charData, enhancementName, isTier5);
+    if (enhancementName == "HalfElfImprovedDilettanteI"
+            || enhancementName == "HalfElfImprovedDilettanteII"
+            || enhancementName == "HalfElfImprovedDilettanteIII")
+    {
+        // need to re-create other effects list
+        CreateOtherEffects();
+        Populate();
+    }
 }
 
 void BreakdownItemSave::UpdateTotalChanged(

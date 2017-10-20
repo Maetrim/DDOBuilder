@@ -212,7 +212,7 @@ size_t Spell::DC(
         {
             // we have all the information we need now
             dc = (size_t)pBISpellSchool->Total()        // lose fractions
-                    + (size_t)pBIAbility->Total()       // lose fractions
+                    + BaseStatToBonus(pBIAbility->Total())
                     + spellLevel;
             if (charData.IsStanceActive("Heighten"))
             {

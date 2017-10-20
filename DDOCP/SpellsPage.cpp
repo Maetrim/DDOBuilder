@@ -119,7 +119,7 @@ void CSpellsPage::UpdateFeatEffect(
 {
     // only interested in Effect_GrantSpell
     if (effect.Type() == Effect_GrantSpell
-            && effect.Class() == m_classType)
+            && (effect.Class() == m_classType || effect.Class() == Class_All))
     {
         m_spells.AddFixedSpell(
                 effect.Spell(),
@@ -133,7 +133,7 @@ void CSpellsPage::UpdateFeatEffectRevoked(
         const Effect & effect)
 {
     if (effect.Type() == Effect_GrantSpell
-            && effect.Class() == m_classType)
+            && (effect.Class() == m_classType || effect.Class() == Class_All))
     {
         m_spells.RevokeFixedSpell(
                 effect.Spell(),
@@ -148,7 +148,7 @@ void CSpellsPage::UpdateItemEffect(
 {
     // only interested in Effect_GrantSpell
     if (effect.Type() == Effect_GrantSpell
-            && effect.Class() == m_classType)
+            && (effect.Class() == m_classType || effect.Class() == Class_All))
     {
         m_spells.AddFixedSpell(
                 effect.Spell(),
@@ -162,7 +162,7 @@ void CSpellsPage::UpdateItemEffectRevoked(
         const Effect & effect)
 {
     if (effect.Type() == Effect_GrantSpell
-            && effect.Class() == m_classType)
+            && (effect.Class() == m_classType || effect.Class() == Class_All))
     {
         m_spells.RevokeFixedSpell(
                 effect.Spell(),
@@ -176,7 +176,7 @@ void CSpellsPage::UpdateEnhancementEffect(
         const EffectTier & effect)
 {
     if (effect.m_effect.Type() == Effect_GrantSpell
-            && effect.m_effect.Class() == m_classType)
+            && (effect.m_effect.Class() == m_classType || effect.m_effect.Class() == Class_All))
     {
         m_spells.AddFixedSpell(
                 effect.m_effect.Spell(),
@@ -190,7 +190,7 @@ void CSpellsPage::UpdateEnhancementEffectRevoked(
         const EffectTier & effect)
 {
     if (effect.m_effect.Type() == Effect_GrantSpell
-            && effect.m_effect.Class() == m_classType)
+            && (effect.m_effect.Class() == m_classType || effect.m_effect.Class() == Class_All))
     {
         m_spells.RevokeFixedSpell(
                 effect.m_effect.Spell(),

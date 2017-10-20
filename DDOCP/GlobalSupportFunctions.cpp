@@ -549,7 +549,6 @@ std::vector<TrainableFeatTypes> RaceSpecificFeatTypes(RaceType type)
     switch (type)
     {
     case Race_Aasimar:
-    case Race_ScourgeAasimar:
         types.push_back(TFT_AasimarBond);
         break;
     case Race_HalfElf:
@@ -1054,15 +1053,9 @@ int RacialModifier(
         {
             mod = -2;
         }
-        if (race == Race_DeepGnome)
-        {
-            mod = +2;
-        }
-        if (race == Race_Aasimar)
-        {
-            mod = +1;
-        }
-        if (race == Race_ScourgeAasimar)
+        if (race == Race_DeepGnome
+                || race == Race_Aasimar
+                || race == Race_AasimarScourge)
         {
             mod = +2;
         }
@@ -1080,10 +1073,6 @@ int RacialModifier(
                 || race == Race_Dragonborn)
         {
             mod = +2;
-        }
-        if (race == Race_Aasimar)
-        {
-            mod = +1;
         }
         break;
     }

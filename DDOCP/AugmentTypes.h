@@ -120,6 +120,12 @@ enum AugmentType
     Augment_IntricateFieldOptics,
     Augment_PrismaticCloak,
     Augment_NecklaceVariant,
+    Augment_RobeVariant,
+    Augment_ShadowClothVariant,
+    Augment_ShadowLightVariant,
+    Augment_ShadowMediumVariant,
+    Augment_ShadowHeavyVariant,
+    Augment_ShadowDocentVariant,
 };
 const XmlLib::enumMapEntry<AugmentType> augmentTypeMap[] =
 {
@@ -229,5 +235,11 @@ const XmlLib::enumMapEntry<AugmentType> augmentTypeMap[] =
     {Augment_IntricateFieldOptics, L"Field Optics Variant"},
     {Augment_PrismaticCloak, L"Cloak Variant"},
     {Augment_NecklaceVariant, L"Necklace Variant"},
+    {Augment_RobeVariant, L"Robe Variant"},
+    {Augment_ShadowClothVariant, L"Shadow Cloth Variant"},
+    {Augment_ShadowLightVariant, L"Shadow Light Variant"},
+    {Augment_ShadowMediumVariant, L"Shadow Medium Variant"},
+    {Augment_ShadowHeavyVariant, L"Shadow Heavy Variant"},
+    {Augment_ShadowDocentVariant, L"Shadow Docent Variant"},
     {AugmentType(0), NULL}
 };

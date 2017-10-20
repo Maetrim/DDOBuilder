@@ -11,6 +11,7 @@ enum RaceType
 {
     Race_Unknown = 0,
     Race_Aasimar,
+    Race_AasimarScourge,
     Race_Drow,
     Race_Dwarf,
     Race_Dragonborn,
@@ -23,7 +24,6 @@ enum RaceType
     Race_BladeForged,
     Race_DeepGnome,
     Race_PurpleDragonKnight,
-    Race_ScourgeAasimar,
     Race_ShadarKai,
     Race_Morninglord,
     Race_Warforged,
@@ -35,6 +35,7 @@ const XmlLib::enumMapEntry<RaceType> raceTypeMap[] =
 {
     {Race_Unknown, L"Unknown"},
     {Race_Aasimar, L"Aasimar"},
+    {Race_AasimarScourge, L"Aasimar Scourge"},
     {Race_Drow, L"Drow"},
     {Race_Dwarf, L"Dwarf"},
     {Race_Dragonborn, L"Dragonborn"},
@@ -47,7 +48,6 @@ const XmlLib::enumMapEntry<RaceType> raceTypeMap[] =
     {Race_BladeForged, L"Bladeforged"},
     {Race_DeepGnome, L"Deep Gnome"},
     {Race_PurpleDragonKnight, L"Purple Dragon Knight"},
-    {Race_ScourgeAasimar, L"Scourge Aasimar"},
     {Race_ShadarKai, L"Shadar-Kai"},
     {Race_Morninglord, L"Morninglord"},
     {Race_Warforged, L"Warforged"},
