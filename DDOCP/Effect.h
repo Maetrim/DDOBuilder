@@ -258,6 +258,7 @@ class Effect :
         void Write(XmlLib::SaxWriter * writer) const;
 
         double Amount(size_t tier) const;
+        bool VerifyObject(std::stringstream * ss) const;
 
     protected:
         XmlLib::SaxContentElementInterface * StartElement(
@@ -279,7 +280,6 @@ class Effect :
                 DL_FLAG(_, Percent) \
                 DL_OPTIONAL_OBJECT(_, Dice, DiceRoll) \
                 DL_OPTIONAL_SIMPLE(_, size_t, DieRoll, 20) \
-                DL_OPTIONAL_SIMPLE(_, size_t, Duration, 0) \
                 DL_OPTIONAL_SIMPLE(_, int, Divider, 0) \
                 DL_OPTIONAL_STRING(_, Base) \
                 DL_OPTIONAL_STRING(_, Feat) \
@@ -307,4 +307,6 @@ class Effect :
 
         DL_DECLARE_ACCESS(Effect_PROPERTIES)
         DL_DECLARE_VARIABLES(Effect_PROPERTIES)
+
+        friend class Spell;
 };

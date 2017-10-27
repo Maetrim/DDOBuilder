@@ -29,6 +29,7 @@ Stance::Stance(
     m_Icon(icon),
     m_Description(description)
 {
+    m_hasAutoControlled = false;
 }
 
 DL_DEFINE_ACCESS(Stance_PROPERTIES)

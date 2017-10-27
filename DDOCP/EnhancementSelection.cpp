@@ -67,5 +67,12 @@ bool EnhancementSelection::VerifyObject(
         (*ss) << "EnhancementSelection is missing image file \"" << Icon() << "\"\n";
         ok = false;
     }
+    // check the spell effects also
+    std::list<Effect>::const_iterator it = m_Effects.begin();
+    while (it != m_Effects.end())
+    {
+        ok &= (*it).VerifyObject(ss);
+        ++it;
+    }
     return ok;
 }

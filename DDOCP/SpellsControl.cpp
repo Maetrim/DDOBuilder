@@ -5,6 +5,7 @@
 #include "SpellsControl.h"
 #include "GlobalSupportFunctions.h"
 #include "MainFrm.h"
+#include "BreakdownItem.h"
 
 namespace
 {
@@ -471,12 +472,15 @@ void CSpellsControl::UpdateSpells()
     // update our cached lists
     for (size_t i = 0; i < MAX_SPELL_LEVEL; ++i)
     {
+        // first revoke the spell effects
+        RevokeSpellEffects(m_trainedSpells[i]);
         m_trainedSpells[i].clear();
         // now query the character for all the spells trained at each level
         // for this class
         if (m_pCharacter != NULL)
         {
             m_trainedSpells[i] = m_pCharacter->TrainedSpells(m_class, i + 1); // spell levels are 1 based
+            ApplySpellEffects(m_trainedSpells[i]);
         }
     }
     if (IsWindow(GetSafeHwnd()))
@@ -674,4 +678,68 @@ void CSpellsControl::RevokeFixedSpell(const std::string & spellName, size_t leve
         m_bCreateHitBoxes = true;
         Invalidate();   // redraw
     }
+}
+
+void CSpellsControl::ApplySpellEffects(const std::list<TrainedSpell> & spells)
+{
+    // first determine the caster level for this class
+    size_t casterLevel = CasterLevel();
+    // now apply the effects for each spell known
+    std::list<TrainedSpell>::const_iterator it = spells.begin();
+    while (it != spells.end())
+    {
+        m_pCharacter->ApplySpellEffects((*it).SpellName(), casterLevel);
+        ++it;
+    }
+}
+
+void CSpellsControl::RevokeSpellEffects(const std::list<TrainedSpell> & spells)
+{
+    // first determine the caster level for this class
+    size_t casterLevel = CasterLevel();
+    // now revoke the effects for each spell known
+    std::list<TrainedSpell>::const_iterator it = spells.begin();
+    while (it != spells.end())
+    {
+        m_pCharacter->RevokeSpellEffects((*it).SpellName(), casterLevel);
+        ++it;
+    }
+}
+
+size_t CSpellsControl::CasterLevel() const
+{
+    size_t casterLevel = m_pCharacter->ClassLevels(m_class);
+    switch (m_class)
+    {
+    case Class_Artificer:
+        casterLevel = (size_t)FindBreakdown(Breakdown_CasterLevel_Artificer)->Total();
+        break;
+    case Class_Cleric:
+        casterLevel = (size_t)FindBreakdown(Breakdown_CasterLevel_Cleric)->Total();
+        break;
+    case Class_Druid:
+        casterLevel = (size_t)FindBreakdown(Breakdown_CasterLevel_Druid)->Total();
+        break;
+    case Class_FavoredSoul:
+        casterLevel = (size_t)FindBreakdown(Breakdown_CasterLevel_FavoredSoul)->Total();
+        break;
+    case Class_Paladin:
+        casterLevel = (size_t)FindBreakdown(Breakdown_CasterLevel_Paladin)->Total();
+        break;
+    case Class_Sorcerer:
+        casterLevel = (size_t)FindBreakdown(Breakdown_CasterLevel_Sorcerer)->Total();
+        break;
+    case Class_Ranger:
+        casterLevel = (size_t)FindBreakdown(Breakdown_CasterLevel_Ranger)->Total();
+        break;
+    case Class_Warlock:
+        casterLevel = (size_t)FindBreakdown(Breakdown_CasterLevel_Warlock)->Total();
+        break;
+    case Class_Wizard:
+        casterLevel = (size_t)FindBreakdown(Breakdown_CasterLevel_Wizard)->Total();
+        break;
+    default:
+        break;
+    }
+    return casterLevel;
 }

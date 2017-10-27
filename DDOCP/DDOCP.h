@@ -63,6 +63,7 @@ class CDDOCPApp :
         void SeparateFeats();   // breaks them out into groups based on type
         void VerifyEnhancements();     // verify that all enhancements are consistent
         void VerifySpells();    // verify all spells are consistent
+        void VerifyItems();    // verify all items are consistent
         CCustomContextMenuManager m_ourMenuManager; // construction of object replaces default implementation created in InitContextMenuManager
         // global data loaded at start up
         std::list<Feat> m_allFeats;

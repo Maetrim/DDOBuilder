@@ -659,17 +659,46 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
 
     {
         HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Off Hand Attack Chance",
+                hParent,
+                TVI_LAST);
+        BreakdownItem * pOHA = new BreakdownItemSimple(
+                Breakdown_OffHandAttackBonus,
+                Effect_OffHandAttackBonus,
+                "Off Hand Attack Chance",
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pOHA);
+        m_items.push_back(pOHA);
+    }
+
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
                 "Doublestrike",
                 hParent,
                 TVI_LAST);
-        BreakdownItem * pRA = new BreakdownItemSimple(
+        BreakdownItem * pDS = new BreakdownItemSimple(
                 Breakdown_DoubleStrike,
                 Effect_DoubleStrike,
                 "Doublestrike",
                 &m_itemBreakdownTree,
                 hItem);
-        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pRA);
-        m_items.push_back(pRA);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pDS);
+        m_items.push_back(pDS);
+        {
+            HTREEITEM hOHDS = m_itemBreakdownTree.InsertItem(
+                    "Off Hand Doublestrike",
+                    hItem,
+                    TVI_LAST);
+            BreakdownItem * pOHDS = new BreakdownItemSimple(
+                    Breakdown_OffHandDoubleStrike,
+                    Effect_OffHandDoublestrike,
+                    "Off Hand Doublestrike",
+                    &m_itemBreakdownTree,
+                    hOHDS);
+            m_itemBreakdownTree.SetItemData(hOHDS, (DWORD)(void*)pOHDS);
+            m_items.push_back(pOHDS);
+        }
     }
 
     {

@@ -63,3 +63,20 @@ double Effect::Amount(size_t tier) const
     }
     return amount;
 }
+
+bool Effect::VerifyObject(std::stringstream * ss) const
+{
+    bool ok = true;
+    if (m_Type == Effect_Unknown)
+    {
+        (*ss) << "Has unknown effect type\n";
+        ok = false;
+    }
+    if (HasAmountVector())
+    {
+        // realize the vector to catch size/data mismatches
+        std::vector<double> d = m_AmountVector;
+    }
+    return ok;
+}
+

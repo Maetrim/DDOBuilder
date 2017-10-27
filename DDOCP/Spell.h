@@ -6,6 +6,7 @@
 #include "ClassTypes.h"
 #include "EnergyTypes.h"
 #include "SpellSchoolTypes.h"
+#include "Effect.h"
 
 class Character;
 
@@ -25,6 +26,7 @@ class Spell :
         void VerifyObject() const;
 
         size_t DC(const Character & charData, ClassType ct, size_t spellLevel, size_t maxSpellLevel) const;
+        std::vector<Effect> UpdatedEffects(size_t castingLevel) const;
     protected:
         XmlLib::SaxContentElementInterface * StartElement(
                 const XmlLib::SaxString & name,
@@ -38,6 +40,7 @@ class Spell :
                 DL_STRING(_, Icon) \
                 DL_ENUM(_, SpellSchoolType, School, SpellSchool_Unknown, spellSchoolTypeMap) \
                 DL_OPTIONAL_ENUM(_, EnergyType, Energy, Energy_Unknown, energyTypeMap) \
+                DL_OBJECT_VECTOR(_, Effect, Effects) \
                 DL_FLAG(_, Empower) \
                 DL_FLAG(_, EmpowerHealing) \
                 DL_FLAG(_, Enlarge) \

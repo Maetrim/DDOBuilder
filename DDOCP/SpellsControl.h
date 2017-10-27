@@ -103,6 +103,9 @@ class CSpellsControl :
         void RemoveTrained(
                 std::vector<Spell> * spells,
                 std::string * currentSelection);
+        void ApplySpellEffects(const std::list<TrainedSpell> & spells);
+        void RevokeSpellEffects(const std::list<TrainedSpell> & spells);
+        size_t CasterLevel() const;
 
         Character * m_pCharacter;
         ClassType m_class;

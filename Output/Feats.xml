@@ -98,6 +98,11 @@ dexterity bonus.</Description>
          <Stance>Heavy Armor</Stance>
       </Effect>
       <Effect>
+         <Type>ActivateStance</Type>
+         <Bonus>Feat</Bonus>
+         <Stance>MediumOrHeavy</Stance>
+      </Effect>
+      <Effect>
          <Type>ACBonus</Type>
          <Bonus>Armor</Bonus>
          <Amount>8</Amount>
@@ -591,6 +596,12 @@ by right-clicking the mouse.</Description>
          <Bonus>Base</Bonus>
          <Amount>-10</Amount>
       </Effect>
+      <Effect>
+         <DisplayName>Standard off hand attack chance</DisplayName>
+         <Type>OffHandAttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>20</Amount>
+      </Effect>
       <Stance>
          <Name>Cloth Armor</Name>
          <Icon>ClothArmorProficiency</Icon>
@@ -598,6 +609,7 @@ by right-clicking the mouse.</Description>
 If you are a construct you have the Composite Plating feat.</Description>
          <IncompatibleStance>Light Armor</IncompatibleStance>
          <IncompatibleStance>Medium Armor</IncompatibleStance>
+         <IncompatibleStance>MediumOrHeavy</IncompatibleStance>
          <IncompatibleStance>Heavy Armor</IncompatibleStance>
          <AutoControlled/>
       </Stance>
@@ -608,6 +620,7 @@ If you are a construct you have the Composite Plating feat.</Description>
 If you are a construct you have the Mithral Body feat.</Description>
          <IncompatibleStance>Cloth Armor</IncompatibleStance>
          <IncompatibleStance>Medium Armor</IncompatibleStance>
+         <IncompatibleStance>MediumOrHeavy</IncompatibleStance>
          <IncompatibleStance>Heavy Armor</IncompatibleStance>
          <IncompatibleStance>Centered</IncompatibleStance>
          <AutoControlled/>
@@ -630,6 +643,15 @@ If you are a construct you have the Adamantine Body feat.</Description>
          <IncompatibleStance>Cloth Armor</IncompatibleStance>
          <IncompatibleStance>Light Armor</IncompatibleStance>
          <IncompatibleStance>Medium Armor</IncompatibleStance>
+         <IncompatibleStance>Centered</IncompatibleStance>
+         <AutoControlled/>
+      </Stance>
+      <Stance>
+         <Name>MediumOrHeavy</Name>
+         <Icon>HeavyArmorProficiency</Icon>
+         <Description>You are wearing either medium or heavy armor.</Description>
+         <IncompatibleStance>Cloth Armor</IncompatibleStance>
+         <IncompatibleStance>Light Armor</IncompatibleStance>
          <IncompatibleStance>Centered</IncompatibleStance>
          <AutoControlled/>
       </Stance>
@@ -1028,7 +1050,8 @@ their normal cooldown when this mode is active.</Description>
       <Effect>
          <Type>ACBonus</Type>
          <Bonus>Feat</Bonus>
-         <Percentage>10</Percentage>
+         <Percent/>
+         <Amount>10</Amount>
          <Stance>Combat Expertise</Stance>
       </Effect>
    </Feat>
@@ -1335,13 +1358,15 @@ and a -5% penalty to-hit. Casting a spell ends this mode.</Description>
       <Effect>
          <Type>ACBonus</Type>
          <Bonus>Feat</Bonus>
-         <Percentage>5</Percentage>
+         <Percent/>
+         <Amount>5</Amount>
          <Stance>Defensive Fighting</Stance>
       </Effect>
       <Effect>
          <Type>AttackBonus</Type>
          <Bonus>Feat</Bonus>
-         <Percentage>-5</Percentage>
+         <Percent/>
+         <Amount>-5</Amount>
          <Stance>Defensive Fighting</Stance>
       </Effect>
    </Feat>
@@ -13545,7 +13570,7 @@ Passive Bonus: +1 Fortitude Save per stack of this Past Life.</Description>
          <Stance>Aasimar</Stance>
       </Effect>
       <Effect>
-         <Type>OffhandDoublestrike</Type>
+         <Type>OffHandDoublestrike</Type>
          <Bonus>Feat</Bonus>
          <Amount>2</Amount>
          <Stance>Aasimar</Stance>
@@ -16441,7 +16466,8 @@ Sphere: Arcane  Number of Destinies: 1</Description>
       <Effect>
          <Type>SongDuration</Type>
          <Bonus>Feat</Bonus>
-         <Percentage>50</Percentage>
+         <Percent/>
+         <Amount>50</Amount>
       </Effect>
    </Feat>
    <Feat>

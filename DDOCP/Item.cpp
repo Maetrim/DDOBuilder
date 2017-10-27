@@ -134,3 +134,27 @@ void Item::AddImage(CImageList * pIL) const
         ASSERT(ret >= 0);
     }
 }
+
+void Item::VerifyObject() const
+{
+    bool ok = true;
+    std::stringstream ss;
+    ss << "=====" << m_Name << "=====\n";
+    if (!ImageFileExists(IT_item, Icon()))
+    {
+        ss << "Item is missing image file \"" << Icon() << "\"\n";
+        ok = false;
+    }
+    // check the item effects also
+    std::vector<Effect>::const_iterator it = m_Effects.begin();
+    while (it != m_Effects.end())
+    {
+        ok = (*it).VerifyObject(&ss);
+        ++it;
+    }
+
+    if (!ok)
+    {
+        ::OutputDebugString(ss.str().c_str());
+    }
+}

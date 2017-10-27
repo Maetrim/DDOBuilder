@@ -153,6 +153,8 @@ class Character :
         void TrainSpell(ClassType classType, size_t level, const std::string & spellName);
         void RevokeSpell(ClassType classType, size_t level, const std::string & spellName);
         bool IsSpellTrained(const std::string & spellName) const;
+        void ApplySpellEffects(const std::string & spellName, size_t castingLevel);
+        void RevokeSpellEffects(const std::string & spellName, size_t castingLevel);
 
         // stances
         void ActivateStance(const Stance & stance);

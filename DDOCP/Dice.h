@@ -3,6 +3,7 @@
 // An XML object wrapper that holds information on dice to be rolled
 #pragma once
 #include "XmlLib\DLMacros.h"
+#include "EnergyTypes.h"
 
 class Dice :
     public XmlLib::SaxContentElement
@@ -27,7 +28,8 @@ class Dice :
         #define Dice_PROPERTIES(_) \
                 DL_VECTOR(_, size_t, Number) \
                 DL_VECTOR(_, size_t, Sides) \
-                DL_OPTIONAL_VECTOR(_, int, Bonus)
+                DL_OPTIONAL_VECTOR(_, int, Bonus) \
+                DL_OPTIONAL_ENUM(_, EnergyType, Energy, Energy_Unknown, energyTypeMap)
 
         DL_DECLARE_ACCESS(Dice_PROPERTIES)
         DL_DECLARE_VARIABLES(Dice_PROPERTIES)

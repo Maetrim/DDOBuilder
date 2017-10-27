@@ -19,7 +19,9 @@ ActiveEffect::ActiveEffect() :
     m_tree(""),
     m_bt(Breakdown_Unknown),
     m_amountPerLevel(0),
-    m_class(Class_Unknown)
+    m_class(Class_Unknown),
+    m_bIsPercentage(false),
+    m_percentageAmount(0)
 {
 }
 
@@ -39,7 +41,9 @@ ActiveEffect::ActiveEffect(
     m_tree(tree),
     m_bt(Breakdown_Unknown),
     m_amountPerLevel(0),
-    m_class(Class_Unknown)
+    m_class(Class_Unknown),
+    m_bIsPercentage(false),
+    m_percentageAmount(0)
 {
 }
 
@@ -58,7 +62,9 @@ ActiveEffect::ActiveEffect(
     m_tree(tree),
     m_bt(Breakdown_Unknown),
     m_amountPerLevel(0),
-    m_class(Class_Unknown)
+    m_class(Class_Unknown),
+    m_bIsPercentage(false),
+    m_percentageAmount(0)
 {
     // stacks is set immediately after this is constructed
 }
@@ -80,7 +86,9 @@ ActiveEffect::ActiveEffect(
     m_tree(tree),
     m_bt(Breakdown_Unknown),
     m_amountPerLevel(0),
-    m_class(Class_Unknown)
+    m_class(Class_Unknown),
+    m_bIsPercentage(false),
+    m_percentageAmount(0)
 {
 }
 
@@ -99,7 +107,9 @@ ActiveEffect::ActiveEffect(
     m_energy(Energy_Unknown),
     m_bt(Breakdown_Unknown),
     m_amountPerLevel(0),
-    m_class(Class_Unknown)
+    m_class(Class_Unknown),
+    m_bIsPercentage(false),
+    m_percentageAmount(0)
 {
 }
 
@@ -118,7 +128,9 @@ ActiveEffect::ActiveEffect(
     m_energy(Energy_Unknown),
     m_bt(Breakdown_Unknown),
     m_amountPerLevel(0),
-    m_class(classType)
+    m_class(classType),
+    m_bIsPercentage(false),
+    m_percentageAmount(0)
 {
 }
 
@@ -137,7 +149,9 @@ ActiveEffect::ActiveEffect(
     m_energy(Energy_Unknown),
     m_bt(Breakdown_Unknown),
     m_amountPerLevel(amountPerLevel),
-    m_class(classType)
+    m_class(classType),
+    m_bIsPercentage(false),
+    m_percentageAmount(0)
 {
 }
 
@@ -207,9 +221,60 @@ CString ActiveEffect::AmountAsText() const
     return text;
 }
 
+CString ActiveEffect::AmountAsPercent() const
+{
+    CString text;
+    switch (m_type)
+    {
+    case ET_dice:
+        text.Format("%dD%d", m_dice.Number(), m_dice.Sides());
+        // optional effects such as its Fire damage
+        if (m_bHasEnergy)
+        {
+            text += " ";
+            text += EnumEntryText(m_energy, energyTypeMap);
+        }
+        break;
+    case ET_amount:
+        text.Format("%.0f (%.0f%%)", m_percentageAmount, m_amount * m_numStacks);
+        break;
+    case ET_amountVector:
+    case ET_amountVectorPerClassLevel: // handled the same
+        {
+            size_t index = m_numStacks-1;
+            if (index >= m_amounts.size())
+            {
+                index = m_amounts.size()-1;
+                ::OutputDebugString("ActiveEffect ");
+                ::OutputDebugString((LPCTSTR)Name());
+                ::OutputDebugString(" has more stacks than amount vector\n");
+            }
+            text.Format("%.0f (%.0f%%)", m_percentageAmount, m_amounts[index]);
+        }
+        break;
+    case ET_amountPerLevel:
+        text.Format("%.0f (%.0f%%)", m_percentageAmount, m_amountPerLevel * m_numStacks);
+        break;
+    case ET_amountPerAp:
+        text.Format("%.0f (%.0f%%)", m_percentageAmount, m_amount * m_numStacks);
+        break;
+    default:
+        text = "???";
+        break;
+    }
+    return text;
+}
+
 double ActiveEffect::Amount() const
 {
-    return m_amount;
+    if (IsPercentage())
+    {
+        return m_percentageAmount;
+    }
+    else
+    {
+        return m_amount;
+    }
 }
 
 void ActiveEffect::SetAmount(double amount)
@@ -336,6 +401,22 @@ bool ActiveEffect::IsActive(const Character * pCharacter) const
         }
     }
     return active;
+}
+
+void ActiveEffect::SetIsPercentage(bool isPercentage)
+{
+    m_bIsPercentage = isPercentage;
+}
+
+bool ActiveEffect::IsPercentage() const
+{
+    return m_bIsPercentage;
+}
+
+void ActiveEffect::SetPercentageValue(double amount) const
+{
+    // this value is mutable
+    m_percentageAmount = amount;
 }
 
 bool ActiveEffect::operator<=(const ActiveEffect & other) const

@@ -54,12 +54,16 @@ class ActiveEffect
         CString Name() const;
         CString Stacks() const;
         CString AmountAsText() const;
+        CString AmountAsPercent() const;
         double TotalAmount() const;
         void AddFeat(const std::string & featName);
         void AddStance(const std::string & stance);
         const std::vector<std::string> & Stances() const;
         const std::string & Tree() const;
         bool IsActive(const Character * pCharacter) const;
+        void SetIsPercentage(bool isPercentage);
+        bool IsPercentage() const;
+        void SetPercentageValue(double amount) const;
 
         // for comparison and removal of duplicate entries
         bool operator<=(const ActiveEffect & other) const;
@@ -100,4 +104,6 @@ class ActiveEffect
         // amount per trained level
         double m_amountPerLevel;
         ClassType m_class;
+        bool m_bIsPercentage;
+        mutable double m_percentageAmount;
 };

@@ -158,6 +158,14 @@ void Spell::VerifyObject() const
         ss << "Spell is missing image file \"" << Icon() << "\"\n";
         ok = false;
     }
+    // check the spell effects also
+    std::vector<Effect>::const_iterator it = m_Effects.begin();
+    while (it != m_Effects.end())
+    {
+        ok = (*it).VerifyObject(&ss);
+        ++it;
+    }
+
     if (!ok)
     {
         ::OutputDebugString(ss.str().c_str());
@@ -223,3 +231,24 @@ size_t Spell::DC(
     return dc;
 }
 
+std::vector<Effect> Spell::UpdatedEffects(size_t castingLevel) const
+{
+    // create a copy of the spell effects with the amount field dependent on the
+    // the caster level in use.
+    std::vector<Effect> effects = m_Effects;
+    // look at each effect and update if required
+    for (size_t i = 0; i < effects.size(); ++i)
+    {
+        if (effects[i].HasAmountVector())
+        {
+            // look up the amount to use for this casting level
+            // note that its ok for a caster level to be larger than the
+            // vector supplied, in such cases we just use the value from the last element
+            std::vector<double> amounts = effects[i].AmountVector();
+            castingLevel = min(castingLevel, amounts.size() - 1);   // limit range
+            effects[i].Set_Amount(amounts[castingLevel]);
+            effects[i].Clear_AmountVector();    // no longer has amount vector
+        }
+    }
+    return effects;
+}

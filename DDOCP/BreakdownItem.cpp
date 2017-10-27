@@ -34,6 +34,13 @@ void BreakdownItem::PopulateBreakdownControl(CListCtrl * pControl)
     std::list<ActiveEffect> nonStackingEffects;
     RemoveNonStacking(&itemEffects, &nonStackingEffects);
     AddActiveItems(itemEffects, pControl);
+    // finally add the active percentage items
+    AddActivePercentageItems(m_otherEffects, pControl);
+    AddActivePercentageItems(m_featEffects, pControl);
+    AddActivePercentageItems(m_enhancementEffects, pControl);
+    AddActivePercentageItems(itemEffects, pControl);
+
+
     size_t inactiveStart = pControl->GetItemCount();
     // also show inactive and non stack effects if we have any so user
     // knows which duplicate effects they have in place
@@ -113,10 +120,17 @@ double BreakdownItem::Total() const
     total += SumItems(m_otherEffects);
     total += SumItems(m_featEffects);
     total += SumItems(m_enhancementEffects);
+
     std::list<ActiveEffect> itemEffects = m_itemEffects;
     std::list<ActiveEffect> nonStackingEffects;
     RemoveNonStacking(&itemEffects, &nonStackingEffects);
     total += SumItems(itemEffects);
+
+    // now apply percentage effects
+    total = DoPercentageEffects(m_otherEffects, total);
+    total = DoPercentageEffects(m_featEffects, total);
+    total = DoPercentageEffects(m_enhancementEffects, total);
+    total = DoPercentageEffects(m_itemEffects, total);
     return total;
 }
 
@@ -129,7 +143,8 @@ void BreakdownItem::AddActiveItems(
     while (it != effects.end())
     {
         // only add active items when it has an active stance flag
-        if ((*it).IsActive(m_pCharacter))
+        if ((*it).IsActive(m_pCharacter)
+                && !(*it).IsPercentage())
         {
             // only list it if its non-zero
             if ((*it).TotalAmount() != 0)
@@ -147,6 +162,45 @@ void BreakdownItem::AddActiveItems(
 
                 // and the total amount the number of stacks contribute
                 CString amount  = (*it).AmountAsText();
+                pControl->SetItemText(index, CO_Value, amount);
+
+                // add the bonus type
+                CString bonus = EnumEntryText((*it).Bonus(), bonusTypeMap);
+                pControl->SetItemText(index, CO_BonusType, bonus);
+            }
+        }
+        ++it;
+    }
+}
+
+void BreakdownItem::AddActivePercentageItems(
+        const std::list<ActiveEffect> & effects,
+        CListCtrl * pControl)
+{
+    // add all the breakdown items from this particular list
+    std::list<ActiveEffect>::const_iterator it = effects.begin();
+    while (it != effects.end())
+    {
+        // only add active items when it has an active stance flag and is a percentage
+        if ((*it).IsActive(m_pCharacter)
+                && (*it).IsPercentage())
+        {
+            // only list it if its non-zero
+            if ((*it).TotalAmount() != 0)
+            {
+                // put the effect name into the control
+                CString effectName = (*it).Name();
+                size_t index = pControl->InsertItem(
+                        pControl->GetItemCount(),
+                        effectName,
+                        0);
+
+                // the number of stacks of it
+                CString stacks = (*it).Stacks();
+                pControl->SetItemText(index, CO_Stacks, stacks);
+
+                // and the total amount the number of stacks contribute
+                CString amount  = (*it).AmountAsPercent();
                 pControl->SetItemText(index, CO_Value, amount);
 
                 // add the bonus type
@@ -205,7 +259,35 @@ double BreakdownItem::SumItems(const std::list<ActiveEffect> & effects) const
         // only count the active items in the total
         if ((*it).IsActive(m_pCharacter))
         {
-            total += (*it).TotalAmount();
+            if (!(*it).IsPercentage())
+            {
+                total += (*it).TotalAmount();
+            }
+        }
+        ++it;
+    }
+    return total;
+}
+
+double BreakdownItem::DoPercentageEffects(const std::list<ActiveEffect> & effects, double total) const
+{
+    std::list<ActiveEffect>::const_iterator it = effects.begin();
+    while (it != effects.end())
+    {
+        // only count the active items in the total
+        if ((*it).IsActive(m_pCharacter))
+        {
+            if ((*it).IsPercentage())
+            {
+                // the amount is a percentage of the current total that
+                // needs to be added.
+                double percent = (*it).TotalAmount();
+                double amount = (total * percent / 100.0);
+                // round it to a whole number
+                amount = (double)(int)amount;
+                total += amount;                    // add it to the total
+                (*it).SetPercentageValue(amount);   // so it can display its amount
+            }
         }
         ++it;
     }
@@ -640,6 +722,10 @@ bool BreakdownItem::GetActiveEffect(
     if (bt != Breakdown_Unknown)
     {
         activeEffect->SetBreakdownDependency(bt); // so we know which effect to update
+    }
+    if (effect.HasPercent())
+    {
+        activeEffect->SetIsPercentage(true);
     }
     return hasActiveEffect;
 }

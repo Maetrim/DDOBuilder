@@ -2952,6 +2952,7 @@ void Character::TrainSpell(
     std::sort(m_TrainedSpells.begin(), m_TrainedSpells.end());
     NotifySpellTrained(spell);
     m_pDocument->SetModifiedFlag(TRUE);
+    // spell effects are handled by the SpellsControl object
 }
 
 void Character::RevokeSpell(
@@ -2982,6 +2983,7 @@ void Character::RevokeSpell(
     ASSERT(found);
     NotifySpellRevoked(spell);
     m_pDocument->SetModifiedFlag(TRUE);
+    // spell effects are handled by the SpellsControl object
 }
 
 bool Character::IsSpellTrained(const std::string & spellName) const
@@ -4176,4 +4178,32 @@ bool Character::NotPresentInEarlierLevel(size_t level, TrainableFeatTypes type) 
         }
     }
     return notPresent;
+}
+
+void Character::ApplySpellEffects(const std::string & spellName, size_t castingLevel)
+{
+    // spells use the same interface for effects as items
+    Spell spell = FindSpellByName(spellName);
+    std::vector<Effect> effects = spell.UpdatedEffects(castingLevel);
+    std::vector<Effect>::const_iterator it = effects.begin();
+    while (it != effects.end())
+    {
+        std::string name = "Spell: " + spell.Name();
+        NotifyItemEffect(name, (*it));
+        ++it;
+    }
+}
+
+void Character::RevokeSpellEffects(const std::string & spellName, size_t castingLevel)
+{
+    // spells use the same interface for effects as items
+    Spell spell = FindSpellByName(spellName);
+    std::vector<Effect> effects = spell.UpdatedEffects(castingLevel);
+    std::vector<Effect>::const_iterator it = effects.begin();
+    while (it != effects.end())
+    {
+        std::string name = "Spell: " + spell.Name();
+        NotifyItemEffectRevoked(name, (*it));
+        ++it;
+    }
 }

@@ -8,7 +8,7 @@
         <Race>Aasimar Scourge</Race>
       </Requirement>
     </Requirements>
-    <IsRacialTree />
+    <IsRacialTree/>
     <Icon>ScourgeAasimar</Icon>
     <Background>HumanBackground</Background>
     <EnhancementTreeItem>
@@ -21,8 +21,8 @@
       <Cost>1</Cost>
       <Ranks>1</Ranks>
       <MinSpent>0</MinSpent>
-      <ArrowRight />
-      <Requirements />
+      <ArrowRight/>
+      <Requirements/>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Aasimar Scourge: Ability I</Name>
@@ -34,7 +34,7 @@
       <Cost>2</Cost>
       <Ranks>1</Ranks>
       <MinSpent>5</MinSpent>
-      <ArrowRight />
+      <ArrowRight/>
       <Requirements>
         <Requirement>
           <Enhancement>ScourgeAasimarCore1</Enhancement>
@@ -90,7 +90,7 @@ Bond of the Scourge now grants you Ghost Touch on all weapon attacks.</Descripti
       <Cost>1</Cost>
       <Ranks>1</Ranks>
       <MinSpent>10</MinSpent>
-      <ArrowRight />
+      <ArrowRight/>
       <Requirements>
         <Requirement>
           <Enhancement>ScourgeAasimarCore2</Enhancement>
@@ -107,7 +107,7 @@ Bond of the Scourge now grants you Ghost Touch on all weapon attacks.</Descripti
       <Cost>2</Cost>
       <Ranks>1</Ranks>
       <MinSpent>20</MinSpent>
-      <ArrowRight />
+      <ArrowRight/>
       <Requirements>
         <Requirement>
           <Enhancement>ScourgeAasimarCore3</Enhancement>
@@ -179,8 +179,33 @@ If you are Good, any of these four weapons you wield are considered Good.</Descr
       <Cost>1</Cost>
       <Ranks>1</Ranks>
       <MinSpent>1</MinSpent>
-      <ArrowUp />
-      <Requirements />
+      <ArrowUp/>
+      <Requirements/>
+         <Effect>
+            <Type>WeaponProficiency</Type>
+            <Bonus>Enhancement</Bonus>
+            <Weapon>Great Club</Weapon>
+         </Effect>
+         <Effect>
+            <Type>WeaponProficiency</Type>
+            <Bonus>Enhancement</Bonus>
+            <Weapon>Club</Weapon>
+         </Effect>
+         <Effect>
+            <Type>WeaponProficiency</Type>
+            <Bonus>Enhancement</Bonus>
+            <Weapon>Light Mace</Weapon>
+         </Effect>
+         <Effect>
+            <Type>WeaponProficiency</Type>
+            <Bonus>Enhancement</Bonus>
+            <Weapon>Heavy Mace</Weapon>
+         </Effect>
+         <Effect>
+            <Type>WeaponProficiency</Type>
+            <Bonus>Enhancement</Bonus>
+            <Weapon>Morningstar</Weapon>
+         </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Aasimar Scourge: Counsel</Name>
@@ -192,7 +217,7 @@ If you are Good, any of these four weapons you wield are considered Good.</Descr
       <Cost>1</Cost>
       <Ranks>3</Ranks>
       <MinSpent>1</MinSpent>
-      <Requirements />
+      <Requirements/>
       <Effect>
         <Type>SkillBonus</Type>
         <Bonus>Feat</Bonus>
@@ -222,7 +247,7 @@ If you are Good, any of these four weapons you wield are considered Good.</Descr
       <Cost>1</Cost>
       <Ranks>3</Ranks>
       <MinSpent>1</MinSpent>
-      <Requirements />
+      <Requirements/>
       <Effect>
         <Type>SaveBonus</Type>
         <Bonus>Feat</Bonus>
@@ -240,20 +265,20 @@ If you are Good, any of these four weapons you wield are considered Good.</Descr
       <Cost>1</Cost>
       <Ranks>3</Ranks>
       <MinSpent>1</MinSpent>
-      <Requirements />
+      <Requirements/>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Aasimar Scourge: Improved Recovery I</Name>
       <InternalName>SAImprovedRecoveryI</InternalName>
-      <Description />
+      <Description/>
       <Icon>HumanImprovedRecovery</Icon>
       <XPosition>4</XPosition>
       <YPosition>1</YPosition>
       <Cost>1</Cost>
       <Ranks>1</Ranks>
       <MinSpent>1</MinSpent>
-      <LongArrowUp />
-      <Requirements />
+      <LongArrowUp/>
+      <Requirements/>
       <Effect>
         <Type>HealingAmplification</Type>
         <Bonus>Feat</Bonus>
@@ -271,12 +296,18 @@ If you have the Two Weapon Fighting feat, this grants the Oversized Two Weapon F
       <Cost>1</Cost>
       <Ranks>1</Ranks>
       <MinSpent>5</MinSpent>
-      <ArrowUp />
+      <ArrowUp/>
       <Requirements>
         <Requirement>
           <Enhancement>SAScourgeWeapons</Enhancement>
         </Requirement>
       </Requirements>
+         <Effect>
+             <!--Only if you have TWFA-->
+            <Type>GrantFeat</Type>
+            <Bonus>Enhancement</Bonus>
+            <Feat>Oversized Two Weapon Fighting</Feat>
+         </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Aasimar Scourge: Arcanum</Name>
@@ -288,7 +319,7 @@ If you have the Two Weapon Fighting feat, this grants the Oversized Two Weapon F
       <Cost>1</Cost>
       <Ranks>3</Ranks>
       <MinSpent>5</MinSpent>
-      <Requirements />
+      <Requirements/>
       <Effect>
         <Type>SpellPoints</Type>
         <Bonus>Feat</Bonus>
@@ -307,20 +338,30 @@ If you have the Two Weapon Fighting feat, this grants the Oversized Two Weapon F
 Must have your Bond Feat active to use.
 Scourge: You gain the furious aura of the Scourge of the Undead.
 For one minute, your weapon attacks deal 3d6 extra Light damage that scales with
-the higher of your Melee or Ranged Power. On Vorpal, enemies are  Blinded.</Description>
+the higher of your Melee or Ranged Power. On Vorpal, enemies are Blinded.</Description>
       <Icon>DivinePurposeScourge</Icon>
       <XPosition>2</XPosition>
       <YPosition>2</YPosition>
       <Cost>1</Cost>
       <Ranks>1</Ranks>
       <MinSpent>5</MinSpent>
-      <Clickie />
+      <Clickie/>
       <Stance>
         <Name>Aasimar: Scourge</Name>
         <Icon>DivinePurposeScourge</Icon>
         <Description>NYI</Description>
       </Stance>
-      <Requirements />
+      <Requirements/>
+        <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Stance>Aasimar: Scourge</Stance>
+            <Dice>
+                <Number size="1">3</Number>
+                <Sides size="1">6</Sides>
+                <Energy>Light</Energy>
+            </Dice>
+        </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Aasimar Scourge: Divine Resolve</Name>
@@ -332,7 +373,7 @@ the higher of your Melee or Ranged Power. On Vorpal, enemies are  Blinded.</Desc
       <Cost>1</Cost>
       <Ranks>3</Ranks>
       <MinSpent>5</MinSpent>
-      <Requirements />
+      <Requirements/>
       <Effect>
         <Type>AbilityBonus</Type>
         <Bonus>Enhancement</Bonus>
@@ -345,7 +386,8 @@ the higher of your Melee or Ranged Power. On Vorpal, enemies are  Blinded.</Desc
       <Name>Aasimar Scourge: Greater Scourge Weapons</Name>
       <InternalName>SAGreaterScourgeWeapons</InternalName>
       <Description>While dual-wielding Clubs, Light Maces, Heavy Maces, and Morningstars, you gain
-5% chance to make off-hand attacks and 5% chance to doublestrike with your off-hand.</Description>
+5% chance to make off-hand attacks and 5% chance to doublestrike with your off-hand.
+Passive: +2 Melee and Ranged power.</Description>
       <Icon>GreaterScourgeWeapons</Icon>
       <XPosition>0</XPosition>
       <YPosition>3</YPosition>
@@ -357,6 +399,29 @@ the higher of your Melee or Ranged Power. On Vorpal, enemies are  Blinded.</Desc
           <Enhancement>SAImprovedScourgeWeapons</Enhancement>
         </Requirement>
       </Requirements>
+        <!--only when dual wielding clubs/maces or morningstars-->
+        <Effect>
+            <Type>OffHandAttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>5</Amount>
+            <Stance>Two Weapon Fighting</Stance>
+        </Effect>
+        <Effect>
+            <Type>OffHandDoublestrike</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>5</Amount>
+            <Stance>Two Weapon Fighting</Stance>
+        </Effect>
+        <Effect>
+            <Type>MeleePower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+        </Effect>
+        <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+        </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Aasimar Scourge: Strike Down the Dead</Name>
@@ -369,8 +434,8 @@ Character Level (scales with 100% Melee Power) in Positive Damage to Undead crea
       <Cost>1</Cost>
       <Ranks>1</Ranks>
       <MinSpent>10</MinSpent>
-      <Clickie />
-      <Requirements />
+      <Clickie/>
+      <Requirements/>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Aasimar Scourge: Divine Charge</Name>
@@ -382,7 +447,7 @@ Character Level (scales with 100% Melee Power) in Positive Damage to Undead crea
       <Cost>1</Cost>
       <Ranks>3</Ranks>
       <MinSpent>10</MinSpent>
-      <Requirements />
+      <Requirements/>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Aasimar Scourge: Blessing</Name>
@@ -394,7 +459,7 @@ Character Level (scales with 100% Melee Power) in Positive Damage to Undead crea
       <Cost>1</Cost>
       <Ranks>3</Ranks>
       <MinSpent>10</MinSpent>
-      <Requirements />
+      <Requirements/>
       <Effect>
         <Type>SpellPower</Type>
         <Bonus>Feat</Bonus>
@@ -412,7 +477,7 @@ Character Level (scales with 100% Melee Power) in Positive Damage to Undead crea
       <Cost>1</Cost>
       <Ranks>1</Ranks>
       <MinSpent>10</MinSpent>
-      <ArrowUp />
+      <ArrowUp/>
       <Requirements>
         <Requirement>
           <Enhancement>SAImprovedRecoveryI</Enhancement>
@@ -428,14 +493,54 @@ Character Level (scales with 100% Melee Power) in Positive Damage to Undead crea
       <Name>Aasimar Scourge: Destroyer of the Dead</Name>
       <InternalName>SADestroyerOfTheDead</InternalName>
       <Description>Clubs, Light Maces, Heavy Maces, and Morningstars you wield gain a +1 Sacred Bonus to 
-Critical Multiplier.</Description>
+Critical Multiplier. Passive: Grants +4 Melee and Ranged power.</Description>
       <Icon>DestroyerOfTheDead</Icon>
       <XPosition>0</XPosition>
       <YPosition>4</YPosition>
       <Cost>1</Cost>
       <Ranks>1</Ranks>
       <MinSpent>20</MinSpent>
-      <Requirements />
+      <Requirements/>
+        <Effect>
+            <Type>CriticalMultiplier</Type>
+            <Bonus>Sacred</Bonus>
+            <Amount>1</Amount>
+            <Weapon>Club</Weapon>
+        </Effect>
+        <Effect>
+            <Type>CriticalMultiplier</Type>
+            <Bonus>Sacred</Bonus>
+            <Amount>1</Amount>
+            <Weapon>Great Club</Weapon>
+        </Effect>
+        <Effect>
+            <Type>CriticalMultiplier</Type>
+            <Bonus>Sacred</Bonus>
+            <Amount>1</Amount>
+            <Weapon>Light Mace</Weapon>
+        </Effect>
+        <Effect>
+            <Type>CriticalMultiplier</Type>
+            <Bonus>Sacred</Bonus>
+            <Amount>1</Amount>
+            <Weapon>Heavy Mace</Weapon>
+        </Effect>
+        <Effect>
+            <Type>CriticalMultiplier</Type>
+            <Bonus>Sacred</Bonus>
+            <Amount>1</Amount>
+            <Weapon>Morningstar</Weapon>
+        </Effect>
+        <Effect>
+            <Type>MeleePower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>4</Amount>
+        </Effect>
+        <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>4</Amount>
+        </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Aasimar Scourge: Divine Form</Name>
@@ -458,8 +563,8 @@ Stage 6: After 75 seconds of this stance being active, you can no longer contain
       <Cost>1</Cost>
       <Ranks>1</Ranks>
       <MinSpent>20</MinSpent>
-      <Clickie />
-      <Requirements />
+      <Clickie/>
+      <Requirements/>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Aasimar Scourge: Improved Recovery III</Name>

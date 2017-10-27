@@ -235,6 +235,7 @@ void CDDOCPApp::LoadData()
     VerifyFeats();
     VerifyEnhancements();
     VerifySpells();
+    VerifyItems();
     SeparateFeats();
 }
 
@@ -328,6 +329,16 @@ void CDDOCPApp::VerifySpells()
 {
     std::list<Spell>::iterator it = m_spells.begin();
     while (it != m_spells.end())
+    {
+        (*it).VerifyObject();
+        ++it;
+    }
+}
+
+void CDDOCPApp::VerifyItems()
+{
+    std::list<Item>::iterator it = m_items.begin();
+    while (it != m_items.end())
     {
         (*it).VerifyObject();
         ++it;

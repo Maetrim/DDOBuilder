@@ -103,6 +103,13 @@ void Feat::VerifyObject(
         ok &= (*it).VerifyObject(&ss);
         ++it;
     }
+    // check the effects also
+    std::list<Effect>::const_iterator eit = m_Effects.begin();
+    while (eit != m_Effects.end())
+    {
+        ok &= (*eit).VerifyObject(&ss);
+        ++eit;
+    }
     if (!ImageFileExists(IT_feat, Icon()))
     {
         ss << "Feat is missing image file \"" << Icon() << "\"\n";

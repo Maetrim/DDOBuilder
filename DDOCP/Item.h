@@ -20,6 +20,7 @@ class Item :
 
         bool CanEquipToSlot(InventorySlotType slot, ArmorType armor) const;
         void AddImage(CImageList * pIL) const;
+        void VerifyObject() const;
 
     protected:
         XmlLib::SaxContentElementInterface * StartElement(
