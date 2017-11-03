@@ -55,8 +55,8 @@ class CharacterObserver :
         virtual void UpdateStanceDeactivated(Character * charData, const std::string & stanceName) {};
         virtual void UpdateEnhancementEffect(Character * charData, const std::string & enhancementName,  const EffectTier & effect) {};
         virtual void UpdateEnhancementEffectRevoked(Character * charData, const std::string & enhancementName, const EffectTier & effect) {};
-        virtual void UpdateEnhancementTrained(Character * charData, const std::string & enhancementName, bool isTier5) {};
-        virtual void UpdateEnhancementRevoked(Character * charData, const std::string & enhancementName, bool isTier5) {};
+        virtual void UpdateEnhancementTrained(Character * charData, const std::string & enhancementName, const std::string & selection, bool isTier5) {};
+        virtual void UpdateEnhancementRevoked(Character * charData, const std::string & enhancementName, const std::string & selection, bool isTier5) {};
         virtual void UpdateEnhancementTreeReset(Character * charData) {};
         virtual void UpdateActionPointsChanged(Character * charData) {};
         virtual void UpdateAPSpentInTreeChanged(Character * charData, const std::string & treeName) {};
@@ -264,8 +264,8 @@ class Character :
         void NotifyAllTwistEffects();
         void NotifyEnhancementEffect(const std::string & enhancementName,  const Effect & effect, size_t ranks);
         void NotifyEnhancementEffectRevoked(const std::string & enhancementName, const Effect & effect, size_t ranks);
-        void NotifyEnhancementTrained(const std::string & enhancementName, bool isTier5, bool bActiveTree);
-        void NotifyEnhancementRevoked(const std::string & enhancementName, bool isTier5, bool bActiveTree);
+        void NotifyEnhancementTrained(const std::string & enhancementName, const std::string & selection, bool isTier5, bool bActiveTree);
+        void NotifyEnhancementRevoked(const std::string & enhancementName, const std::string & selection, bool isTier5, bool bActiveTree);
         void NotifyEnhancementTreeReset();
         void NotifyActionPointsChanged();
         void NotifyAPSpentInTreeChanged(const std::string & treeName);

@@ -15,7 +15,8 @@ BreakdownItemWeaponAttackBonus::BreakdownItemWeaponAttackBonus(
     BreakdownItem(type, treeList, hItem),
     m_title(title),
     m_effect(effect),
-    m_proficientCount(0)
+    m_proficientCount(0),
+    m_bMeleWeapon(false)
 {
 }
 
@@ -314,4 +315,9 @@ void BreakdownItemWeaponAttackBonus::UpdateTotalChanged(
     CreateOtherEffects();
     // do base class stuff also
     BreakdownItem::UpdateTotalChanged(item, type);
+}
+
+void BreakdownItemWeaponAttackBonus::SetIsMeleeWeapon(bool melee)
+{
+    m_bMeleWeapon = melee;
 }

@@ -536,7 +536,9 @@ void CEnhancementsView::OnButtonRight()
 
 void CEnhancementsView::UpdateEnhancementTrained(
         Character * charData,
-        const std::string & enhancementName, bool isTier5)
+        const std::string & enhancementName,
+        const std::string & selection,
+        bool isTier5)
 {
     UpdateTrees(enhancementName);
 
@@ -580,6 +582,7 @@ void CEnhancementsView::UpdateTrees(const std::string & enhancementName)
 void CEnhancementsView::UpdateEnhancementRevoked(
         Character * charData,
         const std::string & enhancementName,
+        const std::string & selection,
         bool isTier5)
 {
     UpdateTrees(enhancementName);

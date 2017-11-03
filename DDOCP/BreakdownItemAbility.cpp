@@ -90,6 +90,33 @@ void BreakdownItemAbility::CreateOtherEffects()
                     "");        // no tree
             AddOtherEffect(tome);
         }
+        // handle divine might which cannot be handled with effects
+        // as you can not have an ability bonus to an ability
+        if (m_ability == Ability_Strength)
+        {
+            // 3 possible sources for divine might
+            if (m_pCharacter->IsEnhancementTrained("WPDivineMight", "")
+                    || m_pCharacter->IsEnhancementTrained("WSDivineMight", "Divine Might")
+                    || m_pCharacter->IsEnhancementTrained("KotCDivineMight", ""))
+            {
+                // divine might is trained
+                BreakdownItem * pBI = FindBreakdown(StatToBreakdown(Ability_Charisma));
+                ASSERT(pBI != NULL);
+                pBI->AttachObserver(this); // watch for any changes
+                int bonus = BaseStatToBonus(pBI->Total());
+                // always add, not displayed if its 0
+                ActiveEffect feat(
+                        Bonus_insightful,
+                        "Divine Might (Charisma)",
+                        1,
+                        bonus,
+                        "");        // no tree
+                feat.AddStance("Divine Might");
+                // ensure its updated on a change
+                feat.SetBreakdownDependency(StatToBreakdown(Ability_Charisma));
+                AddOtherEffect(feat);
+            }
+        }
     }
 }
 
@@ -118,7 +145,9 @@ void BreakdownItemAbility::UpdateAbilityTomeChanged(
 }
 
 
-void BreakdownItemAbility::UpdateRaceChanged(Character * charData, RaceType race)
+void BreakdownItemAbility::UpdateRaceChanged(
+        Character * charData,
+        RaceType race)
 {
     // race change could affect any ability, always repopulate for this
     CreateOtherEffects();
@@ -140,4 +169,48 @@ bool BreakdownItemAbility::AffectsUs(const Effect & effect) const
         }
     }
     return isUs;
+}
+
+void BreakdownItemAbility::UpdateEnhancementTrained(
+        Character * charData,
+        const std::string & enhancementName,
+        const std::string & selection,
+        bool isTier5)
+{
+    BreakdownItem::UpdateEnhancementTrained(
+            charData,
+            enhancementName,
+            selection,
+            isTier5);
+    // check for "Divine Might" being trained specifically
+    if (enhancementName == "WPDivineMight"
+            || enhancementName == "WSDivineMight"
+            || enhancementName == "KotCDivineMight")
+    {
+        // need to re-create other effects list
+        CreateOtherEffects();
+        Populate();
+    }
+}
+
+void BreakdownItemAbility::UpdateEnhancementRevoked(
+        Character * charData,
+        const std::string & enhancementName,
+        const std::string & selection,
+        bool isTier5)
+{
+    BreakdownItem::UpdateEnhancementRevoked(
+            charData,
+            enhancementName,
+            selection,
+            isTier5);
+    // check for "Divine Might" being revoked specifically
+    if (enhancementName == "WPDivineMight"
+            || enhancementName == "WSDivineMight"
+            || enhancementName == "KotCDivineMight")
+    {
+        // need to re-create other effects list
+        CreateOtherEffects();
+        Populate();
+    }
 }

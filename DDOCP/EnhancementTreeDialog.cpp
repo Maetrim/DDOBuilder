@@ -912,40 +912,44 @@ void CEnhancementTreeDialog::UpdateFeatRevoked(
 void CEnhancementTreeDialog::UpdateEnhancementTrained(
         Character * charData,
         const std::string & enhancementName,
+        const std::string & selection,
         bool isTier5)
 {
-    // some sorcerer core1 enhancements can lock out whole tree's. Redraw if
-    // it is a sorcerer "Core1" enhancement just trained.
-    if (enhancementName.find("Core1") != std::string::npos)
-    {
-        Invalidate();
-    }
-    // if a tier 5 enhancement has been trained, we may have to exclude the
-    // training of our own tier 5 enhancements (if any)
-    if (isTier5)
-    {
-        Invalidate();
-    }
+    //// some sorcerer core1 enhancements can lock out whole tree's. Redraw if
+    //// it is a sorcerer "Core1" enhancement just trained.
+    //if (enhancementName.find("Core1") != std::string::npos)
+    //{
+    //    Invalidate();
+    //}
+    //// if a tier 5 enhancement has been trained, we may have to exclude the
+    //// training of our own tier 5 enhancements (if any)
+    //if (isTier5)
+    //{
+    //    Invalidate();
+    //}
+    Invalidate();
 }
 
 void CEnhancementTreeDialog::UpdateEnhancementRevoked(
         Character * charData,
         const std::string & enhancementName,
+        const std::string & selection,
         bool isTier5)
 {
-    // some sorcerer core1 enhancements can lock out whole tree's. Redraw if
-    // it is a sorcerer "Core1" enhancement just trained.
-    if (enhancementName.find("Core1") != std::string::npos)
-    {
-        Invalidate();
-    }
-    // if a tier 5 enhancement has been revoked, we may have to include the
-    // training of our own tier 5 enhancements (if any)
-    if (isTier5 && !m_pCharacter->HasTier5Tree())
-    {
-        // the tier5 status has changed, update
-        Invalidate();
-    }
+    //// some sorcerer core1 enhancements can lock out whole tree's. Redraw if
+    //// it is a sorcerer "Core1" enhancement just trained.
+    //if (enhancementName.find("Core1") != std::string::npos)
+    //{
+    //    Invalidate();
+    //}
+    //// if a tier 5 enhancement has been revoked, we may have to include the
+    //// training of our own tier 5 enhancements (if any)
+    //if (isTier5 && !m_pCharacter->HasTier5Tree())
+    //{
+    //    // the tier5 status has changed, update
+    //    Invalidate();
+    //}
+    Invalidate();
 }
 
 void CEnhancementTreeDialog::UpdateEnhancementTreeReset(Character * charData)

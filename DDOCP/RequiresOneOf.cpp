@@ -112,55 +112,67 @@ void RequiresOneOf::CreateRequirementStrings(
         (*it).CreateRequirementStrings(charData, &localRequirements, &localMet);
         ++it;
     }
-    // determine any common header on all requirements. We do this because some
-    // requirements may be a list of many almost identical items e.g.:
-    // Improved Critical: Slashing, Improved Critical: Piercing,.... or Improved Critical: Ranged
-    // this can produce a very long requirements line. It can be cut down to:
-    // Improved Critical: Slashing, Piercing, ... or Ranged
-    if (localRequirements.size() > 0
-            && localRequirements[0].Find(':', 10) >= 0)
-    {
-        // looks like we may have a possible set of duplicate text
-        int pos = localRequirements[0].Find(':', 10) + 2;
-        CString dupText = localRequirements[0].Left(pos);
-        bool isDuplicated = true;
-        for (size_t i = 1; i < localRequirements.size(); ++i)
-        {
-            if (localRequirements[i].Left(pos) != dupText)
-            {
-                isDuplicated = false;
-            }
-        }
-        if (isDuplicated)
-        {
-            // we can remove the duplicate text from items 1...n but keep for item [0]
-            for (size_t i = 1; i < localRequirements.size(); ++i)
-            {
-                localRequirements[i] = localRequirements[i].Right(localRequirements[i].GetLength() - pos);
-            }
-        }
-    }
-    // re-package the local requirements to a single line
+    //// determine any common header on all requirements. We do this because some
+    //// requirements may be a list of many almost identical items e.g.:
+    //// Improved Critical: Slashing, Improved Critical: Piercing,.... or Improved Critical: Ranged
+    //// this can produce a very long requirements line. It can be cut down to:
+    //// Improved Critical: Slashing, Piercing, ... or Ranged
+    //if (localRequirements.size() > 0
+    //        && localRequirements[0].Find(':', 10) >= 0)
+    //{
+    //    // looks like we may have a possible set of duplicate text
+    //    int pos = localRequirements[0].Find(':', 10) + 2;
+    //    CString dupText = localRequirements[0].Left(pos);
+    //    bool isDuplicated = true;
+    //    for (size_t i = 1; i < localRequirements.size(); ++i)
+    //    {
+    //        if (localRequirements[i].Left(pos) != dupText)
+    //        {
+    //            isDuplicated = false;
+    //        }
+    //    }
+    //    if (isDuplicated)
+    //    {
+    //        // we can remove the duplicate text from items 1...n but keep for item [0]
+    //        for (size_t i = 1; i < localRequirements.size(); ++i)
+    //        {
+    //            localRequirements[i] = localRequirements[i].Right(localRequirements[i].GetLength() - pos);
+    //        }
+    //    }
+    //}
+    //// re-package the local requirements to a single line
+    //if (localRequirements.size() > 0)
+    //{
+    //    CString description = "Requires one of: ";
+    //    bool wasMet = false;
+    //    for (int i = 0; i < (int)localRequirements.size(); ++i)
+    //    {
+    //        localRequirements[i].Replace("Requires: ", "");    // take of leading text
+    //        description += localRequirements[i];
+    //        if (i <= (int)localRequirements.size() - 3)
+    //        {
+    //            description += ", ";
+    //        }
+    //        else if (i == (int)localRequirements.size() - 2)
+    //        {
+    //            description += " or ";
+    //        }
+    //        wasMet |= localMet[i];
+    //    }
+    //    requirements->push_back(description);
+    //    met->push_back(wasMet);        // these are required things
+    //}
+    // re-package the local requirements to a single line per entry
     if (localRequirements.size() > 0)
     {
         CString description = "Requires one of: ";
         bool wasMet = false;
         for (int i = 0; i < (int)localRequirements.size(); ++i)
         {
-            localRequirements[i].Replace("Requires: ", "");    // take of leading text
-            description += localRequirements[i];
-            if (i <= (int)localRequirements.size() - 3)
-            {
-                description += ", ";
-            }
-            else if (i == (int)localRequirements.size() - 2)
-            {
-                description += " or ";
-            }
-            wasMet |= localMet[i];
+            localRequirements[i].Replace("Requires: ", "                 ");    // take of leading text, but indent
+            requirements->push_back(localRequirements[i]);
+            met->push_back(localMet[i]);        // these are required things
         }
-        requirements->push_back(description);
-        met->push_back(wasMet);        // these are required things
     }
 }
 

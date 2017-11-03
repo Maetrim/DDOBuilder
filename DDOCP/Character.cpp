@@ -497,17 +497,27 @@ void Character::NotifyEnhancementEffectRevoked(
     NotifyAll(&CharacterObserver::UpdateEnhancementEffectRevoked, this, name, et);
 }
 
-void Character::NotifyEnhancementTrained(const std::string & enhancementName, bool isTier5, bool bActiveTree)
+void Character::NotifyEnhancementTrained(
+        const std::string & enhancementName,
+        const std::string & selection,
+        bool isTier5,
+        bool bActiveTree)
 {
-    NotifyAll(&CharacterObserver::UpdateEnhancementTrained, this, enhancementName, isTier5);
+    NotifyAll(
+            &CharacterObserver::UpdateEnhancementTrained,
+            this,
+            enhancementName,
+            selection,
+            isTier5);
     if (bActiveTree)
     {
         const EnhancementTreeItem * pItem = FindEnhancement(enhancementName);
         if (pItem != NULL)
         {
+            std::list<Stance> stances = pItem->Stances(selection);
             // enhancements may give multiple stances
-            std::list<Stance>::const_iterator sit = pItem->Stances().begin();
-            while (sit != pItem->Stances().end())
+            std::list<Stance>::const_iterator sit = stances.begin();
+            while (sit != stances.end())
             {
                 NotifyNewStance((*sit));
                 ++sit;
@@ -516,17 +526,27 @@ void Character::NotifyEnhancementTrained(const std::string & enhancementName, bo
     }
 }
 
-void Character::NotifyEnhancementRevoked(const std::string & enhancementName, bool isTier5, bool bActiveTree)
+void Character::NotifyEnhancementRevoked(
+        const std::string & enhancementName,
+        const std::string & selection,
+        bool isTier5,
+        bool bActiveTree)
 {
-    NotifyAll(&CharacterObserver::UpdateEnhancementRevoked, this, enhancementName, isTier5);
+    NotifyAll(
+            &CharacterObserver::UpdateEnhancementRevoked,
+            this,
+            enhancementName,
+            selection,
+            isTier5);
     if (bActiveTree)
     {
         const EnhancementTreeItem * pItem = FindEnhancement(enhancementName);
         if (pItem != NULL)
         {
+            std::list<Stance> stances = pItem->Stances(selection);
             // enhancements may give multiple stances
-            std::list<Stance>::const_iterator sit = pItem->Stances().begin();
-            while (sit != pItem->Stances().end())
+            std::list<Stance>::const_iterator sit = stances.begin();
+            while (sit != stances.end())
             {
                 NotifyRevokeStance((*sit));
                 ++sit;
@@ -829,7 +849,8 @@ void Character::SetSkillTome(SkillType skill, size_t value)
     }
     NotifySkillTomeChanged(skill);
     m_pDocument->SetModifiedFlag(TRUE);
-    // changing an inherent tome value can invalidate a feat selection (e.g Single Weapon Fighting)
+    // changing an inherent tome value can invalidate a feat selection
+    // (e.g Single Weapon Fighting)
     VerifyTrainedFeats();
 }
 
@@ -1351,7 +1372,7 @@ void Character::ActivateStance(const Stance & stance)
 
 void Character::DeactivateStance(const Stance & stance)
 {
-    // deactivation of a stance only affects that stance
+    // de-activation of a stance only affects that stance
     m_Stances.RevokeStance(stance.Name());
     NotifyStanceDeactivated(stance.Name());
     m_pDocument->SetModifiedFlag(TRUE);
@@ -1634,6 +1655,7 @@ std::vector<TrainableFeatTypes> Character::TrainableFeatTypeAtLevel(
             && level == 0)
     {
         // Aasimars get a bond feat at level 1
+        // (not Scourge Aasimar as their bond feat assigned automatically)
         trainable.push_back(TFT_AasimarBond);
     }
     if (Race() == Race_Human
@@ -2334,7 +2356,7 @@ void Character::Enhancement_TrainEnhancement(
     // track whether this is a tier 5 enhancement
     // now notify all and sundry about the enhancement effects
     ApplyEnhancementEffects(treeName, enhancementName, selection, ranks);
-    NotifyEnhancementTrained(enhancementName, pTreeItem->HasTier5(), true);
+    NotifyEnhancementTrained(enhancementName, selection, pTreeItem->HasTier5(), true);
     NotifyActionPointsChanged();
     NotifyAPSpentInTreeChanged(treeName);
 }
@@ -2384,7 +2406,7 @@ void Character::Enhancement_RevokeEnhancement(
                 Clear_Tier5Tree();  // no longer a tier 5 trained
             }
         }
-        NotifyEnhancementRevoked(revokedEnhancement, wasTier5, true);
+        NotifyEnhancementRevoked(revokedEnhancement, revokedEnhancementSelection, wasTier5, true);
         NotifyActionPointsChanged();
         NotifyAPSpentInTreeChanged(treeName);
     }
@@ -2566,9 +2588,38 @@ void Character::CountBonusAP()
     CDDOCPApp * pDDOApp = dynamic_cast<CDDOCPApp*>(pApp);
     if (pDDOApp != NULL)
     {
-        const std::list<Feat> & specialFeats = pDDOApp->RacialPastLifeFeats();
+        const std::list<Feat> & racialFeats = pDDOApp->RacialPastLifeFeats();
         size_t APcount = 0;
-        std::list<Feat>::const_iterator fi = specialFeats.begin();
+        std::list<Feat>::const_iterator fi = racialFeats.begin();
+        while (fi != racialFeats.end())
+        {
+            // look at all the feat effects and see if any affect our AP count
+            const std::list<Effect> & effects = (*fi).Effects();
+            std::list<Effect>::const_iterator ei = effects.begin();
+            while (ei != effects.end())
+            {
+                if (ei->Type() == Effect_APBonus)
+                {
+                    // APs are always whole numbers
+                    if (ei->HasAmount())
+                    {
+                        APcount += (size_t)ei->Amount();
+                    }
+                    else if (ei->HasAmountVector())
+                    {
+                        size_t count = GetSpecialFeatTrainedCount(fi->Name());
+                        if (count > 0)
+                        {
+                            APcount += (size_t)ei->AmountVector()[count-1];
+                        }
+                    }
+                }
+                ei++;
+            }
+            fi++;
+        }
+        const std::list<Feat> & specialFeats = pDDOApp->SpecialFeats();
+        fi = specialFeats.begin();
         while (fi != specialFeats.end())
         {
             // look at all the feat effects and see if any affect our AP count
@@ -3033,7 +3084,7 @@ void Character::Reaper_TrainEnhancement(
             &ranks);
     // now notify all and sundry about the enhancement effects
     ApplyEnhancementEffects(treeName, enhancementName, selection, ranks);
-    NotifyEnhancementTrained(enhancementName, false, true);
+    NotifyEnhancementTrained(enhancementName, selection, false, true);
     NotifyAPSpentInTreeChanged(treeName);
     m_pDocument->SetModifiedFlag(TRUE);
 }
@@ -3063,7 +3114,7 @@ void Character::Reaper_RevokeEnhancement(
                 revokedEnhancement,
                 revokedEnhancementSelection);
         RevokeEnhancementEffects(displayName, ranks, effects);
-        NotifyEnhancementRevoked(revokedEnhancement, false, true);
+        NotifyEnhancementRevoked(revokedEnhancement, revokedEnhancementSelection, false, true);
         NotifyAPSpentInTreeChanged(treeName);
         m_pDocument->SetModifiedFlag(TRUE);
     }
@@ -3351,7 +3402,7 @@ void Character::EpicDestiny_TrainEnhancement(
         ApplyEnhancementEffects(treeName, enhancementName, selection, ranks);
     }
     DetermineFatePoints();
-    NotifyEnhancementTrained(enhancementName, false, (treeName == ActiveEpicDestiny()));
+    NotifyEnhancementTrained(enhancementName, selection, false, (treeName == ActiveEpicDestiny()));
 
     const EnhancementTreeItem * pTreeItem = FindEnhancement(enhancementName);
     ASSERT(pTreeItem != NULL);
@@ -3395,7 +3446,7 @@ void Character::EpicDestiny_RevokeEnhancement(
             RevokeEnhancementEffects(displayName, ranks, effects);
         }
         DetermineFatePoints();
-        NotifyEnhancementRevoked(revokedEnhancement, false, (treeName == ActiveEpicDestiny()));
+        NotifyEnhancementRevoked(revokedEnhancement, revokedEnhancementSelection, false, (treeName == ActiveEpicDestiny()));
 
         const EnhancementTreeItem * pTreeItem = FindEnhancement(revokedEnhancement);
         ASSERT(pTreeItem != NULL);
@@ -3472,8 +3523,9 @@ void Character::ApplyAllEffects(
                 (*eit).HasSelection() ? (*eit).Selection() : "",
                 pTreeItem->Ranks());
         // enhancements may give multiple stances
-        std::list<Stance>::const_iterator sit = pTreeItem->Stances().begin();
-        while (sit != pTreeItem->Stances().end())
+        std::list<Stance> stances = pTreeItem->Stances((*eit).HasSelection() ? (*eit).Selection() : "");
+        std::list<Stance>::const_iterator sit = stances.begin();
+        while (sit != stances.end())
         {
             NotifyNewStance((*sit));
             ++sit;
@@ -3504,8 +3556,9 @@ void Character::RevokeAllEffects(
                 pTreeItem->Ranks(),
                 effects);
         // enhancements may give multiple stances
-        std::list<Stance>::const_iterator sit = pTreeItem->Stances().begin();
-        while (sit != pTreeItem->Stances().end())
+        std::list<Stance> stances = pTreeItem->Stances((*eit).HasSelection() ? (*eit).Selection() : "");
+        std::list<Stance>::const_iterator sit = stances.begin();
+        while (sit != stances.end())
         {
             NotifyRevokeStance((*sit));
             ++sit;

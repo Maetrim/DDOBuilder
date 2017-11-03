@@ -39,8 +39,8 @@ class CEpicDestiniesView :
         DECLARE_MESSAGE_MAP()
 
         // CharacterObserver overrides
-        void UpdateEnhancementTrained(Character * charData, const std::string & enhancementName, bool isTier5) override;
-        void UpdateEnhancementRevoked(Character * charData, const std::string & enhancementName, bool isTier5) override;
+        void UpdateEnhancementTrained(Character * charData, const std::string & enhancementName, const std::string & selection, bool isTier5) override;
+        void UpdateEnhancementRevoked(Character * charData, const std::string & enhancementName,const std::string & selection,  bool isTier5) override;
         void UpdateEnhancementTreeReset(Character * charData) override;
         void UpdateFatePointsChanged(Character * charData) override;
         void UpdateEpicCompletionistChanged(Character * charData) override;

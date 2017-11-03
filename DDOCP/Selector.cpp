@@ -116,3 +116,18 @@ std::list<Effect> Selector::Effects(const std::string & selection) const
     return effects;
 }
 
+std::list<Stance> Selector::Stances(const std::string & selection) const
+{
+    std::list<Stance> stances;
+    std::list<EnhancementSelection>::const_iterator it = m_Selections.begin();
+    while (it != m_Selections.end())
+    {
+        if ((*it).Name() == selection)
+        {
+            stances = (*it).Stances();
+            break;          // done
+        }
+        ++it;
+    }
+    return stances;
+}

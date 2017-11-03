@@ -23,6 +23,17 @@ BreakdownItemWeapon::BreakdownItemWeapon(
     m_attackSpeed(Breakdown_WeaponAttackSpeed, Effect_AttackSpeed, "Attack Speed", treeList, hSubItems[4]),
     m_centeredCount(0)     // assume not centered with this weapon
 {
+    //m_baseDamage.SetIsMeleeWeapon(IsMeleeWeapon());
+    m_attackBonus.SetIsMeleeWeapon(IsMeleeWeapon());
+    m_damageBonus.SetIsMeleeWeapon(IsMeleeWeapon());
+    //m_vorpalRange.SetIsMeleeWeapon(IsMeleeWeapon());
+    //m_criticalThreatRange.SetIsMeleeWeapon(IsMeleeWeapon());
+    m_criticalAttackBonus.SetIsMeleeWeapon(IsMeleeWeapon());
+    m_criticalDamageBonus.SetIsMeleeWeapon(IsMeleeWeapon());
+    //m_criticalMultiplier.SetIsMeleeWeapon(IsMeleeWeapon());
+    //m_specialMultiplier.SetIsMeleeWeapon(IsMeleeWeapon());
+    //m_attackSpeed.SetIsMeleeWeapon(IsMeleeWeapon());      // not set for attack speed
+
     // we need to update if any of our sub-items update also
     //m_baseDamage.AttachObserver(this);
     m_attackBonus.AttachObserver(this);
@@ -781,3 +792,42 @@ bool BreakdownItemWeapon::IsDamageType(WeaponDamageType type) const
     return isUs;
 }
 
+void BreakdownItemWeapon::UpdateEnhancementTrained(
+        Character * charData,
+        const std::string & enhancementName,
+        const std::string & selection,
+        bool isTier5)
+{
+    BreakdownItem::UpdateEnhancementTrained(charData, enhancementName, selection, isTier5);
+    // pass through to all our sub breakdowns
+    //m_baseDamage.UpdateEnhancementTrained(charData, enhancementName, selection, isTier5);
+    m_attackBonus.UpdateEnhancementTrained(charData, enhancementName, selection, isTier5);
+    m_damageBonus.UpdateEnhancementTrained(charData, enhancementName, selection, isTier5);
+    //m_vorpalRange.UpdateEnhancementTrained(charData, enhancementName, selection, isTier5);
+    //m_criticalThreatRange.UpdateEnhancementTrained(charData, enhancementName, selection, isTier5);
+    m_criticalAttackBonus.UpdateEnhancementTrained(charData, enhancementName, selection, isTier5);
+    m_criticalDamageBonus.UpdateEnhancementTrained(charData, enhancementName, selection, isTier5);
+    //m_criticalMultiplier.UpdateEnhancementTrained(charData, enhancementName, selection, isTier5);
+    //m_specialMultiplier.UpdateEnhancementTrained(charData, enhancementName, selection, isTier5);
+    m_attackSpeed.UpdateEnhancementTrained(charData, enhancementName, selection, isTier5);
+}
+
+void BreakdownItemWeapon::UpdateEnhancementRevoked(
+        Character * charData,
+        const std::string & enhancementName,
+        const std::string & selection,
+        bool isTier5)
+{
+    BreakdownItem::UpdateEnhancementRevoked(charData, enhancementName, selection, isTier5);
+    // pass through to all our sub breakdowns
+    //m_baseDamage.UpdateEnhancementRevoked(charData, enhancementName, selection, isTier5);
+    m_attackBonus.UpdateEnhancementRevoked(charData, enhancementName, selection, isTier5);
+    m_damageBonus.UpdateEnhancementRevoked(charData, enhancementName, selection, isTier5);
+    //m_vorpalRange.UpdateEnhancementRevoked(charData, enhancementName, selection, isTier5);
+    //m_criticalThreatRange.UpdateEnhancementRevoked(charData, enhancementName, selection, isTier5);
+    m_criticalAttackBonus.UpdateEnhancementRevoked(charData, enhancementName, selection, isTier5);
+    m_criticalDamageBonus.UpdateEnhancementRevoked(charData, enhancementName, selection, isTier5);
+    //m_criticalMultiplier.UpdateEnhancementRevoked(charData, enhancementName, selection, isTier5);
+    //m_specialMultiplier.UpdateEnhancementRevoked(charData, enhancementName, selection, isTier5);
+    m_attackSpeed.UpdateEnhancementRevoked(charData, enhancementName, selection, isTier5);
+}

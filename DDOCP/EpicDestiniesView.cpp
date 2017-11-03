@@ -486,6 +486,7 @@ void CEpicDestiniesView::OnButtonMakeActiveDestiny()
 void CEpicDestiniesView::UpdateEnhancementTrained(
         Character * charData,
         const std::string & enhancementName,
+        const std::string & selection,
         bool isTier5)
 {
         EnableControls();
@@ -494,6 +495,7 @@ void CEpicDestiniesView::UpdateEnhancementTrained(
 void CEpicDestiniesView::UpdateEnhancementRevoked(
         Character * charData,
         const std::string & enhancementName,
+        const std::string & selection,
         bool isTier5)
 {
         EnableControls();

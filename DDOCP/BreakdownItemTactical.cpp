@@ -92,15 +92,44 @@ void BreakdownItemTactical::CreateOtherEffects()
                     "");        // no tree
             AddOtherEffect(feat);
         }
+        // handle divine presence which cannot be handled with effects
+        if (m_pCharacter->IsEnhancementTrained("WSDivineMight", "Divine Presence"))
+        {
+            // divine presence is trained
+            BreakdownItem * pBI = FindBreakdown(StatToBreakdown(Ability_Charisma));
+            ASSERT(pBI != NULL);
+            pBI->AttachObserver(this); // watch for any changes
+            int bonus = BaseStatToBonus(pBI->Total()) / 2;
+            ActiveEffect feat(
+                    Bonus_insightful,
+                    "Divine Presence (Cha Mod / 2)",
+                    1,
+                    bonus,
+                    "");        // no tree
+            AddOtherEffect(feat);
+        }
+        // handle divine will which cannot be handled with effects
+        if (m_pCharacter->IsEnhancementTrained("WSDivineMight", "Divine Will"))
+        {
+            // divine will is trained
+            BreakdownItem * pBI = FindBreakdown(StatToBreakdown(Ability_Wisdom));
+            ASSERT(pBI != NULL);
+            pBI->AttachObserver(this); // watch for any changes
+            int bonus = BaseStatToBonus(pBI->Total()) / 2;
+            ActiveEffect feat(
+                    Bonus_insightful,
+                    "Divine Will (Wis Mod / 2)",
+                    1,
+                    bonus,
+                    "");        // no tree
+            AddOtherEffect(feat);
+        }
     }
 }
 
 bool BreakdownItemTactical::AffectsUs(const Effect & effect) const
 {
-    // return true if the effect applies to this save
-    // note that effect that apply to "All" only apply to Fort, reflex and will
-    // as the sub-save types use the total from the main category as a part of their total
-    // so we do not want to count the bonus twice
+    // return true if the effect applies to this tactical
     bool isUs = false;
     if (effect.Type() == Effect_TacticalDC)
     {
@@ -123,3 +152,42 @@ void BreakdownItemTactical::UpdateTotalChanged(BreakdownItem * item, BreakdownTy
     Populate();
 }
 
+void BreakdownItemTactical::UpdateEnhancementTrained(
+        Character * charData,
+        const std::string & enhancementName,
+        const std::string & selection,
+        bool isTier5)
+{
+    BreakdownItem::UpdateEnhancementTrained(
+            charData,
+            enhancementName,
+            selection,
+            isTier5);
+    // check for "Divine Might" in Favored Soul War Soul only being trained specifically
+    if (enhancementName == "WSDivineMight")
+    {
+        // need to re-create other effects list
+        CreateOtherEffects();
+        Populate();
+    }
+}
+
+void BreakdownItemTactical::UpdateEnhancementRevoked(
+        Character * charData,
+        const std::string & enhancementName,
+        const std::string & selection,
+        bool isTier5)
+{
+    BreakdownItem::UpdateEnhancementRevoked(
+            charData,
+            enhancementName,
+            selection,
+            isTier5);
+    // check for "Divine Might" in Favored Soul War Soul only being revoked specifically
+    if (enhancementName == "WSDivineMight")
+    {
+        // need to re-create other effects list
+        CreateOtherEffects();
+        Populate();
+    }
+}

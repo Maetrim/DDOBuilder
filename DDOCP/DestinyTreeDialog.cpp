@@ -853,6 +853,7 @@ void CDestinyTreeDialog::UpdateFeatRevoked(
 void CDestinyTreeDialog::UpdateEnhancementTrained(
         Character * charData,
         const std::string & enhancementName,
+        const std::string & selection,
         bool isTier5)
 {
     // some sorcerer core1 enhancements can lock out whole tree's. Redraw if
@@ -872,6 +873,7 @@ void CDestinyTreeDialog::UpdateEnhancementTrained(
 void CDestinyTreeDialog::UpdateEnhancementRevoked(
         Character * charData,
         const std::string & enhancementName,
+        const std::string & selection,
         bool isTier5)
 {
     // some sorcerer core1 enhancements can lock out whole tree's. Redraw if

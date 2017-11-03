@@ -62,23 +62,29 @@ bool EnhancementTreeItem::VerifyObject(
         const std::list<Feat> & feats) const
 {
     bool ok = true;
+    std::stringstream lss;
     if (!ImageFileExists(IT_enhancement, Icon()))
     {
-        (*ss) << "EnhancementTreeItem is missing image file \"" << Icon() << "\"\n";
+        lss << "EnhancementTreeItem is missing image file \"" << Icon() << "\"\n";
         ok = false;
     }
-    ok &= m_RequirementsToTrain.VerifyObject(ss, trees, feats);
+    ok &= m_RequirementsToTrain.VerifyObject(&lss, trees, feats);
     if (HasSelections())
     {
         // check each of the selections also
-        ok &= m_Selections.VerifyObject(ss, trees, feats);
+        ok &= m_Selections.VerifyObject(&lss, trees, feats);
     }
     // check the spell effects also
     std::list<Effect>::const_iterator it = m_Effects.begin();
     while (it != m_Effects.end())
     {
-        ok &= (*it).VerifyObject(ss);
+        ok &= (*it).VerifyObject(&lss);
         ++it;
+    }
+    if (!ok)
+    {
+        (*ss) << "---" << m_Name << "\n";
+        (*ss) << lss.str();
     }
     return ok;
 }
@@ -178,3 +184,19 @@ std::list<Effect> EnhancementTreeItem::ActiveEffects(
     effects.insert(effects.end(), m_Effects.begin(), m_Effects.end());
     return effects;
 }
+
+std::list<Stance> EnhancementTreeItem::Stances(const std::string & selection) const
+{
+    // an enhancement may have specific sub-selection stances
+    std::list<Stance> stances;
+    if (HasSelections())
+    {
+        // we need to look up the effects for a selection
+        stances = m_Selections.Stances(selection);
+    }
+    // even if it had a sub-selection it may still have stances that
+    // always apply regardless of the sub-selection
+    stances.insert(stances.end(), m_Stances.begin(), m_Stances.end());
+    return stances;
+}
+

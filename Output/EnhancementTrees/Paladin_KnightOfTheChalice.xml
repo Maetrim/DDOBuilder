@@ -401,14 +401,26 @@ Scales with 200% Melee Power.</Description>
                <Class>Paladin</Class>
                <Level>2</Level>
             </Requirement>
+           <RequiresNoneOf>
+             <Requirement>
+               <Enhancement>HarperKnowTheAngles</Enhancement>
+             </Requirement>
+             <Requirement>
+                <Enhancement>WSDivineMight</Enhancement>
+                <Selection>Divine Might</Selection>
+             </Requirement>
+             <Requirement>
+                <Enhancement>WPDivineMight</Enhancement>
+             </Requirement>
+           </RequiresNoneOf>
          </Requirements>
-         <Effect>
-            <Type>AbilityBonus</Type>
-            <Bonus>Insightful</Bonus>
-            <Ability>Strength</Ability>
-            <Base>Charisma</Base>
-            <Stance>Divine Might</Stance>
-         </Effect>
+         <Stance>
+            <Name>Divine Might</Name>
+            <Icon>WPDivineMight</Icon>
+            <Description>You gain an Insight bonus to Strength equal to your Charisma Modifier for
+30/60/120 seconds. (Activation Cost: 21/18/15 spell points. Cooldown: 20 seconds)</Description>
+         </Stance>
+      <!--Note that the effects for divine Might are handled in the C++ code-->
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Knight of the Chalice: Rally</Name>

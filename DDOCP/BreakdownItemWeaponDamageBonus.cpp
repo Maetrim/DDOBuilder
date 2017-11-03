@@ -14,7 +14,8 @@ BreakdownItemWeaponDamageBonus::BreakdownItemWeaponDamageBonus(
         HTREEITEM hItem) :
     BreakdownItem(type, treeList, hItem),
     m_title(title),
-    m_effect(effect)
+    m_effect(effect),
+    m_bIsMeleeWeapon(false)
 {
 }
 
@@ -63,6 +64,41 @@ void BreakdownItemWeaponDamageBonus::CreateOtherEffects()
                         bonus,
                         "");        // no tree
                 feat.SetBreakdownDependency(StatToBreakdown(ability)); // so we know which effect to update
+                AddOtherEffect(feat);
+            }
+        }
+        if (m_bIsMeleeWeapon)
+        {
+            // handle divine presence which cannot be handled with effects
+            if (m_pCharacter->IsEnhancementTrained("WSDivineMight", "Divine Presence"))
+            {
+                // divine presence is trained
+                BreakdownItem * pBI = FindBreakdown(StatToBreakdown(Ability_Charisma));
+                ASSERT(pBI != NULL);
+                pBI->AttachObserver(this); // watch for any changes
+                int bonus = BaseStatToBonus(pBI->Total()) / 2;
+                ActiveEffect feat(
+                        Bonus_insightful,
+                        "Divine Presence (Cha Mod / 2)",
+                        1,
+                        bonus,
+                        "");        // no tree
+                AddOtherEffect(feat);
+            }
+            // handle divine will which cannot be handled with effects
+            if (m_pCharacter->IsEnhancementTrained("WSDivineMight", "Divine Will"))
+            {
+                // divine will is trained
+                BreakdownItem * pBI = FindBreakdown(StatToBreakdown(Ability_Wisdom));
+                ASSERT(pBI != NULL);
+                pBI->AttachObserver(this); // watch for any changes
+                int bonus = BaseStatToBonus(pBI->Total()) / 2;
+                ActiveEffect feat(
+                        Bonus_insightful,
+                        "Divine Will (Wis Mod / 2)",
+                        1,
+                        bonus,
+                        "");        // no tree
                 AddOtherEffect(feat);
             }
         }
@@ -229,4 +265,51 @@ void BreakdownItemWeaponDamageBonus::UpdateTotalChanged(
     CreateOtherEffects();
     // do base class stuff also
     BreakdownItem::UpdateTotalChanged(item, type);
+}
+
+void BreakdownItemWeaponDamageBonus::UpdateEnhancementTrained(
+        Character * charData,
+        const std::string & enhancementName,
+        const std::string & selection,
+        bool isTier5)
+{
+    BreakdownItem::UpdateEnhancementTrained(
+            charData,
+            enhancementName,
+            selection,
+            isTier5);
+    // check for "Divine Might" in War Soul tree only being trained specifically
+    if (m_bIsMeleeWeapon
+            && enhancementName == "WSDivineMight")
+    {
+        // need to re-create other effects list
+        CreateOtherEffects();
+        Populate();
+    }
+}
+
+void BreakdownItemWeaponDamageBonus::UpdateEnhancementRevoked(
+        Character * charData,
+        const std::string & enhancementName,
+        const std::string & selection,
+        bool isTier5)
+{
+    BreakdownItem::UpdateEnhancementRevoked(
+            charData,
+            enhancementName,
+            selection,
+            isTier5);
+    // check for "Divine Might" War Soul tree only being revoked specifically
+    if (m_bIsMeleeWeapon
+            && enhancementName == "WSDivineMight")
+    {
+        // need to re-create other effects list
+        CreateOtherEffects();
+        Populate();
+    }
+}
+
+void BreakdownItemWeaponDamageBonus::SetIsMeleeWeapon(bool melee)
+{
+    m_bIsMeleeWeapon = melee;
 }

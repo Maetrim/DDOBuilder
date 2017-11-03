@@ -22,6 +22,8 @@ class BreakdownItemTactical:
     private:
         // BreakdownObserver overrides
         virtual void UpdateTotalChanged(BreakdownItem * item, BreakdownType type) override;
+        virtual void UpdateEnhancementTrained(Character * charData, const std::string & enhancementName, const std::string & selection, bool isTier5) override;
+        virtual void UpdateEnhancementRevoked(Character * charData, const std::string & enhancementName, const std::string & selection, bool isTier5) override;
 
         bool IsUs(const Effect & effect) const;
         TacticalType m_tacticalType;

@@ -938,7 +938,7 @@ size_t SkillPoints(
         ++skillPoints;
     }
     // int modifier
-    int mod = (int)(intelligence / 2) - 5;
+    int mod = BaseStatToBonus(intelligence);
     skillPoints += mod;
     if (skillPoints < 1)
     {
@@ -1593,6 +1593,9 @@ bool ImageFileExists(ImageType type, const std::string & name)
     case IT_ui:
         location += "UIImages\\";
         break;
+    case IT_item:
+        location += "ItemImages\\";
+        break;
     }
     std::string filename = location;
     filename += name;
@@ -2161,7 +2164,7 @@ int BaseStatToBonus(double ability)
 {
     ability -= 10;      // 10 = no bonus
     int bonus;
-    if (ability < 10)
+    if (ability < 0)
     {
         bonus = (int)ceil((ability - 1) / 2);
     }

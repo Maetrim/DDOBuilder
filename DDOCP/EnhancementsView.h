@@ -39,8 +39,8 @@ class CEnhancementsView :
         void UpdateAlignmentChanged(Character * charData, AlignmentType alignmen) override;
         virtual void UpdateClassChanged(Character * charData, ClassType classFrom, ClassType classTo, size_t level) override;
         void UpdateRaceChanged(Character * charData, RaceType race) override;
-        void UpdateEnhancementTrained(Character * charData, const std::string & enhancementName, bool isTier5) override;
-        void UpdateEnhancementRevoked(Character * charData, const std::string & enhancementName, bool isTier5) override;
+        void UpdateEnhancementTrained(Character * charData, const std::string & enhancementName, const std::string & selection, bool isTier5) override;
+        void UpdateEnhancementRevoked(Character * charData, const std::string & enhancementName, const std::string & selection, bool isTier5) override;
         void UpdateEnhancementTreeReset(Character * charData) override;
         void UpdateActionPointsChanged(Character * charData) override;
     private:

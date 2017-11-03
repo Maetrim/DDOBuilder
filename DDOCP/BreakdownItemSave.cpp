@@ -233,9 +233,10 @@ void BreakdownItemSave::UpdateClassChanged(
 void BreakdownItemSave::UpdateEnhancementTrained(
         Character * charData,
         const std::string & enhancementName,
+        const std::string & selection,
         bool isTier5)
 {
-    BreakdownItem::UpdateEnhancementTrained(charData, enhancementName, isTier5);
+    BreakdownItem::UpdateEnhancementTrained(charData, enhancementName, selection, isTier5);
     if (enhancementName == "HalfElfImprovedDilettanteI"
             || enhancementName == "HalfElfImprovedDilettanteII"
             || enhancementName == "HalfElfImprovedDilettanteIII")
@@ -249,9 +250,10 @@ void BreakdownItemSave::UpdateEnhancementTrained(
 void BreakdownItemSave::UpdateEnhancementRevoked(
         Character * charData,
         const std::string & enhancementName,
+        const std::string & selection,
         bool isTier5)
 {
-    BreakdownItem::UpdateEnhancementTrained(charData, enhancementName, isTier5);
+    BreakdownItem::UpdateEnhancementTrained(charData, enhancementName, selection, isTier5);
     if (enhancementName == "HalfElfImprovedDilettanteI"
             || enhancementName == "HalfElfImprovedDilettanteII"
             || enhancementName == "HalfElfImprovedDilettanteIII")

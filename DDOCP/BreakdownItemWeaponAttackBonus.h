@@ -15,6 +15,8 @@ class BreakdownItemWeaponAttackBonus :
                 HTREEITEM hItem);
         virtual ~BreakdownItemWeaponAttackBonus();
 
+        void SetIsMeleeWeapon(bool melee);
+
         // required overrides
         virtual CString Title() const override;
         virtual CString Value() const override;
@@ -34,4 +36,5 @@ class BreakdownItemWeaponAttackBonus :
         CString m_title;
         EffectType m_effect;
         int m_proficientCount;  // can be proficient from multiple sources
+        bool m_bMeleWeapon;
 };

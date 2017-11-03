@@ -30,6 +30,7 @@ class EnhancementTreeItem :
                 const Character & charData,
                 std::vector<CString> * requirements,
                 std::vector<bool> * met) const;
+        std::list<Stance> Stances(const std::string & selection) const;
 
         bool VerifyObject(
                 std::stringstream * ss,

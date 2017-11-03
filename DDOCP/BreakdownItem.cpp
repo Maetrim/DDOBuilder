@@ -595,6 +595,12 @@ bool BreakdownItem::GetActiveEffect(
     bool hasActiveEffect = true;
     BreakdownType bt = Breakdown_Unknown;
 
+    // a divider may be in effect for some totals
+    double divider = 1.0;
+    if (effect.HasDivider())
+    {
+        divider = effect.Divider();
+    }
     if (effect.HasAmountPerLevel())
     {
         ASSERT(effect.HasClass());
@@ -643,7 +649,7 @@ bool BreakdownItem::GetActiveEffect(
                     effect.AmountVector());
         }
     }
-    else if (effect.HasAbility())   // some feat effects can have amount and ability, amount always takes precedence
+    else if (effect.HasAbility())
     {
         // it is a feat that handles the amount from a base ability bonus
         // attach to the item to observe it
@@ -651,11 +657,12 @@ bool BreakdownItem::GetActiveEffect(
         BreakdownItem * pBI = FindBreakdown(bt);
         ASSERT(pBI != NULL);
         pBI->AttachObserver(this);  // need to know about changes to this stat
+        double amount = (int)(BaseStatToBonus(pBI->Total()) / divider);
         *activeEffect = ActiveEffect(
                 effect.Bonus(),
                 name,
                 1,
-                BaseStatToBonus(pBI->Total()),
+                amount,
                 "");        // no tree
     }
     else if (effect.HasDiceRoll())
@@ -669,26 +676,34 @@ bool BreakdownItem::GetActiveEffect(
                 effect.DiceRoll(),
                 "");
     }
-    else if (effect.HasDivider())
+    else if (effect.HasClass())
     {
-        // its an amount per n skill/class
-        int amount = 0;
-        if (effect.HasClass())
+        // its per n class levels
+        size_t levels = m_pCharacter->ClassLevels(MAX_LEVEL)[effect.Class()];
+        double amount = (int)(levels / divider);       // integer arithmetic
+        if (amount > 0)
         {
-            // its per n class levels
-            size_t levels = m_pCharacter->ClassLevels(MAX_LEVEL)[effect.Class()];
-            amount = (levels / effect.Divider());       // integer arithmetic
+            *activeEffect = ActiveEffect(
+                    effect.Bonus(),
+                    name,
+                    1,
+                    amount,
+                    "");
         }
-        if (effect.HasSkill())
+        else
         {
-            // its per n skill ranks (round down 0.5's to 0)
-            bt = SkillToBreakdown(effect.Skill());
-            BreakdownItem * pBI = FindBreakdown(bt);
-            size_t ranks = (size_t)pBI->Total();    // throw away any half ranks
-            amount = (ranks / effect.Divider());    // integer arithmetic
-            // also need to know about changes to this skill
-            pBI->AttachObserver(this);
+            hasActiveEffect = false;
         }
+    }
+    else if (effect.HasSkill())
+    {
+        // its per n skill ranks (round down 0.5's to 0)
+        bt = SkillToBreakdown(effect.Skill());
+        BreakdownItem * pBI = FindBreakdown(bt);
+        size_t ranks = (size_t)pBI->Total();    // throw away any half ranks
+        double amount = (int)(ranks / divider);    // integer arithmetic
+        // also need to know about changes to this skill
+        pBI->AttachObserver(this);
         if (amount > 0)
         {
             *activeEffect = ActiveEffect(
