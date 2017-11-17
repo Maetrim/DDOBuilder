@@ -155,6 +155,7 @@ bool Effect::VerifyObject(std::stringstream * ss) const
         case Effect_CriticalRange:
         case Effect_DamageBonus:
         case Effect_EnchantWeapon:
+        case Effect_Seeker:
         case Effect_VorpalRange:
         case Effect_WeaponBaseDamageBonus:
         case Effect_WeaponDamageBonus:

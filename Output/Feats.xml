@@ -12,6 +12,11 @@ traverse chasms that make normal adventurers balk.</Description>
          <Level>12</Level>
       </AutomaticAcquisition>
       <Icon>AbundantStep</Icon>
+      <Effect>
+         <Type>SpellLikeAbility</Type>
+         <Bonus>Feat</Bonus>
+         <SpellLikeAbility>Abundant Step</SpellLikeAbility>
+      </Effect>
    </Feat>
    <Feat>
       <Name>AC Bonus: Wisdom</Name>
@@ -84,11 +89,11 @@ dexterity bonus.</Description>
                <Race>Bladeforged</Race>
             </Requirement>
          </RequiresOneOf>
-          <RequiresNoneOf>
-              <Requirement>
-                  <Feat>Druidic Oath</Feat>
-              </Requirement>
-          </RequiresNoneOf>
+         <RequiresNoneOf>
+            <Requirement>
+               <Feat>Druidic Oath</Feat>
+            </Requirement>
+         </RequiresNoneOf>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>WarforgedFeat</Icon>
@@ -133,12 +138,27 @@ dexterity bonus.</Description>
       <Name>Adept of Forms</Name>
       <Description>You continue on the path to enlightenment, improving your elemental
 stances and learning new elemental strikes.
-Adept of Flame: Sun Stance now grants +2 Strength at a cost of -2 Wisdom. While in Sun Stance you gain 'Hit Effect: Gain 1 ki.' and 'Critical Effect: Gain 3 ki.'
-Adept of Rain: Ocean Stance now grants +2 Wisdom, +6% dodge, +4 Maximum Dodge, and +3 to all Saving Throws at a cost of -2 Strength.
-Adept of Rock: Mountain Stance now grants +2 Constitution, a 10% boost to AC, 8 physical resistance, and a +40% Insight bonus to melee threat generation, at the cost of -2 Dexterity and -10% movement speed. While in Mountain Stance, you gain 'Get Hit Effect: Gain 1 ki.'
-Adept of Wind: Wind Stance now grants +2 Dexterity, a 10% Enhancement bonus to melee and thrown attack speed, and grants a 6% chance to doublestrike with melee weapons, at the cost of -2 Constitution.</Description>
-      <Requirements/>
-      <Acquire>Automatic</Acquire>
+Adept of Flame: Sun Stance now grants +2 Strength at a cost of -2 Wisdom.
+   While in Sun Stance you gain'Hit Effect: Gain 1 ki.' and 'Critical Effect: Gain 3 ki.'
+Adept of Rain: Ocean Stance now grants +2 Wisdom, +6% dodge, +4 Maximum Dodge,
+   and +3 to all Saving Throws at a cost of -2 Strength.
+Adept of Rock: Mountain Stance now grants +2 Constitution, a 10% boost to AC,
+   8 physical resistance, and a +40% Insight bonus to melee threat generation,
+   at the cost of -2 Dexterity and -10% movement speed.
+   While in Mountain Stance, you gain 'Get Hit Effect: Gain 1 ki.'
+Adept of Wind: Wind Stance now grants +2 Dexterity, a 10% Enhancement bonus to melee
+   and thrown attack speed, and grants a 6% chance to doublestrike with melee weapons,
+   at the cost of -2 Constitution.</Description>
+      <Requirements>
+         <Requirement>
+            <Class>Monk</Class>
+            <Level>1</Level>
+         </Requirement>
+         <Requirement>
+            <MinLevel>6</MinLevel>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
       <Icon>AdeptOfForms</Icon>
       <AutomaticAcquisition>
          <Class>Monk</Class>
@@ -323,7 +343,6 @@ costs of all nearby allies by a 25% for a short period of time.</Description>
          <Class>Monk</Class>
          <Level>3</Level>
       </AutomaticAcquisition>
-      <!--Handle water;light;water finisher-->
    </Feat>
    <Feat>
       <Name>Artificer Construct Mastery</Name>
@@ -581,8 +600,7 @@ You can freely perform most other actions while charging the Rune Arm.</Descript
    <Feat>
       <Name>Attack</Name>
       <Description>This is the standard attack for all characters. It can be toggled on to
-attack repeatedly until your target is defeated, or activated once
-by right-clicking the mouse.</Description>
+attack repeatedly until your target is defeated, or activated once by right-clicking the mouse.</Description>
       <MaxTimesAcquire>1</MaxTimesAcquire>
       <Requirements/>
       <Acquire>Automatic</Acquire>
@@ -590,7 +608,7 @@ by right-clicking the mouse.</Description>
       <AutomaticAcquisition>
          <Level>1</Level>
       </AutomaticAcquisition>
-       <!--As this is a feat all characters gain, its used as a placeholder for adding some special effects and stances-->
+      <!--As this is a feat all characters gain, its used as a placeholder for adding some special effects and stances-->
       <Effect>
          <DisplayName>Standard Death at</DisplayName>
          <Type>UnconsciousRange</Type>
@@ -743,22 +761,22 @@ Mass Repair Serious Damage.</Description>
          <Race>Bladeforged</Race>
          <Level>1</Level>
       </AutomaticAcquisition>
-       <Effect>
-           <Type>SaveBonus</Type>
-           <Bonus>Feat</Bonus>
-           <Amount>1</Amount>
-           <Save>All</Save>
-       </Effect>
-       <Effect>
-           <Type>ACBonus</Type>
-           <Bonus>Feat</Bonus>
-           <Amount>2</Amount>
-       </Effect>
-       <Effect>
-           <Type>HealingAmplification</Type>
-           <Bonus>Feat</Bonus>
-           <Amount>-10</Amount>
-       </Effect>
+      <Effect>
+         <Type>SaveBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
+         <Save>All</Save>
+      </Effect>
+      <Effect>
+         <Type>ACBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>2</Amount>
+      </Effect>
+      <Effect>
+         <Type>HealingAmplification</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>-10</Amount>
+      </Effect>
       <Effect>
          <Type>GrantSpell</Type>
          <Bonus>Feat</Bonus>
@@ -868,7 +886,6 @@ D&amp;D Dice: Deals 1d6 fire damage per monk level.</Description>
          <Class>Monk</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
-      <!--Handle Fire;Fire;Fire finisher-->
    </Feat>
    <Feat>
       <Name>Brutal Throw</Name>
@@ -1291,7 +1308,6 @@ allies in the stuff of clouds for a short period of time, granting them 20% conc
          <Class>Monk</Class>
          <Level>3</Level>
       </AutomaticAcquisition>
-      <!--Handle air;light;air finisher-->
    </Feat>
    <Feat>
       <Name>Damage Reduction</Name>
@@ -1683,7 +1699,6 @@ Summon Nature's Ally spell of that level.</Description>
          <Level>1</Level>
       </AutomaticAcquisition>
       <Icon>DruidSpontaneousCasting</Icon>
-      <!--Handle additional spells here-->
    </Feat>
    <Feat>
       <Name>Dwarven Stability</Name>
@@ -2407,10 +2422,6 @@ proficient wielder.</Description>
          <Race>Drow</Race>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
-         <Class>Fighter</Class>
-         <Level>1</Level>
-      </AutomaticAcquisition>
-      <AutomaticAcquisition>
          <Class>Monk</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
@@ -2525,7 +2536,6 @@ Has a save DC of your perform skill plus the roll of a twenty-sided die.</Descri
    <Feat>
       <Name>Fast Movement (Monk)</Name>
       <Description>While centered you run faster for every three monk levels you possess.</Description>
-      <MaxTimesAcquire>6</MaxTimesAcquire>
       <Requirements/>
       <Acquire>Automatic</Acquire>
       <Icon>FastMovement</Icon>
@@ -2533,30 +2543,11 @@ Has a save DC of your perform skill plus the roll of a twenty-sided die.</Descri
          <Class>Monk</Class>
          <Level>3</Level>
       </AutomaticAcquisition>
-      <AutomaticAcquisition>
-         <Class>Monk</Class>
-         <Level>6</Level>
-      </AutomaticAcquisition>
-      <AutomaticAcquisition>
-         <Class>Monk</Class>
-         <Level>9</Level>
-      </AutomaticAcquisition>
-      <AutomaticAcquisition>
-         <Class>Monk</Class>
-         <Level>12</Level>
-      </AutomaticAcquisition>
-      <AutomaticAcquisition>
-         <Class>Monk</Class>
-         <Level>15</Level>
-      </AutomaticAcquisition>
-      <AutomaticAcquisition>
-         <Class>Monk</Class>
-         <Level>18</Level>
-      </AutomaticAcquisition>
       <Effect>
          <Type>MovementSpeed</Type>
          <Bonus>Feat</Bonus>
-         <Amount>5.0</Amount>
+         <AmountVector size="20">0 0 5 5 5 10 10 10 15 15 15 20 20 20 25 25 25 30 30 30</AmountVector>
+         <Class>Monk</Class>
          <Stance>Centered</Stance>
       </Effect>
    </Feat>
@@ -2589,7 +2580,6 @@ The target receives periodic saves to attempt to break free of this effect.</Des
          <Class>Monk</Class>
          <Level>3</Level>
       </AutomaticAcquisition>
-      <!--Handle air;dark;air finisher-->
    </Feat>
    <Feat>
       <Name>Favored enemy: Aberration</Name>
@@ -2600,7 +2590,6 @@ The target receives periodic saves to attempt to break free of this effect.</Des
       <Requirements/>
       <Acquire>Train</Acquire>
       <Icon>FavoredEnemyAberration</Icon>
-      <!--Handle favoured enemy bonus damage-->
    </Feat>
    <Feat>
       <Name>Favored enemy: Animal</Name>
@@ -2611,7 +2600,6 @@ The target receives periodic saves to attempt to break free of this effect.</Des
       <Requirements/>
       <Acquire>Train</Acquire>
       <Icon>FavoredEnemyAnimal</Icon>
-      <!--Handle favoured enemy bonus damage-->
    </Feat>
    <Feat>
       <Name>Favored enemy: Chaotic Outsider</Name>
@@ -2622,7 +2610,6 @@ The target receives periodic saves to attempt to break free of this effect.</Des
       <Requirements/>
       <Acquire>Train</Acquire>
       <Icon>FavoredEnemyChaoticOutsider</Icon>
-      <!--Handle favoured enemy bonus damage-->
    </Feat>
    <Feat>
       <Name>Favored enemy: Construct</Name>
@@ -2633,7 +2620,6 @@ The target receives periodic saves to attempt to break free of this effect.</Des
       <Requirements/>
       <Acquire>Train</Acquire>
       <Icon>FavoredEnemyConstruct</Icon>
-      <!--Handle favoured enemy bonus damage-->
    </Feat>
    <Feat>
       <Name>Favored enemy: Dragon</Name>
@@ -2644,7 +2630,6 @@ The target receives periodic saves to attempt to break free of this effect.</Des
       <Requirements/>
       <Acquire>Train</Acquire>
       <Icon>FavoredEnemyDragon</Icon>
-      <!--Handle favoured enemy bonus damage-->
    </Feat>
    <Feat>
       <Name>Favored enemy: Dwarf</Name>
@@ -2655,7 +2640,6 @@ The target receives periodic saves to attempt to break free of this effect.</Des
       <Requirements/>
       <Acquire>Train</Acquire>
       <Icon>FavoredEnemyDwarf</Icon>
-      <!--Handle favoured enemy bonus damage-->
    </Feat>
    <Feat>
       <Name>Favored enemy: Elemental</Name>
@@ -2666,7 +2650,6 @@ The target receives periodic saves to attempt to break free of this effect.</Des
       <Requirements/>
       <Acquire>Train</Acquire>
       <Icon>FavoredEnemyElemental</Icon>
-      <!--Handle favoured enemy bonus damage-->
    </Feat>
    <Feat>
       <Name>Favored enemy: Elf</Name>
@@ -2677,7 +2660,6 @@ The target receives periodic saves to attempt to break free of this effect.</Des
       <Requirements/>
       <Acquire>Train</Acquire>
       <Icon>FavoredEnemyElf</Icon>
-      <!--Handle favoured enemy bonus damage-->
    </Feat>
    <Feat>
       <Name>Favored enemy: Evil Outsider</Name>
@@ -2688,7 +2670,6 @@ The target receives periodic saves to attempt to break free of this effect.</Des
       <Requirements/>
       <Acquire>Train</Acquire>
       <Icon>FavoredEnemyEvilOutsider</Icon>
-      <!--Handle favoured enemy bonus damage-->
    </Feat>
    <Feat>
       <Name>Favored enemy: Giant</Name>
@@ -2699,7 +2680,6 @@ The target receives periodic saves to attempt to break free of this effect.</Des
       <Requirements/>
       <Acquire>Train</Acquire>
       <Icon>FavoredEnemyGiant</Icon>
-      <!--Handle favoured enemy bonus damage-->
    </Feat>
    <Feat>
       <Name>Favored enemy: Gnoll</Name>
@@ -2710,7 +2690,6 @@ The target receives periodic saves to attempt to break free of this effect.</Des
       <Requirements/>
       <Acquire>Train</Acquire>
       <Icon>FavoredEnemyGnoll</Icon>
-      <!--Handle favoured enemy bonus damage-->
    </Feat>
    <Feat>
       <Name>Favored enemy: Goblinoid</Name>
@@ -2721,7 +2700,6 @@ The target receives periodic saves to attempt to break free of this effect.</Des
       <Requirements/>
       <Acquire>Train</Acquire>
       <Icon>FavoredEnemyGoblinoid</Icon>
-      <!--Handle favoured enemy bonus damage-->
    </Feat>
    <Feat>
       <Name>Favored enemy: Halfling</Name>
@@ -2732,7 +2710,6 @@ The target receives periodic saves to attempt to break free of this effect.</Des
       <Requirements/>
       <Acquire>Train</Acquire>
       <Icon>FavoredEnemyHalfling</Icon>
-      <!--Handle favoured enemy bonus damage-->
    </Feat>
    <Feat>
       <Name>Favored enemy: Human</Name>
@@ -2743,7 +2720,6 @@ The target receives periodic saves to attempt to break free of this effect.</Des
       <Requirements/>
       <Acquire>Train</Acquire>
       <Icon>FavoredEnemyHuman</Icon>
-      <!--Handle favoured enemy bonus damage-->
    </Feat>
    <Feat>
       <Name>Favored enemy: Lawful Outsider</Name>
@@ -2754,7 +2730,6 @@ The target receives periodic saves to attempt to break free of this effect.</Des
       <Requirements/>
       <Acquire>Train</Acquire>
       <Icon>FavoredEnemyLawfulOutsider</Icon>
-      <!--Handle favoured enemy bonus damage-->
    </Feat>
    <Feat>
       <Name>Favored enemy: Magical Beast</Name>
@@ -2765,7 +2740,6 @@ The target receives periodic saves to attempt to break free of this effect.</Des
       <Requirements/>
       <Acquire>Train</Acquire>
       <Icon>FavoredEnemyMagicalBeast</Icon>
-      <!--Handle favoured enemy bonus damage-->
    </Feat>
    <Feat>
       <Name>Favored enemy: Monstrous Humanoid</Name>
@@ -2776,7 +2750,6 @@ The target receives periodic saves to attempt to break free of this effect.</Des
       <Requirements/>
       <Acquire>Train</Acquire>
       <Icon>FavoredEnemyMonstrousHumanoid</Icon>
-      <!--Handle favoured enemy bonus damage-->
    </Feat>
    <Feat>
       <Name>Favored enemy: Ooze</Name>
@@ -2787,7 +2760,6 @@ The target receives periodic saves to attempt to break free of this effect.</Des
       <Requirements/>
       <Acquire>Train</Acquire>
       <Icon>FavoredEnemyOoze</Icon>
-      <!--Handle favoured enemy bonus damage-->
    </Feat>
    <Feat>
       <Name>Favored enemy: Orc</Name>
@@ -2798,7 +2770,6 @@ The target receives periodic saves to attempt to break free of this effect.</Des
       <Requirements/>
       <Acquire>Train</Acquire>
       <Icon>FavoredEnemyOrc</Icon>
-      <!--Handle favoured enemy bonus damage-->
    </Feat>
    <Feat>
       <Name>Favored enemy: Plant</Name>
@@ -2809,7 +2780,6 @@ The target receives periodic saves to attempt to break free of this effect.</Des
       <Requirements/>
       <Acquire>Train</Acquire>
       <Icon>FavoredEnemyPlant</Icon>
-      <!--Handle favoured enemy bonus damage-->
    </Feat>
    <Feat>
       <Name>Favored enemy: Reptilian</Name>
@@ -2820,7 +2790,6 @@ The target receives periodic saves to attempt to break free of this effect.</Des
       <Requirements/>
       <Acquire>Train</Acquire>
       <Icon>FavoredEnemyReptilian</Icon>
-      <!--Handle favoured enemy bonus damage-->
    </Feat>
    <Feat>
       <Name>Favored enemy: Undead</Name>
@@ -2835,7 +2804,6 @@ The target receives periodic saves to attempt to break free of this effect.</Des
          <Race>Aasimar Scourge</Race>
       </AutomaticAcquisition>
       <Icon>FavoredEnemyUndead</Icon>
-      <!--Handle favoured enemy bonus damage-->
    </Feat>
    <Feat>
       <Name>Favored enemy: Vermin</Name>
@@ -2846,7 +2814,6 @@ The target receives periodic saves to attempt to break free of this effect.</Des
       <Requirements/>
       <Acquire>Train</Acquire>
       <Icon>FavoredEnemyVermin</Icon>
-      <!--Handle favoured enemy bonus damage-->
    </Feat>
    <Feat>
       <Name>Fear Immunity</Name>
@@ -2895,8 +2862,8 @@ Your attack will deal 1 to 6 additional fire damage (D&amp;D Dice: 1d6).</Descri
          <Dice>
             <Number size="1">1</Number>
             <Sides size="1">6</Sides>
+            <Energy>Fire</Energy>
          </Dice>
-         <Energy>Fire</Energy>
       </Effect>
    </Feat>
    <Feat>
@@ -2917,8 +2884,8 @@ Your attack will deal 1 to 6 additional cold damage (D&amp;D Dice: 1d6).</Descri
          <Dice>
             <Number size="1">1</Number>
             <Sides size="1">6</Sides>
+            <Energy>Cold</Energy>
          </Dice>
-         <Energy>Cold</Energy>
       </Effect>
    </Feat>
    <Feat>
@@ -2981,17 +2948,26 @@ The target receives periodic saves to attempt to break free of this effect.</Des
          <Class>Monk</Class>
          <Level>3</Level>
       </AutomaticAcquisition>
-      <!--Handle water;dark;water finisher-->
    </Feat>
    <Feat>
       <Name>Grandmaster of Forms</Name>
       <Description>You continue on the path to enlightenment, further improving your
 elemental stances and learning new elemental strikes. These stance improvements
 replace those granted by Master of Forms.
-Grandmaster of Flame: Sun Stance now grants +4 Strength and the critical multiplier of all weapons you use is increased by 1 on rolls of a natural 19 or 20, at a cost of -2 Wisdom. While in Sun Stance you gain 'Hit Effect: Gain 1 ki.' and 'Critical Effect: Gain 5 ki.'
-Grandmaster of Rain: Ocean Stance now grants +4 Wisdom, +12 Dodge, a +8 bonus to dodge cap, +5 to all Saving Throws, and your passive ki generation when centered is increased by 1, at a cost of -2 Strength.
-Grandmaster of Rock: Mountain Stance now grants +4 Constitution, a 20% boost to AC, 15 physical resistance, a +70% Insight bonus to melee threat generation, at the cost of -2 Dexterity and -10% movement speed. While in Mountain Stance, you gain 'Get Hit Effect: Gain 1 ki.'
-Grandmaster of Wind: Wind Stance now grants +4 Dexterity, a 15% Enhancement bonus to melee and thrown attack speed, and grants a 12% chance to doublestrike with melee weapons, at the cost of -2 Constitution.</Description>
+Grandmaster of Flame: Sun Stance now grants +4 Strength and the critical multiplier
+    of all weapons you use is increased by 1 on rolls of a natural 19 or 20, at a
+    cost of -2 Wisdom. While in Sun Stance you gain 'Hit Effect: Gain 1 ki.' and
+    'Critical Effect: Gain 5 ki.'
+Grandmaster of Rain: Ocean Stance now grants +4 Wisdom, +12 Dodge, a +8 bonus to
+    dodge cap, +5 to all Saving Throws, and your passive ki generation when centered
+    is increased by 1, at a cost of -2 Strength.
+Grandmaster of Rock: Mountain Stance now grants +4 Constitution, a 20% boost to AC,
+    15 physical resistance, a +70% Insight bonus to melee threat generation, at the
+    cost of -2 Dexterity and -10% movement speed. While in Mountain Stance, you gain
+    'Get Hit Effect: Gain 1 ki.'
+Grandmaster of Wind: Wind Stance now grants +4 Dexterity, a 15% Enhancement bonus to
+    melee and thrown attack speed, and grants a 12% chance to doublestrike with
+    melee weapons, at the cost of -2 Constitution.</Description>
       <Requirements>
          <Requirement>
             <Class>Monk</Class>
@@ -3227,7 +3203,6 @@ sleep for a short period of time.</Description>
          <Class>Monk</Class>
          <Level>3</Level>
       </AutomaticAcquisition>
-      <!--Handle earth;light;earth finisher-->
    </Feat>
    <Feat>
       <Name>Great Cleave</Name>
@@ -4016,7 +3991,7 @@ to saves against fear.</Description>
       </AutomaticAcquisition>
       <Effect>
          <Type>SaveBonus</Type>
-         <Bonus>Feat</Bonus>
+         <Bonus>Morale</Bonus>
          <Save>Fear</Save>
          <Amount>2</Amount>
       </Effect>
@@ -4066,7 +4041,7 @@ As a result, halflings get a +1 bonus to attack rolls when using any thrown weap
       <Effect>
          <Type>AttackBonus</Type>
          <Bonus>Feat</Bonus>
-         <DamageType>Thrown</DamageType>
+         <WeaponClass>Thrown</WeaponClass>
          <Amount>1</Amount>
       </Effect>
    </Feat>
@@ -4147,7 +4122,6 @@ This feat is not recommended for characters with actual barbarian levels.</Descr
          <Bonus>Feat</Bonus>
          <Amount>1</Amount>
       </Effect>
-      <!--Handle count as barbarian level 1-->
    </Feat>
    <Feat>
       <Name>Half-Elf Dilettante: Bard</Name>
@@ -4198,7 +4172,6 @@ This feat is not recommended for characters with actual cleric levels.</Descript
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>DilettanteCleric</Icon>
-      <!--Handle count as cleric level 1-->
    </Feat>
    <Feat>
       <Name>Half-Elf Dilettante: Druid</Name>
@@ -4221,7 +4194,6 @@ This feat is not recommended for characters with actual druid levels.</Descripti
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>DilettanteDruid</Icon>
-      <!--Handle count as druid level 1-->
    </Feat>
    <Feat>
       <Name>Half-Elf Dilettante: Favored Soul</Name>
@@ -4244,7 +4216,6 @@ This feat is not recommended for characters with actual favored soul levels.</De
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>DilettanteFavoredSoul</Icon>
-      <!--Handle count as favored soul level 1-->
    </Feat>
    <Feat>
       <Name>Half-Elf Dilettante: Fighter</Name>
@@ -4266,7 +4237,6 @@ This feat is not recommended for characters with actual fighter levels.</Descrip
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>DilettanteFighter</Icon>
-      <!--Handle count as fighter level 1-->
       <Effect>
          <Type>WeaponProficiency</Type>
          <Bonus>Feat</Bonus>
@@ -4431,7 +4401,7 @@ This feat is not recommended for characters with actual paladin levels.</Descrip
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>DilettantePaladin</Icon>
-       <!--The divine grace saves bonus is handled in C++ for this item-->
+      <!--The divine grace saves bonus is handled in C++ for this item-->
    </Feat>
    <Feat>
       <Name>Half-Elf Dilettante: Ranger</Name>
@@ -4498,7 +4468,6 @@ This feat is not recommended for characters with actual rogue levels.</Descripti
             <Sides size="1">6</Sides>
          </Dice>
       </Effect>
-      <!--Handle count as rogue level 1-->
    </Feat>
    <Feat>
       <Name>Half-Elf Dilettante: Sorcerer</Name>
@@ -4521,7 +4490,6 @@ This feat is not recommended for characters with actual sorcerer levels.</Descri
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>DilettanteSorcerer</Icon>
-      <!--Handle count as sorcerer level 1-->
    </Feat>
    <Feat>
       <Name>Half-Elf Dilettante: Warlock</Name>
@@ -4543,7 +4511,6 @@ This toggle is exclusive with Warlock Pact toggles.</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>DilettanteWarlock</Icon>
-      <!--Handle count as warlock level 1-->
    </Feat>
    <Feat>
       <Name>Half-Elf Dilettante: Wizard</Name>
@@ -4566,7 +4533,6 @@ This feat is not recommended for characters with actual wizard levels.</Descript
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>DilettanteWizard</Icon>
-      <!--Handle count as wizard level 1-->
    </Feat>
    <Feat>
       <Name>Half-Orc Orc Blood</Name>
@@ -4603,7 +4569,6 @@ D&amp;D Dice: Heals allies with 1d4 positive energy for every two monk levels.</
          <Class>Monk</Class>
          <Level>3</Level>
       </AutomaticAcquisition>
-      <!--Handle light;light;light finisher-->
    </Feat>
    <Feat>
       <Name>Heavy Armor Champion</Name>
@@ -4744,7 +4709,13 @@ attack bonus in physical resistance when wearing heavy armor.</Description>
          <Class>Ranger</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
-      <!--handle PRR bonus of 6 + BAB when wearing armour-->
+       <Effect>
+           <Type>PRR</Type>
+           <Bonus>Feat</Bonus>
+           <Amount>6</Amount>
+           <Stance>HeavyArmor</Stance>
+           <!--handle PRR bonus of 6 + BAB when wearing armour-->
+       </Effect>
    </Feat>
    <Feat>
       <Name>Heighten Spell</Name>
@@ -4893,7 +4864,11 @@ with item effects that double threat range like keen and impact.</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>ImprovedCriticalBludgeoning</Icon>
-      <!--Handle critical range doubling-->
+       <Effect>
+           <Type>Keen</Type>
+           <Bonus>Feat</Bonus>
+           <DamageType>Bludgeoning</DamageType>
+       </Effect>
    </Feat>
    <Feat>
       <Name>Improved Critical: Piercing Weapons</Name>
@@ -4911,7 +4886,11 @@ and impact.</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>ImprovedCriticalPiercing</Icon>
-      <!--Handle critical range doubling-->
+       <Effect>
+           <Type>Keen</Type>
+           <Bonus>Feat</Bonus>
+           <DamageType>Piercing</DamageType>
+       </Effect>
    </Feat>
    <Feat>
       <Name>Improved Critical: Ranged Weapons</Name>
@@ -4929,7 +4908,11 @@ This feat does not stack with item effects that double threat range like keen an
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>ImprovedCriticalRanged</Icon>
-      <!--Handle critical range doubling-->
+       <Effect>
+           <Type>Keen</Type>
+           <Bonus>Feat</Bonus>
+           <DamageType>Ranged</DamageType>
+       </Effect>
    </Feat>
    <Feat>
       <Name>Improved Critical: Slashing Weapons</Name>
@@ -4946,7 +4929,11 @@ This feat does not stack with item effects that double threat range like keen an
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>ImprovedCriticalSlashing</Icon>
-      <!--Handle critical range doubling-->
+       <Effect>
+           <Type>Keen</Type>
+           <Bonus>Feat</Bonus>
+           <DamageType>Slashing</DamageType>
+       </Effect>
    </Feat>
    <Feat>
       <Name>Improved Critical: Thrown Weapons</Name>
@@ -4963,7 +4950,11 @@ This feat does not stack with item effects that double threat range like keen an
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>ImprovedCriticalThrown</Icon>
-      <!--Handle critical range doubling-->
+       <Effect>
+           <Type>Keen</Type>
+           <Bonus>Feat</Bonus>
+           <DamageType>Thrown</DamageType>
+       </Effect>
    </Feat>
    <Feat>
       <Name>Improved Damage Reduction</Name>
@@ -5042,8 +5033,17 @@ be healed by spells from the healing subschool, such as cure light wounds.</Desc
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>WarforgedFeat</Icon>
-      <!--Additional fortification-->
-      <!--Loss of healing amp-->
+       <Effect>
+           <Type>Fortification</Type>
+           <Bonus>Feat</Bonus>
+           <Amount>75</Amount>
+       </Effect>
+       <Effect>
+           <!--You're actually immune to positive energy, but unable to handle properly as yet-->
+           <Type>HealingAmplification</Type>
+           <Bonus>Feat</Bonus>
+           <Amount>-1000</Amount>
+       </Effect>
    </Feat>
    <Feat>
       <Name>Improved Heroic Durability</Name>
@@ -5481,7 +5481,25 @@ save bonus. This feat also grants you a 1% passive bonus to Dodge at levels
          <Class>Rogue</Class>
          <Level>8</Level>
       </AutomaticAcquisition>
-      <!--Handle increasing dodge bonus-->
+       <Effect>
+           <Type>DodgeBonus</Type>
+           <Bonus>Feat</Bonus>
+           <AmountVector size="20">0 0 0 1 1 2 2 3 3 3 3 4 4 4 4 5 5 5 5 6</AmountVector>
+           <Class>Barbarian</Class>
+       </Effect>
+       <Effect>
+           <Type>DodgeBonus</Type>
+           <Bonus>Feat</Bonus>
+           <AmountVector size="20">0 0 0 1 1 2 2 3 3 3 3 4 4 4 4 5 5 5 5 6</AmountVector>
+           <Class>Rogue</Class>
+       </Effect>
+       <Effect>
+           <DisplayName>Uncanny dodge reflex save bonus</DisplayName>
+           <Type>SaveBonus</Type>
+           <Bonus>Feat</Bonus>
+           <Amount>6</Amount>
+           <Stance>Uncanny Dodge</Stance>
+       </Effect>
    </Feat>
    <Feat>
       <Name>Improved Wild Empathy</Name>
@@ -5537,7 +5555,7 @@ resist enchantment spells. This bonus stacks with all modifiers.</Description>
          <Type>SaveBonus</Type>
          <Bonus>Feat</Bonus>
          <Save>Enchantment</Save>
-         <Amount>1</Amount>
+         <Amount>4</Amount>
          <Stance>Rage</Stance>
       </Effect>
    </Feat>
@@ -5642,7 +5660,6 @@ hit points to perform.</Description>
          <Class>Monk</Class>
          <Level>3</Level>
       </AutomaticAcquisition>
-      <!--Handle fire;dark;fire finisher-->
    </Feat>
    <Feat>
       <Name>Ki Strike: Adamantine</Name>
@@ -5707,6 +5724,11 @@ or dealing that much damage to an undead target.</Description>
          <Class>Paladin</Class>
          <Level>2</Level>
       </AutomaticAcquisition>
+       <Effect>
+           <Type>SpellLikeAbility</Type>
+           <Bonus>Feat</Bonus>
+           <SpellLikeAbility>Lay on Hands</SpellLikeAbility>
+       </Effect>
    </Feat>
    <Feat>
       <Name>Leap Of Faith</Name>
@@ -5721,6 +5743,11 @@ or traverse chasms that make normal adventurers balk. Using this ability costs
          <Class>Favored Soul</Class>
          <Level>17</Level>
       </AutomaticAcquisition>
+       <Effect>
+           <Type>SpellLikeAbility</Type>
+           <Bonus>Feat</Bonus>
+           <SpellLikeAbility>Leap Of Faith</SpellLikeAbility>
+       </Effect>
    </Feat>
    <Feat>
       <Name>Least Dragonmark of Finding</Name>
@@ -6346,6 +6373,13 @@ base attack bonus in physical resistance when wearing light armor.</Description>
          <Class>Rogue</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
+       <Effect>
+           <Type>PRR</Type>
+           <Bonus>Feat</Bonus>
+           <Amount>2</Amount>
+           <Stance>LightArmor</Stance>
+            <!---Need to include 1/2 BAB also-->
+       </Effect>
    </Feat>
    <Feat>
       <Name>Light Fortification</Name>
@@ -7078,10 +7112,20 @@ Requires 21 trained ranks (not total mod) of the Perform skill to use.</Descript
       <Description>You continue on the path to enlightenment, further improving your elemental
 stances and learning new elemental strikes. These stance improvements replace
 those granted by Adept of Forms.
-Master of Flame: Sun Stance now grants +3 Strength and the critical multiplier of all weapons you use is increased by 1 on rolls of a natural 19 or 20, at a cost of -2 Wisdom. While in Greater Sun Stance you gain 'Hit Effect: Gain 1 ki.' and 'Critical Effect: Gain 4 ki.
-Master of Rain: Ocean Stance now grants +3 Wisdom, +9% dodge, +6 Maximum Dodge, +4 to all Saving Throws, and your passive ki generation when centered is increased by 1, at a cost of -2 Strength. 
-Master of Rock: Mountain Stance now grants +3 Constitution, a 15% boost to AC, 12 physical resistance, a +55% Insight bonus to melee threat generation, at the cost of -2 Dexterity and -10% movement speed. While in Greater Mountain Stance, you gain 'Get Hit Effect: Gain 1 ki.
-Master of Wind: Wind Stance now grants +3 Dexterity, a 12.5% Enhancement bonus to melee and thrown attack speed, and grants a 9% chance to doublestrike with melee weapons, at the cost of -2 Constitution.</Description>
+Master of Flame: Sun Stance now grants +3 Strength and the critical multiplier of all
+    weapons you use is increased by 1 on rolls of a natural 19 or 20, at a cost of -2
+    Wisdom. While in Greater Sun Stance you gain 'Hit Effect: Gain 1 ki.' and 'Critical
+    Effect: Gain 4 ki.
+Master of Rain: Ocean Stance now grants +3 Wisdom, +9% dodge, +6 Maximum Dodge, +4 to
+    all Saving Throws, and your passive ki generation when centered is increased by 1,
+    at a cost of -2 Strength. 
+Master of Rock: Mountain Stance now grants +3 Constitution, a 15% boost to AC, 12
+    physical resistance, a +55% Insight bonus to melee threat generation, at the cost
+    of -2 Dexterity and -10% movement speed. While in Greater Mountain Stance, you
+    gain 'Get Hit Effect: Gain 1 ki.
+Master of Wind: Wind Stance now grants +3 Dexterity, a 12.5% Enhancement bonus to melee
+    and thrown attack speed, and grants a 9% chance to doublestrike with melee weapons,
+    at the cost of -2 Constitution.</Description>
       <Requirements>
          <Requirement>
             <Class>Monk</Class>
@@ -7387,7 +7431,13 @@ base attack bonus in physical resistance when wearing medium armor.</Description
          <Class>Ranger</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
-      <!--handle PRR bonus of 4 + 2/3rd BAB when wearing armour-->
+       <Effect>
+           <Type>PRR</Type>
+           <Bonus>Feat</Bonus>
+           <Amount>4</Amount>
+           <Stance>MediumArmor</Stance>
+           <!--handle PRR bonus of 4 + 2/3rd BAB when wearing armour-->
+       </Effect>
    </Feat>
    <Feat>
       <Name>Mental Toughness</Name>
@@ -7505,11 +7555,11 @@ chance, -1 armor check penalty to certain skills, and a +5 maximum dexterity bon
                <Race>Warforged</Race>
             </Requirement>
          </RequiresOneOf>
-          <RequiresNoneOf>
-              <Requirement>
-                  <Feat>Druidic Oath</Feat>
-              </Requirement>
-          </RequiresNoneOf>
+         <RequiresNoneOf>
+            <Requirement>
+               <Feat>Druidic Oath</Feat>
+            </Requirement>
+         </RequiresNoneOf>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>Warforgedfeat</Icon>
@@ -7676,7 +7726,6 @@ This ability functions only in private instances.</Description>
          <Class>Monk</Class>
          <Level>10</Level>
       </AutomaticAcquisition>
-      <!--Handle void;light;void finisher-->
    </Feat>
    <Feat>
       <Name>Natural Fighting</Name>
@@ -7801,7 +7850,6 @@ melee weapons and bypasses 10% fortification.</Description>
       <AutomaticAcquisition>
          <Race>Dwarf</Race>
       </AutomaticAcquisition>
-      <!--+1 to hit versus orcs and goblins-->
    </Feat>
    <Feat>
       <Name>Oversized Two Weapon Fighting</Name>
@@ -7841,7 +7889,6 @@ The target receives periodic saves to attempt to break free of this effect.</Des
          <Class>Monk</Class>
          <Level>3</Level>
       </AutomaticAcquisition>
-      <!--Handle earth;dark;earth finisher-->
    </Feat>
    <Feat>
       <Name>Past Life: Acolyte of Divine Secrets</Name>
@@ -8834,26 +8881,11 @@ Constitution, a +2 Morale bonus to Will saves, and a -2 penalty to AC.</Descript
          <Class>Paladin</Class>
          <Level>6</Level>
       </AutomaticAcquisition>
-      <AutomaticAcquisition>
-         <Class>Paladin</Class>
-         <Level>9</Level>
-      </AutomaticAcquisition>
-      <AutomaticAcquisition>
-         <Class>Paladin</Class>
-         <Level>12</Level>
-      </AutomaticAcquisition>
-      <AutomaticAcquisition>
-         <Class>Paladin</Class>
-         <Level>15</Level>
-      </AutomaticAcquisition>
-      <AutomaticAcquisition>
-         <Class>Paladin</Class>
-         <Level>18</Level>
-      </AutomaticAcquisition>
       <Effect>
          <Type>SpellLikeAbility</Type>
          <Bonus>Feat</Bonus>
-         <Amount>Remove Disease</Amount>
+         <SpellLikeAbility>Remove Disease</SpellLikeAbility>
+          <AmountVector size="20">0 0 0 0 0 1 1 1 2 2 2 3 3 3 4 4 4 5 5 5</AmountVector>
       </Effect>
    </Feat>
    <Feat>

@@ -906,7 +906,7 @@ void CDDOCPDoc::AddGear(std::stringstream & forumExport)
             for (size_t i = 0; i < augments.size(); ++i)
             {
                 forumExport << "              ";
-                forumExport << EnumEntryText(augments[i].Type(), augmentTypeMap);
+                forumExport << augments[i].Type();
                 forumExport << ": ";
                 if (augments[i].HasSelectedAugment())
                 {

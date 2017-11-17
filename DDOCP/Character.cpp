@@ -339,6 +339,7 @@ void Character::UpdateFeats(size_t level, std::list<TrainedFeat> * allFeats)
 
     FeatsListObject flo(L"AutomaticFeats");
     std::list<TrainedFeat> automaticFeats = AutomaticFeats(level, *allFeats);
+    // have the automatic feats at this level changed?
     if (automaticFeats != oldFeats)
     {
         // first revoke the feats at this level then apply the new ones
@@ -1185,7 +1186,7 @@ void Character::TrainFeat(
     // as this can cause enhancements and feats to be revoked.
     std::list<LevelTraining>::iterator it = m_Levels.begin();
     std::advance(it, level);
-    if (featName != (*it).FeatName(type))
+    if (featName != (*it).FeatName(type)) // is it the same feat that was previously selected?
     {
         // first revoke any previous trained feat in this slot at level
         std::string lostFeat = (*it).RevokeFeat(type);
@@ -1239,8 +1240,9 @@ std::list<TrainedFeat> Character::AutomaticFeats(
     std::vector<size_t> classLevels = ClassLevels(level);
     const LevelTraining & levelData = LevelData(level);
     const std::list<Feat> & allFeats = StandardFeats();
-    std::list<Feat>::const_iterator it = allFeats.begin();
     level++;    // 1 based for level comparison
+
+    std::list<Feat>::const_iterator it = allFeats.begin();
     while (it != allFeats.end())
     {
         // check every feats automatic acquisition entries (if any)
@@ -3915,7 +3917,7 @@ void Character::RevokeGearEffects()
                     // <item>:<augment type>:<Augment name>
                     std::stringstream ss;
                     ss << item.Name()
-                            << " : " << EnumEntryText(augments[ai].Type(), augmentTypeMap)
+                            << " : " << augments[ai].Type()
                             << " : " << augment.Name();
                     // now revoke the augments effects
                     std::string name;
@@ -3936,7 +3938,7 @@ void Character::RevokeGearEffects()
 void Character::ApplyGearEffects()
 {
     EquippedGear gear = ActiveGearSet();
-    Item noArmor = FindItem("No Armor Effects");;
+    Item noArmor = FindItem("No Armor Effects");
     // iterate the items
     for (size_t i = Inventory_Unknown + 1; i < Inventory_Count; ++i)
     {
@@ -3974,7 +3976,7 @@ void Character::ApplyGearEffects()
                     // <item>:<augment type>:<Augment name>
                     std::stringstream ss;
                     ss << item.Name()
-                            << " : " << EnumEntryText(augments[ai].Type(), augmentTypeMap)
+                            << " : " << augments[ai].Type()
                             << " : " << augment.Name();
                     // now notify the augments effects
                     std::string name;

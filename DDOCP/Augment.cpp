@@ -47,14 +47,14 @@ void Augment::Write(XmlLib::SaxWriter * writer) const
     writer->EndElement();
 }
 
-bool Augment::IsCompatibleWithSlot(AugmentType type) const
+bool Augment::IsCompatibleWithSlot(const std::string & augmentType) const
 {
     // has to be in any of the augment types list to be a match
     bool compatible = false;
-    std::list<AugmentType>::const_iterator it = m_Type.begin();
+    std::list<std::string>::const_iterator it = m_Type.begin();
     while (it != m_Type.end())
     {
-        if ((*it) == type)
+        if ((*it) == augmentType)
         {
             compatible = true;
             break;  // no need to check the rest

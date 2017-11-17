@@ -42,6 +42,7 @@ class RequiresOneOf :
         virtual void EndElement();
 
         #define RequiresOneOf_PROPERTIES(_) \
+                DL_OPTIONAL_STRING(_, DisplayDescription) \
                 DL_OBJECT_LIST(_, Requirement, Requirements)
 
         DL_DECLARE_ACCESS(RequiresOneOf_PROPERTIES)

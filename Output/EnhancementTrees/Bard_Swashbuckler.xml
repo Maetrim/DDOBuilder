@@ -182,6 +182,9 @@ main hand gains an additional +1 to its Enhancement bonus.</Description>
          <ArrowRight/>
          <Requirements>
             <Requirement>
+               <Enhancement>SBCore3</Enhancement>
+            </Requirement>
+            <Requirement>
                <Class>Bard</Class>
                <Level>12</Level>
             </Requirement>
@@ -369,15 +372,16 @@ hand gains an additional +1 to its Enhancement bonus.</Description>
          <Effect>
             <Type>DamageBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <Weapon>All</Weapon>
             <AmountVector size="1">1</AmountVector>
             <Stance>Swashbuckling</Stance>
+            <Weapon>All</Weapon>
          </Effect>
          <Effect>
             <Type>EnchantWeapon</Type>
             <Bonus>Enhancement</Bonus>
             <AmountVector size="1">1</AmountVector>
             <Stance>Swashbuckling</Stance>
+            <Weapon>All</Weapon>
          </Effect>
          <Effect>
             <Type>GrantFeat</Type>
@@ -588,7 +592,6 @@ incoming projectile that would have struck you every 6 seconds.
             <AmountPerLevel>1</AmountPerLevel>
             <Class>Bard</Class>
          </Effect>
-         <!--Faster movement?-->
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Swashbuckler: Sword Dance</Name>
@@ -699,23 +702,24 @@ down with no save. Cooldown: 12 seconds.</Description>
                <Icon>SBDashingScoundrel</Icon>
                <Cost>1</Cost>
                <Effect>
-                  <!--Handle empty offhand in use-->
                   <Bonus>Enhancement</Bonus>
                   <Type>DamageBonus</Type>
                   <!--30 levels = +6 at +1 every 5 levels-->
                   <AmountVector size="1">6</AmountVector>
+                  <Weapon>All</Weapon>
+                  <Stance>Swashbuckling</Stance>
                </Effect>
                <Effect>
-                  <!--Handle empty offhand in use-->
                   <Bonus>Enhancement</Bonus>
                   <Type>Doublestrike</Type>
                   <AmountVector size="1">10</AmountVector>
+                  <Stance>Swashbuckling</Stance>
                </Effect>
                <Effect>
-                  <!--Handle empty offhand in use-->
                   <Bonus>Enhancement</Bonus>
                   <Type>Doubleshot</Type>
                   <AmountVector size="1">10</AmountVector>
+                  <Stance>Swashbuckling</Stance>
                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
@@ -757,12 +761,11 @@ This Sonic damage scales with spell power.</Description>
             <Type>Seeker</Type>
             <Bonus>Enhancement</Bonus>
             <WeaponClass>Thrown</WeaponClass>
-            <!--Handle varying dice per rank here-->
             <Dice>
                <Number size="3">2 4 6</Number>
                <Sides size="1">6 6 6</Sides>
+               <Energy>Sonic</Energy>
             </Dice>
-            <Energy>Sonic</Energy>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -873,11 +876,13 @@ critical hits (before weapon multipliers)</Description>
             <Type>CriticalAttackBonus</Type>
             <Bonus>Enhancement</Bonus>
             <AmountVector size="3">1 2 3</AmountVector>
+            <Weapon>All</Weapon>
          </Effect>
          <Effect>
             <Type>Seeker</Type>
             <Bonus>Enhancement</Bonus>
             <AmountVector size="3">1 2 3</AmountVector>
+            <Weapon>All</Weapon>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -937,9 +942,10 @@ Arm Weapon Imbue deals an additional 1d6 Sonic damage. </Description>
                   <Dice>
                      <Number size="1">1</Number>
                      <Sides size="1">6</Sides>
+                     <Energy>Sonic</Energy>
                   </Dice>
-                  <Energy>Sonic</Energy>
                   <Stance>Swashbuckling</Stance>
+                  <Weapon>All</Weapon>
                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
@@ -1057,6 +1063,7 @@ additional +1 for every five Bard levels.</Description>
             <AmountVector size="1">5</AmountVector>
             <Stance>Swashbuckling</Stance>
             <Stance>Precision</Stance>
+            <Weapon>All</Weapon>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>

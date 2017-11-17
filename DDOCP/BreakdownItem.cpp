@@ -851,11 +851,11 @@ void BreakdownItem::UpdateEnhancementEffect(
             name = effect.m_effect.DisplayName();
         }
         ActiveEffect activeEffect;
+        // make sure it starts with the right number of stacks
+        activeEffect.SetStacks(effect.m_tier); // num stacks may be changed in GetActiveEffect
         bool hasActiveEffect = GetActiveEffect(charData, name, effect.m_effect, &activeEffect);
         if (hasActiveEffect)
         {
-            // make sure it starts with the right number of stacks
-            activeEffect.SetStacks(effect.m_tier);
             AddEnhancementEffect(activeEffect);
         }
     }

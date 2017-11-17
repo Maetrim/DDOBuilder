@@ -42,6 +42,7 @@ class RequiresNoneOf :
         virtual void EndElement();
 
         #define RequiresNoneOf_PROPERTIES(_) \
+                DL_OPTIONAL_STRING(_, DisplayDescription) \
                 DL_OBJECT_LIST(_, Requirement, Requirements)
 
         DL_DECLARE_ACCESS(RequiresNoneOf_PROPERTIES)

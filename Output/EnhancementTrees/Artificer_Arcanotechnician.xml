@@ -277,7 +277,38 @@ You no longer take damage or lose spell points when it dies.</Description>
          <Cost>1</Cost>
          <Ranks>3</Ranks>
          <MinSpent>1</MinSpent>
-         <Requirements/>
+         <Requirements>
+            <RequiresNoneOf>
+               <DisplayDescription>Any other Wand and Scroll Mastery enhancement</DisplayDescription>
+               <Requirement>
+                  <Enhancement>DeepGnomeWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>GnomeWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>SSWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>SHWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>AoVWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>MechWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>EKWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>TSWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>AMWandAndScrollMastery</Enhancement>
+               </Requirement>
+            </RequiresNoneOf>
+         </Requirements>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Arcanotechnician: Efficient Metamagic</Name>
@@ -311,6 +342,7 @@ Reduce the spell point cost of using that Metamagic. </Description>
                </Effect>
                <Requirements>
                   <RequiresNoneOf>
+                     <DisplayDescription>Any other Efficient Empower enhancement</DisplayDescription>
                      <Requirement>
                         <Enhancement>ATEfficientMetamagicII</Enhancement>
                         <Selection>Efficient Empower</Selection>
@@ -396,7 +428,11 @@ Reduce the spell point cost of using that Metamagic. </Description>
                <Icon>EfficientQuicken</Icon>
                <Cost>2</Cost>
                <Requirements>
+                  <Requirement>
+                     <Feat>Quicken Spell</Feat>
+                  </Requirement>
                   <RequiresNoneOf>
+                     <DisplayDescription>Any other Efficient Quicken enhancement</DisplayDescription>
                      <Requirement>
                         <Enhancement>ATEfficientMetamagicII</Enhancement>
                         <Selection>Efficient Quicken</Selection>
@@ -624,6 +660,7 @@ Reduce the spell point cost of using that Metamagic. </Description>
                </Effect>
                <Requirements>
                   <RequiresNoneOf>
+                     <DisplayDescription>Any other Efficient Empower enhancement</DisplayDescription>
                      <Requirement>
                         <Enhancement>ATEfficientMetamagic</Enhancement>
                         <Selection>Efficient Empower</Selection>
@@ -709,7 +746,11 @@ Reduce the spell point cost of using that Metamagic. </Description>
                <Icon>EfficientQuicken</Icon>
                <Cost>2</Cost>
                <Requirements>
+                  <Requirement>
+                     <Feat>Quicken Spell</Feat>
+                  </Requirement>
                   <RequiresNoneOf>
+                     <DisplayDescription>Any other Efficient Quicken enhancement</DisplayDescription>
                      <Requirement>
                         <Enhancement>ATEfficientMetamagic</Enhancement>
                         <Selection>Efficient Quicken</Selection>
@@ -903,7 +944,33 @@ It repairs itself/and you/and nearby allies 4d4+1 points of damage every 18/12/6
             <Requirement>
                <Enhancement>ATLightningSphere</Enhancement>
             </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellLikeAbility>Blast Rod</SpellLikeAbility>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Arcanotechnician: Efficient Heighten</Name>
+         <InternalName>ATEfficientHeighten</InternalName>
+         <Description>Using the Heighten Spell Metamagic costs you 1/2 fewer Spell Point(s) per heightened level.</Description>
+         <Icon>EfficientHeighten</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>2</Cost>
+         <Ranks>2</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Artificer</Class>
+               <Level>4</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>ATEfficientMetamagicII</Enhancement>
+            </Requirement>
             <RequiresNoneOf>
+               <DisplayDescription>Any other Efficient Heighten enhancement</DisplayDescription>
                <Requirement>
                   <Enhancement>DDEfficientHeighten</Enhancement>
                </Requirement>
@@ -932,31 +999,6 @@ It repairs itself/and you/and nearby allies 4d4+1 points of damage every 18/12/6
                   <Enhancement>SHEfficientMetamagicHeighten</Enhancement>
                </Requirement>
             </RequiresNoneOf>
-         </Requirements>
-         <Effect>
-            <Type>SpellLikeAbility</Type>
-            <Bonus>Enhancement</Bonus>
-            <SpellLikeAbility>Blast Rod</SpellLikeAbility>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Arcanotechnician: Efficient Heighten</Name>
-         <InternalName>ATEfficientHeighten</InternalName>
-         <Description>Using the Heighten Spell Metamagic costs you 1/2 fewer Spell Point(s) per heightened level.</Description>
-         <Icon>EfficientHeighten</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>4</YPosition>
-         <Cost>2</Cost>
-         <Ranks>2</Ranks>
-         <MinSpent>20</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Class>Artificer</Class>
-               <Level>4</Level>
-            </Requirement>
-            <Requirement>
-               <Enhancement>ATEfficientMetamagicII</Enhancement>
-            </Requirement>
          </Requirements>
          <Effect>
             <Type>AdditionalSpellPointCost</Type>

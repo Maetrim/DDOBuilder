@@ -47,12 +47,12 @@ class CItemSelectDialog : public CDialog
         void EnableControls();
         void PopulateAugmentList(
                 CComboBoxEx * combo,
-                AugmentType type,
+                const std::string & type,
                 const std::string & selectedAugment);
         void PopulatePrimaryUpgradeList(size_t controlIndex);
         void PopulateSecondaryUpgradeList(size_t controlIndex);
         void PopulateLegendarySlavelordUpgradeList(size_t controlIndex);
-        void PopulateDropList(size_t controlIndex, const std::list<AugmentType> & types);
+        void PopulateDropList(size_t controlIndex, const std::list<std::string> & types);
 
         void ShowTip(const Item & item, CRect itemRect);
         void HideTip();

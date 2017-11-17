@@ -257,6 +257,7 @@ void CLevelUpView::OnInitialUpdate()
         m_listSkills.SetItemText(index, SLC_Ability, text.c_str());
     }
     m_sortHeader.SetSortArrow(0, TRUE);
+    m_listSkills.SortItems(CLevelUpView::SortCompareFunction, (long)GetSafeHwnd());
 
     m_listAutomaticFeats.InsertColumn(0, "Automatic Feats", LVCFMT_LEFT, 100);
     LoadColumnWidthsByName(&m_listAutomaticFeats, "LevelUpAutoFeats_%s");

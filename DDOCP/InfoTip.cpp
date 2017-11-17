@@ -398,7 +398,7 @@ void CInfoTip::SetItem(
     for (size_t i = 0; i < augments.size(); ++i)
     {
         CString augmentText;
-        augmentText += EnumEntryText(augments[i].Type(), augmentTypeMap);
+        augmentText += augments[i].Type().c_str();
         augmentText += ": ";
         if (augments[i].HasSelectedAugment())
         {

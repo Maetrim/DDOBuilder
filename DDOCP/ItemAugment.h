@@ -4,7 +4,6 @@
 // and item can be equipped to.
 #pragma once
 #include "XmlLib\DLMacros.h"
-#include "AugmentTypes.h"
 #include "Effect.h"
 
 class ItemAugment :
@@ -22,7 +21,7 @@ class ItemAugment :
         virtual void EndElement();
 
         #define ItemAugment_PROPERTIES(_) \
-                DL_ENUM(_, AugmentType, Type, Augment_Unknown, augmentTypeMap) \
+                DL_STRING(_, Type) \
                 DL_OPTIONAL_STRING(_, SelectedAugment)
 
         DL_DECLARE_ACCESS(ItemAugment_PROPERTIES)

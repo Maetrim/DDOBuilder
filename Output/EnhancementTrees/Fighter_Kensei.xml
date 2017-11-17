@@ -211,6 +211,7 @@ bonus by 1%.</Description>
             <Type>CriticalMultiplier</Type>
             <Bonus>Enhancement</Bonus>
             <AmountVector size="1">1</AmountVector>
+            <Weapon>All</Weapon>
          </Effect>
          <Effect>
             <Type>Doublestrike</Type>
@@ -620,23 +621,12 @@ Note: This enhancement does not grant exotic proficiency.</Description>
                <Icon>KenseiAttackBoost</Icon>
                <Cost>1</Cost>
                <Requirements/>
-               <Effect>
-                  <Type>AttackBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AmountVector size="3">4 6 8</AmountVector>
-               </Effect>
-               <Effect>
-                  <Type>DamageBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AmountVector size="3">4 6 8</AmountVector>
-               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Haste Boost</Name>
                <Description>Activate to gain +10%/+20%/+30% Action Boost bonus to attack speed for 20 seconds.</Description>
                <Icon>KenseiHasteBoost</Icon>
                <Cost>1</Cost>
-               <!--Handle attack speed bonus here-->
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
@@ -744,12 +734,12 @@ weapons if you are not a dwarf.)</Description>
                      <Selection>Kensei Focus: Axes</Selection>
                   </Requirement>
                   <RequiresOneOf>
-                    <Requirement>
-                       <Feat>Weapon Focus: Slashing Weapons</Feat>
-                    </Requirement>
-                    <Requirement>
-                       <Feat>Weapon Focus: Thrown Weapons</Feat>
-                    </Requirement>
+                     <Requirement>
+                        <Feat>Weapon Focus: Slashing Weapons</Feat>
+                     </Requirement>
+                     <Requirement>
+                        <Feat>Weapon Focus: Thrown Weapons</Feat>
+                     </Requirement>
                   </RequiresOneOf>
                </Requirements>
                <Effect>
@@ -796,18 +786,18 @@ and when using unarmed combat.</Description>
                      <Selection>Kensei Focus: Druidic Weapons</Selection>
                   </Requirement>
                   <RequiresOneOf>
-                    <Requirement>
-                       <Feat>Weapon Focus: Bludgeoning Weapons</Feat>
-                    </Requirement>
-                    <Requirement>
-                       <Feat>Weapon Focus: Piercing Weapons</Feat>
-                    </Requirement>
-                    <Requirement>
-                       <Feat>Weapon Focus: Slashing Weapons</Feat>
-                    </Requirement>
-                    <Requirement>
-                       <Feat>Weapon Focus: Thrown Weapons</Feat>
-                    </Requirement>
+                     <Requirement>
+                        <Feat>Weapon Focus: Bludgeoning Weapons</Feat>
+                     </Requirement>
+                     <Requirement>
+                        <Feat>Weapon Focus: Piercing Weapons</Feat>
+                     </Requirement>
+                     <Requirement>
+                        <Feat>Weapon Focus: Slashing Weapons</Feat>
+                     </Requirement>
+                     <Requirement>
+                        <Feat>Weapon Focus: Thrown Weapons</Feat>
+                     </Requirement>
                   </RequiresOneOf>
                </Requirements>
                <Effect>
@@ -853,15 +843,15 @@ You gain +1 to hit with daggers, kukri, rapiers, shortswords, and throwing dagge
                      <Selection>Kensei Focus: Light Blades</Selection>
                   </Requirement>
                   <RequiresOneOf>
-                    <Requirement>
-                       <Feat>Weapon Focus: Piercing Weapons</Feat>
-                    </Requirement>
-                    <Requirement>
-                       <Feat>Weapon Focus: Slashing Weapons</Feat>
-                    </Requirement>
-                    <Requirement>
-                       <Feat>Weapon Focus: Thrown Weapons</Feat>
-                    </Requirement>
+                     <Requirement>
+                        <Feat>Weapon Focus: Piercing Weapons</Feat>
+                     </Requirement>
+                     <Requirement>
+                        <Feat>Weapon Focus: Slashing Weapons</Feat>
+                     </Requirement>
+                     <Requirement>
+                        <Feat>Weapon Focus: Thrown Weapons</Feat>
+                     </Requirement>
                   </RequiresOneOf>
                </Requirements>
                <Effect>
@@ -905,15 +895,15 @@ You gain +1 to hit with kama, quarterstaves, shuriken, and when using unarmed co
                      <Selection>Kensei Focus: Martial Arts</Selection>
                   </Requirement>
                   <RequiresOneOf>
-                    <Requirement>
-                       <Feat>Weapon Focus: Bludgeoning Weapons</Feat>
-                    </Requirement>
-                    <Requirement>
-                       <Feat>Weapon Focus: Slashing Weapons</Feat>
-                    </Requirement>
-                    <Requirement>
-                       <Feat>Weapon Focus: Thrown Weapons</Feat>
-                    </Requirement>
+                     <Requirement>
+                        <Feat>Weapon Focus: Bludgeoning Weapons</Feat>
+                     </Requirement>
+                     <Requirement>
+                        <Feat>Weapon Focus: Slashing Weapons</Feat>
+                     </Requirement>
+                     <Requirement>
+                        <Feat>Weapon Focus: Thrown Weapons</Feat>
+                     </Requirement>
                   </RequiresOneOf>
                </Requirements>
                <Effect>
@@ -936,15 +926,15 @@ and throwing hammers.</Description>
                      <Selection>Kensei Focus: Picks and Hammers</Selection>
                   </Requirement>
                   <RequiresOneOf>
-                    <Requirement>
-                       <Feat>Weapon Focus: Bludgeoning Weapons</Feat>
-                    </Requirement>
-                    <Requirement>
-                       <Feat>Weapon Focus: Piercing Weapons</Feat>
-                    </Requirement>
-                    <Requirement>
-                       <Feat>Weapon Focus: Thrown Weapons</Feat>
-                    </Requirement>
+                     <Requirement>
+                        <Feat>Weapon Focus: Bludgeoning Weapons</Feat>
+                     </Requirement>
+                     <Requirement>
+                        <Feat>Weapon Focus: Piercing Weapons</Feat>
+                     </Requirement>
+                     <Requirement>
+                        <Feat>Weapon Focus: Thrown Weapons</Feat>
+                     </Requirement>
                   </RequiresOneOf>
                </Requirements>
                <Effect>
@@ -1031,10 +1021,16 @@ Note: Does not stack with Ninja Spy: Agility.</Description>
                   <AmountVector size="3">1 2 3</AmountVector>
                </Effect>
                <Effect>
-                  <!---Only applies in light or no armour-->
-                  <Bonus>Enhancement</Bonus>
                   <Type>DodgeCapBonus</Type>
+                  <Bonus>Enhancement</Bonus>
                   <AmountVector size="3">1 2 3</AmountVector>
+                  <Stance>LightArmor</Stance>
+               </Effect>
+               <Effect>
+                  <Type>DodgeCapBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AmountVector size="3">1 2 3</AmountVector>
+                  <Stance>ClothArmor</Stance>
                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
@@ -1108,11 +1104,13 @@ Rank 3: Your passive ki regeneration is increased by 1.</Description>
             <Type>CriticalAttackBonus</Type>
             <Bonus>Enhancement</Bonus>
             <AmountVector size="3">1 2 3</AmountVector>
+            <Weapon>All</Weapon>
          </Effect>
          <Effect>
             <Type>Seeker</Type>
             <Bonus>Enhancement</Bonus>
             <AmountVector size="3">1 2 3</AmountVector>
+            <Weapon>All</Weapon>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -1173,12 +1171,12 @@ weapons if you are not a dwarf.)</Description>
                      <Selection>Kensei Focus: Axes</Selection>
                   </Requirement>
                   <RequiresOneOf>
-                    <Requirement>
-                       <Feat>Weapon Specialization: Slashing Weapons</Feat>
-                    </Requirement>
-                    <Requirement>
-                       <Feat>Weapon Specialization: Thrown Weapons</Feat>
-                    </Requirement>
+                     <Requirement>
+                        <Feat>Weapon Specialization: Slashing Weapons</Feat>
+                     </Requirement>
+                     <Requirement>
+                        <Feat>Weapon Specialization: Thrown Weapons</Feat>
+                     </Requirement>
                   </RequiresOneOf>
                </Requirements>
                <Effect>
@@ -1225,18 +1223,18 @@ and when using unarmed combat.</Description>
                      <Selection>Kensei Focus: Druidic Weapons</Selection>
                   </Requirement>
                   <RequiresOneOf>
-                    <Requirement>
-                       <Feat>Weapon Specialization: Bludgeoning Weapons</Feat>
-                    </Requirement>
-                    <Requirement>
-                       <Feat>Weapon Specialization: Piercing Weapons</Feat>
-                    </Requirement>
-                    <Requirement>
-                       <Feat>Weapon Specialization: Slashing Weapons</Feat>
-                    </Requirement>
-                    <Requirement>
-                       <Feat>Weapon Specialization: Thrown Weapons</Feat>
-                    </Requirement>
+                     <Requirement>
+                        <Feat>Weapon Specialization: Bludgeoning Weapons</Feat>
+                     </Requirement>
+                     <Requirement>
+                        <Feat>Weapon Specialization: Piercing Weapons</Feat>
+                     </Requirement>
+                     <Requirement>
+                        <Feat>Weapon Specialization: Slashing Weapons</Feat>
+                     </Requirement>
+                     <Requirement>
+                        <Feat>Weapon Specialization: Thrown Weapons</Feat>
+                     </Requirement>
                   </RequiresOneOf>
                </Requirements>
                <Effect>
@@ -1282,15 +1280,15 @@ You gain +1 to hit with daggers, kukri, rapiers, shortswords, and throwing dagge
                      <Selection>Kensei Focus: Light Blades</Selection>
                   </Requirement>
                   <RequiresOneOf>
-                    <Requirement>
-                       <Feat>Weapon Specialization: Piercing Weapons</Feat>
-                    </Requirement>
-                    <Requirement>
-                       <Feat>Weapon Specialization: Slashing Weapons</Feat>
-                    </Requirement>
-                    <Requirement>
-                       <Feat>Weapon Specialization: Thrown Weapons</Feat>
-                    </Requirement>
+                     <Requirement>
+                        <Feat>Weapon Specialization: Piercing Weapons</Feat>
+                     </Requirement>
+                     <Requirement>
+                        <Feat>Weapon Specialization: Slashing Weapons</Feat>
+                     </Requirement>
+                     <Requirement>
+                        <Feat>Weapon Specialization: Thrown Weapons</Feat>
+                     </Requirement>
                   </RequiresOneOf>
                </Requirements>
                <Effect>
@@ -1335,15 +1333,15 @@ You gain +1 to hit with kama, quarterstaves, shuriken, and when using unarmed co
                      <Selection>Kensei Focus: Martial Arts</Selection>
                   </Requirement>
                   <RequiresOneOf>
-                    <Requirement>
-                       <Feat>Weapon Specialization: Bludgeoning Weapons</Feat>
-                    </Requirement>
-                    <Requirement>
-                       <Feat>Weapon Specialization: Slashing Weapons</Feat>
-                    </Requirement>
-                    <Requirement>
-                       <Feat>Weapon Specialization: Thrown Weapons</Feat>
-                    </Requirement>
+                     <Requirement>
+                        <Feat>Weapon Specialization: Bludgeoning Weapons</Feat>
+                     </Requirement>
+                     <Requirement>
+                        <Feat>Weapon Specialization: Slashing Weapons</Feat>
+                     </Requirement>
+                     <Requirement>
+                        <Feat>Weapon Specialization: Thrown Weapons</Feat>
+                     </Requirement>
                   </RequiresOneOf>
                </Requirements>
                <Effect>
@@ -1366,15 +1364,15 @@ and throwing hammers.</Description>
                      <Selection>Kensei Focus: Picks and Hammers</Selection>
                   </Requirement>
                   <RequiresOneOf>
-                    <Requirement>
-                       <Feat>Weapon Specialization: Bludgeoning Weapons</Feat>
-                    </Requirement>
-                    <Requirement>
-                       <Feat>Weapon Specialization: Piercing Weapons</Feat>
-                    </Requirement>
-                    <Requirement>
-                       <Feat>Weapon Specialization: Thrown Weapons</Feat>
-                    </Requirement>
+                     <Requirement>
+                        <Feat>Weapon Specialization: Bludgeoning Weapons</Feat>
+                     </Requirement>
+                     <Requirement>
+                        <Feat>Weapon Specialization: Piercing Weapons</Feat>
+                     </Requirement>
+                     <Requirement>
+                        <Feat>Weapon Specialization: Thrown Weapons</Feat>
+                     </Requirement>
                   </RequiresOneOf>
                </Requirements>
                <Effect>
@@ -1597,12 +1595,12 @@ weapons if you are not a dwarf.)</Description>
                      <Selection>Kensei Focus: Axes</Selection>
                   </Requirement>
                   <RequiresOneOf>
-                    <Requirement>
+                     <Requirement>
                         <Feat>Greater Weapon Focus: Slashing Weapons</Feat>
-                    </Requirement>
-                    <Requirement>
-                       <Feat>Greater Weapon Focus: Thrown Weapons</Feat>
-                    </Requirement>
+                     </Requirement>
+                     <Requirement>
+                        <Feat>Greater Weapon Focus: Thrown Weapons</Feat>
+                     </Requirement>
                   </RequiresOneOf>
                </Requirements>
                <Effect>
@@ -1649,18 +1647,18 @@ and when using unarmed combat.</Description>
                      <Selection>Kensei Focus: Druidic Weapons</Selection>
                   </Requirement>
                   <RequiresOneOf>
-                    <Requirement>
-                       <Feat>Greater Weapon Focus: Bludgeoning Weapons</Feat>
-                    </Requirement>
-                    <Requirement>
-                       <Feat>Greater Weapon Focus: Piercing Weapons</Feat>
-                    </Requirement>
-                    <Requirement>
+                     <Requirement>
+                        <Feat>Greater Weapon Focus: Bludgeoning Weapons</Feat>
+                     </Requirement>
+                     <Requirement>
+                        <Feat>Greater Weapon Focus: Piercing Weapons</Feat>
+                     </Requirement>
+                     <Requirement>
                         <Feat>Greater Weapon Focus: Slashing Weapons</Feat>
-                    </Requirement>
-                    <Requirement>
-                       <Feat>Greater Weapon Focus: Thrown Weapons</Feat>
-                    </Requirement>
+                     </Requirement>
+                     <Requirement>
+                        <Feat>Greater Weapon Focus: Thrown Weapons</Feat>
+                     </Requirement>
                   </RequiresOneOf>
                </Requirements>
                <Effect>
@@ -1706,15 +1704,15 @@ You gain +1 to hit with daggers, kukri, rapiers, shortswords, and throwing dagge
                      <Selection>Kensei Focus: Light Blades</Selection>
                   </Requirement>
                   <RequiresOneOf>
-                    <Requirement>
-                       <Feat>Greater Weapon Focus: Piercing Weapons</Feat>
-                    </Requirement>
-                    <Requirement>
+                     <Requirement>
+                        <Feat>Greater Weapon Focus: Piercing Weapons</Feat>
+                     </Requirement>
+                     <Requirement>
                         <Feat>Greater Weapon Focus: Slashing Weapons</Feat>
-                    </Requirement>
-                    <Requirement>
-                       <Feat>Greater Weapon Focus: Thrown Weapons</Feat>
-                    </Requirement>
+                     </Requirement>
+                     <Requirement>
+                        <Feat>Greater Weapon Focus: Thrown Weapons</Feat>
+                     </Requirement>
                   </RequiresOneOf>
                </Requirements>
                <Effect>
@@ -1759,15 +1757,15 @@ You gain +1 to hit with kama, quarterstaves, shuriken, and when using unarmed co
                      <Selection>Kensei Focus: Martial Arts</Selection>
                   </Requirement>
                   <RequiresOneOf>
-                    <Requirement>
-                       <Feat>Greater Weapon Focus: Bludgeoning Weapons</Feat>
-                    </Requirement>
-                    <Requirement>
+                     <Requirement>
+                        <Feat>Greater Weapon Focus: Bludgeoning Weapons</Feat>
+                     </Requirement>
+                     <Requirement>
                         <Feat>Greater Weapon Focus: Slashing Weapons</Feat>
-                    </Requirement>
-                    <Requirement>
-                       <Feat>Greater Weapon Focus: Thrown Weapons</Feat>
-                    </Requirement>
+                     </Requirement>
+                     <Requirement>
+                        <Feat>Greater Weapon Focus: Thrown Weapons</Feat>
+                     </Requirement>
                   </RequiresOneOf>
                </Requirements>
                <Effect>
@@ -1790,15 +1788,15 @@ and throwing hammers.</Description>
                      <Selection>Kensei Focus: Picks and Hammers</Selection>
                   </Requirement>
                   <RequiresOneOf>
-                    <Requirement>
-                       <Feat>Greater Weapon Focus: Bludgeoning Weapons</Feat>
-                    </Requirement>
-                    <Requirement>
-                       <Feat>Greater Weapon Focus: Piercing Weapons</Feat>
-                    </Requirement>
-                    <Requirement>
-                       <Feat>Greater Weapon Focus: Thrown Weapons</Feat>
-                    </Requirement>
+                     <Requirement>
+                        <Feat>Greater Weapon Focus: Bludgeoning Weapons</Feat>
+                     </Requirement>
+                     <Requirement>
+                        <Feat>Greater Weapon Focus: Piercing Weapons</Feat>
+                     </Requirement>
+                     <Requirement>
+                        <Feat>Greater Weapon Focus: Thrown Weapons</Feat>
+                     </Requirement>
                   </RequiresOneOf>
                </Requirements>
                <Effect>
@@ -1827,18 +1825,18 @@ for 30 seconds.</Description>
                <Level>4</Level>
             </Requirement>
          </Requirements>
-          <Effect>
-              <Type>HealingAmplification</Type>
-              <Bonus>Enhancement</Bonus>
-              <Amount>50</Amount>
-              <Stance>DrinkPotion</Stance>
-          </Effect>
-          <Effect>
-              <Type>RepairAmplification</Type>
-              <Bonus>Enhancement</Bonus>
-              <Amount>50</Amount>
-              <Stance>DrinkPotion</Stance>
-          </Effect>
+         <Effect>
+            <Type>HealingAmplification</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>50</Amount>
+            <Stance>DrinkPotion</Stance>
+         </Effect>
+         <Effect>
+            <Type>RepairAmplification</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>50</Amount>
+            <Stance>DrinkPotion</Stance>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>KenseiStrikeAtTheHeart</InternalName>
@@ -2266,6 +2264,7 @@ On Vorpal: 500 damage which scales with Melee Power.</Description>
             <Bonus>Enhancement</Bonus>
             <Type>CriticalRange</Type>
             <AmountVector size="1">1</AmountVector>
+            <Weapon>All</Weapon>
          </Effect>
       </EnhancementTreeItem>
    </EnhancementTree>

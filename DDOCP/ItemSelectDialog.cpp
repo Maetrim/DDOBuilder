@@ -142,7 +142,10 @@ BOOL CItemSelectDialog::OnInitDialog()
             //| LVS_EX_LABELTIP); // stop hover tooltips from working
             );
     LoadColumnWidthsByName(&m_availableItemsCtrl, "ItemSelectDialog_%s");
-    m_sortHeader.SetSortArrow(0, TRUE);
+    m_sortHeader.SetSortArrow(1, FALSE);     // sort by level by default
+    m_availableItemsCtrl.SortItems(
+            CItemSelectDialog::SortCompareFunction,
+            (long)GetSafeHwnd());
 
     EnableControls();
 
@@ -235,7 +238,7 @@ void CItemSelectDialog::EnableControls()
         if (i < augments.size())
         {
             // we have an augment, populate it with the available for this type
-            m_augmentType[i].SetWindowText(EnumEntryText(augments[i].Type(), augmentTypeMap));
+            m_augmentType[i].SetWindowText(augments[i].Type().c_str());
             PopulateAugmentList(
                     &m_comboAugmentDropList[i],
                     augments[i].Type(),
@@ -281,7 +284,7 @@ void CItemSelectDialog::EnableControls()
 
 void CItemSelectDialog::PopulateAugmentList(
         CComboBoxEx * combo,
-        AugmentType type,
+        const std::string & type,
         const std::string & selectedAugment)
 {
     int sel = CB_ERR;
@@ -405,14 +408,16 @@ void CItemSelectDialog::PopulateLegendarySlavelordUpgradeList(size_t controlInde
     m_comboUpgradeDropList[controlIndex].ShowWindow(SW_SHOW);
 }
 
-void CItemSelectDialog::PopulateDropList(size_t controlIndex, const std::list<AugmentType> & types)
+void CItemSelectDialog::PopulateDropList(
+        size_t controlIndex,
+        const std::list<std::string> & types)
 {
     m_comboUpgradeDropList[controlIndex].ResetContent();
-    std::list<AugmentType>::const_iterator it = types.begin();
+    std::list<std::string>::const_iterator it = types.begin();
     size_t index = 0;
     while (it != types.end())
     {
-        CString entry = EnumEntryText((*it), augmentTypeMap);
+        CString entry = (*it).c_str();
         char buffer[_MAX_PATH];
         strcpy_s(buffer, entry);
         COMBOBOXEXITEM item;
@@ -437,7 +442,7 @@ void CItemSelectDialog::OnUpgradeSelect(UINT nID)
     size_t controlIndex = nID - IDC_COMBO_UPGRADE1;
     int selection = m_comboUpgradeDropList[controlIndex].GetCurSel();
     // now find what was selected
-    std::list<AugmentType> augments;
+    std::list<std::string> augments;
     switch (m_upgradeTypeModelled[controlIndex])
     {
     case Upgrade_Primary:
@@ -455,7 +460,7 @@ void CItemSelectDialog::OnUpgradeSelect(UINT nID)
     }
     // determine the augment type to add
     ASSERT(selection >= 0 && selection < (int)augments.size());
-    std::list<AugmentType>::iterator it = augments.begin();
+    std::list<std::string>::iterator it = augments.begin();
     std::advance(it, selection);
 
     std::vector<ItemAugment> currentAugments = m_item.Augments();
@@ -465,7 +470,7 @@ void CItemSelectDialog::OnUpgradeSelect(UINT nID)
     m_item.Set_Augments(currentAugments);
 
     // now ensure the upgrade cannot be selected again
-    std::list<AugmentType> empty;
+    std::list<std::string> empty;
     switch (m_upgradeTypeModelled[controlIndex])
     {
     case Upgrade_Primary:
