@@ -26,6 +26,7 @@ enum BreakdownType
     Breakdown_SaveTraps,
     // physical
     Breakdown_ArmorCheckPenalty,
+    Breakdown_BAB,
     Breakdown_MovementSpeed,
     Breakdown_Hitpoints,
     Breakdown_UnconsciousRange,

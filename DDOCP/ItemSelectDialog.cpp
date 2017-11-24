@@ -73,6 +73,7 @@ void CItemSelectDialog::DoDataExchange(CDataExchange* pDX)
     {
         DDX_Control(pDX, IDC_STATIC_AUGMENT_TYPE1 + i, m_augmentType[i]);
         DDX_Control(pDX, IDC_COMBO_AUGMENT1 + i, m_comboAugmentDropList[i]);
+        DDX_Control(pDX, IDC_EDIT_AUGMENT1 + i, m_augmentValues[i]);
     }
     for (size_t i = 0; i < MAX_Upgrades; ++i)
     {
@@ -85,6 +86,7 @@ BEGIN_MESSAGE_MAP(CItemSelectDialog, CDialog)
     ON_NOTIFY(LVN_ITEMCHANGED, IDC_ITEM_LIST, OnItemSelected)
     ON_CONTROL_RANGE(CBN_SELENDOK, IDC_COMBO_AUGMENT1, IDC_COMBO_AUGMENT1 + MAX_Augments, OnAugmentSelect)
     ON_CONTROL_RANGE(CBN_SELENDOK, IDC_COMBO_UPGRADE1, IDC_COMBO_UPGRADE1 + MAX_Upgrades, OnUpgradeSelect)
+    ON_CONTROL_RANGE(EN_KILLFOCUS, IDC_EDIT_AUGMENT1, IDC_EDIT_AUGMENT1 + MAX_Augments, OnKillFocusAugmentEdit)
     ON_WM_SIZE()
     ON_WM_GETMINMAXINFO()
     ON_NOTIFY(HDN_ENDTRACK, IDC_ITEM_LIST, OnEndtrackListItems)
@@ -149,7 +151,7 @@ BOOL CItemSelectDialog::OnInitDialog()
 
     EnableControls();
 
-    m_sizer.Hook(GetSafeHwnd(), "ItemSelectDialog");
+    //m_sizer.Hook(GetSafeHwnd(), "ItemSelectDialog");
 
     m_bInitialising = false;
     return TRUE;  // return TRUE unless you set the focus to a control
@@ -241,8 +243,8 @@ void CItemSelectDialog::EnableControls()
             m_augmentType[i].SetWindowText(augments[i].Type().c_str());
             PopulateAugmentList(
                     &m_comboAugmentDropList[i],
-                    augments[i].Type(),
-                    augments[i].HasSelectedAugment() ? augments[i].SelectedAugment() : "");
+                    &m_augmentValues[i],
+                    augments[i]);
             m_augmentType[i].ShowWindow(SW_SHOW);
             m_comboAugmentDropList[i].ShowWindow(SW_SHOW);
         }
@@ -251,29 +253,17 @@ void CItemSelectDialog::EnableControls()
             // no augment, hide control
             m_augmentType[i].ShowWindow(SW_HIDE);
             m_comboAugmentDropList[i].ShowWindow(SW_HIDE);
+            m_augmentValues[i].ShowWindow(SW_HIDE);
         }
     }
     // now show any upgrade slots
     size_t upgradeIndex = 0;
-    if (m_item.PrimaryUpgrade().size() > 0)
+    std::vector<SlotUpgrade> upgrades = m_item.SlotUpgrades();
+    for (; upgradeIndex < upgrades.size(); ++upgradeIndex)
     {
         // we have a primary upgrade list
-        PopulatePrimaryUpgradeList(upgradeIndex);
-        ++upgradeIndex;
+        PopulateSlotUpgradeList(upgradeIndex, upgrades[upgradeIndex]);
     }
-    if (m_item.SecondaryUpgrade().size() > 0)
-    {
-        // we have a primary upgrade list
-        PopulateSecondaryUpgradeList(upgradeIndex);
-        ++upgradeIndex;
-    }
-    if (m_item.LegendarySlavelordUpgrade().size() > 0)
-    {
-        // we have a primary upgrade list
-        PopulateLegendarySlavelordUpgradeList(upgradeIndex);
-        ++upgradeIndex;
-    }
-    // add other upgrade types here
     // now hide the unused
     for (;upgradeIndex < MAX_Upgrades; ++upgradeIndex)
     {
@@ -284,8 +274,8 @@ void CItemSelectDialog::EnableControls()
 
 void CItemSelectDialog::PopulateAugmentList(
         CComboBoxEx * combo,
-        const std::string & type,
-        const std::string & selectedAugment)
+        CEdit * edit,
+        const ItemAugment & augment)
 {
     int sel = CB_ERR;
     combo->LockWindowUpdate();
@@ -294,9 +284,12 @@ void CItemSelectDialog::PopulateAugmentList(
     const std::list<Augment> & augments = Augments();
     std::list<Augment>::const_iterator it = augments.begin();
     size_t index = 0;
+    std::string selectedAugment = augment.HasSelectedAugment()
+            ? augment.SelectedAugment()
+            : "";
     while (it != augments.end())
     {
-        if ((*it).IsCompatibleWithSlot(type))
+        if ((*it).IsCompatibleWithSlot(augment.Type()))
         {
             char buffer[_MAX_PATH];
             strcpy_s(buffer, (*it).Name().c_str());
@@ -319,6 +312,26 @@ void CItemSelectDialog::PopulateAugmentList(
     if (sel != CB_ERR)
     {
         combo->SetCurSel(sel);
+        Augment selAugment = FindAugmentByName(selectedAugment);
+        // this augment is configurable by the user
+        if (selAugment.HasEnterValue())
+        {
+            edit->ShowWindow(SW_SHOW);
+            // show the value of this augment in the control
+            CString text;
+            text.Format("%.0f", augment.HasValue() ? augment.Value() : 0);
+            edit->SetWindowText(text);
+        }
+        else
+        {
+            // augment has a fixed bonus
+            edit->ShowWindow(SW_HIDE);
+        }
+    }
+    else
+    {
+        // no augment selected
+        edit->ShowWindow(SW_HIDE);
     }
     combo->UnlockWindowUpdate();
 }
@@ -339,6 +352,7 @@ void CItemSelectDialog::OnItemSelected(NMHDR* pNMHDR, LRESULT* pResult)
                 std::list<Item>::const_iterator it = m_availableItems.begin();
                 std::advance(it, sel);
                 m_item = (*it);
+                AddSpecialSlots();  // adds reaper or mythic slots to the item
                 // update the other controls
                 EnableControls();
                 // item selected, can now click ok!
@@ -369,51 +383,22 @@ void CItemSelectDialog::OnAugmentSelect(UINT nID)
         std::vector<ItemAugment> augments = m_item.Augments();
         augments[augmentIndex].Set_SelectedAugment(item.pszText);
         m_item.Set_Augments(augments);
+        // update the controls after a selection as edit controls may need
+        // to be displayed for some augment selection controls.
+        EnableControls();
     }
 }
 
-void CItemSelectDialog::PopulatePrimaryUpgradeList(size_t controlIndex)
-{
-    m_upgradeTypeModelled[controlIndex] = Upgrade_Primary;
-    // set the text of the display item
-    m_upgradeType[controlIndex].SetWindowText("Primary Upgrade");
-    // add the entries to the drop list control
-    PopulateDropList(controlIndex, m_item.PrimaryUpgrade());
-    // finally ensure the control is displayed
-    m_upgradeType[controlIndex].ShowWindow(SW_SHOW);
-    m_comboUpgradeDropList[controlIndex].ShowWindow(SW_SHOW);
-}
-
-void CItemSelectDialog::PopulateSecondaryUpgradeList(size_t controlIndex)
-{
-    m_upgradeTypeModelled[controlIndex] = Upgrade_Secondary;
-    // set the text of the display item
-    m_upgradeType[controlIndex].SetWindowText("Secondary Upgrade");
-    // add the entries to the drop list control
-    PopulateDropList(controlIndex, m_item.SecondaryUpgrade());
-    // finally ensure the control is displayed
-    m_upgradeType[controlIndex].ShowWindow(SW_SHOW);
-    m_comboUpgradeDropList[controlIndex].ShowWindow(SW_SHOW);
-}
-
-void CItemSelectDialog::PopulateLegendarySlavelordUpgradeList(size_t controlIndex)
-{
-    m_upgradeTypeModelled[controlIndex] = Upgrade_LegendarySlavelords;
-    // set the text of the display item
-    m_upgradeType[controlIndex].SetWindowText("Legendary Slavelords Upgrade");
-    // add the entries to the drop list control
-    PopulateDropList(controlIndex, m_item.LegendarySlavelordUpgrade());
-    // finally ensure the control is displayed
-    m_upgradeType[controlIndex].ShowWindow(SW_SHOW);
-    m_comboUpgradeDropList[controlIndex].ShowWindow(SW_SHOW);
-}
-
-void CItemSelectDialog::PopulateDropList(
+void CItemSelectDialog::PopulateSlotUpgradeList(
         size_t controlIndex,
-        const std::list<std::string> & types)
+        const SlotUpgrade & upgrade)
 {
+    // set the text of the display item
+    m_upgradeType[controlIndex].SetWindowText(upgrade.Type().c_str());
+    // add the entries to the drop list control
     m_comboUpgradeDropList[controlIndex].ResetContent();
-    std::list<std::string>::const_iterator it = types.begin();
+    std::vector<std::string> types = upgrade.UpgradeType();
+    std::vector<std::string>::const_iterator it = types.begin();
     size_t index = 0;
     while (it != types.end())
     {
@@ -432,6 +417,9 @@ void CItemSelectDialog::PopulateDropList(
         ++index;
         ++it;
     }
+    // finally ensure the control is displayed
+    m_upgradeType[controlIndex].ShowWindow(SW_SHOW);
+    m_comboUpgradeDropList[controlIndex].ShowWindow(SW_SHOW);
 }
 
 void CItemSelectDialog::OnUpgradeSelect(UINT nID)
@@ -441,52 +429,46 @@ void CItemSelectDialog::OnUpgradeSelect(UINT nID)
     // cannot be undone. The user will have to reselect he base item to undo this
     size_t controlIndex = nID - IDC_COMBO_UPGRADE1;
     int selection = m_comboUpgradeDropList[controlIndex].GetCurSel();
-    // now find what was selected
-    std::list<std::string> augments;
-    switch (m_upgradeTypeModelled[controlIndex])
+    if (selection != CB_ERR)
     {
-    case Upgrade_Primary:
-        augments = m_item.PrimaryUpgrade();
-        break;
-    case Upgrade_Secondary:
-        augments = m_item.SecondaryUpgrade();
-        break;
-    case Upgrade_LegendarySlavelords:
-        augments = m_item.LegendarySlavelordUpgrade();
-        break;
-    default:
-        ASSERT(FALSE);
-        break;
-    }
-    // determine the augment type to add
-    ASSERT(selection >= 0 && selection < (int)augments.size());
-    std::list<std::string>::iterator it = augments.begin();
-    std::advance(it, selection);
+        // now find what was selected
+        std::vector<SlotUpgrade> upgrades = m_item.SlotUpgrades();
+        std::vector<SlotUpgrade>::iterator sit = upgrades.begin();
+        std::advance(sit, controlIndex);
 
-    std::vector<ItemAugment> currentAugments = m_item.Augments();
-    ItemAugment newAugment;
-    newAugment.Set_Type((*it));
-    currentAugments.push_back(newAugment);
-    m_item.Set_Augments(currentAugments);
+        // determine the augment type to add
+        std::vector<std::string> augments = (*sit).UpgradeType();
+        ASSERT(selection >= 0 && selection < (int)augments.size());
+        std::vector<std::string>::iterator it = augments.begin();
+        std::advance(it, selection);
 
-    // now ensure the upgrade cannot be selected again
-    std::list<std::string> empty;
-    switch (m_upgradeTypeModelled[controlIndex])
-    {
-    case Upgrade_Primary:
-        m_item.Set_PrimaryUpgrade(empty);
-        break;
-    case Upgrade_Secondary:
-        m_item.Set_SecondaryUpgrade(empty);
-        break;
-    case Upgrade_LegendarySlavelords:
-        m_item.Set_LegendarySlavelordUpgrade(empty);
-        break;
-    default:
-        ASSERT(FALSE);
-        break;
+        // add the selected augment type to the item
+        std::vector<ItemAugment> currentAugments = m_item.Augments();
+        ItemAugment newAugment;
+        newAugment.Set_Type((*it));
+        currentAugments.push_back(newAugment);
+        m_item.Set_Augments(currentAugments);
+
+        // now erase the upgrade from the upgrade list as its been actioned
+        upgrades.erase(sit);
+        m_item.Set_SlotUpgrades(upgrades);
+
+        // now get all controls re-repopulate
+        EnableControls();
     }
-    // now get all controls re-repopulate
+}
+
+void CItemSelectDialog::OnKillFocusAugmentEdit(UINT nID)
+{
+    // user may have completed editing an edit field for a selectable augment
+    // read the value and update if its changed
+    CString text;
+    size_t augmentIndex = nID - IDC_EDIT_AUGMENT1;
+    m_augmentValues[augmentIndex].GetWindowText(text);
+    double value = atof(text);
+    std::vector<ItemAugment> augments = m_item.Augments();
+    augments[augmentIndex].Set_Value(value);
+    m_item.Set_Augments(augments);
     EnableControls();
 }
 
@@ -765,4 +747,43 @@ void CItemSelectDialog::SetArmorButtonStates()
     }
 }
 
+void CItemSelectDialog::AddSpecialSlots()
+{
+    // add Mythic and reaper slots to the item as long as its a named item.
+    // We can tell its named as it will not have a minimum level of 1 as all
+    // non-named items (random loot and Cannith crafted) are set to min level 1
+    if (m_item.MinLevel() > 1)
+    {
+        std::vector<ItemAugment> currentAugments = m_item.Augments();
+        // add mythic
+        ItemAugment mythicAugment;
+        mythicAugment.Set_Type("Mythic");
+        currentAugments.push_back(mythicAugment);
+        // add reaper
+        ItemAugment reaperAugment;
+        reaperAugment.Set_Type("Reaper");
+        currentAugments.push_back(reaperAugment);
+        // now set the slots on the item
+        m_item.Set_Augments(currentAugments);
+    }
+    else
+    {
+        // add upgrade slots for Cannith crafted and random loot
+        SlotUpgrade slot;
+        slot.Set_Type("Upgrade Slot");
+        std::vector<std::string> slots;
+        slots.push_back("Colorless");
+        slots.push_back("Blue");
+        slots.push_back("Green");
+        slots.push_back("Yellow");
+        slots.push_back("Orange");
+        slots.push_back("Red");
+        slots.push_back("Purple");
+        slot.Set_UpgradeType(slots);
 
+        std::vector<SlotUpgrade> upgrades;
+        upgrades.push_back(slot);   // 2 standard upgrade slots
+        upgrades.push_back(slot);
+        m_item.Set_SlotUpgrades(upgrades);
+    }
+}

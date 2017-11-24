@@ -1,5 +1,60 @@
 History of changes made
 
+Fix: Amount per AP effects now work again.
+Items: Random Loot Items (Not weapons or Armor) are now supported.
+Augments: Many non named standard augments now no longer have fixed bonus values.
+---These values can be entered in the interface to set the actual value.
+---Allows most flexibility of the system with me not having to find out what true values are supported.
+Engine: New weapon classes "Martial" and "Simple" added.
+Feat: "Improved Uncanny Dodge" reflex save bonus now works correctly.
+Breakdowns: BAB breakdown added (can be affected by enhancements).
+---Note that the BAB total drops fractions, and fractions from different classes do not stack.
+Breakdowns: Attack bonus breakdowns now use BAB breakdown rather than BAB based on character levels.
+Level Up View: Now displays the BAB at current level (not the version affected by enhancements)
+Data Files: Dead tracked effects removed (Tendon Slice, Lay on hands bonus, KiRegeneration, MaxKiBonus, KiBonus, Ki, BlockingDR)
+New Automatic Stances: "Lawful", "Chaotic", "Good" and "True Neutral" added to allow effects to be filtered by alignment.
+Items: Equipping certain items on a "Good" character now correctly grants the Negative level effects.
+All remaining known xml issues are now missing feat Icons:
+---Empty Body
+---Retain Essence
+---Venom Immunity
+---Epic Skill Focus Perform
+---Epic Skill Focus Spell Craft
+---Epic Skill Focus Haggle
+---Epic Skill Focus Intimidate
+---Epic Skill Focus Jump
+---Epic Skill Focus Move Silently
+---Epic Skill Focus Tumble
+Feats: "Inherent Racial Action Point" now only gives the AP when the feat is selected
+Items: Item upgrade augment method reworked and made generic.
+Items: Cannith Crafted and Random Loot items can now have up to two selectable augments of (Colorless, Blue, Green etc) added
+Items: Mythic and Reaper slots are now available for all named items. All Mythic and reaper bonus's stack. No attempt has been made to limit
+Mythic and reaper bonus's to specific item slots (e.g. reaper Ability Bonus should be Headgear only). Augments available for each are:
+---Mythic Power Boost (Melee, Range and Spell Power)
+---Mythic PRR
+---Mythic MRR
+---Reaper Ability Bonus
+---Reaper Power Boost (Melee, Range and Spell Power)
+---Reaper PRR
+---Reaper MRR
+Application Version Information is now correct (If you view Properties of the executable)
+Default document name is now: Build1, not DDOCP1 (this does not affect file extensions)
+Save Files: Automatic feats are no longer saved in the the file. These are re-generated automatically on file load.
+Fix: Loaded files with stances are no longer erroneously marked as modified.
+A review was made of epic feats:
+---Feat: "Epic Power" description updated and now also grants +6 Universal spell power and -1% sp cost on spells cast
+---Feat: "Inspire Excellence" self buff effects added
+---Feat: "Improved Martial Arts" effects added
+---Feat: "Intensify Spell" now has the correct additional SP cost when active (15, not 10)
+---Feats: "Ruin" and "Greater Ruin" now show up as spell like abilities.
+---Feat: "Wellspring of Power" effects now only active when stance active. Added spell critical damage effect
+---Feat: "Arcane Pulse" now shows up as spell like ability.
+---Feat: "Epic Mage Armor" now shows up as a spell like ability with effects.
+---Feat: "Hellball" now shows up as a spell like ability.
+---Feat: "Spirit Blades" now shows up as a spell like ability.
+
+Version 1.0.0.14
+
 Feats: Adept of Forms can now be trained if you are level 6 and have 1 Monk level
 Feat: Exotic Weapon Proficiency: Shuriken is no longer free to level 1 fighters
 Enhancements: Aasimar/Scourge Healing amplification enhancements now correctly cost 2ap instead of 1
@@ -42,7 +97,7 @@ New: Enhancement selections can now define stances.
 Enhancements: "Divine Might" stance and effect added for War Priest, War Soul and Knight of the Chalice.
 War Soul: "Divine Presence" and "Divine Will" effects added. Hard coded in C++ as Effect class does not support these.
 Fix: Ability value to bonus bug fixed (pretty fundamental one too as it could affect loads of totals)
-Feats: Special feat "Inherent Racial Action point" added
+Feats: Special feat "Inherent Racial Action Point" added
 Enhancements: Divine Might is mutually exclusive across KoTC, War Soul and War Priest trees. And cannot be selected alongside "Know the Angles"
 Enhancements: All Efficient Metamagic variants of Empower, Maximize, Enlarge, Quicken and Heighten are now mutually exclusive across all enhancement trees.
 Internal: Updated XML object verification code. Many more issues in the XML now reported and can be fixed.

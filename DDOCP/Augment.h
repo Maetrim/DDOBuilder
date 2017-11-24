@@ -27,6 +27,7 @@ class Augment :
                 DL_STRING(_, Description) \
                 DL_SIMPLE(_, size_t, MinLevel, 0) \
                 DL_STRING_LIST(_, Type) \
+                DL_FLAG(_, EnterValue) \
                 DL_OBJECT_LIST(_, Effect, Effects)
 
         DL_DECLARE_ACCESS(Augment_PROPERTIES)

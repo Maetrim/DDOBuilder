@@ -27,6 +27,7 @@ class CItemSelectDialog : public CDialog
         afx_msg void OnItemSelected(NMHDR* pNMHDR, LRESULT* pResult);
         afx_msg void OnAugmentSelect(UINT nID);
         afx_msg void OnUpgradeSelect(UINT nID);
+        afx_msg void OnKillFocusAugmentEdit(UINT nID);
         afx_msg void OnSize(UINT nType, int cx, int cy);
         afx_msg void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
         afx_msg void OnEndtrackListItems(NMHDR* pNMHDR, LRESULT* pResult);
@@ -47,17 +48,16 @@ class CItemSelectDialog : public CDialog
         void EnableControls();
         void PopulateAugmentList(
                 CComboBoxEx * combo,
-                const std::string & type,
-                const std::string & selectedAugment);
-        void PopulatePrimaryUpgradeList(size_t controlIndex);
-        void PopulateSecondaryUpgradeList(size_t controlIndex);
-        void PopulateLegendarySlavelordUpgradeList(size_t controlIndex);
+                CEdit * edit,
+                const ItemAugment & augment);
+        void PopulateSlotUpgradeList(size_t controlIndex, const SlotUpgrade & upgrade);
         void PopulateDropList(size_t controlIndex, const std::list<std::string> & types);
 
         void ShowTip(const Item & item, CRect itemRect);
         void HideTip();
         void SetTooltipText(const Item & item, CPoint tipTopLeft, CPoint tipAlternate);
         void SetArmorButtonStates();
+        void AddSpecialSlots();
 
         InventorySlotType m_slot;
         Item m_item;
@@ -67,12 +67,6 @@ class CItemSelectDialog : public CDialog
         {
             MAX_Augments = 10,
             MAX_Upgrades = 4
-        };
-        enum UpgradeType
-        {
-            Upgrade_Primary,                // epic orchard items
-            Upgrade_Secondary,              // epic orchard items
-            Upgrade_LegendarySlavelords,    // legendary slave lord items
         };
         CStatic m_staticType;
         CButton m_buttonCloth;
@@ -84,12 +78,12 @@ class CItemSelectDialog : public CDialog
         CSortHeaderCtrl m_sortHeader;
         CStatic m_augmentType[MAX_Augments];
         CComboBoxEx m_comboAugmentDropList[MAX_Augments];
+        CEdit m_augmentValues[MAX_Augments];
         CStatic m_upgradeType[MAX_Upgrades];
         CComboBoxEx m_comboUpgradeDropList[MAX_Upgrades];
         std::list<Item> m_availableItems;
         CImageList m_itemImages;
         bool m_bInitialising;
-        UpgradeType m_upgradeTypeModelled[MAX_Upgrades];
         CPersistantSize m_sizer;
         ArmorType m_armorType;
         // item tooltips

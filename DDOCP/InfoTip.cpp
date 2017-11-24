@@ -402,6 +402,13 @@ void CInfoTip::SetItem(
         augmentText += ": ";
         if (augments[i].HasSelectedAugment())
         {
+            // may be a configurable augment
+            if (augments[i].HasValue())
+            {
+                CString text;
+                text.Format("%+.0f ", augments[i].Value());
+                augmentText += text;
+            }
             augmentText += augments[i].SelectedAugment().c_str();
         }
         else

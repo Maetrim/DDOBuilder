@@ -145,6 +145,12 @@ bool BreakdownItemWeapon::AffectsUs(const Effect & effect) const
         // a class of weapons are affected, determine whether we fall into it
         switch (effect.WeaponClass())
         {
+        case WeaponClass_Martial:
+            isUs = IsMartialWeapon();
+            break;
+        case WeaponClass_Simple:
+            isUs = IsSimpleWeapon();
+            break;
         case WeaponClass_Thrown:
             isUs = IsThrownWeapon();
             break;
@@ -390,6 +396,60 @@ void BreakdownItemWeapon::UpdateTotalChanged(
 }
 
 // Weapon class filters
+bool BreakdownItemWeapon::IsMartialWeapon() const
+{
+    bool isUs = false;
+    switch (m_weaponType)
+    {
+    case Weapon_HandAxe:
+    case Weapon_Kukri:
+    case Weapon_LightHammer:
+    case Weapon_LightPick:
+    case Weapon_Shortsword:
+    case Weapon_BattleAxe:
+    case Weapon_HeavyPick:
+    case Weapon_Longsword:
+    case Weapon_Rapier:
+    case Weapon_Scimitar:
+    case Weapon_Warhammer:
+    case Weapon_Falchion:
+    case Weapon_GreatAxe:
+    case Weapon_GreateClub:
+    case Weapon_Maul:
+    case Weapon_GreatSword:
+    case Weapon_Shortbow:
+    case Weapon_Longbow:
+    case Weapon_ThrowingAxe:
+        isUs = true;
+        break;
+        // all other weapon types are not a match
+    }
+    return isUs;
+}
+
+bool BreakdownItemWeapon::IsSimpleWeapon() const
+{
+    bool isUs = false;
+    switch (m_weaponType)
+    {
+    case Weapon_Club:
+    case Weapon_Dagger:
+    case Weapon_Quarterstaff:
+    case Weapon_LightMace:
+    case Weapon_HeavyMace:
+    case Weapon_Morningstar:
+    case Weapon_Sickle:
+    case Weapon_LightCrossbow:
+    case Weapon_HeavyCrossbow:
+    case Weapon_ThrowingDagger:
+    case Weapon_Dart:
+        isUs = true;
+        break;
+        // all other weapon types are not a match
+    }
+    return isUs;
+}
+
 bool BreakdownItemWeapon::IsThrownWeapon() const
 {
     bool isUs = false;

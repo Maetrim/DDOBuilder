@@ -39,7 +39,6 @@ enum EffectType
     Effect_Assassinate,
     Effect_AttackBonus,
     Effect_AttackSpeed,
-    Effect_BAB,
     Effect_CasterLevel,
     Effect_CenteredWeapon,
     Effect_CriticalAttackBonus,
@@ -90,11 +89,11 @@ enum EffectType
     Effect_HirelingSpellPower,
     Effect_Hitpoints,
     Effect_Immunity,
+    Effect_Keen,
     Effect_MaxDexBonus,
     Effect_MaxDexBonusTowerShield,
     Effect_MaxDodgeBonus,
     Effect_MeleePower,
-    Effect_MinionBonus,
     Effect_MRR,
     Effect_MonkWeaponDie,
     Effect_MovementSpeed,
@@ -102,6 +101,7 @@ enum EffectType
     Effect_OffHandAttackBonus,
     Effect_OffHandDamage,
     Effect_OffHandDoublestrike,
+    Effect_OverrideBAB,
     Effect_PointBlankShotRange,
     Effect_PRR,
     Effect_RangedPower,
@@ -159,7 +159,6 @@ const XmlLib::enumMapEntry<EffectType> effectTypeMap[] =
     {Effect_Assassinate, L"Assassinate"},
     {Effect_AttackBonus, L"AttackBonus"},
     {Effect_AttackSpeed, L"AttackSpeed"},
-    {Effect_BAB, L"BAB"},
     {Effect_CasterLevel, L"CasterLevel"},
     {Effect_CenteredWeapon, L"CenteredWeapon"},
     {Effect_CriticalAttackBonus, L"CriticalAttackBonus"},
@@ -210,11 +209,11 @@ const XmlLib::enumMapEntry<EffectType> effectTypeMap[] =
     {Effect_HirelingSpellPower, L"HirelingSpellPower"},
     {Effect_Hitpoints, L"Hitpoints"},
     {Effect_Immunity, L"Immunity"},
+    {Effect_Keen, L"Keen"},
     {Effect_MaxDexBonus, L"MaxDexBonus"},
     {Effect_MaxDexBonusTowerShield, L"MaxDexBonusTowerShield"},
     {Effect_MaxDodgeBonus, L"MaxDodgeBonus"},
     {Effect_MeleePower, L"MeleePower"},
-    {Effect_MinionBonus, L"MinionBonus"},
     {Effect_MRR, L"MRR"},
     {Effect_MonkWeaponDie, L"MonkWeaponDie"},
     {Effect_MovementSpeed, L"MovementSpeed"},
@@ -222,6 +221,7 @@ const XmlLib::enumMapEntry<EffectType> effectTypeMap[] =
     {Effect_OffHandAttackBonus, L"OffHandAttackBonus"},
     {Effect_OffHandDamage, L"OffHandDamage"},
     {Effect_OffHandDoublestrike, L"OffHandDoublestrike"},
+    {Effect_OverrideBAB, L"OverrideBAB"},
     {Effect_PointBlankShotRange, L"PointBlankShotRange"},
     {Effect_PRR, L"PRR"},
     {Effect_RangedPower, L"RangedPower"},
@@ -322,5 +322,6 @@ class Effect :
         DL_DECLARE_ACCESS(Effect_PROPERTIES)
         DL_DECLARE_VARIABLES(Effect_PROPERTIES)
 
+        friend class Character;
         friend class Spell;
 };

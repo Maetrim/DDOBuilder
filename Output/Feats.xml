@@ -685,6 +685,30 @@ Weilding weapons that are centering such as a staff.</Description>
          <IncompatibleStance>Medium Armor</IncompatibleStance>
          <IncompatibleStance>Heavy Armor</IncompatibleStance>
       </Stance>
+      <Stance>
+         <Name>Good</Name>
+         <Icon>Good</Icon>
+         <Description>You are Good</Description>
+         <AutoControlled/>
+      </Stance>
+      <Stance>
+         <Name>Lawful</Name>
+         <Icon>Lawful</Icon>
+         <Description>You are Lawful</Description>
+         <AutoControlled/>
+      </Stance>
+      <Stance>
+         <Name>Chaotic</Name>
+         <Icon>Chaotic</Icon>
+         <Description>You are Chaotic</Description>
+         <AutoControlled/>
+      </Stance>
+      <Stance>
+         <Name>True Neutral</Name>
+         <Icon>TrueNeutral</Icon>
+         <Description>You are True Neutral</Description>
+         <AutoControlled/>
+      </Stance>
    </Feat>
    <Feat>
       <Name>Augment Summoning</Name>
@@ -1129,6 +1153,78 @@ those past lives before this benefit reactivates.</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>Completionist</Icon>
+      <Effect>
+         <Type>AbilityBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Ability>All</Ability>
+         <Amount>2</Amount>
+      </Effect>
+      <Effect>
+         <Type>SkillBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Skill>All</Skill>
+         <Amount>2</Amount>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Racial Completionist</Name>
+      <Description>You're a cultural master! You have leveled to 20 in every race 3 times
+and for your efforts you are awarded this Feat in all future incarnations
+of this character. When more races are added, this feat will deactivate and
+you will need to gain those past lives before this benefit reactivates.
+
++2 to all abilities and skills</Description>
+      <Requirements>
+         <Requirement>
+            <Feat>Past Life: Aasimar</Feat>
+            <Amount>3</Amount>
+         </Requirement>
+         <Requirement>
+            <Feat>Past Life: Dragonborn</Feat>
+            <Amount>3</Amount>
+         </Requirement>
+         <Requirement>
+            <Feat>Past Life: Drow</Feat>
+            <Amount>3</Amount>
+         </Requirement>
+         <Requirement>
+            <Feat>Past Life: Dwarf</Feat>
+            <Amount>3</Amount>
+         </Requirement>
+         <Requirement>
+            <Feat>Past Life: Elf</Feat>
+            <Amount>3</Amount>
+         </Requirement>
+         <Requirement>
+            <Feat>Past Life: Gnome</Feat>
+            <Amount>3</Amount>
+         </Requirement>
+         <Requirement>
+            <Feat>Past Life: Halfling</Feat>
+            <Amount>3</Amount>
+         </Requirement>
+         <Requirement>
+            <Feat>Past Life: Half-Elf</Feat>
+            <Amount>3</Amount>
+         </Requirement>
+         <Requirement>
+            <Feat>Past Life: Half-Orc</Feat>
+            <Amount>3</Amount>
+         </Requirement>
+         <Requirement>
+            <Feat>Past Life: Human</Feat>
+            <Amount>3</Amount>
+         </Requirement>
+         <Requirement>
+            <Feat>Past Life: Warforged</Feat>
+            <Amount>3</Amount>
+         </Requirement>
+      </Requirements>
+      <Acquire>Automatic</Acquire>
+      <Icon>Completionist</Icon>
+      <AutomaticAcquisition>
+         <SpecificLevel>1</SpecificLevel>
+      </AutomaticAcquisition>
       <Effect>
          <Type>AbilityBonus</Type>
          <Bonus>Feat</Bonus>
@@ -5499,6 +5595,7 @@ save bonus. This feat also grants you a 1% passive bonus to Dodge at levels
            <Bonus>Feat</Bonus>
            <Amount>6</Amount>
            <Stance>Uncanny Dodge</Stance>
+           <Save>Reflex</Save>
        </Effect>
    </Feat>
    <Feat>
@@ -14493,14 +14590,14 @@ Physical Resistance Rating, in the form of a free Feat.</Description>
    <!--Epic Feats-->
    <Feat>
       <Name>Arcane Insight</Name>
-      <Description>Target: Self  Duration: 30 seconds  Activate to gain + 6 to all spell DCs
-and +6 to Spell Penetration for 300 seconds. 3 minute cooldown
+      <Description>Activate to gain + 6 to all spell DCs
+and +6 to Spell Penetration for 300 seconds. Duration 30 seconds, 3 minute cooldown
 Passive: +110 Maximum Spell Point</Description>
       <Stance>
          <Name>Arcane Insight</Name>
          <Icon>ArcaneInsight</Icon>
-         <Description>Target: Self  Duration: 30 seconds  Activate to gain + 6 to all spell DCs
-and +6 to Spell Penetration for 300 seconds. 3 minute cooldown</Description>
+      <Description>Activate to gain + 6 to all spell DCs
+and +6 to Spell Penetration for 300 seconds. Duration 30 seconds, 3 minute cooldown</Description>
       </Stance>
       <FeatGroup>
          <IsEpicFeat/>
@@ -14856,7 +14953,7 @@ saving throws on a roll of 1.</Description>
    </Feat>
    <Feat>
       <Name>Epic Power</Name>
-      <Description>+3 Melee Power. +3 Ranged Power.
+      <Description>+3 Melee Power, +3 Ranged Power, +6 Universal Spell Power and -1% to the Spell Point cost of all spells.
 This feat can be acquired multiple times and is granted every epic level.</Description>
       <MaxTimesAcquire>10</MaxTimesAcquire>
       <Requirements/>
@@ -14873,6 +14970,18 @@ This feat can be acquired multiple times and is granted every epic level.</Descr
          <Bonus>Feat</Bonus>
          <Amount>3</Amount>
          <Style>All</Style>
+      </Effect>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>6</Amount>
+         <SpellPower>All</SpellPower>
+      </Effect>
+      <Effect>
+         <Type>AdditionalSpellPointCost</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>-1</Amount>
+         <Percent/>
       </Effect>
       <AutomaticAcquisition>
          <Level>21</Level>
@@ -15682,8 +15791,7 @@ Your wisdom increases by 1. This feat can be taken multiple times.</Description>
    </Feat>
    <Feat>
       <Name>Greater Ruin</Name>
-      <Description>Spell Point Cost: 150  Target: Foe  Deal 1000 untyped damage to a single enemy.
-(No saving throw.)
+      <Description>Deal 1000 untyped damage to a single enemy. Spell Point Cost: 150, No saving throw.
 Passive: +140 Maximum Spell Points</Description>
       <FeatGroup>
          <IsEpicFeat/>
@@ -15703,6 +15811,11 @@ Passive: +140 Maximum Spell Points</Description>
          <Bonus>Feat</Bonus>
          <Amount>140</Amount>
       </Effect>
+       <Effect>
+           <Type>SpellLikeAbility</Type>
+           <Bonus>Feat</Bonus>
+           <SpellLikeAbility>Greater Ruin</SpellLikeAbility>
+       </Effect>
    </Feat>
    <Feat>
       <Name>Improved Augment Summoning</Name>
@@ -15746,7 +15859,7 @@ Passive: +140 Maximum Spell Points</Description>
    </Feat>
    <Feat>
       <Name>Improved Martial Arts</Name>
-      <Description>+1(base damage) with unarmed. +0.5(base damage) with other ki weapons</Description>
+      <Description>+1[W] with unarmed. +0.5[W] with other ki weapons</Description>
       <FeatGroup>
          <IsEpicFeat/>
       </FeatGroup>
@@ -15761,7 +15874,19 @@ Passive: +140 Maximum Spell Points</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>ImprovedMartialArts</Icon>
-      <!--Handle effects here-->
+      <Effect>
+          <Type>WeaponBaseDamageBonus</Type>
+          <Bonus>Feat</Bonus>
+          <Amount>1.0</Amount>
+          <Weapon>Unarmed</Weapon>
+      </Effect>
+      <Effect>
+          <Type>WeaponBaseDamageBonus</Type>
+          <Bonus>Feat</Bonus>
+          <Amount>0.5</Amount>
+          <Weapon>All</Weapon>
+          <Stance>Centered</Stance>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Improved Sneak Attack</Name>
@@ -15814,6 +15939,12 @@ skill to use.</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>InspireExcellence</Icon>
+       <Effect>
+           <Type>AbilityBonus</Type>
+           <Bonus>Competence</Bonus>
+           <Amount>2</Amount>
+           <Ability>All</Ability>
+       </Effect>
    </Feat>
    <Feat>
       <Name>Intensify Spell</Name>
@@ -15848,7 +15979,7 @@ This bonus stacks with Empower.</Description>
       <Effect>
          <Type>AdditionalSpellPointCost</Type>
          <Bonus>Feat</Bonus>
-         <Amount>10</Amount>
+         <Amount>15</Amount>
          <Stance>Intensify Spell</Stance>
       </Effect>
       <Effect>
@@ -16153,6 +16284,11 @@ your critical damage multiplier is increased by +1.</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>Ruin</Icon>
+       <Effect>
+           <Type>SpellLikeAbility</Type>
+           <Bonus>Feat</Bonus>
+           <SpellLikeAbility>Ruin</SpellLikeAbility>
+       </Effect>
    </Feat>
    <Feat>
       <Name>Vorpal Strikes</Name>
@@ -16229,6 +16365,14 @@ for 30 seconds. Target: Self  Duration: 30 seconds  3 minute cooldown.</Descript
          <Bonus>Feat</Bonus>
          <SpellPower>All</SpellPower>
          <Amount>150</Amount>
+         <Stance>Wellspring of Power</Stance>
+      </Effect>
+      <Effect>
+         <Type>SpellCriticalDamage</Type>
+         <Bonus>Feat</Bonus>
+         <SpellPower>All</SpellPower>
+         <Amount>20</Amount>
+         <Stance>Wellspring of Power</Stance>
       </Effect>
       <Effect>
          <Type>SpellPoints</Type>
@@ -16242,7 +16386,9 @@ for 30 seconds. Target: Self  Duration: 30 seconds  3 minute cooldown.</Descript
       <Description>Spell: A magical pulse of force reverberates through the target's body,
 dealing 3d6+6 force damage every 2 seconds for a duration of 16 seconds.
 This spell can stack on the target up to 5 times, increasing the damage with each stack.
-Cooldown: 3 Seconds  Cooldown: 3 Seconds  Sphere: Arcane  Number of Destinies: 3</Description>
+Cooldown: 3 Seconds
+Sphere: Arcane
+Number of Destinies: 3</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -16253,10 +16399,17 @@ Cooldown: 3 Seconds  Cooldown: 3 Seconds  Sphere: Arcane  Number of Destinies: 3
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>ArcanePulse</Icon>
+       <Effect>
+           <Type>SpellLikeAbility</Type>
+           <Bonus>Feat</Bonus>
+           <SpellLikeAbility>Arcane Pulse</SpellLikeAbility>
+       </Effect>
    </Feat>
    <Feat>
       <Name>Epic Arcane Eldritch Blast</Name>
-      <Description>+4d6 Eldritch Blast dice.  Sphere: Arcane  Number of Destinies: 1</Description>
+      <Description>+4d6 Eldritch Blast dice.
+Sphere: Arcane
+Number of Destinies: 1</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -16283,8 +16436,9 @@ Cooldown: 3 Seconds  Cooldown: 3 Seconds  Sphere: Arcane  Number of Destinies: 3
    </Feat>
    <Feat>
       <Name>Epic Mage Armor</Name>
-      <Description>Spell Point Cost: 5. Target: Friend, Self. +20 Armor bonus to AC.
-Sphere: Arcane  Number of Destinies: 1</Description>
+      <Description>+20 Armor bonus to AC. Spell Point Cost: 5. Target: Friend, Self. 
+Sphere: Arcane
+Number of Destinies: 1</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -16295,11 +16449,17 @@ Sphere: Arcane  Number of Destinies: 1</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>EpicMageArmor</Icon>
+       <Effect>
+           <Type>SpellLikeAbility</Type>
+           <Bonus>Feat</Bonus>
+           <SpellLikeAbility>Epic Mage Armor</SpellLikeAbility>
+       </Effect>
    </Feat>
    <Feat>
       <Name>Epic Skill Focus: Concentration</Name>
       <Description>+5 Concentration. Epic Skill Feats require 20 trained ranks of the corresponding skill.
-Sphere: Arcane  Number of Destinies: 1</Description>
+Sphere: Arcane
+Number of Destinies: 1</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -16324,7 +16484,8 @@ Sphere: Arcane  Number of Destinies: 1</Description>
    <Feat>
       <Name>Epic Skill Focus: Disable Device</Name>
       <Description>+5 Disable Device. Epic Skill Feats require 20 trained ranks of the corresponding skill.
-Sphere: Arcane  Number of Destinies: 1</Description>
+Sphere: Arcane
+Number of Destinies: 1</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -16349,7 +16510,8 @@ Sphere: Arcane  Number of Destinies: 1</Description>
    <Feat>
       <Name>Epic Skill Focus: Perform</Name>
       <Description>+5 Perform. Epic Skill Feats require 20 trained ranks of the corresponding skill.
-Sphere: Arcane  Number of Destinies: 1</Description>
+Sphere: Arcane
+Number of Destinies: 1</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -16374,7 +16536,8 @@ Sphere: Arcane  Number of Destinies: 1</Description>
    <Feat>
       <Name>Epic Skill Focus: Repair</Name>
       <Description>+5 Repair. Epic Skill Feats require 20 trained ranks of the corresponding skill.
-Sphere: Arcane  Number of Destinies: 1</Description>
+Sphere: Arcane
+Number of Destinies: 1</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -16399,7 +16562,8 @@ Sphere: Arcane  Number of Destinies: 1</Description>
    <Feat>
       <Name>Epic Skill Focus: Spell Craft</Name>
       <Description>+5 Spell Craft. Epic Skill Feats require 20 trained ranks of the corresponding skill.
-Sphere: Arcane  Number of Destinies: 1</Description>
+Sphere: Arcane
+Number of Destinies: 1</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -16423,8 +16587,9 @@ Sphere: Arcane  Number of Destinies: 1</Description>
    </Feat>
    <Feat>
       <Name>Epic Spell Power: Force</Name>
-      <Description>+20 Force Spell Power. Each spell power feat can only be taken once.
-Sphere: Arcane  Number of Destinies: 1</Description>
+      <Description>+20 Force Spell Power.
+Sphere: Arcane
+Number of Destinies: 1</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -16444,8 +16609,9 @@ Sphere: Arcane  Number of Destinies: 1</Description>
    </Feat>
    <Feat>
       <Name>Epic Spell Power: Repair</Name>
-      <Description>+20 Repair Spell Power. Each spell power feat can only be taken once.
-Sphere: Arcane  Number of Destinies: 1</Description>
+      <Description>+20 Repair Spell Power.
+Sphere: Arcane
+Number of Destinies: 1</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -16465,11 +16631,12 @@ Sphere: Arcane  Number of Destinies: 1</Description>
    </Feat>
    <Feat>
       <Name>Hellball</Name>
-      <Description>Spell Point Cost: 50  Deal 10d6 acid, electric, fire, and sonic damage to
+      <Description>Deal 10d6 acid, electric, fire, and sonic damage to
 enemies in an area. Successful Reflex saving throws may negate each type of damage.
 Taking this feat provides two versions, one based on Charisma and another based
-on Intelligence.
-Sphere: Arcane  Number of Destinies: 2</Description>
+on Intelligence. Spell Point Cost: 50  
+Sphere: Arcane
+Number of Destinies: 2</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -16480,11 +16647,17 @@ Sphere: Arcane  Number of Destinies: 2</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>Hellball</Icon>
+       <Effect>
+           <Type>SpellLikeAbility</Type>
+           <Bonus>Feat</Bonus>
+           <SpellLikeAbility>Hellball</SpellLikeAbility>
+       </Effect>
    </Feat>
    <Feat>
       <Name>Lasting Inspiration</Name>
       <Description>+3 Bard Songs per rest. Bard songs last +50% longer.
-Sphere: Arcane  Number of Destinies: 1</Description>
+Sphere: Arcane
+Number of Destinies: 1</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -16511,7 +16684,8 @@ Sphere: Arcane  Number of Destinies: 1</Description>
       <Name>Deific Warding</Name>
       <Description>When you take damage, add one stack of Deific Warding (+1 Sacred Bonus to MRR).
 This effect can stack up to 30 times. One stack is removed every 3 seconds.
-Sphere: Divine  Number of Destinies: 3</Description>
+Sphere: Divine
+Number of Destinies: 3</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -16522,11 +16696,18 @@ Sphere: Divine  Number of Destinies: 3</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>DeificWarding</Icon>
+       <Effect>
+           <Type>MRR</Type>
+           <Bonus>Sacred</Bonus>
+           <Amount>30</Amount>
+           <Stance>Deific Warding</Stance>
+       </Effect>
    </Feat>
    <Feat>
       <Name>Epic Skill Focus: Bluff</Name>
       <Description>+5 Bluff. Epic Skill Feats require 20 trained ranks of the corresponding skill.
-Sphere: Divine  Number of Destinies: 1</Description>
+Sphere: Divin
+Number of Destinies: 1</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -16551,7 +16732,8 @@ Sphere: Divine  Number of Destinies: 1</Description>
    <Feat>
       <Name>Epic Skill Focus: Diplomacy</Name>
       <Description>+5 Diplomacy. Epic Skill Feats require 20 trained ranks of the corresponding skill.
-Sphere: Divine  Number of Destinies: 1</Description>
+Sphere: Divine
+Number of Destinies: 1</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -16576,7 +16758,8 @@ Sphere: Divine  Number of Destinies: 1</Description>
    <Feat>
       <Name>Epic Skill Focus: Haggle</Name>
       <Description>+5 Haggle. Epic Skill Feats require 20 trained ranks of the corresponding skill.
-Sphere: Divine  Number of Destinies: 1</Description>
+Sphere: Divine
+Number of Destinies: 1</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -16601,7 +16784,8 @@ Sphere: Divine  Number of Destinies: 1</Description>
    <Feat>
       <Name>Epic Skill Focus: Heal</Name>
       <Description>+5 Heal. Epic Skill Feats require 20 trained ranks of the corresponding skill.
-Sphere: Divine  Number of Destinies: 1</Description>
+Sphere: Divine
+Number of Destinies: 1</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -16626,7 +16810,8 @@ Sphere: Divine  Number of Destinies: 1</Description>
    <Feat>
       <Name>Epic Skill Focus: Listen</Name>
       <Description>+5 Listen. Epic Skill Feats require 20 trained ranks of the corresponding skill.
-Sphere: Divine  Number of Destinies: 1</Description>
+Sphere: Divine
+Number of Destinies: 1</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -16650,8 +16835,9 @@ Sphere: Divine  Number of Destinies: 1</Description>
    </Feat>
    <Feat>
       <Name>Epic Spell Power: Light</Name>
-      <Description>+20 Light Spell Power. Each spell power feat can only be taken once.
-Sphere: Divine  Number of Destinies: 1</Description>
+      <Description>+20 Light Spell Power.
+Sphere: Divine
+Number of Destinies: 1</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -16671,8 +16857,9 @@ Sphere: Divine  Number of Destinies: 1</Description>
    </Feat>
    <Feat>
       <Name>Epic Spell Power: Negative</Name>
-      <Description>+20 Negative Spell Power. Each spell power feat can only be taken once.
-Sphere: Divine  Number of Destinies: 1</Description>
+      <Description>+20 Negative Spell Power.
+Sphere: Divine
+Number of Destinies: 1</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -16692,8 +16879,9 @@ Sphere: Divine  Number of Destinies: 1</Description>
    </Feat>
    <Feat>
       <Name>Epic Spell Power: Fire</Name>
-      <Description>+20 Fire Spell Power. Each spell power feat can only be taken once.
-Sphere: Divine  Number of Destinies: 1</Description>
+      <Description>+20 Fire Spell Power.
+Sphere: Divine
+Number of Destinies: 1</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -16718,7 +16906,8 @@ Enemies succeeding a Fortitude saving throw vs. (20 + Wisdom modifier) take half
 Spell Point Cost: 30  Target: Self, Foe Directional, Breakable
 This dispells crowd control effects such as stuns on you, and can be used when
 stunned or otherwise incapacitated (but still conscious).
-Sphere: Divine  Number of Destinies: 2</Description>
+Sphere: Divine
+Number of Destinies: 2</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -16735,7 +16924,8 @@ Sphere: Divine  Number of Destinies: 2</Description>
       <Description>When you drop below 50% HP, for thirty seconds you gain Physical Resistance
 equal to your Wisdom and saving throws equal to your epic level. This won't
 trigger again for three minutes.
-Sphere: Divine  Number of Destinies: 1</Description>
+Sphere: Divine
+Number of Destinies: 1</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -16751,7 +16941,8 @@ Sphere: Divine  Number of Destinies: 1</Description>
       <Name>Holy Strike</Name>
       <Description>Your weapons gain Ghost Touch. Your vorpal strikes deal 10d6 untyped damage
 vs. Evil enemies. (This bonus damage works with melee, unarmed, and ranged attacks.)
-Sphere: Divine  Number of Destinies: 1</Description>
+Sphere: Divine
+Number of Destinies: 1</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -16767,9 +16958,10 @@ Sphere: Divine  Number of Destinies: 1</Description>
    <Feat>
       <Name>Dire Charge</Name>
       <Description>Charge forward at the targeted foe. That foe and all nearby foes are
-subject to +2[w] damage and must make a Fortitude save or be stunned. Stun DC is
+subject to +2[W] damage and must make a Fortitude save or be stunned. Stun DC is
 (20 + highest ability modifier + bonus to stun attacks).
-Sphere: Martial  Number of Destinies: 3</Description>
+Sphere: Martial
+Number of Destinies: 3</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -16785,8 +16977,9 @@ Sphere: Martial  Number of Destinies: 3</Description>
       <Name>Elusive Target</Name>
       <Description>Each time you would be physically damaged, you have a +5% chance to
 completely ignore the damage.
-(This applies to physical attacks and spells the deal physical damage.)
-Sphere: Martial  Number of Destinies: 2</Description>
+(This applies to physical attacks and spells that deal physical damage.)
+Sphere: Martial
+Number of Destinies: 2</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -16801,7 +16994,8 @@ Sphere: Martial  Number of Destinies: 2</Description>
    <Feat>
       <Name>Epic Skill Focus: Balance</Name>
       <Description>+5 Balance. Epic Skill Feats require 20 trained ranks of the corresponding skill.
-Sphere: Martial  Number of Destinies: 1</Description>
+Sphere: Martial
+Number of Destinies: 1</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -16826,7 +17020,8 @@ Sphere: Martial  Number of Destinies: 1</Description>
    <Feat>
       <Name>Epic Skill Focus: Hide</Name>
       <Description>+5 Hide. Epic Skill Feats require 20 trained ranks of the corresponding skill.
-Sphere: Martial  Number of Destinies: 1</Description>
+Sphere: Martial
+Number of Destinies: 1</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -16851,7 +17046,8 @@ Sphere: Martial  Number of Destinies: 1</Description>
    <Feat>
       <Name>Epic Skill Focus: Open Lock</Name>
       <Description>+5 Open Lock. Epic Skill Feats require 20 trained ranks of the corresponding skill.
-Sphere: Martial  Number of Destinies: 1</Description>
+Sphere: Martial
+Number of Destinies: 1</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -16876,7 +17072,8 @@ Sphere: Martial  Number of Destinies: 1</Description>
    <Feat>
       <Name>Epic Skill Focus: Search</Name>
       <Description>+5 Balance. Epic Skill Feats require 20 trained ranks of the corresponding skill.
-Sphere: Martial  Number of Destinies: 1</Description>
+Sphere: Martial
+Number of Destinies: 1</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -16901,7 +17098,8 @@ Sphere: Martial  Number of Destinies: 1</Description>
    <Feat>
       <Name>Epic Skill Focus: Swim</Name>
       <Description>+5 Balance. Epic Skill Feats require 20 trained ranks of the corresponding skill.
-Sphere: Martial  Number of Destinies: 1</Description>
+Sphere: Martial
+Number of Destinies: 1</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -16927,7 +17125,8 @@ Sphere: Martial  Number of Destinies: 1</Description>
       <Name>First Blood</Name>
       <Description>Melee weapons and unarmed attacks deal 5d20 extra untyped damage against enemies
 with 90% or more HP. This extra damage won't trigger twice within three seconds.
-Sphere: Martial  Number of Destinies: 2</Description>
+Sphere: Martial
+Number of Destinies: 2</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -16944,7 +17143,8 @@ Sphere: Martial  Number of Destinies: 2</Description>
       <Description>While Single Weapon Fighting, your vorpal threat range is increased by +1.
 (Instead of scoring Vorpal hits only on 20, you score them in 19-20, assuming you
 confirm the critical hit afterwards.)
-Sphere: Martial  Number of Destinies: 1</Description>
+Sphere: Martial
+Number of Destinies: 1</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -16967,7 +17167,8 @@ Sphere: Martial  Number of Destinies: 1</Description>
       <Name>Pierce Adamantine</Name>
       <Description>Your equipped weapons are considered Adamantine allowing them bypassing
 the form of damage reduction.
-Sphere: Martial  Number of Destinies: 1</Description>
+Sphere: Martial
+Number of Destinies: 1</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -16999,7 +17200,8 @@ Sphere: Martial  Number of Destinies: 1</Description>
       <Name>Pierce Byeshk</Name>
       <Description>Your equipped weapons are considered Byeshk allowing them bypassing the
 form of damage reduction.
-Sphere: Martial  Number of Destinies: 1</Description>
+Sphere: Martial
+Number of Destinies: 1</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -17031,7 +17233,8 @@ Sphere: Martial  Number of Destinies: 1</Description>
       <Name>Pierce Cold Iron</Name>
       <Description>Your equipped weapons are considered Cold Iron allowing them bypassing the
 form of damage reduction.
-Sphere: Martial  Number of Destinies: 1</Description>
+Sphere: Martial
+Number of Destinies: 1</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -17063,7 +17266,8 @@ Sphere: Martial  Number of Destinies: 1</Description>
       <Name>Pierce Silver</Name>
       <Description>Your equipped weapons are considered Silver allowing them bypassing the
 form of damage reduction.
-Sphere: Martial  Number of Destinies: 1</Description>
+Sphere: Martial
+Number of Destinies: 1</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -17094,7 +17298,8 @@ Sphere: Martial  Number of Destinies: 1</Description>
    <Feat>
       <Name>Tactician</Name>
       <Description>+2 Tactical feat DCs.
-Sphere: Martial  Number of Destinies: 1</Description>
+Sphere: Martial
+Number of Destinies: 1</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -17115,7 +17320,8 @@ Sphere: Martial  Number of Destinies: 1</Description>
    <Feat>
       <Name>Doubleshot</Name>
       <Description>+10% Doubleshot.
-Sphere: Primal  Number of Destinies: 2</Description>
+Sphere: Primal
+Number of Destinies: 2</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -17135,7 +17341,8 @@ Sphere: Primal  Number of Destinies: 2</Description>
    <Feat>
       <Name>Epic Skill Focus: Intimidate</Name>
       <Description>+5 Intimidate. Epic Skill Feats require 20 trained ranks of the corresponding skill.
-Sphere: Primal  Number of Destinies: 1</Description>
+Sphere: Primal
+Number of Destinies: 1</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -17160,7 +17367,8 @@ Sphere: Primal  Number of Destinies: 1</Description>
    <Feat>
       <Name>Epic Skill Focus: Jump</Name>
       <Description>+5 Jump. Epic Skill Feats require 20 trained ranks of the corresponding skill.
-Sphere: Primal  Number of Destinies: 1</Description>
+Sphere: Primal
+Number of Destinies: 1</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -17185,7 +17393,8 @@ Sphere: Primal  Number of Destinies: 1</Description>
    <Feat>
       <Name>Epic Skill Focus: Move Silently</Name>
       <Description>+5 Move Silently. Epic Skill Feats require 20 trained ranks of the corresponding skill.
-Sphere: Primal  Number of Destinies: 1</Description>
+Sphere: Primal
+Number of Destinies: 1</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -17210,7 +17419,8 @@ Sphere: Primal  Number of Destinies: 1</Description>
    <Feat>
       <Name>Epic Skill Focus: Spot</Name>
       <Description>+5 Spot. Epic Skill Feats require 20 trained ranks of the corresponding skill.
-Sphere: Primal  Number of Destinies: 1</Description>
+Sphere: Primal
+Number of Destinies: 1</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -17235,7 +17445,8 @@ Sphere: Primal  Number of Destinies: 1</Description>
    <Feat>
       <Name>Epic Skill Focus: Tumble</Name>
       <Description>+5 Tumble. Epic Skill Feats require 20 trained ranks of the corresponding skill.
-Sphere: Primal  Number of Destinies: 1</Description>
+Sphere: Primal
+Number of Destinies: 1</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -17259,8 +17470,9 @@ Sphere: Primal  Number of Destinies: 1</Description>
    </Feat>
    <Feat>
       <Name>Epic Spell Power: Acid</Name>
-      <Description>+20 Acid Spell Power. Each spell power feat can only be taken once.
-Sphere: Arcane or Primal  Number of Destinies: 1</Description>
+      <Description>+20 Acid Spell Power.
+Sphere: Arcane or Primal
+Number of Destinies: 1</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -17280,8 +17492,9 @@ Sphere: Arcane or Primal  Number of Destinies: 1</Description>
    </Feat>
    <Feat>
       <Name>Epic Spell Power: Cold</Name>
-      <Description>+20 Cold Spell Power. Each spell power feat can only be taken once.
-Sphere: Arcane or Primal  Number of Destinies: 1</Description>
+      <Description>+20 Cold Spell Power.
+Sphere: Arcane or Primal
+Number of Destinies: 1</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -17301,8 +17514,9 @@ Sphere: Arcane or Primal  Number of Destinies: 1</Description>
    </Feat>
    <Feat>
       <Name>Epic Spell Power: Electric</Name>
-      <Description>+20 Electric Spell Power. Each spell power feat can only be taken once.
-Sphere: Arcane or Primal  Number of Destinies: 1</Description>
+      <Description>+20 Electric Spell Power.
+Sphere: Arcane or Primal
+Number of Destinies: 1</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -17322,8 +17536,9 @@ Sphere: Arcane or Primal  Number of Destinies: 1</Description>
    </Feat>
    <Feat>
       <Name>Epic Spell Power: Sonic</Name>
-      <Description>+20 Sonic Spell Power. Each spell power feat can only be taken once.
-Sphere: Arcane or Primal  Number of Destinies: 1</Description>
+      <Description>+20 Sonic Spell Power.
+Sphere: Arcane or Primal
+Number of Destinies: 1</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -17343,8 +17558,9 @@ Sphere: Arcane or Primal  Number of Destinies: 1</Description>
    </Feat>
    <Feat>
       <Name>Epic Spell Power: Positive</Name>
-      <Description>+20 Positive Spell Power. Each spell power feat can only be taken once.
-Sphere: Arcane or Primal  Number of Destinies: 1</Description>
+      <Description>+20 Positive Spell Power.
+Sphere: Arcane or Primal
+Number of Destinies: 1</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -17367,7 +17583,8 @@ Sphere: Arcane or Primal  Number of Destinies: 1</Description>
       <Description>Up to six nearby enemies are turned into frogs. Each may avoid ribbiting on
 a successful Fortitude saving throw vs. DC (20+ Wisdom modifier).
 Spell Point Cost:75  Target: Self, Foe, Directional, Breakable
-Sphere: Primal  Number of Destinies: 2</Description>
+Sphere: Primal
+Number of Destinies: 2</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -17384,7 +17601,8 @@ Sphere: Primal  Number of Destinies: 2</Description>
       <Description>Increases the damage of glancing blow attack when wielding a two-handed
 weapon by an additional 10%. Also increases the chance for weapon effects to
 trigger on glancing blows by an additional 10%.
-Sphere: Primal  Number of Destinies: 1</Description>
+Sphere: Primal
+Number of Destinies: 1</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -17409,7 +17627,8 @@ Sphere: Primal  Number of Destinies: 1</Description>
    <Feat>
       <Name>Perfect Two Weapon Fighting</Name>
       <Description>+5% Doublestrike.  +10% Offhand Doublestrike.
-Sphere: Primal  Number of Destinies: 1</Description>
+Sphere: Primal
+Number of Destinies: 1</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -17438,7 +17657,8 @@ Magical (+1 Universal Spell Power). Your offensive spells grant you a stack of
 Arcane Warrior: Physical (+1 Melee and Ranged Power). Each of these stacks to
 20 times and each stack lasts for 6 seconds. You may gain a stack of each no
 more than once per second.
-Sphere: Arcane, Martial  Number of Destinies: 2, 1</Description>
+Sphere: Arcane, Martial
+Number of Destinies: 2, 1</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -17455,7 +17675,8 @@ Sphere: Arcane, Martial  Number of Destinies: 2, 1</Description>
       <Description>You are invulnerable and invisible for five seconds, then return with a random
 30-second buff. Cooldown: 1 minute
 Activate to pop off to the land of dreams.
-Sphere: Primal, Arcane  Number of Destinies: 2, 1</Description>
+Sphere: Primal, Arcane
+Number of Destinies: 2, 1</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -17472,7 +17693,8 @@ Sphere: Primal, Arcane  Number of Destinies: 2, 1</Description>
       <Description>With weapon and unarmed attacks, deal 10 Bane damage against all targets
 and an additional 20 Law damage against Chaotic targets.
 This scales with Melee or Ranged power depending on your weapons.
-Sphere: Martial, Divine  Number of Destinies: 2, 1</Description>
+Sphere: Martial, Divine
+Number of Destinies: 2, 1</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -17502,7 +17724,8 @@ Sphere: Martial, Divine  Number of Destinies: 2, 1</Description>
    <Feat>
       <Name>Fount of Life</Name>
       <Description>+20 Healing Amp and Positive Spell Power
-Sphere: Divine, Primal  Number of Destinies: 2, 1</Description>
+Sphere: Divine, Primal
+Number of Destinies: 2, 1</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -17530,7 +17753,8 @@ Sphere: Divine, Primal  Number of Destinies: 2, 1</Description>
       <Description>With weapon and unarmed attacks, deal 1d20 Bane damage against all targets
 and an additional 2d20 Chaos damage against Lawful targets.
 This scales with Melee or Ranged power depending on your weapons.
-Sphere: Martial, Primal  Number of Destinies: 2, 1</Description>
+Sphere: Martial, Primal
+Number of Destinies: 2, 1</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -17561,7 +17785,8 @@ Sphere: Martial, Primal  Number of Destinies: 2, 1</Description>
       <Name>Spirit Blades</Name>
       <Description>Spell: Create a series of spectral blades which fly at a nearby opponent.
 Each of the five blades does 2d20 Piercing and 1d20 Force damage.
-Sphere: Arcane, Divine  Number of Destinies: 2, 1</Description>
+Sphere: Arcane, Divine
+Number of Destinies: 2, 1</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -17572,6 +17797,11 @@ Sphere: Arcane, Divine  Number of Destinies: 2, 1</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>SpiritBlades</Icon>
+       <Effect>
+           <Type>SpellLikeAbility</Type>
+           <Bonus>Feat</Bonus>
+           <SpellLikeAbility>Spirit Blades</SpellLikeAbility>
+       </Effect>
    </Feat>
    <Feat>
       <Name>Wind through the Trees</Name>
@@ -17644,8 +17874,8 @@ with no save. This may only trigger once every 12 seconds.</Description>
    </Feat>
    <Feat>
       <Name>Scion of Celestia</Name>
-      <Description>+20 Positive, Light, &amp; Alignment Spell Power, +20 Universal Spell Power
-+30% Crit Damage with Positive, Light, &amp; Alignment spells
+      <Description>+20 Positive, Light and Alignment Spell Power, +20 Universal Spell Power
++30% Crit Damage with Positive, Light and Alignment spells
 +150 Maximum Hit Points
 +4 to Will Saves</Description>
       <FeatGroup>
@@ -17779,14 +18009,14 @@ possibilities, determined via the chaos of Limbo.</Description>
       <Icon>ScionOfLimbo</Icon>
       <Effect>
          <Type>SaveBonus</Type>
-         <Bonus>Feat</Bonus>
+         <Bonus>Determination</Bonus>
          <Save>All</Save>
          <Amount>2</Amount>
       </Effect>
    </Feat>
    <Feat>
       <Name>Scion of Mechanus</Name>
-      <Description>+20 Repair &amp; Rust Spell Power, +20 Universal Spell Power, +20 Repair Amplification
+      <Description>+20 Repair and Rust Spell Power, +20 Universal Spell Power, +20 Repair Amplification
 (assuming you take healing from Repair), +10% Fortification Bypass on weapon and
 unarmed attacks, Gain: Master Reconstruction, shares cooldown with Communion of Scribing.</Description>
       <FeatGroup>
@@ -17825,7 +18055,7 @@ unarmed attacks, Gain: Master Reconstruction, shares cooldown with Communion of 
    </Feat>
    <Feat>
       <Name>Scion of the Astral Plane</Name>
-      <Description>+4 to Tactical Feat and Assassinate DCs, +4% Doublestrike &amp; Doubleshot.
+      <Description>+4 to Tactical Feat and Assassinate DCs, +4% Doublestrike and Doubleshot.
 An additional +4 if you are centered.
 +4% Dodge and Dodge Cap, +4 to Reflex Saves.</Description>
       <FeatGroup>
@@ -19123,78 +19353,6 @@ saving throw allowed. Cooldown timer of 210 seconds.</Description>
          <Bonus>Feat</Bonus>
          <Save>Will</Save>
          <Amount>1</Amount>
-      </Effect>
-   </Feat>
-   <Feat>
-      <Name>Racial Completionist</Name>
-      <Description>You're a cultural master! You have leveled to 20 in every race 3 times
-and for your efforts you are awarded this Feat in all future incarnations
-of this character. When more races are added, this feat will deactivate and
-you will need to gain those past lives before this benefit reactivates.
-
-+2 to all abilities and skills</Description>
-      <Requirements>
-         <Requirement>
-            <Feat>Past Life: Aasimar</Feat>
-            <Amount>3</Amount>
-         </Requirement>
-         <Requirement>
-            <Feat>Past Life: Dragonborn</Feat>
-            <Amount>3</Amount>
-         </Requirement>
-         <Requirement>
-            <Feat>Past Life: Drow</Feat>
-            <Amount>3</Amount>
-         </Requirement>
-         <Requirement>
-            <Feat>Past Life: Dwarf</Feat>
-            <Amount>3</Amount>
-         </Requirement>
-         <Requirement>
-            <Feat>Past Life: Elf</Feat>
-            <Amount>3</Amount>
-         </Requirement>
-         <Requirement>
-            <Feat>Past Life: Gnome</Feat>
-            <Amount>3</Amount>
-         </Requirement>
-         <Requirement>
-            <Feat>Past Life: Halfling</Feat>
-            <Amount>3</Amount>
-         </Requirement>
-         <Requirement>
-            <Feat>Past Life: Half-Elf</Feat>
-            <Amount>3</Amount>
-         </Requirement>
-         <Requirement>
-            <Feat>Past Life: Half-Orc</Feat>
-            <Amount>3</Amount>
-         </Requirement>
-         <Requirement>
-            <Feat>Past Life: Human</Feat>
-            <Amount>3</Amount>
-         </Requirement>
-         <Requirement>
-            <Feat>Past Life: Warforged</Feat>
-            <Amount>3</Amount>
-         </Requirement>
-      </Requirements>
-      <Acquire>Automatic</Acquire>
-      <Icon>Completionist</Icon>
-      <AutomaticAcquisition>
-         <SpecificLevel>1</SpecificLevel>
-      </AutomaticAcquisition>
-      <Effect>
-         <Type>AbilityBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Ability>All</Ability>
-         <Amount>2</Amount>
-      </Effect>
-      <Effect>
-         <Type>SkillBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Skill>All</Skill>
-         <Amount>2</Amount>
       </Effect>
    </Feat>
    <!--Follower of feats-->
@@ -21145,7 +21303,9 @@ by 10/Silver.</Description>
       <Description>Favored Souls of the ???? fear not the weapons of most opponents.
 You gain damage reduction 10/????, or improve your existing damage reduction
 by 10/???.
-NOTE: This is a placeholder feat until the known damage reduction type is determined.</Description>
+NOTE: This is a placeholder feat until the known damage reduction type is determined.
+Testing on Lammania shows that no current feat selection is available at level 20
+Favored Soul for Forgotten Reals deities.</Description>
       <FeatGroup>
          <IsDamageReduction/>
       </FeatGroup>
@@ -21185,7 +21345,7 @@ NOTE: This is a placeholder feat until the known damage reduction type is determ
          <Amount>10</Amount>
       </Effect>
    </Feat>
-   <!--Domain Feats-->
+   <!--Cleric Domain Feats-->
    <Feat>
       <Name>Air Domain Tier I</Name>
       <Description>You gain +1 to the DC of your Evocation spells.
@@ -21861,7 +22021,7 @@ points of Cold Resistance equal to twice your Cleric level for 20 seconds.</Desc
          <Stance>Turn Undead</Stance>
       </Effect>
    </Feat>
-   <!--Domain Feats 5, 9 and 14-->
+   <!--Cleric Domain Feats 5, 9 and 14-->
    <Feat>
       <Name>Air Domain Tier II</Name>
       <Description>You gain Shocking Grasp as an SLA. 4 Spell Points, 4 second cooldown.</Description>

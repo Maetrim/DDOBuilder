@@ -55,7 +55,7 @@ class ActiveEffect
         CString Stacks() const;
         CString AmountAsText() const;
         CString AmountAsPercent() const;
-        double TotalAmount() const;
+        double TotalAmount(bool allowTruncate) const;
         void AddFeat(const std::string & featName);
         void AddStance(const std::string & stance);
         const std::vector<std::string> & Stances() const;
@@ -77,6 +77,7 @@ class ActiveEffect
         void SetBreakdownDependency(BreakdownType bt);
         bool HasBreakdownDependency(BreakdownType bt) const;
         bool HasClass(ClassType type) const;
+        void SetWholeNumbersOnly();
     private:
         enum EffectType
         {
@@ -106,4 +107,5 @@ class ActiveEffect
         ClassType m_class;
         bool m_bIsPercentage;
         mutable double m_percentageAmount;
+        bool m_bWholeNumbersOnly;
 };

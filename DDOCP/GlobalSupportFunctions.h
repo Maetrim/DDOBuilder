@@ -129,4 +129,4 @@ int BaseStatToBonus(double ability);
 BreakdownType StatToBreakdown(AbilityType ability);
 BreakdownType SkillToBreakdown(SkillType skill);
 BreakdownItem * FindBreakdown(BreakdownType type);
-
+double BAB(ClassType ct);

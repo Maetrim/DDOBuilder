@@ -44,8 +44,12 @@ void BreakdownItemWeaponAttackBonus::CreateOtherEffects()
     if (m_pCharacter != NULL)
     {
         m_otherEffects.clear();
-        // all weapon to hits include BAB
-        double amount = m_pCharacter->BaseAttackBonus(MAX_LEVEL);
+        // all weapon to hits include BAB, which may be changed by a
+        // enhancement
+        BreakdownItem * pBBAB = FindBreakdown(Breakdown_BAB);
+        ASSERT(pBBAB != NULL);
+        pBBAB->AttachObserver(this);  // need to know about changes to this effect
+        double amount = pBBAB->Total();
         if (amount > 0)
         {
             ActiveEffect amountTrained(

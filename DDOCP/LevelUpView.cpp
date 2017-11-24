@@ -97,6 +97,7 @@ void CLevelUpView::DoDataExchange(CDataExchange* pDX)
     DDX_Control(pDX, IDC_STATIC_CLASS, m_staticClass);
     DDX_Control(pDX, IDC_STATIC_SP_AVAILABLE, m_staticAvailableSpend);
     DDX_Control(pDX, IDC_BUTTONAUTO_SPEND, m_buttonAutoSpend);
+    DDX_Control(pDX, IDC_STATIC_BAB, m_staticBab);
 }
 
 #pragma warning(push)
@@ -407,6 +408,18 @@ void CLevelUpView::OnSize(UINT nType, int cx, int cy)
                 rctButton.right + c_controlSpacing + skillSize.cx,
                 cy - c_controlSpacing);
 
+        // BAB shown above Automatic Feats
+        CRect rctBab;
+        m_staticBab.GetWindowRect(&rctBab);
+        rctBab -= rctBab.TopLeft();
+        rctBab += CPoint(rctSkills.right + c_controlSpacing, rctSkillControls[0].top);
+        if (rctBab.left < rctSkillControls[4].right + c_controlSpacing)
+        {
+            // ensure control does not sit on top of others on small screen layouts
+            rctBab -= CPoint(rctBab.left, 0);
+            rctBab += CPoint(rctSkillControls[4].right + c_controlSpacing, 0);
+        }
+
         CRect rctAutoFeats;
         m_listAutomaticFeats.GetWindowRect(rctAutoFeats);
         rctAutoFeats -= rctAutoFeats.TopLeft();
@@ -433,6 +446,7 @@ void CLevelUpView::OnSize(UINT nType, int cx, int cy)
         m_buttonMinus.MoveWindow(rctSkillControls[3]);
         m_buttonAutoSpend.MoveWindow(rctSkillControls[4]);
         m_listSkills.MoveWindow(rctSkills, TRUE);
+        m_staticBab.MoveWindow(rctBab);
         m_listAutomaticFeats.MoveWindow(rctAutoFeats, TRUE);
 
         // update the mouse hook handles for tooltips
@@ -569,6 +583,8 @@ void CLevelUpView::PopulateControls()
     DetermineTrainableFeats();
     EnableControls();
     PopulateAutomaticFeats();
+
+    ShowBab();
 }
 
 void CLevelUpView::SetLevelButtonStates()
@@ -1381,6 +1397,17 @@ void CLevelUpView::PopulateAutomaticFeats()
         }
     }
     m_listAutomaticFeats.UnlockWindowUpdate();
+}
+
+void CLevelUpView::ShowBab()
+{
+    CString babText("BAB 0");
+    if (m_pCharacter != NULL)
+    {
+        size_t bab = m_pCharacter->BaseAttackBonus(m_level);
+        babText.Format("BAB %d", bab);
+    }
+    m_staticBab.SetWindowText(babText);
 }
 
 void CLevelUpView::OnFeatSelection(UINT nID)

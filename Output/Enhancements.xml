@@ -21899,7 +21899,7 @@ critical hits (before weapon multipliers)</Description>
          </Requirements>
          <Selector>
             <EnhancementSelection>
-               <Name>Loud &amp; Clear</Name>
+               <Name>Loud and Clear</Name>
                <Description>Passive: While Swashbuckling with an Orb in your off hand, +20 Sonic Spell Power</Description>
                <Icon>SBLoudAndClear</Icon>
                <Cost>1</Cost>
@@ -22388,8 +22388,9 @@ Inspire Courage grants an additional +1 damage.</Description>
             <AmountVector size="1">20</AmountVector>
          </Effect>
          <Effect>
-            <Type>BAB</Type>
+            <Type>OverrideBAB</Type>
             <Bonus>Enhancement</Bonus>
+             <Amount>30</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -34176,11 +34177,6 @@ Rank 3: Your passive ki regeneration is increased by 1.</Description>
                   <Bonus>Enhancement</Bonus>
                   <Save>Will</Save>
                   <AmountVector size="3">1 2 3</AmountVector>
-               </Effect>
-               <Effect>
-                  <Type>KiRegeneration</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AmountVector size="3">0 0 1</AmountVector>
                </Effect>
             </EnhancementSelection>
          </Selector>
@@ -48091,7 +48087,7 @@ if it is considered a light weapon for your character.</Description>
          <InternalName>DSSurvivalistII</InternalName>
          <Description>You gain an additional 20 hit points.
 While wearing Light Armor you gain an additional 4 Physical Resistance Rating.
-Survivalist I &amp; II are cumulative: +30 HP and +7 PRR for both.
+Survivalist I and II are cumulative: +30 HP and +7 PRR for both.
 PRR bonus does not apply to cloth or no armor.</Description>
          <Icon>DSSurvivalistII</Icon>
          <XPosition>0</XPosition>
@@ -48226,7 +48222,7 @@ gain three stacks of Archer's Focus.
          <InternalName>DSSurvivalistIII</InternalName>
          <Description>You gain an additional 30 hit points.
 While wearing Light Armor you gain an additional 5 Physical Resistance Rating.
-Survivalist I, II &amp; III are cumulative: +60 HP and +12 PRR for all three.
+Survivalist I, II and III are cumulative: +60 HP and +12 PRR for all three.
 PRR bonus does not apply to cloth or no armor.</Description>
          <Icon>DSSurvivalistIII</Icon>
          <XPosition>0</XPosition>
@@ -49050,11 +49046,7 @@ knocking aside one incoming projectile that would have struck you every 6 second
             <Bonus>Enhancement</Bonus>
             <AmountVector size="1">10</AmountVector>
          </Effect>
-         <Effect>
-            <Type>Incorpreality</Type>
-            <Bonus>Enhancement</Bonus>
-            <AmountVector size="1">5</AmountVector>
-         </Effect>
+         <!--Incorpreality-->
          <Effect>
             <Type>PRR</Type>
             <Bonus>Enhancement</Bonus>
@@ -75839,11 +75831,6 @@ an additional +1 bonus to saves vs. Fear.</Description>
                   <AmountVector size="1">1</AmountVector>
                </Effect>
                <Effect>
-                  <Type>BlockingDR</Type>
-                  <Bonus>Destiny</Bonus>
-                  <AmountVector size="1">2</AmountVector>
-               </Effect>
-               <Effect>
                   <Type>AttackBonus</Type>
                   <Bonus>Destiny</Bonus>
                   <Weapon>All</Weapon>
@@ -76007,11 +75994,6 @@ an additional +1 bonus to saves vs. Fear.</Description>
                   <Bonus>Destiny</Bonus>
                   <Save>Fear</Save>
                   <AmountVector size="1">1</AmountVector>
-               </Effect>
-               <Effect>
-                  <Type>BlockingDR</Type>
-                  <Bonus>Destiny</Bonus>
-                  <AmountVector size="1">2</AmountVector>
                </Effect>
                <Effect>
                   <Type>AttackBonus</Type>
@@ -77201,11 +77183,6 @@ You are proficient with Handwraps.</Description>
             <Weapon>Handwraps</Weapon>
          </Effect>
          <Effect>
-            <Type>MaxKiBonus</Type>
-            <Bonus>Destiny</Bonus>
-            <AmountVector size="1">10</AmountVector>
-         </Effect>
-         <Effect>
             <Type>SpellResistance</Type>
             <Bonus>Destiny</Bonus>
             <AmountVector size="1">1</AmountVector>
@@ -77232,11 +77209,6 @@ versus enchantments. Also gain +1 to the DC of your tactical feats.</Description
             <Type>GrantFeat</Type>
             <Bonus>Destiny</Bonus>
             <Feat>Slippery Mind</Feat>
-         </Effect>
-         <Effect>
-            <Type>MaxKiBonus</Type>
-            <Bonus>Destiny</Bonus>
-            <AmountVector size="1">10</AmountVector>
          </Effect>
          <Effect>
             <Type>SpellResistance</Type>
@@ -77269,11 +77241,6 @@ and other adverse conditions affecting you. Cost 30ki.</Description>
             </Requirement>
          </Requirements>
          <Effect>
-            <Type>MaxKiBonus</Type>
-            <Bonus>Destiny</Bonus>
-            <AmountVector size="1">10</AmountVector>
-         </Effect>
-         <Effect>
             <Type>SpellResistance</Type>
             <Bonus>Destiny</Bonus>
             <AmountVector size="1">1</AmountVector>
@@ -77296,11 +77263,6 @@ Gain +1 to the DC of your tactical feats.</Description>
                <Enhancement>GOFCore3</Enhancement>
             </Requirement>
          </Requirements>
-         <Effect>
-            <Type>MaxKiBonus</Type>
-            <Bonus>Destiny</Bonus>
-            <AmountVector size="1">10</AmountVector>
-         </Effect>
          <Effect>
             <Type>SpellResistance</Type>
             <Bonus>Destiny</Bonus>
@@ -77335,11 +77297,6 @@ Gain +1 to the DC of your tactical feats.</Description>
             </Requirement>
          </Requirements>
          <Effect>
-            <Type>MaxKiBonus</Type>
-            <Bonus>Destiny</Bonus>
-            <AmountVector size="1">10</AmountVector>
-         </Effect>
-         <Effect>
             <Type>SpellResistance</Type>
             <Bonus>Destiny</Bonus>
             <AmountVector size="1">1</AmountVector>
@@ -77362,11 +77319,6 @@ Gain +1 to the DC of your tactical feats.</Description>
             </Requirement>
          </Requirements>
          <Effect>
-            <Type>MaxKiBonus</Type>
-            <Bonus>Destiny</Bonus>
-            <AmountVector size="1">10</AmountVector>
-         </Effect>
-         <Effect>
             <Type>SpellResistance</Type>
             <Bonus>Destiny</Bonus>
             <AmountVector size="1">1</AmountVector>
@@ -77375,11 +77327,6 @@ Gain +1 to the DC of your tactical feats.</Description>
             <Type>Immunity</Type>
             <Bonus>Destiny</Bonus>
             <Immunity>Knockdown</Immunity>
-         </Effect>
-         <Effect>
-            <Type>KiRegeneration</Type>
-            <Bonus>Destiny</Bonus>
-            <AmountVector size="1">1</AmountVector>
          </Effect>
          <Effect>
             <Type>TacticalDC</Type>
@@ -77450,16 +77397,6 @@ Gain +[0/0/1] passive ki regeneration.</Description>
          <Ranks>3</Ranks>
          <MinSpent>0</MinSpent>
          <Requirements/>
-         <Effect>
-            <Type>Ki</Type>
-            <Bonus>Destiny</Bonus>
-            <AmountVector size="3">15 30 45</AmountVector>
-         </Effect>
-         <Effect>
-            <Type>KiRegeneration</Type>
-            <Bonus>Destiny</Bonus>
-            <AmountVector size="3">0 0 1</AmountVector>
-         </Effect>
          <Effect>
             <Type>SkillBonus</Type>
             <Bonus>Destiny</Bonus>
@@ -83933,11 +83870,6 @@ Lay On Hands regenerate one use every 3 minutes and regenerate [0/10/20]% faster
          <Ranks>3</Ranks>
          <MinSpent>8</MinSpent>
          <Requirements/>
-         <Effect>
-            <Type>LayOnHandsBonus</Type>
-            <Bonus>Destiny</Bonus>
-            <AmountVector size="3">1 2 3</AmountVector>
-         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Unyielding Sentinel: Ability III</Name>

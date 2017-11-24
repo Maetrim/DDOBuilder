@@ -14,8 +14,44 @@
         <EffectDescription>Vitality +40: Passive: +40 Vitality bonus to Hit points.</EffectDescription>
         <EffectDescription>Intimidate +20: Passive: +20 Competence Bonus to the Intimidate skill.</EffectDescription>
         <Effect>
-            <Type>NegativeLevel</Type>
-            <Bonus>Stacking</Bonus>
+            <DisplayName>Negative Level</DisplayName>
+            <Type>Hitpoints</Type>
+            <Bonus>Penalty</Bonus>
+            <Amount>-5</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Good</Stance>
+        </Effect>
+        <Effect>
+            <DisplayName>Negative Level</DisplayName>
+            <Type>AttackBonus</Type>
+            <Bonus>Penalty</Bonus>
+            <Amount>-2</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Good</Stance>
+        </Effect>
+        <Effect>
+            <DisplayName>Negative Level</DisplayName>
+            <Type>SaveBonus</Type>
+            <Bonus>Penalty</Bonus>
+            <Amount>-2</Amount>
+            <Save>All</Save>
+            <Stance>Good</Stance>
+        </Effect>
+        <Effect>
+            <DisplayName>Negative Level</DisplayName>
+            <Type>SkillBonus</Type>
+            <Bonus>Penalty</Bonus>
+            <Amount>-2</Amount>
+            <Skill>All</Skill>
+            <Stance>Good</Stance>
+        </Effect>
+        <Effect>
+            <DisplayName>Negative Level</DisplayName>
+            <Type>CasterLevel</Type>
+            <Bonus>Penalty</Bonus>
+            <Amount>-1</Amount>
+            <Class>All</Class>
+            <Stance>Good</Stance>
         </Effect>
         <!--Fearsome-->
         <Effect>
@@ -47,8 +83,14 @@
             <Skill>Intimidate</Skill>
         </Effect>
         <!--upgrade options-->
-        <PrimaryUpgrade>Yellow</PrimaryUpgrade>
-        <PrimaryUpgrade>Blue</PrimaryUpgrade>
-        <SecondaryUpgrade>Green</SecondaryUpgrade>
+        <SlotUpgrade>
+            <Type>Primary Upgrade</Type>
+            <UpgradeType>Yellow</UpgradeType>
+            <UpgradeType>Blue</UpgradeType>
+        </SlotUpgrade>
+        <SlotUpgrade>
+            <Type>Secondary Upgrade</Type>
+            <UpgradeType>Green</UpgradeType>
+        </SlotUpgrade>
     </Item>
 </Items>

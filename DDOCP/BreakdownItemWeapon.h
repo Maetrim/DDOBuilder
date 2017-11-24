@@ -46,6 +46,8 @@ class BreakdownItemWeapon :
         virtual void UpdateEnhancementTrained(Character * charData, const std::string & enhancementName, const std::string & selection, bool isTier5) override;
         virtual void UpdateEnhancementRevoked(Character * charData, const std::string & enhancementName, const std::string & selection, bool isTier5) override;
     private:
+         bool IsMartialWeapon() const;
+         bool IsSimpleWeapon() const;
          bool IsThrownWeapon() const;
          bool IsOneHandedWeapon() const;
          bool IsRangedWeapon() const;

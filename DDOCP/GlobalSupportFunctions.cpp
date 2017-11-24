@@ -2298,3 +2298,39 @@ const Item & FindItem(const std::string & itemName)
     throw "Error";
 }
 
+double BAB(ClassType ct)
+{
+    // return the amount of BAB per level of this class
+    double bab = 0;
+    switch (ct)
+    {
+    case Class_Barbarian:
+    case Class_Fighter:
+    case Class_Paladin:
+    case Class_Ranger:
+        // full BAB class
+        bab = 1;
+        break;
+
+    case Class_Artificer:
+    case Class_Bard:
+    case Class_Cleric:
+    case Class_Druid:
+    case Class_FavoredSoul:
+    case Class_Monk:
+    case Class_Rogue:
+    case Class_Warlock:
+        // 0.75 BAB class
+        bab = 0.75;
+        break;
+
+    case Class_Epic:
+        // epic levels are 0.5 BAB also
+    case Class_Sorcerer:
+    case Class_Wizard:
+        // 0.5 BAB class
+        bab = 0.5;
+        break;
+    }
+    return bab;
+}

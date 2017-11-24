@@ -21,7 +21,8 @@ ActiveEffect::ActiveEffect() :
     m_amountPerLevel(0),
     m_class(Class_Unknown),
     m_bIsPercentage(false),
-    m_percentageAmount(0)
+    m_percentageAmount(0),
+    m_bWholeNumbersOnly(false)
 {
 }
 
@@ -43,7 +44,8 @@ ActiveEffect::ActiveEffect(
     m_amountPerLevel(0),
     m_class(Class_Unknown),
     m_bIsPercentage(false),
-    m_percentageAmount(0)
+    m_percentageAmount(0),
+    m_bWholeNumbersOnly(false)
 {
 }
 
@@ -64,7 +66,8 @@ ActiveEffect::ActiveEffect(
     m_amountPerLevel(0),
     m_class(Class_Unknown),
     m_bIsPercentage(false),
-    m_percentageAmount(0)
+    m_percentageAmount(0),
+    m_bWholeNumbersOnly(false)
 {
     // stacks is set immediately after this is constructed
 }
@@ -88,7 +91,8 @@ ActiveEffect::ActiveEffect(
     m_amountPerLevel(0),
     m_class(Class_Unknown),
     m_bIsPercentage(false),
-    m_percentageAmount(0)
+    m_percentageAmount(0),
+    m_bWholeNumbersOnly(false)
 {
 }
 
@@ -109,7 +113,8 @@ ActiveEffect::ActiveEffect(
     m_amountPerLevel(0),
     m_class(Class_Unknown),
     m_bIsPercentage(false),
-    m_percentageAmount(0)
+    m_percentageAmount(0),
+    m_bWholeNumbersOnly(false)
 {
 }
 
@@ -130,7 +135,8 @@ ActiveEffect::ActiveEffect(
     m_amountPerLevel(0),
     m_class(classType),
     m_bIsPercentage(false),
-    m_percentageAmount(0)
+    m_percentageAmount(0),
+    m_bWholeNumbersOnly(false)
 {
 }
 
@@ -151,7 +157,8 @@ ActiveEffect::ActiveEffect(
     m_amountPerLevel(amountPerLevel),
     m_class(classType),
     m_bIsPercentage(false),
-    m_percentageAmount(0)
+    m_percentageAmount(0),
+    m_bWholeNumbersOnly(false)
 {
 }
 
@@ -324,7 +331,7 @@ void ActiveEffect::SetStacks(size_t count)
     m_numStacks = count;
 }
 
-double ActiveEffect::TotalAmount() const
+double ActiveEffect::TotalAmount(bool allowTruncate) const
 {
     double value = 0.0;
     switch (m_type)
@@ -357,6 +364,11 @@ double ActiveEffect::TotalAmount() const
     default:
         value = 0.0;
         break;
+    }
+    if (allowTruncate && m_bWholeNumbersOnly)
+    {
+        // round down to whole number
+        value = (int)(value);
     }
     return value;
 }
@@ -419,10 +431,17 @@ void ActiveEffect::SetPercentageValue(double amount) const
     m_percentageAmount = amount;
 }
 
+void ActiveEffect::SetWholeNumbersOnly()
+{
+    m_bWholeNumbersOnly = true;
+}
+
 bool ActiveEffect::operator<=(const ActiveEffect & other) const
 {
     bool lessThanOrEqual = false;
-    if (m_bonusType != Bonus_stacking)   // stacking items always stack
+    if (m_bonusType != Bonus_stacking           // stacking bonus's always stack
+            && m_bonusType != Bonus_reaper      // reaper bonus's always stack
+            && m_bonusType != Bonus_mythic)     // mythic bonus's always stack
     {
         // must be the same type of bonus to allow a lessThan
         if (m_type == other.m_type
@@ -432,7 +451,7 @@ bool ActiveEffect::operator<=(const ActiveEffect & other) const
             // comes down to the amount field
             if (m_type == other.m_type)
             {
-                lessThanOrEqual = (TotalAmount() <= other.TotalAmount());
+                lessThanOrEqual = (TotalAmount(false) <= other.TotalAmount(false));
             }
         }
     }

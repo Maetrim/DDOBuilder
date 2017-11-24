@@ -147,7 +147,7 @@ void BreakdownItem::AddActiveItems(
                 && !(*it).IsPercentage())
         {
             // only list it if its non-zero
-            if ((*it).TotalAmount() != 0)
+            if ((*it).TotalAmount(false) != 0)
             {
                 // put the effect name into the control
                 CString effectName = (*it).Name();
@@ -186,7 +186,7 @@ void BreakdownItem::AddActivePercentageItems(
                 && (*it).IsPercentage())
         {
             // only list it if its non-zero
-            if ((*it).TotalAmount() != 0)
+            if ((*it).TotalAmount(false) != 0)
             {
                 // put the effect name into the control
                 CString effectName = (*it).Name();
@@ -224,7 +224,7 @@ void BreakdownItem::AddDeactiveItems(
         if (!(*it).IsActive(m_pCharacter))
         {
             // only list it if its non-zero
-            if ((*it).TotalAmount() != 0)
+            if ((*it).TotalAmount(false) != 0)
             {
                 // put the effect name into the control
                 CString effectName = (*it).Name();
@@ -261,7 +261,7 @@ double BreakdownItem::SumItems(const std::list<ActiveEffect> & effects) const
         {
             if (!(*it).IsPercentage())
             {
-                total += (*it).TotalAmount();
+                total += (*it).TotalAmount(true);
             }
         }
         ++it;
@@ -281,7 +281,7 @@ double BreakdownItem::DoPercentageEffects(const std::list<ActiveEffect> & effect
             {
                 // the amount is a percentage of the current total that
                 // needs to be added.
-                double percent = (*it).TotalAmount();
+                double percent = (*it).TotalAmount(false);
                 double amount = (total * percent / 100.0);
                 // round it to a whole number
                 amount = (double)(int)amount;
@@ -462,7 +462,7 @@ void BreakdownItem::RevokeEffect(
             // it an existing effect, clear a stack
             found = true;
             bool deleteIt = (*it).RevokeStack();        // true if no stacks left
-            if (!deleteIt && (*it).TotalAmount() == 0)
+            if (!deleteIt && (*it).TotalAmount(false) == 0)
             {
                 // if it resolves to no bonus, time to delete it also
                 deleteIt = true;
@@ -611,6 +611,15 @@ bool BreakdownItem::GetActiveEffect(
                 effect.AmountPerLevel(),
                 levels,
                 effect.Class());        // no tree
+    }
+    else if (effect.HasAmountPerAP())
+    {
+        ASSERT(effect.HasEnhancementTree());
+        *activeEffect = ActiveEffect(
+                effect.Bonus(),
+                name,
+                effect.AmountPerAP(),
+                effect.EnhancementTree());
     }
     else if (effect.HasAmount())
     {

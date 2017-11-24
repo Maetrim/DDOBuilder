@@ -730,6 +730,54 @@ void Character::SetAlignment(AlignmentType alignment)
     m_pDocument->SetModifiedFlag(TRUE);
     // revoking a class in theory can invalidate a feat selection
     VerifyTrainedFeats();
+    SetAlignmentStances();
+}
+
+void Character::SetAlignmentStances()
+{
+    Stance lawful("Lawful", "Lawful", "You are Lawful");
+    Stance chaotic("Chaotic", "Chaotic", "You are Chaotic");
+    Stance good("Good", "Good", "You are Good");
+    Stance trueNeutral("True Neutral", "TrueNeutral", "You are True Neutral");
+    switch (m_Alignment)
+    {
+    case Alignment_LawfulGood:
+        ActivateStance(lawful);
+        ActivateStance(good);
+        DeactivateStance(chaotic);
+        DeactivateStance(trueNeutral);
+        break;
+    case Alignment_LawfulNeutral:
+        ActivateStance(lawful);
+        DeactivateStance(good);
+        DeactivateStance(chaotic);
+        DeactivateStance(trueNeutral);
+        break;
+    case Alignment_NeutralGood:
+        DeactivateStance(lawful);
+        ActivateStance(good);
+        DeactivateStance(chaotic);
+        DeactivateStance(trueNeutral);
+        break;
+    case Alignment_TrueNeutral:
+        DeactivateStance(lawful);
+        DeactivateStance(good);
+        DeactivateStance(chaotic);
+        ActivateStance(trueNeutral);
+        break;
+    case Alignment_ChaoticNeutral:
+        DeactivateStance(lawful);
+        DeactivateStance(good);
+        ActivateStance(chaotic);
+        DeactivateStance(trueNeutral);
+        break;
+    case Alignment_ChaoticGood:
+        DeactivateStance(lawful);
+        ActivateStance(good);
+        ActivateStance(chaotic);
+        DeactivateStance(trueNeutral);
+        break;
+    }
 }
 
 void Character::SetAbilityTome(AbilityType ability, size_t value)
@@ -1228,6 +1276,7 @@ void Character::NowActive()
     ApplyGearEffects();     // apply effects from equipped gear
     m_previousGuildLevel = 0;   // ensure all effects apply
     ApplyGuildBuffs();
+    SetAlignmentStances();
 }
 
 std::list<TrainedFeat> Character::AutomaticFeats(
@@ -1369,7 +1418,6 @@ void Character::ActivateStance(const Stance & stance)
         NotifyStanceDeactivated((*isit));
         ++isit;
     }
-    m_pDocument->SetModifiedFlag(TRUE);
 }
 
 void Character::DeactivateStance(const Stance & stance)
@@ -1377,7 +1425,6 @@ void Character::DeactivateStance(const Stance & stance)
     // de-activation of a stance only affects that stance
     m_Stances.RevokeStance(stance.Name());
     NotifyStanceDeactivated(stance.Name());
-    m_pDocument->SetModifiedFlag(TRUE);
 }
 
 bool Character::IsStanceActive(const std::string & name) const
@@ -1985,38 +2032,8 @@ size_t Character::BaseAttackBonus(
         // have they trained any levels in this class?
         if (classLevels[ci] > 0)
         {
-            // they have levels in this class
-            // work out how much BAB these class levels give
-            switch (ci)
-            {
-            case Class_Barbarian:
-            case Class_Fighter:
-            case Class_Paladin:
-            case Class_Ranger:
-                // full BAB class
-                bab += classLevels[ci];
-                break;
-
-            case Class_Artificer:
-            case Class_Bard:
-            case Class_Cleric:
-            case Class_Druid:
-            case Class_FavoredSoul:
-            case Class_Monk:
-            case Class_Rogue:
-            case Class_Warlock:
-                // 0.75 BAB class
-                bab += ((classLevels[ci] * 3) / 4); // fractions dropped
-                break;
-
-            case Class_Epic:
-                // epic levels are 0.5 BAB also
-            case Class_Sorcerer:
-            case Class_Wizard:
-                // 0.5 BAB class
-                bab += (classLevels[ci] / 2);       // fractions dropped
-                break;
-            }
+           double classBab = BAB((ClassType)ci);        // 0.5, 0.75 or 1.0
+           bab += (size_t)(classBab * classLevels[ci]); // fractions dropped
         }
     }
     return bab;
@@ -2595,28 +2612,28 @@ void Character::CountBonusAP()
         std::list<Feat>::const_iterator fi = racialFeats.begin();
         while (fi != racialFeats.end())
         {
-            // look at all the feat effects and see if any affect our AP count
-            const std::list<Effect> & effects = (*fi).Effects();
-            std::list<Effect>::const_iterator ei = effects.begin();
-            while (ei != effects.end())
+            size_t count = GetSpecialFeatTrainedCount(fi->Name());
+            if (count > 0)
             {
-                if (ei->Type() == Effect_APBonus)
+                // look at all the feat effects and see if any affect our AP count
+                const std::list<Effect> & effects = (*fi).Effects();
+                std::list<Effect>::const_iterator ei = effects.begin();
+                while (ei != effects.end())
                 {
-                    // APs are always whole numbers
-                    if (ei->HasAmount())
+                    if (ei->Type() == Effect_APBonus)
                     {
-                        APcount += (size_t)ei->Amount();
-                    }
-                    else if (ei->HasAmountVector())
-                    {
-                        size_t count = GetSpecialFeatTrainedCount(fi->Name());
-                        if (count > 0)
+                        // APs are always whole numbers
+                        if (ei->HasAmount())
+                        {
+                            APcount += (size_t)ei->Amount();
+                        }
+                        else if (ei->HasAmountVector())
                         {
                             APcount += (size_t)ei->AmountVector()[count-1];
                         }
                     }
+                    ei++;
                 }
-                ei++;
             }
             fi++;
         }
@@ -2624,28 +2641,28 @@ void Character::CountBonusAP()
         fi = specialFeats.begin();
         while (fi != specialFeats.end())
         {
-            // look at all the feat effects and see if any affect our AP count
-            const std::list<Effect> & effects = (*fi).Effects();
-            std::list<Effect>::const_iterator ei = effects.begin();
-            while (ei != effects.end())
+            size_t count = GetSpecialFeatTrainedCount(fi->Name());
+            if (count > 0)
             {
-                if (ei->Type() == Effect_APBonus)
+                // look at all the feat effects and see if any affect our AP count
+                const std::list<Effect> & effects = (*fi).Effects();
+                std::list<Effect>::const_iterator ei = effects.begin();
+                while (ei != effects.end())
                 {
-                    // APs are always whole numbers
-                    if (ei->HasAmount())
+                    if (ei->Type() == Effect_APBonus)
                     {
-                        APcount += (size_t)ei->Amount();
-                    }
-                    else if (ei->HasAmountVector())
-                    {
-                        size_t count = GetSpecialFeatTrainedCount(fi->Name());
-                        if (count > 0)
+                        // APs are always whole numbers
+                        if (ei->HasAmount())
+                        {
+                            APcount += (size_t)ei->Amount();
+                        }
+                        else if (ei->HasAmountVector())
                         {
                             APcount += (size_t)ei->AmountVector()[count-1];
                         }
                     }
+                    ei++;
                 }
-                ei++;
             }
             fi++;
         }
@@ -3922,10 +3939,15 @@ void Character::RevokeGearEffects()
                     // now revoke the augments effects
                     std::string name;
                     name = ss.str();
-                    const std::list<Effect> & effects = augment.Effects();
-                    std::list<Effect>::const_iterator it = effects.begin();
+                    std::list<Effect> effects = augment.Effects();
+                    std::list<Effect>::iterator it = effects.begin();
                     while (it != effects.end())
                     {
+                        if (augment.HasEnterValue()
+                                && augments[ai].HasValue())
+                        {
+                            (*it).Set_Amount(augments[ai].Value());
+                        }
                         NotifyItemEffectRevoked(name, (*it));
                         ++it;
                     }
@@ -3981,10 +4003,15 @@ void Character::ApplyGearEffects()
                     // now notify the augments effects
                     std::string name;
                     name = ss.str();
-                    const std::list<Effect> & effects = augment.Effects();
-                    std::list<Effect>::const_iterator it = effects.begin();
+                    std::list<Effect> effects = augment.Effects();
+                    std::list<Effect>::iterator it = effects.begin();
                     while (it != effects.end())
                     {
+                        if (augment.HasEnterValue()
+                                && augments[ai].HasValue())
+                        {
+                            (*it).Set_Amount(augments[ai].Value());
+                        }
                         NotifyItemEffect(name, (*it));
                         ++it;
                     }

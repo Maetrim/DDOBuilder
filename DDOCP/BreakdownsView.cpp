@@ -6,6 +6,7 @@
 
 #include "BreakdownItemAbility.h"
 #include "BreakdownItemAssassinate.h"
+#include "BreakdownItemBAB.h"
 #include "BreakdownItemCasterLevel.h"
 #include "BreakdownItemEnergyAbsorption.h"
 #include "BreakdownItemEnergyResistance.h"
@@ -478,6 +479,17 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
             m_itemBreakdownTree.SetItemData(hUnconsciousRange, (DWORD)(void*)pUR);
             m_items.push_back(pUR);
         }
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Base Attack Bonus",
+                hParent,
+                TVI_LAST);
+        BreakdownItem * pBAB = new BreakdownItemBAB(
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pBAB);
+        m_items.push_back(pBAB);
     }
     // defensive physical items
     // defensive items are:

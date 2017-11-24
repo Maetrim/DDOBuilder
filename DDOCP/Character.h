@@ -108,6 +108,8 @@ class Character :
         void SetCharacterName(const CString & name);
         void SetRace(RaceType race);
         void SetAlignment(AlignmentType alignment);
+        void SetAlignmentStances();
+
 
         // class selection
         bool IsClassAvailable(ClassType type) const;

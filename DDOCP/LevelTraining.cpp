@@ -101,3 +101,12 @@ std::string LevelTraining::FeatName(TrainableFeatTypes type) const
     return m_TrainedFeats.FeatName(type);
 }
 
+const FeatsListObject & LevelTraining::AutomaticFeats() const
+{
+    return m_AutomaticFeats;
+}
+
+void LevelTraining::Set_AutomaticFeats(const FeatsListObject & newValue)
+{
+    m_AutomaticFeats = newValue;
+}

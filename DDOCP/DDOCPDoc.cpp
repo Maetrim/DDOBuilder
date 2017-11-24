@@ -910,6 +910,13 @@ void CDDOCPDoc::AddGear(std::stringstream & forumExport)
                 forumExport << ": ";
                 if (augments[i].HasSelectedAugment())
                 {
+                    // may be a configurable augment
+                    if (augments[i].HasValue())
+                    {
+                        CString text;
+                        text.Format("%+.0f ", augments[i].Value());
+                        forumExport << (LPCTSTR)text;
+                    }
                     forumExport << augments[i].SelectedAugment();
                 }
                 else

@@ -365,6 +365,7 @@ void CStancesView::OnLButtonDown(UINT nFlags, CPoint point)
                 {
                     m_pCharacter->ActivateStance(pStance->GetStance());
                 }
+                m_pDocument->SetModifiedFlag(TRUE);
             }
             else
             {

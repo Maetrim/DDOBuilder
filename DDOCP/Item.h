@@ -9,6 +9,7 @@
 #include "EquipmentSlot.h"
 #include "InventorySlotTypes.h"
 #include "ItemAugment.h"
+#include "SlotUpgrade.h"
 
 class Item :
     public XmlLib::SaxContentElement
@@ -49,10 +50,7 @@ class Item :
                 DL_OBJECT(_, EquipmentSlot, Slots) \
                 DL_OBJECT_VECTOR(_, Effect, Effects) \
                 DL_OBJECT_VECTOR(_, ItemAugment, Augments) \
-                DL_STRING_LIST(_, PrimaryUpgrade) \
-                DL_STRING_LIST(_, SecondaryUpgrade) \
-                DL_STRING_LIST(_, LegendarySlavelordUpgrade)
-
+                DL_OBJECT_VECTOR(_, SlotUpgrade, SlotUpgrades)
 
         DL_DECLARE_ACCESS(Item_PROPERTIES)
         DL_DECLARE_VARIABLES(Item_PROPERTIES)

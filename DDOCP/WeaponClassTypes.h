@@ -29,6 +29,8 @@ enum WeaponClassType
     WeaponClass_MartialArts,
     WeaponClass_Axe,
     WeaponClass_Light,
+    WeaponClass_Martial,
+    WeaponClass_Simple,
 };
 const XmlLib::enumMapEntry<WeaponClassType> weaponClassTypeMap[] =
 {
@@ -50,5 +52,7 @@ const XmlLib::enumMapEntry<WeaponClassType> weaponClassTypeMap[] =
     {WeaponClass_MartialArts, L"MartialArts"},
     {WeaponClass_Axe, L"Axe"},
     {WeaponClass_Light, L"Light"},
+    {WeaponClass_Martial, L"Martial"},
+    {WeaponClass_Simple, L"Simple"},
     {WeaponClassType(0), NULL}
 };
