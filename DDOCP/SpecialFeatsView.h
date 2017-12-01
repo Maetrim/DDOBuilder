@@ -4,6 +4,7 @@
 #include "Resource.h"
 #include <vector>
 #include <list>
+#include "FeatTypes.h"
 
 class Feat;
 
@@ -35,7 +36,8 @@ class CSpecialFeatsView :
         void CreateFeatWindows(
                 CStatic * groupWindow,
                 const std::list<Feat> & featList,
-                std::vector<CDialog *> * dialogs);
+                std::vector<CDialog *> * dialogs,
+                TrainableFeatTypes type);
         size_t PositionWindows(
                 CStatic * groupWindow,
                 size_t startIndex,

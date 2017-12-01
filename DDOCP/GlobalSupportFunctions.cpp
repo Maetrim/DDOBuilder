@@ -20,7 +20,7 @@ namespace
     {
         // backslash is not allowed in registry key names
         key->Remove('\\');
-        // line breaks now allowed either
+        // line breaks not allowed either
         key->Remove('\r');
         key->Remove('\n');
     }
@@ -442,6 +442,7 @@ Spell FindSpellByName(const std::string & name)
 
 const EnhancementTree & GetEnhancementTree(const std::string & treeName)
 {
+    static EnhancementTree emptyTree;
     const std::list<EnhancementTree> & allTrees = EnhancementTrees();
     std::list<EnhancementTree>::const_iterator it = allTrees.begin();
     while (it != allTrees.end())
@@ -454,7 +455,7 @@ const EnhancementTree & GetEnhancementTree(const std::string & treeName)
         }
         ++it;
     }
-    throw "Failed to find required tree";
+    return emptyTree;
 }
 
 const EnhancementTreeItem * FindEnhancement(
@@ -662,7 +663,7 @@ int FindItemIndexByItemData(
 {
     // look through each items item data in the control
     // and return the index of the item that matches what we are looking for
-    int index = -1;     // assume fail
+    int index = CB_ERR;     // assume fail
     size_t count = pControl->GetItemCount();
     for (size_t ii = 0 ; ii < count; ++ii)
     {
@@ -900,7 +901,10 @@ size_t SkillPoints(
         size_t intelligence,
         size_t level)
 {
+    // determine the number of skill points for this class at this level
+    // for the given race and intelligence
     size_t skillPoints = 0;
+    // basic number for the class first
     switch (type)
     {
     case Class_Cleric:
@@ -932,9 +936,9 @@ size_t SkillPoints(
     default:
         break;
     }
+    // humans gain 1 extra skill point per level
     if (race == Race_Human)
     {
-        // humans gain 1 extra skill point per level
         ++skillPoints;
     }
     // int modifier
@@ -945,9 +949,9 @@ size_t SkillPoints(
         // minimum of 1 skill point always
         skillPoints = 1;
     }
+    // 4 times the skill points at 1st level
     if (level == 0) // level is 0 based
     {
-        // 4 times the skill points at 1st level
         skillPoints *= 4;
     }
     return skillPoints;
@@ -1139,6 +1143,8 @@ bool IsInGroup(TrainableFeatTypes type, const FeatGroup & group)
     case TFT_Standard:
     case TFT_HumanBonus:
     case TFT_PDKBonus:
+        // we may need some special code here to check against some standard feat
+        // types such as dragon marks which should not be available to PDKs
         inGroup = group.HasIsStandardFeat();
         break;
 
@@ -1543,7 +1549,8 @@ HRESULT LoadImageFile(
         pImage->SetTransparentColor(RGB(255, 128, 255));
         if (type == IT_enhancement
                 || type == IT_feat
-                || type == IT_spell)
+                || type == IT_spell
+                || type == IT_item)
         {
             // check the image is the correct size
             if (pImage->GetHeight() != 32
@@ -2005,7 +2012,10 @@ void MakeGrayScale(CImage * pImage, COLORREF transparent)
         // its the background transparent color
         for (size_t ci = 0; ci < numColors; ++ci)
         {
-            COLORREF color = RGB(pColors[ci].rgbRed, pColors[ci].rgbGreen, pColors[ci].rgbBlue);
+            COLORREF color = RGB(
+                    pColors[ci].rgbRed,
+                    pColors[ci].rgbGreen,
+                    pColors[ci].rgbBlue);
             if (color != transparent)
             {
                 // this is not the transparent background color
@@ -2062,8 +2072,23 @@ CString TrainableFeatTypeLabel(TrainableFeatTypes type)
     case TFT_Standard:
         text = "Standard";
         break;
-    case TFT_Special:
-        text = "Special";
+    case TFT_HeroicPastLife:
+        text = "Heroic Past Life";
+        break;
+    case TFT_EpicPastLife:
+        text = "Epic Past Life";
+        break;
+    case TFT_IconicPastLife:
+        text = "Iconic Past Life";
+        break;
+    case TFT_RacialPastLife:
+        text = "Racial Past Life";
+        break;
+    case TFT_SpecialFeat:
+        text = "Special Feat";
+        break;
+    case TFT_GrantedFeat:
+        text = "Granted Feat";
         break;
     case TFT_AasimarBond:
         text = "Aasimar Bond";
@@ -2284,6 +2309,7 @@ BreakdownItem * FindBreakdown(BreakdownType type)
 
 const Item & FindItem(const std::string & itemName)
 {
+    static Item badItem;
     const std::list<Item> & items = Items();
     std::list<Item>::const_iterator it = items.begin();
     while (it != items.end())
@@ -2295,7 +2321,7 @@ const Item & FindItem(const std::string & itemName)
         ++it;
     }
     ASSERT(FALSE);   // required item not found
-    throw "Error";
+    return badItem;
 }
 
 double BAB(ClassType ct)

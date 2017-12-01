@@ -19,7 +19,10 @@ class EnhancementTreeItem :
         void Write(XmlLib::SaxWriter * writer) const;
         std::string DisplayName(const std::string & selection) const;
         std::string ActiveIcon(const Character & charData, bool * isActive) const;
-        bool MeetRequirements(const Character & charData, const std::string & treeName) const;
+        bool MeetRequirements(
+                const Character & charData,
+                const std::string & selection,
+                const std::string & treeName) const;
         bool CanTrain(
                 const Character & charData,
                 const std::string & treeName,
@@ -31,6 +34,7 @@ class EnhancementTreeItem :
                 std::vector<CString> * requirements,
                 std::vector<bool> * met) const;
         std::list<Stance> Stances(const std::string & selection) const;
+        size_t Cost(const std::string & selection) const;
 
         bool VerifyObject(
                 std::stringstream * ss,

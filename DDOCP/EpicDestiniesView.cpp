@@ -616,12 +616,14 @@ void CEpicDestiniesView::SetTooltipText(
 {
     const TrainedEnhancement * te = m_pCharacter->IsTrained(item.InternalName(), "");
     const EnhancementSelection * es = NULL;
+    std::string selection;
     m_tooltip.SetOrigin(tipTopLeft, tipAlternate);
     if (te != NULL)
     {
         // this item is trained, we may need to show the selected sub-item tooltip text
         if (te->HasSelection())
         {
+            selection = te->Selection();
             const Selector & selector = item.Selections();
             const std::list<EnhancementSelection> & selections = selector.Selections();
             // find the selected item
@@ -652,6 +654,7 @@ void CEpicDestiniesView::SetTooltipText(
         m_tooltip.SetEnhancementTreeItem(
                 *m_pCharacter,
                 &item,
+                selection,
                 m_pCharacter->APSpentInTree(treeName));
     }
     m_tooltip.Show();

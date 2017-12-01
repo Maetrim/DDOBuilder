@@ -117,6 +117,10 @@ size_t Spell::SpellLevel(ClassType ct) const
 std::vector<std::string> Spell::Metamagics() const
 {
     std::vector<std::string> metas;
+    if (HasEmbolden())
+    {
+        metas.push_back("Embolden");
+    }
     if (HasEmpower())
     {
         metas.push_back("Empower");
@@ -136,6 +140,10 @@ std::vector<std::string> Spell::Metamagics() const
     if (HasHeighten())
     {
         metas.push_back("Heighten");
+    }
+    if (HasIntensify())
+    {
+        metas.push_back("Intensify");
     }
     if (HasMaximize())
     {

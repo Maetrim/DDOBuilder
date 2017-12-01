@@ -67,11 +67,13 @@ class CharacterObserver :
         virtual void UpdateAvailableTwistsChanged(Character * charData) {};
         virtual void UpdateItemEffect(Character * charData, const std::string & itemName,  const Effect & effect) {};
         virtual void UpdateItemEffectRevoked(Character * charData, const std::string & itemName, const Effect & effect) {};
+        virtual void UpdateGrantedFeatsChanged(Character * charData) {};
 };
 
 class Character :
     public XmlLib::SaxContentElement,
-    public Subject<CharacterObserver>
+    public Subject<CharacterObserver>,
+    public CharacterObserver        // we observes ourselves
 {
     public:
         Character(CDDOCPDoc * pDocument);
@@ -110,7 +112,6 @@ class Character :
         void SetAlignment(AlignmentType alignment);
         void SetAlignmentStances();
 
-
         // class selection
         bool IsClassAvailable(ClassType type) const;
         void SetClass1(size_t level, ClassType type);
@@ -131,8 +132,8 @@ class Character :
         bool IsFeatTrained(const std::string & featName) const;
         size_t GetSpecialFeatTrainedCount(const std::string & featName) const;
         TrainedFeat GetTrainedFeat(size_t level, TrainableFeatTypes type) const;
-        void TrainSpecialFeat(const std::string & featName);
-        void RevokeSpecialFeat(const std::string & featName);
+        void TrainSpecialFeat(const std::string & featName, TrainableFeatTypes type);
+        void RevokeSpecialFeat(const std::string & featName, TrainableFeatTypes type);
         void SetAbilityLevelUp(size_t level, AbilityType ability);
         void TrainFeat(const std::string & featName, TrainableFeatTypes type, size_t level, bool autoTrained = false);
         std::list<TrainedFeat> AutomaticFeats(
@@ -149,6 +150,8 @@ class Character :
                 TrainableFeatTypes type,
                 const Feat & feat,
                 bool alreadyTrained = false) const;
+        bool HasGrantedFeats() const;
+        const std::list<TrainedFeat> & GrantedFeats() const;
 
         // spells
         std::list<TrainedSpell> TrainedSpells(ClassType classType, size_t level) const;
@@ -181,7 +184,10 @@ class Character :
                 const std::string & enhancementName,
                 const std::string & selection,
                 size_t cost);
-        void Enhancement_RevokeEnhancement(const std::string & treeName);
+        void Enhancement_RevokeEnhancement(
+                const std::string & treeName,
+                std::string * enhancementName = NULL,
+                std::string * enhancementSelection = NULL);
         void Enhancement_ResetEnhancementTree(const std::string & treeName);
         void Enhancement_SetSelectedTrees(const SelectedEnhancementTrees & trees);
         int AvailableActionPoints() const;
@@ -205,7 +211,10 @@ class Character :
                 const std::string & enhancementName,
                 const std::string & selection,
                 size_t cost);
-        void EpicDestiny_RevokeEnhancement(const std::string & treeName);
+        void EpicDestiny_RevokeEnhancement(
+                const std::string & treeName,
+                std::string * enhancementName = NULL,
+                std::string * enhancementSelection = NULL);
         void EpicDestiny_ResetEnhancementTree(const std::string & treeName);
 
         // twists of fate support
@@ -273,6 +282,7 @@ class Character :
         void NotifyAPSpentInTreeChanged(const std::string & treeName);
         void NotifySpellTrained(const TrainedSpell & spell);
         void NotifySpellRevoked(const TrainedSpell & spell);
+        void NotifyGrantedFeatsChanged();
 
         // XML
         XmlLib::SaxContentElementInterface * StartElement(
@@ -361,11 +371,33 @@ class Character :
         void RevokeGearEffects();
         void ApplyGearEffects();
         void ApplyGuildBuffs();
+        void AddGrantedFeat(const std::string & featName);
+        void RevokeGrantedFeat(const std::string & featName);
+        void KeepGrantedFeatsUpToDate();
+        void UpdateSkillPoints();
+        void UpdateSkillPoints(size_t level);
+
+        // CharacterObserver
+        // we need to track all sources from which a granted feat can come from
+        virtual void UpdateFeatEffect(Character * charData, const std::string & featName, const Effect & effect) override;
+        virtual void UpdateFeatEffectRevoked(Character * charData, const std::string & featName, const Effect & effect) override;
+        virtual void UpdateEnhancementEffect(Character * charData, const std::string & enhancementName,  const EffectTier & effect) override;
+        virtual void UpdateEnhancementEffectRevoked(Character * charData, const std::string & enhancementName, const EffectTier & effect) override;
+        virtual void UpdateItemEffect(Character * charData, const std::string & itemName,  const Effect & effect) override;
+        virtual void UpdateItemEffectRevoked(Character * charData, const std::string & itemName, const Effect & effect) override;
+
         CDDOCPDoc * m_pDocument;
         int m_bonusActionPoints;
         int m_racialTreeSpend;
         int m_otherTreeSpend;
         size_t m_previousGuildLevel;
+        // we track the granted feats from all sources on the character
+        // but this information is not saved. Note that granted feats cannot
+        // be used as a requirement met for a feat you want to train.
+        std::list<TrainedFeat> m_grantedFeats;
+        std::list<bool> m_grantedNotifyState;
 
         friend class CDDOCPDoc;
+        friend class CEnhancementTreeDialog;
+        friend class CDestinyTreeDialog;
 };

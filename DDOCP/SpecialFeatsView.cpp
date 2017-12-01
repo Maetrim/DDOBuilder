@@ -73,18 +73,19 @@ void CSpecialFeatsView::DoDataExchange(CDataExchange* pDX)
         m_epicSelectionViews.reserve(epicPastLifeFeats.size());
         m_specialSelectionViews.reserve(specialFeats.size());
 
-        CreateFeatWindows(&m_staticHeroic, heroicPastLifeFeats, &m_heroicSelectionViews);
-        CreateFeatWindows(&m_staticRacial, racialPastLifeFeats, &m_racialSelectionViews);
-        CreateFeatWindows(&m_staticIconic, iconicPastLifeFeats, &m_iconicSelectionViews);
-        CreateFeatWindows(&m_staticEpic, epicPastLifeFeats, &m_epicSelectionViews);
-        CreateFeatWindows(&m_staticSpecial, specialFeats, &m_specialSelectionViews);
+        CreateFeatWindows(&m_staticHeroic, heroicPastLifeFeats, &m_heroicSelectionViews, TFT_HeroicPastLife);
+        CreateFeatWindows(&m_staticRacial, racialPastLifeFeats, &m_racialSelectionViews, TFT_RacialPastLife);
+        CreateFeatWindows(&m_staticIconic, iconicPastLifeFeats, &m_iconicSelectionViews, TFT_IconicPastLife);
+        CreateFeatWindows(&m_staticEpic, epicPastLifeFeats, &m_epicSelectionViews, TFT_EpicPastLife);
+        CreateFeatWindows(&m_staticSpecial, specialFeats, &m_specialSelectionViews, TFT_SpecialFeat);
     }
 }
 
 void CSpecialFeatsView::CreateFeatWindows(
         CStatic * groupWindow,
         const std::list<Feat> & featList,
-        std::vector<CDialog *> * dialogs)
+        std::vector<CDialog *> * dialogs,
+        TrainableFeatTypes type)
 {
     // position the created windows left to right under the static control until
     // they don't fit then move them down a row and start again
@@ -102,7 +103,7 @@ void CSpecialFeatsView::CreateFeatWindows(
     for (size_t fi = 0; fi < featList.size(); ++fi)
     {
         // show a feat selection dialog
-        CFeatSelectionDialog * dlg = new CFeatSelectionDialog(this, *li);
+        CFeatSelectionDialog * dlg = new CFeatSelectionDialog(this, *li, type);
         dlg->Create(CFeatSelectionDialog::IDD, this);
         dlg->MoveWindow(&itemRect);
         dlg->ShowWindow(SW_SHOW);

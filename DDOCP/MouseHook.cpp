@@ -28,7 +28,10 @@ MouseHook::~MouseHook()
     theHook = NULL;
 }
 
-LRESULT CALLBACK MouseHook::MouseProc(_In_ int nCode, _In_ WPARAM wParam, _In_ LPARAM lParam)
+LRESULT CALLBACK MouseHook::MouseProc(
+        _In_ int nCode,
+        _In_ WPARAM wParam,
+        _In_ LPARAM lParam)
 {
     // pass on to the member function
     theHook->ProcessMessage(nCode, wParam, lParam);
@@ -38,12 +41,12 @@ LRESULT CALLBACK MouseHook::MouseProc(_In_ int nCode, _In_ WPARAM wParam, _In_ L
 
 void MouseHook::ProcessMessage(int nCode, WPARAM wParam, LPARAM lParam)
 {
-    // were only interested in mouse move messages as we notify when the mouse
+    // we are only interested in mouse move messages as we notify when the mouse
     // enters or leaves the specified rectangles.
     if (wParam == WM_MOUSEMOVE)
     {
-        // look through each item and see if its in/out state has changed. If it has
-        // post a message to the relevant window
+        // look through each item and see if its in/out state has changed.
+        // If it has post a message to the relevant window
         MOUSEHOOKSTRUCT * pMHS = (MOUSEHOOKSTRUCT*)(lParam);
         CPoint mouse = pMHS->pt;        // mouse location in screen coordinates
         // notify all leave areas before any enter areas
@@ -59,7 +62,8 @@ void MouseHook::ProcessMessage(int nCode, WPARAM wParam, LPARAM lParam)
                 {
                     // no longer inside, notify
                     m_areasOfInterest[i].m_bIn = false;
-                    // post message as we do not want to wait for it to be processed right now
+                    // post message as we do not want to wait for it to be
+                    // processed right now
                     PostMessage(
                             m_areasOfInterest[i].m_whoToNotify,
                             m_areasOfInterest[i].m_exitNotification,
@@ -78,7 +82,8 @@ void MouseHook::ProcessMessage(int nCode, WPARAM wParam, LPARAM lParam)
                 {
                     // now inside, notify
                     m_areasOfInterest[i].m_bIn = true;
-                    // post message as we do not want to wait for it to be processed right now
+                    // post message as we do not want to wait for it to be
+                    // processed right now
                     PostMessage(
                             m_areasOfInterest[i].m_whoToNotify,
                             m_areasOfInterest[i].m_enterNotification,

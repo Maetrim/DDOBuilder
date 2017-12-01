@@ -119,7 +119,7 @@ BOOL CSelectionSelectDialog::OnInitDialog()
                     trainedFeats);
         }
         bool enoughAP = (m_charData.AvailableActionPoints(m_treeName, m_type) >= (*it).Cost());
-         m_buttonOption[index].EnableWindow(!excluded && canTrain && enoughAP);
+        m_buttonOption[index].EnableWindow(!excluded && canTrain && enoughAP);
         ++it;
         ++index;
     }

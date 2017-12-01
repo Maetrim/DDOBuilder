@@ -139,6 +139,7 @@ bool BreakdownItemTactical::AffectsUs(const Effect & effect) const
                 && Type() == Breakdown_TacticalStunningFist)
         {
             // anything that affects stunning blow also affects stunning fist
+            isUs = true;
         }
     }
     return isUs;

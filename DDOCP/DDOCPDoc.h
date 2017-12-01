@@ -50,6 +50,12 @@ class CDDOCPDoc :
 #endif // SHARED_HANDLERS
     private:
         void AddCharacterHeader(std::stringstream & forumExport);
+        void AddSpecialFeats(std::stringstream & forumExport);
+        void AddFeats(
+                std::stringstream & forumExport,
+                const std::string & heading,
+                TrainableFeatTypes type,
+                const std::list<TrainedFeat> & feats) const;
         void AddAbilityValues(std::stringstream & forumExport, AbilityType ability);
         void AddBreakdown(
                 std::stringstream & forumExport,

@@ -377,11 +377,6 @@ Must have your Bond Feat active to use.</Description>
          <MinSpent>5</MinSpent>
          <Clickie/>
          <Requirements/>
-         <Stance>
-            <Name>Aasimar: Divine Purpose</Name>
-            <Icon>DivinePurpose</Icon>
-            <Description>NYI</Description>
-         </Stance>
          <Selector>
             <EnhancementSelection>
                <Name>Divine Purpose: Protector</Name>
@@ -390,6 +385,26 @@ For one minute, you gain a Determination Bonus to Healing Amplification and
 Positive Spell Power equal to your Character Level.</Description>
                <Icon>DivinePurpose</Icon>
                <Cost>1</Cost>
+               <Stance>
+                  <Name>Aasimar: Divine Purpose</Name>
+                  <Icon>DivinePurpose</Icon>
+                  <Description>You sprout ethereal wings, the marks of the Protector.
+For one minute, you gain a Determination Bonus to Healing Amplification and
+Positive Spell Power equal to your Character Level.</Description>
+               </Stance>
+                <Effect>
+                    <Type>HealingAmplification</Type>
+                    <Bonus>Determination</Bonus>
+                    <Amount>30</Amount>
+                    <Stance>Aasimar: Divine Purpose</Stance>
+                </Effect>
+                <Effect>
+                    <Type>SpellPower</Type>
+                    <Bonus>Determination</Bonus>
+                    <Amount>30</Amount>
+                    <Stance>Aasimar: Divine Purpose</Stance>
+                    <SpellPower>Positive</SpellPower>
+                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Divine Purpose: Fallen</Name>
@@ -397,6 +412,25 @@ Positive Spell Power equal to your Character Level.</Description>
 For one minute, you gain +2 Primal bonus to Strength and +5% Primal bonus to Doublestrike.</Description>
                <Icon>Fallen</Icon>
                <Cost>1</Cost>
+               <Stance>
+                  <Name>Aasimar: Divine Purpose</Name>
+                  <Icon>DivinePurpose</Icon>
+                  <Description>You sprout weird wings of a Fallen Aasimar.
+For one minute, you gain +2 Primal bonus to Strength and +5% Primal bonus to Doublestrike.</Description>
+               </Stance>
+                <Effect>
+                    <Type>AbilityBonus</Type>
+                    <Bonus>Primal</Bonus>
+                    <Amount>2</Amount>
+                    <Stance>Aasimar: Divine Purpose</Stance>
+                    <Ability>Strength</Ability>
+                </Effect>
+                <Effect>
+                    <Type>Doublestrike</Type>
+                    <Bonus>Primal</Bonus>
+                    <Amount>5</Amount>
+                    <Stance>Aasimar: Divine Purpose</Stance>
+                </Effect>
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
@@ -422,7 +456,7 @@ For one minute, you gain +2 Primal bonus to Strength and +5% Primal bonus to Dou
                   <Bonus>Enhancement</Bonus>
                   <AmountVector size="3">1 2 3</AmountVector>
                   <Ability>Charisma</Ability>
-                  <Stance>Divine Purpose</Stance>
+                  <Stance>Aasimar: Divine Purpose</Stance>
                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
@@ -435,7 +469,7 @@ For one minute, you gain +2 Primal bonus to Strength and +5% Primal bonus to Dou
                   <Bonus>Enhancement</Bonus>
                   <AmountVector size="3">1 2 3</AmountVector>
                   <Ability>Strength</Ability>
-                  <Stance>Divine Purpose</Stance>
+                  <Stance>Aasimar: Divine Purpose</Stance>
                </Effect>
             </EnhancementSelection>
          </Selector>
@@ -526,24 +560,44 @@ For one minute, you gain +2 Primal bonus to Strength and +5% Primal bonus to Dou
                <Description>You are proficient with Tower Shields</Description>
                <Icon>TowerShield</Icon>
                <Cost>1</Cost>
+                <Effect>
+                    <Type>GrantFeat</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <Feat>Tower Shield Proficiency</Feat>
+                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Bastard Sword Proficiency</Name>
                <Description>You are proficient with Bastard Swords</Description>
                <Icon>CelestialTutelage</Icon>
                <Cost>1</Cost>
+              <Effect>
+                 <Type>WeaponProficiency</Type>
+                 <Bonus>Feat</Bonus>
+                 <Weapon>Bastard Sword</Weapon>
+              </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Magical Training</Name>
                <Description>You gain the benefits of the Magical Training feat</Description>
                <Icon>MagicalTraining</Icon>
                <Cost>1</Cost>
+                <Effect>
+                    <Type>GrantFeat</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <Feat>Magical Training</Feat>
+                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Quick Draw</Name>
                <Description>You gain the Quick Draw feat</Description>
                <Icon>QuickDraw</Icon>
                <Cost>1</Cost>
+                <Effect>
+                    <Type>GrantFeat</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <Feat>Quick Draw</Feat>
+                </Effect>
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
@@ -566,12 +620,44 @@ Must have your Bond Feat active to use. Mutually exclusive with Form feats (PM, 
                <Description>You gain +3 stacking bonus to all Saving Throws, 10% Competence Bonus to Max HP, and a +10 Determination Bonus to PRR and MRR.</Description>
                <Icon>DivineFormProtector</Icon>
                <Cost>1</Cost>
+                <Effect>
+                    <Type>SaveBonus</Type>
+                    <Bonus>Stacking</Bonus>
+                    <Amount>3</Amount>
+                    <Save>All</Save>
+                </Effect>
+                <Effect>
+                    <Type>Hitpoints</Type>
+                    <Bonus>Competence</Bonus>
+                    <Percent/>
+                    <Amount>10</Amount>
+                </Effect>
+                <Effect>
+                    <Type>PRR</Type>
+                    <Bonus>Determination</Bonus>
+                    <Amount>10</Amount>
+                </Effect>
+                <Effect>
+                    <Type>MRR</Type>
+                    <Bonus>Determination</Bonus>
+                    <Amount>10</Amount>
+                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Fallen</Name>
                <Description>You gain immunity to Fear, a +10 Determination bonus to Melee Power, and your melee weapon attacks add a stack of Vulnerability once per second.</Description>
                <Icon>DivineFormFallen</Icon>
                <Cost>1</Cost>
+                <Effect>
+                    <Type>Immunity</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <Immunity>Fear</Immunity>
+                </Effect>
+                <Effect>
+                    <Type>MeleePower</Type>
+                    <Bonus>Determination</Bonus>
+                    <Amount>10</Amount>
+                </Effect>
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
@@ -31514,7 +31600,7 @@ Cure Light Wounds at will without using spell points.</Description>
                <Effect>
                   <Type>SpellLikeAbility</Type>
                   <Bonus>Enhancement</Bonus>
-                  <SpellLikeAbility>Cure LIght Wounds</SpellLikeAbility>
+                  <SpellLikeAbility>Cure Light Wounds</SpellLikeAbility>
                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
@@ -33116,7 +33202,7 @@ spells are increased by 1/2/3.</Description>
       <!--Kensei tree core items-->
       <EnhancementTreeItem>
          <InternalName>KenseiCore1</InternalName>
-         <Name>Kensei Focus</Name>
+         <Name>Kensei: Kensei Focus</Name>
          <Description>Select a group of weapons as your Kensei focus.
 You gain +1 to hit with these weapons, and many Kensei abilities require that
 you use one of these weapons.</Description>
@@ -49154,7 +49240,7 @@ and Magical Resistance Rating</Description>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Tempest: Improved Defense</Name>
+         <Name>Tempest: Improved Defence</Name>
          <InternalName>TempestImprovedDefense</InternalName>
          <Description>Your Shield of Whirling Steel Grants +1/2/3 additional Armor Class,
 Physical Resistance and Magical Resistance.
@@ -64770,7 +64856,7 @@ Activation Cost: 3 SP. Cooldown: 6 seconds)</Description>
                <Effect>
                   <Type>SpellLikeAbility</Type>
                   <Bonus>Enhancement</Bonus>
-                  <SpellLikeAbility>Protection from Energy</SpellLikeAbility>
+                  <SpellLikeAbility>Protection From Energy</SpellLikeAbility>
                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
@@ -64824,7 +64910,7 @@ Activation Cost: 3 SP. Cooldown: 6 seconds)</Description>
                <Effect>
                   <Type>SpellLikeAbility</Type>
                   <Bonus>Enhancement</Bonus>
-                  <SpellLikeAbility>Chain Missile</SpellLikeAbility>
+                  <SpellLikeAbility>Chain Missiles</SpellLikeAbility>
                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
@@ -68846,7 +68932,7 @@ Every ability you take in this tree grants +4 Maximum Hit Points in Reaper Diffi
             <Stance>Reaper</Stance>
          </Effect>
          <Effect>
-            <Type>AttackBonus</Type>
+            <Type>DamageBonus</Type>
             <Bonus>Reaper</Bonus>
             <Weapon>All</Weapon>
             <AmountVector size="1">1</AmountVector>
@@ -68933,7 +69019,7 @@ Every ability you take in this tree grants +4 Maximum Hit Points in Reaper Diffi
             <Stance>Reaper</Stance>
          </Effect>
          <Effect>
-            <Type>AttackBonus</Type>
+            <Type>DamageBonus</Type>
             <Bonus>Reaper</Bonus>
             <Weapon>All</Weapon>
             <AmountVector size="1">2</AmountVector>

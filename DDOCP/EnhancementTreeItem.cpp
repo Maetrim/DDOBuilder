@@ -91,6 +91,7 @@ bool EnhancementTreeItem::VerifyObject(
 
 bool EnhancementTreeItem::MeetRequirements(
         const Character & charData,
+        const std::string & selection,
         const std::string & treeName) const
 {
     bool met = true;
@@ -110,6 +111,26 @@ bool EnhancementTreeItem::MeetRequirements(
     {
         // not allowed this tier 5 enhancement
         met = false;
+    }
+    if (met && selection != "")
+    {
+        // check if we can train this selection
+        std::list<EnhancementSelection> selections = m_Selections.Selections();
+        std::list<EnhancementSelection>::const_iterator it = selections.begin();
+        while (it != selections.end())
+        {
+            if ((*it).Name() == selection)
+            {
+                // this is the one we need to check
+                if ((*it).HasRequirementsToTrain())
+                {
+                    met = (*it).RequirementsToTrain().CanTrainEnhancement(charData, 0);
+                }
+                // and were done
+                break;
+            }
+            ++it;
+        }
     }
     return met;
 }
@@ -200,3 +221,13 @@ std::list<Stance> EnhancementTreeItem::Stances(const std::string & selection) co
     return stances;
 }
 
+size_t EnhancementTreeItem::Cost(const std::string & selection) const
+{
+    size_t cost = Cost();
+    if (selection != ""
+            && HasSelections())
+    {
+        cost = m_Selections.Cost(selection);
+    }
+    return cost;
+}

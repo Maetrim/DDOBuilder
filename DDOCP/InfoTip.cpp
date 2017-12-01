@@ -259,6 +259,7 @@ BOOL CInfoTip::GetWindowSize(CDC* pDC, CSize * size)
 void CInfoTip::SetEnhancementTreeItem(
         const Character & charData,
         const EnhancementTreeItem * pItem,
+        const std::string & selection,
         size_t spentInTree)
 {
     m_image.Destroy();
@@ -281,7 +282,7 @@ void CInfoTip::SetEnhancementTreeItem(
             charData,
             &m_requirements,
             &m_bRequirementMet);
-    m_cost.Format("Cost %d", pItem->Cost());
+    m_cost.Format("Cost %d", pItem->Cost(selection));
     m_ranks.Format("Ranks %d", pItem->Ranks());
 }
 

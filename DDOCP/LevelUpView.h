@@ -28,11 +28,14 @@ class CLevelUpView :
 
         virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
         afx_msg void OnSize(UINT nType, int cx, int cy);
+        afx_msg void OnWindowPosChanging(WINDOWPOS * pos);
         afx_msg BOOL OnEraseBkgnd(CDC* pDC);
         afx_msg LRESULT OnNewDocument(WPARAM wParam, LPARAM lParam);
         afx_msg void OnEndtrackListSkills(NMHDR* pNMHDR, LRESULT* pResult);
         afx_msg void OnEndtrackListAutomaticFeats(NMHDR* pNMHDR, LRESULT* pResult);
+        afx_msg void OnEndtrackListGrantedFeats(NMHDR* pNMHDR, LRESULT* pResult);
         afx_msg void OnHoverAutomaticFeats(NMHDR* pNMHDR, LRESULT* pResult);
+        afx_msg void OnHoverGrantedFeats(NMHDR* pNMHDR, LRESULT* pResult);
         afx_msg void OnColumnclickListSkills(NMHDR* pNMHDR, LRESULT* pResult);
         afx_msg void OnDoubleClickListSkills(NMHDR*, LRESULT* pResult);
         afx_msg void OnLeftClickListSkills(NMHDR*, LRESULT* pResult);
@@ -56,16 +59,17 @@ class CLevelUpView :
         DECLARE_MESSAGE_MAP()
 
         // DocumentObserver overrides
-        void UpdateAlignmentChanged(Character * pCharacter, AlignmentType alignment) override;
-        void UpdateSkillSpendChanged(Character * pCharacter, size_t level, SkillType skill) override;
-        void UpdateSkillTomeChanged(Character * pCharacter, SkillType skill) override;
-        void UpdateClassChoiceChanged(Character * pCharacter) override;
+        virtual void UpdateAlignmentChanged(Character * pCharacter, AlignmentType alignment) override;
+        virtual void UpdateSkillSpendChanged(Character * pCharacter, size_t level, SkillType skill) override;
+        virtual void UpdateSkillTomeChanged(Character * pCharacter, SkillType skill) override;
+        virtual void UpdateClassChoiceChanged(Character * pCharacter) override;
         virtual void UpdateClassChanged(Character * charData, ClassType classFrom, ClassType classTo, size_t level) override;
-        void UpdateAbilityValueChanged(Character * pCharacter, AbilityType ability) override;
-        void UpdateAbilityTomeChanged(Character * pCharacter, AbilityType ability) override;
-        void UpdateRaceChanged(Character * pCharacter, RaceType race) override;
-        void UpdateFeatTrained(Character * pCharacter, const std::string & featName) override;
-        void UpdateFeatRevoked(Character * pCharacter, const std::string & featName) override;
+        virtual void UpdateAbilityValueChanged(Character * pCharacter, AbilityType ability) override;
+        virtual void UpdateAbilityTomeChanged(Character * pCharacter, AbilityType ability) override;
+        virtual void UpdateRaceChanged(Character * pCharacter, RaceType race) override;
+        virtual void UpdateFeatTrained(Character * pCharacter, const std::string & featName) override;
+        virtual void UpdateFeatRevoked(Character * pCharacter, const std::string & featName) override;
+        virtual void UpdateGrantedFeatsChanged(Character * charData) override;
 
     private:
         static int CALLBACK SortCompareFunction(LPARAM lParam1, LPARAM lParam2, LPARAM lParamSort);
@@ -80,6 +84,7 @@ class CLevelUpView :
         void PopulateCombobox(size_t index, const std::string & selection);
         void PopulateSkills();
         void PopulateAutomaticFeats();
+        void PopulateGrantedFeats();
         void ShowFeatTip(size_t featIndex, CRect itemRect);
         void ShowLevelTip(size_t level, CRect itemRect);
         void HideTip();
@@ -101,10 +106,12 @@ class CLevelUpView :
         CComboBox m_comboSkillTome;
         CListCtrl m_listSkills;
         CListCtrl m_listAutomaticFeats;
+        CListCtrl m_listGrantedFeats;
         CStatic m_staticBab;
         CImageList m_imagesSkills;
         CImageList m_imagesFeats[3];
         CImageList m_imagesAutomaticFeats;
+        CImageList m_imagesGrantedFeats;
         CSortHeaderCtrl m_sortHeader;
         SkillType m_skillBeingEdited;
         size_t m_level;

@@ -23,6 +23,7 @@ class CInfoTip :
         void SetEnhancementTreeItem(
                 const Character & charData,
                 const EnhancementTreeItem * pItem,
+                const std::string & selection,
                 size_t spentInTree);
         void SetEnhancementSelectionItem(
                 const Character & charData,

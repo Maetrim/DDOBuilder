@@ -23,9 +23,13 @@ BEGIN_MESSAGE_MAP(CFeatSelectionDialog, CDialog)
 END_MESSAGE_MAP()
 #pragma warning(pop)
 
-CFeatSelectionDialog::CFeatSelectionDialog(CWnd* pParent, const Feat & feat) :
+CFeatSelectionDialog::CFeatSelectionDialog(
+        CWnd* pParent,
+        const Feat & feat,
+        TrainableFeatTypes type) :
     CDialog(CFeatSelectionDialog::IDD, pParent),
     m_feat(feat),
+    m_type(type),
     m_pCharacter(NULL),
     m_showingTip(false),
     m_tipCreated(false)
@@ -112,7 +116,7 @@ void CFeatSelectionDialog::OnFeatButtonLeftClick()
         bool canIncrease = (trainedCount < m_feat.MaxTimesAcquire());
         if (canIncrease)
         {
-            m_pCharacter->TrainSpecialFeat(m_feat.Name());
+            m_pCharacter->TrainSpecialFeat(m_feat.Name(), m_type);
             SetupControls();
         }
     }
@@ -133,7 +137,7 @@ void CFeatSelectionDialog::OnFeatButtonRightClick(
         bool canDecrease = (trainedCount > 0);
         if (canDecrease)
         {
-            m_pCharacter->RevokeSpecialFeat(m_feat.Name());
+            m_pCharacter->RevokeSpecialFeat(m_feat.Name(), m_type);
             SetupControls();
         }
     }
@@ -181,7 +185,7 @@ void CFeatSelectionDialog::OnMouseMove(UINT nFlags, CPoint point)
 
 LRESULT CFeatSelectionDialog::OnMouseLeave(WPARAM wParam, LPARAM lParam)
 {
-    // hide any tooltip when the mouse leave the area its being shown for
+    // hide any tooltip when the mouse leaves the area its being shown for
     HideTip();
     GetMainFrame()->SetStatusBarPromptText("Ready.");
     return 0;

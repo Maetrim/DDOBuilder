@@ -318,6 +318,16 @@ bool ActiveEffect::HasClass(ClassType type) const
 void ActiveEffect::AddStack()
 {
     ++m_numStacks;
+    if (m_type == ET_amountVector
+            || m_type == ET_amountVectorPerClassLevel)
+    {
+        if (m_numStacks > m_amounts.size())
+        {
+            ::OutputDebugString("ActiveEffect ");
+            ::OutputDebugString((LPCTSTR)Name());
+            ::OutputDebugString(" has more stacks than amount vector\n");
+        }
+    }
 }
 
 bool ActiveEffect::RevokeStack()

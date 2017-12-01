@@ -80,6 +80,7 @@ class BreakdownItem :
 
         virtual void CreateOtherEffects() = 0;
         virtual bool AffectsUs(const Effect & effect) const = 0;
+        virtual void AddInformationItem(CListCtrl * pControl) {}; // default is do nothing
 
         Character * m_pCharacter;
         std::list<ActiveEffect> m_otherEffects;       // these always stack

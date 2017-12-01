@@ -7,7 +7,12 @@ class BreakdownItemSimple :
         public BreakdownItem
 {
     public:
-        BreakdownItemSimple(BreakdownType type, EffectType effect, const CString & Title, MfcControls::CTreeListCtrl * treeList, HTREEITEM hItem);
+        BreakdownItemSimple(
+                BreakdownType type,
+                EffectType effect,
+                const CString & Title,
+                MfcControls::CTreeListCtrl * treeList,
+                HTREEITEM hItem);
         virtual ~BreakdownItemSimple();
 
         // required overrides

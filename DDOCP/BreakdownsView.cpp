@@ -11,6 +11,8 @@
 #include "BreakdownItemEnergyAbsorption.h"
 #include "BreakdownItemEnergyResistance.h"
 #include "BreakdownItemHitpoints.h"
+#include "BreakdownItemMRR.h"
+#include "BreakdownItemPRR.h"
 #include "BreakdownItemSave.h"
 #include "BreakdownItemSimple.h"
 #include "BreakdownItemSkill.h"
@@ -524,9 +526,8 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
                 "PRR",
                 hDefensiveParent,
                 TVI_LAST);
-        BreakdownItem * pPRR = new BreakdownItemSimple(
+        BreakdownItem * pPRR = new BreakdownItemPRR(
                 Breakdown_PRR,
-                Effect_PRR,
                 "PRR",
                 &m_itemBreakdownTree,
                 hItem);
@@ -539,9 +540,8 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
                 "MRR",
                 hDefensiveParent,
                 TVI_LAST);
-        BreakdownItem * pMRR = new BreakdownItemSimple(
+        BreakdownItem * pMRR = new BreakdownItemMRR(
                 Breakdown_MRR,
-                Effect_MRR,
                 "MRR",
                 &m_itemBreakdownTree,
                 hItem);

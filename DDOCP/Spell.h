@@ -41,11 +41,13 @@ class Spell :
                 DL_ENUM(_, SpellSchoolType, School, SpellSchool_Unknown, spellSchoolTypeMap) \
                 DL_OPTIONAL_ENUM(_, EnergyType, Energy, Energy_Unknown, energyTypeMap) \
                 DL_OBJECT_VECTOR(_, Effect, Effects) \
+                DL_FLAG(_, Embolden) \
                 DL_FLAG(_, Empower) \
                 DL_FLAG(_, EmpowerHealing) \
                 DL_FLAG(_, Enlarge) \
                 DL_FLAG(_, Extend) \
                 DL_FLAG(_, Heighten) \
+                DL_FLAG(_, Intensify) \
                 DL_FLAG(_, Maximize) \
                 DL_FLAG(_, Quicken) \
                 DL_OPTIONAL_SIMPLE(_, int, Artificer, 0) \

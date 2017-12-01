@@ -315,7 +315,7 @@ void CEnhancementTreeDialog::RenderTreeItem(
             RenderItemPassive(item, pDC, itemRect);
         }
         // show how many have been acquired of max ranks
-        bool isAllowed = item.MeetRequirements(*m_pCharacter, m_tree.Name());
+        bool isAllowed = item.MeetRequirements(*m_pCharacter, "", m_tree.Name());
         if (isAllowed)
         {
             // only show trained x/y if item is allowed
@@ -386,7 +386,7 @@ void CEnhancementTreeDialog::RenderItemCore(
     // core items are rendered across the bottom section of the bitmap
     CRect itemRect(0, 0, 38, 38);
     size_t spentInTree = m_pCharacter->APSpentInTree(m_tree.Name());
-    bool isAllowed = item.MeetRequirements(*m_pCharacter, m_tree.Name());
+    bool isAllowed = item.MeetRequirements(*m_pCharacter, "", m_tree.Name());
     bool isTrainable = item.CanTrain(*m_pCharacter, m_tree.Name(), spentInTree, m_type);
     // now apply the item position to the rectangle
     itemRect += CPoint(c_leftOffsetCore + c_xItemSpacingCore * item.XPosition(), c_topCore);
@@ -514,7 +514,7 @@ void CEnhancementTreeDialog::RenderItemState(
         CRect itemRect) // work on a copy
 {
     size_t spentInTree = m_pCharacter->APSpentInTree(m_tree.Name());
-    bool isAllowed = item.MeetRequirements(*m_pCharacter, m_tree.Name());
+    bool isAllowed = item.MeetRequirements(*m_pCharacter, "", m_tree.Name());
     bool isTrainable = item.CanTrain(*m_pCharacter, m_tree.Name(), spentInTree, m_type);
     if (!isAllowed)
     {
@@ -578,7 +578,7 @@ void CEnhancementTreeDialog::OnLButtonDown(UINT nFlags, CPoint point)
             // an item has been clicked, see if we can train a rank in it
             size_t spentInTree = m_pCharacter->APSpentInTree(m_tree.Name());
             const TrainedEnhancement * te = m_pCharacter->IsTrained(item->InternalName(), "");
-            bool isAllowed = item->MeetRequirements(*m_pCharacter, m_tree.Name());
+            bool isAllowed = item->MeetRequirements(*m_pCharacter, "", m_tree.Name());
             bool isTrainable = item->CanTrain(*m_pCharacter, m_tree.Name(), spentInTree, m_type);
             if (isAllowed && isTrainable)
             {
@@ -609,9 +609,6 @@ void CEnhancementTreeDialog::OnLButtonDown(UINT nFlags, CPoint point)
                                     dlg.Selection(),
                                     dlg.Cost());
                             break;
-                        case TT_epicDestiny:
-                            AfxMessageBox("Spend NYI");
-                            break;
                         case TT_reaper:
                             m_pCharacter->Reaper_TrainEnhancement(
                                     m_tree.Name(),
@@ -638,9 +635,6 @@ void CEnhancementTreeDialog::OnLButtonDown(UINT nFlags, CPoint point)
                                     item->InternalName(),
                                     (te != NULL && te->HasSelection()) ? te->Selection() : "",
                                     item->Cost());
-                            break;
-                        case TT_epicDestiny:
-                            AfxMessageBox("Spend NYI");
                             break;
                         case TT_reaper:
                             m_pCharacter->Reaper_TrainEnhancement(
@@ -676,9 +670,6 @@ void CEnhancementTreeDialog::OnLButtonDown(UINT nFlags, CPoint point)
                     case TT_enhancement:
                         m_pCharacter->Enhancement_ResetEnhancementTree(m_tree.Name());
                         break;
-                    case TT_epicDestiny:
-                        AfxMessageBox("Spend NYI");
-                        break;
                     case TT_reaper:
                         m_pCharacter->Reaper_ResetEnhancementTree(m_tree.Name());
                         break;
@@ -702,9 +693,6 @@ void CEnhancementTreeDialog::OnRButtonDown(UINT nFlags, CPoint point)
             case TT_racial:
             case TT_enhancement:
                 m_pCharacter->Enhancement_RevokeEnhancement(m_tree.Name());
-                break;
-            case TT_epicDestiny:
-                AfxMessageBox("Revoke NYI");
                 break;
             case TT_reaper:
                 m_pCharacter->Reaper_RevokeEnhancement(m_tree.Name());
@@ -756,7 +744,7 @@ void CEnhancementTreeDialog::OnMouseMove(UINT nFlags, CPoint point)
         if (m_showingTip
                 && item != m_pTooltipItem)
         {
-            // no longer over th same item
+            // no longer over the same item
             HideTip();
         }
     }
@@ -812,12 +800,14 @@ void CEnhancementTreeDialog::SetTooltipText(
     // if its trained, we need to show the selected sub-item tooltip
     const TrainedEnhancement * te = m_pCharacter->IsTrained(item.InternalName(), "");
     const EnhancementSelection * es = NULL;
+    std::string selection;
     m_tooltip.SetOrigin(tipTopLeft, tipAlternate);
     if (te != NULL)
     {
         // this item is trained, we may need to show the selected sub-item tooltip text
         if (te->HasSelection())
         {
+            selection = te->Selection();
             const Selector & selector = item.Selections();
             const std::list<EnhancementSelection> & selections = selector.Selections();
             // find the selected item
@@ -842,11 +832,11 @@ void CEnhancementTreeDialog::SetTooltipText(
     }
     else
     {
-        // something has gone horribly wrong as we failed to find the selection
-        // that the use has made. Just show the top level tooltip item
+        // its a top level item without sub-options
         m_tooltip.SetEnhancementTreeItem(
                 *m_pCharacter,
                 &item,
+                selection,
                 m_pCharacter->APSpentInTree(m_tree.Name()));
     }
     m_tooltip.Show();
@@ -865,6 +855,10 @@ void CEnhancementTreeDialog::UpdateFeatRevoked(
         Character * charData,
         const std::string & featName)
 {
+    // message only shown if bEnhancementsRevoked is true
+    std::stringstream ss;
+    ss << "Warning - Tree \"" << m_tree.Name() << "\" had some / all enhancements revoked as the "
+            "requirements are no longer met.\r\n\r\n";
     bool bEnhancementsRevoked = false;
     // review all trained enhancements in this tree
     // if they are no longer valid, revoke enhancements in the
@@ -875,36 +869,60 @@ void CEnhancementTreeDialog::UpdateFeatRevoked(
     do 
     {
         bTreeHasInvalidItems = false;
-        std::list<EnhancementTreeItem>::const_iterator it = items.begin();
-        while (it != items.end())
+        EnhancementSpendInTree * esit = m_pCharacter->Enhancement_FindTree(m_tree.Name());
+        if (esit != NULL)
         {
-            const TrainedEnhancement * te = m_pCharacter->IsTrained((*it).InternalName(), "");
-            if (te != NULL)
+            std::list<TrainedEnhancement> enhancements = esit->Enhancements();
+            std::list<TrainedEnhancement>::const_iterator it = enhancements.begin();
+            while (!bTreeHasInvalidItems && it != enhancements.end())
             {
-                // this enhancement is trained, see if its valid
-                bool isAllowed = (*it).MeetRequirements(*m_pCharacter, m_tree.Name());
+                const EnhancementTreeItem * pItem = FindEnhancement((*it).EnhancementName());
+                bool isAllowed = pItem->MeetRequirements(
+                        *m_pCharacter,
+                        (*it).HasSelection() ? (*it).Selection() : "",
+                        m_tree.Name());
                 if (!isAllowed)
                 {
                     bTreeHasInvalidItems = true;
                     break;
                 }
+                ++it;
             }
-            ++it;
         }
         if (bTreeHasInvalidItems)
         {
+            // get the name of the tree item about to be revoked and add it to the
+            // reported revoked message.
+            std::string revokedEnhancement;
+            std::string revokedSelection;
             // the tree does have invalid items in it.
-            // revoke and item in this tree and try again to see if the tree is now valid
-            m_pCharacter->Enhancement_RevokeEnhancement(m_tree.Name());
+            // revoke an item in this tree and try again to see if the tree is now valid
+            m_pCharacter->Enhancement_RevokeEnhancement(
+                    m_tree.Name(),
+                    &revokedEnhancement,
+                    &revokedSelection);
             bEnhancementsRevoked = true;
+            const EnhancementTreeItem * pItem = FindEnhancement(revokedEnhancement);
+            if (pItem != NULL)
+            {
+                // show the tier of the enhancement
+                switch (pItem->YPosition())
+                {
+                case 0: ss << "Core  "; break;
+                case 1: ss << "Tier1 "; break;
+                case 2: ss << "Tier2 "; break;
+                case 3: ss << "Tier3 "; break;
+                case 4: ss << "Tier4 "; break;
+                case 5: ss << "Tier5 "; break;
+                case 6: ss << "Tier6 "; break;
+                }
+                ss << pItem->DisplayName(revokedSelection) << "\r\n";
+            }
         }
     } while (bTreeHasInvalidItems);
     if (bEnhancementsRevoked)
     {
         // let the user know that some enhancements were revoked due to the feat change
-        std::stringstream ss;
-        ss << "Warning - Tree \"" << m_tree.Name() << "\" had some / all enhancements revoked as the "
-                "requirements are no longer met.";
         AfxMessageBox(ss.str().c_str(), MB_ICONWARNING);
     }
 }
@@ -915,18 +933,6 @@ void CEnhancementTreeDialog::UpdateEnhancementTrained(
         const std::string & selection,
         bool isTier5)
 {
-    //// some sorcerer core1 enhancements can lock out whole tree's. Redraw if
-    //// it is a sorcerer "Core1" enhancement just trained.
-    //if (enhancementName.find("Core1") != std::string::npos)
-    //{
-    //    Invalidate();
-    //}
-    //// if a tier 5 enhancement has been trained, we may have to exclude the
-    //// training of our own tier 5 enhancements (if any)
-    //if (isTier5)
-    //{
-    //    Invalidate();
-    //}
     Invalidate();
 }
 
@@ -936,19 +942,6 @@ void CEnhancementTreeDialog::UpdateEnhancementRevoked(
         const std::string & selection,
         bool isTier5)
 {
-    //// some sorcerer core1 enhancements can lock out whole tree's. Redraw if
-    //// it is a sorcerer "Core1" enhancement just trained.
-    //if (enhancementName.find("Core1") != std::string::npos)
-    //{
-    //    Invalidate();
-    //}
-    //// if a tier 5 enhancement has been revoked, we may have to include the
-    //// training of our own tier 5 enhancements (if any)
-    //if (isTier5 && !m_pCharacter->HasTier5Tree())
-    //{
-    //    // the tier5 status has changed, update
-    //    Invalidate();
-    //}
     Invalidate();
 }
 

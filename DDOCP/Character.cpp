@@ -69,6 +69,8 @@ Character::Character(CDDOCPDoc * pDoc) :
     EquippedGear gear("Standard");  // with no items yet selected
     m_GearSetups.push_back(gear);
     m_ActiveGear = "Standard";
+
+    AttachObserver(this);       // we observe ourselves
 }
 
 DL_DEFINE_ACCESS(Character_PROPERTIES)
@@ -301,12 +303,7 @@ bool Character::RevokeClass(ClassType type)
         {
             // class selection no longer available
             (*it).Set_Class(Class_Unknown);
-            size_t available = SkillPoints(
-                    type,
-                    Race(),
-                    AbilityAtLevel(Ability_Intelligence, level),
-                    level);
-            (*it).Set_SkillPointsAvailable(available);
+            UpdateSkillPoints(level);
             hadRevoke = true;
         }
         ++it;
@@ -325,6 +322,7 @@ void Character::UpdateFeats()
     {
         UpdateFeats(level, &allFeats);
     }
+    KeepGrantedFeatsUpToDate();
 }
 
 void Character::UpdateFeats(size_t level, std::list<TrainedFeat> * allFeats)
@@ -581,6 +579,11 @@ void Character::NotifySpellRevoked(const TrainedSpell & spell)
     NotifyAll(&CharacterObserver::UpdateSpellRevoked, this, spell);
 }
 
+void Character::NotifyGrantedFeatsChanged()
+{
+    NotifyAll(&CharacterObserver::UpdateGrantedFeatsChanged, this);
+}
+
 void Character::NotifyAllLoadedEffects()
 {
     // get a list of all feats and notify for each feat effect
@@ -682,6 +685,7 @@ void Character::SetRace(RaceType race)
     UpdateFeats();
     NotifyRaceChanged(race);
     DetermineBuildPoints();     // switching too/from Drow can affect the number of build points
+    UpdateSkillPoints();        // race can effect number of skill points (int + human)
     m_pDocument->SetModifiedFlag(TRUE);
     // revoking a racial feat can invalidate a feat selection in other levels (e.g. loss of Dodge)
     VerifyTrainedFeats();
@@ -809,18 +813,7 @@ void Character::SetAbilityTome(AbilityType ability, size_t value)
     // if Intelligence has changed, update the available skill points
     if (ability == Ability_Intelligence)
     {
-        ASSERT(m_Levels.size() == MAX_LEVEL);
-        std::list<LevelTraining>::iterator it = m_Levels.begin();
-        for (size_t level = 0; level < MAX_CLASS_LEVEL; ++level)
-        {
-            size_t available = SkillPoints(
-                    (*it).HasClass() ? (*it).Class() : Class_Unknown,
-                    Race(),
-                    AbilityAtLevel(Ability_Intelligence, level),
-                    level);
-            (*it).Set_SkillPointsAvailable(available);
-            ++it;
-        }
+        UpdateSkillPoints();
     }
     NotifyAbilityTomeChanged(ability);
     m_pDocument->SetModifiedFlag(TRUE);
@@ -977,12 +970,7 @@ void Character::SetClass(size_t level, ClassType type)
         std::advance(it, level);
         classFrom = (*it).HasClass() ? (*it).Class() : Class_Unknown;
         (*it).Set_Class(type);
-        size_t available = SkillPoints(
-                type,
-                Race(),
-                AbilityAtLevel(Ability_Intelligence, level),
-                level);
-        (*it).Set_SkillPointsAvailable(available);
+        UpdateSkillPoints(level);
         // special case. When setting the class for level 1, all other heroic levels
         // currently set to Class_Unknown are also changed to the chosen class
         if (level == 0)
@@ -996,12 +984,7 @@ void Character::SetClass(size_t level, ClassType type)
                 {
                     // train this class as well
                     (*it).Set_Class(type);
-                    size_t available = SkillPoints(
-                            type,
-                            Race(),
-                            AbilityAtLevel(Ability_Intelligence, level),
-                            level);
-                    (*it).Set_SkillPointsAvailable(available);
+                    UpdateSkillPoints(level);
                 }
             }
         }
@@ -1052,18 +1035,7 @@ void Character::SpendOnAbility(AbilityType ability)
     // if Intelligence has changed, update the available skill points
     if (ability == Ability_Intelligence)
     {
-        ASSERT(m_Levels.size() == MAX_LEVEL);
-        std::list<LevelTraining>::iterator it = m_Levels.begin();
-        for (size_t level = 0; level < MAX_CLASS_LEVEL; ++level)
-        {
-            size_t available = SkillPoints(
-                    (*it).HasClass() ? (*it).Class() : Class_Unknown,
-                    Race(),
-                    AbilityAtLevel(Ability_Intelligence, level),
-                    level);
-            (*it).Set_SkillPointsAvailable(available);
-            ++it;
-        }
+        UpdateSkillPoints();
     }
     NotifyAbilityValueChanged(ability);
     m_pDocument->SetModifiedFlag(TRUE);
@@ -1075,18 +1047,7 @@ void Character::RevokeSpendOnAbility(AbilityType ability)
     // if Intelligence has changed, update the available skill points
     if (ability == Ability_Intelligence)
     {
-        ASSERT(m_Levels.size() == MAX_LEVEL);
-        std::list<LevelTraining>::iterator it = m_Levels.begin();
-        for (size_t level = 0; level < MAX_CLASS_LEVEL; ++level)
-        {
-            size_t available = SkillPoints(
-                    (*it).HasClass() ? (*it).Class() : Class_Unknown,
-                    Race(),
-                    AbilityAtLevel(Ability_Intelligence, level),
-                    level);
-            (*it).Set_SkillPointsAvailable(available);
-            ++it;
-        }
+        UpdateSkillPoints();
     }
     NotifyAbilityValueChanged(ability);
     m_pDocument->SetModifiedFlag(TRUE);
@@ -1095,13 +1056,14 @@ void Character::RevokeSpendOnAbility(AbilityType ability)
 }
 
 void Character::TrainSpecialFeat(
-        const std::string & featName)
+        const std::string & featName,
+        TrainableFeatTypes type)
 {
     // just add a copy of the feat name to the current list
     std::list<TrainedFeat> trainedFeats = SpecialFeats().Feats();
     TrainedFeat tf;
     tf.Set_FeatName(featName);
-    tf.Set_Type(TFT_Special);
+    tf.Set_Type(type);
     tf.Set_LevelTrainedAt(0);
     trainedFeats.push_back(tf);
 
@@ -1132,7 +1094,8 @@ void Character::TrainSpecialFeat(
 }
 
 void Character::RevokeSpecialFeat(
-        const std::string & featName)
+        const std::string & featName,
+        TrainableFeatTypes type)
 {
     // just remove the first copy of the feat name from the current list
     std::list<TrainedFeat> trainedFeats = SpecialFeats().Feats();
@@ -2381,7 +2344,9 @@ void Character::Enhancement_TrainEnhancement(
 }
 
 void Character::Enhancement_RevokeEnhancement(
-        const std::string & treeName)
+        const std::string & treeName,
+        std::string * enhancementName,
+        std::string * enhancementSelection)
 {
     EnhancementSpendInTree * pItem = Enhancement_FindTree(treeName);
     if (pItem != NULL)
@@ -2428,6 +2393,14 @@ void Character::Enhancement_RevokeEnhancement(
         NotifyEnhancementRevoked(revokedEnhancement, revokedEnhancementSelection, wasTier5, true);
         NotifyActionPointsChanged();
         NotifyAPSpentInTreeChanged(treeName);
+        if (enhancementName != NULL)
+        {
+            *enhancementName = revokedEnhancement;
+        }
+        if (enhancementSelection != NULL)
+        {
+            *enhancementSelection = revokedEnhancementSelection;
+        }
     }
 }
 
@@ -2824,7 +2797,11 @@ void Character::JustLoaded()
     }
     // racial completionist state may have changed
     std::list<TrainedFeat> allFeats = SpecialFeats().Feats();
-    UpdateFeats(0, &allFeats);      // racial completionist state may have changed
+    for (size_t level = 0; level < MAX_LEVEL; ++level)
+    {
+        // automatic feats are no longer saved. regenerate them all
+        UpdateFeats(level, &allFeats);
+    }
 
     if (displayMessage)
     {
@@ -2958,6 +2935,16 @@ bool Character::IsFeatTrainable(
         canTrain = found;
     }
     return canTrain;
+}
+
+bool Character::HasGrantedFeats() const
+{
+    return (m_grantedFeats.size() > 0);
+}
+
+const std::list<TrainedFeat> & Character::GrantedFeats() const
+{
+    return m_grantedFeats;
 }
 
 void Character::ApplyEnhancementEffects(
@@ -3435,7 +3422,9 @@ void Character::EpicDestiny_TrainEnhancement(
 }
 
 void Character::EpicDestiny_RevokeEnhancement(
-        const std::string & treeName)
+        const std::string & treeName,
+        std::string * enhancementName,
+        std::string * enhancementSelection)
 {
     EpicDestinySpendInTree * pItem = EpicDestiny_FindTree(treeName);
     if (pItem != NULL)
@@ -3476,6 +3465,14 @@ void Character::EpicDestiny_RevokeEnhancement(
         }
         NotifyAPSpentInTreeChanged(treeName);
         m_pDocument->SetModifiedFlag(TRUE);
+        if (enhancementName != NULL)
+        {
+            *enhancementName = revokedEnhancement;
+        }
+        if (enhancementSelection != NULL)
+        {
+            *enhancementSelection = revokedEnhancementSelection;
+        }
     }
 }
 
@@ -4287,5 +4284,201 @@ void Character::RevokeSpellEffects(const std::string & spellName, size_t casting
         std::string name = "Spell: " + spell.Name();
         NotifyItemEffectRevoked(name, (*it));
         ++it;
+    }
+}
+
+// CharacterObserver
+void Character::UpdateFeatEffect(
+        Character * charData,
+        const std::string & featName,
+        const Effect & effect)
+{
+    if (effect.Type() == Effect_GrantFeat)
+    {
+        AddGrantedFeat(effect.Feat());
+    }
+}
+
+void Character::UpdateFeatEffectRevoked(
+        Character * charData,
+        const std::string & featName,
+        const Effect & effect)
+{
+    if (effect.Type() == Effect_GrantFeat)
+    {
+        RevokeGrantedFeat(effect.Feat());
+    }
+}
+
+void Character::UpdateEnhancementEffect(
+        Character * charData,
+        const std::string & enhancementName,
+        const EffectTier & effect)
+{
+    if (effect.m_effect.Type() == Effect_GrantFeat)
+    {
+        AddGrantedFeat(effect.m_effect.Feat());
+    }
+}
+
+void Character::UpdateEnhancementEffectRevoked(
+        Character * charData,
+        const std::string & enhancementName,
+        const EffectTier & effect)
+{
+    if (effect.m_effect.Type() == Effect_GrantFeat)
+    {
+        RevokeGrantedFeat(effect.m_effect.Feat());
+    }
+}
+
+void Character::UpdateItemEffect(
+        Character * charData,
+        const std::string & itemName,
+        const Effect & effect)
+{
+    if (effect.Type() == Effect_GrantFeat)
+    {
+        AddGrantedFeat(effect.Feat());
+    }
+}
+
+void Character::UpdateItemEffectRevoked(
+        Character * charData,
+        const std::string & itemName,
+        const Effect & effect)
+{
+    if (effect.Type() == Effect_GrantFeat)
+    {
+        RevokeGrantedFeat(effect.Feat());
+    }
+}
+
+void Character::AddGrantedFeat(const std::string & featName)
+{
+    // add the granted feat to the list
+    TrainedFeat tf;
+    tf.Set_FeatName(featName);
+    tf.Set_Type(TFT_GrantedFeat);
+    tf.Set_LevelTrainedAt(1);       // always level 1
+    m_grantedFeats.push_back(tf);
+    m_grantedFeats.sort();
+    NotifyGrantedFeatsChanged();
+
+    // now determine whether this granted feat is already trained
+    // if it is, we do not notify its effects. If its not, we do
+    // we need to record the notify state for this item so that
+    // if the user trains this feat in some other way we have to remove
+    // the effects for the granted feat
+    if (!IsFeatTrained(featName))
+    {
+        // this feat is not currently trained, we need to notify about its
+        // effects
+        const Feat & feat = FindFeat(featName);
+        ApplyFeatEffects(feat);
+        m_grantedNotifyState.push_back(true);
+    }
+    else
+    {
+        // we have not notified about this feats effects as it
+        // is already trained through some other mechanism (either selected
+        // or an automatic feat)
+        m_grantedNotifyState.push_back(false);
+    }
+}
+
+void Character::RevokeGrantedFeat(const std::string & featName)
+{
+    // remove the granted feat from the list
+    ASSERT(m_grantedFeats.size() == m_grantedNotifyState.size());
+    std::list<TrainedFeat>::iterator it = m_grantedFeats.begin();
+    std::list<bool>::iterator bit = m_grantedNotifyState.begin();
+    while (it != m_grantedFeats.end())
+    {
+        if ((*it).FeatName() == featName)
+        {
+            bool notified = (*bit);
+            // remove this copy of the feat (it may be present multiple times)
+            it = m_grantedFeats.erase(it);
+            bit = m_grantedNotifyState.erase(bit);
+            if (notified)
+            {
+                const Feat & feat = FindFeat(featName);
+                RevokeFeatEffects(feat);
+            }
+            break;  // and were done, no need to check the rest
+        }
+        ++it;
+        ++bit;
+    }
+    NotifyGrantedFeatsChanged();
+}
+
+void Character::KeepGrantedFeatsUpToDate()
+{
+    ASSERT(m_grantedFeats.size() == m_grantedNotifyState.size());
+    std::list<TrainedFeat>::iterator it = m_grantedFeats.begin();
+    std::list<bool>::iterator bit = m_grantedNotifyState.begin();
+    while (it != m_grantedFeats.end())
+    {
+        if (!IsFeatTrained((*it).FeatName()))
+        {
+            // if the feat is not trained and we have not notified its effects
+            // then apply them now
+            if (!(*bit))
+            {
+                const Feat & feat = FindFeat((*it).FeatName());
+                ApplyFeatEffects(feat);
+                (*bit) = true;  // it is now notified
+            }
+        }
+        else
+        {
+            // if the feat is trained and we are currently notified then
+            // revoke its effects
+            if ((*bit))
+            {
+                const Feat & feat = FindFeat((*it).FeatName());
+                RevokeFeatEffects(feat);
+                (*bit) = false;  // no longer notified
+            }
+        }
+        ++it;
+        ++bit;
+    }
+}
+
+void Character::UpdateSkillPoints()
+{
+    // update the skill points for all levels
+    ASSERT(m_Levels.size() == MAX_LEVEL);
+    std::list<LevelTraining>::iterator it = m_Levels.begin();
+    for (size_t level = 0; level < MAX_CLASS_LEVEL; ++level)
+    {
+        size_t available = SkillPoints(
+                (*it).HasClass() ? (*it).Class() : Class_Unknown,
+                Race(),
+                AbilityAtLevel(Ability_Intelligence, level),
+                level);
+        (*it).Set_SkillPointsAvailable(available);
+        ++it;
+    }
+}
+
+void Character::UpdateSkillPoints(size_t level)
+{
+    // update the skill points for this specific level
+    ASSERT(m_Levels.size() == MAX_LEVEL);
+    if (level < MAX_CLASS_LEVEL)
+    {
+        // only have skill points for heroic levels
+        std::list<LevelTraining>::iterator it = m_Levels.begin();
+        std::advance(it, level);
+        size_t available = SkillPoints(
+                (*it).HasClass() ? (*it).Class() : Class_Unknown,
+                Race(),
+                AbilityAtLevel(Ability_Intelligence, level),
+                level);
+        (*it).Set_SkillPointsAvailable(available);
     }
 }

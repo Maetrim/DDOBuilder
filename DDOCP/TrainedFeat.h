@@ -14,6 +14,10 @@ class TrainedFeat :
         bool operator<(const TrainedFeat & other) const;
         bool operator==(const TrainedFeat & other) const;
 
+        // these are used for forum export only
+        size_t Count() const;
+        void IncrementCount();
+
     protected:
         XmlLib::SaxContentElementInterface * StartElement(
                 const XmlLib::SaxString & name,
@@ -28,6 +32,8 @@ class TrainedFeat :
 
         DL_DECLARE_ACCESS(TrainedFeat_PROPERTIES)
         DL_DECLARE_VARIABLES(TrainedFeat_PROPERTIES)
+
+        size_t m_count;
 
         friend class Character;
         friend class FeatsListObject;

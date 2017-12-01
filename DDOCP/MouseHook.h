@@ -13,7 +13,7 @@ struct AreaOfInterest
     HWND m_whoToNotify;         // window to send message to
     UINT m_enterNotification;   // message to send on an enter rectangle
     UINT m_exitNotification;    // message to send on an exit rectangle
-    bool m_bIn;                 // in true if mouse was in this rectangle last time
+    bool m_bIn;                 // true if mouse was in this rectangle last time
 };
 
 #define WM_MOUSEENTER       WM_USER + 999

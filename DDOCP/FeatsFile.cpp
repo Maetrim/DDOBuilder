@@ -23,19 +23,20 @@ FeatsFile::~FeatsFile(void)
 
 void FeatsFile::Read()
 {
-    bool ok = false;
-    try
+    // set up a reader with this as the expected root node
+    XmlLib::SaxReader reader(this, f_saxElementName);
+    // read in the xml from a file (fully qualified path)
+    bool ok = reader.Open(m_filename);
+    if (!ok)
     {
-        // set up a reader with this as the expected root node
-        XmlLib::SaxReader reader(this, f_saxElementName);
-        // read in the xml from a file (fully qualified path)
-        ok = reader.Open(m_filename);
-    }
-    catch (const std::exception & e)
-    {
-        ok = false;
-        std::string errorMessage = e.what();
-        AfxMessageBox(errorMessage.c_str(), MB_ICONERROR);
+        std::string errorMessage = reader.ErrorMessage();
+        // document has failed to load. Tell the user what we can about it
+        CString text;
+        text.Format("The document %s\n"
+                "failed to load. The XML parser reported the following problem:\n"
+                "\n", m_filename);
+        text += errorMessage.c_str();
+        AfxMessageBox(text, MB_ICONERROR);
     }
 }
 

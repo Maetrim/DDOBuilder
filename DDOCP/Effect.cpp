@@ -3,6 +3,7 @@
 #include "StdAfx.h"
 #include "Effect.h"
 #include "XmlLib\SaxWriter.h"
+#include "GlobalSupportFunctions.h"
 
 #define DL_ELEMENT Effect
 
@@ -187,6 +188,18 @@ bool Effect::VerifyObject(std::stringstream * ss) const
             if (HasStyle() && Style() == MeleeStyle_Unknown)
             {
                 (*ss) << "Style effect has bad enum value\n";
+                ok = false;
+            }
+            break;
+        case Effect_SpellLikeAbility:
+            if (!HasSpellLikeAbility())
+            {
+                (*ss) << "SpellLikeAbility effect missing SpellLikeAbility field\n";
+                ok = false;
+            }
+            else if (FindSpellByName(SpellLikeAbility()).Name() == "")
+            {
+                (*ss) << "SpellLikeAbility field missing from Spells.xml\n";
                 ok = false;
             }
             break;

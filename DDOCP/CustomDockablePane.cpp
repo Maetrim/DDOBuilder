@@ -12,6 +12,7 @@ const UINT UWM_NEW_DOCUMENT = ::RegisterWindowMessage(_T("NewActiveDocument"));
 BEGIN_MESSAGE_MAP(CCustomDockablePane, CDockablePane)
     ON_WM_CREATE()
     ON_WM_SIZE()
+    ON_WM_WINDOWPOSCHANGING()
     ON_WM_CONTEXTMENU()
     ON_WM_MOUSEACTIVATE()
 END_MESSAGE_MAP()
@@ -177,4 +178,11 @@ int CCustomDockablePane::OnMouseActivate(CWnd* pDesktopWnd, UINT nHitTest, UINT 
     }
 
     return MA_NOACTIVATE;
+}
+
+void CCustomDockablePane::OnWindowPosChanging(WINDOWPOS * pos)
+{
+    // ensure tooltip locations are correct on window move
+    CDockablePane::OnWindowPosChanging(pos);
+    PostMessage(WM_SIZE, SIZE_RESTORED, MAKELONG(pos->cx, pos->cy));
 }

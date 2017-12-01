@@ -44,24 +44,15 @@ bool ItemsFile::ReadFile(const std::string & filename)
 {
     bool ok = false;
     std::string fullFilename = m_path + filename;
-    try
-    {
-        // set up a reader with this as the expected root node
-        XmlLib::SaxReader reader(this, f_saxElementName);
-        // read in the xml from a file (fully qualified path)
-        ok = reader.Open(fullFilename);
-    }
-    catch (const std::exception & e)
+    // set up a reader with this as the expected root node
+    XmlLib::SaxReader reader(this, f_saxElementName);
+    // read in the xml from a file (fully qualified path)
+    ok = reader.Open(fullFilename);
+    if (!ok)
     {
         ok = false;
-        std::string errorMessage = e.what();
+        std::string errorMessage = reader.ErrorMessage();
         AfxMessageBox(errorMessage.c_str(), MB_ICONERROR);
-        ::OutputDebugString("Bad item file: ");
-        ::OutputDebugString(fullFilename.c_str());
-        ::OutputDebugString("\n");
-    }
-    catch (...)
-    {
         ::OutputDebugString("Bad item file: ");
         ::OutputDebugString(fullFilename.c_str());
         ::OutputDebugString("\n");

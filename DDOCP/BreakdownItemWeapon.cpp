@@ -602,7 +602,6 @@ bool BreakdownItemWeapon::IsMeleeWeapon() const
     case Weapon_BattleAxe:
     case Weapon_Club:
     case Weapon_Dagger:
-    case Weapon_Dart:
     case Weapon_DwarvenAxe:
     case Weapon_Falchion:
     case Weapon_GreatAxe:

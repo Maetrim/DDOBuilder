@@ -94,6 +94,7 @@ void CLevelUpView::DoDataExchange(CDataExchange* pDX)
     DDX_Control(pDX, IDC_COMBO_FEATSELECT2, m_comboFeatSelect[1]);
     DDX_Control(pDX, IDC_COMBO_FEATSELECT3, m_comboFeatSelect[2]);
     DDX_Control(pDX, IDC_LIST_AUTOFEATS, m_listAutomaticFeats);
+    DDX_Control(pDX, IDC_LIST_GRANTEDFEATS, m_listGrantedFeats);
     DDX_Control(pDX, IDC_STATIC_CLASS, m_staticClass);
     DDX_Control(pDX, IDC_STATIC_SP_AVAILABLE, m_staticAvailableSpend);
     DDX_Control(pDX, IDC_BUTTONAUTO_SPEND, m_buttonAutoSpend);
@@ -104,12 +105,16 @@ void CLevelUpView::DoDataExchange(CDataExchange* pDX)
 #pragma warning(disable: 4407) // warning C4407: cast between different pointer to member representations, compiler may generate incorrect code
 BEGIN_MESSAGE_MAP(CLevelUpView, CFormView)
     ON_WM_SIZE()
+    ON_WM_WINDOWPOSCHANGING()
     ON_REGISTERED_MESSAGE(UWM_NEW_DOCUMENT, OnNewDocument)
     ON_NOTIFY(HDN_ENDTRACK, IDC_LIST_SKILLS, OnEndtrackListSkills)
     ON_NOTIFY(HDN_DIVIDERDBLCLICK, IDC_LIST_SKILLS, OnEndtrackListSkills)
     ON_NOTIFY(HDN_ENDTRACK, IDC_LIST_AUTOFEATS, OnEndtrackListAutomaticFeats)
     ON_NOTIFY(HDN_DIVIDERDBLCLICK, IDC_LIST_AUTOFEATS, OnEndtrackListAutomaticFeats)
+    ON_NOTIFY(HDN_ENDTRACK, IDC_LIST_GRANTEDFEATS, OnEndtrackListGrantedFeats)
+    ON_NOTIFY(HDN_DIVIDERDBLCLICK, IDC_LIST_GRANTEDFEATS, OnEndtrackListGrantedFeats)
     ON_NOTIFY(NM_HOVER, IDC_LIST_AUTOFEATS, OnHoverAutomaticFeats)
+    ON_NOTIFY(NM_HOVER, IDC_LIST_GRANTEDFEATS, OnHoverGrantedFeats)
     ON_NOTIFY(LVN_COLUMNCLICK, IDC_LIST_SKILLS, OnColumnclickListSkills)
     ON_NOTIFY(NM_DBLCLK, IDC_LIST_SKILLS, OnDoubleClickListSkills)
     ON_NOTIFY(NM_CLICK, IDC_LIST_SKILLS, OnLeftClickListSkills)
@@ -173,6 +178,14 @@ LRESULT CLevelUpView::OnNewDocument(
         }
         // ensure all controls show correct state, even for no document
         PopulateControls();
+    }
+    if (IsWindow(GetSafeHwnd()))
+    {
+        // do a resize to show/hide controls as required
+        // as granted feats control may now have changed
+        CRect rect;
+        GetClientRect(rect);
+        OnSize(SIZE_RESTORED, rect.Width(), rect.Height());
     }
     return 0L;
 }
@@ -261,13 +274,22 @@ void CLevelUpView::OnInitialUpdate()
     m_listSkills.SortItems(CLevelUpView::SortCompareFunction, (long)GetSafeHwnd());
 
     m_listAutomaticFeats.InsertColumn(0, "Automatic Feats", LVCFMT_LEFT, 100);
-    LoadColumnWidthsByName(&m_listAutomaticFeats, "LevelUpAutoFeats_%s");
     m_listAutomaticFeats.SetExtendedStyle(
             m_listAutomaticFeats.GetExtendedStyle()
             | LVS_EX_FULLROWSELECT
             | LVS_EX_TRACKSELECT
-            //| LVS_EX_LABELTIP); // stop hover tooltips from working
+            //| LVS_EX_LABELTIP); // stops hover tooltips from working
             );
+    LoadColumnWidthsByName(&m_listAutomaticFeats, "LevelUpAutoFeats_%s");
+
+    m_listGrantedFeats.InsertColumn(0, "Granted Feats", LVCFMT_LEFT, 100);
+    m_listGrantedFeats.SetExtendedStyle(
+            m_listGrantedFeats.GetExtendedStyle()
+            | LVS_EX_FULLROWSELECT
+            | LVS_EX_TRACKSELECT
+            //| LVS_EX_LABELTIP); // stops hover tooltips from working
+            );
+    LoadColumnWidthsByName(&m_listGrantedFeats, "LevelUpGrantedFeats_%s");
 
     // put the available skill tome values in the skill tome select combo box
     size_t index = m_comboSkillTome.AddString("No Tome");
@@ -302,7 +324,7 @@ void CLevelUpView::OnInitialUpdate()
 
 void CLevelUpView::OnSize(UINT nType, int cx, int cy)
 {
-    CWnd::OnSize(nType, cx, cy);
+    CFormView::OnSize(nType, cx, cy);
     if (IsWindow(m_listSkills.GetSafeHwnd()))
     {
         // ensure space for level select buttons
@@ -328,10 +350,14 @@ void CLevelUpView::OnSize(UINT nType, int cx, int cy)
         // [level] [heroic classes] [combo1] [combo2] [combo3]
         // [level] [Feat type 1] [Feat type 2] [Feat type 3]
         // [level] [Feat combo1] [Feat combo2] [Feat combo3]
-        // [level] [Available][count] [+][-][Auto spend]
-        // [level] +---------------------------------+ +----------------+
-        // [level] | Skills list                     | | Automatic feats|
-        // [level] +---------------------------------+ +----------------+
+        // [level] [Available][count] [+][-][Auto spend]  [Bab]
+        // [level] +------------------------------------+ +----------------+
+        // [level] | Skills list                        | | Automatic feats|
+        // [level] |                                    | +----------------+
+        // [level] |                                    | +----------------+
+        // [level] |                                    | | Granted feats  |
+        // [level] +------------------------------------+ +----------------+
+        // Note that granted feats are only shown if there are granted feats
         CRect rctClassLabel;
         m_staticClass.GetWindowRect(&rctClassLabel);
         rctClassLabel -= rctClassLabel.TopLeft();
@@ -425,9 +451,28 @@ void CLevelUpView::OnSize(UINT nType, int cx, int cy)
         rctAutoFeats -= rctAutoFeats.TopLeft();
         rctAutoFeats += CPoint(
                 rctSkills.right + c_controlSpacing,
-                rctSkillControls[0].bottom + c_controlSpacing);
+                rctBab.bottom + c_controlSpacing);
         rctAutoFeats.bottom = cy - c_controlSpacing;
         rctAutoFeats.right = cx - c_controlSpacing;
+
+        // are we showing granted feats?
+        if (m_pCharacter != NULL
+                && m_pCharacter->HasGrantedFeats())
+        {
+            // give them 1/3rd of the height of the automatic feats
+            rctAutoFeats.bottom -= rctAutoFeats.Height() / 3;
+            // same for the granted feats list control
+            CRect rctGrantedFeats(rctAutoFeats);
+            rctGrantedFeats.top = rctAutoFeats.bottom + c_controlSpacing;
+            rctGrantedFeats.bottom = cy - c_controlSpacing;
+            m_listGrantedFeats.MoveWindow(rctGrantedFeats);
+            m_listGrantedFeats.ShowWindow(SW_SHOW);
+        }
+        else
+        {
+            // granted feat controls not shown
+            m_listGrantedFeats.ShowWindow(SW_HIDE);
+        }
 
         // now we have all the rectangle positions, move all the controls
         m_staticClass.MoveWindow(rctClassLabel);
@@ -458,7 +503,7 @@ void CLevelUpView::OnSize(UINT nType, int cx, int cy)
             rect.bottom = rect.top + 32 + GetSystemMetrics(SM_CYBORDER) * 4;
             GetMouseHook()->UpdateRectangle(
                     m_hookFeatHandles[i],
-                    rect);          // screen coordinates,
+                    rect);          // screen coordinates
         }
         for (size_t i = 0; i < MAX_LEVEL; ++i)
         {
@@ -466,9 +511,16 @@ void CLevelUpView::OnSize(UINT nType, int cx, int cy)
             m_buttonLevels[i].GetWindowRect(&rect);
             GetMouseHook()->UpdateRectangle(
                     m_hookLevelHandles[i],
-                    rect);          // screen coordinates,
+                    rect);          // screen coordinates
         }
     }
+}
+
+void CLevelUpView::OnWindowPosChanging(WINDOWPOS * pos)
+{
+    // ensure tooltip locations are correct on window move
+    CFormView::OnWindowPosChanging(pos);
+    PostMessage(WM_SIZE, SIZE_RESTORED, MAKELONG(pos->cx, pos->cy));
 }
 
 // DocumentObserver overrides
@@ -574,6 +626,15 @@ void CLevelUpView::UpdateFeatRevoked(
     }
 }
 
+void CLevelUpView::UpdateGrantedFeatsChanged(Character * charData)
+{
+    PopulateGrantedFeats();
+    // do a resize to show/hide controls as required
+    CRect rect;
+    GetClientRect(rect);
+    OnSize(SIZE_RESTORED, rect.Width(), rect.Height());
+}
+
 void CLevelUpView::PopulateControls()
 {
     SetLevelButtonStates();
@@ -583,6 +644,7 @@ void CLevelUpView::PopulateControls()
     DetermineTrainableFeats();
     EnableControls();
     PopulateAutomaticFeats();
+    PopulateGrantedFeats();
 
     ShowBab();
 }
@@ -600,7 +662,8 @@ void CLevelUpView::SetLevelButtonStates()
             m_buttonLevels[i].EnableWindow(TRUE);
             // there are issues with this level if not all feats have been
             // trained
-            std::vector<TrainableFeatTypes> trainable = m_pCharacter->TrainableFeatTypeAtLevel(i);
+            std::vector<TrainableFeatTypes> trainable =
+                    m_pCharacter->TrainableFeatTypeAtLevel(i);
             bool hasIssue = false;
             for (size_t tft = 0; tft < trainable.size(); ++tft)
             {
@@ -834,14 +897,10 @@ void CLevelUpView::EnableControls()
         {
             // skill point assign controls can be enabled
             m_listSkills.EnableWindow(TRUE);
-            size_t available = SkillPoints(
-                    type,
-                    m_pCharacter->Race(),
-                    m_pCharacter->AbilityAtLevel(Ability_Intelligence, m_level),
-                    m_level);
-            size_t spent = level.SkillPointsSpent();
+            int available = level.SkillPointsAvailable();
+            int spent = level.SkillPointsSpent();
             CString text;
-            text.Format("%d of %d", ((int)available - (int)spent), available);
+            text.Format("%d of %d", (available - spent), available);
             m_editSkillPoints.SetWindowText(text);
         }
         else
@@ -907,6 +966,14 @@ void CLevelUpView::OnEndtrackListAutomaticFeats(NMHDR* pNMHDR, LRESULT* pResult)
     SaveColumnWidthsByName(&m_listAutomaticFeats, "LevelUpAutoFeats_%s");
 }
 
+void CLevelUpView::OnEndtrackListGrantedFeats(NMHDR* pNMHDR, LRESULT* pResult)
+{
+    // just save the column widths to registry so restored next time we run
+    UNREFERENCED_PARAMETER(pNMHDR);
+    UNREFERENCED_PARAMETER(pResult);
+    SaveColumnWidthsByName(&m_listGrantedFeats, "LevelUpGrantedFeats_%s");
+}
+
 void CLevelUpView::OnHoverAutomaticFeats(NMHDR* pNMHDR, LRESULT* pResult)
 {
     // the user it hovering over a list control item. Identify it and display
@@ -927,12 +994,54 @@ void CLevelUpView::OnHoverAutomaticFeats(NMHDR* pNMHDR, LRESULT* pResult)
             // show the feat tooltip
             CRect rect;
             m_listAutomaticFeats.GetItemRect(hitInfo.iItem, &rect, LVIR_BOUNDS);
-            const LevelTraining & levelData = m_pCharacter->LevelData(m_level);
             HideTip();
             // get the feat items text
             CString featName;
             featName = m_listAutomaticFeats.GetItemText(hitInfo.iItem, 0);
             m_listAutomaticFeats.ClientToScreen(&rect);
+            CPoint tipTopLeft(rect.left, rect.bottom);
+            CPoint tipAlternate(rect.left, rect.top);
+            SetFeatTooltipText(featName, tipTopLeft, tipAlternate);
+            m_showingTip = true;
+            // make sure we don't stack multiple monitoring of the same rectangle
+            if (m_automaticHandle == 0)
+            {
+                m_automaticHandle = GetMouseHook()->AddRectangleToMonitor(
+                        this->GetSafeHwnd(),
+                        rect,           // screen coordinates,
+                        WM_MOUSEENTER,
+                        WM_MOUSELEAVE,
+                        true);
+            }
+        }
+    }
+}
+
+void CLevelUpView::OnHoverGrantedFeats(NMHDR* pNMHDR, LRESULT* pResult)
+{
+    // the user it hovering over a list control item. Identify it and display
+    // the feat tooltip for this item
+    CPoint mousePosition;
+    GetCursorPos(&mousePosition);
+    m_listGrantedFeats.ScreenToClient(&mousePosition);
+
+    LVHITTESTINFO hitInfo;
+    hitInfo.pt = mousePosition;
+    if (m_listGrantedFeats.SubItemHitTest(&hitInfo) >= 0)
+    {
+        if (m_hoverItem != hitInfo.iItem)
+        {
+            // the item under the hover has changed
+            m_hoverItem = hitInfo.iItem;
+            // mouse is over a valid granted feat, get the items rectangle and
+            // show the feat tooltip
+            CRect rect;
+            m_listGrantedFeats.GetItemRect(hitInfo.iItem, &rect, LVIR_BOUNDS);
+            HideTip();
+            // get the feat items text
+            CString featName;
+            featName = m_listGrantedFeats.GetItemText(hitInfo.iItem, 0);
+            m_listGrantedFeats.ClientToScreen(&rect);
             CPoint tipTopLeft(rect.left, rect.bottom);
             CPoint tipAlternate(rect.left, rect.top);
             SetFeatTooltipText(featName, tipTopLeft, tipAlternate);
@@ -1399,6 +1508,50 @@ void CLevelUpView::PopulateAutomaticFeats()
     m_listAutomaticFeats.UnlockWindowUpdate();
 }
 
+void CLevelUpView::PopulateGrantedFeats()
+{
+    m_listGrantedFeats.LockWindowUpdate();
+    m_listGrantedFeats.DeleteAllItems();
+    if (m_pDocument != NULL)
+    {
+        // get the list of granted feats
+        const std::list<TrainedFeat> & grantedFeats = m_pCharacter->GrantedFeats();
+        m_imagesGrantedFeats.DeleteImageList();
+        m_imagesGrantedFeats.Create(32, 32, ILC_COLOR32, 0, grantedFeats.size());
+
+        // build an image list with all the feat icons
+        std::list<TrainedFeat>::const_iterator it = grantedFeats.begin();
+        while (it != grantedFeats.end())
+        {
+            // we only have the feat name, find the main feat and use it to get the icon
+            const std::string & featName = (*it).FeatName();
+            const Feat & feat = FindFeat(featName);
+            feat.AddImage(&m_imagesGrantedFeats);
+            ++it;
+        }
+        m_listGrantedFeats.SetImageList(&m_imagesGrantedFeats, LVSIL_SMALL);
+        m_listGrantedFeats.SetImageList(&m_imagesGrantedFeats, LVSIL_NORMAL);
+
+        // now populate the list control
+        size_t imageIndex = 0;
+        it = grantedFeats.begin();
+        while (it != grantedFeats.end())
+        {
+            const std::string & featName = (*it).FeatName();
+            m_listGrantedFeats.InsertItem(imageIndex, featName.c_str(), imageIndex);
+            ++imageIndex;
+            ++it;
+        }
+        if (imageIndex > 0)
+        {
+            // start with an item selected in the list so that tooltip work
+            m_listGrantedFeats.SetItemState(0, LVIS_SELECTED | LVIS_FOCUSED, LVIS_SELECTED | LVIS_FOCUSED);
+            m_listGrantedFeats.SetSelectionMark(0);
+        }
+    }
+    m_listGrantedFeats.UnlockWindowUpdate();
+}
+
 void CLevelUpView::ShowBab()
 {
     CString babText("BAB 0");
@@ -1569,9 +1722,11 @@ BOOL CLevelUpView::OnEraseBkgnd(CDC* pDC)
         IDC_COMBO_FEATSELECT2,
         IDC_COMBO_FEATSELECT3,
         IDC_LIST_AUTOFEATS,
+        IDC_LIST_GRANTEDFEATS,
         IDC_STATIC_CLASS,
         IDC_STATIC_SP_AVAILABLE,
         IDC_BUTTONAUTO_SPEND,
+        IDC_STATIC_BAB,
         0 // end marker
     };
 
@@ -1623,20 +1778,15 @@ HBRUSH CLevelUpView::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
     // colour the control based on whether the user has over spent
     // the number of skill points available at this level. This can happen
     // if they adjust the number of points spent in intelligence/tome value or change
-    // classes.
+    // classes or race.
     bool setWarning = false;
     if (pWnd == &m_editSkillPoints)
     {
         if (m_pDocument != NULL)
         {
             const LevelTraining & level = m_pCharacter->LevelData(m_level);
-            ClassType type = (level.HasClass() ? level.Class() : Class_Unknown);
-            size_t available = SkillPoints(
-                    type,
-                    m_pCharacter->Race(),
-                    m_pCharacter->AbilityAtLevel(Ability_Intelligence, m_level),
-                    m_level);
-            size_t spent = level.SkillPointsSpent();
+            int available = level.SkillPointsAvailable();
+            int spent = level.SkillPointsSpent();
             setWarning = (spent > available);
         }
     }

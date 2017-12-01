@@ -18,6 +18,7 @@ class Selector :
         std::string Selector::DisplayName(const std::string & selection) const;
         std::list<Effect> Effects(const std::string & selection) const;
         std::list<Stance> Stances(const std::string & selection) const;
+        size_t Cost(const std::string & selection) const;
 
         bool VerifyObject(
                 std::stringstream * ss,

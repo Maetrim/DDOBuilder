@@ -14,7 +14,7 @@ class CFeatSelectionDialog :
     public CDialog
 {
     public:
-        CFeatSelectionDialog(CWnd* pParent, const Feat & feat);
+        CFeatSelectionDialog(CWnd* pParent, const Feat & feat, TrainableFeatTypes type);
 
     ///////////////////////////////////////////////////////////////////
     // MFC
@@ -49,6 +49,7 @@ class CFeatSelectionDialog :
         CMFCButtonMMRelay m_featButton;
         Character * m_pCharacter;
         Feat m_feat;
+        TrainableFeatTypes m_type;
         CBitmap m_bitmap;
         CInfoTip m_tooltip;
         bool m_showingTip;

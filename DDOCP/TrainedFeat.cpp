@@ -3,6 +3,7 @@
 #include "StdAfx.h"
 #include "TrainedFeat.h"
 #include "XmlLib\SaxWriter.h"
+#include "GlobalSupportFunctions.h"
 
 #define DL_ELEMENT TrainedFeat
 
@@ -15,7 +16,8 @@ namespace
 }
 
 TrainedFeat::TrainedFeat() :
-    XmlLib::SaxContentElement(f_saxElementName, f_verCurrent)
+    XmlLib::SaxContentElement(f_saxElementName, f_verCurrent),
+    m_count(1)
 {
     DL_INIT(TrainedFeat_PROPERTIES)
 }
@@ -38,6 +40,33 @@ void TrainedFeat::EndElement()
 {
     SaxContentElement::EndElement();
     DL_END(TrainedFeat_PROPERTIES)
+    // update TFT_Special to correct type
+    if (m_Type == TFT_Special)
+    {
+        // old style feat type, convert to correct type
+        const Feat & feat = FindFeat(FeatName());
+        switch (feat.Acquire())
+        {
+        case FeatAcquisition_HeroicPastLife:
+            m_Type = TFT_HeroicPastLife;
+            break;
+        case FeatAcquisition_RacialPastLife:
+            m_Type = TFT_RacialPastLife;
+            break;
+        case FeatAcquisition_IconicPastLife:
+            m_Type = TFT_IconicPastLife;
+            break;
+        case FeatAcquisition_EpicPastLife:
+            m_Type = TFT_EpicPastLife;
+            break;
+        case FeatAcquisition_Special:
+            m_Type = TFT_SpecialFeat;
+            break;
+        default:
+            ::OutputDebugString("Failed to translate feat type\n");
+            break;
+        }
+    }
 }
 
 void TrainedFeat::Write(XmlLib::SaxWriter * writer) const
@@ -67,3 +96,12 @@ bool TrainedFeat::operator==(const TrainedFeat & other) const
             && m_LevelTrainedAt == other.m_LevelTrainedAt;
 }
 
+size_t TrainedFeat::Count() const
+{
+    return m_count;
+}
+
+void TrainedFeat::IncrementCount()
+{
+    ++m_count;
+}
