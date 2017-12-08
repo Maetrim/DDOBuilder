@@ -6,6 +6,7 @@
 #include "DDOCP.h"
 #include "FeatSelectionDialog.h"
 #include "GlobalSupportFunctions.h"
+#include "SkillSpendDialog.h"
 #include <algorithm>
 #include "MouseHook.h"
 
@@ -97,7 +98,7 @@ void CLevelUpView::DoDataExchange(CDataExchange* pDX)
     DDX_Control(pDX, IDC_LIST_GRANTEDFEATS, m_listGrantedFeats);
     DDX_Control(pDX, IDC_STATIC_CLASS, m_staticClass);
     DDX_Control(pDX, IDC_STATIC_SP_AVAILABLE, m_staticAvailableSpend);
-    DDX_Control(pDX, IDC_BUTTONAUTO_SPEND, m_buttonAutoSpend);
+    DDX_Control(pDX, IDC_BUTTON_SKILLS, m_buttonSkillsDialog);
     DDX_Control(pDX, IDC_STATIC_BAB, m_staticBab);
 }
 
@@ -128,6 +129,7 @@ BEGIN_MESSAGE_MAP(CLevelUpView, CFormView)
     ON_CBN_SELENDCANCEL(IDC_COMBO_SKILLTOME, OnSkillTomeCancel)
     ON_BN_CLICKED(IDC_BUTTON_SKILL_PLUS, OnButtonSkillPlus)
     ON_BN_CLICKED(IDC_BUTTON_SKILL_MINUS, OnButtonSkillMinus)
+    ON_BN_CLICKED(IDC_BUTTON_SKILLS, OnButtonSkillsDialog)
     ON_CONTROL_RANGE(CBN_SELENDOK, IDC_COMBO_FEATSELECT1, IDC_COMBO_FEATSELECT3, OnFeatSelection)
     ON_WM_ERASEBKGND()
     ON_WM_CTLCOLOR()
@@ -401,7 +403,7 @@ void CLevelUpView::OnSize(UINT nType, int cx, int cy)
         m_editSkillPoints.GetWindowRect(&rctSkillControls[1]);
         m_buttonPlus.GetWindowRect(&rctSkillControls[2]);
         m_buttonMinus.GetWindowRect(&rctSkillControls[3]);
-        m_buttonAutoSpend.GetWindowRect(&rctSkillControls[4]);
+        m_buttonSkillsDialog.GetWindowRect(&rctSkillControls[4]);
         ScreenToClient(rctSkillControls[0]);
         int top = rctSkillControls[0].top;
         rctSkillControls[0] -= rctSkillControls[0].TopLeft();
@@ -489,7 +491,7 @@ void CLevelUpView::OnSize(UINT nType, int cx, int cy)
         m_editSkillPoints.MoveWindow(rctSkillControls[1]);
         m_buttonPlus.MoveWindow(rctSkillControls[2]);
         m_buttonMinus.MoveWindow(rctSkillControls[3]);
-        m_buttonAutoSpend.MoveWindow(rctSkillControls[4]);
+        m_buttonSkillsDialog.MoveWindow(rctSkillControls[4]);
         m_listSkills.MoveWindow(rctSkills, TRUE);
         m_staticBab.MoveWindow(rctBab);
         m_listAutomaticFeats.MoveWindow(rctAutoFeats, TRUE);
@@ -948,6 +950,7 @@ void CLevelUpView::EnableBuyButtons()
         m_buttonPlus.EnableWindow(false);
         m_buttonMinus.EnableWindow(false);
     }
+    m_buttonSkillsDialog.EnableWindow(m_pCharacter != NULL);
 }
 
 void CLevelUpView::OnEndtrackListSkills(NMHDR* pNMHDR, LRESULT* pResult)
@@ -1293,8 +1296,14 @@ bool CLevelUpView::CanBuySkill(SkillType skill) const
             m_pCharacter->AbilityAtLevel(Ability_Intelligence, m_level),
             m_level);
     int spent = levelData.SkillPointsSpent();
+    // also ensure we do not overspend a skill across all levels
+    double maxSkill20 = m_pCharacter->MaxSkillForLevel(
+            skill,
+            MAX_CLASS_LEVEL-1);
+    double currentSkill20 = m_pCharacter->SkillAtLevel(skill, MAX_CLASS_LEVEL-1, false);
     canBuy = ((maxSkill - currentSkill) > 0.1)      // covers rounding errors due to subtraction of doubles
-            && ((available - spent) > 0);           // can go negative if intelligence adjusted down after spend
+            && ((available - spent) > 0)            // can go negative if intelligence adjusted down after spend
+            && (currentSkill20 < maxSkill20);
     return canBuy;
 }
 
@@ -1357,6 +1366,15 @@ void CLevelUpView::OnButtonSkillMinus()
             m_pCharacter->RevokeSkillPoint(m_level, skill);
         }
     }
+}
+
+void CLevelUpView::OnButtonSkillsDialog()
+{
+    // no tooltips while a dialog is displayed
+    GetMouseHook()->SaveState();
+    CSkillSpendDialog dlg(m_pCharacter);
+    dlg.DoModal();
+    GetMouseHook()->RestoreState();
 }
 
 void CLevelUpView::DetermineTrainableFeats()
@@ -1725,7 +1743,7 @@ BOOL CLevelUpView::OnEraseBkgnd(CDC* pDC)
         IDC_LIST_GRANTEDFEATS,
         IDC_STATIC_CLASS,
         IDC_STATIC_SP_AVAILABLE,
-        IDC_BUTTONAUTO_SPEND,
+        IDC_BUTTON_SKILLS,
         IDC_STATIC_BAB,
         0 // end marker
     };

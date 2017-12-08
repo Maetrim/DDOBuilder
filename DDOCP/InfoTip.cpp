@@ -418,7 +418,27 @@ void CInfoTip::SetItem(
         }
         m_effectDescriptions.push_back(augmentText);
     }
-
+    // add any sentient weapon Filigree to the list also
+    if (pItem->HasSentientIntelligence())
+    {
+        CString text;
+        text = "Sentient Weapon Personality: ";
+        if (pItem->SentientIntelligence().HasPersonality())
+        {
+            text += pItem->SentientIntelligence().Personality().c_str();
+            Augment personality = FindAugmentByName(pItem->SentientIntelligence().Personality());
+            text += ".\n";
+            text += personality.Description().c_str();
+        }
+        m_effectDescriptions.push_back(text);
+        // now add the Filigree upgrades
+        for (size_t fi = 0; fi < MAX_FILIGREE; ++fi)
+        {
+            text.Format("Filigree %d: ", fi + 1);
+            text += pItem->SentientIntelligence().Filigree(fi).c_str();
+            m_effectDescriptions.push_back(text);
+        }
+    }
     m_requirements.clear();
     m_bRequirementMet.clear();
     m_cost = "";

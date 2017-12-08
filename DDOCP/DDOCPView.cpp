@@ -33,6 +33,7 @@ IMPLEMENT_DYNCREATE(CDDOCPView, CFormView)
 BEGIN_MESSAGE_MAP(CDDOCPView, CFormView)
     ON_WM_CONTEXTMENU()
     ON_WM_RBUTTONUP()
+    ON_WM_ERASEBKGND()
     ON_BN_CLICKED(IDC_BUTTON_STR_PLUS, OnButtonStrPlus)
     ON_BN_CLICKED(IDC_BUTTON_STR_MINUS, OnButtonStrMinus)
     ON_BN_CLICKED(IDC_BUTTON_DEX_PLUS, OnButtonDexPlus)
@@ -168,6 +169,109 @@ void CDDOCPView::OnContextMenu(CWnd * pWnd, CPoint point)
 #endif
 }
 
+BOOL CDDOCPView::OnEraseBkgnd(CDC* pDC)
+{
+    static int controlsNotToBeErased[] =
+    {
+        IDC_RADIO_28PT,
+        IDC_RADIO_32PT,
+        IDC_RADIO_34PT,
+        IDC_RADIO_36PT,
+        IDC_NAME,
+        IDC_COMBO_RACE,
+        IDC_COMBO_ALIGNMENT,
+        IDC_BUTTON_STR_PLUS,
+        IDC_EDIT_STR,
+        IDC_BUTTON_STR_MINUS,
+        IDC_EDIT_STR_COST,
+        IDC_COMBO_TOME_STR,
+        IDC_BUTTON_DEX_PLUS,
+        IDC_EDIT_DEX,
+        IDC_BUTTON_DEX_MINUS,
+        IDC_EDIT_DEX_COST,
+        IDC_COMBO_TOME_DEX,
+        IDC_BUTTON_CON_PLUS,
+        IDC_EDIT_CON,
+        IDC_BUTTON_CON_MINUS,
+        IDC_EDIT_CON_COST,
+        IDC_COMBO_TOME_CON,
+        IDC_BUTTON_INT_PLUS,
+        IDC_EDIT_INT,
+        IDC_BUTTON_INT_MINUS,
+        IDC_EDIT_INT_COST,
+        IDC_COMBO_TOME_INT,
+        IDC_BUTTON_WIS_PLUS,
+        IDC_EDIT_WIS,
+        IDC_BUTTON_WIS_MINUS,
+        IDC_EDIT_WIS_COST,
+        IDC_COMBO_TOME_WIS,
+        IDC_BUTTON_CHA_PLUS,
+        IDC_EDIT_CHA,
+        IDC_BUTTON_CHA_MINUS,
+        IDC_EDIT_CHA_COST,
+        IDC_COMBO_TOME_CHA,
+        IDC_CHECK_GUILD_BUFFS,
+        IDC_EDIT_GUILD_LEVEL,
+        IDC_COMBO_LEVEL4_ABILITY,
+        IDC_COMBO_LEVEL8_ABILITY,
+        IDC_COMBO_LEVEL12_ABILITY,
+        IDC_COMBO_LEVEL16_ABILITY,
+        IDC_COMBO_LEVEL20_ABILITY,
+        IDC_COMBO_LEVEL24_ABILITY,
+        IDC_COMBO_LEVEL28_ABILITY,
+        0 // end marker
+    };
+
+    pDC->SaveDC();
+
+    const int * pId = controlsNotToBeErased;
+    while (*pId != 0)
+    {
+        // Get rectangle of the control.
+        CWnd * pControl = GetDlgItem(*pId);
+        if (pControl && pControl->IsWindowVisible())
+        {
+            CRect controlClip;
+            pControl->GetWindowRect(&controlClip);
+            ScreenToClient(&controlClip);
+            if (pControl->IsKindOf(RUNTIME_CLASS(CComboBox)))
+            {
+                // combo boxes return the height of the whole control, including the drop rectangle
+                // reduce the height to the control size without it shown
+                controlClip.bottom = controlClip.top
+                        + GetSystemMetrics(SM_CYHSCROLL)
+                        + GetSystemMetrics(SM_CYEDGE) * 2;
+                // special case for combo boxes with image lists
+                CComboBoxEx * pCombo = dynamic_cast<CComboBoxEx*>(pControl);
+                if (pCombo != NULL)
+                {
+                    CImageList * pImage = pCombo->GetImageList();
+                    if (pImage != NULL)
+                    {
+                        IMAGEINFO info;
+                        pImage->GetImageInfo(0, &info);
+                        // limit to the the height of the selection combo
+                        controlClip.bottom = controlClip.top
+                                + info.rcImage.bottom
+                                - info.rcImage.top
+                                + GetSystemMetrics(SM_CYEDGE) * 2;
+                    }
+                }
+            }
+            pDC->ExcludeClipRect(&controlClip);
+        }
+
+        // next in list
+        ++pId;
+    }
+    CRect rctClient;
+    GetWindowRect(&rctClient);
+    ScreenToClient(&rctClient);
+    pDC->FillSolidRect(rctClient, GetSysColor(COLOR_BTNFACE));
+    pDC->RestoreDC(-1);
+
+    return TRUE;
+}
 // CDDOCPView diagnostics
 
 #ifdef _DEBUG

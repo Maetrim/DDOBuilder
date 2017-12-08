@@ -13,6 +13,7 @@
 #include "DDOCPDoc.h"
 #include "GlobalSupportFunctions.h"
 #include "MainFrm.h"
+#include "SkillSpendDialog.h"
 #include <propkey.h>
 #include "XmlLib\SaxReader.h"
 #include "EnhancementEditorDialog.h"
@@ -33,6 +34,7 @@ IMPLEMENT_DYNCREATE(CDDOCPDoc, CDocument)
 BEGIN_MESSAGE_MAP(CDDOCPDoc, CDocument)
     ON_COMMAND(ID_EDIT_ENHANCEMENTTREEEDITOR, &CDDOCPDoc::OnEditEnhancementTreeEditor)
     ON_COMMAND(ID_FORUMEXPORT_EXPORTTOCLIPBOARD, &CDDOCPDoc::OnForumExportToClipboard)
+    ON_COMMAND(ID_EDIT_SKILLPOINTS, &CDDOCPDoc::OnEditSkillPoints)
 END_MESSAGE_MAP()
 
 // CDDOCPDoc construction/destruction
@@ -243,6 +245,15 @@ void CDDOCPDoc::OnEditEnhancementTreeEditor()
     GetMouseHook()->RestoreState();
 }
 
+void CDDOCPDoc::OnEditSkillPoints()
+{
+    // no tooltips while a dialog is displayed
+    GetMouseHook()->SaveState();
+    CSkillSpendDialog dlg(&m_characterData);
+    dlg.DoModal();
+    GetMouseHook()->RestoreState();
+}
+
 void CDDOCPDoc::OnForumExportToClipboard()
 {
     std::stringstream forumExport;
@@ -351,41 +362,44 @@ void CDDOCPDoc::AddSpecialFeats(std::stringstream & forumExport)
 {
     // add the special feats (past lives and other feats such as inherent)
     std::list<TrainedFeat> feats = m_characterData.SpecialFeats().Feats();
-    forumExport << "Past Lives and Special Feats\r\n";
-    if (feats.size() > 1)
+    if (feats.size() > 0)
     {
-        // combine duplicates in the list
-        std::list<TrainedFeat>::iterator it = feats.begin();
-        while (it != feats.end())
+        forumExport << "Past Lives and Special Feats\r\n";
+        if (feats.size() > 1)
         {
-            // look at all following items and combine if required
-            std::list<TrainedFeat>::iterator nit = it;
-            ++nit;          // start from next element
-            while (nit != feats.end())
+            // combine duplicates in the list
+            std::list<TrainedFeat>::iterator it = feats.begin();
+            while (it != feats.end())
             {
-                if ((*it) == (*nit))
+                // look at all following items and combine if required
+                std::list<TrainedFeat>::iterator nit = it;
+                ++nit;          // start from next element
+                while (nit != feats.end())
                 {
-                    // need to combine these elements
-                    (*it).IncrementCount();
-                    nit = feats.erase(nit);
+                    if ((*it) == (*nit))
+                    {
+                        // need to combine these elements
+                        (*it).IncrementCount();
+                        nit = feats.erase(nit);
+                    }
+                    else
+                    {
+                        // check the next one
+                        ++nit;
+                    }
                 }
-                else
-                {
-                    // check the next one
-                    ++nit;
-                }
+                ++it;
             }
-            ++it;
         }
+        // sort the feats before output
+        feats.sort();
+        AddFeats(forumExport, "Heroic Past Lives", TFT_HeroicPastLife, feats);
+        AddFeats(forumExport, "Racial Past Lives", TFT_RacialPastLife, feats);
+        AddFeats(forumExport, "Iconic Past Lives", TFT_IconicPastLife, feats);
+        AddFeats(forumExport, "Epic Past Lives", TFT_EpicPastLife, feats);
+        AddFeats(forumExport, "Special Feats", TFT_SpecialFeat, feats);
+        forumExport << "\r\n";
     }
-    // sort the feats before output
-    feats.sort();
-    AddFeats(forumExport, "Heroic Past Lives", TFT_HeroicPastLife, feats);
-    AddFeats(forumExport, "Racial Past Lives", TFT_RacialPastLife, feats);
-    AddFeats(forumExport, "Iconic Past Lives", TFT_IconicPastLife, feats);
-    AddFeats(forumExport, "Epic Past Lives", TFT_EpicPastLife, feats);
-    AddFeats(forumExport, "Special Feats", TFT_SpecialFeat, feats);
-    forumExport << "\r\n";
 }
 
 void CDDOCPDoc::AddFeats(
@@ -1080,6 +1094,23 @@ void CDDOCPDoc::AddGear(std::stringstream & forumExport)
                     forumExport << "Empty augment slot";
                 }
                 forumExport << "\r\n";
+            }
+            // add any sentient weapon Filigree to the list also
+            if (item.HasSentientIntelligence())
+            {
+                forumExport << "              Sentient Weapon Personality: ";
+                if (item.SentientIntelligence().HasPersonality())
+                {
+                    forumExport << item.SentientIntelligence().Personality();
+                }
+                forumExport << "\r\n";
+                // now add the Filigree upgrades
+                for (size_t fi = 0; fi < MAX_FILIGREE; ++fi)
+                {
+                    forumExport << "              Filigree " << (fi + 1) << ": ";
+                    forumExport << item.SentientIntelligence().Filigree(fi);
+                    forumExport << "\r\n";
+                }
             }
         }
     }

@@ -27,6 +27,8 @@ class CItemSelectDialog : public CDialog
         afx_msg void OnItemSelected(NMHDR* pNMHDR, LRESULT* pResult);
         afx_msg void OnAugmentSelect(UINT nID);
         afx_msg void OnUpgradeSelect(UINT nID);
+        afx_msg void OnSelEndOkPersonality();
+        afx_msg void OnUpgradeFiligree(UINT nID);
         afx_msg void OnKillFocusAugmentEdit(UINT nID);
         afx_msg void OnSize(UINT nType, int cx, int cy);
         afx_msg void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
@@ -39,6 +41,7 @@ class CItemSelectDialog : public CDialog
         afx_msg void OnRadioMedium();
         afx_msg void OnRadioHeavy();
         afx_msg void OnRadioDocent();
+        afx_msg void OnButtonSentientJewel();
     public:
         DECLARE_MESSAGE_MAP()
 
@@ -47,7 +50,7 @@ class CItemSelectDialog : public CDialog
         void PopulateAvailableItemList();
         void EnableControls();
         void PopulateAugmentList(
-                CComboBoxEx * combo,
+                CComboBox * combo,
                 CEdit * edit,
                 const ItemAugment & augment);
         void PopulateSlotUpgradeList(size_t controlIndex, const SlotUpgrade & upgrade);
@@ -58,6 +61,9 @@ class CItemSelectDialog : public CDialog
         void SetTooltipText(const Item & item, CPoint tipTopLeft, CPoint tipAlternate);
         void SetArmorButtonStates();
         void AddSpecialSlots();
+        void SetSentientWeaponControls();
+        void PopulatePersonalityCombobox();
+        void PopulateFiligreeCombobox(size_t filigreeIndex);
 
         InventorySlotType m_slot;
         Item m_item;
@@ -66,7 +72,8 @@ class CItemSelectDialog : public CDialog
         enum
         {
             MAX_Augments = 10,
-            MAX_Upgrades = 4
+            MAX_Upgrades = 4,
+            MAX_Filigree = MAX_FILIGREE,
         };
         CStatic m_staticType;
         CButton m_buttonCloth;
@@ -76,11 +83,18 @@ class CItemSelectDialog : public CDialog
         CButton m_buttonDocent;
         CListCtrl m_availableItemsCtrl;
         CSortHeaderCtrl m_sortHeader;
+        CStatic m_staticAugments;
         CStatic m_augmentType[MAX_Augments];
-        CComboBoxEx m_comboAugmentDropList[MAX_Augments];
+        CComboBox m_comboAugmentDropList[MAX_Augments];
         CEdit m_augmentValues[MAX_Augments];
+        CStatic m_staticUpgrades;
         CStatic m_upgradeType[MAX_Upgrades];
-        CComboBoxEx m_comboUpgradeDropList[MAX_Upgrades];
+        CComboBox m_comboUpgradeDropList[MAX_Upgrades];
+        CButton m_buttonSentientJewel;
+        CStatic m_sentientLabel;
+        CComboBox m_comboSentientPersonality;
+        CComboBox m_comboFiligreeDropList[MAX_Filigree];
+
         std::list<Item> m_availableItems;
         CImageList m_itemImages;
         bool m_bInitialising;

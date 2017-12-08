@@ -71,6 +71,7 @@ class ActiveEffect
         void AddStack();
         bool RevokeStack();
         void SetStacks(size_t count);
+        size_t NumStacks() const;
         // optional
         void SetAmount(double amount);
         void SetEnergy(EnergyType type);

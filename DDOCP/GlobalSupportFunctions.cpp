@@ -585,6 +585,22 @@ const Augment & FindAugmentByName(const std::string & name)
     return badAugment;
 }
 
+std::list<Augment> CompatibleAugments(const std::string & name)
+{
+    std::list<Augment> compatibleAugments;
+    const std::list<Augment> & augments = Augments();
+    std::list<Augment>::const_iterator it = augments.begin();
+    while (it != augments.end())
+    {
+        if ((*it).IsCompatibleWithSlot(name))
+        {
+            compatibleAugments.push_back((*it));
+        }
+        ++it;
+    }
+    return compatibleAugments;
+}
+
 AbilityType StatFromSkill(SkillType skill)
 {
     // return which ability provides the bonus to the skill type

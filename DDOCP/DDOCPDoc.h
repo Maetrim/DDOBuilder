@@ -81,4 +81,6 @@ class CDDOCPDoc :
         void AddSpells(std::stringstream & forumExport);
         void AddGear(std::stringstream & forumExport);
         Character m_characterData;
+public:
+    afx_msg void OnEditSkillPoints();
 };

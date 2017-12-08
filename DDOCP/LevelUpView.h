@@ -48,6 +48,7 @@ class CLevelUpView :
         afx_msg void OnSkillTomeCancel();
         afx_msg void OnButtonSkillPlus();
         afx_msg void OnButtonSkillMinus();
+        afx_msg void OnButtonSkillsDialog();
         afx_msg void OnFeatSelection(UINT nID);
         afx_msg void OnCustomDrawSkills(NMHDR* pNMHDR, LRESULT* pResult);
         afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
@@ -102,7 +103,7 @@ class CLevelUpView :
         CEdit m_editSkillPoints;
         CButton m_buttonPlus;
         CButton m_buttonMinus;
-        CButton m_buttonAutoSpend;
+        CButton m_buttonSkillsDialog;
         CComboBox m_comboSkillTome;
         CListCtrl m_listSkills;
         CListCtrl m_listAutomaticFeats;

@@ -649,14 +649,19 @@ bool BreakdownItem::GetActiveEffect(
         }
         else
         {
-            // it is a feat that handles the amount based on count trained
-            // amount can be 0 at a given tier, breakdown does not display if that
-            // happens
-            size_t count = pCharacter->GetSpecialFeatTrainedCount(name);
+            // it is a feat or enhancement that handles the amount based on count trained
+            // for a feat we get notified once for each stack so it always works
+            // for an enhancement we get told about all stacks on a single call, with the
+            // stack count already set in the activeEffect
+            size_t count = activeEffect->NumStacks(); //0 if not an enhancement with number of stacks set
+            if (count < 1)
+            {
+                count = 1;
+            }
             *activeEffect = ActiveEffect(
                     effect.Bonus(),
                     name,
-                    1,
+                    count,
                     effect.AmountVector());
         }
     }

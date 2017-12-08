@@ -5,10 +5,12 @@
 #include "XmlLib\DLMacros.h"
 #include "ArmorTypes.h"
 #include "Augment.h"
+#include "Dice.h"
 #include "Effect.h"
 #include "EquipmentSlot.h"
 #include "InventorySlotTypes.h"
 #include "ItemAugment.h"
+#include "SentientJewel.h"
 #include "SlotUpgrade.h"
 
 class Item :
@@ -36,12 +38,11 @@ class Item :
                 DL_STRING(_, Description) \
                 DL_SIMPLE(_, size_t, MinLevel, 0) \
                 DL_STRING_LIST(_, EffectDescription) \
-                DL_OPTIONAL_SIMPLE(_, size_t, ShieldBonus, 0) \
-                DL_OPTIONAL_SIMPLE(_, size_t, BlockingDR, 0) \
+                DL_OPTIONAL_SIMPLE(_, double, BaseWeaponDamage, 2.0) \
                 DL_OPTIONAL_OBJECT(_, Dice, Damage) \
                 DL_STRING_LIST(_, DRBypass) \
                 DL_OPTIONAL_SIMPLE(_, size_t, CriticalRoll, 20) \
-                DL_OPTIONAL_SIMPLE(_, size_t, CriticalMultiplier, 2) \
+                DL_OPTIONAL_SIMPLE(_, double, CriticalMultiplier, 2) \
                 DL_OPTIONAL_ENUM(_, WeaponType, Weapon, Weapon_Unknown, weaponTypeMap) \
                 DL_OPTIONAL_ENUM(_, WeaponDamageType, DamageType, WeaponDamage_Unknown, weaponDamageTypeMap) \
                 DL_OPTIONAL_ENUM(_, AbilityType, AttackModifier, Ability_Unknown, abilityTypeMap) \
@@ -50,7 +51,8 @@ class Item :
                 DL_OBJECT(_, EquipmentSlot, Slots) \
                 DL_OBJECT_VECTOR(_, Effect, Effects) \
                 DL_OBJECT_VECTOR(_, ItemAugment, Augments) \
-                DL_OBJECT_VECTOR(_, SlotUpgrade, SlotUpgrades)
+                DL_OBJECT_VECTOR(_, SlotUpgrade, SlotUpgrades) \
+                DL_OPTIONAL_OBJECT(_, SentientJewel, SentientIntelligence)
 
         DL_DECLARE_ACCESS(Item_PROPERTIES)
         DL_DECLARE_VARIABLES(Item_PROPERTIES)

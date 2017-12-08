@@ -68,6 +68,7 @@ class CDDOCPView :
         afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
         afx_msg void OnBnClickedRadio28pt();
         afx_msg void OnBnClickedRadio32pt();
+        afx_msg BOOL OnEraseBkgnd(CDC* pDC);
         DECLARE_MESSAGE_MAP()
 
         // Character overrides

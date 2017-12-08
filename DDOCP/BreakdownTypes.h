@@ -52,6 +52,11 @@ enum BreakdownType
     Breakdown_TacticalSunder,
     Breakdown_TacticalTrip,
     Breakdown_TacticalStunningShield,
+    Breakdown_MissileDeflection,
+    Breakdown_MissileDeflectionBypass,
+    Breakdown_GlancingBlowsChance,
+    Breakdown_GlancingBlowsDamage,
+    Breakdown_GlancingBlowEffects,
     // skills
     Breakdown_SkillBalance,
     Breakdown_SkillBluff,

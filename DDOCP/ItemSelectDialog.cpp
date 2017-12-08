@@ -69,16 +69,25 @@ void CItemSelectDialog::DoDataExchange(CDataExchange* pDX)
     {
         VERIFY(m_sortHeader.SubclassWindow(m_availableItemsCtrl.GetHeaderCtrl()->GetSafeHwnd()));
     }
+    DDX_Control(pDX, IDC_STATIC_AUGMENTS, m_staticAugments);
     for (size_t i = 0; i < MAX_Augments; ++i)
     {
         DDX_Control(pDX, IDC_STATIC_AUGMENT_TYPE1 + i, m_augmentType[i]);
         DDX_Control(pDX, IDC_COMBO_AUGMENT1 + i, m_comboAugmentDropList[i]);
         DDX_Control(pDX, IDC_EDIT_AUGMENT1 + i, m_augmentValues[i]);
     }
+    DDX_Control(pDX, IDC_STATIC_UPGRADES, m_staticUpgrades);
     for (size_t i = 0; i < MAX_Upgrades; ++i)
     {
         DDX_Control(pDX, IDC_STATIC_UPGRADE_TYPE1 + i, m_upgradeType[i]);
         DDX_Control(pDX, IDC_COMBO_UPGRADE1 + i, m_comboUpgradeDropList[i]);
+    }
+    DDX_Control(pDX, IDC_CHECK_SENTIENT_SLOTTED, m_buttonSentientJewel);
+    DDX_Control(pDX, IDC_STATIC_SENTIENT_LABEL, m_sentientLabel);
+    DDX_Control(pDX, IDC_COMBO_PERSONALITY, m_comboSentientPersonality);
+    for (size_t i = 0; i < MAX_Filigree; ++i)
+    {
+        DDX_Control(pDX, IDC_COMBO_FILIGREE1 + i, m_comboFiligreeDropList[i]);
     }
 }
 
@@ -87,6 +96,8 @@ BEGIN_MESSAGE_MAP(CItemSelectDialog, CDialog)
     ON_CONTROL_RANGE(CBN_SELENDOK, IDC_COMBO_AUGMENT1, IDC_COMBO_AUGMENT1 + MAX_Augments, OnAugmentSelect)
     ON_CONTROL_RANGE(CBN_SELENDOK, IDC_COMBO_UPGRADE1, IDC_COMBO_UPGRADE1 + MAX_Upgrades, OnUpgradeSelect)
     ON_CONTROL_RANGE(EN_KILLFOCUS, IDC_EDIT_AUGMENT1, IDC_EDIT_AUGMENT1 + MAX_Augments, OnKillFocusAugmentEdit)
+    ON_CBN_SELENDOK(IDC_COMBO_PERSONALITY, OnSelEndOkPersonality)
+    ON_CONTROL_RANGE(CBN_SELENDOK, IDC_COMBO_UPGRADE1, IDC_COMBO_FILIGREE1 + MAX_Filigree, OnUpgradeFiligree)
     ON_WM_SIZE()
     ON_WM_GETMINMAXINFO()
     ON_NOTIFY(HDN_ENDTRACK, IDC_ITEM_LIST, OnEndtrackListItems)
@@ -99,6 +110,7 @@ BEGIN_MESSAGE_MAP(CItemSelectDialog, CDialog)
     ON_BN_CLICKED(IDC_RADIO_MEDIUM, OnRadioMedium)
     ON_BN_CLICKED(IDC_RADIO_HEAVY, OnRadioHeavy)
     ON_BN_CLICKED(IDC_RADIO_DOCENT, OnRadioDocent)
+    ON_BN_CLICKED(IDC_CHECK_SENTIENT_SLOTTED, OnButtonSentientJewel)
 END_MESSAGE_MAP()
 
 // CItemSelectDialog message handlers
@@ -153,6 +165,20 @@ BOOL CItemSelectDialog::OnInitDialog()
 
     //m_sizer.Hook(GetSafeHwnd(), "ItemSelectDialog");
 
+    if (m_slot != Inventory_Weapon1)
+    {
+        // resize the dialog so that the sentient weapon filigree controls
+        // are not visible
+        CRect rct;
+        m_sentientLabel.GetWindowRect(rct);
+        ScreenToClient(rct);
+        int newWidth = rct.left;
+        GetWindowRect(rct);
+        rct.right = rct.left + newWidth;
+        MoveWindow(rct);
+    }
+    SetSentientWeaponControls();
+
     m_bInitialising = false;
     return TRUE;  // return TRUE unless you set the focus to a control
     // EXCEPTION: OCX Property Pages should return FALSE
@@ -206,6 +232,10 @@ void CItemSelectDialog::PopulateAvailableItemList()
         if ((*it).Name() == m_item.Name())
         {
             sel = itemIndex;
+            CString text;
+            text.Format("Item Selection and Configuration - %s",
+                    m_item.Name().c_str());
+            SetWindowText(text);
         }
         CString level;
         level.Format("%d", (*it).MinLevel());
@@ -225,6 +255,10 @@ void CItemSelectDialog::PopulateAvailableItemList()
     {
         // ok not available until item selected
         GetDlgItem(IDOK)->EnableWindow(FALSE);
+        // cannot select sentient jewel until an item selected
+        m_buttonSentientJewel.EnableWindow(FALSE);
+        // show the name of the selected item in the dialog title
+        SetWindowText("Item Selection and Configuration - No item selected");
     }
     m_availableItemsCtrl.UnlockWindowUpdate();
 }
@@ -235,6 +269,7 @@ void CItemSelectDialog::EnableControls()
     std::vector<ItemAugment> augments = m_item.Augments();
     ASSERT(augments.size() < MAX_Augments);
 
+    m_staticAugments.ShowWindow(augments.size() > 0 ? SW_SHOW : SW_HIDE);
     for (size_t i = 0; i < MAX_Augments; ++i)
     {
         if (i < augments.size())
@@ -259,6 +294,7 @@ void CItemSelectDialog::EnableControls()
     // now show any upgrade slots
     size_t upgradeIndex = 0;
     std::vector<SlotUpgrade> upgrades = m_item.SlotUpgrades();
+    m_staticUpgrades.ShowWindow(upgrades.size() > 0 ? SW_SHOW : SW_HIDE);
     for (; upgradeIndex < upgrades.size(); ++upgradeIndex)
     {
         // we have a primary upgrade list
@@ -273,7 +309,7 @@ void CItemSelectDialog::EnableControls()
 }
 
 void CItemSelectDialog::PopulateAugmentList(
-        CComboBoxEx * combo,
+        CComboBox * combo,
         CEdit * edit,
         const ItemAugment & augment)
 {
@@ -281,37 +317,24 @@ void CItemSelectDialog::PopulateAugmentList(
     combo->LockWindowUpdate();
     combo->ResetContent();
     // get all the augments compatible with this slot type
-    const std::list<Augment> & augments = Augments();
+    std::list<Augment> augments = CompatibleAugments(augment.Type());
     std::list<Augment>::const_iterator it = augments.begin();
-    size_t index = 0;
     std::string selectedAugment = augment.HasSelectedAugment()
             ? augment.SelectedAugment()
             : "";
+
+    // note that this list can be sorted
+    int index = 0;
     while (it != augments.end())
     {
-        if ((*it).IsCompatibleWithSlot(augment.Type()))
-        {
-            char buffer[_MAX_PATH];
-            strcpy_s(buffer, (*it).Name().c_str());
-            COMBOBOXEXITEM item;
-            item.mask = CBEIF_TEXT;
-            item.iItem = index;
-            item.iImage = 0;
-            item.iSelectedImage = 0;
-            item.pszText = buffer;
-            item.lParam = index;
-            size_t pos = combo->InsertItem(&item);
-            if ((*it).Name() == selectedAugment)
-            {
-                sel = pos;
-            }
-            ++index;
-        }
+        int itemIndex = combo->AddString((*it).Name().c_str());
+        combo->SetItemData(itemIndex, index);
         ++it;
+        ++index;
     }
-    if (sel != CB_ERR)
+    if (selectedAugment != "")
     {
-        combo->SetCurSel(sel);
+        combo->SelectString(0, selectedAugment.c_str());
         Augment selAugment = FindAugmentByName(selectedAugment);
         // this augment is configurable by the user
         if (selAugment.HasEnterValue())
@@ -357,6 +380,13 @@ void CItemSelectDialog::OnItemSelected(NMHDR* pNMHDR, LRESULT* pResult)
                 EnableControls();
                 // item selected, can now click ok!
                 GetDlgItem(IDOK)->EnableWindow(TRUE);
+                // ensure sentient weapon controls are correct
+                m_buttonSentientJewel.EnableWindow(m_slot == Inventory_Weapon1);
+                SetSentientWeaponControls();
+                CString text;
+                text.Format("Item Selection and Configuration - %s",
+                        m_item.Name().c_str());
+                SetWindowText(text);
             }
         }
     }
@@ -365,23 +395,17 @@ void CItemSelectDialog::OnItemSelected(NMHDR* pNMHDR, LRESULT* pResult)
 
 void CItemSelectDialog::OnAugmentSelect(UINT nID)
 {
-    // the user has selected a feat in one of the three feat combo boxes
+    // the user has selected a feat in one of the augment combo boxes
     int augmentIndex = nID - IDC_COMBO_AUGMENT1;
     ASSERT(augmentIndex >= 0 && augmentIndex < (int)m_item.Augments().size());
     int sel = m_comboAugmentDropList[augmentIndex].GetCurSel();
     if (sel != CB_ERR)
     {
         // user has selected an augment. Get its name
-        char buffer[_MAX_PATH];
-        memset(buffer, 0, _MAX_PATH);
-        COMBOBOXEXITEM item;
-        item.mask = CBEIF_TEXT;
-        item.iItem = sel;
-        item.pszText = buffer;
-        item.cchTextMax = _MAX_PATH;
-        m_comboAugmentDropList[augmentIndex].GetItem(&item);
+        CString text;
+        m_comboAugmentDropList[augmentIndex].GetLBText(sel, text);
         std::vector<ItemAugment> augments = m_item.Augments();
-        augments[augmentIndex].Set_SelectedAugment(item.pszText);
+        augments[augmentIndex].Set_SelectedAugment((LPCTSTR)text);
         m_item.Set_Augments(augments);
         // update the controls after a selection as edit controls may need
         // to be displayed for some augment selection controls.
@@ -402,20 +426,11 @@ void CItemSelectDialog::PopulateSlotUpgradeList(
     size_t index = 0;
     while (it != types.end())
     {
-        CString entry = (*it).c_str();
-        char buffer[_MAX_PATH];
-        strcpy_s(buffer, entry);
-        COMBOBOXEXITEM item;
-        item.mask = CBEIF_TEXT;
-        item.iItem = index;
-        item.iImage = 0;
-        item.iSelectedImage = 0;
-        item.pszText = buffer;
-        item.lParam = index;
-        size_t pos = m_comboUpgradeDropList[controlIndex].InsertItem(&item);
+        size_t pos = m_comboUpgradeDropList[controlIndex].AddString((*it).c_str());
+        m_comboUpgradeDropList[controlIndex].SetItemData(pos, index);
         // move on to the next item
-        ++index;
         ++it;
+        ++index;
     }
     // finally ensure the control is displayed
     m_upgradeType[controlIndex].ShowWindow(SW_SHOW);
@@ -431,6 +446,7 @@ void CItemSelectDialog::OnUpgradeSelect(UINT nID)
     int selection = m_comboUpgradeDropList[controlIndex].GetCurSel();
     if (selection != CB_ERR)
     {
+        selection = m_comboUpgradeDropList[controlIndex].GetItemData(selection);
         // now find what was selected
         std::vector<SlotUpgrade> upgrades = m_item.SlotUpgrades();
         std::vector<SlotUpgrade>::iterator sit = upgrades.begin();
@@ -455,6 +471,56 @@ void CItemSelectDialog::OnUpgradeSelect(UINT nID)
 
         // now get all controls re-repopulate
         EnableControls();
+    }
+}
+
+void CItemSelectDialog::OnButtonSentientJewel()
+{
+    bool enabled = (m_buttonSentientJewel.GetCheck() != 0);
+    if (enabled)
+    {
+        // add sentient jewel to the item
+        SentientJewel jewel;
+        m_item.Set_SentientIntelligence(jewel);
+    }
+    else
+    {
+        // just clear the sentient jewel
+        m_item.Clear_SentientIntelligence();
+    }
+    SetSentientWeaponControls();
+}
+
+void CItemSelectDialog::OnSelEndOkPersonality()
+{
+    int selection = m_comboSentientPersonality.GetCurSel();
+    if (selection != CB_ERR)
+    {
+        selection = m_comboSentientPersonality.GetItemData(selection);
+        // user has selected a personality. Get its name
+        CString text;
+        m_comboSentientPersonality.GetLBText(selection, text);
+        SentientJewel jewel = m_item.SentientIntelligence();
+        jewel.Set_Personality((LPCTSTR)text);
+        m_item.Set_SentientIntelligence(jewel);
+    }
+}
+
+void CItemSelectDialog::OnUpgradeFiligree(UINT nID)
+{
+    size_t controlIndex = nID - IDC_COMBO_FILIGREE1;
+    int selection = m_comboFiligreeDropList[controlIndex].GetCurSel();
+    if (selection != CB_ERR)
+    {
+        // user has selected a Filigree. Get its name
+        CString text;
+        m_comboFiligreeDropList[controlIndex].GetLBText(selection, text);
+        SentientJewel jewel = m_item.SentientIntelligence();
+        jewel.SetFiligree(controlIndex, (LPCTSTR)text);
+        m_item.Set_SentientIntelligence(jewel);
+        // update the controls after a selection as options in other
+        // drop lists will need to be limited
+        SetSentientWeaponControls();
     }
 }
 
@@ -785,5 +851,120 @@ void CItemSelectDialog::AddSpecialSlots()
         upgrades.push_back(slot);   // 2 standard upgrade slots
         upgrades.push_back(slot);
         m_item.Set_SlotUpgrades(upgrades);
+    }
+}
+
+void CItemSelectDialog::SetSentientWeaponControls()
+{
+    if (m_slot == Inventory_Weapon1)
+    {
+        m_buttonSentientJewel.SetCheck(m_item.HasSentientIntelligence()
+                ? BST_CHECKED
+                : BST_UNCHECKED);
+        // enable and populate the Filigree drop list controls
+        m_comboSentientPersonality.EnableWindow(m_item.HasSentientIntelligence());
+        PopulatePersonalityCombobox();
+        for (size_t fi = 0; fi < MAX_Filigree; ++fi)
+        {
+            PopulateFiligreeCombobox(fi);
+        }
+    }
+    else
+    {
+        m_buttonSentientJewel.EnableWindow(false);
+    }
+}
+
+void CItemSelectDialog::PopulatePersonalityCombobox()
+{
+    if (m_item.HasSentientIntelligence())
+    {
+        m_comboSentientPersonality.EnableWindow(true);
+        // populate with the list of available personalities
+        std::list<Augment> augments = CompatibleAugments("Personality");
+        // now add the available personalities
+        m_comboSentientPersonality.ResetContent();
+        std::string selectedPersonality;
+        if (m_item.SentientIntelligence().HasPersonality())
+        {
+            selectedPersonality = m_item.SentientIntelligence().Personality();
+        }
+        size_t index = 0;
+        std::list<Augment>::iterator it = augments.begin();
+        while (it != augments.end())
+        {
+            size_t pos = m_comboSentientPersonality.AddString((*it).Name().c_str());
+            m_comboSentientPersonality.SetItemData(pos, index);
+            if ((*it).Name() == selectedPersonality)
+            {
+                 // this is the selected personality, select it
+                m_comboSentientPersonality.SetCurSel(pos);
+            }
+            ++it;
+            ++index;
+        }
+    }
+    else
+    {
+        // disabled with no items or selections
+        m_comboSentientPersonality.EnableWindow(false);
+        m_comboSentientPersonality.ResetContent();
+    }
+}
+
+void CItemSelectDialog::PopulateFiligreeCombobox(size_t filigreeIndex)
+{
+    if (m_item.HasSentientIntelligence())
+    {
+        m_comboFiligreeDropList[filigreeIndex].EnableWindow(true);
+        // populate with the list of available filigree minus any selections
+        // made in other filigree slots
+        std::list<Augment> augments = CompatibleAugments("Filigree");
+        for (size_t fi = 0; fi < MAX_Filigree; ++fi)
+        {
+            // do not remove any selection from current slot
+            if (fi != filigreeIndex)
+            {
+                // get current selection (if any)
+                std::string filigree = m_item.SentientIntelligence().Filigree(fi);
+                if (filigree != "")
+                {
+                    // remove it from the augments list
+                    std::list<Augment>::iterator it = augments.begin();
+                    while (it != augments.end())
+                    {
+                        if ((*it).Name() == filigree)
+                        {
+                            it = augments.erase(it);
+                        }
+                        ++it;
+                    }
+                }
+            }
+        }
+        // now add the available augments
+        m_comboFiligreeDropList[filigreeIndex].ResetContent();
+        std::string selectedFiligree =
+                m_item.SentientIntelligence().Filigree(filigreeIndex);
+        size_t index = 0;
+        std::list<Augment>::iterator it = augments.begin();
+        while (it != augments.end())
+        {
+            size_t pos = m_comboFiligreeDropList[filigreeIndex].AddString((*it).Name().c_str());
+            m_comboFiligreeDropList[filigreeIndex].SetItemData(pos, index);
+            if ((*it).Name() == selectedFiligree)
+            {
+                 // this is the selected augment, select it
+                m_comboFiligreeDropList[filigreeIndex].SetCurSel(pos);
+            }
+            ++it;
+            ++index;
+        }
+    }
+    else
+    {
+        // disabled with no items or selections
+        m_comboFiligreeDropList[filigreeIndex].EnableWindow(false);
+        m_comboFiligreeDropList[filigreeIndex].ResetContent();
     }
 }

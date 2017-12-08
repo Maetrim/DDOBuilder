@@ -341,6 +341,11 @@ void ActiveEffect::SetStacks(size_t count)
     m_numStacks = count;
 }
 
+size_t ActiveEffect::NumStacks() const
+{
+    return m_numStacks;
+}
+
 double ActiveEffect::TotalAmount(bool allowTruncate) const
 {
     double value = 0.0;

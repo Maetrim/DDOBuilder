@@ -3950,6 +3950,35 @@ void Character::RevokeGearEffects()
                     }
                 }
             }
+            if (item.HasSentientIntelligence())
+            {
+                // revoke this items sentient upgrade augments
+                for (size_t si = 0 ; si < MAX_FILIGREE; ++si)
+                {
+                    std::string filigree = item.SentientIntelligence().Filigree(si);
+                    if (filigree != "")
+                    {
+                        // there is an augment in this position
+                        const Augment & augment = FindAugmentByName(filigree);
+                        // name is:
+                        // <item>:<augment type>:<Augment name>
+                        std::stringstream ss;
+                        ss << item.Name()
+                                << " : SI : Filigree " << si
+                                << " : " << augment.Name();
+                        // now revoke the augments effects
+                        std::string name;
+                        name = ss.str();
+                        std::list<Effect> effects = augment.Effects();
+                        std::list<Effect>::iterator it = effects.begin();
+                        while (it != effects.end())
+                        {
+                            NotifyItemEffectRevoked(name, (*it));
+                            ++it;
+                        }
+                    }
+                }
+            }
         }
     }
 }
@@ -4011,6 +4040,35 @@ void Character::ApplyGearEffects()
                         }
                         NotifyItemEffect(name, (*it));
                         ++it;
+                    }
+                }
+            }
+            if (item.HasSentientIntelligence())
+            {
+                // revoke this items sentient upgrade augments
+                for (size_t si = 0 ; si < MAX_FILIGREE; ++si)
+                {
+                    std::string filigree = item.SentientIntelligence().Filigree(si);
+                    if (filigree != "")
+                    {
+                        // there is an augment in this position
+                        const Augment & augment = FindAugmentByName(filigree);
+                        // name is:
+                        // <item>:<augment type>:<Augment name>
+                        std::stringstream ss;
+                        ss << item.Name()
+                                << " : SI : Filigree " << si
+                                << " : " << augment.Name();
+                        // now revoke the augments effects
+                        std::string name;
+                        name = ss.str();
+                        std::list<Effect> effects = augment.Effects();
+                        std::list<Effect>::iterator it = effects.begin();
+                        while (it != effects.end())
+                        {
+                            NotifyItemEffect(name, (*it));
+                            ++it;
+                        }
                     }
                 }
             }

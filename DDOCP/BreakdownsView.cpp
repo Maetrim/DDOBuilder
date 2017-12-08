@@ -484,14 +484,31 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
     }
     {
         HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
-                "Base Attack Bonus",
+                "Movement Speed",
                 hParent,
                 TVI_LAST);
-        BreakdownItem * pBAB = new BreakdownItemBAB(
+        BreakdownItem * pSpeed = new BreakdownItemSimple(
+                Breakdown_MovementSpeed,
+                Effect_MovementSpeed,
+                "Movement Speed",
                 &m_itemBreakdownTree,
                 hItem);
-        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pBAB);
-        m_items.push_back(pBAB);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pSpeed);
+        m_items.push_back(pSpeed);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Armor Check Penalty",
+                hParent,
+                TVI_LAST);
+        BreakdownItem * pACP = new BreakdownItemSimple(
+                Breakdown_ArmorCheckPenalty,
+                Effect_ArmorCheckPenalty,
+                "Armor Check penalty",
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pACP);
+        m_items.push_back(pACP);
     }
     // defensive physical items
     // defensive items are:
@@ -501,6 +518,7 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
     //      Fortification
     //      Dodge
     //      Dodge Cap
+    //      Missile Deflection
     HTREEITEM hDefensiveParent = m_itemBreakdownTree.InsertItem(
             "Defensive Breakdowns", 
             hParent,
@@ -566,21 +584,6 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
 
     {
         HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
-                "Threat Generation",
-                hDefensiveParent,
-                TVI_LAST);
-        BreakdownItem * pThreat = new BreakdownItemSimple(
-                Breakdown_Threat,
-                Effect_ThreatBonus,
-                "Threat Generation",
-                &m_itemBreakdownTree,
-                hItem);
-        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pThreat);
-        m_items.push_back(pThreat);
-    }
-
-    {
-        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
                 "Dodge",
                 hDefensiveParent,
                 TVI_LAST);
@@ -599,10 +602,25 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
                 "Dodge Cap",
                 hDefensiveParent,
                 TVI_LAST);
-        BreakdownItem * pMD = new BreakdownItemSimple(
+        BreakdownItem * pDC = new BreakdownItemSimple(
                 Breakdown_DodgeCap,
                 Effect_DodgeCapBonus,
                 "Dodge Cap",
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pDC);
+        m_items.push_back(pDC);
+    }
+
+        {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Missile Deflection",
+                hDefensiveParent,
+                TVI_LAST);
+        BreakdownItem * pMD = new BreakdownItemSimple(
+                Breakdown_MissileDeflection,
+                Effect_MissileDeflection,
+                "Missile Deflection",
                 &m_itemBreakdownTree,
                 hItem);
         m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pMD);
@@ -654,10 +672,38 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
         m_items.push_back(pRA);
     }
 
+    // offensive breakdowns include:
+    // BAB
+    // threat generation
+    // off hand attack chance
+    // doublestrike
+    // doubleshot
+    // Melee Power
+    // Ranged Power
+    // Dodge Bypass
+    // Fortification Bypass
+    // Missile Deflection Bypass
+    // Glancing Blows
+    HTREEITEM hOffensiveParent = m_itemBreakdownTree.InsertItem(
+            "Offensive Breakdowns", 
+            hParent,
+            TVI_LAST);
+    m_itemBreakdownTree.SetItemData(hOffensiveParent, 0);
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Base Attack Bonus",
+                hOffensiveParent,
+                TVI_LAST);
+        BreakdownItem * pBAB = new BreakdownItemBAB(
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pBAB);
+        m_items.push_back(pBAB);
+    }
     {
         HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
                 "Threat Generation",
-                hParent,
+                hOffensiveParent,
                 TVI_LAST);
         BreakdownItem * pThreat = new BreakdownItemSimple(
                 Breakdown_Threat,
@@ -672,7 +718,7 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
     {
         HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
                 "Off Hand Attack Chance",
-                hParent,
+                hOffensiveParent,
                 TVI_LAST);
         BreakdownItem * pOHA = new BreakdownItemSimple(
                 Breakdown_OffHandAttackBonus,
@@ -687,7 +733,7 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
     {
         HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
                 "Doublestrike",
-                hParent,
+                hOffensiveParent,
                 TVI_LAST);
         BreakdownItem * pDS = new BreakdownItemSimple(
                 Breakdown_DoubleStrike,
@@ -716,7 +762,7 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
     {
         HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
                 "Doubleshot",
-                hParent,
+                hOffensiveParent,
                 TVI_LAST);
         BreakdownItem * pRA = new BreakdownItemSimple(
                 Breakdown_DoubleShot,
@@ -727,26 +773,10 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
         m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pRA);
         m_items.push_back(pRA);
     }
-
-    {
-        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
-                "Movement Speed",
-                hParent,
-                TVI_LAST);
-        BreakdownItem * pSpeed = new BreakdownItemSimple(
-                Breakdown_MovementSpeed,
-                Effect_MovementSpeed,
-                "Movement Speed",
-                &m_itemBreakdownTree,
-                hItem);
-        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pSpeed);
-        m_items.push_back(pSpeed);
-    }
-
     {
         HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
                 "Melee Power",
-                hParent,
+                hOffensiveParent,
                 TVI_LAST);
         BreakdownItem * pMP = new BreakdownItemSimple(
                 Breakdown_MeleePower,
@@ -757,11 +787,10 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
         m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pMP);
         m_items.push_back(pMP);
     }
-
     {
         HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
                 "Ranged Power",
-                hParent,
+                hOffensiveParent,
                 TVI_LAST);
         BreakdownItem * pRP = new BreakdownItemSimple(
                 Breakdown_RangedPower,
@@ -774,23 +803,8 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
     }
     {
         HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
-                "Armor Check Penalty",
-                hDefensiveParent,
-                TVI_LAST);
-        BreakdownItem * pACP = new BreakdownItemSimple(
-                Breakdown_ArmorCheckPenalty,
-                Effect_ArmorCheckPenalty,
-                "Armor Check penalty",
-                &m_itemBreakdownTree,
-                hItem);
-        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pACP);
-        m_items.push_back(pACP);
-    }
-
-    {
-        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
                 "Dodge Bypass",
-                hParent,
+                hOffensiveParent,
                 TVI_LAST);
         BreakdownItem * pDodgeBypass = new BreakdownItemSimple(
                 Breakdown_DodgeBypass,
@@ -804,7 +818,7 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
     {
         HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
                 "Fortification Bypass",
-                hParent,
+                hOffensiveParent,
                 TVI_LAST);
         BreakdownItem * pFortBypass = new BreakdownItemSimple(
                 Breakdown_FortificationBypass,
@@ -815,6 +829,63 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
         m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pFortBypass);
         m_items.push_back(pFortBypass);
     }
+    {
+        HTREEITEM hMDB = m_itemBreakdownTree.InsertItem(
+                "Missile Deflection Bypass",
+                hOffensiveParent,
+                TVI_LAST);
+        BreakdownItem * pMDB = new BreakdownItemSimple(
+                Breakdown_MissileDeflectionBypass,
+                Effect_MissileDeflectionBypass,
+                "Missile Deflection Bypass",
+                &m_itemBreakdownTree,
+                hMDB);
+        m_itemBreakdownTree.SetItemData(hMDB, (DWORD)(void*)pMDB);
+        m_items.push_back(pMDB);
+    }
+    {
+        HTREEITEM hGB = m_itemBreakdownTree.InsertItem(
+                "Glancing Blows Chance",
+                hOffensiveParent,
+                TVI_LAST);
+        BreakdownItem * pGBC = new BreakdownItemSimple(
+                Breakdown_GlancingBlowsChance,
+                Effect_GlancingBlows,
+                "Glancing Blows Chance",
+                &m_itemBreakdownTree,
+                hGB);
+        m_itemBreakdownTree.SetItemData(hGB, (DWORD)(void*)pGBC);
+        m_items.push_back(pGBC);
+    }
+    {
+        HTREEITEM hGBD = m_itemBreakdownTree.InsertItem(
+                "Glancing Blows Damage",
+                hOffensiveParent,
+                TVI_LAST);
+        BreakdownItem * pGBD = new BreakdownItemSimple(
+                Breakdown_GlancingBlowsDamage,
+                Effect_GlancingBlowsDamage,
+                "Glancing Blows Damage",
+                &m_itemBreakdownTree,
+                hGBD);
+        m_itemBreakdownTree.SetItemData(hGBD, (DWORD)(void*)pGBD);
+        m_items.push_back(pGBD);
+    }
+    {
+        HTREEITEM hGBEC = m_itemBreakdownTree.InsertItem(
+                "Glancing Blow Effect Chance",
+                hOffensiveParent,
+                TVI_LAST);
+        BreakdownItem * pGBEC = new BreakdownItemSimple(
+                Breakdown_GlancingBlowEffects,
+                Effect_GlancingBlows,
+                "Glancing Blow Effect Chance",
+                &m_itemBreakdownTree,
+                hGBEC);
+        m_itemBreakdownTree.SetItemData(hGBEC, (DWORD)(void*)pGBEC);
+        m_items.push_back(pGBEC);
+    }
+
     HTREEITEM hTacticalParent = m_itemBreakdownTree.InsertItem(
             "Tactical Breakdowns", 
             hParent,
