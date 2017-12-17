@@ -39,6 +39,7 @@ class Spell :
                 DL_STRING(_, Description) \
                 DL_STRING(_, Icon) \
                 DL_ENUM(_, SpellSchoolType, School, SpellSchool_Unknown, spellSchoolTypeMap) \
+                DL_OPTIONAL_SIMPLE(_, int, SPCost, 0) \
                 DL_OPTIONAL_ENUM(_, EnergyType, Energy, Energy_Unknown, energyTypeMap) \
                 DL_OBJECT_VECTOR(_, Effect, Effects) \
                 DL_FLAG(_, Embolden) \

@@ -131,6 +131,7 @@ BEGIN_MESSAGE_MAP(CLevelUpView, CFormView)
     ON_BN_CLICKED(IDC_BUTTON_SKILL_MINUS, OnButtonSkillMinus)
     ON_BN_CLICKED(IDC_BUTTON_SKILLS, OnButtonSkillsDialog)
     ON_CONTROL_RANGE(CBN_SELENDOK, IDC_COMBO_FEATSELECT1, IDC_COMBO_FEATSELECT3, OnFeatSelection)
+    ON_CONTROL_RANGE(CBN_SELENDCANCEL, IDC_COMBO_FEATSELECT1, IDC_COMBO_FEATSELECT3, OnFeatSelectionCancel)
     ON_WM_ERASEBKGND()
     ON_WM_CTLCOLOR()
     ON_REGISTERED_MESSAGE(UWM_UPDATE_COMPLETE, OnUpdateComplete)
@@ -138,6 +139,7 @@ BEGIN_MESSAGE_MAP(CLevelUpView, CFormView)
     ON_WM_LBUTTONDOWN()
     ON_MESSAGE(WM_MOUSEENTER, OnMouseEnter)
     ON_MESSAGE(WM_MOUSELEAVE, OnMouseLeave)
+    ON_MESSAGE(WM_MOUSEHOVER, OnHoverComboBox)
 END_MESSAGE_MAP()
 #pragma warning(pop)
 
@@ -1004,7 +1006,7 @@ void CLevelUpView::OnHoverAutomaticFeats(NMHDR* pNMHDR, LRESULT* pResult)
             m_listAutomaticFeats.ClientToScreen(&rect);
             CPoint tipTopLeft(rect.left, rect.bottom);
             CPoint tipAlternate(rect.left, rect.top);
-            SetFeatTooltipText(featName, tipTopLeft, tipAlternate);
+            SetFeatTooltipText(featName, tipTopLeft, tipAlternate, false); // left align
             m_showingTip = true;
             // make sure we don't stack multiple monitoring of the same rectangle
             if (m_automaticHandle == 0)
@@ -1047,7 +1049,7 @@ void CLevelUpView::OnHoverGrantedFeats(NMHDR* pNMHDR, LRESULT* pResult)
             m_listGrantedFeats.ClientToScreen(&rect);
             CPoint tipTopLeft(rect.left, rect.bottom);
             CPoint tipAlternate(rect.left, rect.top);
-            SetFeatTooltipText(featName, tipTopLeft, tipAlternate);
+            SetFeatTooltipText(featName, tipTopLeft, tipAlternate, false); // left align
             m_showingTip = true;
             // make sure we don't stack multiple monitoring of the same rectangle
             if (m_automaticHandle == 0)
@@ -1461,14 +1463,8 @@ void CLevelUpView::PopulateCombobox(
     {
         char buffer[_MAX_PATH];
         strcpy_s(buffer, (*it).Name().c_str());
-        COMBOBOXEXITEM item;
-        item.mask = CBEIF_IMAGE | CBEIF_TEXT | CBEIF_LPARAM | CBEIF_SELECTEDIMAGE;
-        item.iItem = featIndex;
-        item.iImage = featIndex;
-        item.iSelectedImage = featIndex;
-        item.pszText = buffer;
-        item.lParam = featIndex;
-        size_t pos = m_comboFeatSelect[comboIndex].InsertItem(&item);
+        size_t pos = m_comboFeatSelect[comboIndex].AddString((*it).Name().c_str());
+        m_comboFeatSelect[comboIndex].SetItemData(pos, featIndex);
         if (selection == (*it).Name())
         {
             sel = pos;
@@ -1583,24 +1579,31 @@ void CLevelUpView::ShowBab()
 
 void CLevelUpView::OnFeatSelection(UINT nID)
 {
+    if (m_showingTip)
+    {
+        m_tooltip.Hide();
+    }
     // the user has selected a feat in one of the three feat combo boxes
     size_t typeIndex = nID - IDC_COMBO_FEATSELECT1;
     int sel = m_comboFeatSelect[typeIndex].GetCurSel();
     if (sel != CB_ERR)
     {
         // user has selected a feat, train it!
-        char buffer[_MAX_PATH];
-        memset(buffer, 0, _MAX_PATH);
-        COMBOBOXEXITEM item;
-        item.mask = CBEIF_TEXT;
-        item.iItem = sel;
-        item.pszText = buffer;
-        item.cchTextMax = _MAX_PATH;
-        m_comboFeatSelect[typeIndex].GetItem(&item);
+        CString featName;
+        m_comboFeatSelect[typeIndex].GetLBText(sel, featName);
         m_pCharacter->TrainFeat(
-                item.pszText,
+                (LPCTSTR)featName,
                 m_trainable[typeIndex],
                 m_level);
+    }
+}
+
+void CLevelUpView::OnFeatSelectionCancel(UINT nID)
+{
+    // hide any tooltip being shown
+    if (m_showingTip)
+    {
+        m_tooltip.Hide();
     }
 }
 
@@ -1873,6 +1876,35 @@ LRESULT CLevelUpView::OnMouseLeave(WPARAM wParam, LPARAM lParam)
     return 0;
 }
 
+LRESULT CLevelUpView::OnHoverComboBox(WPARAM wParam, LPARAM lParam)
+{
+    // wParam = selected index
+    // lParam = control ID
+    UINT id = lParam - IDC_COMBO_FEATSELECT1;   // 0..1..2 now
+    if (m_showingTip)
+    {
+        m_tooltip.Hide();
+    }
+    if (wParam >= 0)
+    {
+        // we have a selection, get the feats name
+        CString featName;
+        m_comboFeatSelect[id].GetLBText(wParam, featName);
+        if (!featName.IsEmpty())
+        {
+            CRect rctWindow;
+            m_comboFeatSelect[id].GetWindowRect(&rctWindow);
+            rctWindow.right = rctWindow.left + m_comboFeatSelect[id].GetDroppedWidth();
+            // tip is shown to the left or the right of the combo box
+            CPoint tipTopLeft(rctWindow.left, rctWindow.top);
+            CPoint tipAlternate(rctWindow.right, rctWindow.top);
+            SetFeatTooltipText(featName, tipTopLeft, tipAlternate, true);   // right align
+            m_showingTip = true;
+        }
+    }
+    return 0;
+}
+
 void CLevelUpView::ShowFeatTip(size_t featIndex, CRect itemRect)
 {
     if (m_showingTip)
@@ -1883,21 +1915,13 @@ void CLevelUpView::ShowFeatTip(size_t featIndex, CRect itemRect)
     if (sel != CB_ERR)
     {
         // we have a selection, get the feats name
-        char buffer[_MAX_PATH];
-        memset(buffer, 0, _MAX_PATH);
-        COMBOBOXEXITEM item;
-        item.mask = CBEIF_TEXT;
-        item.iItem = sel;
-        item.pszText = buffer;
-        item.cchTextMax = _MAX_PATH;
-        m_comboFeatSelect[featIndex].GetItem(&item);
-
-        CString featName = buffer;
+        CString featName;
+        m_comboFeatSelect[featIndex].GetLBText(sel, featName);
         if (!featName.IsEmpty())
         {
             CPoint tipTopLeft(itemRect.left, itemRect.bottom + 2);
             CPoint tipAlternate(itemRect.left, itemRect.top - 2);
-            SetFeatTooltipText(featName, tipTopLeft, tipAlternate);
+            SetFeatTooltipText(featName, tipTopLeft, tipAlternate, false);  // left align
             m_showingTip = true;
         }
     }
@@ -1931,11 +1955,12 @@ void CLevelUpView::HideTip()
 void CLevelUpView::SetFeatTooltipText(
         const CString & featName,
         CPoint tipTopLeft,
-        CPoint tipAlternate)
+        CPoint tipAlternate,
+        bool rightAlign)
 {
     // look up the selected feat for this control
     const Feat & feat = FindFeat((LPCTSTR)featName);
-    m_tooltip.SetOrigin(tipTopLeft, tipAlternate);
+    m_tooltip.SetOrigin(tipTopLeft, tipAlternate, rightAlign);
     m_tooltip.SetFeatItem(*m_pCharacter, &feat);
     m_tooltip.Show();
 }
@@ -1947,7 +1972,7 @@ void CLevelUpView::SetLevelTooltipText(
 {
     // look up the selected feat for this control
     const LevelTraining & levelData = m_pCharacter->LevelData(level);
-    m_tooltip.SetOrigin(tipTopLeft, tipAlternate);
+    m_tooltip.SetOrigin(tipTopLeft, tipAlternate, false);
     m_tooltip.SetLevelItem(*m_pCharacter, level, &levelData);
     m_tooltip.Show();
 }

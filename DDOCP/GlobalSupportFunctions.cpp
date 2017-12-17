@@ -1542,6 +1542,9 @@ HRESULT LoadImageFile(
     case IT_item:
         location += "ItemImages\\";
         break;
+    case IT_augment:
+        location += "AugmentImages\\";
+        break;
     }
     std::string filename = location;
     filename += name;
@@ -1566,7 +1569,8 @@ HRESULT LoadImageFile(
         if (type == IT_enhancement
                 || type == IT_feat
                 || type == IT_spell
-                || type == IT_item)
+                || type == IT_item
+                || type == IT_augment)
         {
             // check the image is the correct size
             if (pImage->GetHeight() != 32
@@ -1618,6 +1622,9 @@ bool ImageFileExists(ImageType type, const std::string & name)
         break;
     case IT_item:
         location += "ItemImages\\";
+        break;
+    case IT_augment:
+        location += "AugmentImages\\";
         break;
     }
     std::string filename = location;

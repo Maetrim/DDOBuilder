@@ -4,7 +4,7 @@
 // and item can be equipped to.
 #pragma once
 #include "XmlLib\DLMacros.h"
-#include "Effect.h"
+#include "RareEffects.h"
 
 class Augment :
     public XmlLib::SaxContentElement
@@ -14,6 +14,7 @@ class Augment :
         void Write(XmlLib::SaxWriter * writer) const;
 
         bool IsCompatibleWithSlot(const std::string & augmentType) const;
+        void AddImage(CImageList * pIL) const;
 
     protected:
         XmlLib::SaxContentElementInterface * StartElement(
@@ -26,9 +27,11 @@ class Augment :
                 DL_STRING(_, Name) \
                 DL_STRING(_, Description) \
                 DL_SIMPLE(_, size_t, MinLevel, 0) \
+                DL_OPTIONAL_STRING(_, Icon) \
                 DL_STRING_LIST(_, Type) \
                 DL_FLAG(_, EnterValue) \
-                DL_OBJECT_LIST(_, Effect, Effects)
+                DL_OBJECT_LIST(_, Effect, Effects) \
+                DL_OPTIONAL_OBJECT(_, RareEffects, Rares)
 
         DL_DECLARE_ACCESS(Augment_PROPERTIES)
         DL_DECLARE_VARIABLES(Augment_PROPERTIES)

@@ -15,8 +15,11 @@ namespace
 
 CSpellTip::CSpellTip() :
     m_origin(CPoint(0, 0)),
+    m_bRightAlign(false),
     m_class(Class_Unknown),
-    m_DC(0)
+    m_DC(0),
+    m_spellLevel(0),
+    m_pCharacter(NULL)
 {
     // create the fonts used
     LOGFONT lf;
@@ -68,25 +71,55 @@ void CSpellTip::Show()
     GetWindowSize(pDC, &windowSize);
     ReleaseDC(pDC);
 
-    // before actually showing the tip, determine whether it fits on the screen
-    // if it extends below the bottom or past the right we move the window
-    // accordingly to make sure it is visible. Do this for the monitor the
-    // origin point for this tooltip is on.
-    HMONITOR hMonitor = MonitorFromPoint(m_origin, MONITOR_DEFAULTTONEAREST);
-    MONITORINFOEX monitorInfo;
-    memset(&monitorInfo, 0, sizeof(MONITORINFOEX));
-    monitorInfo.cbSize = sizeof(MONITORINFOEX);
-    GetMonitorInfo(hMonitor, &monitorInfo);
-    CRect monitorSize(monitorInfo.rcWork);
-    if (m_origin.x + windowSize.cx > monitorSize.right)
+    if (!m_bRightAlign)
     {
-        // move the tip left to ensure all text visible
-        m_origin.x = monitorSize.right - windowSize.cx;
+        // before actually showing the tip, determine whether it fits on the screen
+        // if it extends below the bottom or past the right we move the window
+        // accordingly to make sure it is visible. Do this for the monitor the
+        // origin point for this tooltip is on.
+        HMONITOR hMonitor = MonitorFromPoint(m_origin, MONITOR_DEFAULTTONEAREST);
+        MONITORINFOEX monitorInfo;
+        memset(&monitorInfo, 0, sizeof(MONITORINFOEX));
+        monitorInfo.cbSize = sizeof(MONITORINFOEX);
+        GetMonitorInfo(hMonitor, &monitorInfo);
+        CRect monitorSize(monitorInfo.rcWork);
+        if (m_origin.x + windowSize.cx > monitorSize.right)
+        {
+            // move the tip left to ensure all text visible
+            m_origin.x = monitorSize.right - windowSize.cx;
+        }
+        if (m_origin.y + windowSize.cy > monitorSize.bottom)
+        {
+            // move the tip above the origin position to ensure content visible
+            m_origin.y = m_alternate.y - windowSize.cy; // alternate position
+        }
     }
-    if (m_origin.y + windowSize.cy > monitorSize.bottom)
+    else
     {
-        // move the tip above the origin position to ensure content visible
-        m_origin.y = m_alternate.y - windowSize.cy; // alternate position
+        // if it extends beyond the left we use the alternate position
+        // accordingly to make sure it is visible. 
+        // we move the tool tip up as required
+        HMONITOR hMonitor = MonitorFromPoint(m_origin, MONITOR_DEFAULTTONEAREST);
+        MONITORINFOEX monitorInfo;
+        memset(&monitorInfo, 0, sizeof(MONITORINFOEX));
+        monitorInfo.cbSize = sizeof(MONITORINFOEX);
+        GetMonitorInfo(hMonitor, &monitorInfo);
+        CRect monitorSize(monitorInfo.rcWork);
+        if (m_origin.x - windowSize.cx < monitorSize.left)
+        {
+            // need to use the alternate position
+            m_origin = m_alternate;
+        }
+        else
+        {
+            m_origin.x -= (windowSize.cx + 2);
+        }
+        // alternate position is above
+        if (m_origin.y + windowSize.cy > monitorSize.bottom)
+        {
+            // move the tip up
+            m_origin.y = monitorSize.bottom - windowSize.cy;
+        }
     }
 
     SetWindowPos(
@@ -98,10 +131,11 @@ void CSpellTip::Show()
             SWP_NOACTIVATE | SWP_SHOWWINDOW);
 }
 
-void CSpellTip::SetOrigin(CPoint origin, CPoint alternate)
+void CSpellTip::SetOrigin(CPoint origin, CPoint alternate, bool rightAlign)
 {
     m_origin = origin;
     m_alternate = alternate;
+    m_bRightAlign = rightAlign;
 }
 
 void CSpellTip::Hide()
@@ -153,7 +187,20 @@ void CSpellTip::OnPaint()
     dc.SelectObject(m_standardFont);
     // draw spell cost
     CString text;
-    text.Format("SP Cost ??");
+    int cost = 0;
+    if (m_spell.HasSPCost())
+    {
+        // its a hard coded spell cost
+        cost = m_spell.SPCost();
+    }
+    else
+    {
+        // cost is 5sp + 5sp per level
+        cost = 5 + (m_spellLevel * 5);
+    }
+    // now include the cost of any active metamagics
+    //?? TBD
+    text.Format("SP Cost %d", cost);
     dc.TextOut(
             left + 32 + c_controlSpacing + csName.cx + c_controlSpacing,
             top + c_controlSpacing,
@@ -223,11 +270,11 @@ BOOL CSpellTip::GetWindowSize(CDC* pDC, CSize * size)
     rcWnd.bottom += max(standardLine.cy * 2, 32) + c_controlSpacing;  // 2 lines or icon height
 
     pDC->SelectObject(m_standardFont);
-    CSize csSPCost = pDC->GetTextExtent("SP Cost ??");
+    CSize csSPCost = pDC->GetTextExtent("SP Cost ???");
     CString text;
     text.Format("%s DC %d",
             EnumEntryText(m_spell.School(), spellSchoolTypeMap),
-            -1);            //?? DC needs to be used
+            m_DC);
     CSize csDC = pDC->GetTextExtent(text);
     size_t topWidth = 32 + c_controlSpacing + csSpellName.cx
             + c_controlSpacing + max(csSPCost.cx, csDC.cx);
@@ -289,4 +336,6 @@ void CSpellTip::SetSpell(
     m_class = ct;
     LoadImageFile(IT_spell, m_spell.Icon(), &m_image);
     m_DC = m_spell.DC(*charData, ct, spellLevel, maxSpellLevel);
+    m_spellLevel = spellLevel;
+    m_pCharacter = charData;
 }

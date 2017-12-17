@@ -62,8 +62,9 @@ BEGIN_MESSAGE_MAP(CSpellsControl, CStatic)
     ON_WM_MOUSEMOVE()
     ON_MESSAGE(WM_MOUSELEAVE, OnMouseLeave)
     ON_WM_LBUTTONDOWN()
-    ON_CBN_SELENDOK(IDC_COMBO_SPELL_SELECTION, OnSpellSelectOk)
-    ON_CBN_SELENDCANCEL(IDC_COMBO_SPELL_SELECTION, OnSpellSelectCancel)
+    ON_CBN_SELENDOK(IDC_COMBO_SPELLSELECT, OnSpellSelectOk)
+    ON_CBN_SELENDCANCEL(IDC_COMBO_SPELLSELECT, OnSpellSelectCancel)
+    ON_MESSAGE(WM_MOUSEHOVER, OnHoverComboBox)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 #pragma warning(pop)
@@ -75,12 +76,15 @@ void CSpellsControl::OnPaint()
 {
     if (!IsWindow(m_comboSpellSelect.GetSafeHwnd()))
     {
-        // create the drop list combo box for spell selection
+        CComboBox test;
         m_comboSpellSelect.Create(
-                WS_CHILD | CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP,
+                WS_CHILD | WS_VSCROLL | WS_TABSTOP
+                | CBS_DROPDOWNLIST | CBS_OWNERDRAWVARIABLE | CBS_HASSTRINGS,
                 CRect(77,36,119,250),
                 this,
-                IDC_COMBO_SPELL_SELECTION);
+                IDC_COMBO_SPELLSELECT);
+        CFont* pDefaultGUIFont = CFont::FromHandle((HFONT) GetStockObject(DEFAULT_GUI_FONT));
+        m_comboSpellSelect.SetFont(pDefaultGUIFont, TRUE);
     }
     if (!m_tipCreated)
     {
@@ -384,6 +388,43 @@ void CSpellsControl::SetTrainableSpells(const std::vector<size_t> & spellsPerLev
     }
 }
 
+LRESULT CSpellsControl::OnHoverComboBox(WPARAM wParam, LPARAM lParam)
+{
+    // wParam = selected index
+    // lParam = control ID
+    if (m_showingTip)
+    {
+        m_tooltip.Hide();
+    }
+    if (wParam >= 0)
+    {
+        // we have a selection, get the spells name
+        CString spellName;
+        m_comboSpellSelect.GetLBText(wParam, spellName);
+        if (!spellName.IsEmpty())
+        {
+            // now we have the spell name, look it up
+            CRect rctWindow;
+            m_comboSpellSelect.GetWindowRect(&rctWindow);
+            rctWindow.right = rctWindow.left + m_comboSpellSelect.GetDroppedWidth();
+            // tip is shown to the left or the right of the combo box
+            CPoint tipTopLeft(rctWindow.left, rctWindow.top);
+            CPoint tipAlternate(rctWindow.right, rctWindow.top);
+            Spell spell = FindSpellByName((LPCTSTR)spellName);
+            m_tooltip.SetOrigin(tipTopLeft, tipAlternate, true);
+            m_tooltip.SetSpell(
+                    m_pCharacter,
+                    spell,
+                    m_class,
+                    m_editSpellLevel,
+                    9);
+            m_tooltip.Show();
+            m_showingTip = true;
+        }
+    }
+    return 0;
+}
+
 void CSpellsControl::ShowTip(const SpellHitBox & item, CRect itemRect)
 {
     if (m_showingTip)
@@ -457,7 +498,7 @@ void CSpellsControl::SetTooltipText(
     }
     // now we have the spell name, look it up
     Spell spell = FindSpellByName(spellName);
-    m_tooltip.SetOrigin(tipTopLeft, tipAlternate);
+    m_tooltip.SetOrigin(tipTopLeft, tipAlternate, false);
     m_tooltip.SetSpell(
             m_pCharacter,
             spell,
@@ -537,16 +578,8 @@ void CSpellsControl::OnLButtonDown(UINT nFlags, CPoint point)
                 size_t spellIndex = 0;
                 while (it != spells.end())
                 {
-                    char buffer[_MAX_PATH];
-                    strcpy_s(buffer, (*it).Name().c_str());
-                    COMBOBOXEXITEM item;
-                    item.mask = CBEIF_IMAGE | CBEIF_TEXT | CBEIF_LPARAM | CBEIF_SELECTEDIMAGE;
-                    item.iItem = spellIndex;
-                    item.iImage = spellIndex;
-                    item.iSelectedImage = spellIndex;
-                    item.pszText = buffer;
-                    item.lParam = spellIndex;
-                    size_t pos = m_comboSpellSelect.InsertItem(&item);
+                    size_t pos = m_comboSpellSelect.AddString((*it).Name().c_str());
+                    m_comboSpellSelect.SetItemData(pos, spellIndex);
                     if ((*it).Name() == currentSelection)
                     {
                         // this is the default selection in the combo
@@ -555,6 +588,8 @@ void CSpellsControl::OnLButtonDown(UINT nFlags, CPoint point)
                     ++spellIndex;
                     ++it;
                 }
+                // hide the current tip
+                HideTip();
                 // position the drop list combo under the spell slot being trained
                 CRect comboRect(item->Rect());
                 comboRect += CPoint(0, c_spellSlotImageSize);
@@ -600,14 +635,15 @@ void CSpellsControl::OnSpellSelectOk()
         std::advance(it, sel);
         m_pCharacter->TrainSpell(m_class, m_editSpellLevel, (*it).Name());
     }
+    HideTip();
 }
 
 void CSpellsControl::OnSpellSelectCancel()
 {
     // spell selection aborted, just hide the control
     m_comboSpellSelect.ShowWindow(SW_HIDE);
+    HideTip();
 }
-
 
 void CSpellsControl::RemoveTrained(
         std::vector<Spell> * spells,

@@ -5,6 +5,7 @@
 
 #include "SpellTip.h"
 #include "Character.h"
+#include "ComboBoxTooltip.h"
 
 class SpellHitBox
 {
@@ -91,6 +92,7 @@ class CSpellsControl :
         afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
         afx_msg void OnSpellSelectOk();
         afx_msg void OnSpellSelectCancel();
+        afx_msg LRESULT OnHoverComboBox(WPARAM wParam, LPARAM lParam);
         //}}AFX_MSG
         DECLARE_MESSAGE_MAP()
 
@@ -120,7 +122,7 @@ class CSpellsControl :
         const SpellHitBox * m_pTooltipItem;
         std::list<TrainedSpell> m_trainedSpells[MAX_SPELL_LEVEL];
         std::list<FixedSpell> m_fixedSpells[MAX_SPELL_LEVEL];
-        CComboBoxEx m_comboSpellSelect;
+        CComboBoxTooltip m_comboSpellSelect;
         CImageList m_spellImagesList;
         size_t m_editSpellLevel;
         size_t m_editSpellIndex;

@@ -17,7 +17,8 @@ namespace
 }
 
 CInfoTip::CInfoTip() :
-    m_origin(CPoint(0, 0))
+    m_origin(CPoint(0, 0)),
+    m_bRightAlign(false)
 {
     // create the fonts used
     LOGFONT lf;
@@ -69,25 +70,56 @@ void CInfoTip::Show()
     GetWindowSize(pDC, &windowSize);
     ReleaseDC(pDC);
 
-    // before actually showing the tip, determine whether it fits on the screen
-    // if it extends below the bottom or past the right we move the window
-    // accordingly to make sure it is visible. Do this for the monitor the
-    // origin point for this tooltip is on.
-    HMONITOR hMonitor = MonitorFromPoint(m_origin, MONITOR_DEFAULTTONEAREST);
-    MONITORINFOEX monitorInfo;
-    memset(&monitorInfo, 0, sizeof(MONITORINFOEX));
-    monitorInfo.cbSize = sizeof(MONITORINFOEX);
-    GetMonitorInfo(hMonitor, &monitorInfo);
-    CRect monitorSize(monitorInfo.rcWork);
-    if (m_origin.x + windowSize.cx > monitorSize.right)
+    if (!m_bRightAlign)
     {
-        // move the tip left to ensure all text visible
-        m_origin.x = monitorSize.right - windowSize.cx;
+        // before actually showing the tip, determine whether it fits on the screen
+        // if it extends below the bottom or past the right we move the window
+        // accordingly to make sure it is visible. Do this for the monitor the
+        // origin point for this tooltip is on.
+        HMONITOR hMonitor = MonitorFromPoint(m_origin, MONITOR_DEFAULTTONEAREST);
+        MONITORINFOEX monitorInfo;
+        memset(&monitorInfo, 0, sizeof(MONITORINFOEX));
+        monitorInfo.cbSize = sizeof(MONITORINFOEX);
+        GetMonitorInfo(hMonitor, &monitorInfo);
+        CRect monitorSize(monitorInfo.rcWork);
+        if (m_origin.x + windowSize.cx > monitorSize.right)
+        {
+            // move the tip left to ensure all text visible
+            m_origin.x = monitorSize.right - windowSize.cx;
+        }
+        // alternate position is above
+        if (m_origin.y + windowSize.cy > monitorSize.bottom)
+        {
+            // move the tip above the origin position to ensure content visible
+            m_origin.y = m_alternate.y - windowSize.cy; // alternate position
+        }
     }
-    if (m_origin.y + windowSize.cy > monitorSize.bottom)
+    else
     {
-        // move the tip above the origin position to ensure content visible
-        m_origin.y = m_alternate.y - windowSize.cy; // alternate position
+        // if it extends beyond the left we use the alternate position
+        // accordingly to make sure it is visible. 
+        // we move the tool tip up as required
+        HMONITOR hMonitor = MonitorFromPoint(m_origin, MONITOR_DEFAULTTONEAREST);
+        MONITORINFOEX monitorInfo;
+        memset(&monitorInfo, 0, sizeof(MONITORINFOEX));
+        monitorInfo.cbSize = sizeof(MONITORINFOEX);
+        GetMonitorInfo(hMonitor, &monitorInfo);
+        CRect monitorSize(monitorInfo.rcWork);
+        if (m_origin.x - windowSize.cx < monitorSize.left)
+        {
+            // need to use the alternate position
+            m_origin = m_alternate;
+        }
+        else
+        {
+            m_origin.x -= (windowSize.cx + 2);
+        }
+        // alternate position is above
+        if (m_origin.y + windowSize.cy > monitorSize.bottom)
+        {
+            // move the tip up
+            m_origin.y = monitorSize.bottom - windowSize.cy;
+        }
     }
 
     SetWindowPos(
@@ -99,10 +131,11 @@ void CInfoTip::Show()
             SWP_NOACTIVATE | SWP_SHOWWINDOW);
 }
 
-void CInfoTip::SetOrigin(CPoint origin, CPoint alternate)
+void CInfoTip::SetOrigin(CPoint origin, CPoint alternate, bool rightAlign)
 {
     m_origin = origin;
     m_alternate = alternate;
+    m_bRightAlign = rightAlign;
 }
 
 void CInfoTip::Hide()
@@ -436,9 +469,33 @@ void CInfoTip::SetItem(
         {
             text.Format("Filigree %d: ", fi + 1);
             text += pItem->SentientIntelligence().Filigree(fi).c_str();
+            if (pItem->SentientIntelligence().IsRareFiligree(fi))
+            {
+                text += "(Rare Version)";
+            }
             m_effectDescriptions.push_back(text);
         }
     }
+    m_requirements.clear();
+    m_bRequirementMet.clear();
+    m_cost = "";
+}
+
+void CInfoTip::SetAugment(
+        const Augment * pAugment)
+{
+    m_image.Destroy();
+    if (S_OK != LoadImageFile(IT_augment, pAugment->HasIcon() ? pAugment->Icon() : "", &m_image, false))
+    {
+        // see if its a feat icon we need to use
+        LoadImageFile(IT_augment, pAugment->Icon(), &m_image);
+    }
+    m_image.SetTransparentColor(c_transparentColour);
+    m_title = pAugment->Name().c_str();
+    m_description = pAugment->Description().c_str();
+    // actual carriage return are actual \n in text, convert to correct character
+    GenerateLineBreaks(&m_title);
+    GenerateLineBreaks(&m_description);
     m_requirements.clear();
     m_bRequirementMet.clear();
     m_cost = "";

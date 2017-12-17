@@ -315,7 +315,7 @@ void CSLAControl::SetTooltipText(
     slaName = (*si).Name();
     // now we have the spell name, look it up
     Spell spell = FindSpellByName(slaName);
-    m_tooltip.SetOrigin(tipTopLeft, tipAlternate);
+    m_tooltip.SetOrigin(tipTopLeft, tipAlternate, false);
     m_tooltip.SetSpell(
             m_pCharacter,
             spell,

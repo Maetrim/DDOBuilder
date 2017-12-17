@@ -3,6 +3,7 @@
 #pragma once
 #include <vector>
 
+class Augment;
 class Character;
 class EnhancementSelection;
 class EnhancementTreeItem;
@@ -37,12 +38,14 @@ class CInfoTip :
                 const Stance * pItem);
         void SetItem(
                 const Item * pItem);
+        void SetAugment(
+                const Augment * pAugment);
         void SetLevelItem(
                 const Character & charData,
                 size_t level,
                 const LevelTraining * levelData);
 
-        void SetOrigin(CPoint origin, CPoint alternate);
+        void SetOrigin(CPoint origin, CPoint alternate, bool rightAlign);
         void Show();
         void Hide();
 
@@ -57,6 +60,7 @@ class CInfoTip :
         void GenerateLineBreaks(CString * text);
         CPoint m_origin;
         CPoint m_alternate;
+        bool m_bRightAlign;
         CFont m_standardFont;
         CFont m_boldFont;
         CImage m_image;

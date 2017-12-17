@@ -7,6 +7,7 @@
 #include "PersistantSize.h"
 #include "SortHeaderCtrl.h"
 #include "InfoTip.h"
+#include "ComboBoxTooltip.h"
 
 class CItemSelectDialog : public CDialog
 {
@@ -29,19 +30,24 @@ class CItemSelectDialog : public CDialog
         afx_msg void OnUpgradeSelect(UINT nID);
         afx_msg void OnSelEndOkPersonality();
         afx_msg void OnUpgradeFiligree(UINT nID);
+        afx_msg void OnUpgradeFiligreeCancel(UINT nID);
+        afx_msg void OnUpgradeFiligreeRare(UINT nID);
         afx_msg void OnKillFocusAugmentEdit(UINT nID);
         afx_msg void OnSize(UINT nType, int cx, int cy);
         afx_msg void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
         afx_msg void OnEndtrackListItems(NMHDR* pNMHDR, LRESULT* pResult);
         afx_msg void OnColumnclickListItems(NMHDR* pNMHDR, LRESULT* pResult);
         afx_msg void OnHoverListItems(NMHDR* pNMHDR, LRESULT* pResult);
-        afx_msg LRESULT OnMouseLeave(WPARAM wParam, LPARAM lParam);
         afx_msg void OnRadioCloth();
         afx_msg void OnRadioLight();
         afx_msg void OnRadioMedium();
         afx_msg void OnRadioHeavy();
         afx_msg void OnRadioDocent();
         afx_msg void OnButtonSentientJewel();
+        afx_msg LRESULT OnHoverComboBox(WPARAM wParam, LPARAM lParam);
+        afx_msg LRESULT OnMouseEnter(WPARAM wParam, LPARAM lParam);
+        afx_msg LRESULT OnMouseLeave(WPARAM wParam, LPARAM lParam);
+        afx_msg void OnWindowPosChanging(WINDOWPOS * pos);
     public:
         DECLARE_MESSAGE_MAP()
 
@@ -59,11 +65,13 @@ class CItemSelectDialog : public CDialog
         void ShowTip(const Item & item, CRect itemRect);
         void HideTip();
         void SetTooltipText(const Item & item, CPoint tipTopLeft, CPoint tipAlternate);
+        void SetTooltipText(const Augment & augment, CPoint tipTopLeft, CPoint tipAlternate, bool rightAlign);
         void SetArmorButtonStates();
         void AddSpecialSlots();
         void SetSentientWeaponControls();
         void PopulatePersonalityCombobox();
         void PopulateFiligreeCombobox(size_t filigreeIndex);
+        void BuildImageList(CImageList * il, const std::list<Augment> & augments);
 
         InventorySlotType m_slot;
         Item m_item;
@@ -92,8 +100,11 @@ class CItemSelectDialog : public CDialog
         CComboBox m_comboUpgradeDropList[MAX_Upgrades];
         CButton m_buttonSentientJewel;
         CStatic m_sentientLabel;
-        CComboBox m_comboSentientPersonality;
-        CComboBox m_comboFiligreeDropList[MAX_Filigree];
+        CComboBoxTooltip m_comboSentientPersonality;
+        CImageList m_ilJewel;
+        CComboBoxTooltip m_comboFiligreeDropList[MAX_Filigree];
+        CButton m_buttonFiligreeRare[MAX_Filigree];
+        CImageList m_ilFiligree[MAX_Filigree];
 
         std::list<Item> m_availableItems;
         CImageList m_itemImages;
@@ -106,4 +117,5 @@ class CItemSelectDialog : public CDialog
         bool m_tipCreated;
         int m_hoverItem;
         UINT m_hoverHandle;
+        int m_comboHookHandles[MAX_Filigree + 1];
 };

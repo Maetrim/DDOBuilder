@@ -456,7 +456,7 @@ void CStancesView::SetTooltipText(
         CPoint tipTopLeft,
         CPoint tipAlternate)
 {
-    m_tooltip.SetOrigin(tipTopLeft, tipAlternate);
+    m_tooltip.SetOrigin(tipTopLeft, tipAlternate, false);
     m_tooltip.SetStanceItem(*m_pCharacter, &item.GetStance());
     m_tooltip.Show();
 }

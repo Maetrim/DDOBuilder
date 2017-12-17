@@ -20,7 +20,7 @@ class CSpellTip :
                 size_t spellLevel,
                 size_t maxSpellLevel);
 
-        void SetOrigin(CPoint origin, CPoint alternate);
+        void SetOrigin(CPoint origin, CPoint alternate, bool rightAlign);
         void Show();
         void Hide();
 
@@ -35,6 +35,7 @@ class CSpellTip :
         void GenerateLineBreaks(CString * text);
         CPoint m_origin;
         CPoint m_alternate;
+        bool m_bRightAlign;
         CFont m_standardFont;
         CFont m_boldFont;
         CImage m_image;
@@ -43,4 +44,6 @@ class CSpellTip :
         CRect m_rcDescription;
         CSize m_csMetas;
         size_t m_DC;
+        size_t m_spellLevel;
+        Character * m_pCharacter;
 };

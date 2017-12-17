@@ -617,7 +617,7 @@ void CEpicDestiniesView::SetTooltipText(
     const TrainedEnhancement * te = m_pCharacter->IsTrained(item.InternalName(), "");
     const EnhancementSelection * es = NULL;
     std::string selection;
-    m_tooltip.SetOrigin(tipTopLeft, tipAlternate);
+    m_tooltip.SetOrigin(tipTopLeft, tipAlternate, false);
     if (te != NULL)
     {
         // this item is trained, we may need to show the selected sub-item tooltip text

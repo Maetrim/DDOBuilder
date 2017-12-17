@@ -3,6 +3,7 @@
 #include "StdAfx.h"
 #include "Augment.h"
 #include "XmlLib\SaxWriter.h"
+#include "GlobalSupportFunctions.h"
 
 #define DL_ELEMENT Augment
 
@@ -64,3 +65,33 @@ bool Augment::IsCompatibleWithSlot(const std::string & augmentType) const
     return compatible;
 }
 
+void Augment::AddImage(CImageList * pIL) const
+{
+    CImage image;
+    if (HasIcon())
+    {
+        HRESULT result = LoadImageFile(
+                IT_augment,
+                m_Icon,
+                &image);
+        if (result == S_OK)
+        {
+            CBitmap bitmap;
+            bitmap.Attach(image.Detach());
+            pIL->Add(&bitmap, RGB(255, 128, 255));  // standard mask color (purple)
+        }
+    }
+    else
+    {
+        HRESULT result = LoadImageFile(
+                IT_augment,
+                "unknown",
+                &image);
+        if (result == S_OK)
+        {
+            CBitmap bitmap;
+            bitmap.Attach(image.Detach());
+            pIL->Add(&bitmap, RGB(255, 128, 255));  // standard mask color (purple)
+        }
+    }
+}

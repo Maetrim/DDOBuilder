@@ -1109,6 +1109,10 @@ void CDDOCPDoc::AddGear(std::stringstream & forumExport)
                 {
                     forumExport << "              Filigree " << (fi + 1) << ": ";
                     forumExport << item.SentientIntelligence().Filigree(fi);
+                    if (item.SentientIntelligence().IsRareFiligree(fi))
+                    {
+                        forumExport << "(Rare Version)";
+                    }
                     forumExport << "\r\n";
                 }
             }

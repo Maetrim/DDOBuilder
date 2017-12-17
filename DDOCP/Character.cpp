@@ -3976,6 +3976,17 @@ void Character::RevokeGearEffects()
                             NotifyItemEffectRevoked(name, (*it));
                             ++it;
                         }
+                        // now do any rare effects
+                        if (item.SentientIntelligence().IsRareFiligree(si))
+                        {
+                            std::list<Effect> effects = augment.Rares().Effects();
+                            std::list<Effect>::iterator it = effects.begin();
+                            while (it != effects.end())
+                            {
+                                NotifyItemEffectRevoked(name, (*it));
+                                ++it;
+                            }
+                        }
                     }
                 }
             }
@@ -4068,6 +4079,17 @@ void Character::ApplyGearEffects()
                         {
                             NotifyItemEffect(name, (*it));
                             ++it;
+                        }
+                        // now do any rare effects
+                        if (item.SentientIntelligence().IsRareFiligree(si))
+                        {
+                            std::list<Effect> effects = augment.Rares().Effects();
+                            std::list<Effect>::iterator it = effects.begin();
+                            while (it != effects.end())
+                            {
+                                NotifyItemEffect(name, (*it));
+                                ++it;
+                            }
                         }
                     }
                 }

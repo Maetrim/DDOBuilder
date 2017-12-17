@@ -119,6 +119,7 @@ enum ImageType
     IT_spell,
     IT_ui,
     IT_item,
+    IT_augment,
 };
 HRESULT LoadImageFile(ImageType type, const std::string & name, CImage * pImage, bool loadDefaultOnFail = true);
 bool ImageFileExists(ImageType type, const std::string & name);

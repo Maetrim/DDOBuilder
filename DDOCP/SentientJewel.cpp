@@ -77,3 +77,89 @@ void SentientJewel::SetFiligree(size_t fi, const std::string & name)
     }
 }
 
+void SentientJewel::SetFiligreeRare(size_t fi, bool isRare)
+{
+    switch (fi)
+    {
+    case 0: if (isRare)
+            {
+                Set_RareFiligree1();
+            }
+            else
+            {
+                Clear_RareFiligree1();
+            }
+            break;
+    case 1: if (isRare)
+            {
+                Set_RareFiligree2();
+            }
+            else
+            {
+                Clear_RareFiligree2();
+            }
+            break;
+    case 2: if (isRare)
+            {
+                Set_RareFiligree3();
+            }
+            else
+            {
+                Clear_RareFiligree3();
+            }
+            break;
+    case 3: if (isRare)
+            {
+                Set_RareFiligree4();
+            }
+            else
+            {
+                Clear_RareFiligree4();
+            }
+            break;
+    case 4: if (isRare)
+            {
+                Set_RareFiligree5();
+            }
+            else
+            {
+                Clear_RareFiligree5();
+            }
+            break;
+    case 5: if (isRare)
+            {
+                Set_RareFiligree6();
+            }
+            else
+            {
+                Clear_RareFiligree6();
+            }
+            break;
+    case 6: if (isRare)
+            {
+                Set_RareFiligree7();
+            }
+            else
+            {
+                Clear_RareFiligree7();
+            }
+            break;
+    }
+}
+
+bool SentientJewel::IsRareFiligree(size_t fi) const
+{
+    bool isRare = false;
+    switch (fi)
+    {
+    case 0: isRare = HasRareFiligree1(); break;
+    case 1: isRare = HasRareFiligree2(); break;
+    case 2: isRare = HasRareFiligree3(); break;
+    case 3: isRare = HasRareFiligree4(); break;
+    case 4: isRare = HasRareFiligree5(); break;
+    case 5: isRare = HasRareFiligree6(); break;
+    case 6: isRare = HasRareFiligree7(); break;
+    }
+    return isRare;
+}
+

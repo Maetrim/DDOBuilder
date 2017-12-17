@@ -6,6 +6,7 @@
 #include "SortHeaderCtrl.h"
 #include "InfoTip.h"
 #include "LevelButton.h"
+#include "ComboBoxTooltip.h"
 
 class CLevelUpView :
     public CFormView,
@@ -50,6 +51,7 @@ class CLevelUpView :
         afx_msg void OnButtonSkillMinus();
         afx_msg void OnButtonSkillsDialog();
         afx_msg void OnFeatSelection(UINT nID);
+        afx_msg void OnFeatSelectionCancel(UINT nID);
         afx_msg void OnCustomDrawSkills(NMHDR* pNMHDR, LRESULT* pResult);
         afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
         afx_msg LRESULT OnUpdateComplete(WPARAM wParam, LPARAM lParam);
@@ -57,6 +59,7 @@ class CLevelUpView :
         afx_msg LRESULT OnMouseEnter(WPARAM wParam, LPARAM lParam);
         afx_msg LRESULT OnMouseLeave(WPARAM wParam, LPARAM lParam);
         afx_msg void OnButtonLevel(UINT nID);
+        afx_msg LRESULT OnHoverComboBox(WPARAM wParam, LPARAM lParam);
         DECLARE_MESSAGE_MAP()
 
         // DocumentObserver overrides
@@ -89,7 +92,7 @@ class CLevelUpView :
         void ShowFeatTip(size_t featIndex, CRect itemRect);
         void ShowLevelTip(size_t level, CRect itemRect);
         void HideTip();
-        void SetFeatTooltipText(const CString & featName, CPoint tipTopLeft, CPoint tipAlternate);
+        void SetFeatTooltipText(const CString & featName, CPoint tipTopLeft, CPoint tipAlternate, bool rightAlign);
         void SetLevelTooltipText(size_t level, CPoint tipTopLeft, CPoint tipAlternate);
         void ShowBab();
 
@@ -98,7 +101,7 @@ class CLevelUpView :
         CStatic m_staticClass;
         CComboBox m_comboClass[3];
         CStatic m_staticFeatDescription[3];
-        CComboBoxEx m_comboFeatSelect[3];
+        CComboBoxTooltip m_comboFeatSelect[3];
         CStatic m_staticAvailableSpend;
         CEdit m_editSkillPoints;
         CButton m_buttonPlus;

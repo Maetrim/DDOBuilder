@@ -13,6 +13,8 @@ class SentientJewel :
 
         std::string Filigree(size_t fi) const;
         void SetFiligree(size_t fi, const std::string & name);
+        void SetFiligreeRare(size_t fi, bool isRare);
+        bool IsRareFiligree(size_t fi) const;
 
     protected:
         XmlLib::SaxContentElementInterface * StartElement(
@@ -30,7 +32,14 @@ class SentientJewel :
                 DL_OPTIONAL_STRING(_, Filigree4) \
                 DL_OPTIONAL_STRING(_, Filigree5) \
                 DL_OPTIONAL_STRING(_, Filigree6) \
-                DL_OPTIONAL_STRING(_, Filigree7)
+                DL_OPTIONAL_STRING(_, Filigree7) \
+                DL_FLAG(_, RareFiligree1) \
+                DL_FLAG(_, RareFiligree2) \
+                DL_FLAG(_, RareFiligree3) \
+                DL_FLAG(_, RareFiligree4) \
+                DL_FLAG(_, RareFiligree5) \
+                DL_FLAG(_, RareFiligree6) \
+                DL_FLAG(_, RareFiligree7)
 
         DL_DECLARE_ACCESS(SentientJewel_PROPERTIES)
         DL_DECLARE_VARIABLES(SentientJewel_PROPERTIES)

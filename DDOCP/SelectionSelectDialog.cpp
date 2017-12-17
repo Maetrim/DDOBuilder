@@ -229,7 +229,7 @@ void CSelectionSelectDialog::SetTooltipText(
         CPoint tipTopLeft,
         CPoint tipAlternate)
 {
-    m_tooltip.SetOrigin(tipTopLeft, tipAlternate);
+    m_tooltip.SetOrigin(tipTopLeft, tipAlternate, false);
     m_tooltip.SetEnhancementSelectionItem(m_charData, &item, m_item.Ranks());
     m_tooltip.Show();
 }
