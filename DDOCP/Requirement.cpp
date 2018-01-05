@@ -71,7 +71,8 @@ bool Requirement::CanTrainFeat(
         const Character & charData, 
         const std::vector<size_t> & classLevels,
         size_t totalLevel,  // this is 0 based
-        const std::list<TrainedFeat> & currentFeats) const
+        const std::list<TrainedFeat> & currentFeats,
+        bool includeTomes) const
 {
     bool canTrain = true;
     if (HasRace())
@@ -141,7 +142,7 @@ bool Requirement::CanTrainFeat(
     {
         // must have this specific base ability value to train (Base + Tome + Level up only)
         ASSERT(HasAmount());
-        size_t value= charData.AbilityAtLevel(Ability(), totalLevel);
+        size_t value = charData.AbilityAtLevel(Ability(), totalLevel, includeTomes);
         canTrain = (value >= Amount());
     }
     if (HasAlignment())
@@ -233,7 +234,7 @@ bool Requirement::CanTrainEnhancement(
     {
         // must have this specific base ability value to train (Base + Tome + Level up only)
         ASSERT(HasAmount());
-        size_t value= charData.AbilityAtLevel(Ability(), MAX_LEVEL);
+        size_t value = charData.AbilityAtLevel(Ability(), MAX_LEVEL, true);
         canTrain = (value >= Amount());
     }
     return canTrain;
@@ -271,7 +272,8 @@ bool Requirement::CanTrainTree(
 void Requirement::CreateRequirementStrings(
         const Character & charData,
         std::vector<CString> * requirements,
-        std::vector<bool> * met) const
+        std::vector<bool> * met,
+        size_t level) const
 {
     CString description;
     bool doneMinLevel = false;
@@ -332,14 +334,14 @@ void Requirement::CreateRequirementStrings(
             // minimum overall level
             description.Format("Requires: Minimum level(%d)", MinLevel());
             requirements->push_back(description);
-            met->push_back(true);   // we only ever consider this from character level 30
+            met->push_back(level >= MinLevel());
         }
         if (HasLevel())
         {
             // specific level
             description.Format("Requires: Level(%d)", Level());
             requirements->push_back(description);
-            met->push_back(true);   // we only ever consider this from character level 30
+            met->push_back(level >= MinLevel());
         }
     }
     if (HasEnhancement())
@@ -376,14 +378,14 @@ void Requirement::CreateRequirementStrings(
         // must have this number of ranks in the skill at the current level to train
         description.Format("Requires: %s(%d)", EnumEntryText(Skill(), skillTypeMap), Amount());
         requirements->push_back(description);
-        met->push_back(charData.SkillAtLevel(Skill(), MAX_LEVEL, true) >= Amount());
+        met->push_back(charData.SkillAtLevel(Skill(), level, true) >= Amount());
     }
     if (HasBAB())
     {
         // must have at least this BAB at the current total level to train
         description.Format("Requires: BAB(%d)", BAB());
         requirements->push_back(description);
-        met->push_back(charData.BaseAttackBonus(MAX_LEVEL) >= BAB());
+        met->push_back(charData.BaseAttackBonus(level) >= BAB());
     }
     if (HasFeat())
     {
@@ -397,7 +399,7 @@ void Requirement::CreateRequirementStrings(
             description.Format("Requires: %s", Feat().c_str());
         }
         requirements->push_back(description);
-        std::list<TrainedFeat> currentFeats = charData.CurrentFeats(MAX_LEVEL);
+        std::list<TrainedFeat> currentFeats = charData.CurrentFeats(level);
         met->push_back(TrainedCount(currentFeats, Feat()) > 0);
     }
     if (HasAbility())
@@ -406,6 +408,6 @@ void Requirement::CreateRequirementStrings(
         ASSERT(HasAmount());
         description.Format("Requires: %s(%d)", EnumEntryText(Ability(), abilityTypeMap), Amount());
         requirements->push_back(description);
-        met->push_back(charData.AbilityAtLevel(Ability(), MAX_LEVEL) >= Amount());
+        met->push_back(charData.AbilityAtLevel(Ability(), level, true) >= Amount());
     }
 }

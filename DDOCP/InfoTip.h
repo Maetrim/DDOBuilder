@@ -2,6 +2,7 @@
 //
 #pragma once
 #include <vector>
+#include "ClassTypes.h"
 
 class Augment;
 class Character;
@@ -32,7 +33,9 @@ class CInfoTip :
                 size_t ranks);
         void SetFeatItem(
                 const Character & charData,
-                const Feat * pItem);
+                const Feat * pItem,
+                bool featSwapWarning,
+                size_t level);
         void SetStanceItem(
                 const Character & charData,
                 const Stance * pItem);
@@ -43,7 +46,8 @@ class CInfoTip :
         void SetLevelItem(
                 const Character & charData,
                 size_t level,
-                const LevelTraining * levelData);
+                const LevelTraining * levelData,
+                ClassType expectedClass);
 
         void SetOrigin(CPoint origin, CPoint alternate, bool rightAlign);
         void Show();

@@ -12,6 +12,7 @@
 #include "BreakdownItemEnergyResistance.h"
 #include "BreakdownItemHitpoints.h"
 #include "BreakdownItemMRR.h"
+#include "BreakdownItemMRRCap.h"
 #include "BreakdownItemPRR.h"
 #include "BreakdownItemSave.h"
 #include "BreakdownItemSimple.h"
@@ -565,6 +566,19 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
                 hItem);
         m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pMRR);
         m_items.push_back(pMRR);
+        {
+            HTREEITEM hItemCap = m_itemBreakdownTree.InsertItem(
+                    "MRR Cap",
+                    hItem,
+                    TVI_LAST);
+            BreakdownItem * pMRRCap = new BreakdownItemMRRCap(
+                    Breakdown_MRRCap,
+                    "MRR Cap",
+                    &m_itemBreakdownTree,
+                    hItemCap);
+            m_itemBreakdownTree.SetItemData(hItemCap, (DWORD)(void*)pMRRCap);
+            m_items.push_back(pMRRCap);
+        }
     }
 
     {
@@ -595,24 +609,23 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
                 hItem);
         m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pDodge);
         m_items.push_back(pDodge);
+        {
+            HTREEITEM hItemCap = m_itemBreakdownTree.InsertItem(
+                    "Dodge Cap",
+                    hItem,
+                    TVI_LAST);
+            BreakdownItem * pDC = new BreakdownItemSimple(
+                    Breakdown_DodgeCap,
+                    Effect_DodgeCapBonus,
+                    "Dodge Cap",
+                    &m_itemBreakdownTree,
+                    hItemCap);
+            m_itemBreakdownTree.SetItemData(hItemCap, (DWORD)(void*)pDC);
+            m_items.push_back(pDC);
+        }
     }
 
     {
-        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
-                "Dodge Cap",
-                hDefensiveParent,
-                TVI_LAST);
-        BreakdownItem * pDC = new BreakdownItemSimple(
-                Breakdown_DodgeCap,
-                Effect_DodgeCapBonus,
-                "Dodge Cap",
-                &m_itemBreakdownTree,
-                hItem);
-        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pDC);
-        m_items.push_back(pDC);
-    }
-
-        {
         HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
                 "Missile Deflection",
                 hDefensiveParent,

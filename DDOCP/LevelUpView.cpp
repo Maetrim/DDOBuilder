@@ -99,6 +99,12 @@ void CLevelUpView::DoDataExchange(CDataExchange* pDX)
     DDX_Control(pDX, IDC_STATIC_CLASS, m_staticClass);
     DDX_Control(pDX, IDC_STATIC_SP_AVAILABLE, m_staticAvailableSpend);
     DDX_Control(pDX, IDC_BUTTON_SKILLS, m_buttonSkillsDialog);
+    DDX_Control(pDX, IDC_STATIC_STR, m_abilitiesAtLevel[0]);
+    DDX_Control(pDX, IDC_STATIC_DEX, m_abilitiesAtLevel[1]);
+    DDX_Control(pDX, IDC_STATIC_CON, m_abilitiesAtLevel[2]);
+    DDX_Control(pDX, IDC_STATIC_INT, m_abilitiesAtLevel[3]);
+    DDX_Control(pDX, IDC_STATIC_WIS, m_abilitiesAtLevel[4]);
+    DDX_Control(pDX, IDC_STATIC_CHA, m_abilitiesAtLevel[5]);
     DDX_Control(pDX, IDC_STATIC_BAB, m_staticBab);
 }
 
@@ -352,9 +358,10 @@ void CLevelUpView::OnSize(UINT nType, int cx, int cy)
 
         // position all the controls above
         // [level] [heroic classes] [combo1] [combo2] [combo3]
+        // [level] [str][dex][con][int][wis][cha][bab]
         // [level] [Feat type 1] [Feat type 2] [Feat type 3]
         // [level] [Feat combo1] [Feat combo2] [Feat combo3]
-        // [level] [Available][count] [+][-][Auto spend]  [Bab]
+        // [level] [Available][count] [+][-][Auto spend]
         // [level] +------------------------------------+ +----------------+
         // [level] | Skills list                        | | Automatic feats|
         // [level] |                                    | +----------------+
@@ -377,6 +384,27 @@ void CLevelUpView::OnSize(UINT nType, int cx, int cy)
         rctClassCombo[0] += CPoint(rctClassLabel.right + c_controlSpacing, c_controlSpacing);
         rctClassCombo[1] += CPoint(rctClassCombo[0].right + c_controlSpacing, c_controlSpacing);
         rctClassCombo[2] += CPoint(rctClassCombo[1].right + c_controlSpacing, c_controlSpacing);
+        // current abilities
+        CRect rectAbilities[6];
+        for (size_t i = 0; i < 6; ++i)
+        {
+            m_abilitiesAtLevel[i].GetWindowRect(&rectAbilities[i]);
+            rectAbilities[i] -= rectAbilities[i].TopLeft();
+            if (i == 0)
+            {
+                rectAbilities[i] += CPoint(rctButton.right + c_controlSpacing, rctClassLabel.bottom + c_controlSpacing);
+            }
+            else
+            {
+                rectAbilities[i] += CPoint(rectAbilities[i-1].right + c_controlSpacing, rctClassLabel.bottom + c_controlSpacing);
+            }
+        }
+        // BAB shown after abilities
+        CRect rctBab;
+        m_staticBab.GetWindowRect(&rctBab);
+        rctBab -= rctBab.TopLeft();
+        rctBab += CPoint(rectAbilities[5].right + c_controlSpacing, rctClassLabel.bottom + c_controlSpacing);
+
         // feat type labels
         CRect rctFeatType[3];
         m_staticFeatDescription[0].GetWindowRect(&rctFeatType[0]);
@@ -385,9 +413,9 @@ void CLevelUpView::OnSize(UINT nType, int cx, int cy)
         rctFeatType[0] -= rctFeatType[0].TopLeft();
         rctFeatType[1] -= rctFeatType[1].TopLeft();
         rctFeatType[2] -= rctFeatType[2].TopLeft();
-        rctFeatType[0] += CPoint(rctButton.right + c_controlSpacing, rctClassLabel.bottom + c_controlSpacing);
-        rctFeatType[1] += CPoint(rctFeatType[0].right + c_controlSpacing, rctClassLabel.bottom + c_controlSpacing);
-        rctFeatType[2] += CPoint(rctFeatType[1].right + c_controlSpacing, rctClassLabel.bottom + c_controlSpacing);
+        rctFeatType[0] += CPoint(rctButton.right + c_controlSpacing, rectAbilities[0].bottom + c_controlSpacing);
+        rctFeatType[1] += CPoint(rctFeatType[0].right + c_controlSpacing, rectAbilities[0].bottom + c_controlSpacing);
+        rctFeatType[2] += CPoint(rctFeatType[1].right + c_controlSpacing, rectAbilities[0].bottom + c_controlSpacing);
         // feat drop list combos
         CRect rctFeatCombo[3];
         m_comboFeatSelect[0].GetWindowRect(&rctFeatCombo[0]);
@@ -438,24 +466,12 @@ void CLevelUpView::OnSize(UINT nType, int cx, int cy)
                 rctButton.right + c_controlSpacing + skillSize.cx,
                 cy - c_controlSpacing);
 
-        // BAB shown above Automatic Feats
-        CRect rctBab;
-        m_staticBab.GetWindowRect(&rctBab);
-        rctBab -= rctBab.TopLeft();
-        rctBab += CPoint(rctSkills.right + c_controlSpacing, rctSkillControls[0].top);
-        if (rctBab.left < rctSkillControls[4].right + c_controlSpacing)
-        {
-            // ensure control does not sit on top of others on small screen layouts
-            rctBab -= CPoint(rctBab.left, 0);
-            rctBab += CPoint(rctSkillControls[4].right + c_controlSpacing, 0);
-        }
-
         CRect rctAutoFeats;
         m_listAutomaticFeats.GetWindowRect(rctAutoFeats);
         rctAutoFeats -= rctAutoFeats.TopLeft();
         rctAutoFeats += CPoint(
                 rctSkills.right + c_controlSpacing,
-                rctBab.bottom + c_controlSpacing);
+                rctSkills.top);
         rctAutoFeats.bottom = cy - c_controlSpacing;
         rctAutoFeats.right = cx - c_controlSpacing;
 
@@ -483,6 +499,11 @@ void CLevelUpView::OnSize(UINT nType, int cx, int cy)
         m_comboClass[0].MoveWindow(rctClassCombo[0]);
         m_comboClass[1].MoveWindow(rctClassCombo[1]);
         m_comboClass[2].MoveWindow(rctClassCombo[2]);
+        for (size_t i = 0; i < 6; ++i)
+        {
+            m_abilitiesAtLevel[i].MoveWindow(rectAbilities[i]);
+        }
+        m_staticBab.MoveWindow(rctBab);
         m_staticFeatDescription[0].MoveWindow(rctFeatType[0]);
         m_staticFeatDescription[1].MoveWindow(rctFeatType[1]);
         m_staticFeatDescription[2].MoveWindow(rctFeatType[2]);
@@ -495,7 +516,6 @@ void CLevelUpView::OnSize(UINT nType, int cx, int cy)
         m_buttonMinus.MoveWindow(rctSkillControls[3]);
         m_buttonSkillsDialog.MoveWindow(rctSkillControls[4]);
         m_listSkills.MoveWindow(rctSkills, TRUE);
-        m_staticBab.MoveWindow(rctBab);
         m_listAutomaticFeats.MoveWindow(rctAutoFeats, TRUE);
 
         // update the mouse hook handles for tooltips
@@ -574,6 +594,7 @@ void CLevelUpView::UpdateAbilityValueChanged(
 {
     // all stats can affect trainable feats
     DetermineTrainableFeats();
+    SetAbilitiesAtLevel();
     if (ability == Ability_Intelligence)
     {
         // only intelligence affects skill point spend
@@ -587,6 +608,7 @@ void CLevelUpView::UpdateAbilityTomeChanged(
 {
     // all stats can affect trainable feats
     DetermineTrainableFeats();
+    SetAbilitiesAtLevel();
     if (ability == Ability_Intelligence)
     {
         // only intelligence affects skill point spend
@@ -600,6 +622,7 @@ void CLevelUpView::UpdateRaceChanged(
 {
     // affects feat selections at level 1 and automatic feats
     // at 1st level only
+    SetAbilitiesAtLevel();
     if (m_level == 0)
     {
         PopulateControls();
@@ -642,6 +665,7 @@ void CLevelUpView::UpdateGrantedFeatsChanged(Character * charData)
 void CLevelUpView::PopulateControls()
 {
     SetLevelButtonStates();
+    SetAbilitiesAtLevel();
     PopulateSkills();
     SetAvailableClasses();
 
@@ -1006,7 +1030,7 @@ void CLevelUpView::OnHoverAutomaticFeats(NMHDR* pNMHDR, LRESULT* pResult)
             m_listAutomaticFeats.ClientToScreen(&rect);
             CPoint tipTopLeft(rect.left, rect.bottom);
             CPoint tipAlternate(rect.left, rect.top);
-            SetFeatTooltipText(featName, tipTopLeft, tipAlternate, false); // left align
+            SetFeatTooltipText(featName, tipTopLeft, tipAlternate, false, TFT_Automatic, true); // left align
             m_showingTip = true;
             // make sure we don't stack multiple monitoring of the same rectangle
             if (m_automaticHandle == 0)
@@ -1049,7 +1073,7 @@ void CLevelUpView::OnHoverGrantedFeats(NMHDR* pNMHDR, LRESULT* pResult)
             m_listGrantedFeats.ClientToScreen(&rect);
             CPoint tipTopLeft(rect.left, rect.bottom);
             CPoint tipAlternate(rect.left, rect.top);
-            SetFeatTooltipText(featName, tipTopLeft, tipAlternate, false); // left align
+            SetFeatTooltipText(featName, tipTopLeft, tipAlternate, false, TFT_Automatic, true); // left align
             m_showingTip = true;
             // make sure we don't stack multiple monitoring of the same rectangle
             if (m_automaticHandle == 0)
@@ -1295,7 +1319,7 @@ bool CLevelUpView::CanBuySkill(SkillType skill) const
     int available = SkillPoints(
             levelData.HasClass() ? levelData.Class() : Class_Unknown,
             m_pCharacter->Race(),
-            m_pCharacter->AbilityAtLevel(Ability_Intelligence, m_level),
+            m_pCharacter->AbilityAtLevel(Ability_Intelligence, m_level, (m_level != 0)),
             m_level);
     int spent = levelData.SkillPointsSpent();
     // also ensure we do not overspend a skill across all levels
@@ -1748,6 +1772,12 @@ BOOL CLevelUpView::OnEraseBkgnd(CDC* pDC)
         IDC_STATIC_SP_AVAILABLE,
         IDC_BUTTON_SKILLS,
         IDC_STATIC_BAB,
+        IDC_STATIC_STR,
+        IDC_STATIC_DEX,
+        IDC_STATIC_CON,
+        IDC_STATIC_INT,
+        IDC_STATIC_WIS,
+        IDC_STATIC_CHA,
         0 // end marker
     };
 
@@ -1898,7 +1928,13 @@ LRESULT CLevelUpView::OnHoverComboBox(WPARAM wParam, LPARAM lParam)
             // tip is shown to the left or the right of the combo box
             CPoint tipTopLeft(rctWindow.left, rctWindow.top);
             CPoint tipAlternate(rctWindow.right, rctWindow.top);
-            SetFeatTooltipText(featName, tipTopLeft, tipAlternate, true);   // right align
+            SetFeatTooltipText(
+                    featName,
+                    tipTopLeft,
+                    tipAlternate,
+                    true,               // right align
+                    m_trainable[id],
+                    false);             // not yet trained
             m_showingTip = true;
         }
     }
@@ -1921,7 +1957,13 @@ void CLevelUpView::ShowFeatTip(size_t featIndex, CRect itemRect)
         {
             CPoint tipTopLeft(itemRect.left, itemRect.bottom + 2);
             CPoint tipAlternate(itemRect.left, itemRect.top - 2);
-            SetFeatTooltipText(featName, tipTopLeft, tipAlternate, false);  // left align
+            SetFeatTooltipText(
+                    featName,
+                    tipTopLeft,
+                    tipAlternate,
+                    false,              // left align
+                    m_trainable[featIndex],
+                    true);              // is already trained
             m_showingTip = true;
         }
     }
@@ -1956,12 +1998,16 @@ void CLevelUpView::SetFeatTooltipText(
         const CString & featName,
         CPoint tipTopLeft,
         CPoint tipAlternate,
-        bool rightAlign)
+        bool rightAlign,
+        TrainableFeatTypes type,
+        bool alreadyTrained)
 {
     // look up the selected feat for this control
     const Feat & feat = FindFeat((LPCTSTR)featName);
+    // determine whether there is a feat swap warning if training at level 1
+    bool warn = !m_pCharacter->IsFeatTrainable(m_level, type, feat, (m_level != 0), alreadyTrained);
     m_tooltip.SetOrigin(tipTopLeft, tipAlternate, rightAlign);
-    m_tooltip.SetFeatItem(*m_pCharacter, &feat);
+    m_tooltip.SetFeatItem(*m_pCharacter, &feat, warn, m_level);
     m_tooltip.Show();
 }
 
@@ -1972,7 +2018,55 @@ void CLevelUpView::SetLevelTooltipText(
 {
     // look up the selected feat for this control
     const LevelTraining & levelData = m_pCharacter->LevelData(level);
+    ClassType expectedClass = levelData.HasClass() ? levelData.Class() : Class_Unknown;
+    if (level == 0)
+    {
+        switch (m_pCharacter->Race())
+        {
+        case Race_AasimarScourge: expectedClass = Class_Ranger; break;
+        case Race_BladeForged: expectedClass = Class_Paladin; break;
+        case Race_DeepGnome: expectedClass = Class_Wizard; break;
+        case Race_Morninglord: expectedClass = Class_Cleric; break;
+        case Race_PurpleDragonKnight: expectedClass = Class_Fighter; break;
+        case Race_ShadarKai: expectedClass = Class_Rogue; break;
+        }
+    }
     m_tooltip.SetOrigin(tipTopLeft, tipAlternate, false);
-    m_tooltip.SetLevelItem(*m_pCharacter, level, &levelData);
+    m_tooltip.SetLevelItem(*m_pCharacter, level, &levelData, expectedClass);
     m_tooltip.Show();
+}
+
+void CLevelUpView::SetAbilitiesAtLevel()
+{
+    if (m_pCharacter != NULL)
+    {
+        int str = m_pCharacter->AbilityAtLevel(Ability_Strength, m_level, true);
+        int dex = m_pCharacter->AbilityAtLevel(Ability_Dexterity, m_level, true);
+        int con = m_pCharacter->AbilityAtLevel(Ability_Constitution, m_level, true);
+        int intelligence = m_pCharacter->AbilityAtLevel(Ability_Intelligence, m_level, true);
+        int wis = m_pCharacter->AbilityAtLevel(Ability_Wisdom, m_level, true);
+        int cha = m_pCharacter->AbilityAtLevel(Ability_Charisma, m_level, true);
+        CString text;
+        text.Format("STR %2d", str);
+        m_abilitiesAtLevel[0].SetWindowText(text);
+        text.Format("DEX %2d", dex);
+        m_abilitiesAtLevel[1].SetWindowText(text);
+        text.Format("CON %2d", con);
+        m_abilitiesAtLevel[2].SetWindowText(text);
+        text.Format("INT %2d", intelligence);
+        m_abilitiesAtLevel[3].SetWindowText(text);
+        text.Format("WIS %2d", wis);
+        m_abilitiesAtLevel[4].SetWindowText(text);
+        text.Format("CHA %2d", cha);
+        m_abilitiesAtLevel[5].SetWindowText(text);
+    }
+    else
+    {
+        m_abilitiesAtLevel[0].SetWindowText("STR");
+        m_abilitiesAtLevel[1].SetWindowText("DEX");
+        m_abilitiesAtLevel[2].SetWindowText("CON");
+        m_abilitiesAtLevel[3].SetWindowText("INT");
+        m_abilitiesAtLevel[4].SetWindowText("WIS");
+        m_abilitiesAtLevel[5].SetWindowText("CHA");
+    }
 }

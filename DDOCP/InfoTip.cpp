@@ -314,7 +314,8 @@ void CInfoTip::SetEnhancementTreeItem(
     pItem->CreateRequirementStrings(
             charData,
             &m_requirements,
-            &m_bRequirementMet);
+            &m_bRequirementMet,
+            MAX_CLASS_LEVEL);
     m_cost.Format("Cost %d", pItem->Cost(selection));
     m_ranks.Format("Ranks %d", pItem->Ranks());
 }
@@ -335,14 +336,16 @@ void CInfoTip::SetEnhancementSelectionItem(
     m_effectDescriptions.clear();
     m_requirements.clear();
     m_bRequirementMet.clear();
-    pItem->CreateRequirementStrings(charData, &m_requirements, &m_bRequirementMet);
+    pItem->CreateRequirementStrings(charData, &m_requirements, &m_bRequirementMet, MAX_CLASS_LEVEL);
     m_cost.Format("Cost %d", pItem->Cost());
     m_ranks.Format("Ranks %d", ranks);
 }
 
 void CInfoTip::SetFeatItem(
         const Character & charData,
-        const Feat * pItem)
+        const Feat * pItem,
+        bool featSwapWarning,
+        size_t level)
 {
     m_image.Destroy();
     LoadImageFile(IT_feat, pItem->Icon(), &m_image);
@@ -355,7 +358,7 @@ void CInfoTip::SetFeatItem(
     m_effectDescriptions.clear();
     m_requirements.clear();
     m_bRequirementMet.clear();
-    pItem->CreateRequirementStrings(charData, &m_requirements, &m_bRequirementMet);
+    pItem->CreateRequirementStrings(charData, &m_requirements, &m_bRequirementMet, level);
     m_cost = "";
     if (pItem->MaxTimesAcquire() != 1)
     {
@@ -364,6 +367,11 @@ void CInfoTip::SetFeatItem(
     else
     {
         m_ranks = "";
+    }
+    if (featSwapWarning)
+    {
+        m_requirements.push_back("Requires a feat swap with Fred");
+        m_bRequirementMet.push_back(false);
     }
 }
 
@@ -504,7 +512,8 @@ void CInfoTip::SetAugment(
 void CInfoTip::SetLevelItem(
         const Character & charData,
         size_t level,
-        const LevelTraining * levelData)
+        const LevelTraining * levelData,
+        ClassType expectedClass)
 {
     // icon is the class level
     m_image.Destroy();
@@ -599,6 +608,15 @@ void CInfoTip::SetLevelItem(
     m_requirements.clear();
     m_bRequirementMet.clear();
     m_cost = "";
+    // warn if iconic race does not have expected class at level 1
+    if (levelData->HasClass()
+            && expectedClass != levelData->Class())
+    {
+        CString text("Requires a +1 Heart of Wood to switch from Iconic class of ");
+        text += EnumEntryText(expectedClass, classTypeMap);
+        m_requirements.push_back(text);
+        m_bRequirementMet.push_back(false);
+    }
 }
 
 void CInfoTip::GenerateLineBreaks(CString * text)

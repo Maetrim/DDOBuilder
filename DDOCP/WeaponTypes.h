@@ -60,6 +60,7 @@ enum WeaponType
     Weapon_ShieldSmall,
     Weapon_ShieldLarge,
     Weapon_ShieldTower,
+    Weapon_Count,           // must be last entry
 };
 const XmlLib::enumMapEntry<WeaponType> weaponTypeMap[] =
 {

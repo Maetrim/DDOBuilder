@@ -32,6 +32,7 @@ enum BreakdownType
     Breakdown_UnconsciousRange,
     Breakdown_PRR,
     Breakdown_MRR,
+    Breakdown_MRRCap,
     Breakdown_AC,
     Breakdown_Dodge,
     Breakdown_DodgeCap,
@@ -176,6 +177,7 @@ enum BreakdownType
     Breakdown_EnergyAbsorptionRust,
     Breakdown_EnergyAbsorptionSonic,
     // weapon breakdowns
+    Breakdown_WeaponEffectHolder,
     Breakdown_Weapon,
     Breakdown_WeaponBaseDamage,
     Breakdown_WeaponAttackBonus,

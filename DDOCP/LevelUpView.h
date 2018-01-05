@@ -92,9 +92,16 @@ class CLevelUpView :
         void ShowFeatTip(size_t featIndex, CRect itemRect);
         void ShowLevelTip(size_t level, CRect itemRect);
         void HideTip();
-        void SetFeatTooltipText(const CString & featName, CPoint tipTopLeft, CPoint tipAlternate, bool rightAlign);
+        void SetFeatTooltipText(
+                const CString & featName,
+                CPoint tipTopLeft,
+                CPoint tipAlternate,
+                bool rightAlign,
+                TrainableFeatTypes type,
+                bool alreadyTrained);
         void SetLevelTooltipText(size_t level, CPoint tipTopLeft, CPoint tipAlternate);
         void ShowBab();
+        void SetAbilitiesAtLevel();
 
         Character * m_pCharacter;
         CLevelButton m_buttonLevels[MAX_LEVEL];
@@ -102,6 +109,8 @@ class CLevelUpView :
         CComboBox m_comboClass[3];
         CStatic m_staticFeatDescription[3];
         CComboBoxTooltip m_comboFeatSelect[3];
+        CStatic m_abilitiesAtLevel[6];
+        CStatic m_staticBab;
         CStatic m_staticAvailableSpend;
         CEdit m_editSkillPoints;
         CButton m_buttonPlus;
@@ -111,7 +120,6 @@ class CLevelUpView :
         CListCtrl m_listSkills;
         CListCtrl m_listAutomaticFeats;
         CListCtrl m_listGrantedFeats;
-        CStatic m_staticBab;
         CImageList m_imagesSkills;
         CImageList m_imagesFeats[3];
         CImageList m_imagesAutomaticFeats;

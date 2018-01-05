@@ -24,7 +24,8 @@ class Requirement :
                 const Character & charData,
                 const std::vector<size_t> & classLevels,
                 size_t totalLevel,
-                const std::list<TrainedFeat> & currentFeats) const;
+                const std::list<TrainedFeat> & currentFeats,
+                bool includeTomes) const;
         bool CanTrainEnhancement(
                 const Character & charData,
                 size_t trainedRanks) const;
@@ -33,7 +34,8 @@ class Requirement :
         void CreateRequirementStrings(
                 const Character & charData,
                 std::vector<CString> * requirements,
-                std::vector<bool> * met) const;
+                std::vector<bool> * met,
+                size_t level) const;
 
         bool VerifyObject(
                 std::stringstream * ss,

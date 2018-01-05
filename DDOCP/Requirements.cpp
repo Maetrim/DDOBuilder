@@ -51,24 +51,25 @@ bool Requirements::CanTrainFeat(
         const Character & charData, 
         const std::vector<size_t> & classLevels,
         size_t totalLevel,
-        const std::list<TrainedFeat> & currentFeats) const
+        const std::list<TrainedFeat> & currentFeats,
+        bool includeTomes) const
 {
     bool canTrain = true;
     std::list<Requirement>::const_iterator it = m_Requires.begin();
     while (canTrain && it != m_Requires.end())
     {
-        canTrain = (*it).CanTrainFeat(charData, classLevels, totalLevel, currentFeats);
+        canTrain = (*it).CanTrainFeat(charData, classLevels, totalLevel, currentFeats, includeTomes);
         ++it;
     }
     if (canTrain
             && HasOneOf())
     {
-        canTrain = OneOf().CanTrainFeat(charData, classLevels, totalLevel, currentFeats);
+        canTrain = OneOf().CanTrainFeat(charData, classLevels, totalLevel, currentFeats, includeTomes);
     }
     if (canTrain
             && HasNoneOf())
     {
-        canTrain = NoneOf().CanTrainFeat(charData, classLevels, totalLevel, currentFeats);
+        canTrain = NoneOf().CanTrainFeat(charData, classLevels, totalLevel, currentFeats, includeTomes);
     }
     return canTrain;
 }
@@ -124,21 +125,22 @@ bool Requirements::CanTrainTree(
 void Requirements::CreateRequirementStrings(
         const Character & charData,
         std::vector<CString> * requirements,
-        std::vector<bool> * met) const
+        std::vector<bool> * met,
+        size_t level) const
 {
     std::list<Requirement>::const_iterator it = m_Requires.begin();
     while (it != m_Requires.end())
     {
-        (*it).CreateRequirementStrings(charData, requirements, met);
+        (*it).CreateRequirementStrings(charData, requirements, met, level);
         ++it;
     }
     if (HasOneOf())
     {
-        OneOf().CreateRequirementStrings(charData, requirements, met);
+        OneOf().CreateRequirementStrings(charData, requirements, met, level);
     }
     if (HasNoneOf())
     {
-        NoneOf().CreateRequirementStrings(charData, requirements, met);
+        NoneOf().CreateRequirementStrings(charData, requirements, met, level);
     }
 }
 

@@ -32,7 +32,8 @@ class EnhancementTreeItem :
         void CreateRequirementStrings(
                 const Character & charData,
                 std::vector<CString> * requirements,
-                std::vector<bool> * met) const;
+                std::vector<bool> * met,
+                size_t level) const;
         std::list<Stance> Stances(const std::string & selection) const;
         size_t Cost(const std::string & selection) const;
 

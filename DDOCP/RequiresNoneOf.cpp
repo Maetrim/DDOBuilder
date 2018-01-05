@@ -52,7 +52,8 @@ bool RequiresNoneOf::CanTrainFeat(
         const Character & charData, 
         const std::vector<size_t> & classLevels,
         size_t totalLevel,
-        const std::list<TrainedFeat> & currentFeats) const
+        const std::list<TrainedFeat> & currentFeats,
+        bool includeTomes) const
 {
     // one or more of the requirements must not be met
     bool canTrain = false;
@@ -63,7 +64,8 @@ bool RequiresNoneOf::CanTrainFeat(
                 charData,
                 classLevels,
                 totalLevel,
-                currentFeats);
+                currentFeats,
+                includeTomes);
         ++it;
     }
     return !canTrain;       // can't have any requirement met
@@ -102,14 +104,15 @@ bool RequiresNoneOf::CanTrainTree(
 void RequiresNoneOf::CreateRequirementStrings(
         const Character & charData,
         std::vector<CString> * requirements,
-        std::vector<bool> * met) const
+        std::vector<bool> * met,
+        size_t level) const
 {
     std::list<Requirement>::const_iterator it = m_Requirements.begin();
     std::vector<CString> localRequirements;
     std::vector<bool> localMet;
     while (it != m_Requirements.end())
     {
-        (*it).CreateRequirementStrings(charData, &localRequirements, &localMet);
+        (*it).CreateRequirementStrings(charData, &localRequirements, &localMet, level);
         ++it;
     }
     if (HasDisplayDescription())

@@ -116,7 +116,8 @@ BOOL CSelectionSelectDialog::OnInitDialog()
                     m_charData,
                     classLevels,
                     MAX_LEVEL,
-                    trainedFeats);
+                    trainedFeats,
+                    true);          // do include tomes
         }
         bool enoughAP = (m_charData.AvailableActionPoints(m_treeName, m_type) >= (*it).Cost());
         m_buttonOption[index].EnableWindow(!excluded && canTrain && enoughAP);

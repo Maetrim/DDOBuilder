@@ -68,7 +68,6 @@ void BreakdownItem::PopulateBreakdownControl(CListCtrl * pControl)
         pControl->InsertItem(inactiveStart + 1, "Inactive Items");
     }
 
-    AddInformationItem(pControl);
     pControl->UnlockWindowUpdate();
 }
 

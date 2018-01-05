@@ -23,7 +23,8 @@ class Feat :
         void CreateRequirementStrings(
                 const Character & charData,
                 std::vector<CString> * requirements,
-                std::vector<bool> * met) const;
+                std::vector<bool> * met,
+                size_t level) const;
 
         void VerifyObject(
                 const std::list<EnhancementTree> & allTrees,

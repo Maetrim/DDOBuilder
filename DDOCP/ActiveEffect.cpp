@@ -339,6 +339,16 @@ bool ActiveEffect::RevokeStack()
 void ActiveEffect::SetStacks(size_t count)
 {
     m_numStacks = count;
+    if (m_type == ET_amountVector
+            || m_type == ET_amountVectorPerClassLevel)
+    {
+        if (m_numStacks > m_amounts.size())
+        {
+            ::OutputDebugString("ActiveEffect ");
+            ::OutputDebugString((LPCTSTR)Name());
+            ::OutputDebugString(" has more stacks than amount vector\n");
+        }
+    }
 }
 
 size_t ActiveEffect::NumStacks() const
@@ -476,7 +486,6 @@ bool ActiveEffect::operator<=(const ActiveEffect & other) const
 bool ActiveEffect::operator==(const ActiveEffect & other) const
 {
     bool equal = false;
-    // must be the same type of bonus to allow a lessThan
     if (m_type == other.m_type
             && m_effectName == other.m_effectName
             && m_bonusType == other.m_bonusType)

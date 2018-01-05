@@ -28,7 +28,8 @@ class TrainedFeat :
         #define TrainedFeat_PROPERTIES(_) \
                 DL_STRING(_, FeatName) \
                 DL_ENUM(_, TrainableFeatTypes, Type, TFT_Unknown, trainableFeatTypesMap) \
-                DL_SIMPLE(_, size_t, LevelTrainedAt, 0)
+                DL_SIMPLE(_, size_t, LevelTrainedAt, 0) \
+                DL_FLAG(_, FeatSwapWarning)
 
         DL_DECLARE_ACCESS(TrainedFeat_PROPERTIES)
         DL_DECLARE_VARIABLES(TrainedFeat_PROPERTIES)

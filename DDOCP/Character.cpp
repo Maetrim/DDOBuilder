@@ -1193,6 +1193,22 @@ void Character::TrainFeat(
         size_t level,
         bool autoTrained)
 {
+    const Feat & feat = FindFeat(featName);
+
+    bool featSwapWarning = false;
+    if (level == 0)
+    {
+        // we evaluate the feat requirements again but without tomes being
+        // applied to the characters abilities. This allows us to determine
+        // whether the feat can be selected before entering the world or
+        // after via a feat swap with Fred the Mind Flayer.
+        if (!IsFeatTrainable(level, type, feat, false))
+        {
+            // this feat although trainable with Fred is not trainable
+            // during character creation.
+            featSwapWarning = true;
+        }
+    }
     // ensure re-selection of same feat in same slot does not change anything
     // as this can cause enhancements and feats to be revoked.
     std::list<LevelTraining>::iterator it = m_Levels.begin();
@@ -1207,8 +1223,7 @@ void Character::TrainFeat(
             RevokeFeatEffects(feat);
         }
         // train new
-        (*it).TrainFeat(featName, type, level);
-        const Feat & feat = FindFeat(featName);
+        (*it).TrainFeat(featName, type, level, featSwapWarning);
         ApplyFeatEffects(feat);
 
         NotifyFeatTrained(featName);
@@ -1338,7 +1353,8 @@ std::list<TrainedFeat> Character::AutomaticFeats(
                             *this,
                             classLevels,
                             level,
-                            currentFeats);
+                            currentFeats,
+                            true);      // do include tomes
                 }
             }
             ++aait;
@@ -1423,7 +1439,8 @@ bool Character::IsClassSkill(
 
 size_t Character::AbilityAtLevel(
         AbilityType ability,
-        size_t level) const  // level is 0 based
+        size_t level,
+        bool includeTomes) const  // level is 0 based
 {
     size_t abilityValue = 8
             + RacialModifier(Race(), ability)
@@ -1431,8 +1448,19 @@ size_t Character::AbilityAtLevel(
 
     abilityValue += LevelUpsAtLevel(ability, level);
 
-    // add tomes on at levels 3, 7, 11, 15, 19, 23 and 27
-    abilityValue += TomeAtLevel(ability, level);
+    // Update 37 Patch 1 changed the way tomes apply
+    // they now apply at:
+    // +1-+2 Level 1
+    // +3 Level 3
+    // +4 Level 7
+    // +5 Level 11
+    // +6 Level 15
+    // +7 Level 19
+    // +8 Level 22
+    if (includeTomes || level > 0) // level is 0 based
+    {
+        abilityValue += TomeAtLevel(ability, level);
+    }
 
     return abilityValue;
 }
@@ -1478,18 +1506,68 @@ int Character::TomeAtLevel(
         AbilityType ability,
         size_t level) const
 {
+    // Update 37 Patch 1 changed the way tomes apply
+    // they now apply at:
+    // +1-+2 Level 1
+    // +3 Level 3
+    // +4 Level 7
+    // +5 Level 11
+    // +6 Level 15
+    // +7 Level 19
+    // +8 Level 22
     // level is 1 based for this calculation
     ++level;
-    // add tomes on at levels 3, 7, 11, 15, 19, 23 and 27
     size_t maxTome = AbilityTomeValue(ability);
-    size_t tv = 0;
-    for (size_t tl = 3; tl <= level && tl < MAX_LEVEL; tl += 4)
+    size_t maxAtLevel = 0;
+    switch (level)
     {
-        if (tv < maxTome)
-        {
-            ++tv;   // tome applies from this level
-        }
+    case 1:
+    case 2:
+        maxAtLevel = 2;
+        break;
+    case 3:
+    case 4:
+    case 5:
+    case 6:
+        maxAtLevel = 3;
+        break;
+    case 7:
+    case 8:
+    case 9:
+    case 10:
+        maxAtLevel = 4;
+        break;
+    case 11:
+    case 12:
+    case 13:
+    case 14:
+        maxAtLevel = 5;
+        break;
+    case 15:
+    case 16:
+    case 17:
+    case 18:
+        maxAtLevel = 6;
+        break;
+    case 19:
+    case 20:
+    case 21:
+        maxAtLevel = 7;
+        break;
+    case 22:
+    case 23:
+    case 24:
+    case 25:
+    case 26:
+    case 27:
+    case 28:
+    case 29:
+    case 30:
+        maxAtLevel = 8;
+        break;
+
     }
+    size_t tv = min(maxTome, maxAtLevel);
     return tv;
 }
 
@@ -1971,7 +2049,7 @@ std::vector<Feat> Character::TrainableFeats(
         std::list<Feat>::const_iterator it = allFeats.begin();
         while (it != allFeats.end())
         {
-            if (IsFeatTrainable(level, type, (*it))
+            if (IsFeatTrainable(level, type, (*it), true)
                     ||  (*it).Name() == includeThisFeat)
             {
                 // they can select this one, add it to the available list
@@ -2404,7 +2482,7 @@ void Character::Enhancement_RevokeEnhancement(
     }
 }
 
-void Character::Enhancement_ResetEnhancementTree(const std::string & treeName)
+void Character::Enhancement_ResetEnhancementTree(std::string treeName)
 {
     // a whole tree is being reset
     EnhancementSpendInTree * pItem = Enhancement_FindTree(treeName);
@@ -2809,6 +2887,7 @@ void Character::JustLoaded()
         m_pDocument->SetModifiedFlag(TRUE);
     }
     CountBonusAP();
+    UpdateSkillPoints(); // when tomes apply has changed
 }
 
 void Character::VerifyTrainedFeats()
@@ -2837,7 +2916,7 @@ void Character::VerifyTrainedFeats()
         {
             // is this feat trainable at this level?
             const Feat & feat = FindFeat((*fit).FeatName());
-            if (!IsFeatTrainable(level, (*fit).Type(), feat, true))
+            if (!IsFeatTrainable(level, (*fit).Type(), feat, true, true))
             {
                 // no longer trainable, remove it from the list
                 displayMessage = true;
@@ -2872,6 +2951,7 @@ bool Character::IsFeatTrainable(
         size_t level,
         TrainableFeatTypes type,
         const Feat & feat,
+        bool includeTomes,
         bool alreadyTrained) const
 {
     // function returns true if the given feat can be trained at this level
@@ -2897,7 +2977,8 @@ bool Character::IsFeatTrainable(
             // no group means its only in TFT_Standard
             canTrain = (type == TFT_Standard)
                     || (type == TFT_HumanBonus) // equivalent to a standard feat
-                    || (type == TFT_PDKBonus);  // equivalent to a standard feat
+                    || (type == TFT_PDKBonus)   // equivalent to a standard feat
+                    || (type == TFT_EpicFeat);  // equivalent to a standard feat
         }
     }
     if (canTrain)
@@ -2907,7 +2988,8 @@ bool Character::IsFeatTrainable(
                 *this,
                 classLevels,
                 level,
-                currentFeats);
+                currentFeats,
+            includeTomes);
     }
     if (canTrain)
     {
@@ -3126,7 +3208,7 @@ void Character::Reaper_RevokeEnhancement(
     }
 }
 
-void Character::Reaper_ResetEnhancementTree(const std::string & treeName)
+void Character::Reaper_ResetEnhancementTree(std::string treeName)
 {
     // a whole tree is being reset
     ReaperSpendInTree * pItem = Reaper_FindTree(treeName);
@@ -3476,7 +3558,7 @@ void Character::EpicDestiny_RevokeEnhancement(
     }
 }
 
-void Character::EpicDestiny_ResetEnhancementTree(const std::string & treeName)
+void Character::EpicDestiny_ResetEnhancementTree(std::string treeName)
 {
     // a whole tree is being reset
     EpicDestinySpendInTree * pItem = EpicDestiny_FindTree(treeName);
@@ -4538,7 +4620,7 @@ void Character::UpdateSkillPoints()
         size_t available = SkillPoints(
                 (*it).HasClass() ? (*it).Class() : Class_Unknown,
                 Race(),
-                AbilityAtLevel(Ability_Intelligence, level),
+                AbilityAtLevel(Ability_Intelligence, level, false),
                 level);
         (*it).Set_SkillPointsAvailable(available);
         ++it;
@@ -4557,7 +4639,7 @@ void Character::UpdateSkillPoints(size_t level)
         size_t available = SkillPoints(
                 (*it).HasClass() ? (*it).Class() : Class_Unknown,
                 Race(),
-                AbilityAtLevel(Ability_Intelligence, level),
+                AbilityAtLevel(Ability_Intelligence, level, false),
                 level);
         (*it).Set_SkillPointsAvailable(available);
     }

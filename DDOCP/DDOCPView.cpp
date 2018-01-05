@@ -22,7 +22,7 @@
 namespace
 {
     const int c_controlSpacing = 3;
-    const size_t c_maxTomeValue = 7;    // max tome is +7 at level 27
+    const size_t c_maxTomeValue = 8;    // max tome is +8 at level 22
     COLORREF f_abilityOverspendColour = RGB(0xE9, 0x96, 0x7A); // dark salmon
 }
 

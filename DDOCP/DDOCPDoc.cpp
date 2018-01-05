@@ -349,11 +349,12 @@ void CDDOCPDoc::AddCharacterHeader(std::stringstream & forumExport)
     AddBreakdown(forumExport, "      SR: ", 10, Breakdown_SpellResistance);
     forumExport << "\r\n";
 
-    BreakdownItem * pBI = FindBreakdown(Breakdown_MRR);
-    BreakdownItemMRR * pBMRR = dynamic_cast<BreakdownItemMRR *>(pBI);
-    if (pBMRR->IsMrrCapped())
+    BreakdownItem * pBIMRR = FindBreakdown(Breakdown_MRR);
+    BreakdownItem * pBIMRRCap = FindBreakdown(Breakdown_MRRCap);
+    if (pBIMRRCap->Value() != "None"
+            && pBIMRRCap->Total() < pBIMRR->Total())
     {
-        forumExport << "*MRR Capped at " << pBMRR->MrrCap() << " due to armor worn.";
+        forumExport << "*MRR Capped at " << pBIMRRCap->Total() << " due to armor worn.";
     }
     forumExport << "\r\n\r\n";
 }
@@ -501,8 +502,10 @@ void CDDOCPDoc::AddBreakdown(
     }
     if (bt == Breakdown_MRR)
     {
-        BreakdownItemMRR * pBMRR = dynamic_cast<BreakdownItemMRR *>(pBI);
-        if (pBMRR->IsMrrCapped())
+        BreakdownItem * pBIMRR = FindBreakdown(Breakdown_MRR);
+        BreakdownItem * pBIMRRCap = FindBreakdown(Breakdown_MRRCap);
+        if (pBIMRRCap->Total() > 0
+                && pBIMRRCap->Total() < pBIMRR->Total())
         {
             forumExport << "*";     // notify it's capped
         }
@@ -519,6 +522,24 @@ void CDDOCPDoc::AddFeatSelections(std::stringstream & forumExport)
     for (size_t level = 0; level < MAX_LEVEL; ++level)
     {
         const LevelTraining & levelData = m_characterData.LevelData(level);
+        if (level == 0)
+        {
+            bool requiresHeartOfWood = false;
+            ClassType expectedClass = levelData.HasClass() ? levelData.Class() : Class_Unknown;
+            switch (m_characterData.Race())
+            {
+            case Race_AasimarScourge: requiresHeartOfWood = (expectedClass != Class_Ranger); break;
+            case Race_BladeForged: requiresHeartOfWood = (expectedClass != Class_Paladin); break;
+            case Race_DeepGnome: requiresHeartOfWood = (expectedClass != Class_Wizard); break;
+            case Race_Morninglord: requiresHeartOfWood = (expectedClass != Class_Cleric); break;
+            case Race_PurpleDragonKnight: requiresHeartOfWood = (expectedClass != Class_Fighter); break;
+            case Race_ShadarKai: requiresHeartOfWood = (expectedClass != Class_Rogue); break;
+            }
+            if (requiresHeartOfWood)
+            {
+                forumExport << "                       Level 1 Requires a +1 Heart of Wood to switch out of Iconic Class\r\n";
+            }
+        }
         std::vector<size_t> classLevels = m_characterData.ClassLevels(level);
         CString className;
         className.Format("%s(%d)",
@@ -547,6 +568,10 @@ void CDDOCPDoc::AddFeatSelections(std::stringstream & forumExport)
                 else
                 {
                     label += tf.FeatName().c_str();
+                    if (tf.HasFeatSwapWarning())
+                    {
+                        label += " (Requires Feat Swap with Fred)";
+                    }
                 }
                 if (tft > 0)
                 {

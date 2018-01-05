@@ -52,9 +52,10 @@ void LevelTraining::Write(XmlLib::SaxWriter * writer) const
 void LevelTraining::TrainFeat(
         const std::string & featName,
         TrainableFeatTypes type,
-        size_t level)
+        size_t level,
+        bool featSwapWarning)
 {
-    m_TrainedFeats.TrainFeat(featName, type, level);
+    m_TrainedFeats.TrainFeat(featName, type, level, featSwapWarning);
 }
 
 std::string LevelTraining::RevokeFeat(TrainableFeatTypes type)

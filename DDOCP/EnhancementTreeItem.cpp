@@ -51,9 +51,10 @@ void EnhancementTreeItem::Write(XmlLib::SaxWriter * writer) const
 void EnhancementTreeItem::CreateRequirementStrings(
         const Character & charData,
         std::vector<CString> * requirements,
-        std::vector<bool> * met) const
+        std::vector<bool> * met,
+        size_t level) const
 {
-    m_RequirementsToTrain.CreateRequirementStrings(charData, requirements, met);
+    m_RequirementsToTrain.CreateRequirementStrings(charData, requirements, met, level);
 }
 
 bool EnhancementTreeItem::VerifyObject(

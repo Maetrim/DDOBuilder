@@ -49,12 +49,17 @@ void FeatsListObject::Write(XmlLib::SaxWriter * writer) const
 void FeatsListObject::TrainFeat(
         const std::string & featName,
         TrainableFeatTypes type,
-        size_t level)
+        size_t level,
+        bool featSwapWarning)
 {
     TrainedFeat tf;
     tf.Set_FeatName(featName);
     tf.Set_Type(type);
     tf.Set_LevelTrainedAt(level);
+    if (featSwapWarning)
+    {
+        tf.Set_FeatSwapWarning();
+    }
     m_Feats.push_back(tf);
 }
 

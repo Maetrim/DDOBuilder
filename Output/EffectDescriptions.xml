@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!--Note that value fields are present in this file to give a copy paste example for each-->
 <EffectDescriptions>
     <!--Abilities-->
@@ -173,7 +173,7 @@
     <EffectDescription>Efficient Metamagic - Enlarge II: The additional spell point cost for using the Enlarge Metamagic feat is reduced by 2 SP.</EffectDescription>
     <EffectDescription>Efficient Metamagic - Intensify II: The additional spell point cost for using the Intensify Metamagic feat is reduced by 2 SP.</EffectDescription>
     <EffectDescription>Efficient Metamagic - Extend II: The additional spell point cost for using the Extend Metamagic feat is reduced by 2 SP.</EffectDescription>
-    <EffectDescription>Efficient Metamagic - MAximize II: The additional spell point cost for using the Maximize Metamagic feat is reduced by 2 SP.</EffectDescription>
+    <EffectDescription>Efficient Metamagic - Maximize II: The additional spell point cost for using the Maximize Metamagic feat is reduced by 2 SP.</EffectDescription>
     <EffectDescription>Magical Efficiency 10%: You take a 10% Enhancement discount o the Spell Point cost of your spells.</EffectDescription>
     <EffectDescription>Profane Well Rounded: +2 Profane bonus to all abilities.</EffectDescription>
     <EffectDescription>Arcane Augmentation IX: This item increases your caster level when casting first through ninth level sorcerer or wizard spells by two.</EffectDescription>
@@ -309,11 +309,10 @@
     <EffectDescription>Power Store: This item collects and stores magical energy. Any spellcaster can use this energy to partially power their spells. All spells cast while using this item receive an enhancement bonus of -10% to their spell points costs.</EffectDescription>
         <EffectDescription>Stunning +22: +22 Enhancement bonus to DC of your Stunning Blow and Stunning Fist attempts.</EffectDescription>
         <EffectDescription>Adherent of the Mists Set (Legendary):
-5 Pieces Equipped gives:
-+20 Profane Bonus to PRR
-+20 Profane Bonus to Positive, Negativa and Repair Amplification
-+10 Profane Bonus to Melee and Ranged Power.
-+20 Profane Bonus to Universal Spell Power</EffectDescription>
+5 Pieces Equipped gives: +20 Profane Bonus to PRR
+                         +20 Profane Bonus to Positive, Negativa and Repair Amplification
+                         +10 Profane Bonus to Melee and Ranged Power.
+                         +20 Profane Bonus to Universal Spell Power</EffectDescription>
         <Effect>
             <DisplayName>Adherents of the Mists Set (Legendary): PRR</DisplayName>
             <Type>PRR</Type>
@@ -328,7 +327,7 @@
         </Effect>
         <Effect>
             <DisplayName>Adherents of the Mists Set (Legendary): Negative Amplification</DisplayName>
-            <Type>NegativeAmplification</Type>
+            <Type>NegativeHealingAmplification</Type>
             <Bonus>Profane</Bonus>
             <AmountVector size="5">0 0 0 0 20</AmountVector>
         </Effect>
@@ -351,10 +350,137 @@
             <AmountVector size="5">0 0 0 0 10</AmountVector>
         </Effect>
         <Effect>
-            <DisplayName>Adherents of the Mists Set (Legendary): Ranged Power</DisplayName>
+            <DisplayName>Adherents of the Mists Set (Legendary): Spell Power</DisplayName>
             <Type>SpellPower</Type>
             <Bonus>Profane</Bonus>
             <AmountVector size="5">0 0 0 0 20</AmountVector>
             <SpellPower>All</SpellPower>
         </Effect>
+        <EffectDescription>Beacon of Magic Set (Legendary):
+3 Pieces equipped: +50 artifact bonus to Universal spell power
+                   +2 to all spell DCs
+                   +10 Artifact bonus to MRR
+                   +5% Artifact bonus to Missile Deflection</EffectDescription>
+        <Effect>
+            <DisplayName>Beacon of Magic Set: Universal Spell Power</DisplayName>
+            <Type>SpellPower</Type>
+            <Bonus>Artifact</Bonus>
+            <AmountVector size="3">0 0 50</AmountVector>
+            <SpellPower>All</SpellPower>
+        </Effect>
+        <Effect>
+            <DisplayName>Beacon of Magic Set: +2 Spell DCs</DisplayName>
+            <Type>SpellDC</Type>
+            <Bonus>Artifact</Bonus>
+            <AmountVector size="3">0 0 2</AmountVector>
+            <School>All</School>
+        </Effect>
+        <Effect>
+            <DisplayName>Beacon of Magic Set: MRR</DisplayName>
+            <Type>MRR</Type>
+            <Bonus>Artifact</Bonus>
+            <AmountVector size="3">0 0 10</AmountVector>
+        </Effect>
+        <Effect>
+            <DisplayName>Beacon of Magic Set: Missile Deflection</DisplayName>
+            <Type>MissileDeflection</Type>
+            <Bonus>Artifact</Bonus>
+            <AmountVector size="3">0 0 5</AmountVector>
+        </Effect>
+        <EffectDescription>Subtle Target: Once per minute, when you use Diplomacy, you gain a -100% Profane bonus to threat generation with weapon strikes for 20 seconds.</EffectDescription>
+        <EffectDescription>Exceptional Universal Spell Lore +3%: +3% Exceptional bonus to Universal Spell Lore</EffectDescription>
+        <EffectDescription>Exceptional Universal Spell Power +8: +8 Exceptional bonus to Universal Spell Power</EffectDescription>
+        <EffectDescription>Spell Saves +16: This item gives a +16 Resistance bonus to saves versus spells.</EffectDescription>
+        <EffectDescription>Protection from Evil: Passive: You gain the benefit of the sepll Protection from Evil.</EffectDescription>
+        <EffectDescription>Knight of the Shadows Set (Legendary):
+3 Pieces Equipped gives: +20 Artifact bobus to PRR and MRR
+                         +50% Artifact bonus to threat generation with melee and ranged attacks.
+                         +10% Artifact bonus to your Armor Class</EffectDescription>
+        <Effect>
+            <DisplayName>Knight of the Shadows Set (Legendary): PRR</DisplayName>
+            <Type>PRR</Type>
+            <Bonus>Artifact</Bonus>
+            <AmountVector size="3">0 0 20</AmountVector>
+        </Effect>
+        <Effect>
+            <DisplayName>Knight of the Shadows Set (Legendary): MRR</DisplayName>
+            <Type>MRR</Type>
+            <Bonus>Artifact</Bonus>
+            <AmountVector size="3">0 0 20</AmountVector>
+        </Effect>
+        <Effect>
+            <DisplayName>Knight of the Shadows Set (Legendary): Threat</DisplayName>
+            <Type>Threat</Type>
+            <Bonus>Artifact</Bonus>
+            <AmountVector size="3">0 0 50</AmountVector>
+        </Effect>
+        <Effect>
+            <DisplayName>Knight of the Shadows Set (Legendary): Armor Class</DisplayName>
+            <Type>ACBonus</Type>
+            <Bonus>Artifact</Bonus>
+            <AmountVector size="3">0 0 10</AmountVector>
+            <Percent/>
+        </Effect>
+        <EffectDescription>Greater Reinforced Fists: This item surrounds your fists with kinetic energy. Your unarmed damage is boosted by one die.</EffectDescription>
+        <EffectDescription>Stunning +22: +22 Enhancement bonus to the DC of your Stunning Blow/Fist abilities.</EffectDescription>
+        <EffectDescription>Curse Resistance +16: This item gives a +16 Resistance bonus to saves versus curses.</EffectDescription>
+        <EffectDescription>Crypt Raider Set (Legendary):
+3 Pieces Equipped: +5 Artifact bonus to hit and damage versus Evil creatures.
+                   +2 Artifact bonus to Saves versus Evil creatures
+                   +20 Artifact bonus to Melee and Ranged Power
+                   -20% Artifact bonus to threat decrease with both melee and ranged attacks.</EffectDescription>
+        <Effect>
+            <DisplayName>Crypt Raider Set: Melee Power</DisplayName>
+            <Type>MeleePower</Type>
+            <Bonus>Artifact</Bonus>
+            <AmountVector size="3">0 0 20</AmountVector>
+        </Effect>
+        <Effect>
+            <DisplayName>Crypt Raider Set: Ranged Power</DisplayName>
+            <Type>RangedPower</Type>
+            <Bonus>Artifact</Bonus>
+            <AmountVector size="3">0 0 20</AmountVector>
+        </Effect>
+        <Effect>
+            <DisplayName>Crypt Raider Set: Threat</DisplayName>
+            <Type>ThreatBonus</Type>
+            <Bonus>Artifact</Bonus>
+            <AmountVector size="3">0 0 -20</AmountVector>
+        </Effect>
+
+        <EffectDescription>Silent Avenger Set (Legendary):
+3 Pieces Equipped: You gain a 15% artifact bonus to doubestrike and doubleshot
+                   You gain +3 Sneak Attack Dice
+                   You gain a 25% Artifact bonus to Fortification Bypass
+                   You gain a +10% Artifact bonus to Damage versus Helpless opponents.</EffectDescription>
+        <Effect>
+            <DisplayName>Silent Avenger Set: Doublestrike</DisplayName>
+            <Type>Doublestrike</Type>
+            <Bonus>Artifact</Bonus>
+            <AmountVector size="3">0 0 15</AmountVector>
+        </Effect>
+        <Effect>
+            <DisplayName>Silent Avenger Set: Doubleshot</DisplayName>
+            <Type>Doubleshot</Type>
+            <Bonus>Artifact</Bonus>
+            <AmountVector size="3">0 0 15</AmountVector>
+        </Effect>
+        <Effect>
+            <DisplayName>Silent Avenger Set: Sneak Attack Damage</DisplayName>
+            <Type>SneakAttackDamage</Type>
+            <Bonus>Artifact</Bonus>
+            <Dice>
+                <Number size="3">0 0 3</Number>
+                <Sides size="3">0 0 6</Sides>
+            </Dice>
+        </Effect>
+        <Effect>
+            <DisplayName>Silent Avenger Set: Fortification Bypass</DisplayName>
+            <Type>FortificationBypass</Type>
+            <Bonus>Artifact</Bonus>
+            <AmountVector size="3">0 0 25</AmountVector>
+        </Effect>
+        <EffectDescription>Abjuration Focus VIII: Passive: +8 Equipment bonus to the DC of your Abjuration spells.</EffectDescription>
+        <EffectDescription>Quality Mystic Diversion +7%: +7% Quality bonus to Decreased threat generated from spell damage.</EffectDescription>
+        <EffectDescription>Don't Count Me Out: You gain a +400 Enhancement Bonus to Unconsciousness Range</EffectDescription>
 </EffectDescriptions>

@@ -280,6 +280,8 @@ class Effect :
         double Amount(size_t tier) const;
         bool VerifyObject(std::stringstream * ss) const;
 
+        bool operator==(const Effect & other) const;
+
     protected:
         XmlLib::SaxContentElementInterface * StartElement(
                 const XmlLib::SaxString & name,

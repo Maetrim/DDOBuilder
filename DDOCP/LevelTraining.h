@@ -14,7 +14,11 @@ class LevelTraining :
         LevelTraining(void);
         void Write(XmlLib::SaxWriter * writer) const;
 
-        void TrainFeat(const std::string & featName, TrainableFeatTypes type, size_t level);
+        void TrainFeat(
+                const std::string & featName,
+                TrainableFeatTypes type,
+                size_t level,
+                bool featSwapWarning);
         std::string RevokeFeat(TrainableFeatTypes type);
         void RevokeAllFeats(TrainableFeatTypes type);
         std::string FeatName(TrainableFeatTypes type) const;

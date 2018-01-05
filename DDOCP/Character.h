@@ -102,7 +102,7 @@ class Character :
         std::vector<size_t> ClassLevels(size_t level) const;
         size_t ClassLevels(ClassType ct) const;
         size_t BaseAttackBonus(size_t level) const;
-        size_t AbilityAtLevel(AbilityType ability, size_t level) const;
+        size_t AbilityAtLevel(AbilityType ability, size_t level, bool includeTomes) const;
         int LevelUpsAtLevel(AbilityType ability, size_t level) const;
         int TomeAtLevel(AbilityType ability, size_t level) const;
         AbilityType AbilityLevelUp(size_t level) const;
@@ -149,6 +149,7 @@ class Character :
                 size_t level,
                 TrainableFeatTypes type,
                 const Feat & feat,
+                bool includeTomes,
                 bool alreadyTrained = false) const;
         bool HasGrantedFeats() const;
         const std::list<TrainedFeat> & GrantedFeats() const;
@@ -188,7 +189,7 @@ class Character :
                 const std::string & treeName,
                 std::string * enhancementName = NULL,
                 std::string * enhancementSelection = NULL);
-        void Enhancement_ResetEnhancementTree(const std::string & treeName);
+        void Enhancement_ResetEnhancementTree(std::string treeName);
         void Enhancement_SetSelectedTrees(const SelectedEnhancementTrees & trees);
         int AvailableActionPoints() const;
         int BonusActionPoints() const;
@@ -200,7 +201,7 @@ class Character :
                 const std::string & selection,
                 size_t cost);
         void Reaper_RevokeEnhancement(const std::string & treeName);
-        void Reaper_ResetEnhancementTree(const std::string & treeName);
+        void Reaper_ResetEnhancementTree(std::string treeName);
 
         // epic destiny support
         void EpicDestiny_SetActiveDestiny(const std::string & treeName);
@@ -215,7 +216,7 @@ class Character :
                 const std::string & treeName,
                 std::string * enhancementName = NULL,
                 std::string * enhancementSelection = NULL);
-        void EpicDestiny_ResetEnhancementTree(const std::string & treeName);
+        void EpicDestiny_ResetEnhancementTree(std::string treeName);
 
         // twists of fate support
         void SetTomeOfFate(size_t value);

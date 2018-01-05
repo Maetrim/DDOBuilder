@@ -57,9 +57,10 @@ void Feat::Write(XmlLib::SaxWriter * writer) const
 void Feat::CreateRequirementStrings(
         const Character & charData,
         std::vector<CString> * requirements,
-        std::vector<bool> * met) const
+        std::vector<bool> * met,
+        size_t level) const
 {
-    m_RequirementsToTrain.CreateRequirementStrings(charData, requirements, met);
+    m_RequirementsToTrain.CreateRequirementStrings(charData, requirements, met, level);
 }
 
 bool Feat::operator<(const Feat & other) const
