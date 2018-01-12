@@ -4,19 +4,26 @@
 #include "BreakdownItemWeaponAttackBonus.h"
 
 #include "BreakdownsView.h"
+#include "BreakdownItemWeapon.h"
 #include "GlobalSupportFunctions.h"
+
+const std::string c_TWF = "Two Weapon Fighting";
+const std::string c_OTWF = "Oversized Two Weapon Fighting";
 
 BreakdownItemWeaponAttackBonus::BreakdownItemWeaponAttackBonus(
         BreakdownType type,
         EffectType effect,
         const CString & title,
         MfcControls::CTreeListCtrl * treeList,
-        HTREEITEM hItem) :
+        HTREEITEM hItem,
+        BreakdownItemWeapon * pWeapon,
+        InventorySlotType slot) :
     BreakdownItem(type, treeList, hItem),
     m_title(title),
     m_effect(effect),
     m_proficientCount(0),
-    m_bMeleWeapon(false)
+    m_pWeapon(pWeapon),
+    m_slot(slot)
 {
 }
 
@@ -108,6 +115,47 @@ void BreakdownItemWeaponAttackBonus::CreateOtherEffects()
                     "");        // no tree
             feat.SetBreakdownDependency(StatToBreakdown(ability)); // so we know which effect to update
             AddOtherEffect(feat);
+        }
+
+        if (m_pCharacter->IsStanceActive("TwoWeaponFighting"))
+        {
+            int bonus = 0;
+            // they are two weapon fighting, apply attack penalties to this weapon
+            if (m_pCharacter->IsFeatTrained(c_TWF))
+            {
+                // -4/-4 penalty when TWF
+                bonus = -4;
+            }
+            else
+            {
+                // -6/10 penalty when TWF
+                bonus = m_slot == Inventory_Weapon1 ? -6 : -10;
+            }
+            // heavy weapon off hand weapon penalty
+            if (!m_pCharacter->LightWeaponInOffHand())
+            {
+                // additional -2 for each hand is heavy in off hand
+                bonus -= 2;
+            }
+            ActiveEffect twf(
+                    Bonus_penalty,
+                    "TWF attack penalty",
+                    1,
+                    bonus,
+                    "");        // no tree
+            AddOtherEffect(twf);
+            if (m_slot == Inventory_Weapon2
+                    && m_pCharacter->IsFeatTrained(c_OTWF)
+                    && !m_pCharacter->LightWeaponInOffHand())
+            {
+                // OTWF negates -2 for heavy off hand weapon
+                ActiveEffect twf(
+                        Bonus_feat,
+                        "Oversized TWF",
+                        1,
+                        2,
+                        "");        // no tree
+            }
         }
     }
 }
@@ -321,7 +369,35 @@ void BreakdownItemWeaponAttackBonus::UpdateTotalChanged(
     BreakdownItem::UpdateTotalChanged(item, type);
 }
 
-void BreakdownItemWeaponAttackBonus::SetIsMeleeWeapon(bool melee)
+void BreakdownItemWeaponAttackBonus::UpdateFeatTrained(
+        Character * charData,
+        const std::string & featName)
 {
-    m_bMeleWeapon = melee;
+    // TWF and Oversized TWF affect attack penalty
+    if (featName == c_TWF)
+    {
+        CreateOtherEffects();
+    }
+    else if (m_slot == Inventory_Weapon2
+            && featName == c_OTWF)
+    {
+        CreateOtherEffects();
+    }
 }
+
+void BreakdownItemWeaponAttackBonus::UpdateFeatRevoked(
+        Character * charData,
+        const std::string & featName)
+{
+    // TWF and Oversized TWF affect attack penalty
+    if (featName == c_TWF)
+    {
+        CreateOtherEffects();
+    }
+    else if (m_slot == Inventory_Weapon2
+            && featName == c_OTWF)
+    {
+        CreateOtherEffects();
+    }
+}
+

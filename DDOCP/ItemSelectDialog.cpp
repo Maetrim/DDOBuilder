@@ -409,7 +409,8 @@ void CItemSelectDialog::OnItemSelected(NMHDR* pNMHDR, LRESULT* pResult)
                 // item selected, can now click ok!
                 GetDlgItem(IDOK)->EnableWindow(TRUE);
                 // ensure sentient weapon controls are correct
-                m_buttonSentientJewel.EnableWindow(m_slot == Inventory_Weapon1);
+                m_buttonSentientJewel.EnableWindow(m_slot == Inventory_Weapon1
+                        && m_item.HasCanAcceptSentientJewel());
                 SetSentientWeaponControls();
                 CString text;
                 text.Format("Item Selection and Configuration - %s",

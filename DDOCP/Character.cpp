@@ -443,6 +443,11 @@ void Character::NotifyItemEffectRevoked(const std::string & itemName, const Effe
     NotifyAll(&CharacterObserver::UpdateItemEffectRevoked, this, itemName, effect);
 }
 
+void Character::NotifyGearChanged(InventorySlotType slot)
+{
+    NotifyAll(&CharacterObserver::UpdateGearChanged, this, slot);
+}
+
 void Character::NotifyNewStance(const Stance & stance)
 {
     NotifyAll(&CharacterObserver::UpdateNewStance, this, stance);
@@ -1255,6 +1260,8 @@ void Character::NowActive()
     m_previousGuildLevel = 0;   // ensure all effects apply
     ApplyGuildBuffs();
     SetAlignmentStances();
+    UpdateWeaponStances();
+    NotifyGearChanged(Inventory_Weapon1);   // updates both in breakdowns
 }
 
 std::list<TrainedFeat> Character::AutomaticFeats(
@@ -2419,6 +2426,7 @@ void Character::Enhancement_TrainEnhancement(
     NotifyEnhancementTrained(enhancementName, selection, pTreeItem->HasTier5(), true);
     NotifyActionPointsChanged();
     NotifyAPSpentInTreeChanged(treeName);
+    UpdateWeaponStances();
 }
 
 void Character::Enhancement_RevokeEnhancement(
@@ -2479,6 +2487,7 @@ void Character::Enhancement_RevokeEnhancement(
         {
             *enhancementSelection = revokedEnhancementSelection;
         }
+        UpdateWeaponStances();
     }
 }
 
@@ -2509,6 +2518,7 @@ void Character::Enhancement_ResetEnhancementTree(std::string treeName)
         NotifyEnhancementTreeReset();
         NotifyActionPointsChanged();
         NotifyAPSpentInTreeChanged(treeName);
+        UpdateWeaponStances();
     }
 }
 
@@ -3934,7 +3944,7 @@ void Character::DeleteGearSet(const std::string & name)
 {
 }
 
-EquippedGear Character::GetGearSet(const std::string & name)
+EquippedGear Character::GetGearSet(const std::string & name) const
 {
     EquippedGear gear;
     std::list<EquippedGear>::const_iterator it = m_GearSetups.begin();
@@ -3951,12 +3961,15 @@ EquippedGear Character::GetGearSet(const std::string & name)
     return gear;
 }
 
-EquippedGear Character::ActiveGearSet()
+EquippedGear Character::ActiveGearSet() const
 {
     return GetGearSet(ActiveGear());
 }
 
-void Character::SetGear(const std::string & name, const EquippedGear & gear)
+void Character::SetGear(
+        const std::string & name,
+        InventorySlotType slot,
+        const Item & item)
 {
     if (name == ActiveGear())
     {
@@ -3970,7 +3983,7 @@ void Character::SetGear(const std::string & name, const EquippedGear & gear)
     {
         if ((*it).Name() == name)
         {
-            (*it) = gear;
+            (*it).SetItem(slot, item);
             found = true;
         }
         ++it;
@@ -3982,6 +3995,36 @@ void Character::SetGear(const std::string & name, const EquippedGear & gear)
     {
         ApplyGearEffects();         // always for active gear
     }
+    NotifyGearChanged(slot);
+}
+
+void Character::ClearGearInSlot(const std::string & name, InventorySlotType slot)
+{
+    if (name == ActiveGear())
+    {
+        // first revoke all gear effects as the gear is about to change
+        RevokeGearEffects();        // always for active gear
+    }
+    // update the gear entry
+    std::list<EquippedGear>::iterator it = m_GearSetups.begin();
+    bool found = false;
+    while (!found && it != m_GearSetups.end())
+    {
+        if ((*it).Name() == name)
+        {
+            (*it).ClearItem(slot);
+            found = true;
+        }
+        ++it;
+    }
+    ASSERT(found);
+
+    // now apply the gear effects if its the active gear set
+    if (name == ActiveGear())
+    {
+        ApplyGearEffects();         // always for active gear
+    }
+    NotifyGearChanged(slot);
 }
 
 void Character::RevokeGearEffects()
@@ -4034,7 +4077,7 @@ void Character::RevokeGearEffects()
             }
             if (item.HasSentientIntelligence())
             {
-                // revoke this items sentient upgrade augments
+                // revoke this items sentient weapon Filigrees
                 for (size_t si = 0 ; si < MAX_FILIGREE; ++si)
                 {
                     std::string filigree = item.SentientIntelligence().Filigree(si);
@@ -4045,9 +4088,8 @@ void Character::RevokeGearEffects()
                         // name is:
                         // <item>:<augment type>:<Augment name>
                         std::stringstream ss;
-                        ss << item.Name()
-                                << " : SI : Filigree " << si
-                                << " : " << augment.Name();
+                        ss << "Sentient Weapon Filigree " << (si + 1)
+                                << ": " << augment.Name();
                         // now revoke the augments effects
                         std::string name;
                         name = ss.str();
@@ -4138,7 +4180,7 @@ void Character::ApplyGearEffects()
             }
             if (item.HasSentientIntelligence())
             {
-                // revoke this items sentient upgrade augments
+                // apply this items sentient weapon Filigrees
                 for (size_t si = 0 ; si < MAX_FILIGREE; ++si)
                 {
                     std::string filigree = item.SentientIntelligence().Filigree(si);
@@ -4149,9 +4191,8 @@ void Character::ApplyGearEffects()
                         // name is:
                         // <item>:<augment type>:<Augment name>
                         std::stringstream ss;
-                        ss << item.Name()
-                                << " : SI : Filigree " << si
-                                << " : " << augment.Name();
+                        ss << "Sentient Weapon Filigree " << (si + 1)
+                                << ": " << augment.Name();
                         // now revoke the augments effects
                         std::string name;
                         name = ss.str();
@@ -4193,6 +4234,211 @@ void Character::ApplyGearEffects()
             }
         }
     }
+
+    UpdateWeaponStances();
+}
+
+void Character::UpdateWeaponStances()
+{
+    EquippedGear gear = ActiveGearSet();
+    // also depending of the items equipped in Inventory_Weapon1/2 decide
+    // which of the combat stances is active
+    // TWF, THF, SWF, Unarmed, SwordAndBoard, Staff, Orb, RuneArm, Swashbuckling
+    Stance twf("TwoWeaponFighting", "", "");
+    Stance thf("TwoHandedFighting", "", "");
+    Stance swf("SingleWeaponFighting", "", "");
+    Stance unarmed("Unarmed", "", "");
+    Stance sab("SwordAndBoard", "", "");
+    Stance staff("Staff", "", "");
+    Stance orb("Orb", "", "");
+    Stance ra("RuneArm", "", "");
+    Stance swashbuckling("Swashbuckling", "", "");
+    if (gear.HasItemInSlot(Inventory_Weapon1)
+            && gear.HasItemInSlot(Inventory_Weapon2))
+    {
+        bool enableSwashbuckling = false;
+        bool enableSwf = false;
+        // 2 items equipped
+        Item item1 = gear.ItemInSlot(Inventory_Weapon1);
+        Item item2 = gear.ItemInSlot(Inventory_Weapon2);
+        // must be TWF or SwordAndBoard
+        switch (item2.Weapon())
+        {
+        case Weapon_ShieldBuckler:
+            if (IsEnhancementTrained("SBSwashbucklingStyle", "Skirmisher"))
+            {
+                enableSwashbuckling = true;
+                enableSwf = true;
+            }
+        case Weapon_ShieldSmall:
+        case Weapon_ShieldLarge:
+        case Weapon_ShieldTower:
+            DeactivateStance(twf);
+            ActivateStance(sab);
+        default:
+            ActivateStance(twf);
+            DeactivateStance(sab);
+            break;
+        }
+        DeactivateStance(thf);
+        if (enableSwf)
+        {
+            ActivateStance(swf);
+        }
+        else
+        {
+            DeactivateStance(swf);
+        }
+        DeactivateStance(unarmed);
+        DeactivateStance(staff);
+        if (item2.Weapon() == Weapon_Orb)
+        {
+            ActivateStance(orb);
+            if (IsEnhancementTrained("SBSwashbucklingStyle", "Arcane Marauder"))
+            {
+                enableSwashbuckling = true;
+            }
+        }
+        else
+        {
+            DeactivateStance(orb);
+        }
+        if (item2.Weapon() == Weapon_RuneArm)
+        {
+            ActivateStance(ra);
+            if (IsEnhancementTrained("SBSwashbucklingStyle", "Cannoneer"))
+            {
+                enableSwashbuckling = true;
+            }
+        }
+        else
+        {
+            DeactivateStance(ra);
+        }
+        if (enableSwashbuckling)
+        {
+            ActivateStance(swashbuckling);
+        }
+        else
+        {
+            DeactivateStance(swashbuckling);
+        }
+    }
+    else if (gear.HasItemInSlot(Inventory_Weapon1))
+    {
+        // 1 item equipped
+        Item item1 = gear.ItemInSlot(Inventory_Weapon1);
+        switch (item1.Weapon())
+        {
+        case Weapon_Quarterstaff:
+            ActivateStance(thf);
+            ActivateStance(staff);
+            DeactivateStance(swashbuckling);
+            break;
+        case Weapon_GreatAxe:
+        case Weapon_GreateClub:
+        case Weapon_GreatSword:
+        case Weapon_Maul:
+            ActivateStance(thf);
+            DeactivateStance(staff);
+            DeactivateStance(swashbuckling);
+            break;
+        default:
+            if (!IsRangedWeapon(item1.Weapon())
+                    && !IsThrownWeapon(item1.Weapon()))
+            {
+                ActivateStance(swashbuckling);
+                ActivateStance(swf);
+            }
+            else
+            {
+                DeactivateStance(swashbuckling);
+                DeactivateStance(swf);
+            }
+        }
+        DeactivateStance(twf);
+        DeactivateStance(unarmed);
+        DeactivateStance(sab);
+        DeactivateStance(orb);
+        DeactivateStance(ra);
+    }
+    else if (gear.HasItemInSlot(Inventory_Weapon2))
+    {
+        // 1 off hand item equipped
+        Item item1 = gear.ItemInSlot(Inventory_Weapon2);
+        DeactivateStance(thf);
+        DeactivateStance(staff);
+        DeactivateStance(swashbuckling);
+        DeactivateStance(twf);
+        DeactivateStance(unarmed);
+        DeactivateStance(sab);
+        if (item1.Weapon() == Weapon_Orb)
+        {
+            ActivateStance(orb);
+        }
+        else
+        {
+            DeactivateStance(orb);
+        }
+        if (item1.Weapon() == Weapon_RuneArm)
+        {
+            ActivateStance(ra);
+        }
+        else
+        {
+            DeactivateStance(ra);
+        }
+    }
+    else
+    {
+        // no items equipped
+        DeactivateStance(twf);
+        DeactivateStance(thf);
+        DeactivateStance(swf);
+        ActivateStance(unarmed);
+        DeactivateStance(sab);
+        DeactivateStance(staff);
+        DeactivateStance(orb);
+        DeactivateStance(ra);
+        DeactivateStance(swashbuckling);
+    }
+}
+
+bool Character::LightWeaponInOffHand() const
+{
+    bool isLightWeapon = false;
+    EquippedGear gear = ActiveGearSet();
+    if (gear.HasItemInSlot(Inventory_Weapon2))
+    {
+        // need to see if this is a light weapon or not
+        Item item = gear.ItemInSlot(Inventory_Weapon2);
+        if (item.HasWeapon())
+        {
+            WeaponType wt = item.Weapon();
+            // is a light weapon if is any of the following:
+            switch (wt)
+            {
+            case Weapon_Dagger:
+            case Weapon_HandAxe:
+            case Weapon_Kukri:
+            case Weapon_Shortsword:
+            case Weapon_Sickle:
+            case Weapon_LightHammer:
+            case Weapon_LightMace:
+            case Weapon_LightPick:
+                isLightWeapon = true;
+                break;
+            case Weapon_Scimitar:
+                // this is a light weapon if Tempest enhancement trained
+                isLightWeapon = IsEnhancementTrained("TempestCore2", "");
+                break;
+            default:
+                // all other weapon types are not a match
+                break;
+            }
+        }
+    }
+    return isLightWeapon;
 }
 
 void Character::ApplyGuildBuffs()

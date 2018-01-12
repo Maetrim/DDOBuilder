@@ -62,6 +62,7 @@ CInventoryDialog::CInventoryDialog(CWnd* pParent) :
     // load images used
     LoadImageFile(IT_ui, "Inventory", &m_imageBackground);
     LoadImageFile(IT_ui, "Inventory", &m_imageBackgroundDisabled);
+    LoadImageFile(IT_ui, "CannotEquip", &m_imagesCannotEquip);
     MakeGrayScale(&m_imageBackgroundDisabled, c_transparentColour);
 }
 
@@ -136,6 +137,20 @@ void CInventoryDialog::OnPaint()
     // now iterate the current inventory and draw the item icons
     for (size_t i = Inventory_Unknown + 1; i < Inventory_Count; ++i)
     {
+        if (i == Inventory_Weapon2
+                && m_gearSet.HasItemInSlot(Inventory_Weapon1)
+                && !m_gearSet.ItemInSlot(Inventory_Weapon1).CanEquipToSlot(Inventory_Weapon2, Armor_Unknown))
+        {
+            // Two handed item equipped in main hand
+            // do not permit selection of an item in the is slot
+            CRect itemRect = m_hitBoxes[i - 1].Rect();
+            m_imagesCannotEquip.TransparentBlt(
+                    memoryDc.GetSafeHdc(),
+                    itemRect.left,
+                    itemRect.top,
+                    32,
+                    32);
+        }
         if (m_gearSet.HasItemInSlot((InventorySlotType)i))
         {
             Item item = m_gearSet.ItemInSlot((InventorySlotType)i);

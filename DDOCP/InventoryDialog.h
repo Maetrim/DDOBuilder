@@ -91,6 +91,7 @@ class CInventoryDialog :
         CBitmap m_cachedDisplay;
         CImage m_imageBackground;
         CImage m_imageBackgroundDisabled;
+        CImage m_imagesCannotEquip;
         std::vector<InventoryHitBox> m_hitBoxes;
         CInfoTip m_tooltip;
         bool m_showingTip;

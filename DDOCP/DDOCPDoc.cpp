@@ -466,7 +466,7 @@ void CDDOCPDoc::AddAbilityValues(std::stringstream & forumExport, AbilityType ab
     size_t baseValue = m_characterData.BaseAbilityValue(ability);
     BreakdownItem * pBI = FindBreakdown(StatToBreakdown(ability));
     size_t buffedValue = (size_t)pBI->Total();      // whole numbers only
-    size_t tomeValue = m_characterData.TomeAtLevel(ability, MAX_LEVEL);
+    size_t tomeValue = m_characterData.TomeAtLevel(ability, MAX_LEVEL-1);
     // get the stat name and limit to first 3 character
     std::string name = (EnumEntryText(ability, abilityTypeMap));
     name.resize(3);

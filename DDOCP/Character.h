@@ -28,8 +28,13 @@ class Feat;
 struct EffectTier
 {
     EffectTier(const Effect & effect, size_t tier) : m_effect(effect), m_tier(tier) {};
-    const Effect & m_effect;
+    Effect m_effect;
     size_t m_tier;
+    bool operator==(const EffectTier & other) const
+    {
+        return m_effect == other.m_effect
+                && m_tier == other.m_tier;
+    };
 };
 
 class CharacterObserver :
@@ -65,9 +70,10 @@ class CharacterObserver :
         virtual void UpdateFatePointsChanged(Character * charData) {};
         virtual void UpdateEpicCompletionistChanged(Character * charData) {};
         virtual void UpdateAvailableTwistsChanged(Character * charData) {};
-        virtual void UpdateItemEffect(Character * charData, const std::string & itemName,  const Effect & effect) {};
+        virtual void UpdateItemEffect(Character * charData, const std::string & itemName, const Effect & effect) {};
         virtual void UpdateItemEffectRevoked(Character * charData, const std::string & itemName, const Effect & effect) {};
         virtual void UpdateGrantedFeatsChanged(Character * charData) {};
+        virtual void UpdateGearChanged(Character * charData, InventorySlotType slot) {};
 };
 
 class Character :
@@ -233,9 +239,11 @@ class Character :
         // gear support
         void AddGearSet(const EquippedGear & gear);
         void DeleteGearSet(const std::string & name);
-        EquippedGear GetGearSet(const std::string & name);
-        EquippedGear ActiveGearSet();
-        void SetGear(const std::string & name, const EquippedGear & gear);
+        EquippedGear GetGearSet(const std::string & name) const;
+        EquippedGear ActiveGearSet() const;
+        void SetGear(const std::string & name, InventorySlotType slot, const Item & item);
+        void ClearGearInSlot(const std::string & name, InventorySlotType slot);
+        bool LightWeaponInOffHand() const;
 
         // guild support
         void ToggleApplyGuildBuffs();
@@ -268,6 +276,7 @@ class Character :
         void NotifyAvailableTwistsChanged();
         void NotifyItemEffect(const std::string & itemName, const Effect & effect);
         void NotifyItemEffectRevoked(const std::string & itemName, const Effect & effect);
+        void NotifyGearChanged(InventorySlotType slot);
 
         void NotifyAllLoadedEffects();
         void NotifyAllEnhancementEffects();
@@ -377,6 +386,7 @@ class Character :
         void KeepGrantedFeatsUpToDate();
         void UpdateSkillPoints();
         void UpdateSkillPoints(size_t level);
+        void UpdateWeaponStances();
 
         // CharacterObserver
         // we need to track all sources from which a granted feat can come from

@@ -55,11 +55,12 @@ enum WeaponType
     Weapon_Unarmed,
     Weapon_Warhammer,
     // special types that are not specific weapons but work the same
-    Weapon_EldritchBlast,
     Weapon_ShieldBuckler,
     Weapon_ShieldSmall,
     Weapon_ShieldLarge,
     Weapon_ShieldTower,
+    Weapon_Orb,
+    Weapon_RuneArm,
     Weapon_Count,           // must be last entry
 };
 const XmlLib::enumMapEntry<WeaponType> weaponTypeMap[] =
@@ -76,7 +77,7 @@ const XmlLib::enumMapEntry<WeaponType> weaponTypeMap[] =
     {Weapon_GreatCrossbow, L"Great Crossbow"},
     {Weapon_GreatAxe, L"Great Axe"},
     {Weapon_GreateClub, L"Great Club"},
-    {Weapon_GreatSword, L"Greatsword"},
+    {Weapon_GreatSword, L"Great Sword"},
     {Weapon_HandAxe, L"Hand Axe"},
     {Weapon_Handwraps, L"Handwraps"},
     {Weapon_HeavyCrossbow, L"Heavy Crossbow"},
@@ -108,10 +109,11 @@ const XmlLib::enumMapEntry<WeaponType> weaponTypeMap[] =
     {Weapon_Unarmed, L"Unarmed"},
     {Weapon_Warhammer, L"Warhammer"},
     // special types
-    {Weapon_EldritchBlast, L"EldritchBlast"},
     {Weapon_ShieldBuckler, L"Buckler"},
     {Weapon_ShieldSmall, L"Small Shield"},
     {Weapon_ShieldLarge, L"Large Shield"},
     {Weapon_ShieldTower, L"Tower Shield"},
+    {Weapon_Orb, L"Orb"},
+    {Weapon_RuneArm, L"RuneArm"},
     {WeaponType(0), NULL}
 };

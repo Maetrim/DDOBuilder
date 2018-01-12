@@ -4,17 +4,30 @@
 #include "BreakdownItemWeaponEffects.h"
 
 #include "BreakdownsView.h"
+#include "BreakdownItemWeapon.h"
 #include "GlobalSupportFunctions.h"
 
-BreakdownItemWeaponEffects::BreakdownItemWeaponEffects() :
-    BreakdownItem(Breakdown_WeaponEffectHolder, NULL, NULL)
+BreakdownItemWeaponEffects::BreakdownItemWeaponEffects(
+        MfcControls::CTreeListCtrl * treeList,
+        HTREEITEM hItem) :
+    BreakdownItem(Breakdown_WeaponEffectHolder, NULL, NULL),
+    m_pTreeList(treeList),  // not passed to base class
+    m_hItem(hItem),         // not passed to base class
+    m_pMainHandWeapon(NULL),
+    m_pOffHandWeapon(NULL)
 {
     // ensure the vector is the correct size
-    m_weaponEffects.resize(Weapon_Count);
+    m_weaponFeatEffects.resize(Weapon_Count);
+    m_weaponItemEffects.resize(Weapon_Count);
+    m_weaponEnhancementEffects.resize(Weapon_Count);
 }
 
 BreakdownItemWeaponEffects::~BreakdownItemWeaponEffects()
 {
+    delete m_pMainHandWeapon;
+    m_pMainHandWeapon = NULL;
+    delete m_pOffHandWeapon;
+    m_pOffHandWeapon = NULL;
 }
 
 void BreakdownItemWeaponEffects::SetCharacter(Character * charData, bool observe)
@@ -59,6 +72,7 @@ bool BreakdownItemWeaponEffects::AffectsUs(const Effect & effect) const
 }
 
 void BreakdownItemWeaponEffects::AddToAffectedWeapons(
+        std::vector<std::list<Effect> > * list,
         const Effect & effect)
 {
     // see which sub-weapons (if any) this effect applies to
@@ -69,12 +83,30 @@ void BreakdownItemWeaponEffects::AddToAffectedWeapons(
         bool affectsWeapon = AffectsThisWeapon(wt, effect);
         if (affectsWeapon)
         {
-            m_weaponEffects[i].push_back(effect);
+            (*list)[i].push_back(effect);
+        }
+    }
+}
+
+void BreakdownItemWeaponEffects::AddToAffectedWeapons(
+        std::vector<std::list<EffectTier> > * list,
+        const EffectTier & effect)
+{
+    // see which sub-weapons (if any) this effect applies to
+    // if it add it to the list
+    for (size_t i = Weapon_Unknown; i < Weapon_Count; ++i)
+    {
+        WeaponType wt = (WeaponType)i;
+        bool affectsWeapon = AffectsThisWeapon(wt, effect.m_effect);
+        if (affectsWeapon)
+        {
+            (*list)[i].push_back(effect);
         }
     }
 }
 
 void BreakdownItemWeaponEffects::RemoveFromAffectedWeapons(
+        std::vector<std::list<Effect> > * list,
         const Effect & effect)
 {
     // see which sub-weapons (if any) this effect applies to
@@ -86,18 +118,45 @@ void BreakdownItemWeaponEffects::RemoveFromAffectedWeapons(
         // find in the list and remove
         if (affectsWeapon)
         {
-            std::list<Effect>::iterator it = m_weaponEffects[i].begin();
-            while (it != m_weaponEffects[i].end())
+            std::list<Effect>::iterator it = (*list)[i].begin();
+            while (it != (*list)[i].end())
             {
                 if ((*it) == effect)
                 {
                     // this is it
-                    it = m_weaponEffects[i].erase(it);
+                    it = (*list)[i].erase(it);
                     break; // and were done
                 }
                 ++it;
             }
-            m_weaponEffects[i].push_back(effect);
+        }
+    }
+}
+
+void BreakdownItemWeaponEffects::RemoveFromAffectedWeapons(
+        std::vector<std::list<EffectTier> > * list,
+        const EffectTier & effect)
+{
+    // see which sub-weapons (if any) this effect applies to
+    // if it affects remove it from the list
+    for (size_t i = Weapon_Unknown; i < Weapon_Count; ++i)
+    {
+        WeaponType wt = (WeaponType)i;
+        bool affectsWeapon = AffectsThisWeapon(wt, effect.m_effect);
+        // find in the list and remove
+        if (affectsWeapon)
+        {
+            std::list<EffectTier>::iterator it = (*list)[i].begin();
+            while (it != (*list)[i].end())
+            {
+                if ((*it) == effect)
+                {
+                    // this is it
+                    it = (*list)[i].erase(it);
+                    break; // and were done
+                }
+                ++it;
+            }
         }
     }
 }
@@ -199,7 +258,12 @@ void BreakdownItemWeaponEffects::UpdateFeatEffect(
     // handle special affects that change our list of available stats
     if (AffectsUs(effect))
     {
-        AddToAffectedWeapons(effect);
+        Effect copy(effect);
+        if (!copy.HasDisplayName())
+        {
+            copy.Set_DisplayName(featName);
+        }
+        AddToAffectedWeapons(&m_weaponFeatEffects, copy);
     }
 }
 
@@ -211,7 +275,12 @@ void BreakdownItemWeaponEffects::UpdateFeatEffectRevoked(
     // handle special affects that change our list of available stats
     if (AffectsUs(effect))
     {
-        RemoveFromAffectedWeapons(effect);
+        Effect copy(effect);
+        if (!copy.HasDisplayName())
+        {
+            copy.Set_DisplayName(featName);
+        }
+        RemoveFromAffectedWeapons(&m_weaponFeatEffects, copy);
     }
 }
 
@@ -223,7 +292,12 @@ void BreakdownItemWeaponEffects::UpdateItemEffect(
     // handle special affects that change our list of available stats
     if (AffectsUs(effect))
     {
-        AddToAffectedWeapons(effect);
+        Effect copy(effect);
+        if (!copy.HasDisplayName())
+        {
+            copy.Set_DisplayName(itemName);
+        }
+        AddToAffectedWeapons(&m_weaponItemEffects, copy);
     }
 }
 
@@ -235,7 +309,12 @@ void BreakdownItemWeaponEffects::UpdateItemEffectRevoked(
     // handle special affects that change our list of available stats
     if (AffectsUs(effect))
     {
-        RemoveFromAffectedWeapons(effect);
+        Effect copy(effect);
+        if (!copy.HasDisplayName())
+        {
+            copy.Set_DisplayName(itemName);
+        }
+        RemoveFromAffectedWeapons(&m_weaponItemEffects, copy);
     }
 }
 
@@ -247,7 +326,12 @@ void BreakdownItemWeaponEffects::UpdateEnhancementEffect(
     // handle special affects that change our list of available stats
     if (AffectsUs(effect.m_effect))
     {
-        AddToAffectedWeapons(effect.m_effect);
+        EffectTier copy(effect);
+        if (!copy.m_effect.HasDisplayName())
+        {
+            copy.m_effect.Set_DisplayName(enhancementName);
+        }
+        AddToAffectedWeapons(&m_weaponEnhancementEffects, copy);
     }
 }
 
@@ -259,7 +343,12 @@ void BreakdownItemWeaponEffects::UpdateEnhancementEffectRevoked(
     // handle special affects that change our list of available stats
     if (AffectsUs(effect.m_effect))
     {
-        RemoveFromAffectedWeapons(effect.m_effect);
+        EffectTier copy(effect);
+        if (!copy.m_effect.HasDisplayName())
+        {
+            copy.m_effect.Set_DisplayName(enhancementName);
+        }
+        RemoveFromAffectedWeapons(&m_weaponEnhancementEffects, copy);
     }
 }
 
@@ -717,4 +806,97 @@ bool BreakdownItemWeaponEffects::IsDamageType(WeaponType wt, WeaponDamageType ty
     //Weapon_EldritchBlast,
     //Weapon_Shield,
     return isUs;
+}
+
+void BreakdownItemWeaponEffects::WeaponsChanged(const EquippedGear & gear)
+{
+    // first remove any previous weapons breakdowns (if present)
+    m_pTreeList->DeleteSubItems(m_hItem);
+    delete m_pMainHandWeapon;
+    m_pMainHandWeapon = NULL;
+    delete m_pOffHandWeapon;
+    m_pOffHandWeapon = NULL;
+
+    // now create the new weapon breakdowns (if required)
+    if (gear.HasItemInSlot(Inventory_Weapon1))
+    {
+        m_pMainHandWeapon = CreateWeaponBreakdown(
+                Breakdown_MainHand,
+                gear.ItemInSlot(Inventory_Weapon1));
+    }
+    if (gear.HasItemInSlot(Inventory_Weapon2))
+    {
+        m_pOffHandWeapon = CreateWeaponBreakdown(
+                Breakdown_OffHand,
+                gear.ItemInSlot(Inventory_Weapon2));
+    }
+    m_pTreeList->Expand(m_hItem, TVE_EXPAND);
+    m_pTreeList->RedrawWindow();    // ensure view updates
+}
+
+BreakdownItemWeapon * BreakdownItemWeaponEffects::CreateWeaponBreakdown(
+        BreakdownType bt,
+        const Item & item)
+{
+    BreakdownItemWeapon * pWeaponBreakdown = NULL;
+    std::string name = item.Name();
+    WeaponType wt = item.Weapon();
+    HTREEITEM hItem = m_pTreeList->InsertItem(
+            name.c_str(),
+            m_hItem,
+            TVI_LAST);
+    pWeaponBreakdown = new BreakdownItemWeapon(
+            bt,
+            wt,
+            name.c_str(),
+            m_pTreeList,
+            hItem,
+            bt == Breakdown_MainHand
+                ? Inventory_Weapon1
+                : Inventory_Weapon2);
+    m_pTreeList->SetItemData(hItem, (DWORD)(void*)pWeaponBreakdown);
+    pWeaponBreakdown->SetCharacter(m_pCharacter, true);
+
+    // first apply the Item specific effects only
+    if (item.HasItemEffects())
+    {
+        const std::vector<Effect> & itemsEffects = item.ItemEffects().Effects();
+        for (size_t i = 0; i < itemsEffects.size(); ++i)
+        {
+            pWeaponBreakdown->UpdateItemEffect(
+                    m_pCharacter,
+                    item.Name(),
+                    itemsEffects[i]);
+        }
+    }
+    // for this weapon, filter in all the cached effects
+    std::list<Effect>::const_iterator it = m_weaponFeatEffects[wt].begin();
+    while (it != m_weaponFeatEffects[wt].end())
+    {
+        pWeaponBreakdown->UpdateFeatEffect(
+                m_pCharacter,
+                (*it).DisplayName(),
+                (*it));
+        ++it;
+    }
+    it = m_weaponItemEffects[wt].begin();
+    while (it != m_weaponItemEffects[wt].end())
+    {
+        pWeaponBreakdown->UpdateItemEffect(
+                m_pCharacter,
+                (*it).DisplayName(),
+                (*it));
+        ++it;
+    }
+    std::list<EffectTier>::const_iterator itt = m_weaponEnhancementEffects[wt].begin();
+    while (itt != m_weaponEnhancementEffects[wt].end())
+    {
+        pWeaponBreakdown->UpdateEnhancementEffect(
+                m_pCharacter,
+                (*itt).m_effect.DisplayName(),
+                (*itt));
+        ++itt;
+    }
+
+    return pWeaponBreakdown;
 }

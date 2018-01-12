@@ -3,6 +3,8 @@
 #pragma once
 #include "BreakdownItem.h"
 
+class BreakdownItemWeapon;
+
 class BreakdownItemWeaponAttackBonus :
         public BreakdownItem
 {
@@ -12,10 +14,10 @@ class BreakdownItemWeaponAttackBonus :
                 EffectType effect,
                 const CString & Title,
                 MfcControls::CTreeListCtrl * treeList,
-                HTREEITEM hItem);
+                HTREEITEM hItem,
+                BreakdownItemWeapon * pWeapon,
+                InventorySlotType slot);
         virtual ~BreakdownItemWeaponAttackBonus();
-
-        void SetIsMeleeWeapon(bool melee);
 
         // required overrides
         virtual CString Title() const override;
@@ -32,9 +34,12 @@ class BreakdownItemWeaponAttackBonus :
         virtual void UpdateEnhancementEffect(Character * charData, const std::string & enhancementName,  const EffectTier & effect) override;
         virtual void UpdateEnhancementEffectRevoked(Character * charData, const std::string & enhancementName, const EffectTier & effect) override;
         virtual void UpdateTotalChanged(BreakdownItem * item, BreakdownType type) override;
+        virtual void UpdateFeatTrained(Character * charData, const std::string & featName) override;
+        virtual void UpdateFeatRevoked(Character * charData, const std::string & featName) override;
     private:
         CString m_title;
         EffectType m_effect;
         int m_proficientCount;  // can be proficient from multiple sources
-        bool m_bMeleWeapon;
+        BreakdownItemWeapon * m_pWeapon;
+        InventorySlotType m_slot;
 };

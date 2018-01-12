@@ -215,5 +215,35 @@ void EquippedGear::SetItem(InventorySlotType slot, const Item & item)
     case Inventory_Weapon2: Set_OffHand(item); break;
     default: ASSERT(FALSE); break;
     }
+    if (slot == Inventory_Weapon1
+            && !ItemInSlot(Inventory_Weapon1).CanEquipToSlot(Inventory_Weapon2, Armor_Unknown))
+    {
+        // item in this slot now stops an item in weapon slot 2
+        ClearItem(Inventory_Weapon2);
+    }
+}
+
+void EquippedGear::ClearItem(InventorySlotType slot)
+{
+    switch (slot)
+    {
+    case Inventory_Arrows:  Clear_Arrow(); break;
+    case Inventory_Armor:   Clear_Armor(); break;
+    case Inventory_Belt:    Clear_Belt(); break;
+    case Inventory_Boots:   Clear_Boots(); break;
+    case Inventory_Bracers: Clear_Bracers(); break;
+    case Inventory_Cloak:   Clear_Cloak(); break;
+    case Inventory_Gloves:  Clear_Gloves(); break;
+    case Inventory_Goggles: Clear_Goggles(); break;
+    case Inventory_Helmet:  Clear_Helmet(); break;
+    case Inventory_Necklace: Clear_Necklace(); break;
+    case Inventory_Quiver:  Clear_Quiver(); break;
+    case Inventory_Ring1:   Clear_Ring1(); break;
+    case Inventory_Ring2:   Clear_Ring2(); break;
+    case Inventory_Trinket: Clear_Trinket(); break;
+    case Inventory_Weapon1: Clear_MainHand(); break;
+    case Inventory_Weapon2: Clear_OffHand(); break;
+    default: ASSERT(FALSE); break;
+    }
 }
 

@@ -141,7 +141,10 @@ enum EffectType
     Effect_UnconsciousRange,
     Effect_VorpalRange,
     Effect_WeaponBaseDamageBonus,
+    Effect_WeaponCriticalMultiplier,
+    Effect_WeaponCriticalRange,
     Effect_WeaponDamageBonus,
+    Effect_WeaponDamageDice,
     Effect_WeaponEnchantment,
     Effect_WeaponProficiency,
 };
@@ -264,7 +267,10 @@ const XmlLib::enumMapEntry<EffectType> effectTypeMap[] =
     {Effect_UnconsciousRange, L"UnconsciousRange"},
     {Effect_VorpalRange, L"VorpalRange"},
     {Effect_WeaponBaseDamageBonus,L"WeaponBaseDamageBonus"},
+    {Effect_WeaponCriticalMultiplier, L"WeaponCriticalMultiplier"},
+    {Effect_WeaponCriticalRange, L"WeaponCriticalRange"},
     {Effect_WeaponDamageBonus, L"WeaponDamageBonus"},
+    {Effect_WeaponDamageDice, L"WeaponDamageDice"},
     {Effect_WeaponEnchantment, L"WeaponEnchantment"},
     {Effect_WeaponProficiency, L"WeaponProficiency"},
     {EffectType(0), NULL}
@@ -332,4 +338,5 @@ class Effect :
 
         friend class Character;
         friend class Spell;
+        friend class BreakdownItemWeaponEffects;
 };

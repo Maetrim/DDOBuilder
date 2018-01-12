@@ -337,22 +337,41 @@ void CEquipmentView::UpdateSlotLeftClicked(
     {
         item = gear.ItemInSlot(slot);
     }
-    // no tooltips while a dialog is displayed
-    GetMouseHook()->SaveState();
-    CItemSelectDialog dlg(this, slot, item, m_pCharacter->Race());
-    if (dlg.DoModal() == IDOK)
+    if (slot == Inventory_Weapon2
+            && gear.HasItemInSlot(Inventory_Weapon1)
+            && !gear.ItemInSlot(Inventory_Weapon1).CanEquipToSlot(Inventory_Weapon2, Armor_Unknown))
     {
-        gear.SetItem(slot, dlg.SelectedItem());
-        m_pCharacter->SetGear(SelectedGearSet(), gear);
-        m_inventoryView->SetGearSet(gear);
+        // not allowed to equip in this due to item in weapon slot 1
+        ::MessageBeep(MB_OK);
     }
-    GetMouseHook()->RestoreState();
+    else
+    {
+        // no tooltips while a dialog is displayed
+        GetMouseHook()->SaveState();
+        CItemSelectDialog dlg(this, slot, item, m_pCharacter->Race());
+        if (dlg.DoModal() == IDOK)
+        {
+            gear.SetItem(slot, dlg.SelectedItem());
+            m_pCharacter->SetGear(SelectedGearSet(), slot, dlg.SelectedItem());
+            m_inventoryView->SetGearSet(m_pCharacter->ActiveGearSet());
+        }
+        GetMouseHook()->RestoreState();
+    }
 }
 
 void CEquipmentView::UpdateSlotRightClicked(
         CInventoryDialog * dialog,
         InventorySlotType slot)
 {
-    AfxMessageBox("Inventory right clicked");
+    EquippedGear gear = m_pCharacter->GetGearSet(SelectedGearSet());
+    if (gear.HasItemInSlot(slot))
+    {
+        int sel = AfxMessageBox("Clear the equipped item from this slot?", MB_YESNO);
+        if (sel == IDYES)
+        {
+            m_pCharacter->ClearGearInSlot(SelectedGearSet(), slot);
+            m_inventoryView->SetGearSet(m_pCharacter->ActiveGearSet());
+        }
+    }
 }
 

@@ -14,7 +14,9 @@ class BreakdownItemWeaponEffects :
         public BreakdownItem
 {
     public:
-        BreakdownItemWeaponEffects();
+        BreakdownItemWeaponEffects(
+                MfcControls::CTreeListCtrl * treeList,
+                HTREEITEM hItem);
         virtual ~BreakdownItemWeaponEffects();
 
         // required overrides
@@ -23,6 +25,8 @@ class BreakdownItemWeaponEffects :
         virtual void CreateOtherEffects() override;
         virtual bool AffectsUs(const Effect & effect) const override;
         virtual void SetCharacter(Character * charData, bool observe);
+
+        void WeaponsChanged(const EquippedGear & gear);
     protected:
         // BreakdownObserver overrides
         virtual void UpdateFeatEffect(Character * pCharacater, const std::string & featName, const Effect & effect) override;
@@ -32,8 +36,10 @@ class BreakdownItemWeaponEffects :
         virtual void UpdateEnhancementEffect(Character * charData, const std::string & enhancementName,  const EffectTier & effect) override;
         virtual void UpdateEnhancementEffectRevoked(Character * charData, const std::string & enhancementName, const EffectTier & effect) override;
     private:
-        void AddToAffectedWeapons(const Effect & effect);
-        void RemoveFromAffectedWeapons(const Effect & effect);
+        void AddToAffectedWeapons(std::vector<std::list<Effect> > * list, const Effect & effect);
+        void RemoveFromAffectedWeapons(std::vector<std::list<Effect> > * list, const Effect & effect);
+        void AddToAffectedWeapons(std::vector<std::list<EffectTier> > * list, const EffectTier & effect);
+        void RemoveFromAffectedWeapons(std::vector<std::list<EffectTier> > * list, const EffectTier & effect);
         bool AffectsThisWeapon(WeaponType wt, const Effect & effect);
         bool IsMartialWeapon(WeaponType wt) const;
         bool IsSimpleWeapon(WeaponType wt) const;
@@ -54,6 +60,15 @@ class BreakdownItemWeaponEffects :
         bool IsAxe(WeaponType wt) const;
         bool IsLightWeapon(WeaponType wt) const;
         bool IsDamageType(WeaponType wt, WeaponDamageType type) const;
+        BreakdownItemWeapon * CreateWeaponBreakdown(
+                BreakdownType bt,
+                const Item & item);
 
-        std::vector<std::list<Effect> > m_weaponEffects;
+        std::vector<std::list<Effect> > m_weaponFeatEffects;
+        std::vector<std::list<Effect> > m_weaponItemEffects;
+        std::vector<std::list<EffectTier> > m_weaponEnhancementEffects;
+        MfcControls::CTreeListCtrl * m_pTreeList;
+        HTREEITEM m_hItem;
+        BreakdownItemWeapon * m_pMainHandWeapon;
+        BreakdownItemWeapon * m_pOffHandWeapon;
 };

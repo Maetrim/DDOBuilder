@@ -12,30 +12,30 @@ BreakdownItemWeapon::BreakdownItemWeapon(
         const CString & title,
         MfcControls::CTreeListCtrl * treeList,
         HTREEITEM hItem,
-        const std::vector<HTREEITEM> & hSubItems) :
+        InventorySlotType slot) :
     BreakdownItem(type, treeList, hItem),
     m_title(title),
     m_weaponType(weaponType),
-    m_attackBonus(Breakdown_WeaponAttackBonus, Effect_AttackBonus, "Attack Bonus", treeList, hSubItems[0]),
-    m_damageBonus(Breakdown_WeaponDamageBonus, Effect_DamageBonus, "Damage Bonus", treeList, hSubItems[1]),
-    m_criticalAttackBonus(Breakdown_WeaponAttackBonus, Effect_CriticalAttackBonus, "Critical Attack Bonus", treeList, hSubItems[2]),
-    m_criticalDamageBonus(Breakdown_WeaponDamageBonus, Effect_Seeker, "Critical Damage Bonus", treeList, hSubItems[3]),
-    m_attackSpeed(Breakdown_WeaponAttackSpeed, Effect_AttackSpeed, "Attack Speed", treeList, hSubItems[4]),
+    m_baseDamage(Breakdown_WeaponBaseDamage, Effect_WeaponBaseDamageBonus, "Base Damage", treeList, NULL),
+    m_attackBonus(Breakdown_WeaponAttackBonus, Effect_AttackBonus, "Attack Bonus", treeList, NULL, this, slot),
+    m_damageBonus(Breakdown_WeaponDamageBonus, Effect_DamageBonus, "Damage Bonus", treeList, NULL),
+    m_criticalAttackBonus(Breakdown_WeaponAttackBonus, Effect_CriticalAttackBonus, "Critical Attack Bonus", treeList, NULL, this, slot),
+    m_criticalDamageBonus(Breakdown_WeaponDamageBonus, Effect_Seeker, "Critical Damage Bonus", treeList, NULL),
+    //m_attackSpeed(Breakdown_WeaponAttackSpeed, Effect_AttackSpeed, "Attack Speed", treeList, NULL),
     m_centeredCount(0)     // assume not centered with this weapon
 {
-    //m_baseDamage.SetIsMeleeWeapon(IsMeleeWeapon());
-    m_attackBonus.SetIsMeleeWeapon(IsMeleeWeapon());
-    m_damageBonus.SetIsMeleeWeapon(IsMeleeWeapon());
-    //m_vorpalRange.SetIsMeleeWeapon(IsMeleeWeapon());
-    //m_criticalThreatRange.SetIsMeleeWeapon(IsMeleeWeapon());
-    m_criticalAttackBonus.SetIsMeleeWeapon(IsMeleeWeapon());
-    m_criticalDamageBonus.SetIsMeleeWeapon(IsMeleeWeapon());
-    //m_criticalMultiplier.SetIsMeleeWeapon(IsMeleeWeapon());
-    //m_specialMultiplier.SetIsMeleeWeapon(IsMeleeWeapon());
-    //m_attackSpeed.SetIsMeleeWeapon(IsMeleeWeapon());      // not set for attack speed
+    //m_baseDamage.SetIsMeleeWeapon(IsMeleeWeapon(weaponType));
+    m_damageBonus.SetIsMeleeWeapon(IsMeleeWeapon(weaponType));
+    //m_vorpalRange.SetIsMeleeWeapon(IsMeleeWeapon(weaponType));
+    //m_criticalThreatRange.SetIsMeleeWeapon(IsMeleeWeapon(weaponType));
+    //m_criticalAttackBonus.SetIsMeleeWeapon(IsMeleeWeapon(weaponType));
+    m_criticalDamageBonus.SetIsMeleeWeapon(IsMeleeWeapon(weaponType));
+    //m_criticalMultiplier.SetIsMeleeWeapon(IsMeleeWeapon(weaponType));
+    //m_specialMultiplier.SetIsMeleeWeapon(IsMeleeWeapon(weaponType));
+    //m_attackSpeed.SetIsMeleeWeapon(IsMeleeWeapon(weaponType));      // not set for attack speed
 
     // we need to update if any of our sub-items update also
-    //m_baseDamage.AttachObserver(this);
+    m_baseDamage.AttachObserver(this);
     m_attackBonus.AttachObserver(this);
     m_damageBonus.AttachObserver(this);
     //m_vorpalRange.AttachObserver(this);
@@ -44,22 +44,28 @@ BreakdownItemWeapon::BreakdownItemWeapon(
     m_criticalDamageBonus.AttachObserver(this);
     //m_criticalMultiplier.AttachObserver(this);
     //m_specialMultiplier.AttachObserver(this);
-    m_attackSpeed.AttachObserver(this);
+    //m_attackSpeed.AttachObserver(this);
 
-    treeList->SetItemData(hSubItems[0], (DWORD)(void*)&m_attackBonus);
-    treeList->SetItemData(hSubItems[1], (DWORD)(void*)&m_damageBonus);
+    AddTreeItem("Base Damage", &m_baseDamage);
+    AddTreeItem("Attack Bonus", &m_attackBonus);
+    AddTreeItem("Damage Bonus", &m_damageBonus);
+    AddTreeItem("Critical Attack Bonus", &m_criticalAttackBonus);
+    AddTreeItem("Critical Damage Bonus", &m_criticalDamageBonus);
+    //AddTreeItem("Attack Speed", &m_attackSpeed);
+
+    //treeList->SetItemData(hSubItems[1], (DWORD)(void*)&m_damageBonus);
     //treeList->SetItemData(hSubItems[4], (DWORD)(void*)&m_vorpalRange);
     //treeList->SetItemData(hSubItems[4], (DWORD)(void*)&m_criticalThreatRange);
-    treeList->SetItemData(hSubItems[2], (DWORD)(void*)&m_criticalAttackBonus);
-    treeList->SetItemData(hSubItems[3], (DWORD)(void*)&m_criticalDamageBonus);
+    //treeList->SetItemData(hSubItems[2], (DWORD)(void*)&m_criticalAttackBonus);
+    //treeList->SetItemData(hSubItems[3], (DWORD)(void*)&m_criticalDamageBonus);
     //treeList->SetItemData(hSubItems[4], (DWORD)(void*)&m_criticalMultiplier);
     //treeList->SetItemData(hSubItems[4], (DWORD)(void*)&m_specialMultiplier);
-    treeList->SetItemData(hSubItems[4], (DWORD)(void*)&m_attackSpeed);
+    //treeList->SetItemData(hSubItems[4], (DWORD)(void*)&m_attackSpeed);
 
 
     // by default all melee weapons use strength as their base for attack bonus
     // additional abilities can be added for specific weapons by enhancements
-    if (IsThrownWeapon())
+    if (IsThrownWeapon(weaponType))
     {
         // thrown weapons use dexterity
         m_attackBonus.AddAbility(Ability_Dexterity);
@@ -74,7 +80,7 @@ BreakdownItemWeapon::BreakdownItemWeapon(
     // by default all weapons except ranged/thrown weapons use strength as their base for bonus damage
     // additional abilities can be added for specific weapons by enhancements/feats
     // such as Bow Strength gives strength for ranged weapons
-    if (!IsRangedWeapon() && !IsThrownWeapon())
+    if (!IsRangedWeapon(weaponType) && !IsThrownWeapon(weaponType))
     {
         m_damageBonus.AddAbility(Ability_Strength);
         m_criticalDamageBonus.AddAbility(Ability_Strength);
@@ -85,6 +91,18 @@ BreakdownItemWeapon::~BreakdownItemWeapon()
 {
 }
 
+void BreakdownItemWeapon::AddTreeItem(
+        const std::string & entry,
+        BreakdownItem * pBreakdown)
+{
+    HTREEITEM hItem = m_pTreeList->InsertItem(
+            entry.c_str(),
+            m_hItem,
+            TVI_LAST);
+    m_pTreeList->SetItemData(hItem, (DWORD)(void*)pBreakdown);
+    pBreakdown->SetHTreeItem(hItem);
+}
+
 bool BreakdownItemWeapon::IsCentering() const
 {
     return (m_centeredCount > 0);
@@ -93,6 +111,7 @@ bool BreakdownItemWeapon::IsCentering() const
 void BreakdownItemWeapon::SetCharacter(Character * charData, bool observe)
 {
     BreakdownItem::SetCharacter(charData, observe);
+    m_baseDamage.SetCharacter(charData, false);        // we handle this for them
     m_attackBonus.SetCharacter(charData, false);        // we handle this for them
     m_damageBonus.SetCharacter(charData, false);        // we handle this for them
     //m_vorpalRange.SetCharacter(charData, false);        // we handle this for them
@@ -101,7 +120,7 @@ void BreakdownItemWeapon::SetCharacter(Character * charData, bool observe)
     m_criticalDamageBonus.SetCharacter(charData, false);        // we handle this for them
     //m_criticalMultiplier.SetCharacter(charData, false);        // we handle this for them
     //m_specialMultiplier.SetCharacter(charData, false);        // we handle this for them
-    m_attackSpeed.SetCharacter(charData, false);
+    //m_attackSpeed.SetCharacter(charData, false);
 }
 
 // required overrides
@@ -146,37 +165,37 @@ bool BreakdownItemWeapon::AffectsUs(const Effect & effect) const
         switch (effect.WeaponClass())
         {
         case WeaponClass_Martial:
-            isUs = IsMartialWeapon();
+            isUs = IsMartialWeapon(m_weaponType);
             break;
         case WeaponClass_Simple:
-            isUs = IsSimpleWeapon();
+            isUs = IsSimpleWeapon(m_weaponType);
             break;
         case WeaponClass_Thrown:
-            isUs = IsThrownWeapon();
+            isUs = IsThrownWeapon(m_weaponType);
             break;
         case WeaponClass_Unarmed:
             isUs = (m_weaponType == Weapon_Handwraps);
             break;
         case WeaponClass_OneHanded:
-            isUs = IsOneHandedWeapon();
+            isUs = IsOneHandedWeapon(m_weaponType);
             break;
         case WeaponClass_Ranged:
-            isUs = IsRangedWeapon();
+            isUs = IsRangedWeapon(m_weaponType);
             break;
         case WeaponClass_TwoHanded:
-            isUs = IsTwoHandedWeapon();
+            isUs = IsTwoHandedWeapon(m_weaponType);
             break;
         case WeaponClass_Bows:
-            isUs = IsBow();
+            isUs = IsBow(m_weaponType);
             break;
         case WeaponClass_Crossbows:
             isUs = IsCrossbow();
             break;
         case WeaponClass_ReapeatingCrossbows:
-            isUs = IsRepeatingCrossbow();
+            isUs = IsRepeatingCrossbow(m_weaponType);
             break;
         case WeaponClass_Melee:
-            isUs = IsMeleeWeapon();
+            isUs = IsMeleeWeapon(m_weaponType);
             break;
         case WeaponClass_Druidic:
             isUs = IsDruidicWeapon();
@@ -222,7 +241,7 @@ void BreakdownItemWeapon::UpdateFeatEffect(
     if (AffectsUs(effect))
     {
         // pass through to all our sub breakdowns
-        //m_baseDamage.UpdateFeatEffect(pCharacter, featName, effect);
+        m_baseDamage.UpdateFeatEffect(pCharacter, featName, effect);
         m_attackBonus.UpdateFeatEffect(pCharacter, featName, effect);
         m_damageBonus.UpdateFeatEffect(pCharacter, featName, effect);
         //m_vorpalRange.UpdateFeatEffect(pCharacter, featName, effect);
@@ -231,7 +250,7 @@ void BreakdownItemWeapon::UpdateFeatEffect(
         m_criticalDamageBonus.UpdateFeatEffect(pCharacter, featName, effect);
         //m_criticalMultiplier.UpdateFeatEffect(pCharacter, featName, effect);
         //m_specialMultiplier.UpdateFeatEffect(pCharacter, featName, effect);
-        m_attackSpeed.UpdateFeatEffect(pCharacter, featName, effect);
+        //m_attackSpeed.UpdateFeatEffect(pCharacter, featName, effect);
 
         // we handle whether we are centered or not
         if (effect.Type() == Effect_CenteredWeapon)
@@ -251,7 +270,7 @@ void BreakdownItemWeapon::UpdateFeatEffectRevoked(
     if (AffectsUs(effect))
     {
         // pass through to all our sub breakdowns
-        //m_baseDamage.UpdateFeatEffectRevoked(pCharacter, featName, effect);
+        m_baseDamage.UpdateFeatEffectRevoked(pCharacter, featName, effect);
         m_attackBonus.UpdateFeatEffectRevoked(pCharacter, featName, effect);
         m_damageBonus.UpdateFeatEffectRevoked(pCharacter, featName, effect);
         //m_vorpalRange.UpdateFeatEffectRevoked(pCharacter, featName, effect);
@@ -260,7 +279,7 @@ void BreakdownItemWeapon::UpdateFeatEffectRevoked(
         m_criticalDamageBonus.UpdateFeatEffectRevoked(pCharacter, featName, effect);
         //m_criticalMultiplier.UpdateFeatEffectRevoked(pCharacter, featName, effect);
         //m_specialMultiplier.UpdateFeatEffectRevoked(pCharacter, featName, effect);
-        m_attackSpeed.UpdateFeatEffectRevoked(pCharacter, featName, effect);
+        //m_attackSpeed.UpdateFeatEffectRevoked(pCharacter, featName, effect);
 
         // we handle whether we are centered or not
         if (effect.Type() == Effect_CenteredWeapon)
@@ -280,7 +299,7 @@ void BreakdownItemWeapon::UpdateItemEffect(
     if (AffectsUs(effect))
     {
         // pass through to all our sub breakdowns
-        //m_baseDamage.UpdateItemEffect(pCharacter, itemName, effect);
+        m_baseDamage.UpdateItemEffect(pCharacter, itemName, effect);
         m_attackBonus.UpdateItemEffect(pCharacter, itemName, effect);
         m_damageBonus.UpdateItemEffect(pCharacter, itemName, effect);
         //m_vorpalRange.UpdateItemEffect(pCharacter, itemName, effect);
@@ -289,7 +308,7 @@ void BreakdownItemWeapon::UpdateItemEffect(
         m_criticalDamageBonus.UpdateItemEffect(pCharacter, itemName, effect);
         //m_criticalMultiplier.UpdateItemEffect(pCharacter, itemName, effect);
         //m_specialMultiplier.UpdateItemEffect(pCharacter, itemName, effect);
-        m_attackSpeed.UpdateItemEffect(pCharacter, itemName, effect);
+        //m_attackSpeed.UpdateItemEffect(pCharacter, itemName, effect);
 
         // we handle whether we are centered or not
         if (effect.Type() == Effect_CenteredWeapon)
@@ -309,7 +328,7 @@ void BreakdownItemWeapon::UpdateItemEffectRevoked(
     if (AffectsUs(effect))
     {
         // pass through to all our sub breakdowns
-        //m_baseDamage.UpdateItemEffectRevoked(pCharacter, itemName, effect);
+        m_baseDamage.UpdateItemEffectRevoked(pCharacter, itemName, effect);
         m_attackBonus.UpdateItemEffectRevoked(pCharacter, itemName, effect);
         m_damageBonus.UpdateItemEffectRevoked(pCharacter, itemName, effect);
         //m_vorpalRange.UpdateItemEffectRevoked(pCharacter, itemName, effect);
@@ -318,7 +337,7 @@ void BreakdownItemWeapon::UpdateItemEffectRevoked(
         m_criticalDamageBonus.UpdateItemEffectRevoked(pCharacter, itemName, effect);
         //m_criticalMultiplier.UpdateItemEffectRevoked(pCharacter, itemName, effect);
         //m_specialMultiplier.UpdateItemEffectRevoked(pCharacter, itemName, effect);
-        m_attackSpeed.UpdateItemEffectRevoked(pCharacter, itemName, effect);
+        //m_attackSpeed.UpdateItemEffectRevoked(pCharacter, itemName, effect);
 
         // we handle whether we are centered or not
         if (effect.Type() == Effect_CenteredWeapon)
@@ -338,7 +357,7 @@ void BreakdownItemWeapon::UpdateEnhancementEffect(
     if (AffectsUs(effect.m_effect))
     {
         // pass through to all our sub breakdowns
-        //m_baseDamage.UpdateEnhancementEffect(pCharacter, enhancementName, effect);
+        m_baseDamage.UpdateEnhancementEffect(pCharacter, enhancementName, effect);
         m_attackBonus.UpdateEnhancementEffect(pCharacter, enhancementName, effect);
         m_damageBonus.UpdateEnhancementEffect(pCharacter, enhancementName, effect);
         //m_vorpalRange.UpdateEnhancementEffect(pCharacter, enhancementName, effect);
@@ -347,7 +366,7 @@ void BreakdownItemWeapon::UpdateEnhancementEffect(
         m_criticalDamageBonus.UpdateEnhancementEffect(pCharacter, enhancementName, effect);
         //m_criticalMultiplier.UpdateEnhancementEffect(pCharacter, enhancementName, effect);
         //m_specialMultiplier.UpdateEnhancementEffect(pCharacter, enhancementName, effect);
-        m_attackSpeed.UpdateEnhancementEffect(pCharacter, enhancementName, effect);
+        //m_attackSpeed.UpdateEnhancementEffect(pCharacter, enhancementName, effect);
 
         // we handle whether we are centered or not
         if (effect.m_effect.Type() == Effect_CenteredWeapon)
@@ -367,7 +386,7 @@ void BreakdownItemWeapon::UpdateEnhancementEffectRevoked(
     if (AffectsUs(effect.m_effect))
     {
         // pass through to all our sub breakdowns
-        //m_baseDamage.UpdateEnhancementEffectRevoked(pCharacter, enhancementName, effect);
+        m_baseDamage.UpdateEnhancementEffectRevoked(pCharacter, enhancementName, effect);
         m_attackBonus.UpdateEnhancementEffectRevoked(pCharacter, enhancementName, effect);
         m_damageBonus.UpdateEnhancementEffectRevoked(pCharacter, enhancementName, effect);
         //m_vorpalRange.UpdateEnhancementEffectRevoked(pCharacter, enhancementName, effect);
@@ -376,7 +395,7 @@ void BreakdownItemWeapon::UpdateEnhancementEffectRevoked(
         m_criticalDamageBonus.UpdateEnhancementEffectRevoked(pCharacter, enhancementName, effect);
         //m_criticalMultiplier.UpdateEnhancementEffectRevoked(pCharacter, enhancementName, effect);
         //m_specialMultiplier.UpdateEnhancementEffectRevoked(pCharacter, enhancementName, effect);
-        m_attackSpeed.UpdateEnhancementEffectRevoked(pCharacter, enhancementName, effect);
+        //m_attackSpeed.UpdateEnhancementEffectRevoked(pCharacter, enhancementName, effect);
 
         // we handle whether we are centered or not
         if (effect.m_effect.Type() == Effect_CenteredWeapon)
@@ -396,166 +415,6 @@ void BreakdownItemWeapon::UpdateTotalChanged(
 }
 
 // Weapon class filters
-bool BreakdownItemWeapon::IsMartialWeapon() const
-{
-    bool isUs = false;
-    switch (m_weaponType)
-    {
-    case Weapon_HandAxe:
-    case Weapon_Kukri:
-    case Weapon_LightHammer:
-    case Weapon_LightPick:
-    case Weapon_Shortsword:
-    case Weapon_BattleAxe:
-    case Weapon_HeavyPick:
-    case Weapon_Longsword:
-    case Weapon_Rapier:
-    case Weapon_Scimitar:
-    case Weapon_Warhammer:
-    case Weapon_Falchion:
-    case Weapon_GreatAxe:
-    case Weapon_GreateClub:
-    case Weapon_Maul:
-    case Weapon_GreatSword:
-    case Weapon_Shortbow:
-    case Weapon_Longbow:
-    case Weapon_ThrowingAxe:
-        isUs = true;
-        break;
-        // all other weapon types are not a match
-    }
-    return isUs;
-}
-
-bool BreakdownItemWeapon::IsSimpleWeapon() const
-{
-    bool isUs = false;
-    switch (m_weaponType)
-    {
-    case Weapon_Club:
-    case Weapon_Dagger:
-    case Weapon_Quarterstaff:
-    case Weapon_LightMace:
-    case Weapon_HeavyMace:
-    case Weapon_Morningstar:
-    case Weapon_Sickle:
-    case Weapon_LightCrossbow:
-    case Weapon_HeavyCrossbow:
-    case Weapon_ThrowingDagger:
-    case Weapon_Dart:
-        isUs = true;
-        break;
-        // all other weapon types are not a match
-    }
-    return isUs;
-}
-
-bool BreakdownItemWeapon::IsThrownWeapon() const
-{
-    bool isUs = false;
-    switch (m_weaponType)
-    {
-    case Weapon_Dart:
-    case Weapon_Shuriken:
-    case Weapon_ThrowingAxe:
-    case Weapon_ThrowingDagger:
-    case Weapon_ThrowingHammer:
-        isUs = true;
-        break;
-        // all other weapon types are not a match
-    }
-    return isUs;
-}
-
-bool BreakdownItemWeapon::IsOneHandedWeapon() const
-{
-    bool isUs = false;
-    switch (m_weaponType)
-    {
-    case Weapon_BastardSword:
-    case Weapon_BattleAxe:
-    case Weapon_Club:
-    case Weapon_Dagger:
-    case Weapon_DwarvenAxe:
-    case Weapon_HandAxe:
-    case Weapon_HeavyMace:
-    case Weapon_HeavyPick:
-    case Weapon_Kama:
-    case Weapon_Khopesh:
-    case Weapon_Kukri:
-    case Weapon_LightHammer:
-    case Weapon_LightMace:
-    case Weapon_LightPick:
-    case Weapon_Longsword:
-    case Weapon_Morningstar:
-    case Weapon_Rapier:
-    case Weapon_Scimitar:
-    case Weapon_Shortsword:
-    case Weapon_Sickle:
-    case Weapon_Warhammer:
-        isUs = true;
-        break;
-        // all other weapon types are not a match
-    }
-    return isUs;
-}
-
-bool BreakdownItemWeapon::IsRangedWeapon() const
-{
-    bool isUs = false;
-    switch (m_weaponType)
-    {
-    case Weapon_Dart:
-    case Weapon_GreatCrossbow:
-    case Weapon_HeavyCrossbow:
-    case Weapon_LightCrossbow:
-    case Weapon_Longbow:
-    case Weapon_RepeatingHeavyCrossbow:
-    case Weapon_RepeatingLightCrossbow:
-    case Weapon_Shortbow:
-    case Weapon_Shuriken:
-    case Weapon_ThrowingAxe:
-    case Weapon_ThrowingDagger:
-    case Weapon_ThrowingHammer:
-        isUs = true;
-        break;
-        // all other weapon types are not a match
-    }
-    return isUs;
-}
-
-bool BreakdownItemWeapon::IsTwoHandedWeapon() const
-{
-    bool isUs = false;
-    switch (m_weaponType)
-    {
-    case Weapon_Falchion:
-    case Weapon_GreatAxe:
-    case Weapon_GreateClub:
-    case Weapon_GreatSword:
-    case Weapon_Maul:
-    case Weapon_Quarterstaff:
-        isUs = true;
-        break;
-        // all other weapon types are not a match
-    }
-    return isUs;
-}
-
-bool BreakdownItemWeapon::IsBow() const
-{
-    bool isUs = false;
-    switch (m_weaponType)
-    {
-    case Weapon_Longbow:
-    case Weapon_Shortbow:
-        isUs = true;
-        break;
-        // all other weapon types are not a match
-    }
-    return isUs;
-}
-
 bool BreakdownItemWeapon::IsCrossbow() const
 {
     bool isUs = false;
@@ -573,60 +432,6 @@ bool BreakdownItemWeapon::IsCrossbow() const
     case Weapon_HeavyCrossbow:
     case Weapon_LightCrossbow:
        isUs = true;
-        break;
-        // all other weapon types are not a match
-    }
-    return isUs;
-}
-
-bool BreakdownItemWeapon::IsRepeatingCrossbow() const
-{
-    bool isUs = false;
-    switch (m_weaponType)
-    {
-    case Weapon_RepeatingHeavyCrossbow:
-    case Weapon_RepeatingLightCrossbow:
-        isUs = true;
-        break;
-        // all other weapon types are not a match
-    }
-    return isUs;
-}
-
-bool BreakdownItemWeapon::IsMeleeWeapon() const
-{
-    bool isUs = false;
-    switch (m_weaponType)
-    {
-    case Weapon_BastardSword:
-    case Weapon_BattleAxe:
-    case Weapon_Club:
-    case Weapon_Dagger:
-    case Weapon_DwarvenAxe:
-    case Weapon_Falchion:
-    case Weapon_GreatAxe:
-    case Weapon_GreateClub:
-    case Weapon_GreatSword:
-    case Weapon_HandAxe:
-    case Weapon_Handwraps:
-    case Weapon_HeavyMace:
-    case Weapon_HeavyPick:
-    case Weapon_Kama:
-    case Weapon_Khopesh:
-    case Weapon_Kukri:
-    case Weapon_LightHammer:
-    case Weapon_LightMace:
-    case Weapon_LightPick:
-    case Weapon_Longsword:
-    case Weapon_Maul:
-    case Weapon_Morningstar:
-    case Weapon_Quarterstaff:
-    case Weapon_Rapier:
-    case Weapon_Scimitar:
-    case Weapon_Shortsword:
-    case Weapon_Sickle:
-    case Weapon_Warhammer:
-        isUs = true;
         break;
         // all other weapon types are not a match
     }
@@ -859,7 +664,7 @@ void BreakdownItemWeapon::UpdateEnhancementTrained(
 {
     BreakdownItem::UpdateEnhancementTrained(charData, enhancementName, selection, isTier5);
     // pass through to all our sub breakdowns
-    //m_baseDamage.UpdateEnhancementTrained(charData, enhancementName, selection, isTier5);
+    m_baseDamage.UpdateEnhancementTrained(charData, enhancementName, selection, isTier5);
     m_attackBonus.UpdateEnhancementTrained(charData, enhancementName, selection, isTier5);
     m_damageBonus.UpdateEnhancementTrained(charData, enhancementName, selection, isTier5);
     //m_vorpalRange.UpdateEnhancementTrained(charData, enhancementName, selection, isTier5);
@@ -868,7 +673,7 @@ void BreakdownItemWeapon::UpdateEnhancementTrained(
     m_criticalDamageBonus.UpdateEnhancementTrained(charData, enhancementName, selection, isTier5);
     //m_criticalMultiplier.UpdateEnhancementTrained(charData, enhancementName, selection, isTier5);
     //m_specialMultiplier.UpdateEnhancementTrained(charData, enhancementName, selection, isTier5);
-    m_attackSpeed.UpdateEnhancementTrained(charData, enhancementName, selection, isTier5);
+    //m_attackSpeed.UpdateEnhancementTrained(charData, enhancementName, selection, isTier5);
 }
 
 void BreakdownItemWeapon::UpdateEnhancementRevoked(
@@ -879,7 +684,7 @@ void BreakdownItemWeapon::UpdateEnhancementRevoked(
 {
     BreakdownItem::UpdateEnhancementRevoked(charData, enhancementName, selection, isTier5);
     // pass through to all our sub breakdowns
-    //m_baseDamage.UpdateEnhancementRevoked(charData, enhancementName, selection, isTier5);
+    m_baseDamage.UpdateEnhancementRevoked(charData, enhancementName, selection, isTier5);
     m_attackBonus.UpdateEnhancementRevoked(charData, enhancementName, selection, isTier5);
     m_damageBonus.UpdateEnhancementRevoked(charData, enhancementName, selection, isTier5);
     //m_vorpalRange.UpdateEnhancementRevoked(charData, enhancementName, selection, isTier5);
@@ -888,5 +693,40 @@ void BreakdownItemWeapon::UpdateEnhancementRevoked(
     m_criticalDamageBonus.UpdateEnhancementRevoked(charData, enhancementName, selection, isTier5);
     //m_criticalMultiplier.UpdateEnhancementRevoked(charData, enhancementName, selection, isTier5);
     //m_specialMultiplier.UpdateEnhancementRevoked(charData, enhancementName, selection, isTier5);
-    m_attackSpeed.UpdateEnhancementRevoked(charData, enhancementName, selection, isTier5);
+    //m_attackSpeed.UpdateEnhancementRevoked(charData, enhancementName, selection, isTier5);
+}
+
+void BreakdownItemWeapon::UpdateFeatTrained(
+        Character * charData,
+        const std::string & featName)
+{
+    BreakdownItem::UpdateFeatTrained(charData, featName);
+    // pass through to all our sub breakdowns
+    m_baseDamage.UpdateFeatTrained(charData, featName);
+    m_attackBonus.UpdateFeatTrained(charData, featName);
+    m_damageBonus.UpdateFeatTrained(charData, featName);
+    //m_vorpalRange.UpdateFeatTrained(charData, featName);
+    //m_criticalThreatRange.UpdateFeatTrained(charData, featName);
+    m_criticalAttackBonus.UpdateFeatTrained(charData, featName);
+    m_criticalDamageBonus.UpdateFeatTrained(charData, featName);
+    //m_criticalMultiplier.UpdateFeatTrained(charData, featName);
+    //m_specialMultiplier.UpdateFeatTrained(charData, featName);
+    //m_attackSpeed.UpdateFeatTrained(charData, featName);
+}
+
+void BreakdownItemWeapon::UpdateFeatRevoked(
+        Character * charData,
+        const std::string & featName)
+{
+    // pass through to all our sub breakdowns
+    m_baseDamage.UpdateFeatRevoked(charData, featName);
+    m_attackBonus.UpdateFeatRevoked(charData, featName);
+    m_damageBonus.UpdateFeatRevoked(charData, featName);
+    //m_vorpalRange.UpdateFeatRevoked(charData, featName);
+    //m_criticalThreatRange.UpdateFeatRevoked(charData, featName);
+    m_criticalAttackBonus.UpdateFeatRevoked(charData, featName);
+    m_criticalDamageBonus.UpdateFeatRevoked(charData, featName);
+    //m_criticalMultiplier.UpdateFeatRevoked(charData, featName);
+    //m_specialMultiplier.UpdateFeatRevoked(charData, featName);
+    //m_attackSpeed.UpdateFeatRevoked(charData, featName);
 }

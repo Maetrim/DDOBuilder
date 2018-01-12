@@ -23,7 +23,7 @@ class BreakdownItemWeapon :
                 const CString & Title,
                 MfcControls::CTreeListCtrl * treeList,
                 HTREEITEM hItem,
-                const std::vector<HTREEITEM> & hSubItems);
+                InventorySlotType slot);
         virtual ~BreakdownItemWeapon();
 
         bool IsCentering() const;
@@ -34,7 +34,7 @@ class BreakdownItemWeapon :
         virtual void CreateOtherEffects() override;
         virtual bool AffectsUs(const Effect & effect) const override;
         virtual void SetCharacter(Character * charData, bool observe);
-    protected:
+
         // BreakdownObserver overrides
         virtual void UpdateFeatEffect(Character * pCharacater, const std::string & featName, const Effect & effect) override;
         virtual void UpdateFeatEffectRevoked(Character * pCharacater, const std::string & featName, const Effect & effect) override;
@@ -45,17 +45,11 @@ class BreakdownItemWeapon :
         virtual void UpdateTotalChanged(BreakdownItem * item, BreakdownType type) override;
         virtual void UpdateEnhancementTrained(Character * charData, const std::string & enhancementName, const std::string & selection, bool isTier5) override;
         virtual void UpdateEnhancementRevoked(Character * charData, const std::string & enhancementName, const std::string & selection, bool isTier5) override;
+        virtual void UpdateFeatTrained(Character * charData, const std::string & featName) override;
+        virtual void UpdateFeatRevoked(Character * charData, const std::string & featName) override;
     private:
-         bool IsMartialWeapon() const;
-         bool IsSimpleWeapon() const;
-         bool IsThrownWeapon() const;
-         bool IsOneHandedWeapon() const;
-         bool IsRangedWeapon() const;
-         bool IsTwoHandedWeapon() const;
-         bool IsBow() const;
+         void AddTreeItem(const std::string & entry, BreakdownItem * pBreakdown);
          bool IsCrossbow() const;
-         bool IsRepeatingCrossbow() const;
-         bool IsMeleeWeapon() const;
          bool IsDruidicWeapon() const;
          bool IsHeavyBladeWeapon() const;
          bool IsLightBladeWeapon() const;
@@ -69,7 +63,7 @@ class BreakdownItemWeapon :
         CString m_title;
         WeaponType m_weaponType;
 
-        //BreakdownItemWeaponBaseDamage m_baseDamage;         // The X of X[2d6]
+        BreakdownItemSimple m_baseDamage;                   // The X of X[2d6]
         BreakdownItemWeaponAttackBonus m_attackBonus;       // Basic +Hit
         BreakdownItemWeaponDamageBonus m_damageBonus;       // Basic +Damage
         //BreakdownItemWeaponVorpalRange m_vorpalRange;       // typically 20, can be extended
@@ -78,6 +72,8 @@ class BreakdownItemWeapon :
         BreakdownItemWeaponDamageBonus m_criticalDamageBonus;
         //BreakdownItemWeaponCriticalMultiplier m_criticalMultiplier;
         //BreakdownItemWeaponSpecialMultiplier m_specialMultiplier;   // e.g. extra multiplier on a 19-20
-        BreakdownItemSimple m_attackSpeed;
+        //BreakdownItemSimple m_attackSpeed;
         size_t m_centeredCount;
+
+        friend class BreakdownItemWeaponAttackBonus;
 };

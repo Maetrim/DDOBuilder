@@ -23,7 +23,7 @@
 #include "BreakdownItemTactical.h"
 #include "BreakdownItemTurnUndeadLevel.h"
 #include "BreakdownItemTurnUndeadHitDice.h"
-#include "BreakdownItemWeapon.h"
+#include "BreakdownItemWeaponEffects.h"
 
 namespace
 {
@@ -40,7 +40,9 @@ CBreakdownsView::CBreakdownsView() :
     m_pCharacter(NULL),
     m_itemBreakdownTree(true, true),
     m_bDraggingDivider(false),
-    m_treeSizePercent(75)      // defaults to 75% on first run of software
+    m_treeSizePercent(75),      // defaults to 75% on first run of software
+    m_pWeaponEffects(NULL),
+    m_hWeaponsHeader(NULL)
 {
 
 }
@@ -53,6 +55,8 @@ CBreakdownsView::~CBreakdownsView()
         m_items[i] = NULL;
     }
     m_items.clear();
+    delete m_pWeaponEffects;
+    m_pWeaponEffects = NULL;
 }
 
 void CBreakdownsView::DoDataExchange(CDataExchange* pDX)
@@ -95,6 +99,10 @@ void CBreakdownsView::Dump(CDumpContext& dc) const
 
 LRESULT CBreakdownsView::OnNewDocument(WPARAM wParam, LPARAM lParam)
 {
+    if (m_pCharacter != NULL)
+    {
+        m_pCharacter->DetachObserver(this);
+    }
     // wParam is the document pointer
     CDocument * pDoc = (CDocument*)(wParam);
     // lParam is the character pointer
@@ -106,6 +114,12 @@ LRESULT CBreakdownsView::OnNewDocument(WPARAM wParam, LPARAM lParam)
         for (size_t ii = 0; ii < m_items.size(); ++ii)
         {
             m_items[ii]->SetCharacter(pCharacter, true);    // top level items always observe
+        }
+        m_pWeaponEffects->SetCharacter(pCharacter, true);
+        if (pCharacter != NULL)
+        {
+            // need to know about gear changes
+            pCharacter->AttachObserver(this);
         }
     }
     return 0L;
@@ -189,8 +203,8 @@ void CBreakdownsView::CreateBreakdowns()
     CreateMagicalBreakdowns();
     CreateTurnUndeadBreakdowns();
     CreateEnergyResistancesBreakdowns();
-    CreateWeaponBreakdowns();
     CreateHirelingBreakdowns();
+    CreateWeaponBreakdowns();
 }
 
 void CBreakdownsView::CreateAbilityBreakdowns()
@@ -1370,15 +1384,18 @@ void CBreakdownsView::CreateEnergyResistancesBreakdowns()
 
 void CBreakdownsView::CreateWeaponBreakdowns()
 {
-    // insert the Weapons root tree item
-    HTREEITEM hParent = m_itemBreakdownTree.InsertItem(
-            "Weapon Breakdowns", 
+    // we need to know which is this element as we dynamically add/remove
+    // items from the list when the equipped items change.
+    m_hWeaponsHeader = m_itemBreakdownTree.InsertItem(
+            "Weapons", 
             0,
             TVI_ROOT);
-    m_itemBreakdownTree.SetItemData(hParent, 0);
-    AddWeapons(hParent);
-    //AddWeaponToHitBreakdowns(hParent);
-    //AddWeaponDamageBreakdowns(hParent);
+    m_itemBreakdownTree.SetItemData(m_hWeaponsHeader, NULL);
+    // this is not actually added to the list control, but does need access
+    // to the tree list and the "Weapons" tree item
+    m_pWeaponEffects = new BreakdownItemWeaponEffects(
+            &m_itemBreakdownTree,
+            m_hWeaponsHeader);
 }
 
 void CBreakdownsView::CreateHirelingBreakdowns()
@@ -1643,227 +1660,6 @@ void CBreakdownsView::AddEnergyAbsorption(
     m_items.push_back(pERItem);
 }
 
-void CBreakdownsView::AddWeapons(HTREEITEM hParent)
-{
-    // add each weapon type
-    AddWeapon(Weapon_BastardSword, hParent);
-    AddWeapon(Weapon_BattleAxe, hParent);
-    AddWeapon(Weapon_Club, hParent);
-    AddWeapon(Weapon_Dagger, hParent);
-    AddWeapon(Weapon_Dart, hParent);
-    AddWeapon(Weapon_DwarvenAxe, hParent);
-    AddWeapon(Weapon_Falchion, hParent);
-    AddWeapon(Weapon_GreatCrossbow, hParent);
-    AddWeapon(Weapon_GreatAxe, hParent);
-    AddWeapon(Weapon_GreateClub, hParent);
-    AddWeapon(Weapon_GreatSword, hParent);
-    AddWeapon(Weapon_HandAxe, hParent);
-    AddWeapon(Weapon_Handwraps, hParent);
-    AddWeapon(Weapon_HeavyCrossbow, hParent);
-    AddWeapon(Weapon_HeavyMace, hParent);
-    AddWeapon(Weapon_HeavyPick, hParent);
-    AddWeapon(Weapon_Kama, hParent);
-    AddWeapon(Weapon_Khopesh, hParent);
-    AddWeapon(Weapon_Kukri, hParent);
-    AddWeapon(Weapon_LightCrossbow, hParent);
-    AddWeapon(Weapon_LightHammer, hParent);
-    AddWeapon(Weapon_LightMace, hParent);
-    AddWeapon(Weapon_LightPick, hParent);
-    AddWeapon(Weapon_Longbow, hParent);
-    AddWeapon(Weapon_Longsword, hParent);
-    AddWeapon(Weapon_Maul, hParent);
-    AddWeapon(Weapon_Morningstar, hParent);
-    AddWeapon(Weapon_Quarterstaff, hParent);
-    AddWeapon(Weapon_Rapier, hParent);
-    AddWeapon(Weapon_RepeatingHeavyCrossbow, hParent);
-    AddWeapon(Weapon_RepeatingLightCrossbow, hParent);
-    AddWeapon(Weapon_Scimitar, hParent);
-    AddWeapon(Weapon_Shortbow, hParent);
-    AddWeapon(Weapon_Shortsword, hParent);
-    AddWeapon(Weapon_Shuriken, hParent);
-    AddWeapon(Weapon_Sickle, hParent);
-    AddWeapon(Weapon_ThrowingAxe, hParent);
-    AddWeapon(Weapon_ThrowingDagger, hParent);
-    AddWeapon(Weapon_ThrowingHammer, hParent);
-    AddWeapon(Weapon_Warhammer, hParent);
-}
-
-void CBreakdownsView::AddWeapon(
-        WeaponType weaponType,
-        HTREEITEM hParent)
-{
-    // insert the name of the weapon
-    HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
-            EnumEntryText(weaponType, weaponTypeMap),
-            hParent,
-            TVI_LAST);
-    // need to create the tree sub items in advance
-    std::vector<HTREEITEM> subItems;
-    for (size_t i = 0; i < BreakdownItemWeapon::subItemCount; ++i)
-    {
-        HTREEITEM hSubItem = m_itemBreakdownTree.InsertItem(
-                EnumEntryText(weaponType, weaponTypeMap),
-                hItem,
-                TVI_LAST);
-        subItems.push_back(hSubItem);
-    }
-    BreakdownItem * pERItem = new BreakdownItemWeapon(
-            Breakdown_Weapon,
-            weaponType,
-            EnumEntryText(weaponType, weaponTypeMap),
-            &m_itemBreakdownTree,
-            hItem,
-            subItems);
-    m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pERItem);
-    m_items.push_back(pERItem);
-}
-
-//void CBreakdownsView::AddWeaponToHitBreakdowns(
-//        HTREEITEM hParent)
-//{
-//    HTREEITEM hSection = m_itemBreakdownTree.InsertItem(
-//            "To Hit Breakdowns", 
-//            hParent,
-//            TVI_LAST);
-//    // add each of the possible weapon types here
-//    AddWeaponToHit(Weapon_BastardSword,     WeaponClass_OneHanded,  WeaponDamage_Slashing, hSection);
-//    AddWeaponToHit(Weapon_BattleAxe,        WeaponClass_OneHanded,  WeaponDamage_Slashing, hSection);
-//    AddWeaponToHit(Weapon_Club,             WeaponClass_OneHanded,  WeaponDamage_Bludgeoning, hSection);
-//    AddWeaponToHit(Weapon_Dagger,           WeaponClass_OneHanded,  WeaponDamage_Piercing, hSection);
-//    AddWeaponToHit(Weapon_Dart,             WeaponClass_Thrown,     WeaponDamage_Thrown, hSection);
-//    AddWeaponToHit(Weapon_DwarvenAxe,       WeaponClass_OneHanded,  WeaponDamage_Slashing, hSection);
-//    AddWeaponToHit(Weapon_Falchion,         WeaponClass_TwoHanded,  WeaponDamage_Slashing, hSection);
-//    AddWeaponToHit(Weapon_GreatCrossbow,    WeaponClass_Ranged,     WeaponDamage_Piercing, hSection);
-//    AddWeaponToHit(Weapon_GreatAxe,         WeaponClass_TwoHanded,  WeaponDamage_Slashing, hSection);
-//    AddWeaponToHit(Weapon_GreateClub,       WeaponClass_TwoHanded,  WeaponDamage_Bludgeoning, hSection);
-//    AddWeaponToHit(Weapon_GreatSword,       WeaponClass_TwoHanded,  WeaponDamage_Slashing, hSection);
-//    AddWeaponToHit(Weapon_HandAxe,          WeaponClass_OneHanded,  WeaponDamage_Slashing, hSection);
-//    AddWeaponToHit(Weapon_Handwraps,        WeaponClass_Unarmed,    WeaponDamage_Bludgeoning, hSection);
-//    AddWeaponToHit(Weapon_HeavyCrossbow,    WeaponClass_Ranged,     WeaponDamage_Piercing, hSection);
-//    AddWeaponToHit(Weapon_HeavyMace,        WeaponClass_OneHanded,  WeaponDamage_Bludgeoning, hSection);
-//    AddWeaponToHit(Weapon_HeavyPick,        WeaponClass_OneHanded,  WeaponDamage_Piercing, hSection);
-//    AddWeaponToHit(Weapon_Kama,             WeaponClass_OneHanded,  WeaponDamage_Piercing, hSection);
-//    AddWeaponToHit(Weapon_Khopesh,          WeaponClass_OneHanded,  WeaponDamage_Slashing, hSection);
-//    AddWeaponToHit(Weapon_Kukri,            WeaponClass_OneHanded,  WeaponDamage_Slashing, hSection);
-//    AddWeaponToHit(Weapon_LightCrossbow,    WeaponClass_Ranged,     WeaponDamage_Piercing, hSection);
-//    AddWeaponToHit(Weapon_LightHammer,      WeaponClass_OneHanded,  WeaponDamage_Bludgeoning, hSection);
-//    AddWeaponToHit(Weapon_LightMace,        WeaponClass_OneHanded,  WeaponDamage_Bludgeoning, hSection);
-//    AddWeaponToHit(Weapon_LightPick,        WeaponClass_OneHanded,  WeaponDamage_Piercing, hSection);
-//    AddWeaponToHit(Weapon_Longbow,          WeaponClass_Ranged,     WeaponDamage_Piercing, hSection);
-//    AddWeaponToHit(Weapon_Longsword,        WeaponClass_OneHanded,  WeaponDamage_Slashing, hSection);
-//    AddWeaponToHit(Weapon_Maul,             WeaponClass_TwoHanded,  WeaponDamage_Bludgeoning, hSection);
-//    AddWeaponToHit(Weapon_Morningstar,      WeaponClass_OneHanded,  WeaponDamage_Bludgeoning, hSection);
-//    AddWeaponToHit(Weapon_Quarterstaff,     WeaponClass_TwoHanded,  WeaponDamage_Bludgeoning, hSection);
-//    AddWeaponToHit(Weapon_Rapier,           WeaponClass_OneHanded,  WeaponDamage_Piercing, hSection);
-//    AddWeaponToHit(Weapon_RepeatingHeavyCrossbow, WeaponClass_Ranged, WeaponDamage_Piercing, hSection);
-//    AddWeaponToHit(Weapon_RepeatingLightCrossbow, WeaponClass_Ranged, WeaponDamage_Piercing, hSection);
-//    AddWeaponToHit(Weapon_Scimitar,         WeaponClass_OneHanded,  WeaponDamage_Slashing, hSection);
-//    AddWeaponToHit(Weapon_Shortbow,         WeaponClass_Ranged,     WeaponDamage_Piercing, hSection);
-//    AddWeaponToHit(Weapon_Shortsword,       WeaponClass_OneHanded,  WeaponDamage_Piercing, hSection);
-//    AddWeaponToHit(Weapon_Shuriken,         WeaponClass_Thrown,     WeaponDamage_Thrown, hSection);
-//    AddWeaponToHit(Weapon_Sickle,           WeaponClass_OneHanded,  WeaponDamage_Slashing, hSection);
-//    AddWeaponToHit(Weapon_ThrowingAxe,      WeaponClass_Thrown,     WeaponDamage_Thrown, hSection);
-//    AddWeaponToHit(Weapon_ThrowingDagger,   WeaponClass_Thrown,     WeaponDamage_Thrown, hSection);
-//    AddWeaponToHit(Weapon_ThrowingHammer,   WeaponClass_Thrown,     WeaponDamage_Thrown, hSection);
-//    AddWeaponToHit(Weapon_Warhammer,        WeaponClass_OneHanded,  WeaponDamage_Bludgeoning, hSection);
-//}
-//
-//void CBreakdownsView::AddWeaponDamageBreakdowns(
-//        HTREEITEM hParent)
-//{
-//    HTREEITEM hSection = m_itemBreakdownTree.InsertItem(
-//            "Bonus Damage Breakdowns", 
-//            hParent,
-//            TVI_LAST);
-//    // add each of the possible weapon types here
-//    AddWeaponDamage(Weapon_BastardSword,     WeaponClass_OneHanded,  WeaponDamage_Slashing, hSection);
-//    AddWeaponDamage(Weapon_BattleAxe,        WeaponClass_OneHanded,  WeaponDamage_Slashing, hSection);
-//    AddWeaponDamage(Weapon_Club,             WeaponClass_OneHanded,  WeaponDamage_Bludgeoning, hSection);
-//    AddWeaponDamage(Weapon_Dagger,           WeaponClass_OneHanded,  WeaponDamage_Piercing, hSection);
-//    AddWeaponDamage(Weapon_Dart,             WeaponClass_Thrown,     WeaponDamage_Thrown, hSection);
-//    AddWeaponDamage(Weapon_DwarvenAxe,       WeaponClass_OneHanded,  WeaponDamage_Slashing, hSection);
-//    AddWeaponDamage(Weapon_Falchion,         WeaponClass_TwoHanded,  WeaponDamage_Slashing, hSection);
-//    AddWeaponDamage(Weapon_GreatCrossbow,    WeaponClass_Ranged,     WeaponDamage_Piercing, hSection);
-//    AddWeaponDamage(Weapon_GreatAxe,         WeaponClass_TwoHanded,  WeaponDamage_Slashing, hSection);
-//    AddWeaponDamage(Weapon_GreateClub,       WeaponClass_TwoHanded,  WeaponDamage_Bludgeoning, hSection);
-//    AddWeaponDamage(Weapon_GreatSword,       WeaponClass_TwoHanded,  WeaponDamage_Slashing, hSection);
-//    AddWeaponDamage(Weapon_HandAxe,          WeaponClass_OneHanded,  WeaponDamage_Slashing, hSection);
-//    AddWeaponDamage(Weapon_Handwraps,        WeaponClass_Unarmed,    WeaponDamage_Bludgeoning, hSection);
-//    AddWeaponDamage(Weapon_HeavyCrossbow,    WeaponClass_Ranged,     WeaponDamage_Piercing, hSection);
-//    AddWeaponDamage(Weapon_HeavyMace,        WeaponClass_OneHanded,  WeaponDamage_Bludgeoning, hSection);
-//    AddWeaponDamage(Weapon_HeavyPick,        WeaponClass_OneHanded,  WeaponDamage_Piercing, hSection);
-//    AddWeaponDamage(Weapon_Kama,             WeaponClass_OneHanded,  WeaponDamage_Piercing, hSection);
-//    AddWeaponDamage(Weapon_Khopesh,          WeaponClass_OneHanded,  WeaponDamage_Slashing, hSection);
-//    AddWeaponDamage(Weapon_Kukri,            WeaponClass_OneHanded,  WeaponDamage_Slashing, hSection);
-//    AddWeaponDamage(Weapon_LightCrossbow,    WeaponClass_Ranged,     WeaponDamage_Piercing, hSection);
-//    AddWeaponDamage(Weapon_LightHammer,      WeaponClass_OneHanded,  WeaponDamage_Bludgeoning, hSection);
-//    AddWeaponDamage(Weapon_LightMace,        WeaponClass_OneHanded,  WeaponDamage_Bludgeoning, hSection);
-//    AddWeaponDamage(Weapon_LightPick,        WeaponClass_OneHanded,  WeaponDamage_Piercing, hSection);
-//    AddWeaponDamage(Weapon_Longbow,          WeaponClass_Ranged,     WeaponDamage_Piercing, hSection);
-//    AddWeaponDamage(Weapon_Longsword,        WeaponClass_OneHanded,  WeaponDamage_Slashing, hSection);
-//    AddWeaponDamage(Weapon_Maul,             WeaponClass_TwoHanded,  WeaponDamage_Bludgeoning, hSection);
-//    AddWeaponDamage(Weapon_Morningstar,      WeaponClass_OneHanded,  WeaponDamage_Bludgeoning, hSection);
-//    AddWeaponDamage(Weapon_Quarterstaff,     WeaponClass_TwoHanded,  WeaponDamage_Bludgeoning, hSection);
-//    AddWeaponDamage(Weapon_Rapier,           WeaponClass_OneHanded,  WeaponDamage_Piercing, hSection);
-//    AddWeaponDamage(Weapon_RepeatingHeavyCrossbow, WeaponClass_Ranged, WeaponDamage_Piercing, hSection);
-//    AddWeaponDamage(Weapon_RepeatingLightCrossbow, WeaponClass_Ranged, WeaponDamage_Piercing, hSection);
-//    AddWeaponDamage(Weapon_Scimitar,         WeaponClass_OneHanded,  WeaponDamage_Slashing, hSection);
-//    AddWeaponDamage(Weapon_Shortbow,         WeaponClass_Ranged,     WeaponDamage_Piercing, hSection);
-//    AddWeaponDamage(Weapon_Shortsword,       WeaponClass_OneHanded,  WeaponDamage_Piercing, hSection);
-//    AddWeaponDamage(Weapon_Shuriken,         WeaponClass_Thrown,     WeaponDamage_Thrown, hSection);
-//    AddWeaponDamage(Weapon_Sickle,           WeaponClass_OneHanded,  WeaponDamage_Slashing, hSection);
-//    AddWeaponDamage(Weapon_ThrowingAxe,      WeaponClass_Thrown,     WeaponDamage_Thrown, hSection);
-//    AddWeaponDamage(Weapon_ThrowingDagger,   WeaponClass_Thrown,     WeaponDamage_Thrown, hSection);
-//    AddWeaponDamage(Weapon_ThrowingHammer,   WeaponClass_Thrown,     WeaponDamage_Thrown, hSection);
-//    AddWeaponDamage(Weapon_Warhammer,        WeaponClass_OneHanded,  WeaponDamage_Bludgeoning, hSection);
-//}
-//
-//void CBreakdownsView::AddWeaponToHit(
-//        WeaponType weaponType,
-//        WeaponClassType weaponClass,
-//        WeaponDamageType weaponDamage,
-//        HTREEITEM hParent)
-//{
-//    HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
-//            EnumEntryText(weaponType, weaponTypeMap),
-//            hParent,
-//            TVI_LAST);
-//    BreakdownItem * pERItem = new BreakdownItemWeaponAttackBonus(
-//            Breakdown_WeaponToHit,
-//            Effect_AttackBonus,
-//            weaponType,
-//            weaponClass,
-//            weaponDamage,
-//            EnumEntryText(weaponType, weaponTypeMap),
-//            &m_itemBreakdownTree,
-//            hItem);
-//    m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pERItem);
-//    m_items.push_back(pERItem);
-//}
-//
-//void CBreakdownsView::AddWeaponDamage(
-//        WeaponType weaponType,
-//        WeaponClassType weaponClass,
-//        WeaponDamageType weaponDamage,
-//        HTREEITEM hParent)
-//{
-//    HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
-//            EnumEntryText(weaponType, weaponTypeMap),
-//            hParent,
-//            TVI_LAST);
-//    BreakdownItem * pERItem = new BreakdownItemWeaponDamageBonus(
-//            Breakdown_WeaponDamage,
-//            Effect_DamageBonus,
-//            weaponType,
-//            weaponClass,
-//            weaponDamage,
-//            EnumEntryText(weaponType, weaponTypeMap),
-//            &m_itemBreakdownTree,
-//            hItem);
-//    m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pERItem);
-//    m_items.push_back(pERItem);
-//}
-
 BreakdownItem * CBreakdownsView::FindBreakdown(BreakdownType type) const
 {
     BreakdownItem * pItem = NULL;
@@ -2087,5 +1883,18 @@ void CBreakdownsView::OnButtonClipboardCopy()
                 CloseClipboard();
             }
         }
+    }
+}
+
+void CBreakdownsView::UpdateGearChanged(
+        Character * pCharData,
+        InventorySlotType slot)
+{
+    if (slot == Inventory_Weapon1
+            || slot == Inventory_Weapon2)
+    {
+        // m_pWeaponEffects holds the actual breakdowns, we just tell it
+        // to re-create them based on the selected items
+        m_pWeaponEffects->WeaponsChanged(m_pCharacter->ActiveGearSet());
     }
 }

@@ -56,7 +56,10 @@ class CStancesView :
 
         CDocument * m_pDocument;
         Character * m_pCharacter;
-        std::vector<CStanceButton *> m_stancebuttons;
+        CStatic m_userStances;
+        CStatic m_autoStances;
+        std::vector<CStanceButton *> m_userStancebuttons;
+        std::vector<CStanceButton *> m_autoStancebuttons;
         CInfoTip m_tooltip;
         bool m_showingTip;
         bool m_tipCreated;

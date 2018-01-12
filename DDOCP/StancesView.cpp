@@ -31,6 +31,8 @@ CStancesView::~CStancesView()
 void CStancesView::DoDataExchange(CDataExchange* pDX)
 {
     CFormView::DoDataExchange(pDX);
+    DDX_Control(pDX, IDC_STATIC_USERCONTROLLED, m_userStances);
+    DDX_Control(pDX, IDC_STATIC_AUTOCONTROLLED, m_autoStances);
 }
 
 #pragma warning(push)
@@ -69,17 +71,17 @@ void CStancesView::OnInitialUpdate()
 void CStancesView::OnSize(UINT nType, int cx, int cy)
 {
     CWnd::OnSize(nType, cx, cy);
-    CRect wndClient;
-    GetClientRect(&wndClient);
-    CRect itemRect(
-            c_controlSpacing,
-            c_controlSpacing,
-            c_windowSize + c_controlSpacing,
-            c_windowSize + c_controlSpacing);
-    // move each stance button
-    for (size_t i = 0; i < m_stancebuttons.size(); ++i)
+    if (IsWindow(m_userStances.GetSafeHwnd()))
     {
-        m_stancebuttons[i]->MoveWindow(itemRect, TRUE);
+        CRect wndClient;
+        GetClientRect(&wndClient);
+        CRect itemRect(
+                c_controlSpacing,
+                c_controlSpacing,
+                c_windowSize + c_controlSpacing,
+                c_windowSize + c_controlSpacing);
+        // user stance header first
+        m_userStances.MoveWindow(itemRect, TRUE);
         // move rectangle across for next set of controls
         itemRect += CPoint(itemRect.Width() + c_controlSpacing, 0);
         if (itemRect.right > (wndClient.right - c_controlSpacing))
@@ -88,6 +90,48 @@ void CStancesView::OnSize(UINT nType, int cx, int cy)
             // move down and start the next row of controls
             itemRect -= CPoint(itemRect.left, 0);
             itemRect += CPoint(c_controlSpacing, itemRect.Height() + c_controlSpacing);
+        }
+        // move each stance button
+        for (size_t i = 0; i < m_userStancebuttons.size(); ++i)
+        {
+            m_userStancebuttons[i]->MoveWindow(itemRect, TRUE);
+            // move rectangle across for next set of controls
+            itemRect += CPoint(itemRect.Width() + c_controlSpacing, 0);
+            if (itemRect.right > (wndClient.right - c_controlSpacing)
+                    && i != m_userStancebuttons.size() - 1) // don't move for last one
+            {
+                // oops, not enough space in client area here
+                // move down and start the next row of controls
+                itemRect -= CPoint(itemRect.left, 0);
+                itemRect += CPoint(c_controlSpacing, itemRect.Height() + c_controlSpacing);
+            }
+        }
+        // Now auto stances, which always start on a new line
+        itemRect -= CPoint(itemRect.left, 0);
+        itemRect += CPoint(c_controlSpacing, itemRect.Height() + c_controlSpacing);
+        m_autoStances.MoveWindow(itemRect, TRUE);
+        // move rectangle across for next set of controls
+        itemRect += CPoint(itemRect.Width() + c_controlSpacing, 0);
+        if (itemRect.right > (wndClient.right - c_controlSpacing))
+        {
+            // oops, not enough space in client area here
+            // move down and start the next row of controls
+            itemRect -= CPoint(itemRect.left, 0);
+            itemRect += CPoint(c_controlSpacing, itemRect.Height() + c_controlSpacing);
+        }
+        // move each stance button
+        for (size_t i = 0; i < m_autoStancebuttons.size(); ++i)
+        {
+            m_autoStancebuttons[i]->MoveWindow(itemRect, TRUE);
+            // move rectangle across for next set of controls
+            itemRect += CPoint(itemRect.Width() + c_controlSpacing, 0);
+            if (itemRect.right > (wndClient.right - c_controlSpacing))
+            {
+                // oops, not enough space in client area here
+                // move down and start the next row of controls
+                itemRect -= CPoint(itemRect.left, 0);
+                itemRect += CPoint(c_controlSpacing, itemRect.Height() + c_controlSpacing);
+            }
         }
     }
 }
@@ -132,23 +176,32 @@ void CStancesView::CreateStanceWindows()
     Stance reaper("Reaper", "ReaperTree", "Activate to view your characters abilities when running in Reaper mode");
     AddStance(reaper);
 
-    Stance twf("TwoWeaponFighting", "TwoWeaponFighting", "This stance is only visible due to development\nWill be hidden in final build\nYou are fighting with a weapon in each hand");
+    Stance twf("TwoWeaponFighting", "TwoWeaponFighting", "You are fighting with a weapon in each hand");
+    twf.Set_AutoControlled();
     AddStance(twf);
-    Stance thf("TwoHandedFighting", "TwoHandedFighting", "This stance is only visible due to development\nWill be hidden in final build\nYou are fighting with a single weapon in both hands");
+    Stance thf("TwoHandedFighting", "TwoHandedFighting", "You are fighting with a single weapon in both hands");
+    thf.Set_AutoControlled();
     AddStance(thf);
-    Stance swf("SingleWeaponFighting", "SingleWeaponFighting", "This stance is only visible due to development\nWill be hidden in final build\nYou are fighting with a single weapon");
+    Stance swf("SingleWeaponFighting", "SingleWeaponFighting", "You are fighting with a single weapon");
+    swf.Set_AutoControlled();
     AddStance(swf);
-    Stance unarmed("Unarmed", "ADanceOfFlowers", "This stance is only visible due to development\nWill be hidden in final build\nYou are fighting with handwraps or fists");
+    Stance unarmed("Unarmed", "ADanceOfFlowers", "You are fighting with handwraps or fists");
+    unarmed.Set_AutoControlled();
     AddStance(unarmed);
-    Stance sab("SwordAndBoard", "SDLastStand", "This stance is only visible due to development\nWill be hidden in final build\nYou are fighting with a weapon and shield");
+    Stance sab("SwordAndBoard", "SDLastStand", "You are fighting with a weapon and shield");
+    sab.Set_AutoControlled();
     AddStance(sab);
-    Stance staff("Staff", "HMSoundingStaff", "This stance is only visible due to development\nWill be hidden in final build\nYou are fighting with a staff");
+    Stance staff("Staff", "HMSoundingStaff", "You are fighting with a staff");
+    staff.Set_AutoControlled();
     AddStance(staff);
-    Stance orb("Orb", "EfficientMetamagic", "This stance is only visible due to development\nWill be hidden in final build\nYou are fighting with an Orb in your off hand");
+    Stance orb("Orb", "EfficientMetamagic", "You are fighting with an Orb in your off hand");
+    orb.Set_AutoControlled();
     AddStance(orb);
-    Stance runearm("RunArm", "BEBattleEngineer", "This stance is only visible due to development\nWill be hidden in final build\nYou are fighting with a Rune-Arm in your off hand");
+    Stance runearm("RuneArm", "BEBattleEngineer", "You are fighting with a Rune-Arm in your off hand");
+    runearm.Set_AutoControlled();
     AddStance(runearm);
-    Stance Swashbuckling("Swashbuckling", "SBEvasiveManeuvers", "This stance is only visible due to development\nWill be hidden in final build\nYou are Swashbuckling");
+    Stance Swashbuckling("Swashbuckling", "SBEvasiveManeuvers", "You are Swashbuckling");
+    Swashbuckling.Set_AutoControlled();
     AddStance(Swashbuckling);
     // look at all the trained feats and see which are stances
     // add an entry for each
@@ -195,12 +248,20 @@ void CStancesView::AddStance(const Stance & stance)
 {
     // only add the stance if it is not already present
     bool found = false;
-    for (size_t i = 0; i < m_stancebuttons.size(); ++i)
+    for (size_t i = 0; i < m_userStancebuttons.size(); ++i)
     {
-        if (m_stancebuttons[i]->IsYou(stance))
+        if (m_userStancebuttons[i]->IsYou(stance))
         {
             found = true;
-            m_stancebuttons[i]->AddStack();
+            m_userStancebuttons[i]->AddStack();
+        }
+    }
+    for (size_t i = 0; i < m_autoStancebuttons.size(); ++i)
+    {
+        if (m_autoStancebuttons[i]->IsYou(stance))
+        {
+            found = true;
+            m_autoStancebuttons[i]->AddStack();
         }
     }
     if (!found)
@@ -215,29 +276,38 @@ void CStancesView::AddStance(const Stance & stance)
                 c_controlSpacing,
                 c_windowSize + c_controlSpacing,
                 c_windowSize + c_controlSpacing);
-        // move the rectangle by the number of existing stances
-        for (size_t i = 0; i < m_stancebuttons.size(); ++i)
-        {
-            // move rectangle across for next set of controls
-            itemRect += CPoint(itemRect.Width() + c_controlSpacing, 0);
-            if (itemRect.right > (wndClient.right - c_controlSpacing))
-            {
-                // oops, not enough space in client area here
-                // move down and start the next row of controls
-                itemRect -= CPoint(itemRect.left, 0);
-                itemRect += CPoint(c_controlSpacing, itemRect.Height() + c_controlSpacing);
-            }
-        }
 
-        // now create the new stance control
-        m_stancebuttons.push_back(new CStanceButton(m_pCharacter, stance));
-        // create a parent window that is c_windowSize by c_windowSize pixels in size
-        m_stancebuttons.back()->Create(
-                "",
-                WS_CHILD | WS_VISIBLE,
-                itemRect,
-                this,
-                m_nextStanceId++);
+        if (stance.HasAutoControlled())
+        {
+            // now create the new auto stance control
+            m_autoStancebuttons.push_back(new CStanceButton(m_pCharacter, stance));
+            // create a parent window that is c_windowSize by c_windowSize pixels in size
+            m_autoStancebuttons.back()->Create(
+                    "",
+                    WS_CHILD | WS_VISIBLE,
+                    itemRect,
+                    this,
+                    m_nextStanceId++);
+        }
+        else
+        {
+            // now create the new user stance control
+            m_userStancebuttons.push_back(new CStanceButton(m_pCharacter, stance));
+            // create a parent window that is c_windowSize by c_windowSize pixels in size
+            m_userStancebuttons.back()->Create(
+                    "",
+                    WS_CHILD | WS_VISIBLE,
+                    itemRect,
+                    this,
+                    m_nextStanceId++);
+        }
+        if (IsWindow(GetSafeHwnd()))
+        {
+            // now force an on size event to position everything
+            CRect rctWnd;
+            GetClientRect(&rctWnd);
+            OnSize(SIZE_RESTORED, rctWnd.Width(), rctWnd.Height());
+        }
     }
 }
 
@@ -246,29 +316,56 @@ void CStancesView::RevokeStance(const Stance & stance)
     // only revoke the stance if it is not already present and its the last stack of it
     bool found = false;
     size_t i;
-    for (i = 0; i < m_stancebuttons.size(); ++i)
+    for (i = 0; i < m_userStancebuttons.size(); ++i)
     {
-        if (m_stancebuttons[i]->IsYou(stance))
+        if (m_userStancebuttons[i]->IsYou(stance))
         {
             found = true;
-            m_stancebuttons[i]->RevokeStack();
+            m_userStancebuttons[i]->RevokeStack();
             break;      // keep the index
         }
     }
     if (found
-            && m_stancebuttons[i]->NumStacks() == 0)
+            && m_userStancebuttons[i]->NumStacks() == 0)
     {
         // all instances of this stance are gone, remove the button
-        m_stancebuttons[i]->DestroyWindow();
-        delete m_stancebuttons[i];
-        m_stancebuttons[i] = NULL;
+        m_userStancebuttons[i]->DestroyWindow();
+        delete m_userStancebuttons[i];
+        m_userStancebuttons[i] = NULL;
         // clear entries from the array
-        std::vector<CStanceButton *>::iterator it = m_stancebuttons.begin() + i;
-        m_stancebuttons.erase(it);
+        std::vector<CStanceButton *>::iterator it = m_userStancebuttons.begin() + i;
+        m_userStancebuttons.erase(it);
         // now force an on size event
         CRect rctWnd;
         GetClientRect(&rctWnd);
         OnSize(SIZE_RESTORED, rctWnd.Width(), rctWnd.Height());
+    }
+    if (!found)
+    {
+        for (i = 0; i < m_autoStancebuttons.size(); ++i)
+        {
+            if (m_autoStancebuttons[i]->IsYou(stance))
+            {
+                found = true;
+                m_autoStancebuttons[i]->RevokeStack();
+                break;      // keep the index
+            }
+        }
+        if (found
+                && m_autoStancebuttons[i]->NumStacks() == 0)
+        {
+            // all instances of this stance are gone, remove the button
+            m_autoStancebuttons[i]->DestroyWindow();
+            delete m_autoStancebuttons[i];
+            m_autoStancebuttons[i] = NULL;
+            // clear entries from the array
+            std::vector<CStanceButton *>::iterator it = m_autoStancebuttons.begin() + i;
+            m_autoStancebuttons.erase(it);
+            // now force an on size event
+            CRect rctWnd;
+            GetClientRect(&rctWnd);
+            OnSize(SIZE_RESTORED, rctWnd.Width(), rctWnd.Height());
+        }
     }
 }
 
@@ -285,11 +382,19 @@ void CStancesView::UpdateRevokeStance(Character * charData, const Stance & stanc
 void CStancesView::UpdateStanceActivated(Character * charData, const std::string & stanceName)
 {
     // update the state of the required stance buttons
-    for (size_t i = 0; i < m_stancebuttons.size(); ++i)
+    for (size_t i = 0; i < m_userStancebuttons.size(); ++i)
     {
-        if (m_stancebuttons[i]->GetStance().Name() == stanceName)
+        if (m_userStancebuttons[i]->GetStance().Name() == stanceName)
         {
-            m_stancebuttons[i]->SetSelected(true);
+            m_userStancebuttons[i]->SetSelected(true);
+        }
+    }
+    // update the state of the required stance buttons
+    for (size_t i = 0; i < m_autoStancebuttons.size(); ++i)
+    {
+        if (m_autoStancebuttons[i]->GetStance().Name() == stanceName)
+        {
+            m_autoStancebuttons[i]->SetSelected(true);
         }
     }
 }
@@ -297,11 +402,19 @@ void CStancesView::UpdateStanceActivated(Character * charData, const std::string
 void CStancesView::UpdateStanceDeactivated(Character * charData, const std::string & stanceName)
 {
     // update the state of the required stance buttons
-    for (size_t i = 0; i < m_stancebuttons.size(); ++i)
+    for (size_t i = 0; i < m_userStancebuttons.size(); ++i)
     {
-        if (m_stancebuttons[i]->GetStance().Name() == stanceName)
+        if (m_userStancebuttons[i]->GetStance().Name() == stanceName)
         {
-            m_stancebuttons[i]->SetSelected(false);
+            m_userStancebuttons[i]->SetSelected(false);
+        }
+    }
+    // update the state of the required stance buttons
+    for (size_t i = 0; i < m_autoStancebuttons.size(); ++i)
+    {
+        if (m_autoStancebuttons[i]->GetStance().Name() == stanceName)
+        {
+            m_autoStancebuttons[i]->SetSelected(false);
         }
     }
 }
@@ -333,11 +446,18 @@ void CStancesView::UpdateItemEffect(
     if (effect.Type() == Effect_ActivateStance)
     {
         ASSERT(effect.Stance().size() == 1);
-        for (size_t i = 0; i < m_stancebuttons.size(); ++i)
+        for (size_t i = 0; i < m_userStancebuttons.size(); ++i)
         {
-            if (m_stancebuttons[i]->GetStance().Name() == effect.Stance()[0])
+            if (m_userStancebuttons[i]->GetStance().Name() == effect.Stance()[0])
             {
-                m_pCharacter->ActivateStance(m_stancebuttons[i]->GetStance());
+                m_pCharacter->ActivateStance(m_userStancebuttons[i]->GetStance());
+            }
+        }
+        for (size_t i = 0; i < m_autoStancebuttons.size(); ++i)
+        {
+            if (m_autoStancebuttons[i]->GetStance().Name() == effect.Stance()[0])
+            {
+                m_pCharacter->ActivateStance(m_autoStancebuttons[i]->GetStance());
             }
         }
     }
@@ -348,7 +468,7 @@ void CStancesView::OnLButtonDown(UINT nFlags, CPoint point)
     // determine which stance, if any was clicked on.
     // if they did click on a stance either activate or deactivate it
     CFormView::OnLButtonDown(nFlags, point);
-    if (m_stancebuttons.size() > 0)
+    if (m_userStancebuttons.size() > 0)
     {
         CWnd * pWnd = ChildWindowFromPoint(point);
         CStanceButton * pStance = dynamic_cast<CStanceButton*>(pWnd);
@@ -463,12 +583,19 @@ void CStancesView::SetTooltipText(
 
 void CStancesView::DestroyAllStances()
 {
-    for (size_t i = 0; i < m_stancebuttons.size(); ++i)
+    for (size_t i = 0; i < m_userStancebuttons.size(); ++i)
     {
-        m_stancebuttons[i]->DestroyWindow();
-        delete m_stancebuttons[i];
-        m_stancebuttons[i] = NULL;
+        m_userStancebuttons[i]->DestroyWindow();
+        delete m_userStancebuttons[i];
+        m_userStancebuttons[i] = NULL;
     }
-    m_stancebuttons.clear();
+    m_userStancebuttons.clear();
+    for (size_t i = 0; i < m_autoStancebuttons.size(); ++i)
+    {
+        m_autoStancebuttons[i]->DestroyWindow();
+        delete m_autoStancebuttons[i];
+        m_autoStancebuttons[i] = NULL;
+    }
+    m_autoStancebuttons.clear();
 }
 

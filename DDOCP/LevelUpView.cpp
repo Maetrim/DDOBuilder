@@ -2005,7 +2005,11 @@ void CLevelUpView::SetFeatTooltipText(
     // look up the selected feat for this control
     const Feat & feat = FindFeat((LPCTSTR)featName);
     // determine whether there is a feat swap warning if training at level 1
-    bool warn = !m_pCharacter->IsFeatTrainable(m_level, type, feat, (m_level != 0), alreadyTrained);
+    bool warn = false;
+    if (type != TFT_Automatic)
+    {
+        warn = !m_pCharacter->IsFeatTrainable(m_level, type, feat, (m_level != 0), alreadyTrained);
+    }
     m_tooltip.SetOrigin(tipTopLeft, tipAlternate, rightAlign);
     m_tooltip.SetFeatItem(*m_pCharacter, &feat, warn, m_level);
     m_tooltip.Show();

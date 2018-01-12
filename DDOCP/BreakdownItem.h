@@ -105,6 +105,7 @@ class BreakdownItem :
         virtual void UpdateTotalChanged(BreakdownItem * item, BreakdownType type) override;
 
         void NotifyTotalChanged();
+        void SetHTreeItem(HTREEITEM hItem);
     private:
         void AddActiveItems(const std::list<ActiveEffect> & effects, CListCtrl * pControl);
         void AddActivePercentageItems(const std::list<ActiveEffect> & effects, CListCtrl * pControl);

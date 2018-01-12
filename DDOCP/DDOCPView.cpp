@@ -751,6 +751,7 @@ void CDDOCPView::UpdateAvailableBuildPointsChanged(Character * pCharacter)
     // show the now available build points
     UpdateRadioPoints();
     UpdateAvailableSpend();
+    EnableButtons();
 }
 
 void CDDOCPView::UpdateClassChanged(

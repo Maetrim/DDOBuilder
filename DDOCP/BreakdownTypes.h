@@ -188,6 +188,8 @@ enum BreakdownType
     Breakdown_WeaponCriticalMultiplier,
     Breakdown_WeaponSpecialMultiplier,
     Breakdown_WeaponAttackSpeed,
+    Breakdown_MainHand,
+    Breakdown_OffHand,
     // melee power
     Breakdown_MeleePower,
     Breakdown_RangedPower,

@@ -12,6 +12,7 @@
 #include "ItemAugment.h"
 #include "SentientJewel.h"
 #include "SlotUpgrade.h"
+#include "ItemSpecificEffects.h"
 
 class Item :
     public XmlLib::SaxContentElement
@@ -38,11 +39,8 @@ class Item :
                 DL_STRING(_, Description) \
                 DL_SIMPLE(_, size_t, MinLevel, 0) \
                 DL_STRING_LIST(_, EffectDescription) \
-                DL_OPTIONAL_SIMPLE(_, double, BaseWeaponDamage, 2.0) \
-                DL_OPTIONAL_OBJECT(_, Dice, Damage) \
                 DL_STRING_LIST(_, DRBypass) \
-                DL_OPTIONAL_SIMPLE(_, size_t, CriticalRoll, 20) \
-                DL_OPTIONAL_SIMPLE(_, double, CriticalMultiplier, 2) \
+                DL_OPTIONAL_OBJECT(_, ItemSpecificEffects, ItemEffects) \
                 DL_OPTIONAL_ENUM(_, WeaponType, Weapon, Weapon_Unknown, weaponTypeMap) \
                 DL_OPTIONAL_ENUM(_, WeaponDamageType, DamageType, WeaponDamage_Unknown, weaponDamageTypeMap) \
                 DL_OPTIONAL_ENUM(_, AbilityType, AttackModifier, Ability_Unknown, abilityTypeMap) \
@@ -52,6 +50,10 @@ class Item :
                 DL_OBJECT_VECTOR(_, Effect, Effects) \
                 DL_OBJECT_VECTOR(_, ItemAugment, Augments) \
                 DL_OBJECT_VECTOR(_, SlotUpgrade, SlotUpgrades) \
+                DL_FLAG(_, CanAcceptSentientJewel) \
+                DL_FLAG(_, IsShield) \
+                DL_FLAG(_, IsOrb) \
+                DL_FLAG(_, IsRuneArm) \
                 DL_OPTIONAL_OBJECT(_, SentientJewel, SentientIntelligence)
 
         DL_DECLARE_ACCESS(Item_PROPERTIES)

@@ -104,12 +104,15 @@ BreakdownType BreakdownItem::Type() const
 
 void BreakdownItem::Populate()
 {
-    m_pTreeList->SetItemText(m_hItem, 0, Title());
-    m_pTreeList->SetItemText(m_hItem, 1, Value());
-    if (m_pTreeList->GetSelectedItem() == m_hItem)
+    if (m_pTreeList != NULL)
     {
-        // force an update if the actively viewed item has changed
-        m_pTreeList->SelectItem(m_pTreeList->GetSelectedItem());
+        m_pTreeList->SetItemText(m_hItem, 0, Title());
+        m_pTreeList->SetItemText(m_hItem, 1, Value());
+        if (m_pTreeList->GetSelectedItem() == m_hItem)
+        {
+            // force an update if the actively viewed item has changed
+            m_pTreeList->SelectItem(m_pTreeList->GetSelectedItem());
+        }
     }
     NotifyTotalChanged();
 }
@@ -946,3 +949,9 @@ void BreakdownItem::UpdateClassChanged(
         Populate();
     }
 }
+
+void BreakdownItem::SetHTreeItem(HTREEITEM hItem)
+{
+    m_hItem = hItem;
+}
+

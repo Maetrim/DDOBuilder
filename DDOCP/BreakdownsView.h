@@ -2,12 +2,17 @@
 //
 #pragma once
 #include "Resource.h"
+
 #include "BreakdownItem.h"
+#include "Character.h"
 #include "TreeListCtrl.h"
 #include "GroupLine.h"
 
+class BreakdownItemWeaponEffects;
+
 class CBreakdownsView :
-    public CFormView
+    public CFormView,
+    public CharacterObserver
 {
     public:
         enum { IDD = IDD_BREAKDOWNS_VIEW };
@@ -36,7 +41,8 @@ class CBreakdownsView :
         afx_msg void OnEndtrackBreakdownList(NMHDR* pNMHDR, LRESULT* pResult);
         afx_msg void OnButtonClipboardCopy();
         DECLARE_MESSAGE_MAP()
-
+    protected:
+        virtual void UpdateGearChanged(Character * pCharData, InventorySlotType slot) override;
     private:
         void CreateBreakdowns();
         void CreateAbilityBreakdowns();
@@ -55,12 +61,6 @@ class CBreakdownsView :
         void AddSpellSchool(BreakdownType bt, SpellSchoolType type, const std::string & name, HTREEITEM hParent);
         void AddEnergyResistance(BreakdownType bt, EnergyType type, const std::string & name, HTREEITEM hParent);
         void AddEnergyAbsorption(BreakdownType bt, EnergyType type, const std::string & name, HTREEITEM hParent);
-        void AddWeapons(HTREEITEM hParent);
-        void AddWeapon(WeaponType weaponType, HTREEITEM hParent);
-        //void AddWeaponToHitBreakdowns(HTREEITEM hParent);
-        //void AddWeaponDamageBreakdowns(HTREEITEM hParent);
-        //void AddWeaponToHit(WeaponType weaponType, WeaponClassType weaponClass, WeaponDamageType weaponDamage, HTREEITEM hParent);
-        //void AddWeaponDamage(WeaponType weaponType, WeaponClassType weaponClass, WeaponDamageType weaponDamage, HTREEITEM hParent);
         void CalculatePercent(CPoint point);
         Character * m_pCharacter;
 
@@ -71,4 +71,6 @@ class CBreakdownsView :
         CListCtrl m_itemBreakdownList;
         bool m_bDraggingDivider;
         int m_treeSizePercent;             // percentage of space used
+        BreakdownItemWeaponEffects * m_pWeaponEffects;
+        HTREEITEM m_hWeaponsHeader;
 };

@@ -29,8 +29,8 @@ CString BreakdownItemSimple::Value() const
 {
     CString value;
     value.Format(
-            "%3d",
-            (int)Total());
+            "%.2f",
+            Total());
     return value;
 }
 

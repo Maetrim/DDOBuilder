@@ -201,7 +201,16 @@ void CInfoTip::OnPaint()
         dc.DrawText(m_effectDescriptions[ed], &rctEd, DT_CALCRECT | DT_LEFT | DT_EXPANDTABS | DT_NOPREFIX);
         rctEd += CPoint(2, top);
         dc.DrawText(m_effectDescriptions[ed], &rctEd, DT_LEFT | DT_EXPANDTABS | DT_NOPREFIX);
-        CString text = m_effectDescriptions[ed].Left(m_effectDescriptions[ed].Find(':'));   // get the effect name to draw in bold
+        CString text;
+        if (m_effectDescriptions[ed].Find(':') >= 0)
+        {
+            text = m_effectDescriptions[ed].Left(m_effectDescriptions[ed].Find(':'));   // get the effect name to draw in bold
+        }
+        else
+        {
+            // draw all text in bold
+            text = m_effectDescriptions[ed];
+        }
         rctEd += CPoint(1, 0);
         dc.DrawText(text, &rctEd, DT_LEFT | DT_EXPANDTABS | DT_NOPREFIX);
         top += rctEd.Height();
@@ -492,6 +501,7 @@ void CInfoTip::SetItem(
 void CInfoTip::SetAugment(
         const Augment * pAugment)
 {
+    m_effectDescriptions.clear();
     m_image.Destroy();
     if (S_OK != LoadImageFile(IT_augment, pAugment->HasIcon() ? pAugment->Icon() : "", &m_image, false))
     {
@@ -523,7 +533,8 @@ void CInfoTip::SetLevelItem(
     LoadImageFile(IT_ui, (LPCTSTR)icon, &m_image, true);
     std::vector<size_t> classLevels = charData.ClassLevels(level);
     m_image.SetTransparentColor(c_transparentColour);
-    m_title.Format("%s (%d)",
+    m_title.Format("Level %d: %s (%d)",
+            level + 1,
             icon,
             levelData->HasClass() ? classLevels[levelData->Class()] : 0);
     m_description = "";
