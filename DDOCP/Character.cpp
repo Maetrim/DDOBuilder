@@ -6,6 +6,7 @@
 #include "GlobalSupportFunctions.h"
 #include "DDOCPDoc.h"
 #include <algorithm>
+#include "BreakdownItemWeaponEffects.h"
 
 #define DL_ELEMENT Character
 
@@ -1261,6 +1262,8 @@ void Character::NowActive()
     ApplyGuildBuffs();
     SetAlignmentStances();
     UpdateWeaponStances();
+    UpdateShieldStances();
+    UpdateCenteredStance();
     NotifyGearChanged(Inventory_Weapon1);   // updates both in breakdowns
 }
 
@@ -1392,25 +1395,32 @@ std::list<TrainedFeat> Character::AutomaticFeats(
 
 void Character::ActivateStance(const Stance & stance)
 {
-    // first activate the stance
-    m_Stances.AddActiveStance(stance.Name());
-    NotifyStanceActivated(stance.Name());
-    // now revoke any stances that cannot be active at the same time as this stance
-    const std::list<std::string> & incompatibles = stance.IncompatibleStance();
-    std::list<std::string>::const_iterator isit = incompatibles.begin();
-    while (isit != incompatibles.end())
+    // first activate the stance if not already active
+    if (!IsStanceActive(stance.Name()))
     {
-        m_Stances.RevokeStance((*isit));
-        NotifyStanceDeactivated((*isit));
-        ++isit;
+        m_Stances.AddActiveStance(stance.Name());
+        NotifyStanceActivated(stance.Name());
+        // now revoke any stances that cannot be active at the same time as this stance
+        const std::list<std::string> & incompatibles = stance.IncompatibleStance();
+        std::list<std::string>::const_iterator isit = incompatibles.begin();
+        while (isit != incompatibles.end())
+        {
+            m_Stances.RevokeStance((*isit));
+            NotifyStanceDeactivated((*isit));
+            ++isit;
+        }
     }
 }
 
 void Character::DeactivateStance(const Stance & stance)
 {
-    // de-activation of a stance only affects that stance
-    m_Stances.RevokeStance(stance.Name());
-    NotifyStanceDeactivated(stance.Name());
+    // de-activate the stance if active
+    if (IsStanceActive(stance.Name()))
+    {
+        // de-activation of a stance only affects that stance
+        m_Stances.RevokeStance(stance.Name());
+        NotifyStanceDeactivated(stance.Name());
+    }
 }
 
 bool Character::IsStanceActive(const std::string & name) const
@@ -2427,6 +2437,7 @@ void Character::Enhancement_TrainEnhancement(
     NotifyActionPointsChanged();
     NotifyAPSpentInTreeChanged(treeName);
     UpdateWeaponStances();
+    UpdateCenteredStance();
 }
 
 void Character::Enhancement_RevokeEnhancement(
@@ -2488,6 +2499,7 @@ void Character::Enhancement_RevokeEnhancement(
             *enhancementSelection = revokedEnhancementSelection;
         }
         UpdateWeaponStances();
+        UpdateCenteredStance();
     }
 }
 
@@ -2519,6 +2531,7 @@ void Character::Enhancement_ResetEnhancementTree(std::string treeName)
         NotifyActionPointsChanged();
         NotifyAPSpentInTreeChanged(treeName);
         UpdateWeaponStances();
+        UpdateCenteredStance();
     }
 }
 
@@ -3996,6 +4009,7 @@ void Character::SetGear(
         ApplyGearEffects();         // always for active gear
     }
     NotifyGearChanged(slot);
+    UpdateCenteredStance();
 }
 
 void Character::ClearGearInSlot(const std::string & name, InventorySlotType slot)
@@ -4025,6 +4039,7 @@ void Character::ClearGearInSlot(const std::string & name, InventorySlotType slot
         ApplyGearEffects();         // always for active gear
     }
     NotifyGearChanged(slot);
+    UpdateCenteredStance();
 }
 
 void Character::RevokeGearEffects()
@@ -4236,6 +4251,8 @@ void Character::ApplyGearEffects()
     }
 
     UpdateWeaponStances();
+    UpdateShieldStances();
+    UpdateCenteredStance();
 }
 
 void Character::UpdateWeaponStances()
@@ -4251,7 +4268,7 @@ void Character::UpdateWeaponStances()
     Stance sab("SwordAndBoard", "", "");
     Stance staff("Staff", "", "");
     Stance orb("Orb", "", "");
-    Stance ra("RuneArm", "", "");
+    Stance ra("Rune Arm", "", "");
     Stance swashbuckling("Swashbuckling", "", "");
     if (gear.HasItemInSlot(Inventory_Weapon1)
             && gear.HasItemInSlot(Inventory_Weapon2))
@@ -4275,6 +4292,11 @@ void Character::UpdateWeaponStances()
         case Weapon_ShieldTower:
             DeactivateStance(twf);
             ActivateStance(sab);
+            break;
+        case Weapon_Orb:
+        case Weapon_RuneArm:
+            enableSwf = true;
+            // fall through
         default:
             ActivateStance(twf);
             DeactivateStance(sab);
@@ -4315,6 +4337,18 @@ void Character::UpdateWeaponStances()
         {
             DeactivateStance(ra);
         }
+        // swashbuckling also requires light or no armor
+        if (IsStanceActive("Medium Armor")
+                || IsStanceActive("Heavy Armor"))
+        {
+            enableSwashbuckling = false;
+        }
+        // swashbuckling also requires a finessable or thrown weapon
+        if (!IsThrownWeapon(item1.Weapon())
+                || !IsFinesseableWeapon(item1.Weapon()))
+        {
+            enableSwashbuckling = false;
+        }
         if (enableSwashbuckling)
         {
             ActivateStance(swashbuckling);
@@ -4336,7 +4370,7 @@ void Character::UpdateWeaponStances()
             DeactivateStance(swashbuckling);
             break;
         case Weapon_GreatAxe:
-        case Weapon_GreateClub:
+        case Weapon_GreatClub:
         case Weapon_GreatSword:
         case Weapon_Maul:
             ActivateStance(thf);
@@ -4404,6 +4438,89 @@ void Character::UpdateWeaponStances()
     }
 }
 
+void Character::UpdateShieldStances()
+{
+    EquippedGear gear = ActiveGearSet();
+    if (gear.HasItemInSlot(Inventory_Weapon2))
+    {
+        // set the correct shield stance
+        Item item1 = gear.ItemInSlot(Inventory_Weapon2);
+        Stance buckler("Buckler", "", "");
+        Stance smallShield("Small Shield", "", "");
+        Stance largeShield("Large Shield", "", "");
+        Stance towerShield("Tower Shield", "", "");
+        if (item1.Weapon() == Weapon_ShieldBuckler)
+        {
+            ActivateStance(buckler);
+            DeactivateStance(smallShield);
+            DeactivateStance(largeShield);
+            DeactivateStance(towerShield);
+        }
+        else if (item1.Weapon() == Weapon_ShieldSmall)
+        {
+            DeactivateStance(buckler);
+            ActivateStance(smallShield);
+            DeactivateStance(largeShield);
+            DeactivateStance(towerShield);
+        }
+        else if (item1.Weapon() == Weapon_ShieldLarge)
+        {
+            DeactivateStance(buckler);
+            DeactivateStance(smallShield);
+            ActivateStance(largeShield);
+            DeactivateStance(towerShield);
+        }
+        else if (item1.Weapon() == Weapon_ShieldTower)
+        {
+            DeactivateStance(buckler);
+            DeactivateStance(smallShield);
+            DeactivateStance(largeShield);
+            ActivateStance(towerShield);
+        }
+        else
+        {
+            DeactivateStance(buckler);
+            DeactivateStance(smallShield);
+            DeactivateStance(largeShield);
+            DeactivateStance(towerShield);
+        }
+    }
+}
+
+void Character::UpdateCenteredStance()
+{
+    // to be centered the following must be true:
+    // Must be in No/Cloth Armor
+    // equipped weapons in main and off hand must be centering
+    bool isCentered = true;
+    if (!IsStanceActive("Cloth Armor"))
+    {
+        isCentered = false;
+    }
+    // now check any weapon breakdowns
+    BreakdownItem * pBI = FindBreakdown(Breakdown_WeaponEffectHolder);
+    if (pBI != NULL)
+    {
+        BreakdownItemWeaponEffects * pBIWE = dynamic_cast<BreakdownItemWeaponEffects*>(pBI);
+        if (pBIWE != NULL)
+        {
+            if (!pBIWE->AreWeaponsCentering())
+            {
+                isCentered = false;
+            }
+        }
+    }
+    Stance centered("Centered", "", "");
+    if (isCentered)
+    {
+        ActivateStance(centered);
+    }
+    else
+    {
+        DeactivateStance(centered);
+    }
+}
+
 bool Character::LightWeaponInOffHand() const
 {
     bool isLightWeapon = false;
@@ -4439,6 +4556,107 @@ bool Character::LightWeaponInOffHand() const
         }
     }
     return isLightWeapon;
+}
+
+bool Character::IsFocusWeapon(WeaponType wt) const
+{
+    // first determine which focus group in the Kensei tree is selected
+    bool isFocusWeapon = false;
+    bool bExoticWeaponMastery = IsEnhancementTrained("KenseiExoticWeaponMastery", "");
+    if (IsEnhancementTrained("KenseiCore1", "Kensei Focus: Archery"))
+    {
+        isFocusWeapon = (wt == Weapon_Longbow
+                || wt == Weapon_Shortbow);
+    }
+    else if (IsEnhancementTrained("KenseiCore1", "Kensei Focus: Axes"))
+    {
+        isFocusWeapon = (wt == Weapon_BattleAxe
+                || wt == Weapon_GreatAxe
+                || wt == Weapon_HandAxe
+                || wt == Weapon_ThrowingAxe)
+                || (Race() == Race_Dwarf && wt == Weapon_DwarvenAxe);
+        // Axes: Adds dwarven axe if you are not a dwarf. (This has no effect if you are a dwarf.)
+        if (bExoticWeaponMastery && wt == Weapon_DwarvenAxe)
+        {
+            isFocusWeapon = true;
+        }
+    }
+    else if (IsEnhancementTrained("KenseiCore1", "Kensei Focus: Crossbows"))
+    {
+        isFocusWeapon = (wt == Weapon_HeavyCrossbow
+                || wt == Weapon_LightCrossbow);
+        // Crossbows: Adds great crossbows, heavy repeating crossbows, and light repeating crossbows.
+        if (bExoticWeaponMastery)
+        {
+            if (wt == Weapon_GreatCrossbow
+                    || wt == Weapon_RepeatingHeavyCrossbow
+                    || wt == Weapon_RepeatingLightCrossbow)
+            {
+                isFocusWeapon = true;
+            }
+        }
+    }
+    else if (IsEnhancementTrained("KenseiCore1", "Kensei Focus: Druidic Weapons"))
+    {
+        isFocusWeapon = (wt == Weapon_Club
+                || wt == Weapon_Dagger
+                || wt == Weapon_Dart
+                || wt == Weapon_Quarterstaff
+                || wt == Weapon_Scimitar
+                || wt == Weapon_Sickle
+                || wt == Weapon_Unarmed);
+    }
+    else if (IsEnhancementTrained("KenseiCore1", "Kensei Focus: Heavy Blades"))
+    {
+        isFocusWeapon = (wt == Weapon_Falchion
+                || wt == Weapon_GreatSword
+                || wt == Weapon_Longsword
+                || wt == Weapon_Scimitar);
+        // Heavy Blades: Adds bastard swords and Khopesh.
+        if (bExoticWeaponMastery)
+        {
+            if (wt == Weapon_BastardSword
+                    || wt == Weapon_Khopesh)
+            {
+                isFocusWeapon = true;
+            }
+        }
+    }
+    else if (IsEnhancementTrained("KenseiCore1", "Kensei Focus: Light Blades"))
+    {
+        isFocusWeapon = (wt == Weapon_Dagger
+                || wt == Weapon_Kukri
+                || wt == Weapon_Rapier
+                || wt == Weapon_Shortsword
+                || wt == Weapon_ThrowingDagger);
+    }
+    else if (IsEnhancementTrained("KenseiCore1", "Kensei Focus: Maces and Clubs"))
+    {
+        isFocusWeapon = (wt == Weapon_Club
+                || wt == Weapon_LightMace
+                || wt == Weapon_HeavyMace
+                || wt == Weapon_GreatClub
+                || wt == Weapon_Morningstar
+                || wt == Weapon_Quarterstaff);
+    }
+    else if (IsEnhancementTrained("KenseiCore1", "Kensei Focus: Martial Arts"))
+    {
+        isFocusWeapon = (wt == Weapon_Kama
+                || wt == Weapon_Quarterstaff
+                || wt == Weapon_Shuriken
+                || wt == Weapon_Unarmed
+                || wt == Weapon_Handwraps);
+    }
+    else if (IsEnhancementTrained("KenseiCore1", "Kensei Focus: Picks and Hammers"))
+    {
+        isFocusWeapon = (wt == Weapon_LightPick
+                || wt == Weapon_HeavyPick
+                || wt == Weapon_LightHammer
+                || wt == Weapon_Warhammer
+                || wt == Weapon_Maul
+                || wt == Weapon_ThrowingHammer);
+    }
+    return isFocusWeapon;
 }
 
 void Character::ApplyGuildBuffs()

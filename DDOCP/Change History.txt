@@ -1,5 +1,118 @@
 History of changes made
 
+Fix: Fake effects added to "Two Weapon Fighting" and "Oversized Two Weapon Fighting" feats to force display update.
+Enhancements: Swashbuckler: Swashbuckling Style II - Loud and Clear now correctly requires the "Orb" stance active.
+Stances: The following stances are now under program control. Based on equipped gear.
+---Buckler
+---Small Shield
+---Large Shield
+---Tower Shield
+---Centered
+Fix: Corrected a minor issue with TWF attack penalties.
+Feats: "Single Weapon Fighting" and "Two Weapon Fighting" are now mutually exclusive.
+Feats: "Single Weapon Fighting" and "Two Handed Fighting" are now mutually exclusive.
+Fix: "Two Weapon Fighting" stance is no longer erroneously enabled if you have a shield in your off hand.
+Fix: "Sword and Board" stance is no longer erroneously disabled if you have a shield in your off hand.
+Fix: "Single Weapon Fighting" stance is now enabled if you have a Rune-arm or an Orb in your off hand.
+Fix: Renamed weapon "Great Sword" from "Greatsword" effects fixed.
+Fix: "EldritchBlast" is no longer a weapon type but an effect of its own. (No breakdown available as yet).
+Fix: Swashbuckling stance is now disabled if you have Medium or Heavy Armor equipped.
+Fix: Swashbuckling stance is now disabled if you do not have a Finesseable or thrown weapon equipped.
+Fix: "Curative Admixture: Cure Light Wounds" is no longer erroneously classed as a cleric and favored soul spell.
+Fix: Stances will now draw correctly in all cases on a window re-size event.
+UI: Level Up view now shows the currently selected level in its title bar.
+Engine: New weapon Class "Finesseable" added.
+Engine: New weapon Class "FocusGroup" added. (To properly implement Kensei bonus's)
+Engine: MeleeStyle enum removed (now uses stances instead).
+Engine: Bonus type "Music" added.
+Engine: Duplicate effect MaxDodgeBonus removed, all uses converted to "DodgeCapBonus".
+Breakdowns: Single threat bonus breakdown broken into 3: "Melee", "Ranged" and "Spell"
+---All ThreatBonus effects updated to correct types (hopefully).
+Engine: Save type "Curse" added. Need to check parent save type (Assumed Reflex).
+Breakdowns: New save breakdown "vs Curse" added. (Parent Save - Reflex - is this correct?)
+Breakdowns: Weapon breakdowns now report critical threat range.
+---Test weapon items updated to include relevant weapon specific effects.
+---Note that no effort has been made to make these test weapons accurate for things like threat range and multiplier.
+Export: New save breakdown "vs Curse" added.
+Fix: "Tower Shield Proficiency" -2 attack bonus now applies correctly when a Tower shield is equipped.
+Kensei: Focus group effects updated to use WeaponClass "FocusGroup". Internal work done to get these to work correctly.
+---Dynamic change of weapons in focus group now updates correctly for effects.
+Fix: Weapon breakdowns now removed when no character document active.
+An Enhancement pass was done again to see if anything was missed:
+---Enhancements: Aasimar - Some effect types changed from "Feat" to "Enhancement".
+------Aasimar: Celestial Tutelage now uses GrantFeat for "Exotic Weapon Proficiency: Bastard Sword".
+------Several erroneous lf/cr in descriptions removed.
+---Enhancements: Aasimar: Scourge of the Undead - Some effect types changed from "Feat" to "Enhancement".
+---Enhancements: Arcanotechnician: Imbue Defender missing spell power effects added.
+------Arcanotechnician: Arcane Engine - near Iron Defender effect added.
+---Enhancements: Battle Engineer: Reconstructed Armaments now has correct description.
+------Battle Engineer: Unlock Potential missing effects added.
+---Enhancements: Frenzied Berserker: Frenzy - description updated and effects added.
+------Death Frenzy - description updated and effects added.
+------Storms eye - description updated and effects added.
+------Tantrum - description updated.
+---Enhancements: Occult Slayer: Parrying Bond - effects added.
+------Lessons of Nature - Missing "no fail on a 1" for disease save at tier 3 added.
+------Driving Force - description updated.
+---Enhancements: Ravager: Critical Rage - critical multiplier effect is now correctly a competence bonus.
+---Enhancements: Spellsinger: Studies - will now grant the feat "Magical Studies". PROBLEM: Grants at tier 1, when should be Tier 3.
+------Spellsinger: Multiple Enhancement Selector I - Reverberate will now show up as an SLA.
+------Spellsinger: Multiple Enhancement Selector I - Suggestion will now show up as an SLA.
+---Enhancements: Warchanter - Enchant Weapon now adds the spell to your spells list.
+------Warchanter: Arcane Shield Chant - now has effects.
+---------Warchanter: Iced Edges - now has effects.
+------Warchanter: Ironskin Chant - now has effects.
+------Warchanter: Reckless Chant - now has effects.
+------Warchanter: Armorer - now also supplied -100 ASF chance when in Medium Armor.
+------Warchanter: Chant of Power - now has self buff effects.
+---Enhancements: Bladeforged: Repair Systems - missing Repair skill effect added.
+------Brute Fighting - new stance and effects added.
+---Enhancements: Divine Disciple: Divine Spell Knowledge I - now adds spells to your spell list (should be spell book but not modelled that way).
+------Divine Disciple: Divine Spell Knowledge II - now adds spells to your spell list (should be spell book but not modelled that way).
+------Divine Disciple: Divine Spell Knowledge III - now adds spells to your spell list (should be spell book but not modelled that way).
+------Divine Disciple: Prophetic Zenith IV - now adds correct SLAs.
+---Enhancements: Radiant Servant: Pacifism - stance and effects added
+------Radiant Servant: Unyielding Sovereignty - now shows up as an SLA.
+---Enhancements: Warpriest: Sanctuary - Inactive PRR effect added.
+------Warpriest War Domain: Blur - now adds spells to your spell list (should be spell book but not modelled that way).
+------Warpriest War Domain: Haste - now adds spells to your spell list (should be spell book but not modelled that way).
+---Enhancements: Dragonborn: Brutality - Stances and effects added
+------Dragonborn: Memory of Flight - Description fixed and now shows up as an SLA
+---Enhancements: Drow: Improved Dodge: Light Armor - effects now only apply in Cloth or Light Armor.
+---Enhancements: Nature's Warrior: Four Legs Good - immunity effect added
+---Enhancements: Dwarf Fortress - effects now only apply when in Heavy Armor
+---Enhancements: Eldritch Knight: Eldritch Strike - Only grants 1% doublestrike instead of 1% per Ap.
+---Enhancements: Angel of Vengeance: Just Reward - Now has correct description.
+---Enhancements: All occurrences of "Warpriest" changed to "WarSoul" in WarSoul tree.
+------WarSoul War Domain: Blur - now adds spells to your spell list (should be spell book but not modelled that way).
+------WarSoul War Domain: Haste - now adds spells to your spell list (should be spell book but not modelled that way).
+---Enhancements: Kensei: Strike With No Thought - Critical multiplier bonus is now correctly a Competence bonus
+------Kensei: Strike With No Thought - Doublestrike/Doubleshot erroneously always applies regardless of your weapon focus group.
+------Kensei: One Cut - Missing critical multiplier effect added. Needs work to apply properly
+------Kensei: Improved Dodge - effect now correctly applies when No/Cloth ot Light Armor is equipped only.
+------Kensei: Opportunity Attack - Melee power effect now listed but always inactive
+------Kensei: One With The Blade - Multi-selector removed as can now use new WeaponClass "FocusGroup"
+---------Older files with this enhancement trained will need to re-spend APs in this tree to avoid a missing icon.
+---Enhancements: Stalwart Defender: Last Stand - Tactical DC bonus is now correctly 2 (not 10)
+------Stalwart Defender: Improved Stalwart Defense I - Bonus types are now correctly a Competence bonus
+------Stalwart Defender: Improved Stalwart Defense II - Bonus types are now correctly a Competence bonus
+------Stalwart Defender: Improved Stalwart Defense III - Bonus types are now correctly a Competence bonus
+------Stalwart Defender: Greater Stalwart Defense I - Bonus types are now correctly a Competence bonus
+------Stalwart Defender: Greater Stalwart Defense II - Bonus types are now correctly a Competence bonus
+------Stalwart Defender: Greater Stalwart Defense III - Bonus types are now correctly a Competence bonus
+---Enhancements: Harper Agent: Know the Angles - Partial effects added (cannot model damage bonus using current program structure)
+------Harper Agent: Throat Dagger - now shows up as a SLA.
+---Enhancements: Henshin Mystic: Mystic Training - tactical DC effects added
+------Henshin Mystic: Way of the Elegant Crane - bonus effects now scale correctly
+------Henshin Mystic: Way of the Faithful Hound - bonus effects now scale correctly
+------Henshin Mystic: Way of the Patient Tortoise - bonus effects now scale correctly
+------Henshin Mystic: Way of the Tenacious Badger - bonus effects now scale correctly
+------Henshin Mystic: Lighting the Candle - weapon damage effects added
+------Henshin Mystic: Focus - Bonus's are now correctly Exceptional
+(Stopped at Henshin Mystic for now)
+
+version 1.0.0.20
+
 Fix: Filigree tooltips now clear previous tooltips effect descriptions before displaying.
 Item Select Dialog: Weapons "Can Accept Sentience Jewel" flag now checked on an equipped item.
 Breakdowns: Old weapon breakdowns removed.

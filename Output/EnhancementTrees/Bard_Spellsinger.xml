@@ -152,7 +152,7 @@ Haunted: -2 on all Saving Throws, Skill checks and attack rolls.</Description>
       <EnhancementTreeItem>
          <Name>Spellsinger: Studies</Name>
          <InternalName>SSStudies</InternalName>
-         <Description>Choose either Magical Studies or Musical Studies to advance your training: </Description>
+         <Description>Choose either Magical Studies or Musical Studies to advance your training:</Description>
          <Icon>SSStudies</Icon>
          <XPosition>1</XPosition>
          <YPosition>1</YPosition>
@@ -171,6 +171,12 @@ Rank 3: You gain the Magical Training feat. </Description>
                   <Type>SpellPoints</Type>
                   <Bonus>Enhancement</Bonus>
                   <AmountVector size="3">30 60 100</AmountVector>
+               </Effect>
+               <Effect>
+                   <!--Tier 3 only-->
+                  <Type>GrantFeat</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Feat>Magical Training</Feat>
                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
@@ -331,15 +337,30 @@ damage for 60 seconds</Description>
          <Selector>
             <EnhancementSelection>
                <Name>Reverberate</Name>
-               <Description>Activation cost: [20/15/10]. Cooldown: 9 seconds.</Description>
+               <Description>Gain SLA "Reverberate" - Wrack the target's body with internal sonic booms,
+dealing 1 to 10 sonic damage +1 per three caster levels (up to caster level 18)
+every 2 seconds for a duration of 16 seconds. This spell can stack on the target
+up to three times, increasing the damage with each stack.
+Activation cost: [20/15/10]. Cooldown: 9 seconds.</Description>
                <Icon>SSReverberate</Icon>
                <Cost>1</Cost>
+                <Effect>
+                    <Type>SpellLikeAbility</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <SpellLikeAbility>Reverberate</SpellLikeAbility>
+                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Suggestion</Name>
-               <Description>Activation cost: [13/11/9]. Cooldown: [20/15/10] seconds</Description>
+               <Description>You gain Suggestion as an SLA
+Activation cost: [13/11/9]. Cooldown: [20/15/10] seconds</Description>
                <Icon>SSSuggestion</Icon>
                <Cost>1</Cost>
+                <Effect>
+                    <Type>SpellLikeAbility</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <SpellLikeAbility>Suggestion</SpellLikeAbility>
+                </Effect>
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
@@ -417,7 +438,7 @@ that cast spells, and +[1/2/3] to the DCs of your offensive wands.</Description>
                   <Type>SpellDC</Type>
                   <Bonus>Enhancement</Bonus>
                   <School>Illusion</School>
-                  <AmountVector size="1">1</AmountVector>
+                  <Amount>1</Amount>
                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
@@ -429,7 +450,7 @@ that cast spells, and +[1/2/3] to the DCs of your offensive wands.</Description>
                   <Type>SpellDC</Type>
                   <Bonus>Enhancement</Bonus>
                   <School>Evocation</School>
-                  <AmountVector size="1">1</AmountVector>
+                  <Amount>1</Amount>
                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
@@ -441,7 +462,7 @@ that cast spells, and +[1/2/3] to the DCs of your offensive wands.</Description>
                   <Type>SpellDC</Type>
                   <Bonus>Enhancement</Bonus>
                   <School>Enchantment</School>
-                  <AmountVector size="1">1</AmountVector>
+                  <Amount>1</Amount>
                </Effect>
             </EnhancementSelection>
          </Selector>
@@ -450,7 +471,7 @@ that cast spells, and +[1/2/3] to the DCs of your offensive wands.</Description>
          <Name>Spellsinger: Enthrallment</Name>
          <InternalName>SSEnthrallment</InternalName>
          <Description>Expend a use of Bardic Music to enthrall multiple enemies.
-Enthralled enemies stop what they're doing and have a chance of breaking free
+Enthralled enemies stop what they are doing and have a chance of breaking free
 when damaged.</Description>
          <Icon>SSEnthrallment</Icon>
          <XPosition>0</XPosition>
@@ -501,8 +522,8 @@ Sleep, Paralysis, Exhaustion and Energy Drain for four minutes.</Description>
       <EnhancementTreeItem>
          <Name>Spellsinger: Shout</Name>
          <InternalName>SSShout</InternalName>
-         <Description>Spell-Like Ability: Shout. Activation cost: [15/12/9] SP.
-Cooldown: [12/9/6] seconds.</Description>
+         <Description>Spell-Like Ability: Shout.
+Activation cost: [15/12/9] SP. Cooldown: [12/9/6] seconds.</Description>
          <Icon>SSShout</Icon>
          <XPosition>2</XPosition>
          <YPosition>3</YPosition>
@@ -563,7 +584,7 @@ seconds plus 6 seconds per bard level.</Description>
             <Type>AbilityBonus</Type>
             <Bonus>Enhancement</Bonus>
             <Ability>Charisma</Ability>
-            <AmountVector size="1">1</AmountVector>
+            <Amount>1</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -684,7 +705,7 @@ spells cast by you and all nearby allies for 60 seconds plus 30 seconds per bard
             <Type>AbilityBonus</Type>
             <Bonus>Enhancement</Bonus>
             <Ability>Charisma</Ability>
-            <AmountVector size="1">1</AmountVector>
+            <Amount>1</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>

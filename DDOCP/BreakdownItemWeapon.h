@@ -8,6 +8,7 @@
 #include "BreakdownItemWeaponAttackBonus.h"
 #include "BreakdownItemWeaponDamageBonus.h"
 #include "BreakdownItemSimple.h"
+#include "BreakdownItemWeaponCriticalThreatRange.h"
 
 class BreakdownItemWeapon :
         public BreakdownItem
@@ -49,15 +50,6 @@ class BreakdownItemWeapon :
         virtual void UpdateFeatRevoked(Character * charData, const std::string & featName) override;
     private:
          void AddTreeItem(const std::string & entry, BreakdownItem * pBreakdown);
-         bool IsCrossbow() const;
-         bool IsDruidicWeapon() const;
-         bool IsHeavyBladeWeapon() const;
-         bool IsLightBladeWeapon() const;
-         bool IsPickOrHammerWeapon() const;
-         bool IsMaceOrClubWeapon() const;
-         bool IsMartialArtsWeapon() const;
-         bool IsAxe() const;
-         bool IsLightWeapon() const;
          bool IsDamageType(WeaponDamageType type) const;
 
         CString m_title;
@@ -66,8 +58,8 @@ class BreakdownItemWeapon :
         BreakdownItemSimple m_baseDamage;                   // The X of X[2d6]
         BreakdownItemWeaponAttackBonus m_attackBonus;       // Basic +Hit
         BreakdownItemWeaponDamageBonus m_damageBonus;       // Basic +Damage
+        BreakdownItemWeaponCriticalThreatRange m_criticalThreatRange;
         //BreakdownItemWeaponVorpalRange m_vorpalRange;       // typically 20, can be extended
-        //BreakdownItemWeaponCriticalRange m_criticalThreatRange; // e.g. 18-20
         BreakdownItemWeaponAttackBonus m_criticalAttackBonus;
         BreakdownItemWeaponDamageBonus m_criticalDamageBonus;
         //BreakdownItemWeaponCriticalMultiplier m_criticalMultiplier;

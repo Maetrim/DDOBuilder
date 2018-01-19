@@ -244,6 +244,7 @@ class Character :
         void SetGear(const std::string & name, InventorySlotType slot, const Item & item);
         void ClearGearInSlot(const std::string & name, InventorySlotType slot);
         bool LightWeaponInOffHand() const;
+        bool IsFocusWeapon(WeaponType wt) const;
 
         // guild support
         void ToggleApplyGuildBuffs();
@@ -387,6 +388,8 @@ class Character :
         void UpdateSkillPoints();
         void UpdateSkillPoints(size_t level);
         void UpdateWeaponStances();
+        void UpdateShieldStances();
+        void UpdateCenteredStance();
 
         // CharacterObserver
         // we need to track all sources from which a granted feat can come from

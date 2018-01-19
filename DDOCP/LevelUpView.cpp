@@ -664,6 +664,17 @@ void CLevelUpView::UpdateGrantedFeatsChanged(Character * charData)
 
 void CLevelUpView::PopulateControls()
 {
+    if (m_pCharacter != NULL)
+    {
+        CString text;
+        text.Format("Level Up - Level %d", m_level + 1);
+        GetParent()->SetWindowText(text);
+    }
+    else
+    {
+        GetParent()->SetWindowText("Level Up");
+    }
+
     SetLevelButtonStates();
     SetAbilitiesAtLevel();
     PopulateSkills();

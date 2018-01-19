@@ -17,7 +17,6 @@
 #include "TacticalTypes.h"
 #include "WeaponClassTypes.h"
 #include "WeaponTypes.h"
-#include "MeleeStyleTypes.h"
 #include "WeaponDamageTypes.h"
 
 // add new feat effects here and update the map for the text saved for that
@@ -55,6 +54,7 @@ enum EffectType
     Effect_DoubleStrike,
     Effect_DR,
     Effect_DRBypass,
+    Effect_EldritchBlast,
     Effect_EnhancementTree,
     Effect_EnchantArmor,
     Effect_EnchantWeapon,
@@ -92,7 +92,6 @@ enum EffectType
     Effect_Keen,
     Effect_MaxDexBonus,
     Effect_MaxDexBonusTowerShield,
-    Effect_MaxDodgeBonus,
     Effect_MeleePower,
     Effect_MissileDeflection,
     Effect_MissileDeflectionBypass,
@@ -132,7 +131,9 @@ enum EffectType
     Effect_SpellPower,
     Effect_SpellResistance,
     Effect_TacticalDC,
-    Effect_ThreatBonus,
+    Effect_ThreatBonusMelee,
+    Effect_ThreatBonusRanged,
+    Effect_ThreatBonusSpell,
     Effect_TurnBonus,
     Effect_TurnDiceBonus,
     Effect_TurnLevelBonus,
@@ -181,6 +182,7 @@ const XmlLib::enumMapEntry<EffectType> effectTypeMap[] =
     {Effect_DoubleStrike, L"Doublestrike"},
     {Effect_DR, L"DR"},
     {Effect_DRBypass, L"DRBypass"},
+    {Effect_EldritchBlast, L"EldritchBlast"},
     {Effect_EnhancementTree, L"EnhancementTree"},
     {Effect_EnchantArmor, L"EnchantArmor"},
     {Effect_EnchantWeapon, L"EnchantWeapon"},
@@ -218,7 +220,6 @@ const XmlLib::enumMapEntry<EffectType> effectTypeMap[] =
     {Effect_Keen, L"Keen"},
     {Effect_MaxDexBonus, L"MaxDexBonus"},
     {Effect_MaxDexBonusTowerShield, L"MaxDexBonusTowerShield"},
-    {Effect_MaxDodgeBonus, L"MaxDodgeBonus"},
     {Effect_MeleePower, L"MeleePower"},
     {Effect_MRR, L"MRR"},
     {Effect_MRRCap, L"MRRCap"},
@@ -258,7 +259,9 @@ const XmlLib::enumMapEntry<EffectType> effectTypeMap[] =
     {Effect_SpellPower, L"SpellPower"},
     {Effect_SpellResistance, L"SpellResistance"},
     {Effect_TacticalDC, L"TacticalDC"},
-    {Effect_ThreatBonus, L"ThreatBonus"},
+    {Effect_ThreatBonusMelee, L"ThreatBonusMelee"},
+    {Effect_ThreatBonusRanged, L"ThreatBonusRanged"},
+    {Effect_ThreatBonusSpell, L"ThreatBonusSpell"},
     {Effect_TurnBonus, L"TurnBonus"},
     {Effect_TurnDiceBonus, L"TurnDiceBonus"},
     {Effect_TurnLevelBonus, L"TurnLevelBonus"},
@@ -323,7 +326,6 @@ class Effect :
                 DL_ENUM_LIST(_, DamageReductionType, DR, DR_Unknown, drTypeMap) \
                 DL_OPTIONAL_ENUM(_, EnergyType, Energy, Energy_Unknown, energyTypeMap) \
                 DL_OPTIONAL_ENUM(_, FavoredEnemyType, FavoredEnemy, FavoredEnemy_Unknown, favoredEnemyTypeMap) \
-                DL_OPTIONAL_ENUM(_, MeleeStyle, Style, MeleeStyle_Unknown, meleeStyleMap) \
                 DL_OPTIONAL_ENUM(_, SaveType, Save, Save_Unknown, saveTypeMap) \
                 DL_OPTIONAL_ENUM(_, SkillType, Skill, Skill_Unknown, skillTypeMap) \
                 DL_OPTIONAL_ENUM(_, SpellPowerType, SpellPower, SpellPower_Unknown, spellPowerTypeMap) \

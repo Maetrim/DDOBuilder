@@ -8,6 +8,7 @@
 #include "ClassTypes.h"
 #include "Dice.h"
 #include "EnergyTypes.h"
+#include "WeaponTypes.h"
 
 class Character;
 
@@ -79,6 +80,7 @@ class ActiveEffect
         bool HasBreakdownDependency(BreakdownType bt) const;
         bool HasClass(ClassType type) const;
         void SetWholeNumbersOnly();
+        void SetWeapon(WeaponType wt);  // used when an effect has WeaponClass_FocusGroup
     private:
         enum EffectType
         {
@@ -109,4 +111,7 @@ class ActiveEffect
         bool m_bIsPercentage;
         mutable double m_percentageAmount;
         bool m_bWholeNumbersOnly;
+        bool m_bHasWeaponType;
+        WeaponType m_weaponType;
+        mutable bool m_clearValue;
 };

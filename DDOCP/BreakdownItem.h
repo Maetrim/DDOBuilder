@@ -62,6 +62,9 @@ class BreakdownItem :
         void AddAbility(AbilityType ability);
         void RemoveFirstAbility(AbilityType ability);
 
+        void SetWeapon(WeaponType wt);
+        WeaponType Weapon() const;
+
     protected:
         void AddOtherEffect(const ActiveEffect & effect);
         void AddFeatEffect(const ActiveEffect & effect);
@@ -122,6 +125,8 @@ class BreakdownItem :
     protected:
         AbilityType LargestStatBonus();
         std::vector<AbilityType> m_mainAbility; // ability types that are used for this breakdown (highest of those listed)
+        bool m_bHasWeapon;
+        WeaponType m_weapon;
 
         friend class BreakdownItemWeapon;
 };

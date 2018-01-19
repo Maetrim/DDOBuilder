@@ -11,6 +11,7 @@ enum SaveType
 {
     Save_Unknown = 0,
     Save_All,
+    Save_Curse,
     Save_Disease,
     Save_Enchantment,
     Save_Fear,
@@ -27,6 +28,7 @@ const XmlLib::enumMapEntry<SaveType> saveTypeMap[] =
 {
     {Save_Unknown, L"Unknown"},
     {Save_All, L"All"},
+    {Save_Curse, L"Curse"},
     {Save_Disease, L"Disease"},
     {Save_Enchantment, L"Enchantment"},
     {Save_Fear, L"Fear"},

@@ -455,6 +455,7 @@ void CDDOCPDoc::AddSaves(std::stringstream & forumExport)
     AddBreakdown(forumExport, "\r\n  vs Traps:       ", 3, Breakdown_SaveTraps);
     AddBreakdown(forumExport, "\r\n  vs Spell:       ", 3, Breakdown_SaveSpell);
     AddBreakdown(forumExport, "\r\n  vs Magic:       ", 3, Breakdown_SaveMagic);
+    AddBreakdown(forumExport, "\r\n  vs Curse:       ", 3, Breakdown_SaveCurse);
     forumExport << "\r\n";
 
     forumExport << "Marked with a * is no fail on a 1 if required DC met\r\n";

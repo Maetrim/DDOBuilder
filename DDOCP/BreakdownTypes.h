@@ -24,6 +24,7 @@ enum BreakdownType
     Breakdown_SaveSpell,
     Breakdown_SaveMagic,
     Breakdown_SaveTraps,
+    Breakdown_SaveCurse,
     // physical
     Breakdown_ArmorCheckPenalty,
     Breakdown_BAB,
@@ -44,7 +45,9 @@ enum BreakdownType
     Breakdown_HealingAmplification,
     Breakdown_NegativeHealingAmplification,
     Breakdown_RepairAmplification,
-    Breakdown_Threat,
+    Breakdown_ThreatMelee,
+    Breakdown_ThreatRanged,
+    Breakdown_ThreatSpell,
     Breakdown_DodgeBypass,
     Breakdown_FortificationBypass,
     Breakdown_Assassinate,

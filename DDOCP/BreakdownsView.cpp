@@ -336,15 +336,30 @@ void CBreakdownsView::CreateSavesBreakdowns()
                     "vs Magic",
                     hItem,
                     TVI_LAST);
-            BreakdownItem * pSS = new BreakdownItemSave(
+            BreakdownItem * pSM = new BreakdownItemSave(
                     Breakdown_SaveMagic,
                     Save_Magic,
                     &m_itemBreakdownTree,
                     hSubItem,
                     Ability_Unknown,
                     FindBreakdown(Breakdown_SaveReflex));
-            m_itemBreakdownTree.SetItemData(hSubItem, (DWORD)(void*)pSS);
-            m_items.push_back(pSS);
+            m_itemBreakdownTree.SetItemData(hSubItem, (DWORD)(void*)pSM);
+            m_items.push_back(pSM);
+        }
+        {
+            HTREEITEM hSubItem = m_itemBreakdownTree.InsertItem(
+                    "vs Curse",
+                    hItem,
+                    TVI_LAST);
+            BreakdownItem * pSC = new BreakdownItemSave(
+                    Breakdown_SaveCurse,
+                    Save_Curse,
+                    &m_itemBreakdownTree,
+                    hSubItem,
+                    Ability_Unknown,
+                    FindBreakdown(Breakdown_SaveReflex));
+            m_itemBreakdownTree.SetItemData(hSubItem, (DWORD)(void*)pSC);
+            m_items.push_back(pSC);
         }
     }
 
@@ -729,13 +744,41 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
     }
     {
         HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
-                "Threat Generation",
+                "Melee Threat Generation",
                 hOffensiveParent,
                 TVI_LAST);
         BreakdownItem * pThreat = new BreakdownItemSimple(
-                Breakdown_Threat,
-                Effect_ThreatBonus,
-                "Threat Generation",
+                Breakdown_ThreatMelee,
+                Effect_ThreatBonusMelee,
+                "Melee Threat Generation",
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pThreat);
+        m_items.push_back(pThreat);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Ranged Threat Generation",
+                hOffensiveParent,
+                TVI_LAST);
+        BreakdownItem * pThreat = new BreakdownItemSimple(
+                Breakdown_ThreatRanged,
+                Effect_ThreatBonusRanged,
+                "Ranged Threat Generation",
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pThreat);
+        m_items.push_back(pThreat);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Spell Threat Generation",
+                hOffensiveParent,
+                TVI_LAST);
+        BreakdownItem * pThreat = new BreakdownItemSimple(
+                Breakdown_ThreatSpell,
+                Effect_ThreatBonusSpell,
+                "Spell Threat Generation",
                 &m_itemBreakdownTree,
                 hItem);
         m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pThreat);
@@ -1670,6 +1713,10 @@ BreakdownItem * CBreakdownsView::FindBreakdown(BreakdownType type) const
             pItem = m_items[i];
             break;
         }
+    }
+    if (type == Breakdown_WeaponEffectHolder)
+    {
+        pItem = m_pWeaponEffects;
     }
     return pItem;
 }

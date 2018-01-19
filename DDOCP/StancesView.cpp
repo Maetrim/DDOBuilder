@@ -134,6 +134,15 @@ void CStancesView::OnSize(UINT nType, int cx, int cy)
             }
         }
     }
+    // ensure stances redraw correctly
+    for (size_t i = 0; i < m_userStancebuttons.size(); ++i)
+    {
+        m_userStancebuttons[i]->Invalidate(TRUE);
+    }
+    for (size_t i = 0; i < m_autoStancebuttons.size(); ++i)
+    {
+        m_autoStancebuttons[i]->Invalidate(TRUE);
+    }
 }
 
 LRESULT CStancesView::OnNewDocument(WPARAM wParam, LPARAM lParam)
@@ -197,7 +206,7 @@ void CStancesView::CreateStanceWindows()
     Stance orb("Orb", "EfficientMetamagic", "You are fighting with an Orb in your off hand");
     orb.Set_AutoControlled();
     AddStance(orb);
-    Stance runearm("RuneArm", "BEBattleEngineer", "You are fighting with a Rune-Arm in your off hand");
+    Stance runearm("Rune Arm", "BEBattleEngineer", "You are fighting with a Rune-Arm in your off hand");
     runearm.Set_AutoControlled();
     AddStance(runearm);
     Stance Swashbuckling("Swashbuckling", "SBEvasiveManeuvers", "You are Swashbuckling");

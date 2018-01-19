@@ -22,7 +22,10 @@ ActiveEffect::ActiveEffect() :
     m_class(Class_Unknown),
     m_bIsPercentage(false),
     m_percentageAmount(0),
-    m_bWholeNumbersOnly(false)
+    m_bWholeNumbersOnly(false),
+    m_bHasWeaponType(false),
+    m_weaponType(Weapon_Unknown),
+    m_clearValue(false)
 {
 }
 
@@ -45,7 +48,10 @@ ActiveEffect::ActiveEffect(
     m_class(Class_Unknown),
     m_bIsPercentage(false),
     m_percentageAmount(0),
-    m_bWholeNumbersOnly(false)
+    m_bWholeNumbersOnly(false),
+    m_bHasWeaponType(false),
+    m_weaponType(Weapon_Unknown),
+    m_clearValue(false)
 {
 }
 
@@ -67,7 +73,10 @@ ActiveEffect::ActiveEffect(
     m_class(Class_Unknown),
     m_bIsPercentage(false),
     m_percentageAmount(0),
-    m_bWholeNumbersOnly(false)
+    m_bWholeNumbersOnly(false),
+    m_bHasWeaponType(false),
+    m_weaponType(Weapon_Unknown),
+    m_clearValue(false)
 {
     // stacks is set immediately after this is constructed
 }
@@ -92,7 +101,10 @@ ActiveEffect::ActiveEffect(
     m_class(Class_Unknown),
     m_bIsPercentage(false),
     m_percentageAmount(0),
-    m_bWholeNumbersOnly(false)
+    m_bWholeNumbersOnly(false),
+    m_bHasWeaponType(false),
+    m_weaponType(Weapon_Unknown),
+    m_clearValue(false)
 {
 }
 
@@ -114,7 +126,10 @@ ActiveEffect::ActiveEffect(
     m_class(Class_Unknown),
     m_bIsPercentage(false),
     m_percentageAmount(0),
-    m_bWholeNumbersOnly(false)
+    m_bWholeNumbersOnly(false),
+    m_bHasWeaponType(false),
+    m_weaponType(Weapon_Unknown),
+    m_clearValue(false)
 {
 }
 
@@ -136,7 +151,10 @@ ActiveEffect::ActiveEffect(
     m_class(classType),
     m_bIsPercentage(false),
     m_percentageAmount(0),
-    m_bWholeNumbersOnly(false)
+    m_bWholeNumbersOnly(false),
+    m_bHasWeaponType(false),
+    m_weaponType(Weapon_Unknown),
+    m_clearValue(false)
 {
 }
 
@@ -158,7 +176,10 @@ ActiveEffect::ActiveEffect(
     m_class(classType),
     m_bIsPercentage(false),
     m_percentageAmount(0),
-    m_bWholeNumbersOnly(false)
+    m_bWholeNumbersOnly(false),
+    m_bHasWeaponType(false),
+    m_weaponType(Weapon_Unknown),
+    m_clearValue(false)
 {
 }
 
@@ -395,6 +416,12 @@ double ActiveEffect::TotalAmount(bool allowTruncate) const
         // round down to whole number
         value = (int)(value);
     }
+    if (m_bHasWeaponType
+            && m_clearValue)
+    {
+        // if its not a focus weapon, ensure not listed
+        value = 0;
+    }
     return value;
 }
 
@@ -437,6 +464,10 @@ bool ActiveEffect::IsActive(const Character * pCharacter) const
             active = false;
         }
     }
+    if (m_bHasWeaponType)
+    {
+        m_clearValue = !pCharacter->IsFocusWeapon(m_weaponType);
+    }
     return active;
 }
 
@@ -459,6 +490,12 @@ void ActiveEffect::SetPercentageValue(double amount) const
 void ActiveEffect::SetWholeNumbersOnly()
 {
     m_bWholeNumbersOnly = true;
+}
+
+void ActiveEffect::SetWeapon(WeaponType wt)
+{
+    m_bHasWeaponType = true;
+    m_weaponType = wt;
 }
 
 bool ActiveEffect::operator<=(const ActiveEffect & other) const

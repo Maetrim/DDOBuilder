@@ -31,7 +31,7 @@
       <EnhancementTreeItem>
          <Name>Frenzied Berserker: Frenzied Toughness I</Name>
          <InternalName>FBCore2</InternalName>
-         <Description>+20 hit points +10 Healing Amplification</Description>
+         <Description>+20 hit points and +10 Healing Amplification</Description>
          <Icon>Toughness</Icon>
          <XPosition>1</XPosition>
          <YPosition>0</YPosition>
@@ -51,18 +51,21 @@
          <Effect>
             <Type>Hitpoints</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="1">20</AmountVector>
+            <Amount>20</Amount>
          </Effect>
          <Effect>
             <Type>HealingAmplification</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="1">10</AmountVector>
+            <Amount>10</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Frenzied Berserker: Frenzy</Name>
          <InternalName>FBCore3</InternalName>
-         <Description>Activation Cost: 10 Hit Points. Cooldown: 30 seconds.</Description>
+         <Description>Enter a frenzy, increasing your strength by +2 and adding Vicious to your
+melee weapons (+2d6 damage). This damage scales with 100% Melee Power 
+Passive: +5 Melee Power
+Activation Cost: 10 Hit Points. Cooldown: 30 seconds.</Description>
          <Icon>FBFrenzy</Icon>
          <XPosition>2</XPosition>
          <YPosition>0</YPosition>
@@ -80,11 +83,33 @@
                <Enhancement>FBCore2</Enhancement>
             </Requirement>
          </Requirements>
+          <Effect>
+              <Type>MeleePower</Type>
+              <Bonus>Enhancement</Bonus>
+              <Amount>5</Amount>
+          </Effect>
+          <Effect>
+              <Type>AbilityBonus</Type>
+              <Bonus>Enhancement</Bonus>
+              <Amount>2</Amount>
+              <Ability>Strength</Ability>
+              <Stance>Frenzy</Stance>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Bonus>Enhancement</Bonus>
+              <Dice>
+                  <Number size="1">2</Number>
+                  <Sides size="1">6</Sides>
+              </Dice>
+              <WeaponClass>Melee</WeaponClass>
+              <Stance>Frenzy</Stance>
+          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Frenzied Berserker: Frenzied Toughness II</Name>
          <InternalName>FBCore4</InternalName>
-         <Description>+60 maximum HP +20 Healing Amplification +10 Physical Resistance</Description>
+         <Description>+60 maximum HP, +20 Healing Amplification and +10 Physical Resistance</Description>
          <Icon>Toughness</Icon>
          <XPosition>3</XPosition>
          <YPosition>0</YPosition>
@@ -104,23 +129,28 @@
          <Effect>
             <Type>Hitpoints</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="1">60</AmountVector>
+            <Amount>60</Amount>
          </Effect>
          <Effect>
             <Type>HealingAmplification</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="1">20</AmountVector>
+            <Amount>20</Amount>
          </Effect>
          <Effect>
             <Type>PRR</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="1">10</AmountVector>
+            <Amount>10</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Frenzied Berserker: Death Frenzy</Name>
          <InternalName>FBCore5</InternalName>
-         <Description>Activation Cost: 20 Hit Points. Cooldown: 30 seconds.</Description>
+         <Description>Expend 20 hit points to enter a Death Frenzy for one minute: 
++4 strength, +1 critical damage multiplier on rolls of 19-20. 
+Your melee weapons gain 'Greater Vicious'.
++4d6 damage to your attacks. This damage scales with 100% Melee Power
+Passive: +10 Melee Power
+Activation Cost: 20 Hit Points. Cooldown: 30 seconds.</Description>
          <Icon>FBDeathFrenzy</Icon>
          <XPosition>4</XPosition>
          <YPosition>0</YPosition>
@@ -138,11 +168,48 @@
                <Enhancement>FBCore4</Enhancement>
             </Requirement>
          </Requirements>
+          <Effect>
+              <Type>MeleePower</Type>
+              <Bonus>Enhancement</Bonus>
+              <Amount>10</Amount>
+          </Effect>
+          <Effect>
+              <Type>AbilityBonus</Type>
+              <Bonus>Enhancement</Bonus>
+              <Amount>4</Amount>
+              <Ability>Strength</Ability>
+              <Stance>Death Frenzy</Stance>
+          </Effect>
+          <Effect>
+              <Type>CriticalMultiplier</Type>
+              <Bonus>Enhancement</Bonus>
+              <Amount>1</Amount>
+              <DieRoll>19</DieRoll>
+              <Stance>Death Frenzy</Stance>
+              <WeaponClass>Melee</WeaponClass>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Bonus>Enhancement</Bonus>
+              <Dice>
+                  <Number size="1">4</Number>
+                  <Sides size="1">6</Sides>
+              </Dice>
+              <WeaponClass>Melee</WeaponClass>
+              <Stance>Death Frenzy</Stance>
+          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Frenzied Berserker: Storm's Eye</Name>
          <InternalName>FBCore6</InternalName>
-         <Description>Activation Cost: 100 Hit Points. Cooldown: 2.5 minutes.</Description>
+         <Description>Activate: You gain 25 stacks of Storm's Eye. 
+Storm's Eye: +1 melee damage. One stack fades away every three seconds. 
+Passive: 
++4 Constitution 
++10 Melee Power 
+When raging your melee attacks have a 5% chance to deal 400 bludgeoning damage.
+This damage scales with 100% Melee Power.
+Activation Cost: 100 Hit Points. Cooldown: 2.5 minutes.</Description>
          <Icon>FBStormsEye</Icon>
          <XPosition>5</XPosition>
          <YPosition>0</YPosition>
@@ -159,6 +226,17 @@
                <Enhancement>FBCore5</Enhancement>
             </Requirement>
          </Requirements>
+          <Effect>
+              <Type>MeleePower</Type>
+              <Bonus>Enhancement</Bonus>
+              <Amount>10</Amount>
+          </Effect>
+          <Effect>
+              <Type>AbilityBonus</Type>
+              <Bonus>Enhancement</Bonus>
+              <Amount>4</Amount>
+              <Ability>Constitution</Ability>
+          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Frenzied Berserker: Extra Rage</Name>
@@ -454,7 +532,7 @@ Cooldown: 30 seconds.</Description>
             <Type>AbilityBonus</Type>
             <Bonus>Enhancement</Bonus>
             <Ability>Constitution</Ability>
-            <AmountVector size="1">1</AmountVector>
+            <Amount>1</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -528,7 +606,7 @@ per enemy damaged, up to 3/6/10 maximum. Lasts for 4 seconds.</Description>
             <Type>AbilityBonus</Type>
             <Bonus>Enhancement</Bonus>
             <Ability>Constitution</Ability>
-            <AmountVector size="1">1</AmountVector>
+            <Amount>1</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -605,7 +683,7 @@ the AC of enemies by 1/2/3 for six seconds. This stacks up to five times.</Descr
       <EnhancementTreeItem>
          <Name>Frenzied Berserker: Healing or Hurt</Name>
          <InternalName>FBHealingOrHurt</InternalName>
-         <Description>Choose one:</Description>
+         <Description>Choose between Accelerated Metabolism or Raging Blows:</Description>
          <Icon>FBHealingOrHurt</Icon>
          <XPosition>3</XPosition>
          <YPosition>5</YPosition>
@@ -624,7 +702,7 @@ points every 4 seconds. This healing scales with 100% Melee Power.</Description>
                <Effect>
                   <Type>HealingAmplification</Type>
                   <Bonus>Enhancement</Bonus>
-                  <AmountVector size="1">20</AmountVector>
+                  <Amount>20</Amount>
                   <Stance>Rage</Stance>
                </Effect>
             </EnhancementSelection>
@@ -636,13 +714,13 @@ points every 4 seconds. This healing scales with 100% Melee Power.</Description>
                <Effect>
                   <Type>MeleePower</Type>
                   <Bonus>Enhancement</Bonus>
-                  <AmountVector size="1">5</AmountVector>
+                  <Amount>5</Amount>
                   <Stance>Rage</Stance>
                </Effect>
                <Effect>
                   <Type>WeaponBaseDamageBonus</Type>
                   <Bonus>Enhancement</Bonus>
-                  <AmountVector size="1">1</AmountVector>
+                  <Amount>1</Amount>
                   <Stance>Rage</Stance>
                   <WeaponClass>Melee</WeaponClass>
                </Effect>
@@ -652,7 +730,13 @@ points every 4 seconds. This healing scales with 100% Melee Power.</Description>
       <EnhancementTreeItem>
          <Name>Frenzied Berserker: Tantrum</Name>
          <InternalName>FBTantrum</InternalName>
-         <Description>Activation Cost: 25 Hit Points. Cooldown: 30 seconds </Description>
+         <Description>Tactical Melee Cleave: Expend 25 hit points to activate this ability and
+attack enemies around you. This deals +5[W] damage and has a 50% to knock down
+each damage enemy briefly on a failed Fortitude save vs.
+(10 + Strength modifier + Barbarian Level). 
+Abilities that trigger on Supreme Cleave also trigger on Tantrum.
+(Blood Trail, Wade In, Lash Out, Sundering Spin, Storm's Eye)
+Activation Cost: 25 Hit Points. Cooldown: 30 seconds</Description>
          <Icon>FBTantrum</Icon>
          <XPosition>4</XPosition>
          <YPosition>5</YPosition>

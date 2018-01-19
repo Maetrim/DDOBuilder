@@ -166,6 +166,11 @@ BOOL CItemSelectDialog::OnInitDialog()
     m_availableItemsCtrl.SortItems(
             CItemSelectDialog::SortCompareFunction,
             (long)GetSafeHwnd());
+    int sel = m_availableItemsCtrl.GetSelectionMark();
+    if (sel >= 0)
+    {
+        m_availableItemsCtrl.EnsureVisible(sel, false);
+    }
 
     EnableControls();
 
@@ -247,7 +252,6 @@ void CItemSelectDialog::PopulateAvailableItemList()
     m_availableItemsCtrl.SetImageList(&m_itemImages, LVSIL_SMALL);
     m_availableItemsCtrl.SetImageList(&m_itemImages, LVSIL_NORMAL);
 
-    int sel = -1;           // item to be selected
     // now populate the control
     size_t itemIndex = 0;
     it = m_availableItems.begin();
@@ -257,14 +261,6 @@ void CItemSelectDialog::PopulateAvailableItemList()
                 m_availableItemsCtrl.GetItemCount(),
                 (*it).Name().c_str(),
                 itemIndex);
-        if ((*it).Name() == m_item.Name())
-        {
-            sel = itemIndex;
-            CString text;
-            text.Format("Item Selection and Configuration - %s",
-                    m_item.Name().c_str());
-            SetWindowText(text);
-        }
         CString level;
         level.Format("%d", (*it).MinLevel());
         m_availableItemsCtrl.SetItemText(item, 1, level);
@@ -273,6 +269,15 @@ void CItemSelectDialog::PopulateAvailableItemList()
         ++itemIndex;
         ++it;
     }
+    CString text;
+    text.Format("Item Selection and Configuration - %s",
+            m_item.Name().c_str());
+    SetWindowText(text);
+    int sel = -1;           // item to be selected
+    LVFINDINFO fi;
+    fi.flags = LVFI_STRING;
+    fi.psz = m_item.Name().c_str();
+    sel = m_availableItemsCtrl.FindItem(&fi);
     if (sel >= 0)
     {
         m_availableItemsCtrl.SetSelectionMark(sel);

@@ -164,8 +164,7 @@ bool Effect::VerifyObject(std::stringstream * ss) const
         case Effect_WeaponProficiency:
             if (!HasWeapon()
                     && !HasWeaponClass()
-                    && !HasDamageType()
-                    && !HasStyle())
+                    && !HasDamageType())
             {
                 (*ss) << "Weapon effect missing Weapon/Class/DamageType field\n";
                 ok = false;
@@ -183,11 +182,6 @@ bool Effect::VerifyObject(std::stringstream * ss) const
             if (HasDamageType() && DamageType() == WeaponDamage_Unknown)
             {
                 (*ss) << "DamageType effect has bad enum value\n";
-                ok = false;
-            }
-            if (HasStyle() && Style() == MeleeStyle_Unknown)
-            {
-                (*ss) << "Style effect has bad enum value\n";
                 ok = false;
             }
             break;
@@ -259,8 +253,6 @@ bool Effect::operator==(const Effect & other) const
             && (m_Energy == other.m_Energy)
             && (m_hasFavoredEnemy == other.m_hasFavoredEnemy)
             && (m_FavoredEnemy == other.m_FavoredEnemy)
-            && (m_hasStyle == other.m_hasStyle)
-            && (m_Style == other.m_Style)
             && (m_hasSave == other.m_hasSave)
             && (m_Save == other.m_Save)
             && (m_hasSkill == other.m_hasSkill)

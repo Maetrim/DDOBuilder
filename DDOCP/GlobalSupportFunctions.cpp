@@ -2402,7 +2402,7 @@ bool IsMartialWeapon(WeaponType wt)
     case Weapon_Warhammer:
     case Weapon_Falchion:
     case Weapon_GreatAxe:
-    case Weapon_GreateClub:
+    case Weapon_GreatClub:
     case Weapon_Maul:
     case Weapon_GreatSword:
     case Weapon_Shortbow:
@@ -2478,7 +2478,7 @@ bool IsTwoHandedWeapon(WeaponType wt)
     {
     case Weapon_Falchion:
     case Weapon_GreatAxe:
-    case Weapon_GreateClub:
+    case Weapon_GreatClub:
     case Weapon_GreatSword:
     case Weapon_Maul:
     case Weapon_Quarterstaff:
@@ -2487,34 +2487,6 @@ bool IsTwoHandedWeapon(WeaponType wt)
         // all other weapon types are not a match
     }
     return isTwoHanded;
-}
-
-bool IsBow(WeaponType wt)
-{
-    bool isBow = false;
-    switch (wt)
-    {
-    case Weapon_Longbow:
-    case Weapon_Shortbow:
-        isBow = true;
-        break;
-        // all other weapon types are not a match
-    }
-    return isBow;
-}
-
-bool IsRepeatingCrossbow(WeaponType wt)
-{
-    bool isRepeatingCrossbow = false;
-    switch (wt)
-    {
-    case Weapon_RepeatingHeavyCrossbow:
-    case Weapon_RepeatingLightCrossbow:
-        isRepeatingCrossbow = true;
-        break;
-        // all other weapon types are not a match
-    }
-    return isRepeatingCrossbow;
 }
 
 bool IsMeleeWeapon(WeaponType wt)
@@ -2529,7 +2501,7 @@ bool IsMeleeWeapon(WeaponType wt)
     case Weapon_DwarvenAxe:
     case Weapon_Falchion:
     case Weapon_GreatAxe:
-    case Weapon_GreateClub:
+    case Weapon_GreatClub:
     case Weapon_GreatSword:
     case Weapon_HandAxe:
     case Weapon_Handwraps:
@@ -2555,6 +2527,26 @@ bool IsMeleeWeapon(WeaponType wt)
         // all other weapon types are not a match
     }
     return isMeleeWeapon;
+}
+
+bool IsLightWeapon(WeaponType wt)
+{
+    bool isLight = false;
+    switch (wt)
+    {
+    case Weapon_Dagger:
+    case Weapon_Shortsword:
+    case Weapon_LightPick:
+    case Weapon_LightHammer:
+    case Weapon_LightMace:
+    case Weapon_Sickle:
+    case Weapon_HandAxe: 
+    case Weapon_Kukri:
+        isLight = true;
+        break;
+        // all other weapon types are not a match
+    }
+    return isLight;
 }
 
 bool IsRangedWeapon(WeaponType wt)
@@ -2596,4 +2588,86 @@ bool IsThrownWeapon(WeaponType wt)
         // all other weapon types are not a match
     }
     return isThrown;
+}
+
+bool IsFinesseableWeapon(WeaponType wt)
+{
+    bool isFinesseable = false;
+    switch (wt)
+    {
+    case Weapon_Dagger:
+    case Weapon_HandAxe:
+    case Weapon_Kama:
+    case Weapon_Kukri:
+    case Weapon_LightHammer:
+    case Weapon_LightMace:
+    case Weapon_LightPick:
+    case Weapon_Rapier:
+    case Weapon_Shortsword:
+    case Weapon_Sickle:
+    case Weapon_Unarmed:
+        isFinesseable = true;
+        break;
+        // all other weapon types are not a match
+    }
+    return isFinesseable;
+}
+
+bool IsAxe(WeaponType wt)
+{
+    bool isAxe = false;
+    switch (wt)
+    {
+    case Weapon_DwarvenAxe:
+    case Weapon_BattleAxe:
+    case Weapon_GreatAxe:
+    case Weapon_HandAxe:
+    case Weapon_ThrowingAxe:
+        isAxe = true;
+        break;
+        // all other weapon types are not a match
+    }
+    return isAxe;
+}
+
+bool IsBow(WeaponType wt)
+{
+    bool isBow = false;
+    switch (wt)
+    {
+    case Weapon_Longbow:
+    case Weapon_Shortbow:
+        isBow = true;
+        break;
+        // all other weapon types are not a match
+    }
+    return isBow;
+}
+
+bool IsCrossbow(WeaponType wt)
+{
+    bool isCrossbow = false;
+    switch (wt)
+    {
+    case Weapon_LightCrossbow:
+    case Weapon_HeavyCrossbow:
+        isCrossbow = true;
+        break;
+        // all other weapon types are not a match
+    }
+    return isCrossbow;
+}
+
+bool IsRepeatingCrossbow(WeaponType wt)
+{
+    bool isRepeatingCrossbow = false;
+    switch (wt)
+    {
+    case Weapon_RepeatingHeavyCrossbow:
+    case Weapon_RepeatingLightCrossbow:
+        isRepeatingCrossbow = true;
+        break;
+        // all other weapon types are not a match
+    }
+    return isRepeatingCrossbow;
 }

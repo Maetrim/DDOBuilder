@@ -14,7 +14,9 @@ BreakdownItem::BreakdownItem(
     m_pCharacter(NULL),
     m_pTreeList(treeList),
     m_hItem(hItem),
-    m_type(type)
+    m_type(type),
+    m_bHasWeapon(false),
+    m_weapon(Weapon_Unknown)
 {
 }
 
@@ -760,6 +762,10 @@ bool BreakdownItem::GetActiveEffect(
     {
         activeEffect->SetIsPercentage(true);
     }
+    if (effect.HasWeaponClass())
+    {
+        activeEffect->SetWeapon(Weapon());
+    }
     return hasActiveEffect;
 }
 
@@ -953,5 +959,16 @@ void BreakdownItem::UpdateClassChanged(
 void BreakdownItem::SetHTreeItem(HTREEITEM hItem)
 {
     m_hItem = hItem;
+}
+
+void BreakdownItem::SetWeapon(WeaponType wt)
+{
+    m_bHasWeapon = true;
+    m_weapon = wt;
+}
+
+WeaponType BreakdownItem::Weapon() const
+{
+    return m_weapon;
 }
 

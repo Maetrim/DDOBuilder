@@ -198,7 +198,7 @@ Adept of Wind: Wind Stance now grants +2 Dexterity, a 10% Enhancement bonus to m
       <Effect>
          <DisplayName>Mountain Stance: Threat Bonus</DisplayName>
          <Bonus>Feat</Bonus>
-         <Type>ThreatBonus</Type>
+         <Type>ThreatBonusMelee</Type>
          <AmountVector size="4">25 40 55 70</AmountVector>
          <Stance>Mountain Stance</Stance>
       </Effect>
@@ -683,6 +683,7 @@ Weilding weapons that are centering such as a staff.</Description>
          <IncompatibleStance>Light Armor</IncompatibleStance>
          <IncompatibleStance>Medium Armor</IncompatibleStance>
          <IncompatibleStance>Heavy Armor</IncompatibleStance>
+         <AutoControlled/>
       </Stance>
       <Stance>
          <Name>Good</Name>
@@ -3144,7 +3145,7 @@ Grandmaster of Wind: Wind Stance now grants +4 Dexterity, a 15% Enhancement bonu
       <Effect>
          <DisplayName>Mountain Stance: Threat Bonus</DisplayName>
          <Bonus>Feat</Bonus>
-         <Type>ThreatBonus</Type>
+         <Type>ThreatBonusMelee</Type>
          <AmountVector size="4">25 40 55 70</AmountVector>
          <Stance>Mountain Stance</Stance>
       </Effect>
@@ -3616,7 +3617,7 @@ additional +2 to Melee Power (total of +6).</Description>
       <Effect>
          <Type>MeleePower</Type>
          <Bonus>Feat</Bonus>
-         <Style>TwoHandedFighting</Style>
+         <Stance>TwoHandedFighting</Stance>
          <Amount>2</Amount>
       </Effect>
    </Feat>
@@ -4378,7 +4379,7 @@ This feat is not recommended for characters with actual fighter levels.</Descrip
       <Effect>
          <Type>WeaponProficiency</Type>
          <Bonus>Feat</Bonus>
-         <Weapon>Greatsword</Weapon>
+         <Weapon>Great Sword</Weapon>
       </Effect>
       <Effect>
          <Type>WeaponProficiency</Type>
@@ -5534,7 +5535,7 @@ bonus to Melee Power (total of +4).</Description>
       <Effect>
          <Type>MeleePower</Type>
          <Bonus>Feat</Bonus>
-         <Style>TwoHandedFighting</Style>
+         <Stance>TwoHandedFighting</Stance>
          <Amount>2</Amount>
       </Effect>
    </Feat>
@@ -6233,7 +6234,7 @@ at the cost of -2 Dexterity and -10% movement speed.</Description>
       <Effect>
          <DisplayName>Mountain Stance: Threat Bonus</DisplayName>
          <Bonus>Feat</Bonus>
-         <Type>ThreatBonus</Type>
+         <Type>ThreatBonusMelee</Type>
          <AmountVector size="4">25 40 55 70</AmountVector>
          <Stance>Mountain Stance</Stance>
       </Effect>
@@ -6742,8 +6743,8 @@ second cooldown. Cooldown: 2 minutes.</Description>
       </Effect>
    </Feat>
    <Feat>
-      <Name>Martial Weapon Proficiency: Greatsword</Name>
-      <Description>You do not suffer a -4 penalty on attack rolls when using a greatsword.</Description>
+      <Name>Martial Weapon Proficiency: Great Sword</Name>
+      <Description>You do not suffer a -4 penalty on attack rolls when using a Great Sword.</Description>
       <Requirements/>
       <Acquire>Train</Acquire>
       <Icon>MartialWeaponProficiency</Icon>
@@ -6766,7 +6767,7 @@ second cooldown. Cooldown: 2 minutes.</Description>
       <Effect>
          <Type>WeaponProficiency</Type>
          <Bonus>Feat</Bonus>
-         <Weapon>Greatsword</Weapon>
+         <Weapon>Great Sword</Weapon>
       </Effect>
    </Feat>
    <Feat>
@@ -7304,7 +7305,7 @@ Master of Wind: Wind Stance now grants +3 Dexterity, a 12.5% Enhancement bonus t
       <Effect>
          <DisplayName>Mountain Stance: Threat Bonus</DisplayName>
          <Bonus>Feat</Bonus>
-         <Type>ThreatBonus</Type>
+         <Type>ThreatBonusMelee</Type>
          <AmountVector size="4">25 40 55 70</AmountVector>
          <Stance>Mountain Stance</Stance>
       </Effect>
@@ -7989,9 +7990,11 @@ for fighting with two weapons as if you were wielding a light weapon in your off
       <Acquire>Train</Acquire>
       <Icon>OversizedTwoWeaponFighting</Icon>
       <Effect>
-         <Type>OffHandAttackBonus</Type>
+         <DisplayName>Fake effect to cause updated, never displayed</DisplayName>
+         <Type>AttackBonus</Type>
          <Bonus>Feat</Bonus>
-         <Amount>2</Amount>
+         <Amount>0</Amount>
+         <Weapon>All</Weapon>
       </Effect>
    </Feat>
    <Feat>
@@ -9283,6 +9286,11 @@ and wielding only an orb, runearm, or nothing in your off hand.</Description>
             <Skill>Balance</Skill>
             <Amount>2</Amount>
          </Requirement>
+          <RequiresNoneOf>
+             <Requirement>
+                <Feat>Two Weapon Fighting</Feat>
+             </Requirement>
+          </RequiresNoneOf>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>SingleWeaponFighting</Icon>
@@ -11840,7 +11848,7 @@ The -2 attack penalty still applies. </Description>
          <Bonus>Feat</Bonus>
          <Weapon>All</Weapon>
          <Amount>-2</Amount>
-         <Stance>TowerShield</Stance>
+         <Stance>Tower Shield</Stance>
       </Effect>
    </Feat>
    <Feat>
@@ -11974,6 +11982,11 @@ weapon effects to trigger on glancing blows and a +2 Combat Style bonus to Melee
             <Ability>Strength</Ability>
             <Amount>15</Amount>
          </Requirement>
+          <RequiresNoneOf>
+             <Requirement>
+                <Feat>Single Weapon Fighting</Feat>
+             </Requirement>
+          </RequiresNoneOf>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>TwoHandedFighting</Icon>
@@ -11985,7 +11998,7 @@ weapon effects to trigger on glancing blows and a +2 Combat Style bonus to Melee
       <Effect>
          <Type>MeleePower</Type>
          <Bonus>Feat</Bonus>
-         <Style>TwoHandedFighting</Style>
+         <Stance>TwoHandedFighting</Stance>
          <Amount>2</Amount>
       </Effect>
    </Feat>
@@ -12037,7 +12050,7 @@ two weapons. (This bonus does not apply when fighting unarmed/with handwraps.)</
          <Type>PRR</Type>
          <Bonus>Feat</Bonus>
          <Amount>5</Amount>
-         <Style>TwoWeaponFighting</Style>
+         <Stance>TwoWeaponFighting</Stance>
       </Effect>
    </Feat>
    <Feat>
@@ -12059,6 +12072,11 @@ Two Weapon Fighting also increases the chance to proc an off-hand attack by
             <Ability>Dexterity</Ability>
             <Amount>15</Amount>
          </Requirement>
+          <RequiresNoneOf>
+             <Requirement>
+                <Feat>Single Weapon Fighting</Feat>
+             </Requirement>
+          </RequiresNoneOf>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>TwoWeaponFighting</Icon>
@@ -12071,6 +12089,13 @@ Two Weapon Fighting also increases the chance to proc an off-hand attack by
          <Type>OffHandAttackBonus</Type>
          <Bonus>Feat</Bonus>
          <Amount>20</Amount>
+      </Effect>
+      <Effect>
+         <DisplayName>Fake effect to cause updated, never displayed</DisplayName>
+         <Type>AttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>0</Amount>
+         <Weapon>All</Weapon>
       </Effect>
    </Feat>
    <Feat>
@@ -12390,9 +12415,8 @@ chance they break free. Does not affect bosses. There is no saving throw.</Descr
          <Level>20</Level>
       </AutomaticAcquisition>
       <Effect>
-         <Type>DamageBonus</Type>
+         <Type>EldritchBlast</Type>
          <Bonus>Feat</Bonus>
-         <Weapon>EldritchBlast</Weapon>
          <Dice>
             <Number size="1">1</Number>
             <Sides size="1">6</Sides>
@@ -12542,9 +12566,8 @@ These effects last for six seconds</Description>
          <Level>20</Level>
       </AutomaticAcquisition>
       <Effect>
-         <Type>DamageBonus</Type>
+         <Type>EldritchBlast</Type>
          <Bonus>Feat</Bonus>
-         <Weapon>EldritchBlast</Weapon>
          <Dice>
             <Number size="1">1</Number>
             <Sides size="1">6</Sides>
@@ -14384,7 +14407,7 @@ in the form of a free Feat</Description>
          <Type>MeleePower</Type>
          <Bonus>Inherent</Bonus>
          <Amount>1</Amount>
-         <Style>All</Style>
+         <Stance>All</Stance>
       </Effect>
    </Feat>
    <Feat>
@@ -14903,9 +14926,8 @@ affected by Embolden Spell, but they consume 10 additional spell points.</Descri
       <Acquire>Train</Acquire>
       <Icon>EpicEldritchBlast</Icon>
       <Effect>
-         <Type>DamageBonus</Type>
+         <Type>EldritchBlast</Type>
          <Bonus>Feat</Bonus>
-         <Weapon>EldritchBlast</Weapon>
          <Dice>
             <Number size="1">3</Number>
             <Sides size="1">6</Sides>
@@ -14974,13 +14996,13 @@ This feat can be acquired multiple times and is granted every epic level.</Descr
          <Type>MeleePower</Type>
          <Bonus>Feat</Bonus>
          <Amount>3</Amount>
-         <Style>All</Style>
+         <Stance>All</Stance>
       </Effect>
       <Effect>
          <Type>RangedPower</Type>
          <Bonus>Feat</Bonus>
          <Amount>3</Amount>
-         <Style>All</Style>
+         <Stance>All</Stance>
       </Effect>
       <Effect>
          <Type>SpellPower</Type>
@@ -16436,9 +16458,8 @@ Number of Destinies: 1</Description>
       <Acquire>Train</Acquire>
       <Icon>EpicArcaneEldritchBlast</Icon>
       <Effect>
-         <Type>DamageBonus</Type>
+         <Type>EldritchBlast</Type>
          <Bonus>Feat</Bonus>
-         <Weapon>EldritchBlast</Weapon>
          <Dice>
             <Number size="1">4</Number>
             <Sides size="1">6</Sides>
@@ -17171,7 +17192,7 @@ Number of Destinies: 1</Description>
          <Bonus>Feat</Bonus>
          <Amount>1</Amount>
          <WeaponClass>Melee</WeaponClass>
-         <Style>SingleWeaponFighting</Style>
+         <Stance>SingleWeaponFighting</Stance>
       </Effect>
    </Feat>
    <Feat>
@@ -17850,13 +17871,13 @@ with no save. This may only trigger once every 12 seconds.</Description>
          <Type>MeleePower</Type>
          <Bonus>Feat</Bonus>
          <Amount>20</Amount>
-         <Style>All</Style>
+         <Stance>All</Stance>
       </Effect>
       <Effect>
          <Type>RangedPower</Type>
          <Bonus>Feat</Bonus>
          <Amount>20</Amount>
-         <Style>All</Style>
+         <Stance>All</Stance>
       </Effect>
       <Effect>
          <Type>SpellPower</Type>
@@ -19426,7 +19447,7 @@ You are proficient with Daggers and gain +1 to hit with them.</Description>
    <Feat>
       <Name>Follower of the Lord of Blades</Name>
       <Description>You follow the Lord of Blades.
-You are proficient with Greatswords and gain +1 to hit with them.</Description>
+You are proficient with Great Swords and gain +1 to hit with them.</Description>
       <FeatGroup>
          <IsFollowerOf/>
       </FeatGroup>
@@ -19445,13 +19466,13 @@ You are proficient with Greatswords and gain +1 to hit with them.</Description>
       <Effect>
          <Type>WeaponProficiency</Type>
          <Bonus>Feat</Bonus>
-         <Weapon>Greatsword</Weapon>
+         <Weapon>Great Sword</Weapon>
       </Effect>
       <Effect>
          <Type>AttackBonus</Type>
          <Bonus>Feat</Bonus>
          <Amount>1</Amount>
-         <Weapon>Greatsword</Weapon>
+         <Weapon>Great Sword</Weapon>
       </Effect>
    </Feat>
    <Feat>
@@ -19816,7 +19837,7 @@ You gain +2 to attack and damage rolls with Daggers.</Description>
    <Feat>
       <Name>Child of the Lord of Blades</Name>
       <Description>You follow the Lord of Blades.
-You have +2 to attack and damage rolls with greatswords.</Description>
+You have +2 to attack and damage rolls with Great Swords.</Description>
       <FeatGroup>
          <IsStandardFeat/>
          <IsChildOf/>
@@ -19846,13 +19867,13 @@ You have +2 to attack and damage rolls with greatswords.</Description>
          <Type>AttackBonus</Type>
          <Bonus>Feat</Bonus>
          <Amount>2</Amount>
-         <Weapon>Greatsword</Weapon>
+         <Weapon>Great Sword</Weapon>
       </Effect>
       <Effect>
          <Type>DamageBonus</Type>
          <Bonus>Feat</Bonus>
          <Amount>2</Amount>
-         <Weapon>Greatsword</Weapon>
+         <Weapon>Great Sword</Weapon>
       </Effect>
    </Feat>
    <Feat>
@@ -20427,7 +20448,7 @@ healing spells.</Description>
       <Effect>
          <Type>WeaponProficiency</Type>
          <Bonus>Feat</Bonus>
-         <Weapon>Greatsword</Weapon>
+         <Weapon>Great Sword</Weapon>
          <Stance>Bladesworn Transformation</Stance>
       </Effect>
       <Effect>
@@ -20853,7 +20874,7 @@ You have +1 to attack and damage rolls with heavy maces.</Description>
    <Feat>
       <Name>Beloved of the Lord of Blades</Name>
       <Description>You are a favored soul of the Lord of Blades.
-You deal 2 extra damage with greatswords.</Description>
+You deal 2 extra damage with Great Swords.</Description>
       <FeatGroup>
          <IsBelovedOf/>
       </FeatGroup>
@@ -20878,7 +20899,7 @@ You deal 2 extra damage with greatswords.</Description>
       <Effect>
          <Type>DamageBonus</Type>
          <Bonus>Feat</Bonus>
-         <Weapon>Greatsword</Weapon>
+         <Weapon>Great Sword</Weapon>
          <Amount>2</Amount>
       </Effect>
    </Feat>
@@ -23094,7 +23115,7 @@ Chaotic creatures.</Description>
       <Effect>
          <Type>WeaponProficiency</Type>
          <Bonus>Feat</Bonus>
-         <Weapon>Greatsword</Weapon>
+         <Weapon>Great Sword</Weapon>
       </Effect>
       <Effect>
          <Type>WeaponProficiency</Type>

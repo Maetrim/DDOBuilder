@@ -27,6 +27,7 @@ class BreakdownItemWeaponEffects :
         virtual void SetCharacter(Character * charData, bool observe);
 
         void WeaponsChanged(const EquippedGear & gear);
+        bool AreWeaponsCentering() const;
     protected:
         // BreakdownObserver overrides
         virtual void UpdateFeatEffect(Character * pCharacater, const std::string & featName, const Effect & effect) override;
@@ -47,17 +48,8 @@ class BreakdownItemWeaponEffects :
         bool IsOneHandedWeapon(WeaponType wt) const;
         bool IsRangedWeapon(WeaponType wt) const;
         bool IsTwoHandedWeapon(WeaponType wt) const;
-        bool IsBow(WeaponType wt) const;
-        bool IsCrossbow(WeaponType wt) const;
         bool IsRepeatingCrossbow(WeaponType wt) const;
         bool IsMeleeWeapon(WeaponType wt) const;
-        bool IsDruidicWeapon(WeaponType wt) const;
-        bool IsHeavyBladeWeapon(WeaponType wt) const;
-        bool IsLightBladeWeapon(WeaponType wt) const;
-        bool IsPickOrHammerWeapon(WeaponType wt) const;
-        bool IsMaceOrClubWeapon(WeaponType wt) const;
-        bool IsMartialArtsWeapon(WeaponType wt) const;
-        bool IsAxe(WeaponType wt) const;
         bool IsLightWeapon(WeaponType wt) const;
         bool IsDamageType(WeaponType wt, WeaponDamageType type) const;
         BreakdownItemWeapon * CreateWeaponBreakdown(

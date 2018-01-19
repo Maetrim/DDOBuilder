@@ -30,7 +30,7 @@ Dying resets your weapon bond to zero.</Description>
       <EnhancementTreeItem>
          <Name>Occult Slayer: Resistance</Name>
          <InternalName>OSCore2</InternalName>
-         <Description>+1 to all saving throws. </Description>
+         <Description>+1 to all saving throws.</Description>
          <Icon>OSResistance</Icon>
          <XPosition>1</XPosition>
          <YPosition>0</YPosition>
@@ -51,7 +51,7 @@ Dying resets your weapon bond to zero.</Description>
             <Type>SaveBonus</Type>
             <Bonus>Enhancement</Bonus>
             <Save>All</Save>
-            <AmountVector size="1">1</AmountVector>
+            <Amount>1</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -105,7 +105,7 @@ This can trigger up to once every 12 seconds.</Description>
          <Effect>
             <Type>DR</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="1">1</AmountVector>
+            <Amount>1</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -138,7 +138,7 @@ avoid incoming Force damage.</Description>
       <EnhancementTreeItem>
          <Name>Occult Slayer: Mind Over Magic</Name>
          <InternalName>OSCore6</InternalName>
-         <Description>You have Spell Resistance equal to your Constitution score. </Description>
+         <Description>You have Spell Resistance equal to your Constitution score.</Description>
          <Icon>OSMindOverMagic</Icon>
          <XPosition>5</XPosition>
          <YPosition>0</YPosition>
@@ -199,6 +199,18 @@ Damaged enemies can't cast spells for 2/4/6 seconds. (Cooldown: 12 seconds)</Des
          <MinSpent>1</MinSpent>
          <ArrowUp/>
          <Requirements/>
+          <Effect>
+              <Type>ACBonus</Type>
+              <Bonus>Competence</Bonus>
+              <AmountVector size="3">2 4 6</AmountVector>
+              <Stance>Weapon Bond</Stance>
+          </Effect>
+          <Effect>
+              <Type>MRR</Type>
+              <Bonus>Competence</Bonus>
+              <AmountVector size="3">1 2 3</AmountVector>
+              <Stance>Weapon Bond</Stance>
+          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Occult Slayer: Uncanny Dodger</Name>
@@ -301,7 +313,7 @@ Rank 3: +1 Reflex Saving Throw</Description>
       <EnhancementTreeItem>
          <Name>Occult Slayer: Guarding Bond</Name>
          <InternalName>OSGuardingBond</InternalName>
-         <Description>You gain +4 Physical and Magical Resistance at Weapon Bond 30+. </Description>
+         <Description>You gain +4 Physical and Magical Resistance at Weapon Bond 30+.</Description>
          <Icon>OSGuardingBond</Icon>
          <XPosition>2</XPosition>
          <YPosition>2</YPosition>
@@ -320,14 +332,14 @@ Rank 3: +1 Reflex Saving Throw</Description>
          <Effect>
             <Type>PRR</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="1">4</AmountVector>
-            <Stance>WeaponBond</Stance>
+            <Amount>4</Amount>
+            <Stance>Weapon Bond</Stance>
          </Effect>
          <Effect>
             <Type>MRR</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="1">4</AmountVector>
-            <Stance>WeaponBond</Stance>
+            <Amount>4</Amount>
+            <Stance>Weapon Bond</Stance>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -417,9 +429,10 @@ Rank 3: +1 Reflex Saving Throw</Description>
          <Effect>
             <Type>CriticalMultiplier</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="1">1</AmountVector>
+            <Amount>1</Amount>
             <DieRoll>19</DieRoll>
             <Weapon>All</Weapon>
+            <Stance>50% Health</Stance>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -444,6 +457,7 @@ Rank 3: You don't fail disease or poison saving throws on a roll of 1.</Descript
             <Bonus>Enhancement</Bonus>
             <Save>Disease</Save>
             <AmountVector size="3">2 4 6</AmountVector>
+            <NoFailOn1 size="3">0 0 1</NoFailOn1>
          </Effect>
          <Effect>
             <Type>SaveBonus</Type>
@@ -476,7 +490,7 @@ knocked down. (Does not affect bosses.)</Description>
          <Name>Occult Slayer: Kinetic Bond</Name>
          <InternalName>OSKineticBond</InternalName>
          <Description>At weapon bond strength 45+, you deal 1d20 force damage with your attacks,
-scaling with 200% Melee Power. This damage can trigger up to once every 3/2/1 seconds. </Description>
+scaling with 200% Melee Power. This damage can trigger up to once every 3/2/1 seconds.</Description>
          <Icon>OSKineticBond</Icon>
          <XPosition>3</XPosition>
          <YPosition>3</YPosition>
@@ -520,7 +534,7 @@ scaling with 200% Melee Power. This damage can trigger up to once every 3/2/1 se
                   <Type>AbilityBonus</Type>
                   <Bonus>Enhancement</Bonus>
                   <Ability>Constitution</Ability>
-                  <AmountVector size="1">1</AmountVector>
+                  <Amount>1</Amount>
                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
@@ -556,7 +570,8 @@ scaling with 200% Melee Power. This damage can trigger up to once every 3/2/1 se
       <EnhancementTreeItem>
          <Name>Occult Slayer: Driving Force</Name>
          <InternalName>OSDrivingForce</InternalName>
-         <Description>Cooldown: [48/36/24] seconds. </Description>
+         <Description>Expend [60/45/30] Weapon Bond to gain +10 Melee Power for 12 seconds.
+Cooldown: [48/36/24] seconds.</Description>
          <Icon>OSDrivingForce</Icon>
          <XPosition>3</XPosition>
          <YPosition>4</YPosition>
@@ -600,7 +615,7 @@ scaling with 200% Melee Power. This damage can trigger up to once every 3/2/1 se
                   <Type>AbilityBonus</Type>
                   <Bonus>Enhancement</Bonus>
                   <Ability>Constitution</Ability>
-                  <AmountVector size="1">1</AmountVector>
+                  <Amount>1</Amount>
                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
@@ -639,7 +654,7 @@ scaling with 200% Melee Power. This damage can trigger up to once every 3/2/1 se
          <Name>Occult Slayer: Vampiric Bond</Name>
          <InternalName>OSVampiricBond</InternalName>
          <Description>At Weapon Bond 100+, your weapon provides you 20 temporary hitpoints when you damage
-an enemy. These Temporary hit Points scales with 200% Melee Power. This can
+an enemy. These Temporary hit Points scale with 200% Melee Power. This can
 trigger at most once every 12/9/6 seconds.</Description>
          <Icon>OSVampiricBond</Icon>
          <XPosition>1</XPosition>

@@ -123,19 +123,21 @@ void BreakdownItemWeaponAttackBonus::CreateOtherEffects()
             // they are two weapon fighting, apply attack penalties to this weapon
             if (m_pCharacter->IsFeatTrained(c_TWF))
             {
-                // -4/-4 penalty when TWF
+                // -4/-4 penalty when TWF with light off hand weapon
                 bonus = -4;
             }
             else
             {
-                // -6/10 penalty when TWF
-                bonus = m_slot == Inventory_Weapon1 ? -6 : -10;
+                // -6/-10 penalty when no TWF
+                bonus = (m_slot == Inventory_Weapon1) ? -6 : -10;
             }
             // heavy weapon off hand weapon penalty
-            if (!m_pCharacter->LightWeaponInOffHand())
+            if (m_pCharacter->LightWeaponInOffHand()
+                    || m_pCharacter->IsFeatTrained(c_OTWF))
             {
-                // additional -2 for each hand is heavy in off hand
-                bonus -= 2;
+                // 2 less penalty if off hand weapon is light
+                // or over sized TWF is trained
+                bonus += 2;
             }
             ActiveEffect twf(
                     Bonus_penalty,
@@ -144,18 +146,6 @@ void BreakdownItemWeaponAttackBonus::CreateOtherEffects()
                     bonus,
                     "");        // no tree
             AddOtherEffect(twf);
-            if (m_slot == Inventory_Weapon2
-                    && m_pCharacter->IsFeatTrained(c_OTWF)
-                    && !m_pCharacter->LightWeaponInOffHand())
-            {
-                // OTWF negates -2 for heavy off hand weapon
-                ActiveEffect twf(
-                        Bonus_feat,
-                        "Oversized TWF",
-                        1,
-                        2,
-                        "");        // no tree
-            }
         }
     }
 }

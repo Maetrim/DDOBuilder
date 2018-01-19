@@ -296,7 +296,7 @@ and +1 Attack Damage</Description>
          </Effect>
          <Effect>
             <Type>DodgeCapBonus</Type>
-            <Bonus>Enhancement</Bonus>
+            <Bonus>Insightful</Bonus>
             <AmountVector size="1">4</AmountVector>
             <Stance>Swashbuckling</Stance>
          </Effect>
@@ -387,6 +387,7 @@ hand gains an additional +1 to its Enhancement bonus.</Description>
             <Type>GrantFeat</Type>
             <Bonus>Enhancement</Bonus>
             <Feat>Evasion</Feat>
+            <Stance>Swashbuckling</Stance>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -409,7 +410,7 @@ hand gains an additional +1 to its Enhancement bonus.</Description>
       <EnhancementTreeItem>
          <Name>Swashbuckler: Blow By Blow</Name>
          <InternalName>SBBlowByBlow</InternalName>
-         <Description>Choose one:</Description>
+         <Description>Choose either a Melee or Ranged attack:</Description>
          <Icon>SBBlowByBlow</Icon>
          <XPosition>1</XPosition>
          <YPosition>1</YPosition>
@@ -614,7 +615,7 @@ Sonic Damage. This Sonic damage scales with spell power.</Description>
       <EnhancementTreeItem>
          <Name>Swashbuckler: Action Boost</Name>
          <InternalName>SBActionBoost</InternalName>
-         <Description>Choose One: (Cooldown: 30 Seconds)</Description>
+         <Description>Choose between a Doubleshot or a Doublestrike action boost bonus: (Cooldown: 30 Seconds)</Description>
          <Icon>SBActionBoost</Icon>
          <XPosition>4</XPosition>
          <YPosition>2</YPosition>
@@ -766,12 +767,24 @@ This Sonic damage scales with spell power.</Description>
                <Sides size="1">6 6 6</Sides>
                <Energy>Sonic</Energy>
             </Dice>
+            <Stance>Swashbuckling</Stance>
+         </Effect>
+         <Effect>
+            <Type>Seeker</Type>
+            <Bonus>Enhancement</Bonus>
+            <WeaponClass>Finesseable</WeaponClass>
+            <Dice>
+               <Number size="3">2 4 6</Number>
+               <Sides size="1">6 6 6</Sides>
+               <Energy>Sonic</Energy>
+            </Dice>
+            <Stance>Swashbuckling</Stance>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Swashbuckler: Different Tack</Name>
          <InternalName>SBDifferentTack</InternalName>
-         <Description>Choose One:</Description>
+         <Description>Choose to use either Charisma, Dexterity or Intelligence modifier for damage when single weapon fighting:</Description>
          <Icon>SBDifferentTack</Icon>
          <XPosition>3</XPosition>
          <YPosition>3</YPosition>
@@ -793,8 +806,9 @@ This Sonic damage scales with spell power.</Description>
                <Effect>
                   <Type>DamageBonus</Type>
                   <Bonus>Enhancement</Bonus>
-                  <Style>SingleWeaponFighting</Style>
+                  <Stance>SingleWeaponFighting</Stance>
                   <Ability>Charisma</Ability>
+                  <Weapon>All</Weapon>
                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
@@ -805,8 +819,9 @@ This Sonic damage scales with spell power.</Description>
                <Effect>
                   <Type>DamageBonus</Type>
                   <Bonus>Enhancement</Bonus>
-                  <Style>SingleWeaponFighting</Style>
+                  <Stance>SingleWeaponFighting</Stance>
                   <Ability>Dexterity</Ability>
+                  <Weapon>All</Weapon>
                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
@@ -817,8 +832,9 @@ This Sonic damage scales with spell power.</Description>
                <Effect>
                   <Type>DamageBonus</Type>
                   <Bonus>Enhancement</Bonus>
-                  <Style>SingleWeaponFighting</Style>
+                  <Stance>SingleWeaponFighting</Stance>
                   <Ability>Intelligence</Ability>
+                  <Weapon>All</Weapon>
                </Effect>
             </EnhancementSelection>
          </Selector>
@@ -912,12 +928,12 @@ critical hits (before weapon multipliers)</Description>
                <Icon>SBLoudAndClear</Icon>
                <Cost>1</Cost>
                <Effect>
-                  <!--Handle orb in offhand-->
                   <Bonus>Enhancement</Bonus>
                   <Type>SpellPower</Type>
                   <SpellPower>Sonic</SpellPower>
                   <AmountVector size="1">20</AmountVector>
                   <Stance>Swashbuckling</Stance>
+                  <Stance>Orb</Stance>
                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
@@ -945,6 +961,7 @@ Arm Weapon Imbue deals an additional 1d6 Sonic damage. </Description>
                      <Energy>Sonic</Energy>
                   </Dice>
                   <Stance>Swashbuckling</Stance>
+                  <Stance>Rune Arm</Stance>
                   <Weapon>All</Weapon>
                </Effect>
             </EnhancementSelection>
@@ -997,10 +1014,8 @@ additional +1 for every five Bard levels.</Description>
             <Type>WeaponEnchantment</Type>
             <Bonus>Enhancement</Bonus>
             <WeaponClass>Thrown</WeaponClass>
-            <AmountVector size="1">1</AmountVector>
-            <!--Handle +1 per 5 bard levels-->
+            <AmountVector size="20">1 1 1 1 1 2 2 2 2 2 3 3 3 3 3 4 4 4 4 4</AmountVector>
             <Class>Bard</Class>
-            <Divider>5</Divider>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>

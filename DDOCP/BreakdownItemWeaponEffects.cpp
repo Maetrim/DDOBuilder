@@ -33,6 +33,12 @@ BreakdownItemWeaponEffects::~BreakdownItemWeaponEffects()
 void BreakdownItemWeaponEffects::SetCharacter(Character * charData, bool observe)
 {
     BreakdownItem::SetCharacter(charData, observe);
+    if (charData == NULL)
+    {
+        // remove any weapons listed from the previous character
+        EquippedGear gear;      // empty gear
+        WeaponsChanged(gear);
+    }
 }
 
 // required overrides
@@ -203,6 +209,9 @@ bool BreakdownItemWeaponEffects::AffectsThisWeapon(
         case WeaponClass_TwoHanded:
             isUs = IsTwoHandedWeapon(wt);
             break;
+        case WeaponClass_Axe:
+            isUs = IsAxe(wt);
+            break;
         case WeaponClass_Bows:
             isUs = IsBow(wt);
             break;
@@ -215,32 +224,19 @@ bool BreakdownItemWeaponEffects::AffectsThisWeapon(
         case WeaponClass_Melee:
             isUs = IsMeleeWeapon(wt);
             break;
-        case WeaponClass_Druidic:
-            isUs = IsDruidicWeapon(wt);
-            break;
-        case WeaponClass_HeavyBlades:
-            isUs = IsHeavyBladeWeapon(wt);
-            break;
-        case WeaponClass_LightBlades:
-            isUs = IsLightBladeWeapon(wt);
-            break;
-        case WeaponClass_PicksAndHammers:
-            isUs = IsPickOrHammerWeapon(wt);
-            break;
-        case WeaponClass_MacesAndClubs:
-            isUs = IsMaceOrClubWeapon(wt);
-            break;
-        case WeaponClass_MartialArts:
-            isUs = IsMartialArtsWeapon(wt);
-            break;
-        case WeaponClass_Axe:
-            isUs = IsAxe(wt);
-            break;
         case WeaponClass_Light:
             isUs = IsLightWeapon(wt);
             break;
+        case WeaponClass_Finesseable:
+            isUs = IsFinesseableWeapon(wt);
+            break;
+        case WeaponClass_FocusGroup:
+            // always affects weapon, but disabled if weapon not part of focus group
+            // done this way as weapons in a given focus group can vary with enhancements
+            isUs = true;
+            break;
         default:
-            ASSERT(FALSE);  // no implemented this one? Do it!
+            ASSERT(FALSE);  // not implemented this one? Do it!
         }
     }
     if (effect.HasDamageType())
@@ -371,7 +367,7 @@ bool BreakdownItemWeaponEffects::IsMartialWeapon(WeaponType wt) const
     case Weapon_Warhammer:
     case Weapon_Falchion:
     case Weapon_GreatAxe:
-    case Weapon_GreateClub:
+    case Weapon_GreatClub:
     case Weapon_Maul:
     case Weapon_GreatSword:
     case Weapon_Shortbow:
@@ -488,48 +484,11 @@ bool BreakdownItemWeaponEffects::IsTwoHandedWeapon(WeaponType wt) const
     {
     case Weapon_Falchion:
     case Weapon_GreatAxe:
-    case Weapon_GreateClub:
+    case Weapon_GreatClub:
     case Weapon_GreatSword:
     case Weapon_Maul:
     case Weapon_Quarterstaff:
         isUs = true;
-        break;
-        // all other weapon types are not a match
-    }
-    return isUs;
-}
-
-bool BreakdownItemWeaponEffects::IsBow(WeaponType wt) const
-{
-    bool isUs = false;
-    switch (wt)
-    {
-    case Weapon_Longbow:
-    case Weapon_Shortbow:
-        isUs = true;
-        break;
-        // all other weapon types are not a match
-    }
-    return isUs;
-}
-
-bool BreakdownItemWeaponEffects::IsCrossbow(WeaponType wt) const
-{
-    bool isUs = false;
-    switch (wt)
-    {
-    case Weapon_GreatCrossbow:
-    case Weapon_RepeatingHeavyCrossbow:
-    case Weapon_RepeatingLightCrossbow:
-        if (m_pCharacter->IsEnhancementTrained("KenseiCore1", "Kensei Focus: Crossbows")
-                && m_pCharacter->IsEnhancementTrained("KenseiExoticWeaponMastery", ""))
-        {
-            isUs = true;
-        }
-        break;
-    case Weapon_HeavyCrossbow:
-    case Weapon_LightCrossbow:
-       isUs = true;
         break;
         // all other weapon types are not a match
     }
@@ -562,7 +521,7 @@ bool BreakdownItemWeaponEffects::IsMeleeWeapon(WeaponType wt) const
     case Weapon_DwarvenAxe:
     case Weapon_Falchion:
     case Weapon_GreatAxe:
-    case Weapon_GreateClub:
+    case Weapon_GreatClub:
     case Weapon_GreatSword:
     case Weapon_HandAxe:
     case Weapon_Handwraps:
@@ -583,147 +542,6 @@ bool BreakdownItemWeaponEffects::IsMeleeWeapon(WeaponType wt) const
     case Weapon_Shortsword:
     case Weapon_Sickle:
     case Weapon_Warhammer:
-        isUs = true;
-        break;
-        // all other weapon types are not a match
-    }
-    return isUs;
-}
-
-bool BreakdownItemWeaponEffects::IsDruidicWeapon(WeaponType wt) const
-{
-    bool isUs = false;
-    switch (wt)
-    {
-    case Weapon_Club:
-    case Weapon_Dagger:
-    case Weapon_Dart:
-    case Weapon_Handwraps:
-    case Weapon_Quarterstaff:
-    case Weapon_Scimitar:
-    case Weapon_Sickle:
-        isUs = true;
-        break;
-        // all other weapon types are not a match
-    }
-    return isUs;
-}
-
-bool BreakdownItemWeaponEffects::IsHeavyBladeWeapon(WeaponType wt) const
-{
-    bool isUs = false;
-    switch (wt)
-    {
-    case Weapon_BastardSword:
-    case Weapon_Khopesh:
-        if (m_pCharacter->IsEnhancementTrained("KenseiCore1", "Kensei Focus: Heavy Blades")
-                && m_pCharacter->IsEnhancementTrained("KenseiExoticWeaponMastery", ""))
-        {
-            isUs = true;
-        }
-        break;
-    case Weapon_Falchion:
-    case Weapon_GreatSword:
-    case Weapon_Longsword:
-    case Weapon_Scimitar:
-        isUs = true;
-        break;
-        // all other weapon types are not a match
-    }
-    return isUs;
-}
-
-bool BreakdownItemWeaponEffects::IsLightBladeWeapon(WeaponType wt) const
-{
-    bool isUs = false;
-    switch (wt)
-    {
-    case Weapon_Dagger:
-    case Weapon_Kukri:
-    case Weapon_Rapier:
-    case Weapon_Shortsword:
-    case Weapon_ThrowingDagger:
-        isUs = true;
-        break;
-        // all other weapon types are not a match
-    }
-    return isUs;
-}
-
-bool BreakdownItemWeaponEffects::IsPickOrHammerWeapon(WeaponType wt) const
-{
-    bool isUs = false;
-    switch (wt)
-    {
-    case Weapon_HeavyPick:
-    case Weapon_LightHammer:
-    case Weapon_LightPick:
-    case Weapon_Maul:
-    case Weapon_ThrowingHammer:
-    case Weapon_Warhammer:
-        isUs = true;
-        break;
-        // all other weapon types are not a match
-    }
-    return isUs;
-}
-
-bool BreakdownItemWeaponEffects::IsMaceOrClubWeapon(WeaponType wt) const
-{
-    bool isUs = false;
-    switch (wt)
-    {
-    case Weapon_Club:
-    case Weapon_GreateClub:
-    case Weapon_HeavyMace:
-    case Weapon_LightMace:
-    case Weapon_Morningstar:
-    case Weapon_Quarterstaff:
-        isUs = true;
-        break;
-        // all other weapon types are not a match
-    }
-    return isUs;
-}
-
-bool BreakdownItemWeaponEffects::IsMartialArtsWeapon(WeaponType wt) const
-{
-    bool isUs = false;
-    switch (wt)
-    {
-    case Weapon_Handwraps:
-    case Weapon_Kama:
-    case Weapon_Quarterstaff:
-    case Weapon_Shuriken:
-        isUs = true;
-        break;
-        // all other weapon types are not a match
-    }
-    return isUs;
-}
-
-bool BreakdownItemWeaponEffects::IsAxe(WeaponType wt) const
-{
-    bool isUs = false;
-    switch (wt)
-    {
-    case Weapon_DwarvenAxe:
-        // You get Dwarven axe if you are a dwarf or you have the enhancements
-        // for the axe group as your focus weapons as a Kensei
-        if (m_pCharacter->Race() == Race_Dwarf)
-        {
-            isUs = true;
-        }
-        if (m_pCharacter->IsEnhancementTrained("KenseiCore1", "Kensei Focus: Axes")
-                && m_pCharacter->IsEnhancementTrained("KenseiExoticWeaponMastery", ""))
-        {
-            isUs = true;
-        }
-        break;
-    case Weapon_BattleAxe:
-    case Weapon_GreatAxe:
-    case Weapon_HandAxe:
-    case Weapon_ThrowingAxe:
         isUs = true;
         break;
         // all other weapon types are not a match
@@ -754,7 +572,7 @@ bool BreakdownItemWeaponEffects::IsDamageType(WeaponType wt, WeaponDamageType ty
     {
     // bludgeoning weapons
     case Weapon_Club:
-    case Weapon_GreateClub:
+    case Weapon_GreatClub:
     case Weapon_Handwraps:
     case Weapon_HeavyMace:
     case Weapon_LightHammer:
@@ -832,6 +650,22 @@ void BreakdownItemWeaponEffects::WeaponsChanged(const EquippedGear & gear)
     }
     m_pTreeList->Expand(m_hItem, TVE_EXPAND);
     m_pTreeList->RedrawWindow();    // ensure view updates
+}
+
+bool BreakdownItemWeaponEffects::AreWeaponsCentering() const
+{
+    bool isCentered = true;
+    if (m_pMainHandWeapon != NULL
+            && !m_pMainHandWeapon->IsCentering())
+    {
+        isCentered = false;
+    }
+    if (m_pOffHandWeapon != NULL
+            && !m_pOffHandWeapon->IsCentering())
+    {
+        isCentered = false;
+    }
+    return isCentered;
 }
 
 BreakdownItemWeapon * BreakdownItemWeaponEffects::CreateWeaponBreakdown(
