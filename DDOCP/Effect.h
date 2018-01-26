@@ -42,6 +42,7 @@ enum EffectType
     Effect_CenteredWeapon,
     Effect_CriticalAttackBonus,
     Effect_CriticalMultiplier,
+    Effect_CriticalMultiplier19To20,
     Effect_CriticalRange,
     Effect_DamageBonus,
     Effect_DamageReduction,
@@ -101,7 +102,6 @@ enum EffectType
     Effect_MovementSpeed,
     Effect_NegativeHealingAmplification,
     Effect_OffHandAttackBonus,
-    Effect_OffHandDamage,
     Effect_OffHandDoublestrike,
     Effect_OverrideBAB,
     Effect_PointBlankShotRange,
@@ -119,6 +119,7 @@ enum EffectType
     Effect_SkillBonus,
     Effect_SneakAttackAttack,
     Effect_SneakAttackDamage,
+    Effect_SneakAttackDice,
     Effect_SneakAttackRange,
     Effect_SongBonus,
     Effect_SongDuration,
@@ -142,10 +143,9 @@ enum EffectType
     Effect_UnconsciousRange,
     Effect_VorpalRange,
     Effect_WeaponBaseDamageBonus,
-    Effect_WeaponCriticalMultiplier,
-    Effect_WeaponCriticalRange,
     Effect_WeaponDamageBonus,
-    Effect_WeaponDamageDice,
+    Effect_WeaponOtherDamageBonus,
+    Effect_WeaponOtherCriticalDamageBonus,
     Effect_WeaponEnchantment,
     Effect_WeaponProficiency,
 };
@@ -170,6 +170,7 @@ const XmlLib::enumMapEntry<EffectType> effectTypeMap[] =
     {Effect_CenteredWeapon, L"CenteredWeapon"},
     {Effect_CriticalAttackBonus, L"CriticalAttackBonus"},
     {Effect_CriticalMultiplier, L"CriticalMultiplier"},
+    {Effect_CriticalMultiplier19To20, L"CriticalMultiplier19To20"},
     {Effect_CriticalRange, L"CriticalRange"},
     {Effect_DamageBonus, L"DamageBonus"},
     {Effect_DamageReduction, L"DamageReduction"},
@@ -229,7 +230,6 @@ const XmlLib::enumMapEntry<EffectType> effectTypeMap[] =
     {Effect_MovementSpeed, L"MovementSpeed"},
     {Effect_NegativeHealingAmplification, L"NegativeHealingAmplification"},
     {Effect_OffHandAttackBonus, L"OffHandAttackBonus"},
-    {Effect_OffHandDamage, L"OffHandDamage"},
     {Effect_OffHandDoublestrike, L"OffHandDoublestrike"},
     {Effect_OverrideBAB, L"OverrideBAB"},
     {Effect_PointBlankShotRange, L"PointBlankShotRange"},
@@ -247,6 +247,7 @@ const XmlLib::enumMapEntry<EffectType> effectTypeMap[] =
     {Effect_SkillBonus, L"SkillBonus"},
     {Effect_SneakAttackAttack, L"SneakAttackAttack"},
     {Effect_SneakAttackDamage, L"SneakAttackDamage"},
+    {Effect_SneakAttackDice, L"SneakAttackDice"},
     {Effect_SneakAttackRange, L"SneakAttackRange"},
     {Effect_SongBonus, L"SongBonus"},
     {Effect_SongDuration, L"SongDuration"},
@@ -270,10 +271,9 @@ const XmlLib::enumMapEntry<EffectType> effectTypeMap[] =
     {Effect_UnconsciousRange, L"UnconsciousRange"},
     {Effect_VorpalRange, L"VorpalRange"},
     {Effect_WeaponBaseDamageBonus,L"WeaponBaseDamageBonus"},
-    {Effect_WeaponCriticalMultiplier, L"WeaponCriticalMultiplier"},
-    {Effect_WeaponCriticalRange, L"WeaponCriticalRange"},
     {Effect_WeaponDamageBonus, L"WeaponDamageBonus"},
-    {Effect_WeaponDamageDice, L"WeaponDamageDice"},
+    {Effect_WeaponOtherDamageBonus, L"WeaponOtherDamageBonus"},
+    {Effect_WeaponOtherCriticalDamageBonus, L"WeaponOtherCriticalDamageBonus"},
     {Effect_WeaponEnchantment, L"WeaponEnchantment"},
     {Effect_WeaponProficiency, L"WeaponProficiency"},
     {EffectType(0), NULL}
@@ -310,7 +310,6 @@ class Effect :
                 DL_OPTIONAL_SIMPLE(_, double, AmountPerAP, 0.0) \
                 DL_FLAG(_, Percent) \
                 DL_OPTIONAL_OBJECT(_, Dice, DiceRoll) \
-                DL_OPTIONAL_SIMPLE(_, size_t, DieRoll, 20) \
                 DL_OPTIONAL_SIMPLE(_, int, Divider, 0) \
                 DL_OPTIONAL_STRING(_, Base) \
                 DL_OPTIONAL_STRING(_, Feat) \

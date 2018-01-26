@@ -1624,6 +1624,14 @@ void CTlcTree::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
     m_selectedItem=GetSelectedItem();
     const MSG *pMsg = GetCurrentMessage();
     GetParent()->SendMessage(pMsg->message, pMsg->wParam, pMsg->lParam);
+    // ensure owner knows about selection change
+    NMHDR nmHdr;
+    nmHdr.hwndFrom = GetParent()->GetSafeHwnd();
+    nmHdr.idFrom = GetParent()->GetDlgCtrlID();
+    nmHdr.code = TVN_SELCHANGED;
+    WPARAM wParam = GetParent()->GetDlgCtrlID();
+    LPARAM lParam = (LPARAM)(void*)&nmHdr;
+    GetParent()->GetParent()->SendMessage(WM_NOTIFY, wParam, lParam);
 }
 
 void CTlcTree::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -1632,6 +1640,14 @@ void CTlcTree::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
     m_selectedItem=GetSelectedItem();
     const MSG *pMsg = GetCurrentMessage();
     GetParent()->SendMessage(pMsg->message, pMsg->wParam, pMsg->lParam);
+    // ensure owner knows about selection change
+    NMHDR nmHdr;
+    nmHdr.hwndFrom = GetParent()->GetSafeHwnd();
+    nmHdr.idFrom = GetParent()->GetDlgCtrlID();
+    nmHdr.code = TVN_SELCHANGED;
+    WPARAM wParam = GetParent()->GetDlgCtrlID();
+    LPARAM lParam = (LPARAM)(void*)&nmHdr;
+    GetParent()->GetParent()->SendMessage(WM_NOTIFY, wParam, lParam);
 }
 
 BOOL CTlcTree::SetItemData(HTREEITEM hItem, DWORD dwData)

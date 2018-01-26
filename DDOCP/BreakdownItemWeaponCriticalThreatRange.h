@@ -27,6 +27,5 @@ class BreakdownItemWeaponCriticalThreatRange :
         virtual void UpdateEnhancementEffect(Character * charData, const std::string & enhancementName,  const EffectTier & effect) override;
         virtual void UpdateEnhancementEffectRevoked(Character * charData, const std::string & enhancementName, const EffectTier & effect) override;
     private:
-        CString m_title;
         size_t m_keenCount;
 };

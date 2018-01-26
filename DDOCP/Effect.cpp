@@ -223,8 +223,6 @@ bool Effect::operator==(const Effect & other) const
             && (m_hasPercent == other.m_hasPercent)
             && (m_hasDiceRoll == other.m_hasDiceRoll)
             && (m_DiceRoll == other.m_DiceRoll)
-            && (m_hasDieRoll == other.m_hasDieRoll)
-            && (m_DieRoll == other.m_DieRoll)
             && (m_hasDivider == other.m_hasDivider)
             && (m_Divider == other.m_Divider)
             && (m_hasBase == other.m_hasBase)

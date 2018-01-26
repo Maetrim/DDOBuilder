@@ -3,6 +3,7 @@
 #include "StdAfx.h"
 #include "Dice.h"
 #include "XmlLib\SaxWriter.h"
+#include "GlobalSupportFunctions.h"
 
 #define DL_ELEMENT Dice
 
@@ -18,6 +19,8 @@ Dice::Dice() :
     XmlLib::SaxContentElement(f_saxElementName, f_verCurrent)
 {
     DL_INIT(Dice_PROPERTIES)
+    m_Number.push_back(1);
+    m_Sides.push_back(6);   // need a default dice size, changed on read
 }
 
 DL_DEFINE_ACCESS(Dice_PROPERTIES)
@@ -50,12 +53,14 @@ void Dice::Write(XmlLib::SaxWriter * writer) const
 size_t Dice::Number(size_t index) const
 {
     ASSERT(index < m_Number.size());
+    index = min(index, m_Number.size() -1 );
     return m_Number[index];
 }
 
 size_t Dice::Sides(size_t index) const
 {
     ASSERT(index < m_Sides.size());
+    index = min(index, m_Sides.size() -1 );
     return m_Sides[index];
 }
 
@@ -79,5 +84,20 @@ bool Dice::operator==(const Dice & other) const
             && (HasBonus() == other.HasBonus())
             && m_Bonus == other.m_Bonus;
     return equal;
+}
+
+std::string Dice::Description(size_t numStacks) const
+{
+    std::stringstream ss;
+    ss << Number(numStacks-1) << "D"<< Sides(numStacks-1);
+    if (m_hasBonus)
+    {
+        ss << "+" << Bonus(numStacks-1);
+    }
+    if (m_hasEnergy)
+    {
+        ss << " " << EnumEntryText(m_Energy, energyTypeMap);
+    }
+    return ss.str();
 }
 

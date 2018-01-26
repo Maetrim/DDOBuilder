@@ -15,6 +15,7 @@ class Dice :
         size_t Number(size_t index) const;
         size_t Sides(size_t index) const;
         int Bonus(size_t index) const;
+        std::string Description(size_t numStacks) const;
 
         bool operator==(const Dice & other) const;
     protected:

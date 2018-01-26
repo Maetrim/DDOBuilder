@@ -91,7 +91,7 @@ void CSpellLikeAbilityPage::UpdateFeatEffect(
     // only interested in Effect_SpellLikeAbility
     if (effect.Type() == Effect_SpellLikeAbility)
     {
-        m_slas.AddSLA(effect.SpellLikeAbility());
+        m_slas.AddSLA(effect.SpellLikeAbility(), 1);
     }
 }
 
@@ -113,7 +113,7 @@ void CSpellLikeAbilityPage::UpdateItemEffect(
 {
     if (effect.Type() == Effect_SpellLikeAbility)
     {
-        m_slas.AddSLA(effect.SpellLikeAbility());
+        m_slas.AddSLA(effect.SpellLikeAbility(), 1);
     }
 }
 
@@ -135,7 +135,7 @@ void CSpellLikeAbilityPage::UpdateEnhancementEffect(
 {
     if (effect.m_effect.Type() == Effect_SpellLikeAbility)
     {
-        m_slas.AddSLA(effect.m_effect.SpellLikeAbility());
+        m_slas.AddSLA(effect.m_effect.SpellLikeAbility(), effect.m_tier);
     }
 }
 

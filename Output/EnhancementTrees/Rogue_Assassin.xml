@@ -130,7 +130,7 @@ This effect can stack up to 10 times.
          <Effect>
             <Type>MeleePower</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="1">5</AmountVector>
+            <Amount>5</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -158,8 +158,9 @@ Two Weapon Fighters will get the bonus for both weapons provided they qualify.</
          <Effect>
             <Type>CriticalMultiplier</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="1">1</AmountVector>
+            <Amount>1</Amount>
             <WeaponClass>OneHanded</WeaponClass>
+            <Stance>LightOrNoArmor</Stance>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -188,37 +189,34 @@ You gain +2 to the DC of your Assassinate.</Description>
             <Type>AbilityBonus</Type>
             <Bonus>Enhancement</Bonus>
             <Ability>Dexterity</Ability>
-            <AmountVector size="1">2</AmountVector>
+            <Amount>2</Amount>
          </Effect>
          <Effect>
             <Type>AbilityBonus</Type>
             <Bonus>Enhancement</Bonus>
             <Ability>Intelligence</Ability>
-            <AmountVector size="1">2</AmountVector>
+            <Amount>2</Amount>
          </Effect>
          <Effect>
             <Type>MeleePower</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="1">10</AmountVector>
+            <Amount>10</Amount>
          </Effect>
          <Effect>
-            <Type>SneakAttackDamage</Type>
+            <Type>SneakAttackDice</Type>
             <Bonus>Enhancement</Bonus>
-            <Dice>
-               <Number size="1">4</Number>
-               <Sides size="1">6</Sides>
-            </Dice>
+            <Amount>4</Amount>
          </Effect>
          <Effect>
             <Type>SaveBonus</Type>
             <Bonus>Enhancement</Bonus>
             <Save>Reflex</Save>
-            <AmountVector size="1">4</AmountVector>
+            <Amount>4</Amount>
          </Effect>
          <Effect>
             <Type>Assassinate</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="1">2</AmountVector>
+            <Amount>2</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -317,6 +315,16 @@ Passive: Reduces the threat of all your attacks by 5/10/15%.</Description>
                <Level>1</Level>
             </Requirement>
          </Requirements>
+          <Effect>
+              <Type>ThreatBonusMelee</Type>
+              <Bonus>Enhancement</Bonus>
+              <AmountVector size="3">-5 -10 -15</AmountVector>
+          </Effect>
+          <Effect>
+              <Type>ThreatBonusRanged</Type>
+              <Bonus>Enhancement</Bonus>
+              <AmountVector size="3">-5 -10 -15</AmountVector>
+          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Assassin: Sneak Attack Training I</Name>
@@ -336,12 +344,14 @@ Passive: Reduces the threat of all your attacks by 5/10/15%.</Description>
             </Requirement>
          </Requirements>
          <Effect>
-            <Type>SneakAttackDamage</Type>
+            <Type>SneakAttackDice</Type>
             <Bonus>Enhancement</Bonus>
-            <Dice>
-               <Number size="1">4</Number>
-               <Sides size="1">6</Sides>
-            </Dice>
+            <Amount>1</Amount>
+         </Effect>
+         <Effect>
+            <Type>SneakAttackAttack</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -471,7 +481,7 @@ This damage scales with 200% Melee Power.</Description>
 This damage scales with 200% Melee Power.</Description>
          </Stance>
          <Effect>
-            <Type>DamageBonus</Type>
+            <Type>WeaponOtherDamageBonus</Type>
             <Bonus>Enhancement</Bonus>
             <Weapon>All</Weapon>
             <Dice>
@@ -524,12 +534,14 @@ This damage scales with 200% Melee Power.</Description>
             </Requirement>
          </Requirements>
          <Effect>
-            <Type>SneakAttackDamage</Type>
+            <Type>SneakAttackDice</Type>
             <Bonus>Enhancement</Bonus>
-            <Dice>
-               <Number size="1">4</Number>
-               <Sides size="1">6</Sides>
-            </Dice>
+            <Amount>1</Amount>
+         </Effect>
+         <Effect>
+            <Type>SneakAttackAttack</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -708,12 +720,14 @@ This damage scales with 400% Melee Power. (Cooldown: 30/20/10 seconds)</Descript
             </Requirement>
          </Requirements>
          <Effect>
-            <Type>SneakAttackDamage</Type>
+            <Type>SneakAttackDice</Type>
             <Bonus>Enhancement</Bonus>
-            <Dice>
-               <Number size="1">4</Number>
-               <Sides size="1">6</Sides>
-            </Dice>
+            <Amount>1</Amount>
+         </Effect>
+         <Effect>
+            <Type>SneakAttackAttack</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -743,7 +757,7 @@ This damage scales with 400% Melee Power. (Cooldown: 30/20/10 seconds)</Descript
                   <Type>AbilityBonus</Type>
                   <Bonus>Enhancement</Bonus>
                   <Ability>Dexterity</Ability>
-                  <AmountVector size="1">1</AmountVector>
+                  <Amount>1</Amount>
                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
@@ -755,7 +769,7 @@ This damage scales with 400% Melee Power. (Cooldown: 30/20/10 seconds)</Descript
                   <Type>AbilityBonus</Type>
                   <Bonus>Enhancement</Bonus>
                   <Ability>Intelligence</Ability>
-                  <AmountVector size="1">1</AmountVector>
+                  <Amount>1</Amount>
                </Effect>
             </EnhancementSelection>
          </Selector>
@@ -798,6 +812,12 @@ The killer buff can stack up to 2/3/4 times.</Description>
                <Level>4</Level>
             </Requirement>
          </Requirements>
+          <Effect>
+              <Type>Doublestrike</Type>
+              <Bonus>Enhancement</Bonus>
+              <AmountVector size="3">10 15 20</AmountVector>
+              <Stance>Killer</Stance>
+          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Assassin: Weakening Strikes</Name>
@@ -838,12 +858,14 @@ for 10 seconds if you attack an enemy with an "Assassin's Mark."
             </Requirement>
          </Requirements>
          <Effect>
-            <Type>SneakAttackDamage</Type>
+            <Type>SneakAttackDice</Type>
             <Bonus>Enhancement</Bonus>
-            <Dice>
-               <Number size="1">4</Number>
-               <Sides size="1">6</Sides>
-            </Dice>
+            <Amount>1</Amount>
+         </Effect>
+         <Effect>
+            <Type>SneakAttackAttack</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -875,7 +897,7 @@ for 10 seconds if you attack an enemy with an "Assassin's Mark."
                   <Type>AbilityBonus</Type>
                   <Bonus>Enhancement</Bonus>
                   <Ability>Dexterity</Ability>
-                  <AmountVector size="1">1</AmountVector>
+                  <Amount>1</Amount>
                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
@@ -887,7 +909,7 @@ for 10 seconds if you attack an enemy with an "Assassin's Mark."
                   <Type>AbilityBonus</Type>
                   <Bonus>Enhancement</Bonus>
                   <Ability>Intelligence</Ability>
-                  <AmountVector size="1">1</AmountVector>
+                  <Amount>1</Amount>
                </Effect>
             </EnhancementSelection>
          </Selector>
@@ -939,6 +961,31 @@ This effect stacks up to five times, and lasts 10 seconds after you come out of 
                <Level>5</Level>
             </Requirement>
          </Requirements>
+          <Effect>
+              <Type>MeleePower</Type>
+              <Bonus>Enhancement</Bonus>
+              <AmountVector size="3">30 30 30</AmountVector>
+              <Stance>Measure the Foe</Stance>
+          </Effect>
+          <Effect>
+              <Type>DodgeBonus</Type>
+              <Bonus>Enhancement</Bonus>
+              <AmountVector size="3">10 10 10</AmountVector>
+              <Stance>Measure the Foe</Stance>
+          </Effect>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <Bonus>Enhancement</Bonus>
+              <AmountVector size="3">5 5 5</AmountVector>
+              <Weapon>All</Weapon>
+              <Stance>Measure the Foe</Stance>
+          </Effect>
+          <Effect>
+              <Type>Assassinate</Type>
+              <Bonus>Enhancement</Bonus>
+              <AmountVector size="3">5 5 5</AmountVector>
+              <Stance>Measure the Foe</Stance>
+          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Assassin: Deadly Strikes</Name>
@@ -986,19 +1033,19 @@ Daggers also gain a +1 Competence bonus to Critical Threat Range.</Description>
          <Effect>
             <Type>CriticalMultiplier</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="1">1</AmountVector>
+            <Amount>1</Amount>
             <Weapon>Dagger</Weapon>
          </Effect>
          <Effect>
             <Type>CriticalRange</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="1">1</AmountVector>
+            <Amount>1</Amount>
             <Weapon>Dagger</Weapon>
          </Effect>
          <Effect>
             <Type>CriticalMultiplier</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="1">1</AmountVector>
+            <Amount>1</Amount>
             <Weapon>Kukri</Weapon>
          </Effect>
       </EnhancementTreeItem>
@@ -1028,12 +1075,11 @@ While wearing light armor, gain 2/4/6 to the Maximum Dexterity Bonus of your arm
             <Type>DodgeCapBonus</Type>
             <Bonus>Enhancement</Bonus>
             <AmountVector size="3">1 2 3</AmountVector>
-            <Stance>Light Armor</Stance>
          </Effect>
          <Effect>
             <Type>MaxDexBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">1 2 3</AmountVector>
+            <AmountVector size="3">2 4 6</AmountVector>
             <Stance>Light Armor</Stance>
          </Effect>
          <Effect>

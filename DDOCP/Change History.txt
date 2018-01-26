@@ -1,5 +1,100 @@
 History of changes made
 
+Engine: XML library updated to indent lines to make files more human readable. Lines now saved with \r\n also.
+Fix: Save files active stances will no longer bloat with multiple copies of the same stance name. (older save files will slowly clean themselves up as stances change)
+Fix: Curse breakdown now uses Will as its base save, not reflex.
+---Breakdown moved from reflex save to will save in breakdowns tree.
+---Save moved in export code to Will save from Reflex save.
+Engine: Effect DieRoll field removed. New effect CriticalMultiplier19To20 added.
+---All existing effects updated. Issues found during update:
+------Fixed Battle Engineer: Reconstructed Armaments - Threat range bonus was erroneously Multiplier bonus.
+------Mechanic: Expert Builder - Great Crossbow bonus multiplier is now 2.
+------Vistani: Vendetta - threat range bonus was erroneously an attack bonus.
+Fix: Critical threat range keen bonus is no longer a level up bonus.
+Fix: Feat tooltips in the level up screen now use the correct level when determining whether requirements are met.
+Item Select Dialog: Switching main hand weapons retains any Sentient Jewel you had setup.
+Weapon Breakdowns: Weapon Critical Multiplier breakdown added.
+---Critical Multiplier on a 19-20 multiplier added.
+---Attack speed with weapon breakdown added.
+---Weapon Dice are now shown.
+---Weapon other damage effects added (e.g. +2d6 flaming)
+------All weapon damage effects that have a dice field updated
+---Weapon other critical damage effects added (e.g. +2d6 flaming)
+------All weapon damage effects that have a dice field updated
+Fix: Older .ddocp save files with weapon items without damage dice will now no longer crash the software on load.
+---To fully fix the file, you need to switch the weapon item in the item select dialog.
+Other Breakdowns:
+---Sneak attack dice breakdown shown
+------All effects that give sneak dice updated
+---Sneak Attack damage breakdown added (e.g Rogue past life gives +1 sneak damage on any attack that qualifies)
+---Sneak Attack attack breakdown added (bonus to hit for any attack that qualifies as a sneak attack)
+Fix: Off hand ability bonus damage is now 50% unless "Tempest Dual Perfection" is trained.
+Items: Now have optional DamageDice field.
+---All test weapons updated to use damage dice fields.
+Fix: SLAs types will now only appear once as they now stack by name. (e.g. multiple tiers of "Blessing of Amaunator")
+Feats: Aura or Courage and Aura of Good now create automatic stances that are always on.
+Feats: Sneak Attack feat now grants 1d6 sneak attack damage
+Fix: Feat effects and Stance creation order switched to allow feat effects to enable a just created stance.
+Fix: Changing the selection in the breakdowns item list using the keyboard now correctly updates the breakdown source item list.
+Engine: Armor stances now controlled directly in C++ code, all items and feats which used "ActivateStance" for armor as an effect updated.
+Engine: New Auto controlled stance "LightOrNoArmor" added.
+Export: Automatic feats added to forum export
+Export: Equipped weapons damage added to forum export
+Continued Enhancements pass:
+---Kensei: Alacrity - effects fixed
+---Kensei: Exotic Focus now correctly requires either Focus Axes, Crossbows or Heavy Blades as a pre-requisite.
+---Ninja Spy: Basic Ninja Training - piercing and slashing weapons can now used Dexterity for attack.
+------Problem: This should only apply while centered.
+---Ninja Spy: Advanced Ninja Training - missing effects added
+---Ninja Spy: Ninja Master - missing effects added
+---Ninja Spy: Stealthy - missing effects added
+---Ninja Spy: Sneak Attack Training I/II/III/IV - missing effect added
+---Ninja Spy: Acrobatic - missing effects added
+---Ninja Spy: Subtlety - missing effects added
+---Ninja Spy: Agility - missing effects added
+---Ninja Spy: Flash Bang - SLA now shows up
+---Ninja Spy: Crippling Strike - Crippling Strike feat now granted
+---Shintao: Meditation of War - effects updated
+---Morninglord: Cores2-4 now have additional effects for Point blank shot and sneak attack range
+---Morninglord: Rejuvenation of Dawn now shows up as an SLA
+---Morninglord: Blessing of Amaunator now shows up as an SLA
+---Knight of the Chalice: Improved Courage of Heaven - aura of courage effects added
+---Knight of the Chalice: Champion of Good - aura of courage effects added
+---Sacred Defender: Bulwark Aura - aura effects added
+---Sacred Defender: Sacred Shield Mastery - effects fixed, although these may not yet be modelled correctly
+---Sacred Defender: Resistance Aura - Aura effect added
+---Sacred Defender: Greater Sacred Defense I/II/II - Fixed effects to require Medium or Heavy armor - BUG can't handle no Armor and use of a shield
+---Sacred Defender: Reinforced Defense I/II - Fixed effects
+---Sacred Defender: Spellshield Aura - effects added
+---Purple Dragon Knight: Cormyrean Knight Training - Missing use Charisma for attack effects added
+---Purple Dragon Knight: Action Surge I/II/III/IV effects now have stance requirements
+---Purple Dragon Knight: Don't Count Me Out - PRR effect added
+---Purple Dragon Knight: For Cormyr! - Now shows up as an SLA
+---Arcane Archer: Shadow Arrows - Critical multiplier is now correctly a Competence bonus
+---Deepwood Stalker: Advanced Sneak Attack - Critical threat bonus is now correctly a Competence bonus
+---Deepwood Stalker: Empathic Healing - Now shows up as an SLA
+---Deepwood Stalker: Improved Weapon Finesse - Dexterity effect for Finesseable weapons added
+---Tempest: All core AC/PRR/MRR bonus types are now "Shield"
+---Tempest: Dervish - some effects updated to require LightOrNoArmor stance be active
+---Tempest: Improved Defence - AC/PRR/MRR bonus types are now "Shield"
+---Tempest: Improved Dodge - dodge bonus now only applies when in light or no armor
+---Tempest: Improved Mobility - dodge cap and max dex bonus now only applies in light or no armor
+---Tempest: Storm Dancer and Storm Tempest other weapon effects added.
+---Henshin Mystic: Lighting the Candle: Other weapon effects added.
+---Assassin: Lethality - Critical Multiplier effect now only applies in Light or No Armor
+---Assassin: Shiv - missing threat effects added
+---Assassin: Sneak Attack Training I/II/III/IV - sneak attack bonus effect added
+---Assassin: Killer - Inactive doublestrike effect added (thus shows in breakdowns)
+---Assassin: Measure the Foe - inactive effects added
+---Assassin: Light Armor Mastery - Effect bonus values fixed
+---Mechanic: Targeting Sights - Can now apply Int damage to thrown weapons
+---Mechanic: Expert Builder - description updated
+---Mechanic: HipFlask - missing effects added
+---Mechanic: Sharpshooter I..V - Sneak attack dice effect added
+---Mechanic: Sniper - missing [W] effects added for crossbows
+
+version 1.0.0.21
+
 Fix: Fake effects added to "Two Weapon Fighting" and "Oversized Two Weapon Fighting" feats to force display update.
 Enhancements: Swashbuckler: Swashbuckling Style II - Loud and Clear now correctly requires the "Orb" stance active.
 Stances: The following stances are now under program control. Based on equipped gear.

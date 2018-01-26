@@ -10,6 +10,7 @@
 #include "BreakdownItem.h"
 #include "BreakdownItemMRR.h"
 #include "BreakdownItemSave.h"
+#include "BreakdownItemWeaponEffects.h"
 #include "DDOCPDoc.h"
 #include "GlobalSupportFunctions.h"
 #include "MainFrm.h"
@@ -263,11 +264,13 @@ void CDDOCPDoc::OnForumExportToClipboard()
     AddSaves(forumExport);
     AddEnergyResistances(forumExport);
     AddFeatSelections(forumExport);
+    AddAutomaticFeats(forumExport);
     AddSkills(forumExport);
     AddEnhancements(forumExport);
     AddTwistsOfFate(forumExport);
     AddSpellPowers(forumExport);
     AddSpells(forumExport);
+    AddWeaponDamage(forumExport);
     AddGear(forumExport);
     forumExport << "[/code]\r\n";
 
@@ -449,13 +452,13 @@ void CDDOCPDoc::AddSaves(std::stringstream & forumExport)
     AddBreakdown(forumExport, "\r\n  vs Enchantment: ", 3, Breakdown_SaveEnchantment);
     AddBreakdown(forumExport, "\r\n  vs Illusion:    ", 3, Breakdown_SaveIllusion);
     AddBreakdown(forumExport, "\r\n  vs Fear:        ", 3, Breakdown_SaveFear);
+    AddBreakdown(forumExport, "\r\n  vs Curse:       ", 3, Breakdown_SaveCurse);
     forumExport << "\r\n";
 
     AddBreakdown(forumExport, "Reflex:           ", 3, Breakdown_SaveReflex);
     AddBreakdown(forumExport, "\r\n  vs Traps:       ", 3, Breakdown_SaveTraps);
     AddBreakdown(forumExport, "\r\n  vs Spell:       ", 3, Breakdown_SaveSpell);
     AddBreakdown(forumExport, "\r\n  vs Magic:       ", 3, Breakdown_SaveMagic);
-    AddBreakdown(forumExport, "\r\n  vs Curse:       ", 3, Breakdown_SaveCurse);
     forumExport << "\r\n";
 
     forumExport << "Marked with a * is no fail on a 1 if required DC met\r\n";
@@ -613,6 +616,47 @@ void CDDOCPDoc::AddFeatSelections(std::stringstream & forumExport)
         forumExport << "------------------------------------------------------------------------------------------\r\n";
     }
     // blank line after
+    forumExport << "\r\n";
+}
+
+void CDDOCPDoc::AddAutomaticFeats(std::stringstream & forumExport)
+{
+    // list all the automatic feats gained at each level
+    forumExport << "Level Class            Feats\r\n";
+    for (size_t level = 0; level < MAX_LEVEL; ++level)
+    {
+        const LevelTraining & levelData = m_characterData.LevelData(level);
+        std::vector<size_t> classLevels = m_characterData.ClassLevels(level);
+        CString className;
+        className.Format("%s(%d)",
+                EnumEntryText(levelData.HasClass() ? levelData.Class() : Class_Unknown, classTypeMap),
+                levelData.HasClass() ? classLevels[levelData.Class()] : 0);
+        forumExport.width(3);
+        forumExport << std::right << (level + 1) << "   ";
+        forumExport.fill(' ');
+        forumExport.width(17);
+        forumExport << std::left << className;
+        // now add the automatic feats
+        const FeatsListObject & automaticFeats = levelData.AutomaticFeats();
+        const std::list<TrainedFeat> & feats = automaticFeats.Feats();
+        std::list<TrainedFeat>::const_iterator it = feats.begin();
+        bool first = true;
+        while (it != feats.end())
+        {
+            if (!first)
+            {
+                forumExport << "                       ";
+            }
+            forumExport << (*it).FeatName();
+            forumExport << "\r\n";
+            ++it;
+            first = false;
+        }
+        if (first)
+        {
+            forumExport << "\r\n";
+        }
+    }
     forumExport << "\r\n";
 }
 
@@ -1067,6 +1111,25 @@ void CDDOCPDoc::AddSpells(std::stringstream & forumExport)
     {
         forumExport << "------------------------------------------------------------------\r\n";
         forumExport << "\r\n";
+    }
+}
+
+void CDDOCPDoc::AddWeaponDamage(std::stringstream & forumExport)
+{
+    forumExport << "Weapon Damage                                                     \r\n";
+    forumExport << "------------------------------------------------------------------\r\n";
+    EquippedGear gear = m_characterData.ActiveGearSet();
+    if (gear.HasItemInSlot(Inventory_Weapon1))
+    {
+        BreakdownItem * pBI = FindBreakdown(Breakdown_WeaponEffectHolder);
+        if (pBI != NULL)
+        {
+            BreakdownItemWeaponEffects * pBIWE = dynamic_cast<BreakdownItemWeaponEffects*>(pBI);
+            if (pBIWE != NULL)
+            {
+                pBIWE->AddForumExportData(forumExport);
+            }
+        }
     }
 }
 

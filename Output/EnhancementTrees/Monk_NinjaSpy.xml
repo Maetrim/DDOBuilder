@@ -39,6 +39,20 @@ and slashing weapons.</Description>
             <Bonus>Enhancement</Bonus>
             <Weapon>Shortsword</Weapon>
          </Effect>
+         <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Ability>Dexterity</Ability>
+            <DamageType>Piercing</DamageType>
+            <Stance>Centered</Stance>
+         </Effect>
+         <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Ability>Dexterity</Ability>
+            <DamageType>Slashing</DamageType>
+            <Stance>Centered</Stance>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Ninja Spy: Advanced Ninja Training</Name>
@@ -61,6 +75,24 @@ You also gain a chance based on your Dexterity score to throw an extra shuriken 
                <Level>3</Level>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Ability>Dexterity</Ability>
+            <DamageType>Piercing</DamageType>
+         </Effect>
+         <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Ability>Dexterity</Ability>
+            <DamageType>Slashing</DamageType>
+         </Effect>
+         <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Ability>Dexterity</Ability>
+            <Weapon>Shuriken</Weapon>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Ninja Spy: Shadow Veil</Name>
@@ -157,6 +189,40 @@ you wield gains the Vorpal ability. </Description>
                <Level>20</Level>
             </Requirement>
          </Requirements>
+          <Effect>
+              <Type>AbilityBonus</Type>
+              <Bonus>Enhancement</Bonus>
+              <Amount>2</Amount>
+              <Ability>Dexterity</Ability>
+          </Effect>
+          <Effect>
+              <Type>CriticalRange</Type>
+              <Bonus>Competence</Bonus>
+              <Amount>1</Amount>
+              <Weapon>Shortsword</Weapon>
+              <Stance>Centered</Stance>
+          </Effect>
+          <Effect>
+              <Type>CriticalMultiplier</Type>
+              <Bonus>Competence</Bonus>
+              <Amount>1</Amount>
+              <Weapon>Shortsword</Weapon>
+              <Stance>Centered</Stance>
+          </Effect>
+          <Effect>
+              <Type>CriticalRange</Type>
+              <Bonus>Competence</Bonus>
+              <Amount>2</Amount>
+              <Weapon>Kama</Weapon>
+              <Stance>Centered</Stance>
+          </Effect>
+          <Effect>
+              <Type>CriticalRange</Type>
+              <Bonus>Competence</Bonus>
+              <Amount>2</Amount>
+              <Weapon>Shuriken</Weapon>
+              <Stance>Centered</Stance>
+          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Ninja Spy: Ninjutsu I</Name>
@@ -229,6 +295,18 @@ Rank 3: While centered and Sneaking, your passive ki regeneration is increased b
                <Level>1</Level>
             </Requirement>
          </Requirements>
+        <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Skill>Hide</Skill>
+        </Effect>
+        <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Skill>Move Silently</Skill>
+        </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Ninja Spy: Sneak Attack Training I</Name>
@@ -248,12 +326,14 @@ Rank 3: While centered and Sneaking, your passive ki regeneration is increased b
             </Requirement>
          </Requirements>
          <Effect>
-            <Type>SneakAttackDamage</Type>
+            <Type>SneakAttackAttack</Type>
             <Bonus>Enhancement</Bonus>
-            <Dice>
-               <Number size="1">4</Number>
-               <Sides size="1">6</Sides>
-            </Dice>
+             <Amount>1</Amount>
+         </Effect>
+         <Effect>
+            <Type>SneakAttackDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -284,6 +364,29 @@ Rank 3: While centered and Sneaking, your passive ki regeneration is increased b
          <Ranks>3</Ranks>
          <MinSpent>1</MinSpent>
          <Requirements/>
+        <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Skill>Balance</Skill>
+        </Effect>
+        <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Skill>Jump</Skill>
+        </Effect>
+        <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Skill>Tumble</Skill>
+        </Effect>
+        <Effect>
+            <Type>DodgeBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+        </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Ninja Spy: Ninjutsu II</Name>
@@ -386,6 +489,11 @@ one negative level.</Description>
                <Level>2</Level>
             </Requirement>
          </Requirements>
+        <Effect>
+            <Type>ThreatBonusMelee</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">-20 -30 -40</AmountVector>
+        </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Ninja Spy: Sneak Attack Training II</Name>
@@ -408,12 +516,14 @@ one negative level.</Description>
             </Requirement>
          </Requirements>
          <Effect>
-            <Type>SneakAttackDamage</Type>
+            <Type>SneakAttackAttack</Type>
             <Bonus>Enhancement</Bonus>
-            <Dice>
-               <Number size="1">4</Number>
-               <Sides size="1">6</Sides>
-            </Dice>
+             <Amount>1</Amount>
+         </Effect>
+         <Effect>
+            <Type>SneakAttackDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -490,6 +600,23 @@ The target receives periodic saves to attempt to break free of this effect.</Des
                <Level>2</Level>
             </Requirement>
          </Requirements>
+        <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Skill>Concentration</Skill>
+        </Effect>
+        <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Save>Reflex</Save>
+        </Effect>
+        <Effect>
+            <Type>DodgeCapBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+        </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Ninja Spy: Ninjutsu III</Name>
@@ -613,6 +740,11 @@ throws have DC equal to (10/14/18 + Monk Level + Wisdom Modifier).
                <Level>3</Level>
             </Requirement>
          </Requirements>
+        <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellLikeAbility>Flash Bang</SpellLikeAbility>
+        </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Ninja Spy: Sneak Attack Training III</Name>
@@ -635,12 +767,14 @@ throws have DC equal to (10/14/18 + Monk Level + Wisdom Modifier).
             </Requirement>
          </Requirements>
          <Effect>
-            <Type>SneakAttackDamage</Type>
+            <Type>SneakAttackAttack</Type>
             <Bonus>Enhancement</Bonus>
-            <Dice>
-               <Number size="1">4</Number>
-               <Sides size="1">6</Sides>
-            </Dice>
+             <Amount>1</Amount>
+         </Effect>
+         <Effect>
+            <Type>SneakAttackDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -690,7 +824,7 @@ inflict your foes with a stack of Ninja Poison on critical hits. (Cooldown: 3 se
                   <Type>AbilityBonus</Type>
                   <Bonus>Enhancement</Bonus>
                   <Ability>Dexterity</Ability>
-                  <AmountVector size="1">1</AmountVector>
+                  <Amount>1</Amount>
                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
@@ -702,7 +836,7 @@ inflict your foes with a stack of Ninja Poison on critical hits. (Cooldown: 3 se
                   <Type>AbilityBonus</Type>
                   <Bonus>Enhancement</Bonus>
                   <Ability>Wisdom</Ability>
-                  <AmountVector size="1">1</AmountVector>
+                  <Amount>1</Amount>
                </Effect>
             </EnhancementSelection>
          </Selector>
@@ -863,12 +997,14 @@ Ninja Poison removed.</Description>
             </Requirement>
          </Requirements>
          <Effect>
-            <Type>SneakAttackDamage</Type>
+            <Type>SneakAttackAttack</Type>
             <Bonus>Enhancement</Bonus>
-            <Dice>
-               <Number size="1">4</Number>
-               <Sides size="1">6</Sides>
-            </Dice>
+             <Amount>1</Amount>
+         </Effect>
+         <Effect>
+            <Type>SneakAttackDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -917,7 +1053,7 @@ Ninja Poison removed.</Description>
                   <Type>AbilityBonus</Type>
                   <Bonus>Enhancement</Bonus>
                   <Ability>Dexterity</Ability>
-                  <AmountVector size="1">1</AmountVector>
+                  <Amount>1</Amount>
                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
@@ -929,7 +1065,7 @@ Ninja Poison removed.</Description>
                   <Type>AbilityBonus</Type>
                   <Bonus>Enhancement</Bonus>
                   <Ability>Wisdom</Ability>
-                  <AmountVector size="1">1</AmountVector>
+                  <Amount>1</Amount>
                </Effect>
             </EnhancementSelection>
          </Selector>
@@ -989,6 +1125,11 @@ successful Fortitude save (DC = 10 + Wisdom modifier + your monk level).
                <MinLevel>12</MinLevel>
             </Requirement>
          </Requirements>
+          <Effect>
+              <Type>GrantFeat</Type>
+              <Bonus>Enhancement</Bonus>
+              <Feat>Crippling Strike</Feat>
+          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Ninja Spy: Shadow Double</Name>

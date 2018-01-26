@@ -405,9 +405,22 @@ void CItemSelectDialog::OnItemSelected(NMHDR* pNMHDR, LRESULT* pResult)
             sel = m_availableItemsCtrl.GetItemData(sel);
             if (sel >= 0 && sel < (int)m_availableItems.size())
             {
+                // backup any sentient jewel this item being swapped from has
+                bool hadSentience = false;
+                SentientJewel jewel;
+                if (m_item.HasSentientIntelligence())
+                {
+                    hadSentience = true;
+                    jewel = m_item.SentientIntelligence();
+                }
                 std::list<Item>::const_iterator it = m_availableItems.begin();
                 std::advance(it, sel);
                 m_item = (*it);
+                // restore sentient jewel
+                if (hadSentience)
+                {
+                    m_item.Set_SentientIntelligence(jewel);
+                }
                 AddSpecialSlots();  // adds reaper or mythic slots to the item
                 // update the other controls
                 EnableControls();

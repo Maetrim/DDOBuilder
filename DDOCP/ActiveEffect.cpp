@@ -211,7 +211,9 @@ CString ActiveEffect::AmountAsText() const
     switch (m_type)
     {
     case ET_dice:
-        text.Format("%dD%d", m_dice.Number(), m_dice.Sides());
+        text.Format("%dD%d",
+                (int)m_dice.Number(m_numStacks),
+                (int)m_dice.Sides(m_numStacks));
         // optional effects such as its Fire damage
         if (m_bHasEnergy)
         {
@@ -383,6 +385,7 @@ double ActiveEffect::TotalAmount(bool allowTruncate) const
     switch (m_type)
     {
     case ET_dice:
+        value = 1;  // just need a non-zero value
         break;
     case ET_amount:
         value = m_amount * m_numStacks;
@@ -553,4 +556,22 @@ bool ActiveEffect::operator==(const ActiveEffect & other) const
         }
     }
     return equal;
+}
+
+std::string ActiveEffect::Description() const
+{
+    std::stringstream ss;
+    switch (m_type)
+    {
+    case ET_amount:
+    case ET_amountVector:
+    case ET_amountPerLevel:
+    case ET_amountPerAp:
+    case ET_amountVectorPerClassLevel:
+        break;
+    case ET_dice:
+        ss << m_dice.Description(m_numStacks);
+        break;
+    }
+    return ss.str();
 }

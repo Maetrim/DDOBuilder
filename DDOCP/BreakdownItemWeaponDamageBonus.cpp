@@ -15,7 +15,7 @@ BreakdownItemWeaponDamageBonus::BreakdownItemWeaponDamageBonus(
     BreakdownItem(type, treeList, hItem),
     m_title(title),
     m_effect(effect),
-    m_bIsMeleeWeapon(false)
+    m_bOffHand(false)
 {
 }
 
@@ -53,10 +53,30 @@ void BreakdownItemWeaponDamageBonus::CreateOtherEffects()
             BreakdownItem * pBI = FindBreakdown(StatToBreakdown(ability));
             ASSERT(pBI != NULL);
             int bonus = BaseStatToBonus(pBI->Total());
+            bool only50Percent = false;
+            if (m_bOffHand)
+            {
+                // off hand only gets 50% of ability bonus to damage unless
+                // TempestDualPerfection is trained
+                if (!m_pCharacter->IsEnhancementTrained("TempestDualPerfection", ""))
+                {
+                    // divide the bonus by 2
+                    only50Percent = true;
+                    bonus /= 2; // rounds down
+                }
+            }
             if (bonus != 0) // only add to list if non zero
             {
                 // should now have the best option
-                std::string bonusName = "Ability bonus (" + EnumEntryText(ability, abilityTypeMap) + ")";
+                std::string bonusName;
+                if (only50Percent)
+                {
+                    bonusName = "50% of Ability bonus (" + EnumEntryText(ability, abilityTypeMap) + ")";
+                }
+                else
+                {
+                    bonusName = "Ability bonus (" + EnumEntryText(ability, abilityTypeMap) + ")";
+                }
                 ActiveEffect feat(
                         Bonus_ability,
                         bonusName,
@@ -67,7 +87,7 @@ void BreakdownItemWeaponDamageBonus::CreateOtherEffects()
                 AddOtherEffect(feat);
             }
         }
-        if (m_bIsMeleeWeapon)
+        if (IsMeleeWeapon(Weapon()))
         {
             // handle divine presence which cannot be handled with effects
             if (m_pCharacter->IsEnhancementTrained("WSDivineMight", "Divine Presence"))
@@ -279,7 +299,7 @@ void BreakdownItemWeaponDamageBonus::UpdateEnhancementTrained(
             selection,
             isTier5);
     // check for "Divine Might" in War Soul tree only being trained specifically
-    if (m_bIsMeleeWeapon
+    if (IsMeleeWeapon(Weapon())
             && enhancementName == "WSDivineMight")
     {
         // need to re-create other effects list
@@ -300,7 +320,7 @@ void BreakdownItemWeaponDamageBonus::UpdateEnhancementRevoked(
             selection,
             isTier5);
     // check for "Divine Might" War Soul tree only being revoked specifically
-    if (m_bIsMeleeWeapon
+    if (IsMeleeWeapon(Weapon())
             && enhancementName == "WSDivineMight")
     {
         // need to re-create other effects list
@@ -309,7 +329,7 @@ void BreakdownItemWeaponDamageBonus::UpdateEnhancementRevoked(
     }
 }
 
-void BreakdownItemWeaponDamageBonus::SetIsMeleeWeapon(bool melee)
+void BreakdownItemWeaponDamageBonus::SetIsOffHand(bool offHand)
 {
-    m_bIsMeleeWeapon = melee;
+    m_bOffHand = offHand;
 }

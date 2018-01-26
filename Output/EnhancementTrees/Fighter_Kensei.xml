@@ -168,6 +168,7 @@ this bonus by 1%.</Description>
          <Effect>
             <Type>Doublestrike</Type>
             <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
             <WeaponClass>FocusGroup</WeaponClass>
          </Effect>
          <Effect>
@@ -295,16 +296,16 @@ Passive: +20 Melee Power and Ranged Power.</Description>
             <Amount>2</Amount>
          </Effect>
          <Effect>
-             <!--only if focus group is melee-->
             <Type>Doublestrike</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>1</Amount>
+            <WeaponClass>FocusGroup</WeaponClass>
          </Effect>
          <Effect>
-             <!--only if focus group is ranged-->
             <Type>Doubleshot</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>1</Amount>
+            <WeaponClass>FocusGroup</WeaponClass>
          </Effect>
          <Effect>
             <Type>Doublestrike</Type>
@@ -529,6 +530,20 @@ Note: This enhancement does not grant exotic proficiency.</Description>
                <Class>Fighter</Class>
                <Level>1</Level>
             </Requirement>
+             <RequiresOneOf>
+                 <Requirement>
+                     <Enhancement>KenseiWeaponGroupSecializationI</Enhancement>
+                     <Selection>Kensei Focus: Axes</Selection>
+                 </Requirement>
+                 <Requirement>
+                     <Enhancement>KenseiWeaponGroupSecializationI</Enhancement>
+                     <Selection>Kensei Focus: Crossbows</Selection>
+                 </Requirement>
+                 <Requirement>
+                     <Enhancement>KenseiWeaponGroupSecializationI</Enhancement>
+                     <Selection>Kensei Focus: Heavy Blades</Selection>
+                 </Requirement>
+             </RequiresOneOf>
          </Requirements>
          <!--Effects handled in C++ code-->
       </EnhancementTreeItem>

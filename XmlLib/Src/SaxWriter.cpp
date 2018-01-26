@@ -22,7 +22,10 @@ namespace
 
 SaxWriter::SaxWriter() :
     m_imxEmptyElement(false),
-    m_file(INVALID_HANDLE_VALUE)
+    m_imxComplexElement(false),
+    m_imxElementDepth(0),
+    m_file(INVALID_HANDLE_VALUE),
+    m_elementDepth(0)
 {
 }
 
@@ -41,6 +44,7 @@ SaxWriter::~SaxWriter()
 void SaxWriter::StartDocument(const SaxString & rootNodeName)
 {
     SaxAttributes attributes;
+    m_elementDepth = 0;
     StartElement(rootNodeName, attributes);
 }
 
@@ -60,13 +64,16 @@ void SaxWriter::EndDocument()
     Close();
 }
 
-void SaxWriter::StartElement(const SaxString & nodeName)
+void SaxWriter::StartElement(const SaxString & nodeName, bool complexElement)
 {
     static SaxAttributes emptyAttributes;
-    StartElement(nodeName, emptyAttributes);
+    StartElement(nodeName, emptyAttributes, complexElement);
 }
 
-void SaxWriter::StartElement(const SaxString & nodeName, const SaxAttributes & attributes)
+void SaxWriter::StartElement(
+        const SaxString & nodeName,
+        const SaxAttributes & attributes,
+        bool complexElement)
 {
     SaxAttributes fullAttributes = attributes;
 
@@ -74,24 +81,36 @@ void SaxWriter::StartElement(const SaxString & nodeName, const SaxAttributes & a
 
     if (m_imxEmptyElement) // last element needs to be started
     {
-        OutputElementStart(m_imxElementHeader);
+        OutputElementStart(m_imxElementHeader, m_imxComplexElement, m_imxElementDepth);
     }
     m_imxEmptyElement = true; // starting a new element
+    m_imxComplexElement = complexElement;
+    m_imxElementDepth = m_elementDepth;
     m_imxElementHeader = nodeName;
     m_imxElementHeader += fullAttributes.Format();
     m_elementStack.push_back(nodeName);
+    if (complexElement)
+    {
+        ++m_elementDepth;
+    }
 }
 
-void SaxWriter::EndElement()
+void SaxWriter::EndElement(bool complexElement)
 {
+    if (complexElement)
+    {
+        --m_elementDepth;
+    }
     if (m_imxEmptyElement) // last element needs to be started
     {
         OutputEmptyElement(m_imxElementHeader.c_str());
         m_imxEmptyElement = false; // no current unwritten element
+        m_imxComplexElement = false;
+        m_imxElementDepth = 0;
     }
     else
     {
-        OutputElementEnd(m_elementStack.back());
+        OutputElementEnd(m_elementStack.back(), complexElement);
     }
     // that's the end of that element
     m_elementStack.pop_back();
@@ -103,8 +122,10 @@ void SaxWriter::Characters(const SaxString & chars)
     {
         if (m_imxEmptyElement) // last element needs to be started
         {
-            OutputElementStart(m_imxElementHeader);
+            OutputElementStart(m_imxElementHeader, m_imxComplexElement, m_imxElementDepth);
             m_imxEmptyElement = false; // no current unwritten element
+            m_imxComplexElement = false;
+            m_imxElementDepth = 0;
         }
         OutputCharacters(chars);
     }
@@ -179,13 +200,16 @@ void SaxWriter::WriteComment(const SaxString & comment)
     std::string commentStart("<!--");
     Write(commentStart.c_str(), commentStart.length());
     Characters(comment);
-    std::string commentEnd("-->");
+    std::string commentEnd("-->\r\n");
     Write(commentEnd.c_str(), commentEnd.length());
 }
 
-void SaxWriter::WriteSimpleElement(const SaxString & elementName, double t, size_t precision)
+void SaxWriter::WriteSimpleElement(
+        const SaxString & elementName,
+        double t, size_t
+        precision)
 {
-    StartElement(elementName);
+    StartElement(elementName, false);
     const size_t formatSize = 10;
     char format[formatSize];
     const size_t valueSize = 50;
@@ -193,33 +217,55 @@ void SaxWriter::WriteSimpleElement(const SaxString & elementName, double t, size
     sprintf_s(format, formatSize, "%%.%uf", precision);
     sprintf_s(value, valueSize, format, t);
     Characters(SaxString(value));
-    EndElement();
+    EndElement(false);
 }
 
-void SaxWriter::OutputElementStart(const std::wstring & header)
+void SaxWriter::OutputElementStart(
+        const std::wstring & header,
+        bool complexElement,
+        size_t elementDepth)
 {
     std::string toWrite;
-    toWrite = "<";
+    for (size_t i = 0; i < elementDepth; ++i)
+    {
+        toWrite += "  ";
+    }
+    toWrite += "<";
     toWrite += bstr_t(header.c_str());
     toWrite += ">";
+    if (complexElement)
+    {
+        toWrite += "\r\n";
+    }
     Write(toWrite.c_str(), toWrite.size());
 }
 
-void SaxWriter::OutputElementEnd(const std::wstring & name)
+void SaxWriter::OutputElementEnd(const std::wstring & name, bool complexElement)
 {
     std::string toWrite;
-    toWrite = "</";
+    if (complexElement)
+    {
+        for (size_t i = 0; i < m_elementDepth; ++i)
+        {
+            toWrite += "  ";
+        }
+    }
+    toWrite += "</";
     toWrite += bstr_t(name.c_str());
-    toWrite += ">";
+    toWrite += ">\r\n";
     Write(toWrite.c_str(), toWrite.size());
 }
 
 void SaxWriter::OutputEmptyElement(const std::wstring & header)
 {
     std::string toWrite;
-    toWrite = "<";
+    for (size_t i = 0; i < m_elementDepth; ++i)
+    {
+        toWrite += "  ";
+    }
+    toWrite += "<";
     toWrite += bstr_t(header.c_str());
-    toWrite += "/>";
+    toWrite += "/>\r\n";
     Write(toWrite.c_str(), toWrite.size());
 }
 

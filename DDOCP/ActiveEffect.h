@@ -66,6 +66,8 @@ class ActiveEffect
         bool IsPercentage() const;
         void SetPercentageValue(double amount) const;
 
+        std::string Description() const;
+
         // for comparison and removal of duplicate entries
         bool operator<=(const ActiveEffect & other) const;
         bool operator==(const ActiveEffect & other) const;

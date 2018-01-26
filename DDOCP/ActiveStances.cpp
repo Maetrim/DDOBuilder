@@ -64,7 +64,11 @@ bool ActiveStances::IsStanceActive(const std::string & name) const
 
 void ActiveStances::AddActiveStance(const std::string & name)
 {
-    m_Stances.push_back(name);
+    // only add is not already present
+    if (!IsStanceActive(name))
+    {
+        m_Stances.push_back(name);
+    }
 }
 
 void ActiveStances::RevokeStance(const std::string & name)

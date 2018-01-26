@@ -1262,6 +1262,7 @@ void Character::NowActive()
     ApplyGuildBuffs();
     SetAlignmentStances();
     UpdateWeaponStances();
+    UpdateArmorStances();
     UpdateShieldStances();
     UpdateCenteredStance();
     NotifyGearChanged(Inventory_Weapon1);   // updates both in breakdowns
@@ -2129,15 +2130,6 @@ std::list<TrainedFeat> Character::CurrentFeats(
 
 void Character::ApplyFeatEffects(const Feat & feat)
 {
-    // get the list of effects this feat has
-    const std::list<Effect> & effects = feat.Effects();
-    std::list<Effect>::const_iterator feit = effects.begin();
-    while (feit != effects.end())
-    {
-        NotifyFeatEffect(feat.Name(), (*feit));
-        ++feit;
-    }
-    NotifyFeatTrained(feat.Name());
     // if we have just trained a feat that is also a stance
     // add a stance selection button for each
     const std::list<Stance> & stances = feat.StanceData();
@@ -2147,6 +2139,15 @@ void Character::ApplyFeatEffects(const Feat & feat)
         NotifyNewStance((*sit));
         ++sit;
     }
+    // get the list of effects this feat has
+    const std::list<Effect> & effects = feat.Effects();
+    std::list<Effect>::const_iterator feit = effects.begin();
+    while (feit != effects.end())
+    {
+        NotifyFeatEffect(feat.Name(), (*feit));
+        ++feit;
+    }
+    NotifyFeatTrained(feat.Name());
 }
 
 void Character::RevokeFeatEffects(const Feat & feat)
@@ -4251,6 +4252,7 @@ void Character::ApplyGearEffects()
     }
 
     UpdateWeaponStances();
+    UpdateArmorStances();
     UpdateShieldStances();
     UpdateCenteredStance();
 }
@@ -4435,6 +4437,93 @@ void Character::UpdateWeaponStances()
         DeactivateStance(orb);
         DeactivateStance(ra);
         DeactivateStance(swashbuckling);
+    }
+}
+
+void Character::UpdateArmorStances()
+{
+    EquippedGear gear = ActiveGearSet();
+    // also depending of the items equipped in Inventory_Weapon1/2 decide
+    // which of the combat stances is active
+    // TWF, THF, SWF, Unarmed, SwordAndBoard, Staff, Orb, RuneArm, Swashbuckling
+    Stance cloth("Cloth Armor", "", "");
+    Stance light("Light Armor", "", "");
+    Stance medium("Medium Armor", "", "");
+    Stance heavy("Heavy Armor", "", "");
+    Stance lona("LightOrNoArmor", "", "");
+    Stance moh("MediumOrHeavy", "", "");
+    if (gear.HasItemInSlot(Inventory_Armor))
+    {
+        Item item1 = gear.ItemInSlot(Inventory_Armor);
+        switch (item1.Armor())
+        {
+        case Armor_Cloth:
+        case Armor_Light:
+            ActivateStance(cloth);
+            ActivateStance(lona);
+            DeactivateStance(light);
+            DeactivateStance(medium);
+            DeactivateStance(heavy);
+            DeactivateStance(moh);
+            break;
+        case Armor_Medium:
+            DeactivateStance(cloth);
+            DeactivateStance(lona);
+            DeactivateStance(light);
+            ActivateStance(medium);
+            DeactivateStance(heavy);
+            ActivateStance(moh);
+            break;
+        case Armor_Heavy:
+            DeactivateStance(cloth);
+            DeactivateStance(lona);
+            DeactivateStance(light);
+            DeactivateStance(medium);
+            ActivateStance(heavy);
+            ActivateStance(moh);
+            break;
+        case Armor_Docent:
+            // based on trained feats
+            if (IsFeatTrained("Adamantine Body"))
+            {
+                DeactivateStance(cloth);
+                DeactivateStance(lona);
+                DeactivateStance(light);
+                DeactivateStance(medium);
+                ActivateStance(heavy);
+                ActivateStance(moh);
+            }
+            else if (IsFeatTrained("Mithral Body"))
+            {
+                // Mithral body is light armor
+                DeactivateStance(cloth);
+                ActivateStance(lona);
+                ActivateStance(light);
+                DeactivateStance(medium);
+                DeactivateStance(heavy);
+                DeactivateStance(moh);
+            }
+            else // must be "Composite Plating"
+            {
+                // warforged no armor (No body feat)
+                ActivateStance(cloth);
+                ActivateStance(lona);
+                DeactivateStance(light);
+                DeactivateStance(medium);
+                DeactivateStance(heavy);
+                DeactivateStance(moh);
+            }
+            break;
+        }
+    }
+    else
+    {
+        ActivateStance(cloth);
+        ActivateStance(lona);
+        DeactivateStance(light);
+        DeactivateStance(medium);
+        DeactivateStance(heavy);
+        DeactivateStance(moh);
     }
 }
 

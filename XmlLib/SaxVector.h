@@ -176,11 +176,11 @@ void XmlLib::SaxVector<T>::Write(
     std::wstring wSize = wssSize.str();
     attributes[saxSizeAttribute] = XmlLib::SaxString(wSize);
     
-    writer->StartElement(saxElementName, attributes);
+    writer->StartElement(saxElementName, attributes, false);
     
     writer->Characters(XmlLib::SaxString(RealiseString(numDecimalPlaces)));
 
-    writer->EndElement();
+    writer->EndElement(false);
 }
 
 template <typename T>

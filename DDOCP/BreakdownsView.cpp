@@ -24,6 +24,7 @@
 #include "BreakdownItemTurnUndeadLevel.h"
 #include "BreakdownItemTurnUndeadHitDice.h"
 #include "BreakdownItemWeaponEffects.h"
+#include "BreakdownItemSneakAttackDice.h"
 
 namespace
 {
@@ -346,21 +347,6 @@ void CBreakdownsView::CreateSavesBreakdowns()
             m_itemBreakdownTree.SetItemData(hSubItem, (DWORD)(void*)pSM);
             m_items.push_back(pSM);
         }
-        {
-            HTREEITEM hSubItem = m_itemBreakdownTree.InsertItem(
-                    "vs Curse",
-                    hItem,
-                    TVI_LAST);
-            BreakdownItem * pSC = new BreakdownItemSave(
-                    Breakdown_SaveCurse,
-                    Save_Curse,
-                    &m_itemBreakdownTree,
-                    hSubItem,
-                    Ability_Unknown,
-                    FindBreakdown(Breakdown_SaveReflex));
-            m_itemBreakdownTree.SetItemData(hSubItem, (DWORD)(void*)pSC);
-            m_items.push_back(pSC);
-        }
     }
 
     {
@@ -422,6 +408,21 @@ void CBreakdownsView::CreateSavesBreakdowns()
                     FindBreakdown(Breakdown_SaveWill));
             m_itemBreakdownTree.SetItemData(hSubItem, (DWORD)(void*)pFS);
             m_items.push_back(pFS);
+        }
+        {
+            HTREEITEM hSubItem = m_itemBreakdownTree.InsertItem(
+                    "vs Curse",
+                    hItem,
+                    TVI_LAST);
+            BreakdownItem * pSC = new BreakdownItemSave(
+                    Breakdown_SaveCurse,
+                    Save_Curse,
+                    &m_itemBreakdownTree,
+                    hSubItem,
+                    Ability_Unknown,
+                    FindBreakdown(Breakdown_SaveWill));
+            m_itemBreakdownTree.SetItemData(hSubItem, (DWORD)(void*)pSC);
+            m_items.push_back(pSC);
         }
     }
 }
@@ -827,6 +828,51 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
             m_itemBreakdownTree.SetItemData(hOHDS, (DWORD)(void*)pOHDS);
             m_items.push_back(pOHDS);
         }
+    }
+
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Sneak Attack Dice",
+                hOffensiveParent,
+                TVI_LAST);
+        BreakdownItem * pSAD = new BreakdownItemSneakAttackDice(
+                Breakdown_SneakAttackDice,
+                Effect_SneakAttackDice,
+                "Sneak Attack Dice",
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pSAD);
+        m_items.push_back(pSAD);
+    }
+
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Sneak Attack Damage",
+                hOffensiveParent,
+                TVI_LAST);
+        BreakdownItem * pSAD = new BreakdownItemSimple(
+                Breakdown_SneakAttackDamage,
+                Effect_SneakAttackDamage,
+                "Sneak Attack Damage",
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pSAD);
+        m_items.push_back(pSAD);
+    }
+
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Sneak Attack Attack",
+                hOffensiveParent,
+                TVI_LAST);
+        BreakdownItem * pSAA = new BreakdownItemSimple(
+                Breakdown_SneakAttackAttack,
+                Effect_SneakAttackAttack,
+                "Sneak Attack Attack",
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pSAA);
+        m_items.push_back(pSAA);
     }
 
     {

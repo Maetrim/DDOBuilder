@@ -25,9 +25,9 @@ namespace XmlLib
 
             void StartDocument(const SaxString & rootNodeName);
             void EndDocument();
-            void StartElement(const SaxString & nodeName);
-            void StartElement(const SaxString & nodeName, const XmlLib::SaxAttributes & attributes);
-            void EndElement();
+            void StartElement(const SaxString & nodeName, bool complexElement = true);
+            void StartElement(const SaxString & nodeName, const XmlLib::SaxAttributes & attributes, bool complexElement = true);
+            void EndElement(bool complexElement = true);
             void Characters(const SaxString & chars);
 
             bool Open(const std::string & filename);
@@ -44,11 +44,11 @@ namespace XmlLib
             template <typename T>
             void WriteSimpleElement(const SaxString & elementName, const T & t)
             {
-                StartElement(elementName);
+                StartElement(elementName, false);
                 std::stringstream ss;
                 ss << t;
                 Characters(SaxString(ss.str()));
-                EndElement();
+                EndElement(false);
             }
 
             template <>
@@ -59,7 +59,7 @@ namespace XmlLib
             template <typename T>
             void WriteEnumElement(const SaxString & elementName, const T & t, const enumMapEntry<T> * m)
             {
-                StartElement(elementName);
+                StartElement(elementName, false);
                 const enumMapEntry<T> * p;
                 for (p = m; p->name != NULL; ++p)
                 {
@@ -73,13 +73,13 @@ namespace XmlLib
                     throw "WriteEnumElement failed to find entry";
                 }
                 Characters(p->name);
-                EndElement();
+                EndElement(false);
             }
 
         private:
             // write to file
-            void OutputElementStart(const std::wstring & header);
-            void OutputElementEnd(const std::wstring & name);
+            void OutputElementStart(const std::wstring & header, bool complexElement, size_t elementDepth);
+            void OutputElementEnd(const std::wstring & name, bool complexElement);
             void OutputEmptyElement(const std::wstring & header);
             void OutputCharacters(const std::wstring & chars);
 
@@ -89,17 +89,20 @@ namespace XmlLib
 
             std::wstring m_imxElementHeader;
             bool m_imxEmptyElement;
+            bool m_imxComplexElement;
+            size_t m_imxElementDepth;
             HANDLE m_file;
             std::ostringstream m_ostream;
 
             mutable std::string m_errorMessage;
+            size_t m_elementDepth;
     };
 
     template <>
     void SaxWriter::WriteSimpleElement(const SaxString & elementName, const std::string & t)
     {
-        StartElement(elementName);
+        StartElement(elementName, false);
         Characters(SaxString(t));
-        EndElement();
+        EndElement(false);
     }
 }

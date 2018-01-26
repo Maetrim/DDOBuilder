@@ -40,6 +40,7 @@ class Item :
                 DL_SIMPLE(_, size_t, MinLevel, 0) \
                 DL_STRING_LIST(_, EffectDescription) \
                 DL_STRING_LIST(_, DRBypass) \
+                DL_OPTIONAL_OBJECT(_, Dice, DamageDice) \
                 DL_OPTIONAL_OBJECT(_, ItemSpecificEffects, ItemEffects) \
                 DL_OPTIONAL_ENUM(_, WeaponType, Weapon, Weapon_Unknown, weaponTypeMap) \
                 DL_OPTIONAL_ENUM(_, WeaponDamageType, DamageType, WeaponDamage_Unknown, weaponDamageTypeMap) \

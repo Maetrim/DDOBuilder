@@ -98,16 +98,6 @@ dexterity bonus.</Description>
       <Acquire>Train</Acquire>
       <Icon>WarforgedFeat</Icon>
       <Effect>
-         <Type>ActivateStance</Type>
-         <Bonus>Feat</Bonus>
-         <Stance>Heavy Armor</Stance>
-      </Effect>
-      <Effect>
-         <Type>ActivateStance</Type>
-         <Bonus>Feat</Bonus>
-         <Stance>MediumOrHeavy</Stance>
-      </Effect>
-      <Effect>
          <Type>ACBonus</Type>
          <Bonus>Armor</Bonus>
          <Amount>8</Amount>
@@ -266,9 +256,8 @@ Adept of Wind: Wind Stance now grants +2 Dexterity, a 10% Enhancement bonus to m
       <Effect>
          <DisplayName>Sun Stance: Critical Multiplier</DisplayName>
          <Bonus>Feat</Bonus>
-         <Type>CriticalMultiplier</Type>
+         <Type>CriticalMultiplier19To20</Type>
          <AmountVector size="4">0 0 1 1</AmountVector>
-         <DieRoll>19</DieRoll>
          <Stance>Sun Stance</Stance>
          <Weapon>All</Weapon>
       </Effect>
@@ -665,6 +654,15 @@ If you are a construct you have the Adamantine Body feat.</Description>
          <AutoControlled/>
       </Stance>
       <Stance>
+         <Name>LightOrNoArmor</Name>
+         <Icon>LightArmorProficiency</Icon>
+         <Description>You are wearing either Light or No/Cloth armor.</Description>
+         <IncompatibleStance>Medium Armor</IncompatibleStance>
+         <IncompatibleStance>MediumOrHeavy</IncompatibleStance>
+         <IncompatibleStance>Heavy Armor</IncompatibleStance>
+         <AutoControlled/>
+      </Stance>
+      <Stance>
          <Name>MediumOrHeavy</Name>
          <Icon>HeavyArmorProficiency</Icon>
          <Description>You are wearing either medium or heavy armor.</Description>
@@ -787,6 +785,18 @@ paladin, granting a bonus to saves against fear.</Description>
          <Class>Paladin</Class>
          <Level>3</Level>
       </AutomaticAcquisition>
+      <Stance>
+         <Name>Aura of Courage</Name>
+         <Icon>AuraOfCourage</Icon>
+         <Description>A feeling of confidence and fearlessness surrounds you while near a
+paladin, granting a bonus to saves against fear.</Description>
+         <AutoControlled/>
+      </Stance>
+      <Effect>
+         <Type>ActivateStance</Type>
+         <Bonus>Feat</Bonus>
+         <Stance>Aura of Courage</Stance>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Aura of Good</Name>
@@ -799,6 +809,18 @@ to saves and Armor Class against evil creatures.</Description>
          <Class>Paladin</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
+      <Stance>
+         <Name>Aura of Good</Name>
+         <Icon>AuraOfGood</Icon>
+         <Description>An aura of holiness surrounds you while near a paladin, granting a bonus
+to saves and Armor Class against evil creatures.</Description>
+         <AutoControlled/>
+      </Stance>
+      <Effect>
+         <Type>ActivateStance</Type>
+         <Bonus>Feat</Bonus>
+         <Stance>Aura of Good</Stance>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Bladeforged</Name>
@@ -1291,11 +1313,6 @@ You have a 5% arcane spell failure chance.</Description>
          <Race>Warforged</Race>
       </AutomaticAcquisition>
       <Icon>WarforgedFeat</Icon>
-      <Effect>
-         <Type>ActivateStance</Type>
-         <Bonus>Feat</Bonus>
-         <Stance>Cloth Armor</Stance>
-      </Effect>
       <Effect>
          <Type>ArcaneSpellFailure</Type>
          <Bonus>Feat</Bonus>
@@ -2980,7 +2997,7 @@ Your attack will deal 1 to 6 additional fire damage (D&amp;D Dice: 1d6).</Descri
          <Level>1</Level>
       </AutomaticAcquisition>
       <Effect>
-         <Type>DamageBonus</Type>
+         <Type>WeaponOtherDamageBonus</Type>
          <Bonus>Feat</Bonus>
          <Weapon>Handwraps</Weapon>
          <Dice>
@@ -3002,7 +3019,7 @@ Your attack will deal 1 to 6 additional cold damage (D&amp;D Dice: 1d6).</Descri
          <Level>1</Level>
       </AutomaticAcquisition>
       <Effect>
-         <Type>DamageBonus</Type>
+         <Type>WeaponOtherDamageBonus</Type>
          <Bonus>Feat</Bonus>
          <Weapon>Handwraps</Weapon>
          <Dice>
@@ -3213,9 +3230,8 @@ Grandmaster of Wind: Wind Stance now grants +4 Dexterity, a 15% Enhancement bonu
       <Effect>
          <DisplayName>Sun Stance: Critical Multiplier</DisplayName>
          <Bonus>Feat</Bonus>
-         <Type>CriticalMultiplier</Type>
+         <Type>CriticalMultiplier19To20</Type>
          <AmountVector size="4">0 0 1 1</AmountVector>
-         <DieRoll>19</DieRoll>
          <Stance>Sun Stance</Stance>
          <Weapon>All</Weapon>
       </Effect>
@@ -4579,13 +4595,9 @@ This feat is not recommended for characters with actual rogue levels.</Descripti
       <Acquire>Train</Acquire>
       <Icon>DilettanteRogue</Icon>
       <Effect>
-         <Type>SneakAttackDamage</Type>
-         <Bonus>Feat</Bonus>
-         <Weapon>All</Weapon>
-         <Dice>
-            <Number size="1">1</Number>
-            <Sides size="1">6</Sides>
-         </Dice>
+                  <Type>SneakAttackDice</Type>
+                  <Bonus>Feat</Bonus>
+                  <Amount>1</Amount>
       </Effect>
    </Feat>
    <Feat>
@@ -6379,9 +6391,8 @@ at a cost of -2 Wisdom.</Description>
       <Effect>
          <DisplayName>Sun Stance: Critical Multiplier</DisplayName>
          <Bonus>Feat</Bonus>
-         <Type>CriticalMultiplier</Type>
+         <Type>CriticalMultiplier19To20</Type>
          <AmountVector size="4">0 0 1 1</AmountVector>
-         <DieRoll>19</DieRoll>
          <Stance>Sun Stance</Stance>
          <Weapon>All</Weapon>
       </Effect>
@@ -7373,9 +7384,8 @@ Master of Wind: Wind Stance now grants +3 Dexterity, a 12.5% Enhancement bonus t
       <Effect>
          <DisplayName>Sun Stance: Critical Multiplier</DisplayName>
          <Bonus>Feat</Bonus>
-         <Type>CriticalMultiplier</Type>
+         <Type>CriticalMultiplier19To20</Type>
          <AmountVector size="4">0 0 1 1</AmountVector>
-         <DieRoll>19</DieRoll>
          <Stance>Sun Stance</Stance>
          <Weapon>All</Weapon>
       </Effect>
@@ -7682,11 +7692,6 @@ chance, -1 armor check penalty to certain skills and a +5 maximum dexterity bonu
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>Warforgedfeat</Icon>
-      <Effect>
-         <Type>ActivateStance</Type>
-         <Bonus>Feat</Bonus>
-         <Stance>Light Armor</Stance>
-      </Effect>
       <Effect>
          <Type>ACBonus</Type>
          <Bonus>Armor</Bonus>
@@ -8467,7 +8472,7 @@ plus another 1d50 to undead on vorpal.</Description>
       <Acquire>Train</Acquire>
       <Icon>PathOfHarmoniousBalance</Icon>
       <Effect>
-         <Type>DamageBonus</Type>
+         <Type>WeaponOtherDamageBonus</Type>
          <Bonus>Feat</Bonus>
          <Weapon>Handwraps</Weapon>
          <Dice>
@@ -8496,7 +8501,7 @@ creatures plus another 1d50 damage on vorpal.</Description>
       <Acquire>Train</Acquire>
       <Icon>PathOfInevitableDominion</Icon>
       <Effect>
-         <Type>DamageBonus</Type>
+         <Type>WeaponOtherDamageBonus</Type>
          <Bonus>Feat</Bonus>
          <Weapon>Handwraps</Weapon>
          <Dice>
@@ -10742,7 +10747,11 @@ presence or targeting another character.</Description>
          <Class>Rogue</Class>
          <Level>19</Level>
       </AutomaticAcquisition>
-      <!--Sneak Attack damage-->
+      <Effect>
+          <Type>SneakAttackDice</Type>
+          <Bonus>Feat</Bonus>
+          <Amount>1</Amount>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Song of Freedom</Name>
@@ -11350,7 +11359,7 @@ Your attack will deal 1 to 6 additional lightning damage (D&amp;D Dice: 1d6).</D
          <Level>1</Level>
       </AutomaticAcquisition>
       <Effect>
-         <Type>DamageBonus</Type>
+         <Type>WeaponOtherDamageBonus</Type>
          <Bonus>Feat</Bonus>
          <Weapon>Handwraps</Weapon>
          <Dice>
@@ -15944,13 +15953,9 @@ You gain +3d6 sneak attack damage.</Description>
       <Acquire>Train</Acquire>
       <Icon>ImprovedSneakAttack</Icon>
       <Effect>
-         <Type>SneakAttackDamage</Type>
-         <Bonus>Feat</Bonus>
-         <Weapon>All</Weapon>
-         <Dice>
-            <Number size="1">3</Number>
-            <Sides size="1">6</Sides>
-         </Dice>
+                  <Type>SneakAttackDice</Type>
+                  <Bonus>Feat</Bonus>
+                  <Amount>3</Amount>
       </Effect>
    </Feat>
    <Feat>
@@ -16296,11 +16301,10 @@ your critical damage multiplier is increased by +1.</Description>
       <Acquire>Train</Acquire>
       <Icon>OverwhelmingCritical</Icon>
       <Effect>
-         <Type>CriticalMultiplier</Type>
+         <Type>CriticalMultiplier19To20</Type>
          <Bonus>Feat</Bonus>
          <Amount>1</Amount>
          <Weapon>All</Weapon>
-         <DieRoll>19</DieRoll>
       </Effect>
    </Feat>
    <Feat>
@@ -18226,7 +18230,7 @@ Add 2d20 Sonic damage to weapon and unarmed attacks (Scales with Spell Power),
          <Amount>20</Amount>
       </Effect>
       <Effect>
-         <Type>DamageBonus</Type>
+         <Type>WeaponOtherDamageBonus</Type>
          <Bonus>Feat</Bonus>
          <Weapon>All</Weapon>
          <Dice>
@@ -18290,7 +18294,7 @@ Add 2d20 Electric damage to weapon and unarmed attacks (Scales with Spell Power)
          <Amount>30</Amount>
       </Effect>
       <Effect>
-         <Type>DamageBonus</Type>
+         <Type>WeaponOtherDamageBonus</Type>
          <Bonus>Feat</Bonus>
          <Weapon>All</Weapon>
          <Dice>
@@ -18348,7 +18352,7 @@ Add 2d20 Acid damage to weapon and unarmed attacks (Scales with Spell Power).</D
          <Amount>30</Amount>
       </Effect>
       <Effect>
-         <Type>DamageBonus</Type>
+         <Type>WeaponOtherDamageBonus</Type>
          <Bonus>Feat</Bonus>
          <Weapon>All</Weapon>
          <Dice>
@@ -18404,7 +18408,7 @@ Add 2d20 Fire damage to weapon and unarmed attacks (Scales with Spell Power).</D
          <Amount>30</Amount>
       </Effect>
       <Effect>
-         <Type>DamageBonus</Type>
+         <Type>WeaponOtherDamageBonus</Type>
          <Bonus>Feat</Bonus>
          <Weapon>All</Weapon>
          <Dice>
@@ -18454,7 +18458,7 @@ Add 2d20 Cold damage to weapon and unarmed attacks (Scales with Spell Power).</D
          <Amount>30</Amount>
       </Effect>
       <Effect>
-         <Type>DamageBonus</Type>
+         <Type>WeaponOtherDamageBonus</Type>
          <Bonus>Feat</Bonus>
          <Weapon>All</Weapon>
          <Dice>

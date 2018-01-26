@@ -15,7 +15,7 @@ class BreakdownItemWeaponDamageBonus :
                 HTREEITEM hItem);
         virtual ~BreakdownItemWeaponDamageBonus();
 
-        void SetIsMeleeWeapon(bool melee);
+        void SetIsOffHand(bool offHand);
 
         // required overrides
         virtual CString Title() const override;
@@ -36,5 +36,5 @@ class BreakdownItemWeaponDamageBonus :
     private:
         CString m_title;
         EffectType m_effect;
-        bool m_bIsMeleeWeapon;
+        bool m_bOffHand;
 };

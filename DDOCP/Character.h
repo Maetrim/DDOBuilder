@@ -388,6 +388,7 @@ class Character :
         void UpdateSkillPoints();
         void UpdateSkillPoints(size_t level);
         void UpdateWeaponStances();
+        void UpdateArmorStances();
         void UpdateShieldStances();
         void UpdateCenteredStance();
 

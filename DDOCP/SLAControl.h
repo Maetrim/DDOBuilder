@@ -35,8 +35,9 @@ class SLAHitBox
 class SLA
 {
     public:
-        SLA(const std::string & name) :
-                m_slaName(name)
+        SLA(const std::string & name, size_t count) :
+                m_slaName(name),
+                m_count(count)
         {
         };
         ~SLA() {};
@@ -50,8 +51,22 @@ class SLA
         {
             return (m_slaName == other.m_slaName);
         }
+
+        size_t Count() const
+        {
+            return m_count;
+        }
+        void IncrementCount()
+        {
+            m_count++;
+        }
+        void DecrementCount()
+        {
+            m_count--;
+        }
     private:
         std::string m_slaName;
+        size_t m_count;
 };
 
 class CSLAControl :
@@ -62,7 +77,7 @@ class CSLAControl :
         virtual ~CSLAControl();
 
         void SetCharacter(Character * pCharacter);
-        void AddSLA(const std::string & slaName);
+        void AddSLA(const std::string & slaName, size_t stacks);
         void RevokeSLA(const std::string & slaName);
 
     protected:

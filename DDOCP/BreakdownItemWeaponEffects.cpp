@@ -679,6 +679,7 @@ BreakdownItemWeapon * BreakdownItemWeaponEffects::CreateWeaponBreakdown(
             name.c_str(),
             m_hItem,
             TVI_LAST);
+    Dice defaultDice;
     pWeaponBreakdown = new BreakdownItemWeapon(
             bt,
             wt,
@@ -687,7 +688,10 @@ BreakdownItemWeapon * BreakdownItemWeaponEffects::CreateWeaponBreakdown(
             hItem,
             bt == Breakdown_MainHand
                 ? Inventory_Weapon1
-                : Inventory_Weapon2);
+                : Inventory_Weapon2,
+            item.HasDamageDice()
+                ? item.DamageDice()
+                : defaultDice);
     m_pTreeList->SetItemData(hItem, (DWORD)(void*)pWeaponBreakdown);
     pWeaponBreakdown->SetCharacter(m_pCharacter, true);
 
@@ -733,4 +737,18 @@ BreakdownItemWeapon * BreakdownItemWeaponEffects::CreateWeaponBreakdown(
     }
 
     return pWeaponBreakdown;
+}
+
+void BreakdownItemWeaponEffects::AddForumExportData(std::stringstream & forumExport)
+{
+    if (m_pMainHandWeapon != NULL)
+    {
+        forumExport << "Main Hand: ";
+        m_pMainHandWeapon->AddForumExportData(forumExport);
+    }
+    if (m_pOffHandWeapon != NULL)
+    {
+        forumExport << "Off Hand: ";
+        m_pOffHandWeapon->AddForumExportData(forumExport);
+    }
 }

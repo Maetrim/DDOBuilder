@@ -325,29 +325,46 @@ void CSLAControl::SetTooltipText(
     m_tooltip.Show();
 }
 
-void CSLAControl::AddSLA(const std::string & slaName)
+void CSLAControl::AddSLA(const std::string & slaName, size_t stacks)
 {
-    // add the spell at the relevant level
-    SLA spell(slaName);
-    m_SLAs.push_back(spell);
-    if (IsWindow(GetSafeHwnd()))
+    // add the spell at the relevant level if not exist already
+    bool found = false;
+    std::list<SLA>::iterator it = m_SLAs.begin();
+    while (!found && it != m_SLAs.end())
     {
-        m_bCreateHitBoxes = true;
-        Invalidate();   // redraw
+        if ((*it).Name() == slaName)
+        {
+            (*it).IncrementCount();
+            found = true;
+        }
+        ++it;
+    }
+    if (!found)
+    {
+        SLA spell(slaName, stacks);
+        m_SLAs.push_back(spell);
+        if (IsWindow(GetSafeHwnd()))
+        {
+            m_bCreateHitBoxes = true;
+            Invalidate();   // redraw
+        }
     }
 }
 
 void CSLAControl::RevokeSLA(const std::string & slaName)
 {
     // remove the named spell from the relevant level
-    SLA spell(slaName);
     std::list<SLA>::iterator it = m_SLAs.begin();
     while (it != m_SLAs.end())
     {
-        if ((*it) == spell)
+        if ((*it).Name() == slaName)
         {
-            // this is the one to delete
-            m_SLAs.erase(it);
+            (*it).DecrementCount();
+            if ((*it).Count() == 0)
+            {
+                // last stack removed, delete it
+                m_SLAs.erase(it);
+            }
             break;
         }
         ++it;
