@@ -280,7 +280,7 @@ Adept of Wind: Wind Stance now grants +2 Dexterity, a 10% Enhancement bonus to m
       <Effect>
          <DisplayName>Wind Stance: Attack Speed</DisplayName>
          <Bonus>Feat</Bonus>
-         <Type>AttackSpeed</Type>
+         <Type>Alacrity</Type>
          <WeaponClass>Melee</WeaponClass>
          <AmountVector size="4">7.5 10 12.5 15</AmountVector>
          <Stance>Wind Stance</Stance>
@@ -288,7 +288,7 @@ Adept of Wind: Wind Stance now grants +2 Dexterity, a 10% Enhancement bonus to m
       <Effect>
          <DisplayName>Wind Stance: Attack Speed</DisplayName>
          <Bonus>Feat</Bonus>
-         <Type>AttackSpeed</Type>
+         <Type>Alacrity</Type>
          <WeaponClass>Thrown</WeaponClass>
          <AmountVector size="4">7.5 10 12.5 15</AmountVector>
          <Stance>Wind Stance</Stance>
@@ -1028,11 +1028,11 @@ a +1 to Will saves and a +2 bonus on Intimidate checks.</Description>
          <Class>Druid</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
-       <Effect>
-           <Type>SpellLikeAbility</Type>
-           <Bonus>Feat</Bonus>
-           <SpellLikeAbility>Call Wolf Companion</SpellLikeAbility>
-       </Effect>
+      <Effect>
+         <Type>SpellLikeAbility</Type>
+         <Bonus>Feat</Bonus>
+         <SpellLikeAbility>Call Wolf Companion</SpellLikeAbility>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Cleave</Name>
@@ -2546,6 +2546,7 @@ proficient wielder.</Description>
       <FeatGroup>
          <IsStandardFeat/>
          <IsFighterBonus/>
+         <IsMonkBonus/>
       </FeatGroup>
       <Requirements>
          <Requirement>
@@ -2668,11 +2669,11 @@ Has a save DC of your perform skill plus the roll of a twenty-sided die.</Descri
          <Class>Bard</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
-       <Effect>
-           <Type>SpellLikeAbility</Type>
-           <Bonus>Feat</Bonus>
-           <SpellLikeAbility>Fascinate</SpellLikeAbility>
-       </Effect>
+      <Effect>
+         <Type>SpellLikeAbility</Type>
+         <Bonus>Feat</Bonus>
+         <SpellLikeAbility>Fascinate</SpellLikeAbility>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Fast Movement (Monk)</Name>
@@ -3254,7 +3255,7 @@ Grandmaster of Wind: Wind Stance now grants +4 Dexterity, a 15% Enhancement bonu
       <Effect>
          <DisplayName>Wind Stance: Attack Speed</DisplayName>
          <Bonus>Feat</Bonus>
-         <Type>AttackSpeed</Type>
+         <Type>Alacrity</Type>
          <WeaponClass>Melee</WeaponClass>
          <AmountVector size="4">7.5 10 12.5 15</AmountVector>
          <Stance>Wind Stance</Stance>
@@ -3262,7 +3263,7 @@ Grandmaster of Wind: Wind Stance now grants +4 Dexterity, a 15% Enhancement bonu
       <Effect>
          <DisplayName>Wind Stance: Attack Speed</DisplayName>
          <Bonus>Feat</Bonus>
-         <Type>AttackSpeed</Type>
+         <Type>Alacrity</Type>
          <WeaponClass>Thrown</WeaponClass>
          <AmountVector size="4">7.5 10 12.5 15</AmountVector>
          <Stance>Wind Stance</Stance>
@@ -3443,7 +3444,7 @@ your appropriate ability score to your damage (similar to Two-Handed Fighting).<
          <Stance>SingleWeaponFighting</Stance>
       </Effect>
       <Effect>
-         <Type>AttackSpeed</Type>
+         <Type>Alacrity</Type>
          <Bonus>Feat</Bonus>
          <WeaponClass>OneHanded</WeaponClass>
          <Amount>10</Amount>
@@ -4595,9 +4596,9 @@ This feat is not recommended for characters with actual rogue levels.</Descripti
       <Acquire>Train</Acquire>
       <Icon>DilettanteRogue</Icon>
       <Effect>
-                  <Type>SneakAttackDice</Type>
-                  <Bonus>Feat</Bonus>
-                  <Amount>1</Amount>
+         <Type>SneakAttackDice</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
       </Effect>
    </Feat>
    <Feat>
@@ -4929,6 +4930,20 @@ resist, but increasing their spell point cost.</Description>
       </Effect>
    </Feat>
    <Feat>
+      <Name>Hide in Plain Sight</Name>
+      <Description>You are a master when it comes to hiding in places others think impossible.
+You gain +1 Hide and +1 Move Silently for every three seconds you stand still,
+up to +5. While you are sneaking and standing still (for 3 seconds),
+enemies don't gain Spot bonuses until they get much closer to you, and the bonuses are smaller.</Description>
+      <Requirements/>
+      <Acquire>Automatic</Acquire>
+      <Icon>HideInPlainSight</Icon>
+      <AutomaticAcquisition>
+         <Class>Ranger</Class>
+         <Level>17</Level>
+      </AutomaticAcquisition>
+   </Feat>
+   <Feat>
       <Name>Immunity to Sleep</Name>
       <Description>Elves and Half-Elves are naturally immune to magical sleep effects.</Description>
       <Requirements/>
@@ -4988,11 +5003,11 @@ with item effects that double threat range like keen and impact.</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>ImprovedCriticalBludgeoning</Icon>
-       <Effect>
-           <Type>Keen</Type>
-           <Bonus>Feat</Bonus>
-           <DamageType>Bludgeoning</DamageType>
-       </Effect>
+      <Effect>
+         <Type>Keen</Type>
+         <Bonus>Feat</Bonus>
+         <DamageType>Bludgeoning</DamageType>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Improved Critical: Piercing Weapons</Name>
@@ -5010,11 +5025,11 @@ and impact.</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>ImprovedCriticalPiercing</Icon>
-       <Effect>
-           <Type>Keen</Type>
-           <Bonus>Feat</Bonus>
-           <DamageType>Piercing</DamageType>
-       </Effect>
+      <Effect>
+         <Type>Keen</Type>
+         <Bonus>Feat</Bonus>
+         <DamageType>Piercing</DamageType>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Improved Critical: Ranged Weapons</Name>
@@ -5032,11 +5047,11 @@ This feat does not stack with item effects that double threat range like keen an
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>ImprovedCriticalRanged</Icon>
-       <Effect>
-           <Type>Keen</Type>
-           <Bonus>Feat</Bonus>
-           <DamageType>Ranged</DamageType>
-       </Effect>
+      <Effect>
+         <Type>Keen</Type>
+         <Bonus>Feat</Bonus>
+         <DamageType>Ranged</DamageType>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Improved Critical: Slashing Weapons</Name>
@@ -5053,11 +5068,11 @@ This feat does not stack with item effects that double threat range like keen an
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>ImprovedCriticalSlashing</Icon>
-       <Effect>
-           <Type>Keen</Type>
-           <Bonus>Feat</Bonus>
-           <DamageType>Slashing</DamageType>
-       </Effect>
+      <Effect>
+         <Type>Keen</Type>
+         <Bonus>Feat</Bonus>
+         <DamageType>Slashing</DamageType>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Improved Critical: Thrown Weapons</Name>
@@ -5074,11 +5089,11 @@ This feat does not stack with item effects that double threat range like keen an
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>ImprovedCriticalThrown</Icon>
-       <Effect>
-           <Type>Keen</Type>
-           <Bonus>Feat</Bonus>
-           <DamageType>Thrown</DamageType>
-       </Effect>
+      <Effect>
+         <Type>Keen</Type>
+         <Bonus>Feat</Bonus>
+         <DamageType>Thrown</DamageType>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Improved Damage Reduction</Name>
@@ -5157,17 +5172,17 @@ be healed by spells from the healing subschool, such as cure light wounds.</Desc
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>WarforgedFeat</Icon>
-       <Effect>
-           <Type>Fortification</Type>
-           <Bonus>Feat</Bonus>
-           <Amount>75</Amount>
-       </Effect>
-       <Effect>
-           <!--You're actually immune to positive energy, but unable to handle properly as yet-->
-           <Type>HealingAmplification</Type>
-           <Bonus>Feat</Bonus>
-           <Amount>-1000</Amount>
-       </Effect>
+      <Effect>
+         <Type>Fortification</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>75</Amount>
+      </Effect>
+      <Effect>
+         <!--You're actually immune to positive energy, but unable to handle properly as yet-->
+         <Type>HealingAmplification</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>-1000</Amount>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Improved Heroic Durability</Name>
@@ -5176,7 +5191,7 @@ be healed by spells from the healing subschool, such as cure light wounds.</Desc
       <Requirements/>
       <Acquire>Automatic</Acquire>
       <Icon>ImprovedHeroicDurability</Icon>
-       <!--Any multiple of 5 class levels in a given class-->
+      <!--Any multiple of 5 class levels in a given class-->
       <AutomaticAcquisition>
          <Class>All</Class>
          <Level>5</Level>
@@ -5431,7 +5446,7 @@ of just your ability score (for instance, you add 1.25 times your Strength as da
          <Stance>SingleWeaponFighting</Stance>
       </Effect>
       <Effect>
-         <Type>AttackSpeed</Type>
+         <Type>Alacrity</Type>
          <Bonus>Feat</Bonus>
          <WeaponClass>OneHanded</WeaponClass>
          <Amount>10</Amount>
@@ -5600,26 +5615,26 @@ save bonus. This feat also grants you a 1% passive bonus to Dodge at levels
          <Class>Rogue</Class>
          <Level>8</Level>
       </AutomaticAcquisition>
-       <Effect>
-           <Type>DodgeBonus</Type>
-           <Bonus>Feat</Bonus>
-           <AmountVector size="20">0 0 0 1 1 2 2 3 3 3 3 4 4 4 4 5 5 5 5 6</AmountVector>
-           <Class>Barbarian</Class>
-       </Effect>
-       <Effect>
-           <Type>DodgeBonus</Type>
-           <Bonus>Feat</Bonus>
-           <AmountVector size="20">0 0 0 1 1 2 2 3 3 3 3 4 4 4 4 5 5 5 5 6</AmountVector>
-           <Class>Rogue</Class>
-       </Effect>
-       <Effect>
-           <DisplayName>Uncanny dodge reflex save bonus</DisplayName>
-           <Type>SaveBonus</Type>
-           <Bonus>Feat</Bonus>
-           <Amount>6</Amount>
-           <Stance>Uncanny Dodge</Stance>
-           <Save>Reflex</Save>
-       </Effect>
+      <Effect>
+         <Type>DodgeBonus</Type>
+         <Bonus>Feat</Bonus>
+         <AmountVector size="20">0 0 0 1 1 2 2 3 3 3 3 4 4 4 4 5 5 5 5 6</AmountVector>
+         <Class>Barbarian</Class>
+      </Effect>
+      <Effect>
+         <Type>DodgeBonus</Type>
+         <Bonus>Feat</Bonus>
+         <AmountVector size="20">0 0 0 1 1 2 2 3 3 3 3 4 4 4 4 5 5 5 5 6</AmountVector>
+         <Class>Rogue</Class>
+      </Effect>
+      <Effect>
+         <DisplayName>Uncanny dodge reflex save bonus</DisplayName>
+         <Type>SaveBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>6</Amount>
+         <Stance>Uncanny Dodge</Stance>
+         <Save>Reflex</Save>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Improved Wild Empathy</Name>
@@ -5708,11 +5723,11 @@ skill checks. Requires 6 trained ranks (not total mod) of the perform skill to u
          <Class>Bard</Class>
          <Level>3</Level>
       </AutomaticAcquisition>
-       <Effect>
-           <Type>SpellLikeAbility</Type>
-           <Bonus>Feat</Bonus>
-           <SpellLikeAbility>Inspire Competence</SpellLikeAbility>
-       </Effect>
+      <Effect>
+         <Type>SpellLikeAbility</Type>
+         <Bonus>Feat</Bonus>
+         <SpellLikeAbility>Inspire Competence</SpellLikeAbility>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Inspire Courage</Name>
@@ -5728,11 +5743,11 @@ of the Perform skill to use.</Description>
          <Class>Bard</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
-       <Effect>
-           <Type>SpellLikeAbility</Type>
-           <Bonus>Feat</Bonus>
-           <SpellLikeAbility>Inspire Courage</SpellLikeAbility>
-       </Effect>
+      <Effect>
+         <Type>SpellLikeAbility</Type>
+         <Bonus>Feat</Bonus>
+         <SpellLikeAbility>Inspire Courage</SpellLikeAbility>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Inspire Greatness</Name>
@@ -5746,11 +5761,11 @@ The ally gets +2 attack bonus, +1 Fortitude save bonus and temporary hit points.
          <Class>Bard</Class>
          <Level>9</Level>
       </AutomaticAcquisition>
-       <Effect>
-           <Type>SpellLikeAbility</Type>
-           <Bonus>Feat</Bonus>
-           <SpellLikeAbility>Inspire Greatness</SpellLikeAbility>
-       </Effect>
+      <Effect>
+         <Type>SpellLikeAbility</Type>
+         <Bonus>Feat</Bonus>
+         <SpellLikeAbility>Inspire Greatness</SpellLikeAbility>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Inspire Heroics</Name>
@@ -5764,11 +5779,11 @@ skill to use.</Description>
          <Class>Bard</Class>
          <Level>15</Level>
       </AutomaticAcquisition>
-       <Effect>
-           <Type>SpellLikeAbility</Type>
-           <Bonus>Feat</Bonus>
-           <SpellLikeAbility>Inspire Heroics</SpellLikeAbility>
-       </Effect>
+      <Effect>
+         <Type>SpellLikeAbility</Type>
+         <Bonus>Feat</Bonus>
+         <SpellLikeAbility>Inspire Heroics</SpellLikeAbility>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Iron Will</Name>
@@ -5864,11 +5879,11 @@ or dealing that much damage to an undead target.</Description>
          <Class>Paladin</Class>
          <Level>2</Level>
       </AutomaticAcquisition>
-       <Effect>
-           <Type>SpellLikeAbility</Type>
-           <Bonus>Feat</Bonus>
-           <SpellLikeAbility>Lay on Hands</SpellLikeAbility>
-       </Effect>
+      <Effect>
+         <Type>SpellLikeAbility</Type>
+         <Bonus>Feat</Bonus>
+         <SpellLikeAbility>Lay on Hands</SpellLikeAbility>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Leap Of Faith</Name>
@@ -5883,11 +5898,11 @@ or traverse chasms that make normal adventurers balk. Using this ability costs
          <Class>Favored Soul</Class>
          <Level>17</Level>
       </AutomaticAcquisition>
-       <Effect>
-           <Type>SpellLikeAbility</Type>
-           <Bonus>Feat</Bonus>
-           <SpellLikeAbility>Leap Of Faith</SpellLikeAbility>
-       </Effect>
+      <Effect>
+         <Type>SpellLikeAbility</Type>
+         <Bonus>Feat</Bonus>
+         <SpellLikeAbility>Leap Of Faith</SpellLikeAbility>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Least Dragonmark of Finding</Name>
@@ -6443,7 +6458,7 @@ at the cost of -2 Constitution.</Description>
       <Effect>
          <DisplayName>Wind Stance: Attack Speed</DisplayName>
          <Bonus>Feat</Bonus>
-         <Type>AttackSpeed</Type>
+         <Type>Alacrity</Type>
          <WeaponClass>Melee</WeaponClass>
          <AmountVector size="4">7.5 10 12.5 15</AmountVector>
          <Stance>Wind Stance</Stance>
@@ -6451,7 +6466,7 @@ at the cost of -2 Constitution.</Description>
       <Effect>
          <DisplayName>Wind Stance: Attack Speed</DisplayName>
          <Bonus>Feat</Bonus>
-         <Type>AttackSpeed</Type>
+         <Type>Alacrity</Type>
          <WeaponClass>Thrown</WeaponClass>
          <AmountVector size="4">7.5 10 12.5 15</AmountVector>
          <Stance>Wind Stance</Stance>
@@ -7238,11 +7253,11 @@ Requires 21 trained ranks (not total mod) of the Perform skill to use.</Descript
          <Class>Bard</Class>
          <Level>18</Level>
       </AutomaticAcquisition>
-       <Effect>
-           <Type>SpellLikeAbility</Type>
-           <Bonus>Feat</Bonus>
-           <SpellLikeAbility>Suggestion, Mass</SpellLikeAbility>
-       </Effect>
+      <Effect>
+         <Type>SpellLikeAbility</Type>
+         <Bonus>Feat</Bonus>
+         <SpellLikeAbility>Suggestion, Mass</SpellLikeAbility>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Master of Forms</Name>
@@ -7408,7 +7423,7 @@ Master of Wind: Wind Stance now grants +3 Dexterity, a 12.5% Enhancement bonus t
       <Effect>
          <DisplayName>Wind Stance: Attack Speed</DisplayName>
          <Bonus>Feat</Bonus>
-         <Type>AttackSpeed</Type>
+         <Type>Alacrity</Type>
          <WeaponClass>Melee</WeaponClass>
          <AmountVector size="4">7.5 10 12.5 15</AmountVector>
          <Stance>Wind Stance</Stance>
@@ -7416,7 +7431,7 @@ Master of Wind: Wind Stance now grants +3 Dexterity, a 12.5% Enhancement bonus t
       <Effect>
          <DisplayName>Wind Stance: Attack Speed</DisplayName>
          <Bonus>Feat</Bonus>
-         <Type>AttackSpeed</Type>
+         <Type>Alacrity</Type>
          <WeaponClass>Thrown</WeaponClass>
          <AmountVector size="4">7.5 10 12.5 15</AmountVector>
          <Stance>Wind Stance</Stance>
@@ -8478,8 +8493,8 @@ plus another 1d50 to undead on vorpal.</Description>
          <Dice>
             <Number size="1">4</Number>
             <Sides size="1">6</Sides>
+            <Energy>Electric</Energy>
          </Dice>
-         <Energy>Electric</Energy>
       </Effect>
    </Feat>
    <Feat>
@@ -8507,8 +8522,8 @@ creatures plus another 1d50 damage on vorpal.</Description>
          <Dice>
             <Number size="1">2</Number>
             <Sides size="1">10</Sides>
+            <Energy>Negative</Energy>
          </Dice>
-         <Energy>Negative</Energy>
       </Effect>
    </Feat>
    <Feat>
@@ -8734,20 +8749,20 @@ fortification against your attacks by 25%.</Description>
          <Description>While using Precision mode, you gain +5% to hit and reduces the target's
 fortification against your attacks by 25%.</Description>
       </Stance>
-       <Effect>
-           <Type>AttackBonus</Type>
-           <Bonus>Feat</Bonus>
-           <Percent/>
-           <Amount>5</Amount>
-           <Stance>Precision</Stance>
-           <Weapon>All</Weapon>
-       </Effect>
-       <Effect>
-           <Type>FortificationBypass</Type>
-           <Bonus>Feat</Bonus>
-           <Amount>25</Amount>
-           <Stance>Precision</Stance>
-       </Effect>
+      <Effect>
+         <Type>AttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Percent/>
+         <Amount>5</Amount>
+         <Stance>Precision</Stance>
+         <Weapon>All</Weapon>
+      </Effect>
+      <Effect>
+         <Type>FortificationBypass</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>25</Amount>
+         <Stance>Precision</Stance>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Purity of Body</Name>
@@ -8786,7 +8801,7 @@ but not of other ranged weapons.</Description>
       <Effect>
          <!--amount guessed as not specified-->
          <Bonus>Feat</Bonus>
-         <Type>AttackSpeed</Type>
+         <Type>Alacrity</Type>
          <WeaponClass>Thrown</WeaponClass>
          <Amount>10</Amount>
       </Effect>
@@ -8983,7 +8998,7 @@ Constitution, a +2 Morale bonus to Will saves and a -2 penalty to AC.</Descripti
          <Level>2</Level>
       </AutomaticAcquisition>
       <Effect>
-         <Type>AttackSpeed</Type>
+         <Type>Alacrity</Type>
          <Bonus>Feat</Bonus>
          <WeaponClass>Ranged</WeaponClass>
          <Amount>20</Amount>
@@ -9004,7 +9019,7 @@ Constitution, a +2 Morale bonus to Will saves and a -2 penalty to AC.</Descripti
          <Type>SpellLikeAbility</Type>
          <Bonus>Feat</Bonus>
          <SpellLikeAbility>Remove Disease</SpellLikeAbility>
-          <AmountVector size="20">0 0 0 0 0 1 1 1 2 2 2 3 3 3 4 4 4 5 5 5</AmountVector>
+         <AmountVector size="20">0 0 0 0 0 1 1 1 2 2 2 3 3 3 4 4 4 5 5 5</AmountVector>
       </Effect>
    </Feat>
    <Feat>
@@ -9285,17 +9300,18 @@ and wielding only an orb, runearm, or nothing in your off hand.</Description>
       <FeatGroup>
          <IsStandardFeat/>
          <IsFighterBonus/>
+         <IsMonkBonus/>
       </FeatGroup>
       <Requirements>
          <Requirement>
             <Skill>Balance</Skill>
             <Amount>2</Amount>
          </Requirement>
-          <RequiresNoneOf>
-             <Requirement>
-                <Feat>Two Weapon Fighting</Feat>
-             </Requirement>
-          </RequiresNoneOf>
+         <RequiresNoneOf>
+            <Requirement>
+               <Feat>Two Weapon Fighting</Feat>
+            </Requirement>
+         </RequiresNoneOf>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>SingleWeaponFighting</Icon>
@@ -9306,7 +9322,7 @@ and wielding only an orb, runearm, or nothing in your off hand.</Description>
          <Stance>SingleWeaponFighting</Stance>
       </Effect>
       <Effect>
-         <Type>AttackSpeed</Type>
+         <Type>Alacrity</Type>
          <Bonus>Feat</Bonus>
          <WeaponClass>OneHanded</WeaponClass>
          <Amount>10</Amount>
@@ -9318,6 +9334,10 @@ and wielding only an orb, runearm, or nothing in your off hand.</Description>
       <Description>You are skilled with the use of the shuriken and have a chance to throw
 an additional one per throw. (Percent chance to throw an additional shuriken is
 equal to your Dexterity.)</Description>
+      <FeatGroup>
+         <IsStandardFeat/>
+         <IsMonkBonus/>
+      </FeatGroup>
       <Requirements>
          <Requirement>
             <Ability>Dexterity</Ability>
@@ -10748,9 +10768,9 @@ presence or targeting another character.</Description>
          <Level>19</Level>
       </AutomaticAcquisition>
       <Effect>
-          <Type>SneakAttackDice</Type>
-          <Bonus>Feat</Bonus>
-          <Amount>1</Amount>
+         <Type>SneakAttackDice</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
       </Effect>
    </Feat>
    <Feat>
@@ -10764,11 +10784,11 @@ enchantment spell on one of your allies. Requires 15 ranks of the Perform skill.
          <Class>Bard</Class>
          <Level>12</Level>
       </AutomaticAcquisition>
-       <Effect>
-           <Type>SpellLikeAbility</Type>
-           <Bonus>Feat</Bonus>
-           <SpellLikeAbility>Song of Freedom</SpellLikeAbility>
-       </Effect>
+      <Effect>
+         <Type>SpellLikeAbility</Type>
+         <Bonus>Feat</Bonus>
+         <SpellLikeAbility>Song of Freedom</SpellLikeAbility>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Spell Focus: Abjuration</Name>
@@ -11365,8 +11385,8 @@ Your attack will deal 1 to 6 additional lightning damage (D&amp;D Dice: 1d6).</D
          <Dice>
             <Number size="1">1</Number>
             <Sides size="1">6</Sides>
+            <Energy>Electric</Energy>
          </Dice>
-         <Energy>Electric</Energy>
       </Effect>
    </Feat>
    <Feat>
@@ -11422,11 +11442,11 @@ Requires 9 trained ranks (not total mod) of the Perform skill to use.</Descripti
          <Class>Bard</Class>
          <Level>6</Level>
       </AutomaticAcquisition>
-       <Effect>
-           <Type>SpellLikeAbility</Type>
-           <Bonus>Feat</Bonus>
-           <SpellLikeAbility>Suggestion</SpellLikeAbility>
-       </Effect>
+      <Effect>
+         <Type>SpellLikeAbility</Type>
+         <Bonus>Feat</Bonus>
+         <SpellLikeAbility>Suggestion</SpellLikeAbility>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Sunder</Name>
@@ -11713,6 +11733,7 @@ Cooldown: one minute.</Description>
       <FeatGroup>
          <IsStandardFeat/>
          <IsFighterBonus/>
+         <IsMonkBonus/>
       </FeatGroup>
       <Requirements>
          <Requirement>
@@ -11800,11 +11821,11 @@ death - you are immune to the spawn effect of most undead.</Description>
          <Class>Monk</Class>
          <Level>17</Level>
       </AutomaticAcquisition>
-       <Effect>
-           <Type>Immunity</Type>
-           <Bonus>Feat</Bonus>
-           <Immunity>Spawn effects of Undead</Immunity>
-       </Effect>
+      <Effect>
+         <Type>Immunity</Type>
+         <Bonus>Feat</Bonus>
+         <Immunity>Spawn effects of Undead</Immunity>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Tireless Rage</Name>
@@ -11991,11 +12012,11 @@ weapon effects to trigger on glancing blows and a +2 Combat Style bonus to Melee
             <Ability>Strength</Ability>
             <Amount>15</Amount>
          </Requirement>
-          <RequiresNoneOf>
-             <Requirement>
-                <Feat>Single Weapon Fighting</Feat>
-             </Requirement>
-          </RequiresNoneOf>
+         <RequiresNoneOf>
+            <Requirement>
+               <Feat>Single Weapon Fighting</Feat>
+            </Requirement>
+         </RequiresNoneOf>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>TwoHandedFighting</Icon>
@@ -12081,11 +12102,11 @@ Two Weapon Fighting also increases the chance to proc an off-hand attack by
             <Ability>Dexterity</Ability>
             <Amount>15</Amount>
          </Requirement>
-          <RequiresNoneOf>
-             <Requirement>
-                <Feat>Single Weapon Fighting</Feat>
-             </Requirement>
-          </RequiresNoneOf>
+         <RequiresNoneOf>
+            <Requirement>
+               <Feat>Single Weapon Fighting</Feat>
+            </Requirement>
+         </RequiresNoneOf>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>TwoWeaponFighting</Icon>
@@ -12218,11 +12239,11 @@ save bonus. This feat also grants you a 1% passive bonus to Dodge at levels 4,
          <Class>Artificer</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
-       <Effect>
-           <Type>SpellLikeAbility</Type>
-           <Bonus>Feat</Bonus>
-           <SpellLikeAbility>Unleash Iron Defender</SpellLikeAbility>
-       </Effect>
+      <Effect>
+         <Type>SpellLikeAbility</Type>
+         <Bonus>Feat</Bonus>
+         <SpellLikeAbility>Unleash Iron Defender</SpellLikeAbility>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Venom Immunity</Name>
@@ -12496,11 +12517,11 @@ is instead paralyzed and helpless with fear for 6 seconds.</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>HurlThroughHell</Icon>
-       <Effect>
-           <Type>SpellLikeAbility</Type>
-           <Bonus>Feat</Bonus>
-           <SpellLikeAbility>Hurl Through Hell</SpellLikeAbility>
-       </Effect>
+      <Effect>
+         <Type>SpellLikeAbility</Type>
+         <Bonus>Feat</Bonus>
+         <SpellLikeAbility>Hurl Through Hell</SpellLikeAbility>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Warlock: Misty escape</Name>
@@ -12521,11 +12542,11 @@ These effects last for six seconds</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>MistyEscape</Icon>
-       <Effect>
-           <Type>SpellLikeAbility</Type>
-           <Bonus>Feat</Bonus>
-           <SpellLikeAbility>Misty escape</SpellLikeAbility>
-       </Effect>
+      <Effect>
+         <Type>SpellLikeAbility</Type>
+         <Bonus>Feat</Bonus>
+         <SpellLikeAbility>Misty escape</SpellLikeAbility>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Warlock: Pact Damage</Name>
@@ -13162,11 +13183,11 @@ effectively mesmerizing them.</Description>
          <Class>Ranger</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
-       <Effect>
-           <Type>SpellLikeAbility</Type>
-           <Bonus>Feat</Bonus>
-           <SpellLikeAbility>Wild Empathy</SpellLikeAbility>
-       </Effect>
+      <Effect>
+         <Type>SpellLikeAbility</Type>
+         <Bonus>Feat</Bonus>
+         <SpellLikeAbility>Wild Empathy</SpellLikeAbility>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Wild Shape: Bear</Name>
@@ -14639,7 +14660,7 @@ Passive: +110 Maximum Spell Point</Description>
       <Stance>
          <Name>Arcane Insight</Name>
          <Icon>ArcaneInsight</Icon>
-      <Description>Activate to gain + 6 to all spell DCs
+         <Description>Activate to gain + 6 to all spell DCs
 and +6 to Spell Penetration for 300 seconds. Duration 30 seconds, 3 minute cooldown</Description>
       </Stance>
       <FeatGroup>
@@ -14696,13 +14717,13 @@ and +6 to Spell Penetration for 300 seconds. Duration 30 seconds, 3 minute coold
          <Amount>32</Amount>
       </Effect>
       <Effect>
-         <Type>AttackSpeed</Type>
+         <Type>Alacrity</Type>
          <Bonus>Feat</Bonus>
          <WeaponClass>Melee</WeaponClass>
          <Amount>15</Amount>
       </Effect>
       <Effect>
-         <Type>AttackSpeed</Type>
+         <Type>Alacrity</Type>
          <Bonus>Feat</Bonus>
          <WeaponClass>Ranged</WeaponClass>
          <Amount>22</Amount>
@@ -14811,14 +14832,12 @@ You also gain 2% dodge bonus when using a ranged weapon.</Description>
       <Acquire>Train</Acquire>
       <Icon>CombatArchery</Icon>
       <Effect>
-         <!--Should only be available when ranged weapon equipped-->
          <Bonus>Feat</Bonus>
          <Type>DodgeBonus</Type>
          <Amount>2</Amount>
          <Stance>Ranged Combat</Stance>
       </Effect>
       <Effect>
-         <!--Should only be available when ranged weapon equipped-->
          <Bonus>Feat</Bonus>
          <Type>WeaponBaseDamageBonus</Type>
          <Amount>1</Amount>
@@ -15853,11 +15872,11 @@ Passive: +140 Maximum Spell Points</Description>
          <Bonus>Feat</Bonus>
          <Amount>140</Amount>
       </Effect>
-       <Effect>
-           <Type>SpellLikeAbility</Type>
-           <Bonus>Feat</Bonus>
-           <SpellLikeAbility>Greater Ruin</SpellLikeAbility>
-       </Effect>
+      <Effect>
+         <Type>SpellLikeAbility</Type>
+         <Bonus>Feat</Bonus>
+         <SpellLikeAbility>Greater Ruin</SpellLikeAbility>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Improved Augment Summoning</Name>
@@ -15917,17 +15936,17 @@ Passive: +140 Maximum Spell Points</Description>
       <Acquire>Train</Acquire>
       <Icon>ImprovedMartialArts</Icon>
       <Effect>
-          <Type>WeaponBaseDamageBonus</Type>
-          <Bonus>Feat</Bonus>
-          <Amount>1.0</Amount>
-          <Weapon>Unarmed</Weapon>
+         <Type>WeaponBaseDamageBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>1.0</Amount>
+         <Weapon>Unarmed</Weapon>
       </Effect>
       <Effect>
-          <Type>WeaponBaseDamageBonus</Type>
-          <Bonus>Feat</Bonus>
-          <Amount>0.5</Amount>
-          <Weapon>All</Weapon>
-          <Stance>Centered</Stance>
+         <Type>WeaponBaseDamageBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>0.5</Amount>
+         <Weapon>All</Weapon>
+         <Stance>Centered</Stance>
       </Effect>
    </Feat>
    <Feat>
@@ -15953,9 +15972,9 @@ You gain +3d6 sneak attack damage.</Description>
       <Acquire>Train</Acquire>
       <Icon>ImprovedSneakAttack</Icon>
       <Effect>
-                  <Type>SneakAttackDice</Type>
-                  <Bonus>Feat</Bonus>
-                  <Amount>3</Amount>
+         <Type>SneakAttackDice</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>3</Amount>
       </Effect>
    </Feat>
    <Feat>
@@ -15977,12 +15996,12 @@ skill to use.</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>InspireExcellence</Icon>
-       <Effect>
-           <Type>AbilityBonus</Type>
-           <Bonus>Competence</Bonus>
-           <Amount>2</Amount>
-           <Ability>All</Ability>
-       </Effect>
+      <Effect>
+         <Type>AbilityBonus</Type>
+         <Bonus>Competence</Bonus>
+         <Amount>2</Amount>
+         <Ability>All</Ability>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Intensify Spell</Name>
@@ -16321,11 +16340,11 @@ your critical damage multiplier is increased by +1.</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>Ruin</Icon>
-       <Effect>
-           <Type>SpellLikeAbility</Type>
-           <Bonus>Feat</Bonus>
-           <SpellLikeAbility>Ruin</SpellLikeAbility>
-       </Effect>
+      <Effect>
+         <Type>SpellLikeAbility</Type>
+         <Bonus>Feat</Bonus>
+         <SpellLikeAbility>Ruin</SpellLikeAbility>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Vorpal Strikes</Name>
@@ -16436,11 +16455,11 @@ Number of Destinies: 3</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>ArcanePulse</Icon>
-       <Effect>
-           <Type>SpellLikeAbility</Type>
-           <Bonus>Feat</Bonus>
-           <SpellLikeAbility>Arcane Pulse</SpellLikeAbility>
-       </Effect>
+      <Effect>
+         <Type>SpellLikeAbility</Type>
+         <Bonus>Feat</Bonus>
+         <SpellLikeAbility>Arcane Pulse</SpellLikeAbility>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Epic Arcane Eldritch Blast</Name>
@@ -16485,11 +16504,11 @@ Number of Destinies: 1</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>EpicMageArmor</Icon>
-       <Effect>
-           <Type>SpellLikeAbility</Type>
-           <Bonus>Feat</Bonus>
-           <SpellLikeAbility>Epic Mage Armor</SpellLikeAbility>
-       </Effect>
+      <Effect>
+         <Type>SpellLikeAbility</Type>
+         <Bonus>Feat</Bonus>
+         <SpellLikeAbility>Epic Mage Armor</SpellLikeAbility>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Epic Skill Focus: Concentration</Name>
@@ -16683,11 +16702,11 @@ Number of Destinies: 2</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>Hellball</Icon>
-       <Effect>
-           <Type>SpellLikeAbility</Type>
-           <Bonus>Feat</Bonus>
-           <SpellLikeAbility>Hellball</SpellLikeAbility>
-       </Effect>
+      <Effect>
+         <Type>SpellLikeAbility</Type>
+         <Bonus>Feat</Bonus>
+         <SpellLikeAbility>Hellball</SpellLikeAbility>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Lasting Inspiration</Name>
@@ -16732,12 +16751,12 @@ Number of Destinies: 3</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>DeificWarding</Icon>
-       <Effect>
-           <Type>MRR</Type>
-           <Bonus>Sacred</Bonus>
-           <Amount>30</Amount>
-           <Stance>Deific Warding</Stance>
-       </Effect>
+      <Effect>
+         <Type>MRR</Type>
+         <Bonus>Sacred</Bonus>
+         <Amount>30</Amount>
+         <Stance>Deific Warding</Stance>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Epic Skill Focus: Bluff</Name>
@@ -17742,19 +17761,34 @@ Number of Destinies: 2, 1</Description>
       <Acquire>Train</Acquire>
       <Icon>EmbodimentOfLaw</Icon>
       <Effect>
-         <Type>DamageBonus</Type>
+         <Type>WeaponOtherDamageBonus</Type>
          <Bonus>Feat</Bonus>
          <Amount>10</Amount>
+         <Energy>Bane</Energy>
          <Weapon>All</Weapon>
-         <!--Handle bane damage type-->
       </Effect>
       <Effect>
-         <Type>DamageBonus</Type>
+         <Type>WeaponOtherDamageBonus</Type>
          <Bonus>Feat</Bonus>
          <Amount>20</Amount>
+         <Energy>Lawful</Energy>
          <Weapon>All</Weapon>
-         <!--Handle bane damage type-->
-         <!--Handle only affects chaotic targets-->
+         <Stance>Chaotic Target</Stance>
+      </Effect>
+      <Effect>
+         <Type>WeaponOtherCriticalDamageBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>10</Amount>
+         <Energy>Bane</Energy>
+         <Weapon>All</Weapon>
+      </Effect>
+      <Effect>
+         <Type>WeaponOtherCriticalDamageBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>20</Amount>
+         <Energy>Lawful</Energy>
+         <Weapon>All</Weapon>
+         <Stance>Chaotic Target</Stance>
       </Effect>
    </Feat>
    <Feat>
@@ -17802,19 +17836,46 @@ Number of Destinies: 2, 1</Description>
       <Acquire>Train</Acquire>
       <Icon>HarbingerOfChaos</Icon>
       <Effect>
-         <Type>DamageBonus</Type>
+         <Type>WeaponOtherDamageBonus</Type>
          <Bonus>Feat</Bonus>
-         <Amount>10</Amount>
+         <Dice>
+             <Number size="1">1</Number>
+             <Sides size="1">20</Sides>
+             <Energy>Bane</Energy>
+         </Dice>
          <Weapon>All</Weapon>
-         <!--Handle bane damage type-->
       </Effect>
       <Effect>
-         <Type>DamageBonus</Type>
+         <Type>WeaponOtherDamageBonus</Type>
          <Bonus>Feat</Bonus>
-         <Amount>20</Amount>
+         <Dice>
+             <Number size="1">2</Number>
+             <Sides size="1">20</Sides>
+             <Energy>Chaos</Energy>
+         </Dice>
          <Weapon>All</Weapon>
-         <!--Handle bane damage type-->
-         <!--Handle only affects chaotic targets-->
+         <Stance>Lawful Target</Stance>
+      </Effect>
+      <Effect>
+         <Type>WeaponOtherCriticalDamageBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Dice>
+             <Number size="1">1</Number>
+             <Sides size="1">20</Sides>
+             <Energy>Bane</Energy>
+         </Dice>
+         <Weapon>All</Weapon>
+      </Effect>
+      <Effect>
+         <Type>WeaponOtherCriticalDamageBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Dice>
+             <Number size="1">2</Number>
+             <Sides size="1">20</Sides>
+             <Energy>Chaos</Energy>
+         </Dice>
+         <Weapon>All</Weapon>
+         <Stance>Lawful Target</Stance>
       </Effect>
    </Feat>
    <Feat>
@@ -17833,11 +17894,11 @@ Number of Destinies: 2, 1</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>SpiritBlades</Icon>
-       <Effect>
-           <Type>SpellLikeAbility</Type>
-           <Bonus>Feat</Bonus>
-           <SpellLikeAbility>Spirit Blades</SpellLikeAbility>
-       </Effect>
+      <Effect>
+         <Type>SpellLikeAbility</Type>
+         <Bonus>Feat</Bonus>
+         <SpellLikeAbility>Spirit Blades</SpellLikeAbility>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Wind through the Trees</Name>
@@ -18236,8 +18297,20 @@ Add 2d20 Sonic damage to weapon and unarmed attacks (Scales with Spell Power),
          <Dice>
             <Number size="1">2</Number>
             <Sides size="1">20</Sides>
+            <Energy>Sonic</Energy>
+            <ScalesWithSpellPower/>
          </Dice>
-         <Energy>Sonic</Energy>
+      </Effect>
+      <Effect>
+         <Type>WeaponOtherCriticalDamageBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Weapon>All</Weapon>
+         <Dice>
+            <Number size="1">2</Number>
+            <Sides size="1">20</Sides>
+            <Energy>Sonic</Energy>
+            <ScalesWithSpellPower/>
+         </Dice>
       </Effect>
    </Feat>
    <Feat>
@@ -18300,8 +18373,20 @@ Add 2d20 Electric damage to weapon and unarmed attacks (Scales with Spell Power)
          <Dice>
             <Number size="1">2</Number>
             <Sides size="1">20</Sides>
+            <Energy>Electric</Energy>
+            <ScalesWithSpellPower/>
          </Dice>
-         <Energy>Electric</Energy>
+      </Effect>
+      <Effect>
+         <Type>WeaponOtherCriticalDamageBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Weapon>All</Weapon>
+         <Dice>
+            <Number size="1">2</Number>
+            <Sides size="1">20</Sides>
+            <Energy>Electric</Energy>
+            <ScalesWithSpellPower/>
+         </Dice>
       </Effect>
    </Feat>
    <Feat>
@@ -18358,8 +18443,20 @@ Add 2d20 Acid damage to weapon and unarmed attacks (Scales with Spell Power).</D
          <Dice>
             <Number size="1">2</Number>
             <Sides size="1">20</Sides>
+            <Energy>Acid</Energy>
+            <ScalesWithSpellPower/>
          </Dice>
-         <Energy>Acid</Energy>
+      </Effect>
+      <Effect>
+         <Type>WeaponOtherCriticalDamageBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Weapon>All</Weapon>
+         <Dice>
+            <Number size="1">2</Number>
+            <Sides size="1">20</Sides>
+            <Energy>Acid</Energy>
+            <ScalesWithSpellPower/>
+         </Dice>
       </Effect>
    </Feat>
    <Feat>
@@ -18414,8 +18511,20 @@ Add 2d20 Fire damage to weapon and unarmed attacks (Scales with Spell Power).</D
          <Dice>
             <Number size="1">2</Number>
             <Sides size="1">20</Sides>
+            <Energy>Fire</Energy>
+            <ScalesWithSpellPower/>
          </Dice>
-         <Energy>Fire</Energy>
+      </Effect>
+      <Effect>
+         <Type>WeaponOtherCriticalDamageBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Weapon>All</Weapon>
+         <Dice>
+            <Number size="1">2</Number>
+            <Sides size="1">20</Sides>
+            <Energy>Fire</Energy>
+            <ScalesWithSpellPower/>
+         </Dice>
       </Effect>
    </Feat>
    <Feat>
@@ -18464,8 +18573,20 @@ Add 2d20 Cold damage to weapon and unarmed attacks (Scales with Spell Power).</D
          <Dice>
             <Number size="1">2</Number>
             <Sides size="1">20</Sides>
+            <Energy>Cold</Energy>
+            <ScalesWithSpellPower/>
          </Dice>
-         <Energy>Cold</Energy>
+      </Effect>
+      <Effect>
+         <Type>WeaponOtherCriticalDamageBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Weapon>All</Weapon>
+         <Dice>
+            <Number size="1">2</Number>
+            <Sides size="1">20</Sides>
+            <Energy>Cold</Energy>
+            <ScalesWithSpellPower/>
+         </Dice>
       </Effect>
    </Feat>
    <Feat>

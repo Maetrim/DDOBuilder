@@ -197,6 +197,9 @@ void CStancesView::CreateStanceWindows()
     Stance unarmed("Unarmed", "ADanceOfFlowers", "You are fighting with handwraps or fists");
     unarmed.Set_AutoControlled();
     AddStance(unarmed);
+    Stance axe("Axe", "BEReconstructedEdges", "You are fighting with an Axe");
+    axe.Set_AutoControlled();
+    AddStance(axe);
     Stance sab("SwordAndBoard", "SDLastStand", "You are fighting with a weapon and shield");
     sab.Set_AutoControlled();
     AddStance(sab);

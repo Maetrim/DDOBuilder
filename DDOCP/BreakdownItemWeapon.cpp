@@ -28,9 +28,23 @@ BreakdownItemWeapon::BreakdownItemWeapon(
     m_criticalThreatRange(Breakdown_WeaponCriticalThreatRange, treeList, NULL),
     m_criticalMultiplier(Breakdown_WeaponCriticalMultiplier,  treeList, NULL, NULL),
     m_criticalMultiplier19To20(Breakdown_WeaponCriticalMultiplier19To20, treeList, NULL, &m_criticalMultiplier),
-    m_attackSpeed(Breakdown_WeaponAttackSpeed, Effect_AttackSpeed, "Attack Speed", treeList, NULL),
+    m_attackSpeed(Breakdown_WeaponAttackSpeed, Effect_Alacrity, "Attack Speed", treeList, NULL),
     m_centeredCount(0)     // assume not centered with this weapon
 {
+
+    m_baseDamage.SetSlot(slot);
+    m_attackBonus.SetSlot(slot);
+    m_damageBonus.SetSlot(slot);
+    m_otherDamageEffects.SetSlot(slot);
+    //m_vorpalRange.SetSlot(slot);
+    m_criticalThreatRange.SetSlot(slot);
+    m_criticalAttackBonus.SetSlot(slot);
+    m_criticalDamageBonus.SetSlot(slot);
+    m_otherCriticalDamageEffects.SetSlot(slot);
+    m_criticalMultiplier.SetSlot(slot);
+    m_criticalMultiplier19To20.SetSlot(slot);
+    m_attackSpeed.SetSlot(slot);
+
     m_baseDamage.SetWeapon(weaponType);
     m_attackBonus.SetWeapon(weaponType);
     m_damageBonus.SetWeapon(weaponType);
@@ -265,6 +279,9 @@ bool BreakdownItemWeapon::AffectsUs(const Effect & effect) const
             // always affects weapon, but disabled if weapon not part of focus group
             // done this way as weapons in a given focus group can vary with enhancements
             isUs = true;
+            break;
+        case WeaponClass_Shield:
+            isUs = IsShield(m_weaponType);
             break;
         default:
             ASSERT(FALSE);  // not implemented this one? Do it!

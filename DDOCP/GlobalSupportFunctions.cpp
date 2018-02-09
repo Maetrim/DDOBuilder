@@ -2613,6 +2613,22 @@ bool IsFinesseableWeapon(WeaponType wt)
     return isFinesseable;
 }
 
+bool IsShield(WeaponType wt)
+{
+    bool isShield = false;
+    switch (wt)
+    {
+    case Weapon_ShieldBuckler:
+    case Weapon_ShieldSmall:
+    case Weapon_ShieldLarge:
+    case Weapon_ShieldTower:
+        isShield = true;
+        break;
+        // all other weapon types are not a match
+    }
+    return isShield;
+}
+
 bool IsAxe(WeaponType wt)
 {
     bool isAxe = false;

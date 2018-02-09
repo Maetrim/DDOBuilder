@@ -235,6 +235,9 @@ bool BreakdownItemWeaponEffects::AffectsThisWeapon(
             // done this way as weapons in a given focus group can vary with enhancements
             isUs = true;
             break;
+        case WeaponClass_Shield:
+            isUs = IsShield(wt);
+            break;
         default:
             ASSERT(FALSE);  // not implemented this one? Do it!
         }
@@ -705,6 +708,43 @@ BreakdownItemWeapon * BreakdownItemWeaponEffects::CreateWeaponBreakdown(
                     m_pCharacter,
                     item.Name(),
                     itemsEffects[i]);
+        }
+    }
+    // some item specific effects may come from augments
+    const std::vector<ItemAugment> & augments = item.Augments();
+    for (size_t ai = 0; ai < augments.size(); ++ai)
+    {
+        if (augments[ai].HasSelectedAugment())
+        {
+            // there is an augment in this position
+            const Augment & augment = FindAugmentByName(augments[ai].SelectedAugment());
+            // name is:
+            // <item>:<augment type>:<Augment name>
+            std::stringstream ss;
+            ss << item.Name()
+                    << " : " << augments[ai].Type()
+                    << " : " << augment.Name();
+            // now revoke the item specific augments effects
+            std::string name;
+            name = ss.str();
+            std::list<Effect> effects = augment.Effects();
+            std::list<Effect>::iterator it = effects.begin();
+            while (it != effects.end())
+            {
+                if (augment.HasEnterValue()
+                        && augments[ai].HasValue())
+                {
+                    (*it).Set_Amount(augments[ai].Value());
+                }
+                if ((*it).HasIsItemSpecific())
+                {
+                    pWeaponBreakdown->UpdateItemEffect(
+                            m_pCharacter,
+                            name,
+                            (*it));
+                }
+                ++it;
+            }
         }
     }
     // for this weapon, filter in all the cached effects

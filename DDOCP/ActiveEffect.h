@@ -8,6 +8,7 @@
 #include "ClassTypes.h"
 #include "Dice.h"
 #include "EnergyTypes.h"
+#include "InventorySlotTypes.h"
 #include "WeaponTypes.h"
 
 class Character;
@@ -61,7 +62,7 @@ class ActiveEffect
         void AddStance(const std::string & stance);
         const std::vector<std::string> & Stances() const;
         const std::string & Tree() const;
-        bool IsActive(const Character * pCharacter) const;
+        bool IsActive(const Character * pCharacter, InventorySlotType slot) const;
         void SetIsPercentage(bool isPercentage);
         bool IsPercentage() const;
         void SetPercentageValue(double amount) const;
@@ -83,6 +84,7 @@ class ActiveEffect
         bool HasClass(ClassType type) const;
         void SetWholeNumbersOnly();
         void SetWeapon(WeaponType wt);  // used when an effect has WeaponClass_FocusGroup
+        void SetSlot(InventorySlotType slot);
     private:
         enum EffectType
         {
@@ -115,5 +117,7 @@ class ActiveEffect
         bool m_bWholeNumbersOnly;
         bool m_bHasWeaponType;
         WeaponType m_weaponType;
+        bool m_bHasInventoryType;
+        InventorySlotType m_slot;
         mutable bool m_clearValue;
 };

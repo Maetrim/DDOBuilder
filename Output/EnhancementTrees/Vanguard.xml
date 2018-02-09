@@ -41,14 +41,14 @@
          <Effect>
             <Type>AttackBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="1">1</AmountVector>
+            <Amount>1</Amount>
             <Stance>SwordAndBoard</Stance>
             <Weapon>All</Weapon>
          </Effect>
          <Effect>
             <Type>DamageBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="1">1</AmountVector>
+            <Amount>1</Amount>
             <Stance>SwordAndBoard</Stance>
             <Weapon>All</Weapon>
          </Effect>
@@ -82,12 +82,12 @@
          <Effect>
             <Type>SecondaryShieldBash</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="1">10</AmountVector>
+            <Amount>10</Amount>
             <Stance>SwordAndBoard</Stance>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Vanguard:  Vicious Shield I</Name>
+         <Name>Vanguard: Vicious Shield I</Name>
          <InternalName>VanguardCore3</InternalName>
          <Description>Additional +10% (total +20%) chance to make a secondary shield bash.
 While shield equipped, +5% Combat Style bonus to melee attack speed.</Description>
@@ -116,13 +116,13 @@ While shield equipped, +5% Combat Style bonus to melee attack speed.</Descriptio
          <Effect>
             <Type>SecondaryShieldBash</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="1">10</AmountVector>
+            <Amount>10</Amount>
             <Stance>SwordAndBoard</Stance>
          </Effect>
          <Effect>
             <Type>Alacrity</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="1">5</AmountVector>
+            <Amount>5</Amount>
             <Stance>SwordAndBoard</Stance>
             <Weapon>All</Weapon>
          </Effect>
@@ -158,17 +158,22 @@ Your shield gains +1(W).</Description>
          <Effect>
             <Type>SecondaryShieldBash</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="1">10</AmountVector>
+            <Amount>10</Amount>
             <Stance>SwordAndBoard</Stance>
          </Effect>
          <Effect>
             <Type>Alacrity</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="1">5</AmountVector>
+            <Amount>5</Amount>
             <Stance>SwordAndBoard</Stance>
             <Weapon>All</Weapon>
          </Effect>
-         <!--Shield 1[W] bonus-->
+         <Effect>
+            <Type>WeaponBaseDamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <WeaponClass>Shield</WeaponClass>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Vanguard: Vicious Shield II</Name>
@@ -197,19 +202,39 @@ and additional +5% (total 15%) Combat Style bonus to Melee Attack Speed</Descrip
                </Requirement>
             </RequiresOneOf>
          </Requirements>
-         <!--Other shield attack bonus's-->
+         <Effect>
+            <Type>CriticalRange</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <WeaponClass>Shield</WeaponClass>
+         </Effect>
+         <Effect>
+            <Type>CriticalMultiplier</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <WeaponClass>Shield</WeaponClass>
+         </Effect>
+         <Effect>
+            <Type>WeaponBaseDamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <WeaponClass>Shield</WeaponClass>
+         </Effect>
          <Effect>
             <Type>Alacrity</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="1">5</AmountVector>
+            <Amount>5</Amount>
             <Stance>SwordAndBoard</Stance>
             <Weapon>All</Weapon>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Vanguard: ???</Name>
+         <Name>Vanguard: Shield Champion</Name>
          <InternalName>VanguardCore6</InternalName>
-         <Description>???</Description>
+         <Description>While shield is equipped: +2 attack, +2 damage, +5% doublestrike,
++1(W) to your shield, an additional +5% (total 20%) Combat Style bonus to Melee Attack
+Speed, and shield bash stuns 5% of the time DC
+(10 + 1/2 Character lvl + strength modifier + stun bonus)</Description>
          <Icon>VanguardShieldChampion</Icon>
          <XPosition>5</XPosition>
          <YPosition>0</YPosition>
@@ -231,11 +256,44 @@ and additional +5% (total 15%) Combat Style bonus to Melee Attack Speed</Descrip
                </Requirement>
             </RequiresOneOf>
          </Requirements>
+         <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Stance>SwordAndBoard</Stance>
+            <Weapon>All</Weapon>
+         </Effect>
+         <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Stance>SwordAndBoard</Stance>
+            <Weapon>All</Weapon>
+         </Effect>
+         <Effect>
+            <Type>Doublestrike</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>5</Amount>
+            <Stance>SwordAndBoard</Stance>
+         </Effect>
+         <Effect>
+            <Type>WeaponBaseDamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <WeaponClass>Shield</WeaponClass>
+         </Effect>
+         <Effect>
+            <Type>Alacrity</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>5</Amount>
+            <Stance>SwordAndBoard</Stance>
+            <Weapon>All</Weapon>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Vanguard:  Shield Specialization I</Name>
+         <Name>Vanguard: Shield Specialization I</Name>
          <InternalName>VanguardShieldSpecializationI</InternalName>
-         <Description>While shield equipped, +1 to hit, +1 damage, and +1 to armor class. </Description>
+         <Description>While shield equipped, +1 to hit, +1 damage, and +1 to armor class.</Description>
          <Icon>VanguardShieldSpecializationI</Icon>
          <XPosition>0</XPosition>
          <YPosition>1</YPosition>
@@ -258,21 +316,21 @@ and additional +5% (total 15%) Combat Style bonus to Melee Attack Speed</Descrip
          <Effect>
             <Type>AttackBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="1">1</AmountVector>
+            <Amount>1</Amount>
             <Stance>SwordAndBoard</Stance>
             <Weapon>All</Weapon>
          </Effect>
          <Effect>
             <Type>DamageBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="1">1</AmountVector>
+            <Amount>1</Amount>
             <Stance>SwordAndBoard</Stance>
             <Weapon>All</Weapon>
          </Effect>
          <Effect>
             <Type>ACBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="1">1</AmountVector>
+            <Amount>1</Amount>
             <Stance>SwordAndBoard</Stance>
          </Effect>
       </EnhancementTreeItem>
@@ -396,7 +454,11 @@ Reduces total penalty to skills from armor and shield by [1/2/3] points.</Descri
             <Skill>Jump</Skill>
             <AmountVector size="3">1 2 3</AmountVector>
          </Effect>
-         <!--Skill penalty bonus's-->
+         <Effect>
+            <Type>ArmorCheckPenalty</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">-1 -2 -3</AmountVector>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Vanguard: Shield Specialization II</Name>
@@ -427,19 +489,21 @@ Reduces total penalty to skills from armor and shield by [1/2/3] points.</Descri
          <Effect>
             <Type>AttackBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="1">1</AmountVector>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
             <Stance>SwordAndBoard</Stance>
          </Effect>
          <Effect>
             <Type>DamageBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="1">1</AmountVector>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
             <Stance>SwordAndBoard</Stance>
          </Effect>
          <Effect>
             <Type>ACBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="1">1</AmountVector>
+            <Amount>1</Amount>
             <Stance>SwordAndBoard</Stance>
          </Effect>
       </EnhancementTreeItem>
@@ -537,6 +601,7 @@ have struck every [6/4/2] seconds. Antirequisite: Deflect Arrows.</Description>
             <Type>GrantFeat</Type>
             <Bonus>Enhancement</Bonus>
             <Feat>Deflect Arrows</Feat>
+            <Stance>SwordAndBoard</Stance>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -604,19 +669,21 @@ Usable 5 times per rest. Cooldown: 30 seconds</Description>
          <Effect>
             <Type>AttackBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="1">1</AmountVector>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
             <Stance>SwordAndBoard</Stance>
          </Effect>
          <Effect>
             <Type>DamageBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="1">1</AmountVector>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
             <Stance>SwordAndBoard</Stance>
          </Effect>
          <Effect>
             <Type>ACBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="1">1</AmountVector>
+            <Amount>1</Amount>
             <Stance>SwordAndBoard</Stance>
          </Effect>
       </EnhancementTreeItem>
@@ -666,7 +733,12 @@ your Melee Power increases by [3/6/9] points for 12 seconds, regardless if enemy
                </Requirement>
             </RequiresOneOf>
          </Requirements>
-         <!--Shield critical range increase-->
+          <Effect>
+              <Type>CriticalRange</Type>
+              <Bonus>Competence</Bonus>
+              <Amount>1</Amount>
+              <WeaponClass>Shield</WeaponClass>
+          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Vanguard: Shield Riposte</Name>
@@ -724,7 +796,7 @@ bludgeoning damage to attacker. Damage scales with Melee Power.</Description>
                   <Type>AbilityBonus</Type>
                   <Bonus>Enhancement</Bonus>
                   <Ability>Strength</Ability>
-                  <AmountVector size="1">1</AmountVector>
+                  <Amount>1</Amount>
                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
@@ -736,7 +808,7 @@ bludgeoning damage to attacker. Damage scales with Melee Power.</Description>
                   <Type>AbilityBonus</Type>
                   <Bonus>Enhancement</Bonus>
                   <Ability>Dexterity</Ability>
-                  <AmountVector size="1">1</AmountVector>
+                  <Amount>1</Amount>
                </Effect>
             </EnhancementSelection>
          </Selector>
@@ -769,19 +841,21 @@ bludgeoning damage to attacker. Damage scales with Melee Power.</Description>
          <Effect>
             <Type>AttackBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="1">1</AmountVector>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
             <Stance>SwordAndBoard</Stance>
          </Effect>
          <Effect>
             <Type>DamageBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="1">1</AmountVector>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
             <Stance>SwordAndBoard</Stance>
          </Effect>
          <Effect>
             <Type>ACBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="1">1</AmountVector>
+            <Amount>1</Amount>
             <Stance>SwordAndBoard</Stance>
          </Effect>
       </EnhancementTreeItem>
@@ -913,7 +987,7 @@ critical hits (prior to applying weapon multipliers).</Description>
                   <Type>AbilityBonus</Type>
                   <Bonus>Enhancement</Bonus>
                   <Ability>Strength</Ability>
-                  <AmountVector size="1">1</AmountVector>
+                  <Amount>1</Amount>
                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
@@ -925,7 +999,7 @@ critical hits (prior to applying weapon multipliers).</Description>
                   <Type>AbilityBonus</Type>
                   <Bonus>Enhancement</Bonus>
                   <Ability>Dexterity</Ability>
-                  <AmountVector size="1">1</AmountVector>
+                  <Amount>1</Amount>
                </Effect>
             </EnhancementSelection>
          </Selector>
@@ -959,7 +1033,7 @@ critical hits (prior to applying weapon multipliers).</Description>
          <Effect>
             <Type>SecondaryShieldBash</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="1">10</AmountVector>
+            <Amount>10</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -1052,7 +1126,7 @@ The knockdown is negated on Fortitude saving throw vs DC
          <Effect>
             <Type>MeleePower</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="1">10</AmountVector>
+            <Amount>10</Amount>
          </Effect>
       </EnhancementTreeItem>
    </EnhancementTree>

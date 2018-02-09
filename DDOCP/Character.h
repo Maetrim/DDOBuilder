@@ -391,6 +391,7 @@ class Character :
         void UpdateArmorStances();
         void UpdateShieldStances();
         void UpdateCenteredStance();
+        void VerifyArmor();
 
         // CharacterObserver
         // we need to track all sources from which a granted feat can come from

@@ -24,6 +24,8 @@ enum SpellSchoolType
     SpellSchool_Fear,
     SpellSchool_InnateAttack,
     SpellSchool_BreathWeapon,
+    SpellSchool_Poison,
+    SpellSchool_RuneArm,
 };
 const XmlLib::enumMapEntry<SpellSchoolType> spellSchoolTypeMap[] =
 {
@@ -42,5 +44,7 @@ const XmlLib::enumMapEntry<SpellSchoolType> spellSchoolTypeMap[] =
     {SpellSchool_Fear,          L"Fear"},
     {SpellSchool_InnateAttack,  L"Innate Attack"},
     {SpellSchool_BreathWeapon,  L"Breath Weapon"},
+    {SpellSchool_Poison,        L"Poison"},
+    {SpellSchool_RuneArm,       L"Rune Arm"},
     {SpellSchoolType(0), NULL}
 };

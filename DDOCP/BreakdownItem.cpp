@@ -16,7 +16,8 @@ BreakdownItem::BreakdownItem(
     m_hItem(hItem),
     m_type(type),
     m_bHasWeapon(false),
-    m_weapon(Weapon_Unknown)
+    m_weapon(Weapon_Unknown),
+    m_slot(Inventory_Unknown)
 {
 }
 
@@ -149,7 +150,7 @@ void BreakdownItem::AddActiveItems(
     while (it != effects.end())
     {
         // only add active items when it has an active stance flag
-        if ((*it).IsActive(m_pCharacter)
+        if ((*it).IsActive(m_pCharacter, m_slot)
                 && !(*it).IsPercentage())
         {
             // only list it if its non-zero
@@ -188,7 +189,7 @@ void BreakdownItem::AddActivePercentageItems(
     while (it != effects.end())
     {
         // only add active items when it has an active stance flag and is a percentage
-        if ((*it).IsActive(m_pCharacter)
+        if ((*it).IsActive(m_pCharacter, m_slot)
                 && (*it).IsPercentage())
         {
             // only list it if its non-zero
@@ -227,7 +228,7 @@ void BreakdownItem::AddDeactiveItems(
     while (it != effects.end())
     {
         // only add inactive items when it has a stance flag
-        if (!(*it).IsActive(m_pCharacter))
+        if (!(*it).IsActive(m_pCharacter, m_slot))
         {
             // only list it if its non-zero
             if ((*it).TotalAmount(false) != 0)
@@ -263,7 +264,7 @@ double BreakdownItem::SumItems(const std::list<ActiveEffect> & effects) const
     while (it != effects.end())
     {
         // only count the active items in the total
-        if ((*it).IsActive(m_pCharacter))
+        if ((*it).IsActive(m_pCharacter, m_slot))
         {
             if (!(*it).IsPercentage())
             {
@@ -281,7 +282,7 @@ double BreakdownItem::DoPercentageEffects(const std::list<ActiveEffect> & effect
     while (it != effects.end())
     {
         // only count the active items in the total
-        if ((*it).IsActive(m_pCharacter))
+        if ((*it).IsActive(m_pCharacter, m_slot))
         {
             if ((*it).IsPercentage())
             {
@@ -766,6 +767,10 @@ bool BreakdownItem::GetActiveEffect(
     {
         activeEffect->SetWeapon(Weapon());
     }
+    if (effect.HasRequiredSlot())
+    {
+        activeEffect->SetSlot(effect.RequiredSlot());
+    }
     return hasActiveEffect;
 }
 
@@ -972,3 +977,7 @@ WeaponType BreakdownItem::Weapon() const
     return m_weapon;
 }
 
+void BreakdownItem::SetSlot(InventorySlotType slot)
+{
+    m_slot = slot;
+}

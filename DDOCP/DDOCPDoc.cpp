@@ -1118,6 +1118,21 @@ void CDDOCPDoc::AddWeaponDamage(std::stringstream & forumExport)
 {
     forumExport << "Weapon Damage                                                     \r\n";
     forumExport << "------------------------------------------------------------------\r\n";
+    BreakdownItem * pBI = FindBreakdown(Breakdown_MeleePower);
+    forumExport << "Melee Power:  " << pBI->Total() << "\r\n";
+    pBI = FindBreakdown(Breakdown_RangedPower);
+    forumExport << "Ranged Power: " << pBI->Total();
+    if (m_characterData.IsFeatTrained("Manyshot"))
+    {
+        // list ranged power when manyshot active additional BAB * 4
+        forumExport << "   with Manyshot active: ";
+        double total = pBI->Total();
+        pBI = FindBreakdown(Breakdown_BAB);
+        total += (pBI->Total() * 4);
+        forumExport << total;
+    }
+    forumExport << "\r\n";
+
     EquippedGear gear = m_characterData.ActiveGearSet();
     if (gear.HasItemInSlot(Inventory_Weapon1))
     {

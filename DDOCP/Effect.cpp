@@ -3,6 +3,7 @@
 #include "StdAfx.h"
 #include "Effect.h"
 #include "XmlLib\SaxWriter.h"
+#include "Feat.h"
 #include "GlobalSupportFunctions.h"
 
 #define DL_ELEMENT Effect
@@ -149,7 +150,7 @@ bool Effect::VerifyObject(std::stringstream * ss) const
             }
             break;
         case Effect_AttackBonus:
-        case Effect_AttackSpeed:
+        case Effect_Alacrity:
         case Effect_CenteredWeapon:
         case Effect_CriticalAttackBonus:
         case Effect_CriticalMultiplier:
@@ -162,6 +163,8 @@ bool Effect::VerifyObject(std::stringstream * ss) const
         case Effect_WeaponDamageBonus:
         case Effect_WeaponEnchantment:
         case Effect_WeaponProficiency:
+        case Effect_WeaponOtherDamageBonus:
+        case Effect_WeaponOtherCriticalDamageBonus:
             if (!HasWeapon()
                     && !HasWeaponClass()
                     && !HasDamageType())
@@ -203,6 +206,16 @@ bool Effect::VerifyObject(std::stringstream * ss) const
         // realize the vector to catch size/data mismatches
         std::vector<double> d = m_AmountVector;
     }
+    if (HasFeat())
+    {
+        // verify the feat exists
+        ::Feat feat = FindFeat(Feat());
+        if (feat.Name() != Feat())
+        {
+            (*ss) << "Specified feat of \"" << Feat() << "\" not found \n";
+            ok = false;
+        }
+    }
     return ok;
 }
 
@@ -225,8 +238,6 @@ bool Effect::operator==(const Effect & other) const
             && (m_DiceRoll == other.m_DiceRoll)
             && (m_hasDivider == other.m_hasDivider)
             && (m_Divider == other.m_Divider)
-            && (m_hasBase == other.m_hasBase)
-            && (m_Base == other.m_Base)
             && (m_hasFeat == other.m_hasFeat)
             && (m_Feat == other.m_Feat)
             && (m_hasNoFailOn1 == other.m_hasNoFailOn1)
@@ -251,6 +262,8 @@ bool Effect::operator==(const Effect & other) const
             && (m_Energy == other.m_Energy)
             && (m_hasFavoredEnemy == other.m_hasFavoredEnemy)
             && (m_FavoredEnemy == other.m_FavoredEnemy)
+            && (m_hasRequiredSlot == other.m_hasRequiredSlot)
+            && (m_RequiredSlot == other.m_RequiredSlot)
             && (m_hasSave == other.m_hasSave)
             && (m_Save == other.m_Save)
             && (m_hasSkill == other.m_hasSkill)

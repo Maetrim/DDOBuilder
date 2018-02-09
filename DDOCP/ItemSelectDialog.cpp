@@ -33,15 +33,16 @@ CItemSelectDialog::CItemSelectDialog(
     m_tipCreated(false),
     m_hoverItem(-1),
     m_hoverHandle(0),
-    m_armorType(Armor_Unknown)
+    m_armorType(Armor_Unknown),
+    m_weaponType(Weapon_Unknown)
 {
     if (m_item.HasArmor())
     {
         m_armorType = m_item.Armor();
     }
-    else
+    if (m_item.HasWeapon())
     {
-        m_armorType = Armor_Light;
+        m_weaponType = m_item.Weapon();
     }
     // race overrides current armor type
     if (m_race == Race_Warforged
@@ -58,11 +59,7 @@ CItemSelectDialog::~CItemSelectDialog()
 void CItemSelectDialog::DoDataExchange(CDataExchange* pDX)
 {
     CDialog::DoDataExchange(pDX);
-    DDX_Control(pDX, IDC_RADIO_CLOTH, m_buttonCloth);
-    DDX_Control(pDX, IDC_RADIO_LIGHT, m_buttonLight);
-    DDX_Control(pDX, IDC_RADIO_MEDIUM, m_buttonMedium);
-    DDX_Control(pDX, IDC_RADIO_HEAVY, m_buttonHeavy);
-    DDX_Control(pDX, IDC_RADIO_DOCENT, m_buttonDocent);
+    DDX_Control(pDX, IDC_COMBO_FILTER, m_comboFilter);
     DDX_Control(pDX, IDC_ITEM_TYPE, m_staticType);
     DDX_Control(pDX, IDC_ITEM_LIST, m_availableItemsCtrl);
     if (!pDX->m_bSaveAndValidate)
@@ -98,6 +95,7 @@ BEGIN_MESSAGE_MAP(CItemSelectDialog, CDialog)
     ON_CONTROL_RANGE(CBN_SELENDOK, IDC_COMBO_UPGRADE1, IDC_COMBO_UPGRADE1 + MAX_Upgrades, OnUpgradeSelect)
     ON_CONTROL_RANGE(EN_KILLFOCUS, IDC_EDIT_AUGMENT1, IDC_EDIT_AUGMENT1 + MAX_Augments, OnKillFocusAugmentEdit)
     ON_CBN_SELENDOK(IDC_COMBO_PERSONALITY, OnSelEndOkPersonality)
+    ON_CBN_SELENDOK(IDC_COMBO_FILTER, OnSelEndOkFilter)
     ON_CONTROL_RANGE(CBN_SELENDOK, IDC_COMBO_UPGRADE1, IDC_COMBO_FILIGREE1 + MAX_Filigree, OnUpgradeFiligree)
     ON_CONTROL_RANGE(CBN_SELENDCANCEL, IDC_COMBO_UPGRADE1, IDC_COMBO_FILIGREE1 + MAX_Filigree, OnUpgradeFiligreeCancel)
     ON_CONTROL_RANGE(BN_CLICKED, IDC_CHECK_FILGREE_RARE1, IDC_CHECK_FILGREE_RARE1 + MAX_Filigree, OnUpgradeFiligreeRare)
@@ -109,11 +107,6 @@ BEGIN_MESSAGE_MAP(CItemSelectDialog, CDialog)
     ON_NOTIFY(LVN_COLUMNCLICK, IDC_ITEM_LIST, OnColumnclickListItems)
     ON_NOTIFY(NM_HOVER, IDC_ITEM_LIST, OnHoverListItems)
     ON_MESSAGE(WM_MOUSELEAVE, OnMouseLeave)
-    ON_BN_CLICKED(IDC_RADIO_CLOTH, OnRadioCloth)
-    ON_BN_CLICKED(IDC_RADIO_LIGHT, OnRadioLight)
-    ON_BN_CLICKED(IDC_RADIO_MEDIUM, OnRadioMedium)
-    ON_BN_CLICKED(IDC_RADIO_HEAVY, OnRadioHeavy)
-    ON_BN_CLICKED(IDC_RADIO_DOCENT, OnRadioDocent)
     ON_BN_CLICKED(IDC_CHECK_SENTIENT_SLOTTED, OnButtonSentientJewel)
     ON_MESSAGE(WM_MOUSEHOVER, OnHoverComboBox)
     ON_MESSAGE(WM_MOUSEENTER, OnMouseEnter)
@@ -149,10 +142,12 @@ BOOL CItemSelectDialog::OnInitDialog()
     case Inventory_Weapon1: text = "Weapon"; break;
     case Inventory_Weapon2: text = "Weapon, Shield, Orb"; break;
     }
-    SetArmorButtonStates();
+    SetupFilterCombobox();
     // add list control columns
     m_availableItemsCtrl.InsertColumn(0, "Item Name", LVCFMT_LEFT, 150);
     m_availableItemsCtrl.InsertColumn(1, "Level", LVCFMT_LEFT, 50);
+    m_sortHeader.SetSortArrow(1, FALSE);     // sort by level by default
+
     PopulateAvailableItemList();
     m_staticType.SetWindowText(text);
     m_availableItemsCtrl.SetExtendedStyle(
@@ -162,16 +157,6 @@ BOOL CItemSelectDialog::OnInitDialog()
             //| LVS_EX_LABELTIP); // stop hover tooltips from working
             );
     LoadColumnWidthsByName(&m_availableItemsCtrl, "ItemSelectDialog_%s");
-    m_sortHeader.SetSortArrow(1, FALSE);     // sort by level by default
-    m_availableItemsCtrl.SortItems(
-            CItemSelectDialog::SortCompareFunction,
-            (long)GetSafeHwnd());
-    int sel = m_availableItemsCtrl.GetSelectionMark();
-    if (sel >= 0)
-    {
-        m_availableItemsCtrl.EnsureVisible(sel, false);
-    }
-
     EnableControls();
 
     //m_sizer.Hook(GetSafeHwnd(), "ItemSelectDialog");
@@ -226,16 +211,50 @@ void CItemSelectDialog::PopulateAvailableItemList()
 {
     m_availableItemsCtrl.LockWindowUpdate();
     m_availableItemsCtrl.DeleteAllItems();
+
     // filter the list of items loaded to those that match the slot type
     const std::list<Item> & allItems = Items();
     m_availableItems.clear();
     std::list<Item>::const_iterator it = allItems.begin();
     while (it != allItems.end())
     {
-        if ((*it).CanEquipToSlot(m_slot, m_armorType))
+        if ((*it).CanEquipToSlot(m_slot))
         {
-            // user can select his item, add it to the available list
-            m_availableItems.push_back((*it));
+            // if its armor or a weapon, we may need to filter items further
+            bool canSelect = true;  // assume
+            switch (m_slot)
+            {
+            case Inventory_Armor:
+                canSelect = (m_armorType == Armor_Unknown)
+                        || (m_armorType == (*it).Armor());
+                if (m_armorType == Armor_Unknown
+                        && (*it).Armor() == Armor_Docent)
+                {
+                    if (m_race != Race_Warforged && m_race != Race_BladeForged)
+                    {
+                        // can't select docents for non-forged characters
+                        canSelect = false;
+                    }
+                }
+                break;
+            case Inventory_Weapon1:
+            case Inventory_Weapon2:
+                canSelect = (m_weaponType == Weapon_Unknown)
+                        || (m_weaponType == (*it).Weapon());
+                break;
+            }
+            // need to include the selected item in the list regardless of
+            // filter category
+            if ((*it).Name() == m_item.Name())
+            {
+                // always include current selection
+                canSelect = true;
+            }
+            if (canSelect)
+            {
+                // user can select this item, add it to the available list
+                m_availableItems.push_back((*it));
+            }
         }
         ++it;
     }
@@ -269,6 +288,11 @@ void CItemSelectDialog::PopulateAvailableItemList()
         ++itemIndex;
         ++it;
     }
+
+    m_availableItemsCtrl.SortItems(
+            CItemSelectDialog::SortCompareFunction,
+            (long)GetSafeHwnd());
+
     CString text;
     text.Format("Item Selection and Configuration - %s",
             m_item.Name().c_str());
@@ -846,67 +870,106 @@ void CItemSelectDialog::SetTooltipText(
     m_showingTip = true;
 }
 
-void CItemSelectDialog::OnRadioCloth()
+void CItemSelectDialog::OnSelEndOkFilter()
 {
-    m_armorType = Armor_Cloth;
-    SetArmorButtonStates();
-    PopulateAvailableItemList();
+    int sel = m_comboFilter.GetCurSel();
+    if (sel != CB_ERR)
+    {
+        sel = m_comboFilter.GetItemData(sel);
+        // selection is based on the slot type
+        switch (m_slot)
+        {
+        case Inventory_Armor:
+            m_armorType = (ArmorType)sel;
+            break;
+        case Inventory_Weapon1:
+        case Inventory_Weapon2:
+            m_weaponType = (WeaponType)sel;
+            break;
+        }
+        PopulateAvailableItemList();
+    }
 }
 
-void CItemSelectDialog::OnRadioLight()
+void CItemSelectDialog::SetupFilterCombobox()
 {
-    m_armorType = Armor_Light;
-    SetArmorButtonStates();
-    PopulateAvailableItemList();
-}
-
-void CItemSelectDialog::OnRadioMedium()
-{
-    m_armorType = Armor_Medium;
-    SetArmorButtonStates();
-    PopulateAvailableItemList();
-}
-
-void CItemSelectDialog::OnRadioHeavy()
-{
-    m_armorType = Armor_Heavy;
-    SetArmorButtonStates();
-    PopulateAvailableItemList();
-}
-
-void CItemSelectDialog::OnRadioDocent()
-{
-    m_armorType = Armor_Docent;
-    SetArmorButtonStates();
-    PopulateAvailableItemList();
-}
-
-void CItemSelectDialog::SetArmorButtonStates()
-{
+    m_comboFilter.ResetContent();
+    int selItem = 0;        // assume 1st item
     if (m_slot == Inventory_Armor)
     {
         bool construct = (m_race == Race_Warforged || m_race == Race_BladeForged);
-        m_buttonCloth.EnableWindow(!construct);
-        m_buttonLight.EnableWindow(!construct);
-        m_buttonMedium.EnableWindow(!construct);
-        m_buttonHeavy.EnableWindow(!construct);
-        m_buttonDocent.EnableWindow(construct);
-        // if we have an item default to its armor type
-        m_buttonCloth.SetCheck((m_armorType == Armor_Cloth) ? BST_CHECKED : BST_UNCHECKED);
-        m_buttonLight.SetCheck((m_armorType == Armor_Light) ? BST_CHECKED : BST_UNCHECKED);
-        m_buttonMedium.SetCheck((m_armorType == Armor_Medium) ? BST_CHECKED : BST_UNCHECKED);
-        m_buttonHeavy.SetCheck((m_armorType == Armor_Heavy) ? BST_CHECKED : BST_UNCHECKED);
-        m_buttonDocent.SetCheck((m_armorType == Armor_Docent) ? BST_CHECKED : BST_UNCHECKED);
+        // limit to docent only for constructs
+        if (construct)
+        {
+            int i = m_comboFilter.AddString("Docent");
+            m_comboFilter.SetItemData(i, Armor_Docent);
+            selItem = 0;
+        }
+        else
+        {
+            m_comboFilter.AddString("All");
+            m_comboFilter.SetItemData(0, 0);
+            int i = m_comboFilter.AddString("Cloth/Robe");
+            m_comboFilter.SetItemData(i, Armor_Cloth);
+            i = m_comboFilter.AddString("Light Armor");
+            m_comboFilter.SetItemData(i, Armor_Light);
+            i = m_comboFilter.AddString("Medium Armor");
+            m_comboFilter.SetItemData(i, Armor_Medium);
+            i = m_comboFilter.AddString("Heavy Armor");
+            m_comboFilter.SetItemData(i, Armor_Heavy);
+            selItem = m_armorType;  // 1..4
+        }
+    }
+    else if (m_slot == Inventory_Weapon1)
+    {
+        m_comboFilter.AddString("All");
+        m_comboFilter.SetItemData(0, 0);
+        // any weapon
+        for (size_t i = Weapon_Unknown; i < Weapon_Count; ++i)
+        {
+            if (IsMeleeWeapon((WeaponType)i)
+                    || IsRangedWeapon((WeaponType)i))
+            {
+                // we can add this one
+                int index = m_comboFilter.AddString(EnumEntryText((WeaponType)i, weaponTypeMap));
+                m_comboFilter.SetItemData(index, i);
+                if (i == m_weaponType)
+                {
+                    selItem = index;
+                }
+            }
+        }
+    }
+    else if (m_slot == Inventory_Weapon2)
+    {
+        m_comboFilter.AddString("All");
+        m_comboFilter.SetItemData(0, 0);
+        // any single handed weapon, orb, shield or rune-arm
+        // any one handed weapon
+        for (size_t i = Weapon_Unknown; i < Weapon_Count; ++i)
+        {
+            if ((IsOneHandedWeapon((WeaponType)i)
+                    || IsShield((WeaponType)i)
+                    || i == Weapon_Orb
+                    || i == Weapon_RuneArm)
+                    && i != Weapon_BastardSword)
+            {
+                // we can add this one
+                int index = m_comboFilter.AddString(EnumEntryText((WeaponType)i, weaponTypeMap));
+                m_comboFilter.SetItemData(index, i);
+                if (i == m_weaponType)
+                {
+                    selItem = index;
+                }
+            }
+        }
     }
     else
     {
-        // armor selection buttons not enabled
-        m_buttonCloth.EnableWindow(FALSE);
-        m_buttonLight.EnableWindow(FALSE);
-        m_buttonMedium.EnableWindow(FALSE);
-        m_buttonHeavy.EnableWindow(FALSE);
-        m_buttonDocent.EnableWindow(FALSE);
+        // selection combo not enabled
+        m_comboFilter.EnableWindow(FALSE);
     }
+    m_comboFilter.SetCurSel(selItem);
 }
 
 void CItemSelectDialog::AddSpecialSlots()

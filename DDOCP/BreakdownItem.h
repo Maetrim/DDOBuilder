@@ -65,6 +65,7 @@ class BreakdownItem :
         void SetWeapon(WeaponType wt);
         WeaponType Weapon() const;
 
+        void SetSlot(InventorySlotType slot);
     protected:
         void AddOtherEffect(const ActiveEffect & effect);
         void AddFeatEffect(const ActiveEffect & effect);
@@ -127,6 +128,7 @@ class BreakdownItem :
         std::vector<AbilityType> m_mainAbility; // ability types that are used for this breakdown (highest of those listed)
         bool m_bHasWeapon;
         WeaponType m_weapon;
+        InventorySlotType m_slot;
 
         friend class BreakdownItemWeapon;
 };

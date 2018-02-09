@@ -95,3 +95,34 @@ void Augment::AddImage(CImageList * pIL) const
         }
     }
 }
+
+void Augment::VerifyObject() const
+{
+    bool ok = true;
+    std::stringstream ss;
+    ss << "=====" << m_Name << "=====\n";
+    if (HasIcon())
+    {
+        if (!ImageFileExists(IT_augment, Icon()))
+        {
+            ss << "Augment is missing image file \"" << Icon() << "\"\n";
+            ok = false;
+        }
+    }
+    // check the spell effects also
+    std::list<Effect>::const_iterator it = m_Effects.begin();
+    while (it != m_Effects.end())
+    {
+        ok &= (*it).VerifyObject(&ss);
+        ++it;
+    }
+    if (HasRares())
+    {
+        ok &= m_Rares.VerifyObject(&ss);
+    }
+
+    if (!ok)
+    {
+        ::OutputDebugString(ss.str().c_str());
+    }
+}

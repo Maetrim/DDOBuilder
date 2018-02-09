@@ -16,6 +16,8 @@ class Augment :
         bool IsCompatibleWithSlot(const std::string & augmentType) const;
         void AddImage(CImageList * pIL) const;
 
+        void VerifyObject() const;
+
     protected:
         XmlLib::SaxContentElementInterface * StartElement(
                 const XmlLib::SaxString & name,

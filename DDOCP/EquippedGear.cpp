@@ -216,7 +216,7 @@ void EquippedGear::SetItem(InventorySlotType slot, const Item & item)
     default: ASSERT(FALSE); break;
     }
     if (slot == Inventory_Weapon1
-            && !ItemInSlot(Inventory_Weapon1).CanEquipToSlot(Inventory_Weapon2, Armor_Unknown))
+            && !ItemInSlot(Inventory_Weapon1).CanEquipToSlot(Inventory_Weapon2))
     {
         // item in this slot now stops an item in weapon slot 2
         ClearItem(Inventory_Weapon2);

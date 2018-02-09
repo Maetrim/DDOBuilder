@@ -32,6 +32,9 @@ enum EnergyType
     Energy_Slash,
     Energy_Sonic,
     Energy_Untyped,
+    Energy_Bane,
+    Energy_Chaos,
+    Energy_Lawful,
 };
 const XmlLib::enumMapEntry<EnergyType> energyTypeMap[] =
 {
@@ -56,5 +59,8 @@ const XmlLib::enumMapEntry<EnergyType> energyTypeMap[] =
     {Energy_Slash, L"Slash"},
     {Energy_Sonic, L"Sonic"},
     {Energy_Untyped, L"Untyped"},
+    {Energy_Bane, L"Bane"},
+    {Energy_Chaos, L"Chaos"},
+    {Energy_Lawful, L"Lawful"},
     {EnergyType(0), NULL}
 };

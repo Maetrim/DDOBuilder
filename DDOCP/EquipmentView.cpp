@@ -148,10 +148,10 @@ LRESULT CEquipmentView::OnNewDocument(WPARAM wParam, LPARAM lParam)
     // lParam is the character pointer
     Character * pCharacter = (Character *)(lParam);
     m_pCharacter = pCharacter;
-    //if (m_pCharacter != NULL)
-    //{
-    //    m_pCharacter->AttachObserver(this);
-    //}
+    if (m_pCharacter != NULL)
+    {
+        m_pCharacter->AttachObserver(this);
+    }
     //else
     //{
     //}
@@ -339,7 +339,7 @@ void CEquipmentView::UpdateSlotLeftClicked(
     }
     if (slot == Inventory_Weapon2
             && gear.HasItemInSlot(Inventory_Weapon1)
-            && !gear.ItemInSlot(Inventory_Weapon1).CanEquipToSlot(Inventory_Weapon2, Armor_Unknown))
+            && !gear.ItemInSlot(Inventory_Weapon1).CanEquipToSlot(Inventory_Weapon2))
     {
         // not allowed to equip in this due to item in weapon slot 1
         ::MessageBeep(MB_OK);
@@ -375,3 +375,7 @@ void CEquipmentView::UpdateSlotRightClicked(
     }
 }
 
+void CEquipmentView::UpdateGearChanged(Character * charData, InventorySlotType slot)
+{
+    m_inventoryView->SetGearSet(m_pCharacter->ActiveGearSet());
+}

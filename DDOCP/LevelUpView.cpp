@@ -562,6 +562,7 @@ void CLevelUpView::UpdateSkillSpendChanged(
         SkillType skill)
 {
     // skills have been affected
+    DetermineTrainableFeats();
     PopulateSkills();
     EnableControls();
 }
@@ -571,6 +572,7 @@ void CLevelUpView::UpdateSkillTomeChanged(
         SkillType skill)
 {
     // skills have been affected
+    DetermineTrainableFeats();
     PopulateSkills();
 }
 

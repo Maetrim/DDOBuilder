@@ -27,6 +27,7 @@ enum DamageReductionType
     DR_Pierce,
     DR_Silver,
     DR_Slash,
+    DR_All,
 };
 const XmlLib::enumMapEntry<DamageReductionType> drTypeMap[] =
 {
@@ -46,5 +47,6 @@ const XmlLib::enumMapEntry<DamageReductionType> drTypeMap[] =
     {DR_Pierce, L"Pierce"},
     {DR_Silver, L"Silver"},
     {DR_Slash, L"Slash"},
+    {DR_All, L"-"},
     {DamageReductionType(0), NULL}
 };

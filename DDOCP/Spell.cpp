@@ -170,7 +170,7 @@ void Spell::VerifyObject() const
     std::vector<Effect>::const_iterator it = m_Effects.begin();
     while (it != m_Effects.end())
     {
-        ok = (*it).VerifyObject(&ss);
+        ok &= (*it).VerifyObject(&ss);
         ++it;
     }
 

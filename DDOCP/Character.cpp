@@ -695,6 +695,7 @@ void Character::SetRace(RaceType race)
     m_pDocument->SetModifiedFlag(TRUE);
     // revoking a racial feat can invalidate a feat selection in other levels (e.g. loss of Dodge)
     VerifyTrainedFeats();
+    VerifyArmor();              // changing too/from forged can affect equipped gear
 }
 
 void Character::SetAlignment(AlignmentType alignment)
@@ -4086,7 +4087,10 @@ void Character::RevokeGearEffects()
                         {
                             (*it).Set_Amount(augments[ai].Value());
                         }
-                        NotifyItemEffectRevoked(name, (*it));
+                        if (!(*it).HasIsItemSpecific())
+                        {
+                            NotifyItemEffectRevoked(name, (*it));
+                        }
                         ++it;
                     }
                 }
@@ -4189,7 +4193,10 @@ void Character::ApplyGearEffects()
                         {
                             (*it).Set_Amount(augments[ai].Value());
                         }
-                        NotifyItemEffect(name, (*it));
+                        if (!(*it).HasIsItemSpecific())
+                        {
+                            NotifyItemEffect(name, (*it));
+                        }
                         ++it;
                     }
                 }
@@ -4262,11 +4269,12 @@ void Character::UpdateWeaponStances()
     EquippedGear gear = ActiveGearSet();
     // also depending of the items equipped in Inventory_Weapon1/2 decide
     // which of the combat stances is active
-    // TWF, THF, SWF, Unarmed, SwordAndBoard, Staff, Orb, RuneArm, Swashbuckling
+    // TWF, THF, SWF, Unarmed, Axe, SwordAndBoard, Staff, Orb, RuneArm, Swashbuckling
     Stance twf("TwoWeaponFighting", "", "");
     Stance thf("TwoHandedFighting", "", "");
     Stance swf("SingleWeaponFighting", "", "");
     Stance unarmed("Unarmed", "", "");
+    Stance axe("Axe", "", "");
     Stance sab("SwordAndBoard", "", "");
     Stance staff("Staff", "", "");
     Stance orb("Orb", "", "");
@@ -4359,6 +4367,14 @@ void Character::UpdateWeaponStances()
         {
             DeactivateStance(swashbuckling);
         }
+        if (IsAxe(item1.Weapon()))
+        {
+            ActivateStance(axe);
+        }
+        else
+        {
+            DeactivateStance(axe);
+        }
     }
     else if (gear.HasItemInSlot(Inventory_Weapon1))
     {
@@ -4397,6 +4413,14 @@ void Character::UpdateWeaponStances()
         DeactivateStance(sab);
         DeactivateStance(orb);
         DeactivateStance(ra);
+        if (IsAxe(item1.Weapon()))
+        {
+            ActivateStance(axe);
+        }
+        else
+        {
+            DeactivateStance(axe);
+        }
     }
     else if (gear.HasItemInSlot(Inventory_Weapon2))
     {
@@ -5071,34 +5095,49 @@ void Character::UpdateItemEffectRevoked(
 
 void Character::AddGrantedFeat(const std::string & featName)
 {
-    // add the granted feat to the list
-    TrainedFeat tf;
-    tf.Set_FeatName(featName);
-    tf.Set_Type(TFT_GrantedFeat);
-    tf.Set_LevelTrainedAt(1);       // always level 1
-    m_grantedFeats.push_back(tf);
-    m_grantedFeats.sort();
-    NotifyGrantedFeatsChanged();
-
-    // now determine whether this granted feat is already trained
-    // if it is, we do not notify its effects. If its not, we do
-    // we need to record the notify state for this item so that
-    // if the user trains this feat in some other way we have to remove
-    // the effects for the granted feat
-    if (!IsFeatTrained(featName))
+    bool alreadyInList = false;
+    std::list<TrainedFeat>::iterator it = m_grantedFeats.begin();
+    while (!alreadyInList && it != m_grantedFeats.end())
     {
-        // this feat is not currently trained, we need to notify about its
-        // effects
-        const Feat & feat = FindFeat(featName);
-        ApplyFeatEffects(feat);
-        m_grantedNotifyState.push_back(true);
+        if ((*it).FeatName() == featName)
+        {
+            // increment count
+            alreadyInList = true;
+            (*it).Set_LevelTrainedAt((*it).LevelTrainedAt() + 1);
+        }
+        ++it;
     }
-    else
+    if (!alreadyInList)
     {
-        // we have not notified about this feats effects as it
-        // is already trained through some other mechanism (either selected
-        // or an automatic feat)
-        m_grantedNotifyState.push_back(false);
+        // add the granted feat to the list
+        TrainedFeat tf;
+        tf.Set_FeatName(featName);
+        tf.Set_Type(TFT_GrantedFeat);
+        tf.Set_LevelTrainedAt(1);
+        m_grantedFeats.push_back(tf);
+        m_grantedFeats.sort();
+        NotifyGrantedFeatsChanged();
+
+        // now determine whether this granted feat is already trained
+        // if it is, we do not notify its effects. If its not, we do
+        // we need to record the notify state for this item so that
+        // if the user trains this feat in some other way we have to remove
+        // the effects for the granted feat
+        if (!IsFeatTrained(featName))
+        {
+            // this feat is not currently trained, we need to notify about its
+            // effects
+            const Feat & feat = FindFeat(featName);
+            ApplyFeatEffects(feat);
+            m_grantedNotifyState.push_back(true);
+        }
+        else
+        {
+            // we have not notified about this feats effects as it
+            // is already trained through some other mechanism (either selected
+            // or an automatic feat)
+            m_grantedNotifyState.push_back(false);
+        }
     }
 }
 
@@ -5108,25 +5147,38 @@ void Character::RevokeGrantedFeat(const std::string & featName)
     ASSERT(m_grantedFeats.size() == m_grantedNotifyState.size());
     std::list<TrainedFeat>::iterator it = m_grantedFeats.begin();
     std::list<bool>::iterator bit = m_grantedNotifyState.begin();
+    bool changed = false;
     while (it != m_grantedFeats.end())
     {
         if ((*it).FeatName() == featName)
         {
-            bool notified = (*bit);
-            // remove this copy of the feat (it may be present multiple times)
-            it = m_grantedFeats.erase(it);
-            bit = m_grantedNotifyState.erase(bit);
-            if (notified)
+            if ((*it).LevelTrainedAt() == 1)
             {
-                const Feat & feat = FindFeat(featName);
-                RevokeFeatEffects(feat);
+                bool notified = (*bit);
+                // remove this copy of the feat (it may be present multiple times)
+                it = m_grantedFeats.erase(it);
+                bit = m_grantedNotifyState.erase(bit);
+                if (notified)
+                {
+                    const Feat & feat = FindFeat(featName);
+                    RevokeFeatEffects(feat);
+                }
+                changed = true;
+            }
+            else
+            {
+                // decrement the assigned count
+                (*it).Set_LevelTrainedAt((*it).LevelTrainedAt() - 1);
             }
             break;  // and were done, no need to check the rest
         }
         ++it;
         ++bit;
     }
-    NotifyGrantedFeatsChanged();
+    if (changed)
+    {
+        NotifyGrantedFeatsChanged();
+    }
 }
 
 void Character::KeepGrantedFeatsUpToDate()
@@ -5195,5 +5247,42 @@ void Character::UpdateSkillPoints(size_t level)
                 AbilityAtLevel(Ability_Intelligence, level, false),
                 level);
         (*it).Set_SkillPointsAvailable(available);
+    }
+}
+
+void Character::VerifyArmor()
+{
+    EquippedGear gear = ActiveGearSet();
+    if (gear.HasItemInSlot(Inventory_Armor))
+    {
+        bool revoke = false;
+        ArmorType at = gear.Armor().Armor();
+        if (at == Armor_Docent)
+        {
+            // must be forged
+            if (!(m_Race == Race_Warforged || m_Race == Race_BladeForged))
+            {
+                // need to revoke armor
+                revoke = true;
+            }
+        }
+        else
+        {
+            // must be non-warforged
+            if (m_Race == Race_Warforged || m_Race == Race_BladeForged)
+            {
+                // need to revoke armor
+                revoke = true;
+            }
+        }
+        if (revoke)
+        {
+            CString text;
+            text.Format("Your equipped Armor of \"%s\"\r\n"
+                    "was removed as you no longer meet the racial requirements",
+                    gear.Armor().Name().c_str());
+            AfxMessageBox(text, MB_OK);
+            ClearGearInSlot(gear.Name(), Inventory_Armor);
+        }
     }
 }

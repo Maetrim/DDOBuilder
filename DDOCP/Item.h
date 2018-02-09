@@ -22,7 +22,7 @@ class Item :
         Item(const XmlLib::SaxString & objectName);
         void Write(XmlLib::SaxWriter * writer) const;
 
-        bool CanEquipToSlot(InventorySlotType slot, ArmorType armor) const;
+        bool CanEquipToSlot(InventorySlotType slot) const;
         void AddImage(CImageList * pIL) const;
         void VerifyObject() const;
 
@@ -52,9 +52,6 @@ class Item :
                 DL_OBJECT_VECTOR(_, ItemAugment, Augments) \
                 DL_OBJECT_VECTOR(_, SlotUpgrade, SlotUpgrades) \
                 DL_FLAG(_, CanAcceptSentientJewel) \
-                DL_FLAG(_, IsShield) \
-                DL_FLAG(_, IsOrb) \
-                DL_FLAG(_, IsRuneArm) \
                 DL_OPTIONAL_OBJECT(_, SentientJewel, SentientIntelligence)
 
         DL_DECLARE_ACCESS(Item_PROPERTIES)

@@ -138,6 +138,7 @@ bool IsRangedWeapon(WeaponType wt);
 bool IsLightWeapon(WeaponType wt);
 bool IsThrownWeapon(WeaponType wt);
 bool IsFinesseableWeapon(WeaponType wt);
+bool IsShield(WeaponType wt);
 bool IsOneHandedWeapon(WeaponType wt);
 bool IsTwoHandedWeapon(WeaponType wt);
 bool IsAxe(WeaponType wt);

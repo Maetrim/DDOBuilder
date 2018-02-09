@@ -89,6 +89,12 @@ bool Dice::operator==(const Dice & other) const
 std::string Dice::Description(size_t numStacks) const
 {
     std::stringstream ss;
+    if (HasScalesWithMeleePower()
+            || HasScalesWithRangedPower()
+            || HasScalesWithSpellPower())
+    {
+        ss << "(";
+    }
     ss << Number(numStacks-1) << "D"<< Sides(numStacks-1);
     if (m_hasBonus)
     {
@@ -97,6 +103,31 @@ std::string Dice::Description(size_t numStacks) const
     if (m_hasEnergy)
     {
         ss << " " << EnumEntryText(m_Energy, energyTypeMap);
+    }
+    if (HasScalesWithMeleePower()
+            || HasScalesWithRangedPower()
+            || HasScalesWithSpellPower())
+    {
+        if (HasScalesWithSpellPower())
+        {
+            ss << ") * " << (LPCSTR)EnumEntryText(SpellPower(), spellPowerTypeMap)
+                    << " Spell Power";
+        }
+        else
+        {
+            if (HasScalesWithMeleePower() && HasScalesWithRangedPower())
+            {
+                ss << ") * MAX(Melee, Ranged) Power";
+            }
+            else if (HasScalesWithMeleePower())
+            {
+                ss << ") * Melee Power";
+            }
+            else
+            {
+                ss << ") * Ranged Power";
+            }
+        }
     }
     return ss.str();
 }

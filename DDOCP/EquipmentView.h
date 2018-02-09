@@ -2,13 +2,13 @@
 //
 #pragma once
 #include "Resource.h"
+#include "Character.h"
 #include "InventoryDialog.h"
-
-class Character;
 
 class CEquipmentView :
     public CFormView,
-    public InventoryObserver
+    public InventoryObserver,
+    public CharacterObserver
 {
     public:
         enum { IDD = IDD_EQUIPMENT_VIEW };
@@ -38,6 +38,10 @@ class CEquipmentView :
         // InventoryObserver overrides
         virtual void UpdateSlotLeftClicked(CInventoryDialog * dialog, InventorySlotType slot) override;
         virtual void UpdateSlotRightClicked(CInventoryDialog * dialog, InventorySlotType slot) override;
+
+        // character overrides
+        virtual void UpdateGearChanged(Character * charData, InventorySlotType slot) override;
+
     private:
         void PopulateCombobox();
         void EnableControls();

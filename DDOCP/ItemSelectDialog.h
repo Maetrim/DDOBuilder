@@ -38,11 +38,7 @@ class CItemSelectDialog : public CDialog
         afx_msg void OnEndtrackListItems(NMHDR* pNMHDR, LRESULT* pResult);
         afx_msg void OnColumnclickListItems(NMHDR* pNMHDR, LRESULT* pResult);
         afx_msg void OnHoverListItems(NMHDR* pNMHDR, LRESULT* pResult);
-        afx_msg void OnRadioCloth();
-        afx_msg void OnRadioLight();
-        afx_msg void OnRadioMedium();
-        afx_msg void OnRadioHeavy();
-        afx_msg void OnRadioDocent();
+        afx_msg void OnSelEndOkFilter();
         afx_msg void OnButtonSentientJewel();
         afx_msg LRESULT OnHoverComboBox(WPARAM wParam, LPARAM lParam);
         afx_msg LRESULT OnMouseEnter(WPARAM wParam, LPARAM lParam);
@@ -66,7 +62,7 @@ class CItemSelectDialog : public CDialog
         void HideTip();
         void SetTooltipText(const Item & item, CPoint tipTopLeft, CPoint tipAlternate);
         void SetTooltipText(const Augment & augment, CPoint tipTopLeft, CPoint tipAlternate, bool rightAlign);
-        void SetArmorButtonStates();
+        void SetupFilterCombobox();
         void AddSpecialSlots();
         void SetSentientWeaponControls();
         void PopulatePersonalityCombobox();
@@ -84,11 +80,7 @@ class CItemSelectDialog : public CDialog
             MAX_Filigree = MAX_FILIGREE,
         };
         CStatic m_staticType;
-        CButton m_buttonCloth;
-        CButton m_buttonLight;
-        CButton m_buttonMedium;
-        CButton m_buttonHeavy;
-        CButton m_buttonDocent;
+        CComboBox m_comboFilter;
         CListCtrl m_availableItemsCtrl;
         CSortHeaderCtrl m_sortHeader;
         CStatic m_staticAugments;
@@ -111,6 +103,7 @@ class CItemSelectDialog : public CDialog
         bool m_bInitialising;
         CPersistantSize m_sizer;
         ArmorType m_armorType;
+        WeaponType m_weaponType;
         // item tooltips
         CInfoTip m_tooltip;
         bool m_showingTip;

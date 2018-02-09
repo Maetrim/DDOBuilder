@@ -187,32 +187,45 @@ void CSpellTip::OnPaint()
     dc.SelectObject(m_standardFont);
     // draw spell cost
     CString text;
-    int cost = 0;
     if (m_spell.HasSPCost())
     {
         // its a hard coded spell cost
-        cost = m_spell.SPCost();
+        if (m_spell.SPCost() != "")
+        {
+            CString costText;
+            costText = m_spell.SPCost().c_str();
+            text.Format("Cost %s", costText);
+            dc.TextOut(
+                    left + 32 + c_controlSpacing + csName.cx + c_controlSpacing,
+                    top + c_controlSpacing,
+                    text);
+        }
     }
     else
     {
         // cost is 5sp + 5sp per level
-        cost = 5 + (m_spellLevel * 5);
+        int cost = 5 + (m_spellLevel * 5);
+                    CString costText;
+        // now include the cost of any active metamagics
+        //?? TBD
+        costText.Format("%d", cost);
+        text.Format("SP Cost %s", costText);
+        dc.TextOut(
+                left + 32 + c_controlSpacing + csName.cx + c_controlSpacing,
+                top + c_controlSpacing,
+                text);
     }
-    // now include the cost of any active metamagics
-    //?? TBD
-    text.Format("SP Cost %d", cost);
-    dc.TextOut(
-            left + 32 + c_controlSpacing + csName.cx + c_controlSpacing,
-            top + c_controlSpacing,
-            text);
-    // draw spell DC
-    text.Format("%s DC %d",
-            EnumEntryText(m_spell.School(), spellSchoolTypeMap),
-            m_DC);
-    dc.TextOut(
-            left + 32 + c_controlSpacing + csName.cx + c_controlSpacing,
-            top + standardLine.cy + c_controlSpacing,
-            text);
+    if (m_spell.HasSchool())
+    {
+        // draw spell DC
+        text.Format("%s DC %d",
+                EnumEntryText(m_spell.School(), spellSchoolTypeMap),
+                m_DC);
+        dc.TextOut(
+                left + 32 + c_controlSpacing + csName.cx + c_controlSpacing,
+                top + standardLine.cy + c_controlSpacing,
+                text);
+    }
     // draw the metamagics available
     // work out the max width off all metamagics
     std::vector<std::string> metas = m_spell.Metamagics();

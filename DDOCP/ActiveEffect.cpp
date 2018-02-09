@@ -25,6 +25,8 @@ ActiveEffect::ActiveEffect() :
     m_bWholeNumbersOnly(false),
     m_bHasWeaponType(false),
     m_weaponType(Weapon_Unknown),
+    m_bHasInventoryType(false),
+    m_slot(Inventory_Unknown),
     m_clearValue(false)
 {
 }
@@ -51,6 +53,8 @@ ActiveEffect::ActiveEffect(
     m_bWholeNumbersOnly(false),
     m_bHasWeaponType(false),
     m_weaponType(Weapon_Unknown),
+    m_bHasInventoryType(false),
+    m_slot(Inventory_Unknown),
     m_clearValue(false)
 {
 }
@@ -76,6 +80,8 @@ ActiveEffect::ActiveEffect(
     m_bWholeNumbersOnly(false),
     m_bHasWeaponType(false),
     m_weaponType(Weapon_Unknown),
+    m_bHasInventoryType(false),
+    m_slot(Inventory_Unknown),
     m_clearValue(false)
 {
     // stacks is set immediately after this is constructed
@@ -104,6 +110,8 @@ ActiveEffect::ActiveEffect(
     m_bWholeNumbersOnly(false),
     m_bHasWeaponType(false),
     m_weaponType(Weapon_Unknown),
+    m_bHasInventoryType(false),
+    m_slot(Inventory_Unknown),
     m_clearValue(false)
 {
 }
@@ -129,6 +137,8 @@ ActiveEffect::ActiveEffect(
     m_bWholeNumbersOnly(false),
     m_bHasWeaponType(false),
     m_weaponType(Weapon_Unknown),
+    m_bHasInventoryType(false),
+    m_slot(Inventory_Unknown),
     m_clearValue(false)
 {
 }
@@ -154,6 +164,8 @@ ActiveEffect::ActiveEffect(
     m_bWholeNumbersOnly(false),
     m_bHasWeaponType(false),
     m_weaponType(Weapon_Unknown),
+    m_bHasInventoryType(false),
+    m_slot(Inventory_Unknown),
     m_clearValue(false)
 {
 }
@@ -179,6 +191,8 @@ ActiveEffect::ActiveEffect(
     m_bWholeNumbersOnly(false),
     m_bHasWeaponType(false),
     m_weaponType(Weapon_Unknown),
+    m_bHasInventoryType(false),
+    m_slot(Inventory_Unknown),
     m_clearValue(false)
 {
 }
@@ -214,6 +228,43 @@ CString ActiveEffect::AmountAsText() const
         text.Format("%dD%d",
                 (int)m_dice.Number(m_numStacks),
                 (int)m_dice.Sides(m_numStacks));
+        if (m_dice.HasBonus())
+        {
+            CString bonus;
+            bonus.Format("+%d", (int)m_dice.Bonus(m_numStacks));
+            text += bonus;
+        }
+        if (m_dice.HasScalesWithMeleePower()
+                || m_dice.HasScalesWithRangedPower()
+                || m_dice.HasScalesWithSpellPower())
+        {
+            CString withScaling;
+            if (m_dice.HasScalesWithSpellPower())
+            {
+                withScaling.Format("(%s) * %s Spell Power",
+                        text,
+                        EnumEntryText(m_dice.SpellPower(), spellPowerTypeMap));
+            }
+            else
+            {
+                if (m_dice.HasScalesWithMeleePower() && m_dice.HasScalesWithRangedPower())
+                {
+                    withScaling.Format("(%s) * MAX(Melee, Ranged) Power",
+                            text);
+                }
+                else if (m_dice.HasScalesWithMeleePower())
+                {
+                    withScaling.Format("(%s) * Melee Power",
+                            text);
+                }
+                else
+                {
+                    withScaling.Format("(%s) * Ranged Power",
+                            text);
+                }
+            }
+            text = withScaling;
+        }
         // optional effects such as its Fire damage
         if (m_bHasEnergy)
         {
@@ -248,6 +299,12 @@ CString ActiveEffect::AmountAsText() const
         text = "???";
         break;
     }
+    text.Replace(".00", "");
+    if (m_bHasEnergy)
+    {
+        text += " ";
+        text += EnumEntryText(m_energy, energyTypeMap);
+    }
     return text;
 }
 
@@ -257,7 +314,46 @@ CString ActiveEffect::AmountAsPercent() const
     switch (m_type)
     {
     case ET_dice:
-        text.Format("%dD%d", m_dice.Number(), m_dice.Sides());
+        text.Format("%dD%d",
+                (int)m_dice.Number(m_numStacks),
+                (int)m_dice.Sides(m_numStacks));
+        if (m_dice.HasBonus())
+        {
+            CString bonus;
+            bonus.Format("+%d", (int)m_dice.Bonus(m_numStacks));
+            text += bonus;
+        }
+        if (m_dice.HasScalesWithMeleePower()
+                || m_dice.HasScalesWithRangedPower()
+                || m_dice.HasScalesWithSpellPower())
+        {
+            CString withScaling;
+            if (m_dice.HasScalesWithSpellPower())
+            {
+                withScaling.Format("(%s) * %s Spell Power",
+                        text,
+                        EnumEntryText(m_dice.SpellPower(), spellPowerTypeMap));
+            }
+            else
+            {
+                if (m_dice.HasScalesWithMeleePower() && m_dice.HasScalesWithRangedPower())
+                {
+                    withScaling.Format("(%s) * MAX(Melee, Ranged) Power",
+                            text);
+                }
+                else if (m_dice.HasScalesWithMeleePower())
+                {
+                    withScaling.Format("(%s) * Melee Power",
+                            text);
+                }
+                else
+                {
+                    withScaling.Format("(%s) * Ranged Power",
+                            text);
+                }
+            }
+            text = withScaling;
+        }
         // optional effects such as its Fire damage
         if (m_bHasEnergy)
         {
@@ -419,10 +515,9 @@ double ActiveEffect::TotalAmount(bool allowTruncate) const
         // round down to whole number
         value = (int)(value);
     }
-    if (m_bHasWeaponType
-            && m_clearValue)
+    if (m_clearValue)
     {
-        // if its not a focus weapon, ensure not listed
+        // if its not a focus weapon or in required slot, ensure not listed
         value = 0;
     }
     return value;
@@ -448,7 +543,7 @@ const std::string & ActiveEffect::Tree() const
     return m_tree;
 }
 
-bool ActiveEffect::IsActive(const Character * pCharacter) const
+bool ActiveEffect::IsActive(const Character * pCharacter, InventorySlotType slot) const
 {
     // return true if the required stance(s) are active
     bool active = true;
@@ -470,6 +565,10 @@ bool ActiveEffect::IsActive(const Character * pCharacter) const
     if (m_bHasWeaponType)
     {
         m_clearValue = !pCharacter->IsFocusWeapon(m_weaponType);
+    }
+    if (m_bHasInventoryType)
+    {
+        m_clearValue = (m_slot != slot);
     }
     return active;
 }
@@ -568,10 +667,17 @@ std::string ActiveEffect::Description() const
     case ET_amountPerLevel:
     case ET_amountPerAp:
     case ET_amountVectorPerClassLevel:
+        ss << AmountAsText();
         break;
     case ET_dice:
         ss << m_dice.Description(m_numStacks);
         break;
     }
     return ss.str();
+}
+
+void ActiveEffect::SetSlot(InventorySlotType slot)
+{
+    m_bHasInventoryType = true;
+    m_slot = slot;
 }

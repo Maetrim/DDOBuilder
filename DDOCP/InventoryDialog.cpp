@@ -139,7 +139,7 @@ void CInventoryDialog::OnPaint()
     {
         if (i == Inventory_Weapon2
                 && m_gearSet.HasItemInSlot(Inventory_Weapon1)
-                && !m_gearSet.ItemInSlot(Inventory_Weapon1).CanEquipToSlot(Inventory_Weapon2, Armor_Unknown)
+                && !m_gearSet.ItemInSlot(Inventory_Weapon1).CanEquipToSlot(Inventory_Weapon2)
                 && m_gearSet.ItemInSlot(Inventory_Weapon1).Weapon() != Weapon_BastardSword) // special case
         {
             // Two handed item equipped in main hand

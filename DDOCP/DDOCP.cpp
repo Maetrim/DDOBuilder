@@ -234,6 +234,7 @@ void CDDOCPApp::LoadData()
     LoadGuildBuffs(path);
     VerifyFeats();
     VerifyEnhancements();
+    VerifyAugments();
     VerifySpells();
     VerifyItems();
     SeparateFeats();
@@ -321,6 +322,16 @@ void CDDOCPApp::VerifyEnhancements()
     while (it != m_enhancementTrees.end())
     {
         (*it).VerifyObject(m_enhancementTrees, m_allFeats);
+        ++it;
+    }
+}
+
+void CDDOCPApp::VerifyAugments()
+{
+    std::list<Augment>::iterator it = m_augments.begin();
+    while (it != m_augments.end())
+    {
+        (*it).VerifyObject();
         ++it;
     }
 }

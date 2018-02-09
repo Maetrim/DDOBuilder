@@ -54,7 +54,7 @@ void Item::Write(XmlLib::SaxWriter * writer) const
     writer->EndElement();
 }
 
-bool Item::CanEquipToSlot(InventorySlotType slot, ArmorType armor) const
+bool Item::CanEquipToSlot(InventorySlotType slot) const
 {
     bool canEquipToSlot = false;
     switch (slot)
@@ -63,10 +63,7 @@ bool Item::CanEquipToSlot(InventorySlotType slot, ArmorType armor) const
         canEquipToSlot = m_Slots.HasArrow();
         break;
     case Inventory_Armor:
-        if (m_Slots.HasArmor())
-        {
-            canEquipToSlot = (m_Armor == armor);
-        }
+        canEquipToSlot = m_Slots.HasArmor();
         break;
     case Inventory_Belt:
         canEquipToSlot = m_Slots.HasBelt();
@@ -149,7 +146,7 @@ void Item::VerifyObject() const
     std::vector<Effect>::const_iterator it = m_Effects.begin();
     while (it != m_Effects.end())
     {
-        ok = (*it).VerifyObject(&ss);
+        ok &= (*it).VerifyObject(&ss);
         ++it;
     }
 

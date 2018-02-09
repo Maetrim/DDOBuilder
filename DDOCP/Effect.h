@@ -10,6 +10,7 @@
 #include "DamageReductionTypes.h"
 #include "EnergyTypes.h"
 #include "FavoredEnemyTypes.h"
+#include "InventorySlotTypes.h"
 #include "SaveTypes.h"
 #include "SkillTypes.h"
 #include "SpellPowerTypes.h"
@@ -37,7 +38,7 @@ enum EffectType
     Effect_Alacrity,
     Effect_Assassinate,
     Effect_AttackBonus,
-    Effect_AttackSpeed,
+    Effect_BlockingDR,
     Effect_CasterLevel,
     Effect_CenteredWeapon,
     Effect_CriticalAttackBonus,
@@ -165,7 +166,7 @@ const XmlLib::enumMapEntry<EffectType> effectTypeMap[] =
     {Effect_Alacrity, L"Alacrity"},
     {Effect_Assassinate, L"Assassinate"},
     {Effect_AttackBonus, L"AttackBonus"},
-    {Effect_AttackSpeed, L"AttackSpeed"},
+    {Effect_BlockingDR, L"BlockingDR"},
     {Effect_CasterLevel, L"CasterLevel"},
     {Effect_CenteredWeapon, L"CenteredWeapon"},
     {Effect_CriticalAttackBonus, L"CriticalAttackBonus"},
@@ -309,9 +310,9 @@ class Effect :
                 DL_OPTIONAL_SIMPLE(_, double, AmountPerLevel, 0.0) \
                 DL_OPTIONAL_SIMPLE(_, double, AmountPerAP, 0.0) \
                 DL_FLAG(_, Percent) \
+                DL_FLAG(_, IsItemSpecific) \
                 DL_OPTIONAL_OBJECT(_, Dice, DiceRoll) \
                 DL_OPTIONAL_SIMPLE(_, int, Divider, 0) \
-                DL_OPTIONAL_STRING(_, Base) \
                 DL_OPTIONAL_STRING(_, Feat) \
                 DL_OPTIONAL_VECTOR(_, size_t, NoFailOn1) \
                 DL_OPTIONAL_STRING(_, Spell) \
@@ -325,6 +326,7 @@ class Effect :
                 DL_ENUM_LIST(_, DamageReductionType, DR, DR_Unknown, drTypeMap) \
                 DL_OPTIONAL_ENUM(_, EnergyType, Energy, Energy_Unknown, energyTypeMap) \
                 DL_OPTIONAL_ENUM(_, FavoredEnemyType, FavoredEnemy, FavoredEnemy_Unknown, favoredEnemyTypeMap) \
+                DL_OPTIONAL_ENUM(_, InventorySlotType, RequiredSlot, Inventory_Unknown, InventorySlotTypeMap) \
                 DL_OPTIONAL_ENUM(_, SaveType, Save, Save_Unknown, saveTypeMap) \
                 DL_OPTIONAL_ENUM(_, SkillType, Skill, Skill_Unknown, skillTypeMap) \
                 DL_OPTIONAL_ENUM(_, SpellPowerType, SpellPower, SpellPower_Unknown, spellPowerTypeMap) \

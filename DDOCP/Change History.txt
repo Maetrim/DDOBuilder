@@ -1,5 +1,221 @@
 History of changes made
 
+UI: About dialog now lists the number of each of the following supported:
+---Feats
+---Augments
+---Items
+---Spells
+---Enhancement trees
+ItemSelect Dialog:
+---Armor select button filters removed
+---Drop list combo filter added
+---Can now filter by armor type
+---Can now filter by weapon type
+---Can now filter by weapon/shield/orb/rune-arm type in secondary weapon slot
+---Previous selected item (if any) is always listed even if not covered by filter
+---List now sorted correctly on re-population
+Fix: Changing race too/from a warforged/bladeforged character will revoke incorrect armor types equipped
+Fix: Changing skill totals now updates the lists of trainable feats (e.g. Single weapon Fighting after a balance skill change)
+Engine: New weapon class of "Shield" added
+Engine: DR type "-" added
+Engine: Spell school type "Poison" added
+Engine: Spell school type "Rune Arm" added
+Engine: Removed redundant Item fields: IsOrb, IsShield and IsRuneArm
+Engine: Removed redundant Effect field: Base
+Engine: New effect type "BlockingDR" added (not used by any breakdowns yet)
+Engine: Energy damage types of Bane, Chaos and Lawful added
+Feats: Missing feat "Hide in Plain Sight" added
+Feats: Missing feat icon "EpicSkillFocusIntimidate" added
+Feats: Ten Thousand Stars, Shuriken Expertise and Single Weapon Fighting are now correctly classed as bonus monk feats also.
+Feats: Harbinger of Chaos damage effects fixed
+Feats: Embodiment of Order damage effects fixed
+Feats: Scion of the Feywild damage effects fixed
+Feats: Scion of the Plane of Air damage effects fixed
+Feats: Scion of the Plane of Earth damage effects fixed
+Feats: Scion of the Plane of Fire damage effects fixed
+Feats: Scion of the Plane of Water damage effects fixed
+Engine: Duplicate effect "AttackSpeed" and "Alacrity" combined. Items/enhancements/feats updated.
+Engine: Effects can now apply conditionally if they are in a specific inventory slot
+---example is Legendary Sinister Handaxe offhand 2[W] bonus
+---This will only currently work for weapons
+Engine: Dice objects can now specify whether damage scales with any of:
+---melee power
+---ranged power
+---spell power and which spell power type
+---If multiple are present effects will use the highest of whichever are specified (for melee/ranged only)
+---Dice forum export will now show if damage is scaled by melee, ranged or spell power. e.g. "+(2D12 Fire) * Melee Power"
+Engine: Effects that reference feats now check the feat actually exists on load.
+---Frenzied Berserker: Die Hard fixed
+---Harper Agent: Know Your Foe - Monstrous humanoid fixed
+---Vistani: Undead Hunter fixed
+---Primal Avatar: Favored Enemy: Aberrations / Constructs / Undead all fixed
+---Shadowdancer: Stealthy - Hide in Plain Site fixed
+---Unyielding Sentinel: Healing Hands "Lay on Hands" fixed
+Fix: Spell Tooltips "Cost" field for special abilities is no longer shown
+---e.g. Abundant Step no longer shows an SP cost.
+Fix: Spell Tooltips "School" field for special abilities is no longer shown
+Fix: Feats granted by multi-tier enhancements such as "Vanguard: Missile Shield" now stack and are only applied once
+Fix: Dice effects updated to show any bonus field e.g. 2d6+5 (+5 was missing)
+Fix: Dice effects updated to shower effected by Ranged, Melee or Spell power
+---e.g. 2d6+5 becomes "(2d6+5) * Melee Power"
+Augments: Augment effects can be set to "IsItemSpecific" and thus will only apply to the weapon they are slotted in.
+---Deconstructor augment updated
+---+2d6 Acid Damage augment updated
+---+2d6 Cold Damage augment updated
+---+2d6 Electric Damage augment updated
+---+2d6 Fire Damage augment updated
+---+2d6 Sonic Damage augment updated
+Augments: Missing Blue Augment "Good Luck" added.
+Engine: New auto controlled stance "Axe" added (for Legendary Dreadnought Headsmans chop)
+Export: Forum export now show Melee and Ranged power in the weapon damage section.
+---Ranged power version also shown if you have manyshot active
+Engine: Augments are now verified on load
+---A repeated bug in error reporting for other checking code were also fixed
+---Augment Deconstructor effects fixed
+---Meridian Fragment effect fixed
+---+2d6 <element> effects fixed - still applies to all weapons rather than weapon slotted into
+---Cannith/Random Seeker effect fixed
+---Cannith/Random Insightful Seeker effect fixed
+---Cannith/Random Deadly effect fixed
+---Cannith/Random Insightful Deadly effect fixed
+---Accuracy X effect fixed
+---Accuracy IX effect fixed
+---The Wreath of Flame Set Bonus: 50 Fire Spell Power effect fixed
+---Stormreaver's Tablecloth missing icon added (or close approximation to correct icon)
+---Epic Diabolist's Robe SLA effect fixed
+---Martial Outfit save effect fixed
+---Sage's Vestments save effect fixed
+---Consuming Darkness effect fixed
+---Legendary Band of Insightful Commands effect fixed
+---Epic Dusk Heart, wrong named, description and effect fixed
+---Epic Eagle's Eye effect fixed
+---Legendary Subtle Sound effect fixed
+---Manacles of Ceaseless Toil Missing SLA added to Spells.xml
+---Epic Cape of the Roc missing SLA Roc's Strength added to Spells.xml
+---Circle of Malevolence missing SLA Improved Harm added to Spells.xml. Effect description also fixed.
+Continued Enhancement Pass:
+---Thief-Acrobat: Followthrough - Missing effects added
+---Thief-Acrobat: Improved Defensive Roll - now requires the Defensive roll feat be trained to select
+---Thief-Acrobat: Staff Specialization - Bonus effects are now correctly "Competence"
+---Thief-Acrobat: Spinning Staff Wall - effects fixed
+---Thief-Acrobat: Vault - now shows up as a SLA
+---Shadar-Kai: Stealthy - inactive +1[W] for thrown weapons while sneaking effect added.
+---Shadar-Kai: Improved Dodge - now only applies in light or no armor
+---Air Savant: Light on Your Feet - missing immunity effect added
+---Air Savant: Shocking Grasp - now shows up as an SLA
+---Air Savant: Electrocution - inactive spell power effects added
+---Air Savant: Electric Loop - now shows up as an SLA
+---Air Savant: Lightning Bolt - now shows up as an SLA
+---Air Savant: Wind Dance - now shows up as an SLA
+---Earth Savant: One With Stone - missing immunity effect added
+---Earth Savant: Acid Spray - now shows up as an SLA
+---Earth Savant: Erosion - inactive spell power effects added
+---Earth Savant: Acid Arrow - now shows up as an SLA
+---Earth Savant: Acid Blast - now shows up as an SLA
+---Earth Savant: Earthgrab - now shows up as an SLA
+---Fire Savant: Conflagration - inactive spell power effects added
+---Fire Savant: Heat Death - now shows up as an SLA
+---Water Savant: Cold Ray - now shows up as an SLA
+---Water Savant: Hoarfrost - inactive spell power effects added
+---Water Savant: Snowball Swarm - now shows up as an SLA
+---Water Savant: Water Breathing - Missing immunity effect added
+---Water Savant: Frost Lance - now shows up as an SLA
+---Water Savant: Icy Prison - now shows up as an SLA
+---Vanguard: Shield Combat II - Missing 1[W] effect for shields added
+---Vanguard: Vicious Shield II - Missing shield effects added
+---Vanguard: Shield Champion - Name and description added. Effects added.
+---Vanguard: Armor Training - Missing Armor Check Penalty effect added
+---Vanguard: Fatal Bulwark - Missing shield critical range effect added
+---Warforged: Brute Fighting - Stance and Effects added
+---Enlightened Spirit: Shape Vestments - Fixed effect value
+---Enlightened Spirit: Aura of Menace - Effect list simplified
+---Enlightened Spirit: Ultimate Enlightenment - Missing BAB effect added
+---Enlightened Spirit: Spiritual Defense - Effect now only active if Eldritch Aura is active
+---Enlightened Spirit: Brutality - Missing effects added
+---Enlightened Spirit: Resist Energies - Now shows up as an SLA
+---Enlightened Spirit: Spiritual Bastion - PRR bonus type is now correctly Determination
+---Enlightened Spirit: Shield - Effects added
+---Enlightened Spirit: Spiritual Ward - MRR bonus type is now correctly Determination
+---Enlightened Spirit: Beacon - Missing effect added
+---Enlightened Spirit: Displacement - now shows up as an SLA
+---Soul Eater: Devour the Soul - Now shows up as an SLA
+---Soul Eater: Consume Sight - Now shows up as an SLA
+---Soul Eater: Burning Blood - Now shows up as an SLA
+---Soul Eater: Finger of Death - Now shows up as an SLA
+---Tainted Scholar: Command - Now shows up as an SLA
+---Tainted Scholar: Confusion - Now shows up as an SLA
+---Tainted Scholar: Mass Confusion - Now shows up as an SLA
+---Arch-Mage: Arcane Bolt - Now shows up as an SLA
+---Arch-Mage: Arcane Blast - Now shows up as an SLA
+---Pale Master: Shroud of the Zombie - Missing 1[W]Unarmed effect added
+---Pale Master: Master of Death - Missing effects added
+---Pale Master: Necrotic Touch - Now shows up as an SLA
+---Pale Master: Negative Energy Conduit - Missing Negative Healing Amplification effect added
+---Pale Master: Necrotic Bolt - Now shows up as an SLA
+---Pale Master: Necrotic Blast - Now shows up as an SLA
+Enhancement pass now complete
+Destiny Pass Start
+---Divine Crusader: Sword of Justice - erroneous attack bonus removed
+---Divine Crusader: Zeal of the Righteous - Zeal of the righteous stance and effects added
+---Divine Crusader: Blessed Blades - effect added
+---Divine Crusader: Celestial Bombardment - now shows up as an SLA
+---Draconic Incarnation: Draconic Presence - missing Fear immunity effect added
+---Draconic Incarnation: Flyby Attack - now shows up as an SLA
+---Exalted Angel: Soundburst - now shows up as an SLA
+---Fatesinger: Tailwind - Damage bonus is not correctly Competence
+---Fury of the Wild: Wild Weapons - Description updated and effects added
+---Fury of the Wild: Overwhelming Force - Description updated
+---Grandmaster of Flowers: Wholeness of Spirit - Now shows up as an SLA
+---Legendary Dreadnought: Advancing Blows - inactive effects added
+---Legendary Dreadnought: Master's Blitz Epic Moment - made common duplicate effects
+---Legendary Dreadnought: Headmans Chop - Critical multiplier on 19-20 added when Axe in main hand
+---Magister: Grand Summoner - missing hire effects added
+---Magister: Arcane Tempest - now shows up as an SLA
+---Primal Avatar: Rejuvenation Cocoon - now shows up as an SLA
+---Primal Avatar: Insidious Spores - now shows up as an SLA
+---Primal Avatar: Favored Enemy: Aberrations / Constructs / Undead - Grant feat effects added
+---Primal Avatar: Natural Shielding - bad effect values fixed
+---Primal Avatar: Balanced Attacks - effects added
+---Primal Avatar: Tsunami - now shows up as an SLA
+---Primal Avatar: Stormrage - Missing effects added
+---Shadowdancer: Shadow Training IV - Shadow Walk SLA added
+---Shadowdancer: Shadow Training V - Dimension Door SLA added
+---Shadowdancer: Shadow Mastery - Grant feat effect for Evasion added
+---Shadowdancer: Technician - sneak attack attack bonus added
+---Shiradi Champion: Stay Good - DR bypass effect added
+---Unyielding Sentinel: Divine Energy Resistance - now shows up as an SLA
+---Unyielding Sentinel: Intolerant Blows - Stance and effects added
+Destiny Pass End
+Items Added:
+---Ring - Legendary Deathwarden
+---Medium Armor - Legendary Coat of the Traveller
+---Boots - Legendary Shadows Footsteps
+---Gloves - Legendary Knifepalm
+---Tower Shield - Legendary Mirrorplate Tower
+---Cloak - Legendary Scarlet Scale Cloak
+---Rune Arm - Legendary Suppressive Fire
+---Belt - Legendary Braided Cutcord
+---Boots - Legendary Softsole Slippers
+---Heavy Armor - Legendary Platemail of the Barovian Lord
+---Belt - Legendary Thrummingspark Cord
+---Goggles - Legendary Garstone's Lenses
+---Goggles - Legendary Feargaze
+---Necklace - Legendary Ward-Inscribed Pendant
+---Handaxe - Legendary Sinister Handaxe
+---Buckler - Van Richten's Legendary Cane
+---Belt - Legendary Silverthread Belt
+---Belt - Legendary Burnscar Sash
+---Cloth Armor - Legendary Disciple of the Dawn
+---Gloves - Legendary Gauntlets of Innate Arcanum
+---Belt - Legendary Plateshard Belt
+---Small Shield - Legendary Warsword Shield
+---Large shield - The Legendary Best Defense
+---Rune Arm - Legendary Blight Inferno
+This should be the end of all standard Ravenloft items that drop in the
+quests (Not the raids) except the standard weapons you can get for sentience
+
+version 1.0.0.22
+
 Engine: XML library updated to indent lines to make files more human readable. Lines now saved with \r\n also.
 Fix: Save files active stances will no longer bloat with multiple copies of the same stance name. (older save files will slowly clean themselves up as stances change)
 Fix: Curse breakdown now uses Will as its base save, not reflex.

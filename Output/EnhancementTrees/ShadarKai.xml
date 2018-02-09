@@ -32,7 +32,7 @@ and have stabilized, you get up ten seconds faster than normal.</Description>
             <Type>SaveBonus</Type>
             <Bonus>Enhancement</Bonus>
             <Save>Fortitude</Save>
-            <AmountVector size="1">1</AmountVector>
+            <Amount>1</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -64,7 +64,7 @@ and have stabilized, you get up ten seconds faster than normal.</Description>
                   <Type>AbilityBonus</Type>
                   <Bonus>Enhancement</Bonus>
                   <Ability>Dexterity</Ability>
-                  <AmountVector size="1">1</AmountVector>
+                  <Amount>1</Amount>
                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
@@ -76,7 +76,7 @@ and have stabilized, you get up ten seconds faster than normal.</Description>
                   <Type>AbilityBonus</Type>
                   <Bonus>Enhancement</Bonus>
                   <Ability>Intelligence</Ability>
-                  <AmountVector size="1">1</AmountVector>
+                  <Amount>1</Amount>
                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
@@ -88,7 +88,7 @@ and have stabilized, you get up ten seconds faster than normal.</Description>
                   <Type>AbilityBonus</Type>
                   <Bonus>Enhancement</Bonus>
                   <Ability>Wisdom</Ability>
-                  <AmountVector size="1">1</AmountVector>
+                  <Amount>1</Amount>
                </Effect>
             </EnhancementSelection>
          </Selector>
@@ -254,7 +254,13 @@ Tier 3: Throw attacks you perform while sneaking deal +1[W] damage.</Description
             <Skill>Move Silently</Skill>
             <AmountVector size="3">1 2 3</AmountVector>
          </Effect>
-         <!--throw attacks while sneaking do +1[W]-->
+         <Effect>
+            <Type>WeaponBaseDamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">0 0 1</AmountVector>
+            <WeaponClass>Thrown</WeaponClass>
+            <Stance>Sneaking</Stance>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Shadar-Kai: Vicious Chain</Name>
@@ -293,6 +299,7 @@ Some enemies are immune to bleeding.</Description>
             <Type>DodgeBonus</Type>
             <Bonus>Enhancement</Bonus>
             <AmountVector size="3">1 2 3</AmountVector>
+            <Stance>LightOrNoArmor</Stance>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -472,7 +479,7 @@ at a -12/-8/-4 penalty.</Description>
             <Type>EnergyResistance</Type>
             <Bonus>Enhancement</Bonus>
             <Energy>Cold</Energy>
-            <AmountVector size="1">5</AmountVector>
+            <Amount>5</Amount>
          </Effect>
          <Effect>
             <Type>SneakAttackDamage</Type>
