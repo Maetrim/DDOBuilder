@@ -17,7 +17,7 @@ BreakdownItem::BreakdownItem(
     m_type(type),
     m_bHasWeapon(false),
     m_weapon(Weapon_Unknown),
-    m_slot(Inventory_Unknown)
+    m_weaponCriticalMultiplier(0)
 {
 }
 
@@ -150,7 +150,7 @@ void BreakdownItem::AddActiveItems(
     while (it != effects.end())
     {
         // only add active items when it has an active stance flag
-        if ((*it).IsActive(m_pCharacter, m_slot)
+        if ((*it).IsActive(m_pCharacter)
                 && !(*it).IsPercentage())
         {
             // only list it if its non-zero
@@ -189,7 +189,7 @@ void BreakdownItem::AddActivePercentageItems(
     while (it != effects.end())
     {
         // only add active items when it has an active stance flag and is a percentage
-        if ((*it).IsActive(m_pCharacter, m_slot)
+        if ((*it).IsActive(m_pCharacter)
                 && (*it).IsPercentage())
         {
             // only list it if its non-zero
@@ -228,7 +228,7 @@ void BreakdownItem::AddDeactiveItems(
     while (it != effects.end())
     {
         // only add inactive items when it has a stance flag
-        if (!(*it).IsActive(m_pCharacter, m_slot))
+        if (!(*it).IsActive(m_pCharacter))
         {
             // only list it if its non-zero
             if ((*it).TotalAmount(false) != 0)
@@ -264,7 +264,7 @@ double BreakdownItem::SumItems(const std::list<ActiveEffect> & effects) const
     while (it != effects.end())
     {
         // only count the active items in the total
-        if ((*it).IsActive(m_pCharacter, m_slot))
+        if ((*it).IsActive(m_pCharacter))
         {
             if (!(*it).IsPercentage())
             {
@@ -282,7 +282,7 @@ double BreakdownItem::DoPercentageEffects(const std::list<ActiveEffect> & effect
     while (it != effects.end())
     {
         // only count the active items in the total
-        if ((*it).IsActive(m_pCharacter, m_slot))
+        if ((*it).IsActive(m_pCharacter))
         {
             if ((*it).IsPercentage())
             {
@@ -767,9 +767,11 @@ bool BreakdownItem::GetActiveEffect(
     {
         activeEffect->SetWeapon(Weapon());
     }
-    if (effect.HasRequiredSlot())
+    if (effect.HasCriticalMultiplier())
     {
-        activeEffect->SetSlot(effect.RequiredSlot());
+        // the critical multiplier of this weapon sets the number of stack for this
+        // active effect
+        activeEffect->SetStacks(m_weaponCriticalMultiplier);
     }
     return hasActiveEffect;
 }
@@ -966,18 +968,14 @@ void BreakdownItem::SetHTreeItem(HTREEITEM hItem)
     m_hItem = hItem;
 }
 
-void BreakdownItem::SetWeapon(WeaponType wt)
+void BreakdownItem::SetWeapon(WeaponType wt, size_t weaponCriticalMultiplier)
 {
     m_bHasWeapon = true;
     m_weapon = wt;
+    m_weaponCriticalMultiplier = weaponCriticalMultiplier;
 }
 
 WeaponType BreakdownItem::Weapon() const
 {
     return m_weapon;
-}
-
-void BreakdownItem::SetSlot(InventorySlotType slot)
-{
-    m_slot = slot;
 }

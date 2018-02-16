@@ -262,8 +262,6 @@ bool Effect::operator==(const Effect & other) const
             && (m_Energy == other.m_Energy)
             && (m_hasFavoredEnemy == other.m_hasFavoredEnemy)
             && (m_FavoredEnemy == other.m_FavoredEnemy)
-            && (m_hasRequiredSlot == other.m_hasRequiredSlot)
-            && (m_RequiredSlot == other.m_RequiredSlot)
             && (m_hasSave == other.m_hasSave)
             && (m_Save == other.m_Save)
             && (m_hasSkill == other.m_hasSkill)

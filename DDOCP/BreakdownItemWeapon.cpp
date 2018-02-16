@@ -13,7 +13,8 @@ BreakdownItemWeapon::BreakdownItemWeapon(
         MfcControls::CTreeListCtrl * treeList,
         HTREEITEM hItem,
         InventorySlotType slot,
-        const Dice & damageDice) :
+        const Dice & damageDice,
+        size_t weaponCriticalMultiplier) :
     BreakdownItem(type, treeList, hItem),
     m_title(title),
     m_weaponType(weaponType),
@@ -29,34 +30,21 @@ BreakdownItemWeapon::BreakdownItemWeapon(
     m_criticalMultiplier(Breakdown_WeaponCriticalMultiplier,  treeList, NULL, NULL),
     m_criticalMultiplier19To20(Breakdown_WeaponCriticalMultiplier19To20, treeList, NULL, &m_criticalMultiplier),
     m_attackSpeed(Breakdown_WeaponAttackSpeed, Effect_Alacrity, "Attack Speed", treeList, NULL),
-    m_centeredCount(0)     // assume not centered with this weapon
+    m_centeredCount(0),    // assume not centered with this weapon
+    m_weaponCriticalMuliplier(weaponCriticalMultiplier)
 {
-
-    m_baseDamage.SetSlot(slot);
-    m_attackBonus.SetSlot(slot);
-    m_damageBonus.SetSlot(slot);
-    m_otherDamageEffects.SetSlot(slot);
-    //m_vorpalRange.SetSlot(slot);
-    m_criticalThreatRange.SetSlot(slot);
-    m_criticalAttackBonus.SetSlot(slot);
-    m_criticalDamageBonus.SetSlot(slot);
-    m_otherCriticalDamageEffects.SetSlot(slot);
-    m_criticalMultiplier.SetSlot(slot);
-    m_criticalMultiplier19To20.SetSlot(slot);
-    m_attackSpeed.SetSlot(slot);
-
-    m_baseDamage.SetWeapon(weaponType);
-    m_attackBonus.SetWeapon(weaponType);
-    m_damageBonus.SetWeapon(weaponType);
-    m_otherDamageEffects.SetWeapon(weaponType);
-    //m_vorpalRange.SetWeapon(weaponType);
-    m_criticalThreatRange.SetWeapon(weaponType);
-    m_criticalAttackBonus.SetWeapon(weaponType);
-    m_criticalDamageBonus.SetWeapon(weaponType);
-    m_otherCriticalDamageEffects.SetWeapon(weaponType);
-    m_criticalMultiplier.SetWeapon(weaponType);
-    m_criticalMultiplier19To20.SetWeapon(weaponType);
-    m_attackSpeed.SetWeapon(weaponType);
+    m_baseDamage.SetWeapon(weaponType, weaponCriticalMultiplier);
+    m_attackBonus.SetWeapon(weaponType, weaponCriticalMultiplier);
+    m_damageBonus.SetWeapon(weaponType, weaponCriticalMultiplier);
+    m_otherDamageEffects.SetWeapon(weaponType, weaponCriticalMultiplier);
+    //m_vorpalRange.SetWeapon(weaponType, weaponCriticalMultiplier);
+    m_criticalThreatRange.SetWeapon(weaponType, weaponCriticalMultiplier);
+    m_criticalAttackBonus.SetWeapon(weaponType, weaponCriticalMultiplier);
+    m_criticalDamageBonus.SetWeapon(weaponType, weaponCriticalMultiplier);
+    m_otherCriticalDamageEffects.SetWeapon(weaponType, weaponCriticalMultiplier);
+    m_criticalMultiplier.SetWeapon(weaponType, weaponCriticalMultiplier);
+    m_criticalMultiplier19To20.SetWeapon(weaponType, weaponCriticalMultiplier);
+    m_attackSpeed.SetWeapon(weaponType, weaponCriticalMultiplier);
 
     if (slot == Inventory_Weapon2)
     {

@@ -39,6 +39,13 @@ void BreakdownItemWeaponEffects::SetCharacter(Character * charData, bool observe
         EquippedGear gear;      // empty gear
         WeaponsChanged(gear);
     }
+    // clear any effects on a character change
+    for (size_t i = 0; i < Weapon_Count; ++i)
+    {
+        m_weaponFeatEffects[i].clear();
+        m_weaponItemEffects[i].clear();
+        m_weaponEnhancementEffects[i].clear();
+    }
 }
 
 // required overrides
@@ -694,7 +701,8 @@ BreakdownItemWeapon * BreakdownItemWeaponEffects::CreateWeaponBreakdown(
                 : Inventory_Weapon2,
             item.HasDamageDice()
                 ? item.DamageDice()
-                : defaultDice);
+                : defaultDice,
+            item.CriticalMultiplier());
     m_pTreeList->SetItemData(hItem, (DWORD)(void*)pWeaponBreakdown);
     pWeaponBreakdown->SetCharacter(m_pCharacter, true);
 

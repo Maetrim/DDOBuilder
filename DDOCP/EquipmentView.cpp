@@ -339,7 +339,9 @@ void CEquipmentView::UpdateSlotLeftClicked(
     }
     if (slot == Inventory_Weapon2
             && gear.HasItemInSlot(Inventory_Weapon1)
-            && !gear.ItemInSlot(Inventory_Weapon1).CanEquipToSlot(Inventory_Weapon2))
+            && (IsTwoHandedWeapon(gear.ItemInSlot(Inventory_Weapon1).Weapon())
+                    || IsRangedWeapon(gear.ItemInSlot(Inventory_Weapon1).Weapon())
+                    || gear.ItemInSlot(Inventory_Weapon1).Weapon() == Weapon_Handwraps))
     {
         // not allowed to equip in this due to item in weapon slot 1
         ::MessageBeep(MB_OK);

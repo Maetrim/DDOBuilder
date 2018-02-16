@@ -62,10 +62,8 @@ class BreakdownItem :
         void AddAbility(AbilityType ability);
         void RemoveFirstAbility(AbilityType ability);
 
-        void SetWeapon(WeaponType wt);
+        void SetWeapon(WeaponType wt, size_t weaponCriticalMultiplier);
         WeaponType Weapon() const;
-
-        void SetSlot(InventorySlotType slot);
     protected:
         void AddOtherEffect(const ActiveEffect & effect);
         void AddFeatEffect(const ActiveEffect & effect);
@@ -128,7 +126,7 @@ class BreakdownItem :
         std::vector<AbilityType> m_mainAbility; // ability types that are used for this breakdown (highest of those listed)
         bool m_bHasWeapon;
         WeaponType m_weapon;
-        InventorySlotType m_slot;
+        size_t m_weaponCriticalMultiplier;
 
         friend class BreakdownItemWeapon;
 };

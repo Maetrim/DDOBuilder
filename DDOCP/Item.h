@@ -42,6 +42,7 @@ class Item :
                 DL_STRING_LIST(_, DRBypass) \
                 DL_OPTIONAL_OBJECT(_, Dice, DamageDice) \
                 DL_OPTIONAL_OBJECT(_, ItemSpecificEffects, ItemEffects) \
+                DL_OPTIONAL_SIMPLE(_, size_t, CriticalMultiplier, 0) \
                 DL_OPTIONAL_ENUM(_, WeaponType, Weapon, Weapon_Unknown, weaponTypeMap) \
                 DL_OPTIONAL_ENUM(_, WeaponDamageType, DamageType, WeaponDamage_Unknown, weaponDamageTypeMap) \
                 DL_OPTIONAL_ENUM(_, AbilityType, AttackModifier, Ability_Unknown, abilityTypeMap) \

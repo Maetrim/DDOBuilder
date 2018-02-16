@@ -27,7 +27,8 @@ class BreakdownItemWeapon :
                 MfcControls::CTreeListCtrl * treeList,
                 HTREEITEM hItem,
                 InventorySlotType slot,
-                const Dice & damageDice);
+                const Dice & damageDice,
+                size_t weaponCriticalMultiplier);
         virtual ~BreakdownItemWeapon();
 
         bool IsCentering() const;
@@ -73,6 +74,7 @@ class BreakdownItemWeapon :
         BreakdownItemWeaponCriticalMultiplier m_criticalMultiplier19To20;
         BreakdownItemSimple m_attackSpeed;
         size_t m_centeredCount;
+        size_t m_weaponCriticalMuliplier;
 
         friend class BreakdownItemWeaponAttackBonus;
 };

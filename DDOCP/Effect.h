@@ -311,6 +311,7 @@ class Effect :
                 DL_OPTIONAL_SIMPLE(_, double, AmountPerAP, 0.0) \
                 DL_FLAG(_, Percent) \
                 DL_FLAG(_, IsItemSpecific) \
+                DL_FLAG(_, CriticalMultiplier) \
                 DL_OPTIONAL_OBJECT(_, Dice, DiceRoll) \
                 DL_OPTIONAL_SIMPLE(_, int, Divider, 0) \
                 DL_OPTIONAL_STRING(_, Feat) \
@@ -326,7 +327,6 @@ class Effect :
                 DL_ENUM_LIST(_, DamageReductionType, DR, DR_Unknown, drTypeMap) \
                 DL_OPTIONAL_ENUM(_, EnergyType, Energy, Energy_Unknown, energyTypeMap) \
                 DL_OPTIONAL_ENUM(_, FavoredEnemyType, FavoredEnemy, FavoredEnemy_Unknown, favoredEnemyTypeMap) \
-                DL_OPTIONAL_ENUM(_, InventorySlotType, RequiredSlot, Inventory_Unknown, InventorySlotTypeMap) \
                 DL_OPTIONAL_ENUM(_, SaveType, Save, Save_Unknown, saveTypeMap) \
                 DL_OPTIONAL_ENUM(_, SkillType, Skill, Skill_Unknown, skillTypeMap) \
                 DL_OPTIONAL_ENUM(_, SpellPowerType, SpellPower, SpellPower_Unknown, spellPowerTypeMap) \
