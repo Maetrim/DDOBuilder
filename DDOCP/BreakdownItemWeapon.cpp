@@ -208,13 +208,9 @@ bool BreakdownItemWeapon::AffectsUs(const Effect & effect) const
 {
     // determine whether this effect is applied to this weapon
     bool isUs = false;
-    if (effect.HasWeapon())
+    if (effect.IncludesWeapon(m_weaponType))
     {
-        // weapon type specified explicitly
-        if (effect.Weapon() == m_weaponType || effect.Weapon() == Weapon_All)
-        {
-            isUs = true;
-        }
+        isUs = true;
     }
     if (effect.HasWeaponClass())
     {
@@ -315,13 +311,10 @@ void BreakdownItemWeapon::UpdateFeatEffect(
                     Populate();
                 }
             }
-            else if (effect.HasWeapon())
+            else if (effect.IncludesWeapon(m_weaponType))
             {
-                if (effect.Weapon() == m_weaponType)
-                {
-                    ++m_centeredCount;
-                    Populate();
-                }
+                ++m_centeredCount;
+                Populate();
             }
         }
     }
@@ -361,13 +354,10 @@ void BreakdownItemWeapon::UpdateFeatEffectRevoked(
                     Populate();
                 }
             }
-            else if (effect.HasWeapon())
+            else if (effect.IncludesWeapon(m_weaponType))
             {
-                if (effect.Weapon() == m_weaponType)
-                {
-                    --m_centeredCount;
-                    Populate();
-                }
+                --m_centeredCount;
+                Populate();
             }
         }
     }
@@ -407,13 +397,10 @@ void BreakdownItemWeapon::UpdateItemEffect(
                     Populate();
                 }
             }
-            else if (effect.HasWeapon())
+            else if (effect.IncludesWeapon(m_weaponType))
             {
-                if (effect.Weapon() == m_weaponType)
-                {
-                    ++m_centeredCount;
-                    Populate();
-                }
+                ++m_centeredCount;
+                Populate();
             }
         }
     }
@@ -453,13 +440,10 @@ void BreakdownItemWeapon::UpdateItemEffectRevoked(
                     Populate();
                 }
             }
-            else if (effect.HasWeapon())
+            else if (effect.IncludesWeapon(m_weaponType))
             {
-                if (effect.Weapon() == m_weaponType)
-                {
-                    --m_centeredCount;
-                    Populate();
-                }
+                --m_centeredCount;
+                Populate();
             }
         }
     }
@@ -498,13 +482,10 @@ void BreakdownItemWeapon::UpdateEnhancementEffect(
                     Populate();
                 }
             }
-            else if (effect.m_effect.HasWeapon())
+            else if (effect.m_effect.IncludesWeapon(m_weaponType))
             {
-                if (effect.m_effect.Weapon() == m_weaponType)
-                {
-                    ++m_centeredCount;
-                    Populate();
-                }
+                ++m_centeredCount;
+                Populate();
             }
         }
     }
@@ -543,13 +524,10 @@ void BreakdownItemWeapon::UpdateEnhancementEffectRevoked(
                     Populate();
                 }
             }
-            else if (effect.m_effect.HasWeapon())
+            else if (effect.m_effect.IncludesWeapon(m_weaponType))
             {
-                if (effect.m_effect.Weapon() == m_weaponType)
-                {
-                    --m_centeredCount;
-                    Populate();
-                }
+                --m_centeredCount;
+                Populate();
             }
         }
     }

@@ -1402,7 +1402,7 @@ void CLevelUpView::OnButtonSkillMinus()
         if (sel >= 0)
         {
             SkillType skill = (SkillType)m_listSkills.GetItemData(sel);
-            m_pCharacter->RevokeSkillPoint(m_level, skill);
+            m_pCharacter->RevokeSkillPoint(m_level, skill, false);
         }
     }
 }

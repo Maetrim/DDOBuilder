@@ -129,10 +129,11 @@ class Character :
         // skill points
         bool IsClassSkill(SkillType skill, size_t level) const;
         void SpendSkillPoint(size_t level, SkillType skill);
-        void RevokeSkillPoint(size_t level, SkillType skill);
+        void RevokeSkillPoint(size_t level, SkillType skill, bool suppressUpdate);
         double MaxSkillForLevel(SkillType skill, size_t level) const;
         size_t SpentAtLevel(SkillType skill, size_t level) const; // level is 0 based
         double SkillAtLevel(SkillType skill, size_t level, bool includeTome) const; // level is 0 based
+        void SkillsUpdated();
 
         // feats
         bool IsFeatTrained(const std::string & featName) const;
@@ -391,7 +392,7 @@ class Character :
         void UpdateArmorStances();
         void UpdateShieldStances();
         void UpdateCenteredStance();
-        void VerifyArmor();
+        void VerifyGear();
 
         // CharacterObserver
         // we need to track all sources from which a granted feat can come from

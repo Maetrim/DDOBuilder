@@ -101,8 +101,7 @@ bool BreakdownItemSpellPower::AffectsUs(const Effect & effect) const
 {
     bool isUs = false;
     if (effect.Type() == m_effect
-            && (effect.SpellPower() == m_spellPowerType
-                || effect.SpellPower() == SpellPower_All))
+            && effect.IncludesSpellPower(m_spellPowerType))
     {
         isUs = true;
     }

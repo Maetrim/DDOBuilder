@@ -73,7 +73,7 @@ const XmlLib::enumMapEntry<BonusType> bonusTypeMap[] =
     {Bonus_Unknown, L"Unknown"},
     {Bonus_ability, L"Ability"},
     {Bonus_alchemical, L"Alchemical"},
-    {Bonus_artifact, L"Artifact"},
+    {Bonus_artifact, L"Artefact"},
     {Bonus_armor, L"Armor"},
     {Bonus_base, L"Base"},
     {Bonus_circumstance, L"Circumstance"},

@@ -13,6 +13,7 @@ namespace
     COLORREF f_crossClassSkillColour = RGB(255, 255, 255);      // white
     COLORREF f_untrainableSkillColour = RGB(0xFF, 0xB6, 0xC1);  // light pink
     COLORREF f_selectedColour = ::GetSysColor(COLOR_HIGHLIGHT);
+    COLORREF f_skillOverspendColour = RGB(0xFF, 0x00, 0x00);    // RED
     COLORREF f_black = RGB(0, 0, 0);                            // black
 
     class WeightedSkill
@@ -87,26 +88,26 @@ BOOL CSkillSpendDialog::OnInitDialog()
 
     // add the columns to the list control with default sizes for all columns
     m_skillsList.InsertColumn( 0, "Skill", LVCFMT_LEFT, 100);
-    m_skillsList.InsertColumn( 1, " 1", LVCFMT_LEFT, 25);
-    m_skillsList.InsertColumn( 2, " 2", LVCFMT_LEFT, 25);
-    m_skillsList.InsertColumn( 3, " 3", LVCFMT_LEFT, 25);
-    m_skillsList.InsertColumn( 4, " 4", LVCFMT_LEFT, 25);
-    m_skillsList.InsertColumn( 5, " 5", LVCFMT_LEFT, 25);
-    m_skillsList.InsertColumn( 6, " 6", LVCFMT_LEFT, 25);
-    m_skillsList.InsertColumn( 7, " 7", LVCFMT_LEFT, 25);
-    m_skillsList.InsertColumn( 8, " 8", LVCFMT_LEFT, 25);
-    m_skillsList.InsertColumn( 9, " 9", LVCFMT_LEFT, 25);
-    m_skillsList.InsertColumn(10, "10", LVCFMT_LEFT, 25);
-    m_skillsList.InsertColumn(11, "11", LVCFMT_LEFT, 25);
-    m_skillsList.InsertColumn(12, "12", LVCFMT_LEFT, 25);
-    m_skillsList.InsertColumn(13, "13", LVCFMT_LEFT, 25);
-    m_skillsList.InsertColumn(14, "14", LVCFMT_LEFT, 25);
-    m_skillsList.InsertColumn(15, "15", LVCFMT_LEFT, 25);
-    m_skillsList.InsertColumn(16, "16", LVCFMT_LEFT, 25);
-    m_skillsList.InsertColumn(17, "17", LVCFMT_LEFT, 25);
-    m_skillsList.InsertColumn(18, "18", LVCFMT_LEFT, 25);
-    m_skillsList.InsertColumn(19, "19", LVCFMT_LEFT, 25);
-    m_skillsList.InsertColumn(20, "20", LVCFMT_LEFT, 25);
+    m_skillsList.InsertColumn( 1, "1", LVCFMT_CENTER, 30);
+    m_skillsList.InsertColumn( 2, "2", LVCFMT_CENTER, 30);
+    m_skillsList.InsertColumn( 3, "3", LVCFMT_CENTER, 30);
+    m_skillsList.InsertColumn( 4, "4", LVCFMT_CENTER, 30);
+    m_skillsList.InsertColumn( 5, "5", LVCFMT_CENTER, 30);
+    m_skillsList.InsertColumn( 6, "6", LVCFMT_CENTER, 30);
+    m_skillsList.InsertColumn( 7, "7", LVCFMT_CENTER, 30);
+    m_skillsList.InsertColumn( 8, "8", LVCFMT_CENTER, 30);
+    m_skillsList.InsertColumn( 9, "9", LVCFMT_CENTER, 30);
+    m_skillsList.InsertColumn(10, "10", LVCFMT_CENTER, 30);
+    m_skillsList.InsertColumn(11, "11", LVCFMT_CENTER, 30);
+    m_skillsList.InsertColumn(12, "12", LVCFMT_CENTER, 30);
+    m_skillsList.InsertColumn(13, "13", LVCFMT_CENTER, 30);
+    m_skillsList.InsertColumn(14, "14", LVCFMT_CENTER, 30);
+    m_skillsList.InsertColumn(15, "15", LVCFMT_CENTER, 30);
+    m_skillsList.InsertColumn(16, "16", LVCFMT_CENTER, 30);
+    m_skillsList.InsertColumn(17, "17", LVCFMT_CENTER, 30);
+    m_skillsList.InsertColumn(18, "18", LVCFMT_CENTER, 30);
+    m_skillsList.InsertColumn(19, "19", LVCFMT_CENTER, 30);
+    m_skillsList.InsertColumn(20, "20", LVCFMT_CENTER, 30);
     m_skillsList.InsertColumn(21, "Total", LVCFMT_LEFT, 40);
     // cannot change column header sizes
     m_skillsList.GetHeaderCtrl()->EnableWindow(FALSE);
@@ -174,7 +175,27 @@ void CSkillSpendDialog::PopulateItems()
             // left blank if no skill points spent at this level for this skill
             if (skillRanks[skill] > 0)
             {
-                text.Format("%d", skillRanks[skill]);
+                ClassType ct = m_pCharacter->LevelData(level).HasClass()
+                        ? m_pCharacter->LevelData(level).Class()
+                        : Class_Unknown;
+                if (IsClassSkill(ct, (SkillType)skill))
+                {
+                    text.Format("%d", skillRanks[skill]);
+                }
+                else
+                {
+                    text = "";
+                    int fullRanks = (skillRanks[skill] / 2);
+                    if (fullRanks > 0)
+                    {
+                        text.Format("%d", fullRanks);
+                    }
+                    // its a cross class skill, show in multiples of ½
+                    if (skillRanks[skill] % 2 != 0)
+                    {
+                        text += "½";
+                    }
+                }
                 m_skillsList.SetItemText(index, 1 + level, text);
             }
             else
@@ -250,6 +271,13 @@ void CSkillSpendDialog::OnCustomDrawSkillsList(NMHDR* pNMHDR, LRESULT* pResult)
                 if (pLVCD->nmcd.dwItemSpec >= 2
                         && pLVCD->nmcd.dwItemSpec < 2 + Skill_Count)
                 {
+                    double maxSkill = m_pCharacter->MaxSkillForLevel(
+                            skill,
+                            level);
+                    double skillValue = m_pCharacter->SkillAtLevel(
+                            skill,
+                            level,
+                            false);     // skill tome not included
                     // set the background colour to pale green for class skills
                     ClassType ct = m_pCharacter->LevelData(level).HasClass()
                             ? m_pCharacter->LevelData(level).Class()
@@ -263,9 +291,6 @@ void CSkillSpendDialog::OnCustomDrawSkillsList(NMHDR* pNMHDR, LRESULT* pResult)
                     else
                     {
                         // white to cross class skill, red for cannot train skill at all
-                        double maxSkill = m_pCharacter->MaxSkillForLevel(
-                                skill,
-                                level);
                         if (maxSkill > 0.0)
                         {
                             pLVCD->clrTextBk = f_crossClassSkillColour;
@@ -277,6 +302,11 @@ void CSkillSpendDialog::OnCustomDrawSkillsList(NMHDR* pNMHDR, LRESULT* pResult)
                             pLVCD->clrTextBk = f_untrainableSkillColour;
                             pLVCD->clrText = f_black;
                         }
+                    }
+                    if (skillValue > maxSkill)
+                    {
+                        // this skill is overspent at this point
+                        pLVCD->clrText = f_skillOverspendColour;
                     }
                 }
             }
@@ -453,7 +483,7 @@ void CSkillSpendDialog::OnRightClickSkillsList(NMHDR*, LRESULT* pResult)
             if (hasTrainedRanks)
             {
                 // yes, the user can revoke this skill
-                m_pCharacter->RevokeSkillPoint(level, skill);
+                m_pCharacter->RevokeSkillPoint(level, skill, false);
                 PopulateItems();        // update display
             }
         }
@@ -607,10 +637,11 @@ void CSkillSpendDialog::OnButtonClearThisSkill()
             if (rankRevoked)
             {
                 // yes, the user can revoke this skill
-                m_pCharacter->RevokeSkillPoint(level, skill);
+                m_pCharacter->RevokeSkillPoint(level, skill, true);
             }
         }
     }
+    m_pCharacter->SkillsUpdated();
     PopulateItems();        // update display
 }
 
@@ -629,11 +660,13 @@ void CSkillSpendDialog::OnButtonClearAllSkills()
             std::list<TrainedSkill>::const_iterator it = trainedSkills.begin();
             while (it != trainedSkills.end())
             {
-                m_pCharacter->RevokeSkillPoint(level, (*it).Skill());
+                // don't re-evaluate feats etc on each skill point revoke
+                m_pCharacter->RevokeSkillPoint(level, (*it).Skill(), true);
                 ++it;
             }
         }
     }
+    m_pCharacter->SkillsUpdated();
     PopulateItems();        // update display
 }
 

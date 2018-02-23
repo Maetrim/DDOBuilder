@@ -1,7 +1,6 @@
 // ItemSelectDialog.h
 #pragma once
 #include "Resource.h"
-#include "RaceTypes.h"
 #include "InventorySlotTypes.h"
 #include "Item.h"
 #include "PersistantSize.h"
@@ -9,10 +8,16 @@
 #include "InfoTip.h"
 #include "ComboBoxTooltip.h"
 
+class Character;
+
 class CItemSelectDialog : public CDialog
 {
     public:
-        CItemSelectDialog(CWnd* pParent, InventorySlotType slot, const Item & item, RaceType race);   // standard constructor
+        CItemSelectDialog(
+                CWnd* pParent,
+                InventorySlotType slot,
+                const Item & item,
+                Character * pCharacter);   // standard constructor
         virtual ~CItemSelectDialog();
 
         Item SelectedItem();
@@ -71,7 +76,7 @@ class CItemSelectDialog : public CDialog
 
         InventorySlotType m_slot;
         Item m_item;
-        RaceType m_race;
+        Character * m_pCharacter;
 
         enum
         {

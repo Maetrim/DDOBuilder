@@ -310,6 +310,12 @@ bool Character::RevokeClass(ClassType type)
         ++it;
         ++level;
     }
+    if (hadRevoke)
+    {
+        UpdateFeats();
+        VerifyTrainedFeats();
+        VerifyGear();
+    }
     return hadRevoke;
 }
 
@@ -695,7 +701,7 @@ void Character::SetRace(RaceType race)
     m_pDocument->SetModifiedFlag(TRUE);
     // revoking a racial feat can invalidate a feat selection in other levels (e.g. loss of Dodge)
     VerifyTrainedFeats();
-    VerifyArmor();              // changing too/from forged can affect equipped gear
+    VerifyGear();               // changing too/from forged can affect equipped gear
 }
 
 void Character::SetAlignment(AlignmentType alignment)
@@ -736,11 +742,8 @@ void Character::SetAlignment(AlignmentType alignment)
     {
         NotifyClassChoiceChanged();
     }
-    UpdateFeats();
     NotifyAlignmentChanged(alignment);
     m_pDocument->SetModifiedFlag(TRUE);
-    // revoking a class in theory can invalidate a feat selection
-    VerifyTrainedFeats();
     SetAlignmentStances();
 }
 
@@ -924,7 +927,6 @@ void Character::SetClass1(size_t level, ClassType type)
     }
     NotifyClassChoiceChanged();
     m_pDocument->SetModifiedFlag(TRUE);
-    VerifyTrainedFeats();
 }
 
 void Character::SetClass2(size_t level, ClassType type)
@@ -947,7 +949,6 @@ void Character::SetClass2(size_t level, ClassType type)
     }
     NotifyClassChoiceChanged();
     m_pDocument->SetModifiedFlag(TRUE);
-    VerifyTrainedFeats();
 }
 
 void Character::SetClass3(size_t level, ClassType type)
@@ -964,7 +965,6 @@ void Character::SetClass3(size_t level, ClassType type)
     Set_Class3(type);
     NotifyClassChoiceChanged();
     m_pDocument->SetModifiedFlag(TRUE);
-    VerifyTrainedFeats();
 }
 
 void Character::SetClass(size_t level, ClassType type)
@@ -1001,6 +1001,7 @@ void Character::SetClass(size_t level, ClassType type)
     UpdateFeats();
     VerifyTrainedFeats();
     AutoTrainSingleSelectionFeats();
+    VerifyGear();
 }
 
 void Character::SpendSkillPoint(
@@ -1017,13 +1018,28 @@ void Character::SpendSkillPoint(
 
 void Character::RevokeSkillPoint(
         size_t level,
-        SkillType skill)
+        SkillType skill,
+        bool suppressUpdate)
 {
     std::list<LevelTraining>::iterator it = m_Levels.begin();
     std::advance(it, level);
     (*it).RevokeSkill(skill);
-    NotifySkillSpendChanged(level, skill);
-    // revoking a skill point in theory can invalidate a feat selection
+    if (!suppressUpdate)
+    {
+        NotifySkillSpendChanged(level, skill);
+        // revoking a skill point in theory can invalidate a feat selection
+        VerifyTrainedFeats();
+        m_pDocument->SetModifiedFlag(TRUE);
+    }
+}
+
+void Character::SkillsUpdated()
+{
+    // once for every skill at level 20
+    for (size_t skill = Skill_Unknown + 1; skill < Skill_Count; ++skill)
+    {
+        NotifySkillSpendChanged(MAX_CLASS_LEVEL, (SkillType)skill);
+    }
     VerifyTrainedFeats();
     m_pDocument->SetModifiedFlag(TRUE);
 }
@@ -5250,7 +5266,7 @@ void Character::UpdateSkillPoints(size_t level)
     }
 }
 
-void Character::VerifyArmor()
+void Character::VerifyGear()
 {
     EquippedGear gear = ActiveGearSet();
     if (gear.HasItemInSlot(Inventory_Armor))
@@ -5284,5 +5300,18 @@ void Character::VerifyArmor()
             AfxMessageBox(text, MB_OK);
             ClearGearInSlot(gear.Name(), Inventory_Armor);
         }
+    }
+    if (gear.HasItemInSlot(Inventory_Weapon2)
+            && gear.ItemInSlot(Inventory_Weapon2).Weapon() == Weapon_RuneArm
+            && !IsFeatTrained("Artificer Rune Arm Use"))
+    {
+        // must have "Artificer Rune Arm Use" feat to be able to equip a rune-arm
+        // dump this item
+        CString text;
+        text.Format("Your equipped Rune-Arm of \"%s\"\r\n"
+                "was removed as you no longer meet the feat requirements",
+                gear.OffHand().Name().c_str());
+        AfxMessageBox(text, MB_OK);
+        ClearGearInSlot(gear.Name(), Inventory_Weapon2);
     }
 }

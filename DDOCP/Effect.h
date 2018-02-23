@@ -287,6 +287,8 @@ class Effect :
         Effect(void);
         void Write(XmlLib::SaxWriter * writer) const;
 
+        bool IncludesWeapon(WeaponType wt) const;
+        bool IncludesSpellPower(SpellPowerType sp) const;
         double Amount(size_t tier) const;
         bool VerifyObject(std::stringstream * ss) const;
 
@@ -329,12 +331,12 @@ class Effect :
                 DL_OPTIONAL_ENUM(_, FavoredEnemyType, FavoredEnemy, FavoredEnemy_Unknown, favoredEnemyTypeMap) \
                 DL_OPTIONAL_ENUM(_, SaveType, Save, Save_Unknown, saveTypeMap) \
                 DL_OPTIONAL_ENUM(_, SkillType, Skill, Skill_Unknown, skillTypeMap) \
-                DL_OPTIONAL_ENUM(_, SpellPowerType, SpellPower, SpellPower_Unknown, spellPowerTypeMap) \
+                DL_ENUM_LIST(_, SpellPowerType, SpellPower, SpellPower_Unknown, spellPowerTypeMap) \
                 DL_OPTIONAL_ENUM(_, SpellSchoolType, School, SpellSchool_Unknown, spellSchoolTypeMap) \
                 DL_OPTIONAL_ENUM(_, TacticalType, Tactical, Tactical_Unknown, tacticalTypeMap) \
                 DL_OPTIONAL_ENUM(_, WeaponClassType, WeaponClass, WeaponClass_Unknown, weaponClassTypeMap) \
                 DL_OPTIONAL_ENUM(_, WeaponDamageType, DamageType, WeaponDamage_Unknown, weaponDamageTypeMap) \
-                DL_OPTIONAL_ENUM(_, WeaponType, Weapon, Weapon_Unknown, weaponTypeMap)
+                DL_ENUM_LIST(_, WeaponType, Weapon, Weapon_Unknown, weaponTypeMap)
 
         DL_DECLARE_ACCESS(Effect_PROPERTIES)
         DL_DECLARE_VARIABLES(Effect_PROPERTIES)

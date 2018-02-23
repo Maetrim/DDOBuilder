@@ -697,11 +697,33 @@ void CDDOCPDoc::AddSkills(std::stringstream & forumExport)
                 skillRanks[(*it).Skill()]++;
                 ++it;
             }
+            CString text;
             if (skillRanks[skill] > 0)
             {
+                ClassType ct = m_characterData.LevelData(level).HasClass()
+                        ? m_characterData.LevelData(level).Class()
+                        : Class_Unknown;
+                if (IsClassSkill(ct, (SkillType)skill))
+                {
+                    text.Format("%d", skillRanks[skill]);
+                }
+                else
+                {
+                    text = "";
+                    int fullRanks = (skillRanks[skill] / 2);
+                    if (fullRanks > 0)
+                    {
+                        text.Format("%d", fullRanks);
+                    }
+                    // its a cross class skill, show in multiples of ½
+                    if (skillRanks[skill] % 2 != 0)
+                    {
+                        text += "½";
+                    }
+                }
                 forumExport.fill(' ');
                 forumExport.width(3);
-                forumExport << std::right << skillRanks[skill];
+                forumExport << std::right << text;
             }
             else
             {

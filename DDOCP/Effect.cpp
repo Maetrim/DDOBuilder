@@ -66,6 +66,38 @@ double Effect::Amount(size_t tier) const
     return amount;
 }
 
+bool Effect::IncludesWeapon(WeaponType wt) const
+{
+    bool included = false;
+    std::list<WeaponType>::const_iterator it = m_Weapon.begin();
+    while (!included && it != m_Weapon.end())
+    {
+        if ((*it) == Weapon_All
+                || (*it) == wt)
+        {
+            included = true;
+        }
+        ++it;
+    }
+    return included;
+}
+
+bool Effect::IncludesSpellPower(SpellPowerType sp) const
+{
+    bool included = false;
+    std::list<SpellPowerType>::const_iterator it = m_SpellPower.begin();
+    while (!included && it != m_SpellPower.end())
+    {
+        if ((*it) == SpellPower_All
+                || (*it) == sp)
+        {
+            included = true;
+        }
+        ++it;
+    }
+    return included;
+}
+
 bool Effect::VerifyObject(std::stringstream * ss) const
 {
     bool ok = true;
@@ -84,6 +116,14 @@ bool Effect::VerifyObject(std::stringstream * ss) const
             else if (Ability() == Ability_Unknown)
             {
                 (*ss) << "Ability effect has bad enum value\n";
+                ok = false;
+            }
+            break;
+        case Effect_EnergyAbsorbance:
+        case Effect_EnergyResistance:
+            if (!HasEnergy())
+            {
+                (*ss) << "Energy resistance/absorbance effect missing Energy field\n";
                 ok = false;
             }
             break;
@@ -138,15 +178,24 @@ bool Effect::VerifyObject(std::stringstream * ss) const
             }
             break;
         case Effect_SpellPower:
-            if (!HasSpellPower())
+            if (m_SpellPower.size() == 0)
             {
                 (*ss) << "SpellPower effect missing school field\n";
                 ok = false;
             }
-            else if (SpellPower() == SpellPower_Unknown)
+            else
             {
-                (*ss) << "SpellPower effect has bad enum value\n";
-                ok = false;
+                std::list<WeaponType>::const_iterator it = m_Weapon.begin();
+                while (it != m_Weapon.end())
+                {
+                    if ((*it) == SpellPower_Unknown)
+                    {
+                        (*ss) << "SpellPower effect has bad enum value\n";
+                        ok = false;
+                        break;
+                    }
+                    ++it;
+                }
             }
             break;
         case Effect_AttackBonus:
@@ -165,27 +214,35 @@ bool Effect::VerifyObject(std::stringstream * ss) const
         case Effect_WeaponProficiency:
         case Effect_WeaponOtherDamageBonus:
         case Effect_WeaponOtherCriticalDamageBonus:
-            if (!HasWeapon()
-                    && !HasWeaponClass()
-                    && !HasDamageType())
             {
-                (*ss) << "Weapon effect missing Weapon/Class/DamageType field\n";
-                ok = false;
-            }
-            if (HasWeapon() && Weapon() == Weapon_Unknown)
-            {
-                (*ss) << "Weapon effect has bad enum value\n";
-                ok = false;
-            }
-            if (HasWeaponClass() && WeaponClass() == WeaponClass_Unknown)
-            {
-                (*ss) << "WeaponClass effect has bad enum value\n";
-                ok = false;
-            }
-            if (HasDamageType() && DamageType() == WeaponDamage_Unknown)
-            {
-                (*ss) << "DamageType effect has bad enum value\n";
-                ok = false;
+                if (m_Weapon.size() == 0
+                        && !HasWeaponClass()
+                        && !HasDamageType())
+                {
+                    (*ss) << "Weapon effect missing Weapon/Class/DamageType field\n";
+                    ok = false;
+                }
+                std::list<WeaponType>::const_iterator it = m_Weapon.begin();
+                while (it != m_Weapon.end())
+                {
+                    if ((*it) == Weapon_Unknown)
+                    {
+                        (*ss) << "Weapon effect has bad enum value\n";
+                        ok = false;
+                        break;
+                    }
+                    ++it;
+                }
+                if (HasWeaponClass() && WeaponClass() == WeaponClass_Unknown)
+                {
+                    (*ss) << "WeaponClass effect has bad enum value\n";
+                    ok = false;
+                }
+                if (HasDamageType() && DamageType() == WeaponDamage_Unknown)
+                {
+                    (*ss) << "DamageType effect has bad enum value\n";
+                    ok = false;
+                }
             }
             break;
         case Effect_SpellLikeAbility:
@@ -266,7 +323,6 @@ bool Effect::operator==(const Effect & other) const
             && (m_Save == other.m_Save)
             && (m_hasSkill == other.m_hasSkill)
             && (m_Skill == other.m_Skill)
-            && (m_hasSpellPower == other.m_hasSpellPower)
             && (m_SpellPower == other.m_SpellPower)
             && (m_hasSchool == other.m_hasSchool)
             && (m_School == other.m_School)
@@ -276,6 +332,5 @@ bool Effect::operator==(const Effect & other) const
             && (m_WeaponClass == other.m_WeaponClass)
             && (m_hasDamageType == other.m_hasDamageType)
             && (m_DamageType == other.m_DamageType)
-            && (m_hasWeapon == other.m_hasWeapon)
             && (m_Weapon == other.m_Weapon);
 }

@@ -146,3 +146,4 @@ bool IsBow(WeaponType wt);
 bool IsCrossbow(WeaponType wt);
 bool IsRepeatingCrossbow(WeaponType wt);
 bool IsMeleeWeapon(WeaponType wt);
+bool CanEquipTo2ndWeapon(const Item & item);

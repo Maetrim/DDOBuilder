@@ -69,7 +69,7 @@ bool BreakdownItemWeaponEffects::AffectsUs(const Effect & effect) const
 {
     // affects us if its a weapon effect
     bool isUs = false;
-    if (effect.HasWeapon())
+    if (effect.Weapon().size() > 0)
     {
         isUs = true;
     }
@@ -180,14 +180,9 @@ bool BreakdownItemWeaponEffects::AffectsThisWeapon(
 {
     // determine whether this effect is applied to this weapon
     bool isUs = false;
-    if (effect.HasWeapon())
+    if (effect.IncludesWeapon(wt))
     {
-        // weapon type specified explicitly
-        if (effect.Weapon() == wt
-                || effect.Weapon() == Weapon_All)
-        {
-            isUs = true;
-        }
+        isUs = true;
     }
     if (effect.HasWeaponClass())
     {

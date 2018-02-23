@@ -20,6 +20,8 @@ namespace
     {
         // backslash is not allowed in registry key names
         key->Remove('\\');
+        // no space characters
+        key->Remove(' ');
         // line breaks not allowed either
         key->Remove('\r');
         key->Remove('\n');
@@ -2686,4 +2688,27 @@ bool IsRepeatingCrossbow(WeaponType wt)
         // all other weapon types are not a match
     }
     return isRepeatingCrossbow;
+}
+
+bool CanEquipTo2ndWeapon(const Item & item)
+{
+    // return true if this item allows an item to be equipped in off hand slot
+    bool canEquip = true;   // assume we can
+    switch (item.Weapon())
+    {
+        // only need weapon types that preclude off hand in this list
+        // TBD: Verify the list of weapons here
+        case Weapon_Falchion:
+        case Weapon_GreatAxe:
+        case Weapon_GreatClub:
+        case Weapon_GreatSword:
+        case Weapon_Handwraps:
+        case Weapon_Longbow:
+        case Weapon_Maul:
+        case Weapon_Quarterstaff:
+        case Weapon_Shortbow:
+            canEquip = false;
+            break;
+    }
+    return canEquip;
 }

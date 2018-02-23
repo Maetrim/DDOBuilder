@@ -1,5 +1,119 @@
 History of changes made
 
+Fix: Changed how items in weapon slot 1 (main hand) restrict item equip to weapon slot 2 (off hand). (Reported by Retrodark)
+Only these weapon types now restrict equipage:
+---Falchion
+---GreatAxe
+---GreatClub
+---GreatSword
+---Handwraps
+---Longbow
+---Maul
+---Quarterstaff
+---Shortbow
+Engine: Effects now support weapon lists rather than just a single weapon
+---Many enhancement trees updated to combine effects where multiple weapons are specified
+Engine: Effects now support spell power lists rather than just a single spell power
+---Many enhancement trees updated to combine effects where multiple spell powers are specified
+Fix: Ninja Spy: Deadly Striker missing T5 enhancement added (Reported by Retrodark)
+UI: Ran a spell checker over my effect descriptions file and fixed sooooooooooooo many spelling errors and typos across all items.
+Fix: Legendary Executioner's Helm now has a slavelords set bonus upgrade slot (re-equip in dialog to get correct version)
+Fix: Discerning Gaze movement speed and Alacrity bonus's are now the correct type (re-equip in dialog to get correct version)
+Fix: Red augments can now correctly be slotted into Purple and Orange Augment slots
+Fix: Yellow augments can now correctly be slotted into Orange and Green Augment slots
+Fix: Blue augments can now correctly be slotted into Purple and Green Augment slots
+Engine: Effects now check that energy/absorbance have all required fields
+---Electrocution Set Bonus: Energy Sheath fixed
+---Electrocution: Electric Absorption fixed
+---Dissolution item fixed
+---Epic Seraphim fixed
+---Mythic Seraphim fixed
+---Dumathoins Bracers fixed
+Item Selection Dialog: No longer allows you to equip a rune-arm unless you have the feat "Artificer Rune Arm Use" trained.
+Engine: On class change if you no longer have the "Artificer Rune Arm Use" feat any equipped rune arm is removed.
+Fix: Clearing a class selection which clears levels trained in that class now correctly causes available/trained feats to update.
+Fix: Item select dialog item list will now correctly save/restore column widths.
+Fix: All existing weapons checked to ensure they can accept a sentient jewel. (re-equip in dialog to get correct version)
+UI: Skill spend dialog will now highlight skill overspend
+UI: Skills dialog now shows skill points spent in cross class skills as full numbers or ½s
+Forum export: Now shows skill points spent in cross class skills as full numbers or ½s
+Fix: Revoking a/all skill/s in the skill dialog now only does a single validation at the end of the revoke, not for every skill point. Thus no longer takes 5+ minutes.
+Items added:
+---Legendary Crumbling Gloves (Reported missing by Retrodark)
+---Legendary Barovian Bastard Sword
+---Legendary Barovian Battle Axe
+---Legendary Barovian Sceptre (Club)
+---Legendary Barovian Composite Longbow
+---Legendary Barovian Composite Shortbow
+---Legendary Barovian Dart
+---Legendary Barovian Dwarven Axe
+---Legendary Barovian Falchion
+---Legendary Barovian Great Axe
+---Legendary Barovian Great Club
+---Legendary Barovian Great Crossbow
+---Legendary Barovian Great Sword
+---Legendary Barovian Hand Axe
+---Legendary Barovian Heavy Crossbow
+---Legendary Barovian Heavy Mace
+---Legendary Barovian Heavy Pick
+---Legendary Barovian Kama
+---Legendary Barovian Khopesh
+---Legendary Barovian Kukri
+---Legendary Barovian Light Crossbow
+---Legendary Barovian Light Hammer
+---Legendary Barovian Light Mace
+---Legendary Barovian Light Pick
+---Legendary Barovian Longsword
+---Legendary Barovian Maul
+---Legendary Barovian Morningstar
+---Legendary Barovian Quarterstaff
+---Legendary Barovian Rapier
+---Legendary Barovian Repeating Heavy Crossbow
+---Legendary Barovian Repeating Light Crossbow
+---Legendary Barovian Scimitar
+---Legendary Barovian Shortsword
+---Legendary Barovian Shuriken
+---Legendary Barovian Sickle
+---Legendary Barovian Throwing Axe
+---Legendary Barovian Throwing Dagger
+---Legendary Barovian Throwing Hammer
+---Legendary Barovian Warhammer
+Update 36 Items:
+---The Legendary Arc Welder (Rune-Arm)
+---Legendary Thunderstrike (Rapier)
+---Legendary Entropic Heartstone (Docent)
+---Legendary Forge (Warhammer)
+---Legendary Light Boltslinger (Light Repeater)
+---Legendary Stonework Beam (Quarterstaff)
+---Legendary Heavy Boltslinger (Heavy Repeater)
+---Legendary Drowhunter (Dwarven Axe)
+---Legendary Wave of Sorrow (Great Sword)
+---Legendary Dwarven Brawler's Wraps (Handwraps)
+---Legendary Deep Demise (Dagger)
+---Legendary Graz'zt's Habiliment (Light Armor)
+---Legendary Wave of Despair (Bastard Sword)
+Update 35 Items:
+---Legendary Emissary's Stone (Docent)
+---Legendary Flame Sphere (Orb)
+---Legendary Glacial Sphere (Orb)
+---Legendary Acidic Sphere (Orb)
+---Legendary Bolt Sphere (Orb)
+---Legendary Scales of Malice (Medium Armor)
+---Legendary Scales of Avarice (Heavy Armor)
+---Legendary Scale-Stone of Malice (Docent)
+---Legendary Scale-Stone of Avarice (Docent)
+---Legendary Forgotten Axe (Hand Axe)
+Update 34 Items:
+---Epic Returning Snowball (Dart)
+---Epic Whirling Words (Rune-Arm)
+Update 33 Items: No items in this release to add
+Update 32 Items:
+---Legendary Executioner's Platemail (Heavy Armor)
+---Legendary Executioner's Docent (Docent)
+---Legendary Mutilator of Minds (Orb)
+
+version 1.0.0.24
+
 Fix: Equipment view will no longer disable weapon slot 2 for single handed weapons that can only equip to one slot.
 ---See items Hope/Null Scimitars and Sinister Hand axe which is the same item but different effects when in either slot.
 Engine: Feature to allow effects can now apply conditionally if they are in a specific inventory slot REMOVED.
@@ -8,7 +122,7 @@ Engine: Bonus type Orb added.
 Engine: Energy types Str, Int, Wis, Dex, Con and Cha added.
 Feats: Crippling strike feat effect fixed to use new energy type Strength.
 Fix: Changing characters will no longer carry over weapon effects from one build to the next.
-New: Damage effects which scale based on the base critical mulitplier of a weapon now work correctly
+New: Damage effects which scale based on the base critical multiplier of a weapon now work correctly
 ---See Echo of Ravenkind (Trinket) Eternal Holy Burst effect for an example
 Fix: Tempest Storm dancer damage bonus now shows its electric damage
 Fix: Henshin Mystic Lighting the candle now shows its fire/force damage

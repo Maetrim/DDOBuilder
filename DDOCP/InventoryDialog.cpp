@@ -138,12 +138,10 @@ void CInventoryDialog::OnPaint()
     for (size_t i = Inventory_Unknown + 1; i < Inventory_Count; ++i)
     {
         if (i == Inventory_Weapon2
-             && m_gearSet.HasItemInSlot(Inventory_Weapon1)
-                && (IsTwoHandedWeapon(m_gearSet.ItemInSlot(Inventory_Weapon1).Weapon())
-                    || IsRangedWeapon(m_gearSet.ItemInSlot(Inventory_Weapon1).Weapon())
-                    || m_gearSet.ItemInSlot(Inventory_Weapon1).Weapon() == Weapon_Handwraps))
+                && m_gearSet.HasItemInSlot(Inventory_Weapon1)
+                && !CanEquipTo2ndWeapon(m_gearSet.ItemInSlot(Inventory_Weapon1)))
         {
-            // Two handed item equipped in main hand
+            // Weapon equipped in main hand that precludes weapon in off hand
             // do not permit selection of an item in the off hand slot
             CRect itemRect = m_hitBoxes[i - 1].Rect();
             m_imagesCannotEquip.TransparentBlt(

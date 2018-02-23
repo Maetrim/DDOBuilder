@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 #include "ItemSelectDialog.h"
+#include "Character.h"
 #include "GlobalSupportFunctions.h"
 #include "MouseHook.h"
 
@@ -23,11 +24,11 @@ CItemSelectDialog::CItemSelectDialog(
         CWnd* pParent,
         InventorySlotType slot,
         const Item & item,
-        RaceType race) :
+        Character * pCharacter) :
     CDialog(CItemSelectDialog::IDD, pParent),
     m_slot(slot),
     m_item(item),
-    m_race(race),
+    m_pCharacter(pCharacter),
     m_bInitialising(false),
     m_showingTip(false),
     m_tipCreated(false),
@@ -45,8 +46,9 @@ CItemSelectDialog::CItemSelectDialog(
         m_weaponType = m_item.Weapon();
     }
     // race overrides current armor type
-    if (m_race == Race_Warforged
-            || m_race == Race_BladeForged)
+    RaceType race = m_pCharacter->Race();
+    if (race == Race_Warforged
+            || race == Race_BladeForged)
     {
         m_armorType = Armor_Docent;
     }
@@ -156,7 +158,6 @@ BOOL CItemSelectDialog::OnInitDialog()
             | LVS_EX_TRACKSELECT
             //| LVS_EX_LABELTIP); // stop hover tooltips from working
             );
-    LoadColumnWidthsByName(&m_availableItemsCtrl, "ItemSelectDialog_%s");
     EnableControls();
 
     //m_sizer.Hook(GetSafeHwnd(), "ItemSelectDialog");
@@ -197,6 +198,7 @@ BOOL CItemSelectDialog::OnInitDialog()
         }
     }
 
+    LoadColumnWidthsByName(&m_availableItemsCtrl, "ItemSelectDialog_%s");
     m_bInitialising = false;
     return TRUE;  // return TRUE unless you set the focus to a control
     // EXCEPTION: OCX Property Pages should return FALSE
@@ -212,6 +214,7 @@ void CItemSelectDialog::PopulateAvailableItemList()
     m_availableItemsCtrl.LockWindowUpdate();
     m_availableItemsCtrl.DeleteAllItems();
 
+    RaceType race = m_pCharacter->Race();
     // filter the list of items loaded to those that match the slot type
     const std::list<Item> & allItems = Items();
     m_availableItems.clear();
@@ -230,7 +233,7 @@ void CItemSelectDialog::PopulateAvailableItemList()
                 if (m_armorType == Armor_Unknown
                         && (*it).Armor() == Armor_Docent)
                 {
-                    if (m_race != Race_Warforged && m_race != Race_BladeForged)
+                    if (race != Race_Warforged && race != Race_BladeForged)
                     {
                         // can't select docents for non-forged characters
                         canSelect = false;
@@ -897,7 +900,8 @@ void CItemSelectDialog::SetupFilterCombobox()
     int selItem = 0;        // assume 1st item
     if (m_slot == Inventory_Armor)
     {
-        bool construct = (m_race == Race_Warforged || m_race == Race_BladeForged);
+        RaceType race = m_pCharacter->Race();
+        bool construct = (race == Race_Warforged || race == Race_BladeForged);
         // limit to docent only for constructs
         if (construct)
         {
@@ -948,10 +952,10 @@ void CItemSelectDialog::SetupFilterCombobox()
         // any one handed weapon
         for (size_t i = Weapon_Unknown; i < Weapon_Count; ++i)
         {
-            if ((IsOneHandedWeapon((WeaponType)i)
+            if (IsOneHandedWeapon((WeaponType)i)
                     || IsShield((WeaponType)i)
                     || i == Weapon_Orb
-                    || i == Weapon_RuneArm)
+                    || (i == Weapon_RuneArm && m_pCharacter->IsFeatTrained("Artificer Rune Arm Use"))
                     && i != Weapon_BastardSword)
             {
                 // we can add this one
