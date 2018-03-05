@@ -46,7 +46,6 @@ enum EffectType
     Effect_CriticalMultiplier19To20,
     Effect_CriticalRange,
     Effect_DamageBonus,
-    Effect_DamageReduction,
     Effect_DragonmarkUse,
     Effect_DodgeBonus,
     Effect_DodgeBonusTowerShield,
@@ -174,7 +173,6 @@ const XmlLib::enumMapEntry<EffectType> effectTypeMap[] =
     {Effect_CriticalMultiplier19To20, L"CriticalMultiplier19To20"},
     {Effect_CriticalRange, L"CriticalRange"},
     {Effect_DamageBonus, L"DamageBonus"},
-    {Effect_DamageReduction, L"DamageReduction"},
     {Effect_DragonmarkUse, L"DragonmarkUse"},
     {Effect_DodgeBonus, L"DodgeBonus"},
     {Effect_DodgeBonusTowerShield, L"DodgeBonusTowerShield"},
@@ -323,7 +321,7 @@ class Effect :
                 DL_STRING_VECTOR(_, Stance) \
                 DL_OPTIONAL_STRING(_, EnhancementTree) \
                 DL_OPTIONAL_STRING(_, SpellLikeAbility) \
-                DL_OPTIONAL_STRING(_, Immunity) \
+                DL_STRING_LIST(_, Immunity) \
                 DL_OPTIONAL_ENUM(_, AbilityType, Ability, Ability_Unknown, abilityTypeMap) \
                 DL_OPTIONAL_ENUM(_, ClassType, Class, Class_Unknown, classTypeMap) \
                 DL_ENUM_LIST(_, DamageReductionType, DR, DR_Unknown, drTypeMap) \

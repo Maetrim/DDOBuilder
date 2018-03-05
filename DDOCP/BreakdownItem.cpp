@@ -31,16 +31,14 @@ void BreakdownItem::PopulateBreakdownControl(CListCtrl * pControl)
     pControl->DeleteAllItems();
     // add all the items
     AddActiveItems(m_otherEffects, pControl);
-    AddActiveItems(m_featEffects, pControl);
-    AddActiveItems(m_enhancementEffects, pControl);
+    AddActiveItems(m_effects, pControl);
     std::list<ActiveEffect> itemEffects = m_itemEffects;
     std::list<ActiveEffect> nonStackingEffects;
     RemoveNonStacking(&itemEffects, &nonStackingEffects);
     AddActiveItems(itemEffects, pControl);
     // finally add the active percentage items
     AddActivePercentageItems(m_otherEffects, pControl);
-    AddActivePercentageItems(m_featEffects, pControl);
-    AddActivePercentageItems(m_enhancementEffects, pControl);
+    AddActivePercentageItems(m_effects, pControl);
     AddActivePercentageItems(itemEffects, pControl);
 
 
@@ -48,8 +46,7 @@ void BreakdownItem::PopulateBreakdownControl(CListCtrl * pControl)
     // also show inactive and non stack effects if we have any so user
     // knows which duplicate effects they have in place
     AddDeactiveItems(m_otherEffects, pControl);
-    AddDeactiveItems(m_featEffects, pControl);
-    AddDeactiveItems(m_enhancementEffects, pControl);
+    AddDeactiveItems(m_effects, pControl);
     AddDeactiveItems(m_itemEffects, pControl);
     if (nonStackingEffects.size() > 0)
     {
@@ -85,8 +82,7 @@ void BreakdownItem::SetCharacter(Character * pCharacter, bool observe)
     // need to regenerate all the items that are used to
     // calculate the total for this breakdown
     m_otherEffects.clear();
-    m_featEffects.clear();
-    m_enhancementEffects.clear();
+    m_effects.clear();
     m_itemEffects.clear();
     if (m_pCharacter != NULL)
     {
@@ -125,8 +121,7 @@ double BreakdownItem::Total() const
     // to sum the total, just get the contributions of all the stacking effects
     double total = 0;
     total += SumItems(m_otherEffects);
-    total += SumItems(m_featEffects);
-    total += SumItems(m_enhancementEffects);
+    total += SumItems(m_effects);
 
     std::list<ActiveEffect> itemEffects = m_itemEffects;
     std::list<ActiveEffect> nonStackingEffects;
@@ -135,8 +130,7 @@ double BreakdownItem::Total() const
 
     // now apply percentage effects
     total = DoPercentageEffects(m_otherEffects, total);
-    total = DoPercentageEffects(m_featEffects, total);
-    total = DoPercentageEffects(m_enhancementEffects, total);
+    total = DoPercentageEffects(m_effects, total);
     total = DoPercentageEffects(m_itemEffects, total);
     return total;
 }
@@ -354,12 +348,12 @@ void BreakdownItem::AddOtherEffect(const ActiveEffect & effect)
 
 void BreakdownItem::AddFeatEffect(const ActiveEffect & effect)
 {
-    AddEffect(&m_featEffects, effect);
+    AddEffect(&m_effects, effect);
 }
 
 void BreakdownItem::AddEnhancementEffect(const ActiveEffect & effect)
 {
-    AddEffect(&m_enhancementEffects, effect);
+    AddEffect(&m_effects, effect);
 }
 
 void BreakdownItem::AddItemEffect(const ActiveEffect & effect)
@@ -374,12 +368,12 @@ void BreakdownItem::RevokeOtherEffect(const ActiveEffect & effect)
 
 void BreakdownItem::RevokeFeatEffect(const ActiveEffect & effect)
 {
-    RevokeEffect(&m_featEffects, effect);
+    RevokeEffect(&m_effects, effect);
 }
 
 void BreakdownItem::RevokeEnhancementEffect(const ActiveEffect & effect)
 {
-    RevokeEffect(&m_enhancementEffects, effect);
+    RevokeEffect(&m_effects, effect);
 }
 
 void BreakdownItem::RevokeItemEffect(const ActiveEffect & effect)
@@ -524,8 +518,7 @@ bool BreakdownItem::UpdateTreeItemTotals()
     // check all items that are dependent on AP spent in a tree
     bool itemChanged = false;
     itemChanged |= UpdateTreeItemTotals(&m_otherEffects);
-    itemChanged |= UpdateTreeItemTotals(&m_featEffects);
-    itemChanged |= UpdateTreeItemTotals(&m_enhancementEffects);
+    itemChanged |= UpdateTreeItemTotals(&m_effects);
     itemChanged |= UpdateTreeItemTotals(&m_itemEffects);
 
     if (itemChanged)
@@ -608,7 +601,16 @@ bool BreakdownItem::GetActiveEffect(
     {
         divider = effect.Divider();
     }
-    if (effect.HasAmountPerLevel())
+    if (effect.Type() == Effect_DR)
+    {
+        *activeEffect = ActiveEffect(
+                effect.Bonus(),
+                name,
+                effect.Amount(),
+                effect.DR(),
+                1);
+    }
+    else if (effect.HasAmountPerLevel())
     {
         ASSERT(effect.HasClass());
         size_t levels = m_pCharacter->ClassLevels(MAX_LEVEL)[effect.Class()];
@@ -738,6 +740,14 @@ bool BreakdownItem::GetActiveEffect(
         {
             hasActiveEffect = false;
         }
+    }
+    else if (effect.Immunity().size() > 0)
+    {
+        *activeEffect = ActiveEffect(
+                effect.Bonus(),
+                name,
+                effect.Immunity(),
+                1);
     }
     if (effect.HasFeat())
     {
@@ -929,8 +939,7 @@ void BreakdownItem::UpdateTotalChanged(BreakdownItem * item, BreakdownType type)
     // check all items that are dependent on AP spent in a tree
     bool itemChanged = false;
     itemChanged |= UpdateEffectAmounts(&m_otherEffects, type);
-    itemChanged |= UpdateEffectAmounts(&m_featEffects, type);
-    itemChanged |= UpdateEffectAmounts(&m_enhancementEffects, type);
+    itemChanged |= UpdateEffectAmounts(&m_effects, type);
     itemChanged |= UpdateEffectAmounts(&m_itemEffects, type);
 
     if (itemChanged)
@@ -948,12 +957,11 @@ void BreakdownItem::UpdateClassChanged(
 {
     bool itemChanged = false;
     itemChanged |= UpdateEffectAmounts(&m_otherEffects, classFrom);
-    itemChanged |= UpdateEffectAmounts(&m_featEffects, classFrom);
-    itemChanged |= UpdateEffectAmounts(&m_enhancementEffects, classFrom);
+    itemChanged |= UpdateEffectAmounts(&m_effects, classFrom);
     itemChanged |= UpdateEffectAmounts(&m_itemEffects, classFrom);
+
     itemChanged |= UpdateEffectAmounts(&m_otherEffects, classTo);
-    itemChanged |= UpdateEffectAmounts(&m_featEffects, classTo);
-    itemChanged |= UpdateEffectAmounts(&m_enhancementEffects, classTo);
+    itemChanged |= UpdateEffectAmounts(&m_effects, classTo);
     itemChanged |= UpdateEffectAmounts(&m_itemEffects, classTo);
 
     if (itemChanged)

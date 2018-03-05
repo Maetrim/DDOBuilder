@@ -111,6 +111,12 @@
     <EffectDescription>Air Guard: This item stores the incredible, dynamic power of the air deep within. When the wearer of this item is successfully attacked in melee, this power occasionally comes to the surface, knocking enemies over or speeding up the wearer with rushing winds.</EffectDescription>
     <EffectDescription>Anthem: When wielded by a character with Bard levels, this item begins to hum an inspiring tune. Your bard songs regenerate slowly over time.</EffectDescription>
     <EffectDescription>Armor Bonus +1: This item surrounds the wearer with an invisible but tangible field of force, granting +1 armor bonus to AC, just as though you were wearing armor.</EffectDescription>
+        <EffectDescription>Quality Armor Bonus +4: This item surrounds the wearer with an invisible but tangible field of force, granting +4 armor bonus to AC, just as though you were wearing armor.</EffectDescription>
+        <Effect>
+            <Type>ACBonus</Type>
+            <Bonus>Quality</Bonus>
+            <Amount>4</Amount>
+        </Effect>
     <EffectDescription>Armor Mastery +1: Passive: +1 Enhancement bonus to the Max Dex Bonus of your equipped light, medium or heavy armor. This benefit does not apply to the Max Dex Bonus of a Tower Shield</EffectDescription>
         <EffectDescription>Armor-Piercing +32: +32 Enhancement bonus to bypass enemy fortification.</EffectDescription>
         <Effect>
@@ -190,6 +196,7 @@
     <EffectDescription>Demonic Curse: Each time you are hit in melee combat this is a chance that your attacker will be cursed.</EffectDescription>
     <EffectDescription>Demonic Might: This item gives the wearer the power of a demon, granting a +2 Profane bonus to Strength.</EffectDescription>
     <EffectDescription>Demonic Shield: Each time you are it in melee combat there is a chance that a shield of demonic energy will grant you 30 temporary hit points.</EffectDescription>
+        <EffectDescription>Improved Demonic Shield: Each time you are it in melee combat there is a chance that a shield of demonic energy will grant you 120 profane bonus to temporary hit points.</EffectDescription>
     <EffectDescription>Demonic Retribution: Each time you are it in melee combat there is a chance that a demonic force will strike back at your attacker hitting them with an Inflict Moderate Wounds spell.</EffectDescription>
     <EffectDescription>Disintegration Guard: This item has a store of dark insidious power deep within. When hit in melee, this power occasionally lashes out violently at enemies an attempts to disintegrate them.</EffectDescription>
     <EffectDescription>Distant Diversion +10: +10 Enhancement bonus to Decreased threat generated from ranged damage.</EffectDescription>
@@ -223,7 +230,13 @@
     <EffectDescription>Earthgrab Guard: This items stores the implacable strength of the earth deep within. When the wearer is hit in melee, this power will occasionally come to the surface calling on earth to erupt from the ground and hold an enemy in place.</EffectDescription>
     <EffectDescription>Elemental Resistance +10: Passive: +10 Enhancement bonus to Acid, Cold, Electric, Fire and Sonic resistance.</EffectDescription>
     <EffectDescription>Superior Acid Resistance: +40 Enhancement bonus to resist Acid.</EffectDescription>
-    <EffectDescription>Superior Cold Resistance: +40 Enhancement bonus to resist Cold.</EffectDescription>
+        <EffectDescription>Cold Resistance: +50 Enhancement bonus to resist Cold.</EffectDescription>
+        <Effect>
+            <Type>EnergyResistance</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>50</Amount>
+            <Energy>Cold</Energy>
+        </Effect>
     <EffectDescription>Greater Lightning Resistance: +30 Enhancement bonus to resist Electric.</EffectDescription>
     <EffectDescription>Superior Electric Resistance: +40 Enhancement bonus to resist Electric.</EffectDescription>
     <EffectDescription>Superior Fire Resistance: +40 Enhancement bonus to resist Fire.</EffectDescription>
@@ -299,6 +312,12 @@
             <Immunity>Fear</Immunity>
         </Effect>
     <EffectDescription>Immunity to Slippery Surfaces: The wearer of this item is not affected when walking on slippery surfaces.</EffectDescription>
+        <EffectDescription>Petrification Immunity: This item give simmunity to Petrification.</EffectDescription>
+        <Effect>
+            <Type>Immunity</Type>
+            <Bonus>Equipment</Bonus>
+            <Immunity>Petrification</Immunity>
+        </Effect>
     <EffectDescription>Improved Quelling Strikes: On Vorpal Melee: Applies Quell to the target enemy for six seconds, rendering then unable to cast divine spells. 50% chance of peventing the target from casting all spells for 3 seconds (12 second cooldown).</EffectDescription>
     <EffectDescription>Lesser Displacement: Equipping this item causes light to distort around you. Attacks from enemies have a 25% chance to miss you due to concealment.</EffectDescription>
         <EffectDescription>Magical Sheltering +52: This item provides a +52 Enhancement bonus to your Magical Resistance Rating.</EffectDescription>
@@ -377,6 +396,13 @@
             <Amount>23</Amount>
             <SpellPower>All</SpellPower>
         </Effect>
+        <EffectDescription>Insightful Potency +10: Passive: +10 Insight Bonus to Universal Spell Power.</EffectDescription>
+        <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Insightful</Bonus>
+            <Amount>10</Amount>
+            <SpellPower>All</SpellPower>
+        </Effect>
     <EffectDescription>Proof Against Disease +6: This item grants its wearer immunity to natural disease and also grants a +6 Enhancement bonus to saving throws against magical diseases.</EffectDescription>
     <EffectDescription>Proof Against Poison +10: This item grants its wearer immunity to natural poisons and also grants a +10 Enhancement bonus to saving throws against magical poisons.</EffectDescription>
     <EffectDescription>Protection +1: Passive: +1 Deflection Bonus to Armor Class.</EffectDescription>
@@ -386,7 +412,7 @@
         <Effect>
             <Type>WeaponBaseDamageBonus</Type>
             <Bonus>Stacking</Bonus>
-            <Amount>1.0</Amount>
+            <Amount>0.5</Amount>
             <Weapon>Handwraps</Weapon>
             <Weapon>Unarmed</Weapon>
         </Effect>
@@ -454,6 +480,17 @@
             <Bonus>Enhancement</Bonus>
             <Amount>50</Amount>
          </Effect>
+        <EffectDescription>Insightful Sheltering +5: This item provides a +5 Insight bonus to your Physical and Magical Resistance Ratings.</EffectDescription>
+         <Effect>
+            <Type>PRR</Type>
+            <Bonus>Insightful</Bonus>
+            <Amount>5</Amount>
+         </Effect>
+         <Effect>
+            <Type>MRR</Type>
+            <Bonus>Insightful</Bonus>
+            <Amount>5</Amount>
+         </Effect>
     <EffectDescription>Skill +20: Passive: +20 Competence Bonus to the ? skill.</EffectDescription>
     <EffectDescription>Dexterity Skill - Exceptional Bonus +6: Passive +6 Exceptional Bonus to Balance, hide, Move Silently, Open Lock and Tumble.</EffectDescription>
     <EffectDescription>Intelligence Skill - Exceptional Bonus +6: Passive +6 Exceptional Bonus to Disable Device, Repair, Search and Spell Craft.</EffectDescription>
@@ -465,7 +502,17 @@
             <Tactical>Sunder</Tactical>
         </Effect>
     <EffectDescription>Shield +6: While this item is equipped, you are partially protected by a field of magical force which can deflect enemy attacks. This item provides a +6 Shield bonus t AC. It does not stack with an equipped shield.</EffectDescription>
-    <EffectDescription>Sneak Attack Bonus +5: Provides a +5 to attack bonus and a +8 to damage for any attack that would qualify as a sneak attack, even if the wielder is not a Rogue.</EffectDescription>
+        <EffectDescription>Insightful Sneak Attack Bonus +6: Provides a +6 Insight modifier to attack bonus and a +9 Insight bonus to damage for any attack that would qualify as a sneak attack, even if the wielder is not a Rogue.</EffectDescription>
+        <Effect>
+            <Type>SneakAttackAttack</Type>
+            <Bonus>Insightful</Bonus>
+            <Amount>6</Amount>
+        </Effect>
+        <Effect>
+            <Type>SneakAttackDamage</Type>
+            <Bonus>Insightful</Bonus>
+            <Amount>9</Amount>
+        </Effect>
         <EffectDescription>Soundproof: Protects against stunning, dazing and disorientation from sound-based spells such as Soundburst and Greater Shout.</EffectDescription>
         <Effect>
             <Type>Immunity</Type>
@@ -527,7 +574,12 @@
     <EffectDescription>Spike Guard: On Being Hit in Melee: 5% chance to do 100 to 500 Pierce Damage to the Attacker.</EffectDescription>
     <EffectDescription>Spike-Studded: This item is reinforced with metal studs that improve your unarmed strikes. Your unarmed attacks do an additional 1 to 4 piercing damage.</EffectDescription>
     <EffectDescription>Staggering Blow: This item is enchanted to make your attacks send enemies reeling. When you roll a 20 on an attack with a melee weapon you will knock the target down unless it makes a DC 17 Balance check.</EffectDescription>
-    <EffectDescription>Stealth Strike 15%: Reduces the threat generated by ranged attacks and spells by 15%</EffectDescription>
+        <EffectDescription>Stealth Strike 15%: Reduces the threat generated by ranged attacks and spells by 15%</EffectDescription>
+        <Effect>
+            <Type>ThreatBonusRanged</Type>
+            <Bonus>Equipment</Bonus>
+            <Amount>-15</Amount>
+        </Effect>
     <EffectDescription>Striding +30%: Makes the wearer more fleet of foot, giving a +30% bonus to run speed.</EffectDescription>
     <EffectDescription>Stone Prison Guard: This item has a chance to turn those who hit you to stone. A successful Fortitude DC17 save will negate this effect.</EffectDescription>
         <EffectDescription>Stunning +22: If this effect is on a weapon, each attack that deals damage has a 3% chance to stun the target if it fails a DC 35 Fortitude Save. In addition this effect gives a +12 Enhancement bonus to the DC of your Stunning Blow/Fist abilities.</EffectDescription>
@@ -547,7 +599,13 @@
     <EffectDescription>Tet-zik, The Enlightened Change: Whispers of the ancients grant you the ancient martial secrets of the Thri-Kreen. Your elemental monk stances grant additional bonuses.</EffectDescription>
     <EffectDescription>Underwater Action: This item grants its wearer the ability to breathe water as if it were air.</EffectDescription>
     <EffectDescription>Vengeful Fury: On Taking Damage: Gain a 5% Insight Bonus to Doublestrike and a +4 Rage Bonus to your Attack Bonus.</EffectDescription>
-    <EffectDescription>Vertigo +12: +12 Enhancement bonus to the DC to resist Trip and Improved Trip attempts.</EffectDescription>
+        <EffectDescription>Vertigo +15: +15 Enhancement bonus to the DC to resist Trip and Improved Trip attempts.</EffectDescription>
+         <Effect>
+            <Type>TacticalDC</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>15</Amount>
+            <Tactical>Trip</Tactical>
+         </Effect>
         <EffectDescription>Vitality +60: Passive: +60 Vitality bonus to Hit points.</EffectDescription>
         <Effect>
             <Type>Hitpoints</Type>
@@ -560,6 +618,12 @@
             <Type>SpellPoints</Type>
             <Bonus>Equipment</Bonus>
             <Amount>412</Amount>
+        </Effect>
+        <EffectDescription>Quality Wizardry +77: Passive: +77 Quality Bonus to Spell Points. (If you have Sorcerer or Favored Soul levels, you gain additional spell points proportionate to the ratio of those levels to other classes).</EffectDescription>
+        <Effect>
+            <Type>SpellPoints</Type>
+            <Bonus>Quality</Bonus>
+            <Amount>77</Amount>
         </Effect>
     <EffectDescription>Insightful Wizardry +189: Passive: +189 Insight Bonus to Spell Points. (If you have Sorcerer or Favored Soul levels, you gain additional spell points proportionate to the ratio of those levels to other classes).</EffectDescription>
     <EffectDescription>Wondrous Craftsmanship: This item's enchantments are more powerful than is normal for an item of this level. (+2 Total Enhancement Value)</EffectDescription>
@@ -694,6 +758,18 @@
     <EffectDescription>True Seeing: Passive: You gain the benefit of the spell True Seeing</EffectDescription>
     <EffectDescription>Enhanced Ki +3: Increases the rate at which the user gains ki with each successful attack.</EffectDescription>
     <EffectDescription>Dazing X: On Hit: Your target suffers a -1 Penalty to Will Saving Throws for 6 seconds. This effect stacks up to 5 times. This effect effect may only occur on-hit once every three seconds. Passive: The DC of your Stunning Blow/Fist combat feats are increased by 15.</EffectDescription>
+        <Effect>
+            <Type>TacticalDC</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>15</Amount>
+            <Tactical>Stunning Blow</Tactical>
+        </Effect>
+        <Effect>
+            <Type>TacticalDC</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>15</Amount>
+            <Tactical>Stunning Fist</Tactical>
+        </Effect>
     <EffectDescription>Intercession Ward: Protects the user's connection to a source of Divine power and wards that connection from such things as a Quell's intercession ability. This effect only protects from incoming attacks and will not restore a lost connection.</EffectDescription>
     <EffectDescription>Fire Lore VIII: Passive: Your Fire spells gain a +18% Equipment Bonus to their chance to Critical Hit.</EffectDescription>
     <EffectDescription>Dream Vision +5: Passive: +5 Competence bonus to Attack and Damage rolls. Your melee and ranged attacks are also considered to have Ghost Touch.</EffectDescription>
@@ -717,8 +793,18 @@
     <EffectDescription>Lesser Heighten: Lesser Heighten allows spell casters to use the Metamagic Heighten feat at no additional SP cost. Duration: 20 seconds, 5 Charges.</EffectDescription>
     <EffectDescription>Deific Focus II: On Spell Cast: +1 Sacred Bonus to DC of that school for five seconds. Stacks up to 2 times. Casting a spell from another school clears all stacks of this effect.</EffectDescription>
     <EffectDescription>Relentless Fury: While this item is equipped, any killing blows you strike against enemies may drive you into a furious rage, providing a 5% Enhancement damage bonus to your melee, ranged and unarmed attacks for 30 seconds. Slaying weaker opponents has a reduced chance of producing this effect.</EffectDescription>
-    <EffectDescription>Ranged Power +6: This item provides a +6 Enhancement bonus to Ranged power.</EffectDescription>
-    <EffectDescription>Melee Power +6: This item provides a +6 Enhancement bonus to Melee power.</EffectDescription>
+        <EffectDescription>Ranged Power +6: This item provides a +6 Enhancement bonus to Ranged power.</EffectDescription>
+        <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>6</Amount>
+        </Effect>
+        <EffectDescription>Melee Power +6: This item provides a +6 Enhancement bonus to Melee power.</EffectDescription>
+            <Effect>
+                <Type>MeleePower</Type>
+                <Bonus>Enhancement</Bonus>
+                <Amount>6</Amount>
+            </Effect>
     <EffectDescription>Tendon Slice 6%: this effect gives a 6% chance to Hamstring the target for each attack that does damage.</EffectDescription>
     <EffectDescription>Unbreakable Adamancy: This item is part of the Unbreakable Adamancy set. When two items from this set are equipped, you gain a +5 Luck bonus to PRR and MRR.</EffectDescription>
     <EffectDescription>Sacred: An item with this quality assists only wearers who have the ability to turn undead. Sacred items increase the owner's effective level for the turning check by +2.</EffectDescription>
@@ -1052,6 +1138,13 @@
             <Percent/>
         </Effect>
         <EffectDescription>Greater Reinforced Fists: This item surrounds your fists with kinetic energy. Your unarmed damage is boosted by one die.</EffectDescription>
+        <Effect>
+            <Type>WeaponBaseDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Amount>1.0</Amount>
+            <Weapon>Handwraps</Weapon>
+            <Weapon>Unarmed</Weapon>
+        </Effect>
         <EffectDescription>Stunning +22: +22 Enhancement bonus to the DC of your Stunning Blow/Fist abilities.</EffectDescription>
         <EffectDescription>Curse Resistance +16: This item gives a +16 Resistance bonus to saves versus curses.</EffectDescription>
         <EffectDescription>Crypt Raider Set (Legendary):
@@ -1129,6 +1222,18 @@
         <EffectDescription>+12 Enhancement Bonus: +12 Enhancement bonus to attack and Damage rolls.</EffectDescription>
         <EffectDescription>Limb Chopper: This potent and feared ability allows the weapon to sever the limbs of those it strikes. On an attack roll of 20 which is confirmed as a critical hit, the weapon severs an opponent's limb from its body. Some creatures, including many aberrations and all oozes, have no limbs. Others, such as golems and undead creatures, are not affected by the loss of their limbs. Most other creatures, however, have their movement slowed 75% and attacks slowed by 50% when a limb is cut off.</EffectDescription>
         <EffectDescription>Bloodletter VII: On Critical Hit: 15 to 90 Slashing damage from weapons with a x2 Critical Multiplier, 15 to 120 for x3 and 15 to 150 for x4 or greater.</EffectDescription>
+         <Effect>
+            <DisplayName>Bloodletter VII</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+            <CriticalMultiplier/>
+              <Dice>
+                 <Number size="4">0 1 2 3</Number>
+                 <Sides size="4">10 10 10 10</Sides>
+                 <Energy>Good</Energy>
+              </Dice>
+         </Effect>
         <EffectDescription>Flametouched Iron: A flametouched iron weapon is treated as a good-aligned weapon.</EffectDescription>
 
         <EffectDescription>Spell Sight +22: Passive: +20 Competence Bonus to the Spell Craft skill.</EffectDescription>
@@ -1315,6 +1420,26 @@
             <Save>Curse</Save>
         </Effect>
         <EffectDescription>Greater Bleeding: This weapon is precisely sharp and will do an additional 8 to 40 damage to targets that are vulnerable to bleeding.</EffectDescription>
+            <Effect>
+                <DisplayName>Greater Bleeding</DisplayName>
+                <Type>WeaponOtherDamageBonus</Type>
+                <Bonus>Enhancement</Bonus>
+                <Dice>
+                    <Number size="1">8</Number>
+                    <Sides size="1">5</Sides>
+                </Dice>
+                <Weapon>All</Weapon>
+            </Effect>
+            <Effect>
+                <DisplayName>Greater Bleeding</DisplayName>
+                <Type>WeaponOtherCriticalDamageBonus</Type>
+                <Bonus>Enhancement</Bonus>
+                <Dice>
+                    <Number size="1">8</Number>
+                    <Sides size="1">5</Sides>
+                </Dice>
+                <Weapon>All</Weapon>
+            </Effect>
         <EffectDescription>Greater Maiming: This weapon has a twisted haft or grip and spikes along its blade, or point. Whenever you score a critical hit with this weapon it deals an amount of extra untyped damage depending on its critical multiplier: x2 - 8 to 48, x3 - 12 to 72, x4 - 16 to 96.</EffectDescription>
             <Effect>
                 <DisplayName>Greater Maiming x3</DisplayName>
@@ -1679,6 +1804,7 @@
             <Dice>
                 <Number size="1">2</Number>
                 <Sides size="1">8</Sides>
+                <Energy>Bleeding</Energy>
             </Dice>
             <Weapon>All</Weapon>
         </Effect>
@@ -1689,6 +1815,7 @@
             <Dice>
                 <Number size="1">2</Number>
                 <Sides size="1">8</Sides>
+                <Energy>Bleeding</Energy>
             </Dice>
             <Weapon>All</Weapon>
         </Effect>
@@ -2372,6 +2499,238 @@
                 <Number size="1">2</Number>
                 <Sides size="1">10</Sides>
                 <Energy>Bludgeon</Energy>
+            </Dice>
+            <Weapon>All</Weapon>
+        </Effect>
+        <EffectDescription>Healers Bounty: This shield has a small percentage chance to cast a Heal Spell on you when you take damage.</EffectDescription>
+        <EffectDescription>Bashing 7: Extra 7d6 damage when used to shield bash.</EffectDescription>
+        <Effect>
+            <DisplayName>Bashing 7</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Equipment</Bonus>
+            <Dice>
+                <Number size="1">7</Number>
+                <Sides size="1">6</Sides>
+                <Energy>Bludgeon</Energy>
+            </Dice>
+            <Weapon>Large Shield</Weapon>
+        </Effect>
+        <Effect>
+            <DisplayName>Bashing 7</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Equipment</Bonus>
+            <Dice>
+                <Number size="1">7</Number>
+                <Sides size="1">6</Sides>
+                <Energy>Bludgeon</Energy>
+            </Dice>
+            <Weapon>Large Shield</Weapon>
+        </Effect>
+        <EffectDescription>Improved Bashing X: On Shield Bash: +5d4 Bludgeoning damage. On Melee Hit: +20% Chance to automatically hit your enemy with a Shield Bash attack.</EffectDescription>
+         <Effect>
+            <Type>SecondaryShieldBash</Type>
+            <Bonus>Equipment</Bonus>
+            <Amount>20</Amount>
+         </Effect>
+        <Effect>
+            <DisplayName>Improved Bashing X</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Equipment</Bonus>
+            <Dice>
+                <Number size="1">5</Number>
+                <Sides size="1">4</Sides>
+                <Energy>Bludgeon</Energy>
+            </Dice>
+            <Weapon>All</Weapon>
+        </Effect>
+        <Effect>
+            <DisplayName>Improved Bashing X</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Equipment</Bonus>
+            <Dice>
+                <Number size="1">5</Number>
+                <Sides size="1">4</Sides>
+                <Energy>Bludgeon</Energy>
+            </Dice>
+            <Weapon>All</Weapon>
+        </Effect>
+        <EffectDescription>Shrieking V: On Hit: 5 to 20 Sonic Damage.</EffectDescription>
+        <Effect>
+            <DisplayName>Shrieking V</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+            <Dice>
+                <Number size="1">5</Number>
+                <Sides size="1">4</Sides>
+                <Energy>Sonic</Energy>
+            </Dice>
+        </Effect>
+        <Effect>
+            <DisplayName>Shrieking V</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+            <Dice>
+                <Number size="1">5</Number>
+                <Sides size="1">4</Sides>
+                <Energy>Sonic</Energy>
+            </Dice>
+        </Effect>
+        <EffectDescription>Epic Slice 'n Dice Set: While wearing both items from
+the Slice 'n Dice Set, you gain:
++2 Quality bonus to Seeker
++2 Quality Bonus to Sneak Attack.
+They make julienne fries.</EffectDescription>
+         <Effect>
+            <DisplayName>Epic Slice 'n Dice: Quality Seeker</DisplayName>
+            <Type>Seeker</Type>
+            <Bonus>Quality</Bonus>
+            <AmountVector size="2">0 2</AmountVector>
+            <Weapon>All</Weapon>
+         </Effect>
+         <Effect>
+            <DisplayName>Epic Slice 'n Dice: Quality Sneak Attack</DisplayName>
+            <Type>SneakAttackAttack</Type>
+            <Bonus>Quality</Bonus>
+            <AmountVector size="2">0 2</AmountVector>
+            <Weapon>All</Weapon>
+         </Effect>
+        <EffectDescription>Epic The Devil's Handiwork: While wearing five items
+from the The Devil's Handiwork, you gain:
++3 Quality bonus to all Ability stats.</EffectDescription>
+         <Effect>
+            <DisplayName>Epic The Devil's Handiwork</DisplayName>
+            <Type>AbilityBonus</Type>
+            <Bonus>Quality</Bonus>
+            <AmountVector size="5">0 0 0 0 3</AmountVector>
+            <Ability>All</Ability>
+         </Effect>
+        <EffectDescription>Heartseeker VI: On Critical Hit: 13 to 78 Piercing damage from weapons with a x2 Critical Multiplier, 13 to 104 Piercing damage from weapons with an x3 Critical Multiplier, and 13 to 130 piercing damage from weapons with a x4 or greater Critical Mulitplier.</EffectDescription>
+         <Effect>
+            <DisplayName>Heartseeker VI</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+            <CriticalMultiplier/>
+              <Dice>
+                 <Number size="4">0 13 13 13</Number>
+                 <Sides size="4">0 8 9 10</Sides>
+                 <Energy>Pierce</Energy>
+              </Dice>
+         </Effect>
+        <EffectDescription>Rune Arm Imbue Force VI: Wearing this Rune Arm will imbue any weapon you wield, dealing 2 to 20 points of force damage per hit.</EffectDescription>
+        <Effect>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Equipment</Bonus>
+            <Dice>
+                <Number size="1">2</Number>
+                <Sides size="1">10</Sides>
+                <Energy>Force</Energy>
+            </Dice>
+            <Weapon>All</Weapon>
+        </Effect>
+        <Effect>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Equipment</Bonus>
+            <Dice>
+                <Number size="1">2</Number>
+                <Sides size="1">10</Sides>
+                <Energy>Force</Energy>
+            </Dice>
+            <Weapon>All</Weapon>
+        </Effect>
+        <EffectDescription>Solar VI: On Hit: 6 to 24 Light Damage.</EffectDescription>
+        <Effect>
+            <DisplayName>Solar VI</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Equipment</Bonus>
+            <Dice>
+                <Number size="1">6</Number>
+                <Sides size="1">4</Sides>
+                <Energy>Light</Energy>
+            </Dice>
+            <Weapon>All</Weapon>
+        </Effect>
+        <Effect>
+            <DisplayName>Solar VI</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Equipment</Bonus>
+            <Dice>
+                <Number size="1">6</Number>
+                <Sides size="1">4</Sides>
+                <Energy>Light</Energy>
+            </Dice>
+            <Weapon>All</Weapon>
+        </Effect>
+        <EffectDescription>Improved Banishing: On Hit: 4 to 24 Bane damage to Outsiders. On Vorpal Hit: If an outsider struck by this weapon has fewer than 1500 Hit Points, it is instantly slain else it takes 150 damage.</EffectDescription>
+            <Effect>
+                <DisplayName>Improved Banishing</DisplayName>
+                <Type>WeaponOtherDamageBonus</Type>
+                <Bonus>Equipment</Bonus>
+                <Dice>
+                    <Number size="1">6</Number>
+                    <Sides size="1">4</Sides>
+                    <Energy>Bane</Energy>
+                </Dice>
+                <Weapon>All</Weapon>
+                <Stance>Outsider</Stance>
+            </Effect>
+            <Effect>
+                <DisplayName>Improved Banishing</DisplayName>
+                <Type>WeaponOtherCriticalDamageBonus</Type>
+                <Bonus>Equipment</Bonus>
+                <Dice>
+                    <Number size="1">6</Number>
+                    <Sides size="1">4</Sides>
+                    <Energy>Bane</Energy>
+                </Dice>
+                <Weapon>All</Weapon>
+                <Stance>Outsider</Stance>
+            </Effect>
+         <EffectDescription>Holy VI: On Hit: 6 to 24 Good Damage. (Good-aligned creatures are immune to this effect.). Evil characters wielding this weapon will suffer once negative level.</EffectDescription>
+         <Effect>
+            <DisplayName>Holy VI</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+              <Dice>
+                 <Number size="1">6</Number>
+                 <Sides size="1">4</Sides>
+                 <Energy>Good</Energy>
+              </Dice>
+         </Effect>
+         <Effect>
+            <DisplayName>Holy VI</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+              <Dice>
+                 <Number size="1">6</Number>
+                 <Sides size="1">4</Sides>
+                 <Energy>Good</Energy>
+              </Dice>
+         </Effect>
+        <EffectDescription>Eldritch VI: On Hit: 6 to 24 Force Damage.</EffectDescription>
+        <Effect>
+            <DisplayName>Eldritch VI</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Equipment</Bonus>
+            <Dice>
+                <Number size="1">6</Number>
+                <Sides size="1">4</Sides>
+                <Energy>Force</Energy>
+            </Dice>
+            <Weapon>All</Weapon>
+        </Effect>
+        <Effect>
+            <DisplayName>Eldritch VI</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Equipment</Bonus>
+            <Dice>
+                <Number size="1">6</Number>
+                <Sides size="1">4</Sides>
+                <Energy>Force</Energy>
             </Dice>
             <Weapon>All</Weapon>
         </Effect>

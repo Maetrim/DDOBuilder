@@ -302,6 +302,7 @@ void CDDOCPDoc::AddCharacterHeader(std::stringstream & forumExport)
     // Int: [...] [..] [...]     Dodge: [...]%/[MAX] -Healing Amp: [...]
     // Wis: [...] [..] [...]     Fort:  [...]%       Repair Amp:   [...]
     // Cha: [...] [..] [...]     SR:    [...]        BAB:   [..]
+    // DR:  List of DR items
 
      // first line is the character name
     forumExport << "Character name: " << m_characterData.Name() << "\r\n";
@@ -350,6 +351,13 @@ void CDDOCPDoc::AddCharacterHeader(std::stringstream & forumExport)
 
     AddAbilityValues(forumExport, Ability_Charisma);
     AddBreakdown(forumExport, "      SR: ", 10, Breakdown_SpellResistance);
+    AddBreakdown(forumExport, "      BAB: ", 14, Breakdown_BAB);
+    forumExport << "\r\n";
+    BreakdownItem * pDR = FindBreakdown(Breakdown_DR);
+    forumExport << "DR: " << pDR->Value();
+    forumExport << "\r\n";
+    BreakdownItem * pImmunities = FindBreakdown(Breakdown_Immunities);
+    forumExport << "Immunities: " << pImmunities->Value();
     forumExport << "\r\n";
 
     BreakdownItem * pBIMRR = FindBreakdown(Breakdown_MRR);
@@ -1142,6 +1150,14 @@ void CDDOCPDoc::AddWeaponDamage(std::stringstream & forumExport)
     forumExport << "------------------------------------------------------------------\r\n";
     BreakdownItem * pBI = FindBreakdown(Breakdown_MeleePower);
     forumExport << "Melee Power:  " << pBI->Total() << "\r\n";
+    AddBreakdown(forumExport, "Doublestrike: ", 1, Breakdown_DoubleStrike);
+    forumExport << "%\r\n";
+    AddBreakdown(forumExport, "Off-Hand attack Chance: ", 1, Breakdown_OffHandAttackBonus);
+    forumExport << "%\r\n";
+    AddBreakdown(forumExport, "Off-Hand Doublestrike: ", 1, Breakdown_OffHandDoubleStrike);
+    forumExport << "%\r\n";
+    forumExport << "\r\n";
+
     pBI = FindBreakdown(Breakdown_RangedPower);
     forumExport << "Ranged Power: " << pBI->Total();
     if (m_characterData.IsFeatTrained("Manyshot"))
@@ -1153,6 +1169,9 @@ void CDDOCPDoc::AddWeaponDamage(std::stringstream & forumExport)
         total += (pBI->Total() * 4);
         forumExport << total;
     }
+    forumExport << "\r\n";
+    AddBreakdown(forumExport, "Doubleshot Chance: ", 1, Breakdown_DoubleShot);
+    forumExport << "%\r\n";
     forumExport << "\r\n";
 
     EquippedGear gear = m_characterData.ActiveGearSet();

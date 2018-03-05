@@ -8,9 +8,11 @@
 #include "BreakdownItemAssassinate.h"
 #include "BreakdownItemBAB.h"
 #include "BreakdownItemCasterLevel.h"
+#include "BreakdownItemDR.h"
 #include "BreakdownItemEnergyAbsorption.h"
 #include "BreakdownItemEnergyResistance.h"
 #include "BreakdownItemHitpoints.h"
+#include "BreakdownItemImmunities.h"
 #include "BreakdownItemMRR.h"
 #include "BreakdownItemMRRCap.h"
 #include "BreakdownItemPRR.h"
@@ -572,6 +574,19 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
 
     {
         HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "DR",
+                hDefensiveParent,
+                TVI_LAST);
+        BreakdownItem * pDR = new BreakdownItemDR(
+                Breakdown_DR,
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pDR);
+        m_items.push_back(pDR);
+    }
+
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
                 "PRR",
                 hDefensiveParent,
                 TVI_LAST);
@@ -713,6 +728,19 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
                 hItem);
         m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pRA);
         m_items.push_back(pRA);
+    }
+
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Immunities",
+                hParent,
+                TVI_LAST);
+        BreakdownItem * pIm = new BreakdownItemImmunities(
+                Breakdown_Immunities,
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pIm);
+        m_items.push_back(pIm);
     }
 
     // offensive breakdowns include:
@@ -916,6 +944,20 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
                 hItem);
         m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pRP);
         m_items.push_back(pRP);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Secondary Shield Bash",
+                hOffensiveParent,
+                TVI_LAST);
+        BreakdownItem * pSSB = new BreakdownItemSimple(
+                Breakdown_SecondaryShieldBash,
+                Effect_SecondaryShieldBash,
+                "Secondary Shield Bash",
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pSSB);
+        m_items.push_back(pSSB);
     }
     {
         HTREEITEM hItem = m_itemBreakdownTree.InsertItem(

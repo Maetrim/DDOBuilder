@@ -6,6 +6,7 @@
 #include "BonusTypes.h"
 #include "BreakdownTypes.h"
 #include "ClassTypes.h"
+#include "DamageReductionTypes.h"
 #include "Dice.h"
 #include "EnergyTypes.h"
 #include "WeaponTypes.h"
@@ -49,6 +50,17 @@ class ActiveEffect
                 double amountPerLevel,
                 size_t stacks,
                 ClassType classType);
+        ActiveEffect(
+                BonusType bonusType,
+                const std::string & name,
+                const std::list<std::string> & immunities,
+                size_t stacks);
+        ActiveEffect(
+                BonusType bonusType,
+                const std::string & name,
+                double amount,
+                const std::list<DamageReductionType> & drTypes,
+                size_t stacks);
 
         BonusType Bonus() const;
         bool IsAmountPerAP() const;
@@ -93,6 +105,8 @@ class ActiveEffect
             ET_amountPerAp,
             ET_dice,
             ET_amountVectorPerClassLevel,
+            ET_immunity,
+            ET_DR,
         } m_type;
         double Amount() const;
         BonusType m_bonusType;
@@ -107,6 +121,8 @@ class ActiveEffect
         std::string m_tree;                 // non blank if total depends on number of AP spent in tree
         BreakdownType m_bt;                 // specific breakdown we may be dependent on
         std::vector<std::string> m_feats;   // non blank if only active when a specific feat is trained
+        std::list<std::string> m_immunities;
+        std::list<DamageReductionType> m_drTypes;
         // amount per trained level
         double m_amountPerLevel;
         ClassType m_class;

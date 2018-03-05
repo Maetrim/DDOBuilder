@@ -769,23 +769,34 @@ void CLevelUpView::PopulateSkills()
                     m_level);
             text.Format("%.1f", maxSkill);
             text.Replace(".0", "");
+            text.Replace(".5", "½");
             m_listSkills.SetItemText(ii, SLC_Max, text);
 
+            size_t spentOnSkill = m_pCharacter->SpentAtLevel(
+                    skill,
+                    m_level);
             // show whether the it is a cross class skill at this level
             if (IsClassSkill(levelData.HasClass() ? levelData.Class() : Class_Unknown, skill))
             {
                 m_listSkills.SetItemText(ii, SLC_CrossClassAtLevel, "Class Skill");
+                text.Format("%d", spentOnSkill);
             }
             else
             {
                 m_listSkills.SetItemText(ii, SLC_CrossClassAtLevel, "Cross Class");
+                text = "";
+                int fullRanks = (spentOnSkill / 2);
+                if (fullRanks > 0)
+                {
+                    text.Format("%d", fullRanks);
+                }
+                // its a cross class skill, show in multiples of ½
+                if (spentOnSkill % 2 != 0)
+                {
+                    text += "½";
+                }
             }
-
             // how many skill points have been spent on this skill at this level so far?
-            size_t spentOnSkill = m_pCharacter->SpentAtLevel(
-                    skill,
-                    m_level);
-            text.Format("%d", spentOnSkill);
             m_listSkills.SetItemText(ii, SLC_Spend, text);
 
             // current skill value after all spends at this and previous levels counted
@@ -799,6 +810,7 @@ void CLevelUpView::PopulateSkills()
             {
                 text.Format("%.1f", skillValue);
                 text.Replace(".0", "");
+                text.Replace(".5", "½");
             }
             else
             {
@@ -808,6 +820,8 @@ void CLevelUpView::PopulateSkills()
                 if (skillValue > 0)
                 {
                     text.Format("N/A (%.1f)", skillValue);
+                    text.Replace(".0", "");
+                    text.Replace(".5", "½");
                 }
                 else
                 {

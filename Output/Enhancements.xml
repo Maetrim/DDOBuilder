@@ -1030,7 +1030,7 @@ Repeated damage extends the duration.</Description>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Bladeforged: Damage Reduction</Name>
-         <InternalName>BladeforgedDamageReduction</InternalName>
+         <InternalName>BladeforgedDR</InternalName>
          <Description>You gain damage reduction 1/2/3/Adamantine, or improve your existing damage
 reduction by 1/2/3/Adamantine.</Description>
          <Icon>WarforgedDamageReduction</Icon>
@@ -9006,8 +9006,9 @@ enhancement from Occult Slayer tree.</Description>
                <Effect>
                   <DisplayName>Barbarian DR</DisplayName>
                   <Bonus>Feat</Bonus>
-                  <Type>DamageReduction</Type>
+                  <Type>DR</Type>
                   <Amount>1</Amount>
+                  <DR>-</DR>
                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
@@ -13993,7 +13994,7 @@ chance of producing magical effects such as flaming.</Description>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Warforged: Damage Reduction</Name>
-         <InternalName>WarforgedDamageReduction</InternalName>
+         <InternalName>WarforgedDR</InternalName>
          <Description>You gain damage reduction 1/2/3/Adamantine, or improve your existing damage
 reduction by 1/2/3/Adamantine.</Description>
          <Icon>WarforgedDamageReduction</Icon>
@@ -17576,9 +17577,11 @@ This can trigger up to once every 12 seconds.</Description>
             <Feat>Slippery Mind</Feat>
          </Effect>
          <Effect>
+             <DisplayName>Barbarian DR</DisplayName>
             <Type>DR</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>1</Amount>
+            <DR>-</DR>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -21447,7 +21450,9 @@ Cooldown: 8 seconds.</Description>
          <Name>Warchanter: High Spirits</Name>
          <InternalName>WCHighSpirits</InternalName>
          <Description>Your spirits are always high, and you are immune to Crushing Despair,
-Waves of Fatigue and Waves of Exhaustion.</Description>
+Waves of Fatigue and Waves of Exhaustion. +(5/10/15) Positive Spellpower.
+Rank 2: You are also immune to Sleep.
+Rank 3: You are also immune to Fatigue, including Fatigue from Skaldic Rage.</Description>
          <Icon>WCHighSpirits</Icon>
          <XPosition>2</XPosition>
          <YPosition>3</YPosition>
@@ -21460,6 +21465,12 @@ Waves of Fatigue and Waves of Exhaustion.</Description>
                <Level>3</Level>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">5 10 15</AmountVector>
+            <SpellPower>Positive</SpellPower>
+         </Effect>
          <Effect>
             <Type>Immunity</Type>
             <Bonus>Enhancement</Bonus>
@@ -21474,6 +21485,19 @@ Waves of Fatigue and Waves of Exhaustion.</Description>
             <Type>Immunity</Type>
             <Bonus>Enhancement</Bonus>
             <Immunity>Waves of Exhaustion</Immunity>
+         </Effect>
+         <Effect>
+            <Type>Immunity</Type>
+            <Bonus>Enhancement</Bonus>
+            <Immunity/>
+            <Immunity>Sleep</Immunity>
+         </Effect>
+         <Effect>
+            <Type>Immunity</Type>
+            <Bonus>Enhancement</Bonus>
+            <Immunity/>
+            <Immunity/>
+            <Immunity>Fatigue</Immunity>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -25287,6 +25311,7 @@ Passive: +2 Armor Class, +5 Fire Spell Power, +5 Light Spell Power</Description>
             <Type>DR</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>5</Amount>
+            <DR>-</DR>
          </Effect>
          <Effect>
             <Type>ACBonus</Type>
@@ -28908,6 +28933,7 @@ Passive: +2 Armor Class, +5 Fire Spell Power, +5 Light Spell Power</Description>
             <Type>DR</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>5</Amount>
+            <DR>-</DR>
          </Effect>
          <Effect>
             <Type>ACBonus</Type>
@@ -36705,46 +36731,46 @@ This damage scales with Melee Power. Your Ki generation on hit is reduced by 1.<
                <Level>3</Level>
             </Requirement>
          </Requirements>
-         <Effect>
-            <Type>WeaponOtherDamageBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Dice>
-               <Number size="3">2 2 2</Number>
-               <Sides size="3">4 6 8</Sides>
-            </Dice>
-            <Energy>Fire</Energy>
-            <WeaponClass>TwoHanded</WeaponClass>
-         </Effect>
-         <Effect>
-            <Type>WeaponOtherDamageBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Dice>
-               <Number size="3">2 2 2</Number>
-               <Sides size="3">2 3 4</Sides>
-            </Dice>
-            <Energy>Fire</Energy>
-            <WeaponClass>OneHanded</WeaponClass>
-         </Effect>
-         <Effect>
-            <Type>WeaponOtherCriticalDamageBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Dice>
-               <Number size="3">2 4 6</Number>
-               <Sides size="3">10 10 10</Sides>
-            </Dice>
-            <Energy>Force</Energy>
-            <WeaponClass>TwoHanded</WeaponClass>
-         </Effect>
-         <Effect>
-            <Type>WeaponOtherCriticalDamageBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Dice>
-               <Number size="3">2 4 6</Number>
-               <Sides size="3">6 6 6</Sides>
-            </Dice>
-            <Energy>Force</Energy>
-            <WeaponClass>OneHanded</WeaponClass>
-         </Effect>
+          <Effect>
+              <Type>WeaponOtherDamageBonus</Type>
+              <Bonus>Enhancement</Bonus>
+              <Dice>
+                  <Number size="3">2 2 2</Number>
+                  <Sides size="3">4 6 8</Sides>
+                 <Energy>Fire</Energy>
+              </Dice>
+              <WeaponClass>TwoHanded</WeaponClass>
+          </Effect>
+          <Effect>
+              <Type>WeaponOtherDamageBonus</Type>
+              <Bonus>Enhancement</Bonus>
+              <Dice>
+                  <Number size="3">2 2 2</Number>
+                  <Sides size="3">2 3 4</Sides>
+                  <Energy>Fire</Energy>
+              </Dice>
+              <WeaponClass>OneHanded</WeaponClass>
+          </Effect>
+          <Effect>
+              <Type>WeaponOtherCriticalDamageBonus</Type>
+              <Bonus>Enhancement</Bonus>
+              <Dice>
+                  <Number size="3">2 4 6</Number>
+                  <Sides size="3">10 10 10</Sides>
+                  <Energy>Force</Energy>
+              </Dice>
+              <WeaponClass>TwoHanded</WeaponClass>
+          </Effect>
+          <Effect>
+              <Type>WeaponOtherCriticalDamageBonus</Type>
+              <Bonus>Enhancement</Bonus>
+              <Dice>
+                  <Number size="3">2 4 6</Number>
+                  <Sides size="3">6 6 6</Sides>
+                  <Energy>Force</Energy>
+              </Dice>
+              <WeaponClass>OneHanded</WeaponClass>
+          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Henshin Mystic: Embrace the Void</Name>
@@ -47962,9 +47988,9 @@ Your melee attacks deal +1d6 Electrical damage. This damage scales with 100% Mel
             <Dice>
                <Number size="1">1</Number>
                <Sides size="1">6</Sides>
+               <Energy>Electric</Energy>
                <ScalesWithMeleePower/>
             </Dice>
-            <Energy>Electric</Energy>
             <Stance>Storm Dancer</Stance>
             <Weapon>All</Weapon>
          </Effect>
@@ -47974,8 +48000,8 @@ Your melee attacks deal +1d6 Electrical damage. This damage scales with 100% Mel
             <Dice>
                <Number size="1">1</Number>
                <Sides size="1">6</Sides>
+               <Energy>Electric</Energy>
             </Dice>
-            <Energy>Electric</Energy>
             <Stance>Storm Dancer</Stance>
             <Weapon>All</Weapon>
          </Effect>
@@ -48165,9 +48191,9 @@ Upgrades melee attacks to deal +2d6 electrical damage (instead of 1d6).</Descrip
             <Dice>
                <Number size="1">1</Number>
                <Sides size="1">6</Sides>
+               <Energy>Electric</Energy>
                <ScalesWithMeleePower/>
             </Dice>
-            <Energy>Electric</Energy>
             <Stance>Storm Dancer</Stance>
             <Weapon>All</Weapon>
          </Effect>
@@ -48177,8 +48203,9 @@ Upgrades melee attacks to deal +2d6 electrical damage (instead of 1d6).</Descrip
             <Dice>
                <Number size="1">1</Number>
                <Sides size="1">6</Sides>
+               <ScalesWithMeleePower/>
+               <Energy>Electric</Energy>
             </Dice>
-            <Energy>Electric</Energy>
             <Stance>Storm Dancer</Stance>
             <Weapon>All</Weapon>
          </Effect>
@@ -75291,15 +75318,17 @@ an additional DR [1/2/3]/- that stacks with barbarian DR.</Description>
          <MinSpent>4</MinSpent>
          <Requirements/>
          <Effect>
-            <Type>DR</Type>
+            <Type>PRR</Type>
             <Bonus>Destiny</Bonus>
             <AmountVector size="3">2 4 6</AmountVector>
          </Effect>
-         <Effect>
-            <Type>DamageReduction</Type>
-            <Bonus>Destiny</Bonus>
-            <AmountVector size="3">1 2 3</AmountVector>
-         </Effect>
+          <Effect>
+             <DisplayName>Barbarian DR</DisplayName>
+             <Bonus>Feat</Bonus>
+             <Type>DR</Type>
+             <Amount>1</Amount>
+             <DR>-</DR>
+      </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Fury of the Wild: Ability II</Name>
@@ -75460,11 +75489,11 @@ Tier 2: Evil outsider bane</Description>
          <Ranks>3</Ranks>
          <MinSpent>12</MinSpent>
          <Requirements/>
-         <Effect>
-            <Type>GlancingBlowsDamage</Type>
-            <Bonus>Destiny</Bonus>
-            <AmountVector size="3">3 6 9</AmountVector>
-         </Effect>
+          <Effect>
+              <Type>GlancingBlowsDamage</Type>
+              <Bonus>Destiny</Bonus>
+              <AmountVector size="3">3 6 9</AmountVector>
+          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Fury of the Wild: Sense Weakness</Name>

@@ -7,7 +7,6 @@
 
 #include "SpellsPage.h"
 #include "SpellLikeAbilityPage.h"
-#include "ImmunitiesPage.h"
 
 namespace
 {
@@ -129,11 +128,6 @@ LRESULT CSpellsView::OnNewDocument(WPARAM wParam, LPARAM lParam)
             {
                 pSLAPage->SetCharacter(m_pCharacter);
             }
-            CImmunitiesPage * pImmunityPage = dynamic_cast<CImmunitiesPage*>(m_pagePointers[i]);
-            if (pImmunityPage != NULL)
-            {
-                pImmunityPage->SetCharacter(m_pCharacter);
-            }
             CSpellsPage * pSpellPage = dynamic_cast<CSpellsPage*>(m_pagePointers[i]);
             if (pSpellPage != NULL)
             {
@@ -183,12 +177,6 @@ void CSpellsView::DetermineSpellViews()
     {
         CSpellLikeAbilityPage * page = new CSpellLikeAbilityPage();
         m_pagePointers[0] = page;
-        m_spellsSheet.AddPage(page);
-    }
-    if (m_pagePointers[Class_Count] == NULL)
-    {
-        CImmunitiesPage * page = new CImmunitiesPage();
-        m_pagePointers[Class_Count] = page;
         m_spellsSheet.AddPage(page);
     }
 

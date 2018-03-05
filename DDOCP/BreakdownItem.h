@@ -85,8 +85,7 @@ class BreakdownItem :
 
         Character * m_pCharacter;
         std::list<ActiveEffect> m_otherEffects;       // these always stack
-        std::list<ActiveEffect> m_featEffects;        // these always stack
-        std::list<ActiveEffect> m_enhancementEffects; // these always stack
+        std::list<ActiveEffect> m_effects;       // these always stack
         std::list<ActiveEffect> m_itemEffects;        // highest of a given type counts
 
         // CharacterObserver overrides

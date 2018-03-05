@@ -213,6 +213,7 @@ void CItemSelectDialog::PopulateAvailableItemList()
 {
     m_availableItemsCtrl.LockWindowUpdate();
     m_availableItemsCtrl.DeleteAllItems();
+    bool hasRuneArmFeat = m_pCharacter->IsFeatTrained("Artificer Rune Arm Use");
 
     RaceType race = m_pCharacter->Race();
     // filter the list of items loaded to those that match the slot type
@@ -252,6 +253,12 @@ void CItemSelectDialog::PopulateAvailableItemList()
             {
                 // always include current selection
                 canSelect = true;
+            }
+            if ((*it).HasWeapon()
+                    && (*it).Weapon() == Weapon_RuneArm
+                    && !hasRuneArmFeat)
+            {
+                canSelect = false;
             }
             if (canSelect)
             {
@@ -952,10 +959,10 @@ void CItemSelectDialog::SetupFilterCombobox()
         // any one handed weapon
         for (size_t i = Weapon_Unknown; i < Weapon_Count; ++i)
         {
-            if (IsOneHandedWeapon((WeaponType)i)
+            if ((IsOneHandedWeapon((WeaponType)i)
                     || IsShield((WeaponType)i)
                     || i == Weapon_Orb
-                    || (i == Weapon_RuneArm && m_pCharacter->IsFeatTrained("Artificer Rune Arm Use"))
+                    || (i == Weapon_RuneArm && m_pCharacter->IsFeatTrained("Artificer Rune Arm Use")))
                     && i != Weapon_BastardSword)
             {
                 // we can add this one

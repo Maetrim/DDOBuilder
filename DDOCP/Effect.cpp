@@ -257,6 +257,13 @@ bool Effect::VerifyObject(std::stringstream * ss) const
                 ok = false;
             }
             break;
+        case Effect_Immunity:
+            if (Immunity().size() == 0)
+            {
+                (*ss) << "Immunity effect missing Immunity field\n";
+                ok = false;
+            }
+            break;
     }
     if (HasAmountVector())
     {
@@ -308,7 +315,6 @@ bool Effect::operator==(const Effect & other) const
             && (m_EnhancementTree == other.m_EnhancementTree)
             && (m_hasSpellLikeAbility == other.m_hasSpellLikeAbility)
             && (m_SpellLikeAbility == other.m_SpellLikeAbility)
-            && (m_hasImmunity == other.m_hasImmunity)
             && (m_Immunity == other.m_Immunity)
             && (m_hasAbility == other.m_hasAbility)
             && (m_Ability == other.m_Ability)

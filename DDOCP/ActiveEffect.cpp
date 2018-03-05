@@ -183,6 +183,57 @@ ActiveEffect::ActiveEffect(
 {
 }
 
+ActiveEffect::ActiveEffect(
+        BonusType bonusType,
+        const std::string & name,
+        const std::list<std::string> & immunities,
+        size_t stacks) :
+    m_bonusType(bonusType),
+    m_immunities(immunities),
+    m_type(ET_immunity),
+    m_effectName(name),
+    m_numStacks(stacks),
+    m_amount(0),                // not used
+    m_bHasEnergy(false),
+    m_energy(Energy_Unknown),
+    m_bt(Breakdown_Unknown),
+    m_amountPerLevel(0),
+    m_class(Class_Unknown),
+    m_bIsPercentage(false),
+    m_percentageAmount(0),
+    m_bWholeNumbersOnly(false),
+    m_bHasWeaponType(false),
+    m_weaponType(Weapon_Unknown),
+    m_clearValue(false)
+{
+}
+
+ActiveEffect::ActiveEffect(
+        BonusType bonusType,
+        const std::string & name,
+        double amount,
+        const std::list<DamageReductionType> & drTypes,
+        size_t stacks) :
+    m_bonusType(bonusType),
+    m_drTypes(drTypes),
+    m_type(ET_DR),
+    m_effectName(name),
+    m_numStacks(stacks),
+    m_amount(amount),
+    m_bHasEnergy(false),
+    m_energy(Energy_Unknown),
+    m_bt(Breakdown_Unknown),
+    m_amountPerLevel(0),
+    m_class(Class_Unknown),
+    m_bIsPercentage(false),
+    m_percentageAmount(0),
+    m_bWholeNumbersOnly(false),
+    m_bHasWeaponType(false),
+    m_weaponType(Weapon_Unknown),
+    m_clearValue(false)
+{
+}
+
 BonusType ActiveEffect::Bonus() const
 {
     return m_bonusType;
@@ -275,6 +326,10 @@ CString ActiveEffect::AmountAsText() const
     case ET_amountPerAp:
         text.Format("%.2f", m_amount * m_numStacks);
         break;
+    case ET_immunity:
+    case ET_DR:
+        text = Description().c_str();
+        break;
     default:
         text = "???";
         break;
@@ -358,6 +413,10 @@ CString ActiveEffect::AmountAsPercent() const
     case ET_amountPerAp:
         text.Format("%.0f (%.0f%%)", m_percentageAmount, m_amount * m_numStacks);
         break;
+    case ET_immunity:
+    case ET_DR:
+        text = Description().c_str();
+        break;
     default:
         text = "???";
         break;
@@ -428,6 +487,15 @@ void ActiveEffect::AddStack()
             ::OutputDebugString(" has more stacks than amount vector\n");
         }
     }
+    if (m_type == ET_immunity)
+    {
+        if (m_numStacks > m_immunities.size())
+        {
+            ::OutputDebugString("ActiveEffect ");
+            ::OutputDebugString((LPCTSTR)Name());
+            ::OutputDebugString(" has more stacks than immunity list\n");
+        }
+    }
 }
 
 bool ActiveEffect::RevokeStack()
@@ -447,6 +515,15 @@ void ActiveEffect::SetStacks(size_t count)
             ::OutputDebugString("ActiveEffect ");
             ::OutputDebugString((LPCTSTR)Name());
             ::OutputDebugString(" has more stacks than amount vector\n");
+        }
+    }
+    if (m_type == ET_immunity)
+    {
+        if (m_numStacks > m_immunities.size())
+        {
+            ::OutputDebugString("ActiveEffect ");
+            ::OutputDebugString((LPCTSTR)Name());
+            ::OutputDebugString(" has more stacks than immunity list\n");
         }
     }
 }
@@ -486,6 +563,12 @@ double ActiveEffect::TotalAmount(bool allowTruncate) const
         break;
     case ET_amountPerAp:
         value = m_amount * m_numStacks;
+        break;
+    case ET_immunity:
+        value = Description() != "" ? 1 : 0; // just need a non-zero value
+        break;
+    case ET_DR:
+        value = 1;      // just need a non-zero value
         break;
     default:
         value = 0.0;
@@ -626,6 +709,12 @@ bool ActiveEffect::operator==(const ActiveEffect & other) const
             equal = (m_amounts == other.m_amounts)
                     && (m_class == other.m_class);
             break;
+        case ET_immunity:
+            equal = (m_immunities == other.m_immunities);
+            break;
+        case ET_DR:
+            equal = (m_drTypes == other.m_drTypes);
+            break;
         default:
             equal = false;
             break;
@@ -648,6 +737,31 @@ std::string ActiveEffect::Description() const
         break;
     case ET_dice:
         ss << m_dice.Description(m_numStacks);
+        break;
+    case ET_immunity:
+        if (m_numStacks <= m_immunities.size())
+        {
+            std::list<std::string>::const_iterator it = m_immunities.begin();
+            std::advance(it, m_numStacks - 1);
+            ss << (*it);
+        }
+        else
+        {
+            ss << m_immunities.back();
+        }
+        break;
+    case ET_DR:
+        ss << m_amount * m_numStacks << "\\";
+        std::list<DamageReductionType>::const_iterator it = m_drTypes.begin();
+        while (it != m_drTypes.end())
+        {
+            if (it != m_drTypes.begin())
+            {
+                ss << ",";
+            }
+            ss << EnumEntryText((*it), drTypeMap);
+            ++it;
+        }
         break;
     }
     return ss.str();

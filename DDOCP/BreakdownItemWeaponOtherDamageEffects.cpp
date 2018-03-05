@@ -40,14 +40,8 @@ CString BreakdownItemWeaponOtherDamageEffects::Value() const
         AddEffectToString(&value, (*it));
         ++it;
     }
-    it = m_featEffects.begin();
-    while (it != m_featEffects.end())
-    {
-        AddEffectToString(&value, (*it));
-        ++it;
-    }
-    it = m_enhancementEffects.begin();
-    while (it != m_enhancementEffects.end())
+    it = m_effects.begin();
+    while (it != m_effects.end())
     {
         AddEffectToString(&value, (*it));
         ++it;
