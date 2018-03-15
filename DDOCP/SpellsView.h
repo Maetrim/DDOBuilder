@@ -6,6 +6,7 @@
 #include "Character.h"
 
 class CSpellsPage;
+class CSLAControl;
 
 class CSpellsView :
     public CFormView,
@@ -22,6 +23,7 @@ class CSpellsView :
 #endif
 #endif
         virtual void OnInitialUpdate();
+        const CSLAControl * GetSLAControl();
     protected:
         CSpellsView();           // protected constructor used by dynamic creation
         virtual ~CSpellsView();

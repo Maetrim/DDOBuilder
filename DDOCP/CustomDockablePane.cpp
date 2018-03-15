@@ -105,17 +105,20 @@ void CCustomDockablePane::AdjustLayout()
             }
         }
 
-    //    // The MFC2010 dockable panes seem to have a border redraw bug, where only the borders of the pane
-    //    // resized get redrawn. Other panes which received knock-on resize messages do not seem to redraw 
-    //    // their borders properly, and old content shows through the cracks. So force it to redraw all panes.
-    //    CDDOCPApp* theApp = dynamic_cast<CDDOCPApp*> (AfxGetApp());
-    //    if (theApp != NULL)
-    //    {
-    //        AfxGetMainWnd()->RedrawWindow(
-    //                0,
-    //                0,
-    //                RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE | RDW_ALLCHILDREN);
-    //    }
+        // this causes major flickering and start up lag of the application
+        // as such I would rather live with a minor redraw issue
+        
+        //    // The MFC2010 dockable panes seem to have a border redraw bug, where only the borders of the pane
+        //    // resized get redrawn. Other panes which received knock-on resize messages do not seem to redraw 
+        //    // their borders properly, and old content shows through the cracks. So force it to redraw all panes.
+        //    CDDOCPApp* theApp = dynamic_cast<CDDOCPApp*> (AfxGetApp());
+        //    if (theApp != NULL)
+        //    {
+        //        AfxGetMainWnd()->RedrawWindow(
+        //                0,
+        //                0,
+        //                RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE | RDW_ALLCHILDREN);
+        //    }
     }
 }
 

@@ -295,19 +295,59 @@ double BreakdownItem::DoPercentageEffects(const std::list<ActiveEffect> & effect
     return total;
 }
 
-void BreakdownItem::AddAbility(AbilityType ability)
+void BreakdownItem::AddAbility(
+        AbilityType ability)
 {
-    m_mainAbility.push_back(ability);  // duplicates are fine
+    AbilityStance as;
+    as.ability = ability;
+    m_mainAbility.push_back(as);  // duplicates are fine
     // auto observe this ability
     BreakdownItem * pBI = FindBreakdown(StatToBreakdown(ability));
     pBI->AttachObserver(this);
 }
 
-void BreakdownItem::RemoveFirstAbility(AbilityType ability)
+void BreakdownItem::RemoveFirstAbility(
+        AbilityType ability)
 {
+    AbilityStance as;
+    as.ability = ability;
     for (size_t i = 0; i < m_mainAbility.size(); ++i)
     {
-        if (m_mainAbility[i] == ability)
+        if (m_mainAbility[i] == as)
+        {
+            m_mainAbility.erase(m_mainAbility.begin() + i);
+            break;      // done
+        }
+    }
+}
+
+void BreakdownItem::AddAbility(
+        AbilityType ability,
+        const std::vector<std::string> & stances,
+        WeaponType wt)
+{
+    AbilityStance as;
+    as.ability = ability;
+    as.stances = stances;
+    as.weapon = wt;
+    m_mainAbility.push_back(as);  // duplicates are fine
+    // auto observe this ability
+    BreakdownItem * pBI = FindBreakdown(StatToBreakdown(ability));
+    pBI->AttachObserver(this);
+}
+
+void BreakdownItem::RemoveFirstAbility(
+        AbilityType ability,
+        const std::vector<std::string> & stances,
+        WeaponType wt)
+{
+    AbilityStance as;
+    as.ability = ability;
+    as.stances = stances;
+    as.weapon = wt;
+    for (size_t i = 0; i < m_mainAbility.size(); ++i)
+    {
+        if (m_mainAbility[i] == as)
         {
             m_mainAbility.erase(m_mainAbility.begin() + i);
             break;      // done
@@ -323,20 +363,34 @@ AbilityType BreakdownItem::LargestStatBonus()
     int largest = -999;         // arbitrarily small
     for (size_t i = 0; i < m_mainAbility.size(); ++i)
     {
-        BreakdownItem * pBI = FindBreakdown(StatToBreakdown(m_mainAbility[i]));
-        ASSERT(pBI != NULL);
-        pBI->AttachObserver(this);  // need to know about changes to this stat
-        int bonus = BaseStatToBonus(pBI->Total());
-        if (bonus > largest)
+        // must be active
+        bool active = true;
+        for (size_t j = 0; j < m_mainAbility[i].stances.size(); ++j)
         {
-            largest = bonus;
-            bestIndex = i;
+            if (!m_pCharacter->IsStanceActive(
+                    m_mainAbility[i].stances[j],
+                    m_mainAbility[i].weapon))
+            {
+                active = false;
+            }
+        }
+        if (active)
+        {
+            BreakdownItem * pBI = FindBreakdown(StatToBreakdown(m_mainAbility[i].ability));
+            ASSERT(pBI != NULL);
+            pBI->AttachObserver(this);  // need to know about changes to this stat
+            int bonus = BaseStatToBonus(pBI->Total());
+            if (bonus > largest)
+            {
+                largest = bonus;
+                bestIndex = i;
+            }
         }
     }
     if (largest != -999)
     {
         // we now have the best option
-        ability = m_mainAbility[bestIndex];
+        ability = m_mainAbility[bestIndex].ability;
     }
     return ability;
 }

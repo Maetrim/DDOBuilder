@@ -15,6 +15,7 @@ class CSpellLikeAbilityPage :
         ~CSpellLikeAbilityPage();
 
         void SetCharacter(Character * pCharacter);
+        const CSLAControl * GetSLAControl();
 
     protected:
         virtual void UpdateFeatEffect(Character * charData, const std::string & featName,  const Effect & effect) override;

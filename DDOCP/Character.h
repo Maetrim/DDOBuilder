@@ -172,7 +172,7 @@ class Character :
         // stances
         void ActivateStance(const Stance & stance);
         void DeactivateStance(const Stance & stance);
-        bool IsStanceActive(const std::string & name) const;
+        bool IsStanceActive(const std::string & name, WeaponType wt = Weapon_Unknown) const;
 
         // checks all possible tree types
         size_t TotalPointsAvailable(const std::string & treeName, TreeType type) const;

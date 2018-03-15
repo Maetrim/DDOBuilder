@@ -65,6 +65,7 @@ class CDDOCPDoc :
         void AddSaves(std::stringstream & forumExport);
         void AddFeatSelections(std::stringstream & forumExport);
         void AddAutomaticFeats(std::stringstream & forumExport);
+        void AddActiveStances(std::stringstream & forumExport);
         void AddSkills(std::stringstream & forumExport);
         void AddEnergyResistances(std::stringstream & forumExport);
         void AddEnergyResistances(std::stringstream & forumExport, const std::string & name, BreakdownType bt1, BreakdownType bt2);
@@ -80,7 +81,9 @@ class CDDOCPDoc :
                 BreakdownType btCrit,
                 BreakdownType btMult);
         void AddSpells(std::stringstream & forumExport);
+        void AddSLAs(std::stringstream & forumExport);
         void AddWeaponDamage(std::stringstream & forumExport);
+        void AddTacticalDCs(std::stringstream & forumExport);
         void AddGear(std::stringstream & forumExport);
         Character m_characterData;
 public:

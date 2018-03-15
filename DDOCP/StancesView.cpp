@@ -611,3 +611,13 @@ void CStancesView::DestroyAllStances()
     m_autoStancebuttons.clear();
 }
 
+const std::vector<CStanceButton *> & CStancesView::UserStances() const
+{
+    return m_userStancebuttons;
+}
+
+const std::vector<CStanceButton *> & CStancesView::AutoStances() const
+{
+    return m_autoStancebuttons;
+}
+

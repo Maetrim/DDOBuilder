@@ -12,9 +12,12 @@
 #include "BreakdownItemSave.h"
 #include "BreakdownItemWeaponEffects.h"
 #include "DDOCPDoc.h"
+#include "ForumExportDlg.h"
 #include "GlobalSupportFunctions.h"
 #include "MainFrm.h"
 #include "SkillSpendDialog.h"
+#include "SLAControl.h"
+#include "StancesView.h"
 #include <propkey.h>
 #include "XmlLib\SaxReader.h"
 #include "EnhancementEditorDialog.h"
@@ -257,6 +260,8 @@ void CDDOCPDoc::OnEditSkillPoints()
 
 void CDDOCPDoc::OnForumExportToClipboard()
 {
+    //CForumExportDlg dlg;
+    //dlg.DoModal();
     std::stringstream forumExport;
     forumExport << "[code]\r\n";
     AddCharacterHeader(forumExport);
@@ -266,11 +271,14 @@ void CDDOCPDoc::OnForumExportToClipboard()
     AddFeatSelections(forumExport);
     AddAutomaticFeats(forumExport);
     AddSkills(forumExport);
+    AddActiveStances(forumExport);
     AddEnhancements(forumExport);
     AddTwistsOfFate(forumExport);
     AddSpellPowers(forumExport);
     AddSpells(forumExport);
+    AddSLAs(forumExport);
     AddWeaponDamage(forumExport);
+    AddTacticalDCs(forumExport);
     AddGear(forumExport);
     forumExport << "[/code]\r\n";
 
@@ -668,6 +676,60 @@ void CDDOCPDoc::AddAutomaticFeats(std::stringstream & forumExport)
     forumExport << "\r\n";
 }
 
+void CDDOCPDoc::AddActiveStances(std::stringstream & forumExport)
+{
+    CWnd * pWnd = AfxGetMainWnd();
+    CMainFrame * pMainWnd = dynamic_cast<CMainFrame*>(pWnd);
+    const CStancesView * pStancesView = pMainWnd->GetStancesView();
+    if (pStancesView != NULL)
+    {
+        const std::vector<CStanceButton *> & userStances =
+                pStancesView->UserStances();
+        const std::vector<CStanceButton *> & autoStances =
+                pStancesView->AutoStances();
+        bool first = true;
+        for (size_t i = 0; i < userStances.size(); ++i)
+        {
+            if (userStances[i]->IsSelected())
+            {
+                if (first)
+                {
+                    forumExport << "Active User Controlled Stances                                    \r\n";
+                    forumExport << "------------------------------------------------------------------\r\n";
+                }
+                // this is an active stance
+                const Stance & stance = userStances[i]->GetStance();
+                forumExport << stance.Name();
+                forumExport << "\r\n";
+                first = false;
+            }
+        }
+        first = true;
+        for (size_t i = 0; i < autoStances.size(); ++i)
+        {
+            if (autoStances[i]->IsSelected())
+            {
+                if (first)
+                {
+                    forumExport << "\r\n";
+                    forumExport << "Active Auto Controlled Stances                                    \r\n";
+                    forumExport << "------------------------------------------------------------------\r\n";
+                }
+                // this is an active stance
+                const Stance & stance = autoStances[i]->GetStance();
+                forumExport << stance.Name();
+                forumExport << "\r\n";
+                first = false;
+            }
+        }
+        if (!first)
+        {
+            forumExport << "------------------------------------------------------------------------------------------\r\n";
+            forumExport << "\r\n";
+        }
+    }
+}
+
 void CDDOCPDoc::AddSkills(std::stringstream & forumExport)
 {
     // Example Output:
@@ -717,13 +779,13 @@ void CDDOCPDoc::AddSkills(std::stringstream & forumExport)
                 }
                 else
                 {
+                    // its a cross class skill, show in multiples of ½
                     text = "";
                     int fullRanks = (skillRanks[skill] / 2);
                     if (fullRanks > 0)
                     {
                         text.Format("%d", fullRanks);
                     }
-                    // its a cross class skill, show in multiples of ½
                     if (skillRanks[skill] % 2 != 0)
                     {
                         text += "½";
@@ -1144,6 +1206,38 @@ void CDDOCPDoc::AddSpells(std::stringstream & forumExport)
     }
 }
 
+void CDDOCPDoc::AddSLAs(std::stringstream & forumExport)
+{
+    bool first = true;
+    // find the SLA control view and ask it for the list of SLAs
+    CWnd * pWnd = AfxGetMainWnd();
+    CMainFrame * pMainWnd = dynamic_cast<CMainFrame*>(pWnd);
+    const CSLAControl * slaControl = pMainWnd->GetSLAControl();
+    if (slaControl != NULL)
+    {
+        const std::list<SLA> & slas = slaControl->SLAs();
+        std::list<SLA>::const_iterator it = slas.begin();
+        while (it != slas.end())
+        {
+            if (first)
+            {
+                forumExport << "Spell Like / Special Abilities                                    \r\n";
+                forumExport << "------------------------------------------------------------------\r\n";
+                first = false;
+            }
+            forumExport.width(44);
+            forumExport << std::left << (*it).Name();
+            forumExport << "\r\n";
+            ++it;
+        }
+    }
+    if (!first)
+    {
+        forumExport << "------------------------------------------------------------------\r\n";
+        forumExport << "\r\n";
+    }
+}
+
 void CDDOCPDoc::AddWeaponDamage(std::stringstream & forumExport)
 {
     forumExport << "Weapon Damage                                                     \r\n";
@@ -1187,6 +1281,26 @@ void CDDOCPDoc::AddWeaponDamage(std::stringstream & forumExport)
             }
         }
     }
+}
+
+void CDDOCPDoc::AddTacticalDCs(std::stringstream & forumExport)
+{
+    forumExport << "Tactical DCs                                                      \r\n";
+    forumExport << "------------------------------------------------------------------\r\n";
+    BreakdownItem * pBI = FindBreakdown(Breakdown_TacticalStunningBlow);
+    forumExport << "Stunning Blow   " << pBI->Total() << "\r\n";
+    pBI = FindBreakdown(Breakdown_TacticalStunningFist);
+    forumExport << "Stunning Fist   " << pBI->Total() << "\r\n";
+    pBI = FindBreakdown(Breakdown_TacticalSunder);
+    forumExport << "Sunder          " << pBI->Total() << "\r\n";
+    pBI = FindBreakdown(Breakdown_TacticalTrip);
+    forumExport << "Trip            " << pBI->Total() << "\r\n";
+    pBI = FindBreakdown(Breakdown_TacticalStunningShield);
+    forumExport << "Stunning Shield " << pBI->Total() << "\r\n";
+    pBI = FindBreakdown(Breakdown_Assassinate);
+    forumExport << "Assassinate     " << pBI->Total() << "\r\n";
+    forumExport << "------------------------------------------------------------------\r\n";
+    forumExport << "\r\n";
 }
 
 void CDDOCPDoc::AddGear(std::stringstream & forumExport)

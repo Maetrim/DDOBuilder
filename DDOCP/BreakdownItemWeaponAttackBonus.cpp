@@ -175,6 +175,8 @@ void BreakdownItemWeaponAttackBonus::UpdateClassChanged(
 {
     BreakdownItem::UpdateClassChanged(charData, classFrom, classTo, level);
     // if a class has changed, then the BAB may have changed
+    // can also affect attack bonus due to favored Soul levels with any feat
+    // of "Grace of Battle" or "Knowledge of Battle"
     CreateOtherEffects();
 }
 
@@ -196,7 +198,7 @@ void BreakdownItemWeaponAttackBonus::UpdateFeatEffect(
         {
             // add to the list of available stats for this weapon
             ASSERT(effect.HasAbility());
-            AddAbility(effect.Ability());  // duplicates are fine
+            AddAbility(effect.Ability(), effect.Stance(), Weapon());  // duplicates are fine
             CreateOtherEffects();
         }
         else
@@ -224,7 +226,7 @@ void BreakdownItemWeaponAttackBonus::UpdateFeatEffectRevoked(
         if (effect.HasAbility())
         {
             ASSERT(effect.HasAbility());
-            RemoveFirstAbility(effect.Ability());
+            RemoveFirstAbility(effect.Ability(), effect.Stance(), Weapon());
             CreateOtherEffects();
         }
         else
@@ -253,7 +255,7 @@ void BreakdownItemWeaponAttackBonus::UpdateItemEffect(
         {
             // add to the list of available stats for this weapon
             ASSERT(effect.HasAbility());
-            AddAbility(effect.Ability());  // duplicates are fine
+            AddAbility(effect.Ability(), effect.Stance(), Weapon());  // duplicates are fine
             CreateOtherEffects();
         }
         else
@@ -281,7 +283,7 @@ void BreakdownItemWeaponAttackBonus::UpdateItemEffectRevoked(
         if (effect.HasAbility())
         {
             ASSERT(effect.HasAbility());
-            RemoveFirstAbility(effect.Ability());
+            RemoveFirstAbility(effect.Ability(), effect.Stance(), Weapon());
             CreateOtherEffects();
         }
         else
@@ -310,7 +312,7 @@ void BreakdownItemWeaponAttackBonus::UpdateEnhancementEffect(
         {
             // add to the list of available stats for this weapon
             ASSERT(effect.m_effect.HasAbility());
-            AddAbility(effect.m_effect.Ability());  // duplicates are fine
+            AddAbility(effect.m_effect.Ability(), effect.m_effect.Stance(), Weapon());  // duplicates are fine
             CreateOtherEffects();
         }
         else
@@ -338,7 +340,7 @@ void BreakdownItemWeaponAttackBonus::UpdateEnhancementEffectRevoked(
         if (effect.m_effect.HasAbility())
         {
             ASSERT(effect.m_effect.HasAbility());
-            RemoveFirstAbility(effect.m_effect.Ability());
+            RemoveFirstAbility(effect.m_effect.Ability(), effect.m_effect.Stance(), Weapon());
             CreateOtherEffects();
         }
         else

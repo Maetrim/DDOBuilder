@@ -418,7 +418,7 @@ void CEnhancementTreeDialog::RenderItemCore(
     // show how many have been acquired of max ranks
     if (isAllowed)
     {
-        // only show trained x/y is item is allowed
+        // only show trained x/y if item is allowed
         const TrainedEnhancement * te = m_pCharacter->IsTrained(item.InternalName(), "");
         CString text;
         text.Format(

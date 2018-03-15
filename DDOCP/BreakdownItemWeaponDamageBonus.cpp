@@ -142,6 +142,18 @@ bool BreakdownItemWeaponDamageBonus::AffectsUs(const Effect & effect) const
     return isUs;
 }
 
+void BreakdownItemWeaponDamageBonus::UpdateClassChanged(
+        Character * charData,
+        ClassType classFrom,
+        ClassType classTo,
+        size_t level)
+{
+    BreakdownItem::UpdateClassChanged(charData, classFrom, classTo, level);
+    // damage bonus due to favored Soul levels with any feat
+    // of "Grace of Battle" or "Knowledge of Battle" can cause change
+    CreateOtherEffects();
+}
+
 void BreakdownItemWeaponDamageBonus::UpdateFeatEffect(
         Character * pCharacter,
         const std::string & featName,

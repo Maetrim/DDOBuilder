@@ -375,3 +375,9 @@ void CSLAControl::RevokeSLA(const std::string & slaName)
         Invalidate();   // redraw
     }
 }
+
+const std::list<SLA> & CSLAControl::SLAs() const
+{
+    return m_SLAs;
+}
+

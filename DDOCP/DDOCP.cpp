@@ -86,7 +86,7 @@ BOOL CDDOCPApp::InitInstance()
     EnableTaskbarInteraction();
 
     LoadData();
-    // AfxInitRichEdit2() is required to use RichEdit control	
+    // AfxInitRichEdit2() is required to use RichEdit control
     // AfxInitRichEdit2();
 
     // Standard initialization

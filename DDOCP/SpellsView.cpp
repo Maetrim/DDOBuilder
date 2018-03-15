@@ -171,8 +171,7 @@ void CSpellsView::DetermineSpellViews()
     // get the number of pages already inserted
     size_t numPages = m_spellsSheet.GetPageCount();
 
-    // we have pages for spell like abilities and immunities
-    // add the default page for spell like abilities
+    // we have a page for spell like abilities
     if (m_pagePointers[0] == NULL)  // 0 is in effect Class_Unknown
     {
         CSpellLikeAbilityPage * page = new CSpellLikeAbilityPage();
@@ -288,3 +287,20 @@ void CSpellsView::DetermineSpellViews()
         m_spellsSheet.UnlockWindowUpdate();
     }
 }
+
+const CSLAControl * CSpellsView::GetSLAControl()
+{
+    const CSLAControl * slaControl = NULL;
+    // the SLA control is in the SLA page view, which is always page 0
+    if (m_pagePointers.size() > 0)
+    {
+        CSpellLikeAbilityPage * pSLAPage =
+                dynamic_cast<CSpellLikeAbilityPage*>(m_pagePointers[0]);
+        if (pSLAPage != NULL)
+        {
+            slaControl = pSLAPage->GetSLAControl();
+        }
+    }
+    return slaControl;
+}
+

@@ -728,3 +728,30 @@ void CMainFrame::CopyDefaultIniToDDOBuilderIni()
         }
     }
 }
+
+const CSLAControl * CMainFrame::GetSLAControl()
+{
+    const CSLAControl * slaControl = NULL;
+    // the SLA control is in the CSpellsView
+    CSpellsView * pSpellsView = NULL;
+    for (size_t i = 0; pSpellsView == NULL && i < m_dockablePanes.size(); ++i)
+    {
+        pSpellsView = dynamic_cast<CSpellsView *>(m_dockablePanes[i]->GetView());
+    }
+    if (pSpellsView != NULL)
+    {
+        slaControl = pSpellsView->GetSLAControl();
+    }
+    return slaControl;
+}
+
+const CStancesView * CMainFrame::GetStancesView()
+{
+    const CStancesView * pStancesView = NULL;
+    for (size_t i = 0; pStancesView == NULL && i < m_dockablePanes.size(); ++i)
+    {
+        pStancesView = dynamic_cast<CStancesView *>(m_dockablePanes[i]->GetView());
+    }
+    return pStancesView;
+}
+

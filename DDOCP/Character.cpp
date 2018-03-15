@@ -1441,9 +1441,39 @@ void Character::DeactivateStance(const Stance & stance)
     }
 }
 
-bool Character::IsStanceActive(const std::string & name) const
+bool Character::IsStanceActive(const std::string & name, WeaponType wt) const
 {
-    return m_Stances.IsStanceActive(name);
+    bool ret = false;
+    // favored soul favored weapons are a special stance for feats:
+    // Grace of Battle, Knowledge of Battle
+    if (name == "FavoredWeapon")
+    {
+        // look through the trained favored soul feats to determine whether
+        // wt is the favored weapon types
+        ret = (IsFeatTrained("Follower of Aureon") && wt == Weapon_Quarterstaff)
+            || (IsFeatTrained("Follower of the Blood of Vol") && wt == Weapon_Dagger)
+            || (IsFeatTrained("Follower of the Lord of Blades") && wt == Weapon_GreatSword)
+            || (IsFeatTrained("Follower of Olladra") && wt == Weapon_Sickle)
+            || (IsFeatTrained("Follower of Onatar") && wt == Weapon_Warhammer)
+            || (IsFeatTrained("Follower of the Silver Flame") && wt == Weapon_Longbow)
+            || (IsFeatTrained("Follower of the Sovereign Host") && wt == Weapon_Longsword)
+            || (IsFeatTrained("Follower of the Undying Court") && wt == Weapon_Scimitar)
+            || (IsFeatTrained("Follower of Vulkoor") && wt == Weapon_Shortsword)
+            || (IsFeatTrained("Favored by Amaunator") && wt == Weapon_HeavyMace)
+            || (IsFeatTrained("Favored by Helm") && wt == Weapon_BastardSword)
+            || (IsFeatTrained("Favored by Silvanus") && wt == Weapon_Maul);
+        // must also have at least 10 favored soul levels for this to apply
+        if (ClassLevels(Class_FavoredSoul) < 10)
+        {
+            // not enough heroic levels for this to apply
+            ret = false;
+        }
+    }
+    else
+    {
+        ret = m_Stances.IsStanceActive(name);
+    }
+    return ret;
 }
 
 bool Character::IsClassSkill(

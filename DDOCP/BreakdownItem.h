@@ -61,6 +61,8 @@ class BreakdownItem :
 
         void AddAbility(AbilityType ability);
         void RemoveFirstAbility(AbilityType ability);
+        void AddAbility(AbilityType ability, const std::vector<std::string> & stances, WeaponType wt);
+        void RemoveFirstAbility(AbilityType ability, const std::vector<std::string> & stances, WeaponType wt);
 
         void SetWeapon(WeaponType wt, size_t weaponCriticalMultiplier);
         WeaponType Weapon() const;
@@ -122,7 +124,19 @@ class BreakdownItem :
         BreakdownType m_type;
     protected:
         AbilityType LargestStatBonus();
-        std::vector<AbilityType> m_mainAbility; // ability types that are used for this breakdown (highest of those listed)
+        struct AbilityStance
+        {
+            AbilityType ability;
+            std::vector<std::string> stances;
+            WeaponType weapon;
+            bool operator==(const AbilityStance & other) const
+            {
+                return ability == other.ability
+                        && stances == other.stances
+                        && weapon == other.weapon;
+            }
+        };
+        std::vector<AbilityStance> m_mainAbility; // ability types that are used for this breakdown (highest of those listed)
         bool m_bHasWeapon;
         WeaponType m_weapon;
         size_t m_weaponCriticalMultiplier;

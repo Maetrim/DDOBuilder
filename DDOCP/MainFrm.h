@@ -8,6 +8,8 @@
 class BreakdownItem;
 class CCustomDockablePane;
 class Character;
+class CSLAControl;
+class CStancesView;
 
 class CMainFrame :
     public CMDIFrameWndEx
@@ -36,6 +38,9 @@ class CMainFrame :
         virtual BOOL OnCmdMsg(UINT nID, int nCode, void* pExtra, AFX_CMDHANDLERINFO* pHandlerInfo);
 
         MouseHook * GetMouseHook();
+
+        const CSLAControl * GetSLAControl();
+        const CStancesView * GetStancesView();
 
     protected:
         afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);

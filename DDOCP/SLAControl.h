@@ -79,6 +79,7 @@ class CSLAControl :
         void SetCharacter(Character * pCharacter);
         void AddSLA(const std::string & slaName, size_t stacks);
         void RevokeSLA(const std::string & slaName);
+        const std::list<SLA> & SLAs() const;
 
     protected:
         //{{AFX_VIRTUAL(CSLAControl)
