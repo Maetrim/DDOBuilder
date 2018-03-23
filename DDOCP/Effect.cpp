@@ -98,6 +98,22 @@ bool Effect::IncludesSpellPower(SpellPowerType sp) const
     return included;
 }
 
+bool Effect::IncludesEnergy(EnergyType energy) const
+{
+    bool included = false;
+    std::list<EnergyType>::const_iterator it = m_Energy.begin();
+    while (!included && it != m_Energy.end())
+    {
+        if ((*it) == Energy_All
+                || (*it) == energy)
+        {
+            included = true;
+        }
+        ++it;
+    }
+    return included;
+}
+
 bool Effect::VerifyObject(std::stringstream * ss) const
 {
     bool ok = true;
@@ -121,10 +137,24 @@ bool Effect::VerifyObject(std::stringstream * ss) const
             break;
         case Effect_EnergyAbsorbance:
         case Effect_EnergyResistance:
-            if (!HasEnergy())
+            if (m_Energy.size() == 0)
             {
                 (*ss) << "Energy resistance/absorbance effect missing Energy field\n";
                 ok = false;
+            }
+            else
+            {
+                std::list<EnergyType>::const_iterator it = m_Energy.begin();
+                while (it != m_Energy.end())
+                {
+                    if ((*it) == Energy_Unknown)
+                    {
+                        (*ss) << "Energy resistance/absorbance effect has bad enum value\n";
+                        ok = false;
+                        break;
+                    }
+                    ++it;
+                }
             }
             break;
         case Effect_SaveBonus:
@@ -185,8 +215,8 @@ bool Effect::VerifyObject(std::stringstream * ss) const
             }
             else
             {
-                std::list<WeaponType>::const_iterator it = m_Weapon.begin();
-                while (it != m_Weapon.end())
+                std::list<SpellPowerType>::const_iterator it = m_SpellPower.begin();
+                while (it != m_SpellPower.end())
                 {
                     if ((*it) == SpellPower_Unknown)
                     {
@@ -321,7 +351,6 @@ bool Effect::operator==(const Effect & other) const
             && (m_hasClass == other.m_hasClass)
             && (m_Class == other.m_Class)
             && (m_DR == other.m_DR)
-            && (m_hasEnergy == other.m_hasEnergy)
             && (m_Energy == other.m_Energy)
             && (m_hasFavoredEnemy == other.m_hasFavoredEnemy)
             && (m_FavoredEnemy == other.m_FavoredEnemy)

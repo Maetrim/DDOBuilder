@@ -45,8 +45,7 @@ bool BreakdownItemEnergyResistance::AffectsUs(const Effect & effect) const
 {
     bool isUs = false;
     if (effect.Type() == m_effect
-            && (effect.Energy() == m_energyType
-                || effect.Energy() == Energy_All))
+            && effect.IncludesEnergy(m_energyType))
     {
         isUs = true;
     }

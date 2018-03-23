@@ -745,6 +745,7 @@ void Character::SetAlignment(AlignmentType alignment)
     NotifyAlignmentChanged(alignment);
     m_pDocument->SetModifiedFlag(TRUE);
     SetAlignmentStances();
+    VerifyGear();
 }
 
 void Character::SetAlignmentStances()
@@ -1377,7 +1378,7 @@ std::list<TrainedFeat> Character::AutomaticFeats(
                 else
                 {
                     // let the feat determine whether its acquired
-                    acquire = (*it).RequirementsToTrain().CanTrainFeat(
+                    acquire = (*it).RequirementsToTrain().Met(
                             *this,
                             classLevels,
                             level,
@@ -3055,7 +3056,7 @@ bool Character::IsFeatTrainable(
     if (canTrain)
     {
         // do we meet the requirements to train this feat?
-        canTrain = feat.RequirementsToTrain().CanTrainFeat(
+        canTrain = feat.RequirementsToTrain().Met(
                 *this,
                 classLevels,
                 level,
@@ -5299,49 +5300,38 @@ void Character::UpdateSkillPoints(size_t level)
 void Character::VerifyGear()
 {
     EquippedGear gear = ActiveGearSet();
-    if (gear.HasItemInSlot(Inventory_Armor))
+    CString text("The following equipped items were removed as the\r\n"
+            "requirements for use are no longer met:\r\n");
+    bool revokeOccurred = false;
+    // need to know how many levels and of what classes they have trained
+    std::vector<size_t> classLevels = ClassLevels(MAX_LEVEL);
+    // need to know which feats have already been trained by this point
+    // include any feats also trained at the current level
+    std::list<TrainedFeat> currentFeats = CurrentFeats(MAX_LEVEL);
+    // check every item
+    for (size_t i = Inventory_Unknown + 1; i < Inventory_Count; ++i)
     {
-        bool revoke = false;
-        ArmorType at = gear.Armor().Armor();
-        if (at == Armor_Docent)
+        if (gear.HasItemInSlot((InventorySlotType)i))
         {
-            // must be forged
-            if (!(m_Race == Race_Warforged || m_Race == Race_BladeForged))
+            Item item = gear.ItemInSlot((InventorySlotType)i);
+            if (item.HasRequirementsToUse())
             {
-                // need to revoke armor
-                revoke = true;
+                if (!item.RequirementsToUse().Met(*this, classLevels, MAX_LEVEL, currentFeats, true))
+                {
+                    revokeOccurred = true;
+                    ClearGearInSlot(gear.Name(), (InventorySlotType)i);
+                    CString itemName;
+                    itemName = EnumEntryText((InventorySlotType)i, InventorySlotTypeMap);
+                    itemName += ": ";
+                    itemName += item.Name().c_str();
+                    itemName += "\r\n";
+                    text += itemName;
+                }
             }
-        }
-        else
-        {
-            // must be non-warforged
-            if (m_Race == Race_Warforged || m_Race == Race_BladeForged)
-            {
-                // need to revoke armor
-                revoke = true;
-            }
-        }
-        if (revoke)
-        {
-            CString text;
-            text.Format("Your equipped Armor of \"%s\"\r\n"
-                    "was removed as you no longer meet the racial requirements",
-                    gear.Armor().Name().c_str());
-            AfxMessageBox(text, MB_OK);
-            ClearGearInSlot(gear.Name(), Inventory_Armor);
         }
     }
-    if (gear.HasItemInSlot(Inventory_Weapon2)
-            && gear.ItemInSlot(Inventory_Weapon2).Weapon() == Weapon_RuneArm
-            && !IsFeatTrained("Artificer Rune Arm Use"))
+    if (revokeOccurred)
     {
-        // must have "Artificer Rune Arm Use" feat to be able to equip a rune-arm
-        // dump this item
-        CString text;
-        text.Format("Your equipped Rune-Arm of \"%s\"\r\n"
-                "was removed as you no longer meet the feat requirements",
-                gear.OffHand().Name().c_str());
         AfxMessageBox(text, MB_OK);
-        ClearGearInSlot(gear.Name(), Inventory_Weapon2);
     }
 }

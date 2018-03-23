@@ -615,7 +615,14 @@ bool BreakdownItem::UpdateEffectAmounts(
         {
             BreakdownItem * pBI = FindBreakdown(bt);
             ASSERT(pBI != NULL);
-            (*it).SetAmount(BaseStatToBonus(pBI->Total()));
+            if ((*it).UseFullAbilityScore())
+            {
+                (*it).SetAmount(pBI->Total());
+            }
+            else
+            {
+                (*it).SetAmount(BaseStatToBonus(pBI->Total()));
+            }
             itemChanged = true;
         }
         ++it;
@@ -742,6 +749,23 @@ bool BreakdownItem::GetActiveEffect(
                 amount,
                 "");        // no tree
     }
+    else if (effect.HasFullAbility())
+    {
+        // it is a feat that handles the amount from a full ability value
+        // attach to the item to observe it
+        bt = StatToBreakdown(effect.FullAbility());
+        BreakdownItem * pBI = FindBreakdown(bt);
+        ASSERT(pBI != NULL);
+        pBI->AttachObserver(this);  // need to know about changes to this stat
+        double amount = (int)(pBI->Total() / divider);
+        *activeEffect = ActiveEffect(
+                effect.Bonus(),
+                name,
+                1,
+                amount,
+                "");        // no tree
+        activeEffect->SetUseFullAbilityScore();
+    }
     else if (effect.HasDiceRoll())
     {
         // a Dice roll bonus to the breakdown. May have additional sub item effects
@@ -815,9 +839,9 @@ bool BreakdownItem::GetActiveEffect(
             activeEffect->AddStance(effect.Stance()[i]);
         }
     }
-    if (effect.HasEnergy())
+    if (effect.Energy().size() > 0)
     {
-        activeEffect->SetEnergy(effect.Energy());
+        activeEffect->SetEnergy(effect.Energy().front());
     }
     if (bt != Breakdown_Unknown)
     {

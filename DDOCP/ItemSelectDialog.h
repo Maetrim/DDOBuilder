@@ -3,7 +3,6 @@
 #include "Resource.h"
 #include "InventorySlotTypes.h"
 #include "Item.h"
-#include "PersistantSize.h"
 #include "SortHeaderCtrl.h"
 #include "InfoTip.h"
 #include "ComboBoxTooltip.h"
@@ -39,7 +38,6 @@ class CItemSelectDialog : public CDialog
         afx_msg void OnUpgradeFiligreeRare(UINT nID);
         afx_msg void OnKillFocusAugmentEdit(UINT nID);
         afx_msg void OnSize(UINT nType, int cx, int cy);
-        afx_msg void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
         afx_msg void OnEndtrackListItems(NMHDR* pNMHDR, LRESULT* pResult);
         afx_msg void OnColumnclickListItems(NMHDR* pNMHDR, LRESULT* pResult);
         afx_msg void OnHoverListItems(NMHDR* pNMHDR, LRESULT* pResult);
@@ -73,6 +71,8 @@ class CItemSelectDialog : public CDialog
         void PopulatePersonalityCombobox();
         void PopulateFiligreeCombobox(size_t filigreeIndex);
         void BuildImageList(CImageList * il, const std::list<Augment> & augments);
+        void AddAugment(std::vector<ItemAugment> * augments, const std::string & name, bool atEnd = false);
+        void RemoveAugment(std::vector<ItemAugment> * augments, const std::string & name);
 
         InventorySlotType m_slot;
         Item m_item;
@@ -106,7 +106,6 @@ class CItemSelectDialog : public CDialog
         std::list<Item> m_availableItems;
         CImageList m_itemImages;
         bool m_bInitialising;
-        CPersistantSize m_sizer;
         ArmorType m_armorType;
         WeaponType m_weaponType;
         // item tooltips

@@ -48,7 +48,7 @@ void RequiresNoneOf::Write(XmlLib::SaxWriter * writer) const
     writer->EndElement();
 }
 
-bool RequiresNoneOf::CanTrainFeat(
+bool RequiresNoneOf::Met(
         const Character & charData, 
         const std::vector<size_t> & classLevels,
         size_t totalLevel,
@@ -60,7 +60,7 @@ bool RequiresNoneOf::CanTrainFeat(
     std::list<Requirement>::const_iterator it = m_Requirements.begin();
     while (it != m_Requirements.end())
     {
-        canTrain |= (*it).CanTrainFeat(
+        canTrain |= (*it).Met(
                 charData,
                 classLevels,
                 totalLevel,

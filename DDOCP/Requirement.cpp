@@ -67,18 +67,18 @@ bool Requirement::VerifyObject(
     return ok;
 }
 
-bool Requirement::CanTrainFeat(
+bool Requirement::Met(
         const Character & charData, 
         const std::vector<size_t> & classLevels,
         size_t totalLevel,  // this is 0 based
         const std::list<TrainedFeat> & currentFeats,
         bool includeTomes) const
 {
-    bool canTrain = true;
+    bool met = true;
     if (HasRace())
     {
         // must be a required race
-        canTrain &= (charData.Race() == Race()
+        met &= (charData.Race() == Race()
                 || Race() == Race_All);
     }
     if (HasClass())
@@ -87,11 +87,11 @@ bool Requirement::CanTrainFeat(
         size_t classLevel = classLevels[Class()];
         if (HasMinLevel())
         {
-            canTrain &= (classLevel >= MinLevel());
+            met &= (classLevel >= MinLevel());
         }
         if (HasLevel())
         {
-            canTrain &= (classLevel >= Level());
+            met &= (classLevel >= Level());
         }
     }
     else
@@ -100,12 +100,12 @@ bool Requirement::CanTrainFeat(
         if (HasMinLevel())
         {
             // minimum overall level
-            canTrain &= (totalLevel + 1 >= MinLevel());
+            met &= (totalLevel + 1 >= MinLevel());
         }
         if (HasLevel())
         {
             // specific level
-            canTrain &= (totalLevel + 1 == Level());
+            met &= (totalLevel + 1 == Level());
         }
     }
     if (HasEnhancement())
@@ -114,18 +114,18 @@ bool Requirement::CanTrainFeat(
         const TrainedEnhancement * te = charData.IsTrained(
                 Enhancement(),
                 HasSelection() ? Selection() : "");
-        canTrain &= (te != NULL);
+        met &= (te != NULL);
     }
 
     if (HasSkill())
     {
         // must have this number of ranks in the skill at the current level to train
-        canTrain &= (charData.SkillAtLevel(Skill(), totalLevel, true) >= Amount());
+        met &= (charData.SkillAtLevel(Skill(), totalLevel, true) >= Amount());
     }
     if (HasBAB())
     {
         // must have at least this BAB at the current total level to train
-        canTrain &= (charData.BaseAttackBonus(totalLevel) >= BAB());
+        met &= (charData.BaseAttackBonus(totalLevel) >= BAB());
     }
     if (HasFeat())
     {
@@ -136,32 +136,32 @@ bool Requirement::CanTrainFeat(
         {
             numNeeded = Amount();
         }
-        canTrain = (count >= numNeeded);
+        met = (count >= numNeeded);
     }
     if (HasAbility())
     {
         // must have this specific base ability value to train (Base + Tome + Level up only)
         ASSERT(HasAmount());
         size_t value = charData.AbilityAtLevel(Ability(), totalLevel, includeTomes);
-        canTrain = (value >= Amount());
+        met = (value >= Amount());
     }
     if (HasAlignment())
     {
         // must have a specific alignment
-        canTrain &= (charData.Alignment() == m_Alignment);
+        met &= (charData.Alignment() == m_Alignment);
     }
-    return canTrain;
+    return met;
 }
 
 bool Requirement::CanTrainEnhancement(
         const Character & charData,
         size_t trainedRanks) const
 {
-    bool canTrain = true;
+    bool met = true;
     if (HasRace())
     {
         // must be a required race
-        canTrain &= (charData.Race() == Race()
+        met &= (charData.Race() == Race()
                 || Race() == Race_All);
     }
     if (HasClass())
@@ -171,7 +171,7 @@ bool Requirement::CanTrainEnhancement(
         size_t classLevel = classLevels[Class()];
         if (HasMinLevel())
         {
-            canTrain &= (classLevel >= MinLevel());
+            met &= (classLevel >= MinLevel());
         }
         if (HasLevel())
         {
@@ -180,17 +180,17 @@ bool Requirement::CanTrainEnhancement(
                 // only deny if truing to train the tier that this enhancement applies to
                 if (trainedRanks +1 == Tier())
                 {
-                    canTrain &= (classLevel >= Level());
+                    met &= (classLevel >= Level());
                 }
                 else
                 {
-                    canTrain = true;    // its a higher tier requirement, assume yes
+                    met = true;    // its a higher tier requirement, assume yes
                     // enhancement requirement becomes active once a tier has been trained
                 }
             }
             else
             {
-                canTrain &= (classLevel >= Level());
+                met &= (classLevel >= Level());
             }
         }
     }
@@ -201,22 +201,22 @@ bool Requirement::CanTrainEnhancement(
         const TrainedEnhancement * te = charData.IsTrained(
                 Enhancement(),
                 HasSelection() ? Selection() : "");
-        canTrain &= (te != NULL);
+        met &= (te != NULL);
         if (te != NULL)
         {
-            canTrain &= (trainedRanks < te->Ranks());
+            met &= (trainedRanks < te->Ranks());
         }
     }
 
     if (HasSkill())
     {
         // must have this number of ranks in the skill at the current level to train
-        canTrain &= (charData.SkillAtLevel(Skill(), MAX_LEVEL, true) >= Amount());
+        met &= (charData.SkillAtLevel(Skill(), MAX_LEVEL, true) >= Amount());
     }
     if (HasBAB())
     {
         // must have at least this BAB at the current total level to train
-        canTrain &= (charData.BaseAttackBonus(MAX_LEVEL) >= BAB());
+        met &= (charData.BaseAttackBonus(MAX_LEVEL) >= BAB());
     }
     if (HasFeat())
     {
@@ -228,27 +228,27 @@ bool Requirement::CanTrainEnhancement(
         {
             numNeeded = Amount();
         }
-        canTrain = (count >= numNeeded);
+        met = (count >= numNeeded);
     }
     if (HasAbility())
     {
         // must have this specific base ability value to train (Base + Tome + Level up only)
         ASSERT(HasAmount());
         size_t value = charData.AbilityAtLevel(Ability(), MAX_LEVEL, true);
-        canTrain = (value >= Amount());
+        met = (value >= Amount());
     }
-    return canTrain;
+    return met;
 }
 
 bool Requirement::CanTrainTree(
         const Character & charData) const
 {
     // when it comes to tree requirements, we only need to match either a race or a class
-    bool canTrain = true;
+    bool met = true;
     if (HasRace())
     {
         // must be a required race
-        canTrain &= (charData.Race() == Race()
+        met &= (charData.Race() == Race()
                 || Race() == Race_All);
     }
     if (HasClass())
@@ -256,7 +256,7 @@ bool Requirement::CanTrainTree(
         // must have a specific class present
         std::vector<size_t> classLevels = charData.ClassLevels(MAX_LEVEL);
         size_t classLevel = classLevels[Class()];
-        canTrain = (classLevel > 0);
+        met = (classLevel > 0);
     }
     if (HasEnhancement())
     {
@@ -264,9 +264,9 @@ bool Requirement::CanTrainTree(
         const TrainedEnhancement * te = charData.IsTrained(
                 Enhancement(),
                 HasSelection() ? Selection() : "");
-        canTrain &= (te != NULL);
+        met &= (te != NULL);
     }
-    return canTrain;
+    return met;
 }
 
 void Requirement::CreateRequirementStrings(

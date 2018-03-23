@@ -102,7 +102,6 @@ BEGIN_MESSAGE_MAP(CItemSelectDialog, CDialog)
     ON_CONTROL_RANGE(CBN_SELENDCANCEL, IDC_COMBO_UPGRADE1, IDC_COMBO_FILIGREE1 + MAX_Filigree, OnUpgradeFiligreeCancel)
     ON_CONTROL_RANGE(BN_CLICKED, IDC_CHECK_FILGREE_RARE1, IDC_CHECK_FILGREE_RARE1 + MAX_Filigree, OnUpgradeFiligreeRare)
     ON_WM_SIZE()
-    ON_WM_GETMINMAXINFO()
     ON_WM_WINDOWPOSCHANGING()
     ON_NOTIFY(HDN_ENDTRACK, IDC_ITEM_LIST, OnEndtrackListItems)
     ON_NOTIFY(HDN_DIVIDERDBLCLICK, IDC_ITEM_LIST, OnEndtrackListItems)
@@ -160,8 +159,6 @@ BOOL CItemSelectDialog::OnInitDialog()
             );
     EnableControls();
 
-    //m_sizer.Hook(GetSafeHwnd(), "ItemSelectDialog");
-
     if (m_slot != Inventory_Weapon1)
     {
         // resize the dialog so that the sentient weapon filigree controls
@@ -213,7 +210,12 @@ void CItemSelectDialog::PopulateAvailableItemList()
 {
     m_availableItemsCtrl.LockWindowUpdate();
     m_availableItemsCtrl.DeleteAllItems();
-    bool hasRuneArmFeat = m_pCharacter->IsFeatTrained("Artificer Rune Arm Use");
+
+    // need to know how many levels and of what classes they have trained
+    std::vector<size_t> classLevels = m_pCharacter->ClassLevels(MAX_LEVEL);
+    // need to know which feats have already been trained by this point
+    // include any feats also trained at the current level
+    std::list<TrainedFeat> currentFeats = m_pCharacter->CurrentFeats(MAX_LEVEL);
 
     RaceType race = m_pCharacter->Race();
     // filter the list of items loaded to those that match the slot type
@@ -254,11 +256,13 @@ void CItemSelectDialog::PopulateAvailableItemList()
                 // always include current selection
                 canSelect = true;
             }
-            if ((*it).HasWeapon()
-                    && (*it).Weapon() == Weapon_RuneArm
-                    && !hasRuneArmFeat)
+            // some items have requirements to be able to use, see if they are met
+            if ((*it).HasRequirementsToUse())
             {
-                canSelect = false;
+                if (!(*it).RequirementsToUse().Met(*m_pCharacter, classLevels, MAX_LEVEL, currentFeats, true))
+                {
+                    canSelect = false;
+                }
             }
             if (canSelect)
             {
@@ -450,8 +454,9 @@ void CItemSelectDialog::OnItemSelected(NMHDR* pNMHDR, LRESULT* pResult)
                 std::list<Item>::const_iterator it = m_availableItems.begin();
                 std::advance(it, sel);
                 m_item = (*it);
-                // restore sentient jewel
-                if (hadSentience)
+                // restore sentient jewel only if target item can accept one
+                if (hadSentience
+                        && m_item.HasCanAcceptSentientJewel())
                 {
                     m_item.Set_SentientIntelligence(jewel);
                 }
@@ -486,7 +491,60 @@ void CItemSelectDialog::OnAugmentSelect(UINT nID)
         CString text;
         m_comboAugmentDropList[augmentIndex].GetLBText(sel, text);
         std::vector<ItemAugment> augments = m_item.Augments();
+        // may need to clear previous augments granted augment slot
+        std::string oldSelection;
+        if (augments[augmentIndex].HasSelectedAugment())
+        {
+            oldSelection = augments[augmentIndex].SelectedAugment();
+        }
         augments[augmentIndex].Set_SelectedAugment((LPCTSTR)text);
+        if (oldSelection != "")
+        {
+            const Augment & oldAugment =
+                    FindAugmentByName(oldSelection);
+            if (oldAugment.HasGrantAugment())
+            {
+                RemoveAugment(&augments, oldAugment.GrantAugment());
+            }
+            // add a granted augment if required (only granted while augment selected)
+            if (oldAugment.HasGrantConditionalAugment())
+            {
+                if (oldAugment.HasWeaponClass()
+                        && m_item.HasWeapon()
+                        && IsInWeaponClass(oldAugment.WeaponClass(), m_item.Weapon()))
+                {
+                    // this is a new augment slot that needs to be added
+                    RemoveAugment(&augments, oldAugment.GrantConditionalAugment());
+                }
+            }
+        }
+        // if an augment selected has AddAugment fields, add them to the
+        // item also if they do not already exist
+        const Augment & augment = FindAugmentByName((LPCTSTR)text);
+        std::list<std::string> augmentsToAdd = augment.AddAugment();
+        std::list<std::string>::const_iterator it = augmentsToAdd.begin();
+        while (it != augmentsToAdd.end())
+        {
+            AddAugment(&augments, (*it));
+            ++it;
+        }
+        // add a granted augment if required (only granted while augment selected)
+        if (augment.HasGrantAugment())
+        {
+            // this is a new augment slot that needs to be added
+            AddAugment(&augments, augment.GrantAugment());
+        }
+        // add a granted augment if required (only granted while augment selected)
+        if (augment.HasGrantConditionalAugment())
+        {
+            if (augment.HasWeaponClass()
+                    && m_item.HasWeapon()
+                    && IsInWeaponClass(augment.WeaponClass(), m_item.Weapon()))
+            {
+                // this is a new augment slot that needs to be added
+                AddAugment(&augments, augment.GrantConditionalAugment());
+            }
+        }
         m_item.Set_Augments(augments);
         // update the controls after a selection as edit controls may need
         // to be displayed for some augment selection controls.
@@ -522,7 +580,7 @@ void CItemSelectDialog::OnUpgradeSelect(UINT nID)
 {
     // an upgrade selection has been made. Determine which augment slot type
     // needs to be added and remove the upgrade list from the item. This action
-    // cannot be undone. The user will have to reselect he base item to undo this
+    // cannot be undone. The user will have to reselect the base item to undo this
     size_t controlIndex = nID - IDC_COMBO_UPGRADE1;
     int selection = m_comboUpgradeDropList[controlIndex].GetCurSel();
     if (selection != CB_ERR)
@@ -541,9 +599,7 @@ void CItemSelectDialog::OnUpgradeSelect(UINT nID)
 
         // add the selected augment type to the item
         std::vector<ItemAugment> currentAugments = m_item.Augments();
-        ItemAugment newAugment;
-        newAugment.Set_Type((*it));
-        currentAugments.push_back(newAugment);
+        AddAugment(&currentAugments, (*it));
         m_item.Set_Augments(currentAugments);
 
         // now erase the upgrade from the upgrade list as its been actioned
@@ -605,11 +661,11 @@ void CItemSelectDialog::OnUpgradeFiligree(UINT nID)
         SetSentientWeaponControls();
     }
 }
+
 void CItemSelectDialog::OnUpgradeFiligreeCancel(UINT nID)
 {
     HideTip();
 }
-
 
 void CItemSelectDialog::OnUpgradeFiligreeRare(UINT nID)
 {
@@ -669,13 +725,6 @@ void CItemSelectDialog::OnSize(UINT nType, int cx, int cy)
                     rect);          // screen coordinates
         }
     }
-}
-
-void CItemSelectDialog::OnGetMinMaxInfo(MINMAXINFO* lpMMI)
-{
-    // minimum size
-    lpMMI->ptMinTrackSize.x = 640;
-    lpMMI->ptMinTrackSize.y = 465;
 }
 
 void CItemSelectDialog::OnEndtrackListItems(NMHDR* pNMHDR, LRESULT* pResult)
@@ -991,14 +1040,8 @@ void CItemSelectDialog::AddSpecialSlots()
     if (m_item.MinLevel() > 1)
     {
         std::vector<ItemAugment> currentAugments = m_item.Augments();
-        // add mythic
-        ItemAugment mythicAugment;
-        mythicAugment.Set_Type("Mythic");
-        currentAugments.push_back(mythicAugment);
-        // add reaper
-        ItemAugment reaperAugment;
-        reaperAugment.Set_Type("Reaper");
-        currentAugments.push_back(reaperAugment);
+        AddAugment(&currentAugments, "Mythic", true);
+        AddAugment(&currentAugments, "Reaper", true);
         // now set the slots on the item
         m_item.Set_Augments(currentAugments);
     }
@@ -1261,3 +1304,67 @@ void CItemSelectDialog::OnWindowPosChanging(WINDOWPOS * pos)
     CDialog::OnWindowPosChanging(pos);
     PostMessage(WM_SIZE, SIZE_RESTORED, MAKELONG(pos->cx, pos->cy));
 }
+
+void CItemSelectDialog::AddAugment(
+        std::vector<ItemAugment> * augments,
+        const std::string & name,
+        bool atEnd)
+{
+    // only add if it is not already present
+    bool found = false;
+    for (size_t i = 0; i < augments->size(); ++i)
+    {
+        if ((*augments)[i].Type() == name)
+        {
+            found = true;
+            break;
+        }
+    }
+    if (!found)
+    {
+        // this is a new augment slot that needs to be added
+        ItemAugment newAugment;
+        newAugment.Set_Type(name);
+        // all new augments are added before any "Mythic" slot if present
+        bool foundMythic = false;
+        size_t i;
+        for (i = 0; i < augments->size(); ++i)
+        {
+            if ((*augments)[i].Type() == "Mythic")
+            {
+                foundMythic = true;
+                break;
+            }
+        }
+        if (!atEnd && foundMythic)
+        {
+            std::vector<ItemAugment>::iterator it = augments->begin();
+            std::advance(it, i);
+            augments->insert(it, newAugment);
+        }
+        else
+        {
+            // just add to the end if no current Mythic slot
+            augments->push_back(newAugment);
+        }
+    }
+}
+
+void CItemSelectDialog::RemoveAugment(
+        std::vector<ItemAugment> * augments,
+        const std::string & name)
+{
+    for (size_t i = 0; i < augments->size(); ++i)
+    {
+        if ((*augments)[i].Type() == name)
+        {
+            // this one needs removing
+            std::vector<ItemAugment>::iterator it = augments->begin();
+            std::advance(it, i);
+            augments->erase(it);
+            // we're done
+            break;
+        }
+    }
+}
+

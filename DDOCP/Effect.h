@@ -287,6 +287,7 @@ class Effect :
 
         bool IncludesWeapon(WeaponType wt) const;
         bool IncludesSpellPower(SpellPowerType sp) const;
+        bool IncludesEnergy(EnergyType energy) const;
         double Amount(size_t tier) const;
         bool VerifyObject(std::stringstream * ss) const;
 
@@ -323,9 +324,10 @@ class Effect :
                 DL_OPTIONAL_STRING(_, SpellLikeAbility) \
                 DL_STRING_LIST(_, Immunity) \
                 DL_OPTIONAL_ENUM(_, AbilityType, Ability, Ability_Unknown, abilityTypeMap) \
+                DL_OPTIONAL_ENUM(_, AbilityType, FullAbility, Ability_Unknown, abilityTypeMap) \
                 DL_OPTIONAL_ENUM(_, ClassType, Class, Class_Unknown, classTypeMap) \
                 DL_ENUM_LIST(_, DamageReductionType, DR, DR_Unknown, drTypeMap) \
-                DL_OPTIONAL_ENUM(_, EnergyType, Energy, Energy_Unknown, energyTypeMap) \
+                DL_ENUM_LIST(_, EnergyType, Energy, Energy_Unknown, energyTypeMap) \
                 DL_OPTIONAL_ENUM(_, FavoredEnemyType, FavoredEnemy, FavoredEnemy_Unknown, favoredEnemyTypeMap) \
                 DL_OPTIONAL_ENUM(_, SaveType, Save, Save_Unknown, saveTypeMap) \
                 DL_OPTIONAL_ENUM(_, SkillType, Skill, Skill_Unknown, skillTypeMap) \

@@ -47,31 +47,31 @@ void Requirements::Write(XmlLib::SaxWriter * writer) const
     writer->EndElement();
 }
 
-bool Requirements::CanTrainFeat(
+bool Requirements::Met(
         const Character & charData, 
         const std::vector<size_t> & classLevels,
         size_t totalLevel,
         const std::list<TrainedFeat> & currentFeats,
         bool includeTomes) const
 {
-    bool canTrain = true;
+    bool met = true;
     std::list<Requirement>::const_iterator it = m_Requires.begin();
-    while (canTrain && it != m_Requires.end())
+    while (met && it != m_Requires.end())
     {
-        canTrain = (*it).CanTrainFeat(charData, classLevels, totalLevel, currentFeats, includeTomes);
+        met = (*it).Met(charData, classLevels, totalLevel, currentFeats, includeTomes);
         ++it;
     }
-    if (canTrain
+    if (met
             && HasOneOf())
     {
-        canTrain = OneOf().CanTrainFeat(charData, classLevels, totalLevel, currentFeats, includeTomes);
+        met = OneOf().Met(charData, classLevels, totalLevel, currentFeats, includeTomes);
     }
-    if (canTrain
+    if (met
             && HasNoneOf())
     {
-        canTrain = NoneOf().CanTrainFeat(charData, classLevels, totalLevel, currentFeats, includeTomes);
+        met = NoneOf().Met(charData, classLevels, totalLevel, currentFeats, includeTomes);
     }
-    return canTrain;
+    return met;
 }
 
 bool Requirements::CanTrainEnhancement(
@@ -79,47 +79,47 @@ bool Requirements::CanTrainEnhancement(
         size_t trainedRanks) const
 {
     // only need to check any enhancement requirements
-    bool canTrain = true;
+    bool met = true;
     std::list<Requirement>::const_iterator it = m_Requires.begin();
-    while (canTrain && it != m_Requires.end())
+    while (met && it != m_Requires.end())
     {
-        canTrain = (*it).CanTrainEnhancement(charData, trainedRanks);
+        met = (*it).CanTrainEnhancement(charData, trainedRanks);
         ++it;
     }
-    if (canTrain
+    if (met
             && HasOneOf())
     {
-        canTrain = OneOf().CanTrainEnhancement(charData, trainedRanks);
+        met = OneOf().CanTrainEnhancement(charData, trainedRanks);
     }
-    if (canTrain
+    if (met
             && HasNoneOf())
     {
-        canTrain = NoneOf().CanTrainEnhancement(charData, trainedRanks);
+        met = NoneOf().CanTrainEnhancement(charData, trainedRanks);
     }
-    return canTrain;
+    return met;
 }
 
 bool Requirements::CanTrainTree(
         const Character & charData) const
 {
-    bool canTrain = true;
+    bool met = true;
     std::list<Requirement>::const_iterator it = m_Requires.begin();
-    while (canTrain && it != m_Requires.end())
+    while (met && it != m_Requires.end())
     {
-        canTrain = (*it).CanTrainTree(charData);
+        met = (*it).CanTrainTree(charData);
         ++it;
     }
-    if (canTrain
+    if (met
             && HasOneOf())
     {
-        canTrain = OneOf().CanTrainTree(charData);
+        met = OneOf().CanTrainTree(charData);
     }
-    if (canTrain
+    if (met
             && HasNoneOf())
     {
-        canTrain = NoneOf().CanTrainTree(charData);
+        met = NoneOf().CanTrainTree(charData);
     }
-    return canTrain;
+    return met;
 }
 
 void Requirements::CreateRequirementStrings(

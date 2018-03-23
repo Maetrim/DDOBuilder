@@ -132,6 +132,7 @@ BreakdownType StatToBreakdown(AbilityType ability);
 BreakdownType SkillToBreakdown(SkillType skill);
 BreakdownItem * FindBreakdown(BreakdownType type);
 double BAB(ClassType ct);
+bool IsInWeaponClass(WeaponClassType wc, WeaponType wt);
 bool IsMartialWeapon(WeaponType wt);
 bool IsSimpleWeapon(WeaponType wt);
 bool IsRangedWeapon(WeaponType wt);

@@ -25,7 +25,8 @@ ActiveEffect::ActiveEffect() :
     m_bWholeNumbersOnly(false),
     m_bHasWeaponType(false),
     m_weaponType(Weapon_Unknown),
-    m_clearValue(false)
+    m_clearValue(false),
+    m_bUseFullAbilityScore(false)
 {
 }
 
@@ -51,7 +52,8 @@ ActiveEffect::ActiveEffect(
     m_bWholeNumbersOnly(false),
     m_bHasWeaponType(false),
     m_weaponType(Weapon_Unknown),
-    m_clearValue(false)
+    m_clearValue(false),
+    m_bUseFullAbilityScore(false)
 {
 }
 
@@ -76,7 +78,8 @@ ActiveEffect::ActiveEffect(
     m_bWholeNumbersOnly(false),
     m_bHasWeaponType(false),
     m_weaponType(Weapon_Unknown),
-    m_clearValue(false)
+    m_clearValue(false),
+    m_bUseFullAbilityScore(false)
 {
     // stacks is set immediately after this is constructed
 }
@@ -104,7 +107,8 @@ ActiveEffect::ActiveEffect(
     m_bWholeNumbersOnly(false),
     m_bHasWeaponType(false),
     m_weaponType(Weapon_Unknown),
-    m_clearValue(false)
+    m_clearValue(false),
+    m_bUseFullAbilityScore(false)
 {
 }
 
@@ -129,7 +133,8 @@ ActiveEffect::ActiveEffect(
     m_bWholeNumbersOnly(false),
     m_bHasWeaponType(false),
     m_weaponType(Weapon_Unknown),
-    m_clearValue(false)
+    m_clearValue(false),
+    m_bUseFullAbilityScore(false)
 {
 }
 
@@ -154,7 +159,8 @@ ActiveEffect::ActiveEffect(
     m_bWholeNumbersOnly(false),
     m_bHasWeaponType(false),
     m_weaponType(Weapon_Unknown),
-    m_clearValue(false)
+    m_clearValue(false),
+    m_bUseFullAbilityScore(false)
 {
 }
 
@@ -179,7 +185,8 @@ ActiveEffect::ActiveEffect(
     m_bWholeNumbersOnly(false),
     m_bHasWeaponType(false),
     m_weaponType(Weapon_Unknown),
-    m_clearValue(false)
+    m_clearValue(false),
+    m_bUseFullAbilityScore(false)
 {
 }
 
@@ -204,7 +211,8 @@ ActiveEffect::ActiveEffect(
     m_bWholeNumbersOnly(false),
     m_bHasWeaponType(false),
     m_weaponType(Weapon_Unknown),
-    m_clearValue(false)
+    m_clearValue(false),
+    m_bUseFullAbilityScore(false)
 {
 }
 
@@ -230,7 +238,8 @@ ActiveEffect::ActiveEffect(
     m_bWholeNumbersOnly(false),
     m_bHasWeaponType(false),
     m_weaponType(Weapon_Unknown),
-    m_clearValue(false)
+    m_clearValue(false),
+    m_bUseFullAbilityScore(false)
 {
 }
 
@@ -647,6 +656,16 @@ void ActiveEffect::SetPercentageValue(double amount) const
 {
     // this value is mutable
     m_percentageAmount = amount;
+}
+
+void ActiveEffect::SetUseFullAbilityScore()
+{
+    m_bUseFullAbilityScore = true;
+}
+
+bool ActiveEffect::UseFullAbilityScore() const
+{
+    return m_bUseFullAbilityScore;
 }
 
 void ActiveEffect::SetWholeNumbersOnly()

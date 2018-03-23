@@ -214,62 +214,7 @@ bool BreakdownItemWeapon::AffectsUs(const Effect & effect) const
     }
     if (effect.HasWeaponClass())
     {
-        // a class of weapons are affected, determine whether we fall into it
-        switch (effect.WeaponClass())
-        {
-        case WeaponClass_Martial:
-            isUs = IsMartialWeapon(m_weaponType);
-            break;
-        case WeaponClass_Simple:
-            isUs = IsSimpleWeapon(m_weaponType);
-            break;
-        case WeaponClass_Thrown:
-            isUs = IsThrownWeapon(m_weaponType);
-            break;
-        case WeaponClass_Unarmed:
-            isUs = (m_weaponType == Weapon_Handwraps);
-            break;
-        case WeaponClass_OneHanded:
-            isUs = IsOneHandedWeapon(m_weaponType);
-            break;
-        case WeaponClass_Ranged:
-            isUs = IsRangedWeapon(m_weaponType);
-            break;
-        case WeaponClass_TwoHanded:
-            isUs = IsTwoHandedWeapon(m_weaponType);
-            break;
-        case WeaponClass_Axe:
-            isUs = IsAxe(m_weaponType);
-            break;
-        case WeaponClass_Bows:
-            isUs = IsBow(m_weaponType);
-            break;
-        case WeaponClass_Crossbows:
-            isUs = IsCrossbow(m_weaponType);
-            break;
-        case WeaponClass_ReapeatingCrossbows:
-            isUs = IsRepeatingCrossbow(m_weaponType);
-            break;
-        case WeaponClass_Melee:
-            isUs = IsMeleeWeapon(m_weaponType);
-            break;
-        case WeaponClass_Light:
-            isUs = IsLightWeapon(m_weaponType);
-            break;
-        case WeaponClass_Finesseable:
-            isUs = IsFinesseableWeapon(m_weaponType);
-            break;
-        case WeaponClass_FocusGroup:
-            // always affects weapon, but disabled if weapon not part of focus group
-            // done this way as weapons in a given focus group can vary with enhancements
-            isUs = true;
-            break;
-        case WeaponClass_Shield:
-            isUs = IsShield(m_weaponType);
-            break;
-        default:
-            ASSERT(FALSE);  // not implemented this one? Do it!
-        }
+        isUs = IsInWeaponClass(effect.WeaponClass(), m_weaponType);
     }
     if (effect.HasDamageType())
     {

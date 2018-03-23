@@ -15,7 +15,7 @@ class RequiresOneOf :
         RequiresOneOf(void);
         void Write(XmlLib::SaxWriter * writer) const;
 
-        bool CanTrainFeat(
+        bool Met(
                 const Character & charData, 
                 const std::vector<size_t> & classLevels,
                 size_t totalLevel,

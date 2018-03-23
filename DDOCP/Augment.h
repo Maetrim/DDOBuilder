@@ -5,6 +5,7 @@
 #pragma once
 #include "XmlLib\DLMacros.h"
 #include "RareEffects.h"
+#include "WeaponClassTypes.h"
 
 class Augment :
     public XmlLib::SaxContentElement
@@ -31,6 +32,10 @@ class Augment :
                 DL_SIMPLE(_, size_t, MinLevel, 0) \
                 DL_OPTIONAL_STRING(_, Icon) \
                 DL_STRING_LIST(_, Type) \
+                DL_STRING_LIST(_, AddAugment) \
+                DL_OPTIONAL_STRING(_, GrantAugment) \
+                DL_OPTIONAL_STRING(_, GrantConditionalAugment) \
+                DL_OPTIONAL_ENUM(_, WeaponClassType, WeaponClass, WeaponClass_Unknown, weaponClassTypeMap) \
                 DL_FLAG(_, EnterValue) \
                 DL_OBJECT_LIST(_, Effect, Effects) \
                 DL_OPTIONAL_OBJECT(_, RareEffects, Rares)

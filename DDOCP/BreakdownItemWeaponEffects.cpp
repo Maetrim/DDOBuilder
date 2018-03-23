@@ -188,61 +188,7 @@ bool BreakdownItemWeaponEffects::AffectsThisWeapon(
     {
         // a class of weapons are affected, determine whether
         // we fall into it
-        switch (effect.WeaponClass())
-        {
-        case WeaponClass_Martial:
-            isUs = IsMartialWeapon(wt);
-            break;
-        case WeaponClass_Simple:
-            isUs = IsSimpleWeapon(wt);
-            break;
-        case WeaponClass_Thrown:
-            isUs = IsThrownWeapon(wt);
-            break;
-        case WeaponClass_Unarmed:
-            isUs = (wt == Weapon_Handwraps);
-            break;
-        case WeaponClass_OneHanded:
-            isUs = IsOneHandedWeapon(wt);
-            break;
-        case WeaponClass_Ranged:
-            isUs = IsRangedWeapon(wt);
-            break;
-        case WeaponClass_TwoHanded:
-            isUs = IsTwoHandedWeapon(wt);
-            break;
-        case WeaponClass_Axe:
-            isUs = IsAxe(wt);
-            break;
-        case WeaponClass_Bows:
-            isUs = IsBow(wt);
-            break;
-        case WeaponClass_Crossbows:
-            isUs = IsCrossbow(wt);
-            break;
-        case WeaponClass_ReapeatingCrossbows:
-            isUs = IsRepeatingCrossbow(wt);
-            break;
-        case WeaponClass_Melee:
-            isUs = IsMeleeWeapon(wt);
-            break;
-        case WeaponClass_Light:
-            isUs = IsLightWeapon(wt);
-            break;
-        case WeaponClass_Finesseable:
-            isUs = IsFinesseableWeapon(wt);
-            break;
-        case WeaponClass_FocusGroup:
-            // always affects weapon, but disabled if weapon not part of focus group
-            // done this way as weapons in a given focus group can vary with enhancements
-            isUs = true;
-            break;
-        case WeaponClass_Shield:
-            isUs = IsShield(wt);
-            break;
-        default:
-            ASSERT(FALSE);  // not implemented this one? Do it!
-        }
+        isUs = IsInWeaponClass(effect.WeaponClass(), wt);
     }
     if (effect.HasDamageType())
     {

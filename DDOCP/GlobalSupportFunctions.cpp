@@ -2712,3 +2712,65 @@ bool CanEquipTo2ndWeapon(const Item & item)
     }
     return canEquip;
 }
+
+bool IsInWeaponClass(WeaponClassType wc, WeaponType wt)
+{
+    bool isWeaponClass = false;
+    // a class of weapons are affected, determine whether we fall into it
+    switch (wc)
+    {
+    case WeaponClass_Martial:
+        isWeaponClass = IsMartialWeapon(wt);
+        break;
+    case WeaponClass_Simple:
+        isWeaponClass = IsSimpleWeapon(wt);
+        break;
+    case WeaponClass_Thrown:
+        isWeaponClass = IsThrownWeapon(wt);
+        break;
+    case WeaponClass_Unarmed:
+        isWeaponClass = (wt == Weapon_Handwraps);
+        break;
+    case WeaponClass_OneHanded:
+        isWeaponClass = IsOneHandedWeapon(wt);
+        break;
+    case WeaponClass_Ranged:
+        isWeaponClass = IsRangedWeapon(wt);
+        break;
+    case WeaponClass_TwoHanded:
+        isWeaponClass = IsTwoHandedWeapon(wt);
+        break;
+    case WeaponClass_Axe:
+        isWeaponClass = IsAxe(wt);
+        break;
+    case WeaponClass_Bows:
+        isWeaponClass = IsBow(wt);
+        break;
+    case WeaponClass_Crossbows:
+        isWeaponClass = IsCrossbow(wt);
+        break;
+    case WeaponClass_ReapeatingCrossbows:
+        isWeaponClass = IsRepeatingCrossbow(wt);
+        break;
+    case WeaponClass_Melee:
+        isWeaponClass = IsMeleeWeapon(wt);
+        break;
+    case WeaponClass_Light:
+        isWeaponClass = IsLightWeapon(wt);
+        break;
+    case WeaponClass_Finesseable:
+        isWeaponClass = IsFinesseableWeapon(wt);
+        break;
+    case WeaponClass_FocusGroup:
+        // always affects weapon, but disabled if weapon not part of focus group
+        // done this way as weapons in a given focus group can vary with enhancements
+        isWeaponClass = true;
+        break;
+    case WeaponClass_Shield:
+        isWeaponClass = IsShield(wt);
+        break;
+    default:
+        ASSERT(FALSE);  // not implemented this one? Do it!
+    }
+    return isWeaponClass;
+}

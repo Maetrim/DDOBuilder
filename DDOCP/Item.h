@@ -10,6 +10,7 @@
 #include "EquipmentSlot.h"
 #include "InventorySlotTypes.h"
 #include "ItemAugment.h"
+#include "Requirements.h"
 #include "SentientJewel.h"
 #include "SlotUpgrade.h"
 #include "ItemSpecificEffects.h"
@@ -40,6 +41,7 @@ class Item :
                 DL_SIMPLE(_, size_t, MinLevel, 0) \
                 DL_STRING_LIST(_, EffectDescription) \
                 DL_STRING_LIST(_, DRBypass) \
+                DL_OPTIONAL_OBJECT(_, Requirements, RequirementsToUse) \
                 DL_OPTIONAL_OBJECT(_, Dice, DamageDice) \
                 DL_OPTIONAL_OBJECT(_, ItemSpecificEffects, ItemEffects) \
                 DL_OPTIONAL_SIMPLE(_, size_t, CriticalMultiplier, 0) \
