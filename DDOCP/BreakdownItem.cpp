@@ -796,10 +796,10 @@ bool BreakdownItem::GetActiveEffect(
             hasActiveEffect = false;
         }
     }
-    else if (effect.HasSkill())
+    else if (effect.Skill().size() > 0)
     {
         // its per n skill ranks (round down 0.5's to 0)
-        bt = SkillToBreakdown(effect.Skill());
+        bt = SkillToBreakdown(effect.Skill().front());  // single entry
         BreakdownItem * pBI = FindBreakdown(bt);
         size_t ranks = (size_t)pBI->Total();    // throw away any half ranks
         double amount = (int)(ranks / divider);    // integer arithmetic

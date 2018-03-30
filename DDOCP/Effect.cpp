@@ -114,6 +114,22 @@ bool Effect::IncludesEnergy(EnergyType energy) const
     return included;
 }
 
+bool Effect::IncludesSkill(SkillType skill) const
+{
+    bool included = false;
+    std::list<SkillType>::const_iterator it = m_Skill.begin();
+    while (!included && it != m_Skill.end())
+    {
+        if ((*it) == Skill_All
+                || (*it) == skill)
+        {
+            included = true;
+        }
+        ++it;
+    }
+    return included;
+}
+
 bool Effect::VerifyObject(std::stringstream * ss) const
 {
     bool ok = true;
@@ -170,17 +186,30 @@ bool Effect::VerifyObject(std::stringstream * ss) const
             }
             break;
         case Effect_SkillBonus:
-            if (!HasSkill()
+            if (m_Skill.size() == 0
                     && !HasAbility())
             {
                 (*ss) << "Skill effect missing skill field\n";
                 ok = false;
             }
-            else if ((HasSkill() && Skill() == Skill_Unknown)
-                    || (HasAbility() && Ability() == Ability_Unknown))
+            else
             {
-                (*ss) << "Skill effect has bad enum value\n";
-                ok = false;
+                std::list<SkillType>::const_iterator it = m_Skill.begin();
+                while (it != m_Skill.end())
+                {
+                    if ((*it) == Skill_Unknown)
+                    {
+                        (*ss) << "SkillBonus effect has bad enum value\n";
+                        ok = false;
+                        break;
+                    }
+                    ++it;
+                }
+                if ((HasAbility() && Ability() == Ability_Unknown))
+                {
+                        (*ss) << "SkillBonus effect has bad Ability enum value\n";
+                        ok = false;
+                }
             }
             break;
         case Effect_TacticalDC:
@@ -356,7 +385,6 @@ bool Effect::operator==(const Effect & other) const
             && (m_FavoredEnemy == other.m_FavoredEnemy)
             && (m_hasSave == other.m_hasSave)
             && (m_Save == other.m_Save)
-            && (m_hasSkill == other.m_hasSkill)
             && (m_Skill == other.m_Skill)
             && (m_SpellPower == other.m_SpellPower)
             && (m_hasSchool == other.m_hasSchool)

@@ -166,9 +166,7 @@ bool BreakdownItemSkill::AffectsUs(const Effect & effect) const
     // see if this effect applies to us
     if (effect.Type() == Effect_SkillBonus)
     {
-        if (effect.HasSkill()
-                && (effect.Skill() == Skill_All
-                || effect.Skill() == m_skill))
+        if (effect.IncludesSkill(m_skill))
         {
             isUs = true;
         }

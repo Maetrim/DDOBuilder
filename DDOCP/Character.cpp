@@ -1260,6 +1260,8 @@ void Character::TrainFeat(
         {
             AutoTrainSingleSelectionFeats();
         }
+        // Warforged feats can affect active stances
+        UpdateArmorStances();
     }
 }
 
@@ -4589,12 +4591,26 @@ void Character::UpdateArmorStances()
     }
     else
     {
-        ActivateStance(cloth);
-        ActivateStance(lona);
-        DeactivateStance(light);
-        DeactivateStance(medium);
-        DeactivateStance(heavy);
-        DeactivateStance(moh);
+        // if we have no item and this toon is Warforged with "Adamantine Body"
+        // then they are still in heavy armor mode
+        if (IsFeatTrained("Adamantine Body"))
+        {
+            DeactivateStance(cloth);
+            DeactivateStance(lona);
+            DeactivateStance(light);
+            DeactivateStance(medium);
+            ActivateStance(heavy);
+            ActivateStance(moh);
+        }
+        else
+        {
+            ActivateStance(cloth);
+            ActivateStance(lona);
+            DeactivateStance(light);
+            DeactivateStance(medium);
+            DeactivateStance(heavy);
+            DeactivateStance(moh);
+        }
     }
 }
 
