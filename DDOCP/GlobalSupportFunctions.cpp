@@ -7,6 +7,7 @@
 #include "Character.h"
 #include "DDOCP.h"
 #include "MainFrm.h"
+#include "StancesView.h"
 #include <boost/assign/std/vector.hpp>
 #include <algorithm>
 
@@ -2774,3 +2775,18 @@ bool IsInWeaponClass(WeaponClassType wc, WeaponType wt)
     }
     return isWeaponClass;
 }
+
+size_t StanceStackCount(const std::string & stanceName)
+{
+    CWnd * pWnd = AfxGetMainWnd();
+    CMainFrame * pMainWnd = dynamic_cast<CMainFrame*>(pWnd);
+    const CStancesView * pView = pMainWnd->GetStancesView();
+    const CStanceButton * pStanceButton = pView->GetStance(stanceName);
+    size_t count = 0;
+    if (pStanceButton != NULL)
+    {
+        count = pStanceButton->NumStacks();
+    }
+    return count;
+}
+

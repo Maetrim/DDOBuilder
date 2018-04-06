@@ -111,6 +111,7 @@ std::vector<size_t> SpellSlotsForClass(ClassType ct, size_t level);
 size_t ClassSpellPoints(ClassType ct, size_t level);
 AbilityType ClassCastingStat(ClassType ct);
 const Item & FindItem(const std::string & itemName);
+size_t StanceStackCount(const std::string & stanceName);
 
 enum ImageType
 {

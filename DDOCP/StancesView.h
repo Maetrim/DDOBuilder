@@ -24,6 +24,7 @@ class CStancesView :
         virtual void OnInitialUpdate();
         const std::vector<CStanceButton *> & UserStances() const;
         const std::vector<CStanceButton *> & AutoStances() const;
+        const CStanceButton * GetStance(const std::string & stanceName) const;
     protected:
         CStancesView();           // protected constructor used by dynamic creation
         virtual ~CStancesView();

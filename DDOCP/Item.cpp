@@ -130,6 +130,12 @@ void Item::AddImage(CImageList * pIL) const
         int ret = pIL->Add(&bitmap, RGB(255, 128, 255));  // standard mask color (purple)
         ASSERT(ret >= 0);
     }
+    else
+    {
+        ::OutputDebugString("Image file failed to load - ");
+        ::OutputDebugString(m_Icon.c_str());
+        ::OutputDebugString("\n");
+    }
 }
 
 void Item::VerifyObject() const

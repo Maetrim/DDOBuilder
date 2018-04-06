@@ -6,6 +6,7 @@
 #include "XmlLib\DLMacros.h"
 #include "RareEffects.h"
 #include "WeaponClassTypes.h"
+#include "Stance.h"
 
 class Augment :
     public XmlLib::SaxContentElement
@@ -37,6 +38,7 @@ class Augment :
                 DL_OPTIONAL_STRING(_, GrantConditionalAugment) \
                 DL_OPTIONAL_ENUM(_, WeaponClassType, WeaponClass, WeaponClass_Unknown, weaponClassTypeMap) \
                 DL_FLAG(_, EnterValue) \
+                DL_OBJECT_LIST(_, Stance, StanceData) \
                 DL_OBJECT_LIST(_, Effect, Effects) \
                 DL_OPTIONAL_OBJECT(_, RareEffects, Rares)
 

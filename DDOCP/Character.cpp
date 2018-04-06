@@ -1285,6 +1285,7 @@ void Character::NowActive()
     UpdateArmorStances();
     UpdateShieldStances();
     UpdateCenteredStance();
+    UpdateGreensteelStances();
     NotifyGearChanged(Inventory_Weapon1);   // updates both in breakdowns
 }
 
@@ -4061,6 +4062,7 @@ void Character::SetGear(
     }
     NotifyGearChanged(slot);
     UpdateCenteredStance();
+    UpdateGreensteelStances();      // only on gear changes
 }
 
 void Character::ClearGearInSlot(const std::string & name, InventorySlotType slot)
@@ -4142,6 +4144,14 @@ void Character::RevokeGearEffects()
                         }
                         ++it;
                     }
+                    // clear any augment stances
+                    const std::list<Stance> & stances = augment.StanceData();
+                    std::list<Stance>::const_iterator sit = stances.begin();
+                    while (sit != stances.end())
+                    {
+                        NotifyRevokeStance((*sit));
+                        ++sit;
+                    }
                 }
             }
             if (item.HasSentientIntelligence())
@@ -4182,6 +4192,18 @@ void Character::RevokeGearEffects()
                         }
                     }
                 }
+            }
+        }
+        else if (i == Inventory_Armor)
+        {
+            // need to remove the no armor effects
+            Item noArmor = FindItem("No Armor Effects");
+            const std::vector<Effect> & effects = noArmor.Effects();
+            std::vector<Effect>::const_iterator it = effects.begin();
+            while (it != effects.end())
+            {
+                NotifyItemEffectRevoked(noArmor.Name(), (*it));
+                ++it;
             }
         }
     }
@@ -4247,6 +4269,14 @@ void Character::ApplyGearEffects()
                             NotifyItemEffect(name, (*it));
                         }
                         ++it;
+                    }
+                    // clear any augment stances
+                    const std::list<Stance> & stances = augment.StanceData();
+                    std::list<Stance>::const_iterator sit = stances.begin();
+                    while (sit != stances.end())
+                    {
+                        NotifyNewStance((*sit));
+                        ++sit;
                     }
                 }
             }
@@ -4616,15 +4646,21 @@ void Character::UpdateArmorStances()
 
 void Character::UpdateShieldStances()
 {
+    Stance buckler("Buckler", "", "");
+    Stance smallShield("Small Shield", "", "");
+    Stance largeShield("Large Shield", "", "");
+    Stance towerShield("Tower Shield", "", "");
+    // assume deactivated at start
+    DeactivateStance(buckler);
+    DeactivateStance(smallShield);
+    DeactivateStance(largeShield);
+    DeactivateStance(towerShield);
+
     EquippedGear gear = ActiveGearSet();
     if (gear.HasItemInSlot(Inventory_Weapon2))
     {
         // set the correct shield stance
         Item item1 = gear.ItemInSlot(Inventory_Weapon2);
-        Stance buckler("Buckler", "", "");
-        Stance smallShield("Small Shield", "", "");
-        Stance largeShield("Large Shield", "", "");
-        Stance towerShield("Tower Shield", "", "");
         if (item1.Weapon() == Weapon_ShieldBuckler)
         {
             ActivateStance(buckler);
@@ -4652,13 +4688,6 @@ void Character::UpdateShieldStances()
             DeactivateStance(smallShield);
             DeactivateStance(largeShield);
             ActivateStance(towerShield);
-        }
-        else
-        {
-            DeactivateStance(buckler);
-            DeactivateStance(smallShield);
-            DeactivateStance(largeShield);
-            DeactivateStance(towerShield);
         }
     }
 }
@@ -5349,5 +5378,69 @@ void Character::VerifyGear()
     if (revokeOccurred)
     {
         AfxMessageBox(text, MB_OK);
+        UpdateGreensteelStances();      // only on gear changes
+    }
+}
+
+void Character::UpdateGreensteelStances()
+{
+    // update which of the "Dominion", "Escalation" or "Opposition"
+    // stances are active when Greensteel is equipped
+    Stance dominion("Dominion", "Dominion", "Dominion");
+    Stance escalation("Escalation", "Escalation", "Escalation");
+    Stance opposition("Opposition", "Opposition", "Opposition");
+    // active stance is based on:
+    // Must have at least 2 Greensteel items equipped
+    EquippedGear gear = ActiveGearSet();
+    size_t greensteelItemCount = 0;
+    for (size_t i = Inventory_Unknown + 1; i < Inventory_Count; ++i)
+    {
+        if (gear.HasItemInSlot((InventorySlotType)i))
+        {
+            Item item = gear.ItemInSlot((InventorySlotType)i);
+            if (item.HasIsGreensteel())
+            {
+                ++greensteelItemCount;
+            }
+        }
+    }
+    if (greensteelItemCount >= 2)
+    {
+        // Must have a dominant stance to be enabled
+        // count can be found by seeing how many stacks a given stance has
+        size_t dominionCount = StanceStackCount("Dominion");
+        size_t escalationCount = StanceStackCount("Escalation");
+        size_t oppositionCount = StanceStackCount("Opposition");
+        if (dominionCount > max(escalationCount, oppositionCount))
+        {
+            ActivateStance(dominion);
+        }
+        else
+        {
+            DeactivateStance(dominion);
+        }
+        if (escalationCount > max(dominionCount, oppositionCount))
+        {
+            ActivateStance(escalation);
+        }
+        else
+        {
+            DeactivateStance(escalation);
+        }
+        if (oppositionCount > max(dominionCount, escalationCount))
+        {
+            ActivateStance(opposition);
+        }
+        else
+        {
+            DeactivateStance(opposition);
+        }
+    }
+    else
+    {
+        // one or less items equipped, Greensteel set bonus's disabled
+        DeactivateStance(dominion);
+        DeactivateStance(escalation);
+        DeactivateStance(opposition);
     }
 }

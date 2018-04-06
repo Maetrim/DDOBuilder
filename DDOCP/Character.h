@@ -392,6 +392,7 @@ class Character :
         void UpdateArmorStances();
         void UpdateShieldStances();
         void UpdateCenteredStance();
+        void UpdateGreensteelStances();
         void VerifyGear();
 
         // CharacterObserver

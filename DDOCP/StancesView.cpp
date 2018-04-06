@@ -621,3 +621,22 @@ const std::vector<CStanceButton *> & CStancesView::AutoStances() const
     return m_autoStancebuttons;
 }
 
+const CStanceButton * CStancesView::GetStance(const std::string & stanceName) const
+{
+    const CStanceButton * pButton = NULL;
+    for (size_t i = 0; i < m_userStancebuttons.size(); ++i)
+    {
+        if (m_userStancebuttons[i]->GetStance().Name() == stanceName)
+        {
+            pButton = m_userStancebuttons[i];
+        }
+    }
+    for (size_t i = 0; i < m_autoStancebuttons.size(); ++i)
+    {
+        if (m_autoStancebuttons[i]->GetStance().Name() == stanceName)
+        {
+            pButton = m_autoStancebuttons[i];
+        }
+    }
+    return pButton;
+}
