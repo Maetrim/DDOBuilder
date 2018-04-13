@@ -72,6 +72,8 @@ class ActiveEffect
         void AddFeat(const std::string & featName);
         void AddStance(const std::string & stance);
         const std::vector<std::string> & Stances() const;
+        void AddAnyOfStance(const std::string & stance);
+        const std::vector<std::string> & AnyOfStances() const;
         const std::string & Tree() const;
         bool IsActive(const Character * pCharacter) const;
         void SetIsPercentage(bool isPercentage);
@@ -120,6 +122,7 @@ class ActiveEffect
         bool m_bHasEnergy;                  // true if m_energy is valid
         EnergyType m_energy;
         std::vector<std::string> m_stances; // non blank if only active when a specific stance is active
+        std::vector<std::string> m_anyOfStances; // non blank if only active when a specific stance is active
         std::string m_tree;                 // non blank if total depends on number of AP spent in tree
         BreakdownType m_bt;                 // specific breakdown we may be dependent on
         std::vector<std::string> m_feats;   // non blank if only active when a specific feat is trained

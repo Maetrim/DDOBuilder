@@ -1,1182 +1,1208 @@
-<?xml version="1.0" encoding="utf-8"?>
 <Enhancements>
-   <EnhancementTree>
+  <EnhancementTree>
+    <Name>Arcanotechnician</Name>
+    <Version>2</Version>
+    <Requirements>
+      <Requirement>
+        <Class>Artificer</Class>
+      </Requirement>
+    </Requirements>
+    <Icon>Artificer</Icon>
+    <Background>ArtificerBackground</Background>
+    <EnhancementTreeItem>
       <Name>Arcanotechnician</Name>
-      <Version>1</Version>
-      <Requirements>
-         <Requirement>
-            <Class>Artificer</Class>
-         </Requirement>
-      </Requirements>
-      <Background>ArtificerBackground</Background>
-      <Icon>Artificer</Icon>
-      <EnhancementTreeItem>
-         <Name>Arcanotechnician</Name>
-         <InternalName>ATCore1</InternalName>
-         <Description>+10 Electric Spell Power.
+      <InternalName>ATCore1</InternalName>
+      <Description>+10 Electric Spell Power.
 Every point spent in the Arcanotechnician tree provides you with +1 Universal Spell Power.</Description>
-         <Icon>ATArcanotechnician</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>0</YPosition>
-         <Cost>1</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>0</MinSpent>
-         <ArrowRight/>
-         <Requirements/>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <SpellPower>Electric</SpellPower>
-            <Amount>10</Amount>
-         </Effect>
-         <Effect>
-            <DisplayName>Arcanotechnician: Spell power per action point</DisplayName>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <SpellPower>All</SpellPower>
-            <EnhancementTree>Arcanotechnician</EnhancementTree>
-            <AmountPerAP>1</AmountPerAP>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Arcanotechnician: Palliative Admixture</Name>
-         <InternalName>ATCore2</InternalName>
-         <Description>Creating an infused potion of magical energy, you hurl it towards your target in an arc.
+      <Icon>ATArcanotechnician</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>0</MinSpent>
+      <ArrowRight/>
+      <Requirements/>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>10</Amount>
+        <SpellPower>Electric</SpellPower>
+      </Effect>
+      <Effect>
+        <DisplayName>Arcanotechnician: Spell power per action point</DisplayName>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountPerAP>1</AmountPerAP>
+        <EnhancementTree>Arcanotechnician</EnhancementTree>
+        <SpellPower>All</SpellPower>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcanotechnician: Palliative Admixture</Name>
+      <InternalName>ATCore2</InternalName>
+      <Description>Creating an infused potion of magical energy, you hurl it towards your target in an arc.
 The potion explodes in a small area that provides nearby allies with 20 Temporary
-Hit Point and 10 Temporary Spell Points.
+Hit Point + 1 per Artificer level and 10 Temporary Spell Points +1 per two
+Artificer levels.
 These last one minute, or until affected creatures rest.
 (Activation Cost: 5 Spell Points. Cooldown: 30 seconds.)</Description>
-         <Icon>ATPalliativeAdmixture</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>0</YPosition>
-         <Cost>1</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>5</MinSpent>
-         <Clickie/>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <Enhancement>ATCore1</Enhancement>
-            </Requirement>
-            <Requirement>
-               <Class>Artificer</Class>
-               <Level>3</Level>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Arcanotechnician: Thaumaturgical Battery</Name>
-         <InternalName>ATCore3</InternalName>
-         <Description>Whenever you cast an infusion or spell, you capture a portion of that infusion
+      <Icon>ATPalliativeAdmixture</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <Clickie/>
+      <ArrowRight/>
+      <Requirements>
+        <Requirement>
+          <Enhancement>ATCore1</Enhancement>
+        </Requirement>
+        <Requirement>
+          <Class>Artificer</Class>
+          <Level>3</Level>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcanotechnician: Thaumaturgical Battery</Name>
+      <InternalName>ATCore3</InternalName>
+      <Description>Whenever you cast an infusion or spell, you capture a portion of that infusion
 or spells' energy as 1 Temporary Spell Point.
 These Temporary Spell Points last for one minute, until consumed by another
 infusion or spell, or until you rest.</Description>
-         <Icon>ATThaumaturgicalBattery</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>0</YPosition>
-         <Cost>1</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <Enhancement>ATCore2</Enhancement>
-            </Requirement>
-            <Requirement>
-               <Class>Artificer</Class>
-               <Level>6</Level>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Arcanotechnician: Lightning Bolt</Name>
-         <InternalName>ATCore4</InternalName>
-         <Description>Spell Like Ability: Lightning Bolt
+      <Icon>ATThaumaturgicalBattery</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowRight/>
+      <Requirements>
+        <Requirement>
+          <Enhancement>ATCore2</Enhancement>
+        </Requirement>
+        <Requirement>
+          <Class>Artificer</Class>
+          <Level>6</Level>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcanotechnician: Lightning Bolt</Name>
+      <InternalName>ATCore4</InternalName>
+      <Description>Spell Like Ability: Lightning Bolt
 (Activation Cost: 6 Spell Points. Cooldown: 7 seconds.)</Description>
-         <Icon>ATLightningBolt</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>0</YPosition>
-         <Cost>1</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <Enhancement>ATCore3</Enhancement>
-            </Requirement>
-            <Requirement>
-               <Class>Artificer</Class>
-               <Level>12</Level>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellLikeAbility</Type>
-            <Bonus>Enhancement</Bonus>
-            <SpellLikeAbility>Lightning Bolt</SpellLikeAbility>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Arcanotechnician: Critical Admixture</Name>
-         <InternalName>ATCore5</InternalName>
-         <Description>Passive: +1 Evocation DC.
-Active: Creating an infused potion of magical energy, you hurl it towards your target in an arc.
-The potion explodes in a small AoE that deals 6d8+8 positive energy damage to
-nearby living allies and enemy undead. This infusion is affected by Artificer
-Knowledge: Potions. This SLA requires no material components.
-(Cost: 5 spell points. Cooldown: 12 seconds.) </Description>
-         <Icon>ATCriticalAdmixture</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>0</YPosition>
-         <Cost>1</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <Clickie/>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <Enhancement>ATCore4</Enhancement>
-            </Requirement>
-            <Requirement>
-               <Class>Artificer</Class>
-               <Level>18</Level>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellDC</Type>
-            <Bonus>Enhancement</Bonus>
-            <School>Evocation</School>
-            <Amount>1</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Arcanotechnician: Arcane Empowerment</Name>
-         <InternalName>ATCore6</InternalName>
-         <Description>The patterns of the most complex magical formulae are like children's
+      <Icon>ATLightningBolt</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <ArrowRight/>
+      <Requirements>
+        <Requirement>
+          <Enhancement>ATCore3</Enhancement>
+        </Requirement>
+        <Requirement>
+          <Class>Artificer</Class>
+          <Level>12</Level>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLikeAbility</Type>
+        <Bonus>Enhancement</Bonus>
+        <SpellLikeAbility>Lightning Bolt</SpellLikeAbility>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcanotechnician: Runic Efficacy</Name>
+      <InternalName>ATCore5</InternalName>
+      <Description>Passive: +1 Evocation DC, +2 to Caster Level and Max Caster Level of electric spells,
++2 to Rune Arm DCs.</Description>
+      <Icon>ATRunicEfficacy</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <ArrowRight/>
+      <Requirements>
+        <Requirement>
+          <Enhancement>ATCore4</Enhancement>
+        </Requirement>
+        <Requirement>
+          <Class>Artificer</Class>
+          <Level>18</Level>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>1</Amount>
+        <School>Evocation</School>
+      </Effect>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>2</Amount>
+        <School>Rune Arm</School>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcanotechnician: Arcane Empowerment</Name>
+      <InternalName>ATCore6</InternalName>
+      <Description>The patterns of the most complex magical formulae are like children's
 drawings to you. You gain +4 Intelligence and +5 Spellcraft.
 You treat any non-scroll activated equipped item that casts spells (such as wands,
 rods, armor, or other activated items) as if they were staves, increasing their
 caster level to equal yours as well as increasing Save DCs to
 (10 + your Intelligence bonus + level of spell) if it would be an improvement.
 These increases are applied after Artificer Knowledge, so do not stack.</Description>
-         <Icon>ATArcaneEmpowerment</Icon>
-         <XPosition>5</XPosition>
-         <YPosition>0</YPosition>
-         <Cost>1</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>40</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Enhancement>ATCore5</Enhancement>
-            </Requirement>
-            <Requirement>
-               <Class>Artificer</Class>
-               <Level>20</Level>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>AbilityBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Ability>Intelligence</Ability>
-            <AmountVector size="1">4</AmountVector>
-         </Effect>
-         <Effect>
-            <Type>SkillBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Skill>Spell Craft</Skill>
-            <AmountVector size="1">5</AmountVector>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Arcanotechnician: Static Shock</Name>
-         <InternalName>ATStaticShock</InternalName>
-         <Description>Spell Like Ability: Static Shock
+      <Icon>ATArcaneEmpowerment</Icon>
+      <XPosition>5</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>40</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Enhancement>ATCore5</Enhancement>
+        </Requirement>
+        <Requirement>
+          <Class>Artificer</Class>
+          <Level>20</Level>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="1">4</AmountVector>
+        <Ability>Intelligence</Ability>
+      </Effect>
+      <Effect>
+        <Type>SkillBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="1">5</AmountVector>
+        <Skill>Spell Craft</Skill>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcanotechnician: Static Shock</Name>
+      <InternalName>ATStaticShock</InternalName>
+      <Description>Spell Like Ability: Static Shock
 (Cost: 4/3/2 spell points. Cooldown: 12/8/4 seconds)</Description>
-         <Icon>ATStaticShock</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>1</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>1</MinSpent>
-         <Clickie/>
-         <LongArrowUp/>
-         <Requirements/>
-         <Effect>
-            <Type>SpellLikeAbility</Type>
-            <Bonus>Enhancement</Bonus>
-            <SpellLikeAbility>Static Shock</SpellLikeAbility>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Arcanotechnician: Energy of Creation</Name>
-         <InternalName>ATEnergyOfCreation</InternalName>
-         <Description>Your studies have increased your maximium Spell Points by 30/60/90.</Description>
-         <Icon>ATEnergyOfCreation</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>1</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>1</MinSpent>
-         <Requirements/>
-         <Effect>
-            <Type>SpellPoints</Type>
-            <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">30 60 90</AmountVector>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Arcanotechnician: Uncaring Master</Name>
-         <InternalName>ATUncaringMaster</InternalName>
-         <Description>Your Iron Defender is expendable in your eyes - you can always rebuild it later.
-You no longer take damage or lose spell points when it dies.</Description>
-         <Icon>ATUncaringMaster</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>1</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>1</MinSpent>
-         <Requirements/>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Arcanotechnician: Spell Critical I</Name>
-         <InternalName>ATSpellCriticalI</InternalName>
-         <Description>Your Electric, Fire, and Force spells have an additional 1% to critically hit.</Description>
-         <Icon>ATSpellCritical</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>1</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>1</MinSpent>
-         <ArrowUp/>
-         <Effect>
-            <Type>SpellLore</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>1</Amount>
-            <SpellPower>Electric</SpellPower>
-            <SpellPower>Fire</SpellPower>
-            <SpellPower>Force</SpellPower>
-         </Effect>
-         <Requirements/>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Arcanotechnician: Wand And Scroll Mastery</Name>
-         <InternalName>ATWandAndScrollMastery</InternalName>
-         <Description>+[25/50/75] to the effectiveness of your wands, scrolls, and other items that cast spells.</Description>
-         <Icon>ATWandAndScrollMastery</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>1</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>1</MinSpent>
-         <Requirements>
-            <RequiresNoneOf>
-               <DisplayDescription>Any other Wand and Scroll Mastery enhancement</DisplayDescription>
-               <Requirement>
-                  <Enhancement>DeepGnomeWandAndScrollMastery</Enhancement>
-               </Requirement>
-               <Requirement>
-                  <Enhancement>GnomeWandAndScrollMastery</Enhancement>
-               </Requirement>
-               <Requirement>
-                  <Enhancement>SSWandAndScrollMastery</Enhancement>
-               </Requirement>
-               <Requirement>
-                  <Enhancement>SHWandAndScrollMastery</Enhancement>
-               </Requirement>
-               <Requirement>
-                  <Enhancement>AoVWandAndScrollMastery</Enhancement>
-               </Requirement>
-               <Requirement>
-                  <Enhancement>MechWandAndScrollMastery</Enhancement>
-               </Requirement>
-               <Requirement>
-                  <Enhancement>EKWandAndScrollMastery</Enhancement>
-               </Requirement>
-               <Requirement>
-                  <Enhancement>TSWandAndScrollMastery</Enhancement>
-               </Requirement>
-               <Requirement>
-                  <Enhancement>AMWandAndScrollMastery</Enhancement>
-               </Requirement>
-            </RequiresNoneOf>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Arcanotechnician: Efficient Metamagic</Name>
-         <InternalName>ATEfficientMetamagic</InternalName>
-         <Description>Choose one of the following Metamagic feats.
+      <Icon>ATStaticShock</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Clickie/>
+      <LongArrowUp/>
+      <Requirements/>
+      <Effect>
+        <Type>SpellLikeAbility</Type>
+        <Bonus>Enhancement</Bonus>
+        <SpellLikeAbility>Static Shock</SpellLikeAbility>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcanotechnician: Energy of Creation</Name>
+      <InternalName>ATEnergyOfCreation</InternalName>
+      <Description>Your studies have increased your maximium Spell Points by 30/60/90.</Description>
+      <Icon>ATEnergyOfCreation</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements/>
+      <Effect>
+        <Type>SpellPoints</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">30 60 90</AmountVector>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcanotechnician: Arcane Skills</Name>
+      <InternalName>ATArcaneSkills</InternalName>
+      <Description>+1/2/3 Spell Craft and Use Magic Device</Description>
+      <Icon>ATArcaneSkills</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements/>
+      <Effect>
+        <Type>SkillBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">1 2 3</AmountVector>
+        <Skill>Spell Craft</Skill>
+        <Skill>Use Magic Device</Skill>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcanotechnician: Spell Critical I</Name>
+      <InternalName>ATSpellCriticalI</InternalName>
+      <Description>Your Electric, Fire, and Force spells have an additional 1% to critically hit.</Description>
+      <Icon>ATSpellCritical</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>1</MinSpent>
+      <ArrowUp/>
+      <Requirements/>
+      <Effect>
+        <Type>SpellLore</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>1</Amount>
+        <SpellPower>Electric</SpellPower>
+        <SpellPower>Fire</SpellPower>
+        <SpellPower>Force</SpellPower>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcanotechnician: Wand And Scroll Mastery</Name>
+      <InternalName>ATWandAndScrollMastery</InternalName>
+      <Description>+[25/50/75] to the effectiveness of your wands, scrolls, and other items that cast spells.</Description>
+      <Icon>ATWandAndScrollMastery</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <RequiresNoneOf>
+          <DisplayDescription>Any other Wand and Scroll Mastery enhancement</DisplayDescription>
+          <Requirement>
+            <Enhancement>DeepGnomeWandAndScrollMastery</Enhancement>
+          </Requirement>
+          <Requirement>
+            <Enhancement>GnomeWandAndScrollMastery</Enhancement>
+          </Requirement>
+          <Requirement>
+            <Enhancement>SSWandAndScrollMastery</Enhancement>
+          </Requirement>
+          <Requirement>
+            <Enhancement>SHWandAndScrollMastery</Enhancement>
+          </Requirement>
+          <Requirement>
+            <Enhancement>AoVWandAndScrollMastery</Enhancement>
+          </Requirement>
+          <Requirement>
+            <Enhancement>MechWandAndScrollMastery</Enhancement>
+          </Requirement>
+          <Requirement>
+            <Enhancement>EKWandAndScrollMastery</Enhancement>
+          </Requirement>
+          <Requirement>
+            <Enhancement>TSWandAndScrollMastery</Enhancement>
+          </Requirement>
+          <Requirement>
+            <Enhancement>AMWandAndScrollMastery</Enhancement>
+          </Requirement>
+        </RequiresNoneOf>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcanotechnician: Efficient Metamagic</Name>
+      <InternalName>ATEfficientMetamagic</InternalName>
+      <Description>Choose one of the following Metamagic feats.
 Reduce the spell point cost of using that Metamagic. </Description>
-         <Icon>EfficientMetamagic</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>2</YPosition>
-         <Cost>2</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>5</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Class>Artificer</Class>
-               <Level>2</Level>
-            </Requirement>
-         </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>Efficient Empower</Name>
-               <Description>Using the Empower Spell Metamagic costs you 2/4/6 fewer Spell Points. </Description>
-               <Icon>EfficientEmpower</Icon>
-               <Cost>2</Cost>
-               <Effect>
-                  <Type>AdditionalSpellPointCost</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AmountVector size="3">-2 -4 -6</AmountVector>
-                  <Stance>Empower</Stance>
-               </Effect>
-               <Requirements>
-                  <RequiresNoneOf>
-                     <DisplayDescription>Any other Efficient Empower enhancement</DisplayDescription>
-                     <Requirement>
-                        <Enhancement>ATEfficientMetamagicII</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>DDEfficientMetamagicI</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>DDEfficientMetamagicII</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>DDEfficientMetamagicIII</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>SHEfficientMetamagic</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>AoVEfficientMetamagicI</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>AoVEfficientMetamagicII</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>ASEfficientMetamagicI</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>ASEfficientMetamagicII</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>ESEfficientMetamagicI</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>ESEfficientMetamagicII</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>FSEfficientMetamagicI</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>FSEfficientMetamagicII</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>WSEfficientMetamagicI</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>WSEfficientMetamagicII</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>AMEfficientMetamagicLeft</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>AMEfficientMetamagicI</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>AMEfficientMetamagicRight</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>PMEfficientMetamagic</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                  </RequiresNoneOf>
-               </Requirements>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Efficient Quicken</Name>
-               <Description>Using the Quicken Spell Metamagic costs you 1/2/4 fewer Spell Points.</Description>
-               <Icon>EfficientQuicken</Icon>
-               <Cost>2</Cost>
-               <Requirements>
-                  <Requirement>
-                     <Feat>Quicken Spell</Feat>
-                  </Requirement>
-                  <RequiresNoneOf>
-                     <DisplayDescription>Any other Efficient Quicken enhancement</DisplayDescription>
-                     <Requirement>
-                        <Enhancement>ATEfficientMetamagicII</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>DDEfficientMetamagicI</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>DDEfficientMetamagicII</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>DDEfficientMetamagicIII</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>SHEfficientMetamagic</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>AoVEfficientMetamagicI</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>AoVEfficientMetamagicII</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>ASEfficientMetamagicI</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>ASEfficientMetamagicII</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>ESEfficientMetamagicI</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>ESEfficientMetamagicII</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>FSEfficientMetamagicI</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>FSEfficientMetamagicII</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>WSEfficientMetamagicI</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>WSEfficientMetamagicII</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>AMEfficientMetamagicLeft</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>AMEfficientMetamagicI</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>AMEfficientMetamagicRight</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>PMEfficientMetamagic</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                  </RequiresNoneOf>
-               </Requirements>
-               <Effect>
-                  <Type>AdditionalSpellPointCost</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AmountVector size="3">-1 -2 -4</AmountVector>
-                  <Stance>Quicken</Stance>
-               </Effect>
-            </EnhancementSelection>
-         </Selector>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Arcanotechnician: Imbue Defender</Name>
-         <InternalName>ATImbueDefender</InternalName>
-         <Description>Your Iron Defender gains +[5/10/15] PRR and [5/10/15]% doublestrike.
-Your experience imbuing your Iron Defender grants you a passive +[5/10/15] Electric
-Spell Power and +[2/4/6] Universal Spell Power.</Description>
-         <Icon>ATImbueDefender</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>2</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>5</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Class>Artificer</Class>
-               <Level>2</Level>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <SpellPower>Electric</SpellPower>
-            <AmountVector size="3">5 10 15</AmountVector>
-         </Effect>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <SpellPower>All</SpellPower>
-            <AmountVector size="3">2 4 6</AmountVector>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Arcanotechnician: Spell Critical II</Name>
-         <InternalName>ATSpellCriticalII</InternalName>
-         <Description>Your Electric, Fire, and Force spells have an additional 1% to critically hit.</Description>
-         <Icon>ATSpellCritical</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>2</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>5</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Class>Artificer</Class>
-               <Level>2</Level>
-            </Requirement>
-            <Requirement>
-               <Enhancement>ATSpellCriticalI</Enhancement>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellLore</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>1</Amount>
-            <SpellPower>Electric</SpellPower>
-            <SpellPower>Fire</SpellPower>
-            <SpellPower>Force</SpellPower>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Arcanotechnician: Shocking Vulnerability</Name>
-         <InternalName>ATShockingVulnerability</InternalName>
-         <Description>Each Electric spell you cast has a 5% chance of applying 1/1d2/1d3 stack[s]
-of Vulnerable to each affected enemy.</Description>
-         <Icon>ATShockingVulnerability</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>2</YPosition>
-         <Cost>2</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>5</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Class>Artificer</Class>
-               <Level>2</Level>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Arcanotechnician: Lightning Sphere</Name>
-         <InternalName>ATLightningSphere</InternalName>
-         <Description>Spell Like Ability: Lightning Sphere
-(Activation Cost: 8/6/4 spell points. Cooldown: 15/10/5 seconds.)</Description>
-         <Icon>ATLightningSphere</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>3</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>10</MinSpent>
-         <Clickie/>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Class>Artificer</Class>
-               <Level>3</Level>
-            </Requirement>
-            <Requirement>
-               <Enhancement>ATStaticShock</Enhancement>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellLikeAbility</Type>
-            <Bonus>Enhancement</Bonus>
-            <SpellLikeAbility>Lightning Sphere</SpellLikeAbility>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Arcanotechnician: Efficient Metamagic</Name>
-         <InternalName>ATEfficientMetamagicII</InternalName>
-         <Description>Choose one of the following Metamagic feats.
-Reduce the spell point cost of using that Metamagic. </Description>
-         <Icon>EfficientMetamagic</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>3</YPosition>
-         <Cost>2</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>10</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Class>Artificer</Class>
-               <Level>3</Level>
-            </Requirement>
-            <Requirement>
-               <Enhancement>ATEfficientMetamagic</Enhancement>
-            </Requirement>
-         </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>Efficient Empower</Name>
-               <Description>Using the Empower Spell Metamagic costs you 2/4/6 fewer Spell Points. </Description>
-               <Icon>EfficientEmpower</Icon>
-               <Cost>2</Cost>
-               <Effect>
-                  <Type>AdditionalSpellPointCost</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AmountVector size="3">-2 -4 -6</AmountVector>
-                  <Stance>Empower</Stance>
-               </Effect>
-               <Requirements>
-                  <RequiresNoneOf>
-                     <DisplayDescription>Any other Efficient Empower enhancement</DisplayDescription>
-                     <Requirement>
-                        <Enhancement>ATEfficientMetamagic</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>DDEfficientMetamagicI</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>DDEfficientMetamagicII</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>DDEfficientMetamagicIII</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>SHEfficientMetamagic</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>AoVEfficientMetamagicI</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>AoVEfficientMetamagicII</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>ASEfficientMetamagicI</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>ASEfficientMetamagicII</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>ESEfficientMetamagicI</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>ESEfficientMetamagicII</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>FSEfficientMetamagicI</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>FSEfficientMetamagicII</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>WSEfficientMetamagicI</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>WSEfficientMetamagicII</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>AMEfficientMetamagicLeft</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>AMEfficientMetamagicI</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>AMEfficientMetamagicRight</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>PMEfficientMetamagic</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                  </RequiresNoneOf>
-               </Requirements>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Efficient Quicken</Name>
-               <Description>Using the Quicken Spell Metamagic costs you 1/2/4 fewer Spell Points.</Description>
-               <Icon>EfficientQuicken</Icon>
-               <Cost>2</Cost>
-               <Requirements>
-                  <Requirement>
-                     <Feat>Quicken Spell</Feat>
-                  </Requirement>
-                  <RequiresNoneOf>
-                     <DisplayDescription>Any other Efficient Quicken enhancement</DisplayDescription>
-                     <Requirement>
-                        <Enhancement>ATEfficientMetamagic</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>DDEfficientMetamagicI</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>DDEfficientMetamagicII</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>DDEfficientMetamagicIII</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>SHEfficientMetamagic</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>AoVEfficientMetamagicI</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>AoVEfficientMetamagicII</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>ASEfficientMetamagicI</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>ASEfficientMetamagicII</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>ESEfficientMetamagicI</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>ESEfficientMetamagicII</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>FSEfficientMetamagicI</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>FSEfficientMetamagicII</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>WSEfficientMetamagicI</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>WSEfficientMetamagicII</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>AMEfficientMetamagicLeft</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>AMEfficientMetamagicI</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>AMEfficientMetamagicRight</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>PMEfficientMetamagic</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                  </RequiresNoneOf>
-               </Requirements>
-               <Effect>
-                  <Type>AdditionalSpellPointCost</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AmountVector size="3">-1 -2 -4</AmountVector>
-                  <Stance>Quicken</Stance>
-               </Effect>
-            </EnhancementSelection>
-         </Selector>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Arcanotechnician: Automated Repairs</Name>
-         <InternalName>ATAutomatedRepairs</InternalName>
-         <Description>You have installed automated repair systems in your Iron Defender.
-It repairs itself/and you/and nearby allies 4d4+1 points of damage every 18/12/6 seconds.</Description>
-         <Icon>ATAutomatedRepairs</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>3</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>10</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Class>Artificer</Class>
-               <Level>3</Level>
-            </Requirement>
-            <Requirement>
-               <Enhancement>ATImbueDefender</Enhancement>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Arcanotechnician: Spell Critical III</Name>
-         <InternalName>ATSpellCriticalIII</InternalName>
-         <Description>Your Electric, Fire, and Force spells have an additional 1% to critically hit.</Description>
-         <Icon>ATSpellCritical</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>3</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Class>Artificer</Class>
-               <Level>3</Level>
-            </Requirement>
-            <Requirement>
-               <Enhancement>ATSpellCriticalII</Enhancement>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellLore</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>1</Amount>
-            <SpellPower>Electric</SpellPower>
-            <SpellPower>Fire</SpellPower>
-            <SpellPower>Force</SpellPower>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Arcanotechnician: Intelligence I</Name>
-         <InternalName>ATIntelligence</InternalName>
-         <Description>+1 Intelligence</Description>
-         <Icon>Intelligence</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>3</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Class>Artificer</Class>
-               <Level>3</Level>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>AbilityBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Ability>Intelligence</Ability>
-            <Amount>1</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Arcanotechnician: Blast Rod</Name>
-         <InternalName>ATBlastRod</InternalName>
-         <Description>Spell Like Ability: Blast Rod
-(Activation Cost: 12/8/6 spell points. Cooldown: 18/12/6 seconds.)</Description>
-         <Icon>ATBlastRod</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>4</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>20</MinSpent>
-         <Clickie/>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Class>Artificer</Class>
-               <Level>4</Level>
-            </Requirement>
-            <Requirement>
-               <Enhancement>ATLightningSphere</Enhancement>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellLikeAbility</Type>
-            <Bonus>Enhancement</Bonus>
-            <SpellLikeAbility>Blast Rod</SpellLikeAbility>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Arcanotechnician: Efficient Heighten</Name>
-         <InternalName>ATEfficientHeighten</InternalName>
-         <Description>Using the Heighten Spell Metamagic costs you 1/2 fewer Spell Point(s) per heightened level.</Description>
-         <Icon>EfficientHeighten</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>4</YPosition>
-         <Cost>2</Cost>
-         <Ranks>2</Ranks>
-         <MinSpent>20</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Class>Artificer</Class>
-               <Level>4</Level>
-            </Requirement>
-            <Requirement>
-               <Enhancement>ATEfficientMetamagicII</Enhancement>
-            </Requirement>
+      <Icon>EfficientMetamagic</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>2</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Class>Artificer</Class>
+          <Level>2</Level>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Efficient Empower</Name>
+          <Description>Using the Empower Spell Metamagic costs you 2/4/6 fewer Spell Points. </Description>
+          <Icon>EfficientEmpower</Icon>
+          <Cost>2</Cost>
+          <Requirements>
             <RequiresNoneOf>
-               <DisplayDescription>Any other Efficient Heighten enhancement</DisplayDescription>
-               <Requirement>
-                  <Enhancement>DDEfficientHeighten</Enhancement>
-               </Requirement>
-               <Requirement>
-                  <Enhancement>AoVEfficientHeighten</Enhancement>
-               </Requirement>
-               <Requirement>
-                  <Enhancement>ASEfficientHeighten</Enhancement>
-               </Requirement>
-               <Requirement>
-                  <Enhancement>ESEfficientHeighten</Enhancement>
-               </Requirement>
-               <Requirement>
-                  <Enhancement>FSEfficientHeighten</Enhancement>
-               </Requirement>
-               <Requirement>
-                  <Enhancement>WSEfficientHeighten</Enhancement>
-               </Requirement>
-               <Requirement>
-                  <Enhancement>TSEfficientHeighten</Enhancement>
-               </Requirement>
-               <Requirement>
-                  <Enhancement>AMEfficientHeighten</Enhancement>
-               </Requirement>
-               <Requirement>
-                  <Enhancement>SHEfficientMetamagicHeighten</Enhancement>
-               </Requirement>
+              <DisplayDescription>Any other Efficient Empower enhancement</DisplayDescription>
+              <Requirement>
+                <Enhancement>ATEfficientMetamagicII</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>DDEfficientMetamagicI</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>DDEfficientMetamagicII</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>DDEfficientMetamagicIII</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>SHImprovedMetamagicsI</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>SHImprovedMetamagicsII</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>AoVEfficientMetamagicI</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>AoVEfficientMetamagicII</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>ASEfficientMetamagicI</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>ASEfficientMetamagicII</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>ESEfficientMetamagicI</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>ESEfficientMetamagicII</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>FSEfficientMetamagicI</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>FSEfficientMetamagicII</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>WSEfficientMetamagicI</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>WSEfficientMetamagicII</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>AMEfficientMetamagicLeft</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>AMEfficientMetamagicI</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>AMEfficientMetamagicRight</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>PMEfficientMetamagic</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
             </RequiresNoneOf>
-         </Requirements>
-         <Effect>
+          </Requirements>
+          <Effect>
             <Type>AdditionalSpellPointCost</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="2">-1 -2</AmountVector>
-            <Stance>Heighten</Stance>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Arcanotechnician: Arcane Engine</Name>
-         <InternalName>ATArcaneEngine</InternalName>
-         <Description>You have carved arcane symbols on the core engine of your Iron Defender,
+            <AmountVector size="3">-2 -4 -6</AmountVector>
+            <Stance>Empower</Stance>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Efficient Quicken</Name>
+          <Description>Using the Quicken Spell Metamagic costs you 1/2/4 fewer Spell Points.</Description>
+          <Icon>EfficientQuicken</Icon>
+          <Cost>2</Cost>
+          <Requirements>
+            <Requirement>
+              <Feat>Quicken Spell</Feat>
+            </Requirement>
+            <RequiresNoneOf>
+              <DisplayDescription>Any other Efficient Quicken enhancement</DisplayDescription>
+              <Requirement>
+                <Enhancement>ATEfficientMetamagicII</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>DDEfficientMetamagicI</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>DDEfficientMetamagicII</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>DDEfficientMetamagicIII</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>SHImprovedMetamagicsI</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>SHImprovedMetamagicsII</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>AoVEfficientMetamagicI</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>AoVEfficientMetamagicII</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>ASEfficientMetamagicI</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>ASEfficientMetamagicII</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>ESEfficientMetamagicI</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>ESEfficientMetamagicII</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>FSEfficientMetamagicI</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>FSEfficientMetamagicII</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>WSEfficientMetamagicI</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>WSEfficientMetamagicII</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>AMEfficientMetamagicLeft</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>AMEfficientMetamagicI</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>AMEfficientMetamagicRight</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>PMEfficientMetamagic</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+            </RequiresNoneOf>
+          </Requirements>
+          <Effect>
+            <Type>AdditionalSpellPointCost</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">-1 -2 -4</AmountVector>
+            <Stance>Quicken</Stance>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcanotechnician: Imbue Defender</Name>
+      <InternalName>ATImbueDefender</InternalName>
+      <Description>Your Iron Defender gains +[5/10/15] PRR and [5/10/15]% doublestrike.
+Your experience imbuing your Iron Defender grants you a passive +[5/10/15] Electric
+Spell Power and +[2/4/6] Universal Spell Power.</Description>
+      <Icon>ATImbueDefender</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Class>Artificer</Class>
+          <Level>2</Level>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">5 10 15</AmountVector>
+        <SpellPower>Electric</SpellPower>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">2 4 6</AmountVector>
+        <SpellPower>All</SpellPower>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcanotechnician: Spell Critical II</Name>
+      <InternalName>ATSpellCriticalII</InternalName>
+      <Description>Your Electric, Fire, and Force spells have an additional 1% to critically hit.</Description>
+      <Icon>ATSpellCritical</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Class>Artificer</Class>
+          <Level>2</Level>
+        </Requirement>
+        <Requirement>
+          <Enhancement>ATSpellCriticalI</Enhancement>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLore</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>1</Amount>
+        <SpellPower>Electric</SpellPower>
+        <SpellPower>Fire</SpellPower>
+        <SpellPower>Force</SpellPower>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcanotechnician: Shocking Vulnerability</Name>
+      <InternalName>ATShockingVulnerability</InternalName>
+      <Description>Each Electric spell you cast has a 5% chance of applying 1/1d2/1d3 stack[s]
+of Vulnerable to each affected enemy.</Description>
+      <Icon>ATShockingVulnerability</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>2</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Artificer</Class>
+          <Level>2</Level>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcanotechnician: Lightning Sphere</Name>
+      <InternalName>ATLightningSphere</InternalName>
+      <Description>Spell Like Ability: Lightning Sphere
+(Activation Cost: 8/6/4 spell points. Cooldown: 15/10/5 seconds.)</Description>
+      <Icon>ATLightningSphere</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+      <Clickie/>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Class>Artificer</Class>
+          <Level>3</Level>
+        </Requirement>
+        <Requirement>
+          <Enhancement>ATStaticShock</Enhancement>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLikeAbility</Type>
+        <Bonus>Enhancement</Bonus>
+        <SpellLikeAbility>Lightning Sphere</SpellLikeAbility>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcanotechnician: Efficient Metamagic</Name>
+      <InternalName>ATEfficientMetamagicII</InternalName>
+      <Description>Choose one of the following Metamagic feats.
+Reduce the spell point cost of using that Metamagic. </Description>
+      <Icon>EfficientMetamagic</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>2</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Class>Artificer</Class>
+          <Level>3</Level>
+        </Requirement>
+        <Requirement>
+          <Enhancement>ATEfficientMetamagic</Enhancement>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Efficient Empower</Name>
+          <Description>Using the Empower Spell Metamagic costs you 2/4/6 fewer Spell Points. </Description>
+          <Icon>EfficientEmpower</Icon>
+          <Cost>2</Cost>
+          <Requirements>
+            <RequiresNoneOf>
+              <DisplayDescription>Any other Efficient Empower enhancement</DisplayDescription>
+              <Requirement>
+                <Enhancement>ATEfficientMetamagic</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>DDEfficientMetamagicI</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>DDEfficientMetamagicII</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>DDEfficientMetamagicIII</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>SHImprovedMetamagicsI</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>SHImprovedMetamagicsII</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>AoVEfficientMetamagicI</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>AoVEfficientMetamagicII</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>ASEfficientMetamagicI</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>ASEfficientMetamagicII</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>ESEfficientMetamagicI</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>ESEfficientMetamagicII</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>FSEfficientMetamagicI</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>FSEfficientMetamagicII</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>WSEfficientMetamagicI</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>WSEfficientMetamagicII</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>AMEfficientMetamagicLeft</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>AMEfficientMetamagicI</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>AMEfficientMetamagicRight</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>PMEfficientMetamagic</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+            </RequiresNoneOf>
+          </Requirements>
+          <Effect>
+            <Type>AdditionalSpellPointCost</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">-2 -4 -6</AmountVector>
+            <Stance>Empower</Stance>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Efficient Quicken</Name>
+          <Description>Using the Quicken Spell Metamagic costs you 1/2/4 fewer Spell Points.</Description>
+          <Icon>EfficientQuicken</Icon>
+          <Cost>2</Cost>
+          <Requirements>
+            <Requirement>
+              <Feat>Quicken Spell</Feat>
+            </Requirement>
+            <RequiresNoneOf>
+              <DisplayDescription>Any other Efficient Quicken enhancement</DisplayDescription>
+              <Requirement>
+                <Enhancement>ATEfficientMetamagic</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>DDEfficientMetamagicI</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>DDEfficientMetamagicII</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>DDEfficientMetamagicIII</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>SHImprovedMetamagicsI</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>SHImprovedMetamagicsII</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>AoVEfficientMetamagicI</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>AoVEfficientMetamagicII</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>ASEfficientMetamagicI</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>ASEfficientMetamagicII</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>ESEfficientMetamagicI</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>ESEfficientMetamagicII</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>FSEfficientMetamagicI</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>FSEfficientMetamagicII</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>WSEfficientMetamagicI</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>WSEfficientMetamagicII</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>AMEfficientMetamagicLeft</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>AMEfficientMetamagicI</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>AMEfficientMetamagicRight</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>PMEfficientMetamagic</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+            </RequiresNoneOf>
+          </Requirements>
+          <Effect>
+            <Type>AdditionalSpellPointCost</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">-1 -2 -4</AmountVector>
+            <Stance>Quicken</Stance>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcanotechnician: Automated Repairs</Name>
+      <InternalName>ATAutomatedRepairs</InternalName>
+      <Description>You have installed automated repair systems in your Iron Defender.
+It repairs itself/and you/and nearby allies 4d4+1 points of damage every 18/12/6 seconds.</Description>
+      <Icon>ATAutomatedRepairs</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Class>Artificer</Class>
+          <Level>3</Level>
+        </Requirement>
+        <Requirement>
+          <Enhancement>ATImbueDefender</Enhancement>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcanotechnician: Spell Critical III</Name>
+      <InternalName>ATSpellCriticalIII</InternalName>
+      <Description>Your Electric, Fire, and Force spells have an additional 1% to critically hit.</Description>
+      <Icon>ATSpellCritical</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Class>Artificer</Class>
+          <Level>3</Level>
+        </Requirement>
+        <Requirement>
+          <Enhancement>ATSpellCriticalII</Enhancement>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLore</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>1</Amount>
+        <SpellPower>Electric</SpellPower>
+        <SpellPower>Fire</SpellPower>
+        <SpellPower>Force</SpellPower>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcanotechnician: Intelligence I</Name>
+      <InternalName>ATIntelligence</InternalName>
+      <Description>+1 Intelligence</Description>
+      <Icon>Intelligence</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Class>Artificer</Class>
+          <Level>3</Level>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>1</Amount>
+        <Ability>Intelligence</Ability>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcanotechnician: Blast Rod</Name>
+      <InternalName>ATBlastRod</InternalName>
+      <Description>Spell Like Ability: Blast Rod
+(Activation Cost: 12/8/6 spell points. Cooldown: 18/12/6 seconds.)</Description>
+      <Icon>ATBlastRod</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>20</MinSpent>
+      <Clickie/>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Class>Artificer</Class>
+          <Level>4</Level>
+        </Requirement>
+        <Requirement>
+          <Enhancement>ATLightningSphere</Enhancement>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLikeAbility</Type>
+        <Bonus>Enhancement</Bonus>
+        <SpellLikeAbility>Blast Rod</SpellLikeAbility>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcanotechnician: Efficient Heighten</Name>
+      <InternalName>ATEfficientHeighten</InternalName>
+      <Description>Using the Heighten Spell Metamagic costs you 1/2 fewer Spell Point(s) per heightened level.</Description>
+      <Icon>EfficientHeighten</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>2</Cost>
+      <Ranks>2</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Artificer</Class>
+          <Level>4</Level>
+        </Requirement>
+        <Requirement>
+          <Enhancement>ATEfficientMetamagicII</Enhancement>
+        </Requirement>
+             <Requirement>
+                 <Feat>Heighten Spell</Feat>
+             </Requirement>
+        <RequiresNoneOf>
+          <DisplayDescription>Any other Efficient Heighten enhancement</DisplayDescription>
+          <Requirement>
+            <Enhancement>DDEfficientHeighten</Enhancement>
+          </Requirement>
+          <Requirement>
+            <Enhancement>AoVEfficientHeighten</Enhancement>
+          </Requirement>
+          <Requirement>
+            <Enhancement>ASEfficientHeighten</Enhancement>
+          </Requirement>
+          <Requirement>
+            <Enhancement>ESEfficientHeighten</Enhancement>
+          </Requirement>
+          <Requirement>
+            <Enhancement>FSEfficientHeighten</Enhancement>
+          </Requirement>
+          <Requirement>
+            <Enhancement>WSEfficientHeighten</Enhancement>
+          </Requirement>
+          <Requirement>
+            <Enhancement>TSEfficientHeighten</Enhancement>
+          </Requirement>
+          <Requirement>
+            <Enhancement>AMEfficientHeighten</Enhancement>
+          </Requirement>
+          <Requirement>
+            <Enhancement>SHEfficientHeighten</Enhancement>
+          </Requirement>
+        </RequiresNoneOf>
+      </Requirements>
+      <Effect>
+        <Type>AdditionalSpellPointCost</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="2">-1 -2</AmountVector>
+        <Stance>Heighten</Stance>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcanotechnician: Arcane Engine</Name>
+      <InternalName>ATArcaneEngine</InternalName>
+      <Description>You have carved arcane symbols on the core engine of your Iron Defender,
 allowing you to channel Arcane energies through him. As long as you remain near
 your Iron Defender, he will provide you with 3/6/10 Universal Spell Power.
 Your experience imbuing your Iron Defender grants you a passive +[5/10/15] Electric
 Spell Power and +[2/4/6] Universal Spell Power.</Description>
-         <Icon>ATArcaneEngine</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>4</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>20</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Class>Artificer</Class>
-               <Level>4</Level>
-            </Requirement>
-            <Requirement>
-               <Enhancement>ATAutomatedRepairs</Enhancement>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <SpellPower>Electric</SpellPower>
-            <AmountVector size="3">5 10 15</AmountVector>
-         </Effect>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <SpellPower>All</SpellPower>
-            <AmountVector size="3">2 4 6</AmountVector>
-         </Effect>
-         <Effect>
-            <DisplayName>Arcanotechnician: Near Iron Defender</DisplayName>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <SpellPower>All</SpellPower>
-            <AmountVector size="3">3 6 10</AmountVector>
-            <Stance>Near Iron Defender</Stance>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Arcanotechnician: Spell Critical IV</Name>
-         <InternalName>ATSpellCriticalIV</InternalName>
-         <Description>Your Electric, Fire, and Force spells have an additional 1% to critically hit.</Description>
-         <Icon>ATSpellCritical</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>4</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Class>Artificer</Class>
-               <Level>4</Level>
-            </Requirement>
-            <Requirement>
-               <Enhancement>ATSpellCriticalIII</Enhancement>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellLore</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>1</Amount>
-            <SpellPower>Electric</SpellPower>
-            <SpellPower>Fire</SpellPower>
-            <SpellPower>Force</SpellPower>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Arcanotechnician: Intelligence II</Name>
-         <InternalName>ATIntelligenceII</InternalName>
-         <Description>+1 Intelligence</Description>
-         <Icon>Intelligence</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>4</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Class>Artificer</Class>
-               <Level>4</Level>
-            </Requirement>
-            <Requirement>
-               <Enhancement>ATIntelligence</Enhancement>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>AbilityBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Ability>Intelligence</Ability>
-            <Amount>1</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Arcanotechnician: Lightning Motes</Name>
-         <InternalName>ATLightningMotes</InternalName>
-         <Description>Spell Like Ability: Lightning Motes
+      <Icon>ATArcaneEngine</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>20</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Class>Artificer</Class>
+          <Level>4</Level>
+        </Requirement>
+        <Requirement>
+          <Enhancement>ATAutomatedRepairs</Enhancement>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">5 10 15</AmountVector>
+        <SpellPower>Electric</SpellPower>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">2 4 6</AmountVector>
+        <SpellPower>All</SpellPower>
+      </Effect>
+      <Effect>
+        <DisplayName>Arcanotechnician: Near Iron Defender</DisplayName>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">3 6 10</AmountVector>
+        <Stance>Near Iron Defender</Stance>
+        <SpellPower>All</SpellPower>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcanotechnician: Spell Critical IV</Name>
+      <InternalName>ATSpellCriticalIV</InternalName>
+      <Description>Your Electric, Fire, and Force spells have an additional 1% to critically hit.</Description>
+      <Icon>ATSpellCritical</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Artificer</Class>
+          <Level>4</Level>
+        </Requirement>
+        <Requirement>
+          <Enhancement>ATSpellCriticalIII</Enhancement>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLore</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>1</Amount>
+        <SpellPower>Electric</SpellPower>
+        <SpellPower>Fire</SpellPower>
+        <SpellPower>Force</SpellPower>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcanotechnician: Intelligence II</Name>
+      <InternalName>ATIntelligenceII</InternalName>
+      <Description>+1 Intelligence</Description>
+      <Icon>Intelligence</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Artificer</Class>
+          <Level>4</Level>
+        </Requirement>
+        <Requirement>
+          <Enhancement>ATIntelligence</Enhancement>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>1</Amount>
+        <Ability>Intelligence</Ability>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcanotechnician: Lightning Motes</Name>
+      <InternalName>ATLightningMotes</InternalName>
+      <Description>Spell Like Ability: Lightning Motes
 (Activation Cost: 12/8/6 spell points. Cooldown: 18/12/6 seconds.)</Description>
-         <Icon>ATLightningMotes</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>5</YPosition>
-         <Cost>2</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>30</MinSpent>
-         <Tier5/>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <MinLevel>12</MinLevel>
-            </Requirement>
-            <Requirement>
-               <Class>Artificer</Class>
-               <Level>5</Level>
-            </Requirement>
-            <Requirement>
-               <Enhancement>ATBlastRod</Enhancement>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellLikeAbility</Type>
-            <Bonus>Enhancement</Bonus>
-            <SpellLikeAbility>Lightning Motes</SpellLikeAbility>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Arcanotechnician: Master Defender</Name>
-         <InternalName>ATMasterDefender</InternalName>
-         <Description>Your Iron Defender gain +2/+4/+6 to Strength, Dexterity, and Constitution.
+      <Icon>ATLightningMotes</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>5</YPosition>
+      <Cost>2</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>30</MinSpent>
+      <Clickie/>
+      <Tier5/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>12</MinLevel>
+        </Requirement>
+        <Requirement>
+          <Class>Artificer</Class>
+          <Level>5</Level>
+        </Requirement>
+        <Requirement>
+          <Enhancement>ATBlastRod</Enhancement>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLikeAbility</Type>
+        <Bonus>Enhancement</Bonus>
+        <SpellLikeAbility>Lightning Motes</SpellLikeAbility>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcanotechnician: Master Defender</Name>
+      <InternalName>ATMasterDefender</InternalName>
+      <Description>Your Iron Defender gain +2/+4/+6 to Strength, Dexterity, and Constitution.
 In addition, as long as you remain near your Iron Defender, he will provide you with 1%/2%/3% Dodge.</Description>
-         <Icon>ATMasterDefender</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>5</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>30</MinSpent>
-         <Tier5/>
-         <Requirements>
-            <Requirement>
-               <MinLevel>12</MinLevel>
-            </Requirement>
-            <Requirement>
-               <Class>Artificer</Class>
-               <Level>5</Level>
-            </Requirement>
-            <Requirement>
-               <Enhancement>ATArcaneEngine</Enhancement>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>DodgeBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">1 2 3</AmountVector>
-             <Stance>Near Iron Defender</Stance>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Arcanotechnician: Evocation Focus</Name>
-         <InternalName>ATEvocationFocus</InternalName>
-         <Description>You have trained extensively in Evocation magic, granting a +1/+2/+3 bonus to
+      <Icon>ATMasterDefender</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>5</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>12</MinLevel>
+        </Requirement>
+        <Requirement>
+          <Class>Artificer</Class>
+          <Level>5</Level>
+        </Requirement>
+        <Requirement>
+          <Enhancement>ATArcaneEngine</Enhancement>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>DodgeBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">1 2 3</AmountVector>
+        <Stance>Near Iron Defender</Stance>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Arcanotechnician: Evocation Focus</Name>
+      <InternalName>ATEvocationFocus</InternalName>
+      <Description>You have trained extensively in Evocation magic, granting a +1/+2/+3 bonus to
 your spell DCs of that school.</Description>
-         <Icon>ATEvocationFocus</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>5</YPosition>
-         <Cost>2</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>30</MinSpent>
-         <Tier5/>
-         <Requirements>
-            <Requirement>
-               <MinLevel>12</MinLevel>
-            </Requirement>
-            <Requirement>
-               <Class>Artificer</Class>
-               <Level>5</Level>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellDC</Type>
-            <Bonus>Enhancement</Bonus>
-            <School>Evocation</School>
-            <AmountVector size="3">1 2 3</AmountVector>
-         </Effect>
-      </EnhancementTreeItem>
-   </EnhancementTree>
+      <Icon>ATEvocationFocus</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>5</YPosition>
+      <Cost>2</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>12</MinLevel>
+        </Requirement>
+        <Requirement>
+          <Class>Artificer</Class>
+          <Level>5</Level>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">1 2 3</AmountVector>
+        <School>Evocation</School>
+      </Effect>
+    </EnhancementTreeItem>
+  </EnhancementTree>
 </Enhancements>

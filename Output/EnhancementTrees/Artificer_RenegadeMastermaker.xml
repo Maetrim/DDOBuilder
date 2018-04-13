@@ -283,8 +283,8 @@ While in Medium Armor, Heavy Armor, or Adamantine Body, +3 to Max Dex Bonus.</De
       <Name>Renegade Mastermaker: Curative Admixture: Cure Light Wounds</Name>
       <InternalName>RMCurativeAdmixtureCLW</InternalName>
       <Description>Cure Light Wounds SLA.
-Activation Cost: 2 Spell Points.
-Cooldown: 6 seconds
+Activation Cost: 4/3/2 Spell Points.
+Cooldown: 12/8/6 seconds
 Infuses a Cure Light Wounds potion with magical
 energy, hurling it towards yout target in an arc. The
 potion explodes in a small AOE that deals 1d6+2 plus 1
@@ -295,7 +295,7 @@ This infusion is affected by Artificer Knowledge: Potions.</Description>
       <XPosition>0</XPosition>
       <YPosition>1</YPosition>
       <Cost>1</Cost>
-      <Ranks>1</Ranks>
+      <Ranks>3</Ranks>
       <MinSpent>1</MinSpent>
       <Clickie/>
       <Requirements/>
@@ -409,7 +409,7 @@ damage. This damage scales with 200% Melee Power.
 Melee Attack: +1/2/3[W].
 You may stun the target for 6 seconds. Stunned creatures are considered helpless.
 A successful Fortitude save negates this effect.
-(DC: 10 + INT modifier + Sunder Modifiers).
+(DC: 10 + 1/2 Artificer level + INT modifier + Sunder Modifiers).
 This ability shares a cooldown with Stunning Blow.
 Requires an equipped Rune Arm to use.</Description>
       <Icon>RMMightySlam</Icon>
@@ -457,12 +457,12 @@ Requires an equipped Rune Arm to use.</Description>
     <EnhancementTreeItem>
       <Name>Renegade Mastermaker: Converter</Name>
       <InternalName>RMConverter</InternalName>
-      <Description>You create a small device that floats near an ally.
-Target player, hireling, or pet takes 100% base healing
-from Repair spells for the next 3 minutes (or until
-target dies). Has no effect on Constructs or NPC allies.
-This overrides their innate base healing from Repair
-spells for the duration. 3 minute cooldown.</Description>
+      <Description>Spell Like Ability: Converter
+Spell Point Cost: 4 spell points.
+Cooldown: 3 minutes.
+Target player, hireling, or pet takes 100% base healing from Repair spells for the
+next three minutes, or until the target dies. Has no effect on Constructs or NPC
+allies. This overrides their innate base healing from Repair spells for the duration.</Description>
       <Icon>RMConverter</Icon>
       <XPosition>3</XPosition>
       <YPosition>2</YPosition>
@@ -476,6 +476,11 @@ spells for the duration. 3 minute cooldown.</Description>
           <Level>2</Level>
         </Requirement>
       </Requirements>
+        <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellLikeAbility>Converter</SpellLikeAbility>
+        </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Renegade Mastermaker: Action Boost</Name>
@@ -669,18 +674,13 @@ and antimagic.</Description>
       <Name>Renegade Mastermaker: Kinetic Charge</Name>
       <InternalName>RMKineticCharge</InternalName>
       <Description>Kinetic Charge
-You charge up energy through successive hits with
-your melee attacks. Pasive: Any time you hit an
-opponent in melee, you have a chance of gaining a
-stack of Kinetic Charge. Each stack grants a +1 Shield
-Bonus to AC per 3 Artificer levels (stacks up to 5
-times). Stacks decrement by 1 every 15 seconds, and
-gaining a new stack resets the duration. Equipping
-a ranged weapon clears all stacks immediately.
-Active: When this ability is toggled on, using Kinetic
-Discharge will clear all stacks of Kinetic Charge and
-slow all affected enemies by 10% per cleared stack
-for 10 seconds.</Description>
+Passive: Any time you hit an opponent in melee, you have a chance of gaining
+a stack of Kinetic Charge. Each stack grants +1 Sheild Bonus to Armor Class
+for every three Artificer levels you have. This stacks up to five times.
+Stacks decay by one every 15 seconds, and gaining a new stack resets the duration.
+Toggle: When this ability is toggled on, using Kinetic Discharge will clear all
+stacks of Kinetic Charge and slow (both movement and attack speed) all affected
+non-boss enemies by 10% per stack cleared for 10 seconds.</Description>
       <Icon>RMKineticCharge</Icon>
       <XPosition>0</XPosition>
       <YPosition>4</YPosition>

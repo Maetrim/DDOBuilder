@@ -839,6 +839,13 @@ bool BreakdownItem::GetActiveEffect(
             activeEffect->AddStance(effect.Stance()[i]);
         }
     }
+    if (effect.AnyOfStance().size() > 0)
+    {
+        for (size_t i = 0; i < effect.AnyOfStance().size(); ++i)
+        {
+            activeEffect->AddAnyOfStance(effect.AnyOfStance()[i]);
+        }
+    }
     if (effect.Energy().size() > 0)
     {
         activeEffect->SetEnergy(effect.Energy().front());

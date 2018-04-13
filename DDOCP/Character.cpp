@@ -3827,7 +3827,8 @@ void Character::DowngradeTwist(size_t twistIndex)
     {
         std::string treeName;
         const EnhancementTreeItem * item = FindEnhancement(trainedTwist->EnhancementName(), &treeName);
-        if (item->YPosition() > TwistTier(twistIndex))
+        if (item != NULL
+                && item->YPosition() > TwistTier(twistIndex))
         {
             // the selected twist is too high level for this slot
             // have to revoke it

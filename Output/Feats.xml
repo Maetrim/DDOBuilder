@@ -1890,6 +1890,10 @@ casting spells affected by Empower Healing, but they consume 10 additional spell
       <Requirements>
          <RequiresOneOf>
             <Requirement>
+               <Class>Artificer</Class>
+               <Level>1</Level>
+            </Requirement>
+            <Requirement>
                <Class>Bard</Class>
                <Level>1</Level>
             </Requirement>
@@ -4923,10 +4927,22 @@ enemies don't gain Spot bonuses until they get much closer to you, and the bonus
    </Feat>
    <Feat>
       <Name>Improved Construct Essence</Name>
-      <Description>You continue down the path to becoming self-forged.
-You now gain 70% healing from Repair spells, but you are now vulnerable to rust
-attacks and take 70% damage from them.
-You are still considered your original race (at this time)</Description>
+      <Description>You have augmented yourself heavily enough to be more machine than not.
+You are now considered a Living Construct instead of your original race,
+gaining the following traits:   100% base healing from Repair spells and 100%
+damage from Rust.
+Immunity to Sleep, Hold Person, Energy Drain, Nasueated, Exhausted and Paralyzed
+effects except those which physically hold you in place.
+Immunity to ability score damage from natural poisons and natural diseases
+(but are vulnerable to those that specifically affect wood or metal).
++10 Racial bonus to saving throws against magical poisons and do not failed
+saving throws against them on a roll of a natural 1 (this renders you immune to
+magical poisons with a DC of less than 11+your Fortitude save).
+You may remain underwater indefinitely without the need to breathe.
+When resting at a Rest Shrine, the health you regain is now based on your Repair
+skill instead of your Heal skill.
+If you transform into a different type of creature, you will lose these benefits
+until you return to your normal form.</Description>
       <FeatGroup>
          <IsArtificerBonus/>
       </FeatGroup>
@@ -4941,7 +4957,36 @@ You are still considered your original race (at this time)</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>WarforgedFeat</Icon>
-      <!--Feat effects here-->
+      <Effect>
+         <Type>Immunity</Type>
+         <Bonus>Feat</Bonus>
+         <Immunity>Sleep</Immunity>
+      </Effect>
+      <Effect>
+         <Type>Immunity</Type>
+         <Bonus>Feat</Bonus>
+         <Immunity>Hold Person</Immunity>
+      </Effect>
+      <Effect>
+         <Type>Immunity</Type>
+         <Bonus>Feat</Bonus>
+         <Immunity>Energy Drain</Immunity>
+      </Effect>
+      <Effect>
+         <Type>Immunity</Type>
+         <Bonus>Feat</Bonus>
+         <Immunity>Nauseated</Immunity>
+      </Effect>
+      <Effect>
+         <Type>Immunity</Type>
+         <Bonus>Feat</Bonus>
+         <Immunity>Exhausted</Immunity>
+      </Effect>
+      <Effect>
+         <Type>Immunity</Type>
+         <Bonus>Feat</Bonus>
+         <Immunity>Paralysed</Immunity>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Improved Critical: Bludgeoning Weapons</Name>
@@ -5451,6 +5496,7 @@ A successful Balance check negates this effect. (DC 14 + Str mod)</Description>
          <IsStandardFeat/>
          <IsFighterBonus/>
          <IsMonkBonus/>
+         <IsArtificerBonus/>
       </FeatGroup>
       <Requirements>
          <Requirement>
@@ -7825,41 +7871,52 @@ This ability functions only in private instances.</Description>
    </Feat>
    <Feat>
       <Name>Natural Fighting</Name>
-      <Description>Natural Fighting grants you 6% chance of doublestrike while in wild shape.
-You can take this feat 3 times, its effects stack. It only applies while in
-animal form: bear, dire bear, wolf, winter wolf. Elemental forms do not benefit from it.</Description>
+      <Description>Natural Fighting grants you +4 Melee Power, Physical Resistance
+and Doublestrike chance while in a druid animal form.
+In bear form, your glancing blow damage is increased by 10% of base weapon damage.
+This feat can be taken up to three times, and gives no benefit to druids in elemental forms.</Description>
       <MaxTimesAcquire>3</MaxTimesAcquire>
       <Requirements>
          <Requirement>
             <Class>Druid</Class>
-            <Level>9</Level>
+            <Level>3</Level>
          </Requirement>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>NaturalFighting</Icon>
       <Effect>
-         <Type>Doublestrike</Type>
+         <Type>MeleePower</Type>
          <Bonus>Feat</Bonus>
-         <Amount>6</Amount>
-         <Stance>Wolf</Stance>
+         <Amount>4</Amount>
+         <AnyOfStance>Wolf</AnyOfStance>
+         <AnyOfStance>Bear</AnyOfStance>
+         <AnyOfStance>Winter Wolf</AnyOfStance>
+         <AnyOfStance>Dire Bear</AnyOfStance>
+      </Effect>
+      <Effect>
+         <Type>PRR</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>4</Amount>
+         <AnyOfStance>Wolf</AnyOfStance>
+         <AnyOfStance>Bear</AnyOfStance>
+         <AnyOfStance>Winter Wolf</AnyOfStance>
+         <AnyOfStance>Dire Bear</AnyOfStance>
       </Effect>
       <Effect>
          <Type>Doublestrike</Type>
          <Bonus>Feat</Bonus>
-         <Amount>6</Amount>
-         <Stance>Bear</Stance>
+         <Amount>4</Amount>
+         <AnyOfStance>Wolf</AnyOfStance>
+         <AnyOfStance>Bear</AnyOfStance>
+         <AnyOfStance>Winter Wolf</AnyOfStance>
+         <AnyOfStance>Dire Bear</AnyOfStance>
       </Effect>
       <Effect>
-         <Type>Doublestrike</Type>
+         <Type>GlancingBlowsDamage</Type>
          <Bonus>Feat</Bonus>
-         <Amount>6</Amount>
-         <Stance>Winter Wolf</Stance>
-      </Effect>
-      <Effect>
-         <Type>Doublestrike</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>6</Amount>
-         <Stance>Dire Bear</Stance>
+         <Amount>10</Amount>
+         <AnyOfStance>Bear</AnyOfStance>
+         <AnyOfStance>Dire Bear</AnyOfStance>
       </Effect>
    </Feat>
    <Feat>
@@ -12177,6 +12234,22 @@ save bonus. This feat also grants you a 1% passive bonus to Dodge at levels 4,
       </Effect>
    </Feat>
    <Feat>
+      <Name>Veil the Elements</Name>
+      <Description>Elemental Form Modifer: Toggling this feat will allow you to still appear human while in elemental forms.</Description>
+      <Requirements>
+         <Requirement>
+            <Class>Druid</Class>
+            <Level>10</Level>
+         </Requirement>
+      </Requirements>
+      <Acquire>Automatic</Acquire>
+      <AutomaticAcquisition>
+         <Class>Druid</Class>
+         <Level>13</Level>
+      </AutomaticAcquisition>
+      <Icon>VeilTheElements</Icon>
+   </Feat>
+   <Feat>
       <Name>Venom Immunity</Name>
       <Description>You are immune to ability score damage from natural poisons.
 (This has no effect on magical or supernatural poisons.)</Description>
@@ -13219,6 +13292,20 @@ effectively mesmerizing them.</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>WildShapeFireElemental</Icon>
+      <Effect>
+         <Type>EnergyAbsorbance</Type>
+         <Bonus>Feat</Bonus>
+         <Energy>Fire</Energy>
+         <Amount>65</Amount>
+         <Stance>Fire Elemental</Stance>
+      </Effect>
+      <Effect>
+         <Type>EnergyAbsorbance</Type>
+         <Bonus>Feat</Bonus>
+         <Energy>Cold</Energy>
+         <Amount>-15</Amount>
+         <Stance>Fire Elemental</Stance>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Wild Shape: Water Elemental</Name>
@@ -13244,6 +13331,20 @@ effectively mesmerizing them.</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>WildShapeWaterElemental</Icon>
+      <Effect>
+         <Type>EnergyAbsorbance</Type>
+         <Bonus>Feat</Bonus>
+         <Energy>Cold</Energy>
+         <Amount>65</Amount>
+         <Stance>Water Elemental</Stance>
+      </Effect>
+      <Effect>
+         <Type>EnergyAbsorbance</Type>
+         <Bonus>Feat</Bonus>
+         <Energy>Fire</Energy>
+         <Amount>-15</Amount>
+         <Stance>Water Elemental</Stance>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Wild Shape: Winter Wolf</Name>
@@ -13268,6 +13369,14 @@ effectively mesmerizing them.</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>WildShapeWinterWolf</Icon>
+       <Effect>
+           <DisplayName>Winter Wolf - Movement Speed</DisplayName>
+           <Type>MovementSpeed</Type>
+           <Bonus>Feat</Bonus>
+           <AmountVector size="20">11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30</AmountVector>
+           <Class>Druid</Class>
+           <Stance>Winter Wolf</Stance>
+       </Effect>
    </Feat>
    <Feat>
       <Name>Zen Archery</Name>
@@ -14250,7 +14359,6 @@ in the form of a free Feat</Description>
          <Type>MeleePower</Type>
          <Bonus>Inherent</Bonus>
          <Amount>1</Amount>
-         <Stance>All</Stance>
       </Effect>
    </Feat>
    <Feat>
@@ -14659,22 +14767,7 @@ You also gain 2% dodge bonus when using a ranged weapon.</Description>
    </Feat>
    <Feat>
       <Name>Construct Exemplar</Name>
-      <Description>You have augmented yourself heavily enough to be more machine than not.
-You are now considered a Living Construct instead of your original race,
-gaining the following traits:   100% base healing from Repair spells and 100%
-damage from Rust.
-Immunity to Sleep, Hold Person, Energy Drain, Nasueated, Exhausted and Paralyzed
-effects except those which physically hold you in place.
-Immunity to ability score damage from natural poisons and natural diseases
-(but are vulnerable to those that specifically affect wood or metal).
-+10 Racial bonus to saving throws against magical poisons and do not failed
-saving throws against them on a roll of a natural 1 (this renders you immune to
-magical poisons with a DC of less than 11+your Fortitude save).
-You may remain underwater indefinitely without the need to breathe.
-When resting at a Rest Shrine, the health you regain is now based on your Repair
-skill instead of your Heal skill.
-If you transform into a different type of creature, you will lose these benefits
-until you return to your normal form.</Description>
+      <Description>You gain +20 Repair Amplification and 10 MRR</Description>
       <FeatGroup>
          <IsEpicFeat/>
       </FeatGroup>
@@ -14682,13 +14775,19 @@ until you return to your normal form.</Description>
          <Requirement>
             <MinLevel>21</MinLevel>
          </Requirement>
-         <Requirement>
-            <Feat>Improved Construct Essence</Feat>
-         </Requirement>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>ConstructExemplar</Icon>
-      <!--effects here-->
+      <Effect>
+         <Type>RepairAmplification</Type>
+         <Bonus>Feat</Bonus>
+          <Amount>20</Amount>
+      </Effect>
+      <Effect>
+         <Type>MRR</Type>
+         <Bonus>Feat</Bonus>
+          <Amount>10</Amount>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Embolden Spell</Name>
@@ -14837,13 +14936,11 @@ This feat can be acquired multiple times and is granted every epic level.</Descr
          <Type>MeleePower</Type>
          <Bonus>Feat</Bonus>
          <Amount>3</Amount>
-         <Stance>All</Stance>
       </Effect>
       <Effect>
          <Type>RangedPower</Type>
          <Bonus>Feat</Bonus>
          <Amount>3</Amount>
-         <Stance>All</Stance>
       </Effect>
       <Effect>
          <Type>SpellPower</Type>
@@ -17729,13 +17826,11 @@ with no save. This may only trigger once every 12 seconds.</Description>
          <Type>MeleePower</Type>
          <Bonus>Feat</Bonus>
          <Amount>20</Amount>
-         <Stance>All</Stance>
       </Effect>
       <Effect>
          <Type>RangedPower</Type>
          <Bonus>Feat</Bonus>
          <Amount>20</Amount>
-         <Stance>All</Stance>
       </Effect>
       <Effect>
          <Type>SpellPower</Type>

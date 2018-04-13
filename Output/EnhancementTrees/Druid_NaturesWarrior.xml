@@ -1,1225 +1,1030 @@
-<?xml version="1.0" encoding="utf-8"?>
 <Enhancements>
-   <EnhancementTree>
-      <Name>Nature's Warrior</Name>
-      <Version>1</Version>
+  <EnhancementTree>
+    <Name>Nature's Warrior</Name>
+    <Version>2</Version>
+    <Requirements>
+      <Requirement>
+        <Class>Druid</Class>
+      </Requirement>
+    </Requirements>
+    <Icon>Druid</Icon>
+    <Background>DruidBackground</Background>
+    <EnhancementTreeItem>
+      <Name>Nature's Warrior: Natural Adept</Name>
+      <InternalName>NWCore1</InternalName>
+      <Description>You gain 8 hitpoints
++1 to hit and damage in Wolf and Bear Forms for this and every other core in the tree.
+In Wolf Form you also gain 1 sneak attack die for this and every other core taken.</Description>
+      <Icon>NWNaturalAdept</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>0</MinSpent>
+      <ArrowRight/>
       <Requirements>
-         <Requirement>
-            <Class>Druid</Class>
-         </Requirement>
+        <Requirement>
+          <Class>Druid</Class>
+          <Level>1</Level>
+        </Requirement>
       </Requirements>
-      <Background>DruidBackground</Background>
-      <Icon>Druid</Icon>
-      <EnhancementTreeItem>
-         <Name>Nature's Warrior</Name>
-         <InternalName>NWCore1</InternalName>
-         <Description>+1 HP per AP spent in this tree.</Description>
-         <Icon>NWNaturesWarrior</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>0</YPosition>
-         <Cost>1</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>0</MinSpent>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <Class>Druid</Class>
-               <Level>1</Level>
-            </Requirement>
-         </Requirements>
          <Effect>
-            <DisplayName>Nature's Warrior: 1 Hitpoint per action point</DisplayName>
-            <Bonus>Enhancement</Bonus>
             <Type>Hitpoints</Type>
-            <EnhancementTree>Nature's Warrior</EnhancementTree>
-            <AmountPerAP>1.0</AmountPerAP>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Nature's Warrior: Instinctive Fighting I</Name>
-         <InternalName>NWCore2</InternalName>
-         <Description>Passive: +1d6 Sneak Attack dice while in any Wolf Form.
-+5 PRR while in any Bear form.
-+1 base melee damage while in any Wolf or Bear form.
-+10 Positive Spell Power</Description>
-         <Icon>NWInstinctiveFighting</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>0</YPosition>
-         <Cost>1</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>5</MinSpent>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <Enhancement>NWCore1</Enhancement>
-            </Requirement>
-            <Requirement>
-               <Class>Druid</Class>
-               <Level>3</Level>
-            </Requirement>
-            <Requirement>
-               <Class>Druid</Class>
-               <Level>3</Level>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SneakAttackDice</Type>
             <Bonus>Enhancement</Bonus>
-            <Amount>1</Amount>
-            <Stance>Wolf</Stance>
+            <Amount>8</Amount>
          </Effect>
          <Effect>
             <Type>SneakAttackDice</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>1</Amount>
-            <Stance>Winter Wolf</Stance>
-         </Effect>
-         <Effect>
-            <Type>SneakAttackDice</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>1</Amount>
-            <Stance>Bear</Stance>
-         </Effect>
-         <Effect>
-            <Type>SneakAttackDice</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>1</Amount>
-            <Stance>Dire Bear</Stance>
-         </Effect>
-         <Effect>
-            <Type>PRR</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>5</Amount>
-            <Stance>Bear</Stance>
-         </Effect>
-         <Effect>
-            <Type>PRR</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>5</Amount>
-            <Stance>Dire Bear</Stance>
+            <AnyOfStance>Wolf</AnyOfStance>
+            <AnyOfStance>Winter Wolf</AnyOfStance>
          </Effect>
          <Effect>
             <Type>DamageBonus</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>1</Amount>
-            <Stance>Wolf</Stance>
-             <Weapon>All</Weapon>
-         </Effect>
-         <Effect>
-            <Type>DamageBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>1</Amount>
-            <Stance>Winter Wolf</Stance>
-             <Weapon>All</Weapon>
-         </Effect>
-         <Effect>
-            <Type>DamageBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>1</Amount>
-            <Stance>Bear</Stance>
-             <Weapon>All</Weapon>
-         </Effect>
-         <Effect>
-            <Type>DamageBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>1</Amount>
-            <Stance>Dire Bear</Stance>
-             <Weapon>All</Weapon>
-         </Effect>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <SpellPower>Positive</SpellPower>
-            <Amount>10</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Nature's Warrior: Instinctive Fighting II</Name>
-         <InternalName>NWCore3</InternalName>
-         <Description>Passive: +1d6 Sneak Attack dice while in any Wolf Form.
-+5 PRR while in any Bear form.
-+1 base melee damage while in any Wolf or Bear form.
-+10 Positive Spell Power</Description>
-         <Icon>NWInstinctiveFighting</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>0</YPosition>
-         <Cost>1</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <Enhancement>NWCore2</Enhancement>
-            </Requirement>
-            <Requirement>
-               <Class>Druid</Class>
-               <Level>6</Level>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SneakAttackDice</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>1</Amount>
-            <Stance>Wolf</Stance>
-         </Effect>
-         <Effect>
-            <Type>SneakAttackDice</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>1</Amount>
-            <Stance>Winter Wolf</Stance>
-         </Effect>
-         <Effect>
-            <Type>SneakAttackDice</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>1</Amount>
-            <Stance>Bear</Stance>
-         </Effect>
-         <Effect>
-            <Type>SneakAttackDice</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>1</Amount>
-            <Stance>Dire Bear</Stance>
-         </Effect>
-         <Effect>
-            <Type>PRR</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>5</Amount>
-            <Stance>Bear</Stance>
-         </Effect>
-         <Effect>
-            <Type>PRR</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>5</Amount>
-            <Stance>Dire Bear</Stance>
-         </Effect>
-         <Effect>
-            <Type>DamageBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>1</Amount>
-            <Stance>Wolf</Stance>
-             <Weapon>All</Weapon>
-         </Effect>
-         <Effect>
-            <Type>DamageBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>1</Amount>
-            <Stance>Winter Wolf</Stance>
-             <Weapon>All</Weapon>
-         </Effect>
-         <Effect>
-            <Type>DamageBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>1</Amount>
-            <Stance>Bear</Stance>
-             <Weapon>All</Weapon>
-         </Effect>
-         <Effect>
-            <Type>DamageBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>1</Amount>
-            <Stance>Dire Bear</Stance>
-             <Weapon>All</Weapon>
-         </Effect>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <SpellPower>Positive</SpellPower>
-            <Amount>10</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Nature's Warrior: Instinctive Fighting III</Name>
-         <InternalName>NWCore4</InternalName>
-         <Description>Passive: +1d6 Sneak Attack dice while in any Wolf Form.
-+5 PRR while in any Bear form.
-+1 base melee damage while in any Wolf or Bear form.
-+10 Positive Spell Power</Description>
-         <Icon>NWInstinctiveFighting</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>0</YPosition>
-         <Cost>1</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <Enhancement>NWCore3</Enhancement>
-            </Requirement>
-            <Requirement>
-               <Class>Druid</Class>
-               <Level>12</Level>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SneakAttackDice</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>1</Amount>
-            <Stance>Wolf</Stance>
-         </Effect>
-         <Effect>
-            <Type>SneakAttackDice</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>1</Amount>
-            <Stance>Winter Wolf</Stance>
-         </Effect>
-         <Effect>
-            <Type>SneakAttackDice</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>1</Amount>
-            <Stance>Bear</Stance>
-         </Effect>
-         <Effect>
-            <Type>SneakAttackDice</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>1</Amount>
-            <Stance>Dire Bear</Stance>
-         </Effect>
-         <Effect>
-            <Type>PRR</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>5</Amount>
-            <Stance>Bear</Stance>
-         </Effect>
-         <Effect>
-            <Type>PRR</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>5</Amount>
-            <Stance>Dire Bear</Stance>
-         </Effect>
-         <Effect>
-            <Type>DamageBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>1</Amount>
-            <Stance>Wolf</Stance>
-             <Weapon>All</Weapon>
-         </Effect>
-         <Effect>
-            <Type>DamageBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>1</Amount>
-            <Stance>Winter Wolf</Stance>
-             <Weapon>All</Weapon>
-         </Effect>
-         <Effect>
-            <Type>DamageBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>1</Amount>
-            <Stance>Bear</Stance>
-             <Weapon>All</Weapon>
-         </Effect>
-         <Effect>
-            <Type>DamageBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>1</Amount>
-            <Stance>Dire Bear</Stance>
-             <Weapon>All</Weapon>
-         </Effect>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <SpellPower>Positive</SpellPower>
-            <Amount>10</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Nature's Warrior: Instinctive Fighting IV</Name>
-         <InternalName>NWCore5</InternalName>
-         <Description>Passive: +1d6 Sneak Attack dice while in any Wolf Form.
-+5 PRR while in any Bear form.
-+1 base melee damage while in any Wolf or Bear form.
-+10 Positive Spell Power</Description>
-         <Icon>NWInstinctiveFighting</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>0</YPosition>
-         <Cost>1</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <Enhancement>NWCore4</Enhancement>
-            </Requirement>
-            <Requirement>
-               <Class>Druid</Class>
-               <Level>18</Level>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SneakAttackDice</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>1</Amount>
-            <Stance>Wolf</Stance>
-         </Effect>
-         <Effect>
-            <Type>SneakAttackDice</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>1</Amount>
-            <Stance>Winter Wolf</Stance>
-         </Effect>
-         <Effect>
-            <Type>SneakAttackDice</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>1</Amount>
-            <Stance>Bear</Stance>
-         </Effect>
-         <Effect>
-            <Type>SneakAttackDice</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>1</Amount>
-            <Stance>Dire Bear</Stance>
-         </Effect>
-         <Effect>
-            <Type>PRR</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>5</Amount>
-            <Stance>Bear</Stance>
-         </Effect>
-         <Effect>
-            <Type>PRR</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>5</Amount>
-            <Stance>Dire Bear</Stance>
-         </Effect>
-         <Effect>
-            <Type>DamageBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>1</Amount>
-            <Stance>Wolf</Stance>
-             <Weapon>All</Weapon>
-         </Effect>
-         <Effect>
-            <Type>DamageBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>1</Amount>
-            <Stance>Winter Wolf</Stance>
-             <Weapon>All</Weapon>
-         </Effect>
-         <Effect>
-            <Type>DamageBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>1</Amount>
-            <Stance>Bear</Stance>
-             <Weapon>All</Weapon>
-         </Effect>
-         <Effect>
-            <Type>DamageBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>1</Amount>
-            <Stance>Dire Bear</Stance>
-             <Weapon>All</Weapon>
-         </Effect>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <SpellPower>Positive</SpellPower>
-            <Amount>10</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Nature's Warrior: Beast Form Mastery</Name>
-         <InternalName>NWCore6</InternalName>
-         <Description>You have learned to mix strengths from different animal forms.
-While in any Wolf form, you gain +2 base melee damage and +10 PRR as well as
-+2d6 sneak attack dice. While in any Bear form, you gain +2 base melee damage
-and +10 PRR as well as +15% bonus to attack speed.
-+1 to Strength, Dexterity, and Constitution
-+2 to Bluff
-+2 to Intimidate</Description>
-         <Icon>NWBeastFormMastery</Icon>
-         <XPosition>5</XPosition>
-         <YPosition>0</YPosition>
-         <Cost>1</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>40</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Enhancement>NWCore5</Enhancement>
-            </Requirement>
-            <Requirement>
-               <Class>Druid</Class>
-               <Level>20</Level>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SneakAttackDice</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>1</Amount>
-            <Stance>Wolf</Stance>
-         </Effect>
-         <Effect>
-            <Type>SneakAttackDice</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>1</Amount>
-            <Stance>Winter Wolf</Stance>
-         </Effect>
-         <Effect>
-            <Type>PRR</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>10</Amount>
-            <Stance>Wolf</Stance>
-         </Effect>
-         <Effect>
-            <Type>PRR</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>10</Amount>
-            <Stance>Winter Wolf</Stance>
-         </Effect>
-         <Effect>
-            <Type>DamageBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>2</Amount>
-            <Stance>Wolf</Stance>
             <Weapon>All</Weapon>
+            <AnyOfStance>Wolf</AnyOfStance>
+            <AnyOfStance>Winter Wolf</AnyOfStance>
+            <AnyOfStance>Bear</AnyOfStance>
+            <AnyOfStance>Dire Bear</AnyOfStance>
+         </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Nature's Warrior: Nature's Senses</Name>
+      <InternalName>NWCore2</InternalName>
+      <Description>Your attacks penetrate 10% of your target's fortification.
+You gain a +3 bonus to Spot, Listen and Search.</Description>
+      <Icon>NWNaturesSenses</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <ArrowRight/>
+      <Requirements>
+        <Requirement>
+          <Class>Druid</Class>
+          <Level>3</Level>
+        </Requirement>
+        <Requirement>
+          <Enhancement>NWCore1</Enhancement>
+        </Requirement>
+      </Requirements>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>8</Amount>
+         </Effect>
+         <Effect>
+            <Type>SneakAttackDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <AnyOfStance>Wolf</AnyOfStance>
+            <AnyOfStance>Winter Wolf</AnyOfStance>
          </Effect>
          <Effect>
             <Type>DamageBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <Amount>2</Amount>
-            <Stance>Winter Wolf</Stance>
+            <Amount>1</Amount>
             <Weapon>All</Weapon>
+            <AnyOfStance>Wolf</AnyOfStance>
+            <AnyOfStance>Winter Wolf</AnyOfStance>
+            <AnyOfStance>Bear</AnyOfStance>
+            <AnyOfStance>Dire Bear</AnyOfStance>
          </Effect>
          <Effect>
-            <Type>DamageBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>2</Amount>
-            <Stance>Bear</Stance>
-            <Weapon>All</Weapon>
-         </Effect>
-         <Effect>
-            <Type>DamageBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>2</Amount>
-            <Stance>Dire Bear</Stance>
-            <Weapon>All</Weapon>
-         </Effect>
-         <Effect>
-            <Type>PRR</Type>
+            <Type>FortificationBypass</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>10</Amount>
-            <Stance>Bear</Stance>
-         </Effect>
-         <Effect>
-            <Type>PRR</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>10</Amount>
-            <Stance>Dire Bear</Stance>
-         </Effect>
-         <Effect>
-            <Type>Alacrity</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>15</Amount>
-            <Weapon>All</Weapon>
-            <Stance>Bear</Stance>
-         </Effect>
-         <Effect>
-            <Type>Alacrity</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>15</Amount>
-            <Weapon>All</Weapon>
-            <Stance>Dire Bear</Stance>
-         </Effect>
-         <Effect>
-            <Type>AbilityBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Ability>Strength</Ability>
-            <Amount>1</Amount>
-         </Effect>
-         <Effect>
-            <Type>AbilityBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Ability>Dexterity</Ability>
-            <Amount>1</Amount>
-         </Effect>
-         <Effect>
-            <Type>AbilityBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Ability>Constitution</Ability>
-            <Amount>1</Amount>
          </Effect>
          <Effect>
             <Type>SkillBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <Skill>Bluff</Skill>
-            <Skill>Intimidate</Skill>
-            <Amount>2</Amount>
+            <Amount>3</Amount>
+             <Skill>Spot</Skill>
+             <Skill>Listen</Skill>
+             <Skill>Search</Skill>
          </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Nature's Warrior: Extra Wild Empathy</Name>
-         <InternalName>NWExtraWildEmpathy</InternalName>
-         <Description>+1/+2/+3 Wild Empathy and Improved Wild Empathy uses per rest.
-+5/+10/+15 Positive Spellpower.</Description>
-         <Icon>NWExtraWildEmpathy</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>1</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>1</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Class>Druid</Class>
-               <Level>1</Level>
-            </Requirement>
-         </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Nature's Warrior: Nature's Bounty</Name>
+      <InternalName>NWCore3</InternalName>
+      <Description>You have mastered the art of weilding divine magic in animal form,
+and using it to empower your body in physical combat. While in animal form,
+the cooldown penalty for non-animal form spells is reduced from 2.5 times
+the usual length to 2.0</Description>
+      <Icon>NWNaturesBounty</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowRight/>
+      <Requirements>
+        <Requirement>
+          <Class>Druid</Class>
+          <Level>6</Level>
+        </Requirement>
+        <Requirement>
+          <Enhancement>NWCore2</Enhancement>
+        </Requirement>
+      </Requirements>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>8</Amount>
+         </Effect>
+         <Effect>
+            <Type>SneakAttackDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <AnyOfStance>Wolf</AnyOfStance>
+            <AnyOfStance>Winter Wolf</AnyOfStance>
+         </Effect>
+         <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+            <AnyOfStance>Wolf</AnyOfStance>
+            <AnyOfStance>Winter Wolf</AnyOfStance>
+            <AnyOfStance>Bear</AnyOfStance>
+            <AnyOfStance>Dire Bear</AnyOfStance>
+         </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Nature's Warrior: A True Hunter</Name>
+      <InternalName>NWCore4</InternalName>
+      <Description>While in Wolf or Bear form you gain a +1 competence critical damage
+bonus to your attacks. You must have a weapon equipped to gain this benefit.</Description>
+      <Icon>NWATrueHunter</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <ArrowRight/>
+      <Requirements>
+        <Requirement>
+          <Class>Druid</Class>
+          <Level>12</Level>
+        </Requirement>
+        <Requirement>
+          <Enhancement>NWCore3</Enhancement>
+        </Requirement>
+      </Requirements>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>8</Amount>
+         </Effect>
+         <Effect>
+            <Type>SneakAttackDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <AnyOfStance>Wolf</AnyOfStance>
+            <AnyOfStance>Winter Wolf</AnyOfStance>
+         </Effect>
+         <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+            <AnyOfStance>Wolf</AnyOfStance>
+            <AnyOfStance>Winter Wolf</AnyOfStance>
+            <AnyOfStance>Bear</AnyOfStance>
+            <AnyOfStance>Dire Bear</AnyOfStance>
+         </Effect>
+         <Effect>
+            <Type>CriticalMultiplier</Type>
+            <Bonus>Competence</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+            <AnyOfStance>Wolf</AnyOfStance>
+            <AnyOfStance>Winter Wolf</AnyOfStance>
+            <AnyOfStance>Bear</AnyOfStance>
+            <AnyOfStance>Dire Bear</AnyOfStance>
+         </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Nature's Warrior: Howl of Winter</Name>
+      <InternalName>NWCore5</InternalName>
+      <Description>Casting Howl of Terror now grants you the effect Winters Hunt for
+10 seconds which grants +10 exceptional bonus to Doublestrike, 25% bonus to
+spell critical and 50% to spell critical damage to all cold damage spells.
+This will only occur once every 30 seconds.</Description>
+      <Icon>NWHowlOfWinter</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <ArrowRight/>
+      <Requirements>
+        <Requirement>
+          <Class>Druid</Class>
+          <Level>18</Level>
+        </Requirement>
+        <Requirement>
+          <Enhancement>NWCore4</Enhancement>
+        </Requirement>
+      </Requirements>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>8</Amount>
+         </Effect>
+         <Effect>
+            <Type>SneakAttackDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <AnyOfStance>Wolf</AnyOfStance>
+            <AnyOfStance>Winter Wolf</AnyOfStance>
+         </Effect>
+         <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+            <AnyOfStance>Wolf</AnyOfStance>
+            <AnyOfStance>Winter Wolf</AnyOfStance>
+            <AnyOfStance>Bear</AnyOfStance>
+            <AnyOfStance>Dire Bear</AnyOfStance>
+         </Effect>
+         <Effect>
+            <Type>Doublestrike</Type>
+            <Bonus>Exceptional</Bonus>
+            <Amount>10</Amount>
+             <Stance>Howl of Terror</Stance>
+         </Effect>
+         <Effect>
+            <Type>SpellLore</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>25</Amount>
+             <SpellPower>Cold</SpellPower>
+             <Stance>Howl of Terror</Stance>
+         </Effect>
+         <Effect>
+            <Type>SpellCriticalDamage</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>50</Amount>
+             <SpellPower>Cold</SpellPower>
+             <Stance>Howl of Terror</Stance>
+         </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Nature's Warrior: Beast Form Mastery</Name>
+      <InternalName>NWCore6</InternalName>
+      <Description>You have mastered the art of wielding divine magic in animal form
+and using it to empower your body in physical combat. While in animal form,
+the cooldown penalty for non-animal form spells is reduced from 2.5 times
+the usual length to 1.5. Does not stack with Nature's Protector cores.
+Passive: You gain +2 Strength and Wisdon and +10% Doublestrike and +10 PRR.</Description>
+      <Icon>NWBeastFormMastery</Icon>
+      <XPosition>5</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>40</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Druid</Class>
+          <Level>20</Level>
+        </Requirement>
+        <Requirement>
+          <Enhancement>NWCore5</Enhancement>
+        </Requirement>
+      </Requirements>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>8</Amount>
+         </Effect>
+         <Effect>
+            <Type>SneakAttackDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <AnyOfStance>Wolf</AnyOfStance>
+            <AnyOfStance>Winter Wolf</AnyOfStance>
+         </Effect>
+         <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+            <AnyOfStance>Wolf</AnyOfStance>
+            <AnyOfStance>Winter Wolf</AnyOfStance>
+            <AnyOfStance>Bear</AnyOfStance>
+            <AnyOfStance>Dire Bear</AnyOfStance>
+         </Effect>
+         <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+             <Ability>Strength</Ability>
+         </Effect>
+         <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+             <Ability>Wisdom</Ability>
+         </Effect>
+         <Effect>
+            <Type>Doublestrike</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>10</Amount>
+         </Effect>
+         <Effect>
+            <Type>PRR</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>10</Amount>
+         </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Nature's Warrior: Extra Wild Empathy</Name>
+      <InternalName>NWExtraWildEmpathy</InternalName>
+      <Description>+1/2/3 Wild Empathy use per rest.
++1/2/3 Improved Wild Empathy use per rest (if you have this ability).
++5/10/15 Positive Spell power.</Description>
+      <Icon>NWExtraWildEmpathy</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Druid</Class>
+          <Level>1</Level>
+        </Requirement>
+      </Requirements>
          <Effect>
             <Type>ExtraWildEmpathy</Type>
             <Bonus>Enhancement</Bonus>
             <AmountVector size="3">1 2 3</AmountVector>
          </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Nature's Warrior: Aggravate</Name>
-         <InternalName>NWAggravate</InternalName>
-         <Description>Your enemy's fear galvanizes you.
-Whenever you use intimidate, or use an ability that triggers an intimidate check,
-you gain DR [2/4/6]/- for the duration of the intimidate effect, whether or not
-the intimidate succeeds, or indeed if there is anything present to be intimidated.</Description>
-         <Icon>NWAggravate</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>1</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>1</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Class>Druid</Class>
-               <Level>1</Level>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Nature's Warrior: Bestial Nature</Name>
-         <InternalName>NWBestialNature</InternalName>
-         <Description>Beast Stance: Lose yourself in your animal nature.
-While this stance is active, you gain a +1/+2/+3 Insight bonus to Fortitude and
-Reflex, and a -2 penalty to Will.</Description>
-         <Icon>NWBestialNature</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>1</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>1</MinSpent>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Class>Druid</Class>
-               <Level>1</Level>
-            </Requirement>
-         </Requirements>
-         <Stance>
-            <Name>Bestial Nature</Name>
-            <Icon>BestialNature</Icon>
-            <Description>Lose yourself in your animal nature.
-While this stance is active, you gain a +1/+2/+3 Insight bonus to Fortitude and
-Reflex, and a -2 penalty to Will.</Description>
-         </Stance>
          <Effect>
-            <Type>SaveBonus</Type>
+            <Type>SpellPower</Type>
             <Bonus>Enhancement</Bonus>
-            <Save>Fortitude</Save>
+            <AmountVector size="3">5 10 15</AmountVector>
+             <SpellPower>Positive</SpellPower>
+         </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Nature's Warrior: Snapping Jaws</Name>
+      <InternalName>NWSnappingJaws</InternalName>
+      <Description>Whenever you Bluff or use an ability that triggers a Bluff check such
+as Baiting Bite, your target is debuffed losing -2/4/6 AC, and you gain a
+stack of Snapping Jaw for +2/4/6 AC for 15 seconds.</Description>
+      <Icon>NWSnappingJaws</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Druid</Class>
+          <Level>1</Level>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Nature's Warrior: Take Down</Name>
+      <InternalName>NWTakeDown</InternalName>
+      <Description>Increase Trip DCs by 1/2/3</Description>
+      <Icon>NWTakeDown</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Druid</Class>
+          <Level>1</Level>
+        </Requirement>
+      </Requirements>
+         <Effect>
+            <Type>TacticalDC</Type>
+            <Bonus>Enhancement</Bonus>
             <AmountVector size="3">1 2 3</AmountVector>
-            <Stance>Bestial Nature</Stance>
+            <Tactical>Trip</Tactical>
+         </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Nature's Warrior: Bestial Nature</Name>
+      <InternalName>NWBestialNature</InternalName>
+      <Description>Your Reflex and Fortitude Saves are increased by 1/2.</Description>
+      <Icon>NWBestialNature</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>1</Cost>
+      <Ranks>2</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Druid</Class>
+          <Level>1</Level>
+        </Requirement>
+      </Requirements>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="2">1 2</AmountVector>
+             <Save>Reflex</Save>
          </Effect>
          <Effect>
             <Type>SaveBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <Save>Reflex</Save>
-            <AmountVector size="3">1 2 3</AmountVector>
-            <Stance>Bestial Nature</Stance>
+            <AmountVector size="2">1 2</AmountVector>
+             <Save>Fortitude</Save>
          </Effect>
-         <Effect>
-            <Type>SaveBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Save>Will</Save>
-            <AmountVector size="3">-2 -2 -2</AmountVector>
-            <Stance>Bestial Nature</Stance>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Nature's Warrior: Shifting Rake</Name>
-         <InternalName>NWShiftingRake</InternalName>
-         <Description>You move in deceptive and misleading ways. Whenever you bluff an enemy,
-or use an ability that triggers a bluff check, that enemy takes a -2/-4/-6 penalty to AC.</Description>
-         <Icon>NWShiftingRake</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>1</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>1</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Class>Druid</Class>
-               <Level>1</Level>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Nature's Warrior: Athletic</Name>
-         <InternalName>NWAthletic</InternalName>
-         <Description>+[1/2/3] Balance, Jump, Swim, and Tumble.
-Rank 3: +1 Wild Empathy and Improved Wild Empathy use per rest.</Description>
-         <Icon>NWAthletic</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>1</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>1</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Class>Druid</Class>
-               <Level>1</Level>
-            </Requirement>
-         </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Nature's Warrior: Athletic Hunter</Name>
+      <InternalName>NWAthleticHunter</InternalName>
+      <Description>+1/2/3 to Balance, Jump, Move Silently and Hide Skills.
+Rank 3: Grants +1 Wild Empathy use per rest and +1 Improved Wild Empathy use per rest (if you have this ability).</Description>
+      <Icon>NWAthleticHunter</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Druid</Class>
+          <Level>1</Level>
+        </Requirement>
+      </Requirements>
          <Effect>
             <Type>SkillBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <Skill>Balance</Skill>
-            <Skill>Jump</Skill>
-            <Skill>Swim</Skill>
-            <Skill>Tumble</Skill>
             <AmountVector size="3">1 2 3</AmountVector>
+             <Skill>Balance</Skill>
+             <Skill>Jump</Skill>
+             <Skill>Move Silently</Skill>
+             <Skill>Hide</Skill>
          </Effect>
          <Effect>
             <Type>ExtraWildEmpathy</Type>
             <Bonus>Enhancement</Bonus>
             <AmountVector size="3">0 0 1</AmountVector>
          </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Nature's Warrior: Flight</Name>
-         <InternalName>NWFlight</InternalName>
-         <Description>Gain +10% Dodge for [12/24/36] seconds.
-(Activation Cost: 1 Wild Empathy. Cooldown: 90 seconds)</Description>
-         <Icon>NWFlight</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>2</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>5</MinSpent>
-         <Clickie/>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Class>Druid</Class>
-               <Level>2</Level>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Nature's Warrior: Vengeful Hunter</Name>
-         <InternalName>NWVengefulHunter</InternalName>
-         <Description>Trading blows with your enemy whets your combat edge.
-Your critical hits grant you +2 critical hit damage (before weapon multipliers)
-for 20 seconds. Being hit by an enemy has a 5% chance of granting the same effect.
-This effect can stack [1/2/3] times, for a total of +[2/4/6].</Description>
-         <Icon>NWVengefulHunter</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>2</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>5</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Class>Druid</Class>
-               <Level>2</Level>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Nature's Warrior: Hide of the Crocodile</Name>
-         <InternalName>NWHideOfTheCrocodile</InternalName>
-         <Description>Your skin thickens and hardens, and the cold confidence of the crocodile fills you.
-Activating this ability reduces the damage you take from physical or acid attacks
-by [40/50/60]% for 8 seconds.
-(Cooldown: 5 minutes)</Description>
-         <Icon>NWHideOfTheCrocodile</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>2</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>5</MinSpent>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Class>Druid</Class>
-               <Level>2</Level>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Nature's Warrior: Blood Moon Frenzy</Name>
-         <InternalName>NWBloodMoonFrenzy</InternalName>
-         <Description>Your pack has caught the scent of blood.
-Killing an enemy grants your hirelings, pets, summoned creatures, and charmed
-creatures a [20/30/40]% enhancement bonus to movement speed and a [10/15/20]%
-enhancement bonus to attack speed for 15 seconds.
-Enemies your own level or higher have a 100% chance of activating this ability.
-For every level below you, the chances are reduced by 20%. A monster two levels
-below you only has a 60% chance of creating this effect.</Description>
-         <Icon>NWBloodMoonFrenzy</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>2</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>5</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Class>Druid</Class>
-               <Level>2</Level>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Nature's Warrior: Action Boost Double Strike</Name>
-         <InternalName>NWActionBoostDoublestrike</InternalName>
-         <Description>Activate to gain a +[10/20/30]% action boost bonus to Doublestrike for 20 seconds.</Description>
-         <Icon>NWActionBoostDoublestrike</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>2</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>5</MinSpent>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Class>Druid</Class>
-               <Level>2</Level>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Nature's Warrior: Fight</Name>
-         <InternalName>NWFight</InternalName>
-         <Description>+1/+2/+3 base melee damage and +1/+2/+3 Armor Class while in any Bear or Wolf form.</Description>
-         <Icon>NWFight</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>3</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>10</MinSpent>
-         <LongArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Class>Druid</Class>
-               <Level>3</Level>
-            </Requirement>
-            <Requirement>
-               <Enhancement>NWFlight</Enhancement>
-            </Requirement>
-         </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Nature's Warrior: Flight</Name>
+      <InternalName>NWFlight</InternalName>
+      <Description>Gain an uncapped +20% Dodge bonus for 10/20/30 seconds.
+Costs 1 Wild Empathy.
+Cooldown: 1 minute 30 seconds.</Description>
+      <Icon>NWFlight</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Clickie/>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Class>Druid</Class>
+          <Level>2</Level>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Nature's Warrior: Improved Dodge</Name>
+      <InternalName>NWImprovedDodge</InternalName>
+      <Description>+1/2/3 Dodge</Description>
+      <Icon>NWImprovedDodge</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Druid</Class>
+          <Level>2</Level>
+        </Requirement>
+      </Requirements>
          <Effect>
-            <Type>WeaponDamageBonus</Type>
+            <Type>DodgeBonus</Type>
             <Bonus>Enhancement</Bonus>
             <AmountVector size="3">1 2 3</AmountVector>
-            <Stance>Wolf</Stance>
+         </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Nature's Warrior: Ghost Wolf</Name>
+      <InternalName>NWGhostWolf</InternalName>
+      <Description>Gain Ghost Touch while in Wolf Forms on your melee attacks.</Description>
+      <Icon>NWGhostWolf</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Class>Druid</Class>
+          <Level>2</Level>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Nature's Warrior: Brother Wolf</Name>
+      <InternalName>NWBrotherWolf</InternalName>
+      <Description>While your wolf pet is alive and within 40 meters, it gains 15 hitpoints
+every 12/9/6 seconds and 10/15/20 MRR and PRR.
+You also gain +1/2/3 to hit and damage.</Description>
+      <Icon>NWBrotherWolf</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Druid</Class>
+          <Level>2</Level>
+        </Requirement>
+      </Requirements>
+         <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
             <Weapon>All</Weapon>
          </Effect>
          <Effect>
-            <Type>WeaponDamageBonus</Type>
+            <Type>DamageBonus</Type>
             <Bonus>Enhancement</Bonus>
             <AmountVector size="3">1 2 3</AmountVector>
-            <Stance>Winter Wolf</Stance>
             <Weapon>All</Weapon>
          </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Nature's Warrior: Action Boost: Doublestrike</Name>
+      <InternalName>NWActionBoostDoublestrike</InternalName>
+      <Description>Gain +10%/20/30 Action Boost bonus to Doublestrike for 20 seconds.</Description>
+      <Icon>NWActionBoostDoublestrike</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Clickie/>
+      <Requirements>
+        <Requirement>
+          <Class>Druid</Class>
+          <Level>2</Level>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Nature's Warrior: Fight</Name>
+      <InternalName>NWFight</InternalName>
+      <Description>+1/2/3 base melee damage and +1/2/3 AC while in any Bear or Wolf form.</Description>
+      <Icon>NWFight</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Class>Druid</Class>
+          <Level>3</Level>
+        </Requirement>
+        <Requirement>
+          <Enhancement>NWFlight</Enhancement>
+        </Requirement>
+      </Requirements>
          <Effect>
-            <Type>WeaponDamageBonus</Type>
+            <Type>AttackBonus</Type>
             <Bonus>Enhancement</Bonus>
             <AmountVector size="3">1 2 3</AmountVector>
-            <Stance>Bear</Stance>
             <Weapon>All</Weapon>
-         </Effect>
-         <Effect>
-            <Type>WeaponDamageBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">1 2 3</AmountVector>
-            <Stance>Dire Bear</Stance>
-            <Weapon>All</Weapon>
+            <AnyOfStance>Wolf</AnyOfStance>
+            <AnyOfStance>Winter Wolf</AnyOfStance>
+            <AnyOfStance>Bear</AnyOfStance>
+            <AnyOfStance>Dire Bear</AnyOfStance>
          </Effect>
          <Effect>
             <Type>ACBonus</Type>
             <Bonus>Enhancement</Bonus>
             <AmountVector size="3">1 2 3</AmountVector>
-            <Stance>Wolf</Stance>
+            <AnyOfStance>Wolf</AnyOfStance>
+            <AnyOfStance>Winter Wolf</AnyOfStance>
+            <AnyOfStance>Bear</AnyOfStance>
+            <AnyOfStance>Dire Bear</AnyOfStance>
          </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Nature's Warrior: Prey on the Weak</Name>
+      <InternalName>NWPreyOnTheWeak</InternalName>
+      <Description>You gain a +8/15% damage bonus on helpless targets.</Description>
+      <Icon>NWPreyOnTheWeak</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>1</Cost>
+      <Ranks>2</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Druid</Class>
+          <Level>3</Level>
+        </Requirement>
+      </Requirements>
          <Effect>
-            <Type>ACBonus</Type>
+            <Type>HelplessDamage</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">1 2 3</AmountVector>
-            <Stance>Winter Wolf</Stance>
+            <AmountVector size="2">8 15</AmountVector>
          </Effect>
-         <Effect>
-            <Type>ACBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">1 2 3</AmountVector>
-            <Stance>Bear</Stance>
-         </Effect>
-         <Effect>
-            <Type>ACBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">1 2 3</AmountVector>
-            <Stance>Dire Bear</Stance>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Nature's Warrior: Reaving Roar</Name>
-         <InternalName>NWReavingRoar</InternalName>
-         <Description>Beast Stance: While this stance is active, killing an enemy grants you a
-[2/4/6]% competence bonus to threat generation for 10 seconds, and creates a burst
-of sonic damage that hits all nearby enemies for 5d6 sonic damage.
-Enemies your own level or higher have a 100% chance of activating this ability.
-For every level below you, the chances are reduced by 20%. A monster two levels
-below you only has a 60% chance of creating this effect. You can only have one
-Beast Stance active at a time.</Description>
-         <Icon>NWReavingRoar</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>3</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>10</MinSpent>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Class>Druid</Class>
-               <Level>3</Level>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Nature's Warrior: Improved Dodge</Name>
-         <InternalName>NWImprovedDodge</InternalName>
-         <Description>+1/+2/+3 Dodge while in any Bear or Wolf form.</Description>
-         <Icon>NWImprovedDodge</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>3</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>10</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Class>Druid</Class>
-               <Level>3</Level>
-            </Requirement>
-            <Requirement>
-               <Feat>Dodge</Feat>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>DodgeBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">1 2 3</AmountVector>
-            <Stance>Wolf</Stance>
-         </Effect>
-         <Effect>
-            <Type>DodgeBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">1 2 3</AmountVector>
-            <Stance>Winter Wolf</Stance>
-         </Effect>
-         <Effect>
-            <Type>DodgeBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">1 2 3</AmountVector>
-            <Stance>Bear</Stance>
-         </Effect>
-         <Effect>
-            <Type>DodgeBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">1 2 3</AmountVector>
-            <Stance>Dire Bear</Stance>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Nature's Warrior: Fatal Harrier</Name>
-         <InternalName>NWFatalHarrier</InternalName>
-         <Description>Beast Stance: Killing an enemy grants you a 5% enhancement bonus to attack
-speed for 20 seconds. This can stack up to [1/3/5] times. Enemies your own level
-or higher have a 100% chance of activating this ability. For every level below
-you, the chances are reduced by 20%. A monster two levels below you only has a
-60% chance of creating this effect. You can only have one Beast Stance active at a time.</Description>
-         <Icon>NWFatalHarrier</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>3</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>10</MinSpent>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Class>Druid</Class>
-               <Level>3</Level>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Nature's Warrior: Ability I</Name>
-         <InternalName>NWAbilityScoreI</InternalName>
-         <Description>Choose either Strength or Wisdom</Description>
-         <Icon>StrWis</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>3</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Class>Druid</Class>
-               <Level>3</Level>
-            </Requirement>
-         </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>+1 Strength</Name>
-               <Description>+1 Strength</Description>
-               <Icon>Strength</Icon>
-               <Cost>2</Cost>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Ability>Strength</Ability>
-                  <Amount>1</Amount>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>+1 Wisdom</Name>
-               <Description>+1 Wisdom</Description>
-               <Icon>Wisdom</Icon>
-               <Cost>2</Cost>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Ability>Wisdom</Ability>
-                  <Amount>1</Amount>
-               </Effect>
-            </EnhancementSelection>
-         </Selector>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Nature's Warrior: Essence of the Turtle</Name>
-         <InternalName>NWEssenceOfTheTurtle</InternalName>
-         <Description>Your enemy's blows give you the determination to keep fighting.
-When an enemy hits you while in any bear form, there is a 5% chance that you
-gain will gain [10/20] temporary spell points for 8 seconds.
-Passive (permanent): +5/+10 Positive Spellpower</Description>
-         <Icon>NWEssenceOfTheTurtle</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>4</YPosition>
-         <Cost>1</Cost>
-         <Ranks>2</Ranks>
-         <MinSpent>20</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Class>Druid</Class>
-               <Level>4</Level>
-            </Requirement>
-         </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Nature's Warrior: Ghost Wolf Pack</Name>
+      <InternalName>NWGhostWolfPack</InternalName>
+      <Description>Wolf Form Melee Attack: When you trigger this, spectral pack mates
+appear to assault all foes before you.
+On Hit: +2[W] damage and a +2 bonus to critical threat range.
+This also applies a 5 second confusion effect with no save.
+Bosses are immune to the confusion.
+You gain 35% Incorporeal defense for 10 seconds.
+Cost 15 Spell Points
+Cooldown: 1 minute</Description>
+      <Icon>NWGhostWolfPack</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Clickie/>
+      <Requirements>
+        <Requirement>
+          <Class>Druid</Class>
+          <Level>3</Level>
+        </Requirement>
+        <Requirement>
+          <Enhancement>NWGhostWolf</Enhancement>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Nature's Warrior: Essence of the Shrike</Name>
+      <InternalName>NWEssenceOfTheShrike</InternalName>
+      <Description>Striking a blow focuses your mind and body.
+When you critically hit an enemy while in any Wolf or Bear form,
+you gain 10/20 temporary spell points for 8 seconds.
+Passive: +5/10 Positive Spell power.</Description>
+      <Icon>NWEssenceOfTheShrike</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>1</Cost>
+      <Ranks>2</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Druid</Class>
+          <Level>3</Level>
+        </Requirement>
+      </Requirements>
          <Effect>
             <Type>SpellPower</Type>
             <Bonus>Enhancement</Bonus>
             <SpellPower>Positive</SpellPower>
             <AmountVector size="2">5 10</AmountVector>
          </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Nature's Warrior: Four Legs Good</Name>
-         <InternalName>NWFourGoodLegs</InternalName>
-         <Description>Beast Stance: You ignore most effects that would knock you down.
-Requires: Any Wolf, Bear, or Tree form.</Description>
-         <Icon>NWFourGoodLegs</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>4</YPosition>
-         <Cost>1</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Class>Druid</Class>
-               <Level>4</Level>
-            </Requirement>
-            <Requirement>
-               <Enhancement>NWImprovedDodge</Enhancement>
-            </Requirement>
-         </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Nature's Warrior: Ability I</Name>
+      <InternalName>NWAbilityI</InternalName>
+      <Description>Choose either Strength or Wisdom</Description>
+      <Icon>StrWis</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Class>Druid</Class>
+          <Level>3</Level>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>+1 Strength</Name>
+          <Description>+1 Strength</Description>
+          <Icon>Strength</Icon>
+          <Cost>2</Cost>
+         <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Ability>Strength</Ability>
+         </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Wisdom</Name>
+          <Description>+1 Wisdom</Description>
+          <Icon>Wisdom</Icon>
+          <Cost>2</Cost>
+         <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Ability>Wisdom</Ability>
+         </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Nature's Warrior: Fatal Harrier</Name>
+      <InternalName>NWFatalHarrier</InternalName>
+      <Description>Killing an enemy grants you a 5% enchantment bonus to attack speed for 20 seconds.
+You also gain a +1 bonus to Reflex saves. This stacks 1/3/5 times.
+Enemies your own level or higher have a 100% chance of inspiring your Ferocity
+to greater heights. For every level below you, the chances are reduced by 20%.
+A monster two levels below you only has a 60% chance of creating this effect.</Description>
+      <Icon>NWFatalHarrier</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>20</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Class>Druid</Class>
+          <Level>4</Level>
+        </Requirement>
+        <Requirement>
+          <Enhancement>NWFight</Enhancement>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Nature's Warrior: Four Legs Good</Name>
+      <InternalName>NWFourLegsGood</InternalName>
+      <Description>You ignore most effects that would knock you down.
+Requires: Any Wolf, Bear or Tree form.</Description>
+      <Icon>NWFourLegsGood</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Druid</Class>
+          <Level>4</Level>
+        </Requirement>
+      </Requirements>
           <Effect>
               <Type>Immunity</Type>
               <Bonus>Enhancement</Bonus>
-              <Immunity>Knockdown in Wolf, Bear or Tree form</Immunity>
+              <Immunity>Knockdown</Immunity>
+            <AnyOfStance>Wolf</AnyOfStance>
+            <AnyOfStance>Winter Wolf</AnyOfStance>
+            <AnyOfStance>Bear</AnyOfStance>
+            <AnyOfStance>Dire Bear</AnyOfStance>
           </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Nature's Warrior: Essence of the Shrike</Name>
-         <InternalName>NWEssenceOfTheShrike</InternalName>
-         <Description>Striking a blow focuses your mind and body.
-When you critically hit an enemy while in any wolf form, you gain [10/20]
-temporary spell points for 8 seconds.
-Passive (permanent): +5/+10 Positive Spellpower</Description>
-         <Icon>NWEssenceOfTheShrike</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>4</YPosition>
-         <Cost>1</Cost>
-         <Ranks>2</Ranks>
-         <MinSpent>20</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Class>Druid</Class>
-               <Level>4</Level>
-            </Requirement>
-         </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Nature's Warrior: Ferocity</Name>
+      <InternalName>NWFerocity</InternalName>
+      <Description>Gain +2/4/6 melee power in Wolf or Bear form.
+Double this if an effect is preventing you from casting spells.</Description>
+      <Icon>NWFerocity</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Druid</Class>
+          <Level>4</Level>
+        </Requirement>
+      </Requirements>
+         <Effect>
+            <Type>MeleePower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">2 4 6</AmountVector>
+            <AnyOfStance>Wolf</AnyOfStance>
+            <AnyOfStance>Winter Wolf</AnyOfStance>
+            <AnyOfStance>Bear</AnyOfStance>
+            <AnyOfStance>Dire Bear</AnyOfStance>
+         </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Nature's Warrior: Great White Wolf</Name>
+      <InternalName>NWGreatWhiteWolf</InternalName>
+      <Description>Gain 10/20/30 Cold spell power.
+In Winter Wolf form gain 10/20/30% Cold absorption.</Description>
+      <Icon>NWGreatWhiteWolf</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Druid</Class>
+          <Level>4</Level>
+        </Requirement>
+      </Requirements>
          <Effect>
             <Type>SpellPower</Type>
             <Bonus>Enhancement</Bonus>
-            <SpellPower>Positive</SpellPower>
-            <AmountVector size="2">5 10</AmountVector>
+            <SpellPower>Cold</SpellPower>
+            <AmountVector size="3">10 20 30</AmountVector>
          </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Nature's Warrior: Ability II</Name>
-         <InternalName>NWAbilityScoreII</InternalName>
-         <Description>Choose either Strength or Wisdom</Description>
-         <Icon>StrWis</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>4</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Class>Druid</Class>
-               <Level>4</Level>
-            </Requirement>
-            <Requirement>
-               <Enhancement>NWAbilityScoreI</Enhancement>
-            </Requirement>
-         </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>+1 Strength</Name>
-               <Description>+1 Strength</Description>
-               <Icon>Strength</Icon>
-               <Cost>2</Cost>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Ability>Strength</Ability>
-                  <Amount>1</Amount>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>+1 Wisdom</Name>
-               <Description>+1 Wisdom</Description>
-               <Icon>Wisdom</Icon>
-               <Cost>2</Cost>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Ability>Wisdom</Ability>
-                  <Amount>1</Amount>
-               </Effect>
-            </EnhancementSelection>
-         </Selector>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Nature's Warrior: Alpha Strike</Name>
-         <InternalName>NWAlphaStrike</InternalName>
-         <Description>Area Melee Attack: You fight for leadership of the pack.
-Area damage melee attack dealing +3[W]/+6[W]/+10[W]. This attack can doublestrike.
-Deals +3d6/+6d6/+10d6 extra slashing damage to Elementals, Animals, Magical Beasts,
-Vermin, and Plants. Requires any Wolf, Bear, or Tree form.
-(Activation Cost: 12/9/6 Spell Points. Cooldown: 18/15/12 seconds)</Description>
-         <Icon>NWAlphaStrike</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>5</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>30</MinSpent>
-         <Tier5/>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Class>Druid</Class>
-               <Level>5</Level>
-            </Requirement>
-            <Requirement>
-               <Enhancement>NWFight</Enhancement>
-            </Requirement>
-            <Requirement>
-               <MinLevel>12</MinLevel>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Nature's Warrior: Wild Healing</Name>
-         <InternalName>NWWildHealing</InternalName>
-         <Description>Despite your wounds, you are a wellspring of vigor.
-When you are struck in battle there is a 5% chance of receiving 10/15/20 temporary
-hitpoints and a 10%/15%/20% morale bonus to your healing amplification.</Description>
-         <Icon>NWWildHealing</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>5</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>30</MinSpent>
-         <Tier5/>
-         <Requirements>
-            <Requirement>
-               <Class>Druid</Class>
-               <Level>5</Level>
-            </Requirement>
-            <Requirement>
-               <MinLevel>12</MinLevel>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Nature's Warrior: Celerity</Name>
-         <InternalName>NWCelerity</InternalName>
-         <Description>Your attacks rain down like a lashing wind storm.
-Activating this ability grants you a 30%/40%/50% enhancement bonus to
-double-strike for 15 seconds. (Cooldown: 5 minutes)
-Requires: Any Wolf, Bear, or Tree form.</Description>
-         <Icon>NWCelerity</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>5</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>30</MinSpent>
-         <Tier5/>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Class>Druid</Class>
-               <Level>5</Level>
-            </Requirement>
-            <Requirement>
-               <MinLevel>12</MinLevel>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Nature's Warrior: Natural Adept</Name>
-         <InternalName>NWNaturalAdept</InternalName>
-         <Description>You have mastered the art of wielding divine magic in animal form,
-and using it to empower your body in physical combat. While in animal form, the
-cooldown penalty for non-animal form spells is reduced from 2.5 times the usual
-length to 1.5.</Description>
-         <Icon>NWNaturalAdept</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>5</YPosition>
-         <Cost>1</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <Tier5/>
-         <Requirements>
-            <Requirement>
-               <Class>Druid</Class>
-               <Level>5</Level>
-            </Requirement>
-            <Requirement>
-               <MinLevel>12</MinLevel>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-   </EnhancementTree>
+         <Effect>
+            <Type>EnergyAbsorbance</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>Cold</SpellPower>
+            <AmountVector size="3">10 20 30</AmountVector>
+         </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Nature's Warrior: Ability II</Name>
+      <InternalName>NWAbilityII</InternalName>
+      <Description>Choose either Strength or Wisdom</Description>
+      <Icon>StrWis</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Druid</Class>
+          <Level>4</Level>
+        </Requirement>
+        <Requirement>
+          <Enhancement>NWAbilityI</Enhancement>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>+1 Strength</Name>
+          <Description>+1 Strength</Description>
+          <Icon>Strength</Icon>
+          <Cost>2</Cost>
+         <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Ability>Strength</Ability>
+         </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Wisdom</Name>
+          <Description>+1 Wisdom</Description>
+          <Icon>Wisdom</Icon>
+          <Cost>2</Cost>
+         <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Ability>Wisdom</Ability>
+         </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Nature's Warrior: Alpha Strike</Name>
+      <InternalName>NWAlphaStrike</InternalName>
+      <Description>Area Melee Attack: Delas +2/3/5[W] You fight for leadership.
+AOW melee attack. On target above 85% health it reduces their attack,
+range and spellpower by 25 for 15 seconds.
+Requires: Any Wolf, Bear or Tree form.
+Spellpoint cost: 12/9/6
+Cooldown: 18/15/12 seconds.</Description>
+      <Icon>NWAlphaStrike</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>5</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>30</MinSpent>
+      <Clickie/>
+      <Tier5/>
+      <Requirements>
+        <Requirement>
+          <Class>Druid</Class>
+          <Level>5</Level>
+        </Requirement>
+        <Requirement>
+          <Enhancement>NWFatalHarrier</Enhancement>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Nature's Warrior: Swift Hunter</Name>
+      <InternalName>NWSwiftHunter</InternalName>
+      <Description>While in Wold form you gain Evasion.
+Armor restrictions apply as normal.</Description>
+      <Icon>NWSwiftHunter</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>5</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5/>
+      <Requirements>
+        <Requirement>
+          <Class>Druid</Class>
+          <Level>5</Level>
+        </Requirement>
+      </Requirements>
+        <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Enhancement</Bonus>
+            <Feat>Evasion</Feat>
+            <AnyOfStance>Wolf</AnyOfStance>
+            <AnyOfStance>Winter Wolf</AnyOfStance>
+            <AnyOfStance>Bear</AnyOfStance>
+            <AnyOfStance>Dire Bear</AnyOfStance>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Nature's Warrior: Throat Rip</Name>
+      <InternalName>NWThroatRip</InternalName>
+      <Description>Requires Wolf Form.
+Melee attack that strikes 3 times, adds 6 sneak attack dice on each attack.
+Each hit on a living target inflicts a Bleed which causes 1d6 every 3 seconds
+for 18 seconds. Bleed stacks up to 10 times and scales with 200% melee power.
+Target must also make a Fortitude save or will be silenced for 15 seconds.
+Bosses are immune to Silence but take a 25 point spell power debuff.
+Stun vs Fortitude DC: 10 + Druid Level + Max(Str, Wis) + Stun bonuses.</Description>
+      <Icon>NWThroatRip</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>5</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Clickie/>
+      <Tier5/>
+      <Requirements>
+        <Requirement>
+          <Class>Druid</Class>
+          <Level>5</Level>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Nature's Warrior: Jaws of Ice</Name>
+      <InternalName>NWJawsOfIce</InternalName>
+      <Description>Gain 10 times your character level in temporary hitpoints for 30 seconds
+after using Jaws of Winter.</Description>
+      <Icon>NWJawsOfIce</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>5</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5/>
+      <Requirements>
+        <Requirement>
+          <Class>Druid</Class>
+          <Level>5</Level>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Nature's Warrior: Go for the Kill</Name>
+      <InternalName>NWGoForTheKill</InternalName>
+      <Description>Requires Wolf form.
+You charge your target for +4[W], +5 to critical threat range,
++1 critical multiplier and knock them down and grant yourself
+a +15 melee power boost for 30 seconds.
+Charging from a distance of over 10 meters the melee power bonus
+is doubled. Deals an additional 50 points of damage to helpless
+targets. Scales with melee power.
+A successful Blanace check negates Knockdown.
+Trip vs Balance DC: 10 + Druid Level + Max(Str, Wis) + Trip bonuses.</Description>
+      <Icon>NWGoForTheKill</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>5</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Clickie/>
+      <Tier5/>
+      <Requirements>
+        <Requirement>
+          <Class>Druid</Class>
+          <Level>5</Level>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+  </EnhancementTree>
 </Enhancements>

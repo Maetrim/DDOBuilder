@@ -79,6 +79,7 @@ enum EffectType
     Effect_GrantSpell,
     Effect_Guard,
     Effect_HealingAmplification,
+    Effect_HelplessDamage,
     Effect_HirelingAbilityBonus,
     Effect_HirelingHitpoints,
     Effect_HirelingFortification,
@@ -206,6 +207,7 @@ const XmlLib::enumMapEntry<EffectType> effectTypeMap[] =
     {Effect_GrantSpell, L"GrantSpell"},
     {Effect_Guard, L"Guard"},
     {Effect_HealingAmplification, L"HealingAmplification"},
+    {Effect_HelplessDamage, L"HelplessDamage"},
     {Effect_HirelingAbilityBonus, L"HirelingAbilityBonus"},
     {Effect_HirelingHitpoints, L"HirelingHitpoints"},
     {Effect_HirelingFortification, L"HirelingFortification"},
@@ -321,6 +323,7 @@ class Effect :
                 DL_OPTIONAL_STRING(_, Spell) \
                 DL_OPTIONAL_SIMPLE(_, int, SpellLevel, 0) \
                 DL_STRING_VECTOR(_, Stance) \
+                DL_STRING_VECTOR(_, AnyOfStance) \
                 DL_OPTIONAL_STRING(_, EnhancementTree) \
                 DL_OPTIONAL_STRING(_, SpellLikeAbility) \
                 DL_STRING_LIST(_, Immunity) \

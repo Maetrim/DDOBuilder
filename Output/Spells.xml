@@ -2136,6 +2136,7 @@ an undead creature. (A Will save reduces this damage by half.)</Description>
       <Enlarge/>
       <Maximize/>
       <Quicken/>
+      <Artificer>5</Artificer>
       <Bard>4</Bard>
       <Cleric>-4</Cleric>
       <Druid>5</Druid>
@@ -4611,6 +4612,7 @@ cannot be caught in the snare.</Description>
       <Quicken/>
       <Druid>3</Druid>
       <Ranger>2</Ranger>
+      <SPCost>5</SPCost>
    </Spell>
    <Spell>
       <Name>Spiderskin</Name>
@@ -4656,7 +4658,7 @@ the slow effect.</Description>
 direction. This attack deals an extra 4[W] damage to the target,
 and also performs a bluff check, which may leave your opponent
 open to sneak attacks and flanking, and temporarily reduces your
-threat generation by 25%.</Description>
+threat generation by 25%. +1 Critical Threat range and Damage multiplier.</Description>
       <Icon>BaitingBite</Icon>
       <School>Innate Attack</School>
       <Druid>3</Druid>
@@ -4666,8 +4668,9 @@ threat generation by 25%.</Description>
       <Description>Valid Forms: Bear, Dire Bear. This attack deals an extra 3[W] damage
 to the target, and you may reduce the target's Armor Class by 4
 for a short time. Some creatures may be immune to the sunder effect.
-A successful Fortitude save negates this effect. (DC 13 + WIS mod)
-Any effects that improve the DC for the Sunder feat also improve Shred)</Description>
+A successful Fortitude save negates this effect. (DC 13 + Max(Str, Wis) mod + 1/2 Druid level)
+Any effects that improve the DC for the Sunder feat also improve Shred)
+Attack has +1 Critical threat range and multiplier.</Description>
       <Icon>Shred</Icon>
       <School>Innate Attack</School>
       <Druid>3</Druid>
@@ -4675,14 +4678,15 @@ Any effects that improve the DC for the Sunder feat also improve Shred)</Descrip
    <!--Druid level 4's-->
    <Spell>
       <Name>Enveloping Swarm</Name>
-      <Description>A swarm of voracious insects to envelop your body. Enemies that
-strike you in battle attract their ire, and have a 50% change of
-being swarmed in turn. Enemies with this effect take 3 untyped
-damage, and an additional 3 every 2 seconds</Description>
+      <Description>Target is enveloped by insects taking 2d6 Acid damage + 1d6 for every 3 Druid levels
+every 2 seconds for 16 seconds. Spell Point cost is 10.
+A successful Reflex Saving Throw halves the damage each tick.</Description>
       <Icon>EnvelopingSwarm</Icon>
       <School>Conjuration</School>
       <Enlarge/>
+      <Empower/>
       <Heighten/>
+      <Intensify/>
       <Maximize/>
       <Quicken/>
       <Druid>4</Druid>
@@ -4766,6 +4770,7 @@ gain a +2 morale bonus to Strength and Constitution.
 This stacks up to 5 times.</Description>
       <Icon>RisingFury</Icon>
       <School>Transmutation</School>
+      <Extend/>
       <Quicken/>
       <Druid>4</Druid>
    </Spell>
@@ -4804,7 +4809,7 @@ plane.</Description>
    <Spell>
       <Name>Call Lightning Storm</Name>
       <Description>Creates a stormcloud that persists for some time and randomly
-strikes nearby enemies with bolts of lightning of 5 to 50
+strikes nearby enemies with bolts of lightning dealing 1d10 per 2 druid levels, Max 20
 electrical damage. A successful Reflex save reduces the
 damage by half. </Description>
       <Icon>CallLightningStorm</Icon>
@@ -4875,8 +4880,7 @@ as well as other possible benefits or negatives.</Description>
 originating in front of you and spreaing outward in a cone.
 It drains heat, dealing 4 to 6 points of cold damage per
 caster level (up to a maximum of 60 to 90 adage at caster
-level 15). A successful Reflex save reduces the damage by
-half. D&amp;D Dice: Deals 1d3+3 cold damage per caster level
+level 15). D&amp;D Dice: Deals 1d3+3 cold damage per caster level
 (max 15d3+45).</Description>
       <Icon>ColdBreath</Icon>
       <School>Breath Weapon</School>
@@ -5033,7 +5037,7 @@ healing amplification (enhancement bonus).</Description>
       <Name>Tremor</Name>
       <Description>Valid Forms: Bear, Dire Bear . The ground trembles beneath your
 feet. Enemies around fall prone. Fortitude save negates. Save DC is
-10 + half Druid level + WIS bonus.</Description>
+16 + half Druid level + max(Str, Wis) bonus. Melee attack +2[W]</Description>
       <Icon>Tremor</Icon>
       <School>Innate Attack</School>
       <Druid>6</Druid>
@@ -5044,7 +5048,7 @@ feet. Enemies around fall prone. Fortitude save negates. Save DC is
       <Description>Summons a cloud of voracious insects and unleashes them on your
 enemies. The insect cloud will slowly home on the target, and when it
 strikes insects will burst outward, affecting every enemy within the
-area of effect. Enemies hit by the insects take 2 to 20 poison damage,
+area of effect. Enemies hit by the insects take 2 to 20 Acid damage,
 plus 1 to 10 per 3 caster levels, every 2 seconds for 16 seconds.
 A successful reflex save halves the damage.</Description>
       <Icon>CreepingDoom</Icon>
@@ -5124,13 +5128,19 @@ Fortitude save halves.</Description>
    <Spell>
       <Name>Elemental Toughness</Name>
       <Description>Valid Forms: Fire Elemental, Water Elemental.
-Draw elemental matter into your form, toughening your body
-and gaining 5/- DR.</Description>
+Grants one Physical Resistance Rating per Druid level for the duration of the spell.
+Lasts 30 seconds per Druid level. Costs 25 Spell Points.</Description>
       <Icon>ElementalToughness</Icon>
       <School>Evocation</School>
       <Extend/>
       <Quicken/>
       <Druid>7</Druid>
+      <Effect>
+         <Type>PRR</Type>
+         <Bonus>Feat</Bonus>
+         <AmountPerLevel>1</AmountPerLevel>
+         <Class>Druid</Class>
+      </Effect>
    </Spell>
    <Spell>
       <Name>Freezing Spray</Name>
@@ -5156,7 +5166,8 @@ This attack deals an extra 6[W], and if it counts as a sneak
 attack, your foe is frozen solid for 30 seconds. Frozen
 creatures gain DR 5/Adamantine, but are considered helpless.
 Fortitude save negates, and the creature gets an additional
-save attempt every two seconds. (DC 17 + WIS mod).</Description>
+save attempt every two seconds. (DC 17 + Max(Str, Wis) mod + Druid level).
++1 Critical threat and multiplier</Description>
       <Icon>JawsOfWinter</Icon>
       <School>Evocation</School>
       <Heighten/>
@@ -5238,7 +5249,7 @@ damage.</Description>
       <Name>Fires of Purity</Name>
       <Description>Valid Forms: Fire Elemental. Enchants your target's weapons with
 fires of purity. They deal an extra 2d4 fire damage, and enemies
-that strike them take a -10 penalty to their fire resistance.
+that strike them take a -10% vulnerability penalty to their fire resistance.
 An item can have only one temporary item enchantment at a time.</Description>
       <Icon>FiresOfPurity</Icon>
       <School>Evocation</School>
@@ -5314,9 +5325,11 @@ active remain unchanged. Lasts 15 seconds.</Description>
    <Spell>
       <Name>Anger of the Noonday Sun</Name>
       <Description>Valid Forms: Fire Elemental.
-You are enveloped in the anger of the noonday sun.
-The targets of your fire spells suffer a 2% fortification penalty,
-and a -5 penalty to fire resistance.</Description>
+When your fire spell's damage is reduced by a creature that is
+immune/resistant/healed by fire, that target is debuffed to take
+full damage from fire effects that follow. This does not stack
+with effects that amplify damage beyond 100%.
+Target also takes -8% Fortification.</Description>
       <Icon>AngerOfTheNoondaySun</Icon>
       <School>Evocation</School>
       <Extend/>
@@ -5326,10 +5339,12 @@ and a -5 penalty to fire resistance.</Description>
    <Spell>
       <Name>Mantle of the Icy Soul</Name>
       <Description>Valid Forms: Water Elemental.
-You are shrouded in the mantle of the icy soul.
-The targets of your cold spells take a 25% penalty to movement speed,
-a 10% penalty to attack speed, and a -4 penalty to reflex and fortitude
-saves.</Description>
+When your cold spell's damage is reduced by a creature that is
+immune/resistant/healed by cold, that target is debuffed to take
+full damage from cold effects that follow. This does not stack
+with effects that amplify damage beyond 100%.
+Target also is debuffed with 10% Attack Speed Slow, 25% Movement
+Speed Slow, -4 to Fortitude and Reflex Saving Throws.</Description>
       <Icon>MantleOfTheIcySoul</Icon>
       <School>Evocation</School>
       <Extend/>
@@ -5345,7 +5360,8 @@ caught in your wake are frozen solid for 20 seconds. A successful
 reflex save negates the effect, and creatures caught in the ice can
 attempt fortitude saves to escape every 3 seconds. Creatures frozen
 are considered helpless, but they also gain DR/Adamantine 5.
-(DC 19 + WIS mod)</Description>
+(DC 19 + Max(Str, Wis) mod + Stun modifiers + Druid Level)
++1 Critical threat and Multiplier</Description>
       <Icon>Snowslide</Icon>
       <School>Evocation</School>
       <Heighten/>
@@ -5378,10 +5394,9 @@ duration is extended.</Description>
       <Description>Conjures a storm with a massive thunderclap, deafening enemies,
 dousing them in acid rain, and lancing them with lightning bolts.
 Enemies within the cloud when it is first conjured are deafened
-for 3 seconds per caster level. Enemies within the storm take 8d6
-acid damage every two seconds. Every 4 seconds, a random enemy
-within the storm takes 5d10 electricity damage (a successful reflex
-save halves). The storm lasts 3 seconds per caster level.</Description>
+for 3 seconds per caster level. Enemies within the storm take
+Acid damage now scales at 1d8 per 3 Druid levels, and its lightning
+damage 1d10 per 2 Druid levels, with a maximum of 25. Duration is 30 seconds.</Description>
       <Icon>StormOfVengeance</Icon>
       <School>Conjuration</School>
       <Empower/>
@@ -5487,7 +5502,7 @@ them a +10 circumstance bonus to Hide.</Description>
       <Ranger>1</Ranger>
       <Effect>
          <Type>SkillBonus</Type>
-         <Bonus>Circumstance</Bonus>
+         <Bonus>Determination</Bonus>
          <Amount>10</Amount>
          <Skill>Hide</Skill>
       </Effect>
@@ -5522,7 +5537,7 @@ them a +10 circumstance bonus to Hide.</Description>
       <Ranger>2</Ranger>
       <Effect>
          <Type>SkillBonus</Type>
-         <Bonus>Circumstance</Bonus>
+         <Bonus>Determination</Bonus>
          <Amount>10</Amount>
          <Skill>Hide</Skill>
       </Effect>
@@ -7715,5 +7730,24 @@ long as they are near you. This lasts for 30 minutes,
 but is dispelled death and antimagic.</Description>
       <Icon>RMRegenerationConstruct</Icon>
       <SPCost>30</SPCost>
+   </Spell>
+   <Spell>
+      <Name>Converter</Name>
+      <Description>Target player, hireling, or pet takes 100% base healing from Repair spells for the
+next three minutes, or until the target dies. Has no effect on Constructs or NPC
+allies. This overrides their innate base healing from Repair spells for the duration.</Description>
+      <Icon>RMConverter</Icon>
+      <SPCost>4</SPCost>
+   </Spell>
+   <Spell>
+      <Name>Great Maul</Name>
+      <Description>Activate
+to do an Innate Attack: Deals 3[W] with +1 bonus to critical threat
+and damage, and the target you strike must make a Fortitude save or
+be stunned for 6 seconds, DC: 13 + Max(Str, Wis) mod + Tactical bonuses.
+SP Cost: 3
+Cooldown: 12 seconds.</Description>
+      <Icon>NPBigClaws</Icon>
+      <SPCost>3</SPCost>
    </Spell>
 </Spells>

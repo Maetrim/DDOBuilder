@@ -173,9 +173,9 @@ BOOL CItemSelectDialog::OnInitDialog()
     }
     SetSentientWeaponControls();
     // add monitor locations to show sentient weapon and filigree tooltips
+    CRect rect;
     if (m_slot == Inventory_Weapon1)
     {
-        CRect rect;
         m_comboSentientPersonality.GetWindowRect(&rect);
         m_comboHookHandles[0] = GetMouseHook()->AddRectangleToMonitor(
                 this->GetSafeHwnd(),
@@ -193,6 +193,18 @@ BOOL CItemSelectDialog::OnInitDialog()
                     WM_MOUSELEAVE,
                     false);
         }
+    }
+
+    // add monitor locations to show augment tooltips
+    for (size_t i = 0 ; i < MAX_Augments; ++i)
+    {
+        m_comboAugmentDropList[i].GetWindowRect(&rect);
+        m_augmentHookHandles[i] = GetMouseHook()->AddRectangleToMonitor(
+                this->GetSafeHwnd(),
+                rect,           // screen coordinates,
+                WM_MOUSEENTER,
+                WM_MOUSELEAVE,
+                false);
     }
 
     LoadColumnWidthsByName(&m_availableItemsCtrl, "ItemSelectDialog_%s");
@@ -705,23 +717,32 @@ void CItemSelectDialog::OnSize(UINT nType, int cx, int cy)
 
         // TBD!
     }
-    if (IsWindow(m_comboSentientPersonality.GetSafeHwnd())
-            && m_slot == Inventory_Weapon1)
+    if (IsWindow(m_comboSentientPersonality.GetSafeHwnd()))
     {
         // update the mouse hook handles for tooltips
         CRect rect;
-        m_comboSentientPersonality.GetWindowRect(&rect);
-        // gives the wrong rectangle, ensure large enough
-        rect.bottom = rect.top + 32 + GetSystemMetrics(SM_CYBORDER) * 4;
-        GetMouseHook()->UpdateRectangle(
-                m_comboHookHandles[0],
-                rect);          // screen coordinates
-        for (size_t i = 0; i < MAX_Filigree; ++i)
+        if (m_slot == Inventory_Weapon1)
         {
-            CRect rect;
-            m_comboFiligreeDropList[i].GetWindowRect(&rect);
+            m_comboSentientPersonality.GetWindowRect(&rect);
+            // gives the wrong rectangle, ensure large enough
+            rect.bottom = rect.top + 32 + GetSystemMetrics(SM_CYBORDER) * 4;
             GetMouseHook()->UpdateRectangle(
-                    m_comboHookHandles[i+1],
+                    m_comboHookHandles[0],
+                    rect);          // screen coordinates
+            for (size_t i = 0; i < MAX_Filigree; ++i)
+            {
+                CRect rect;
+                m_comboFiligreeDropList[i].GetWindowRect(&rect);
+                GetMouseHook()->UpdateRectangle(
+                        m_comboHookHandles[i+1],
+                        rect);          // screen coordinates
+            }
+        }
+        for (size_t i = 0 ; i < MAX_Augments; ++i)
+        {
+            m_comboAugmentDropList[i].GetWindowRect(&rect);
+            GetMouseHook()->UpdateRectangle(
+                    m_augmentHookHandles[i],
                     rect);          // screen coordinates
         }
     }
@@ -1269,7 +1290,7 @@ LRESULT CItemSelectDialog::OnMouseEnter(WPARAM wParam, LPARAM lParam)
     }
     else
     {
-        // must be over one of the filigrees
+        // must be over one of the filigrees or augments
         for (size_t i = 0 ; i < MAX_Filigree; ++i)
         {
             if (wParam == m_comboHookHandles[i+1])
@@ -1285,6 +1306,30 @@ LRESULT CItemSelectDialog::OnMouseEnter(WPARAM wParam, LPARAM lParam)
                     {
                         CRect itemRect;
                         m_comboFiligreeDropList[i].GetWindowRect(&itemRect);
+                        Augment augment = FindAugmentByName((LPCTSTR)augmentName);
+                        CPoint tipTopLeft(itemRect.left, itemRect.bottom + 2);
+                        CPoint tipAlternate(itemRect.left, itemRect.top - 2);
+                        SetTooltipText(augment, tipTopLeft, tipAlternate, false);
+                        break;
+                    }
+                }
+            }
+        }
+        for (size_t i = 0 ; i < MAX_Augments; ++i)
+        {
+            if (wParam == m_augmentHookHandles[i])
+            {
+                int sel = m_comboAugmentDropList[i].GetCurSel();
+                if (sel != CB_ERR)
+                {
+                    CString augmentName;
+                    m_comboAugmentDropList[i].GetLBText(
+                            sel,
+                            augmentName);
+                    if (!augmentName.IsEmpty())
+                    {
+                        CRect itemRect;
+                        m_comboAugmentDropList[i].GetWindowRect(&itemRect);
                         Augment augment = FindAugmentByName((LPCTSTR)augmentName);
                         CPoint tipTopLeft(itemRect.left, itemRect.bottom + 2);
                         CPoint tipAlternate(itemRect.left, itemRect.top - 2);

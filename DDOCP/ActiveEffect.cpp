@@ -611,6 +611,16 @@ const std::vector<std::string> & ActiveEffect::Stances() const
     return m_stances;
 }
 
+void ActiveEffect::AddAnyOfStance(const std::string & stance)
+{
+    m_anyOfStances.push_back(stance);
+}
+
+const std::vector<std::string> & ActiveEffect::AnyOfStances() const
+{
+    return m_anyOfStances;
+}
+
 const std::string & ActiveEffect::Tree() const
 {
     return m_tree;
@@ -623,6 +633,21 @@ bool ActiveEffect::IsActive(const Character * pCharacter) const
     for (size_t i = 0; i < m_stances.size(); ++i)
     {
         if (!pCharacter->IsStanceActive(m_stances[i]))
+        {
+            active = false;
+        }
+    }
+    bool requiredStanceActive = false;
+    if (m_anyOfStances.size() > 0)
+    {
+        for (size_t i = 0; i < m_anyOfStances.size(); ++i)
+        {
+            if (!pCharacter->IsStanceActive(m_anyOfStances[i]))
+            {
+                requiredStanceActive = false;
+            }
+        }
+        if (!requiredStanceActive)
         {
             active = false;
         }
