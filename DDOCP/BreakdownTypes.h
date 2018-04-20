@@ -38,6 +38,8 @@ enum BreakdownType
     Breakdown_DR,
     Breakdown_Dodge,
     Breakdown_DodgeCap,
+    Breakdown_MaxDexBonus,
+    Breakdown_MaxDexBonusShields,
     Breakdown_OffHandAttackBonus,
     Breakdown_DoubleStrike,
     Breakdown_OffHandDoubleStrike,
@@ -67,6 +69,8 @@ enum BreakdownType
     Breakdown_SneakAttackDice,
     Breakdown_SneakAttackDamage,
     Breakdown_SneakAttackAttack,
+    Breakdown_HelplessDamage,
+    Breakdown_HelplessDamageReduction,
     // skills
     Breakdown_SkillBalance,
     Breakdown_SkillBluff,

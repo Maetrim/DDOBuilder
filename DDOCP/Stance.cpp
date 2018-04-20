@@ -3,6 +3,7 @@
 #include "StdAfx.h"
 #include "Stance.h"
 #include "XmlLib\SaxWriter.h"
+#include "GlobalSupportFunctions.h"
 
 #define DL_ELEMENT Stance
 
@@ -62,9 +63,10 @@ void Stance::Write(XmlLib::SaxWriter * writer) const
 bool Stance::VerifyObject(std::stringstream * ss) const
 {
     bool ok = true;
-    if (!ok)
+    if (!ImageFileExists(IT_feat, Icon()))
     {
-        (*ss) << "Stance ???\n";
+        (*ss) << "Stance " << m_Name << " is missing image file \"" << Icon() << "\"\n";
+        ok = false;
     }
     return ok;
 }

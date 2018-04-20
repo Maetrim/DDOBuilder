@@ -185,13 +185,13 @@ void CStancesView::CreateStanceWindows()
     Stance reaper("Reaper", "ReaperTree", "Activate to view your characters abilities when running in Reaper mode");
     AddStance(reaper);
 
-    Stance twf("TwoWeaponFighting", "TwoWeaponFighting", "You are fighting with a weapon in each hand");
+    Stance twf("Two Weapon Fighting", "TwoWeaponFighting", "You are fighting with a weapon in each hand");
     twf.Set_AutoControlled();
     AddStance(twf);
-    Stance thf("TwoHandedFighting", "TwoHandedFighting", "You are fighting with a single weapon in both hands");
+    Stance thf("Two Handed Fighting", "TwoHandedFighting", "You are fighting with a single weapon in both hands");
     thf.Set_AutoControlled();
     AddStance(thf);
-    Stance swf("SingleWeaponFighting", "SingleWeaponFighting", "You are fighting with a single weapon");
+    Stance swf("Single Weapon Fighting", "SingleWeaponFighting", "You are fighting with a single weapon");
     swf.Set_AutoControlled();
     AddStance(swf);
     Stance unarmed("Unarmed", "ADanceOfFlowers", "You are fighting with handwraps or fists");
@@ -200,7 +200,7 @@ void CStancesView::CreateStanceWindows()
     Stance axe("Axe", "BEReconstructedEdges", "You are fighting with an Axe");
     axe.Set_AutoControlled();
     AddStance(axe);
-    Stance sab("SwordAndBoard", "SDLastStand", "You are fighting with a weapon and shield");
+    Stance sab("Sword and Board", "SDLastStand", "You are fighting with a weapon and shield");
     sab.Set_AutoControlled();
     AddStance(sab);
     Stance staff("Staff", "HMSoundingStaff", "You are fighting with a staff");

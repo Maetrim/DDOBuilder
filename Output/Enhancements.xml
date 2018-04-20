@@ -2872,7 +2872,7 @@ Tier 3: Also gains +1 damage.</Description>
       <Effect>
         <Type>AttackBonus</Type>
         <Bonus>Enhancement</Bonus>
-        <Stance>TwoWeaponFighting</Stance>
+        <Stance>Two Weapon Fighting</Stance>
         <AmountVector size="3">1 1 1</AmountVector>
         <Weapon>All</Weapon>
       </Effect>
@@ -2891,7 +2891,7 @@ Tier 3: Also gains +1 damage.</Description>
       <Effect>
         <Type>DamageBonus</Type>
         <Bonus>Enhancement</Bonus>
-        <Stance>TwoWeaponFighting</Stance>
+        <Stance>Two Weapon Fighting</Stance>
         <AmountVector size="3">0 0 1</AmountVector>
         <Weapon>All</Weapon>
       </Effect>
@@ -6434,7 +6434,7 @@ Rank 3: Also gains +1 damage.</Description>
             <Type>AttackBonus</Type>
             <Bonus>Enhancement</Bonus>
             <AmountVector size="3">1 1 1</AmountVector>
-            <Stance>TwoWeaponFighting</Stance>
+            <Stance>Two Weapon Fighting</Stance>
             <Weapon>All</Weapon>
           </Effect>
           <Effect>
@@ -6442,14 +6442,14 @@ Rank 3: Also gains +1 damage.</Description>
             <Type>DodgeBonus</Type>
             <Bonus>Enhancement</Bonus>
             <AmountVector size="3">0 1 1</AmountVector>
-            <Stance>TwoWeaponFighting</Stance>
+            <Stance>Two Weapon Fighting</Stance>
           </Effect>
           <Effect>
             <DisplayName>Human: Fighting Style: Ambidexterity (TWF)</DisplayName>
             <Type>DamageBonus</Type>
             <Bonus>Enhancement</Bonus>
             <AmountVector size="3">0 0 1</AmountVector>
-            <Stance>TwoWeaponFighting</Stance>
+            <Stance>Two Weapon Fighting</Stance>
             <Weapon>All</Weapon>
           </Effect>
           <Effect>
@@ -10072,7 +10072,12 @@ has an additional -1/-2/-3 to your attack bonus.</Description>
           <Enhancement>HalfOrcOrcishWeaponTrainingIV</Enhancement>
         </Requirement>
       </Requirements>
-      <!--Not modelled-->
+          <Effect>
+              <Type>HelplessDamage</Type>
+              <Bonus>Enhancement</Bonus>
+              <Amount>20</Amount>
+              <Stance>Two Handed Fighting</Stance>
+          </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Half-Orc: Weapon Training IV</Name>
@@ -11710,20 +11715,20 @@ Rank 3: Also gains +1 damage.</Description>
             <Type>AttackBonus</Type>
             <Bonus>Enhancement</Bonus>
             <AmountVector size="3">1 1 1</AmountVector>
-            <Stance>TwoWeaponFighting</Stance>
+            <Stance>Two Weapon Fighting</Stance>
             <Weapon>All</Weapon>
           </Effect>
           <Effect>
             <Type>DodgeBonus</Type>
             <Bonus>Enhancement</Bonus>
             <AmountVector size="3">0 1 1</AmountVector>
-            <Stance>TwoWeaponFighting</Stance>
+            <Stance>Two Weapon Fighting</Stance>
           </Effect>
           <Effect>
             <Type>DamageBonus</Type>
             <Bonus>Enhancement</Bonus>
             <AmountVector size="3">0 0 1</AmountVector>
-            <Stance>TwoWeaponFighting</Stance>
+            <Stance>Two Weapon Fighting</Stance>
             <Weapon>All</Weapon>
           </Effect>
           <Effect>
@@ -13030,7 +13035,8 @@ Some enemies are immune to bleeding.</Description>
         <Type>DodgeBonus</Type>
         <Bonus>Enhancement</Bonus>
         <AmountVector size="3">1 2 3</AmountVector>
-        <Stance>LightOrNoArmor</Stance>
+            <AnyOfStance>Cloth Armor</AnyOfStance>
+            <AnyOfStance>Light Armor</AnyOfStance>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -16454,13 +16460,15 @@ AC and immunity to Magic Missiles.</Description>
             <Type>ACBonus</Type>
             <Bonus>Alchemical</Bonus>
             <Amount>4</Amount>
-            <Stance>MediumOrHeavy</Stance>
+            <AnyOfStance>Medium Armor</AnyOfStance>
+            <AnyOfStance>Heavy Armor</AnyOfStance>
         </Effect>
         <Effect>
             <Type>Immunity</Type>
             <Bonus>Alchemical</Bonus>
             <Immunity>Magic Missiles</Immunity>
-            <Stance>MediumOrHeavy</Stance>
+            <AnyOfStance>Medium Armor</AnyOfStance>
+            <AnyOfStance>Heavy Armor</AnyOfStance>
         </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -16543,7 +16551,8 @@ Your Admixture spells gain +6 to their Maximum Caster Level.</Description>
             <Type>MaxDexBonus</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>2</Amount>
-            <Stance>MediumOrHeavy</Stance>
+            <AnyOfStance>Medium Armor</AnyOfStance>
+            <AnyOfStance>Heavy Armor</AnyOfStance>
         </Effect>
         <Effect>
             <Type>RepairAmplification</Type>
@@ -16658,7 +16667,8 @@ While in Medium Armor, Heavy Armor, or Adamantine Body, +3 to Max Dex Bonus.</De
             <Type>MaxDexBonus</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>3</Amount>
-            <Stance>MediumOrHeavy</Stance>
+            <AnyOfStance>Medium Armor</AnyOfStance>
+            <AnyOfStance>Heavy Armor</AnyOfStance>
         </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -16724,7 +16734,8 @@ This infusion is affected by Artificer Knowledge: Potions.</Description>
             <Type>PRR</Type>
             <Bonus>Enhancement</Bonus>
             <AmountVector size="3">2 4 6</AmountVector>
-            <Stance>MediumOrHeavy</Stance>
+            <AnyOfStance>Medium Armor</AnyOfStance>
+            <AnyOfStance>Heavy Armor</AnyOfStance>
         </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -19465,6 +19476,11 @@ Blood Strength has a one-second cooldown when you kill an enemy.</Description>
           <Enhancement>RavIHitBack</Enhancement>
         </Requirement>
       </Requirements>
+          <Effect>
+              <Type>HelplessDamage</Type>
+              <Bonus>Enhancement</Bonus>
+              <AmountVector size="3">5 10 15</AmountVector>
+          </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Ravager: Uncanny Balance</Name>
@@ -21435,7 +21451,7 @@ This Sonic damage scales with spell power.</Description>
           <Effect>
             <Type>DamageBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <Stance>SingleWeaponFighting</Stance>
+            <Stance>Single Weapon Fighting</Stance>
             <Ability>Charisma</Ability>
             <Weapon>All</Weapon>
           </Effect>
@@ -21448,7 +21464,7 @@ This Sonic damage scales with spell power.</Description>
           <Effect>
             <Type>DamageBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <Stance>SingleWeaponFighting</Stance>
+            <Stance>Single Weapon Fighting</Stance>
             <Ability>Dexterity</Ability>
             <Weapon>All</Weapon>
           </Effect>
@@ -21461,7 +21477,7 @@ This Sonic damage scales with spell power.</Description>
           <Effect>
             <Type>DamageBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <Stance>SingleWeaponFighting</Stance>
+            <Stance>Single Weapon Fighting</Stance>
             <Ability>Intelligence</Ability>
             <Weapon>All</Weapon>
           </Effect>
@@ -29158,7 +29174,7 @@ In Winter Wolf form gain 10/20/30% Cold absorption.</Description>
          <Effect>
             <Type>EnergyAbsorbance</Type>
             <Bonus>Enhancement</Bonus>
-            <SpellPower>Cold</SpellPower>
+            <Energy>Cold</Energy>
             <AmountVector size="3">10 20 30</AmountVector>
          </Effect>
     </EnhancementTreeItem>
@@ -36373,6 +36389,11 @@ to all Saving Throws.</Description>
           <Level>2</Level>
         </Requirement>
       </Requirements>
+         <Effect>
+            <Type>HelplessDamageReduction</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">5 10 15</AmountVector>
+         </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Stalwart Defender: Improved Stalwart Defense III</Name>
@@ -36481,8 +36502,9 @@ Stalwart Defense, you gain a you gain a +[2/4/6] Competence bonus to Constitutio
             <Ability>Constitution</Ability>
             <AmountVector size="3">2 4 6</AmountVector>
             <Stance>Stalwart Defense</Stance>
-            <Stance>SwordAndBoard</Stance>
-            <Stance>MediumOrHeavy</Stance>
+            <Stance>Sword and Board</Stance>
+            <AnyOfStance>Medium Armor</AnyOfStance>
+            <AnyOfStance>Heavy Armor</AnyOfStance>
           </Effect>
         </EnhancementSelection>
         <EnhancementSelection>
@@ -36497,8 +36519,9 @@ Stalwart Defense, you gain a +[2/4/6] Competence bonus to Strength. </Descriptio
             <Ability>Strength</Ability>
             <AmountVector size="3">2 4 6</AmountVector>
             <Stance>Stalwart Defense</Stance>
-            <Stance>SwordAndBoard</Stance>
-            <Stance>MediumOrHeavy</Stance>
+            <Stance>Sword and Board</Stance>
+            <AnyOfStance>Medium Armor</AnyOfStance>
+            <AnyOfStance>Heavy Armor</AnyOfStance>
           </Effect>
         </EnhancementSelection>
         <EnhancementSelection>
@@ -36513,8 +36536,9 @@ Stalwart Defense, you gain a +10%/+15%/+20% Competence bonus to maximum hit poin
             <Percent />
             <AmountVector size="3">10 15 20</AmountVector>
             <Stance>Stalwart Defense</Stance>
-            <Stance>SwordAndBoard</Stance>
-            <Stance>MediumOrHeavy</Stance>
+            <Stance>Sword and Board</Stance>
+            <AnyOfStance>Medium Armor</AnyOfStance>
+            <AnyOfStance>Heavy Armor</AnyOfStance>
           </Effect>
         </EnhancementSelection>
       </Selector>
@@ -36675,8 +36699,9 @@ Stalwart Defense, you gain a you gain a +[2/4/6] Competence bonus to Constitutio
             <Ability>Constitution</Ability>
             <AmountVector size="3">2 4 6</AmountVector>
             <Stance>Stalwart Defense</Stance>
-            <Stance>SwordAndBoard</Stance>
-            <Stance>MediumOrHeavy</Stance>
+            <Stance>Sword and Board</Stance>
+            <AnyOfStance>Medium Armor</AnyOfStance>
+            <AnyOfStance>Heavy Armor</AnyOfStance>
           </Effect>
         </EnhancementSelection>
         <EnhancementSelection>
@@ -36692,8 +36717,9 @@ Stalwart Defense, you gain a +[2/4/6] Competence bonus to Strength.
             <Ability>Strength</Ability>
             <AmountVector size="3">2 4 6</AmountVector>
             <Stance>Stalwart Defense</Stance>
-            <Stance>SwordAndBoard</Stance>
-            <Stance>MediumOrHeavy</Stance>
+            <Stance>Sword and Board</Stance>
+            <AnyOfStance>Medium Armor</AnyOfStance>
+            <AnyOfStance>Heavy Armor</AnyOfStance>
           </Effect>
         </EnhancementSelection>
         <EnhancementSelection>
@@ -36709,8 +36735,9 @@ Stalwart Defense, you gain a +10%/+15%/+20% Competence bonus to maximum hit poin
             <Percent />
             <AmountVector size="3">10 15 20</AmountVector>
             <Stance>Stalwart Defense</Stance>
-            <Stance>SwordAndBoard</Stance>
-            <Stance>MediumOrHeavy</Stance>
+            <Stance>Sword and Board</Stance>
+            <AnyOfStance>Medium Armor</AnyOfStance>
+            <AnyOfStance>Heavy Armor</AnyOfStance>
           </Effect>
         </EnhancementSelection>
       </Selector>
@@ -36891,8 +36918,9 @@ Stalwart Defense, you gain a you gain a +[2/4/6] Competence bonus to Constitutio
             <Ability>Constitution</Ability>
             <AmountVector size="3">2 4 6</AmountVector>
             <Stance>Stalwart Defense</Stance>
-            <Stance>SwordAndBoard</Stance>
-            <Stance>MediumOrHeavy</Stance>
+            <Stance>Sword and Board</Stance>
+            <AnyOfStance>Medium Armor</AnyOfStance>
+            <AnyOfStance>Heavy Armor</AnyOfStance>
           </Effect>
         </EnhancementSelection>
         <EnhancementSelection>
@@ -36908,8 +36936,9 @@ Stalwart Defense, you gain a +[2/4/6] Competence bonus to Strength.
             <Ability>Strength</Ability>
             <AmountVector size="3">2 4 6</AmountVector>
             <Stance>Stalwart Defense</Stance>
-            <Stance>SwordAndBoard</Stance>
-            <Stance>MediumOrHeavy</Stance>
+            <Stance>Sword and Board</Stance>
+            <AnyOfStance>Medium Armor</AnyOfStance>
+            <AnyOfStance>Heavy Armor</AnyOfStance>
           </Effect>
         </EnhancementSelection>
         <EnhancementSelection>
@@ -36925,8 +36954,9 @@ Stalwart Defense, you gain a +10%/+15%/+20% Competence bonus to maximum hit poin
             <Percent />
             <AmountVector size="3">10 15 20</AmountVector>
             <Stance>Stalwart Defense</Stance>
-            <Stance>SwordAndBoard</Stance>
-            <Stance>MediumOrHeavy</Stance>
+            <Stance>Sword and Board</Stance>
+            <AnyOfStance>Medium Armor</AnyOfStance>
+            <AnyOfStance>Heavy Armor</AnyOfStance>
           </Effect>
         </EnhancementSelection>
       </Selector>
@@ -37032,14 +37062,14 @@ Note: This stacks with Reinforced Defense from Sacred Defender.
         <Type>AttackBonus</Type>
         <Bonus>Enhancement</Bonus>
         <Amount>1</Amount>
-        <Stance>SwordAndBoard</Stance>
+        <Stance>Sword and Board</Stance>
         <Weapon>All</Weapon>
       </Effect>
       <Effect>
         <Type>DamageBonus</Type>
         <Bonus>Enhancement</Bonus>
         <Amount>1</Amount>
-        <Stance>SwordAndBoard</Stance>
+        <Stance>Sword and Board</Stance>
         <Weapon>All</Weapon>
       </Effect>
     </EnhancementTreeItem>
@@ -37073,7 +37103,7 @@ Note: This stacks with Reinforced Defense from Sacred Defender.
         <Type>SecondaryShieldBash</Type>
         <Bonus>Enhancement</Bonus>
         <Amount>10</Amount>
-        <Stance>SwordAndBoard</Stance>
+        <Stance>Sword and Board</Stance>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -37107,13 +37137,13 @@ While shield equipped, +5% Combat Style bonus to melee attack speed.</Descriptio
         <Type>SecondaryShieldBash</Type>
         <Bonus>Enhancement</Bonus>
         <Amount>10</Amount>
-        <Stance>SwordAndBoard</Stance>
+        <Stance>Sword and Board</Stance>
       </Effect>
       <Effect>
         <Type>Alacrity</Type>
         <Bonus>Enhancement</Bonus>
         <Amount>5</Amount>
-        <Stance>SwordAndBoard</Stance>
+        <Stance>Sword and Board</Stance>
         <Weapon>All</Weapon>
       </Effect>
     </EnhancementTreeItem>
@@ -37149,13 +37179,13 @@ Your shield gains +1(W).</Description>
         <Type>SecondaryShieldBash</Type>
         <Bonus>Enhancement</Bonus>
         <Amount>10</Amount>
-        <Stance>SwordAndBoard</Stance>
+        <Stance>Sword and Board</Stance>
       </Effect>
       <Effect>
         <Type>Alacrity</Type>
         <Bonus>Enhancement</Bonus>
         <Amount>5</Amount>
-        <Stance>SwordAndBoard</Stance>
+        <Stance>Sword and Board</Stance>
         <Weapon>All</Weapon>
       </Effect>
       <Effect>
@@ -37214,7 +37244,7 @@ and additional +5% (total 15%) Combat Style bonus to Melee Attack Speed</Descrip
         <Type>Alacrity</Type>
         <Bonus>Enhancement</Bonus>
         <Amount>5</Amount>
-        <Stance>SwordAndBoard</Stance>
+        <Stance>Sword and Board</Stance>
         <Weapon>All</Weapon>
       </Effect>
     </EnhancementTreeItem>
@@ -37250,21 +37280,21 @@ Speed, and shield bash stuns 5% of the time DC
         <Type>AttackBonus</Type>
         <Bonus>Enhancement</Bonus>
         <Amount>2</Amount>
-        <Stance>SwordAndBoard</Stance>
+        <Stance>Sword and Board</Stance>
         <Weapon>All</Weapon>
       </Effect>
       <Effect>
         <Type>DamageBonus</Type>
         <Bonus>Enhancement</Bonus>
         <Amount>2</Amount>
-        <Stance>SwordAndBoard</Stance>
+        <Stance>Sword and Board</Stance>
         <Weapon>All</Weapon>
       </Effect>
       <Effect>
         <Type>Doublestrike</Type>
         <Bonus>Enhancement</Bonus>
         <Amount>5</Amount>
-        <Stance>SwordAndBoard</Stance>
+        <Stance>Sword and Board</Stance>
       </Effect>
       <Effect>
         <Type>WeaponBaseDamageBonus</Type>
@@ -37276,7 +37306,7 @@ Speed, and shield bash stuns 5% of the time DC
         <Type>Alacrity</Type>
         <Bonus>Enhancement</Bonus>
         <Amount>5</Amount>
-        <Stance>SwordAndBoard</Stance>
+        <Stance>Sword and Board</Stance>
         <Weapon>All</Weapon>
       </Effect>
     </EnhancementTreeItem>
@@ -37307,21 +37337,21 @@ Speed, and shield bash stuns 5% of the time DC
         <Type>AttackBonus</Type>
         <Bonus>Enhancement</Bonus>
         <Amount>1</Amount>
-        <Stance>SwordAndBoard</Stance>
+        <Stance>Sword and Board</Stance>
         <Weapon>All</Weapon>
       </Effect>
       <Effect>
         <Type>DamageBonus</Type>
         <Bonus>Enhancement</Bonus>
         <Amount>1</Amount>
-        <Stance>SwordAndBoard</Stance>
+        <Stance>Sword and Board</Stance>
         <Weapon>All</Weapon>
       </Effect>
       <Effect>
         <Type>ACBonus</Type>
         <Bonus>Enhancement</Bonus>
         <Amount>1</Amount>
-        <Stance>SwordAndBoard</Stance>
+        <Stance>Sword and Board</Stance>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -37471,20 +37501,20 @@ Reduces total penalty to skills from armor and shield by [1/2/3] points.</Descri
         <Bonus>Enhancement</Bonus>
         <Amount>1</Amount>
         <Weapon>All</Weapon>
-        <Stance>SwordAndBoard</Stance>
+        <Stance>Sword and Board</Stance>
       </Effect>
       <Effect>
         <Type>DamageBonus</Type>
         <Bonus>Enhancement</Bonus>
         <Amount>1</Amount>
         <Weapon>All</Weapon>
-        <Stance>SwordAndBoard</Stance>
+        <Stance>Sword and Board</Stance>
       </Effect>
       <Effect>
         <Type>ACBonus</Type>
         <Bonus>Enhancement</Bonus>
         <Amount>1</Amount>
-        <Stance>SwordAndBoard</Stance>
+        <Stance>Sword and Board</Stance>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -37581,7 +37611,7 @@ have struck every [6/4/2] seconds. Antirequisite: Deflect Arrows.</Description>
         <Type>GrantFeat</Type>
         <Bonus>Enhancement</Bonus>
         <Feat>Deflect Arrows</Feat>
-        <Stance>SwordAndBoard</Stance>
+        <Stance>Sword and Board</Stance>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -37651,20 +37681,20 @@ Usable 5 times per rest. Cooldown: 30 seconds</Description>
         <Bonus>Enhancement</Bonus>
         <Amount>1</Amount>
         <Weapon>All</Weapon>
-        <Stance>SwordAndBoard</Stance>
+        <Stance>Sword and Board</Stance>
       </Effect>
       <Effect>
         <Type>DamageBonus</Type>
         <Bonus>Enhancement</Bonus>
         <Amount>1</Amount>
         <Weapon>All</Weapon>
-        <Stance>SwordAndBoard</Stance>
+        <Stance>Sword and Board</Stance>
       </Effect>
       <Effect>
         <Type>ACBonus</Type>
         <Bonus>Enhancement</Bonus>
         <Amount>1</Amount>
-        <Stance>SwordAndBoard</Stance>
+        <Stance>Sword and Board</Stance>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -37823,20 +37853,20 @@ bludgeoning damage to attacker. Damage scales with Melee Power.</Description>
         <Bonus>Enhancement</Bonus>
         <Amount>1</Amount>
         <Weapon>All</Weapon>
-        <Stance>SwordAndBoard</Stance>
+        <Stance>Sword and Board</Stance>
       </Effect>
       <Effect>
         <Type>DamageBonus</Type>
         <Bonus>Enhancement</Bonus>
         <Amount>1</Amount>
         <Weapon>All</Weapon>
-        <Stance>SwordAndBoard</Stance>
+        <Stance>Sword and Board</Stance>
       </Effect>
       <Effect>
         <Type>ACBonus</Type>
         <Bonus>Enhancement</Bonus>
         <Amount>1</Amount>
-        <Stance>SwordAndBoard</Stance>
+        <Stance>Sword and Board</Stance>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -40523,6 +40553,11 @@ Ninja Poison removed.</Description>
           <Level>4</Level>
         </Requirement>
       </Requirements>
+          <Effect>
+              <Type>HelplessDamage</Type>
+              <Bonus>Enhancement</Bonus>
+              <AmountVector size="3">10 20 30</AmountVector>
+          </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Ninja Spy: Ability II</Name>
@@ -41679,6 +41714,11 @@ avoid this fate. (Activation Cost: 25 Ki. Cooldown: 1 minute)</Description>
                <Enhancement>ShintaoIronSkin</Enhancement>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>HelplessDamageReduction</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">5 10 15</AmountVector>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Shintao: Ability II</Name>
@@ -43369,6 +43409,11 @@ While under this effect you do not automatically fail saving throws on a roll of
           <Level>2</Level>
         </Requirement>
       </Requirements>
+         <Effect>
+            <Type>HelplessDamageReduction</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">5 10 15</AmountVector>
+         </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Sacred Defender: Bulwark Aura</Name>
@@ -43697,7 +43742,8 @@ you gain a +[2/4/6] Sacred bonus to Constitution. </Description>
             <Ability>Constitution</Ability>
             <AmountVector size="3">2 4 6</AmountVector>
             <Stance>Sacred Defense</Stance>
-            <Stance>MediumOrHeavy</Stance>
+            <AnyOfStance>Medium Armor</AnyOfStance>
+            <AnyOfStance>Heavy Armor</AnyOfStance>
           </Effect>
         </EnhancementSelection>
         <EnhancementSelection>
@@ -43712,7 +43758,8 @@ you gain a +[2/4/6] Sacred bonus to Strength. </Description>
             <Ability>Strength</Ability>
             <AmountVector size="3">2 4 6</AmountVector>
             <Stance>Sacred Defense</Stance>
-            <Stance>MediumOrHeavy</Stance>
+            <AnyOfStance>Medium Armor</AnyOfStance>
+            <AnyOfStance>Heavy Armor</AnyOfStance>
           </Effect>
         </EnhancementSelection>
         <EnhancementSelection>
@@ -43727,7 +43774,8 @@ you gain a +10%/+15%/+20% Sacred bonus to maximum hit points.</Description>
             <Percent />
             <AmountVector size="3">10 15 20</AmountVector>
             <Stance>Sacred Defense</Stance>
-            <Stance>MediumOrHeavy</Stance>
+            <AnyOfStance>Medium Armor</AnyOfStance>
+            <AnyOfStance>Heavy Armor</AnyOfStance>
           </Effect>
         </EnhancementSelection>
       </Selector>
@@ -43914,7 +43962,8 @@ you gain a +[2/4/6] Sacred bonus to Constitution. </Description>
             <Ability>Constitution</Ability>
             <AmountVector size="3">2 4 6</AmountVector>
             <Stance>Sacred Defense</Stance>
-            <Stance>MediumOrHeavy</Stance>
+            <AnyOfStance>Medium Armor</AnyOfStance>
+            <AnyOfStance>Heavy Armor</AnyOfStance>
           </Effect>
         </EnhancementSelection>
         <EnhancementSelection>
@@ -43937,7 +43986,8 @@ you gain a +[2/4/6] Sacred bonus to Strength. </Description>
             <Ability>Strength</Ability>
             <AmountVector size="3">2 4 6</AmountVector>
             <Stance>Sacred Defense</Stance>
-            <Stance>MediumOrHeavy</Stance>
+            <AnyOfStance>Medium Armor</AnyOfStance>
+            <AnyOfStance>Heavy Armor</AnyOfStance>
           </Effect>
         </EnhancementSelection>
         <EnhancementSelection>
@@ -43960,7 +44010,8 @@ you gain a +10%/+15%/+20% Sacred bonus to maximum hit points.</Description>
             <Percent />
             <AmountVector size="3">10 15 20</AmountVector>
             <Stance>Sacred Defense</Stance>
-            <Stance>MediumOrHeavy</Stance>
+            <AnyOfStance>Medium Armor</AnyOfStance>
+            <AnyOfStance>Heavy Armor</AnyOfStance>
           </Effect>
         </EnhancementSelection>
       </Selector>
@@ -44190,7 +44241,8 @@ you gain a +[2/4/6] Sacred bonus to Constitution. </Description>
             <Ability>Constitution</Ability>
             <AmountVector size="3">2 4 6</AmountVector>
             <Stance>Sacred Defense</Stance>
-            <Stance>MediumOrHeavy</Stance>
+            <AnyOfStance>Medium Armor</AnyOfStance>
+            <AnyOfStance>Heavy Armor</AnyOfStance>
           </Effect>
         </EnhancementSelection>
         <EnhancementSelection>
@@ -44217,7 +44269,8 @@ you gain a +[2/4/6] Sacred bonus to Strength. </Description>
             <Ability>Strength</Ability>
             <AmountVector size="3">2 4 6</AmountVector>
             <Stance>Sacred Defense</Stance>
-            <Stance>MediumOrHeavy</Stance>
+            <AnyOfStance>Medium Armor</AnyOfStance>
+            <AnyOfStance>Heavy Armor</AnyOfStance>
           </Effect>
         </EnhancementSelection>
         <EnhancementSelection>
@@ -44244,7 +44297,8 @@ you gain a +10%/+15%/+20% Sacred bonus to maximum hit points.</Description>
             <Percent />
             <AmountVector size="3">10 15 20</AmountVector>
             <Stance>Sacred Defense</Stance>
-            <Stance>MediumOrHeavy</Stance>
+            <AnyOfStance>Medium Armor</AnyOfStance>
+            <AnyOfStance>Heavy Armor</AnyOfStance>
           </Effect>
         </EnhancementSelection>
       </Selector>
@@ -49571,19 +49625,19 @@ for each additional Tempest Core Ability you acquire.</Description>
         <Type>ACBonus</Type>
         <Bonus>Shield</Bonus>
         <Amount>2</Amount>
-        <Stance>TwoWeaponFighting</Stance>
+        <Stance>Two Weapon Fighting</Stance>
       </Effect>
       <Effect>
         <Type>PRR</Type>
         <Bonus>Shield</Bonus>
         <Amount>2</Amount>
-        <Stance>TwoWeaponFighting</Stance>
+        <Stance>Two Weapon Fighting</Stance>
       </Effect>
       <Effect>
         <Type>MRR</Type>
         <Bonus>Shield</Bonus>
         <Amount>2</Amount>
-        <Stance>TwoWeaponFighting</Stance>
+        <Stance>Two Weapon Fighting</Stance>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -49629,19 +49683,19 @@ wielding, you can use your dexterity modifier to hit with light melee weapons.</
         <Type>ACBonus</Type>
         <Bonus>Shield</Bonus>
         <Amount>1</Amount>
-        <Stance>TwoWeaponFighting</Stance>
+        <Stance>Two Weapon Fighting</Stance>
       </Effect>
       <Effect>
         <Type>PRR</Type>
         <Bonus>Shield</Bonus>
         <Amount>1</Amount>
-        <Stance>TwoWeaponFighting</Stance>
+        <Stance>Two Weapon Fighting</Stance>
       </Effect>
       <Effect>
         <Type>MRR</Type>
         <Bonus>Shield</Bonus>
         <Amount>1</Amount>
-        <Stance>TwoWeaponFighting</Stance>
+        <Stance>Two Weapon Fighting</Stance>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -49669,7 +49723,7 @@ damage with light melee weapons. </Description>
         <Type>ACBonus</Type>
         <Bonus>Shield</Bonus>
         <Amount>1</Amount>
-        <Stance>TwoWeaponFighting</Stance>
+        <Stance>Two Weapon Fighting</Stance>
       </Effect>
       <Effect>
         <Type>DamageBonus</Type>
@@ -49681,13 +49735,13 @@ damage with light melee weapons. </Description>
         <Type>PRR</Type>
         <Bonus>Shield</Bonus>
         <Amount>1</Amount>
-        <Stance>TwoWeaponFighting</Stance>
+        <Stance>Two Weapon Fighting</Stance>
       </Effect>
       <Effect>
         <Type>MRR</Type>
         <Bonus>Shield</Bonus>
         <Amount>1</Amount>
-        <Stance>TwoWeaponFighting</Stance>
+        <Stance>Two Weapon Fighting</Stance>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -49721,26 +49775,26 @@ knocking aside one incoming projectile that would have struck you every 6 second
         <Type>CriticalMultiplier</Type>
         <Bonus>Enhancement</Bonus>
         <Amount>1</Amount>
-        <Stance>TwoWeaponFighting</Stance>
+        <Stance>Two Weapon Fighting</Stance>
         <WeaponClass>Melee</WeaponClass>
       </Effect>
       <Effect>
         <Type>ACBonus</Type>
         <Bonus>Shield</Bonus>
         <Amount>1</Amount>
-        <Stance>TwoWeaponFighting</Stance>
+        <Stance>Two Weapon Fighting</Stance>
       </Effect>
       <Effect>
         <Type>PRR</Type>
         <Bonus>Shield</Bonus>
         <Amount>1</Amount>
-        <Stance>TwoWeaponFighting</Stance>
+        <Stance>Two Weapon Fighting</Stance>
       </Effect>
       <Effect>
         <Type>MRR</Type>
         <Bonus>Shield</Bonus>
         <Amount>1</Amount>
-        <Stance>TwoWeaponFighting</Stance>
+        <Stance>Two Weapon Fighting</Stance>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -49768,13 +49822,13 @@ knocking aside one incoming projectile that would have struck you every 6 second
         <Type>ACBonus</Type>
         <Bonus>Shield</Bonus>
         <Amount>1</Amount>
-        <Stance>TwoWeaponFighting</Stance>
+        <Stance>Two Weapon Fighting</Stance>
       </Effect>
       <Effect>
         <Type>Doublestrike</Type>
         <Bonus>Enhancement</Bonus>
         <Amount>5</Amount>
-        <Stance>TwoWeaponFighting</Stance>
+        <Stance>Two Weapon Fighting</Stance>
       </Effect>
       <Effect>
         <Type>OffHandAttackBonus</Type>
@@ -49786,13 +49840,13 @@ knocking aside one incoming projectile that would have struck you every 6 second
         <Type>PRR</Type>
         <Bonus>Shield</Bonus>
         <Amount>1</Amount>
-        <Stance>TwoWeaponFighting</Stance>
+        <Stance>Two Weapon Fighting</Stance>
       </Effect>
       <Effect>
         <Type>MRR</Type>
         <Bonus>Shield</Bonus>
         <Amount>1</Amount>
-        <Stance>TwoWeaponFighting</Stance>
+        <Stance>Two Weapon Fighting</Stance>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -49826,7 +49880,8 @@ and Magical Resistance Rating</Description>
         <Type>MeleePower</Type>
         <Bonus>Enhancement</Bonus>
         <Amount>10</Amount>
-        <Stance>LightOrNoArmor</Stance>
+            <AnyOfStance>Cloth Armor</AnyOfStance>
+            <AnyOfStance>Light Armor</AnyOfStance>
       </Effect>
       <Effect>
         <Type>OffHandDoublestrike</Type>
@@ -49837,21 +49892,23 @@ and Magical Resistance Rating</Description>
         <Type>ACBonus</Type>
         <Bonus>Shield</Bonus>
         <Amount>1</Amount>
-        <Stance>TwoWeaponFighting</Stance>
+        <Stance>Two Weapon Fighting</Stance>
       </Effect>
       <Effect>
         <Type>PRR</Type>
         <Bonus>Shield</Bonus>
         <Amount>11</Amount>
-        <Stance>TwoWeaponFighting</Stance>
-        <Stance>LightOrNoArmor</Stance>
+        <Stance>Two Weapon Fighting</Stance>
+            <AnyOfStance>Cloth Armor</AnyOfStance>
+            <AnyOfStance>Light Armor</AnyOfStance>
       </Effect>
       <Effect>
         <Type>MRR</Type>
         <Bonus>Shield</Bonus>
         <Amount>11</Amount>
-        <Stance>TwoWeaponFighting</Stance>
-        <Stance>LightOrNoArmor</Stance>
+        <Stance>Two Weapon Fighting</Stance>
+            <AnyOfStance>Cloth Armor</AnyOfStance>
+            <AnyOfStance>Light Armor</AnyOfStance>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -49908,19 +49965,19 @@ If you possess Deflect Arrows it can trigger once every 4/3/2 seconds.</Descript
         <Type>ACBonus</Type>
         <Bonus>Shield</Bonus>
         <AmountVector size="3">1 2 3</AmountVector>
-        <Stance>TwoWeaponFighting</Stance>
+        <Stance>Two Weapon Fighting</Stance>
       </Effect>
       <Effect>
         <Type>PRR</Type>
         <Bonus>Shield</Bonus>
         <AmountVector size="3">1 2 3</AmountVector>
-        <Stance>TwoWeaponFighting</Stance>
+        <Stance>Two Weapon Fighting</Stance>
       </Effect>
       <Effect>
         <Type>MRR</Type>
         <Bonus>Shield</Bonus>
         <AmountVector size="3">1 2 3</AmountVector>
-        <Stance>TwoWeaponFighting</Stance>
+        <Stance>Two Weapon Fighting</Stance>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -49939,14 +49996,14 @@ If you possess Deflect Arrows it can trigger once every 4/3/2 seconds.</Descript
         <Type>AttackBonus</Type>
         <Bonus>Enhancement</Bonus>
         <Amount>1</Amount>
-        <Stance>TwoWeaponFighting</Stance>
+        <Stance>Two Weapon Fighting</Stance>
         <Weapon>All</Weapon>
       </Effect>
       <Effect>
         <Type>DamageBonus</Type>
         <Bonus>Enhancement</Bonus>
         <Amount>1</Amount>
-        <Stance>TwoWeaponFighting</Stance>
+        <Stance>Two Weapon Fighting</Stance>
         <Weapon>All</Weapon>
       </Effect>
     </EnhancementTreeItem>
@@ -49997,7 +50054,7 @@ Rank 3: +1 to Reflex Saving Throws.</Description>
         <Type>PRR</Type>
         <Bonus>Enhancement</Bonus>
         <AmountVector size="3">3 6 10</AmountVector>
-        <Stance>TwoWeaponFighting</Stance>
+        <Stance>Two Weapon Fighting</Stance>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -50033,7 +50090,8 @@ Does not stack with Kensei improved dodge.</Description>
         <Type>DodgeBonus</Type>
         <Bonus>Enhancement</Bonus>
         <AmountVector size="3">1 2 3</AmountVector>
-        <Stance>LightOrNoArmor</Stance>
+            <AnyOfStance>Cloth Armor</AnyOfStance>
+            <AnyOfStance>Light Armor</AnyOfStance>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -50075,14 +50133,14 @@ The bleed effect can stack up to 5 times. (Cooldown: 6 seconds.)</Description>
         <Type>AttackBonus</Type>
         <Bonus>Enhancement</Bonus>
         <Amount>1</Amount>
-        <Stance>TwoWeaponFighting</Stance>
+        <Stance>Two Weapon Fighting</Stance>
         <Weapon>All</Weapon>
       </Effect>
       <Effect>
         <Type>DamageBonus</Type>
         <Bonus>Enhancement</Bonus>
         <Amount>1</Amount>
-        <Stance>TwoWeaponFighting</Stance>
+        <Stance>Two Weapon Fighting</Stance>
         <Weapon>All</Weapon>
       </Effect>
     </EnhancementTreeItem>
@@ -50195,13 +50253,15 @@ Your melee attacks deal +1d6 Electrical damage. This damage scales with 100% Mel
         <Type>MaxDexBonus</Type>
         <Bonus>Enhancement</Bonus>
         <AmountVector size="3">1 2 3</AmountVector>
-        <Stance>LightOrNoArmor</Stance>
+            <AnyOfStance>Cloth Armor</AnyOfStance>
+            <AnyOfStance>Light Armor</AnyOfStance>
       </Effect>
       <Effect>
         <Type>DodgeCapBonus</Type>
         <Bonus>Enhancement</Bonus>
         <AmountVector size="3">1 2 3</AmountVector>
-        <Stance>LightOrNoArmor</Stance>
+            <AnyOfStance>Cloth Armor</AnyOfStance>
+            <AnyOfStance>Light Armor</AnyOfStance>
       </Effect>
       <Effect>
         <Type>ArmorCheckPenalty</Type>
@@ -50265,14 +50325,14 @@ Your melee attacks deal +1d6 Electrical damage. This damage scales with 100% Mel
         <Type>AttackBonus</Type>
         <Bonus>Enhancement</Bonus>
         <Amount>1</Amount>
-        <Stance>TwoWeaponFighting</Stance>
+        <Stance>Two Weapon Fighting</Stance>
         <Weapon>All</Weapon>
       </Effect>
       <Effect>
         <Type>DamageBonus</Type>
         <Bonus>Enhancement</Bonus>
         <Amount>1</Amount>
-        <Stance>TwoWeaponFighting</Stance>
+        <Stance>Two Weapon Fighting</Stance>
         <Weapon>All</Weapon>
       </Effect>
     </EnhancementTreeItem>
@@ -50432,14 +50492,14 @@ can stack up to 10 times. (Cooldown: 30 seconds) </Description>
         <Type>AttackBonus</Type>
         <Bonus>Enhancement</Bonus>
         <Amount>1</Amount>
-        <Stance>TwoWeaponFighting</Stance>
+        <Stance>Two Weapon Fighting</Stance>
         <Weapon>All</Weapon>
       </Effect>
       <Effect>
         <Type>DamageBonus</Type>
         <Bonus>Enhancement</Bonus>
         <Amount>1</Amount>
-        <Stance>TwoWeaponFighting</Stance>
+        <Stance>Two Weapon Fighting</Stance>
         <Weapon>All</Weapon>
       </Effect>
     </EnhancementTreeItem>
@@ -50617,14 +50677,14 @@ Cooldown: 90 seconds. </Description>
         <Type>AttackBonus</Type>
         <Bonus>Enhancement</Bonus>
         <Amount>3</Amount>
-        <Stance>TwoWeaponFighting</Stance>
+        <Stance>Two Weapon Fighting</Stance>
         <Weapon>All</Weapon>
       </Effect>
       <Effect>
         <Type>DamageBonus</Type>
         <Bonus>Enhancement</Bonus>
         <Amount>3</Amount>
-        <Stance>TwoWeaponFighting</Stance>
+        <Stance>Two Weapon Fighting</Stance>
         <Weapon>All</Weapon>
       </Effect>
     </EnhancementTreeItem>
@@ -50804,7 +50864,8 @@ Two Weapon Fighters will get the bonus for both weapons provided they qualify.</
         <Bonus>Enhancement</Bonus>
         <Amount>1</Amount>
         <WeaponClass>OneHanded</WeaponClass>
-        <Stance>LightOrNoArmor</Stance>
+            <AnyOfStance>Cloth Armor</AnyOfStance>
+            <AnyOfStance>Light Armor</AnyOfStance>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -52105,7 +52166,8 @@ or light armor.</Description>
         <Bonus>Enhancement</Bonus>
         <AmountPerLevel>1</AmountPerLevel>
         <Class>Rogue</Class>
-        <Stance>LightOrNoArmor</Stance>
+            <AnyOfStance>Cloth Armor</AnyOfStance>
+            <AnyOfStance>Light Armor</AnyOfStance>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -52454,6 +52516,11 @@ Cooldown: 30/25/20 seconds.</Description>
           <Level>4</Level>
         </Requirement>
       </Requirements>
+          <Effect>
+              <Type>HelplessDamage</Type>
+              <Bonus>Enhancement</Bonus>
+              <AmountVector size="3">10 20 30</AmountVector>
+          </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Thief-Acrobat: Staff Lunge</Name>
@@ -52621,13 +52688,15 @@ and 5 Maximum Dexterity Bonus with Light Armor.</Description>
         <Type>DodgeBonus</Type>
         <Bonus>Enhancement</Bonus>
         <Amount>5</Amount>
-        <Stance>LightOrNoArmor</Stance>
+            <AnyOfStance>Cloth Armor</AnyOfStance>
+            <AnyOfStance>Light Armor</AnyOfStance>
       </Effect>
       <Effect>
         <Type>DodgeCapBonus</Type>
         <Bonus>Enhancement</Bonus>
         <Amount>5</Amount>
-        <Stance>LightOrNoArmor</Stance>
+            <AnyOfStance>Cloth Armor</AnyOfStance>
+            <AnyOfStance>Light Armor</AnyOfStance>
       </Effect>
       <Effect>
         <Type>MaxDexBonus</Type>
@@ -77760,6 +77829,11 @@ extra damage to enemies below 25% HP. These are cumulative.</Description>
             </Dice>
             <Stance>Enemy 25%</Stance>
          </Effect>
+          <Effect>
+              <Type>HelplessDamage</Type>
+              <Bonus>Enhancement</Bonus>
+              <AmountVector size="3">10 20 30</AmountVector>
+          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Fury of the Wild: Overwhelming Force</Name>
@@ -79045,6 +79119,12 @@ opponents while any Action Boost is active.</Description>
         <Amount>1</Amount>
         <Stance>ActionBoost</Stance>
       </Effect>
+          <Effect>
+              <Type>HelplessDamage</Type>
+              <Bonus>Enhancement</Bonus>
+              <Amount>50</Amount>
+              <Stance>Action Boost</Stance>
+          </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Legendary Dreadnought: Sundering Swing</Name>
@@ -84570,13 +84650,13 @@ and +[2/4/7]% chance to doublestrike.</Description>
             <Type>PRR</Type>
             <Bonus>Destiny</Bonus>
             <AmountVector size="3">5 10 15</AmountVector>
-            <Stance>SwordAndBoard</Stance>
+            <Stance>Sword and Board</Stance>
          </Effect>
          <Effect>
             <Type>Doublestrike</Type>
             <Bonus>Destiny</Bonus>
             <AmountVector size="3">2 4 7</AmountVector>
-            <Stance>SwordAndBoard</Stance>
+            <Stance>Sword and Board</Stance>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>

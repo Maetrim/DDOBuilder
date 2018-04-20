@@ -85,7 +85,7 @@ class CLevelUpView :
         bool CanBuySkill(SkillType skill) const;
         bool CanRevokeSkill(SkillType skill) const;
         void DetermineTrainableFeats();
-        void PopulateCombobox(size_t index, const std::string & selection);
+        void PopulateFeatCombobox(size_t index, const std::string & selection);
         void PopulateSkills();
         void PopulateAutomaticFeats();
         void PopulateGrantedFeats();

@@ -117,7 +117,7 @@ void BreakdownItemWeaponAttackBonus::CreateOtherEffects()
             AddOtherEffect(feat);
         }
 
-        if (m_pCharacter->IsStanceActive("TwoWeaponFighting"))
+        if (m_pCharacter->IsStanceActive("Two Weapon Fighting"))
         {
             int bonus = 0;
             // they are two weapon fighting, apply attack penalties to this weapon

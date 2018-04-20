@@ -26,7 +26,7 @@ CStanceButton::CStanceButton(Character * charData, const Stance & stance) :
     m_pCharacter(charData),
     m_stance(stance),
     m_bSelected(false),
-    m_stacks(1)         // 1 stack on construction
+    m_stacks(0)         // stack count updated later
 {
     //{{AFX_DATA_INIT(CStanceButton)
     //}}AFX_DATA_INIT
@@ -69,6 +69,10 @@ void CStanceButton::OnPaint()
             32,
             32);
     pdc.RestoreDC(-1);
+    //// stances debug
+    //CString stacks;
+    //stacks.Format("%d", m_stacks);
+    //pdc.TextOut(0, 0, stacks);
 }
 
 void CStanceButton::SetSelected(bool selected)

@@ -17,7 +17,8 @@ BreakdownItem::BreakdownItem(
     m_type(type),
     m_bHasWeapon(false),
     m_weapon(Weapon_Unknown),
-    m_weaponCriticalMultiplier(0)
+    m_weaponCriticalMultiplier(0),
+    m_bAddEnergies(true)
 {
 }
 
@@ -846,7 +847,7 @@ bool BreakdownItem::GetActiveEffect(
             activeEffect->AddAnyOfStance(effect.AnyOfStance()[i]);
         }
     }
-    if (effect.Energy().size() > 0)
+    if (effect.Energy().size() > 0 && m_bAddEnergies)
     {
         activeEffect->SetEnergy(effect.Energy().front());
     }

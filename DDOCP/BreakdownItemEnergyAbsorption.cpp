@@ -15,6 +15,7 @@ BreakdownItemEnergyAbsorption::BreakdownItemEnergyAbsorption(
     m_effect(effect),
     m_energyType(ssType)
 {
+    m_bAddEnergies = false; // change base class behavior
 }
 
 BreakdownItemEnergyAbsorption::~BreakdownItemEnergyAbsorption()

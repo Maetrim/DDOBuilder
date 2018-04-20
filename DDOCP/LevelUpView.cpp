@@ -875,7 +875,7 @@ void CLevelUpView::SetAvailableClasses()
         // if we have a class1, then enable the control selection for class 2
         if (type1 != Class_Unknown)
         {
-            for (size_t ci = Class_Unknown + 1; ci < Class_Count; ++ci)
+            for (size_t ci = Class_Unknown; ci < Class_Count; ++ci)
             {
                 if (m_pCharacter->IsClassAvailable((ClassType)ci)
                         && ci != type1
@@ -896,12 +896,12 @@ void CLevelUpView::SetAvailableClasses()
             // if we have a class2, then enable control selection for class 3
             if (type2 != Class_Unknown)
             {
-                for (size_t ci = Class_Unknown + 1; ci < Class_Count; ++ci)
+                for (size_t ci = Class_Unknown; ci < Class_Count; ++ci)
                 {
                     if (m_pCharacter->IsClassAvailable((ClassType)ci)
-                        && ci != type1
-                        && ci != type2
-                        || ci == Class_Unknown)
+                            && ci != type1
+                            && ci != type2
+                            || ci == Class_Unknown)
                     {
                         // this class is selectable at this level
                         CString text = EnumEntryText(
@@ -916,7 +916,7 @@ void CLevelUpView::SetAvailableClasses()
             }
             else
             {
-                // classes 3 not available until class21 selected
+                // classes 3 not available until class2/1 selected
                 m_comboClass[2].EnableWindow(FALSE);
             }
         }
@@ -1461,7 +1461,7 @@ void CLevelUpView::DetermineTrainableFeats()
             TrainedFeat tf = m_pCharacter->GetTrainedFeat(
                     m_level,
                     m_trainable[fi]);
-            PopulateCombobox(fi, tf.FeatName());
+            PopulateFeatCombobox(fi, tf.FeatName());
         }
         else
         {
@@ -1474,7 +1474,7 @@ void CLevelUpView::DetermineTrainableFeats()
     }
 }
 
-void CLevelUpView::PopulateCombobox(
+void CLevelUpView::PopulateFeatCombobox(
         size_t comboIndex,
         const std::string & selection)
 {

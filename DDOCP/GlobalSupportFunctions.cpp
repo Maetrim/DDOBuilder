@@ -1476,8 +1476,9 @@ size_t ClassSave(SaveType st, ClassType ct, size_t level)
             }
             break;
         default:
-            ASSERT(FALSE);      // should not be called with any other save type which are sub
+            // should not be called with any other save type which are sub
             // types of the other saves
+            ASSERT(FALSE);
             break;
         }
         if (type1)
@@ -1492,7 +1493,8 @@ size_t ClassSave(SaveType st, ClassType ct, size_t level)
         {
             if (ct != Class_Unknown)
             {
-                ASSERT(FALSE);  // save should be one of the two types, check the combination passed in
+                // save should be one of the two types, check the combination passed in
+                ASSERT(FALSE);
             }
         }
     }
@@ -1509,7 +1511,7 @@ HRESULT LoadImageFile(
         CImage * pImage,
         bool loadDefaultOnFail)
 {
-    // load all the images for the skills and add to the image list
+    // load the specified image and check its valid
     char fullPath[MAX_PATH];
     ::GetModuleFileName(
             NULL,
@@ -1590,7 +1592,7 @@ HRESULT LoadImageFile(
 
 bool ImageFileExists(ImageType type, const std::string & name)
 {
-    // load all the images for the skills and add to the image list
+    // check that the specified image exists
     char fullPath[MAX_PATH];
     ::GetModuleFileName(
             NULL,
@@ -1954,27 +1956,32 @@ size_t ClassSpellPoints(ClassType ct, size_t level)
     switch (ct)
     {
     case Class_Artificer:
-        spPerLevel += 50, 75, 100, 125, 150, 180, 210, 245, 280, 320, 360 ,405 ,450 ,500, 550, 600, 660, 720, 780, 845;
+        // Level        1    2    3    4    5    6    7    8    9   10   11   12   13   14    15    16    17    18    19    20
+        spPerLevel +=  50,  75, 100, 125, 150, 180, 210, 245, 280, 320, 360, 405, 450, 500,  550,  600,  660,  720,  780,  845;
         break;
     case Class_Bard:
     case Class_Warlock:
-        spPerLevel += 50, 75, 100, 125, 150, 175, 200, 225, 250, 275, 300, 325, 350, 375, 400, 425, 450, 475, 500, 525;
+        // Level        1    2    3    4    5    6    7    8    9   10   11   12   13   14    15    16    17    18    19    20
+        spPerLevel +=  50,  75, 100, 125, 150, 175, 200, 225, 250, 275, 300, 325, 350, 375,  400,  425,  450,  475,  500,  525;
         break;
     case Class_Cleric:
     case Class_Druid:
     case Class_Wizard:
-        spPerLevel += 50, 75, 100, 125, 150, 180, 215, 255, 300, 350, 405, 465, 530, 600, 675, 755, 840, 930, 1025, 1125;
+        // Level        1    2    3    4    5    6    7    8    9   10   11   12   13   14    15    16    17    18    19    20
+        spPerLevel +=  50,  75, 100, 125, 150, 180, 215, 255, 300, 350, 405, 465, 530, 600,  675,  755,  840,  930, 1025, 1125;
         break;
     case Class_FavoredSoul:
     case Class_Sorcerer:
+        // Level        1    2    3    4    5    6    7    8    9   10   11   12   13   14    15    16    17    18    19    20
         spPerLevel += 100, 150, 200, 250, 300, 355, 415, 480, 550, 625, 705, 790, 880, 975, 1075, 1180, 1290, 1405, 1525, 1650;
         break;
     case Class_Paladin:
     case Class_Ranger:
-        spPerLevel += 0, 0, 0, 20, 35, 50, 65, 80, 95, 110, 125, 140, 155, 170, 185, 200, 215, 230, 245, 260;
+        // Level        1    2    3    4    5    6    7    8    9   10   11   12   13   14    15    16    17    18    19    20
+        spPerLevel +=   0,   0,   0,  20,  35,  50,  65,  80,  95, 110, 125, 140, 155, 170,  185,  200,  215,  230,  245,  260;
         break;
     default:
-        // unknown class's have 0 sp
+        // all other class's have 0 spell points
         spPerLevel.resize(MAX_CLASS_LEVEL, 0);
         break;
     }
@@ -2217,10 +2224,12 @@ int BaseStatToBonus(double ability)
     int bonus;
     if (ability < 0)
     {
+        // round up for penalties
         bonus = (int)ceil((ability - 1) / 2);
     }
     else
     {
+        // round down for bonuses
         bonus = (int)floor(ability / 2);
     }
     return bonus;

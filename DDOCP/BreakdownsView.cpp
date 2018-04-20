@@ -5,6 +5,7 @@
 #include "GlobalSupportFunctions.h"
 
 #include "BreakdownItemAbility.h"
+#include "BreakdownItemAC.h"
 #include "BreakdownItemAssassinate.h"
 #include "BreakdownItemBAB.h"
 #include "BreakdownItemCasterLevel.h"
@@ -13,6 +14,7 @@
 #include "BreakdownItemEnergyResistance.h"
 #include "BreakdownItemHitpoints.h"
 #include "BreakdownItemImmunities.h"
+#include "BreakdownItemMDB.h"
 #include "BreakdownItemMRR.h"
 #include "BreakdownItemMRRCap.h"
 #include "BreakdownItemPRR.h"
@@ -546,11 +548,13 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
     // defensive physical items
     // defensive items are:
     //      AC
+    //      MaxDexBonus
+    //          MaxDexBonusShields
     //      PRR
     //      MRR
     //      Fortification
     //      Dodge
-    //      Dodge Cap
+    //          Dodge Cap
     //      Missile Deflection
     HTREEITEM hDefensiveParent = m_itemBreakdownTree.InsertItem(
             "Defensive Breakdowns", 
@@ -562,14 +566,39 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
                 "AC",
                 hDefensiveParent,
                 TVI_LAST);
-        BreakdownItem * pAC = new BreakdownItemSimple(
+        BreakdownItem * pAC = new BreakdownItemAC(
                 Breakdown_AC,
-                Effect_ACBonus,
-                "AC",
                 &m_itemBreakdownTree,
                 hItem);
         m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pAC);
         m_items.push_back(pAC);
+    }
+
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Max Dex Bonus",
+                hDefensiveParent,
+                TVI_LAST);
+        BreakdownItem * pMDB = new BreakdownItemMDB(
+                Breakdown_MaxDexBonus,
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pMDB);
+        m_items.push_back(pMDB);
+        {
+            HTREEITEM hMDBShields = m_itemBreakdownTree.InsertItem(
+                    "Tower Shield MDB",
+                    hItem,
+                    TVI_LAST);
+            BreakdownItem * pMDBSheilds = new BreakdownItemSimple(
+                    Breakdown_MaxDexBonusShields,
+                    Effect_MaxDexBonusTowerShield,
+                    "Tower Shield MDB",
+                    &m_itemBreakdownTree,
+                    hMDBShields);
+            m_itemBreakdownTree.SetItemData(hMDBShields, (DWORD)(void*)pMDBSheilds);
+            m_items.push_back(pMDBSheilds);
+        }
     }
 
     {
@@ -686,6 +715,21 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
     }
 
     {
+        HTREEITEM hHelpless = m_itemBreakdownTree.InsertItem(
+                "Helpless Damage Reduction",
+                hDefensiveParent,
+                TVI_LAST);
+        BreakdownItem * pHelpless = new BreakdownItemSimple(
+                Breakdown_HelplessDamageReduction,
+                Effect_HelplessDamageReduction,
+                "Helpless Damage Reduction",
+                &m_itemBreakdownTree,
+                hHelpless);
+        m_itemBreakdownTree.SetItemData(hHelpless, (DWORD)(void*)pHelpless);
+        m_items.push_back(pHelpless);
+    }
+
+    {
         HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
                 "Healing Amplification (Positive)",
                 hParent,
@@ -755,6 +799,7 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
     // Fortification Bypass
     // Missile Deflection Bypass
     // Glancing Blows
+    // Helpless Damage
     HTREEITEM hOffensiveParent = m_itemBreakdownTree.InsertItem(
             "Offensive Breakdowns", 
             hParent,
@@ -1042,6 +1087,20 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
                 hGBEC);
         m_itemBreakdownTree.SetItemData(hGBEC, (DWORD)(void*)pGBEC);
         m_items.push_back(pGBEC);
+    }
+    {
+        HTREEITEM hHelpless = m_itemBreakdownTree.InsertItem(
+                "Helpless Damage Bonus",
+                hOffensiveParent,
+                TVI_LAST);
+        BreakdownItem * pHelpless = new BreakdownItemSimple(
+                Breakdown_HelplessDamage,
+                Effect_HelplessDamage,
+                "Helpless Damage Bonus",
+                &m_itemBreakdownTree,
+                hHelpless);
+        m_itemBreakdownTree.SetItemData(hHelpless, (DWORD)(void*)pHelpless);
+        m_items.push_back(pHelpless);
     }
 
     HTREEITEM hTacticalParent = m_itemBreakdownTree.InsertItem(

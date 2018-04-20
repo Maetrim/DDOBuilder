@@ -140,6 +140,7 @@ class BreakdownItem :
         bool m_bHasWeapon;
         WeaponType m_weapon;
         size_t m_weaponCriticalMultiplier;
+        bool m_bAddEnergies;
 
         friend class BreakdownItemWeapon;
 };

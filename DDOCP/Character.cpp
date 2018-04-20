@@ -4349,13 +4349,13 @@ void Character::UpdateWeaponStances()
     EquippedGear gear = ActiveGearSet();
     // also depending of the items equipped in Inventory_Weapon1/2 decide
     // which of the combat stances is active
-    // TWF, THF, SWF, Unarmed, Axe, SwordAndBoard, Staff, Orb, RuneArm, Swashbuckling
-    Stance twf("TwoWeaponFighting", "", "");
-    Stance thf("TwoHandedFighting", "", "");
-    Stance swf("SingleWeaponFighting", "", "");
+    // TWF, THF, SWF, Unarmed, Axe, Sword and Board, Staff, Orb, RuneArm, Swashbuckling
+    Stance twf("Two Weapon Fighting", "", "");
+    Stance thf("Two Handed Fighting", "", "");
+    Stance swf("Single Weapon Fighting", "", "");
     Stance unarmed("Unarmed", "", "");
     Stance axe("Axe", "", "");
-    Stance sab("SwordAndBoard", "", "");
+    Stance sab("Sword and Board", "", "");
     Stance staff("Staff", "", "");
     Stance orb("Orb", "", "");
     Stance ra("Rune Arm", "", "");
@@ -4368,7 +4368,7 @@ void Character::UpdateWeaponStances()
         // 2 items equipped
         Item item1 = gear.ItemInSlot(Inventory_Weapon1);
         Item item2 = gear.ItemInSlot(Inventory_Weapon2);
-        // must be TWF or SwordAndBoard
+        // must be TWF or Sword and Board
         switch (item2.Weapon())
         {
         case Weapon_ShieldBuckler:
@@ -4549,13 +4549,11 @@ void Character::UpdateArmorStances()
     EquippedGear gear = ActiveGearSet();
     // also depending of the items equipped in Inventory_Weapon1/2 decide
     // which of the combat stances is active
-    // TWF, THF, SWF, Unarmed, SwordAndBoard, Staff, Orb, RuneArm, Swashbuckling
+    // TWF, THF, SWF, Unarmed, Sword and Board, Staff, Orb, RuneArm, Swashbuckling
     Stance cloth("Cloth Armor", "", "");
     Stance light("Light Armor", "", "");
     Stance medium("Medium Armor", "", "");
     Stance heavy("Heavy Armor", "", "");
-    Stance lona("LightOrNoArmor", "", "");
-    Stance moh("MediumOrHeavy", "", "");
     if (gear.HasItemInSlot(Inventory_Armor))
     {
         Item item1 = gear.ItemInSlot(Inventory_Armor);
@@ -4564,58 +4562,46 @@ void Character::UpdateArmorStances()
         case Armor_Cloth:
         case Armor_Light:
             ActivateStance(cloth);
-            ActivateStance(lona);
             DeactivateStance(light);
             DeactivateStance(medium);
             DeactivateStance(heavy);
-            DeactivateStance(moh);
             break;
         case Armor_Medium:
             DeactivateStance(cloth);
-            DeactivateStance(lona);
             DeactivateStance(light);
             ActivateStance(medium);
             DeactivateStance(heavy);
-            ActivateStance(moh);
             break;
         case Armor_Heavy:
             DeactivateStance(cloth);
-            DeactivateStance(lona);
             DeactivateStance(light);
             DeactivateStance(medium);
             ActivateStance(heavy);
-            ActivateStance(moh);
             break;
         case Armor_Docent:
             // based on trained feats
             if (IsFeatTrained("Adamantine Body"))
             {
                 DeactivateStance(cloth);
-                DeactivateStance(lona);
                 DeactivateStance(light);
                 DeactivateStance(medium);
                 ActivateStance(heavy);
-                ActivateStance(moh);
             }
             else if (IsFeatTrained("Mithral Body"))
             {
                 // Mithral body is light armor
                 DeactivateStance(cloth);
-                ActivateStance(lona);
                 ActivateStance(light);
                 DeactivateStance(medium);
                 DeactivateStance(heavy);
-                DeactivateStance(moh);
             }
             else // must be "Composite Plating"
             {
                 // warforged no armor (No body feat)
                 ActivateStance(cloth);
-                ActivateStance(lona);
                 DeactivateStance(light);
                 DeactivateStance(medium);
                 DeactivateStance(heavy);
-                DeactivateStance(moh);
             }
             break;
         }
@@ -4627,31 +4613,29 @@ void Character::UpdateArmorStances()
         if (IsFeatTrained("Adamantine Body"))
         {
             DeactivateStance(cloth);
-            DeactivateStance(lona);
             DeactivateStance(light);
             DeactivateStance(medium);
             ActivateStance(heavy);
-            ActivateStance(moh);
         }
         else
         {
             ActivateStance(cloth);
-            ActivateStance(lona);
             DeactivateStance(light);
             DeactivateStance(medium);
             DeactivateStance(heavy);
-            DeactivateStance(moh);
         }
     }
 }
 
 void Character::UpdateShieldStances()
 {
+    Stance shield("Shield", "", "");
     Stance buckler("Buckler", "", "");
     Stance smallShield("Small Shield", "", "");
     Stance largeShield("Large Shield", "", "");
     Stance towerShield("Tower Shield", "", "");
     // assume deactivated at start
+    DeactivateStance(shield);
     DeactivateStance(buckler);
     DeactivateStance(smallShield);
     DeactivateStance(largeShield);
@@ -4664,6 +4648,7 @@ void Character::UpdateShieldStances()
         Item item1 = gear.ItemInSlot(Inventory_Weapon2);
         if (item1.Weapon() == Weapon_ShieldBuckler)
         {
+            ActivateStance(shield);
             ActivateStance(buckler);
             DeactivateStance(smallShield);
             DeactivateStance(largeShield);
@@ -4671,6 +4656,7 @@ void Character::UpdateShieldStances()
         }
         else if (item1.Weapon() == Weapon_ShieldSmall)
         {
+            ActivateStance(shield);
             DeactivateStance(buckler);
             ActivateStance(smallShield);
             DeactivateStance(largeShield);
@@ -4678,6 +4664,7 @@ void Character::UpdateShieldStances()
         }
         else if (item1.Weapon() == Weapon_ShieldLarge)
         {
+            ActivateStance(shield);
             DeactivateStance(buckler);
             DeactivateStance(smallShield);
             ActivateStance(largeShield);
@@ -4685,6 +4672,7 @@ void Character::UpdateShieldStances()
         }
         else if (item1.Weapon() == Weapon_ShieldTower)
         {
+            ActivateStance(shield);
             DeactivateStance(buckler);
             DeactivateStance(smallShield);
             DeactivateStance(largeShield);
