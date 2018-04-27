@@ -45,7 +45,6 @@ namespace
         IBE_ResetTreeEnabled,
         IBE_count
     };
-    COLORREF c_transparentColour = RGB(255, 128, 255);
     const int c_leftOffsetCore = 16;
     const int c_leftOffsetItem = 11;
     const int c_topCore = 364;
@@ -547,22 +546,7 @@ void CEnhancementTreeDialog::RenderItemSelection(
     bool isActive = false;
     if (m_pCharacter != NULL)
     {
-        std::string icon = item.ActiveIcon(*m_pCharacter, &isActive);
-        CImage image;
-        LoadImageFile(IT_enhancement, icon, &image);
-        image.SetTransparentColor(c_transparentColour);
-        if (!isActive)
-        {
-            // make the image gray scale here
-            MakeGrayScale(&image, c_transparentColour);
-        }
-        // now render it
-        image.TransparentBlt(
-                pDC->GetSafeHdc(),
-                itemRect.left,
-                itemRect.top,
-                itemRect.Width(),
-                itemRect.Height());
+        item.RenderIcon(*m_pCharacter, pDC, itemRect);
     }
 }
 

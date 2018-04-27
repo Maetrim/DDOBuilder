@@ -318,7 +318,7 @@ void CDDOCPView::PopulateComboboxes()
     }
 
     // ability tomes
-    for (size_t ti = 0; ti <= c_maxTomeValue; ++ti)
+    for (int ti = 0; ti <= c_maxTomeValue; ++ti)
     {
         CString text;
         if (ti > 0)
@@ -332,6 +332,14 @@ void CDDOCPView::PopulateComboboxes()
         // add to all 6 ability tome combo-boxes
         size_t i = m_comboTomeStr.InsertString(ti, text);
         m_comboTomeStr.SetItemData(i, ti);
+        if (ti > 0)
+        {
+            // Supreme option on 1st stat
+            CString supreme;
+            supreme.Format("%+d Supreme Tome", ti);
+            i = m_comboTomeStr.AddString(supreme);
+            m_comboTomeStr.SetItemData(i, -ti);
+        }
         i = m_comboTomeDex.AddString(text);
         m_comboTomeDex.SetItemData(i, ti);
         i = m_comboTomeCon.AddString(text);
@@ -345,13 +353,17 @@ void CDDOCPView::PopulateComboboxes()
     }
 
     // level up stats
-    for (size_t ai = Ability_Unknown + 1; ai < Ability_Count; ++ai)
+    for (int ai = Ability_Unknown + 1; ai < Ability_Count; ++ai)
     {
         CString text = EnumEntryText(
                 (AbilityType)ai,
                 abilityTypeMap);
+        CString textAll = "All ";
+        textAll += text;
         size_t i = m_comboAILevel4.AddString(text);
         m_comboAILevel4.SetItemData(i, ai);
+        i = m_comboAILevel4.AddString(textAll);
+        m_comboAILevel4.SetItemData(i, -ai);
         i = m_comboAILevel8.AddString(text);
         m_comboAILevel8.SetItemData(i, ai);
         i = m_comboAILevel12.AddString(text);
@@ -635,8 +647,29 @@ void CDDOCPView::OnSelendokComboAlignment()
 
 void CDDOCPView::OnSelendokComboTomeStr()
 {
-    size_t value = GetComboboxSelection(&m_comboTomeStr);
-    m_pCharacter->SetAbilityTome(Ability_Strength, value);
+    int value = GetComboboxSelection(&m_comboTomeStr);
+    // negative values are supreme tomes that set for all abilities
+    if (value < 0)
+    {
+        value = -value;     // make it positive
+        m_pCharacter->SetAbilityTome(Ability_Strength, value);
+        m_pCharacter->SetAbilityTome(Ability_Dexterity, value);
+        m_pCharacter->SetAbilityTome(Ability_Constitution, value);
+        m_pCharacter->SetAbilityTome(Ability_Intelligence, value);
+        m_pCharacter->SetAbilityTome(Ability_Wisdom, value);
+        m_pCharacter->SetAbilityTome(Ability_Charisma, value);
+        // keep controls up to date also
+        SelectComboboxEntry(m_pCharacter->StrTome(), &m_comboTomeStr);
+        SelectComboboxEntry(m_pCharacter->DexTome(), &m_comboTomeDex);
+        SelectComboboxEntry(m_pCharacter->ConTome(), &m_comboTomeCon);
+        SelectComboboxEntry(m_pCharacter->IntTome(), &m_comboTomeInt);
+        SelectComboboxEntry(m_pCharacter->WisTome(), &m_comboTomeWis);
+        SelectComboboxEntry(m_pCharacter->ChaTome(), &m_comboTomeCha);
+    }
+    else
+    {
+        m_pCharacter->SetAbilityTome(Ability_Strength, value);
+    }
 }
 
 void CDDOCPView::OnSelendokComboTomeDex()
@@ -699,8 +732,32 @@ void CDDOCPView::OnChangeName()
 
 void CDDOCPView::OnSelendokComboAbilityLevel4()
 {
-    AbilityType value = (AbilityType)GetComboboxSelection(&m_comboAILevel4);
-    m_pCharacter->SetAbilityLevelUp(4, value);
+    int sel = GetComboboxSelection(&m_comboAILevel4);
+    if (sel < 0)
+    {
+        // its an "All Ability" selection
+        AbilityType value = (AbilityType)(-sel);
+        m_pCharacter->SetAbilityLevelUp(4, value);
+        m_pCharacter->SetAbilityLevelUp(8, value);
+        m_pCharacter->SetAbilityLevelUp(12, value);
+        m_pCharacter->SetAbilityLevelUp(16, value);
+        m_pCharacter->SetAbilityLevelUp(20, value);
+        m_pCharacter->SetAbilityLevelUp(24, value);
+        m_pCharacter->SetAbilityLevelUp(28, value);
+        // keep UI up to date also
+        SelectComboboxEntry(m_pCharacter->Level4(), &m_comboAILevel4);
+        SelectComboboxEntry(m_pCharacter->Level8(), &m_comboAILevel8);
+        SelectComboboxEntry(m_pCharacter->Level12(), &m_comboAILevel12);
+        SelectComboboxEntry(m_pCharacter->Level16(), &m_comboAILevel16);
+        SelectComboboxEntry(m_pCharacter->Level20(), &m_comboAILevel20);
+        SelectComboboxEntry(m_pCharacter->Level24(), &m_comboAILevel24);
+        SelectComboboxEntry(m_pCharacter->Level28(), &m_comboAILevel28);
+    }
+    else
+    {
+        AbilityType value = (AbilityType)sel;
+        m_pCharacter->SetAbilityLevelUp(4, value);
+    }
 }
 
 void CDDOCPView::OnSelendokComboAbilityLevel8()

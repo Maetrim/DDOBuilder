@@ -8,7 +8,6 @@
 
 namespace
 {
-    COLORREF c_transparentColour = RGB(255, 128, 255);
     COLORREF f_selectedColor = RGB(128, 0, 0);
 }
 

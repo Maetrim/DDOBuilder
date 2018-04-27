@@ -32,7 +32,6 @@ class CEpicDestiniesView :
         afx_msg LRESULT OnNewDocument(WPARAM wParam, LPARAM lParam);
         afx_msg void OnDestinySelect();
         afx_msg void OnButtonMakeActiveDestiny();
-        afx_msg void OnTomeOfFateSelect();
         afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
         afx_msg LRESULT OnMouseEnter(WPARAM wParam, LPARAM lParam);
         afx_msg LRESULT OnMouseLeave(WPARAM wParam, LPARAM lParam);
@@ -63,8 +62,6 @@ class CEpicDestiniesView :
         CButton m_buttonMakeActive;
         CStatic m_labelTwistsOfFate;
         CStatic m_fatePointsSpent;
-        CStatic m_labelTomeOfFate;
-        CComboBox m_comboTomeOfFate;
         std::vector<CDialog *> m_twistsOfFate;
         UINT m_hookTwistHandles[MAX_TWISTS];
         CInfoTip m_tooltip;

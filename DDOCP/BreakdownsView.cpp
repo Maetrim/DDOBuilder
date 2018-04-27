@@ -126,6 +126,16 @@ LRESULT CBreakdownsView::OnNewDocument(WPARAM wParam, LPARAM lParam)
             // need to know about gear changes
             pCharacter->AttachObserver(this);
         }
+        else
+        {
+            if (IsWindow(m_itemBreakdownList.GetSafeHwnd()))
+            {
+                // just empty the control
+                m_itemBreakdownList.DeleteAllItems();
+                // no specific item selected, therefore for clipboard copy
+                m_buttonClipboard.EnableWindow(FALSE);
+            }
+        }
     }
     return 0L;
 }

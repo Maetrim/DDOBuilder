@@ -226,7 +226,6 @@ class Character :
         void EpicDestiny_ResetEnhancementTree(std::string treeName);
 
         // twists of fate support
-        void SetTomeOfFate(size_t value);
         size_t SpentFatePoints() const;
         bool IsTwistActive(size_t twistIndex) const;
         size_t TwistTier(size_t twistIndex) const;
@@ -316,7 +315,6 @@ class Character :
                 DL_SIMPLE(_, size_t, IntTome, 0) \
                 DL_SIMPLE(_, size_t, WisTome, 0) \
                 DL_SIMPLE(_, size_t, ChaTome, 0) \
-                DL_SIMPLE(_, size_t, TomeOfFate, 0) \
                 DL_OBJECT(_, SkillTomes, Tomes) \
                 DL_OBJECT(_, FeatsListObject, SpecialFeats) \
                 DL_OBJECT(_, ActiveStances, Stances) \

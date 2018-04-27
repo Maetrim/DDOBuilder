@@ -16,7 +16,8 @@ namespace
 }
 
 EnhancementSelection::EnhancementSelection() :
-    XmlLib::SaxContentElement(f_saxElementName, f_verCurrent)
+    XmlLib::SaxContentElement(f_saxElementName, f_verCurrent),
+    m_bImageLoaded(false)
 {
     DL_INIT(EnhancementSelection_PROPERTIES)
 }
@@ -77,3 +78,21 @@ bool EnhancementSelection::VerifyObject(
     }
     return ok;
 }
+
+void EnhancementSelection::RenderIcon(CDC * pDC, const CRect & itemRect) const
+{
+    if (!m_bImageLoaded)
+    {
+        // load the display image for this item (never a disabled version)
+        LoadImageFile(IT_enhancement, m_Icon, &m_image);
+        m_image.SetTransparentColor(c_transparentColour);
+        m_bImageLoaded = true;
+    }
+    m_image.TransparentBlt(
+            pDC->GetSafeHdc(),
+            itemRect.left,
+            itemRect.top,
+            itemRect.Width(),
+            itemRect.Height());
+}
+

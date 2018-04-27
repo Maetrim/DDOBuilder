@@ -20,7 +20,15 @@ IMPLEMENT_DYNCREATE(CSpecialFeatsView, CFormView)
 CSpecialFeatsView::CSpecialFeatsView() :
     CFormView(CSpecialFeatsView::IDD)
 {
-
+    // fixed sized font in use for static controls
+    LOGFONT lf;
+    ZeroMemory((PVOID)&lf, sizeof(LOGFONT));
+    NONCLIENTMETRICS nm;
+    nm.cbSize = sizeof(NONCLIENTMETRICS);
+    VERIFY(SystemParametersInfo(SPI_GETNONCLIENTMETRICS, nm.cbSize, &nm, 0));
+    lf = nm.lfMenuFont;
+    lf.lfHeight = -12;
+    m_staticFont.CreateFontIndirect(&lf);
 }
 
 CSpecialFeatsView::~CSpecialFeatsView()
@@ -56,6 +64,12 @@ void CSpecialFeatsView::DoDataExchange(CDataExchange* pDX)
     DDX_Control(pDX, IDC_STATIC_ICONIC, m_staticIconic);
     DDX_Control(pDX, IDC_STATIC_EPIC, m_staticEpic);
     DDX_Control(pDX, IDC_STATIC_SPECIAL, m_staticSpecial);
+
+    m_staticHeroic.SetFont(&m_staticFont);
+    m_staticRacial.SetFont(&m_staticFont);
+    m_staticIconic.SetFont(&m_staticFont);
+    m_staticEpic.SetFont(&m_staticFont);
+    m_staticSpecial.SetFont(&m_staticFont);
 
     // create the dynamic controls used to add feats
     CWinApp * pApp = AfxGetApp();
@@ -180,6 +194,8 @@ size_t CSpecialFeatsView::PositionWindows(
     CRect rctGroup;
     groupWindow->GetWindowRect(&rctGroup);
     rctGroup -= rctGroup.TopLeft();
+    rctGroup.right = rctGroup.left + c_windowSizeX;
+    rctGroup.bottom = rctGroup.top + c_windowSizeY;
     rctGroup += CPoint(c_controlSpacing, *yPos);
     // position the group control
     groupWindow->MoveWindow(rctGroup);

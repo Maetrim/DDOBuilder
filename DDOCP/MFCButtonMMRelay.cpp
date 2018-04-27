@@ -26,12 +26,12 @@ END_MESSAGE_MAP()
 
 void CMFCButtonMMRelay::SetTransparent()
 {
-    m_Image.SetTransparentColor(RGB(255, 128, 255));
-    m_ImageHot.SetTransparentColor(RGB(255, 128, 255));
-    m_ImageDisabled.SetTransparentColor(RGB(255, 128, 255));
-    m_ImageChecked.SetTransparentColor(RGB(255, 128, 255));
-    m_ImageCheckedHot.SetTransparentColor(RGB(255, 128, 255));
-    m_ImageCheckedDisabled.SetTransparentColor(RGB(255, 128, 255));
+    m_Image.SetTransparentColor(c_transparentColour);
+    m_ImageHot.SetTransparentColor(c_transparentColour);
+    m_ImageDisabled.SetTransparentColor(c_transparentColour);
+    m_ImageChecked.SetTransparentColor(c_transparentColour);
+    m_ImageCheckedHot.SetTransparentColor(c_transparentColour);
+    m_ImageCheckedDisabled.SetTransparentColor(c_transparentColour);
 }
 // CMFCButtonMMRelay message handlers
 

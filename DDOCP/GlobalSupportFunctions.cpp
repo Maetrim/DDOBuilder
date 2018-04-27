@@ -1570,7 +1570,7 @@ HRESULT LoadImageFile(
     }
     if (result == S_OK)
     {
-        pImage->SetTransparentColor(RGB(255, 128, 255));
+        pImage->SetTransparentColor(c_transparentColour);
         if (type == IT_enhancement
                 || type == IT_feat
                 || type == IT_spell

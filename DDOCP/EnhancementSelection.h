@@ -17,6 +17,7 @@ class EnhancementSelection :
     public:
         EnhancementSelection(void);
         void Write(XmlLib::SaxWriter * writer) const;
+        void RenderIcon(CDC * pDC, const CRect & itemRect) const;
         void CreateRequirementStrings(
                 const Character & charData,
                 std::vector<CString> * requirements,
@@ -46,5 +47,7 @@ class EnhancementSelection :
         DL_DECLARE_ACCESS(EnhancementSelection_PROPERTIES)
         DL_DECLARE_VARIABLES(EnhancementSelection_PROPERTIES)
 
+        mutable bool m_bImageLoaded;
+        mutable CImage m_image;
         friend class CEnhancementEditorDialog;
 };

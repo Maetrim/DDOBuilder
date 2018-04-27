@@ -15,6 +15,7 @@ class Selector :
         Selector(void);
         void Write(XmlLib::SaxWriter * writer) const;
         std::string SelectedIcon(const std::string & selectionName) const;
+        void RenderIcon(const std::string & selection, CDC * pDC, const CRect & itemRect) const;
         std::string Selector::DisplayName(const std::string & selection) const;
         std::list<Effect> Effects(const std::string & selection) const;
         std::list<Stance> Stances(const std::string & selection) const;

@@ -1000,19 +1000,19 @@ void CEnhancementEditorDialog::MakeIconTransparent(CString name)
         {
             for (size_t x = 0; x < (9 - y); x++)
             {
-                image.SetPixel(x, y, RGB(255, 128, 255));
+                image.SetPixel(x, y, c_transparentColour);
             }
             for (size_t x = 0; x < (9 - y); x++)
             {
-                image.SetPixel(x, 31 - y, RGB(255, 128, 255));
+                image.SetPixel(x, 31 - y, c_transparentColour);
             }
             for (size_t x = 0; x < (9 - y); x++)
             {
-                image.SetPixel(31 - x, y, RGB(255, 128, 255));
+                image.SetPixel(31 - x, y, c_transparentColour);
             }
             for (size_t x = 0; x < (9 - y); x++)
             {
-                image.SetPixel(31 - x, 31 - y, RGB(255, 128, 255));
+                image.SetPixel(31 - x, 31 - y, c_transparentColour);
             }
         }
         image.Save(filename.c_str(), Gdiplus::ImageFormatPNG);

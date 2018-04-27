@@ -37,6 +37,7 @@ class CFeatSelectionDialog :
         afx_msg void OnFeatButtonRightClick(NMHDR * pNotifyStruct, LRESULT * result);
         afx_msg void OnMouseMove(UINT nFlags, CPoint point);
         afx_msg LRESULT OnMouseLeave(WPARAM wParam, LPARAM lParam);
+        afx_msg void OnSize(UINT nType, int cx, int cy);
         //}}AFX_MSG
         DECLARE_MESSAGE_MAP()
 
@@ -54,6 +55,7 @@ class CFeatSelectionDialog :
         CInfoTip m_tooltip;
         bool m_showingTip;
         bool m_tipCreated;
+        CFont m_buttonFont;
 };
 
 //{{AFX_INSERT_LOCATION}}

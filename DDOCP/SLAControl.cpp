@@ -15,7 +15,6 @@ namespace
         SI_count
     };
     const int c_slaSlotImageSize = 36; // 36 * 36 pixels
-    COLORREF c_transparentColour = RGB(255, 128, 255);
 }
 
 // global image data used for drawing all enhancements trees.

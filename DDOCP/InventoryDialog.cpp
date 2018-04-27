@@ -14,7 +14,6 @@ namespace
     // inventory window size
     const size_t c_sizeX = 223;
     const size_t c_sizeY = 290;
-    COLORREF c_transparentColour = RGB(255, 128, 255);
 }
 
 #pragma warning(push)

@@ -18,7 +18,8 @@ class EnhancementTreeItem :
         EnhancementTreeItem(void);
         void Write(XmlLib::SaxWriter * writer) const;
         std::string DisplayName(const std::string & selection) const;
-        std::string ActiveIcon(const Character & charData, bool * isActive) const;
+        std::string ActiveIcon(const Character & charData) const;
+        void RenderIcon(const Character & charData, CDC * pDC, const CRect & itemRect) const;
         bool MeetRequirements(
                 const Character & charData,
                 const std::string & selection,
@@ -74,5 +75,9 @@ class EnhancementTreeItem :
         DL_DECLARE_ACCESS(EnhancementTreeItem_PROPERTIES)
         DL_DECLARE_VARIABLES(EnhancementTreeItem_PROPERTIES)
 
+        mutable bool m_bImageLoaded;
+        mutable CImage m_image;
+        mutable bool m_bDisabledImageLoaded;
+        mutable CImage m_disabledImage;
         friend class CEnhancementEditorDialog;
 };

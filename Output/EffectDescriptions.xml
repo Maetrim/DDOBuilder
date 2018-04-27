@@ -148,7 +148,19 @@
             <Bonus>Enhancement</Bonus>
             <Amount>6</Amount>
         </Effect>
-    <EffectDescription>Attack Bonus +1: Provides a +1 competence bonus to your attack rolls.</EffectDescription>
+        <EffectDescription>Attack Bonus +4: Provides a +4 competence bonus to your attack rolls.</EffectDescription>
+        <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Competence</Bonus>
+            <Amount>4</Amount>
+            <Weapon>All</Weapon>
+        </Effect>
+        <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Competence</Bonus>
+            <Amount>4</Amount>
+            <Weapon>All</Weapon>
+        </Effect>
     <EffectDescription>Battle Arcanist: this is one of the three parts of the Battle Arcanist set. When all three items are equipped, you gain a 10% Enhancement discount to the Spell Point cost of all your spells.</EffectDescription>
     <EffectDescription>Blurry: Equipping this item causes you to become slightly blurry. Enemies have a 20% chance to miss due to concealment.</EffectDescription>
     <EffectDescription>Combat Mastery +1: +1 Enhancement bonus to the DC to resist Trip, Improved Trip, Sunder, Improved Sunder, Stunning Blow and Stunning Fist attempts.</EffectDescription>
@@ -778,7 +790,12 @@
     <EffectDescription>Woodsman's Guile: This item is one of the three parts of the Woodsman's Guile set. When all three items are equipped you will gain a +4 bonus To-Hit and a +6 bonus to your damage for any attack considered a Sneak Attack.</EffectDescription>
     <EffectDescription>Elemental Spell Power: Harnessing a small amount of the power and potential of the raw elements, this item gives you a +50 bonus to your maximum spell points. this stacks with all other bonuses except Elemental Spell Power.</EffectDescription>
     <EffectDescription>Greater Elemental Energy: Harnessing a small amount of the power and potential of the raw elements, this item gives you a +50 bonus to your maximum spell points. this stacks with all other bonuses except Greater Elemental Energy.</EffectDescription>
-    <EffectDescription>Insightful False Life +33: +33 Insight bonus to hitpoints</EffectDescription>
+        <EffectDescription>Superior False Life: This item grants the wearer +40 maximum health.</EffectDescription>
+        <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>FalseLife</Bonus>
+            <Amount>40</Amount>
+        </Effect>
         <EffectDescription>Axeblock VII: Passive: Reduces physical damage taken by 14, except from Bludgeoning or Piercing weapons.</EffectDescription>
         <Effect>
             <DisplayName>Axeblock VII</DisplayName>
@@ -822,7 +839,12 @@
     <EffectDescription>Spell Focus II: Passive: +2 Equipment bonus to the DC to resist all spells.</EffectDescription>
     <EffectDescription>Invisibility Guard: This item has a chance of granting you temporary invisibility when you are hit bu foes. The invisibility will not be removed when you attack or take damage, but it will wear off after 10 seconds.</EffectDescription>
     <EffectDescription>Nightmare Guard: This item has a chance of terrorizing foes that hit you, applying a Mind Thrust effect when you are hit by them (dealing 5 to 40 Force damage, Will vs. Enchantments negates). It may also expose your foes to their greatest fears, acting as a Phantasmal Killer spell.</EffectDescription>
-    <EffectDescription>Heightened Awareness 4: this item grants you the ability to read situations with incredible perspicacity, allowing you to predict actions before they occur. You gain a +4 insight bonus to AC.</EffectDescription>
+        <EffectDescription>Heightened Awareness 5: this item grants you the ability to read situations with incredible perspicacity, allowing you to predict actions before they occur. You gain a +5 insight bonus to AC.</EffectDescription>
+        <Effect>
+            <Type>ACBonus</Type>
+            <Bonus>Insightful</Bonus>
+            <Amount>5</Amount>
+        </Effect>
         <EffectDescription>Persuasion: This item gives a +3 competency bonus to all Charisma based skills.</EffectDescription>
         <Effect>
             <Type>SkillBonus</Type>
@@ -1132,7 +1154,13 @@
     <EffectDescription>Insightful Enchantment Resistance +5: +5 Insight bonus to saves versus enchantments.</EffectDescription>
     <EffectDescription>Insightful poison Ward: Grants its wearer immunity to natural poisons. This item grants a +5 Insight bonus to saving throws against magical poisons.</EffectDescription>
     <EffectDescription>Quality Disease Ward: Grants its wearer immunity to natural diseases. This item grants a +2 Quality bonus versus magical disease.</EffectDescription>
-    <EffectDescription>Enchantment Focus VI: +6 Equipment bonus to the DC of Enchantment spells.</EffectDescription>
+        <EffectDescription>Enchantment Focus III: +3 Equipment bonus to the DC of Enchantment spells.</EffectDescription>
+        <Effect>
+            <Type>SpellDC</Type>
+            <Bonus>Equipment</Bonus>
+            <Amount>3</Amount>
+            <School>Enchantment</School>
+        </Effect>
         <EffectDescription>Insightful Enchantment Focus +4: +4 Insight bonus to the DC of Enchantment spells.</EffectDescription>
         <Effect>
             <Type>SpellDC</Type>
@@ -2810,6 +2838,31 @@
               </Dice>
              <Stance>Evil Outsider</Stance>
          </Effect>
+        <EffectDescription>Greater Evil Outsider Bane: A bane weapon excels at attacking one type or subtype of creature. Against Evil Outsiders, this weapon's effective enhancement bonus is +4 better than its normal enhancement bonus. It deals an extra 3 to 18 points of damage against the foe.</EffectDescription>
+         <Effect>
+            <DisplayName>Greater Evil Outsider Bane</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+              <Dice>
+                 <Number size="1">3</Number>
+                 <Sides size="1">6</Sides>
+                 <Energy>Bane</Energy>
+              </Dice>
+             <Stance>Evil Outsider</Stance>
+         </Effect>
+         <Effect>
+            <DisplayName>Greater Evil Outsider Bane</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+              <Dice>
+                 <Number size="1">3</Number>
+                 <Sides size="1">6</Sides>
+                 <Energy>Bane</Energy>
+              </Dice>
+             <Stance>Evil Outsider</Stance>
+         </Effect>
         <EffectDescription>Sovereign Banishing: On Hit: 4 to 24 Bane damage to Outsiders. On Vorpal Hit: If an outsider is struck by this weapon has fewer than 3000 Hit Points, it is instantly slain else it takes 300 damage.</EffectDescription>
              <Effect>
                 <DisplayName>Sovereign Banishing</DisplayName>
@@ -4256,5 +4309,212 @@ When 3 pieces are equipped: +1 Artifact Bonus to Critical Multiplier on a 19-20.
                 <Energy>Bleeding</Energy>
             </Dice>
             <Weapon>All</Weapon>
+        </Effect>
+         <EffectDescription>Greater Elf Bane: A bane weapon excels at attacking one type or subtype of creature. Against Elves, this weapon's effective enhancement bonus is +4 better than its normal enhancement bonus. It deals an extra 3 to 18 points of damage against the foe.</EffectDescription>
+         <Effect>
+            <DisplayName>Greater Elf Bane</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+              <Dice>
+                 <Number size="1">3</Number>
+                 <Sides size="1">6</Sides>
+                 <Energy>Bane</Energy>
+              </Dice>
+             <Stance>Elf</Stance>
+         </Effect>
+         <Effect>
+            <DisplayName>Greater Elf Bane</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+              <Dice>
+                 <Number size="1">3</Number>
+                 <Sides size="1">6</Sides>
+                 <Energy>Bane</Energy>
+              </Dice>
+             <Stance>Elf</Stance>
+         </Effect>
+        <EffectDescription>Corrosion +120: Passive: +120 Equipment Bonus to Acid Spell Power.</EffectDescription>
+        <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Equipment</Bonus>
+            <Amount>120</Amount>
+            <SpellPower>Acid</SpellPower>
+        </Effect>
+        <EffectDescription>Blazing: This weapon is sheathed in fierce flame. A blazing weapon deals an extra 2 to 12 points of fire damage on a successful hit.</EffectDescription>
+         <Effect>
+            <DisplayName>Blazing</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+              <Dice>
+                 <Number size="1">2</Number>
+                 <Sides size="1">6</Sides>
+                 <Energy>Fire</Energy>
+              </Dice>
+         </Effect>
+         <Effect>
+            <DisplayName>Blazing</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+              <Dice>
+                 <Number size="1">2</Number>
+                 <Sides size="1">6</Sides>
+                 <Energy>Fire</Energy>
+              </Dice>
+         </Effect>
+        <EffectDescription>Conflagrating: This weapon is sheathed in furious flame. A conflagrating weapon deals an extra 3 to 18 points of fire damage on a successful hit.</EffectDescription>
+             <Effect>
+                <DisplayName>Conflagrating</DisplayName>
+                <Type>WeaponOtherDamageBonus</Type>
+                <Bonus>Stacking</Bonus>
+                <Weapon>All</Weapon>
+                  <Dice>
+                     <Number size="1">3</Number>
+                     <Sides size="1">6</Sides>
+                     <Energy>Fire</Energy>
+                  </Dice>
+             </Effect>
+             <Effect>
+                <DisplayName>Conflagrating</DisplayName>
+                <Type>WeaponOtherCriticalDamageBonus</Type>
+                <Bonus>Stacking</Bonus>
+                <Weapon>All</Weapon>
+                  <Dice>
+                     <Number size="1">3</Number>
+                     <Sides size="1">6</Sides>
+                     <Energy>Fire</Energy>
+                  </Dice>
+             </Effect>
+        <EffectDescription>Supreme Good: This weapon is infused with the ultimate power of good. It does an additional 2 to 12 damage to non-good targets and can only be wielded by good aligned characters.</EffectDescription>
+             <Effect>
+                <DisplayName>Supreme Good</DisplayName>
+                <Type>WeaponOtherDamageBonus</Type>
+                <Bonus>Stacking</Bonus>
+                <Weapon>All</Weapon>
+                  <Dice>
+                     <Number size="1">3</Number>
+                     <Sides size="1">6</Sides>
+                     <Energy>Good</Energy>
+                  </Dice>
+                 <Stance>Non-Good</Stance>
+             </Effect>
+             <Effect>
+                <DisplayName>Supreme Good</DisplayName>
+                <Type>WeaponOtherCriticalDamageBonus</Type>
+                <Bonus>Stacking</Bonus>
+                <Weapon>All</Weapon>
+                  <Dice>
+                     <Number size="1">3</Number>
+                     <Sides size="1">6</Sides>
+                     <Energy>Good</Energy>
+                  </Dice>
+                 <Stance>Non-Good</Stance>
+             </Effect>
+         <EffectDescription>Tower Shield Proficiency: While equipped this item grants the feat Shield Proficiency: Tower Shields.</EffectDescription>
+        <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Equipment</Bonus>
+            <Feat>Tower Shield Proficiency</Feat>
+        </Effect>
+        <EffectDescription>Rebellion: Passive: All threat you generate from attacks and spells is reduced by 25%. On Critical Hit: This weapon will strike with exceptional accuracy, dealing an additional 13-78 Piercing damage.</EffectDescription>
+         <Effect>
+            <Type>ThreatBonusMelee</Type>
+            <Bonus>Insightful</Bonus>
+            <Amount>-25</Amount>
+         </Effect>
+         <Effect>
+            <Type>ThreatBonusSpell</Type>
+            <Bonus>Insightful</Bonus>
+            <Amount>-25</Amount>
+         </Effect>
+            <Effect>
+                <DisplayName>Rebellion</DisplayName>
+                <Type>WeaponOtherCriticalDamageBonus</Type>
+                <Bonus>Equipment</Bonus>
+                <Dice>
+                    <Number size="1">13</Number>
+                    <Sides size="1">6</Sides>
+                    <Energy>Pierce</Energy>
+                </Dice>
+                <Weapon>All</Weapon>
+            </Effect>
+        <EffectDescription>Skybreaker: On Hit: 3 to 18 Electric damage. On Critical Hit: 10 to 60 additional Sonic damage. On Vorpal Hit: 60-120 additional Electrical damage to your target, plus a shockwave that deals an additional 45-90 Sonic damage to all nearby foes.</EffectDescription>
+             <Effect>
+                <DisplayName>Skybreaker</DisplayName>
+                <Type>WeaponOtherDamageBonus</Type>
+                <Bonus>Stacking</Bonus>
+                <Weapon>All</Weapon>
+                  <Dice>
+                     <Number size="1">3</Number>
+                     <Sides size="1">6</Sides>
+                     <Energy>Electric</Energy>
+                  </Dice>
+             </Effect>
+             <Effect>
+                <DisplayName>Skybreaker</DisplayName>
+                <Type>WeaponOtherCriticalDamageBonus</Type>
+                <Bonus>Stacking</Bonus>
+                <Weapon>All</Weapon>
+                  <Dice>
+                     <Number size="1">10</Number>
+                     <Sides size="1">6</Sides>
+                     <Energy>Sonic</Energy>
+                  </Dice>
+             </Effect>
+        <EffectDescription>Supreme Law: This weapon is infused with the supreme power of law. It does an additional 3 to 18 damage to non-lawful targets and can only be wielded by lawful-aligned characters.</EffectDescription>
+             <Effect>
+                <DisplayName>Supreme Law</DisplayName>
+                <Type>WeaponOtherDamageBonus</Type>
+                <Bonus>Stacking</Bonus>
+                <Weapon>All</Weapon>
+                  <Dice>
+                     <Number size="1">3</Number>
+                     <Sides size="1">6</Sides>
+                  </Dice>
+                 <Stance>Non-Lawful</Stance>
+             </Effect>
+             <Effect>
+                <DisplayName>Supreme Law</DisplayName>
+                <Type>WeaponOtherCriticalDamageBonus</Type>
+                <Bonus>Stacking</Bonus>
+                <Weapon>All</Weapon>
+                  <Dice>
+                     <Number size="1">3</Number>
+                     <Sides size="1">6</Sides>
+                  </Dice>
+                 <Stance>Non-Lawful</Stance>
+             </Effect>
+        <EffectDescription>Cosmic: This weapon is glowing with a barely-contained magical force. It deals an additional 3 to 18 force damage on a successful hit.</EffectDescription>
+             <Effect>
+                <DisplayName>Cosmic</DisplayName>
+                <Type>WeaponOtherDamageBonus</Type>
+                <Bonus>Stacking</Bonus>
+                <Weapon>All</Weapon>
+                  <Dice>
+                     <Number size="1">3</Number>
+                     <Sides size="1">6</Sides>
+                      <Energy>Force</Energy>
+                  </Dice>
+             </Effect>
+             <Effect>
+                <DisplayName>Cosmic</DisplayName>
+                <Type>WeaponOtherCriticalDamageBonus</Type>
+                <Bonus>Stacking</Bonus>
+                <Weapon>All</Weapon>
+                  <Dice>
+                     <Number size="1">3</Number>
+                     <Sides size="1">6</Sides>
+                      <Energy>Force</Energy>
+                  </Dice>
+             </Effect>
+        <EffectDescription>Greater Twilight: This suit of armor, favored by eladrin spellcasters, becomes semi-incorporeal when donned. The twilight armor reduces the chance of arcane spell failure by -20%.</EffectDescription>
+        <Effect>
+            <DisplayName>Greater Twilight</DisplayName>
+            <Type>ArcaneSpellFailure</Type>
+            <Bonus>Equipment</Bonus>
+            <Amount>-20</Amount>
         </Effect>
 </EffectDescriptions>

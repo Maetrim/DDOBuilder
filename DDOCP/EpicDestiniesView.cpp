@@ -50,8 +50,6 @@ void CEpicDestiniesView::DoDataExchange(CDataExchange* pDX)
     DDX_Control(pDX, IDC_CHECK_MAKE_ACTIVE_DESTINY, m_buttonMakeActive);
     DDX_Control(pDX, IDC_TWISTS_OF_FATE_LABEL, m_labelTwistsOfFate);
     DDX_Control(pDX, IDC_FATE_POINTS, m_fatePointsSpent);
-    DDX_Control(pDX, IDC_STATIC_TOME_OF_FATE, m_labelTomeOfFate);
-    DDX_Control(pDX, IDC_COMBO_TOME_OF_FATE, m_comboTomeOfFate);
 }
 
 #pragma warning(push)
@@ -62,7 +60,6 @@ BEGIN_MESSAGE_MAP(CEpicDestiniesView, CFormView)
     ON_REGISTERED_MESSAGE(UWM_NEW_DOCUMENT, OnNewDocument)
     ON_CBN_SELENDOK(IDC_COMBO_DESTINY_SELECT, OnDestinySelect)
     ON_BN_CLICKED(IDC_CHECK_MAKE_ACTIVE_DESTINY, OnButtonMakeActiveDestiny)
-    ON_CBN_SELENDOK(IDC_COMBO_TOME_OF_FATE, OnTomeOfFateSelect)
     ON_WM_CTLCOLOR()
     ON_MESSAGE(WM_MOUSEENTER, OnMouseEnter)
     ON_MESSAGE(WM_MOUSELEAVE, OnMouseLeave)
@@ -96,8 +93,8 @@ void CEpicDestiniesView::OnInitialUpdate()
     CRect itemRect(
             rctTwistsLabel.left,
             rctTwistsLabel.bottom + c_controlSpacing,
-            rctTwistsLabel.left + 120,
-            rctTwistsLabel.bottom + 70);
+            rctTwistsLabel.left + rctTwistsLabel.Width(),
+            rctTwistsLabel.bottom + rctTwistsLabel.Height() * 4);
     for (size_t twist = 0; twist < MAX_TWISTS; ++twist)
     {
         // show a feat selection dialog
@@ -125,11 +122,31 @@ void CEpicDestiniesView::OnSize(UINT nType, int cx, int cy)
     if (m_treeViews.size() > 0
             && IsWindow(m_treeViews[0]->GetSafeHwnd()))
     {
+        CRect rctCombo;
+        m_comboEpicDestinySelect.GetWindowRect(&rctCombo);
+        rctCombo -= rctCombo.TopLeft();
+        rctCombo += CPoint(c_controlSpacing, c_controlSpacing);
+        rctCombo.right = rctCombo.left + c_sizeX;
+        m_comboEpicDestinySelect.MoveWindow(rctCombo, TRUE);
+
+        CRect rctMakeActive;
+        CRect rctLabel;
+        m_buttonMakeActive.GetWindowRect(&rctMakeActive);
+        m_labelTwistsOfFate.GetWindowRect(&rctLabel);
+        ScreenToClient(&rctMakeActive);
+        ScreenToClient(&rctLabel);
+        rctMakeActive -= CPoint(rctMakeActive.left, 0);
+        rctMakeActive += CPoint(c_sizeX + c_controlSpacing * 2, 0);
+        rctLabel -= CPoint(rctLabel.left, 0);
+        rctLabel += CPoint(c_sizeX + c_controlSpacing * 2, 0);
+        m_buttonMakeActive.MoveWindow(rctMakeActive, TRUE);
+        m_labelTwistsOfFate.MoveWindow(rctLabel, TRUE);
+
         // we only show the selected destiny tree
         int requiredWidth = c_sizeX         // window
                 + (c_controlSpacing * 2);   // spacers
 
-        // location of destiny tree just below the check box
+        // location of destiny tree just below the combo box
         CRect rctButton;
         m_buttonMakeActive.GetWindowRect(rctButton);
         ScreenToClient(rctButton);
@@ -177,29 +194,25 @@ void CEpicDestiniesView::MoveFatePointControls()
             twistIndex = 4;
         }
     }
-    // position the other controls under the correct twist of fate
-    CRect rctTwist;
-    m_twistsOfFate[twistIndex]->GetWindowRect(rctTwist);
-    ScreenToClient(rctTwist);
     // controls to be moved are: (all maintain current dimensions
     // [CStatic m_fatePointsSpent           ]
-    // [CStatic label tome] [tome drop combo]
+    // [CStatic Twists of Fate]
     CRect rctFatePointsSpent;
-    CRect rctTomeLabel;
-    CRect rctTomeCombo;
     m_fatePointsSpent.GetWindowRect(rctFatePointsSpent);
-    m_labelTomeOfFate.GetWindowRect(rctTomeLabel);
-    m_comboTomeOfFate.GetWindowRect(rctTomeCombo);
-    rctFatePointsSpent -= rctFatePointsSpent.TopLeft();
-    rctFatePointsSpent += CPoint(rctTwist.left, rctTwist.bottom + c_controlSpacing);
-    rctTomeLabel -= rctTomeLabel.TopLeft();
-    rctTomeLabel += CPoint(rctTwist.left, rctFatePointsSpent.bottom + c_controlSpacing);
-    rctTomeCombo -= rctTomeCombo.TopLeft();
-    rctTomeCombo += CPoint(rctTomeLabel.right + c_controlSpacing, rctFatePointsSpent.bottom + c_controlSpacing);
-    // move move all the windows
+    ScreenToClient(&rctFatePointsSpent);
+    rctFatePointsSpent -= CPoint(rctFatePointsSpent.left, 0);
+    rctFatePointsSpent += CPoint(c_sizeX + c_controlSpacing * 2, 0);
     m_fatePointsSpent.MoveWindow(rctFatePointsSpent);
-    m_labelTomeOfFate.MoveWindow(rctTomeLabel);
-    m_comboTomeOfFate.MoveWindow(rctTomeCombo);
+    // move move all the windows
+    for (size_t ti = 0; ti <= twistIndex; ++ti)
+    {
+        CRect rctTwist;
+        m_twistsOfFate[ti]->GetWindowRect(rctTwist);
+        ScreenToClient(rctTwist);
+        rctTwist -= CPoint(rctTwist.left, 0);
+        rctTwist += CPoint(c_sizeX + c_controlSpacing * 2, 0);
+        m_twistsOfFate[ti]->MoveWindow(rctTwist);
+    }
 }
 
 LRESULT CEpicDestiniesView::OnNewDocument(WPARAM wParam, LPARAM lParam)
@@ -368,23 +381,6 @@ void CEpicDestiniesView::PopulateCombobox()
         m_treeViews[i]->ShowWindow(i == activeIndex ? SW_SHOW : SW_HIDE);
     }
     m_comboEpicDestinySelect.UnlockWindowUpdate();
-
-    // tome of fate combo box
-    m_comboTomeOfFate.LockWindowUpdate();
-    // currently max tome of fate is +3
-    m_comboTomeOfFate.ResetContent();
-    m_comboTomeOfFate.AddString("None");
-    m_comboTomeOfFate.AddString("+1");
-    m_comboTomeOfFate.AddString("+2");
-    m_comboTomeOfFate.AddString("+3");
-    // now select the correct entry for current character
-    size_t index = 0;
-    if (m_pCharacter != NULL)
-    {
-        index = m_pCharacter->TomeOfFate();
-    }
-    m_comboTomeOfFate.SetCurSel(index);
-    m_comboTomeOfFate.UnlockWindowUpdate();
 }
 
 void CEpicDestiniesView::EnableControls()
@@ -393,7 +389,6 @@ void CEpicDestiniesView::EnableControls()
     {
         m_comboEpicDestinySelect.EnableWindow(TRUE);
         m_buttonMakeActive.EnableWindow(TRUE);
-        m_comboTomeOfFate.EnableWindow(TRUE);
         std::string destinyName;
         int sel = m_comboEpicDestinySelect.GetCurSel();
         if (sel != CB_ERR)
@@ -440,7 +435,6 @@ void CEpicDestiniesView::EnableControls()
         {
             m_twistsOfFate[vi]->ShowWindow(SW_HIDE);
         }
-        m_comboTomeOfFate.EnableWindow(FALSE);
     }
 }
 
@@ -516,16 +510,6 @@ void CEpicDestiniesView::UpdateEpicCompletionistChanged(Character * charData)
 {
     EnableControls();
     MoveFatePointControls();
-}
-
-void CEpicDestiniesView::OnTomeOfFateSelect()
-{
-    // set the new tome of fate value on the current character
-    if (m_pCharacter != NULL)
-    {
-        int sel = m_comboTomeOfFate.GetCurSel();
-        m_pCharacter->SetTomeOfFate((size_t)sel);
-    }
 }
 
 HBRUSH CEpicDestiniesView::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor) 

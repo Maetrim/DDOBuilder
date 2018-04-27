@@ -127,7 +127,7 @@ void Item::AddImage(CImageList * pIL) const
         }
         CBitmap bitmap;
         bitmap.Attach(image.Detach());
-        int ret = pIL->Add(&bitmap, RGB(255, 128, 255));  // standard mask color (purple)
+        int ret = pIL->Add(&bitmap, c_transparentColour);  // standard mask color (purple)
         ASSERT(ret >= 0);
     }
     else

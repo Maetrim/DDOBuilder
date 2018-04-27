@@ -17,7 +17,9 @@ namespace
 }
 
 EnhancementTreeItem::EnhancementTreeItem() :
-    XmlLib::SaxContentElement(f_saxElementName, f_verCurrent)
+    XmlLib::SaxContentElement(f_saxElementName, f_verCurrent),
+    m_bImageLoaded(false),
+    m_bDisabledImageLoaded(false)
 {
     DL_INIT(EnhancementTreeItem_PROPERTIES)
 }
@@ -155,26 +157,57 @@ bool EnhancementTreeItem::CanTrain(
     return canTrain;
 }
 
-std::string EnhancementTreeItem::ActiveIcon(
+void EnhancementTreeItem::RenderIcon(
         const Character & charData,
-        bool * isActive) const
+        CDC * pDC,
+        const CRect & itemRect) const
 {
     std::string icon = "NoImage";
     // assume its the items root icon
     icon = Icon();
     // check to see if the enhancement is already trained
     const TrainedEnhancement * te = charData.IsTrained(InternalName(), "");
-    *isActive = (te != NULL);
     if (te != NULL)
     {
         if (te->HasSelection())
         {
-            // get the selector icon instead
             std::string sel = te->Selection();
-            icon = m_Selections.SelectedIcon(sel);
+            m_Selections.RenderIcon(sel, pDC, itemRect);
+        }
+        else
+        {
+            if (!m_bImageLoaded)
+            {
+                // load the display image for this item
+                LoadImageFile(IT_enhancement, m_Icon, &m_image);
+                m_image.SetTransparentColor(c_transparentColour);
+                m_bImageLoaded = true;
+            }
+            m_image.TransparentBlt(
+                    pDC->GetSafeHdc(),
+                    itemRect.left,
+                    itemRect.top,
+                    itemRect.Width(),
+                    itemRect.Height());
         }
     }
-    return icon;
+    else
+    {
+        if (!m_bDisabledImageLoaded)
+        {
+            // load the display image for this item
+            LoadImageFile(IT_enhancement, m_Icon, &m_disabledImage);
+            // its disabled, so grey scale
+            MakeGrayScale(&m_disabledImage, c_transparentColour);
+            m_bDisabledImageLoaded = true;
+        }
+        m_disabledImage.TransparentBlt(
+                pDC->GetSafeHdc(),
+                itemRect.left,
+                itemRect.top,
+                itemRect.Width(),
+                itemRect.Height());
+    }
 }
 
 std::string EnhancementTreeItem::DisplayName(
@@ -189,6 +222,26 @@ std::string EnhancementTreeItem::DisplayName(
         name += m_Selections.DisplayName(selection);
     }
     return name;
+}
+
+std::string EnhancementTreeItem::ActiveIcon(
+        const Character & charData) const
+{
+    std::string icon = "NoImage";
+    // assume its the items root icon
+    icon = Icon();
+    // check to see if the enhancement is already trained
+    const TrainedEnhancement * te = charData.IsTrained(InternalName(), "");
+    if (te != NULL)
+    {
+        if (te->HasSelection())
+        {
+            // get the selector icon instead
+            std::string sel = te->Selection();
+            icon = m_Selections.SelectedIcon(sel);
+        }
+    }
+    return icon;
 }
 
 std::list<Effect> EnhancementTreeItem::ActiveEffects(

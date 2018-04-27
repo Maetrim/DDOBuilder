@@ -56,3 +56,4 @@ enum TreeType
     TT_epicDestiny,
     TT_reaper
 };
+const COLORREF c_transparentColour = RGB(255, 128, 255);

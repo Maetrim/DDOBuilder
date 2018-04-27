@@ -934,8 +934,6 @@ void CDDOCPDoc::AddEnhancementTree(
     forumExport << treeSpend.TreeName() << " - Points spent: " << treeSpend.Spent() << "\r\n";
     const std::list<TrainedEnhancement> & enhancements = treeSpend.Enhancements();
 
-    std::string treeName = treeSpend.TreeName();
-    treeName += ": ";
     // output each enhancement by buy index
     size_t buyIndex = 0;
     bool found = true;
@@ -974,7 +972,7 @@ void CDDOCPDoc::AddEnhancementTree(
                 }
                 // remove "Treename: " from the output for every individual enhancement
                 std::string name = item->DisplayName((*it).HasSelection() ? (*it).Selection() : "");
-                name = name.substr(treeName.length());
+                name = name.substr(name.find(':') + 2);
                 forumExport << "(" << item->Cost((*it).HasSelection() ? (*it).Selection() : "") << ") " << name << "\r\n";
             }
             else

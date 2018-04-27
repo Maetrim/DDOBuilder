@@ -170,17 +170,16 @@ void CTwistOfFateDialog::PopulateTwistCombobox()
         // note that "item" can be NULL for "no selection"
         const EnhancementTreeItem * item = FindEnhancement((*it).EnhancementName());
         cachedPointers.push_back(item); // save for later use
-        bool isActive;
         CImage image;
         HRESULT result = LoadImageFile(
                 IT_enhancement,
-                item != NULL ? item->ActiveIcon(*m_pCharacter, &isActive) : "NoTwist",
+                item != NULL ? item->ActiveIcon(*m_pCharacter) : "NoTwist",
                 &image);
         if (result == S_OK)
         {
             CBitmap bitmap;
             bitmap.Attach(image.Detach());
-            m_twistImages.Add(&bitmap, RGB(255, 128, 255));  // standard mask color (purple)
+            m_twistImages.Add(&bitmap, c_transparentColour);  // standard mask color (purple)
         }
         // is this the selected twist?
         if (trainedTwist != NULL

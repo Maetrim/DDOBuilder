@@ -13,7 +13,6 @@
 namespace
 {
     const int c_controlSpacing = 3;
-    COLORREF c_transparentColour = RGB(255, 128, 255);
 }
 
 CInfoTip::CInfoTip() :

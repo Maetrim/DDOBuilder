@@ -64,7 +64,7 @@ CLevelUpView::CLevelUpView() :
         {
             CBitmap bitmap;
             bitmap.Attach(image.Detach());
-            m_imagesSkills.Add(&bitmap, RGB(255, 128, 255)); // standard mask color (purple)
+            m_imagesSkills.Add(&bitmap, c_transparentColour); // standard mask color (purple)
         }
     }
 }

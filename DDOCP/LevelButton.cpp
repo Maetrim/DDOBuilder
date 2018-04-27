@@ -8,7 +8,6 @@
 
 namespace
 {
-    const COLORREF c_transparentColour = RGB(255, 128, 255);
     const COLORREF c_pinkWarningColour = RGB(0xFF, 0xB6, 0xC1); // Light Pink
 }
 
@@ -43,6 +42,7 @@ CLevelButton::CLevelButton() :
     nm.cbSize = sizeof(NONCLIENTMETRICS);
     VERIFY(SystemParametersInfo(SPI_GETNONCLIENTMETRICS, nm.cbSize, &nm, 0));
     lf = nm.lfMenuFont;
+    lf.lfHeight = -12;
     m_font.CreateFontIndirect(&lf);
 }
 

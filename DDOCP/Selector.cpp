@@ -65,6 +65,24 @@ std::string Selector::SelectedIcon(const std::string & selectionName) const
     return icon;
 }
 
+void Selector::RenderIcon(
+        const std::string & selection,
+        CDC * pDC,
+        const CRect & itemRect) const
+{
+    // iterate the selections and get correct item to render its image
+    std::list<EnhancementSelection>::const_iterator it = m_Selections.begin();
+    while (it != m_Selections.end())
+    {
+        if ((*it).Name() == selection)
+        {
+            (*it).RenderIcon(pDC, itemRect);
+            break;
+        }
+        ++it;
+    }
+}
+
 bool Selector::VerifyObject(
         std::stringstream * ss,
         const std::list<EnhancementTree> & trees,

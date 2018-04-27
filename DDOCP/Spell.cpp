@@ -61,7 +61,7 @@ void Spell::AddImage(CImageList * pIL) const
     {
         CBitmap bitmap;
         bitmap.Attach(image.Detach());
-        pIL->Add(&bitmap, RGB(255, 128, 255));  // standard mask color (purple)
+        pIL->Add(&bitmap, c_transparentColour);  // standard mask color (purple)
     }
 }
 

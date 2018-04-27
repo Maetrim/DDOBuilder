@@ -55,4 +55,5 @@ class CSpecialFeatsView :
         CStatic m_staticIconic;
         CStatic m_staticEpic;
         CStatic m_staticSpecial;
+        CFont m_staticFont;
 };

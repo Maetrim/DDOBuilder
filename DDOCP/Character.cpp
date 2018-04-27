@@ -665,11 +665,15 @@ void Character::NotifyAllTwistEffects()
             // now train the effects of the selected twist
             std::string treeName;
             const EnhancementTreeItem * item = FindEnhancement(trainedTwist->EnhancementName(), &treeName);
-            ApplyEnhancementEffects(
-                    treeName,
-                    trainedTwist->EnhancementName(),
-                    trainedTwist->HasSelection() ? trainedTwist->Selection() : "",
-                    trainedTwist->Ranks());
+            for (size_t i = 0; i < trainedTwist->Ranks(); ++i)
+            {
+                // need to call once per rank of trained twist
+                ApplyEnhancementEffects(
+                        treeName,
+                        trainedTwist->EnhancementName(),
+                        trainedTwist->HasSelection() ? trainedTwist->Selection() : "",
+                        1);
+            }
         }
     }
 }
@@ -3394,7 +3398,7 @@ void Character::DetermineFatePoints()
     fatePoints += (numEpicPastLives / 4);   // integer arithmetic (drop fractions)
 
     //      Up to +3 from the Tome of Fate 
-    fatePoints += TomeOfFate();
+    fatePoints += GetSpecialFeatTrainedCount("Inherent Fate Point");
     if (fatePoints != FatePoints())
     {
         // number of fate points available has changed
@@ -3740,16 +3744,6 @@ void Character::RevokeAllEffects(
     }
 }
 
-void Character::SetTomeOfFate(size_t value)
-{
-    if (value != TomeOfFate())
-    {
-        Set_TomeOfFate(value);
-        DetermineFatePoints();  // will have changed
-        m_pDocument->SetModifiedFlag(TRUE);
-    }
-}
-
 bool Character::IsTwistActive(size_t twistIndex) const
 {
     ASSERT(twistIndex < MAX_TWISTS);
@@ -3952,12 +3946,16 @@ void Character::SetTwist(size_t twistIndex, const TrainedEnhancement * te)
         (*it).Set_Twist(*te);
         // now train the effects of the selected twist
         std::string treeName;
+        // need to call once per rank of trained twist
         const EnhancementTreeItem * item = FindEnhancement(te->EnhancementName(), &treeName);
-        ApplyEnhancementEffects(
-                treeName,
-                te->EnhancementName(),
-                te->HasSelection() ? te->Selection() : "",
-                te->Ranks());
+        for (size_t i = 0; i < te->Ranks(); ++i)
+        {
+            ApplyEnhancementEffects(
+                    treeName,
+                    te->EnhancementName(),
+                    te->HasSelection() ? te->Selection() : "",
+                    1);
+        }
     }
     else
     {
