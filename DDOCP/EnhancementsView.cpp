@@ -46,6 +46,7 @@ void CEnhancementsView::DoDataExchange(CDataExchange* pDX)
     DDX_Control(pDX, IDC_TREE_SELECT4, m_comboTreeSelect[2]);
     DDX_Control(pDX, IDC_TREE_SELECT5, m_comboTreeSelect[3]);
     DDX_Control(pDX, IDC_TREE_SELECT6, m_comboTreeSelect[4]);
+    DDX_Control(pDX, IDC_TREE_SELECT7, m_comboTreeSelect[5]);
 }
 
 #pragma warning(push)
@@ -56,7 +57,7 @@ BEGIN_MESSAGE_MAP(CEnhancementsView, CFormView)
     ON_REGISTERED_MESSAGE(UWM_NEW_DOCUMENT, OnNewDocument)
     ON_BN_CLICKED(IDC_BUTTON_LEFT, OnButtonLeft)
     ON_BN_CLICKED(IDC_BUTTON_RIGHT, OnButtonRight)
-    ON_CONTROL_RANGE(CBN_SELENDOK, IDC_TREE_SELECT2, IDC_TREE_SELECT6, OnTreeSelect)
+    ON_CONTROL_RANGE(CBN_SELENDOK, IDC_TREE_SELECT2, IDC_TREE_SELECT7, OnTreeSelect)
 END_MESSAGE_MAP()
 #pragma warning(pop)
 
@@ -110,7 +111,7 @@ void CEnhancementsView::OnSize(UINT nType, int cx, int cy)
         m_buttonLeft.GetWindowRect(&rctButton);
         rctButton -= rctButton.TopLeft();
         rctButton += CPoint(c_controlSpacing, (cy - rctButton.Height()) / 2);
-        m_buttonLeft.MoveWindow(rctButton, FALSE);
+        m_buttonLeft.MoveWindow(rctButton, TRUE);   // ensure redraw
         if (m_scrollOffset > 0)
         {
             // button needs to be seen
@@ -129,7 +130,7 @@ void CEnhancementsView::OnSize(UINT nType, int cx, int cy)
         rctButton += CPoint(
                     cx - c_controlSpacing - rctButton.Width(),
                     (cy - rctButton.Height()) / 2);
-        m_buttonRight.MoveWindow(rctButton, FALSE);
+        m_buttonRight.MoveWindow(rctButton, TRUE);  // ensure redraw
 
         ASSERT(m_treeViews.size() == MST_Number);
         std::vector<bool> isShown(MST_Number, false);  // gets set to true when displayed

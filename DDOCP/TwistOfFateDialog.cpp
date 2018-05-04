@@ -17,8 +17,6 @@ BEGIN_MESSAGE_MAP(CTwistOfFateDialog, CDialog)
     ON_BN_CLICKED(IDC_MINUS, OnButtonMinus)
     ON_BN_CLICKED(IDC_PLUS, OnButtonPlus)
     ON_WM_ERASEBKGND()
-    ON_WM_MOUSEMOVE()
-    ON_MESSAGE(WM_MOUSELEAVE, OnMouseLeave)
     ON_CBN_SELENDOK(IDC_COMBO_TWISTSELECT, OnComboTwistSelect)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -27,9 +25,7 @@ END_MESSAGE_MAP()
 CTwistOfFateDialog::CTwistOfFateDialog(CWnd* pParent, size_t twistIndex) :
     CDialog(CTwistOfFateDialog::IDD, pParent),
     m_twistIndex(twistIndex),
-    m_pCharacter(NULL),
-    m_showingTip(false),
-    m_tipCreated(false)
+    m_pCharacter(NULL)
 {
     //{{AFX_DATA_INIT(CTwistOfFateDialog)
     //}}AFX_DATA_INIT
@@ -49,8 +45,6 @@ void CTwistOfFateDialog::DoDataExchange(CDataExchange* pDX)
 BOOL CTwistOfFateDialog::OnInitDialog()
 {
     CDialog::OnInitDialog();
-    m_tooltip.Create(this);
-    m_tipCreated = true;
     SetupControls();
 
     return TRUE;  // return TRUE unless you set the focus to a control
@@ -201,7 +195,7 @@ void CTwistOfFateDialog::PopulateTwistCombobox()
         // if the twist is not available, remove it
         m_pCharacter->SetTwist(m_twistIndex, NULL);
         // let the user know
-        AfxMessageBox("Selected twist no longer available. It was revoked\n"
+        AfxMessageBox("Selected twist no longer available. It was revoked.\n"
                 "This can happen when:\n"
                 "The twist came from a destiny which has just been made active,\n"
                 "The twist in question was revoked from the destiny it is selected from.", MB_ICONWARNING);
@@ -257,76 +251,6 @@ BOOL CTwistOfFateDialog::OnEraseBkgnd(CDC* pDC)
     };
 
     return OnEraseBackground(this, pDC, controlsNotToBeErased);
-}
-
-void CTwistOfFateDialog::OnMouseMove(UINT nFlags, CPoint point)
-{
-    // determine whether the mouse is over the twist icon
-    CWnd * pWnd = ChildWindowFromPoint(point);
-    if (pWnd == &m_comboTwistSelect)
-    {
-        if (!m_showingTip)
-        {
-            CRect itemRect;
-            m_comboTwistSelect.GetWindowRect(&itemRect);
-            ScreenToClient(&itemRect);
-            ShowTip(itemRect);
-        }
-    }
-    else
-    {
-        if (m_showingTip)
-        {
-            HideTip();
-        }
-    }
-    GetMainFrame()->SetStatusBarPromptText("Left click to select a twist, right click to revoke.");
-}
-
-LRESULT CTwistOfFateDialog::OnMouseLeave(WPARAM wParam, LPARAM lParam)
-{
-    //// hide any tooltip when the mouse leave the area its being shown for
-    //HideTip();
-    //GetMainFrame()->SetStatusBarPromptText("Ready.");
-    return 0;
-}
-
-void CTwistOfFateDialog::ShowTip(CRect itemRect)
-{
-    //if (m_showingTip)
-    //{
-    //    m_tooltip.Hide();
-    //}
-    //ClientToScreen(&itemRect);
-    //CPoint tipTopLeft(itemRect.left, itemRect.bottom + 2);
-    //SetTooltipText(tipTopLeft);
-    //m_showingTip = true;
-    //// track the mouse so we know when it leaves our window
-    //// (us when disabled, our button when enabled)
-    //TRACKMOUSEEVENT tme;
-    //tme.cbSize = sizeof(tme);
-    //tme.hwndTrack = (m_pCharacter != NULL) ? m_buttonTwist.GetSafeHwnd() : m_hWnd;
-    //tme.dwFlags = TME_LEAVE;
-    //tme.dwHoverTime = 1;
-    //_TrackMouseEvent(&tme);
-}
-
-void CTwistOfFateDialog::HideTip()
-{
-    //// tip not shown if not over an assay
-    //if (m_tipCreated && m_showingTip)
-    //{
-    //    m_tooltip.Hide();
-    //    m_showingTip = false;
-    //}
-}
-
-void CTwistOfFateDialog::SetTooltipText(
-        CPoint tipTopLeft)
-{
-    //m_tooltip.SetOrigin(tipTopLeft);
-    //m_tooltip.SetFeatItem(*m_pCharacter, &m_feat);
-    //m_tooltip.Show();
 }
 
 void CTwistOfFateDialog::UpdateFatePointsChanged(Character * charData)

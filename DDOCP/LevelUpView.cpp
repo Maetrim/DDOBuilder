@@ -1195,6 +1195,8 @@ int CLevelUpView::SortCompareFunction(
     case SLC_Total:
         {
             // numeric sorts
+            index1Text.Replace("½", ".5");
+            index2Text.Replace("½", ".5");
             double val1 = atof(index1Text);
             double val2 = atof(index2Text);
             if (val1 == val2)
@@ -1257,7 +1259,7 @@ void CLevelUpView::OnDoubleClickListSkills(NMHDR*, LRESULT* pResult)
 
 void CLevelUpView::OnLeftClickListSkills(NMHDR*, LRESULT* pResult)
 {
-    // this doesn't current work properly
+    // this doesn't currently work properly
     //// this is a short cut to a skill point spend on the clicked skill
     //if (m_selectedSkill == m_listSkills.GetSelectionMark())
     //{
@@ -1268,7 +1270,7 @@ void CLevelUpView::OnLeftClickListSkills(NMHDR*, LRESULT* pResult)
 
 void CLevelUpView::OnRightClickListSkills(NMHDR*, LRESULT* pResult)
 {
-    // this doesn't current work properly
+    // this doesn't currently work properly
     //// this is a short cut to a skill point revoke on the clicked skill
     //if (m_selectedSkill == m_listSkills.GetSelectionMark())
     //{
@@ -1818,9 +1820,9 @@ void CLevelUpView::OnCustomDrawSkills(NMHDR* pNMHDR, LRESULT* pResult)
     *pResult = CDRF_DODEFAULT;          // assume normal windows drawn control
     if (m_pDocument != NULL)
     {
-        // this skill has a problem
         if (CDDS_PREPAINT == pLVCD->nmcd.dwDrawStage)
         {
+            // we need notifies for each item
             *pResult = CDRF_NOTIFYITEMDRAW;
         }
         else if (CDDS_ITEMPREPAINT == pLVCD->nmcd.dwDrawStage)
@@ -1843,8 +1845,9 @@ void CLevelUpView::OnCustomDrawSkills(NMHDR* pNMHDR, LRESULT* pResult)
             }
             else
             {
+                // no skill overspend present
                 // draw it as normal
-                *pResult = CDRF_DODEFAULT;          // assume normal windows drawn control
+                *pResult = CDRF_DODEFAULT; // assume normal windows drawn control
             }
         }
     }
@@ -1921,7 +1924,7 @@ LRESULT CLevelUpView::OnMouseEnter(WPARAM wParam, LPARAM lParam)
 
 LRESULT CLevelUpView::OnMouseLeave(WPARAM wParam, LPARAM lParam)
 {
-    // hide any tooltip when the mouse leave the area its being shown for
+    // hide any tooltip when the mouse leaves the area its being shown for
     HideTip();
     if (wParam == m_automaticHandle)
     {

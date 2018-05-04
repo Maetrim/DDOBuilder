@@ -3,6 +3,7 @@
 #include "StdAfx.h"
 #include "SelectedEnhancementTrees.h"
 #include "XmlLib\SaxWriter.h"
+#include "GlobalSupportFunctions.h"
 
 #define DL_ELEMENT SelectedEnhancementTrees
 
@@ -19,7 +20,7 @@ SelectedEnhancementTrees::SelectedEnhancementTrees() :
     XmlLib::SaxContentElement(f_saxElementName, f_verCurrent)
 {
     DL_INIT(SelectedEnhancementTrees_PROPERTIES)
-    m_TreeName.resize(6, f_noSelection);
+    m_TreeName.resize(MAX_ENHANCEMENT_TREES, f_noSelection);
 }
 
 DL_DEFINE_ACCESS(SelectedEnhancementTrees_PROPERTIES)
@@ -41,11 +42,19 @@ void SelectedEnhancementTrees::EndElement()
     SaxContentElement::EndElement();
     DL_END(SelectedEnhancementTrees_PROPERTIES)
     // any load operation will have appended the loaded values
-    // onto the m_TreeName object, reduce it down to the last 6 items
-    while (m_TreeName.size() > 6)
+    // onto the m_TreeName object, reduce it down until we find the
+    // first racial tree
+    while (m_TreeName.size() > 0)
     {
+        const EnhancementTree & tree = GetEnhancementTree(m_TreeName[0]);
+        if (tree.HasIsRacialTree())
+        {
+            break;
+        }
         m_TreeName.erase(m_TreeName.begin());
     }
+    // ensure we have the right number of elements after load
+    m_TreeName.resize(MAX_ENHANCEMENT_TREES, f_noSelection);
 }
 
 void SelectedEnhancementTrees::Write(XmlLib::SaxWriter * writer) const

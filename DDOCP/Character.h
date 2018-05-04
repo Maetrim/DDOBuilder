@@ -413,7 +413,7 @@ class Character :
         std::list<TrainedFeat> m_grantedFeats;
         std::list<bool> m_grantedNotifyState;
 
-        friend class CDDOCPDoc;
+        friend class CForumExportDlg;
         friend class CEnhancementTreeDialog;
         friend class CDestinyTreeDialog;
 };

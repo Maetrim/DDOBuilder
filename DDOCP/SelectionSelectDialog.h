@@ -26,7 +26,7 @@ class CSelectionSelectDialog :
         std::string Selection() const;
         size_t Cost() const;
 
-    // Dialog Data
+        // Dialog Data
         enum { IDD = IDD_SELECTION_SELECT_DIALOG };
 
     protected:

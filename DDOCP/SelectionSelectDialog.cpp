@@ -216,7 +216,7 @@ void CSelectionSelectDialog::ShowTip(size_t index, CRect itemRect)
 
 void CSelectionSelectDialog::HideTip()
 {
-    // tip not shown if not over an assay
+    // tip not shown if not over a button
     if (m_tipCreated && m_showingTip)
     {
         m_tooltip.Hide();

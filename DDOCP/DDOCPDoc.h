@@ -49,42 +49,6 @@ class CDDOCPDoc :
         void SetSearchContent(const CString& value);
 #endif // SHARED_HANDLERS
     private:
-        void AddCharacterHeader(std::stringstream & forumExport);
-        void AddSpecialFeats(std::stringstream & forumExport);
-        void AddFeats(
-                std::stringstream & forumExport,
-                const std::string & heading,
-                TrainableFeatTypes type,
-                const std::list<TrainedFeat> & feats) const;
-        void AddAbilityValues(std::stringstream & forumExport, AbilityType ability);
-        void AddBreakdown(
-                std::stringstream & forumExport,
-                const std::string & header,
-                size_t width,
-                BreakdownType bt);
-        void AddSaves(std::stringstream & forumExport);
-        void AddFeatSelections(std::stringstream & forumExport);
-        void AddAutomaticFeats(std::stringstream & forumExport);
-        void AddActiveStances(std::stringstream & forumExport);
-        void AddSkills(std::stringstream & forumExport);
-        void AddEnergyResistances(std::stringstream & forumExport);
-        void AddEnergyResistances(std::stringstream & forumExport, const std::string & name, BreakdownType bt1, BreakdownType bt2);
-        void AddEnhancements(std::stringstream & forumExport);
-        void AddEnhancementTree(std::stringstream & forumExport, const EnhancementSpendInTree & treeSpend);
-        void AddEpicDestinyTree(std::stringstream & forumExport, const EpicDestinySpendInTree & treeSpend);
-        void AddTwistsOfFate(std::stringstream & forumExport);
-        void AddSpellPowers(std::stringstream & forumExport);
-        void AddSpellPower(
-                std::stringstream & forumExport,
-                const std::string & label,
-                BreakdownType btPower,
-                BreakdownType btCrit,
-                BreakdownType btMult);
-        void AddSpells(std::stringstream & forumExport);
-        void AddSLAs(std::stringstream & forumExport);
-        void AddWeaponDamage(std::stringstream & forumExport);
-        void AddTacticalDCs(std::stringstream & forumExport);
-        void AddGear(std::stringstream & forumExport);
         Character m_characterData;
 public:
     afx_msg void OnEditSkillPoints();
