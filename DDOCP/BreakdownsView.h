@@ -73,4 +73,5 @@ class CBreakdownsView :
         int m_treeSizePercent;             // percentage of space used
         BreakdownItemWeaponEffects * m_pWeaponEffects;
         HTREEITEM m_hWeaponsHeader;
+        bool m_bUpdateBreakdowns;
 };

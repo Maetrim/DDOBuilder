@@ -35,7 +35,8 @@ class CInfoTip :
                 const Character & charData,
                 const Feat * pItem,
                 bool featSwapWarning,
-                size_t level);
+                size_t level,
+                bool grantedFeat);
         void SetStanceItem(
                 const Character & charData,
                 const Stance * pItem);

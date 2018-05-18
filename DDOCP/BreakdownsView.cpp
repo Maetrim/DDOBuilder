@@ -47,7 +47,8 @@ CBreakdownsView::CBreakdownsView() :
     m_bDraggingDivider(false),
     m_treeSizePercent(75),      // defaults to 75% on first run of software
     m_pWeaponEffects(NULL),
-    m_hWeaponsHeader(NULL)
+    m_hWeaponsHeader(NULL),
+    m_bUpdateBreakdowns(false)
 {
 
 }
@@ -136,6 +137,7 @@ LRESULT CBreakdownsView::OnNewDocument(WPARAM wParam, LPARAM lParam)
                 m_buttonClipboard.EnableWindow(FALSE);
             }
         }
+        m_bUpdateBreakdowns = true;
     }
     return 0L;
 }
@@ -2100,5 +2102,15 @@ void CBreakdownsView::UpdateGearChanged(
         // m_pWeaponEffects holds the actual breakdowns, we just tell it
         // to re-create them based on the selected items
         m_pWeaponEffects->WeaponsChanged(m_pCharacter->ActiveGearSet());
+
+        // ensure all Amount per AP items are up to date after a load.
+        if (m_bUpdateBreakdowns)
+        {
+            for (size_t i = 0; i < m_items.size(); ++i)
+            {
+                m_items[i]->UpdateTreeItemTotals();
+            }
+            m_bUpdateBreakdowns = false;
+        }
     }
 }

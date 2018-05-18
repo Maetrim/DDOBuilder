@@ -318,6 +318,7 @@ class Effect :
                 DL_FLAG(_, Percent) \
                 DL_FLAG(_, IsItemSpecific) \
                 DL_FLAG(_, CriticalMultiplier) \
+                DL_FLAG(_, ApplyAsItemEffect) \
                 DL_OPTIONAL_OBJECT(_, Dice, DiceRoll) \
                 DL_OPTIONAL_SIMPLE(_, int, Divider, 0) \
                 DL_OPTIONAL_STRING(_, Feat) \

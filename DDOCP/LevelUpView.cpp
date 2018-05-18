@@ -1100,7 +1100,7 @@ void CLevelUpView::OnHoverGrantedFeats(NMHDR* pNMHDR, LRESULT* pResult)
             m_listGrantedFeats.ClientToScreen(&rect);
             CPoint tipTopLeft(rect.left, rect.bottom);
             CPoint tipAlternate(rect.left, rect.top);
-            SetFeatTooltipText(featName, tipTopLeft, tipAlternate, false, TFT_Automatic, true); // left align
+            SetFeatTooltipText(featName, tipTopLeft, tipAlternate, false, TFT_GrantedFeat, true); // left align
             m_showingTip = true;
             // make sure we don't stack multiple monitoring of the same rectangle
             if (m_automaticHandle == 0)
@@ -2036,12 +2036,13 @@ void CLevelUpView::SetFeatTooltipText(
     const Feat & feat = FindFeat((LPCTSTR)featName);
     // determine whether there is a feat swap warning if training at level 1
     bool warn = false;
-    if (type != TFT_Automatic)
+    if (type != TFT_Automatic
+            && type != TFT_GrantedFeat)
     {
         warn = !m_pCharacter->IsFeatTrainable(m_level, type, feat, (m_level != 0), alreadyTrained);
     }
     m_tooltip.SetOrigin(tipTopLeft, tipAlternate, rightAlign);
-    m_tooltip.SetFeatItem(*m_pCharacter, &feat, warn, m_level);
+    m_tooltip.SetFeatItem(*m_pCharacter, &feat, warn, m_level, type == TFT_GrantedFeat);
     m_tooltip.Show();
 }
 

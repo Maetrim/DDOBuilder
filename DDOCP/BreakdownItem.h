@@ -143,4 +143,5 @@ class BreakdownItem :
         bool m_bAddEnergies;
 
         friend class BreakdownItemWeapon;
+        friend class CBreakdownsView;
 };

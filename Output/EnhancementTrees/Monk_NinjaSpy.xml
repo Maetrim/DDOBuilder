@@ -2,7 +2,7 @@
 <Enhancements>
    <EnhancementTree>
       <Name>Ninja Spy</Name>
-      <Version>1</Version>
+      <Version>2</Version>
       <Requirements>
          <Requirement>
             <Class>Monk</Class>
@@ -13,9 +13,11 @@
       <EnhancementTreeItem>
          <Name>Ninja Spy: Basic Ninja Training</Name>
          <InternalName>NSCore1</InternalName>
-         <Description>You are proficient with short swords and treat them as Ki weapons.
-While you are centered, you can use your Dexterity modifier to hit with piercing
-and slashing weapons.</Description>
+         <Description>While you are centered, you can use your Dexterity modifier to hit.
+You are proficient with short swords and treat them as Ki weapons.
+If another ability allows you to remain centered while wielding other
+types of melee weapon, then those weapons will also get the benefit
+of Ninja Training.</Description>
          <Icon>NSBasicNinjaTraining</Icon>
          <XPosition>0</XPosition>
          <YPosition>0</YPosition>
@@ -57,8 +59,11 @@ and slashing weapons.</Description>
       <EnhancementTreeItem>
          <Name>Ninja Spy: Advanced Ninja Training</Name>
          <InternalName>NSCore2</InternalName>
-         <Description>You can use your Dexterity modifier for damage with piercing and slashing melee weapons and shuriken.
-You also gain a chance based on your Dexterity score to throw an extra shuriken per attack.</Description>
+         <Description>While you are centered, you can use your Dexterity modifier for damage.
+You also gain a chance based on your Dexterity score to throw an extra
+shuriken per attack. If another ability allows you to remain centered while
+wielding other types of melee weapon (including unarmed/handwraps), then
+those weapons will also get the benefit of Advanced Ninja Training.</Description>
          <Icon>NSAdvancedNinjaTraining</Icon>
          <XPosition>1</XPosition>
          <YPosition>0</YPosition>
@@ -98,9 +103,11 @@ You also gain a chance based on your Dexterity score to throw an extra shuriken 
          <Name>Ninja Spy: Shadow Veil</Name>
          <InternalName>NSCore3</InternalName>
          <Description>Ki Activate: You focus your Ki and draw shadows around you.
-You become invisible and 25% incorporeal for one minute. Actions that break
-invisibility do not remove the incorporeality portion of this effect.
-(Activation Cost: 15 Ki. Cooldown: 6 seconds). </Description>
+You become invisible and 25% incorporeal for one minute.
+Actions that break invisibility do not remove the incorporeality portion
+of this effect. (Activation Cost: 15 Ki. Cooldown: 6 seconds).
+Note: Becoming uncentered for any reason immediately removes both components
+of the buff.</Description>
          <Icon>NSShadowVeil</Icon>
          <XPosition>2</XPosition>
          <YPosition>0</YPosition>
@@ -123,8 +130,13 @@ invisibility do not remove the incorporeality portion of this effect.
          <Name>Ninja Spy: Poisoned Darts</Name>
          <InternalName>NSCore4</InternalName>
          <Description>Ki Activate: You spit poisoned darts in a cone before you.
-Nearby enemies are affected by between 1 and 4 stacks of Ninja Poison.
-(Activation Cost: 15 Ki. Cooldown: 15 seconds)</Description>
+Nearby enemies are affected by between 1 and 8 stacks of Ninja Poison.
+Magical Poison: Target takes 1d4 points of Poison damage, which scales
+with melee power; every 3 seconds for 15 seconds.
+The Target's vulnerability to poison is increased by 5%.
+This ability can stack up to 20 times.
+On timer expiration, 5 stacks of Ninja Poison are removed at a time.
+Activation Cost: 15 Ki. Cooldown: 15 seconds</Description>
          <Icon>NSPoisonedDarts</Icon>
          <XPosition>3</XPosition>
          <YPosition>0</YPosition>
@@ -146,9 +158,10 @@ Nearby enemies are affected by between 1 and 4 stacks of Ninja Poison.
       <EnhancementTreeItem>
          <Name>Ninja Spy: Diversion</Name>
          <InternalName>NSCore5</InternalName>
-         <Description>Ki Activate: You expend a use of Meditation to turn yourself invisible and create
-a dummy that attracts the attention of nearby enemies.
-(Activation Cost: 50 Ki. Cooldown: 3 minutes)</Description>
+         <Description>Ki Activate: You turn yourself invisible and create a dummy that attracts
+the attention of nearby enemies.
+For the next 20 seconds, gain +5 Sneak Attack Dice.
+Activation Cost: 50 Ki. Cooldown: 3 minutes</Description>
          <Icon>NSDiversion</Icon>
          <XPosition>4</XPosition>
          <YPosition>0</YPosition>
@@ -170,10 +183,11 @@ a dummy that attracts the attention of nearby enemies.
       <EnhancementTreeItem>
          <Name>Ninja Spy: Ninja Master</Name>
          <InternalName>NSCore6</InternalName>
-         <Description>You gain +2 Dexterity. While you are centered, you gain a +1 Competence bonus
-to the Critical Threat Range with Short Swords and a +2 Competence bonus to the
-Critical Threat Range with Kamas and Shuriken. Any piercing or slashing weapon
-you wield gains the Vorpal ability. </Description>
+         <Description>You gain +2 Dexterity and +2 Wisdom, +5 Sneak Attack Dice.
+While you are centered, you gain a +1 Competence bonus to you Critical Multiplier.
+Any weapon you wield while centered gains the Vorpal ability.
+If another ability allows you to remain centered while wielding other types
+of melee weapon, then those weapons will also gain these effects.</Description>
          <Icon>NSNinjaMaster</Icon>
          <XPosition>5</XPosition>
          <YPosition>0</YPosition>
@@ -196,31 +210,21 @@ you wield gains the Vorpal ability. </Description>
               <Ability>Dexterity</Ability>
           </Effect>
           <Effect>
-              <Type>CriticalRange</Type>
-              <Bonus>Competence</Bonus>
-              <Amount>1</Amount>
-              <Weapon>Shortsword</Weapon>
-              <Stance>Centered</Stance>
+              <Type>AbilityBonus</Type>
+              <Bonus>Enhancement</Bonus>
+              <Amount>2</Amount>
+              <Ability>Wisdom</Ability>
           </Effect>
+          <Effect>
+            <Type>SneakAttackDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>5</Amount>
+         </Effect>
           <Effect>
               <Type>CriticalMultiplier</Type>
               <Bonus>Competence</Bonus>
               <Amount>1</Amount>
-              <Weapon>Shortsword</Weapon>
-              <Stance>Centered</Stance>
-          </Effect>
-          <Effect>
-              <Type>CriticalRange</Type>
-              <Bonus>Competence</Bonus>
-              <Amount>2</Amount>
-              <Weapon>Kama</Weapon>
-              <Stance>Centered</Stance>
-          </Effect>
-          <Effect>
-              <Type>CriticalRange</Type>
-              <Bonus>Competence</Bonus>
-              <Amount>2</Amount>
-              <Weapon>Shuriken</Weapon>
+              <Weapon>All</Weapon>
               <Stance>Centered</Stance>
           </Effect>
       </EnhancementTreeItem>
@@ -251,37 +255,141 @@ you wield gains the Vorpal ability. </Description>
                <Name>Ninja Spy: Impending Doom</Name>
                <Description>If the enemy affected by your Touch of Despair dies within the next 30 seconds,
 you gain 25 Ki and 25 temporary hit points. Enemies immune to your Touch of
-Despair cannot be Doomed. </Description>
+Despair cannot be Doomed.
+Passive: +1 to Hit and Damage while Centered, does not apply to Handwraps or Quarterstaves.</Description>
                <Icon>NSImpendingDoom</Icon>
                <Cost>2</Cost>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Poison Exploit</Name>
                <Description>On a failed saving throw, your Touch of Despair finisher purges an enemy of
-Ninja Poison, dealing 1d20 poison damage per stack of Ninja Poison removed.</Description>
+Ninja Poison, dealing 1d20 poison damage per stack of Ninja Poison removed.
+Passive: +1 to Hit and Damage while Centered, does not apply to Handwraps or Quarterstaves.</Description>
                <Icon>NSPoisonExploit</Icon>
                <Cost>2</Cost>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Poisoned Soul</Name>
                <Description>On a failed saving throw, your Touch of Despair finisher also causes your
-opponent to gain a stack of Ninja Poison every 6 seconds for 30 seconds. </Description>
+opponent to gain a stack of Ninja Poison every 6 seconds for 30 seconds.
+Passive: +1 to Hit and Damage while Centered, does not apply to Handwraps or Quarterstaves.</Description>
                <Icon>NSPoisonedSoul</Icon>
                <Cost>2</Cost>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Wave of Despair</Name>
                <Description>Your Touch of Despair finisher also causes all nearby enemies to suffer
-one negative level.</Description>
+one negative level.
+Passive: +1 to Hit and Damage while Centered, does not apply to Handwraps or Quarterstaves.</Description>
                <Icon>NSWaveOfDespair</Icon>
                <Cost>2</Cost>
             </EnhancementSelection>
          </Selector>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <Bonus>Enhancement</Bonus>
+              <Amount>1</Amount>
+              <Weapon>Bastard Sword</Weapon>
+              <Weapon>Battle Axe</Weapon>
+              <Weapon>Club</Weapon>
+              <Weapon>Dagger</Weapon>
+              <Weapon>Dart</Weapon>
+              <Weapon>Dwarven Axe</Weapon>
+              <Weapon>Falchion</Weapon>
+              <Weapon>Great Crossbow</Weapon>
+              <Weapon>Great Axe</Weapon>
+              <Weapon>Great Club</Weapon>
+              <Weapon>Great Sword</Weapon>
+              <Weapon>Hand Axe</Weapon>
+              <Weapon>Heavy Crossbow</Weapon>
+              <Weapon>Heavy Mace</Weapon>
+              <Weapon>Heavy Pick</Weapon>
+              <Weapon>Khopesh</Weapon>
+              <Weapon>Kukri</Weapon>
+              <Weapon>Light Crossbow</Weapon>
+              <Weapon>Light Hammer</Weapon>
+              <Weapon>Light Mace</Weapon>
+              <Weapon>Light Pick</Weapon>
+              <Weapon>Longbow</Weapon>
+              <Weapon>Longsword</Weapon>
+              <Weapon>Maul</Weapon>
+              <Weapon>Morningstar</Weapon>
+              <Weapon>Rapier</Weapon>
+              <Weapon>Repeating Heavy Crossbow</Weapon>
+              <Weapon>Repeating Light Crossbow</Weapon>
+              <Weapon>Scimitar</Weapon>
+              <Weapon>Shortbow</Weapon>
+              <Weapon>Shortsword</Weapon>
+              <Weapon>Sickle</Weapon>
+              <Weapon>Throwing Axe</Weapon>
+              <Weapon>Throwing Dagger</Weapon>
+              <Weapon>Throwing Hammer</Weapon>
+              <Weapon>Unarmed</Weapon>
+              <Weapon>Warhammer</Weapon>
+              <Weapon>Buckler</Weapon>
+              <Weapon>Small Shield</Weapon>
+              <Weapon>Large Shield</Weapon>
+              <Weapon>Tower Shield</Weapon>
+              <Weapon>Orb</Weapon>
+              <Weapon>RuneArm</Weapon>
+              <Stance>Centered</Stance>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Bonus>Enhancement</Bonus>
+              <Amount>1</Amount>
+              <Weapon>Bastard Sword</Weapon>
+              <Weapon>Battle Axe</Weapon>
+              <Weapon>Club</Weapon>
+              <Weapon>Dagger</Weapon>
+              <Weapon>Dart</Weapon>
+              <Weapon>Dwarven Axe</Weapon>
+              <Weapon>Falchion</Weapon>
+              <Weapon>Great Crossbow</Weapon>
+              <Weapon>Great Axe</Weapon>
+              <Weapon>Great Club</Weapon>
+              <Weapon>Great Sword</Weapon>
+              <Weapon>Hand Axe</Weapon>
+              <Weapon>Heavy Crossbow</Weapon>
+              <Weapon>Heavy Mace</Weapon>
+              <Weapon>Heavy Pick</Weapon>
+              <Weapon>Khopesh</Weapon>
+              <Weapon>Kukri</Weapon>
+              <Weapon>Light Crossbow</Weapon>
+              <Weapon>Light Hammer</Weapon>
+              <Weapon>Light Mace</Weapon>
+              <Weapon>Light Pick</Weapon>
+              <Weapon>Longbow</Weapon>
+              <Weapon>Longsword</Weapon>
+              <Weapon>Maul</Weapon>
+              <Weapon>Morningstar</Weapon>
+              <Weapon>Rapier</Weapon>
+              <Weapon>Repeating Heavy Crossbow</Weapon>
+              <Weapon>Repeating Light Crossbow</Weapon>
+              <Weapon>Scimitar</Weapon>
+              <Weapon>Shortbow</Weapon>
+              <Weapon>Shortsword</Weapon>
+              <Weapon>Sickle</Weapon>
+              <Weapon>Throwing Axe</Weapon>
+              <Weapon>Throwing Dagger</Weapon>
+              <Weapon>Throwing Hammer</Weapon>
+              <Weapon>Unarmed</Weapon>
+              <Weapon>Warhammer</Weapon>
+              <Weapon>Buckler</Weapon>
+              <Weapon>Small Shield</Weapon>
+              <Weapon>Large Shield</Weapon>
+              <Weapon>Tower Shield</Weapon>
+              <Weapon>Orb</Weapon>
+              <Weapon>RuneArm</Weapon>
+              <Stance>Centered</Stance>
+              <Stance>Centered</Stance>
+          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Ninja Spy: Stealthy</Name>
          <InternalName>NSStealthy</InternalName>
          <Description>+1/+2/+3 Hide and Move Silently.
++20%/+35%/+50% movement speed while sneaking.
 Rank 3: While centered and Sneaking, your passive ki regeneration is increased by 1.</Description>
          <Icon>NSStealthy</Icon>
          <XPosition>1</XPosition>
@@ -332,13 +440,13 @@ Rank 3: While centered and Sneaking, your passive ki regeneration is increased b
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Ninja Spy: Faster Sneaking</Name>
+         <Name>Ninja Spy: Subtlety</Name>
          <InternalName>NSFasterSneakingI</InternalName>
-         <Description>+20%/+35%/+50% movement speed while sneaking.</Description>
-         <Icon>NSFasterSneaking</Icon>
+         <Description>-20%/-30%/-40% threat generation with melee attacks.</Description>
+         <Icon>NSSubtlety</Icon>
          <XPosition>3</XPosition>
          <YPosition>1</YPosition>
-         <Cost>2</Cost>
+         <Cost>1</Cost>
          <Ranks>3</Ranks>
          <MinSpent>1</MinSpent>
          <Requirements>
@@ -347,6 +455,11 @@ Rank 3: While centered and Sneaking, your passive ki regeneration is increased b
                <Level>1</Level>
             </Requirement>
          </Requirements>
+        <Effect>
+            <Type>ThreatBonusMelee</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">-20 -30 -40</AmountVector>
+        </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Ninja Spy: Acrobatic</Name>
@@ -399,7 +512,8 @@ Rank 3: While centered and Sneaking, your passive ki regeneration is increased b
                <Name>Impending Doom</Name>
                <Description>If the enemy affected by your Touch of Despair dies within the next 30 seconds,
 you gain 25 Ki and 25 temporary hit points. Enemies immune to your Touch of
-Despair cannot be Doomed. </Description>
+Despair cannot be Doomed.
+Passive: +1 to Hit and Damage while Centered, does not apply to Handwraps or Quarterstaves.</Description>
                <Icon>NSImpendingDoom</Icon>
                <Cost>2</Cost>
                <Requirements>
@@ -414,7 +528,8 @@ Despair cannot be Doomed. </Description>
             <EnhancementSelection>
                <Name>Poison Exploit</Name>
                <Description>On a failed saving throw, your Touch of Despair finisher purges an enemy of
-Ninja Poison, dealing 1d20 poison damage per stack of Ninja Poison removed.</Description>
+Ninja Poison, dealing 1d20 poison damage per stack of Ninja Poison removed.
+Passive: +1 to Hit and Damage while Centered, does not apply to Handwraps or Quarterstaves.</Description>
                <Icon>NSPoisonExploit</Icon>
                <Cost>2</Cost>
                <Requirements>
@@ -429,7 +544,8 @@ Ninja Poison, dealing 1d20 poison damage per stack of Ninja Poison removed.</Des
             <EnhancementSelection>
                <Name>Poisoned Soul</Name>
                <Description>On a failed saving throw, your Touch of Despair finisher also causes your
-opponent to gain a stack of Ninja Poison every 6 seconds for 30 seconds.</Description>
+opponent to gain a stack of Ninja Poison every 6 seconds for 30 seconds.
+Passive: +1 to Hit and Damage while Centered, does not apply to Handwraps or Quarterstaves.</Description>
                <Icon>NSPoisonedSoul</Icon>
                <Cost>2</Cost>
                <Requirements>
@@ -444,7 +560,8 @@ opponent to gain a stack of Ninja Poison every 6 seconds for 30 seconds.</Descri
             <EnhancementSelection>
                <Name>Wave of Despair</Name>
                <Description>Your Touch of Despair finisher also causes all nearby enemies to suffer
-one negative level.</Description>
+one negative level.
+Passive: +1 to Hit and Damage while Centered, does not apply to Handwraps or Quarterstaves.</Description>
                <Icon>NSWaveOfDespair</Icon>
                <Cost>2</Cost>
                <Requirements>
@@ -457,11 +574,109 @@ one negative level.</Description>
                </Requirements>
             </EnhancementSelection>
          </Selector>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <Bonus>Enhancement</Bonus>
+              <Amount>1</Amount>
+              <Weapon>Bastard Sword</Weapon>
+              <Weapon>Battle Axe</Weapon>
+              <Weapon>Club</Weapon>
+              <Weapon>Dagger</Weapon>
+              <Weapon>Dart</Weapon>
+              <Weapon>Dwarven Axe</Weapon>
+              <Weapon>Falchion</Weapon>
+              <Weapon>Great Crossbow</Weapon>
+              <Weapon>Great Axe</Weapon>
+              <Weapon>Great Club</Weapon>
+              <Weapon>Great Sword</Weapon>
+              <Weapon>Hand Axe</Weapon>
+              <Weapon>Heavy Crossbow</Weapon>
+              <Weapon>Heavy Mace</Weapon>
+              <Weapon>Heavy Pick</Weapon>
+              <Weapon>Khopesh</Weapon>
+              <Weapon>Kukri</Weapon>
+              <Weapon>Light Crossbow</Weapon>
+              <Weapon>Light Hammer</Weapon>
+              <Weapon>Light Mace</Weapon>
+              <Weapon>Light Pick</Weapon>
+              <Weapon>Longbow</Weapon>
+              <Weapon>Longsword</Weapon>
+              <Weapon>Maul</Weapon>
+              <Weapon>Morningstar</Weapon>
+              <Weapon>Rapier</Weapon>
+              <Weapon>Repeating Heavy Crossbow</Weapon>
+              <Weapon>Repeating Light Crossbow</Weapon>
+              <Weapon>Scimitar</Weapon>
+              <Weapon>Shortbow</Weapon>
+              <Weapon>Shortsword</Weapon>
+              <Weapon>Sickle</Weapon>
+              <Weapon>Throwing Axe</Weapon>
+              <Weapon>Throwing Dagger</Weapon>
+              <Weapon>Throwing Hammer</Weapon>
+              <Weapon>Unarmed</Weapon>
+              <Weapon>Warhammer</Weapon>
+              <Weapon>Buckler</Weapon>
+              <Weapon>Small Shield</Weapon>
+              <Weapon>Large Shield</Weapon>
+              <Weapon>Tower Shield</Weapon>
+              <Weapon>Orb</Weapon>
+              <Weapon>RuneArm</Weapon>
+              <Stance>Centered</Stance>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Bonus>Enhancement</Bonus>
+              <Amount>1</Amount>
+              <Weapon>Bastard Sword</Weapon>
+              <Weapon>Battle Axe</Weapon>
+              <Weapon>Club</Weapon>
+              <Weapon>Dagger</Weapon>
+              <Weapon>Dart</Weapon>
+              <Weapon>Dwarven Axe</Weapon>
+              <Weapon>Falchion</Weapon>
+              <Weapon>Great Crossbow</Weapon>
+              <Weapon>Great Axe</Weapon>
+              <Weapon>Great Club</Weapon>
+              <Weapon>Great Sword</Weapon>
+              <Weapon>Hand Axe</Weapon>
+              <Weapon>Heavy Crossbow</Weapon>
+              <Weapon>Heavy Mace</Weapon>
+              <Weapon>Heavy Pick</Weapon>
+              <Weapon>Khopesh</Weapon>
+              <Weapon>Kukri</Weapon>
+              <Weapon>Light Crossbow</Weapon>
+              <Weapon>Light Hammer</Weapon>
+              <Weapon>Light Mace</Weapon>
+              <Weapon>Light Pick</Weapon>
+              <Weapon>Longbow</Weapon>
+              <Weapon>Longsword</Weapon>
+              <Weapon>Maul</Weapon>
+              <Weapon>Morningstar</Weapon>
+              <Weapon>Rapier</Weapon>
+              <Weapon>Repeating Heavy Crossbow</Weapon>
+              <Weapon>Repeating Light Crossbow</Weapon>
+              <Weapon>Scimitar</Weapon>
+              <Weapon>Shortbow</Weapon>
+              <Weapon>Shortsword</Weapon>
+              <Weapon>Sickle</Weapon>
+              <Weapon>Throwing Axe</Weapon>
+              <Weapon>Throwing Dagger</Weapon>
+              <Weapon>Throwing Hammer</Weapon>
+              <Weapon>Unarmed</Weapon>
+              <Weapon>Warhammer</Weapon>
+              <Weapon>Buckler</Weapon>
+              <Weapon>Small Shield</Weapon>
+              <Weapon>Large Shield</Weapon>
+              <Weapon>Tower Shield</Weapon>
+              <Weapon>Orb</Weapon>
+              <Weapon>RuneArm</Weapon>
+              <Stance>Centered</Stance>
+          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Ninja Spy: Subtlety</Name>
-         <InternalName>NSSubtlety</InternalName>
-         <Description>-20%/-30%/-40% threat generation with melee attacks.</Description>
+         <Name>Ninja Spy: Agility</Name>
+         <InternalName>NSAgility</InternalName>
+         <Description>+1/+2/+3 Concentration, Reflex Saves, and Maximum Dodge bonus.</Description>
          <Icon>NSSubtlety</Icon>
          <XPosition>1</XPosition>
          <YPosition>2</YPosition>
@@ -475,9 +690,21 @@ one negative level.</Description>
             </Requirement>
          </Requirements>
         <Effect>
-            <Type>ThreatBonusMelee</Type>
+            <Type>SkillBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">-20 -30 -40</AmountVector>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Skill>Concentration</Skill>
+        </Effect>
+        <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Save>Reflex</Save>
+        </Effect>
+        <Effect>
+            <Type>DodgeCapBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -570,9 +797,10 @@ The target receives periodic saves to attempt to break free of this effect.</Des
          </Selector>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Ninja Spy: Agility</Name>
+         <Name>Ninja Spy: Action Boost: Melee/Ranged Power</Name>
          <InternalName>NSAgility</InternalName>
-         <Description>+1/+2/+3 Concentration, Reflex Saves, and Maximum Dodge bonus.</Description>
+         <Description>[+10/+20/+30] Action Boost bonus to Melee/Ranged Power for 20 seconds.
+Usable 5 times per rest. Cooldown: 30 seconds.</Description>
          <Icon>NSAgility</Icon>
          <XPosition>4</XPosition>
          <YPosition>2</YPosition>
@@ -585,23 +813,6 @@ The target receives periodic saves to attempt to break free of this effect.</Des
                <Level>2</Level>
             </Requirement>
          </Requirements>
-        <Effect>
-            <Type>SkillBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">1 2 3</AmountVector>
-            <Skill>Concentration</Skill>
-        </Effect>
-        <Effect>
-            <Type>SaveBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">1 2 3</AmountVector>
-            <Save>Reflex</Save>
-        </Effect>
-        <Effect>
-            <Type>DodgeCapBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">1 2 3</AmountVector>
-        </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Ninja Spy: Ninjutsu III</Name>
@@ -629,7 +840,8 @@ The target receives periodic saves to attempt to break free of this effect.</Des
                <Name>Impending Doom</Name>
                <Description>If the enemy affected by your Touch of Despair dies within the next 30 seconds,
 you gain 25 Ki and 25 temporary hit points. Enemies immune to your Touch of
-Despair cannot be Doomed. </Description>
+Despair cannot be Doomed.
+Passive: +1 to Hit and Damage while Centered, does not apply to Handwraps or Quarterstaves.</Description>
                <Icon>NSImpendingDoom</Icon>
                <Cost>2</Cost>
                <Requirements>
@@ -648,7 +860,8 @@ Despair cannot be Doomed. </Description>
             <EnhancementSelection>
                <Name>Poison Exploit</Name>
                <Description>On a failed saving throw, your Touch of Despair finisher purges an enemy
-of Ninja Poison, dealing 1d20 poison damage per stack of Ninja Poison removed.</Description>
+of Ninja Poison, dealing 1d20 poison damage per stack of Ninja Poison removed.
+Passive: +1 to Hit and Damage while Centered, does not apply to Handwraps or Quarterstaves.</Description>
                <Icon>NSPoisonExploit</Icon>
                <Cost>2</Cost>
                <Requirements>
@@ -667,7 +880,8 @@ of Ninja Poison, dealing 1d20 poison damage per stack of Ninja Poison removed.</
             <EnhancementSelection>
                <Name>Poisoned Soul</Name>
                <Description>On a failed saving throw, your Touch of Despair finisher also causes your
-opponent to gain a stack of Ninja Poison every 6 seconds for 30 seconds. </Description>
+opponent to gain a stack of Ninja Poison every 6 seconds for 30 seconds.
+Passive: +1 to Hit and Damage while Centered, does not apply to Handwraps or Quarterstaves.</Description>
                <Icon>NSPoisonedSoul</Icon>
                <Cost>2</Cost>
                <Requirements>
@@ -686,7 +900,8 @@ opponent to gain a stack of Ninja Poison every 6 seconds for 30 seconds. </Descr
             <EnhancementSelection>
                <Name>Wave of Despair</Name>
                <Description>Your Touch of Despair finisher also causes all nearby enemies to suffer
-one negative level.</Description>
+one negative level.
+Passive: +1 to Hit and Damage while Centered, does not apply to Handwraps or Quarterstaves.</Description>
                <Icon>NSWaveOfDespair</Icon>
                <Cost>2</Cost>
                <Requirements>
@@ -703,6 +918,104 @@ one negative level.</Description>
                </Requirements>
             </EnhancementSelection>
          </Selector>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <Bonus>Enhancement</Bonus>
+              <Amount>1</Amount>
+              <Weapon>Bastard Sword</Weapon>
+              <Weapon>Battle Axe</Weapon>
+              <Weapon>Club</Weapon>
+              <Weapon>Dagger</Weapon>
+              <Weapon>Dart</Weapon>
+              <Weapon>Dwarven Axe</Weapon>
+              <Weapon>Falchion</Weapon>
+              <Weapon>Great Crossbow</Weapon>
+              <Weapon>Great Axe</Weapon>
+              <Weapon>Great Club</Weapon>
+              <Weapon>Great Sword</Weapon>
+              <Weapon>Hand Axe</Weapon>
+              <Weapon>Heavy Crossbow</Weapon>
+              <Weapon>Heavy Mace</Weapon>
+              <Weapon>Heavy Pick</Weapon>
+              <Weapon>Khopesh</Weapon>
+              <Weapon>Kukri</Weapon>
+              <Weapon>Light Crossbow</Weapon>
+              <Weapon>Light Hammer</Weapon>
+              <Weapon>Light Mace</Weapon>
+              <Weapon>Light Pick</Weapon>
+              <Weapon>Longbow</Weapon>
+              <Weapon>Longsword</Weapon>
+              <Weapon>Maul</Weapon>
+              <Weapon>Morningstar</Weapon>
+              <Weapon>Rapier</Weapon>
+              <Weapon>Repeating Heavy Crossbow</Weapon>
+              <Weapon>Repeating Light Crossbow</Weapon>
+              <Weapon>Scimitar</Weapon>
+              <Weapon>Shortbow</Weapon>
+              <Weapon>Shortsword</Weapon>
+              <Weapon>Sickle</Weapon>
+              <Weapon>Throwing Axe</Weapon>
+              <Weapon>Throwing Dagger</Weapon>
+              <Weapon>Throwing Hammer</Weapon>
+              <Weapon>Unarmed</Weapon>
+              <Weapon>Warhammer</Weapon>
+              <Weapon>Buckler</Weapon>
+              <Weapon>Small Shield</Weapon>
+              <Weapon>Large Shield</Weapon>
+              <Weapon>Tower Shield</Weapon>
+              <Weapon>Orb</Weapon>
+              <Weapon>RuneArm</Weapon>
+              <Stance>Centered</Stance>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Bonus>Enhancement</Bonus>
+              <Amount>1</Amount>
+              <Weapon>Bastard Sword</Weapon>
+              <Weapon>Battle Axe</Weapon>
+              <Weapon>Club</Weapon>
+              <Weapon>Dagger</Weapon>
+              <Weapon>Dart</Weapon>
+              <Weapon>Dwarven Axe</Weapon>
+              <Weapon>Falchion</Weapon>
+              <Weapon>Great Crossbow</Weapon>
+              <Weapon>Great Axe</Weapon>
+              <Weapon>Great Club</Weapon>
+              <Weapon>Great Sword</Weapon>
+              <Weapon>Hand Axe</Weapon>
+              <Weapon>Heavy Crossbow</Weapon>
+              <Weapon>Heavy Mace</Weapon>
+              <Weapon>Heavy Pick</Weapon>
+              <Weapon>Khopesh</Weapon>
+              <Weapon>Kukri</Weapon>
+              <Weapon>Light Crossbow</Weapon>
+              <Weapon>Light Hammer</Weapon>
+              <Weapon>Light Mace</Weapon>
+              <Weapon>Light Pick</Weapon>
+              <Weapon>Longbow</Weapon>
+              <Weapon>Longsword</Weapon>
+              <Weapon>Maul</Weapon>
+              <Weapon>Morningstar</Weapon>
+              <Weapon>Rapier</Weapon>
+              <Weapon>Repeating Heavy Crossbow</Weapon>
+              <Weapon>Repeating Light Crossbow</Weapon>
+              <Weapon>Scimitar</Weapon>
+              <Weapon>Shortbow</Weapon>
+              <Weapon>Shortsword</Weapon>
+              <Weapon>Sickle</Weapon>
+              <Weapon>Throwing Axe</Weapon>
+              <Weapon>Throwing Dagger</Weapon>
+              <Weapon>Throwing Hammer</Weapon>
+              <Weapon>Unarmed</Weapon>
+              <Weapon>Warhammer</Weapon>
+              <Weapon>Buckler</Weapon>
+              <Weapon>Small Shield</Weapon>
+              <Weapon>Large Shield</Weapon>
+              <Weapon>Tower Shield</Weapon>
+              <Weapon>Orb</Weapon>
+              <Weapon>RuneArm</Weapon>
+              <Stance>Centered</Stance>
+          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Ninja Spy: Flash Bang</Name>
@@ -852,7 +1165,8 @@ inflict your foes with a stack of Ninja Poison on critical hits. (Cooldown: 3 se
                <Name>Impending Doom</Name>
                <Description>If the enemy affected by your Touch of Despair dies within the next 30 seconds,
 you gain 25 Ki and 25 temporary hit points. Enemies immune to your Touch of
-Despair cannot be Doomed. </Description>
+Despair cannot be Doomed.
+Passive: +1 to Hit and Damage while Centered, does not apply to Handwraps or Quarterstaves.</Description>
                <Icon>NSImpendingDoom</Icon>
                <Cost>2</Cost>
                <Requirements>
@@ -875,7 +1189,8 @@ Despair cannot be Doomed. </Description>
             <EnhancementSelection>
                <Name>Poison Exploit</Name>
                <Description>On a failed saving throw, your Touch of Despair finisher purges an enemy of
-Ninja Poison, dealing 1d20 poison damage per stack of Ninja Poison removed.</Description>
+Ninja Poison, dealing 1d20 poison damage per stack of Ninja Poison removed.
+Passive: +1 to Hit and Damage while Centered, does not apply to Handwraps or Quarterstaves.</Description>
                <Icon>NSPoisonExploit</Icon>
                <Cost>2</Cost>
                <Requirements>
@@ -898,7 +1213,8 @@ Ninja Poison, dealing 1d20 poison damage per stack of Ninja Poison removed.</Des
             <EnhancementSelection>
                <Name>Poisoned Soul</Name>
                <Description>On a failed saving throw, your Touch of Despair finisher also causes your
-opponent to gain a stack of Ninja Poison every 6 seconds for 30 seconds. </Description>
+opponent to gain a stack of Ninja Poison every 6 seconds for 30 seconds.
+Passive: +1 to Hit and Damage while Centered, does not apply to Handwraps or Quarterstaves.</Description>
                <Icon>NSPoisonedSoul</Icon>
                <Cost>2</Cost>
                <Requirements>
@@ -921,7 +1237,8 @@ opponent to gain a stack of Ninja Poison every 6 seconds for 30 seconds. </Descr
             <EnhancementSelection>
                <Name>Wave of Despair</Name>
                <Description>Your Touch of Despair finisher also causes all nearby enemies to suffer
-one negative level.</Description>
+one negative level.
+Passive: +1 to Hit and Damage while Centered, does not apply to Handwraps or Quarterstaves.</Description>
                <Icon>NSWaveOfDespair</Icon>
                <Cost>2</Cost>
                <Requirements>
@@ -942,6 +1259,104 @@ one negative level.</Description>
                </Requirements>
             </EnhancementSelection>
          </Selector>
+          <Effect>
+              <Type>AttackBonus</Type>
+              <Bonus>Enhancement</Bonus>
+              <Amount>1</Amount>
+              <Weapon>Bastard Sword</Weapon>
+              <Weapon>Battle Axe</Weapon>
+              <Weapon>Club</Weapon>
+              <Weapon>Dagger</Weapon>
+              <Weapon>Dart</Weapon>
+              <Weapon>Dwarven Axe</Weapon>
+              <Weapon>Falchion</Weapon>
+              <Weapon>Great Crossbow</Weapon>
+              <Weapon>Great Axe</Weapon>
+              <Weapon>Great Club</Weapon>
+              <Weapon>Great Sword</Weapon>
+              <Weapon>Hand Axe</Weapon>
+              <Weapon>Heavy Crossbow</Weapon>
+              <Weapon>Heavy Mace</Weapon>
+              <Weapon>Heavy Pick</Weapon>
+              <Weapon>Khopesh</Weapon>
+              <Weapon>Kukri</Weapon>
+              <Weapon>Light Crossbow</Weapon>
+              <Weapon>Light Hammer</Weapon>
+              <Weapon>Light Mace</Weapon>
+              <Weapon>Light Pick</Weapon>
+              <Weapon>Longbow</Weapon>
+              <Weapon>Longsword</Weapon>
+              <Weapon>Maul</Weapon>
+              <Weapon>Morningstar</Weapon>
+              <Weapon>Rapier</Weapon>
+              <Weapon>Repeating Heavy Crossbow</Weapon>
+              <Weapon>Repeating Light Crossbow</Weapon>
+              <Weapon>Scimitar</Weapon>
+              <Weapon>Shortbow</Weapon>
+              <Weapon>Shortsword</Weapon>
+              <Weapon>Sickle</Weapon>
+              <Weapon>Throwing Axe</Weapon>
+              <Weapon>Throwing Dagger</Weapon>
+              <Weapon>Throwing Hammer</Weapon>
+              <Weapon>Unarmed</Weapon>
+              <Weapon>Warhammer</Weapon>
+              <Weapon>Buckler</Weapon>
+              <Weapon>Small Shield</Weapon>
+              <Weapon>Large Shield</Weapon>
+              <Weapon>Tower Shield</Weapon>
+              <Weapon>Orb</Weapon>
+              <Weapon>RuneArm</Weapon>
+              <Stance>Centered</Stance>
+          </Effect>
+          <Effect>
+              <Type>DamageBonus</Type>
+              <Bonus>Enhancement</Bonus>
+              <Amount>1</Amount>
+              <Weapon>Bastard Sword</Weapon>
+              <Weapon>Battle Axe</Weapon>
+              <Weapon>Club</Weapon>
+              <Weapon>Dagger</Weapon>
+              <Weapon>Dart</Weapon>
+              <Weapon>Dwarven Axe</Weapon>
+              <Weapon>Falchion</Weapon>
+              <Weapon>Great Crossbow</Weapon>
+              <Weapon>Great Axe</Weapon>
+              <Weapon>Great Club</Weapon>
+              <Weapon>Great Sword</Weapon>
+              <Weapon>Hand Axe</Weapon>
+              <Weapon>Heavy Crossbow</Weapon>
+              <Weapon>Heavy Mace</Weapon>
+              <Weapon>Heavy Pick</Weapon>
+              <Weapon>Khopesh</Weapon>
+              <Weapon>Kukri</Weapon>
+              <Weapon>Light Crossbow</Weapon>
+              <Weapon>Light Hammer</Weapon>
+              <Weapon>Light Mace</Weapon>
+              <Weapon>Light Pick</Weapon>
+              <Weapon>Longbow</Weapon>
+              <Weapon>Longsword</Weapon>
+              <Weapon>Maul</Weapon>
+              <Weapon>Morningstar</Weapon>
+              <Weapon>Rapier</Weapon>
+              <Weapon>Repeating Heavy Crossbow</Weapon>
+              <Weapon>Repeating Light Crossbow</Weapon>
+              <Weapon>Scimitar</Weapon>
+              <Weapon>Shortbow</Weapon>
+              <Weapon>Shortsword</Weapon>
+              <Weapon>Sickle</Weapon>
+              <Weapon>Throwing Axe</Weapon>
+              <Weapon>Throwing Dagger</Weapon>
+              <Weapon>Throwing Hammer</Weapon>
+              <Weapon>Unarmed</Weapon>
+              <Weapon>Warhammer</Weapon>
+              <Weapon>Buckler</Weapon>
+              <Weapon>Small Shield</Weapon>
+              <Weapon>Large Shield</Weapon>
+              <Weapon>Tower Shield</Weapon>
+              <Weapon>Orb</Weapon>
+              <Weapon>RuneArm</Weapon>
+              <Stance>Centered</Stance>
+          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Ninja Spy: Deadly Exploits</Name>

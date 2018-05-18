@@ -398,17 +398,38 @@ AbilityType BreakdownItem::LargestStatBonus()
 
 void BreakdownItem::AddOtherEffect(const ActiveEffect & effect)
 {
-    AddEffect(&m_otherEffects, effect);
+    if (effect.IsItemEffect())
+    {
+        AddEffect(&m_itemEffects, effect);
+    }
+    else
+    {
+        AddEffect(&m_otherEffects, effect);
+    }
 }
 
 void BreakdownItem::AddFeatEffect(const ActiveEffect & effect)
 {
-    AddEffect(&m_effects, effect);
+    if (effect.IsItemEffect())
+    {
+        AddEffect(&m_itemEffects, effect);
+    }
+    else
+    {
+        AddEffect(&m_effects, effect);
+    }
 }
 
 void BreakdownItem::AddEnhancementEffect(const ActiveEffect & effect)
 {
-    AddEffect(&m_effects, effect);
+    if (effect.IsItemEffect())
+    {
+        AddEffect(&m_itemEffects, effect);
+    }
+    else
+    {
+        AddEffect(&m_effects, effect);
+    }
 }
 
 void BreakdownItem::AddItemEffect(const ActiveEffect & effect)
@@ -418,17 +439,38 @@ void BreakdownItem::AddItemEffect(const ActiveEffect & effect)
 
 void BreakdownItem::RevokeOtherEffect(const ActiveEffect & effect)
 {
-    RevokeEffect(&m_otherEffects, effect);
+    if (effect.IsItemEffect())
+    {
+        RevokeEffect(&m_itemEffects, effect);
+    }
+    else
+    {
+        RevokeEffect(&m_otherEffects, effect);
+    }
 }
 
 void BreakdownItem::RevokeFeatEffect(const ActiveEffect & effect)
 {
-    RevokeEffect(&m_effects, effect);
+    if (effect.IsItemEffect())
+    {
+        RevokeEffect(&m_itemEffects, effect);
+    }
+    else
+    {
+        RevokeEffect(&m_effects, effect);
+    }
 }
 
 void BreakdownItem::RevokeEnhancementEffect(const ActiveEffect & effect)
 {
-    RevokeEffect(&m_effects, effect);
+    if (effect.IsItemEffect())
+    {
+        RevokeEffect(&m_itemEffects, effect);
+    }
+    else
+    {
+        RevokeEffect(&m_effects, effect);
+    }
 }
 
 void BreakdownItem::RevokeItemEffect(const ActiveEffect & effect)
@@ -593,7 +635,7 @@ bool BreakdownItem::UpdateTreeItemTotals(std::list<ActiveEffect> * list)
         if ((*it).IsAmountPerAP())
         {
             size_t spent = m_pCharacter->APSpentInTree((*it).Tree());
-            if (spent != (*it).Stacks())
+            if (spent != (*it).NumStacks())
             {
                 (*it).SetStacks(spent);
                 itemChanged = true;
@@ -868,6 +910,10 @@ bool BreakdownItem::GetActiveEffect(
         // the critical multiplier of this weapon sets the number of stack for this
         // active effect
         activeEffect->SetStacks(m_weaponCriticalMultiplier);
+    }
+    if (effect.HasApplyAsItemEffect())
+    {
+        activeEffect->SetIsItemEffect();
     }
     return hasActiveEffect;
 }

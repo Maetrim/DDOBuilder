@@ -353,7 +353,8 @@ void CInfoTip::SetFeatItem(
         const Character & charData,
         const Feat * pItem,
         bool featSwapWarning,
-        size_t level)
+        size_t level,
+        bool grantedFeat)
 {
     m_image.Destroy();
     LoadImageFile(IT_feat, pItem->Icon(), &m_image);
@@ -366,15 +367,23 @@ void CInfoTip::SetFeatItem(
     m_effectDescriptions.clear();
     m_requirements.clear();
     m_bRequirementMet.clear();
-    pItem->CreateRequirementStrings(charData, &m_requirements, &m_bRequirementMet, level + 1);
-    m_cost = "";
-    if (pItem->MaxTimesAcquire() != 1)
+    if (!grantedFeat)
     {
-        m_ranks.Format("  Max Acquire %d", pItem->MaxTimesAcquire());
+        pItem->CreateRequirementStrings(charData, &m_requirements, &m_bRequirementMet, level + 1);
+        m_cost = "";
+        if (pItem->MaxTimesAcquire() != 1)
+        {
+            m_ranks.Format("  Max Acquire %d", pItem->MaxTimesAcquire());
+        }
+        else
+        {
+            m_ranks = "";
+        }
     }
     else
     {
-        m_ranks = "";
+        m_requirements.push_back("This is a granted feat");
+        m_bRequirementMet.push_back(true);
     }
     if (featSwapWarning)
     {
@@ -505,7 +514,7 @@ void CInfoTip::SetAugment(
     if (S_OK != LoadImageFile(IT_augment, pAugment->HasIcon() ? pAugment->Icon() : "", &m_image, false))
     {
         // see if its a feat icon we need to use
-        LoadImageFile(IT_augment, pAugment->Icon(), &m_image);
+        LoadImageFile(IT_augment, pAugment->HasIcon() ? pAugment->Icon() : "", &m_image);
     }
     m_image.SetTransparentColor(c_transparentColour);
     m_title = pAugment->Name().c_str();

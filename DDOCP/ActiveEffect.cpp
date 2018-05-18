@@ -26,7 +26,8 @@ ActiveEffect::ActiveEffect() :
     m_bHasWeaponType(false),
     m_weaponType(Weapon_Unknown),
     m_clearValue(false),
-    m_bUseFullAbilityScore(false)
+    m_bUseFullAbilityScore(false),
+    m_bIsItemEffect(false)
 {
 }
 
@@ -53,7 +54,8 @@ ActiveEffect::ActiveEffect(
     m_bHasWeaponType(false),
     m_weaponType(Weapon_Unknown),
     m_clearValue(false),
-    m_bUseFullAbilityScore(false)
+    m_bUseFullAbilityScore(false),
+    m_bIsItemEffect(false)
 {
 }
 
@@ -79,7 +81,8 @@ ActiveEffect::ActiveEffect(
     m_bHasWeaponType(false),
     m_weaponType(Weapon_Unknown),
     m_clearValue(false),
-    m_bUseFullAbilityScore(false)
+    m_bUseFullAbilityScore(false),
+    m_bIsItemEffect(false)
 {
     // stacks is set immediately after this is constructed
 }
@@ -108,7 +111,8 @@ ActiveEffect::ActiveEffect(
     m_bHasWeaponType(false),
     m_weaponType(Weapon_Unknown),
     m_clearValue(false),
-    m_bUseFullAbilityScore(false)
+    m_bUseFullAbilityScore(false),
+    m_bIsItemEffect(false)
 {
 }
 
@@ -134,7 +138,8 @@ ActiveEffect::ActiveEffect(
     m_bHasWeaponType(false),
     m_weaponType(Weapon_Unknown),
     m_clearValue(false),
-    m_bUseFullAbilityScore(false)
+    m_bUseFullAbilityScore(false),
+    m_bIsItemEffect(false)
 {
 }
 
@@ -160,7 +165,8 @@ ActiveEffect::ActiveEffect(
     m_bHasWeaponType(false),
     m_weaponType(Weapon_Unknown),
     m_clearValue(false),
-    m_bUseFullAbilityScore(false)
+    m_bUseFullAbilityScore(false),
+    m_bIsItemEffect(false)
 {
 }
 
@@ -186,7 +192,8 @@ ActiveEffect::ActiveEffect(
     m_bHasWeaponType(false),
     m_weaponType(Weapon_Unknown),
     m_clearValue(false),
-    m_bUseFullAbilityScore(false)
+    m_bUseFullAbilityScore(false),
+    m_bIsItemEffect(false)
 {
 }
 
@@ -212,7 +219,8 @@ ActiveEffect::ActiveEffect(
     m_bHasWeaponType(false),
     m_weaponType(Weapon_Unknown),
     m_clearValue(false),
-    m_bUseFullAbilityScore(false)
+    m_bUseFullAbilityScore(false),
+    m_bIsItemEffect(false)
 {
 }
 
@@ -239,7 +247,8 @@ ActiveEffect::ActiveEffect(
     m_bHasWeaponType(false),
     m_weaponType(Weapon_Unknown),
     m_clearValue(false),
-    m_bUseFullAbilityScore(false)
+    m_bUseFullAbilityScore(false),
+    m_bIsItemEffect(false)
 {
 }
 
@@ -713,15 +722,10 @@ bool ActiveEffect::operator<=(const ActiveEffect & other) const
             && m_bonusType != Bonus_mythic)     // mythic bonus's always stack
     {
         // must be the same type of bonus to allow a lessThan
-        if (m_type == other.m_type
-                //&& m_effectName == other.m_effectName
-                && m_bonusType == other.m_bonusType)
+        if (m_bonusType == other.m_bonusType)
         {
             // comes down to the amount field
-            if (m_type == other.m_type)
-            {
-                lessThanOrEqual = (TotalAmount(false) <= other.TotalAmount(false));
-            }
+            lessThanOrEqual = (TotalAmount(false) <= other.TotalAmount(false));
         }
     }
     return lessThanOrEqual;
@@ -809,4 +813,14 @@ std::string ActiveEffect::Description() const
         break;
     }
     return ss.str();
+}
+
+void ActiveEffect::SetIsItemEffect()
+{
+    m_bIsItemEffect = true;
+}
+
+bool ActiveEffect::IsItemEffect() const
+{
+    return m_bIsItemEffect;
 }

@@ -111,6 +111,13 @@
             <Ability>Charisma</Ability>
         </Effect>
     <EffectDescription>Exceptional Wisdom +2: Passive: +2 Exceptional Bonus to Wisdom that stacks with all other bonuses except Exceptional Wisdom +2.</EffectDescription>
+        <EffectDescription>Exceptional Charisma +1: Passive: +1 Exceptional Bonus to Charisma.</EffectDescription>
+        <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Exceptional</Bonus>
+            <Amount>1</Amount>
+            <Ability>Charisma</Ability>
+        </Effect>
 
     <EffectDescription>Accuracy VI: Passive: +6 Competence bonus to Attack rolls.</EffectDescription>
         <EffectDescription>Quality Accuracy +6: Passive: +6 Quality bonus to Attack rolls.</EffectDescription>
@@ -384,7 +391,12 @@
             <Bonus>Equipment</Bonus>
             <Immunity>Fear</Immunity>
         </Effect>
-    <EffectDescription>Immunity to Slippery Surfaces: The wearer of this item is not affected when walking on slippery surfaces.</EffectDescription>
+        <EffectDescription>Immunity to Slippery Surfaces: The wearer of this item is not affected when walking on slippery surfaces.</EffectDescription>
+        <Effect>
+            <Type>Immunity</Type>
+            <Bonus>Equipment</Bonus>
+            <Immunity>Slippery Surfaces</Immunity>
+        </Effect>
         <EffectDescription>Petrification Immunity: This item give simmunity to Petrification.</EffectDescription>
         <Effect>
             <Type>Immunity</Type>
@@ -551,7 +563,7 @@
             <Amount>4</Amount>
             <Save>All</Save>
          </Effect>
-    <EffectDescription>Roar: this item emits a frightening roar when melee attackers score a critical hit on the wearer, causing them to resist or be shaken with fear.</EffectDescription>
+    <EffectDescription>Roar: This item emits a frightening roar when melee attackers score a critical hit on the wearer, causing them to resist or be shaken with fear.</EffectDescription>
         <EffectDescription>Fortitude Save +16: This item gives a +16 Resistance bonus to your Fortitude save.</EffectDescription>
          <Effect>
             <Type>SaveBonus</Type>
@@ -663,6 +675,7 @@
             <Type>MovementSpeed</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>30</Amount>
+            <ApplyAsItemEffect/>
         </Effect>
         <Effect>
             <Type>Alacrity</Type>
@@ -727,7 +740,12 @@
             <Amount>4</Amount>
         </Effect>
     <EffectDescription>SpellPower +100: Passive: +100 Equipment Bonus to ? Spell Power.</EffectDescription>
-    <EffectDescription>Spell Resistance(?): This item grants its wearer ? spell resistance.</EffectDescription>
+        <EffectDescription>Spell Resistance +30: +30 Enhancement bonus to spell resistance.</EffectDescription>
+        <Effect>
+            <Type>SpellResistance</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>30</Amount>
+        </Effect>
         <EffectDescription>Insightful Spell Resistance +20: +20 Insight bonus to spell resistance.</EffectDescription>
         <Effect>
             <Type>SpellResistance</Type>
@@ -856,7 +874,7 @@
     <EffectDescription>Spell Focus II: Passive: +2 Equipment bonus to the DC to resist all spells.</EffectDescription>
     <EffectDescription>Invisibility Guard: This item has a chance of granting you temporary invisibility when you are hit bu foes. The invisibility will not be removed when you attack or take damage, but it will wear off after 10 seconds.</EffectDescription>
     <EffectDescription>Nightmare Guard: This item has a chance of terrorizing foes that hit you, applying a Mind Thrust effect when you are hit by them (dealing 5 to 40 Force damage, Will vs. Enchantments negates). It may also expose your foes to their greatest fears, acting as a Phantasmal Killer spell.</EffectDescription>
-        <EffectDescription>Heightened Awareness 5: this item grants you the ability to read situations with incredible perspicacity, allowing you to predict actions before they occur. You gain a +5 insight bonus to AC.</EffectDescription>
+        <EffectDescription>Heightened Awareness 5: This item grants you the ability to read situations with incredible perspicacity, allowing you to predict actions before they occur. You gain a +5 insight bonus to AC.</EffectDescription>
         <Effect>
             <Type>ACBonus</Type>
             <Bonus>Insightful</Bonus>
@@ -1223,6 +1241,12 @@
     <EffectDescription>Epic Double Helix Set: While wearing both items from the Double Helix Set, you gain: +5 Insight bonus to sheltering.</EffectDescription>
     <EffectDescription>Command: This item always appears brilliant and gleaming no matter what the conditions and despite all attempts to paint over it or obscure it. Coveted by military leaders of all sorts, it carries a powerful aura that grants a +2 competence bonus to Charisma based skill checks. Command items make their owners very noticeable, imposing a -6 penalty on Hide checks.</EffectDescription>
     <EffectDescription>Melee Alacrity 15%: The wielder of this item gain a 15% Enhancement bonus to melee attack speed.</EffectDescription>
+        <Effect>
+            <Type>Alacrity</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>10</Amount>
+            <WeaponClass>Melee</WeaponClass>
+        </Effect>
     <EffectDescription>Deception VIII: 5% Chance on hit: Your target becomes Bluffed for four seconds and is thus susceptible to sneak attack. On Sneak AttacK: +8 to Attack rolls and +16 to damage.</EffectDescription>
     <EffectDescription>Improved Earthen Guard: When you are successfully attacked, there is a 5% chance that a Stone Skin will be cast on you.</EffectDescription>
     <EffectDescription>Diehard: If you are incapacitated while this item is equipped, you will automatically stabilize.</EffectDescription>
@@ -1274,7 +1298,12 @@
             <Amount>202</Amount>
             <SpellPower>Fire</SpellPower>
         </Effect>
-    <EffectDescription>Archmagi: Passive: +200 Equipment Bonus to Spell Points. (If you have Sorcerer or Favored Soul levels, you gain additional spell points proportionate to the ratio of those levels to other classes).</EffectDescription>
+    <EffectDescription>Archmagi: +200 Equipment Bonus to Spell Points. (If you have Sorcerer or Favored Soul levels, you gain additional spell points proportionate to the ratio of those levels to other classes).</EffectDescription>
+        <Effect>
+            <Type>SpellPoints</Type>
+            <Bonus>Equipment</Bonus>
+            <Amount>200</Amount>
+        </Effect>
     <EffectDescription>Greater Auto-Repair: this item has a small percentage chance to cast Reconstruct spell on you when you take damage.</EffectDescription>
     <EffectDescription>Reconstruct: You gain Reconstruct as a SLA. 1 Charge.</EffectDescription>
     <EffectDescription>Repair Systems: This item gradually repairs constructs and living constructs.</EffectDescription>
@@ -1809,6 +1838,29 @@
             <Bonus>Enhancement</Bonus>
             <Amount>31</Amount>
          </Effect>
+         <EffectDescription>Undead Bane: A bane weapon excels at attacking one type or subtype of creature. Against Undeads, this weapon's effective enhancement bonus is +2 better than its normal enhancement bonus. It deals an extra 2 to 12 points of damage against the foe.</EffectDescription>
+         <Effect>
+            <DisplayName>Undead Bane</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+              <Dice>
+                 <Number size="1">2</Number>
+                 <Sides size="1">6</Sides>
+                 <Energy>Bane</Energy>
+              </Dice>
+         </Effect>
+         <Effect>
+            <DisplayName>Undead Bane</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+              <Dice>
+                 <Number size="1">2</Number>
+                 <Sides size="1">6</Sides>
+                 <Energy>Bane</Energy>
+              </Dice>
+         </Effect>
          <EffectDescription>Undead Bane 9: Those that have did must return, and this weapon is attuned specifically to lay them to rest. This weapon deals an additional 9d10 bane damage vs. Undead</EffectDescription>
          <Effect>
             <DisplayName>Undead Bane 9</DisplayName>
@@ -1994,6 +2046,13 @@
             </Dice>
             <Weapon>All</Weapon>
         </Effect>
+        <EffectDescription>Impact I: Passive: The base critical threat range of this weapon is doubled. This does not stack with Improved Critical feat.</EffectDescription>
+         <Effect>
+            <DisplayName>Impact I</DisplayName>
+            <Type>Keen</Type>
+            <Bonus>Equipment</Bonus>
+            <Weapon>All</Weapon>
+         </Effect>
         <EffectDescription>Impact V: Passive: This weapon deals an additional +2[W] damage. In addition, the base critical threat range of this weapon is doubled. This does not stack with the improved critical feat.</EffectDescription>
          <Effect>
             <Type>WeaponBaseDamageBonus</Type>
@@ -2600,6 +2659,13 @@
         <EffectDescription>Weaken Undead: While wearing this item, your attacks cause undead creatures to lose 20% of their Fortification for the next 20 seconds. This effect does not stack with itself.</EffectDescription>
         <EffectDescription>Crushing Wave: This weapon stores the unstoppable force of the ocean's fury deep within. When this weapon is used, this power occasionally comes to the surface, crushing enemies beneath a torrent of frigid water.</EffectDescription>
         <EffectDescription>Glass Shards: This weapon is made of fragile glass and will shatter on impact, inflicting a bleed effect on targets vulnerable to bleeding. This bleed deals 2d10 damage per stack every 2 seconds, lasts for 20 seconds, and can stack up to 100 times.</EffectDescription>
+        <EffectDescription>Keen I: Passive: The base critical threat range of this weapon is doubled. This does not stack with Improved Critical feat.</EffectDescription>
+         <Effect>
+            <DisplayName>Keen I</DisplayName>
+            <Type>Keen</Type>
+            <Bonus>Equipment</Bonus>
+            <Weapon>All</Weapon>
+         </Effect>
         <EffectDescription>Keen III: Passive: This weapon deals an additional +1[W] damage. In addition, the base critical threat range of this weapon is doubled. This does not stack with the Improved Critical feat.</EffectDescription>
             <Effect>
                 <DisplayName>Keen III</DisplayName>
@@ -2975,6 +3041,13 @@
                 </Dice>
                 <Weapon>All</Weapon>
             </Effect>
+        <EffectDescription>Concentration +15: Passive: +15 Competence Bonus to the Concentration skill.</EffectDescription>
+        <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Competence</Bonus>
+            <Amount>15</Amount>
+            <Skill>Concentration</Skill>
+        </Effect>
         <EffectDescription>Insightful Concentration +9: Passive: +9 Insight Bonus to the Concentration skill.</EffectDescription>
         <Effect>
             <Type>SkillBonus</Type>
@@ -4625,7 +4698,7 @@ When 3 pieces are equipped: +1 Artifact Bonus to Critical Multiplier on a 19-20.
             </Effect>
         <EffectDescription>DR 15/Slashing: Reduces physical damage by 15, except from Slashing attacks.</EffectDescription>
         <Effect>
-            <DisplayName>DR 15/Shlashing</DisplayName>
+            <DisplayName>DR 15/Slashing</DisplayName>
             <Type>DR</Type>
             <Bonus>Equipment</Bonus>
             <Amount>15</Amount>
@@ -4907,4 +4980,311 @@ When 3 pieces are equipped: +1 Artifact Bonus to Critical Multiplier on a 19-20.
               </Dice>
              <Stance>Dragon</Stance>
          </Effect>
+        <EffectDescription>Magnetism +90: Passive: +90 Equipment bonus to Electricity Spell Power.</EffectDescription>
+        <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Equipment</Bonus>
+            <Amount>90</Amount>
+            <SpellPower>Electric</SpellPower>
+        </Effect>
+        <EffectDescription>Absolute Law: This weapon is infused with the ultimate power of law. It does an additional 2 to 12 damage to non-lawful targets and can only be wielded by Lawful aligned characters.</EffectDescription>
+         <Effect>
+            <DisplayName>Absolute Law</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+              <Dice>
+                 <Number size="1">2</Number>
+                 <Sides size="1">6</Sides>
+                 <Energy>Lawful</Energy>
+              </Dice>
+         </Effect>
+         <Effect>
+            <DisplayName>Absolute Law</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+              <Dice>
+                 <Number size="1">2</Number>
+                 <Sides size="1">6</Sides>
+                 <Energy>Lawful</Energy>
+              </Dice>
+         </Effect>
+        <EffectDescription>Fracturing: This weapon is ideal for breaking bones and does 2 to 12 damage to targets that have skeletons or are made of bone.</EffectDescription>
+        <Effect>
+            <DisplayName>Fracturing</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Equipment</Bonus>
+            <Dice>
+                <Number size="1">2</Number>
+                <Sides size="1">6</Sides>
+                <Energy>Bludgeon</Energy>
+            </Dice>
+            <Weapon>All</Weapon>
+        </Effect>
+        <Effect>
+            <DisplayName>Fracturing</DisplayName>
+            <Bonus>Equipment</Bonus>
+            <Dice>
+                <Number size="1">2</Number>
+                <Sides size="1">6</Sides>
+                <Energy>Bludgeon</Energy>
+            </Dice>
+            <Weapon>All</Weapon>
+        </Effect>
+        <EffectDescription>Elemental Manipulation: This item provides a +90 Equipment bonus to Acid, Cold, Electric, and Fire Spell Power.</EffectDescription>
+        <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Equipment</Bonus>
+            <Amount>90</Amount>
+            <SpellPower>Acid</SpellPower>
+            <SpellPower>Cold</SpellPower>
+            <SpellPower>Electric</SpellPower>
+            <SpellPower>Fire</SpellPower>
+        </Effect>
+        <EffectDescription>Unholy: An unholy weapon is imbued with unholy power. This power makes the weapon evil-aligned. Good characters wielding this weapon suffer a negative level. The weapon deals an extra 2 to 12 damage against all targets of good alignment.</EffectDescription>
+         <Effect>
+            <DisplayName>Unholy</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+              <Dice>
+                 <Number size="1">2</Number>
+                 <Sides size="1">6</Sides>
+                 <Energy>Evil</Energy>
+              </Dice>
+         </Effect>
+         <Effect>
+            <DisplayName>Unholy</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+              <Dice>
+                 <Number size="1">2</Number>
+                 <Sides size="1">6</Sides>
+                 <Energy>Evil</Energy>
+              </Dice>
+         </Effect>
+        <EffectDescription>Deadly Spider Venom: This item is steeped in deadly spider venom. On an attack roll of 20 which is confirmed as a critical hit it will inflict the target with a poison that deals 10d6 poison damage every 2 seconds for 6 seconds. When the poison wears off, it also deals 3d6 Constitution damage to the target. A successful Fortitude save (DC 34) negates the Constitution damage.</EffectDescription>
+        <EffectDescription>Enervation: On Hit: Chance of draining the life force of the enemy and giving negative levels.</EffectDescription>
+       <EffectDescription>Mithral: Mithral armor is one type lighter then normal. Arcane Spell Failure decreased by 10%. Maximum dexterity bonus increased by 2. Armor check penalty reduced by 3.</EffectDescription>
+        <EffectDescription>Holy Burst: A holy weapon is imbued with holy power. This power makes the weapon good-aligned and thus bypasses the corresponding damage reduction. It deals an extra 2 to 12 points of damage against all of evil alignment and an extra 3 to 18 on a critical for weapons with a x2 critical multiplier, 4 to 24 for a x3 multiplier, and 5 to 30 for x4 multiplier.</EffectDescription>
+         <Effect>
+            <DisplayName>Holy Burst</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+              <Dice>
+                 <Number size="1">2</Number>
+                 <Sides size="1">6</Sides>
+                 <Energy>Good</Energy>
+              </Dice>
+         </Effect>
+         <Effect>
+            <DisplayName>Holy Burst</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+            <CriticalMultiplier/>
+              <Dice>
+                 <Number size="4">0 3 4 5</Number>
+                 <Sides size="4">6 6 6 6</Sides>
+                 <Energy>Good</Energy>
+              </Dice>
+         </Effect>
+        <EffectDescription>Use Magic Device +5: Passive: +5 Competence Bonus to the Use Magic Device skill.</EffectDescription>
+        <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Competence</Bonus>
+            <Amount>5</Amount>
+            <Skill>Use Magic Device</Skill>
+        </Effect>
+        <EffectDescription>Greater Fire Resistance: This property absorbs the first 30 points of fire damage per attack that the wearer would normally take.</EffectDescription>
+        <Effect>
+            <Type>EnergyResistance</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>30</Amount>
+            <Energy>Fire</Energy>
+        </Effect>
+        <EffectDescription>Flaming Burst: This weapon is sheathed in fire. The weapon deals an extra 1 to 6 fire damage each hit. In addition, critical hits deal an additional 1 to 10 fire damage for weapons with a x2 critical multiplier, 2 to 20 for a x3 critical multiplier and 3 to 30 for a x4 multiplier.</EffectDescription>
+         <Effect>
+            <DisplayName>Flaming Burst</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+              <Dice>
+                 <Number size="1">1</Number>
+                 <Sides size="1">6</Sides>
+                 <Energy>Fire</Energy>
+              </Dice>
+         </Effect>
+         <Effect>
+            <DisplayName>Flaming Burst</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+            <CriticalMultiplier/>
+              <Dice>
+                 <Number size="4">0 1 2 3</Number>
+                 <Sides size="4">10 10 10 10</Sides>
+                 <Energy>Fire</Energy>
+              </Dice>
+         </Effect>
+        <EffectDescription>Crippling: When a target is critically hit their movement is slowed by half.</EffectDescription>
+        <EffectDescription>DR 5/Evil: Reduces all physical damage by 5/Evil</EffectDescription>
+        <Effect>
+            <DisplayName>DR 5/Evil</DisplayName>
+            <Type>DR</Type>
+            <Bonus>Equipment</Bonus>
+            <Amount>5</Amount>
+            <DR>Evil</DR>
+        </Effect>
+        <EffectDescription>Light Guard: This armor blasts those that attack the wearer, causing 1d6 light damage on a successful melee attack.</EffectDescription>
+        <EffectDescription>Radiance Guard: This item is imbued with a brilliant, radiant power. When the wearer of this item is successfully attacked in melee, the attacker has a chance of being hit by 4d6 points of light damage and has a chance of being blinded.</EffectDescription>
+        <EffectDescription>Godly Wrath: This weapon is filled with the power of a wrathful deity. Occasionally, this holy power is unleashed, applying a lasting effect that deals 2 to 8 light damage every two seconds for six seconds. If the effect is reapplied before it wears off, the effect will stack and the duration will reset. The effect can be stacked up to 3 times.</EffectDescription>
+        <EffectDescription>Good Blast: A good blast weapon is infused with the power of good. Critical hits with this weapon to targets of non-good alignment deal an extra 3 to 18 good damage for weapons with a x2 critical multiplier, 4 to 24 for a x3 multiplier, and 5 to 30 for a x4 multiplier. Additionally, if you roll a 20 when attacking and confirm the critical hit, the weapon blasts your target, doing 4 to 24 more good damage to any enemy of non-good alignment.</EffectDescription>
+         <Effect>
+            <DisplayName>Good Blast</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+            <CriticalMultiplier/>
+              <Dice>
+                 <Number size="4">0 3 4 5</Number>
+                 <Sides size="4">6 6 6 6</Sides>
+                 <Energy>Good</Energy>
+              </Dice>
+         </Effect>
+        <EffectDescription>Force Burst: This weapon is humming with magical force. The weapon deals an extra 1 to 6 force damage each hit. In addition, critical hits deal an additional 1 to 10 force damage for weapons with a x2 critical multiplier, 2 to 20 for a x3 critical multiplier and 3 to 30 for a x4 multiplier.</EffectDescription>
+         <Effect>
+            <DisplayName>Force Burst</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+            <CriticalMultiplier/>
+              <Dice>
+                 <Number size="4">0 1 2 3</Number>
+                 <Sides size="4">10 10 10 10</Sides>
+                 <Energy>Force</Energy>
+              </Dice>
+         </Effect>
+        <EffectDescription>Righteous: This weapon is imbues with holy power, giving it an additional +2 to attack bonus and damage against any evil creature. This power makes the weapon good-aligned.</EffectDescription>
+        <EffectDescription>Shocking Burst: This weapon is sheathed in crackling electricity. The weapon deals an extra 1 to 6 electric damage each hit. In addition, critical hits deal an additional 1 to 10 electric damage for weapons with a x2 critical multiplier, 2 to 20 for a x3 critical multiplier and 3 to 30 for a x4 multiplier.</EffectDescription>
+         <Effect>
+            <DisplayName>Shocking Burst</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+              <Dice>
+                 <Number size="1">1</Number>
+                 <Sides size="1">6</Sides>
+                 <Energy>Electric</Energy>
+              </Dice>
+         </Effect>
+         <Effect>
+            <DisplayName>Shocking Burst</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+            <CriticalMultiplier/>
+              <Dice>
+                 <Number size="4">0 1 2 3</Number>
+                 <Sides size="4">10 10 10 10</Sides>
+                 <Energy>Electric</Energy>
+              </Dice>
+         </Effect>
+        <EffectDescription>Lightning Strike: This weapon stores the power of a volatile thunderstorm deep within. Occasionally, this dynamic power comes to the surface, devastating enemies with a massive lightning strike.</EffectDescription>
+        <EffectDescription>Acid Burst: This weapon is sheathed in corrosive acid. The weapon deals an extra 1 to 6 acid damage each hit. In addition, critical hits deal an additional 1 to 10 acid damage for weapons with a x2 critical multiplier, 2 to 20 for a x3 critical multiplier and 3 to 30 for a x4 multiplier.</EffectDescription>
+         <Effect>
+            <DisplayName>Acid Burst</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+              <Dice>
+                 <Number size="1">1</Number>
+                 <Sides size="1">6</Sides>
+                 <Energy>Acid</Energy>
+              </Dice>
+         </Effect>
+         <Effect>
+            <DisplayName>Acid Burst</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+            <CriticalMultiplier/>
+              <Dice>
+                 <Number size="4">0 1 2 3</Number>
+                 <Sides size="4">10 10 10 10</Sides>
+                 <Energy>Acid</Energy>
+              </Dice>
+         </Effect>
+        <EffectDescription>Dusk: Equipping this item engulfs you in twilight shadows. Attacks from enemies have a 10% chance to miss you due to concealment.</EffectDescription>
+        <EffectDescription>Enfeebling: Critical hits by this weapon deal an extra 1 to 6 points of Strength damage.</EffectDescription>
+            <Effect>
+            <DisplayName>Enfeebling</DisplayName>
+                <Type>WeaponOtherCriticalDamageBonus</Type>
+                <Bonus>Stacking</Bonus>
+              <Dice>
+                 <Number size="1">1</Number>
+                 <Sides size="1">6</Sides>
+                 <Energy>Strength</Energy>
+              </Dice>
+                <Weapon>All</Weapon>
+            </Effect>
+        <EffectDescription>Poison: This weapon is dripping with poison. It deals an additional 1 to 6 poison damage on a successful hit.</EffectDescription>
+         <Effect>
+            <DisplayName>Poison</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+              <Dice>
+                 <Number size="1">1</Number>
+                 <Sides size="1">6</Sides>
+                 <Energy>Poison</Energy>
+              </Dice>
+         </Effect>
+         <Effect>
+            <DisplayName>Poison</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+              <Dice>
+                 <Number size="1">1</Number>
+                 <Sides size="1">6</Sides>
+                 <Energy>Poison</Energy>
+              </Dice>
+         </Effect>
+        <EffectDescription>Epic Fortitude Save +3: This item gives a +3 Epic bonus to your Fortitude saves.</EffectDescription>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Epic</Bonus>
+            <Amount>3</Amount>
+            <Save>Fortitude</Save>
+         </Effect>
+        <EffectDescription>Large Scorpion Poison: On a critical hit, this weapon injects the target with Large Scorpion Poison, causing 1 to 4 Constitution loss with an additional 1 to 4 Constitution loss after 1 minute if a DC 14 Fortitude save is failed.</EffectDescription>
+        <EffectDescription>Greater Incineration: This weapon stores the power of a raging inferno deep within. Occasionally, this destructive power comes to the surface, devastating enemies with massive fire damage. This damage is dealt twice as often as a standard Incineration weapon.</EffectDescription>
+        <EffectDescription>Screaming: Screaming weapons emit a piercing screech whenever they are used to make a successful attack. This screech does an additional 1 to 6 sonic damage.</EffectDescription>
+        <Effect>
+            <DisplayName>Screaming</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+            <Dice>
+                <Number size="1">1</Number>
+                <Sides size="1">6</Sides>
+                <Energy>Sonic</Energy>
+            </Dice>
+        </Effect>
+        <Effect>
+            <DisplayName>Screaming</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+            <Dice>
+                <Number size="1">1</Number>
+                <Sides size="1">6</Sides>
+                <Energy>Sonic</Energy>
+            </Dice>
+        </Effect>
+        <EffectDescription>Cacophony: This weapon stores the power of a hundred blasts of sound within. Occasionally, this resonating power comes to the surface, devastating enemies with massive sonic damage.</EffectDescription>
 </EffectDescriptions>

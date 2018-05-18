@@ -31,7 +31,9 @@ class CItemSelectDialog : public CDialog
         virtual BOOL OnInitDialog();
         afx_msg void OnItemSelected(NMHDR* pNMHDR, LRESULT* pResult);
         afx_msg void OnAugmentSelect(UINT nID);
+        afx_msg void OnAugmentCancel(UINT nID);
         afx_msg void OnUpgradeSelect(UINT nID);
+        afx_msg void OnUpgradeCancel(UINT nID);
         afx_msg void OnSelEndOkPersonality();
         afx_msg void OnUpgradeFiligree(UINT nID);
         afx_msg void OnUpgradeFiligreeCancel(UINT nID);
@@ -90,7 +92,7 @@ class CItemSelectDialog : public CDialog
         CSortHeaderCtrl m_sortHeader;
         CStatic m_staticAugments;
         CStatic m_augmentType[MAX_Augments];
-        CComboBox m_comboAugmentDropList[MAX_Augments];
+        CComboBoxTooltip m_comboAugmentDropList[MAX_Augments];
         CEdit m_augmentValues[MAX_Augments];
         CStatic m_staticUpgrades;
         CStatic m_upgradeType[MAX_Upgrades];

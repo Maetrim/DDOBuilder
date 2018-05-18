@@ -626,7 +626,7 @@ void Character::NotifyAllEnhancementEffects()
                     tree.TreeName(),
                     (*eit).EnhancementName(),
                     (*eit).HasSelection() ? (*eit).Selection() : "",
-                    pTreeItem->Ranks());
+                    (*eit).Ranks());
             ++eit;
         }
         ++it;

@@ -1366,7 +1366,8 @@ void CForumExportDlg::AddWeaponDamage(std::stringstream & forumExport)
     forumExport << "%\r\n";
     AddBreakdown(forumExport, "Off-Hand Doublestrike: ", 1, Breakdown_OffHandDoubleStrike);
     forumExport << "%\r\n";
-    forumExport << "\r\n";
+    AddBreakdown(forumExport, "Fortification Bypass: ", 1, Breakdown_FortificationBypass);
+    forumExport << "%\r\n";
 
     pBI = FindBreakdown(Breakdown_RangedPower);
     forumExport << "Ranged Power: " << pBI->Total();
@@ -1382,6 +1383,14 @@ void CForumExportDlg::AddWeaponDamage(std::stringstream & forumExport)
     forumExport << "\r\n";
     AddBreakdown(forumExport, "Doubleshot Chance: ", 1, Breakdown_DoubleShot);
     forumExport << "%\r\n";
+    forumExport << "\r\n";
+
+    AddBreakdown(forumExport, "Sneak Attack Attack bonus: ", 1, Breakdown_SneakAttackAttack);
+    forumExport << "\r\n";
+    AddBreakdown(forumExport, "Sneak Attack Damage: ", 1, Breakdown_SneakAttackDice);
+    forumExport << "d6+";
+    AddBreakdown(forumExport, "", 1, Breakdown_SneakAttackDamage);
+    forumExport << "\r\n";
     forumExport << "\r\n";
 
     EquippedGear gear = m_pCharacter->ActiveGearSet();

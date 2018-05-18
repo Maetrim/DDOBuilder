@@ -94,7 +94,9 @@ void CItemSelectDialog::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(CItemSelectDialog, CDialog)
     ON_NOTIFY(LVN_ITEMCHANGED, IDC_ITEM_LIST, OnItemSelected)
     ON_CONTROL_RANGE(CBN_SELENDOK, IDC_COMBO_AUGMENT1, IDC_COMBO_AUGMENT1 + MAX_Augments, OnAugmentSelect)
+    ON_CONTROL_RANGE(CBN_SELENDCANCEL, IDC_COMBO_AUGMENT1, IDC_COMBO_AUGMENT1 + MAX_Augments, OnAugmentCancel)
     ON_CONTROL_RANGE(CBN_SELENDOK, IDC_COMBO_UPGRADE1, IDC_COMBO_UPGRADE1 + MAX_Upgrades, OnUpgradeSelect)
+    ON_CONTROL_RANGE(CBN_SELENDCANCEL, IDC_COMBO_UPGRADE1, IDC_COMBO_UPGRADE1 + MAX_Upgrades, OnUpgradeCancel)
     ON_CONTROL_RANGE(EN_KILLFOCUS, IDC_EDIT_AUGMENT1, IDC_EDIT_AUGMENT1 + MAX_Augments, OnKillFocusAugmentEdit)
     ON_CBN_SELENDOK(IDC_COMBO_PERSONALITY, OnSelEndOkPersonality)
     ON_CBN_SELENDOK(IDC_COMBO_FILTER, OnSelEndOkFilter)
@@ -562,6 +564,12 @@ void CItemSelectDialog::OnAugmentSelect(UINT nID)
         // to be displayed for some augment selection controls.
         EnableControls();
     }
+    HideTip();
+}
+
+void CItemSelectDialog::OnAugmentCancel(UINT nID)
+{
+    HideTip();
 }
 
 void CItemSelectDialog::PopulateSlotUpgradeList(
@@ -621,6 +629,12 @@ void CItemSelectDialog::OnUpgradeSelect(UINT nID)
         // now get all controls re-repopulate
         EnableControls();
     }
+    HideTip();
+}
+
+void CItemSelectDialog::OnUpgradeCancel(UINT nID)
+{
+    HideTip();
 }
 
 void CItemSelectDialog::OnButtonSentientJewel()
@@ -657,7 +671,6 @@ void CItemSelectDialog::OnSelEndOkPersonality()
 
 void CItemSelectDialog::OnUpgradeFiligree(UINT nID)
 {
-    HideTip();
     size_t filigreeIndex = nID - IDC_COMBO_FILIGREE1;
     int selection = m_comboFiligreeDropList[filigreeIndex].GetCurSel();
     if (selection != CB_ERR)
@@ -672,6 +685,7 @@ void CItemSelectDialog::OnUpgradeFiligree(UINT nID)
         // drop lists will need to be limited
         SetSentientWeaponControls();
     }
+    HideTip();
 }
 
 void CItemSelectDialog::OnUpgradeFiligreeCancel(UINT nID)
@@ -1243,7 +1257,7 @@ LRESULT CItemSelectDialog::OnHoverComboBox(WPARAM wParam, LPARAM lParam)
     }
     if (wParam >= 0)
     {
-        // we have a selection, get the feats name
+        // we have a selection, get the filigree name
         CString augmentName;
         CWnd * pWnd = GetDlgItem(lParam);
         CComboBox * pCombo =  dynamic_cast<CComboBox*>(pWnd);

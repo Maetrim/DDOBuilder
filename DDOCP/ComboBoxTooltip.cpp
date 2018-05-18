@@ -122,8 +122,8 @@ int CComboBoxTooltip::CompareItem(LPCOMPAREITEMSTRUCT lpCis)
 {
     ASSERT(lpCis->CtlType == ODT_COMBOBOX);
 
-    int iItem1 = (int)(WORD)lpCis->itemID1;
-    int iItem2 = (int)(WORD)lpCis->itemID2;
+    int iItem1 = (int)lpCis->itemID1;
+    int iItem2 = (int)lpCis->itemID2;
     if (iItem1 != CB_ERR && iItem2 != CB_ERR)
     {
         CString strItem1;

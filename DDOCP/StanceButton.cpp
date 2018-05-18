@@ -96,11 +96,21 @@ const Stance & CStanceButton::GetStance() const
 void CStanceButton::AddStack()
 {
     ++m_stacks;
+    //// stances debug
+    //if (IsWindow(GetSafeHwnd()))
+    //{
+    //    Invalidate();
+    //}
 }
 
 void CStanceButton::RevokeStack()
 {
     --m_stacks;
+    //// stances debug
+    //if (IsWindow(GetSafeHwnd()))
+    //{
+    //    Invalidate();
+    //}
 }
 
 size_t CStanceButton::NumStacks() const

@@ -81,6 +81,8 @@ class ActiveEffect
         void SetPercentageValue(double amount) const;
         void SetUseFullAbilityScore();
         bool UseFullAbilityScore() const;
+        bool IsItemEffect() const;
+        void SetIsItemEffect();
 
         std::string Description() const;
 
@@ -138,4 +140,5 @@ class ActiveEffect
         WeaponType m_weaponType;
         mutable bool m_clearValue;
         bool m_bUseFullAbilityScore;
+        bool m_bIsItemEffect;
 };

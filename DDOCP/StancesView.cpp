@@ -184,7 +184,7 @@ void CStancesView::CreateStanceWindows()
     // totals to be updated to show included reaper enhancements
     Stance reaper("Reaper", "ReaperTree", "Activate to view your characters abilities when running in Reaper mode");
     AddStance(reaper);
-
+    // Standard automatic Stances which are always present
     Stance twf("Two Weapon Fighting", "TwoWeaponFighting", "You are fighting with a weapon in each hand");
     twf.Set_AutoControlled();
     AddStance(twf);
@@ -215,45 +215,6 @@ void CStancesView::CreateStanceWindows()
     Stance Swashbuckling("Swashbuckling", "SBEvasiveManeuvers", "You are Swashbuckling");
     Swashbuckling.Set_AutoControlled();
     AddStance(Swashbuckling);
-    // look at all the trained feats and see which are stances
-    // add an entry for each
-    std::list<TrainedFeat> currentFeats = m_pCharacter->CurrentFeats(MAX_LEVEL);
-    std::list<TrainedFeat>::iterator fit = currentFeats.begin();
-    while (fit != currentFeats.end())
-    {
-        // look up the feat associated with this
-        Feat feat = FindFeat((*fit).FeatName());
-        const std::list<Stance> & stances = feat.StanceData();
-        std::list<Stance>::const_iterator sit = stances.begin();
-        while (sit != stances.end())
-        {
-            AddStance((*sit));
-            ++sit;
-        }
-        ++fit;
-    }
-    // now do the same for all trained enhancements
-    std::list<TrainedEnhancement> currentEnhancements = m_pCharacter->CurrentEnhancements();
-    std::list<TrainedEnhancement>::const_iterator eit = currentEnhancements.begin();
-    while (eit != currentEnhancements.end())
-    {
-        const EnhancementTreeItem * pItem = FindEnhancement((*eit).EnhancementName());
-        if (pItem != NULL)
-        {
-            // enhancements may give multiple stances
-            std::list<Stance>::const_iterator sit = pItem->Stances().begin();
-            while (sit != pItem->Stances().end())
-            {
-                for (size_t i = 0; i < (*eit).Ranks(); ++i)
-                {
-                    // train once per rank of enhancement trained
-                    AddStance((*sit));
-                }
-                ++sit;
-            }
-        }
-        ++eit;
-    }
 }
 
 void CStancesView::AddStance(const Stance & stance)
@@ -300,6 +261,7 @@ void CStancesView::AddStance(const Stance & stance)
                     itemRect,
                     this,
                     m_nextStanceId++);
+            m_autoStancebuttons.back()->AddStack();
         }
         else
         {
@@ -312,6 +274,7 @@ void CStancesView::AddStance(const Stance & stance)
                     itemRect,
                     this,
                     m_nextStanceId++);
+            m_userStancebuttons.back()->AddStack();
         }
         if (IsWindow(GetSafeHwnd()))
         {
