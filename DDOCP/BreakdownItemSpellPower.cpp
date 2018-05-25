@@ -77,7 +77,8 @@ void BreakdownItemSpellPower::CreateOtherEffects()
     m_otherEffects.clear();
     if (m_pCharacter != NULL)
     {
-        if (Type() == Effect_SpellPower)
+        // this bonus only applies for spell powers, not critical chances etc
+        if (m_effect == Effect_SpellPower)
         {
             // specific skill only affects spell power (used for critical and multiplier also)
             BreakdownType bt = SpellPowerBreakdown();
@@ -106,5 +107,14 @@ bool BreakdownItemSpellPower::AffectsUs(const Effect & effect) const
         isUs = true;
     }
     return isUs;
+}
+
+void BreakdownItemSpellPower::UpdateTotalChanged(
+        BreakdownItem * item,
+        BreakdownType type)
+{
+    // call base class also
+    BreakdownItem::UpdateTotalChanged(item, type);
+    CreateOtherEffects();
 }
 

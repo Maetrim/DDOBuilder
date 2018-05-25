@@ -2676,8 +2676,7 @@ size_t Character::DetermineBuildPoints()
     while (it != feats.end())
     {
         const Feat & feat = FindFeat((*it).FeatName());
-        if (feat.Acquire() == FeatAcquisition_EpicPastLife
-                || feat.Acquire() == FeatAcquisition_HeroicPastLife
+        if (feat.Acquire() == FeatAcquisition_HeroicPastLife
                 || feat.Acquire() == FeatAcquisition_RacialPastLife
                 || feat.Acquire() == FeatAcquisition_IconicPastLife)
         {
