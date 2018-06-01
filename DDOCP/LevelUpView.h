@@ -102,6 +102,7 @@ class CLevelUpView :
         void SetLevelTooltipText(size_t level, CPoint tipTopLeft, CPoint tipAlternate);
         void ShowBab();
         void SetAbilitiesAtLevel();
+        void UpdateHookRectangles();
 
         Character * m_pCharacter;
         CLevelButton m_buttonLevels[MAX_LEVEL];

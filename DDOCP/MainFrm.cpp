@@ -460,7 +460,7 @@ void CMainFrame::CreateViews()
 
     // create the floating views
     CCustomDockablePane * pSpecialFeatsPane = CreateDockablePane(
-            "Special Feats",
+            "Past Lives and Special Feats",
             GetActiveDocument(),
             RUNTIME_CLASS(CSpecialFeatsView),
             ID_DOCK_SPECIALFEATS);

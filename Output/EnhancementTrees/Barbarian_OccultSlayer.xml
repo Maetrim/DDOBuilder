@@ -30,7 +30,9 @@ Dying resets your weapon bond to zero.</Description>
       <EnhancementTreeItem>
          <Name>Occult Slayer: Resistance</Name>
          <InternalName>OSCore2</InternalName>
-         <Description>+1 to all saving throws.</Description>
+         <Description>+1 to all saving throws.
+Improve your barbarian damage reduction by +1.
++10 Hit Points</Description>
          <Icon>OSResistance</Icon>
          <XPosition>1</XPosition>
          <YPosition>0</YPosition>
@@ -53,13 +55,28 @@ Dying resets your weapon bond to zero.</Description>
             <Save>All</Save>
             <Amount>1</Amount>
          </Effect>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>10</Amount>
+         </Effect>
+         <Effect>
+            <DisplayName>Barbarian DR</DisplayName>
+            <Type>DR</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <DR>-</DR>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Occult Slayer: Elemental Defense</Name>
          <InternalName>OSCore3</InternalName>
          <Description>When enemy spells deal elemental damage to you, there's a 25% chance you'll gain
 25 temporary hitpoints for 30 seconds.
-This can trigger up to once every 12 seconds.</Description>
+This can trigger up to once every 12 seconds.
+Improve your barbarian damage reduction by +1. 
++30 Hit Points 
++20 Healing Amplification</Description>
          <Icon>OSElementalDefense</Icon>
          <XPosition>2</XPosition>
          <YPosition>0</YPosition>
@@ -76,11 +93,31 @@ This can trigger up to once every 12 seconds.</Description>
                <Enhancement>OSCore2</Enhancement>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>30</Amount>
+         </Effect>
+         <Effect>
+            <DisplayName>Barbarian DR</DisplayName>
+            <Type>DR</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <DR>-</DR>
+         </Effect>
+         <Effect>
+            <Type>HealingAmplification</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>20</Amount>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Occult Slayer: Blank Thoughts</Name>
          <InternalName>OSCore4</InternalName>
-         <Description>You gain the Slippery Mind feat and improve your barbarian damage reduction.</Description>
+         <Description>You gain the Slippery Mind feat and improve your barbarian damage reduction.
++60 Hit Points 
++5 Magical Resistance
++20 Healing Amplification</Description>
          <Icon>OSBlankThoughts</Icon>
          <XPosition>3</XPosition>
          <YPosition>0</YPosition>
@@ -109,12 +146,30 @@ This can trigger up to once every 12 seconds.</Description>
             <Amount>1</Amount>
             <DR>-</DR>
          </Effect>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>60</Amount>
+         </Effect>
+         <Effect>
+            <Type>MRR</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>5</Amount>
+         </Effect>
+         <Effect>
+            <Type>HealingAmplification</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>20</Amount>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Occult Slayer: Force Ward</Name>
          <InternalName>OSCore5</InternalName>
          <Description>You gain immunity to magic missiles and +5% Competence bonus to entirely
-avoid incoming Force damage.</Description>
+avoid incoming Force damage. Improve your barbarian damage reduction by +1. 
++100 Hit Points 
++5 Magical Resistance
++20 Healing Amplification</Description>
          <Icon>OSForceWard</Icon>
          <XPosition>4</XPosition>
          <YPosition>0</YPosition>
@@ -136,11 +191,37 @@ avoid incoming Force damage.</Description>
             <Bonus>Enhancement</Bonus>
             <Immunity>Magic Missiles</Immunity>
          </Effect>
+         <Effect>
+            <DisplayName>Barbarian DR</DisplayName>
+            <Type>DR</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <DR>-</DR>
+         </Effect>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>100</Amount>
+         </Effect>
+         <Effect>
+            <Type>MRR</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>5</Amount>
+         </Effect>
+         <Effect>
+            <Type>HealingAmplification</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>20</Amount>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Occult Slayer: Mind Over Magic</Name>
          <InternalName>OSCore6</InternalName>
-         <Description>You have Spell Resistance equal to your Constitution score.</Description>
+         <Description>You have Spell Resistance equal to your Constitution score.
++4 Constitution
++150 Hit Points 
++10 Magical Resistance
++40 Healing Amplification</Description>
          <Icon>OSMindOverMagic</Icon>
          <XPosition>5</XPosition>
          <YPosition>0</YPosition>
@@ -160,6 +241,27 @@ avoid incoming Force damage.</Description>
             <Type>SpellResistance</Type>
             <Bonus>Enhancement</Bonus>
             <FullAbility>Constitution</FullAbility>
+         </Effect>
+         <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>4</Amount>
+            <Ability>Constitution</Ability>
+         </Effect>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>150</Amount>
+         </Effect>
+         <Effect>
+            <Type>MRR</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>10</Amount>
+         </Effect>
+         <Effect>
+            <Type>HealingAmplification</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>40</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -414,8 +516,8 @@ Rank 3: You don't fail disease or poison saving throws on a roll of 1.</Descript
          <Icon>OSLessonsOfNature</Icon>
          <XPosition>1</XPosition>
          <YPosition>3</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
          <MinSpent>10</MinSpent>
          <Requirements>
             <Requirement>

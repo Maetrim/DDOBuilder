@@ -165,8 +165,7 @@ void CSpecialFeatsView::OnInitialUpdate()
 
 void CSpecialFeatsView::OnSize(UINT nType, int cx, int cy)
 {
-    //::OutputDebugString("CSpecialFeatsView::OnSize\n");
-    CWnd::OnSize(nType, cx, cy);
+    CFormView::OnSize(nType, cx, cy);
     // move all our feat windows to be as many across as we can, then start the next row
     if (IsWindow(m_staticHeroic.GetSafeHwnd()))
     {
@@ -174,12 +173,16 @@ void CSpecialFeatsView::OnSize(UINT nType, int cx, int cy)
         // then move them down a row and start again
         // do this for each set of controls
         size_t fi = 0;
-        int y = c_controlSpacing;
-        fi = PositionWindows(&m_staticHeroic, fi, m_heroicSelectionViews, cx, &y);
-        fi = PositionWindows(&m_staticRacial, fi, m_racialSelectionViews, cx, &y);
-        fi = PositionWindows(&m_staticIconic, fi, m_iconicSelectionViews, cx, &y);
-        fi = PositionWindows(&m_staticEpic, fi, m_epicSelectionViews, cx, &y);
-        fi = PositionWindows(&m_staticSpecial, fi, m_specialSelectionViews, cx, &y);
+        int maxx = c_controlSpacing;
+        int maxy = c_controlSpacing;
+        fi = PositionWindows(&m_staticHeroic, fi, m_heroicSelectionViews, &maxx, &maxy);
+        fi = PositionWindows(&m_staticRacial, fi, m_racialSelectionViews, &maxx, &maxy);
+        fi = PositionWindows(&m_staticIconic, fi, m_iconicSelectionViews, &maxx, &maxy);
+        fi = PositionWindows(&m_staticEpic, fi, m_epicSelectionViews, &maxx, &maxy);
+        fi = PositionWindows(&m_staticSpecial, fi, m_specialSelectionViews, &maxx, &maxy);
+        // set scale based on area used by the windows.
+        // This will introduce scroll bars if required
+        SetScrollSizes(MM_TEXT, CSize(maxx, maxy));
     }
 }
 
@@ -187,7 +190,7 @@ size_t CSpecialFeatsView::PositionWindows(
         CStatic * groupWindow,
         size_t startIndex,
         const std::vector<CDialog *> & dialogs,
-        int cx,
+        int * maxX,
         int * yPos)
 {
     // first position the group control
@@ -208,18 +211,11 @@ size_t CSpecialFeatsView::PositionWindows(
         dialogs[fi]->MoveWindow(itemRect);
         // move rectangle across for next set of controls
         itemRect += CPoint(itemRect.Width() + c_controlSpacing, 0);
-        if (itemRect.right > (cx - c_controlSpacing)
-                && fi < dialogs.size() - 1)     // no move down if its the last icon in this set
-        {
-            // oops, not enough space in client area here
-            // move down and start the next row of controls
-            itemRect -= CPoint(itemRect.left, 0);
-            itemRect += CPoint(c_controlSpacing, itemRect.Height() + c_controlSpacing);
-            *yPos += itemRect.Height() + c_controlSpacing;
-        }
     }
-    // always at least 1 line of icons
+    // always 1 line of icons
     *yPos += itemRect.Height() + c_controlSpacing;
+    // keep track of the longest line of icons
+    *maxX = max(*maxX, itemRect.left);
     return startIndex + dialogs.size();
 }
 

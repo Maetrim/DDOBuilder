@@ -546,6 +546,77 @@ an additional -1/-2/-3 to your attack bonus.</Description>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
+         <Name>Warforged: Memories of the Last War I</Name>
+         <InternalName>WarforgedMemoriesOfTheLastWarI</InternalName>
+         <Description>You recall distant memories of the War.</Description>
+         <Icon>WarforgedFinalWitness</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements/>
+         <ArrowUp/>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Arcane Slinger</Name>
+               <Description>+25 Determination bonus to Universal Spell Power.</Description>
+               <Icon>WarforgedArcaneSlinger</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>SpellPower</Type>
+                  <Bonus>Determination</Bonus>
+                  <SpellPower>All</SpellPower>
+                  <Amount>25</Amount>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Final Witness</Name>
+               <Description>+3 Determination bonus to all Saving Throws.</Description>
+               <Icon>WarforgedFinalWitness</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>SaveBonus</Type>
+                  <Bonus>Determination</Bonus>
+                  <Save>All</Save>
+                  <Amount>3</Amount>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Front Lines</Name>
+               <Description>+15 Determination bonus to Melee Power and Ranged Power.</Description>
+               <Icon>WarforgedFrontLines</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>MeleePower</Type>
+                  <Bonus>Determination</Bonus>
+                  <Amount>15</Amount>
+               </Effect>
+               <Effect>
+                  <Type>RangedPower</Type>
+                  <Bonus>Determination</Bonus>
+                  <Amount>15</Amount>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Spellcarved Soldier</Name>
+               <Description>+8 Determination bonus to Armor Class and Physical Resistance Rating.</Description>
+               <Icon>WarforgedSpellcarvedSoldier</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>ACBonus</Type>
+                  <Bonus>Determination</Bonus>
+                  <Amount>8</Amount>
+               </Effect>
+               <Effect>
+                  <Type>PRR</Type>
+                  <Bonus>Determination</Bonus>
+                  <Amount>8</Amount>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
          <Name>Warforged: Weapon Attachment</Name>
          <InternalName>WarforgedWeaponAttachment</InternalName>
          <Description>Activate to attach your currently equipped weapons to yourself, giving you superior
@@ -556,7 +627,7 @@ control over them. Until you unequip these items or rest, they deal +0.5[W] dama
          <YPosition>4</YPosition>
          <Cost>1</Cost>
          <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
+         <MinSpent>15</MinSpent>
          <Clickie/>
          <Requirements>
             <RequiresNoneOf>
@@ -593,7 +664,7 @@ temporary hit points last. (Cooldown: 3 minutes).</Description>
          <YPosition>4</YPosition>
          <Cost>1</Cost>
          <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
+         <MinSpent>15</MinSpent>
          <Clickie/>
          <Requirements/>
       </EnhancementTreeItem>
@@ -606,7 +677,7 @@ temporary hit points last. (Cooldown: 3 minutes).</Description>
          <YPosition>4</YPosition>
          <Cost>2</Cost>
          <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
+         <MinSpent>15</MinSpent>
          <Requirements>
             <Requirement>
                <Enhancement>WarforgedConstructToughnessIII</Enhancement>
@@ -617,6 +688,85 @@ temporary hit points last. (Cooldown: 3 minutes).</Description>
             <Bonus>Enhancement</Bonus>
             <Amount>10</Amount>
          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Warforged: Memories of the Last War II</Name>
+         <InternalName>WarforgedMemoriesOfTheLastWarII</InternalName>
+         <Description>You recall distant memories of the War.</Description>
+         <Icon>WarforgedFinalWitness</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>15</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Enhancement>WarforgedMemoriesOfTheLastWarI</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <SelectorExclusions>
+               <SelectorExclusion>
+                  <InternalName>WarforgedMemoriesOfTheLastWarI</InternalName>
+               </SelectorExclusion>
+            </SelectorExclusions>
+            <EnhancementSelection>
+               <Name>Arcane Slinger</Name>
+               <Description>+25 Determination bonus to Universal Spell Power.</Description>
+               <Icon>WarforgedArcaneSlinger</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>SpellPower</Type>
+                  <Bonus>Determination</Bonus>
+                  <SpellPower>All</SpellPower>
+                  <Amount>25</Amount>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Final Witness</Name>
+               <Description>+3 Determination bonus to all Saving Throws.</Description>
+               <Icon>WarforgedFinalWitness</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>SaveBonus</Type>
+                  <Bonus>Determination</Bonus>
+                  <Save>All</Save>
+                  <Amount>3</Amount>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Front Lines</Name>
+               <Description>+15 Determination bonus to Melee Power and Ranged Power.</Description>
+               <Icon>WarforgedFrontLines</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>MeleePower</Type>
+                  <Bonus>Determination</Bonus>
+                  <Amount>15</Amount>
+               </Effect>
+               <Effect>
+                  <Type>RangedPower</Type>
+                  <Bonus>Determination</Bonus>
+                  <Amount>15</Amount>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Spellcarved Soldier</Name>
+               <Description>+8 Determination bonus to Armor Class and Physical Resistance Rating.</Description>
+               <Icon>WarforgedSpellcarvedSoldier</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>ACBonus</Type>
+                  <Bonus>Determination</Bonus>
+                  <Amount>8</Amount>
+               </Effect>
+               <Effect>
+                  <Type>PRR</Type>
+                  <Bonus>Determination</Bonus>
+                  <Amount>8</Amount>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
       </EnhancementTreeItem>
    </EnhancementTree>
 </Enhancements>

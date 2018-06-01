@@ -27,7 +27,8 @@
          <Name>Ravager: Pain Touch I</Name>
          <InternalName>RavCore2</InternalName>
          <Description>Your melee attacks deal 1d6 extra damage.
-This damage scales with 100% Melee Power.</Description>
+This damage scales with 100% Melee Power.
+Passive: +10 Healing Amplification</Description>
          <Icon>RavPainTouch</Icon>
          <XPosition>1</XPosition>
          <YPosition>0</YPosition>
@@ -53,6 +54,11 @@ This damage scales with 100% Melee Power.</Description>
                <Sides size="1">6</Sides>
                 <ScalesWithMeleePower/>
             </Dice>
+         </Effect>
+         <Effect>
+            <Type>HealingAmplification</Type>
+            <Bonus>Enhancement</Bonus>
+             <Amount>10</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -93,7 +99,8 @@ a failed DC 20 Will saving throw. You then inflict Vulnerable Will for
          <Name>Ravager: Pain Touch II</Name>
          <InternalName>RavCore4</InternalName>
          <Description>Upgrades Pain Touch so your melee attacks deal 2d6 extra damage.
-This damage scales with 100% Melee Power.</Description>
+This damage scales with 100% Melee Power.
+Passive: You gain +60 hitpoints and +20 healing amplification</Description>
          <Icon>RavPainTouch</Icon>
          <XPosition>3</XPosition>
          <YPosition>0</YPosition>
@@ -120,11 +127,22 @@ This damage scales with 100% Melee Power.</Description>
                 <ScalesWithMeleePower/>
             </Dice>
          </Effect>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Enhancement</Bonus>
+             <Amount>60</Amount>
+         </Effect>
+         <Effect>
+            <Type>HealingAmplification</Type>
+            <Bonus>Enhancement</Bonus>
+             <Amount>20</Amount>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Ravager: Subsiding Fury</Name>
          <InternalName>RavCore5</InternalName>
-         <Description>When you use Barbarian Rage, you gain 3 stacks of Fury.</Description>
+         <Description>When you use Barbarian Rage, you gain 3 stacks of Fury.
+Passive: You gain +100 hitpoints and +20 healing amplification</Description>
          <Icon>RavSubsidingFury</Icon>
          <XPosition>4</XPosition>
          <YPosition>0</YPosition>
@@ -141,6 +159,16 @@ This damage scales with 100% Melee Power.</Description>
                <Enhancement>RavCore4</Enhancement>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Enhancement</Bonus>
+             <Amount>100</Amount>
+         </Effect>
+         <Effect>
+            <Type>HealingAmplification</Type>
+            <Bonus>Enhancement</Bonus>
+             <Amount>20</Amount>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Ravager: Visage of Terror</Name>
@@ -148,7 +176,8 @@ This damage scales with 100% Melee Power.</Description>
          <Description>Terrorize up to six enemies, killing them with fear if they fail a Will
 save vs 10 + Constitution modifier + half barbarian level. Enemies who make their
 saving throw are paralyzed with Fear for six seconds instead.
-Does not affect bosses. (Cost 1 Rage. Cooldown: 30 seconds)</Description>
+Does not affect bosses. (Cost 1 Rage. Cooldown: 30 seconds)
+Passive:  +4 Constitution , +150 hitpoints and  +40 healing amplification</Description>
          <Icon>RavVisageOfTerror</Icon>
          <XPosition>5</XPosition>
          <YPosition>0</YPosition>
@@ -165,6 +194,22 @@ Does not affect bosses. (Cost 1 Rage. Cooldown: 30 seconds)</Description>
                <Enhancement>RavCore5</Enhancement>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>4</Amount>
+            <Ability>Constitution</Ability>
+         </Effect>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Enhancement</Bonus>
+             <Amount>150</Amount>
+         </Effect>
+         <Effect>
+            <Type>HealingAmplification</Type>
+            <Bonus>Enhancement</Bonus>
+             <Amount>40</Amount>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Ravager: Ritual Scarring</Name>
@@ -410,8 +455,8 @@ for 5/10/15 seconds. Damage stacks fade one at a time.</Description>
          <Icon>RavFesteringWound</Icon>
          <XPosition>3</XPosition>
          <YPosition>3</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
          <MinSpent>10</MinSpent>
          <ArrowUp/>
          <Requirements>
@@ -516,8 +561,8 @@ This bane damage scales with 200% Melee Power</Description>
          <Icon>RavDismember</Icon>
          <XPosition>3</XPosition>
          <YPosition>4</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
          <MinSpent>20</MinSpent>
          <Requirements>
             <Requirement>

@@ -42,7 +42,7 @@ class CSpecialFeatsView :
                 CStatic * groupWindow,
                 size_t startIndex,
                 const std::vector<CDialog *> & dialogs,
-                int cx,
+                int * maxX,
                 int * yPos);
         std::vector<CDialog *> m_heroicSelectionViews;
         std::vector<CDialog *> m_racialSelectionViews;

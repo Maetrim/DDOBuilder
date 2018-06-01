@@ -518,25 +518,30 @@ void CLevelUpView::OnSize(UINT nType, int cx, int cy)
         m_listSkills.MoveWindow(rctSkills, TRUE);
         m_listAutomaticFeats.MoveWindow(rctAutoFeats, TRUE);
 
-        // update the mouse hook handles for tooltips
-        for (size_t i = 0; i < 3; ++i)
-        {
-            CRect rect;
-            m_comboFeatSelect[i].GetWindowRect(&rect);
-            // gives the wrong rectangle, ensure large enough
-            rect.bottom = rect.top + 32 + GetSystemMetrics(SM_CYBORDER) * 4;
-            GetMouseHook()->UpdateRectangle(
-                    m_hookFeatHandles[i],
-                    rect);          // screen coordinates
-        }
-        for (size_t i = 0; i < MAX_LEVEL; ++i)
-        {
-            CRect rect;
-            m_buttonLevels[i].GetWindowRect(&rect);
-            GetMouseHook()->UpdateRectangle(
-                    m_hookLevelHandles[i],
-                    rect);          // screen coordinates
-        }
+        UpdateHookRectangles();
+    }
+}
+
+void CLevelUpView::UpdateHookRectangles()
+{
+    // update the mouse hook handles for tooltips
+    for (size_t i = 0; i < 3; ++i)
+    {
+        CRect rect;
+        m_comboFeatSelect[i].GetWindowRect(&rect);
+        // gives the wrong rectangle, ensure large enough
+        rect.bottom = rect.top + 32 + GetSystemMetrics(SM_CYBORDER) * 4;
+        GetMouseHook()->UpdateRectangle(
+                m_hookFeatHandles[i],
+                rect);          // screen coordinates
+    }
+    for (size_t i = 0; i < MAX_LEVEL; ++i)
+    {
+        CRect rect;
+        m_buttonLevels[i].GetWindowRect(&rect);
+        GetMouseHook()->UpdateRectangle(
+                m_hookLevelHandles[i],
+                rect);          // screen coordinates
     }
 }
 
@@ -544,7 +549,7 @@ void CLevelUpView::OnWindowPosChanging(WINDOWPOS * pos)
 {
     // ensure tooltip locations are correct on window move
     CFormView::OnWindowPosChanging(pos);
-    PostMessage(WM_SIZE, SIZE_RESTORED, MAKELONG(pos->cx, pos->cy));
+    UpdateHookRectangles();
 }
 
 // DocumentObserver overrides

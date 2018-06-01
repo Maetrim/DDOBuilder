@@ -129,7 +129,12 @@
         </Effect>
     <EffectDescription>Air Guard: This item stores the incredible, dynamic power of the air deep within. When the wearer of this item is successfully attacked in melee, this power occasionally comes to the surface, knocking enemies over or speeding up the wearer with rushing winds.</EffectDescription>
     <EffectDescription>Anthem: When wielded by a character with Bard levels, this item begins to hum an inspiring tune. Your bard songs regenerate slowly over time.</EffectDescription>
-    <EffectDescription>Armor Bonus +1: This item surrounds the wearer with an invisible but tangible field of force, granting +1 armor bonus to AC, just as though you were wearing armor.</EffectDescription>
+        <EffectDescription>Armor Bonus +8: This item surrounds the wearer with an invisible but tangible field of force, granting +1 armor bonus to AC, just as though you were wearing armor.</EffectDescription>
+        <Effect>
+            <Type>ACBonus</Type>
+            <Bonus>Armor</Bonus>
+            <Amount>8</Amount>
+        </Effect>
         <EffectDescription>Quality Armor Bonus +4: This item surrounds the wearer with an invisible but tangible field of force, granting +4 armor bonus to AC, just as though you were wearing armor.</EffectDescription>
         <Effect>
             <Type>ACBonus</Type>
@@ -310,9 +315,21 @@
             <Amount>50</Amount>
             <Energy>Cold</Energy>
         </Effect>
-    <EffectDescription>Greater Lightning Resistance: +30 Enhancement bonus to resist Electric.</EffectDescription>
+        <EffectDescription>Greater Lightning Resistance: +30 Enhancement bonus to resist Electric.</EffectDescription>
+        <Effect>
+            <Type>EnergyResistance</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>30</Amount>
+            <Energy>Electric</Energy>
+        </Effect>
     <EffectDescription>Superior Electric Resistance: +40 Enhancement bonus to resist Electric.</EffectDescription>
-    <EffectDescription>Superior Fire Resistance: +40 Enhancement bonus to resist Fire.</EffectDescription>
+        <EffectDescription>Superior Fire Resistance: +40 Enhancement bonus to resist Fire.</EffectDescription>
+        <Effect>
+            <Type>EnergyResistance</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>40</Amount>
+            <Energy>Fire</Energy>
+        </Effect>
     <EffectDescription>Superior Sonic Resistance: +40 Enhancement bonus to resist Sonic.</EffectDescription>
         <EffectDescription>Acid Absorption - 15%: Passive 15% Enhancement Bonus to Acid Absorption. (Absorption reduces damage from an element by a percentage, after resistances have been taken into account.)</EffectDescription>
         <Effect>
@@ -930,7 +947,13 @@
     <EffectDescription>Efficient Metamagic - Enlarge II: The additional spell point cost for using the Enlarge Metamagic feat is reduced by 2 SP.</EffectDescription>
     <EffectDescription>Efficient Metamagic - Intensify II: The additional spell point cost for using the Intensify Metamagic feat is reduced by 2 SP.</EffectDescription>
     <EffectDescription>Efficient Metamagic - Extend II: The additional spell point cost for using the Extend Metamagic feat is reduced by 2 SP.</EffectDescription>
-    <EffectDescription>Efficient Metamagic - Maximize II: The additional spell point cost for using the Maximize Metamagic feat is reduced by 2 SP.</EffectDescription>
+        <EffectDescription>Efficient Metamagic - Maximize II: The additional spell point cost for using the Maximize Metamagic feat is reduced by 2 SP.</EffectDescription>
+        <Effect>
+            <Type>AdditionalSpellPointCost</Type>
+            <Bonus>Equipment</Bonus>
+            <Amount>-2</Amount>
+            <Stance>Maximize</Stance>
+        </Effect>
         <EffectDescription>Efficient Metamagic - Empower Healing II: The additional spell point cost for using the Empower Healing Metamagic feat is reduced by 2 SP.</EffectDescription>
         <Effect>
             <Type>AdditionalSpellPointCost</Type>
@@ -1277,7 +1300,19 @@
     <EffectDescription>Enchantment Save +6: This item gives a +6 Resistance bonus to saves versus Enchantment.</EffectDescription>
     <EffectDescription>Illusion Save +6: This item gives a +6 Resistance bonus to saves versus Illusion.</EffectDescription>
     <EffectDescription>Epic Double Helix Set: While wearing both items from the Double Helix Set, you gain: +5 Insight bonus to sheltering.</EffectDescription>
-    <EffectDescription>Command: This item always appears brilliant and gleaming no matter what the conditions and despite all attempts to paint over it or obscure it. Coveted by military leaders of all sorts, it carries a powerful aura that grants a +2 competence bonus to Charisma based skill checks. Command items make their owners very noticeable, imposing a -6 penalty on Hide checks.</EffectDescription>
+        <EffectDescription>Command: This item always appears brilliant and gleaming no matter what the conditions and despite all attempts to paint over it or obscure it. Coveted by military leaders of all sorts, it carries a powerful aura that grants a +2 competence bonus to Charisma based skill checks. Command items make their owners very noticeable, imposing a -6 penalty on Hide checks.</EffectDescription>
+        <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Competence</Bonus>
+            <Amount>2</Amount>
+            <Ability>Charisma</Ability>
+        </Effect>
+        <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Penalty</Bonus>
+            <Amount>-6</Amount>
+            <Skill>Hide</Skill>
+        </Effect>
     <EffectDescription>Melee Alacrity 15%: The wielder of this item gain a 15% Enhancement bonus to melee attack speed.</EffectDescription>
         <Effect>
             <Type>Alacrity</Type>
@@ -1694,6 +1729,34 @@
             <Bonus>Competence</Bonus>
             <Amount>20</Amount>
             <Skill>Open Lock</Skill>
+        <EffectDescription>Balance +15: Passive: +15 Competence Bonus to the Balance skill.</EffectDescription>
+        <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Competence</Bonus>
+            <Amount>15</Amount>
+            <Skill>Balance</Skill>
+        </Effect>
+        <EffectDescription>Tumble +15: Passive: +15 Competence Bonus to the Tumble skill.</EffectDescription>
+        <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Competence</Bonus>
+            <Amount>15</Amount>
+            <Skill>Tumble</Skill>
+        </Effect>
+        <EffectDescription>Search +15: Passive: +15 Competence Bonus to the Search skill.</EffectDescription>
+        <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Competence</Bonus>
+            <Amount>15</Amount>
+            <Skill>Search</Skill>
+        </Effect>
+        <EffectDescription>Spot +15: Passive: +15 Competence Bonus to the Spot skill.</EffectDescription>
+        <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Competence</Bonus>
+            <Amount>15</Amount>
+            <Skill>Spot</Skill>
+        </Effect>
 
         <EffectDescription>Maximum Charge Tier 5: The maximum charge tier of this rune arm is tier 5.</EffectDescription>
         <EffectDescription>Fire Resistance +76: Passive +76 Enhancement bonus to resist Fire.</EffectDescription>
@@ -1914,6 +1977,29 @@
             <Weapon>All</Weapon>
               <Dice>
                  <Number size="1">2</Number>
+                 <Sides size="1">6</Sides>
+                 <Energy>Bane</Energy>
+              </Dice>
+         </Effect>
+         <EffectDescription>Greater Undead Bane: A bane weapon excels at attacking one type or subtype of creature. Against Undeads, this weapon's effective enhancement bonus is +4 better than its normal enhancement bonus. It deals an extra 3 to 18 points of damage against the foe.</EffectDescription>
+         <Effect>
+            <DisplayName>Greater Undead Bane</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+              <Dice>
+                 <Number size="1">3</Number>
+                 <Sides size="1">6</Sides>
+                 <Energy>Bane</Energy>
+              </Dice>
+         </Effect>
+         <Effect>
+            <DisplayName>Greater Undead Bane</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+              <Dice>
+                 <Number size="1">3</Number>
                  <Sides size="1">6</Sides>
                  <Energy>Bane</Energy>
               </Dice>
@@ -5163,6 +5249,20 @@ When 3 pieces are equipped: +1 Artifact Bonus to Critical Multiplier on a 19-20.
             <Amount>30</Amount>
             <Energy>Fire</Energy>
         </Effect>
+        <EffectDescription>Greater Cold Resistance: This property absorbs the first 30 points of cold damage per attack that the wearer would normally take.</EffectDescription>
+        <Effect>
+            <Type>EnergyResistance</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>30</Amount>
+            <Energy>Cold</Energy>
+        </Effect>
+        <EffectDescription>Greater Sonic Resistance: This property absorbs the first 30 points of sonic damage per attack that the wearer would normally take.</EffectDescription>
+        <Effect>
+            <Type>EnergyResistance</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>30</Amount>
+            <Energy>Sonic</Energy>
+        </Effect>
         <EffectDescription>Flaming Burst: This weapon is sheathed in fire. The weapon deals an extra 1 to 6 fire damage each hit. In addition, critical hits deal an additional 1 to 10 fire damage for weapons with a x2 critical multiplier, 2 to 20 for a x3 critical multiplier and 3 to 30 for a x4 multiplier.</EffectDescription>
          <Effect>
             <DisplayName>Flaming Burst</DisplayName>
@@ -5519,5 +5619,130 @@ When 3 pieces are equipped: +1 Artifact Bonus to Critical Multiplier on a 19-20.
             <Bonus>Penalty</Bonus>
             <Amount>-1</Amount>
             <Ability>Charisma</Ability>
+        </Effect>
+        <EffectDescription>Densewood: One of the most important products of the forest of Aerenal, densewood is a string, hard, heavy wood similar to iron in its properties.</EffectDescription>
+        <EffectDescription>Finesse: This weapon has a small air elemental bound to it. The wielder can use a finesse weapon as if he had the Weapon Finesse feat. In addition, the weapon grants a +2 enhancement bonus to the wielder's Dexterity score.</EffectDescription>
+      <Effect>
+         <Type>AttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Weapon>All</Weapon>
+         <Ability>Dexterity</Ability>
+      </Effect>
+      <Effect>
+         <Type>AttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Weapon>All</Weapon>
+         <Ability>Dexterity</Ability>
+      </Effect>
+        <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Ability>Dexterity</Ability>
+        </Effect>
+        <EffectDescription>Freezing Ice Guard: This item stores the pitiless immovable power of the ice deep within. When the wearer of this item is successfully attacked in melee, this power occasionally comes to the surface, attempting to freeze an enemy solid and encase them in ice.</EffectDescription>
+        <EffectDescription>Greater Regeneration: Recovers 2 hit points per 30 seconds.</EffectDescription>
+        <EffectDescription>Spell Resonance: This item hums ominously with suppressed energy. When casting Force spells, there is a chance that you will gain a +20 alchemical bonus to Force Spell Power for 30 seconds. When casting Sonic spells, there is a chance that you will gain a +20 alchemical bonus to Sonic Spell Power 30 seconds.</EffectDescription>
+        <EffectDescription>Greater Construct Bane: A bane weapon excels at attacking one type or subtype of creature. Against Constructs, this weapon's effective enhancement bonus is +4 better than its normal enhancement bonus. It deals an extra 3 to 18 points of damage against the foe.</EffectDescription>
+         <Effect>
+            <DisplayName>Greater Construct Bane</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+              <Dice>
+                 <Number size="1">3</Number>
+                 <Sides size="1">6</Sides>
+                 <Energy>Bane</Energy>
+              </Dice>
+             <Stance>Construct</Stance>
+         </Effect>
+         <Effect>
+            <DisplayName>Greater Construct Bane</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+              <Dice>
+                 <Number size="1">3</Number>
+                 <Sides size="1">6</Sides>
+                 <Energy>Bane</Energy>
+              </Dice>
+             <Stance>Construct</Stance>
+         </Effect>
+        <EffectDescription>Greater Disruption: On Hit: 4 to 24 Bane damage to Undead. On Vorpal Hit: If an undead struck by this weapon has fewer than 2000 Hit Points, it is instantly slain. If the undead has above 2000 Hit Points, it takes 200 damage.</EffectDescription>
+         <Effect>
+            <DisplayName>Greater Disruption</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+              <Dice>
+                 <Number size="1">4</Number>
+                 <Sides size="1">6</Sides>
+                 <Energy>Bane</Energy>
+              </Dice>
+             <Stance>Undead</Stance>
+         </Effect>
+         <Effect>
+            <DisplayName>Greater Disruption</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+              <Dice>
+                 <Number size="1">4</Number>
+                 <Sides size="1">6</Sides>
+                 <Energy>Bane</Energy>
+              </Dice>
+             <Stance>Undead</Stance>
+         </Effect>
+        <EffectDescription>Repair +20: Passive: +20 Competence Bonus to the Repair skill.</EffectDescription>
+        <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Competence</Bonus>
+            <Amount>20</Amount>
+            <Skill>Repair</Skill>
+        </Effect>
+        <EffectDescription>Eternal Fire: While you are wearing this item, your melee, ranged, and unarmed attacks gain the Flaming Burst ability. (This weapon is sheathed in fire. The weapon deals an additional 1 to 6 fire damage each hit. In addition, critical hits deal an additional 1 to 10 fire damage for weapons with a x2 critical multiplier, 2 to 20 for a x3 critical multiplier and 3 to 30 for a x4 multiplier.)</EffectDescription>
+         <Effect>
+            <DisplayName>Eternal Fire</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+              <Dice>
+                 <Number size="1">1</Number>
+                 <Sides size="1">6</Sides>
+                 <Energy>Good</Energy>
+              </Dice>
+         </Effect>
+         <Effect>
+            <DisplayName>Eternal Fire</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+            <CriticalMultiplier/>
+              <Dice>
+                 <Number size="4">0 1 2 3</Number>
+                 <Sides size="4">10 10 10 10</Sides>
+                 <Energy>Good</Energy>
+              </Dice>
+         </Effect>
+        <EffectDescription>Fire Guard II: When Hit in Melee: Deals 2 to 8 Fire damage to your attacker.</EffectDescription>
+        <EffectDescription>Incineration Guard: This item stores the power of a raging inferno deep within. When the wearer of this item is successfully attacked in melee, this destructive power occasionally comes to the surface, devastating enemies with massive fire damage.</EffectDescription>
+        <EffectDescription>Construct Fortification (10%): This docent produces a a magical force that protects vital areas of the wearer more effectively. When a critical hit or sneak attack is scored on the wearer, there is a +10% chance that the critical hit or sneak attack is negated and damage is instead rolled normally. This ability is considered as Insight bonus when determining stacking with other sources of fortification.</EffectDescription>
+        <Effect>
+            <Type>Fortification</Type>
+            <Bonus>Insightful</Bonus>
+            <Amount>10</Amount>
+        </Effect>
+        <EffectDescription>Stoneskin: Caster level: 20 - Charges: 5 (5/day)</EffectDescription>
+        <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Equipment</Bonus>
+            <SpellLikeAbility>Stoneskin</SpellLikeAbility>
+        </Effect>
+        <EffectDescription>Damage Reduction 5/-: Reduces all physical damage by 5.</EffectDescription>
+        <Effect>
+            <Type>DR</Type>
+            <Bonus>Equipment</Bonus>
+            <Amount>5</Amount>
+            <DR>-</DR>
         </Effect>
 </EffectDescriptions>
