@@ -38,6 +38,7 @@ class Item :
                 DL_STRING(_, Name) \
                 DL_STRING(_, Icon) \
                 DL_STRING(_, Description) \
+                DL_OPTIONAL_STRING(_, DropLocation) \
                 DL_SIMPLE(_, size_t, MinLevel, 0) \
                 DL_STRING_LIST(_, EffectDescription) \
                 DL_STRING_LIST(_, DRBypass) \

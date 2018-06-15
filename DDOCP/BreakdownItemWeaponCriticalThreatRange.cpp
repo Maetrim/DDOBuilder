@@ -62,7 +62,7 @@ void BreakdownItemWeaponCriticalThreatRange::CreateOtherEffects()
             {
                 // we have an effect that doubles this weapons base critical range
                 ActiveEffect keenEffect(
-                        Bonus_base,
+                        Bonus_keen,
                         "Keen weapon",
                         1,
                         baseRange,
@@ -76,7 +76,8 @@ void BreakdownItemWeaponCriticalThreatRange::CreateOtherEffects()
 bool BreakdownItemWeaponCriticalThreatRange::AffectsUs(const Effect & effect) const
 {
     bool isUs = false;
-    if (effect.Type() == Effect_CriticalRange)
+    if (effect.Type() == Effect_CriticalRange
+            || effect.Type() == Effect_Keen)
     {
         // if its the right effect its for us as our holder class determines whether
         // it is the right weapon target type

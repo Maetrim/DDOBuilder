@@ -45,7 +45,8 @@ CLevelUpView::CLevelUpView() :
     m_tipCreated(false),
     m_selectedSkill(-1),
     m_automaticHandle(0),
-    m_hoverItem(-1)
+    m_hoverItem(-1),
+    m_bIgnoreNextMessage(false)
 {
     m_imagesSkills.Create(
             32,             // all icons are 32x32 pixels
@@ -524,24 +525,27 @@ void CLevelUpView::OnSize(UINT nType, int cx, int cy)
 
 void CLevelUpView::UpdateHookRectangles()
 {
-    // update the mouse hook handles for tooltips
-    for (size_t i = 0; i < 3; ++i)
+    if (IsWindow(m_listSkills.GetSafeHwnd()))
     {
-        CRect rect;
-        m_comboFeatSelect[i].GetWindowRect(&rect);
-        // gives the wrong rectangle, ensure large enough
-        rect.bottom = rect.top + 32 + GetSystemMetrics(SM_CYBORDER) * 4;
-        GetMouseHook()->UpdateRectangle(
-                m_hookFeatHandles[i],
-                rect);          // screen coordinates
-    }
-    for (size_t i = 0; i < MAX_LEVEL; ++i)
-    {
-        CRect rect;
-        m_buttonLevels[i].GetWindowRect(&rect);
-        GetMouseHook()->UpdateRectangle(
-                m_hookLevelHandles[i],
-                rect);          // screen coordinates
+        // update the mouse hook handles for tooltips
+        for (size_t i = 0; i < 3; ++i)
+        {
+            CRect rect;
+            m_comboFeatSelect[i].GetWindowRect(&rect);
+            // gives the wrong rectangle, ensure large enough
+            rect.bottom = rect.top + 32 + GetSystemMetrics(SM_CYBORDER) * 4;
+            GetMouseHook()->UpdateRectangle(
+                    m_hookFeatHandles[i],
+                    rect);          // screen coordinates
+        }
+        for (size_t i = 0; i < MAX_LEVEL; ++i)
+        {
+            CRect rect;
+            m_buttonLevels[i].GetWindowRect(&rect);
+            GetMouseHook()->UpdateRectangle(
+                    m_hookLevelHandles[i],
+                    rect);          // screen coordinates
+        }
     }
 }
 
@@ -1663,6 +1667,7 @@ void CLevelUpView::OnFeatSelectionCancel(UINT nID)
     {
         m_tooltip.Hide();
     }
+    m_bIgnoreNextMessage = true;
 }
 
 void CLevelUpView::OnLButtonDown(UINT nFlags, CPoint point)
@@ -1943,36 +1948,40 @@ LRESULT CLevelUpView::OnMouseLeave(WPARAM wParam, LPARAM lParam)
 
 LRESULT CLevelUpView::OnHoverComboBox(WPARAM wParam, LPARAM lParam)
 {
-    // wParam = selected index
-    // lParam = control ID
-    UINT id = lParam - IDC_COMBO_FEATSELECT1;   // 0..1..2 now
-    if (m_showingTip)
+    if (!m_bIgnoreNextMessage)
     {
-        m_tooltip.Hide();
-    }
-    if (wParam >= 0)
-    {
-        // we have a selection, get the feats name
-        CString featName;
-        m_comboFeatSelect[id].GetLBText(wParam, featName);
-        if (!featName.IsEmpty())
+        // wParam = selected index
+        // lParam = control ID
+        UINT id = lParam - IDC_COMBO_FEATSELECT1;   // 0..1..2 now
+        if (m_showingTip)
         {
-            CRect rctWindow;
-            m_comboFeatSelect[id].GetWindowRect(&rctWindow);
-            rctWindow.right = rctWindow.left + m_comboFeatSelect[id].GetDroppedWidth();
-            // tip is shown to the left or the right of the combo box
-            CPoint tipTopLeft(rctWindow.left, rctWindow.top);
-            CPoint tipAlternate(rctWindow.right, rctWindow.top);
-            SetFeatTooltipText(
-                    featName,
-                    tipTopLeft,
-                    tipAlternate,
-                    true,               // right align
-                    m_trainable[id],
-                    false);             // not yet trained
-            m_showingTip = true;
+            m_tooltip.Hide();
+        }
+        if (wParam >= 0)
+        {
+            // we have a selection, get the feats name
+            CString featName;
+            m_comboFeatSelect[id].GetLBText(wParam, featName);
+            if (!featName.IsEmpty())
+            {
+                CRect rctWindow;
+                m_comboFeatSelect[id].GetWindowRect(&rctWindow);
+                rctWindow.right = rctWindow.left + m_comboFeatSelect[id].GetDroppedWidth();
+                // tip is shown to the left or the right of the combo box
+                CPoint tipTopLeft(rctWindow.left, rctWindow.top);
+                CPoint tipAlternate(rctWindow.right, rctWindow.top);
+                SetFeatTooltipText(
+                        featName,
+                        tipTopLeft,
+                        tipAlternate,
+                        true,               // right align
+                        m_trainable[id],
+                        m_pCharacter->IsFeatTrained((LPCTSTR)featName));
+                m_showingTip = true;
+            }
         }
     }
+    m_bIgnoreNextMessage = false;
     return 0;
 }
 

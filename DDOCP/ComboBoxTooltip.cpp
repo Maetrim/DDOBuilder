@@ -54,15 +54,16 @@ void CComboBoxTooltip::DrawItem(LPDRAWITEMSTRUCT lpDis)
         // highlight the background if selected.
         if (nState & ODS_SELECTED) 
         {
-            // blue background, white text
             pDC->FillSolidRect(rcItem, ::GetSysColor(COLOR_HIGHLIGHT));
             pDC->SetTextColor(::GetSysColor(COLOR_HIGHLIGHTTEXT));
             if (isDropped
-                    && lpDis->itemID != m_selection)
+                    && lpDis->itemID != m_selection
+                    && lpDis->itemAction == ODA_SELECT
+                    && (nState & 0x1000) == 0)  // Cancel operation
             {
                 m_selection = lpDis->itemID;
                 // this is the item we need to notify a hover about
-                ::PostMessage(
+                ::SendMessage(
                         GetParent()->GetSafeHwnd(),
                         WM_MOUSEHOVER,
                         lpDis->itemID,

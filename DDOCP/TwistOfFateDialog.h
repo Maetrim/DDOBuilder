@@ -6,6 +6,8 @@
 #include "Resource.h"
 #include "MFCButtonMMRelay.h"
 #include "Character.h"
+#include "ComboBoxTooltip.h"
+#include "InfoTip.h"
 
 class CTwistOfFateDialog :
     public CDialog,
@@ -26,6 +28,7 @@ class CTwistOfFateDialog :
         //{{AFX_VIRTUAL(CTwistOfFateDialog)
         virtual void DoDataExchange(CDataExchange* pDX);
         virtual BOOL OnInitDialog();
+        virtual void OnCancel();
         //}}AFX_VIRTUAL
 
         //{{AFX_MSG(CTwistOfFateDialog)
@@ -34,6 +37,8 @@ class CTwistOfFateDialog :
         afx_msg void OnButtonMinus();
         afx_msg void OnButtonPlus();
         afx_msg void OnComboTwistSelect();
+        afx_msg void OnComboTwistCancel();
+        afx_msg LRESULT OnHoverComboBox(WPARAM wParam, LPARAM lParam);
         //}}AFX_MSG
         DECLARE_MESSAGE_MAP()
 
@@ -43,14 +48,22 @@ class CTwistOfFateDialog :
     private:
         void SetupControls();
         void PopulateTwistCombobox();
+        void ShowTip(const EnhancementTreeItem & item, CRect itemRect);
+        void SetTooltipText(
+            const EnhancementTreeItem & item,
+            CPoint tipTopLeft,
+            CPoint tipAlternate);
         size_t m_twistIndex;
         CButton m_buttonMinus;
         CButton m_buttonPlus;
         CStatic m_staticTier;
-        CComboBoxEx m_comboTwistSelect;
+        CComboBoxTooltip m_comboTwistSelect;
         CImageList m_twistImages;
         Character * m_pCharacter;
         std::list<TrainedEnhancement> m_availableTwists;
+        CInfoTip m_tooltip;
+        bool m_bShowingTip;
+        bool m_bIgnoreNextMessage;
 };
 
 //{{AFX_INSERT_LOCATION}}

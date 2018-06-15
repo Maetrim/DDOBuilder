@@ -10609,7 +10609,7 @@ This is an active feat and can be turned off should you desire normal gravity to
    <Feat>
       <Name>Small Size Bonus</Name>
       <Description>As a Small creature, you receive a +1 size bonus to attack rolls and
-Armor Class and a +4 bonus on Hide checks.</Description>
+Armor Class and a +4 bonus on Hide checks. -4 penalty to Intimidate.</Description>
       <Requirements/>
       <Acquire>Automatic</Acquire>
       <Icon>SmallSizeBonus</Icon>
@@ -10624,13 +10624,13 @@ Armor Class and a +4 bonus on Hide checks.</Description>
       </AutomaticAcquisition>
       <Effect>
          <Type>AttackBonus</Type>
-         <Bonus>Feat</Bonus>
+         <Bonus>Size</Bonus>
          <Amount>1</Amount>
          <Weapon>All</Weapon>
       </Effect>
       <Effect>
          <Type>ACBonus</Type>
-         <Bonus>Feat</Bonus>
+         <Bonus>Size</Bonus>
          <Amount>1</Amount>
       </Effect>
       <Effect>
@@ -10638,6 +10638,12 @@ Armor Class and a +4 bonus on Hide checks.</Description>
          <Bonus>Feat</Bonus>
          <Skill>Hide</Skill>
          <Amount>4</Amount>
+      </Effect>
+      <Effect>
+         <Type>SkillBonus</Type>
+         <Bonus>Penalty</Bonus>
+         <Skill>Intimidate</Skill>
+         <Amount>-4</Amount>
       </Effect>
    </Feat>
    <Feat>

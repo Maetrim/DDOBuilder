@@ -18,6 +18,8 @@ BEGIN_MESSAGE_MAP(CTwistOfFateDialog, CDialog)
     ON_BN_CLICKED(IDC_PLUS, OnButtonPlus)
     ON_WM_ERASEBKGND()
     ON_CBN_SELENDOK(IDC_COMBO_TWISTSELECT, OnComboTwistSelect)
+    ON_CBN_SELENDCANCEL(IDC_COMBO_TWISTSELECT, OnComboTwistCancel)
+    ON_MESSAGE(WM_MOUSEHOVER, OnHoverComboBox)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 #pragma warning(pop)
@@ -25,7 +27,9 @@ END_MESSAGE_MAP()
 CTwistOfFateDialog::CTwistOfFateDialog(CWnd* pParent, size_t twistIndex) :
     CDialog(CTwistOfFateDialog::IDD, pParent),
     m_twistIndex(twistIndex),
-    m_pCharacter(NULL)
+    m_pCharacter(NULL),
+    m_bShowingTip(false),
+    m_bIgnoreNextMessage(false)
 {
     //{{AFX_DATA_INIT(CTwistOfFateDialog)
     //}}AFX_DATA_INIT
@@ -45,6 +49,7 @@ void CTwistOfFateDialog::DoDataExchange(CDataExchange* pDX)
 BOOL CTwistOfFateDialog::OnInitDialog()
 {
     CDialog::OnInitDialog();
+    m_tooltip.Create(this);
     SetupControls();
 
     return TRUE;  // return TRUE unless you set the focus to a control
@@ -223,14 +228,8 @@ void CTwistOfFateDialog::PopulateTwistCombobox()
         {
             strcpy_s(buffer, _MAX_PATH, "No Selection");
         }
-        COMBOBOXEXITEM item;
-        item.mask = CBEIF_IMAGE | CBEIF_TEXT | CBEIF_LPARAM | CBEIF_SELECTEDIMAGE;
-        item.iItem = twistIndex;
-        item.iImage = twistIndex;
-        item.iSelectedImage = twistIndex;
-        item.pszText = buffer;
-        item.lParam = twistIndex;
-        size_t pos = m_comboTwistSelect.InsertItem(&item);
+        size_t pos = m_comboTwistSelect.AddString(buffer);
+        m_comboTwistSelect.SetItemData(pos, twistIndex);
         ++twistIndex;
         ++pit;
     }
@@ -277,6 +276,11 @@ void CTwistOfFateDialog::OnButtonPlus()
 
 void CTwistOfFateDialog::OnComboTwistSelect()
 {
+    if (m_bShowingTip)
+    {
+        m_tooltip.Hide();
+        m_bShowingTip = false;
+    }
     // train the selected twist
     int sel = m_comboTwistSelect.GetCurSel();
     if (sel != CB_ERR)
@@ -287,3 +291,115 @@ void CTwistOfFateDialog::OnComboTwistSelect()
         m_pCharacter->SetTwist(m_twistIndex, &(*it));
     }
 }
+
+LRESULT CTwistOfFateDialog::OnHoverComboBox(WPARAM wParam, LPARAM lParam)
+{
+    if (!m_bIgnoreNextMessage)
+    {
+        // wParam = selected index
+        // lParam = control ID (only 1 control in this dialog)
+        if (m_bShowingTip)
+        {
+            m_tooltip.Hide();
+            m_bShowingTip = false;
+        }
+        if (wParam >= 0)
+        {
+            // we have a selection, get the twist item
+            std::list<TrainedEnhancement>::iterator it = m_availableTwists.begin();
+            std::advance(it, wParam);
+            const EnhancementTreeItem * item = FindEnhancement(
+                    (*it).EnhancementName());
+            if (item != NULL)
+            {
+                CRect rctWindow;
+                m_comboTwistSelect.GetWindowRect(&rctWindow);
+                rctWindow.right = rctWindow.left + m_comboTwistSelect.GetDroppedWidth();
+                ShowTip(*item, rctWindow);
+                m_bShowingTip = true;
+            }
+        }
+    }
+    m_bIgnoreNextMessage = false;
+    return 0;
+}
+
+void CTwistOfFateDialog::OnComboTwistCancel()
+{
+    // hide any tooltip being shown
+    if (m_bShowingTip)
+    {
+        m_tooltip.Hide();
+        m_bShowingTip = false;
+    }
+    m_bIgnoreNextMessage = true;
+}
+
+void CTwistOfFateDialog::ShowTip(const EnhancementTreeItem & item, CRect itemRect)
+{
+    if (m_bShowingTip)
+    {
+        m_tooltip.Hide();
+    }
+    CPoint tipTopLeft(itemRect.right, itemRect.bottom + 2);
+    CPoint tipAlternate(itemRect.right, itemRect.top - 2);
+    SetTooltipText(item, tipTopLeft, tipAlternate);
+    m_bShowingTip = true;
+}
+
+void CTwistOfFateDialog::SetTooltipText(
+        const EnhancementTreeItem & item,
+        CPoint tipTopLeft,
+        CPoint tipAlternate)
+{
+    const TrainedEnhancement * te = m_pCharacter->IsTrained(item.InternalName(), "");
+    const EnhancementSelection * es = NULL;
+    std::string selection;
+    m_tooltip.SetOrigin(tipTopLeft, tipAlternate, false);
+    if (te != NULL)
+    {
+        // this item is trained, we may need to show the selected sub-item tooltip text
+        if (te->HasSelection())
+        {
+            selection = te->Selection();
+            const Selector & selector = item.Selections();
+            const std::list<EnhancementSelection> & selections = selector.Selections();
+            // find the selected item
+            std::list<EnhancementSelection>::const_iterator it = selections.begin();
+            while (it != selections.end())
+            {
+                if ((*it).Name() == te->Selection())
+                {
+                    es = &(*it);
+                    break;
+                }
+                ++it;
+            }
+        }
+    }
+    if (es != NULL)
+    {
+        m_tooltip.SetEnhancementSelectionItem(
+                *m_pCharacter,
+                es,
+                te->Ranks());
+    }
+    else
+    {
+        // its a top level item without sub-options
+        std::string treeName;
+        FindEnhancement(te->EnhancementName(), &treeName);
+        m_tooltip.SetEnhancementTreeItem(
+                *m_pCharacter,
+                &item,
+                selection,
+                m_pCharacter->APSpentInTree(treeName));
+    }
+    m_tooltip.Show();
+}
+
+void CTwistOfFateDialog::OnCancel()
+{
+    // do nothing to stop dialog being dismissed
+}
+

@@ -955,8 +955,9 @@ size_t SkillPoints(
     default:
         break;
     }
-    // humans gain 1 extra skill point per level
-    if (race == Race_Human)
+    // humans/PDK gain 1 extra skill point per level
+    if (race == Race_Human
+            || race == Race_PurpleDragonKnight)
     {
         ++skillPoints;
     }

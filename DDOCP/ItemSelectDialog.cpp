@@ -35,7 +35,8 @@ CItemSelectDialog::CItemSelectDialog(
     m_hoverItem(-1),
     m_hoverHandle(0),
     m_armorType(Armor_Unknown),
-    m_weaponType(Weapon_Unknown)
+    m_weaponType(Weapon_Unknown),
+    m_bIgnoreNextMessage(false)
 {
     if (m_item.HasArmor())
     {
@@ -570,6 +571,7 @@ void CItemSelectDialog::OnAugmentSelect(UINT nID)
 void CItemSelectDialog::OnAugmentCancel(UINT nID)
 {
     HideTip();
+    m_bIgnoreNextMessage = true;
 }
 
 void CItemSelectDialog::PopulateSlotUpgradeList(
@@ -635,6 +637,7 @@ void CItemSelectDialog::OnUpgradeSelect(UINT nID)
 void CItemSelectDialog::OnUpgradeCancel(UINT nID)
 {
     HideTip();
+    m_bIgnoreNextMessage = true;
 }
 
 void CItemSelectDialog::OnButtonSentientJewel()
@@ -691,6 +694,7 @@ void CItemSelectDialog::OnUpgradeFiligree(UINT nID)
 void CItemSelectDialog::OnUpgradeFiligreeCancel(UINT nID)
 {
     HideTip();
+    m_bIgnoreNextMessage = true;
 }
 
 void CItemSelectDialog::OnUpgradeFiligreeRare(UINT nID)
@@ -1248,33 +1252,37 @@ void CItemSelectDialog::BuildImageList(
 
 LRESULT CItemSelectDialog::OnHoverComboBox(WPARAM wParam, LPARAM lParam)
 {
-    // wParam = selected index
-    // lParam = control ID
-    // as these are all augment combo boxes, we can treat them all the same
-    if (m_showingTip)
+    if (!m_bIgnoreNextMessage)
     {
-        m_tooltip.Hide();
-    }
-    if (wParam >= 0)
-    {
-        // we have a selection, get the filigree name
-        CString augmentName;
-        CWnd * pWnd = GetDlgItem(lParam);
-        CComboBox * pCombo =  dynamic_cast<CComboBox*>(pWnd);
-        pCombo->GetLBText(wParam, augmentName);
-        if (!augmentName.IsEmpty())
+        // wParam = selected index
+        // lParam = control ID
+        // as these are all augment combo boxes, we can treat them all the same
+        if (m_showingTip)
         {
-            CRect rctWindow;
-            pCombo->GetWindowRect(&rctWindow);
-            rctWindow.right = rctWindow.left + pCombo->GetDroppedWidth();
-            // tip is shown to the left or the right of the combo box
-            CPoint tipTopLeft(rctWindow.left, rctWindow.top);
-            CPoint tipAlternate(rctWindow.right, rctWindow.top);
-            Augment augment = FindAugmentByName((LPCTSTR)augmentName);
-            SetTooltipText(augment, tipTopLeft, tipAlternate, true);
-            m_showingTip = true;
+            m_tooltip.Hide();
+        }
+        if (wParam >= 0)
+        {
+            // we have a selection, get the filigree name
+            CString augmentName;
+            CWnd * pWnd = GetDlgItem(lParam);
+            CComboBox * pCombo =  dynamic_cast<CComboBox*>(pWnd);
+            pCombo->GetLBText(wParam, augmentName);
+            if (!augmentName.IsEmpty())
+            {
+                CRect rctWindow;
+                pCombo->GetWindowRect(&rctWindow);
+                rctWindow.right = rctWindow.left + pCombo->GetDroppedWidth();
+                // tip is shown to the left or the right of the combo box
+                CPoint tipTopLeft(rctWindow.left, rctWindow.top);
+                CPoint tipAlternate(rctWindow.right, rctWindow.top);
+                Augment augment = FindAugmentByName((LPCTSTR)augmentName);
+                SetTooltipText(augment, tipTopLeft, tipAlternate, true);
+                m_showingTip = true;
+            }
         }
     }
+    m_bIgnoreNextMessage = false;
     return 0;
 }
 

@@ -519,56 +519,87 @@ bool BreakdownItemWeaponEffects::IsLightWeapon(WeaponType wt) const
 bool BreakdownItemWeaponEffects::IsDamageType(WeaponType wt, WeaponDamageType type) const
 {
     bool isUs = false;
-    switch (wt)
+    switch (type)
     {
-    // bludgeoning weapons
-    case Weapon_Club:
-    case Weapon_GreatClub:
-    case Weapon_Handwraps:
-    case Weapon_HeavyMace:
-    case Weapon_LightHammer:
-    case Weapon_LightMace:
-    case Weapon_Maul:
-    case Weapon_Morningstar:
-    case Weapon_Quarterstaff:
-    case Weapon_Shuriken:
-    case Weapon_ThrowingHammer:
-    case Weapon_Warhammer:
-        isUs = (type == WeaponDamage_Bludgeoning);
+    case WeaponDamage_Bludgeoning:
+        switch (wt)
+        {
+            // bludgeoning weapons
+            case Weapon_Club:
+            case Weapon_GreatClub:
+            case Weapon_Handwraps:
+            case Weapon_HeavyMace:
+            case Weapon_LightHammer:
+            case Weapon_LightMace:
+            case Weapon_Maul:
+            case Weapon_Morningstar:
+            case Weapon_Quarterstaff:
+            case Weapon_Warhammer:
+                isUs = true;
+                break;
+        }
         break;
-    // slashing weapons
-    case Weapon_BastardSword:
-    case Weapon_BattleAxe:
-    case Weapon_DwarvenAxe:
-    case Weapon_Falchion:
-    case Weapon_GreatAxe:
-    case Weapon_GreatSword:
-    case Weapon_HandAxe:
-    case Weapon_Kama:
-    case Weapon_Khopesh:
-    case Weapon_Kukri:
-    case Weapon_Longsword:
-    case Weapon_Scimitar:
-    case Weapon_Sickle:
-    case Weapon_ThrowingAxe:
-        isUs = (type == WeaponDamage_Slashing);
+    case WeaponDamage_Slashing:
+        switch (wt)
+        {
+            // slashing weapons
+            case Weapon_BastardSword:
+            case Weapon_BattleAxe:
+            case Weapon_DwarvenAxe:
+            case Weapon_Falchion:
+            case Weapon_GreatAxe:
+            case Weapon_GreatSword:
+            case Weapon_HandAxe:
+            case Weapon_Kama:
+            case Weapon_Khopesh:
+            case Weapon_Kukri:
+            case Weapon_Longsword:
+            case Weapon_Scimitar:
+            case Weapon_Sickle:
+                isUs = true;
+                break;
+        }
         break;
-    // piercing weapons
-    case Weapon_Dagger:
-    case Weapon_Dart:
-    case Weapon_GreatCrossbow:
-    case Weapon_HeavyCrossbow:
-    case Weapon_HeavyPick:
-    case Weapon_LightCrossbow:
-    case Weapon_LightPick:
-    case Weapon_Longbow:
-    case Weapon_Rapier:
-    case Weapon_RepeatingHeavyCrossbow:
-    case Weapon_RepeatingLightCrossbow:
-    case Weapon_Shortbow:
-    case Weapon_Shortsword:
-    case Weapon_ThrowingDagger:
-        isUs = (type == WeaponDamage_Piercing);
+    case WeaponDamage_Piercing:
+        switch (wt)
+        {
+            // piercing weapons
+            case Weapon_Dagger:
+            case Weapon_HeavyPick:
+            case Weapon_LightPick:
+            case Weapon_Rapier:
+            case Weapon_Shortsword:
+                isUs = true;
+                break;
+        }
+        break;
+    case WeaponDamage_Ranged:
+        switch (wt)
+        {
+            // ranged weapons
+            case Weapon_GreatCrossbow:
+            case Weapon_HeavyCrossbow:
+            case Weapon_LightCrossbow:
+            case Weapon_Longbow:
+            case Weapon_RepeatingHeavyCrossbow:
+            case Weapon_RepeatingLightCrossbow:
+            case Weapon_Shortbow:
+                isUs = true;
+                break;
+        }
+        break;
+    case WeaponDamage_Thrown:
+        switch (wt)
+        {
+            // thrown weapons
+            case Weapon_Dart:
+            case Weapon_ThrowingAxe:
+            case Weapon_ThrowingDagger:
+            case Weapon_Shuriken:
+            case Weapon_ThrowingHammer:
+                isUs = true;
+                break;
+        }
         break;
     }
     // special types that are not specific weapons but work the same

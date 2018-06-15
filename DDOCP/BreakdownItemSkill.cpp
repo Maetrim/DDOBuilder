@@ -48,6 +48,11 @@ CString BreakdownItemSkill::Value() const
             value.Format(
                     "%5.1f",            // possible to have half ranks
                     Total());
+            if (m_skill == Skill_Jump)
+            {
+                // include the game cap in description
+                value += " (Caps at 40)";
+            }
         }
     }
     return value;

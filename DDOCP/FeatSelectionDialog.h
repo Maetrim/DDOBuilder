@@ -28,6 +28,7 @@ class CFeatSelectionDialog :
         //{{AFX_VIRTUAL(CFeatSelectionDialog)
         virtual void DoDataExchange(CDataExchange* pDX);
         virtual BOOL OnInitDialog();
+        virtual void OnCancel();
         //}}AFX_VIRTUAL
 
         //{{AFX_MSG(CFeatSelectionDialog)

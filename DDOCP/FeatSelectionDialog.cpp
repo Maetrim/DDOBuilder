@@ -253,3 +253,9 @@ void CFeatSelectionDialog::OnSize(UINT nType, int cx, int cy)
         m_featButton.MoveWindow(0, 0, cx, cy);
     }
 }
+
+void CFeatSelectionDialog::OnCancel()
+{
+    // do nothing to stop dialog being dismissed
+}
+

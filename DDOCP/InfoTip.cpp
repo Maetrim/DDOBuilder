@@ -503,6 +503,14 @@ void CInfoTip::SetItem(
     }
     m_requirements.clear();
     m_bRequirementMet.clear();
+    if (pItem->HasDropLocation())
+    {
+        CString location;
+        location.Format("Drop Location: %s", pItem->DropLocation().c_str());
+        m_requirements.push_back(location);
+        m_bRequirementMet.push_back(false);     // in red as not met to stand out
+        std::vector<bool> m_bRequirementMet;
+    }
     m_cost = "";
 }
 

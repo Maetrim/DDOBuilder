@@ -35,6 +35,8 @@ class CEpicDestiniesView :
         afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
         afx_msg LRESULT OnMouseEnter(WPARAM wParam, LPARAM lParam);
         afx_msg LRESULT OnMouseLeave(WPARAM wParam, LPARAM lParam);
+        afx_msg void OnHScroll(UINT, UINT, CScrollBar*);
+        afx_msg void OnVScroll( UINT, UINT, CScrollBar* );
         DECLARE_MESSAGE_MAP()
 
         // CharacterObserver overrides
@@ -49,7 +51,8 @@ class CEpicDestiniesView :
         void DestroyEnhancementWindows();
         void PopulateCombobox();
         void EnableControls();
-        void MoveFatePointControls();
+        void UpdateMouseHooks();
+        CSize MoveFatePointControls();
         void ShowTip(const EnhancementTreeItem & item, CRect itemRect);
         void HideTip();
         void SetTooltipText(const EnhancementTreeItem & item, CPoint tipTopLeft, CPoint tipAlternate);

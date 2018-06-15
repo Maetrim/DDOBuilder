@@ -140,4 +140,5 @@ class CLevelUpView :
         UINT m_hookLevelHandles[MAX_LEVEL];
         UINT m_automaticHandle;
         int m_hoverItem;
+        bool m_bIgnoreNextMessage;
 };

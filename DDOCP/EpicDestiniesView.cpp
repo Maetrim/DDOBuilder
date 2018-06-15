@@ -63,6 +63,8 @@ BEGIN_MESSAGE_MAP(CEpicDestiniesView, CFormView)
     ON_WM_CTLCOLOR()
     ON_MESSAGE(WM_MOUSEENTER, OnMouseEnter)
     ON_MESSAGE(WM_MOUSELEAVE, OnMouseLeave)
+    ON_WM_VSCROLL()
+    ON_WM_HSCROLL()
 END_MESSAGE_MAP()
 #pragma warning(pop)
 
@@ -163,27 +165,41 @@ void CEpicDestiniesView::OnSize(UINT nType, int cx, int cy)
             m_treeViews[ti]->MoveWindow(itemRect, false);
         }
         // fate point controls move depending on number of available twists
-        MoveFatePointControls();
-        // limit to visible area
-        for (size_t i = 0; i < MAX_TWISTS; ++i)
-        {
-            CRect rect;
-            m_twistsOfFate[i]->GetWindowRect(&rect);
-            ScreenToClient(&rect);
-            if (rect.right > cx)
-            {
-                rect.right = cx;
-            }
-            ClientToScreen(&rect);
-            GetMouseHook()->UpdateRectangle(
-                    m_hookTwistHandles[i],
-                    rect);          // screen coordinates,
-        }
+        CSize twistBottom = MoveFatePointControls();
+        // set scale based on area used by the windows.
+        // This will introduce scroll bars if required
+        int maxx = twistBottom.cx + c_controlSpacing;
+        int maxy = max(itemRect.bottom, twistBottom.cy) + c_controlSpacing;
+        SetScrollSizes(MM_TEXT, CSize(maxx, maxy));
+        UpdateMouseHooks();
     }
 }
 
-void CEpicDestiniesView::MoveFatePointControls()
+void CEpicDestiniesView::UpdateMouseHooks()
 {
+    CRect rect;
+    GetWindowRect(&rect);
+    int cx = rect.Width();
+    // limit to visible area
+    for (size_t i = 0; i < MAX_TWISTS; ++i)
+    {
+        CRect rect;
+        m_twistsOfFate[i]->GetWindowRect(&rect);
+        ScreenToClient(&rect);
+        if (rect.right > cx)
+        {
+            rect.right = cx;
+        }
+        ClientToScreen(&rect);
+        GetMouseHook()->UpdateRectangle(
+                m_hookTwistHandles[i],
+                rect);          // screen coordinates,
+    }
+}
+
+CSize CEpicDestiniesView::MoveFatePointControls()
+{
+    CSize bottomRight;
     // by default there are 4 twists of fate, unless the character has
     // the epic completionist. Then they have 5
     size_t twistIndex = 3;      // 0 based
@@ -212,7 +228,10 @@ void CEpicDestiniesView::MoveFatePointControls()
         rctTwist -= CPoint(rctTwist.left, 0);
         rctTwist += CPoint(c_sizeX + c_controlSpacing * 2, 0);
         m_twistsOfFate[ti]->MoveWindow(rctTwist);
+        bottomRight.cx = rctTwist.right;
+        bottomRight.cy = rctTwist.bottom;
     }
+    return bottomRight;
 }
 
 LRESULT CEpicDestiniesView::OnNewDocument(WPARAM wParam, LPARAM lParam)
@@ -642,4 +661,18 @@ void CEpicDestiniesView::SetTooltipText(
                 m_pCharacter->APSpentInTree(treeName));
     }
     m_tooltip.Show();
+}
+
+void CEpicDestiniesView::OnHScroll(UINT p1, UINT p2, CScrollBar* p3)
+{
+    // call base class
+    CFormView::OnHScroll(p1, p2, p3);
+    UpdateMouseHooks();
+}
+
+void CEpicDestiniesView::OnVScroll(UINT p1, UINT p2, CScrollBar* p3)
+{
+    // call base class
+    CFormView::OnVScroll(p1, p2, p3);
+    UpdateMouseHooks();
 }

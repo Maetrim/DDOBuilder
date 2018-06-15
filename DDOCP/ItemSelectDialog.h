@@ -118,4 +118,5 @@ class CItemSelectDialog : public CDialog
         UINT m_hoverHandle;
         int m_comboHookHandles[MAX_Filigree + 1];
         int m_augmentHookHandles[MAX_Augments];
+        bool m_bIgnoreNextMessage;
 };
