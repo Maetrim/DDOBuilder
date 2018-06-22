@@ -29,8 +29,6 @@ class CReaperEnhancementsView :
         afx_msg void OnSize(UINT nType, int cx, int cy);
         afx_msg BOOL OnEraseBkgnd(CDC* pDC);
         afx_msg LRESULT OnNewDocument(WPARAM wParam, LPARAM lParam);
-        afx_msg void OnButtonLeft();
-        afx_msg void OnButtonRight();
         DECLARE_MESSAGE_MAP()
 
     private:
@@ -46,9 +44,6 @@ class CReaperEnhancementsView :
         CDocument * m_pDocument;
         Character * m_pCharacter;
         std::vector<EnhancementTree> m_availableTrees;
-        CMFCButton m_buttonLeft;
-        CMFCButton m_buttonRight;
         std::vector<CDialog *> m_treeViews;
         std::vector<size_t> m_visibleTrees; // only some trees will be visible (indexes into m_treeViews)
-        size_t m_scrollOffset;
 };

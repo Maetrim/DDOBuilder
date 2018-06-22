@@ -59,6 +59,7 @@ std::string SentientJewel::Filigree(size_t fi) const
     case 4: if (HasFiligree5()) filigree = Filigree5(); break;
     case 5: if (HasFiligree6()) filigree = Filigree6(); break;
     case 6: if (HasFiligree7()) filigree = Filigree7(); break;
+    case 7: if (HasFiligree8()) filigree = Filigree8(); break;
     }
     return filigree;
 }
@@ -74,6 +75,7 @@ void SentientJewel::SetFiligree(size_t fi, const std::string & name)
     case 4: Set_Filigree5(name); break;
     case 5: Set_Filigree6(name); break;
     case 6: Set_Filigree7(name); break;
+    case 7: Set_Filigree8(name); break;
     }
 }
 
@@ -144,6 +146,15 @@ void SentientJewel::SetFiligreeRare(size_t fi, bool isRare)
                 Clear_RareFiligree7();
             }
             break;
+    case 7: if (isRare)
+            {
+                Set_RareFiligree8();
+            }
+            else
+            {
+                Clear_RareFiligree8();
+            }
+            break;
     }
 }
 
@@ -159,6 +170,7 @@ bool SentientJewel::IsRareFiligree(size_t fi) const
     case 4: isRare = HasRareFiligree5(); break;
     case 5: isRare = HasRareFiligree6(); break;
     case 6: isRare = HasRareFiligree7(); break;
+    case 7: isRare = HasRareFiligree8(); break;
     }
     return isRare;
 }

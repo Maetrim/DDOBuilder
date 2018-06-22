@@ -3483,7 +3483,7 @@ void Character::EpicDestiny_SetActiveDestiny(const std::string & treeName)
             // copy back into the tree list after it becomes de-active
             EpicDestinySpendInTree copy = *pPrevious;
             EpicDestiny_ResetEnhancementTree(ActiveEpicDestiny());
-            // no re-insert the copy back into the trained tree list
+            // now re-insert the copy back into the trained tree list
             ASSERT(EpicDestiny_FindTree(ActiveEpicDestiny()) == NULL);
             m_EpicDestinyTreeSpend.push_back(copy);
         }
@@ -3794,7 +3794,7 @@ bool Character::CanUpgradeTwist(size_t twistIndex) const
 void Character::UpgradeTwist(size_t twistIndex)
 {
     // note that upgrading a twist level cannot invalidate any
-    // trained enhancement
+    // trained twist
     ASSERT(twistIndex < MAX_TWISTS);
     ASSERT(TwistTier(twistIndex) < MAX_TWIST_LEVEL);
     std::list<TwistOfFate>::iterator it = m_Twists.begin();
@@ -3814,7 +3814,7 @@ void Character::DowngradeTwist(size_t twistIndex)
     (*it).DecrementTier();
     NotifyFatePointsChanged();  // number available has changed
     m_pDocument->SetModifiedFlag(TRUE);
-    // if the twist can no longer hold the trained enhancement, revoke it
+    // if the twist can no longer hold the trained twist, revoke it
     const TrainedEnhancement * trainedTwist = TrainedTwist(twistIndex);
     if (trainedTwist != NULL)
     {
@@ -3851,7 +3851,7 @@ std::list<TrainedEnhancement> Character::AvailableTwists(size_t twistIndex) cons
     // trained enhancements in all destinies except the active one
     // we only include the TrainedEnhancement if:
     // its not a core item
-    // its tier is less than or equal to the max tier
+    // its tier is less than or equal to the max tier of the twist
     std::list<EpicDestinySpendInTree>::const_iterator edti = m_EpicDestinyTreeSpend.begin();
     while (edti != m_EpicDestinyTreeSpend.end())
     {
@@ -4165,7 +4165,7 @@ void Character::RevokeGearEffects()
                         // name is:
                         // <item>:<augment type>:<Augment name>
                         std::stringstream ss;
-                        ss << "Sentient Weapon Filigree " << (si + 1)
+                        ss << "Filigree " << (si + 1)
                                 << ": " << augment.Name();
                         // now revoke the augments effects
                         std::string name;
@@ -4291,7 +4291,7 @@ void Character::ApplyGearEffects()
                         // name is:
                         // <item>:<augment type>:<Augment name>
                         std::stringstream ss;
-                        ss << "Sentient Weapon Filigree " << (si + 1)
+                        ss << "Filigree " << (si + 1)
                                 << ": " << augment.Name();
                         // now revoke the augments effects
                         std::string name;
@@ -4544,9 +4544,8 @@ void Character::UpdateWeaponStances()
 void Character::UpdateArmorStances()
 {
     EquippedGear gear = ActiveGearSet();
-    // also depending of the items equipped in Inventory_Weapon1/2 decide
-    // which of the combat stances is active
-    // TWF, THF, SWF, Unarmed, Sword and Board, Staff, Orb, RuneArm, Swashbuckling
+    // also depending of the item equipped in Inventory_Armor decide
+    // which of the armor stances is active
     Stance cloth("Cloth Armor", "", "");
     Stance light("Light Armor", "", "");
     Stance medium("Medium Armor", "", "");
@@ -4613,6 +4612,14 @@ void Character::UpdateArmorStances()
             DeactivateStance(light);
             DeactivateStance(medium);
             ActivateStance(heavy);
+        }
+        else if (IsFeatTrained("Mithral Body"))
+        {
+            // Mithral body is light armor
+            DeactivateStance(cloth);
+            ActivateStance(light);
+            DeactivateStance(medium);
+            DeactivateStance(heavy);
         }
         else
         {

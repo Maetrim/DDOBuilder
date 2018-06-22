@@ -2,7 +2,7 @@
 <Enhancements>
    <EnhancementTree>
       <Name>Angel of Vengeance</Name>
-      <Version>1</Version>
+      <Version>2</Version>
       <Requirements>
          <Requirement>
             <Class>Favored Soul</Class>
@@ -129,10 +129,11 @@ Cost: 20 spell points. Cooldown: 6 second.</Description>
       <EnhancementTreeItem>
          <Name>Angel of Vengeance: Vengeful Magic</Name>
          <InternalName>AoVCore5</InternalName>
-         <Description>You gain a +1% Sacred bonus to Spell Critical chance when below 75% health,
-a +1 Sacred bonus to your spell DC's when below 50% health, and a +50% Sacred
+         <Description>You gain a +1% Sacred bonus to Spell Critical chance when below 80% health,
+a +1 Sacred bonus to your spell DC's when below 60% health, and a +50% Sacred
 bonus Spell Critical Damage Multiplier with Fire, Force, Light, and Physical
-damage spells when below 25% health.</Description>
+damage spells when below 40% health.
+PAssive: +20 Light and Alignment Spell Power</Description>
          <Icon>AoVVengefulMagic</Icon>
          <XPosition>4</XPosition>
          <YPosition>0</YPosition>
@@ -156,14 +157,18 @@ damage spells when below 25% health.</Description>
             <Amount>1</Amount>
             <Stance>75% Hitpoints</Stance>
          </Effect>
+         <Effect>
+            <Type>Spellpower</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>Light</SpellPower>
+            <SpellPower>Alignment</SpellPower>
+            <Amount>20</Amount>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Angel of Vengeance: Ascendancy</Name>
          <InternalName>AoVCore6</InternalName>
-         <Description>Passive: You gain +2 Charisma and +2 to two skills.
-Active: You are able to cast a low level spell at will without using spell points.
-Choose One:
-          </Description>
+         <Description>Choose between Wisdom and Charisma variants:</Description>
          <Icon>AoVAscendancy</Icon>
          <XPosition>5</XPosition>
          <YPosition>0</YPosition>
@@ -182,87 +187,28 @@ Choose One:
          </Requirements>
          <Selector>
             <EnhancementSelection>
-               <Name>Bolt of the Sun</Name>
-               <Description>You gain +2 to the Diplomacy and Spellcraft skills, and are able to cast the
-spell Sun Bolt at will without using spell points.</Description>
-               <Icon>AoVBoltOfTheSun</Icon>
+               <Name>Shine Bright (Charisma)</Name>
+               <Description>Spell Like Ability: Searing Light. You can cast the spell Searing Light at
+will without using spell points.
+PAssive: You gain +4 to Charimsa, +20 universal Spell power and +2 to all skills.</Description>
+               <Icon>AoVShineBrightCharisma</Icon>
                <Cost>1</Cost>
-               <Requirements>
-                  <Requirement>
-                     <Feat>Favored By Amaunator</Feat>
-                  </Requirement>
-               </Requirements>
                <Effect>
                   <Type>AbilityBonus</Type>
                   <Bonus>Enhancement</Bonus>
                   <Ability>Charisma</Ability>
-                  <Amount>2</Amount>
+                  <Amount>4</Amount>
+               </Effect>
+               <Effect>
+                  <Type>SpellPower</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <SpellPower>All</SpellPower>
+                  <Amount>20</Amount>
                </Effect>
                <Effect>
                   <Type>SkillBonus</Type>
                   <Bonus>Enhancement</Bonus>
-                  <Skill>Diplomacy</Skill>
-                  <Skill>Spell Craft</Skill>
-                  <Amount>2</Amount>
-               </Effect>
-               <Effect>
-                  <Type>SpellLikeAbility</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <SpellLikeAbility>Sun Bolt</SpellLikeAbility>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Healing Word</Name>
-               <Description>You gain +2 to the Diplomacy and Heal skills, and are able to cast the spell
-Cure Light Wounds at will without using spell points. </Description>
-               <Icon>AoVHealingWord</Icon>
-               <Cost>1</Cost>
-               <Requirements>
-                  <Requirement>
-                     <Feat>Favored by the Sovereign Host</Feat>
-                  </Requirement>
-               </Requirements>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Ability>Charisma</Ability>
-                  <Amount>2</Amount>
-               </Effect>
-               <Effect>
-                  <Type>SkillBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Skill>Diplomacy</Skill>
-                  <Skill>Heal</Skill>
-                  <Amount>2</Amount>
-               </Effect>
-               <Effect>
-                  <Type>SpellLikeAbility</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <SpellLikeAbility>Cure Light Wounds</SpellLikeAbility>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Light of the Flame</Name>
-               <Description>You gain +2 to the Intimidate and Heal skills, and are able to cast the spell
-Searing Light at will without using spell points.</Description>
-               <Icon>AoVLightOfTheFlame</Icon>
-               <Cost>1</Cost>
-               <Requirements>
-                  <Requirement>
-                     <Feat>Favored by the Silver Flame</Feat>
-                  </Requirement>
-               </Requirements>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Ability>Charisma</Ability>
-                  <Amount>2</Amount>
-               </Effect>
-               <Effect>
-                  <Type>SkillBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Skill>Intimidate</Skill>
-                  <Skill>Heal</Skill>
+                  <Skill>All</Skill>
                   <Amount>2</Amount>
                </Effect>
                <Effect>
@@ -272,105 +218,69 @@ Searing Light at will without using spell points.</Description>
                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
-               <Name>Protection of the Blade</Name>
-               <Description>You gain +2 to the Intimidate and Repair skills, and are able to cast the spell
-Shield at will without using spell points.</Description>
-               <Icon>AoVProtectionOfTheBlade</Icon>
+               <Name>Shine Bright (Wisdom)</Name>
+               <Description>Spell Like Ability: Searing Light. You can cast the spell Searing Light at
+will without using spell points.
+PAssive: You gain +4 to Wisdom, +20 universal Spell power and +2 to all skills.</Description>
+               <Icon>AoVShineBrightWisdom</Icon>
                <Cost>1</Cost>
-               <Requirements>
-                  <Requirement>
-                     <Feat>Favored by the Lord of Blades</Feat>
-                  </Requirement>
-               </Requirements>
                <Effect>
                   <Type>AbilityBonus</Type>
                   <Bonus>Enhancement</Bonus>
-                  <Ability>Charisma</Ability>
-                  <Amount>2</Amount>
+                  <Ability>Wisdom</Ability>
+                  <Amount>4</Amount>
+               </Effect>
+               <Effect>
+                  <Type>SpellPower</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <SpellPower>All</SpellPower>
+                  <Amount>20</Amount>
                </Effect>
                <Effect>
                   <Type>SkillBonus</Type>
                   <Bonus>Enhancement</Bonus>
-                  <Skill>Intimidate</Skill>
-                  <Skill>Repair</Skill>
+                  <Skill>All</Skill>
                   <Amount>2</Amount>
                </Effect>
                <Effect>
                   <Type>SpellLikeAbility</Type>
                   <Bonus>Enhancement</Bonus>
-                  <SpellLikeAbility>Shield</SpellLikeAbility>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Stealth of the Hunter</Name>
-               <Description>You gain +2 to the Hide and Move Silently skills, and are able to cast the spell
-Invisibility at will without using spell points.</Description>
-               <Icon>AoVStealthOfTheHunter</Icon>
-               <Cost>1</Cost>
-               <Requirements>
-                  <Requirement>
-                     <Feat>Favored by Vulkoor</Feat>
-                  </Requirement>
-               </Requirements>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Ability>Charisma</Ability>
-                  <Amount>2</Amount>
-               </Effect>
-               <Effect>
-                  <Type>SkillBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Skill>Hide</Skill>
-                  <Skill>Move Silently</Skill>
-                  <Amount>2</Amount>
-               </Effect>
-               <Effect>
-                  <Type>SpellLikeAbility</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <SpellLikeAbility>Invisibility</SpellLikeAbility>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Voice of the Deathless</Name>
-               <Description>You gain +2 to the Spot and Search skills, and are able to cast the spell
-Command Undead at will without using spell points.</Description>
-               <Icon>AoVVoiceOfTheDeathless</Icon>
-               <Cost>1</Cost>
-               <Requirements>
-                  <Requirement>
-                     <Feat>Favored by the Undying court</Feat>
-                  </Requirement>
-               </Requirements>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Ability>Charisma</Ability>
-                  <Amount>2</Amount>
-               </Effect>
-               <Effect>
-                  <Type>SkillBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Skill>Spot</Skill>
-                  <Skill>Search</Skill>
-                  <Amount>2</Amount>
-               </Effect>
-               <Effect>
-                  <Type>SpellLikeAbility</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <SpellLikeAbility>Command Undead</SpellLikeAbility>
+                  <SpellLikeAbility>Searing Light</SpellLikeAbility>
                </Effect>
             </EnhancementSelection>
          </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Angel of Vengeance: Nimbus of Light</Name>
+         <InternalName>AoVNimbusOfLight</InternalName>
+         <Description>Spell Like Ability: A glittering corona of light coalesces around your
+outstretched arm, dealing 5 to 8 points of light damage plus an additional 1
+for every caster level.
+This ray has double spell range.
+Spell point cost: 4/3/2 spell points
+Cooldown: 12/8/4 seconds</Description>
+         <Icon>AoVNimbusOfLight</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Favored Soul</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Angel of Vengeance: Scourge</Name>
          <InternalName>AoVScourge</InternalName>
          <Description>Whenever you cast a Fire, Force, Light, or Physical damage spell,
 you gain +3 to your Fire, Force, Light, or Physical Spell Power for 6 seconds.
-This stacks up to 3/6/10 times.</Description>
+This stacks up to 3/6/10 times. In addition, when you take damage you have a 20%
+chance to gain a stack of Scourge</Description>
          <Icon>AoVScourge</Icon>
-         <XPosition>0</XPosition>
+         <XPosition>1</XPosition>
          <YPosition>1</YPosition>
          <Cost>1</Cost>
          <Ranks>3</Ranks>
@@ -381,26 +291,6 @@ This stacks up to 3/6/10 times.</Description>
             <Requirement>
                <Class>Favored Soul</Class>
                <Level>1</Level>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Angel of Vengeance: Animus</Name>
-         <InternalName>AoVAnimus</InternalName>
-         <Description>You gain On Damaged: You have a [20/50/100]% chance to gain one stack of Scourge.</Description>
-         <Icon>AoVAnimus</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>1</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>1</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Class>Favored Soul</Class>
-               <Level>1</Level>
-            </Requirement>
-            <Requirement>
-               <Enhancement>AoVScourge</Enhancement>
             </Requirement>
          </Requirements>
       </EnhancementTreeItem>
@@ -484,10 +374,10 @@ This stacks up to 3/6/10 times.</Description>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Angel of Vengeance: Just Reward</Name>
-         <InternalName>AoVJustReward</InternalName>
-         <Description>When you critically hit with a Fire, Force, Light, or Physical damage spell, you gain 3/6/10 Sacred temporary spell points.</Description>
-         <Icon>AoVJustReward</Icon>
+         <Name>Angel of Vengeance: Wand and Scroll Mastery</Name>
+         <InternalName>AoVWandAndScrollMastery</InternalName>
+         <Description>+[25/50/75]% effectiveness of your wands, scrolls and other items that cast spells.</Description>
+         <Icon>AoVWandAndScrollMastery</Icon>
          <XPosition>0</XPosition>
          <YPosition>2</YPosition>
          <Cost>1</Cost>
@@ -498,9 +388,36 @@ This stacks up to 3/6/10 times.</Description>
                <Class>Favored Soul</Class>
                <Level>2</Level>
             </Requirement>
-            <Requirement>
-               <Enhancement>AoVScourge</Enhancement>
-            </Requirement>
+            <RequiresNoneOf>
+               <DisplayDescription>Any other Wand and Scroll Mastery enhancement</DisplayDescription>
+               <Requirement>
+                  <Enhancement>DeepGnomeWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>GnomeWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>ATWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>SSWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>SHWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>MechWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>EKWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>TSWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>AMWandAndScrollMastery</Enhancement>
+               </Requirement>
+            </RequiresNoneOf>
          </Requirements>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -938,19 +855,24 @@ Reduce the spell point cost of using that Metamagic.</Description>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Angel of Vengeance: Articles of Faith</Name>
-         <InternalName>AoVArticalsOfFaith</InternalName>
-         <Description>Your deity's favored weapon is considered a Spellcasting Implement in your hands.</Description>
-         <Icon>AoVArticalsOfFaith</Icon>
+         <Name>Angel of Vengeance: Just Reward</Name>
+         <InternalName>AoVJustReward</InternalName>
+         <Description>When you critically hit with a Fire, Force, Light, or Physical damage spell,
+you gain 3/6/10 Sacred temporary spell points.
+Passive: Your deity's favored weapon is considered an Implement in your hands.</Description>
+         <Icon>AoVJustReward</Icon>
          <XPosition>3</XPosition>
          <YPosition>2</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
          <MinSpent>5</MinSpent>
          <Requirements>
             <Requirement>
                <Class>Favored Soul</Class>
                <Level>2</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>AoVScourge</Enhancement>
             </Requirement>
          </Requirements>
       </EnhancementTreeItem>
@@ -986,10 +908,14 @@ Cooldown: 30 seconds. (Action boost, 5 uses per rest)</Description>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Angel of Vengeance: Wand and Scroll Mastery</Name>
-         <InternalName>AoVWandAndScrollMastery</InternalName>
-         <Description>+[25/50/75]% effectiveness of your wands, scrolls and other items that cast spells.</Description>
-         <Icon>AoVWandAndScrollMastery</Icon>
+         <Name>Angel of Vengeance: Sun Bolt</Name>
+         <InternalName>AoVSunBolt</InternalName>
+         <Description>Spell Like Ability: A powerful bolt of light deals 5 to 8 light damage
+per caster level (Max caster level 15) to targets in its path. A successful Reflex
+save reduces the damage by half.
+Spell point cost: 12/10/8 spell points
+Cooldown: 12/9/6 seconds</Description>
+         <Icon>AoVSunBolt</Icon>
          <XPosition>0</XPosition>
          <YPosition>3</YPosition>
          <Cost>1</Cost>
@@ -1000,36 +926,6 @@ Cooldown: 30 seconds. (Action boost, 5 uses per rest)</Description>
                <Class>Favored Soul</Class>
                <Level>3</Level>
             </Requirement>
-            <RequiresNoneOf>
-               <DisplayDescription>Any other Wand and Scroll Mastery enhancement</DisplayDescription>
-               <Requirement>
-                  <Enhancement>DeepGnomeWandAndScrollMastery</Enhancement>
-               </Requirement>
-               <Requirement>
-                  <Enhancement>GnomeWandAndScrollMastery</Enhancement>
-               </Requirement>
-               <Requirement>
-                  <Enhancement>ATWandAndScrollMastery</Enhancement>
-               </Requirement>
-               <Requirement>
-                  <Enhancement>SSWandAndScrollMastery</Enhancement>
-               </Requirement>
-               <Requirement>
-                  <Enhancement>SHWandAndScrollMastery</Enhancement>
-               </Requirement>
-               <Requirement>
-                  <Enhancement>MechWandAndScrollMastery</Enhancement>
-               </Requirement>
-               <Requirement>
-                  <Enhancement>EKWandAndScrollMastery</Enhancement>
-               </Requirement>
-               <Requirement>
-                  <Enhancement>TSWandAndScrollMastery</Enhancement>
-               </Requirement>
-               <Requirement>
-                  <Enhancement>AMWandAndScrollMastery</Enhancement>
-               </Requirement>
-            </RequiresNoneOf>
          </Requirements>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -1710,6 +1606,37 @@ monster which you have personally summoned. Cooldown: 15 seconds.</Description>
          </Selector>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
+         <Name>Angel of Vengeance: Cometfall</Name>
+         <InternalName>AoVCometfall</InternalName>
+         <Description>Spell Like Abaility: You conjure a bright, glowing comet, which appears in midair above
+your target, then strikes the ground with tremendous force. This area
+of effect spell does 2d3+6 points of bludgeon damage for every 2 caster
+levels. A successful Reflex save reduces the damage by half. The force
+of this comet can knock some creatures prone. Another successful Reflex
+save negates the knockdown portion.
+Spell point cost: 35/30/25
+Cooldown: 20/15/12 seconds</Description>
+         <Icon>AoVCometfall</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>30</MinSpent>
+         <Clickie/>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <Class>Favored Soul</Class>
+               <Level>5</Level>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>SpellLikeAbility</Type>
+              <Bonus>Enhancement</Bonus>
+              <SpellLikeAbility>Cometfall</SpellLikeAbility>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
          <Name>Angel of Vengeance: Unstoppable Magic</Name>
          <InternalName>AoVUnstoppableMagic</InternalName>
          <Description>Enemies within your Aura of Menace suffer a -1/-2/-3 penalty to Spell Resistance.</Description>
@@ -1768,7 +1695,7 @@ your spell DCs of that school.</Description>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Angel of Vengeance:  Zealous Faith</Name>
+         <Name>Angel of Vengeance: Zealous Faith</Name>
          <InternalName>AoVZealousFaith</InternalName>
          <Description>The maximum caster level of your Fire, Force, Light, and Physical damage
 spells are increased by 1/2/3.</Description>
@@ -1786,6 +1713,29 @@ spells are increased by 1/2/3.</Description>
             </Requirement>
             <Requirement>
                <Enhancement>AoVIntenseFaith</Enhancement>
+            </Requirement>
+            <Requirement>
+               <MinLevel>12</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Angel of Vengeance: Archon's Fury</Name>
+         <InternalName>AoVArchonsFury</InternalName>
+         <Description>Toggle: Your Lantern Archon's attacks will add a stack of Archon's Fury.
+Archon's Fury: 1d6+1 Fire damage every 2 seconds for 10 seconds, stacks up to 20 times.
+While toggled on, every shot from your Archon costs 12 Spell Points.</Description>
+         <Icon>AoVArchonsFury</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <Class>Favored Soul</Class>
+               <Level>5</Level>
             </Requirement>
             <Requirement>
                <MinLevel>12</MinLevel>

@@ -45,6 +45,7 @@ class CItemSelectDialog : public CDialog
         afx_msg void OnHoverListItems(NMHDR* pNMHDR, LRESULT* pResult);
         afx_msg void OnSelEndOkFilter();
         afx_msg void OnButtonSentientJewel();
+        afx_msg void OnButtonSentientSpark();
         afx_msg LRESULT OnHoverComboBox(WPARAM wParam, LPARAM lParam);
         afx_msg LRESULT OnMouseEnter(WPARAM wParam, LPARAM lParam);
         afx_msg LRESULT OnMouseLeave(WPARAM wParam, LPARAM lParam);
@@ -98,9 +99,11 @@ class CItemSelectDialog : public CDialog
         CStatic m_upgradeType[MAX_Upgrades];
         CComboBox m_comboUpgradeDropList[MAX_Upgrades];
         CButton m_buttonSentientJewel;
+        CButton m_buttonSentientSpark;
         CStatic m_sentientLabel;
         CComboBoxTooltip m_comboSentientPersonality;
         CImageList m_ilJewel;
+        CStatic m_staticLabelFiligree[MAX_Filigree];
         CComboBoxTooltip m_comboFiligreeDropList[MAX_Filigree];
         CButton m_buttonFiligreeRare[MAX_Filigree];
         CImageList m_ilFiligree[MAX_Filigree];

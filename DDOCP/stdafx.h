@@ -47,7 +47,7 @@
 #define MAX_TWISTS              5
 #define MAX_TWIST_LEVEL         4
 #define MAX_ENHANCEMENT_TREES   7
-#define MAX_FILIGREE            7
+#define MAX_FILIGREE            8
 
 enum TreeType
 {

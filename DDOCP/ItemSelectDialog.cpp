@@ -83,10 +83,12 @@ void CItemSelectDialog::DoDataExchange(CDataExchange* pDX)
         DDX_Control(pDX, IDC_COMBO_UPGRADE1 + i, m_comboUpgradeDropList[i]);
     }
     DDX_Control(pDX, IDC_CHECK_SENTIENT_SLOTTED, m_buttonSentientJewel);
+    DDX_Control(pDX, IDC_CHECK_SENTIENT_SPARK, m_buttonSentientSpark);
     DDX_Control(pDX, IDC_STATIC_SENTIENT_LABEL, m_sentientLabel);
     DDX_Control(pDX, IDC_COMBO_PERSONALITY, m_comboSentientPersonality);
     for (size_t i = 0; i < MAX_Filigree; ++i)
     {
+        DDX_Control(pDX, IDC_STATIC_FILIGREE1 + i, m_staticLabelFiligree[i]);
         DDX_Control(pDX, IDC_COMBO_FILIGREE1 + i, m_comboFiligreeDropList[i]);
         DDX_Control(pDX, IDC_CHECK_FILGREE_RARE1 + i, m_buttonFiligreeRare[i]);
     }
@@ -94,16 +96,16 @@ void CItemSelectDialog::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(CItemSelectDialog, CDialog)
     ON_NOTIFY(LVN_ITEMCHANGED, IDC_ITEM_LIST, OnItemSelected)
-    ON_CONTROL_RANGE(CBN_SELENDOK, IDC_COMBO_AUGMENT1, IDC_COMBO_AUGMENT1 + MAX_Augments, OnAugmentSelect)
-    ON_CONTROL_RANGE(CBN_SELENDCANCEL, IDC_COMBO_AUGMENT1, IDC_COMBO_AUGMENT1 + MAX_Augments, OnAugmentCancel)
-    ON_CONTROL_RANGE(CBN_SELENDOK, IDC_COMBO_UPGRADE1, IDC_COMBO_UPGRADE1 + MAX_Upgrades, OnUpgradeSelect)
-    ON_CONTROL_RANGE(CBN_SELENDCANCEL, IDC_COMBO_UPGRADE1, IDC_COMBO_UPGRADE1 + MAX_Upgrades, OnUpgradeCancel)
-    ON_CONTROL_RANGE(EN_KILLFOCUS, IDC_EDIT_AUGMENT1, IDC_EDIT_AUGMENT1 + MAX_Augments, OnKillFocusAugmentEdit)
+    ON_CONTROL_RANGE(CBN_SELENDOK, IDC_COMBO_AUGMENT1, IDC_COMBO_AUGMENT1 + MAX_Augments - 1, OnAugmentSelect)
+    ON_CONTROL_RANGE(CBN_SELENDCANCEL, IDC_COMBO_AUGMENT1, IDC_COMBO_AUGMENT1 + MAX_Augments - 1, OnAugmentCancel)
+    ON_CONTROL_RANGE(CBN_SELENDOK, IDC_COMBO_UPGRADE1, IDC_COMBO_UPGRADE1 + MAX_Upgrades - 1, OnUpgradeSelect)
+    ON_CONTROL_RANGE(CBN_SELENDCANCEL, IDC_COMBO_UPGRADE1, IDC_COMBO_UPGRADE1 + MAX_Upgrades - 1, OnUpgradeCancel)
+    ON_CONTROL_RANGE(EN_KILLFOCUS, IDC_EDIT_AUGMENT1, IDC_EDIT_AUGMENT1 + MAX_Augments - 1, OnKillFocusAugmentEdit)
     ON_CBN_SELENDOK(IDC_COMBO_PERSONALITY, OnSelEndOkPersonality)
     ON_CBN_SELENDOK(IDC_COMBO_FILTER, OnSelEndOkFilter)
-    ON_CONTROL_RANGE(CBN_SELENDOK, IDC_COMBO_UPGRADE1, IDC_COMBO_FILIGREE1 + MAX_Filigree, OnUpgradeFiligree)
-    ON_CONTROL_RANGE(CBN_SELENDCANCEL, IDC_COMBO_UPGRADE1, IDC_COMBO_FILIGREE1 + MAX_Filigree, OnUpgradeFiligreeCancel)
-    ON_CONTROL_RANGE(BN_CLICKED, IDC_CHECK_FILGREE_RARE1, IDC_CHECK_FILGREE_RARE1 + MAX_Filigree, OnUpgradeFiligreeRare)
+    ON_CONTROL_RANGE(CBN_SELENDOK, IDC_COMBO_UPGRADE1, IDC_COMBO_FILIGREE1 + MAX_Filigree - 1, OnUpgradeFiligree)
+    ON_CONTROL_RANGE(CBN_SELENDCANCEL, IDC_COMBO_UPGRADE1, IDC_COMBO_FILIGREE1 + MAX_Filigree - 1, OnUpgradeFiligreeCancel)
+    ON_CONTROL_RANGE(BN_CLICKED, IDC_CHECK_FILGREE_RARE1, IDC_CHECK_FILGREE_RARE1 + MAX_Filigree - 1, OnUpgradeFiligreeRare)
     ON_WM_SIZE()
     ON_WM_WINDOWPOSCHANGING()
     ON_NOTIFY(HDN_ENDTRACK, IDC_ITEM_LIST, OnEndtrackListItems)
@@ -112,6 +114,7 @@ BEGIN_MESSAGE_MAP(CItemSelectDialog, CDialog)
     ON_NOTIFY(NM_HOVER, IDC_ITEM_LIST, OnHoverListItems)
     ON_MESSAGE(WM_MOUSELEAVE, OnMouseLeave)
     ON_BN_CLICKED(IDC_CHECK_SENTIENT_SLOTTED, OnButtonSentientJewel)
+    ON_BN_CLICKED(IDC_CHECK_SENTIENT_SPARK, OnButtonSentientSpark)
     ON_MESSAGE(WM_MOUSEHOVER, OnHoverComboBox)
     ON_MESSAGE(WM_MOUSEENTER, OnMouseEnter)
 END_MESSAGE_MAP()
@@ -657,6 +660,27 @@ void CItemSelectDialog::OnButtonSentientJewel()
     SetSentientWeaponControls();
 }
 
+void CItemSelectDialog::OnButtonSentientSpark()
+{
+    bool enabled = (m_buttonSentientSpark.GetCheck() != 0);
+    if (enabled)
+    {
+        SentientJewel jewel = m_item.SentientIntelligence();
+        jewel.Set_SentientSpark();
+        m_item.Set_SentientIntelligence(jewel);
+    }
+    else
+    {
+        // just clear the sentient spark
+        SentientJewel jewel = m_item.SentientIntelligence();
+        jewel.Clear_SentientSpark();
+        jewel.Clear_Filigree8();        // no filigree
+        jewel.Clear_RareFiligree8();    // no filigree rare
+        m_item.Set_SentientIntelligence(jewel);
+    }
+    SetSentientWeaponControls();
+}
+
 void CItemSelectDialog::OnSelEndOkPersonality()
 {
     int selection = m_comboSentientPersonality.GetCurSel();
@@ -1110,7 +1134,12 @@ void CItemSelectDialog::SetSentientWeaponControls()
 {
     if (m_slot == Inventory_Weapon1)
     {
-        m_buttonSentientJewel.SetCheck(m_item.HasSentientIntelligence()
+        bool hasJewel = m_item.HasSentientIntelligence();
+        m_buttonSentientJewel.SetCheck(hasJewel
+                ? BST_CHECKED
+                : BST_UNCHECKED);
+        m_buttonSentientSpark.EnableWindow(hasJewel);
+        m_buttonSentientSpark.SetCheck(m_item.SentientIntelligence().HasSentientSpark()
                 ? BST_CHECKED
                 : BST_UNCHECKED);
         // enable and populate the Filigree drop list controls
@@ -1221,6 +1250,15 @@ void CItemSelectDialog::PopulateFiligreeCombobox(size_t filigreeIndex)
             ++it;
             ++index;
         }
+        if (filigreeIndex == MAX_Filigree - 1)
+        {
+            // for this control to be displayed, "Sentient Spark" must be
+            // enabled
+            bool visible = m_item.SentientIntelligence().HasSentientSpark();
+            m_staticLabelFiligree[filigreeIndex].ShowWindow(visible ? SW_SHOW : SW_HIDE);
+            m_comboFiligreeDropList[filigreeIndex].ShowWindow(visible ? SW_SHOW : SW_HIDE);
+            m_buttonFiligreeRare[filigreeIndex].ShowWindow(visible ? SW_SHOW : SW_HIDE);
+        }
     }
     else
     {
@@ -1228,6 +1266,13 @@ void CItemSelectDialog::PopulateFiligreeCombobox(size_t filigreeIndex)
         m_comboFiligreeDropList[filigreeIndex].EnableWindow(false);
         m_comboFiligreeDropList[filigreeIndex].ResetContent();
         m_buttonFiligreeRare[filigreeIndex].EnableWindow(false);
+        if (filigreeIndex == MAX_Filigree - 1)
+        {
+            // no filigree 8 without a sentient jewel
+            m_staticLabelFiligree[filigreeIndex].ShowWindow(SW_HIDE);
+            m_comboFiligreeDropList[filigreeIndex].ShowWindow(SW_HIDE);
+            m_buttonFiligreeRare[filigreeIndex].ShowWindow(SW_HIDE);
+        }
     }
 }
 

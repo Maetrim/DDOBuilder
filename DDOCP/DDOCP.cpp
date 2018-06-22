@@ -253,9 +253,29 @@ void CDDOCPApp::LoadFeats(const std::string & path)
 
 void CDDOCPApp::LoadEnhancements(const std::string & path)
 {
+    UINT ret = AfxMessageBox("Temporary Starup Option\n"
+            "\n"
+            "Use U39 (Current Lamannia) versions of enhancement trees?\n"
+            "---Favored Soul: Beacon of Hope (new tree)\n"
+            "---Favored Soul: Updated Angel of Vengeance tree\n"
+            "---Favored Soul: Updated War Soul tree\n"
+            "---Cleric: Updated War Priest tree\n"
+            "\n"
+            "Yes: Use update 39 trees.\n"
+            "No: Use current live server tree versions.",
+            MB_ICONQUESTION | MB_YESNO);
     // create the filename to load from
     std::string filename = path;
-    filename += "Enhancements.xml";
+    if (ret == IDYES)
+    {
+        // standard U39
+        filename += "EnhancementsU39.xml";
+    }
+    else
+    {
+        // standard U38
+        filename += "Enhancements.xml";
+    }
 
     EnhancementsFile file(filename);
     file.Read();

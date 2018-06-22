@@ -22,8 +22,7 @@ IMPLEMENT_DYNCREATE(CEnhancementsView, CFormView)
 CEnhancementsView::CEnhancementsView() :
     CFormView(CEnhancementsView::IDD),
     m_pDocument(NULL),
-    m_pCharacter(NULL),
-    m_scrollOffset(0)
+    m_pCharacter(NULL)
 {
 }
 
@@ -38,8 +37,6 @@ CEnhancementsView::~CEnhancementsView()
 void CEnhancementsView::DoDataExchange(CDataExchange* pDX)
 {
     CFormView::DoDataExchange(pDX);
-    DDX_Control(pDX, IDC_BUTTON_LEFT, m_buttonLeft);
-    DDX_Control(pDX, IDC_BUTTON_RIGHT, m_buttonRight);
     // no IDC_TREE_SELECT1 as that is the racial tree which cannot be swapped out
     DDX_Control(pDX, IDC_TREE_SELECT2, m_comboTreeSelect[0]);
     DDX_Control(pDX, IDC_TREE_SELECT3, m_comboTreeSelect[1]);
@@ -55,8 +52,6 @@ BEGIN_MESSAGE_MAP(CEnhancementsView, CFormView)
     ON_WM_SIZE()
     ON_WM_ERASEBKGND()
     ON_REGISTERED_MESSAGE(UWM_NEW_DOCUMENT, OnNewDocument)
-    ON_BN_CLICKED(IDC_BUTTON_LEFT, OnButtonLeft)
-    ON_BN_CLICKED(IDC_BUTTON_RIGHT, OnButtonRight)
     ON_CONTROL_RANGE(CBN_SELENDOK, IDC_TREE_SELECT2, IDC_TREE_SELECT7, OnTreeSelect)
 END_MESSAGE_MAP()
 #pragma warning(pop)
@@ -88,117 +83,37 @@ void CEnhancementsView::OnSize(UINT nType, int cx, int cy)
             && IsWindow(m_treeViews[0]->GetSafeHwnd()))
     {
         // we can position and show all the visible enhancement windows
-        // note that as these windows are big we may have to show buttons to allow
-        // the visible windows to be scrolled left/right
-        // calculate whether the scroll buttons are needed
-        int requiredWidth = (MST_Number * c_sizeX)      // windows
-                + (c_controlSpacing * (MST_Number + 1));   // spacers
-        bool showScrollButtons = (requiredWidth > cx);      // true if buttons shown
-        if (!showScrollButtons)
-        {
-            m_scrollOffset = 0;     // all can be fitted in, remove scroll if present
-        }
+        // with scrolls bars as required
 
-        // default location of first enhancement tree if no scroll buttons present
+        // default location of first enhancement tree
         CRect itemRect(
                 c_controlSpacing,
                 c_controlSpacing,
                 c_sizeX + c_controlSpacing,
                 c_sizeY + c_controlSpacing);
 
-        // handle the scroll left button. Only shown if the window is currently scrolled
-        CRect rctButton;
-        m_buttonLeft.GetWindowRect(&rctButton);
-        rctButton -= rctButton.TopLeft();
-        rctButton += CPoint(c_controlSpacing, (cy - rctButton.Height()) / 2);
-        m_buttonLeft.MoveWindow(rctButton, TRUE);   // ensure redraw
-        if (m_scrollOffset > 0)
-        {
-            // button needs to be seen
-            m_buttonLeft.ShowWindow(SW_SHOW);
-            m_buttonLeft.EnableWindow(TRUE);
-            // also bump the first enhancement window right by width of the button
-            itemRect += CPoint(rctButton.Width() + c_controlSpacing * 2, 0);
-        }
-        else
-        {
-            m_buttonLeft.ShowWindow(SW_HIDE);
-            m_buttonLeft.EnableWindow(FALSE);
-        }
-        m_buttonRight.GetWindowRect(&rctButton);
-        rctButton -= rctButton.TopLeft();
-        rctButton += CPoint(
-                    cx - c_controlSpacing - rctButton.Width(),
-                    (cy - rctButton.Height()) / 2);
-        m_buttonRight.MoveWindow(rctButton, TRUE);  // ensure redraw
-
         ASSERT(m_treeViews.size() == MST_Number);
-        std::vector<bool> isShown(MST_Number, false);  // gets set to true when displayed
         for (size_t ti = 0; ti < m_visibleTrees.size(); ++ti)
         {
-            if (showScrollButtons)
+            size_t index = m_visibleTrees[ti];
+            ASSERT(index >= 0 && index < MST_Number);
+            // move the window to the correct location
+            m_treeViews[index]->MoveWindow(itemRect, false);
+            m_treeViews[index]->ShowWindow(SW_SHOW);        // ensure visible
+            if (ti > 0 && ti < MST_Number)
             {
-                // determine whether we can fit any more tree windows
-                if (itemRect.right >= rctButton.left - c_controlSpacing)
-                {
-                    // no more trees fit, break out and the remaining windows get hidden
-                    break;
-                }
+                CRect rctCombo(itemRect.left, itemRect.bottom, itemRect.right, itemRect.bottom + 300);
+                m_comboTreeSelect[ti-1].MoveWindow(rctCombo);
+                m_comboTreeSelect[ti-1].ShowWindow(SW_SHOW);
             }
-            if (ti >= m_scrollOffset)
-            {
-                size_t index = m_visibleTrees[ti];
-                ASSERT(index >= 0 && index < MST_Number);
-                // move the window to the correct location
-                m_treeViews[index]->MoveWindow(itemRect, false);
-                m_treeViews[index]->ShowWindow(SW_SHOW);        // ensure visible
-                if (ti > 0 && ti < MST_Number)
-                {
-                    CRect rctCombo(itemRect.left, itemRect.bottom, itemRect.right, itemRect.bottom + 300);
-                    m_comboTreeSelect[ti-1].MoveWindow(rctCombo);
-                    m_comboTreeSelect[ti-1].ShowWindow(SW_SHOW);
-                }
-                isShown[index] = true;
-                // now move the rectangle to the next tree location
-                itemRect += CPoint(itemRect.Width() + c_controlSpacing, 0);
-                if (ti == m_visibleTrees.size() - 1)
-                {
-                    // right scroll button no need to be visible
-                    showScrollButtons = false;
-                }
-            }
-            else
-            {
-                // although this item is visible, its scrolled off the left hand side
-                // its isShown[] will remain false and window is auto hidden later
-            }
+            // now move the rectangle to the next tree location
+            itemRect += CPoint(itemRect.Width() + c_controlSpacing, 0);
         }
-        // ensure all the hidden enhancement trees are not visible
-        for (size_t ti = 0; ti < MST_Number; ++ti)
-        {
-            if (!isShown[ti])
-            {
-                // this tree is not visible
-                m_treeViews[ti]->ShowWindow(SW_HIDE);
-                if ((ti - 1) < MST_Number)
-                {
-                    m_comboTreeSelect[ti-1].ShowWindow(SW_HIDE);
-                }
-            }
-        }
-        // right scroll button may need to be visible
-        if (showScrollButtons)
-        {
-            // position and show the scroll right button
-            m_buttonRight.ShowWindow(SW_SHOW);
-            m_buttonRight.EnableWindow(TRUE);
-        }
-        else
-        {
-            // no need to show the scroll right button
-            m_buttonRight.ShowWindow(SW_HIDE);
-            m_buttonRight.EnableWindow(FALSE);
-        }
+        SetScrollSizes(
+                MM_TEXT,
+                CSize(
+                        itemRect.left,
+                        itemRect.bottom + c_controlSpacing * 2 + ::GetSystemMetrics(SM_CYHSCROLL)));
     }
 }
 
@@ -415,11 +330,6 @@ void CEnhancementsView::DestroyEnhancementWindows()
     }
     m_treeViews.clear();
     m_visibleTrees.clear();
-    // left and right scrolls buttons no longer needed, hide them
-    m_buttonLeft.ShowWindow(SW_HIDE);
-    m_buttonLeft.EnableWindow(FALSE);
-    m_buttonRight.ShowWindow(SW_HIDE);
-    m_buttonRight.EnableWindow(FALSE);
     UnlockWindowUpdate();
 }
 
@@ -510,29 +420,6 @@ void CEnhancementsView::UpdateRaceChanged(
     m_availableTrees = DetermineTrees();
     DestroyEnhancementWindows();
     CreateEnhancementWindows();
-}
-
-void CEnhancementsView::OnButtonLeft()
-{
-    if (m_scrollOffset > 0)
-    {
-        --m_scrollOffset;
-        // reposition and show the windows (handled in OnSize)
-        CRect rctWnd;
-        GetClientRect(&rctWnd);
-        OnSize(SIZE_RESTORED, rctWnd.Width(), rctWnd.Height());
-        Invalidate();
-    }
-}
-
-void CEnhancementsView::OnButtonRight()
-{
-    ++m_scrollOffset;
-    // reposition and show the windows (handled in OnSize)
-    CRect rctWnd;
-    GetClientRect(&rctWnd);
-    OnSize(SIZE_RESTORED, rctWnd.Width(), rctWnd.Height());
-    Invalidate();
 }
 
 void CEnhancementsView::UpdateEnhancementTrained(

@@ -2,7 +2,13 @@
 <!--Note that value fields are present in this file to give a copy paste example for each-->
 <EffectDescriptions>
     <!--Abilities-->
-    <EffectDescription>Insightful Strength +1: Passive: +1 Insight Bonus to Strength.</EffectDescription>
+        <EffectDescription>Insightful Strength +9: Passive: +9 Insight Bonus to Strength.</EffectDescription>
+        <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Insightful</Bonus>
+            <Amount>9</Amount>
+            <Ability>Strength</Ability>
+        </Effect>
         <EffectDescription>Insightful Dexterity +9: Passive: +9 Insight Bonus to Dexterity.</EffectDescription>
         <Effect>
             <Type>AbilityBonus</Type>
@@ -257,7 +263,12 @@
         <EffectDescription>Improved Demonic Shield: Each time you are it in melee combat there is a chance that a shield of demonic energy will grant you 120 profane bonus to temporary hit points.</EffectDescription>
     <EffectDescription>Demonic Retribution: Each time you are it in melee combat there is a chance that a demonic force will strike back at your attacker hitting them with an Inflict Moderate Wounds spell.</EffectDescription>
     <EffectDescription>Disintegration Guard: This item has a store of dark insidious power deep within. When hit in melee, this power occasionally lashes out violently at enemies an attempts to disintegrate them.</EffectDescription>
-    <EffectDescription>Distant Diversion +10: +10 Enhancement bonus to Decreased threat generated from ranged damage.</EffectDescription>
+        <EffectDescription>Distant Diversion +15%: +15% Enhancement bonus to Decreased threat generated from ranged damage.</EffectDescription>
+         <Effect>
+            <Type>ThreatBonusRanged</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>-15</Amount>
+         </Effect>
         <EffectDescription>Insightful Distant Diversion +13: +13 Insight bonus to Decreased threat generated from ranged damage.</EffectDescription>
          <Effect>
             <Type>ThreatBonusRanged</Type>
@@ -401,7 +412,31 @@
     <EffectDescription>Greater Boon of Undeath: Undead take solace in the hate of others. Every time you are struck in combat, an Inflict Moderate Wounds spell will be cast on you.</EffectDescription>
         <EffectDescription>Greater Dispelling Guard: This item is infused with a power that purges out the magical energies of those that strike the wearer. When the wearer is hit in melee it will apply a Greater Dispel Magic effect on the attacker, stripping away its protective spells.</EffectDescription>
         <EffectDescription>Greater Dispelling: This weapon is infused with a power that purges out the magical energies of those that it strikes. On an attack roll of 20 which is confirmed as a critical hit it will apply a Greater Dispel Magic effect to the target, stripping away its protective spells.</EffectDescription>
-    <EffectDescription>Greater Heroism: Passive: +4 Morale bonus to Attack Rolls, Saving Throws and Skill Checks.</EffectDescription>
+        <EffectDescription>Greater Heroism: Passive: +4 Morale bonus to Attack Rolls, Saving Throws and Skill Checks.</EffectDescription>
+        <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Morale</Bonus>
+            <Amount>4</Amount>
+            <Skill>All</Skill>
+        </Effect>
+        <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Morale</Bonus>
+            <Amount>4</Amount>
+            <Save>All</Save>
+        </Effect>
+        <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Morale</Bonus>
+            <Amount>4</Amount>
+            <Weapon>All</Weapon>
+        </Effect>
+        <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Morale</Bonus>
+            <Amount>4</Amount>
+            <Weapon>All</Weapon>
+        </Effect>
     <EffectDescription>Greater Marshwalker: This is one of the two pieces of the Greater Marshwalker set. When both items are equipped you receive +30% striding and a +15 competence bonus to your Jump skill.</EffectDescription>
     <EffectDescription>Greater Might of the Abishai: This is one of the five pieces of the Greater Might of the Abishai set. When any three are equipped you gain a +3 profane bonus to Natural Armor, Strength and a +3 bonus to your caster levels for evocation spells. When all five are equipped you also gain a +3 profane bonus to Constitution and Conjuration spells.</EffectDescription>
     <EffectDescription>Greater Regeneration: This item is imbued with an undeniable goodness that freely flows outward in a pleasant palpable current, constantly healing the wearer over time.</EffectDescription>
@@ -688,6 +723,17 @@
             <Bonus>Insightful</Bonus>
             <Amount>5</Amount>
          </Effect>
+        <EffectDescription>Quality Sheltering +7: This item provides a +7 Quality bonus to your Physical and Magical Resistance Ratings.</EffectDescription>
+         <Effect>
+            <Type>PRR</Type>
+            <Bonus>Quality</Bonus>
+            <Amount>7</Amount>
+         </Effect>
+         <Effect>
+            <Type>MRR</Type>
+            <Bonus>Quality</Bonus>
+            <Amount>7</Amount>
+         </Effect>
     <EffectDescription>Skill +20: Passive: +20 Competence Bonus to the ? skill.</EffectDescription>
     <EffectDescription>Dexterity Skill - Exceptional Bonus +6: Passive +6 Exceptional Bonus to Balance, hide, Move Silently, Open Lock and Tumble.</EffectDescription>
     <EffectDescription>Intelligence Skill - Exceptional Bonus +6: Passive +6 Exceptional Bonus to Disable Device, Repair, Search and Spell Craft.</EffectDescription>
@@ -717,6 +763,19 @@
             <Immunity>Stunning, dazing and disorientation from sound based spells</Immunity>
         </Effect>
     <EffectDescription>Speed XV: +30% Enhancement bonus to Movement Speed and a +15% bonus to Attack Speed.</EffectDescription>
+        <Effect>
+            <Type>MovementSpeed</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>30</Amount>
+            <ApplyAsItemEffect/>
+        </Effect>
+        <Effect>
+            <Type>Alacrity</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>15</Amount>
+            <Weapon>All</Weapon>
+        </Effect>
+        <EffectDescription>Speed +30%: this item increases your speed giving you a +30% Enhancement bonus to Movement Speed and a +15% bonus to Attack Speed.</EffectDescription>
         <Effect>
             <Type>MovementSpeed</Type>
             <Bonus>Enhancement</Bonus>
@@ -1058,6 +1117,14 @@
             <SpellPower>Light</SpellPower>
             <SpellPower>Alignment</SpellPower>
         </Effect>
+        <EffectDescription>Insightful Radiance +57: Passive: +57 Insight Bonus to Light and Alignment Spell Power.</EffectDescription>
+        <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Insightful</Bonus>
+            <Amount>57</Amount>
+            <SpellPower>Light</SpellPower>
+            <SpellPower>Alignment</SpellPower>
+        </Effect>
     <EffectDescription>Ethereal: Equipping this item causes your hands and weapons to become partially incorporeal. Your melee attacks do not roll a miss chance for incorporeal targets.</EffectDescription>
     <EffectDescription>Knight's Loyalty: One of the three parts of the Knight's Loyalty set. When all three items are equipped, you will gain a +3 Artifact bonus to your To-Hit and Damage rolls and a +3 Insight bonus to Natural Armor.</EffectDescription>
         <EffectDescription>Breath Weapon Focus +7: +7 Equipment bonus to DC of Breath Weapon spells.</EffectDescription>
@@ -1160,6 +1227,12 @@
         </Effect>
     <EffectDescription>Sacred: An item with this quality assists only wearers who have the ability to turn undead. Sacred items increase the owner's effective level for the turning check by +2.</EffectDescription>
     <EffectDescription>Hallowed: An item with this quality assists only wearers who have the ability to turn undead. Hallowed items increase the maximum Hit Dice of undead turned by +2.</EffectDescription>
+        <EffectDescription>Hallowed + 19: An item with this quality assists only wearers who have the ability to turn undead. Hallowed items provide an +19 Enhancement bonus to the maximum Hit Dice of undead turned.</EffectDescription>
+        <Effect>
+            <Type>TurnDiceBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>19</Amount>
+        </Effect>
     <EffectDescription>Hammerblock VIII: Passive: Reduces physical damage taken by 16, except from Piercing or Slashing weapons.</EffectDescription>
     <EffectDescription>Draconic Ferocity: While this helm is equipped at the same time as a Flawless Black Dragonscale item, you will gain a +3% Artifact bonus to melee Doublestrike chance and a +2 Artifact bonus to damage with ranged and thrown weapons.</EffectDescription>
     <EffectDescription>Draconic Mind: While this helm is equipped at the same time as a Flawless Blue Dragonscale item, you will gain a +15 Artifact bonus to Universal Spell Power.</EffectDescription>
@@ -1338,6 +1411,14 @@
             <SpellPower>Light</SpellPower>
             <SpellPower>Alignment</SpellPower>
         </Effect>
+        <EffectDescription>Insightful Radiance Lore +11%: +11% Insight Bonus to Light and Alignment Spells chance to Critical Hit.</EffectDescription>
+        <Effect>
+            <Type>SpellLore</Type>
+            <Bonus>Insightful</Bonus>
+            <Amount>11</Amount>
+            <SpellPower>Light</SpellPower>
+            <SpellPower>Alignment</SpellPower>
+        </Effect>
     <EffectDescription>Voice of Deceit: Passive: +20 Competence Bonus to the Bluff, Diplomacy, Haggle and Perform skill.</EffectDescription>
     <EffectDescription>Bestow Curse: You gain Bestow Curse as a SLA. 3 Charges.</EffectDescription>
     <EffectDescription>Curse of Foolishness: Passive: -1 Penalty to Wisdom.</EffectDescription>
@@ -1428,6 +1509,19 @@
             <Amount>4</Amount>
             <Tactical>Stunning Fist</Tactical>
         </Effect>
+        <EffectDescription>Stunning +12: +12 Enhancement bonus to the DC of your Stunning Blow/Fist abilities.</EffectDescription>
+         <Effect>
+            <Type>TacticalDC</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>12</Amount>
+            <Tactical>Stunning Blow</Tactical>
+         </Effect>
+         <Effect>
+            <Type>TacticalDC</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>22</Amount>
+            <Tactical>Stunning Fist</Tactical>
+         </Effect>
     <EffectDescription>From The Shadows: On being missed in combat: Chance to do 10d6 Negative Energy Damage to the attacker.</EffectDescription>
     <EffectDescription>Shadow Phase: You gain Shadow Phase as an SLA. 3 Charges</EffectDescription>
     <EffectDescription>Haste Guard: When you are hit by enemies, there is a chance you will be hasted, quickening your attack and movement.</EffectDescription>
@@ -1526,7 +1620,7 @@
             <Amount>1</Amount>
             <Save>Spell</Save>
         </Effect>
-        <EffectDescription>Protection from Evil: Passive: You gain the benefit of the sepll Protection from Evil.</EffectDescription>
+        <EffectDescription>Protection from Evil: Passive: You gain the benefit of the spell Protection from Evil.</EffectDescription>
         <EffectDescription>Knight of the Shadows Set (Legendary):
 3 Pieces Equipped gives: +20 Artifact bonus to PRR and MRR
                          +50% Artifact bonus to threat generation with melee and ranged attacks.
@@ -2799,6 +2893,7 @@
             <Weapon>All</Weapon>
         </Effect>
         <EffectDescription>Cold Vulnerability: On Hit: Applies a stack of Cold Vulnerable (1% more damage for 3 seconds. This effect stacks up to 20 times, and loses one stack on expiration). This effect may occur on-hit once a second.</EffectDescription>
+        <EffectDescription>Fire Vulnerability: On Hit: Applies a stack of Fire Vulnerable (1% more damage for 3 seconds. This effect stacks up to 20 times, and loses one stack on expiration). This effect may occur on-hit once a second.</EffectDescription>
         <EffectDescription>Weaken Undead: While wearing this item, your attacks cause undead creatures to lose 20% of their Fortification for the next 20 seconds. This effect does not stack with itself.</EffectDescription>
         <EffectDescription>Crushing Wave: This weapon stores the unstoppable force of the ocean's fury deep within. When this weapon is used, this power occasionally comes to the surface, crushing enemies beneath a torrent of frigid water.</EffectDescription>
         <EffectDescription>Glass Shards: This weapon is made of fragile glass and will shatter on impact, inflicting a bleed effect on targets vulnerable to bleeding. This bleed deals 2d10 damage per stack every 2 seconds, lasts for 20 seconds, and can stack up to 100 times.</EffectDescription>
@@ -4935,6 +5030,29 @@ When 3 pieces are equipped: +1 Artifact Bonus to Critical Multiplier on a 19-20.
                 </Dice>
                 <Weapon>All</Weapon>
             </Effect>
+        <EffectDescription>Entropic 9: this weapon is intensely powerful, and crackles with destructive, unpredictable magic. It deals an additional 9d6 untyped damage on each hit.</EffectDescription>
+            <Effect>
+                <DisplayName>Entropic 9</DisplayName>
+                <Type>WeaponOtherDamageBonus</Type>
+                <Bonus>Enhancement</Bonus>
+                <Dice>
+                    <Number size="1">9</Number>
+                    <Sides size="1">6</Sides>
+                    <Energy>Untyped</Energy>
+                </Dice>
+                <Weapon>All</Weapon>
+            </Effect>
+            <Effect>
+                <DisplayName>Entropic 9</DisplayName>
+                <Type>WeaponOtherCriticalDamageBonus</Type>
+                <Bonus>Enhancement</Bonus>
+                <Dice>
+                    <Number size="1">9</Number>
+                    <Sides size="1">6</Sides>
+                    <Energy>Untyped</Energy>
+                </Dice>
+                <Weapon>All</Weapon>
+            </Effect>
         <EffectDescription>Nullification +90: Passive: +90 Equipment bonus to Negative (Necrotic) Spell Power.</EffectDescription>
         <Effect>
             <Type>SpellPower</Type>
@@ -5481,6 +5599,31 @@ When 3 pieces are equipped: +1 Artifact Bonus to Critical Multiplier on a 19-20.
               </Dice>
               <Stance>Giant</Stance>
          </Effect>
+        <EffectDescription>Giant Bane 9: this weapon is attuned specifically to hunt a larger foe, dealing an additional 9d10 bane damage versus Giants.</EffectDescription>
+         <Effect>
+            <DisplayName>Giant Bane 9</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+              <Dice>
+                 <Number size="1">9</Number>
+                 <Sides size="1">10</Sides>
+                 <Energy>Bane</Energy>
+              </Dice>
+              <Stance>Giant</Stance>
+         </Effect>
+         <Effect>
+            <DisplayName>Giant Bane 9</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+              <Dice>
+                 <Number size="1">9</Number>
+                 <Sides size="1">10</Sides>
+                 <Energy>Bane</Energy>
+              </Dice>
+              <Stance>Giant</Stance>
+         </Effect>
         <EffectDescription>Giant Slayer: This weapon has a small chance to force a target Giant to make a Difficulty Check 25 Fortitude save or die instantly.</EffectDescription>
         <EffectDescription>Extra damage vs Giants: This weapon deals an additional 2 to 16 damage against Giants.</EffectDescription>
          <Effect>
@@ -5745,4 +5888,188 @@ When 3 pieces are equipped: +1 Artifact Bonus to Critical Multiplier on a 19-20.
             <Amount>5</Amount>
             <DR>-</DR>
         </Effect>
+        <EffectDescription>Exceptional Alluring Skills +10: This item gives a +10 exceptional bonus to all Charisma based skills.</EffectDescription>
+        <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Exceptional</Bonus>
+            <Amount>10</Amount>
+            <Ability>Charisma</Ability>
+        </Effect>
+        <EffectDescription>Insightful Alluring Skills +9: Improves the target's Bluff, Diplomacy, Haggle, Intimidate and Perform skills.</EffectDescription>
+        <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Insightful</Bonus>
+            <Amount>9</Amount>
+            <Skill>Bluff</Skill>
+            <Skill>Diplomacy</Skill>
+            <Skill>Haggle</Skill>
+            <Skill>Intimidate</Skill>
+            <Skill>Perform</Skill>
+        </Effect>
+        <EffectDescription>Chitinous Covering: This shield is made of the scavenged chitinous shell of a giant crab, and is magically warded against fire. +47% Enhancement bonus to Fire absorption.</EffectDescription>
+        <Effect>
+            <Type>EnergyAbsorbance</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>47</Amount>
+            <Energy>Fire</Energy>
+        </Effect>
+        <EffectDescription>Transmuted Platinum (Epic): This weapon , made of transmuted platinum, is slightly magically unstable, and has a chance to transfer its magic to those it strikes. Struck enemies have a small chance to turn into transmuted platinum, preventing all movement, with a DC of 70 negating this effect.</EffectDescription>
+        <EffectDescription>Bleeding 5: This weapon is wickedly curved, with spines and hooks meant to cause damage to those with flesh. This weapon does +5d8 bleeding damage to targets that are vulnerable to it.</EffectDescription>
+        <Effect>
+            <DisplayName>Bleeding 5</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Dice>
+                <Number size="1">5</Number>
+                <Sides size="1">8</Sides>
+                <Energy>Bleeding</Energy>
+            </Dice>
+            <Weapon>All</Weapon>
+        </Effect>
+        <EffectDescription>Weakening 2: This weapon saps the power and might from your enemies, dealing 2 Strength damage on each hit.</EffectDescription>
+            <Effect>
+                <Type>WeaponOtherDamageBonus</Type>
+                <Bonus>Stacking</Bonus>
+                <Amount>2</Amount>
+                <Energy>Strength</Energy>
+                <Weapon>All</Weapon>
+            </Effect>
+        <EffectDescription>Polycurse: This weapon is enchanted with many diverse curses. On a critical hit an enemy may be hit with one of these effects at random: Blindness, Exhaustion, Bestow Curse or Enervation.</EffectDescription>
+        <EffectDescription>Unholy 5: An unholy weapon is used by the wicked to smite the pure, dealing an additional 5d6 evil damage on each hit. This effect makes the weapon evil aligned.</EffectDescription>
+         <Effect>
+            <DisplayName>Unholy 5</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+              <Dice>
+                 <Number size="1">5</Number>
+                 <Sides size="1">6</Sides>
+                 <Energy>Evil</Energy>
+              </Dice>
+         </Effect>
+         <Effect>
+            <DisplayName>Unholy 5</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+              <Dice>
+                 <Number size="1">5</Number>
+                 <Sides size="1">6</Sides>
+                 <Energy>Evil</Energy>
+              </Dice>
+         </Effect>
+        <EffectDescription>Legendary Stealer of Souls: Blackrazor hungers for the Souls of those you have defeated. On a Vorpal hit with this weapon, Blackrazor will absorb some of its Soul, draining three levels from your target. When you strike the killing blow on an enemy, Blackrazor retains one Defeated Soul, up to a maximum of 20. Each Defeated Soul grants you a +1 Profane bonus to Melee Power and Damage. If you block or unequip Blackrazor, the consumed souls will be released. Consumed Souls last for 30 seconds.</EffectDescription>
+        <EffectDescription>Legendary Cerulean Wave: this powerful magical implement hums in your hands and resonates with icy magic. Spells you cast have a chance of freezing your targets in a bloack of solid ice.</EffectDescription>
+        <EffectDescription>Frozen Storm Lore +29%: +29% Equipment Bonus to Cold and Lightning Spells chance to Critical Hit.</EffectDescription>
+        <Effect>
+            <Type>SpellLore</Type>
+            <Bonus>Equipment</Bonus>
+            <Amount>29</Amount>
+            <SpellPower>Cold</SpellPower>
+            <SpellPower>Electric</SpellPower>
+        </Effect>
+        <EffectDescription>Power of the Frozen Storm +202: +202 Equipment bonus to Cold end Electric spell power.</EffectDescription>
+        <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Equipment</Bonus>
+            <Amount>202</Amount>
+            <SpellPower>Cold</SpellPower>
+            <SpellPower>Electric</SpellPower>
+        </Effect>
+        <EffectDescription>Swirling Icy Shield: You are surrounded in a sphere of icy wind tat reduces all damage (except untyped) you take by 25% for 1 minute. Target: Self, School: Abjuration.</EffectDescription>
+        <EffectDescription>Legendary Whelming Shockwave: This weapon reverberates with incredible power. On Vorpal, this weapon triggers a shockwave, striking its target with incredible bludgeoning damage and dealing damage to surrounding enemies.</EffectDescription>
+        <EffectDescription>Blunt Trauma: This weapon is incredibly dense and delivers especially powerful blows. When rolling a 19 or 20 on a melee attack, your ciritcal multiplier is increased by +1.</EffectDescription>
+            <Effect>
+                <Type>CriticalMultiplier19To20</Type>
+                <Bonus>Stacking</Bonus>
+                <Amount>1</Amount>
+                <Weapon>All</Weapon>
+            </Effect>
+        <EffectDescription>Legendary Blinding Embers: This weapon sheds tiny embers that can impair a creature's sight. If you roll a 20 when attacking and confirm a critical hit, the target will become blinded by a burst of fiery sparks.</EffectDescription>
+         <EffectDescription>Ooze Bane 5: this weapon is attuned specifically to destroy magical ooze, dealing an additional 5d10 bane damage versus Oozes.</EffectDescription>
+         <Effect>
+            <DisplayName>Ooze Bane 5</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+              <Dice>
+                 <Number size="1">5</Number>
+                 <Sides size="1">10</Sides>
+                 <Energy>Bane</Energy>
+              </Dice>
+             <Stance>Ooze</Stance>
+         </Effect>
+         <Effect>
+            <DisplayName>Ooze Bane 5</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+              <Dice>
+                 <Number size="1">5</Number>
+                 <Sides size="1">10</Sides>
+                 <Energy>Bane</Energy>
+              </Dice>
+             <Stance>Ooze</Stance>
+         </Effect>
+        <EffectDescription>Crushing 11: This effect causes the edges of this weapon to ripple with force, dealing 11d6 force damage on each critical hit.</EffectDescription>
+        <Effect>
+            <DisplayName>Crushing 11</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Equipment</Bonus>
+            <Dice>
+                <Number size="1">11</Number>
+                <Sides size="1">6</Sides>
+                <Energy>Force</Energy>
+            </Dice>
+            <Weapon>All</Weapon>
+        </Effect>
+        <EffectDescription>Smashing 11: This edges of this weapon are blunted, dealing an additional 116 bludgeon damage on each critical hit.</EffectDescription>
+        <Effect>
+            <DisplayName>Smashing ii</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Equipment</Bonus>
+            <Dice>
+                <Number size="1">11</Number>
+                <Sides size="1">6</Sides>
+                <Energy>Bludgeon</Energy>
+            </Dice>
+            <Weapon>All</Weapon>
+        </Effect>
+        <EffectDescription>Lifesealed 30: You are immune to magical effects that cause instant death. In addition, you have a +30% Enhancement bonus to Negative Energy absorption</EffectDescription>
+        <Effect>
+            <Type>Immunity</Type>
+            <Bonus>Equipment</Bonus>
+            <Immunity>Death Effects</Immunity>
+        </Effect>
+        <Effect>
+            <Type>EnergyAbsorbance</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>30</Amount>
+            <Energy>Negative</Energy>
+        </Effect>
+         <EffectDescription>Epic Noxious Venom Spike: On Damage: Do an additional 2d6 Poison damage.</EffectDescription>
+         <Effect>
+            <DisplayName>Epic Noxious Venom Spike</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+              <Dice>
+                 <Number size="1">2</Number>
+                 <Sides size="1">6</Sides>
+                 <Energy>Poison</Energy>
+              </Dice>
+         </Effect>
+         <Effect>
+            <DisplayName>Epic Noxious Venom Spike</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+              <Dice>
+                 <Number size="1">2</Number>
+                 <Sides size="1">6</Sides>
+                 <Energy>Poison</Energy>
+              </Dice>
+         </Effect>
+        <EffectDescription>Epic Transmuted Platinum Guard: This glorious item shines with a warm magic, and has a chance of freezing your attackers in a cage of Transmuted Platinum.</EffectDescription>
+        <EffectDescription>Action Boost Enhancement: This will increase the total number of Action Boosts you can use by 3. Howevel, these additional Action Boosts will only take effect after the wielder rests.</EffectDescription>
 </EffectDescriptions>
