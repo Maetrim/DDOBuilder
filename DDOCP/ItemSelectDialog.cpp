@@ -350,6 +350,7 @@ void CItemSelectDialog::PopulateAvailableItemList()
         SetWindowText("Item Selection and Configuration - No item selected");
     }
     m_availableItemsCtrl.UnlockWindowUpdate();
+    HideTip();
 }
 
 void CItemSelectDialog::EnableControls()

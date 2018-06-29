@@ -369,7 +369,7 @@ void CInfoTip::SetFeatItem(
     m_bRequirementMet.clear();
     if (!grantedFeat)
     {
-        pItem->CreateRequirementStrings(charData, &m_requirements, &m_bRequirementMet, level + 1);
+        pItem->CreateRequirementStrings(charData, &m_requirements, &m_bRequirementMet, level);
         m_cost = "";
         if (pItem->MaxTimesAcquire() != 1)
         {

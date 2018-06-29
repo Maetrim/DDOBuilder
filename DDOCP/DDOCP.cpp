@@ -253,7 +253,7 @@ void CDDOCPApp::LoadFeats(const std::string & path)
 
 void CDDOCPApp::LoadEnhancements(const std::string & path)
 {
-    UINT ret = AfxMessageBox("Temporary Starup Option\n"
+    UINT ret = AfxMessageBox("Temporary Startup Option\n"
             "\n"
             "Use U39 (Current Lamannia) versions of enhancement trees?\n"
             "---Favored Soul: Beacon of Hope (new tree)\n"
