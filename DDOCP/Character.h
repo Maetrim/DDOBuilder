@@ -239,6 +239,8 @@ class Character :
         // gear support
         void AddGearSet(const EquippedGear & gear);
         void DeleteGearSet(const std::string & name);
+        bool DoesGearSetExist(const std::string & name) const;
+        void SetActiveGearSet(const std::string & name);
         EquippedGear GetGearSet(const std::string & name) const;
         EquippedGear ActiveGearSet() const;
         void SetGear(const std::string & name, InventorySlotType slot, const Item & item);
@@ -392,6 +394,9 @@ class Character :
         void UpdateCenteredStance();
         void UpdateGreensteelStances();
         void VerifyGear();
+
+        void UpdateGearToLatestVersions();
+        Item GetLatestVersionOfItem(const Item & original);
 
         // CharacterObserver
         // we need to track all sources from which a granted feat can come from

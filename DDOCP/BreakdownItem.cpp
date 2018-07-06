@@ -714,6 +714,23 @@ bool BreakdownItem::GetActiveEffect(
                 effect.DR(),
                 1);
     }
+    else if (effect.Type() == Effect_DRBypass)
+    {
+        // convert the first enum entry to a string. can only handle 1 DR Bypass
+        // per effect object.
+        std::list<std::string> enumsToString;
+        std::list<DamageReductionType> drs = effect.DR();
+        std::list<DamageReductionType>::const_iterator it = drs.begin();
+        if (it != drs.end())
+        {
+            enumsToString.push_back((LPCTSTR)EnumEntryText((*it), drTypeMap));
+        }
+        *activeEffect = ActiveEffect(
+                effect.Bonus(),
+                name,
+                enumsToString,
+                1);
+    }
     else if (effect.HasAmountPerLevel())
     {
         ASSERT(effect.HasClass());

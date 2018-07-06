@@ -29,10 +29,13 @@ class CEquipmentView :
         afx_msg void OnSize(UINT nType, int cx, int cy);
         afx_msg BOOL OnEraseBkgnd(CDC* pDC);
         afx_msg LRESULT OnNewDocument(WPARAM wParam, LPARAM lParam);
-        afx_msg void OnButtonNew();
-        afx_msg void OnButtonCopy();
-        afx_msg void OnButtonDelete();
-        afx_msg void OnButtonActiveGearSet();
+        afx_msg void OnEditGearNew();
+        afx_msg void OnEditGearCopy();
+        afx_msg void OnEditGearDelete();
+        afx_msg void OnUpdateEditGearNew(CCmdUI * pCmdUi);
+        afx_msg void OnUpdateEditGearCopy(CCmdUI * pCmdUi);
+        afx_msg void OnUpdateEditGearDelete(CCmdUI * pCmdUi);
+        afx_msg void OnGearSelectionSelEndOk();
         DECLARE_MESSAGE_MAP()
 
         // InventoryObserver overrides
@@ -48,10 +51,9 @@ class CEquipmentView :
         void PopulateGear();
         std::string SelectedGearSet() const;
         CComboBox m_comboGearSelections;
-        CButton m_buttonNew;
-        CButton m_buttonCopy;
-        CButton m_buttonDelete;
-        CButton m_buttonActiveGearSet;
+        CMFCButton m_buttonNew;
+        CMFCButton m_buttonCopy;
+        CMFCButton m_buttonDelete;
         CInventoryDialog * m_inventoryView;
 
         CDocument * m_pDocument;

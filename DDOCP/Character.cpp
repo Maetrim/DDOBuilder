@@ -2670,6 +2670,10 @@ size_t Character::DetermineBuildPoints()
 {
     // determine how many build points the current past life count
     // allows this character to have
+    // note that we only consider heroic and racial part lives for
+    // the past lives count to determine build points because:
+    //   Epic past lives do not add to build points
+    //   Iconic past lives indirectly do, as you also get a heroic past life
     size_t numPastLifeFeats = 0;
     const std::list<TrainedFeat> & feats = SpecialFeats().Feats();
     std::list<TrainedFeat>::const_iterator it = feats.begin();
@@ -2677,8 +2681,7 @@ size_t Character::DetermineBuildPoints()
     {
         const Feat & feat = FindFeat((*it).FeatName());
         if (feat.Acquire() == FeatAcquisition_HeroicPastLife
-                || feat.Acquire() == FeatAcquisition_RacialPastLife
-                || feat.Acquire() == FeatAcquisition_IconicPastLife)
+                || feat.Acquire() == FeatAcquisition_RacialPastLife)
         {
             // it is a trained feat that affects number of available
             // build points
@@ -2966,6 +2969,10 @@ void Character::JustLoaded()
     }
     CountBonusAP();
     UpdateSkillPoints(); // when tomes apply has changed
+
+    // update loaded gear objects to latest versions loaded to pick up any changes
+    // to fixed items.
+    UpdateGearToLatestVersions();
 }
 
 void Character::VerifyTrainedFeats()
@@ -4005,6 +4012,47 @@ void Character::AddGearSet(const EquippedGear & gear)
 
 void Character::DeleteGearSet(const std::string & name)
 {
+    RevokeGearEffects();        // always for active gear (one being deleted)
+    // find the gear set and delete it
+    std::list<EquippedGear>::const_iterator it = m_GearSetups.begin();
+    while (it != m_GearSetups.end())
+    {
+        if ((*it).Name() == name)
+        {
+            m_GearSetups.erase(it);
+            break;  // were done
+        }
+        ++it;
+    }
+    // as we just deleted the active gear set, switch tot he first gear set remaining (if any)
+    if (m_GearSetups.size() > 0)
+    {
+        it = m_GearSetups.begin();
+        Set_ActiveGear((*it).Name());
+    }
+    else
+    {
+        // no gear sets, no name
+        Set_ActiveGear("");
+    }
+    ApplyGearEffects();         // always for active gear
+    NotifyGearChanged(Inventory_Weapon1);   // updates both in breakdowns
+    m_pDocument->SetModifiedFlag(TRUE);
+}
+
+bool Character::DoesGearSetExist(const std::string & name) const
+{
+    std::list<EquippedGear>::const_iterator it = m_GearSetups.begin();
+    bool found = false;
+    while (!found && it != m_GearSetups.end())
+    {
+        if ((*it).Name() == name)
+        {
+            found = true;
+        }
+        ++it;
+    }
+    return found;
 }
 
 EquippedGear Character::GetGearSet(const std::string & name) const
@@ -4022,6 +4070,19 @@ EquippedGear Character::GetGearSet(const std::string & name) const
         ++it;
     }
     return gear;
+}
+
+void Character::SetActiveGearSet(const std::string & name)
+{
+    RevokeGearEffects();        // always for active gear
+    Set_ActiveGear(name);
+    ApplyGearEffects();         // always for active gear
+    NotifyGearChanged(Inventory_Weapon1);   // updates both in breakdowns
+    UpdateWeaponStances();
+    UpdateArmorStances();
+    UpdateShieldStances();
+    UpdateCenteredStance();
+    m_pDocument->SetModifiedFlag(TRUE);
 }
 
 EquippedGear Character::ActiveGearSet() const
@@ -4059,8 +4120,11 @@ void Character::SetGear(
         ApplyGearEffects();         // always for active gear
     }
     NotifyGearChanged(slot);
+    UpdateWeaponStances();
+    UpdateArmorStances();
+    UpdateShieldStances();
     UpdateCenteredStance();
-    UpdateGreensteelStances();      // only on gear changes
+    m_pDocument->SetModifiedFlag(TRUE);
 }
 
 void Character::ClearGearInSlot(const std::string & name, InventorySlotType slot)
@@ -4090,12 +4154,16 @@ void Character::ClearGearInSlot(const std::string & name, InventorySlotType slot
         ApplyGearEffects();         // always for active gear
     }
     NotifyGearChanged(slot);
+    UpdateWeaponStances();
+    UpdateArmorStances();
+    UpdateShieldStances();
     UpdateCenteredStance();
+    m_pDocument->SetModifiedFlag(TRUE);
 }
 
 void Character::RevokeGearEffects()
 {
-    EquippedGear gear = ActiveGearSet();
+    EquippedGear gear = ActiveGearSet(); // empy if no gear found
     // iterate the items
     for (size_t i = Inventory_Unknown + 1; i < Inventory_Count; ++i)
     {
@@ -4556,9 +4624,14 @@ void Character::UpdateArmorStances()
         switch (item1.Armor())
         {
         case Armor_Cloth:
-        case Armor_Light:
             ActivateStance(cloth);
             DeactivateStance(light);
+            DeactivateStance(medium);
+            DeactivateStance(heavy);
+            break;
+        case Armor_Light:
+            DeactivateStance(cloth);
+            ActivateStance(light);
             DeactivateStance(medium);
             DeactivateStance(heavy);
             break;
@@ -5437,3 +5510,38 @@ void Character::UpdateGreensteelStances()
         DeactivateStance(opposition);
     }
 }
+
+void Character::UpdateGearToLatestVersions()
+{
+    // needs to be done for all gear sets and all items
+    std::list<EquippedGear>::iterator it = m_GearSetups.begin();
+    while (it != m_GearSetups.end())
+    {
+        // update all the items
+        for (size_t i = Inventory_Unknown + 1; i < Inventory_Count; ++i)
+        {
+            if ((*it).HasItemInSlot((InventorySlotType)i))
+            {
+                Item latestVersion = GetLatestVersionOfItem((*it).ItemInSlot((InventorySlotType)i));
+                (*it).SetItem((InventorySlotType)i, latestVersion);
+            }
+        }
+        ++it;
+    }
+}
+
+Item Character::GetLatestVersionOfItem(const Item & original)
+{
+    Item newVersion = original; // assume unchanged
+    const Item & foundItem = FindItem(original.Name());
+    // no name if not found
+    if (foundItem.Name() == original.Name())
+    {
+        // this is the item we want to copy
+        newVersion = foundItem;
+        // now copy across specific fields from the source item
+        newVersion.CopyUserSetValues(original);
+    }
+    return newVersion;
+}
+

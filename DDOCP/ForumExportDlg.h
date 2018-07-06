@@ -7,6 +7,7 @@
 #include "EpicDestinySpendInTree.h"
 
 class Character;
+class EquippedGear;
 
 enum ForumExportSections
 {
@@ -31,6 +32,7 @@ enum ForumExportSections
     FES_WeaponDamage,
     FES_TacticalDCs,
     FES_Gear,
+    FES_AlternateGearLayouts,
     FES_Count,
 };
 
@@ -57,6 +59,7 @@ const XmlLib::enumMapEntry<ForumExportSections> forumExportSectionsMap[] =
     {FES_WeaponDamage, L"Weapon Damage"},
     {FES_TacticalDCs, L"Tactical DCs"},
     {FES_Gear, L"Gear"},
+    {FES_AlternateGearLayouts, L"Alternate Gear Layouts"},
     {FES_Count, L"Enumeration Count"},
     {ForumExportSections(0), NULL}
 };
@@ -127,10 +130,13 @@ class CForumExportDlg : public CDialogEx
         void AddWeaponDamage(std::stringstream & forumExport);
         void AddTacticalDCs(std::stringstream & forumExport);
         void AddGear(std::stringstream & forumExport);
+        void AddAlternateGear(std::stringstream & forumExport);
 
         void AddEnhancementTree(std::stringstream & forumExport, const EnhancementSpendInTree & treeSpend);
         void AddEpicDestinyTree(std::stringstream & forumExport, const EpicDestinySpendInTree & treeSpend);
         void AddReaperTree(std::stringstream & forumExport, const ReaperSpendInTree & treeSpend);
+
+        void ExportGear(const EquippedGear & gear, std::stringstream & forumExport);
         Character * m_pCharacter;
         CListCtrl m_listConfigureExport;
         CEdit m_editExport;

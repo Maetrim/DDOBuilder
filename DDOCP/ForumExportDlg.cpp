@@ -225,6 +225,9 @@ void CForumExportDlg::PopulateExport()
             case FES_Gear:
                 AddGear(forumExport);
                 break;
+            case FES_AlternateGearLayouts:
+                AddAlternateGear(forumExport);
+                break;
             }
         }
     }
@@ -1430,9 +1433,14 @@ void CForumExportDlg::AddTacticalDCs(std::stringstream & forumExport)
 
 void CForumExportDlg::AddGear(std::stringstream & forumExport)
 {
-    forumExport << "Equipped Gear                                                     \r\n";
-    forumExport << "------------------------------------------------------------------\r\n";
     EquippedGear gear = m_pCharacter->ActiveGearSet();
+    ExportGear(gear, forumExport);
+}
+
+void CForumExportDlg::ExportGear(const EquippedGear & gear, std::stringstream & forumExport)
+{
+    forumExport << "Equipped Gear Set : " << gear.Name() << "\r\n";
+    forumExport << "------------------------------------------------------------------\r\n";
     for (size_t gi = Inventory_Unknown; gi < Inventory_Count; ++gi)
     {
         if (gear.HasItemInSlot((InventorySlotType)gi))
@@ -1504,6 +1512,21 @@ void CForumExportDlg::AddGear(std::stringstream & forumExport)
     }
     forumExport << "------------------------------------------------------------------\r\n";
     forumExport << "\r\n";
+}
+
+void CForumExportDlg::AddAlternateGear(std::stringstream & forumExport)
+{
+    // export all other gear layouts except the current one
+    const std::list<EquippedGear> & setups = m_pCharacter->GearSetups();
+    std::list<EquippedGear>::const_iterator it = setups.begin();
+    while (it != setups.end())
+    {
+        if ((*it).Name() != m_pCharacter->ActiveGear())
+        {
+            ExportGear((*it), forumExport);
+        }
+        ++it;
+    }
 }
 
 void CForumExportDlg::OnMoveUp()

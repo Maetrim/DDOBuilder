@@ -46,4 +46,6 @@ class EquippedGear :
 
         DL_DECLARE_ACCESS(EquippedGear_PROPERTIES)
         DL_DECLARE_VARIABLES(EquippedGear_PROPERTIES)
+
+        friend class CEquipmentView;
 };

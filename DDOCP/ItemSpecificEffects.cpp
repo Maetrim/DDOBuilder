@@ -46,3 +46,15 @@ void ItemSpecificEffects::Write(XmlLib::SaxWriter * writer) const
     DL_WRITE(ItemSpecificEffects_PROPERTIES)
     writer->EndElement();
 }
+
+bool ItemSpecificEffects::VerifyObject(std::stringstream * ss) const
+{
+    bool ok = true;
+    std::vector<Effect>::const_iterator it = m_Effects.begin();
+    while (it != m_Effects.end())
+    {
+        ok &= (*it).VerifyObject(ss);
+        ++it;
+    }
+    return ok;
+}

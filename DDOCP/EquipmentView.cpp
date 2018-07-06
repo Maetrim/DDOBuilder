@@ -40,7 +40,6 @@ void CEquipmentView::DoDataExchange(CDataExchange* pDX)
     DDX_Control(pDX, IDC_BUTTON_NEW, m_buttonNew);
     DDX_Control(pDX, IDC_BUTTON_COPY, m_buttonCopy);
     DDX_Control(pDX, IDC_BUTTON_DELETE, m_buttonDelete);
-    DDX_Control(pDX, IDC_ACTIVE_GEAR, m_buttonActiveGearSet);
 }
 
 #pragma warning(push)
@@ -49,10 +48,16 @@ BEGIN_MESSAGE_MAP(CEquipmentView, CFormView)
     ON_WM_SIZE()
     ON_WM_ERASEBKGND()
     ON_REGISTERED_MESSAGE(UWM_NEW_DOCUMENT, OnNewDocument)
-    ON_BN_CLICKED(IDC_BUTTON_NEW, OnButtonNew)
-    ON_BN_CLICKED(IDC_BUTTON_COPY, OnButtonCopy)
-    ON_BN_CLICKED(IDC_BUTTON_DELETE, OnButtonDelete)
-    ON_BN_CLICKED(IDC_ACTIVE_GEAR, OnButtonActiveGearSet)
+    ON_COMMAND(ID_GEAR_NEW, OnEditGearNew)
+    ON_COMMAND(ID_GEAR_COPY, OnEditGearCopy)
+    ON_COMMAND(ID_GEAR_DELETE, OnEditGearDelete)
+    ON_UPDATE_COMMAND_UI(ID_GEAR_NEW, OnUpdateEditGearNew)
+    ON_UPDATE_COMMAND_UI(ID_GEAR_COPY, OnUpdateEditGearCopy)
+    ON_UPDATE_COMMAND_UI(ID_GEAR_DELETE, OnUpdateEditGearDelete)
+    ON_BN_CLICKED(IDC_BUTTON_NEW, OnEditGearNew)
+    ON_BN_CLICKED(IDC_BUTTON_COPY, OnEditGearCopy)
+    ON_BN_CLICKED(IDC_BUTTON_DELETE, OnEditGearDelete)
+    ON_CBN_SELENDOK(IDC_COMBO_GEAR_NAME, OnGearSelectionSelEndOk)
 END_MESSAGE_MAP()
 #pragma warning(pop)
 
@@ -74,8 +79,6 @@ void CEquipmentView::OnInitialUpdate()
 {
     CFormView::OnInitialUpdate();
     CRect rctButton;
-    m_buttonNew.GetWindowRect(&rctButton);
-    ScreenToClient(&rctButton);
     CRect rctInventory(
             c_controlSpacing,
             rctButton.bottom + c_controlSpacing,
@@ -90,6 +93,10 @@ void CEquipmentView::OnInitialUpdate()
     {
         m_inventoryView->SetGearSet(m_pCharacter->ActiveGearSet());
     }
+    // Images for new/copy/delete buttons
+    m_buttonNew.SetImage(IDB_BITMAP_NEW);
+    m_buttonCopy.SetImage(IDB_BITMAP_COPY);
+    m_buttonDelete.SetImage(IDB_BITMAP_DELETE);
 
     EnableControls();
 }
@@ -100,38 +107,47 @@ void CEquipmentView::OnSize(UINT nType, int cx, int cy)
     if (m_inventoryView != NULL)
     {
         // position all the windows
+        // +-----------------------------+
+        // | [Drop List Combo] [N][C][D] |
+        // | +-------------------------+ |
+        // | |                         | |
+        // | | Inventory Bitmap        | |
+        // | |                         | |
+        // | +-------------------------+ |
         CRect rctCombo;
         m_comboGearSelections.GetWindowRect(&rctCombo);
         rctCombo -= rctCombo.TopLeft();
         rctCombo += CPoint(c_controlSpacing, c_controlSpacing);
-        rctCombo.right = rctCombo.left + 223;   // same width as bitmap
         CRect rctNew;
         CRect rctCopy;
         CRect rctDelete;
-        CRect rctMakeActive;
         m_buttonNew.GetWindowRect(&rctNew);
         m_buttonCopy.GetWindowRect(&rctCopy);
         m_buttonDelete.GetWindowRect(&rctDelete);
-        m_buttonActiveGearSet.GetWindowRect(&rctMakeActive);
-        rctNew -= rctNew.TopLeft();
-        rctNew += CPoint(rctCombo.right + c_controlSpacing, c_controlSpacing);
-        rctCopy -= rctCopy.TopLeft();
-        rctCopy += CPoint(rctCombo.right + c_controlSpacing, rctNew.bottom + c_controlSpacing);
+
         rctDelete -= rctDelete.TopLeft();
-        rctDelete += CPoint(rctCombo.right + c_controlSpacing, rctCopy.bottom + c_controlSpacing);
-        rctMakeActive -= rctMakeActive.TopLeft();
-        rctMakeActive += CPoint(rctNew.right + c_controlSpacing, c_controlSpacing);
+        rctDelete += CSize(223 - c_controlSpacing - rctDelete.Width(), c_controlSpacing);
+        rctCopy -= rctCopy.TopLeft();
+        rctCopy += CSize(rctDelete.left - c_controlSpacing - rctCopy.Width(), c_controlSpacing);
+        rctNew -= rctNew.TopLeft();
+        rctNew += CSize(rctCopy.left - c_controlSpacing - rctNew.Width(), c_controlSpacing);
+        rctCombo.right = rctNew.left - c_controlSpacing;
+
         CRect rctInventory(
                 c_controlSpacing,
-                rctNew.bottom + c_controlSpacing,
+                rctDelete.bottom + c_controlSpacing,
                 c_controlSpacing + 223,
-                rctNew.bottom + c_controlSpacing + 290);
+                rctDelete.bottom + c_controlSpacing + 290);
         m_comboGearSelections.MoveWindow(rctCombo);
         m_buttonNew.MoveWindow(rctNew);
         m_buttonCopy.MoveWindow(rctCopy);
         m_buttonDelete.MoveWindow(rctDelete);
-        m_buttonActiveGearSet.MoveWindow(rctMakeActive);
         m_inventoryView->MoveWindow(rctInventory);
+        SetScrollSizes(
+                MM_TEXT,
+                CSize(
+                        rctInventory.right + c_controlSpacing,
+                        rctInventory.bottom + c_controlSpacing));
     }
 }
 
@@ -158,15 +174,6 @@ LRESULT CEquipmentView::OnNewDocument(WPARAM wParam, LPARAM lParam)
     PopulateCombobox();
     PopulateGear();
     EnableControls();
-    if (m_pCharacter != NULL)
-    {
-        m_inventoryView->SetGearSet(m_pCharacter->ActiveGearSet());
-    }
-    else
-    {
-        EquippedGear emptyGear;
-        m_inventoryView->SetGearSet(emptyGear);
-    }
     return 0L;
 }
 
@@ -175,10 +182,6 @@ BOOL CEquipmentView::OnEraseBkgnd(CDC* pDC)
     static int controlsNotToBeErased[] =
     {
         IDC_COMBO_GEAR_NAME,
-        IDC_BUTTON_NEW,
-        IDC_BUTTON_COPY,
-        IDC_BUTTON_DELETE,
-        IDC_ACTIVE_GEAR,
         0 // end marker
     };
 
@@ -209,11 +212,9 @@ void CEquipmentView::PopulateCombobox()
         while (it != setups.end())
         {
             int index = m_comboGearSelections.AddString((*it).Name().c_str());
-            m_comboGearSelections.SetItemData(index, indexIntoList);
             if ((*it).Name() == m_pCharacter->ActiveGear())
             {
                 m_comboGearSelections.SetCurSel(index);
-                m_buttonActiveGearSet.SetCheck(BST_CHECKED);
                 selected = true;
             }
             ++indexIntoList;
@@ -234,10 +235,9 @@ std::string CEquipmentView::SelectedGearSet() const
     int sel = m_comboGearSelections.GetCurSel();
     if (sel != CB_ERR)
     {
-        const std::list<EquippedGear> & setups = m_pCharacter->GearSetups();
-        std::list<EquippedGear>::const_iterator it = setups.begin();
-        std::advance(it, sel);
-        gearSet = (*it).Name();
+        CString name;
+        m_comboGearSelections.GetLBText(sel, name);
+        gearSet = (LPCTSTR)name;
     }
     return gearSet;
 }
@@ -248,81 +248,34 @@ void CEquipmentView::EnableControls()
     if (m_pCharacter == NULL)
     {
         m_comboGearSelections.EnableWindow(FALSE);
+        m_inventoryView->EnableWindow(FALSE);
         m_buttonNew.EnableWindow(FALSE);
         m_buttonCopy.EnableWindow(FALSE);
         m_buttonDelete.EnableWindow(FALSE);
-        m_inventoryView->EnableWindow(FALSE);
-        m_buttonActiveGearSet.EnableWindow(FALSE);
     }
     else
     {
         const std::list<EquippedGear> & setups = m_pCharacter->GearSetups();
-        //m_comboGearSelections.EnableWindow(setups.size() > 0);
-        //m_buttonNew.EnableWindow(TRUE);                 // can always create a new one
-        //m_buttonCopy.EnableWindow(setups.size() > 0);   // can only copy a layout if one exists
-        //m_buttonDelete.EnableWindow(setups.size() > 0); // can only delete if one exists
+        m_comboGearSelections.EnableWindow(setups.size() > 1);
         m_inventoryView->EnableWindow(setups.size() > 0);
-        //m_buttonActiveGearSet.EnableWindow(FALSE);
+        m_buttonNew.EnableWindow(TRUE);     // always available
+        m_buttonCopy.EnableWindow(setups.size() > 0);
+        m_buttonDelete.EnableWindow(setups.size() > 0);
     }
-}
-
-void CEquipmentView::OnButtonNew()
-{
-    // no tooltips while a dialog is displayed
-    GetMouseHook()->SaveState();
-    // create a new gear set that they must name
-    CGearSetNameDialog dlg(this, m_pCharacter);
-    if (dlg.DoModal() == IDOK)
-    {
-        EquippedGear newGear(dlg.Name());
-        m_pCharacter->AddGearSet(newGear);
-        // add it to the combo box
-        // index is the count of gear items
-        int index = m_comboGearSelections.AddString(dlg.Name().c_str());
-        m_comboGearSelections.SetItemData(index, m_pCharacter->GearSetups().size());
-        // new entry starts selected
-        m_comboGearSelections.SetCurSel(index);
-        PopulateGear();
-        // have the correct enable state
-        EnableControls();
-    }
-    GetMouseHook()->RestoreState();
-}
-
-void CEquipmentView::OnButtonCopy()
-{
-    // create a new gear set from the current selected gear set
-    // which they will have to name
-}
-
-void CEquipmentView::OnButtonDelete()
-{
-    // delete the current gear selection
-    int sel = m_comboGearSelections.GetCurSel();
-    if (sel != CB_ERR)
-    {
-        // get the name of the gear set to delete
-        sel = m_comboGearSelections.GetItemData(sel);   // index into list
-        const std::list<EquippedGear> & setups = m_pCharacter->GearSetups();
-        std::list<EquippedGear>::const_iterator it = setups.begin();
-        std::advance(it, sel);
-        std::string name = (*it).Name();
-        m_pCharacter->DeleteGearSet(name);
-        PopulateCombobox();
-        // have the correct enable state
-        EnableControls();
-        // now show correct gear in inventory window
-        PopulateGear();
-    }
-}
-
-void CEquipmentView::OnButtonActiveGearSet()
-{
-    // deactivate or activate this gear set
 }
 
 void CEquipmentView::PopulateGear()
 {
+    if (m_inventoryView != NULL
+            && m_pCharacter != NULL)
+    {
+        m_inventoryView->SetGearSet(m_pCharacter->ActiveGearSet());
+    }
+    else
+    {
+        EquippedGear emptyGear;
+        m_inventoryView->SetGearSet(emptyGear);
+    }
 }
 
 // InventoryObserver overrides
@@ -378,4 +331,139 @@ void CEquipmentView::UpdateSlotRightClicked(
 void CEquipmentView::UpdateGearChanged(Character * charData, InventorySlotType slot)
 {
     m_inventoryView->SetGearSet(m_pCharacter->ActiveGearSet());
+}
+
+void CEquipmentView::OnUpdateEditGearNew(CCmdUI * pCmdUi)
+{
+    pCmdUi->Enable(m_pCharacter != NULL);
+}
+
+void CEquipmentView::OnUpdateEditGearCopy(CCmdUI * pCmdUi)
+{
+    if (m_pCharacter != NULL)
+    {
+        const std::list<EquippedGear> & setups = m_pCharacter->GearSetups();
+        pCmdUi->Enable(setups.size() > 0);
+    }
+    else
+    {
+        pCmdUi->Enable(FALSE);
+    }
+}
+
+void CEquipmentView::OnUpdateEditGearDelete(CCmdUI * pCmdUi)
+{
+    if (m_pCharacter != NULL)
+    {
+        const std::list<EquippedGear> & setups = m_pCharacter->GearSetups();
+        pCmdUi->Enable(setups.size() > 0);
+    }
+    else
+    {
+        pCmdUi->Enable(FALSE);
+    }
+}
+
+void CEquipmentView::OnEditGearNew()
+{
+    // no tooltips while a dialog is displayed
+    GetMouseHook()->SaveState();
+    // create a new gear set that they must name
+    CGearSetNameDialog dlg(this, m_pCharacter);
+    if (dlg.DoModal() == IDOK)
+    {
+        // ensure the gear set name is unique
+        if (!m_pCharacter->DoesGearSetExist(dlg.Name()))
+        {
+            EquippedGear newGear(dlg.Name());
+            m_pCharacter->AddGearSet(newGear);
+            // onc added the new gear set automatically becomes active
+            m_pCharacter->SetActiveGearSet(dlg.Name());
+
+            // add it to the combo box
+            // index is the count of gear items
+            int index = m_comboGearSelections.AddString(dlg.Name().c_str());
+            // new entry starts selected
+            m_comboGearSelections.SetCurSel(index);
+            PopulateGear();
+            // have the correct enable state
+            EnableControls();
+        }
+        else
+        {
+            AfxMessageBox(
+                    "Error: A gear set must have a unique name.\n"
+                    "A gear set with the name you selected already exists.\n"
+                    "Try again but use a different name.",
+                    MB_ICONERROR);
+        }
+    }
+    GetMouseHook()->RestoreState();
+}
+
+void CEquipmentView::OnEditGearCopy()
+{
+    // create a new gear set from the current selected gear set
+    // which they will have to name
+    // create a new gear set that they must name
+    CGearSetNameDialog dlg(this, m_pCharacter);
+    if (dlg.DoModal() == IDOK)
+    {
+        // ensure the gear set name is unique
+        if (!m_pCharacter->DoesGearSetExist(dlg.Name()))
+        {
+            EquippedGear copyGear = m_pCharacter->ActiveGearSet();
+            copyGear.Set_Name(dlg.Name());
+            m_pCharacter->AddGearSet(copyGear);
+            // once added the copy gear set automatically becomes active
+            m_pCharacter->SetActiveGearSet(dlg.Name());
+
+            // add it to the combo box
+            // index is the count of gear items
+            int index = m_comboGearSelections.AddString(dlg.Name().c_str());
+            // new entry starts selected
+            m_comboGearSelections.SetCurSel(index);
+            PopulateGear();
+            // have the correct enable state
+            EnableControls();
+        }
+    }
+}
+
+void CEquipmentView::OnEditGearDelete()
+{
+    // delete the current gear selection
+    int sel = m_comboGearSelections.GetCurSel();
+    if (sel != CB_ERR)
+    {
+        // get the name of the gear set to delete
+        CString name;
+        m_comboGearSelections.GetLBText(sel, name);
+        // double check thats what they really want
+        CString message;
+        message.Format("Are you sure you want to delete the gear set called:\n"
+            "\"%s\"?", name);
+        UINT ret = AfxMessageBox(message, MB_ICONQUESTION | MB_YESNO);
+        if (ret == IDYES)
+        {
+            m_pCharacter->DeleteGearSet((LPCTSTR)name);
+            PopulateCombobox();
+            // have the correct enable state
+            EnableControls();
+            // now show correct gear in inventory window
+            PopulateGear();
+        }
+    }
+}
+
+void CEquipmentView::OnGearSelectionSelEndOk()
+{
+    int sel = m_comboGearSelections.GetCurSel();
+    if (sel != CB_ERR)
+    {
+        CString name;
+        m_comboGearSelections.GetLBText(sel, name);
+        m_pCharacter->SetActiveGearSet((LPCTSTR)name);
+        PopulateGear();
+    }
 }

@@ -257,6 +257,19 @@ bool Effect::VerifyObject(std::stringstream * ss) const
                 }
             }
             break;
+        case Effect_DRBypass:
+            // must have a single DR value
+            if (m_DR.size() == 0)
+            {
+                (*ss) << "DRBypass effect missing DR field\n";
+                ok = false;
+            }
+            else if (m_DR.size() > 1)
+            {
+                (*ss) << "DRBypass effect can only handle a single value\n";
+                ok = false;
+            }
+            // fall through to check weapon/weaponclass settings
         case Effect_AttackBonus:
         case Effect_Alacrity:
         case Effect_CenteredWeapon:

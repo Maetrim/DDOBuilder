@@ -500,7 +500,7 @@ void CItemSelectDialog::OnItemSelected(NMHDR* pNMHDR, LRESULT* pResult)
 
 void CItemSelectDialog::OnAugmentSelect(UINT nID)
 {
-    // the user has selected a feat in one of the augment combo boxes
+    // the user has selected an augment in one of the augment combo boxes
     int augmentIndex = nID - IDC_COMBO_AUGMENT1;
     ASSERT(augmentIndex >= 0 && augmentIndex < (int)m_item.Augments().size());
     int sel = m_comboAugmentDropList[augmentIndex].GetCurSel();
@@ -801,9 +801,7 @@ void CItemSelectDialog::OnEndtrackListItems(NMHDR* pNMHDR, LRESULT* pResult)
 
 void CItemSelectDialog::OnColumnclickListItems(NMHDR* pNMHDR, LRESULT* pResult)
 {
-    // allow the user to sort the skills list based on the selected column
-    // skill selected is identified by the item data which maps to the SkillType enum
-    // when the control was populated.
+    // allow the user to sort the item list based on the selected column
     NM_LISTVIEW* pNMListView = (NM_LISTVIEW*)pNMHDR;
 
     size_t columnToSort = pNMListView->iSubItem;
@@ -891,7 +889,7 @@ int CItemSelectDialog::SortCompareFunction(
 void CItemSelectDialog::OnHoverListItems(NMHDR* pNMHDR, LRESULT* pResult)
 {
     // the user it hovering over a list control item. Identify it and display
-    // the feat tooltip for this item
+    // the item tooltip for this item
     CPoint mousePosition;
     GetCursorPos(&mousePosition);
     m_availableItemsCtrl.ScreenToClient(&mousePosition);
@@ -904,8 +902,8 @@ void CItemSelectDialog::OnHoverListItems(NMHDR* pNMHDR, LRESULT* pResult)
         {
             // the item under the hover has changed
             m_hoverItem = hitInfo.iItem;
-            // mouse is over a valid automatic feat, get the items rectangle and
-            // show the feat tooltip
+            // mouse is over a valid item, get the items rectangle and
+            // show the item tooltip
             CRect rect;
             m_availableItemsCtrl.GetItemRect(hitInfo.iItem, &rect, LVIR_BOUNDS);
             HideTip();

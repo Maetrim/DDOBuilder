@@ -148,6 +148,11 @@ void Item::VerifyObject() const
         ss << "Item is missing image file \"" << Icon() << "\"\n";
         ok = false;
     }
+    // check item specific effects
+    if (m_hasItemEffects)
+    {
+        ok &= m_ItemEffects.VerifyObject(&ss);
+    }
     // check the item effects also
     std::vector<Effect>::const_iterator it = m_Effects.begin();
     while (it != m_Effects.end())
@@ -161,3 +166,15 @@ void Item::VerifyObject() const
         ::OutputDebugString(ss.str().c_str());
     }
 }
+
+void Item::CopyUserSetValues(const Item & original)
+{
+    // when updating an item to the latest version there are certain user
+    // which we need to copy
+    // sentient Jewel and augments/upgrade slots
+    m_hasSentientIntelligence = original.m_hasSentientIntelligence;
+    m_SentientIntelligence = original.m_SentientIntelligence;
+    m_Augments = original.m_Augments;
+    m_SlotUpgrades = original.m_SlotUpgrades;
+}
+

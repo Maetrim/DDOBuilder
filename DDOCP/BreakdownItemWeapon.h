@@ -10,6 +10,7 @@
 #include "BreakdownItemSimple.h"
 #include "BreakdownItemWeaponCriticalThreatRange.h"
 #include "BreakdownItemWeaponCriticalMultiplier.h"
+#include "BreakdownItemWeaponDRBypass.h"
 #include "BreakdownItemWeaponOtherDamageEffects.h"
 
 class BreakdownItemWeapon :
@@ -72,6 +73,7 @@ class BreakdownItemWeapon :
         BreakdownItemWeaponOtherDamageEffects m_otherCriticalDamageEffects; // e.g. +2d6 Light Damage
         BreakdownItemWeaponCriticalMultiplier m_criticalMultiplier;
         BreakdownItemWeaponCriticalMultiplier m_criticalMultiplier19To20;
+        BreakdownItemWeaponDRBypass m_drBypass;
         BreakdownItemSimple m_attackSpeed;
         size_t m_centeredCount;
         size_t m_weaponCriticalMuliplier;

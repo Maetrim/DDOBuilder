@@ -27,6 +27,7 @@ class Item :
         void AddImage(CImageList * pIL) const;
         void VerifyObject() const;
 
+        void CopyUserSetValues(const Item & original);
     protected:
         XmlLib::SaxContentElementInterface * StartElement(
                 const XmlLib::SaxString & name,

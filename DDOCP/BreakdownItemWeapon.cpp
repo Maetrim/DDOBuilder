@@ -30,6 +30,7 @@ BreakdownItemWeapon::BreakdownItemWeapon(
     m_criticalMultiplier(Breakdown_WeaponCriticalMultiplier,  treeList, NULL, NULL),
     m_criticalMultiplier19To20(Breakdown_WeaponCriticalMultiplier19To20, treeList, NULL, &m_criticalMultiplier),
     m_attackSpeed(Breakdown_WeaponAttackSpeed, Effect_Alacrity, "Attack Speed", treeList, NULL),
+    m_drBypass(Breakdown_DRBypass, treeList, NULL),
     m_centeredCount(0),    // assume not centered with this weapon
     m_weaponCriticalMuliplier(weaponCriticalMultiplier)
 {
@@ -45,6 +46,7 @@ BreakdownItemWeapon::BreakdownItemWeapon(
     m_criticalMultiplier.SetWeapon(weaponType, weaponCriticalMultiplier);
     m_criticalMultiplier19To20.SetWeapon(weaponType, weaponCriticalMultiplier);
     m_attackSpeed.SetWeapon(weaponType, weaponCriticalMultiplier);
+    m_drBypass.SetWeapon(weaponType, weaponCriticalMultiplier);
 
     if (slot == Inventory_Weapon2)
     {
@@ -65,6 +67,7 @@ BreakdownItemWeapon::BreakdownItemWeapon(
     m_criticalMultiplier.AttachObserver(this);
     m_criticalMultiplier19To20.AttachObserver(this);
     m_attackSpeed.AttachObserver(this);
+    m_drBypass.AttachObserver(this);
 
     std::string strDamageDice = m_damageDice.Description(1);
 
@@ -80,6 +83,7 @@ BreakdownItemWeapon::BreakdownItemWeapon(
     AddTreeItem("Critical Multiplier", "", &m_criticalMultiplier);
     AddTreeItem("Critical Multiplier (19-20)", "", &m_criticalMultiplier19To20);
     AddTreeItem("Attack Speed", "", &m_attackSpeed);
+    AddTreeItem("DR Bypass", "", &m_drBypass);
 
     // by default all melee weapons use strength as their base for attack bonus
     // additional abilities can be added for specific weapons by enhancements
@@ -153,6 +157,7 @@ void BreakdownItemWeapon::SetCharacter(Character * charData, bool observe)
     m_criticalMultiplier.SetCharacter(charData, false);        // we handle this for them
     m_criticalMultiplier19To20.SetCharacter(charData, false);        // we handle this for them
     m_attackSpeed.SetCharacter(charData, false);
+    m_drBypass.SetCharacter(charData, false);
 }
 
 // required overrides
@@ -244,6 +249,7 @@ void BreakdownItemWeapon::UpdateFeatEffect(
         m_criticalMultiplier.UpdateFeatEffect(pCharacter, featName, effect);
         m_criticalMultiplier19To20.UpdateFeatEffect(pCharacter, featName, effect);
         m_attackSpeed.UpdateFeatEffect(pCharacter, featName, effect);
+        m_drBypass.UpdateFeatEffect(pCharacter, featName, effect);
 
         // we handle whether we are centered or not
         if (effect.Type() == Effect_CenteredWeapon)
@@ -286,6 +292,7 @@ void BreakdownItemWeapon::UpdateFeatEffectRevoked(
         m_criticalMultiplier.UpdateFeatEffectRevoked(pCharacter, featName, effect);
         m_criticalMultiplier19To20.UpdateFeatEffectRevoked(pCharacter, featName, effect);
         m_attackSpeed.UpdateFeatEffectRevoked(pCharacter, featName, effect);
+        m_drBypass.UpdateFeatEffectRevoked(pCharacter, featName, effect);
 
         // we handle whether we are centered or not
         // we handle whether we are centered or not
@@ -329,6 +336,7 @@ void BreakdownItemWeapon::UpdateItemEffect(
         m_criticalMultiplier.UpdateItemEffect(pCharacter, itemName, effect);
         m_criticalMultiplier19To20.UpdateItemEffect(pCharacter, itemName, effect);
         m_attackSpeed.UpdateItemEffect(pCharacter, itemName, effect);
+        m_drBypass.UpdateItemEffect(pCharacter, itemName, effect);
 
         // we handle whether we are centered or not
         // we handle whether we are centered or not
@@ -372,6 +380,7 @@ void BreakdownItemWeapon::UpdateItemEffectRevoked(
         m_criticalMultiplier.UpdateItemEffectRevoked(pCharacter, itemName, effect);
         m_criticalMultiplier19To20.UpdateItemEffectRevoked(pCharacter, itemName, effect);
         m_attackSpeed.UpdateItemEffectRevoked(pCharacter, itemName, effect);
+        m_drBypass.UpdateItemEffectRevoked(pCharacter, itemName, effect);
 
         // we handle whether we are centered or not
         // we handle whether we are centered or not
@@ -415,6 +424,7 @@ void BreakdownItemWeapon::UpdateEnhancementEffect(
         m_criticalMultiplier.UpdateEnhancementEffect(pCharacter, enhancementName, effect);
         m_criticalMultiplier19To20.UpdateEnhancementEffect(pCharacter, enhancementName, effect);
         m_attackSpeed.UpdateEnhancementEffect(pCharacter, enhancementName, effect);
+        m_drBypass.UpdateEnhancementEffect(pCharacter, enhancementName, effect);
 
         // we handle whether we are centered or not
         if (effect.m_effect.Type() == Effect_CenteredWeapon)
@@ -457,6 +467,7 @@ void BreakdownItemWeapon::UpdateEnhancementEffectRevoked(
         m_criticalMultiplier.UpdateEnhancementEffectRevoked(pCharacter, enhancementName, effect);
         m_criticalMultiplier19To20.UpdateEnhancementEffectRevoked(pCharacter, enhancementName, effect);
         m_attackSpeed.UpdateEnhancementEffectRevoked(pCharacter, enhancementName, effect);
+        m_drBypass.UpdateEnhancementEffectRevoked(pCharacter, enhancementName, effect);
 
         // we handle whether we are centered or not
         if (effect.m_effect.Type() == Effect_CenteredWeapon)
@@ -599,6 +610,7 @@ void BreakdownItemWeapon::UpdateEnhancementTrained(
     m_criticalMultiplier.UpdateEnhancementTrained(charData, enhancementName, selection, isTier5);
     m_criticalMultiplier19To20.UpdateEnhancementTrained(charData, enhancementName, selection, isTier5);
     m_attackSpeed.UpdateEnhancementTrained(charData, enhancementName, selection, isTier5);
+    m_drBypass.UpdateEnhancementTrained(charData, enhancementName, selection, isTier5);
     if (enhancementName == "KenseiOneWithTheBlade"
             || enhancementName == "KenseiExoticWeaponMastery")
     {
@@ -627,6 +639,7 @@ void BreakdownItemWeapon::UpdateEnhancementRevoked(
     m_criticalMultiplier.UpdateEnhancementRevoked(charData, enhancementName, selection, isTier5);
     m_criticalMultiplier19To20.UpdateEnhancementRevoked(charData, enhancementName, selection, isTier5);
     m_attackSpeed.UpdateEnhancementRevoked(charData, enhancementName, selection, isTier5);
+    m_drBypass.UpdateEnhancementRevoked(charData, enhancementName, selection, isTier5);
     if (enhancementName == "KenseiOneWithTheBlade"
             || enhancementName == "KenseiExoticWeaponMastery")
     {
@@ -653,6 +666,7 @@ void BreakdownItemWeapon::UpdateFeatTrained(
     m_criticalMultiplier.UpdateFeatTrained(charData, featName);
     m_criticalMultiplier19To20.UpdateFeatTrained(charData, featName);
     m_attackSpeed.UpdateFeatTrained(charData, featName);
+    m_drBypass.UpdateFeatTrained(charData, featName);
 }
 
 void BreakdownItemWeapon::UpdateFeatRevoked(
@@ -672,6 +686,7 @@ void BreakdownItemWeapon::UpdateFeatRevoked(
     m_criticalMultiplier.UpdateFeatRevoked(charData, featName);
     m_criticalMultiplier19To20.UpdateFeatRevoked(charData, featName);
     m_attackSpeed.UpdateFeatRevoked(charData, featName);
+    m_drBypass.UpdateFeatRevoked(charData, featName);
 }
 
 void BreakdownItemWeapon::AddForumExportData(std::stringstream & forumExport)
@@ -707,5 +722,6 @@ void BreakdownItemWeapon::AddForumExportData(std::stringstream & forumExport)
             (int)m_criticalMultiplier19To20.Total(),
             m_otherCriticalDamageEffects.Value());
     forumExport << valueCrit1920;
-    forumExport << "\r\n";
+    forumExport << "DR Bypass: " << m_drBypass.Value();
+    forumExport << "\r\n\r\n";
 }
