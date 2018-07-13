@@ -43,17 +43,23 @@ class BreakdownItemWeapon :
         virtual void SetCharacter(Character * charData, bool observe);
 
         // BreakdownObserver overrides
-        virtual void UpdateFeatEffect(Character * pCharacater, const std::string & featName, const Effect & effect) override;
-        virtual void UpdateFeatEffectRevoked(Character * pCharacater, const std::string & featName, const Effect & effect) override;
-        virtual void UpdateItemEffect(Character * charData, const std::string & itemName, const Effect & effect) override;
-        virtual void UpdateItemEffectRevoked(Character * charData, const std::string & itemName, const Effect & effect) override;
-        virtual void UpdateEnhancementEffect(Character * charData, const std::string & enhancementName,  const EffectTier & effect) override;
-        virtual void UpdateEnhancementEffectRevoked(Character * charData, const std::string & enhancementName, const EffectTier & effect) override;
         virtual void UpdateTotalChanged(BreakdownItem * item, BreakdownType type) override;
-        virtual void UpdateEnhancementTrained(Character * charData, const std::string & enhancementName, const std::string & selection, bool isTier5) override;
-        virtual void UpdateEnhancementRevoked(Character * charData, const std::string & enhancementName, const std::string & selection, bool isTier5) override;
+
+        // Character overrides
+        virtual void UpdateClassChanged(Character * charData, ClassType classFrom, ClassType classTo, size_t level) override;
+        virtual void UpdateStanceActivated(Character * charData, const std::string & stanceName) override;
+        virtual void UpdateStanceDeactivated(Character * charData, const std::string & stanceName) override;
         virtual void UpdateFeatTrained(Character * charData, const std::string & featName) override;
         virtual void UpdateFeatRevoked(Character * charData, const std::string & featName) override;
+        virtual void UpdateFeatEffect(Character * pCharacater, const std::string & featName, const Effect & effect) override;
+        virtual void UpdateFeatEffectRevoked(Character * pCharacater, const std::string & featName, const Effect & effect) override;
+        virtual void UpdateEnhancementEffect(Character * charData, const std::string & enhancementName,  const EffectTier & effect) override;
+        virtual void UpdateEnhancementEffectRevoked(Character * charData, const std::string & enhancementName, const EffectTier & effect) override;
+        virtual void UpdateItemEffect(Character * charData, const std::string & itemName, const Effect & effect) override;
+        virtual void UpdateItemEffectRevoked(Character * charData, const std::string & itemName, const Effect & effect) override;
+        virtual void UpdateEnhancementTrained(Character * charData, const std::string & enhancementName, const std::string & selection, bool isTier5) override;
+        virtual void UpdateEnhancementRevoked(Character * charData, const std::string & enhancementName, const std::string & selection, bool isTier5) override;
+        virtual void UpdateAPSpentInTreeChanged(Character * charData, const std::string & treeName) override;
     private:
          void AddTreeItem(const std::string & entry, const std::string & total, BreakdownItem * pBreakdown);
          bool IsDamageType(WeaponDamageType type) const;

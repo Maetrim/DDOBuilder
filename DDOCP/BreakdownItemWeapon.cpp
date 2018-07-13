@@ -590,6 +590,50 @@ bool BreakdownItemWeapon::IsDamageType(WeaponDamageType type) const
     return isUs;
 }
 
+void BreakdownItemWeapon::UpdateClassChanged(
+        Character * charData,
+        ClassType classFrom,
+        ClassType classTo,
+        size_t level)
+{
+    BreakdownItem::UpdateClassChanged(charData, classFrom, classTo, level);
+    // pass through to all our sub breakdowns
+    m_baseDamage.UpdateClassChanged(charData, classFrom, classTo, level);
+    m_attackBonus.UpdateClassChanged(charData, classFrom, classTo, level);
+    m_damageBonus.UpdateClassChanged(charData, classFrom, classTo, level);
+    m_otherDamageEffects.UpdateClassChanged(charData, classFrom, classTo, level);
+    //m_vorpalRange.UpdateClassChanged(charData, classFrom, classTo, level);
+    m_criticalThreatRange.UpdateClassChanged(charData, classFrom, classTo, level);
+    m_criticalAttackBonus.UpdateClassChanged(charData, classFrom, classTo, level);
+    m_criticalDamageBonus.UpdateClassChanged(charData, classFrom, classTo, level);
+    m_otherCriticalDamageEffects.UpdateClassChanged(charData, classFrom, classTo, level);
+    m_criticalMultiplier.UpdateClassChanged(charData, classFrom, classTo, level);
+    m_criticalMultiplier19To20.UpdateClassChanged(charData, classFrom, classTo, level);
+    m_attackSpeed.UpdateClassChanged(charData, classFrom, classTo, level);
+    m_drBypass.UpdateClassChanged(charData, classFrom, classTo, level);
+}
+
+void BreakdownItemWeapon::UpdateAPSpentInTreeChanged(
+        Character * charData,
+        const std::string & treeName)
+{
+    BreakdownItem::UpdateAPSpentInTreeChanged(charData, treeName);
+    // pass through to all our sub breakdowns
+    m_baseDamage.UpdateAPSpentInTreeChanged(charData, treeName);
+    m_attackBonus.UpdateAPSpentInTreeChanged(charData, treeName);
+    m_damageBonus.UpdateAPSpentInTreeChanged(charData, treeName);
+    m_otherDamageEffects.UpdateAPSpentInTreeChanged(charData, treeName);
+    //m_vorpalRange.UpdateAPSpentInTreeChanged(charData, treeName);
+    m_criticalThreatRange.UpdateAPSpentInTreeChanged(charData, treeName);
+    m_criticalAttackBonus.UpdateAPSpentInTreeChanged(charData, treeName);
+    m_criticalDamageBonus.UpdateAPSpentInTreeChanged(charData, treeName);
+    m_otherCriticalDamageEffects.UpdateAPSpentInTreeChanged(charData, treeName);
+    m_criticalMultiplier.UpdateAPSpentInTreeChanged(charData, treeName);
+    m_criticalMultiplier19To20.UpdateAPSpentInTreeChanged(charData, treeName);
+    m_attackSpeed.UpdateAPSpentInTreeChanged(charData, treeName);
+    m_drBypass.UpdateAPSpentInTreeChanged(charData, treeName);
+}
+
 void BreakdownItemWeapon::UpdateEnhancementTrained(
         Character * charData,
         const std::string & enhancementName,
@@ -687,6 +731,46 @@ void BreakdownItemWeapon::UpdateFeatRevoked(
     m_criticalMultiplier19To20.UpdateFeatRevoked(charData, featName);
     m_attackSpeed.UpdateFeatRevoked(charData, featName);
     m_drBypass.UpdateFeatRevoked(charData, featName);
+}
+
+void BreakdownItemWeapon::UpdateStanceActivated(
+        Character * charData,
+        const std::string & stanceName)
+{
+    // pass through to all our sub breakdowns
+    m_baseDamage.UpdateStanceActivated(charData, stanceName);
+    m_attackBonus.UpdateStanceActivated(charData, stanceName);
+    m_damageBonus.UpdateStanceActivated(charData, stanceName);
+    m_otherDamageEffects.UpdateStanceActivated(charData, stanceName);
+    //m_vorpalRange.UpdateStanceActivated(charData, stanceName);
+    m_criticalThreatRange.UpdateStanceActivated(charData, stanceName);
+    m_criticalAttackBonus.UpdateStanceActivated(charData, stanceName);
+    m_criticalDamageBonus.UpdateStanceActivated(charData, stanceName);
+    m_otherCriticalDamageEffects.UpdateStanceActivated(charData, stanceName);
+    m_criticalMultiplier.UpdateStanceActivated(charData, stanceName);
+    m_criticalMultiplier19To20.UpdateStanceActivated(charData, stanceName);
+    m_attackSpeed.UpdateStanceActivated(charData, stanceName);
+    m_drBypass.UpdateStanceActivated(charData, stanceName);
+}
+
+void BreakdownItemWeapon::UpdateStanceDeactivated(
+        Character * charData,
+        const std::string & stanceName)
+{
+    // pass through to all our sub breakdowns
+    m_baseDamage.UpdateStanceDeactivated(charData, stanceName);
+    m_attackBonus.UpdateStanceDeactivated(charData, stanceName);
+    m_damageBonus.UpdateStanceDeactivated(charData, stanceName);
+    m_otherDamageEffects.UpdateStanceDeactivated(charData, stanceName);
+    //m_vorpalRange.UpdateStanceDeactivated(charData, stanceName);
+    m_criticalThreatRange.UpdateStanceDeactivated(charData, stanceName);
+    m_criticalAttackBonus.UpdateStanceDeactivated(charData, stanceName);
+    m_criticalDamageBonus.UpdateStanceDeactivated(charData, stanceName);
+    m_otherCriticalDamageEffects.UpdateStanceDeactivated(charData, stanceName);
+    m_criticalMultiplier.UpdateStanceDeactivated(charData, stanceName);
+    m_criticalMultiplier19To20.UpdateStanceDeactivated(charData, stanceName);
+    m_attackSpeed.UpdateStanceDeactivated(charData, stanceName);
+    m_drBypass.UpdateStanceDeactivated(charData, stanceName);
 }
 
 void BreakdownItemWeapon::AddForumExportData(std::stringstream & forumExport)

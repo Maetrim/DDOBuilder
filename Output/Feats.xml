@@ -1420,8 +1420,8 @@ allies in the stuff of clouds for a short period of time, granting them 20% conc
    </Feat>
    <Feat>
       <Name>Damage Reduction</Name>
-      <Description>A barbarian can resist physical damage, shrugging off a 1 point of
-damage from each physical attack. This increases by 1 point at 5th level and
+      <Description>A barbarian can resist physical damage, shrugging off a 1% of none bane
+damage from each physical attack. This increases by 1% point at 5th level and
 every three barbarian levels thereafter.</Description>
       <MaxTimesAcquire>7</MaxTimesAcquire>
       <Requirements/>
@@ -1460,7 +1460,7 @@ every three barbarian levels thereafter.</Description>
          <Bonus>Feat</Bonus>
          <Type>DR</Type>
          <Amount>1</Amount>
-         <DR>-</DR>
+         <DR>%</DR>
       </Effect>
    </Feat>
    <Feat>
@@ -5175,20 +5175,16 @@ be healed by spells from the healing subschool, such as cure light wounds.</Desc
       <Icon>ImprovedHeroicDurability</Icon>
       <!--Any multiple of 5 class levels in a given class-->
       <AutomaticAcquisition>
-         <Class>All</Class>
+         <Class>NotEpic</Class>
          <Level>5</Level>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
-         <Class>All</Class>
+         <Class>NotEpic</Class>
          <Level>10</Level>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
-         <Class>All</Class>
+         <Class>NotEpic</Class>
          <Level>15</Level>
-      </AutomaticAcquisition>
-      <AutomaticAcquisition>
-         <Class>All</Class>
-         <Level>20</Level>
       </AutomaticAcquisition>
       <Effect>
          <Type>Hitpoints</Type>
@@ -21176,7 +21172,7 @@ You deal 2 extra damage with Quarterstaffs.</Description>
    </Feat>
    <!--Damage reduction feats-->
    <Feat>
-      <Name>Favored Soul Damage Reduction: Adamantine</Name>
+      <Name>Favored Soul of the Lord of Blades Damage Reduction: Adamantine</Name>
       <Description>Favored Souls of the Lord of Blades fear not the weapons of most opponents.
 You gain damage reduction 10/adamantine, or improve your existing damage reduction
 by 10/adamantine.</Description>
@@ -21203,9 +21199,9 @@ by 10/adamantine.</Description>
       </Effect>
    </Feat>
    <Feat>
-      <Name>Favored Soul Damage Reduction: Cold Iron</Name>
+      <Name>Favored Soul of the Undying Court Damage Reduction: Cold Iron</Name>
       <Description>Favored Souls of the Undying Court can turn aside most weapons.
-You gain damage reduction 10/cold iron.</Description>
+You gain damage reduction 10/Cold Iron.</Description>
       <FeatGroup>
          <IsDamageReduction/>
       </FeatGroup>
@@ -21228,9 +21224,9 @@ You gain damage reduction 10/cold iron.</Description>
       </Effect>
    </Feat>
    <Feat>
-      <Name>Favored Soul Damage Reduction: Good</Name>
+      <Name>Favored Soul of Vulkoor the Hunter Damage Reduction: Good</Name>
       <Description>Favored Souls of the Vulkoor the Hunter can ward themselves against all but the light.
-You gain damage reduction 10/good.</Description>
+You gain damage reduction 10/Good.</Description>
       <FeatGroup>
          <IsDamageReduction/>
       </FeatGroup>
@@ -21256,9 +21252,9 @@ You gain damage reduction 10/good.</Description>
       </Effect>
    </Feat>
    <Feat>
-      <Name>Favored Soul Damage Reduction: Silver</Name>
+      <Name>Favored Soul of the Silver Flame Damage Reduction: Silver</Name>
       <Description>Favored Souls of the Silver Flame can turn aside most weapons.
-You gain damage reduction 10/silver.</Description>
+You gain damage reduction 10/Silver.</Description>
       <FeatGroup>
          <IsDamageReduction/>
       </FeatGroup>
@@ -21281,9 +21277,9 @@ You gain damage reduction 10/silver.</Description>
       </Effect>
    </Feat>
    <Feat>
-      <Name>Favored Soul Damage Reduction: Cold Iron, Silver</Name>
+      <Name>Favored Soul of the Sovereign Host Damage Reduction: Cold Iron, Silver</Name>
       <Description>Favored Souls of the Sovereign Host can turn aside most weapons.
-You gain damage reduction 10/Cold Iron,Silver.</Description>
+You gain damage reduction 10/Cold Iron, Silver.</Description>
       <FeatGroup>
          <IsDamageReduction/>
       </FeatGroup>
@@ -21307,7 +21303,7 @@ You gain damage reduction 10/Cold Iron,Silver.</Description>
       </Effect>
    </Feat>
    <Feat>
-      <Name>Favored Soul Damage Reduction: Silver</Name>
+      <Name>Favored Soulof Amaunator Damage Reduction: Silver</Name>
       <Description>Favored Souls of the Amaunator fear not the weapons of most opponents.
 You gain damage reduction 10/Silver, or improve your existing damage reduction
 by 10/Silver.</Description>
@@ -21334,13 +21330,9 @@ by 10/Silver.</Description>
       </Effect>
    </Feat>
    <Feat>
-      <Name>Favored Soul Damage Reduction: ????</Name>
-      <Description>Favored Souls of the ???? fear not the weapons of most opponents.
-You gain damage reduction 10/????, or improve your existing damage reduction
-by 10/???.
-NOTE: This is a placeholder feat until the known damage reduction type is determined.
-Testing on Lammania shows that no current feat selection is available at level 20
-Favored Soul for Forgotten Reals deities.</Description>
+      <Name>Favored Soul of Aurein Damage Reduction: Cold Iron</Name>
+      <Description>Favored Souls of Aureon can turn aside most weapons.
+You gain damage reduction 10/Cold Iron.</Description>
       <FeatGroup>
          <IsDamageReduction/>
       </FeatGroup>
@@ -21349,27 +21341,59 @@ Favored Soul for Forgotten Reals deities.</Description>
             <Class>Favored Soul</Class>
             <Level>20</Level>
          </Requirement>
-         <RequiresOneOf>
-            <Requirement>
+         <Requirement>
                <Feat>Beloved of Aureon</Feat>
-            </Requirement>
-            <Requirement>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>EnergyResistance</Icon>
+      <Effect>
+         <Type>DR</Type>
+         <Bonus>Feat</Bonus>
+         <DR>Cold Iron</DR>
+         <Amount>10</Amount>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Favored Soul of the Blood of Vol Damage Reduction: Good</Name>
+      <Description>Favored Souls of the Blood of Vol can turn aside most weapons.
+You gain damage reduction 10/Good.</Description>
+      <FeatGroup>
+         <IsDamageReduction/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <Class>Favored Soul</Class>
+            <Level>20</Level>
+         </Requirement>
+         <Requirement>
                <Feat>Beloved of the Blood of Vol</Feat>
-            </Requirement>
-            <Requirement>
-               <Feat>Beloved of Olladra</Feat>
-            </Requirement>
-            <Requirement>
-               <Feat>Beloved of Onatar</Feat>
-            </Requirement>
-            <Requirement>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>EnergyResistance</Icon>
+      <Effect>
+         <Type>DR</Type>
+         <Bonus>Feat</Bonus>
+         <DR>Good</DR>
+         <Amount>10</Amount>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Favored Soul of Helm Damage Reduction: Adamantine</Name>
+      <Description>Favored Souls of Helm can turn aside most weapons.
+You gain damage reduction 10/Adamantine.</Description>
+      <FeatGroup>
+         <IsDamageReduction/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <Class>Favored Soul</Class>
+            <Level>20</Level>
+         </Requirement>
+         <Requirement>
                <Feat>Beloved of Helm</Feat>
-            </Requirement>
-            <Requirement>
-               <Feat>Beloved of Silvanus</Feat>
-            </Requirement>
-         </RequiresOneOf>
-         <!--Race requirement not needed as you can only select the feat if you are the right race already-->
+         </Requirement>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>EnergyResistance</Icon>
@@ -21377,6 +21401,81 @@ Favored Soul for Forgotten Reals deities.</Description>
          <Type>DR</Type>
          <Bonus>Feat</Bonus>
          <DR>Adamantine</DR>
+         <Amount>10</Amount>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Favored Soul of Olladra Damage Reduction: Cold Iron</Name>
+      <Description>Favored Souls of Olladra can turn aside most weapons.
+You gain damage reduction 10/Cold Iron.</Description>
+      <FeatGroup>
+         <IsDamageReduction/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <Class>Favored Soul</Class>
+            <Level>20</Level>
+         </Requirement>
+         <Requirement>
+               <Feat>Beloved of Olladra</Feat>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>EnergyResistance</Icon>
+      <Effect>
+         <Type>DR</Type>
+         <Bonus>Feat</Bonus>
+         <DR>Cold Iron</DR>
+         <Amount>10</Amount>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Favored Soul of Onatar Damage Reduction: Cold Iron</Name>
+      <Description>Favored Souls of Onatar can turn aside most weapons.
+You gain damage reduction 10/Cold Iron.</Description>
+      <FeatGroup>
+         <IsDamageReduction/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <Class>Favored Soul</Class>
+            <Level>20</Level>
+         </Requirement>
+         <Requirement>
+               <Feat>Beloved of Onatar</Feat>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>EnergyResistance</Icon>
+      <Effect>
+         <Type>DR</Type>
+         <Bonus>Feat</Bonus>
+         <DR>Cold Iron</DR>
+         <Amount>10</Amount>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Favored Soul of Silvanus Damage Reduction: Silver</Name>
+      <Description>Favored Souls of Silvanus can turn aside most weapons.
+You gain damage reduction 10/Silver.</Description>
+      <FeatGroup>
+         <IsDamageReduction/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <Class>Favored Soul</Class>
+            <Level>20</Level>
+         </Requirement>
+         <Requirement>
+               <Feat>Beloved of Silvanus</Feat>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>EnergyResistance</Icon>
+      <Effect>
+         <Type>DR</Type>
+         <Bonus>Feat</Bonus>
+         <DR>Silver</DR>
          <Amount>10</Amount>
       </Effect>
    </Feat>

@@ -42,7 +42,7 @@ Passive: +2 Armor Class, +5 Fire Spell Power, +5 Light Spell Power</Description>
           <Description>Ranged Attack: Smite your enemy with a ranged attack that deals an
 additional 2[W] damage. Cooldown: 12 seconds.
 Passive: +2 Armor Class, +5 Fire Spell Power, +5 Light Spell Power</Description>
-          <Icon/>
+          <Icon>WPSmiteFoeRanged</Icon>
           <Cost>1</Cost>
         </EnhancementSelection>
       </Selector>
@@ -197,7 +197,8 @@ Passive:
 Passive:
 +2 Armor Class
 +5 Fire Spell Power
-+5 Light Spell Power</Description>
++5 Light Spell Power
++1 Competence Bonus to Critical Threat Range with your Favored weapon.</Description>
       <Icon>WPWarDomainHaste</Icon>
       <XPosition>4</XPosition>
       <YPosition>0</YPosition>
@@ -233,6 +234,13 @@ Passive:
         <SpellPower>Fire</SpellPower>
         <SpellPower>Light</SpellPower>
       </Effect>
+        <Effect>
+            <Type>CriticalRange</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+        </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>War Soul: Implacable Foe</Name>
@@ -260,7 +268,8 @@ Passive:
           <Description>Activate: You and nearby allies gain 100 Temporary Hit Points and their
 attacks will deal 10% additional damage. For the next 18 seconds, these bonuses
 will refresh every 3 seconds on you and each ally that remains in range.
-These effects will expire 5 seconds after they are no longer refreshed. (Cooldown: 5 minutes)
+These effects will expire 5 seconds after they are no longer refreshed.
+Cooldown: 3 minutes
 Passive:
 Divine Vessel now triggers on reaching 20 stacks of Divine Conduit, instead of 25.
 +4 Strength
@@ -281,7 +290,8 @@ Divine Vessel now triggers on reaching 20 stacks of Divine Conduit, instead of 2
           <Description>Activate: You and nearby allies gain 100 Temporary Hit Points and their
 attacks will deal 10% additional damage. For the next 18 seconds, these bonuses
 will refresh every 3 seconds on you and each ally that remains in range.
-These effects will expire 5 seconds after they are no longer refreshed. (Cooldown: 5 minutes)
+These effects will expire 5 seconds after they are no longer refreshed.
+Cooldown: 3 minutes
 Passive:
 Divine Vessel now triggers on reaching 20 stacks of Divine Conduit, instead of 25.
 +4 Wisdom
@@ -434,7 +444,7 @@ Cooldown: 20 seconds</Description>
     <EnhancementTreeItem>
       <Name>War Soul: Righteous Weapons I</Name>
       <InternalName>WSRighteousWeaponsI</InternalName>
-      <Description>When wielding your religion's favored weapon, it gains +1 to its Enhancement Bonus.</Description>
+      <Description>When wielding your favored weapon you gain +1 to hit and damage and +3 Universal Spell Power</Description>
       <Icon>WPRighteousWeapons</Icon>
       <XPosition>2</XPosition>
       <YPosition>1</YPosition>
@@ -449,10 +459,39 @@ Cooldown: 20 seconds</Description>
         </Requirement>
       </Requirements>
       <Effect>
-        <Type>WeaponEnchantment</Type>
+        <Type>AttackBonus</Type>
         <Bonus>Enhancement</Bonus>
         <Amount>1</Amount>
         <Weapon>All</Weapon>
+        <Stance>Favored Weapon</Stance>
+      </Effect>
+      <Effect>
+        <Type>DamageBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>1</Amount>
+        <Weapon>All</Weapon>
+        <Stance>Favored Weapon</Stance>
+      </Effect>
+      <Effect>
+        <Type>CriticalAttackBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>1</Amount>
+        <Weapon>All</Weapon>
+        <Stance>Favored Weapon</Stance>
+      </Effect>
+      <Effect>
+        <Type>Seeker</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>1</Amount>
+        <Weapon>All</Weapon>
+        <Stance>Favored Weapon</Stance>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>3</Amount>
+        <SpellPower>All</SpellPower>
+        <Stance>Favored Weapon</Stance>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -549,8 +588,7 @@ stacks up to 20 times, and loses one stack on expiration.)</Description>
     <EnhancementTreeItem>
       <Name>War Soul: Righteous Weapons II</Name>
       <InternalName>WSRighteousWeaponsII</InternalName>
-      <Description>When wielding your religion's favored weapon, it gains an additional
-+1 to its Enhancement Bonus.</Description>
+      <Description>When wielding your favored weapon you gain +1 to hit and damage and +3 Universal Spell Power</Description>
       <Icon>WPRighteousWeapons</Icon>
       <XPosition>2</XPosition>
       <YPosition>2</YPosition>
@@ -568,18 +606,48 @@ stacks up to 20 times, and loses one stack on expiration.)</Description>
         </Requirement>
       </Requirements>
       <Effect>
-        <Type>WeaponEnchantment</Type>
+        <Type>AttackBonus</Type>
         <Bonus>Enhancement</Bonus>
         <Amount>1</Amount>
         <Weapon>All</Weapon>
+        <Stance>Favored Weapon</Stance>
+      </Effect>
+      <Effect>
+        <Type>DamageBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>1</Amount>
+        <Weapon>All</Weapon>
+        <Stance>Favored Weapon</Stance>
+      </Effect>
+      <Effect>
+        <Type>CriticalAttackBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>1</Amount>
+        <Weapon>All</Weapon>
+        <Stance>Favored Weapon</Stance>
+      </Effect>
+      <Effect>
+        <Type>Seeker</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>1</Amount>
+        <Weapon>All</Weapon>
+        <Stance>Favored Weapon</Stance>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>3</Amount>
+        <SpellPower>All</SpellPower>
+        <Stance>Favored Weapon</Stance>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>War Soul: Inflame</Name>
       <InternalName>WSInflame</InternalName>
-      <Description>Action Boost: You and your nearby allies gain a +2/+3/+4 Action Boost bonus
-to Armor Class, Attack Rolls, and Damage Rolls.
-(Duration: 30 seconds. Cooldown: 1 minute)</Description>
+      <Description>You and your nearby allies gain a +2/+3/+4 bonus to Armor Class,
+Attack Rolls, and Damage Rolls.
+Duration: 30 seconds.
+Cooldown: 90 seconds minute</Description>
       <Icon>WPInflame</Icon>
       <XPosition>3</XPosition>
       <YPosition>2</YPosition>
@@ -605,6 +673,7 @@ to Armor Class, Attack Rolls, and Damage Rolls.
       <Cost>1</Cost>
       <Ranks>3</Ranks>
       <MinSpent>5</MinSpent>
+      <Clickie/>
       <Requirements>
         <Requirement>
           <Class>Favored Soul</Class>
@@ -635,12 +704,13 @@ will be knocked down. (Does not affect bosses.)</Description>
       <Name>War Soul: Radiant Flourish</Name>
       <InternalName>WSRadiantFlourish</InternalName>
       <Description>Choose between a Melee and Ranged attck</Description>
-      <Icon/>
+      <Icon>WPRadiantFlourish</Icon>
       <XPosition>1</XPosition>
       <YPosition>3</YPosition>
       <Cost>1</Cost>
       <Ranks>1</Ranks>
       <MinSpent>10</MinSpent>
+      <Clickie/>
       <ArrowUp/>
       <Requirements>
         <Requirement>
@@ -654,7 +724,7 @@ will be knocked down. (Does not affect bosses.)</Description>
           <Description>Favored Weapon Melee Attack: +1[W]: On Hit: Enemy takes 1d6 Light Damage.
 This damage scales at 200% with the higher of your Melee and Ranged Power.
 Non-boss enemies have a small chance to be blinded with no save.</Description>
-          <Icon>Strength</Icon>
+          <Icon>WPRadiantFlourish</Icon>
           <Cost>1</Cost>
         </EnhancementSelection>
         <EnhancementSelection>
@@ -662,7 +732,7 @@ Non-boss enemies have a small chance to be blinded with no save.</Description>
           <Description>Favored Weapon Ranged Attack: +1[W]: On Hit: Enemy takes 1d6 Light Damage.
 This damage scales at 200% with the higher of your Melee and Ranged Power.
 Non-boss enemies have a small chance to be blinded with no save.</Description>
-          <Icon>Strength</Icon>
+          <Icon>WPRadiantFlourishRanged</Icon>
           <Cost>1</Cost>
         </EnhancementSelection>
       </Selector>
@@ -670,8 +740,7 @@ Non-boss enemies have a small chance to be blinded with no save.</Description>
     <EnhancementTreeItem>
       <Name>War Soul: Righteous Weapons III</Name>
       <InternalName>WSRighteousWeaponsIII</InternalName>
-      <Description>When wielding your religion's favored weapon, it gains an additional +1
-to its Enhancement Bonus.</Description>
+      <Description>When wielding your favored weapon you gain +1 to hit and damage and +3 Universal Spell Power</Description>
       <Icon>WPRighteousWeapons</Icon>
       <XPosition>2</XPosition>
       <YPosition>3</YPosition>
@@ -689,17 +758,46 @@ to its Enhancement Bonus.</Description>
         </Requirement>
       </Requirements>
       <Effect>
-        <Type>WeaponEnchantment</Type>
+        <Type>AttackBonus</Type>
         <Bonus>Enhancement</Bonus>
         <Amount>1</Amount>
         <Weapon>All</Weapon>
+        <Stance>Favored Weapon</Stance>
+      </Effect>
+      <Effect>
+        <Type>DamageBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>1</Amount>
+        <Weapon>All</Weapon>
+        <Stance>Favored Weapon</Stance>
+      </Effect>
+      <Effect>
+        <Type>CriticalAttackBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>1</Amount>
+        <Weapon>All</Weapon>
+        <Stance>Favored Weapon</Stance>
+      </Effect>
+      <Effect>
+        <Type>Seeker</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>1</Amount>
+        <Weapon>All</Weapon>
+        <Stance>Favored Weapon</Stance>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>3</Amount>
+        <SpellPower>All</SpellPower>
+        <Stance>Favored Weapon</Stance>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>War Soul: Greater Inflame</Name>
       <InternalName>WSGreaterInflame</InternalName>
-      <Description>Your Inflame now also grants a +2/3/4 Action Boost bonus to Saving Throws
-and a +5%/+10%/+15% Action Boost bonus to Acid, Cold, Electric, Fire, and Sonic
+      <Description>Your Inflame now also grants a +2/3/4 bonus to Saving Throws
+and a +5%/+10%/+15% bonus to Acid, Cold, Electric, Fire, and Sonic
 Energy Absorption.</Description>
       <Icon>WPGreaterInflame</Icon>
       <XPosition>3</XPosition>
@@ -827,8 +925,7 @@ Positive Spell Power)</Description>
     <EnhancementTreeItem>
       <Name>War Soul: Righteous Weapons IV</Name>
       <InternalName>WSRighteousWeaponsIV</InternalName>
-      <Description>When wielding your religion's favored weapon, it gains an additional +1
-to its Enhancement Bonus.</Description>
+      <Description>When wielding your favored weapon you gain +1 to hit and damage and +3 Universal Spell Power</Description>
       <Icon>WPRighteousWeapons</Icon>
       <XPosition>2</XPosition>
       <YPosition>4</YPosition>
@@ -846,10 +943,39 @@ to its Enhancement Bonus.</Description>
         </Requirement>
       </Requirements>
       <Effect>
-        <Type>WeaponEnchantment</Type>
+        <Type>AttackBonus</Type>
         <Bonus>Enhancement</Bonus>
         <Amount>1</Amount>
         <Weapon>All</Weapon>
+        <Stance>Favored Weapon</Stance>
+      </Effect>
+      <Effect>
+        <Type>DamageBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>1</Amount>
+        <Weapon>All</Weapon>
+        <Stance>Favored Weapon</Stance>
+      </Effect>
+      <Effect>
+        <Type>CriticalAttackBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>1</Amount>
+        <Weapon>All</Weapon>
+        <Stance>Favored Weapon</Stance>
+      </Effect>
+      <Effect>
+        <Type>Seeker</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>1</Amount>
+        <Weapon>All</Weapon>
+        <Stance>Favored Weapon</Stance>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>3</Amount>
+        <SpellPower>All</SpellPower>
+        <Stance>Favored Weapon</Stance>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -1088,7 +1214,7 @@ This damage scales with 200% of the higher of your Melee or Ranged Power.</Descr
         <Weapon>All</Weapon>
       </Effect>
       <Effect>
-        <Type>Unknown</Type>
+        <Type>Seeker</Type>
         <Bonus>Enhancement</Bonus>
         <Amount>5</Amount>
         <Stance>Medium Armor</Stance>

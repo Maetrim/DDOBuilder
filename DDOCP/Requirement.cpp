@@ -177,7 +177,7 @@ bool Requirement::CanTrainEnhancement(
         {
             if (HasTier())
             {
-                // only deny if truing to train the tier that this enhancement applies to
+                // only deny if trying to train the tier that this enhancement applies to
                 if (trainedRanks +1 == Tier())
                 {
                     met &= (classLevel >= Level());
@@ -334,14 +334,14 @@ void Requirement::CreateRequirementStrings(
             // minimum overall level
             description.Format("Requires: Minimum level(%d)", MinLevel());
             requirements->push_back(description);
-            met->push_back(level >= MinLevel());
+            met->push_back(level + 1 >= MinLevel());
         }
         if (HasLevel())
         {
             // specific level
             description.Format("Requires: Level(%d)", Level());
             requirements->push_back(description);
-            met->push_back(level >= MinLevel());
+            met->push_back(level + 1 >= MinLevel());
         }
     }
     if (HasEnhancement())

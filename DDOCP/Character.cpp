@@ -1334,7 +1334,8 @@ std::list<TrainedFeat> Character::AutomaticFeats(
                 if (levelData.HasClass())
                 {
                     meetsClass = ((*aait).Class() == levelData.Class()
-                            || (*aait).Class() == Class_All);
+                            || (*aait).Class() == Class_All
+                            || ((*aait).Class() == Class_NotEpic && levelData.Class() != Class_Epic));
                     // must meet level requirement also
                     if ((*aait).HasLevel())
                     {
@@ -1775,7 +1776,7 @@ std::vector<size_t> Character::ClassLevels(
 {
     // return a vector of the number of class levels trained in each class
     // at the specified level
-    std::vector<size_t> classLevels(Class_Count + 2, 0);    // 0 for each class at start
+    std::vector<size_t> classLevels(Class_Count + 3, 0);    // 0 for each class at start
     std::list<LevelTraining>::const_iterator it = m_Levels.begin();
     size_t currentLevel = 0;
     while (it != m_Levels.end() && currentLevel <= level)
@@ -1787,6 +1788,7 @@ std::vector<size_t> Character::ClassLevels(
         ++currentLevel;
     }
     classLevels[Class_All] = level;
+    classLevels[Class_NotEpic] = MAX_CLASS_LEVEL;
     return classLevels;
 }
 

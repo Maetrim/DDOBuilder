@@ -799,16 +799,24 @@ std::string ActiveEffect::Description() const
         }
         break;
     case ET_DR:
-        ss << m_amount * m_numStacks << "\\";
-        std::list<DamageReductionType>::const_iterator it = m_drTypes.begin();
-        while (it != m_drTypes.end())
+        // barbarian DR is displayed slightly differently
+        if (m_drTypes.size() == 1 && m_drTypes.front() == DR_Percent)
         {
-            if (it != m_drTypes.begin())
+            ss << m_amount * m_numStacks << "%";
+        }
+        else
+        {
+            ss << m_amount * m_numStacks << "\\";
+            std::list<DamageReductionType>::const_iterator it = m_drTypes.begin();
+            while (it != m_drTypes.end())
             {
-                ss << ",";
+                if (it != m_drTypes.begin())
+                {
+                    ss << ",";
+                }
+                ss << EnumEntryText((*it), drTypeMap);
+                ++it;
             }
-            ss << EnumEntryText((*it), drTypeMap);
-            ++it;
         }
         break;
     }

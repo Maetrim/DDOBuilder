@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Enhanacements>
+<Enhancements>
    <EnhancementTree>
       <Name>Harper Agent</Name>
       <Version>1</Version>
@@ -339,6 +339,9 @@ Antireq: Cannot be taken with the Halfling racial enhancement.</Description>
          <Clickie/>
          <MinSpent>5</MinSpent>
          <Requirements>
+            <Requirement>
+               <MinLevel>2</MinLevel>
+            </Requirement>
             <RequiresNoneOf>
                <Requirement>
                   <Enhancement>HalflingHeroicCompanion</Enhancement>
@@ -356,7 +359,11 @@ Antireq: Cannot be taken with the Halfling racial enhancement.</Description>
          <Cost>1</Cost>
          <Ranks>3</Ranks>
          <MinSpent>5</MinSpent>
-         <Requirements/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>2</MinLevel>
+            </Requirement>
+         </Requirements>
          <Effect>
             <Type>SpellPoints</Type>
             <Bonus>Enhancement</Bonus>
@@ -373,7 +380,11 @@ Antireq: Cannot be taken with the Halfling racial enhancement.</Description>
          <Cost>1</Cost>
          <Ranks>3</Ranks>
          <MinSpent>5</MinSpent>
-         <Requirements/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>2</MinLevel>
+            </Requirement>
+         </Requirements>
          <Effect>
             <Type>MeleePower</Type>
             <Bonus>Enhancement</Bonus>
@@ -405,6 +416,9 @@ tactical feats equal to 1/2 of your Intelligence modifier for [30/60/120] second
          <Clickie/>
          <MinSpent>5</MinSpent>
          <Requirements>
+            <Requirement>
+               <MinLevel>2</MinLevel>
+            </Requirement>
             <RequiresNoneOf>
                <Requirement>
                   <Enhancement>WPDivineMight</Enhancement>
@@ -418,21 +432,21 @@ tactical feats equal to 1/2 of your Intelligence modifier for [30/60/120] second
                </Requirement>
             </RequiresNoneOf>
          </Requirements>
-          <Stance>
-              <Name>Know the Angles</Name>
-              <Icon>KnowTheAngles</Icon>
-              <Description>You gain an Insight bonus to damage and the DC of tactical feats equal
+         <Stance>
+            <Name>Know the Angles</Name>
+            <Icon>KnowTheAngles</Icon>
+            <Description>You gain an Insight bonus to damage and the DC of tactical feats equal
 to 1/2 of your Intelligence modifier for [30/60/120] seconds</Description>
-          </Stance>
-          <Effect>
-              <Type>TacticalDC</Type>
-              <Bonus>Insightful</Bonus>
-              <Ability>Intelligence</Ability>
-              <Divider>2</Divider>
-              <Tactical>All</Tactical>
-              <Stance>Know the Angles</Stance>
-          </Effect>
-          <!--know the angles damage bonus cannot yet be modelled-->
+         </Stance>
+         <Effect>
+            <Type>TacticalDC</Type>
+            <Bonus>Insightful</Bonus>
+            <Ability>Intelligence</Ability>
+            <Divider>2</Divider>
+            <Tactical>All</Tactical>
+            <Stance>Know the Angles</Stance>
+         </Effect>
+         <!--know the angles damage bonus cannot yet be modelled-->
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>HarperLeadership</InternalName>
@@ -444,7 +458,11 @@ to 1/2 of your Intelligence modifier for [30/60/120] seconds</Description>
          <Cost>1</Cost>
          <Ranks>3</Ranks>
          <MinSpent>5</MinSpent>
-         <Requirements/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>2</MinLevel>
+            </Requirement>
+         </Requirements>
          <Effect>
             <Type>HirelingAbilityBonus</Type>
             <Bonus>Enhancement</Bonus>
@@ -462,7 +480,11 @@ to 1/2 of your Intelligence modifier for [30/60/120] seconds</Description>
          <Cost>1</Cost>
          <Ranks>3</Ranks>
          <MinSpent>10</MinSpent>
-         <Requirements/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>3</MinLevel>
+            </Requirement>
+         </Requirements>
          <Effect>
             <Type>SkillBonus</Type>
             <Bonus>Enhancement</Bonus>
@@ -481,7 +503,11 @@ Aberration / Construct / Dragon / Evil Outsider / Giant / Monstrous Humanoid / U
          <Cost>2</Cost>
          <Ranks>1</Ranks>
          <MinSpent>10</MinSpent>
-         <Requirements/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>3</MinLevel>
+            </Requirement>
+         </Requirements>
          <Selector>
             <EnhancementSelection>
                <Name>Favored enemy: Aberration</Name>
@@ -578,7 +604,11 @@ Aberration / Construct / Dragon / Evil Outsider / Giant / Monstrous Humanoid / U
          <Cost>1</Cost>
          <Ranks>3</Ranks>
          <MinSpent>10</MinSpent>
-         <Requirements/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>3</MinLevel>
+            </Requirement>
+         </Requirements>
          <Effect>
             <Type>MeleePower</Type>
             <Bonus>Enhancement</Bonus>
@@ -607,7 +637,11 @@ Note: This does not function while unarmed or on shields.</Description>
          <Cost>2</Cost>
          <Ranks>1</Ranks>
          <MinSpent>10</MinSpent>
-         <Requirements/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>3</MinLevel>
+            </Requirement>
+         </Requirements>
          <Effect>
             <Type>DamageBonus</Type>
             <Bonus>Enhancement</Bonus>
@@ -631,7 +665,11 @@ Note: This does not function while unarmed or on shields.</Description>
          <Cost>2</Cost>
          <Ranks>1</Ranks>
          <MinSpent>10</MinSpent>
-         <Requirements/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>3</MinLevel>
+            </Requirement>
+         </Requirements>
          <Selector>
             <EnhancementSelection>
                <Name>+1 Dexterity</Name>
@@ -674,12 +712,16 @@ Metamagic: Quicken, Enlarge (no extra cost). Spell resistance: No</Description>
          <Ranks>3</Ranks>
          <Clickie/>
          <MinSpent>20</MinSpent>
-         <Requirements/>
-          <Effect>
-              <Type>SpellLikeAbility</Type>
-              <Bonus>Enhancement</Bonus>
-              <SpellLikeAbility>Throat Dagger</SpellLikeAbility>
-          </Effect>
+         <Requirements>
+            <Requirement>
+               <MinLevel>4</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellLikeAbility>Throat Dagger</SpellLikeAbility>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>HarperVigorOfLifeI</InternalName>
@@ -691,7 +733,11 @@ Metamagic: Quicken, Enlarge (no extra cost). Spell resistance: No</Description>
          <Cost>2</Cost>
          <Ranks>1</Ranks>
          <MinSpent>20</MinSpent>
-         <Requirements/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>4</MinLevel>
+            </Requirement>
+         </Requirements>
          <Effect>
             <Type>HealingAmplification</Type>
             <Bonus>Enhancement</Bonus>
@@ -714,7 +760,11 @@ Metamagic: Quicken, Enlarge (no extra cost). Spell resistance: No</Description>
          <Cost>1</Cost>
          <Ranks>3</Ranks>
          <MinSpent>20</MinSpent>
-         <Requirements/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>4</MinLevel>
+            </Requirement>
+         </Requirements>
          <Effect>
             <Type>MeleePower</Type>
             <Bonus>Enhancement</Bonus>
@@ -743,7 +793,11 @@ This does not increase their Spell Point cost.</Description>
          <Cost>2</Cost>
          <Ranks>1</Ranks>
          <MinSpent>20</MinSpent>
-         <Requirements/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>4</MinLevel>
+            </Requirement>
+         </Requirements>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>HarperAbilityScoreII</InternalName>
@@ -755,7 +809,11 @@ This does not increase their Spell Point cost.</Description>
          <Cost>2</Cost>
          <Ranks>1</Ranks>
          <MinSpent>20</MinSpent>
-         <Requirements/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>4</MinLevel>
+            </Requirement>
+         </Requirements>
          <Selector>
             <EnhancementSelection>
                <Name>+1 Dexterity</Name>
@@ -798,7 +856,11 @@ This does not increase their Spell Point cost.</Description>
          <Ranks>1</Ranks>
          <MinSpent>30</MinSpent>
          <Tier5/>
-         <Requirements/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>5</MinLevel>
+            </Requirement>
+         </Requirements>
          <Selector>
             <EnhancementSelection>
                <Name>Harper Enchantment of Deception</Name>
@@ -841,7 +903,7 @@ is considered Good-aligned.</Description>
                   <Type>DRBypass</Type>
                   <Bonus>Enhancement</Bonus>
                   <DR>Good</DR>
-            <Weapon>All</Weapon>
+                  <Weapon>All</Weapon>
                </Effect>
             </EnhancementSelection>
          </Selector>
@@ -857,7 +919,11 @@ is considered Good-aligned.</Description>
          <Ranks>3</Ranks>
          <MinSpent>30</MinSpent>
          <Tier5/>
-         <Requirements/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>5</MinLevel>
+            </Requirement>
+         </Requirements>
          <Effect>
             <Type>MeleePower</Type>
             <Bonus>Enhancement</Bonus>
@@ -888,7 +954,11 @@ This does not increase their Spell Point cost.
          <Ranks>1</Ranks>
          <MinSpent>30</MinSpent>
          <Tier5/>
-         <Requirements/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>5</MinLevel>
+            </Requirement>
+         </Requirements>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>HarperMomentOfClarity</InternalName>
@@ -904,7 +974,11 @@ Passive: +1 DC for your spells</Description>
          <Clickie/>
          <MinSpent>30</MinSpent>
          <Tier5/>
-         <Requirements/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>5</MinLevel>
+            </Requirement>
+         </Requirements>
          <Effect>
             <Type>SpellDC</Type>
             <Bonus>Enhancement</Bonus>
@@ -913,4 +987,4 @@ Passive: +1 DC for your spells</Description>
          </Effect>
       </EnhancementTreeItem>
    </EnhancementTree>
-</Enhanacements>
+</Enhancements>

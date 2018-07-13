@@ -97,7 +97,7 @@ attack, and armor class of nearby enemies by 2. Cooldown: 1 second</Description>
          <InternalName>AoVCore4</InternalName>
          <Description>Toggle: Spell like ability: A small lantern archon hovers over your shoulder
 and attacks nearby enemies. This archon is indestructible, deals 1 to 3 + caster
-level light damage every 2 seconds, and uses half of your Light Spell Power and
+level light damage every 2 seconds, and uses your Light Spell Power and
 Spell Critical effects for its light beam attacks. The archon will only attack
 enemies that have already been damaged, and will not attack fascinated or
 mesmerized foes, and always attacks the enemy with the fewest hit points in range.
@@ -129,11 +129,14 @@ Cost: 20 spell points. Cooldown: 6 second.</Description>
       <EnhancementTreeItem>
          <Name>Angel of Vengeance: Vengeful Magic</Name>
          <InternalName>AoVCore5</InternalName>
-         <Description>You gain a +1% Sacred bonus to Spell Critical chance when below 80% health,
-a +1 Sacred bonus to your spell DC's when below 60% health, and a +50% Sacred
-bonus Spell Critical Damage Multiplier with Fire, Force, Light, and Physical
-damage spells when below 40% health.
-PAssive: +20 Light and Alignment Spell Power</Description>
+         <Description>Passive: +1 to Spell DCs and +20 Light and Alignment Spell Power.
+When you fall below 80% health, you gain a +1% Sacred bonus to Spell Critical
+chance for 20 seconds. When you fall below 60% health, you gain +1 Sacred bonus
+to your spell DCs for 20 seconds. When you fall below 40% health, you gain +50%
+Sacred bonus to Spell Critical Damage Multiplier with Fire, Force, Light and
+Physical damage spells for 20 seconds.
+Each of these effects persist even if you are healed above their health thresholds,
+but each can only trigger once every two minutes</Description>
          <Icon>AoVVengefulMagic</Icon>
          <XPosition>4</XPosition>
          <YPosition>0</YPosition>
@@ -151,25 +154,24 @@ PAssive: +20 Light and Alignment Spell Power</Description>
             </Requirement>
          </Requirements>
          <Effect>
-            <Type>SpellLore</Type>
+            <Type>SpellDC</Type>
             <Bonus>Enhancement</Bonus>
-            <SpellPower>All</SpellPower>
+            <School>All</School>
             <Amount>1</Amount>
-            <Stance>75% Hitpoints</Stance>
          </Effect>
          <Effect>
             <Type>SpellPower</Type>
             <Bonus>Enhancement</Bonus>
-            <SpellPower>Light</SpellPower>
             <SpellPower>Alignment</SpellPower>
+            <SpellPower>Light</SpellPower>
             <Amount>20</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Angel of Vengeance: Ascendancy</Name>
+         <Name>Angel of Vengeance: Ascendancy Shine Bright</Name>
          <InternalName>AoVCore6</InternalName>
          <Description>Choose between Wisdom and Charisma variants:</Description>
-         <Icon>AoVAscendancy</Icon>
+         <Icon>AoVShineBrightWisdom</Icon>
          <XPosition>5</XPosition>
          <YPosition>0</YPosition>
          <Cost>1</Cost>
@@ -187,10 +189,10 @@ PAssive: +20 Light and Alignment Spell Power</Description>
          </Requirements>
          <Selector>
             <EnhancementSelection>
-               <Name>Shine Bright (Charisma)</Name>
+               <Name>Ascendancy Shine Bright (Charisma)</Name>
                <Description>Spell Like Ability: Searing Light. You can cast the spell Searing Light at
 will without using spell points.
-PAssive: You gain +4 to Charimsa, +20 universal Spell power and +2 to all skills.</Description>
+Passive: You gain +4 to Charimsa, +20 universal Spell power and +2 to all skills.</Description>
                <Icon>AoVShineBrightCharisma</Icon>
                <Cost>1</Cost>
                <Effect>
@@ -199,29 +201,12 @@ PAssive: You gain +4 to Charimsa, +20 universal Spell power and +2 to all skills
                   <Ability>Charisma</Ability>
                   <Amount>4</Amount>
                </Effect>
-               <Effect>
-                  <Type>SpellPower</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <SpellPower>All</SpellPower>
-                  <Amount>20</Amount>
-               </Effect>
-               <Effect>
-                  <Type>SkillBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Skill>All</Skill>
-                  <Amount>2</Amount>
-               </Effect>
-               <Effect>
-                  <Type>SpellLikeAbility</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <SpellLikeAbility>Searing Light</SpellLikeAbility>
-               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
-               <Name>Shine Bright (Wisdom)</Name>
+               <Name>Ascendancy Shine Bright (Wisdom)</Name>
                <Description>Spell Like Ability: Searing Light. You can cast the spell Searing Light at
 will without using spell points.
-PAssive: You gain +4 to Wisdom, +20 universal Spell power and +2 to all skills.</Description>
+Passive: You gain +4 to Wisdom, +20 universal Spell power and +2 to all skills.</Description>
                <Icon>AoVShineBrightWisdom</Icon>
                <Cost>1</Cost>
                <Effect>
@@ -230,25 +215,25 @@ PAssive: You gain +4 to Wisdom, +20 universal Spell power and +2 to all skills.<
                   <Ability>Wisdom</Ability>
                   <Amount>4</Amount>
                </Effect>
-               <Effect>
-                  <Type>SpellPower</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <SpellPower>All</SpellPower>
-                  <Amount>20</Amount>
-               </Effect>
-               <Effect>
-                  <Type>SkillBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Skill>All</Skill>
-                  <Amount>2</Amount>
-               </Effect>
-               <Effect>
-                  <Type>SpellLikeAbility</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <SpellLikeAbility>Searing Light</SpellLikeAbility>
-               </Effect>
             </EnhancementSelection>
          </Selector>
+        <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>All</SpellPower>
+            <Amount>20</Amount>
+        </Effect>
+        <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Skill>All</Skill>
+            <Amount>2</Amount>
+        </Effect>
+        <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellLikeAbility>Searing Light</SpellLikeAbility>
+        </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Angel of Vengeance: Nimbus of Light</Name>
@@ -265,6 +250,7 @@ Cooldown: 12/8/4 seconds</Description>
          <Cost>1</Cost>
          <Ranks>3</Ranks>
          <MinSpent>1</MinSpent>
+         <Clickie/>
          <Requirements>
             <Requirement>
                <Class>Favored Soul</Class>
@@ -285,8 +271,6 @@ chance to gain a stack of Scourge</Description>
          <Cost>1</Cost>
          <Ranks>3</Ranks>
          <MinSpent>1</MinSpent>
-         <ArrowRight/>
-         <ArrowUp/>
          <Requirements>
             <Requirement>
                <Class>Favored Soul</Class>
@@ -921,6 +905,7 @@ Cooldown: 12/9/6 seconds</Description>
          <Cost>1</Cost>
          <Ranks>3</Ranks>
          <MinSpent>10</MinSpent>
+         <Clickie/>
          <Requirements>
             <Requirement>
                <Class>Favored Soul</Class>
@@ -1729,7 +1714,7 @@ While toggled on, every shot from your Archon costs 12 Spell Points.</Descriptio
          <XPosition>4</XPosition>
          <YPosition>5</YPosition>
          <Cost>1</Cost>
-         <Ranks>3</Ranks>
+         <Ranks>1</Ranks>
          <MinSpent>30</MinSpent>
          <Tier5/>
          <Requirements>

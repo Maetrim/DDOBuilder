@@ -27,6 +27,7 @@ enum ClassType
     Class_Wizard,
     Class_Count,
     Class_All,
+    Class_NotEpic,
 };
 const XmlLib::enumMapEntry<ClassType> classTypeMap[] =
 {
@@ -47,5 +48,6 @@ const XmlLib::enumMapEntry<ClassType> classTypeMap[] =
     {Class_Warlock, L"Warlock"},
     {Class_Wizard, L"Wizard"},
     {Class_All, L"All"},
+    {Class_NotEpic, L"NotEpic"},
     {ClassType(0), NULL}
 };

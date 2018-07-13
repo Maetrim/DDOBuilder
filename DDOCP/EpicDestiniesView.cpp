@@ -249,6 +249,11 @@ LRESULT CEpicDestiniesView::OnNewDocument(WPARAM wParam, LPARAM lParam)
     m_pCharacter = pCharacter;
     if (m_pCharacter != NULL)
     {
+        if (IsWindow(GetSafeHwnd()))
+        {
+            SetScrollPos(SB_HORZ, 0, TRUE);
+            SetScrollPos(SB_VERT, 0, TRUE);
+        }
         m_pCharacter->AttachObserver(this);
         // trees definitely change if the character has changed
         m_availableEpicDestinies = DetermineTrees();

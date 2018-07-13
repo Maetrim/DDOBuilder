@@ -32,6 +32,7 @@ enum DamageReductionType
     DR_Silver,
     DR_Slash,
     DR_All,
+    DR_Percent,     // new for barbarian DR (U39)
 };
 const XmlLib::enumMapEntry<DamageReductionType> drTypeMap[] =
 {
@@ -56,5 +57,6 @@ const XmlLib::enumMapEntry<DamageReductionType> drTypeMap[] =
     {DR_Silver, L"Silver"},
     {DR_Slash, L"Slash"},
     {DR_All, L"-"},
+    {DR_Percent, L"%"},
     {DamageReductionType(0), NULL}
 };
