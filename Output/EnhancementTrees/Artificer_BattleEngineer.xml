@@ -35,8 +35,9 @@
          <Description>Your equipped weapon in your main hand gains +1 to its Enhancement bonus.
 Additionally, you gain +1 bonus to your attack roll to confirm a critical hit,
 and a +1 bonus to the damage of your critical hits (before multipliers).
-Your equipped rune arm grants you an additional +8 Universal Spell Power when
-it is charged to Charge Tier 2, for a total of +16.</Description>
+Your equipped rune arm gains +1 stable charge tier. In addition, it grants you an
+additional +8 Universal Spell Power when it is charged to Charge Tier 2,
+for a total of +16.</Description>
          <Icon>BEInfusedWeapons</Icon>
          <XPosition>1</XPosition>
          <YPosition>0</YPosition>
@@ -83,7 +84,7 @@ it is charged to Charge Tier 2, for a total of +16.</Description>
          <Name>Battle Engineer: Infused Armor I</Name>
          <InternalName>BECore3</InternalName>
          <Description>Your equipped armor gains +1 to its Enhancement bonus.
-Additionally, your equipped armor grants you +5 PRR and -10% ASF.
+Additionally, your equipped armor or docent grants you +5 PRR and -10% ASF.
 (Artificer Infusions are not affected by ASF, but this assists with scroll use.)
 Your equipped rune arm grants you an additional +8 Universal Spell Power when it
 is charged to Charge Tier 3, for a total of +24.</Description>
@@ -132,9 +133,10 @@ is charged to Charge Tier 3, for a total of +24.</Description>
          <Description>Your equipped weapon in your main hand gains an additional +1 to its
 Enhancement bonus, for a total of +2. You also gain an additional +1 bonus to
 your attack roll to confirm a critical hit, and a +1 bonus to the damage of
-your critical hits (before multipliers), for a total of +2. Your equipped rune
-arm grants you an additional +8 Universal Spell Power when it is charged to
-Charge Tier 4, for a total of +32.</Description>
+your critical hits (before multipliers), for a total of +2.
+Your equipped rune arm gains +1 stable charge tier. In addition, it grants you
+an additional +8 Universal Spell Power when it is charged to Charge Tier 4,
+for a total of +32.</Description>
          <Icon>BEInfusedWeaponsII</Icon>
          <XPosition>3</XPosition>
          <YPosition>0</YPosition>
@@ -180,13 +182,13 @@ Charge Tier 4, for a total of +32.</Description>
       <EnhancementTreeItem>
          <Name>Battle Engineer: Infused Armor II</Name>
          <InternalName>BECore5</InternalName>
-         <Description>Your equipped armor gains an additional +1 to its Enhancement bonus,
-for a total of +2. Your equipped armor also grants you an additional +15 PRR for
-a total of +20 and an additional -10% ASF for a total of -20%. +15 MRR
+         <Description>Your equipped armor gains an additional +1 to its Enhancement bonus, for a total of +2.
+Your equipped armor or docent also grants you an additional +5 PRR for a total
+of +10 and an additional -10% ASF for a total of -20%.
 (Artificer Infusions are not affected by ASF, but this assists with scroll use.)
-Your equipped rune arm grants you an additional +8 Universal Spell Power when it
-is charged to Charge Tier 5, for a total of +40.
-Passive bonus: +15 PRR and MRR</Description>
+You gain an additional +15 PRR and MRR innately, regardless of your Armor.
+Your equipped rune arm grants you an additional +8 Universal Spell Power when
+it is charged to Charge Tier 5, for a total of +40.</Description>
          <Icon>BEInfusedArmorII</Icon>
          <XPosition>4</XPosition>
          <YPosition>0</YPosition>
@@ -236,11 +238,12 @@ Passive bonus: +15 PRR and MRR</Description>
          <InternalName>BECore6</InternalName>
          <Description>You gain +4 Intelligence.
 The Enhancement bonus of your armor and your equipped weapon in your main hand
-are each increased by an additional +1, for a total of +3. Your equipped weapon
-in your main hand is now a Spellcasting Implement, providing a +3 Implement
-bonus to Universal Spell Power for every +1 Enhancement bonus on the weapon.
-+1 Competence bonus to Critical Multiplier with Crossbows, Bastard Swords,
-Dwarven Axes, Light Hammers, Warhammers, and Morningstars.</Description>
+are each increased by an additional +1, for a total of +3.
+You gain a +1 Competence bonus to Critical Multiplier with Crossbows,
+Bastard Swords, Dwarven Axes, Light Hammers, Warhammers, and Morningstars.
+Your equipped weapon in your main hand is now a Spellcasting Implement,
+providing a +3 Implement bonus to Universal Spell Power for every +1
+Enhancement bonus on the weapon.</Description>
          <Icon>BEMasterEngineer</Icon>
          <XPosition>5</XPosition>
          <YPosition>0</YPosition>
@@ -575,7 +578,7 @@ This effect stacks up to five times.</Description>
          </Selector>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Battle Engineer: Caustic Shot</Name>
+         <Name>Battle Engineer: Caustic Strike</Name>
          <InternalName>BECausticShot</InternalName>
          <Description>Perform either a melee or ranged attack that does extra acid and rust damage.</Description>
          <Icon>BEWrackConstruct</Icon>
@@ -585,7 +588,7 @@ This effect stacks up to five times.</Description>
          <Ranks>3</Ranks>
          <MinSpent>5</MinSpent>
          <Clickie/>
-         <LongArrowUp/>
+         <ArrowUp/>
          <Requirements>
             <Requirement>
                <Class>Artificer</Class>
@@ -595,7 +598,7 @@ This effect stacks up to five times.</Description>
          <Selector>
             <EnhancementSelection>
                <Name>Caustic Shot</Name>
-               <Description>Ranged Crossbow Attack +0.5[W]:
+               <Description>Ranged Crossbow Attack +0.5/1/1.5[W]:
 On Damage deals 3d6 extra Acid damage and 6d6 extra Rust damage.
 Damage scales with 200% ranged power.</Description>
                <Icon>BECausticShot</Icon>
@@ -603,7 +606,7 @@ Damage scales with 200% ranged power.</Description>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Caustic Strike</Name>
-               <Description>Melee Attack +1[W]:
+               <Description>Melee Attack +1/2/3[W]:
 On Damage deals 3d6 extra Acid damage and 6d6 extra Rust damage.
 Damage scales with 200% melee power.</Description>
                <Icon>BECausticStrike</Icon>
@@ -632,12 +635,13 @@ Damage scales with 200% melee power.</Description>
          <Name>Battle Engineer: Action Boost Selector</Name>
          <InternalName>BEActionBoostSelector</InternalName>
          <Description>Choose an action boost type</Description>
-         <Icon>BEExtraActionBoost</Icon>
+         <Icon>BEDamageBoost</Icon>
          <XPosition>4</XPosition>
          <YPosition>2</YPosition>
          <Cost>1</Cost>
          <Ranks>3</Ranks>
          <MinSpent>5</MinSpent>
+         <Clickie/>
          <Requirements>
             <Requirement>
                <Class>Artificer</Class>
@@ -772,6 +776,52 @@ by it will extend the duration. (Cooldown: 25 seconds)</Description>
                <Level>3</Level>
             </Requirement>
          </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Battle Engineer: Shatter Defenses</Name>
+         <InternalName>BEShatterDefenses</InternalName>
+         <Description>Choose a Melee or Ranged attack that also applies a Trauma effect.</Description>
+         <Icon>BERuneArmOvercharge</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Clickie/>
+         <LongArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Artificer</Class>
+               <Level>3</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>BECausticShot</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Shatter Defenses (Crossbow)</Name>
+               <Description>Tactical Ranges Crossbow Attack +0.5[W]
+On Hit: Reduce the target's Armor Class by 5 and lowers fortification by 10%.
+A successful fortitude save negates this effect. (DC 10 + 1/2 Artificer Level + INT mod + Sunder Bonuses).
+Regardless of saving throw result target will suffer the Trauma effect, -3 penalty
+to Fortitude saves due to shock, stack 5 times. Lasts 24 seconds.
+This ability shares a cooldown with sunder.</Description>
+               <Icon>BEShatterDefensesCrossbow</Icon>
+               <Cost>1</Cost>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Shatter Defenses (Melee)</Name>
+               <Description>Tactical Melee Attack +1[W]
+On Hit: Reduce the target's Armor Class by 5 and lowers fortification by 10%.
+A successful fortitude save negates this effect. (DC 10 + 1/2 Artificer Level + INT mod + Sunder Bonuses).
+Regardless of saving throw result target will suffer the Trauma effect, -3 penalty
+to Fortitude saves due to shock, stack 5 times. Lasts 24 seconds.
+This ability shares a cooldown with sunder.</Description>
+               <Icon>BEShatterDefensesMelee</Icon>
+               <Cost>1</Cost>
+            </EnhancementSelection>
+         </Selector>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Battle Engineer: Ability I</Name>
@@ -968,61 +1018,15 @@ bonus for 20 seconds. (Cooldown: 30 seconds.)</Description>
          </Selector>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Battle Engineer: Shatter Defenses</Name>
-         <InternalName>BEShatterDefenses</InternalName>
-         <Description>Choose a Melee or Ranged attack that also applies a Trauma effect.</Description>
-         <Icon>BERuneArmOvercharge</Icon>
-         <XPosition>2</XPosition>
+         <Name>Battle Engineer: Agility Engine</Name>
+         <InternalName>BEAbilityEngine</InternalName>
+         <Description>3/6/10% Doublestrike and Doubleshot while wearing a Rune Arm.</Description>
+         <Icon>BEAgilityEngine</Icon>
+         <XPosition>3</XPosition>
          <YPosition>4</YPosition>
          <Cost>1</Cost>
          <Ranks>3</Ranks>
          <MinSpent>20</MinSpent>
-         <Clickie/>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Class>Artificer</Class>
-               <Level>4</Level>
-            </Requirement>
-            <Requirement>
-               <Enhancement>BECausticShot</Enhancement>
-            </Requirement>
-         </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>Shatter Defenses (Crossbow)</Name>
-               <Description>Tactical Ranges Crossbow Attack +0.5[W]
-On Hit: Reduce the target's Armor Class by 5 and lowers fortification by 10%.
-A successful fortitude save negates this effect. (DC 10 + 1/2 Artificer Level + INT mod + Sunder Bonuses).
-Regardless of saving throw result target will suffer the Trauma effect, -3 penalty
-to Fortitude saves due to shock, stack 5 times. Lasts 24 seconds.
-This ability shares a cooldown with sunder.</Description>
-               <Icon>BEShatterDefensesCrossbow</Icon>
-               <Cost>1</Cost>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Shatter Defenses (Melee)</Name>
-               <Description>Tactical Melee Attack +1[W]
-On Hit: Reduce the target's Armor Class by 5 and lowers fortification by 10%.
-A successful fortitude save negates this effect. (DC 10 + 1/2 Artificer Level + INT mod + Sunder Bonuses).
-Regardless of saving throw result target will suffer the Trauma effect, -3 penalty
-to Fortitude saves due to shock, stack 5 times. Lasts 24 seconds.
-This ability shares a cooldown with sunder.</Description>
-               <Icon>BEShatterDefensesMelee</Icon>
-               <Cost>1</Cost>
-            </EnhancementSelection>
-         </Selector>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Battle Engineer: Agility Engine</Name>
-         <InternalName>BEAbilityEngine</InternalName>
-         <Description>When moving, your Rune Arm's charge decays 50% slower than normal.</Description>
-         <Icon>BEAgilityEngine</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>4</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
          <ArrowUp/>
          <Requirements>
             <Requirement>
@@ -1030,6 +1034,18 @@ This ability shares a cooldown with sunder.</Description>
                <Level>4</Level>
             </Requirement>
          </Requirements>
+          <Effect>
+              <Type>Doublestrike</Type>
+              <Bonus>Enhancement</Bonus>
+              <AmountVector size="3">3 6 10</AmountVector>
+              <Stance>Rune Arm</Stance>
+          </Effect>
+          <Effect>
+              <Type>Doubleshot</Type>
+              <Bonus>Enhancement</Bonus>
+              <AmountVector size="3">3 6 10</AmountVector>
+              <Stance>Rune Arm</Stance>
+          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Battle Engineer: Ability II</Name>
@@ -1169,7 +1185,7 @@ Light Hammers, Warhammers and Morningstars.</Description>
          <InternalName>BEWeaponAttachment</InternalName>
          <Description>Activate to attach your currently equipped weapons to yourself, giving you
 superior control over them. Until you unequip these items or rest, they
-deal +0.5[W] damage. (Cooldown: 3 minutes)
+deal +0.5[W] damage. (Cooldown: 15 seconds; Induction time: 2 seconds.)
 (Note: Selecting this locks out Warforged/Bladeforged Weapon Attachment)</Description>
          <Icon>BEWeaponAttachment</Icon>
          <XPosition>1</XPosition>
@@ -1262,7 +1278,7 @@ Trips the target. A successful Strength check negates the Trip effect.
       <EnhancementTreeItem>
          <Name>Battle Engineer: Unlock Potential</Name>
          <InternalName>BEUnlockPotential</InternalName>
-         <Description>+20 Ranged and Melee power while wearing a runearm.</Description>
+         <Description>+20 Ranged and Melee power while wielding a Rune Arm.</Description>
          <Icon>BEUnlockPotential</Icon>
          <XPosition>3</XPosition>
          <YPosition>5</YPosition>
@@ -1298,7 +1314,7 @@ Trips the target. A successful Strength check negates the Trip effect.
       <EnhancementTreeItem>
          <Name>Battle Engineer: Tactical Mobility</Name>
          <InternalName>BETacticalMobility</InternalName>
-         <Description>Charging your rune arm no longer causes you to move at reduced speed.</Description>
+         <Description>10% Action Boost bonus to Movement Speed while wearing a Rune Arm.</Description>
          <Icon>BETacticalMobility</Icon>
          <XPosition>4</XPosition>
          <YPosition>5</YPosition>
@@ -1315,6 +1331,12 @@ Trips the target. A successful Strength check negates the Trip effect.
                <Level>5</Level>
             </Requirement>
          </Requirements>
+          <Effect>
+              <Type>MovementSpeed</Type>
+              <Bonus>Enhancement</Bonus>
+              <Amount>10</Amount>
+              <Stance>Rune Arm</Stance>
+          </Effect>
       </EnhancementTreeItem>
    </EnhancementTree>
 </Enhancements>

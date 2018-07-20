@@ -124,12 +124,16 @@ void CEpicDestiniesView::OnSize(UINT nType, int cx, int cy)
     if (m_treeViews.size() > 0
             && IsWindow(m_treeViews[0]->GetSafeHwnd()))
     {
+        int scrollX = GetScrollPos(SB_HORZ);
+        int scrollY = GetScrollPos(SB_VERT);
+
         CRect rctCombo;
         m_comboEpicDestinySelect.GetWindowRect(&rctCombo);
         rctCombo -= rctCombo.TopLeft();
         rctCombo += CPoint(c_controlSpacing, c_controlSpacing);
         rctCombo.right = rctCombo.left + c_sizeX;
         m_comboEpicDestinySelect.MoveWindow(rctCombo, TRUE);
+        rctCombo -= CPoint(scrollX, scrollY);
 
         CRect rctMakeActive;
         CRect rctLabel;
@@ -137,10 +141,10 @@ void CEpicDestiniesView::OnSize(UINT nType, int cx, int cy)
         m_labelTwistsOfFate.GetWindowRect(&rctLabel);
         ScreenToClient(&rctMakeActive);
         ScreenToClient(&rctLabel);
-        rctMakeActive -= CPoint(rctMakeActive.left, 0);
-        rctMakeActive += CPoint(c_sizeX + c_controlSpacing * 2, 0);
-        rctLabel -= CPoint(rctLabel.left, 0);
-        rctLabel += CPoint(c_sizeX + c_controlSpacing * 2, 0);
+        rctMakeActive -= rctMakeActive.TopLeft();
+        rctMakeActive += CPoint(rctCombo.right + c_controlSpacing, rctCombo.top);
+        rctLabel -= rctLabel.TopLeft();
+        rctLabel += CPoint(rctCombo.right + c_controlSpacing, rctMakeActive.bottom + c_controlSpacing);
         m_buttonMakeActive.MoveWindow(rctMakeActive, TRUE);
         m_labelTwistsOfFate.MoveWindow(rctLabel, TRUE);
 
@@ -153,9 +157,9 @@ void CEpicDestiniesView::OnSize(UINT nType, int cx, int cy)
         m_buttonMakeActive.GetWindowRect(rctButton);
         ScreenToClient(rctButton);
         CRect itemRect(
-                c_controlSpacing,
+                c_controlSpacing - scrollX,
                 rctButton.bottom + c_controlSpacing,
-                c_sizeX + c_controlSpacing,
+                c_sizeX + c_controlSpacing - scrollX,
                 rctButton.bottom + c_sizeY + c_controlSpacing);
 
         for (size_t ti = 0; ti < m_treeViews.size(); ++ti)
@@ -168,8 +172,8 @@ void CEpicDestiniesView::OnSize(UINT nType, int cx, int cy)
         CSize twistBottom = MoveFatePointControls();
         // set scale based on area used by the windows.
         // This will introduce scroll bars if required
-        int maxx = twistBottom.cx + c_controlSpacing;
-        int maxy = max(itemRect.bottom, twistBottom.cy) + c_controlSpacing;
+        int maxx = twistBottom.cx + c_controlSpacing + scrollX;
+        int maxy = max(itemRect.bottom, twistBottom.cy) + c_controlSpacing + scrollY;
         SetScrollSizes(MM_TEXT, CSize(maxx, maxy));
         UpdateMouseHooks();
     }
@@ -210,26 +214,31 @@ CSize CEpicDestiniesView::MoveFatePointControls()
             twistIndex = 4;
         }
     }
-    // controls to be moved are: (all maintain current dimensions
+    int scrollX = GetScrollPos(SB_HORZ);
+    int scrollY = GetScrollPos(SB_VERT);
+    CRect rctLabel;
+    m_labelTwistsOfFate.GetWindowRect(rctLabel);
+    ScreenToClient(&rctLabel);
+    // controls to be moved are: (all maintain current dimensions)
     // [CStatic m_fatePointsSpent           ]
     // [CStatic Twists of Fate]
     CRect rctFatePointsSpent;
     m_fatePointsSpent.GetWindowRect(rctFatePointsSpent);
-    ScreenToClient(&rctFatePointsSpent);
-    rctFatePointsSpent -= CPoint(rctFatePointsSpent.left, 0);
-    rctFatePointsSpent += CPoint(c_sizeX + c_controlSpacing * 2, 0);
+    rctFatePointsSpent -= rctFatePointsSpent.TopLeft();
+    rctFatePointsSpent += CPoint(rctLabel.left, rctLabel.bottom + c_controlSpacing);
     m_fatePointsSpent.MoveWindow(rctFatePointsSpent);
+    CPoint offset(rctFatePointsSpent.left, rctFatePointsSpent.bottom + c_controlSpacing);
     // move move all the windows
     for (size_t ti = 0; ti <= twistIndex; ++ti)
     {
         CRect rctTwist;
         m_twistsOfFate[ti]->GetWindowRect(rctTwist);
-        ScreenToClient(rctTwist);
-        rctTwist -= CPoint(rctTwist.left, 0);
-        rctTwist += CPoint(c_sizeX + c_controlSpacing * 2, 0);
+        rctTwist -= rctTwist.TopLeft();
+        rctTwist += offset;
         m_twistsOfFate[ti]->MoveWindow(rctTwist);
-        bottomRight.cx = rctTwist.right;
-        bottomRight.cy = rctTwist.bottom;
+        bottomRight.cx = rctTwist.right + c_controlSpacing;
+        bottomRight.cy = rctTwist.bottom + c_controlSpacing;
+        offset += CPoint(0, rctTwist.Height() + c_controlSpacing);
     }
     return bottomRight;
 }
@@ -249,11 +258,6 @@ LRESULT CEpicDestiniesView::OnNewDocument(WPARAM wParam, LPARAM lParam)
     m_pCharacter = pCharacter;
     if (m_pCharacter != NULL)
     {
-        if (IsWindow(GetSafeHwnd()))
-        {
-            SetScrollPos(SB_HORZ, 0, TRUE);
-            SetScrollPos(SB_VERT, 0, TRUE);
-        }
         m_pCharacter->AttachObserver(this);
         // trees definitely change if the character has changed
         m_availableEpicDestinies = DetermineTrees();

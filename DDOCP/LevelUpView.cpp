@@ -520,6 +520,7 @@ void CLevelUpView::OnSize(UINT nType, int cx, int cy)
         m_listAutomaticFeats.MoveWindow(rctAutoFeats, TRUE);
 
         UpdateHookRectangles();
+        SetScaleToFitSize(CSize(cx, cy));
     }
 }
 

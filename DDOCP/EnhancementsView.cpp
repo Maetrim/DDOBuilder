@@ -91,6 +91,9 @@ void CEnhancementsView::OnSize(UINT nType, int cx, int cy)
                 c_controlSpacing,
                 c_sizeX + c_controlSpacing,
                 c_sizeY + c_controlSpacing);
+        int scrollX = GetScrollPos(SB_HORZ);
+        int scrollY = GetScrollPos(SB_VERT);
+        itemRect -= CPoint(scrollX, scrollY);
 
         ASSERT(m_treeViews.size() == MST_Number);
         for (size_t ti = 0; ti < m_visibleTrees.size(); ++ti)
@@ -112,8 +115,8 @@ void CEnhancementsView::OnSize(UINT nType, int cx, int cy)
         SetScrollSizes(
                 MM_TEXT,
                 CSize(
-                        itemRect.left,
-                        itemRect.bottom + c_controlSpacing * 2 + ::GetSystemMetrics(SM_CYHSCROLL)));
+                        itemRect.left + scrollX,
+                        itemRect.bottom + scrollY + c_controlSpacing * 2 + ::GetSystemMetrics(SM_CYHSCROLL)));
     }
 }
 
@@ -132,11 +135,6 @@ LRESULT CEnhancementsView::OnNewDocument(WPARAM wParam, LPARAM lParam)
     m_pCharacter = pCharacter;
     if (m_pCharacter != NULL)
     {
-        if (IsWindow(GetSafeHwnd()))
-        {
-            SetScrollPos(SB_HORZ, 0, TRUE);
-            SetScrollPos(SB_VERT, 0, TRUE);
-        }
         m_pCharacter->AttachObserver(this);
         // trees definitely change if the character has changed
         m_availableTrees = DetermineTrees();

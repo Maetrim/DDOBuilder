@@ -1,586 +1,605 @@
-<?xml version="1.0" encoding="utf-8"?>
 <Enhancements>
-   <EnhancementTree>
-      <Name>Dragonborn</Name>
-      <Version>1</Version>
-      <IsRacialTree/>
+  <EnhancementTree>
+    <Name>Dragonborn</Name>
+    <Version>1</Version>
+    <Requirements>
+      <Requirement>
+        <Race>Dragonborn</Race>
+      </Requirement>
+    </Requirements>
+    <IsRacialTree/>
+    <Icon>Dragonborn</Icon>
+    <Background>HarperBackground</Background>
+    <EnhancementTreeItem>
+      <Name>Dragonborn: Hardy I</Name>
+      <InternalName>DragonbornCore1</InternalName>
+      <Description>+1 Fortitude</Description>
+      <Icon>DragonbornHardy</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>0</MinSpent>
+      <ArrowRight/>
+      <Requirements/>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>1</Amount>
+        <Save>Fortitude</Save>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Dragonborn: Ability I</Name>
+      <InternalName>DragonbornCore2</InternalName>
+      <Description>Choose either Strength or Charisma</Description>
+      <Icon>StrCha</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>1</MinSpent>
+      <ArrowRight/>
       <Requirements>
-         <Requirement>
-            <Race>Dragonborn</Race>
-         </Requirement>
+        <Requirement>
+          <Enhancement>DragonbornCore1</Enhancement>
+        </Requirement>
       </Requirements>
-      <Background>HarperBackground</Background>
-      <Icon>Dragonborn</Icon>
-      <EnhancementTreeItem>
-         <Name>Dragonborn: Hardy I</Name>
-         <InternalName>DragonbornCore1</InternalName>
-         <Description>+1 Fortitude</Description>
-         <Icon>DragonbornHardy</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>0</YPosition>
-         <Cost>1</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>0</MinSpent>
-         <Requirements/>
-         <Effect>
-            <Type>SaveBonus</Type>
+      <Selector>
+        <EnhancementSelection>
+          <Name>+1 Strength</Name>
+          <Description>+1 Strength</Description>
+          <Icon>Strength</Icon>
+          <Cost>2</Cost>
+          <Effect>
+            <Type>AbilityBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <Save>Fortitude</Save>
             <Amount>1</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Dragonborn: Ability I</Name>
-         <InternalName>DragonbornCore2</InternalName>
-         <Description>Choose either Strength or Charisma</Description>
-         <Icon>StrCha</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>0</YPosition>
-         <Cost>1</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>1</MinSpent>
-         <Requirements/>
-         <Selector>
-            <EnhancementSelection>
-               <Name>+1 Strength</Name>
-               <Description>+1 Strength</Description>
-               <Icon>Strength</Icon>
-               <Cost>2</Cost>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Ability>Strength</Ability>
-                  <Amount>1</Amount>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>+1 Charisma</Name>
-               <Description>+1 Charisma</Description>
-               <Icon>Charisma</Icon>
-               <Cost>2</Cost>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Ability>Charisma</Ability>
-                  <Amount>1</Amount>
-               </Effect>
-            </EnhancementSelection>
-         </Selector>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Dragonborn: Hardy II</Name>
-         <InternalName>DragonbornCore3</InternalName>
-         <Description>+1 Fortitude</Description>
-         <Icon>DragonbornHardy</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>0</YPosition>
-         <Cost>1</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>2</MinSpent>
-         <Requirements/>
-         <Effect>
-            <Type>SaveBonus</Type>
+            <Ability>Strength</Ability>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Charisma</Name>
+          <Description>+1 Charisma</Description>
+          <Icon>Charisma</Icon>
+          <Cost>2</Cost>
+          <Effect>
+            <Type>AbilityBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <Save>Fortitude</Save>
             <Amount>1</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Dragonborn: Ability II</Name>
-         <InternalName>DragonbornCore4</InternalName>
-         <Description>Choose either Strength or Charisma</Description>
-         <Icon>StrCha</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>0</YPosition>
-         <Cost>1</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>3</MinSpent>
-         <Requirements/>
-         <Selector>
-            <EnhancementSelection>
-               <Name>+1 Strength</Name>
-               <Description>+1 Strength</Description>
-               <Icon>Strength</Icon>
-               <Cost>2</Cost>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Ability>Strength</Ability>
-                  <Amount>1</Amount>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>+1 Charisma</Name>
-               <Description>+1 Charisma</Description>
-               <Icon>Charisma</Icon>
-               <Cost>2</Cost>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Ability>Charisma</Ability>
-                  <Amount>1</Amount>
-               </Effect>
-            </EnhancementSelection>
-         </Selector>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Dragonborn: Hardy III</Name>
-         <InternalName>DragonbornCore5</InternalName>
-         <Description>+1 Fortitude</Description>
-         <Icon>DragonbornHardy</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>0</YPosition>
-         <Cost>1</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>4</MinSpent>
-         <Requirements/>
-         <Effect>
-            <Type>SaveBonus</Type>
+            <Ability>Charisma</Ability>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Dragonborn: Hardy II</Name>
+      <InternalName>DragonbornCore3</InternalName>
+      <Description>+1 Fortitude</Description>
+      <Icon>DragonbornHardy</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>2</MinSpent>
+      <ArrowRight/>
+      <Requirements>
+        <Requirement>
+          <Enhancement>DragonbornCore2</Enhancement>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>1</Amount>
+        <Save>Fortitude</Save>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Dragonborn: Ability II</Name>
+      <InternalName>DragonbornCore4</InternalName>
+      <Description>Choose either Strength or Charisma</Description>
+      <Icon>StrCha</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>3</MinSpent>
+      <ArrowRight/>
+      <Requirements>
+        <Requirement>
+          <Enhancement>DragonbornCore3</Enhancement>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>+1 Strength</Name>
+          <Description>+1 Strength</Description>
+          <Icon>Strength</Icon>
+          <Cost>2</Cost>
+          <Effect>
+            <Type>AbilityBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <Save>Fortitude</Save>
             <Amount>1</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Dragonborn: Resilience I</Name>
-         <InternalName>DragonbornResilienceI</InternalName>
-         <Description>+10 Maximum Hit Points</Description>
-         <Icon>DragonbornResilience</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>1</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>1</MinSpent>
-         <ArrowUp/>
-         <Requirements/>
-         <Effect>
-            <Type>Hitpoints</Type>
+            <Ability>Strength</Ability>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Charisma</Name>
+          <Description>+1 Charisma</Description>
+          <Icon>Charisma</Icon>
+          <Cost>2</Cost>
+          <Effect>
+            <Type>AbilityBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <Amount>10</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Dragonborn: Hard Scales</Name>
-         <InternalName>DragonbornHardScales</InternalName>
-         <Description>+2/+4/+6 Natural Armor</Description>
-         <Icon>DragonbornHardScales</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>1</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>1</MinSpent>
-         <ArrowUp/>
-         <Requirements/>
-         <Effect>
-            <Type>ACBonus</Type>
+            <Amount>1</Amount>
+            <Ability>Charisma</Ability>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Dragonborn: Hardy III</Name>
+      <InternalName>DragonbornCore5</InternalName>
+      <Description>+1 Fortitude</Description>
+      <Icon>DragonbornHardy</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>4</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Enhancement>DragonbornCore4</Enhancement>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>1</Amount>
+        <Save>Fortitude</Save>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Dragonborn: Resilience I</Name>
+      <InternalName>DragonbornResilienceI</InternalName>
+      <Description>+10 Maximum Hit Points</Description>
+      <Icon>DragonbornResilience</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>1</MinSpent>
+      <ArrowUp/>
+      <Requirements/>
+      <Effect>
+        <Type>Hitpoints</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>10</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Dragonborn: Hard Scales</Name>
+      <InternalName>DragonbornHardScales</InternalName>
+      <Description>+2/+4/+6 Natural Armor</Description>
+      <Icon>DragonbornHardScales</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <ArrowUp/>
+      <Requirements/>
+      <Effect>
+        <Type>ACBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">2 4 6</AmountVector>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Dragonborn: Brutality</Name>
+      <InternalName>DragonbornBrutality</InternalName>
+      <Description>Choose one of...</Description>
+      <Icon>DragonbornBruteFighting</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Clickie/>
+      <Requirements/>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Brutal Spellcasting</Name>
+          <Description>Your damaging spells generate 25%/50%/75% more hate than they normally would, making enemies more likely to attack you.</Description>
+          <Icon>DragonbornBrutalSpellcasting</Icon>
+          <Cost>1</Cost>
+          <Stance>
+            <Name>Dragonborn: Brutal Spellcasting</Name>
+            <Icon>DragonbornBrutalSpellcasting</Icon>
+            <Description>Your damaging spells generate 25%/50%/75% more hate than they normally would, making enemies more likely to attack you.</Description>
+          </Stance>
+          <Effect>
+            <Type>ThreatBonusSpell</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">2 4 6</AmountVector>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Dragonborn: Brutality</Name>
-         <InternalName>DragonbornBrutality</InternalName>
-         <Description>Choose one of...</Description>
-         <Icon>DragonbornBruteFighting</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>1</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>1</MinSpent>
-         <Clickie/>
-         <Requirements/>
-         <Selector>
-            <EnhancementSelection>
-               <Name>Brutal Spellcasting</Name>
-               <Description>Your damaging spells generate 25%/50%/75% more hate than they normally would, making enemies more likely to attack you.</Description>
-               <Icon>DragonbornBrutalSpellcasting</Icon>
-               <Cost>1</Cost>
-              <Stance>
-                 <Name>Dragonborn: Brutal Spellcasting</Name>
-                 <Icon>DragonbornBrutalSpellcasting</Icon>
-                 <Description>Your damaging spells generate 25%/50%/75% more hate than they normally would, making enemies more likely to attack you.</Description>
-              </Stance>
-                <Effect>
-                    <Type>ThreatBonusSpell</Type>
-                    <Bonus>Enhancement</Bonus>
-                    <AmountVector size="3">25 50 75</AmountVector>
-                    <Stance>Dragonborn: Brutal Spellcasting</Stance>
-                </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Brute Fighting</Name>
-               <Description>Your melee attacks generate 25%/50%/75% more hate than they normally would, making enemies more likely to attack you.</Description>
-               <Icon>DragonbornBruteFighting</Icon>
-               <Cost>1</Cost>
-              <Stance>
-                 <Name>Dragonborn: Brute Fighting</Name>
-                 <Icon>DragonbornBrutalSpellcasting</Icon>
-               <Description>Your melee attacks generate 25%/50%/75% more hate than they normally would, making enemies more likely to attack you.</Description>
-              </Stance>
-                <Effect>
-                    <Type>ThreatBonusMelee</Type>
-                    <Bonus>Enhancement</Bonus>
-                    <AmountVector size="3">25 50 75</AmountVector>
-                    <Stance>Dragonborn: Brute Fighting</Stance>
-                </Effect>
-            </EnhancementSelection>
-         </Selector>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Dragonborn: Draconic Visage</Name>
-         <InternalName>DragonbornDraconicVisage</InternalName>
-         <Description>+1/+2/+3 Intimidate, Spellcraft, and Haggle</Description>
-         <Icon>DragonbornDraconicVisage</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>1</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>1</MinSpent>
-         <Requirements/>
-         <Effect>
-            <Type>SkillBonus</Type>
+            <AmountVector size="3">25 50 75</AmountVector>
+            <Stance>Dragonborn: Brutal Spellcasting</Stance>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Brute Fighting</Name>
+          <Description>Your melee attacks generate 25%/50%/75% more hate than they normally would, making enemies more likely to attack you.</Description>
+          <Icon>DragonbornBruteFighting</Icon>
+          <Cost>1</Cost>
+          <Stance>
+            <Name>Dragonborn: Brute Fighting</Name>
+            <Icon>DragonbornBrutalSpellcasting</Icon>
+            <Description>Your melee attacks generate 25%/50%/75% more hate than they normally would, making enemies more likely to attack you.</Description>
+          </Stance>
+          <Effect>
+            <Type>ThreatBonusMelee</Type>
             <Bonus>Enhancement</Bonus>
-            <Skill>Intimidate</Skill>
-            <Skill>Spell Craft</Skill>
-            <Skill>Haggle</Skill>
-            <AmountVector size="3">1 2 3</AmountVector>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Dragonborn: Undaunted</Name>
-         <InternalName>DragonbornUndaunted</InternalName>
-         <Description>+1/+2/+3 Fortitude</Description>
-         <Icon>DragonbornUndaunted</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>1</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>1</MinSpent>
-         <Requirements/>
-         <Effect>
-            <Type>SaveBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Save>Fortitude</Save>
-            <AmountVector size="3">1 2 3</AmountVector>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Dragonborn: Resilience II</Name>
-         <InternalName>DragonbornResilienceII</InternalName>
-         <Description>+10 Maximum Hit Points and +10 Healing Amplification</Description>
-         <Icon>DragonbornResilience</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>2</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>5</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Enhancement>DragonbornResilienceI</Enhancement>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>Hitpoints</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>10</Amount>
-         </Effect>
-         <Effect>
-            <Type>HealingAmplification</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>10</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Dragonborn: Harder Scales</Name>
-         <InternalName>DragonbornHarderScales</InternalName>
-         <Description>+2/+4/+6 PRR</Description>
-         <Icon>DragonbornHardScales</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>2</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>5</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Enhancement>DragonbornHardScales</Enhancement>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>PRR</Type>
-            <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">2 4 6</AmountVector>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Dragonborn: Dragon Breath</Name>
-         <InternalName>DragonbornDragonBreath</InternalName>
-         <Description>Active Ability: (Cooldown 30s)
+            <AmountVector size="3">25 50 75</AmountVector>
+            <Stance>Dragonborn: Brute Fighting</Stance>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Dragonborn: Draconic Visage</Name>
+      <InternalName>DragonbornDraconicVisage</InternalName>
+      <Description>+1/+2/+3 Intimidate, Spellcraft, and Haggle</Description>
+      <Icon>DragonbornDraconicVisage</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements/>
+      <Effect>
+        <Type>SkillBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">1 2 3</AmountVector>
+        <Skill>Intimidate</Skill>
+        <Skill>Spell Craft</Skill>
+        <Skill>Haggle</Skill>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Dragonborn: Undaunted</Name>
+      <InternalName>DragonbornUndaunted</InternalName>
+      <Description>+1/+2/+3 Fortitude</Description>
+      <Icon>DragonbornUndaunted</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements/>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">1 2 3</AmountVector>
+        <Save>Fortitude</Save>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Dragonborn: Resilience II</Name>
+      <InternalName>DragonbornResilienceII</InternalName>
+      <Description>+10 Maximum Hit Points and +10 Healing Amplification</Description>
+      <Icon>DragonbornResilience</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Enhancement>DragonbornResilienceI</Enhancement>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>Hitpoints</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>10</Amount>
+      </Effect>
+      <Effect>
+        <Type>HealingAmplification</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>10</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Dragonborn: Harder Scales</Name>
+      <InternalName>DragonbornHarderScales</InternalName>
+      <Description>+2/+4/+6 PRR</Description>
+      <Icon>DragonbornHardScales</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Enhancement>DragonbornHardScales</Enhancement>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>PRR</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">2 4 6</AmountVector>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Dragonborn: Dragon Breath</Name>
+      <InternalName>DragonbornDragonBreath</InternalName>
+      <Description>Active Ability: (Cooldown 30s)
 Cone that deals 1d6 + 3 [red fire/white cold/black acid/blue electric] damage per
 caster level (reflex save for half). Counts as Evocation spell; gets full Metamagic
 feats, No SR, DC 10 + CHA mod + Evocation bonuses + Breath Weapon bonuses.
 Scales with 50% of spell power.</Description>
-         <Icon>DragonbornDragonBreath</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>2</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>5</MinSpent>
-         <Clickie/>
-         <Requirements/>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Dragonborn: Extra Action Boost</Name>
-         <InternalName>DragonbornExtraActionBoost</InternalName>
-         <Description>Dragonborn keep fighting long after other races tire.
+      <Icon>DragonbornDragonBreath</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <Clickie/>
+      <Requirements/>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Dragonborn: Extra Action Boost</Name>
+      <InternalName>DragonbornExtraActionBoost</InternalName>
+      <Description>Dragonborn keep fighting long after other races tire.
 You can use each of your action boosts 1/2/3 additional time per rest.</Description>
-         <Icon>DragonbornExtraActionBoost</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>2</YPosition>
-         <Cost>2</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>5</MinSpent>
-         <Requirements/>
-         <Effect>
-            <Type>ExtraActionBoost</Type>
-            <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">1 2 3</AmountVector>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Dragonborn: Arcanum</Name>
-         <InternalName>DragonbornArcanum</InternalName>
-         <Description>+25/50/100 Spell Points and +1/+2/+3 Spell Penetration.</Description>
-         <Icon>Arcanum</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>2</YPosition>
-         <Cost>2</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>5</MinSpent>
-         <Requirements/>
-         <Effect>
-            <Type>SpellPoints</Type>
-            <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">25 50 100</AmountVector>
-         </Effect>
-         <Effect>
-            <Type>SpellPenetrationBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">1 2 3</AmountVector>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Dragonborn: Resilience III</Name>
-         <InternalName>DragonbornResilienceIII</InternalName>
-         <Description>+10 Maximum Hit Points</Description>
-         <Icon>DragonbornResilience</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>3</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Enhancement>DragonbornResilienceII</Enhancement>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>Hitpoints</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>10</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Dragonborn: Dragon Heritage</Name>
-         <InternalName>DragonbornDragonHeritage</InternalName>
-         <Description>+[10/20/30] spell power with the element associated with selected Draconic Ancestry.</Description>
-         <Icon>DragonbornDragonHeritage</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>3</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>10</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Enhancement>DragonbornPowerInBreath</Enhancement>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <SpellPower>Acid</SpellPower>
-            <Feat>Draconic Ancestry: Black</Feat>
-            <AmountVector size="3">10 20 30</AmountVector>
-         </Effect>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <SpellPower>Cold</SpellPower>
-            <Feat>Draconic Ancestry: White</Feat>
-            <AmountVector size="3">10 20 30</AmountVector>
-         </Effect>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <SpellPower>Electric</SpellPower>
-            <Feat>Draconic Ancestry: Blue</Feat>
-            <AmountVector size="3">10 20 30</AmountVector>
-         </Effect>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <SpellPower>Fire</SpellPower>
-            <Feat>Draconic Ancestry: Red</Feat>
-            <AmountVector size="3">10 20 30</AmountVector>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Dragonborn: Power in Breath</Name>
-         <InternalName>DragonbornPowerInBreath</InternalName>
-         <Description>+1/+2/+3 DC's of Breath Attacks.</Description>
-         <Icon>DragonbornPowerInBreath</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>3</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>10</MinSpent>
-         <ArrowLeft/>
-         <ArrowRight/>
-         <ArrowUp/>
-         <Requirements/>
-         <Effect>
-            <Type>SpellDC</Type>
-            <Bonus>Enhancement</Bonus>
-            <School>DragonBreath</School>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Dragonborn: Draconic Knowledge</Name>
-         <InternalName>DragonbornDraconicKnowledge</InternalName>
-         <Description>+1 Caster Level and +2 Max Caster Level with the element spell associated
+      <Icon>DragonbornExtraActionBoost</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>2</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements/>
+      <Effect>
+        <Type>ExtraActionBoost</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">1 2 3</AmountVector>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Dragonborn: Arcanum</Name>
+      <InternalName>DragonbornArcanum</InternalName>
+      <Description>+25/50/100 Spell Points and +1/+2/+3 Spell Penetration.</Description>
+      <Icon>Arcanum</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>2</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements/>
+      <Effect>
+        <Type>SpellPoints</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">25 50 100</AmountVector>
+      </Effect>
+      <Effect>
+        <Type>SpellPenetrationBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">1 2 3</AmountVector>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Dragonborn: Resilience III</Name>
+      <InternalName>DragonbornResilienceIII</InternalName>
+      <Description>+10 Maximum Hit Points</Description>
+      <Icon>DragonbornResilience</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Enhancement>DragonbornResilienceII</Enhancement>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>Hitpoints</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>10</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Dragonborn: Dragon Heritage</Name>
+      <InternalName>DragonbornDragonHeritage</InternalName>
+      <Description>+[10/20/30] spell power with the element associated with selected Draconic Ancestry.</Description>
+      <Icon>DragonbornDragonHeritage</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Enhancement>DragonbornPowerInBreath</Enhancement>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">10 20 30</AmountVector>
+        <Feat>Draconic Ancestry: Black</Feat>
+        <SpellPower>Acid</SpellPower>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">10 20 30</AmountVector>
+        <Feat>Draconic Ancestry: White</Feat>
+        <SpellPower>Cold</SpellPower>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">10 20 30</AmountVector>
+        <Feat>Draconic Ancestry: Blue</Feat>
+        <SpellPower>Electric</SpellPower>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">10 20 30</AmountVector>
+        <Feat>Draconic Ancestry: Red</Feat>
+        <SpellPower>Fire</SpellPower>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Dragonborn: Power in Breath</Name>
+      <InternalName>DragonbornPowerInBreath</InternalName>
+      <Description>+1/+2/+3 DC's of Breath Attacks.</Description>
+      <Icon>DragonbornPowerInBreath</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowLeft/>
+      <ArrowRight/>
+      <ArrowUp/>
+      <Requirements/>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Enhancement</Bonus>
+        <School>DragonBreath</School>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Dragonborn: Draconic Knowledge</Name>
+      <InternalName>DragonbornDraconicKnowledge</InternalName>
+      <Description>+1 Caster Level and +2 Max Caster Level with the element spell associated
 with selected Draconic Ancestry.</Description>
-         <Icon>DragonbornDraconicKnowledge</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>3</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Enhancement>DragonbornPowerInBreath</Enhancement>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Dragonborn: Resilience IV</Name>
-         <InternalName>DragonbornResilienceIV</InternalName>
-         <Description>+10 Maximum Hit Points and +10 Healing Amplification</Description>
-         <Icon>DragonbornResilience</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>4</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>15</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Enhancement>DragonbornResilienceIII</Enhancement>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>Hitpoints</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>10</Amount>
-         </Effect>
-         <Effect>
-            <Type>HealingAmplification</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>10</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Dragonborn: Memory of Flight</Name>
-         <InternalName>DragonbornMemoryOfFlight</InternalName>
-         <Description>Activate: Memories of flight lie within you. You are able to leap through the air to
+      <Icon>DragonbornDraconicKnowledge</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Enhancement>DragonbornPowerInBreath</Enhancement>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Dragonborn: Resilience IV</Name>
+      <InternalName>DragonbornResilienceIV</InternalName>
+      <Description>+10 Maximum Hit Points and +10 Healing Amplification</Description>
+      <Icon>DragonbornResilience</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>15</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Enhancement>DragonbornResilienceIII</Enhancement>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>Hitpoints</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>10</Amount>
+      </Effect>
+      <Effect>
+        <Type>HealingAmplification</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>10</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Dragonborn: Memory of Flight</Name>
+      <InternalName>DragonbornMemoryOfFlight</InternalName>
+      <Description>Activate: Memories of flight lie within you. You are able to leap through the air to
 bring the fight to your enemies or traverse chasms that make normal adventure balk.</Description>
-         <Icon>DragonbornMemoryOfFlight</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>4</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>15</MinSpent>
-         <Clickie/>
-         <Requirements/>
-         <Effect>
-            <Type>SpellLikeAbility</Type>
-            <Bonus>Enhancement</Bonus>
-            <SpellLikeAbility>Memory of Flight</SpellLikeAbility>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Dragonborn: True Power</Name>
-         <InternalName>DragonbornTruePower</InternalName>
-         <Description>+1/+2/+3 to Evocation DC's</Description>
-         <Icon>DragonbornTruePower</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>4</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>15</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Enhancement>DragonbornPowerInBreath</Enhancement>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellDC</Type>
-            <Bonus>Enhancement</Bonus>
-            <School>Evocation</School>
-            <AmountVector size="3">1 2 3</AmountVector>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Dragonborn: Augmented Breath</Name>
-         <InternalName>DragonbornAugmentedBreath</InternalName>
-         <Description>Select from</Description>
-         <Icon>DragonbornAugmentedBreath</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>4</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>15</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Enhancement>DragonbornDraconicKnowledge</Enhancement>
-            </Requirement>
-         </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>Constricting Breath</Name>
-               <Description>% chance that enemies will be slowed by 50% when affected by your Breath Attacks.</Description>
-               <Icon>DragonbornConstrictingBreath</Icon>
-               <Cost>2</Cost>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Dazing Breath</Name>
-               <Description>5% chance that enemies will be Dazed when affected by your Breath Attacks.</Description>
-               <Icon>DragonbornDazingBreath</Icon>
-               <Cost>2</Cost>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Lulling Breath</Name>
-               <Description>10% chance that enemies will fall asleep when affected by your Breath Attacks.</Description>
-               <Icon>DragonbornLullingBreath</Icon>
-               <Cost>2</Cost>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Relentless Breath</Name>
-               <Description>8% chance that enemies will be knocked down when affected by your Breath Attacks.</Description>
-               <Icon>DragonbornRelentlessBreath</Icon>
-               <Cost>2</Cost>
-            </EnhancementSelection>
-         </Selector>
-      </EnhancementTreeItem>
-   </EnhancementTree>
+      <Icon>DragonbornMemoryOfFlight</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>15</MinSpent>
+      <Clickie/>
+      <Requirements/>
+      <Effect>
+        <Type>SpellLikeAbility</Type>
+        <Bonus>Enhancement</Bonus>
+        <SpellLikeAbility>Memory of Flight</SpellLikeAbility>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Dragonborn: True Power</Name>
+      <InternalName>DragonbornTruePower</InternalName>
+      <Description>+1/+2/+3 to Evocation DC's</Description>
+      <Icon>DragonbornTruePower</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>15</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Enhancement>DragonbornPowerInBreath</Enhancement>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">1 2 3</AmountVector>
+        <School>Evocation</School>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Dragonborn: Augmented Breath</Name>
+      <InternalName>DragonbornAugmentedBreath</InternalName>
+      <Description>Select from</Description>
+      <Icon>DragonbornAugmentedBreath</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>15</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Enhancement>DragonbornDraconicKnowledge</Enhancement>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Constricting Breath</Name>
+          <Description>% chance that enemies will be slowed by 50% when affected by your Breath Attacks.</Description>
+          <Icon>DragonbornConstrictingBreath</Icon>
+          <Cost>2</Cost>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Dazing Breath</Name>
+          <Description>5% chance that enemies will be Dazed when affected by your Breath Attacks.</Description>
+          <Icon>DragonbornDazingBreath</Icon>
+          <Cost>2</Cost>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Lulling Breath</Name>
+          <Description>10% chance that enemies will fall asleep when affected by your Breath Attacks.</Description>
+          <Icon>DragonbornLullingBreath</Icon>
+          <Cost>2</Cost>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Relentless Breath</Name>
+          <Description>8% chance that enemies will be knocked down when affected by your Breath Attacks.</Description>
+          <Icon>DragonbornRelentlessBreath</Icon>
+          <Cost>2</Cost>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+  </EnhancementTree>
 </Enhancements>

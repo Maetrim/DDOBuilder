@@ -1453,12 +1453,12 @@ void Character::DeactivateStance(const Stance & stance)
 bool Character::IsStanceActive(const std::string & name, WeaponType wt) const
 {
     bool ret = false;
-    // favored soul favored weapons are a special stance for feats:
-    // Grace of Battle, Knowledge of Battle
-    if (name == "FavoredWeapon")
+    // favored weapons are a special stance for feats and class enhancements:
+    if (name == "FavoredWeapon"     // feats
+            || name == "Favored Weapon")   // enhancements
     {
-        // look through the trained favored soul feats to determine whether
-        // wt is the favored weapon types
+        // look through the trained feats to determine whether
+        // wt is the favored weapon type
         ret = (IsFeatTrained("Follower of Aureon") && wt == Weapon_Quarterstaff)
                 || (IsFeatTrained("Follower of the Blood of Vol") && wt == Weapon_Dagger)
                 || (IsFeatTrained("Follower of the Lord of Blades") && wt == Weapon_GreatSword)
@@ -1471,11 +1471,15 @@ bool Character::IsStanceActive(const std::string & name, WeaponType wt) const
                 || (IsFeatTrained("Favored by Amaunator") && wt == Weapon_HeavyMace)
                 || (IsFeatTrained("Favored by Helm") && wt == Weapon_BastardSword)
                 || (IsFeatTrained("Favored by Silvanus") && wt == Weapon_Maul);
-        // must also have at least 10 favored soul levels for this to apply
-        if (ClassLevels(Class_FavoredSoul) < 10)
+        if (name == "FavoredWeapon")
         {
-            // not enough heroic levels for this to apply
-            ret = false;
+            // must also have at least 10 favored soul levels for this to apply
+            // for Grace/Knowledge of battle
+            if (ClassLevels(Class_FavoredSoul) < 10)
+            {
+                // not enough heroic levels for this to apply
+                ret = false;
+            }
         }
     }
     else

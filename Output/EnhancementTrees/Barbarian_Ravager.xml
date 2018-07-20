@@ -13,7 +13,9 @@
       <EnhancementTreeItem>
          <Name>Ravager: Furious Rage</Name>
          <InternalName>RavCore1</InternalName>
-         <Description>When you are raging and miss your attack by rolling 1, you gain Fury for six seconds. </Description>
+         <Description>When you are raging and miss your attack by rolling 1, you gain Fury for six seconds.
+Fury: +1 Rage bonus to attack and damage.
+This effect stacks and one stack fades every six seconds.</Description>
          <Icon>RavFuriousrage</Icon>
          <XPosition>0</XPosition>
          <YPosition>0</YPosition>
@@ -239,7 +241,7 @@ Passive:  +4 Constitution , +150 hitpoints and  +40 healing amplification</Descr
       <EnhancementTreeItem>
          <Name>Ravager: Hate</Name>
          <InternalName>RavHate</InternalName>
-         <Description>Melee Attack: Deals +(1/2/3)[W] damage and generate extra threat.
+         <Description>Melee Attack: Deals +1/2/3[W] damage and generate extra threat.
 Cooldown: 6 seconds</Description>
          <Icon>RavHate</Icon>
          <XPosition>1</XPosition>
@@ -267,7 +269,8 @@ Cooldown: 6 seconds</Description>
       <EnhancementTreeItem>
          <Name>Ravager: Barbarian Power Attack</Name>
          <InternalName>RavBarbarianPowerAttack</InternalName>
-         <Description>Your Power Attack feat does 1/2/3 additional point(s) of bonus damage</Description>
+         <Description>Your Power Attack feat does 1/2/3 additional point(s) of bonus damage.
+Damage is doubled when Two Handed Fighting.</Description>
          <Icon>RavBarbarianPowerAttack</Icon>
          <XPosition>3</XPosition>
          <YPosition>1</YPosition>
@@ -286,6 +289,13 @@ Cooldown: 6 seconds</Description>
             <AmountVector size="3">1 2 3</AmountVector>
             <Stance>Power Attack</Stance>
             <Weapon>All</Weapon>
+         </Effect>
+         <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Stance>Power Attack</Stance>
+            <WeaponClass>TwoHanded</WeaponClass>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -332,7 +342,7 @@ Cooldown: 6 seconds</Description>
          <InternalName>RavMutilate</InternalName>
          <Description>Hate additionally deals 1d4/1d6/1d8 Charisma damage and 1d4/1d6/1d8 Bane damage.
 The bane damage scales with 200% Melee Power.
-Cooldown: 10 seconds per monster</Description>
+Cooldown: 10 seconds per monster on proccing its Charisma damage.</Description>
          <Icon>RavMutilate</Icon>
          <XPosition>1</XPosition>
          <YPosition>2</YPosition>
@@ -392,10 +402,11 @@ damage your target. (30 second cooldown)</Description>
          </Requirements>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Ravager action boost: Melee Power</Name>
+         <Name>Ravager: Action Boost: Melee Power</Name>
          <InternalName>RavActionBoostMeleePower</InternalName>
-         <Description>Activate this ability to receive a +[10/20/30] Action Boost bonus to Melee Power
-for 20 seconds. (Cooldown: 30 seconds)</Description>
+         <Description>Activate this ability to receive a +[10/20/30] Action Boost bonus to Melee
+and Ranged Power for 20 seconds.
+Cooldown: 30 seconds</Description>
          <Icon>RavActionBoostMeleePower</Icon>
          <XPosition>4</XPosition>
          <YPosition>2</YPosition>
@@ -414,12 +425,13 @@ for 20 seconds. (Cooldown: 30 seconds)</Description>
          <Name>Ravager: Aura of Fear</Name>
          <InternalName>RavAuraOfFear</InternalName>
          <Description>Nearby enemies receive a -2 penalty to Strength and Charisma.
-Rank 2: Nearby enemies receive a -2 penalty to Strength, Charisma, Dexterity and Wisdom. </Description>
+Rank 2: Nearby enemies receive a -2 penalty to Strength, Charisma, Dexterity and Wisdom.
+Rank 3: Nearby enemies receive a -2 penalty to all ability scores.</Description>
          <Icon>RavAuraOfFear</Icon>
          <XPosition>0</XPosition>
          <YPosition>3</YPosition>
          <Cost>1</Cost>
-         <Ranks>2</Ranks>
+         <Ranks>3</Ranks>
          <MinSpent>10</MinSpent>
          <Requirements>
             <Requirement>
@@ -431,7 +443,7 @@ Rank 2: Nearby enemies receive a -2 penalty to Strength, Charisma, Dexterity and
       <EnhancementTreeItem>
          <Name>Ravager: Slaughter</Name>
          <InternalName>RavSlaughter</InternalName>
-         <Description>Melee Attack: Deals +(5/7.5/10)[W] damage.
+         <Description>Melee Attack: Deals +5/7.5/10[W] damage.
 Cooldown: 12 seconds</Description>
          <Icon>RavSlaughter</Icon>
          <XPosition>1</XPosition>
@@ -451,7 +463,7 @@ Cooldown: 12 seconds</Description>
       <EnhancementTreeItem>
          <Name>Ravager: Festering Wound</Name>
          <InternalName>RavFesteringWound</InternalName>
-         <Description>Cruel Cut additionally inflicts 1/2/3 5-seconds stacks of 1d6 Poison damage
+         <Description>Cruel Cut additionally inflicts 1/2/3 5-second stacks of 1d6 Poison damage
 every 2 seconds and that monster's positive energy healing is reduced by 50%
 for 5/10/15 seconds. Damage stacks fade one at a time.</Description>
          <Icon>RavFesteringWound</Icon>
@@ -513,7 +525,7 @@ for 5/10/15 seconds. Damage stacks fade one at a time.</Description>
          <Name>Ravager: Laughter</Name>
          <InternalName>RavLaughter</InternalName>
          <Description>When Slaughter damages an enemy, you gain three stacks of Fury.
-When Slaughter scores a critical hit on an enemy , you gain three more Fury
+When Slaughter scores a critical hit on an enemy, you gain three more Fury
 (for a total of six) and gain 10 Melee Power for 15 seconds. </Description>
          <Icon>RavLaughter</Icon>
          <XPosition>1</XPosition>
@@ -643,7 +655,7 @@ Blood Strength has a one-second cooldown when you kill an enemy.</Description>
       <EnhancementTreeItem>
          <Name>Ravager: Bully</Name>
          <InternalName>RavBully</InternalName>
-         <Description>You deal +[5/10/15]% damage to helpless enemies.</Description>
+         <Description>You deal +5/10/15% damage to helpless enemies.</Description>
          <Icon>RavBully</Icon>
          <XPosition>2</XPosition>
          <YPosition>5</YPosition>
@@ -724,7 +736,6 @@ Blood Strength has a one-second cooldown when you kill an enemy.</Description>
             <Type>CriticalRange</Type>
             <Bonus>Competence</Bonus>
             <AmountVector size="2">1 2</AmountVector>
-            <Stance>Rage</Stance>
             <Weapon>All</Weapon>
          </Effect>
       </EnhancementTreeItem>
