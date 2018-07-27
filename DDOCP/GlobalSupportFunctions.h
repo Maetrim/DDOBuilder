@@ -82,6 +82,7 @@ const std::list<Spell> & Spells();
 const std::list<Item> & Items();
 const std::list<Augment> & Augments();
 const std::list<GuildBuff> & GuildBuffs();
+const std::list<OptionalBuff> & OptionalBuffs();
 MouseHook * GetMouseHook();
 std::vector<Spell> FilterSpells(ClassType ct, int level);
 Spell FindSpellByName(const std::string & name);

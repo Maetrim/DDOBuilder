@@ -316,6 +316,12 @@ const std::list<GuildBuff> & GuildBuffs()
     return pApp->GuildBuffs();
 }
 
+const std::list<OptionalBuff> & OptionalBuffs()
+{
+    CDDOCPApp * pApp = dynamic_cast<CDDOCPApp*>(AfxGetApp());
+    return pApp->OptionalBuffs();
+}
+
 MouseHook * GetMouseHook()
 {
     CWnd * pWnd = AfxGetMainWnd();
@@ -1724,26 +1730,26 @@ std::vector<size_t> SpellSlotsForClass(ClassType ct, size_t level)
         switch (level)
         {
             case  0: break; // no spells, as no class levels in cleric
-            case  1: spellsSlotsPerSpellLevel += 3, 0, 0, 0, 0, 0, 0, 0, 0; break;
-            case  2: spellsSlotsPerSpellLevel += 4, 0, 0, 0, 0, 0, 0, 0, 0; break;
-            case  3: spellsSlotsPerSpellLevel += 4, 3, 0, 0, 0, 0, 0, 0, 0; break;
-            case  4: spellsSlotsPerSpellLevel += 5, 4, 0, 0, 0, 0, 0, 0, 0; break;
-            case  5: spellsSlotsPerSpellLevel += 5, 4, 3, 0, 0, 0, 0, 0, 0; break;
-            case  6: spellsSlotsPerSpellLevel += 5, 5, 4, 0, 0, 0, 0, 0, 0; break;
-            case  7: spellsSlotsPerSpellLevel += 6, 5, 4, 3, 0, 0, 0, 0, 0; break;
-            case  8: spellsSlotsPerSpellLevel += 6, 5, 5, 4, 0, 0, 0, 0, 0; break;
-            case  9: spellsSlotsPerSpellLevel += 6, 6, 5, 4, 3, 0, 0, 0, 0; break;
-            case 10: spellsSlotsPerSpellLevel += 6, 6, 5, 5, 4, 0, 0, 0, 0; break;
-            case 11: spellsSlotsPerSpellLevel += 6, 6, 6, 5, 4, 3, 0, 0, 0; break;
-            case 12: spellsSlotsPerSpellLevel += 6, 6, 6, 5, 5, 4, 0, 0, 0; break;
-            case 13: spellsSlotsPerSpellLevel += 6, 6, 6, 6, 5, 4, 3, 0, 0; break;
-            case 14: spellsSlotsPerSpellLevel += 6, 6, 6, 6, 5, 5, 4, 0, 0; break;
-            case 15: spellsSlotsPerSpellLevel += 6, 6, 6, 6, 6, 5, 4, 3, 0; break;
-            case 16: spellsSlotsPerSpellLevel += 6, 6, 6, 6, 6, 5, 5, 4, 0; break;
-            case 17: spellsSlotsPerSpellLevel += 6, 6, 6, 6, 6, 6, 5, 4, 2; break;
-            case 18: spellsSlotsPerSpellLevel += 6, 6, 6, 6, 6, 6, 5, 5, 3; break;
-            case 19: spellsSlotsPerSpellLevel += 6, 6, 6, 6, 6, 6, 6, 5, 4; break;
-            case 20: spellsSlotsPerSpellLevel += 7, 6, 6, 6, 6, 6, 6, 6, 5; break;
+            case  1: spellsSlotsPerSpellLevel += 2, 0, 0, 0, 0, 0, 0, 0, 0; break;
+            case  2: spellsSlotsPerSpellLevel += 3, 0, 0, 0, 0, 0, 0, 0, 0; break;
+            case  3: spellsSlotsPerSpellLevel += 3, 2, 0, 0, 0, 0, 0, 0, 0; break;
+            case  4: spellsSlotsPerSpellLevel += 4, 3, 0, 0, 0, 0, 0, 0, 0; break;
+            case  5: spellsSlotsPerSpellLevel += 4, 3, 2, 0, 0, 0, 0, 0, 0; break;
+            case  6: spellsSlotsPerSpellLevel += 4, 4, 3, 0, 0, 0, 0, 0, 0; break;
+            case  7: spellsSlotsPerSpellLevel += 5, 4, 3, 2, 0, 0, 0, 0, 0; break;
+            case  8: spellsSlotsPerSpellLevel += 5, 4, 4, 3, 0, 0, 0, 0, 0; break;
+            case  9: spellsSlotsPerSpellLevel += 5, 5, 4, 3, 2, 0, 0, 0, 0; break;
+            case 10: spellsSlotsPerSpellLevel += 5, 5, 4, 4, 3, 0, 0, 0, 0; break;
+            case 11: spellsSlotsPerSpellLevel += 5, 5, 5, 4, 3, 2, 0, 0, 0; break;
+            case 12: spellsSlotsPerSpellLevel += 5, 5, 5, 4, 4, 3, 0, 0, 0; break;
+            case 13: spellsSlotsPerSpellLevel += 5, 5, 5, 5, 4, 3, 2, 0, 0; break;
+            case 14: spellsSlotsPerSpellLevel += 5, 5, 5, 5, 4, 4, 3, 0, 0; break;
+            case 15: spellsSlotsPerSpellLevel += 5, 5, 5, 5, 5, 4, 3, 2, 0; break;
+            case 16: spellsSlotsPerSpellLevel += 5, 5, 5, 5, 5, 4, 4, 3, 0; break;
+            case 17: spellsSlotsPerSpellLevel += 5, 5, 5, 5, 5, 5, 4, 3, 2; break;
+            case 18: spellsSlotsPerSpellLevel += 5, 5, 5, 5, 5, 5, 4, 4, 3; break;
+            case 19: spellsSlotsPerSpellLevel += 5, 5, 5, 5, 5, 5, 5, 4, 4; break;
+            case 20: spellsSlotsPerSpellLevel += 6, 5, 5, 5, 5, 5, 5, 5, 5; break;
             default: ASSERT(FALSE); break;
         }
         break;

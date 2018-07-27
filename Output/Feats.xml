@@ -738,16 +738,17 @@ ability scores, increased health and increased fortification.</Description>
          <Ability>All</Ability>
          <Amount>4</Amount>
       </Effect>
-      <!--guess at amount of bonus hp and fortification-->
+      <!--wiki says +2hd or equivalent to a toughness feat (33hp)-->
       <Effect>
          <Type>HirelingHitpoints</Type>
          <Bonus>Feat</Bonus>
-         <Amount>100</Amount>
+         <Amount>33</Amount>
       </Effect>
+      <!--wiki says 50% fortification-->
       <Effect>
          <Type>HirelingFortification</Type>
          <Bonus>Feat</Bonus>
-         <Amount>40</Amount>
+         <Amount>50</Amount>
       </Effect>
    </Feat>
    <Feat>
@@ -13881,6 +13882,7 @@ Passive Bonus: +3 Magical Resistance per stack of this Past Life.</Description>
          <Name>Deep Gnome</Name>
          <Icon>IconicPastLifeDeepGnome</Icon>
          <Description>Iconic Past Life Stance: +1/2/3 Illusion DC and +5/10/15 Acid Spell Power</Description>
+         <IncompatibleStance>Aasimar</IncompatibleStance>
          <IncompatibleStance>Bladeforged</IncompatibleStance>
          <IncompatibleStance>Morninglord</IncompatibleStance>
          <IncompatibleStance>ShadarKai</IncompatibleStance>
@@ -13992,7 +13994,7 @@ bonus per Enchant Weapon past life feat.</Description>
       <Sphere>Arcane</Sphere>
       <Icon>EpicPastLifeEnchantWeapon</Icon>
       <Effect>
-         <Type>EnchantWeapon</Type>
+         <Type>WeaponEnchantment</Type>
          <Bonus>Feat</Bonus>
          <Amount>1</Amount>
          <Weapon>All</Weapon>
@@ -19675,6 +19677,9 @@ You are proficient with heavy maces and gain +1 to hit with them.</Description>
       <Requirements>
          <RequiresOneOf>
             <Requirement>
+               <Race>Aasimar Scourge</Race>
+            </Requirement>
+            <Requirement>
                <Race>Morninglord</Race>
             </Requirement>
             <Requirement>
@@ -19709,6 +19714,9 @@ You are proficient with bastard swords and gain +1 to hit with them. </Descripti
       <Requirements>
          <RequiresOneOf>
             <Requirement>
+               <Race>Aasimar Scourge</Race>
+            </Requirement>
+            <Requirement>
                <Race>Deep Gnome</Race>
             </Requirement>
             <Requirement>
@@ -19742,6 +19750,9 @@ You are proficient with mauls and gain +1 to hit with them.</Description>
       </FeatGroup>
       <Requirements>
          <RequiresOneOf>
+            <Requirement>
+               <Race>Aasimar Scourge</Race>
+            </Requirement>
             <Requirement>
                <Race>Deep Gnome</Race>
             </Requirement>

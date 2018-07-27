@@ -16,6 +16,7 @@
 #include "GlobalSupportFunctions.h"
 #include "GuildBuffsFile.h"
 #include "ItemsFile.h"
+#include "OptionalBuffsFile.h"
 #include "SpellsFile.h"
 #include "LocalSettingsStore.h"
 
@@ -232,11 +233,13 @@ void CDDOCPApp::LoadData()
     LoadItems(path);
     LoadAugments(path);
     LoadGuildBuffs(path);
+    LoadOptionalBuffs(path);
     VerifyFeats();
     VerifyEnhancements();
     VerifyAugments();
     VerifySpells();
     VerifyItems();
+    VerifyOptionalBuffs();
     SeparateFeats();
 }
 
@@ -306,6 +309,17 @@ void CDDOCPApp::LoadGuildBuffs(const std::string & path)
     m_guildBuffs = file.GuildBuffs();
 }
 
+void CDDOCPApp::LoadOptionalBuffs(const std::string & path)
+{
+    // create the filename to load from
+    std::string filename = path;
+    filename += "SelfAndPartyBuffs.xml";
+
+    OptionalBuffsFile file(filename);
+    file.Read();
+    m_optionalBuffs = file.OptionalBuffs();
+}
+
 void CDDOCPApp::VerifyFeats()
 {
     std::list<Feat>::iterator it = m_allFeats.begin();
@@ -350,6 +364,16 @@ void CDDOCPApp::VerifyItems()
 {
     std::list<Item>::iterator it = m_items.begin();
     while (it != m_items.end())
+    {
+        (*it).VerifyObject();
+        ++it;
+    }
+}
+
+void CDDOCPApp::VerifyOptionalBuffs()
+{
+    std::list<OptionalBuff>::iterator it = m_optionalBuffs.begin();
+    while (it != m_optionalBuffs.end())
     {
         (*it).VerifyObject();
         ++it;
@@ -456,6 +480,11 @@ const std::list<Augment> & CDDOCPApp::Augments() const
 const std::list<GuildBuff> & CDDOCPApp::GuildBuffs() const
 {
     return m_guildBuffs;
+}
+
+const std::list<OptionalBuff> & CDDOCPApp::OptionalBuffs() const
+{
+    return m_optionalBuffs;
 }
 
 // CDDOCPApp message handlers

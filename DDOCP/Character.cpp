@@ -4130,6 +4130,7 @@ void Character::SetGear(
     UpdateArmorStances();
     UpdateShieldStances();
     UpdateCenteredStance();
+    UpdateGreensteelStances();
     m_pDocument->SetModifiedFlag(TRUE);
 }
 
@@ -4547,7 +4548,8 @@ void Character::UpdateWeaponStances()
             DeactivateStance(swashbuckling);
             break;
         default:
-            if (!IsRangedWeapon(item1.Weapon())
+            if (item1.Weapon() != Weapon_Handwraps
+                    && !IsRangedWeapon(item1.Weapon())
                     && !IsThrownWeapon(item1.Weapon()))
             {
                 ActivateStance(swashbuckling);
@@ -4560,7 +4562,6 @@ void Character::UpdateWeaponStances()
             }
         }
         DeactivateStance(twf);
-        DeactivateStance(unarmed);
         DeactivateStance(sab);
         DeactivateStance(orb);
         DeactivateStance(ra);
@@ -4571,6 +4572,14 @@ void Character::UpdateWeaponStances()
         else
         {
             DeactivateStance(axe);
+        }
+        if (item1.Weapon() == Weapon_Handwraps)
+        {
+            ActivateStance(unarmed);
+        }
+        else
+        {
+            DeactivateStance(unarmed);
         }
     }
     else if (gear.HasItemInSlot(Inventory_Weapon2))

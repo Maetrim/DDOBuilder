@@ -11,6 +11,7 @@
 #include "EquipmentView.h"
 #include "LevelUpView.h"
 #include "ReaperEnhancementsView.h"
+#include "SelfAndPartyBuffsView.h"
 #include "SpecialFeatsView.h"
 #include "SpellsView.h"
 #include "StancesView.h"
@@ -45,6 +46,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWndEx)
     ON_UPDATE_COMMAND_UI(ID_DOCK_REAPER, OnUpdateDockPane)
     ON_UPDATE_COMMAND_UI(ID_DOCK_EPICDESTINIES, OnUpdateDockPane)
     ON_UPDATE_COMMAND_UI(ID_DOCK_STANCES, OnUpdateDockPane)
+    ON_UPDATE_COMMAND_UI(ID_DOCK_SELFANDPARTYBUFFS, OnUpdateDockPane)
     ON_COMMAND(ID_DOCK_BREAKDOWNS, OnDockPane)
     ON_COMMAND(ID_DOCK_LEVELUP, OnDockPane)
     ON_COMMAND(ID_DOCK_SPECIALFEATS, OnDockPane)
@@ -54,6 +56,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWndEx)
     ON_COMMAND(ID_DOCK_REAPER, OnDockPane)
     ON_COMMAND(ID_DOCK_EPICDESTINIES, OnDockPane)
     ON_COMMAND(ID_DOCK_STANCES, OnDockPane)
+    ON_COMMAND(ID_DOCK_SELFANDPARTYBUFFS, OnDockPane)
 END_MESSAGE_MAP()
 
 static UINT indicators[] =
@@ -514,7 +517,15 @@ void CMainFrame::CreateViews()
             ID_DOCK_STANCES);
     pStancesPane->SetDocumentAndCharacter(GetActiveDocument(), NULL);
 
-    // next window id is 1009 if you add one
+    // create the floating views
+    CCustomDockablePane * pBuffs = CreateDockablePane(
+            "Self and Party Buffs",
+            GetActiveDocument(),
+            RUNTIME_CLASS(CSelfAndPartyBuffsView),
+            ID_DOCK_SELFANDPARTYBUFFS);
+    pBuffs->SetDocumentAndCharacter(GetActiveDocument(), NULL);
+
+    // next window id is 10010 if you add one
 }
 
 void CMainFrame::SetActiveDocumentAndCharacter(CDocument * pDoc, Character * pCharacter)

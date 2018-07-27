@@ -1263,14 +1263,6 @@ dealing 1d8 electrical damage on hit, scaling with Spell Power.</Description>
                <Description>+2 Damage dice with Elemental Arrows (Corrosive, Frost, Shock, Flaming, Force)</Description>
                <Icon>AAImprovedElementalArrows</Icon>
                <Cost>2</Cost>
-               <Requirements>
-                  <RequiresNoneOf>
-                     <Requirement>
-                        <Enhancement>AAElementalArrowsII</Enhancement>
-                        <Selection>Elemental Damage</Selection>
-                     </Requirement>
-                  </RequiresNoneOf>
-               </Requirements>
                <!--How to handle additional damage dice?-->
             </EnhancementSelection>
          </Selector>
@@ -1656,18 +1648,6 @@ dealing 1d8 electrical damage on hit, scaling with Spell Power.</Description>
                <Description>+2 Damage dice with Elemental Arrows (Corrosive, Frost, Shock, Flaming, Force)</Description>
                <Icon>AAImprovedElementalArrows</Icon>
                <Cost>2</Cost>
-               <Requirements>
-                  <RequiresNoneOf>
-                     <Requirement>
-                        <Enhancement>AAElementalArrowsII</Enhancement>
-                        <Selection>Elemental Damage</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>AAElementalArrowsIII</Enhancement>
-                        <Selection>Elemental Damage</Selection>
-                     </Requirement>
-                  </RequiresNoneOf>
-               </Requirements>
                <!--How to handle additional damage dice?-->
             </EnhancementSelection>
          </Selector>
@@ -1819,6 +1799,43 @@ dealing 1d8 electrical damage on hit, scaling with Spell Power.</Description>
          </Requirements>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
+         <Name>Arcane Archer: Final Strike</Name>
+         <InternalName>AAFinalStrike</InternalName>
+         <Description>The first enemy hit triggers an area attack that inflicts Vulnerability and deals damage.
+More injured enemies receive increased damage.</Description>
+         <Icon>AAFinalStrike</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Clickie/>
+         <Requirements>
+            <RequiresOneOf>
+               <Requirement>
+                  <Class>Ranger</Class>
+                  <Level>5</Level>
+               </Requirement>
+               <Requirement>
+                  <Race>Elf</Race>
+                  <MinLevel>5</MinLevel>
+               </Requirement>
+               <Requirement>
+                  <Race>Half-Elf</Race>
+                  <MinLevel>5</MinLevel>
+               </Requirement>
+               <Requirement>
+                  <Race>Morninglord</Race>
+                  <MinLevel>5</MinLevel>
+               </Requirement>
+            </RequiresOneOf>
+            <Requirement>
+               <MinLevel>12</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
          <Name>Arcane Archer: Improved Elemental Arrows</Name>
          <InternalName>AAImprovedElementalArrows</InternalName>
          <Description>Choose one</Description>
@@ -1859,38 +1876,19 @@ dealing 1d8 electrical damage on hit, scaling with Spell Power.</Description>
             <EnhancementSelection>
                <Name>Improved Elemental Arrows</Name>
                <Description>Your elemental arrow imbues gain On Critical: 1d10-3d10 elemental damage
-based on critical multiplier and an additional effect</Description>
-               <Icon>AAImprovedElementalArrows</Icon>
-               <Cost>1</Cost>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Corrosive Arrows</Name>
-               <Description>Your arrows gain the Destruction ability </Description>
-               <Icon>AACorrosiveArrows</Icon>
-               <Cost>1</Cost>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Flaming Arrows</Name>
-               <Description>Your arrows gain On Critical Hit: Target gains 1 stack of Burning
+based on critical multiplier and an additional effect:
+
+Corrosive Arrows: Your arrows gain the Destruction ability.
+Flaming Arrows: Your arrows gain On Critical Hit: Target gains 1 stack of Burning
 (Target takes 1d6 fire damage every 2 seconds for 6 second. This effect can
-stack 20 times and loses one stack on expiration.)</Description>
-               <Icon>AAFlamingArrows</Icon>
-               <Cost>1</Cost>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Frost Arrows</Name>
-               <Description>Your arrows gain On Critical Hit: Target gains 1 stack of Lethargy
+stack 20 times and loses one stack on expiration.)
+Frost Arrows: Your arrows gain On Critical Hit: Target gains 1 stack of Lethargy
 (You have -1 to all Saving throws. Non-bosses also move and attack 5% slower.
-This effect stacks up to 5 times.) </Description>
-               <Icon>AAFrostArrows</Icon>
-               <Cost>1</Cost>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Shock Arrows</Name>
-               <Description>Your arrows gain On Critical Hit: Vulnerable
+This effect stacks up to 5 times.)
+Shock Arrows: Your arrows gain On Critical Hit: Vulnerable
 (Target takes 1% more damage for 3 seconds. This effect stacks up to 20 times
 and loses one stack on expiration.)</Description>
-               <Icon>AAShockArrows</Icon>
+               <Icon>AAImprovedElementalArrows</Icon>
                <Cost>1</Cost>
             </EnhancementSelection>
             <EnhancementSelection>
