@@ -658,14 +658,7 @@ bool BreakdownItem::UpdateEffectAmounts(
         {
             BreakdownItem * pBI = FindBreakdown(bt);
             ASSERT(pBI != NULL);
-            if ((*it).UseFullAbilityScore())
-            {
-                (*it).SetAmount(pBI->Total());
-            }
-            else
-            {
-                (*it).SetAmount(BaseStatToBonus(pBI->Total()));
-            }
+            (*it).SetAmount(pBI->Total());
             itemChanged = true;
         }
         ++it;
@@ -777,7 +770,7 @@ bool BreakdownItem::GetActiveEffect(
         }
         else
         {
-            // it is a feat or enhancement that handles the amount based on count trained
+            // it is an effect that handles the amount based on count trained
             // for a feat we get notified once for each stack so it always works
             // for an enhancement we get told about all stacks on a single call, with the
             // stack count already set in the activeEffect
@@ -795,7 +788,7 @@ bool BreakdownItem::GetActiveEffect(
     }
     else if (effect.HasAbility())
     {
-        // it is a feat that handles the amount from a base ability bonus
+        // it is an effect that handles the amount from a base ability bonus
         // attach to the item to observe it
         bt = StatToBreakdown(effect.Ability());
         BreakdownItem * pBI = FindBreakdown(bt);
@@ -808,6 +801,8 @@ bool BreakdownItem::GetActiveEffect(
                 1,
                 amount,
                 "");        // no tree
+        activeEffect->SetDivider(divider, DT_statBonus);
+        activeEffect->SetBreakdownDependency(bt); // so we know which effect to update
     }
     else if (effect.HasFullAbility())
     {
@@ -824,7 +819,8 @@ bool BreakdownItem::GetActiveEffect(
                 1,
                 amount,
                 "");        // no tree
-        activeEffect->SetUseFullAbilityScore();
+        activeEffect->SetDivider(divider, DT_fullAbility);
+        activeEffect->SetBreakdownDependency(bt); // so we know which effect to update
     }
     else if (effect.HasDiceRoll())
     {
@@ -873,6 +869,8 @@ bool BreakdownItem::GetActiveEffect(
                     1,
                     amount,
                     "");
+            activeEffect->SetDivider(divider, DT_fullAbility);
+            activeEffect->SetBreakdownDependency(bt); // so we know which effect to update
         }
         else
         {
@@ -909,10 +907,6 @@ bool BreakdownItem::GetActiveEffect(
     if (effect.Energy().size() > 0 && m_bAddEnergies)
     {
         activeEffect->SetEnergy(effect.Energy().front());
-    }
-    if (bt != Breakdown_Unknown)
-    {
-        activeEffect->SetBreakdownDependency(bt); // so we know which effect to update
     }
     if (effect.HasPercent())
     {

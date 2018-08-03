@@ -37,10 +37,12 @@ class CEnhancementsView :
         void UpdateAlignmentChanged(Character * charData, AlignmentType alignmen) override;
         virtual void UpdateClassChanged(Character * charData, ClassType classFrom, ClassType classTo, size_t level) override;
         void UpdateRaceChanged(Character * charData, RaceType race) override;
-        void UpdateEnhancementTrained(Character * charData, const std::string & enhancementName, const std::string & selection, bool isTier5) override;
-        void UpdateEnhancementRevoked(Character * charData, const std::string & enhancementName, const std::string & selection, bool isTier5) override;
         void UpdateEnhancementTreeReset(Character * charData) override;
         void UpdateActionPointsChanged(Character * charData) override;
+        void UpdateFeatEffect(Character * charData, const std::string & featName,  const Effect & effect) override;
+        void UpdateFeatEffectRevoked(Character * charData, const std::string & featName, const Effect & effect) override;
+        void UpdateEnhancementEffect(Character * charData, const std::string & enhancementName,  const EffectTier & effect) override;
+        void UpdateEnhancementEffectRevoked(Character * charData, const std::string & enhancementName, const EffectTier & effect) override;
     private:
         std::list<EnhancementTree> DetermineTrees();
         void CreateEnhancementWindows();
@@ -48,7 +50,7 @@ class CEnhancementsView :
         void UpdateWindowTitle();
         void PopulateTreeCombo(CComboBox * combo, const std::string & selectedTree);
         void EnableDisableComboboxes();
-        void UpdateTrees(const std::string & enhancementName);
+        void UpdateTrees();
         enum MaxSupportTrees
         {
             MST_Number = MAX_ENHANCEMENT_TREES

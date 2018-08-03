@@ -12,6 +12,12 @@
 #include "WeaponTypes.h"
 
 class Character;
+enum DividerType
+{
+    DT_none,
+    DT_statBonus,
+    DT_fullAbility,
+};
 
 class ActiveEffect
 {
@@ -79,10 +85,9 @@ class ActiveEffect
         void SetIsPercentage(bool isPercentage);
         bool IsPercentage() const;
         void SetPercentageValue(double amount) const;
-        void SetUseFullAbilityScore();
-        bool UseFullAbilityScore() const;
         bool IsItemEffect() const;
         void SetIsItemEffect();
+        void SetDivider(double divider, DividerType type);
 
         std::string Description() const;
 
@@ -139,6 +144,7 @@ class ActiveEffect
         bool m_bHasWeaponType;
         WeaponType m_weaponType;
         mutable bool m_clearValue;
-        bool m_bUseFullAbilityScore;
         bool m_bIsItemEffect;
+        double m_divider;
+        DividerType m_dividerType;
 };

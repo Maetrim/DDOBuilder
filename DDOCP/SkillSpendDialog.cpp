@@ -132,7 +132,7 @@ BOOL CSkillSpendDialog::OnInitDialog()
     // class icons shown via custom draw
     // double buffer the control to reduce flickering
     m_skillsList.SetExtendedStyle(
-            m_skillsList.GetExtendedStyle() | LVS_EX_DOUBLEBUFFER);
+            m_skillsList.GetExtendedStyle() | LVS_EX_DOUBLEBUFFER | LVS_EX_FULLROWSELECT);
 
     PopulateItems();
 

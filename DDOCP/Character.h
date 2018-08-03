@@ -200,6 +200,7 @@ class Character :
         void Enhancement_SetSelectedTrees(const SelectedEnhancementTrees & trees);
         int AvailableActionPoints() const;
         int BonusActionPoints() const;
+        bool IsTreeTrained(const std::string & tree) const;
 
         // reaper enhancement support
         void Reaper_TrainEnhancement(
@@ -254,6 +255,15 @@ class Character :
 
         // general support functions
         std::string GetBuildDescription() const;
+
+        // self and party buffs
+        const std::list<std::string> EnabledSelfAndPartyBuffs() const;
+        void EnableSelfAndPartyBuff(const std::string & name);
+        void DisableSelfAndPartyBuff(const std::string & name);
+        void NotifyAllSelfAndPartyBuffs();
+
+        // Notes support
+        void SetNotes(const std::string & notes);
 
      protected:
         // notifications
@@ -342,7 +352,9 @@ class Character :
                 DL_OBJECT_LIST(_, EpicDestinySpendInTree, EpicDestinyTreeSpend) \
                 DL_OBJECT_LIST(_, TwistOfFate, Twists) \
                 DL_STRING(_, ActiveGear) \
-                DL_OBJECT_LIST(_, EquippedGear, GearSetups)
+                DL_OBJECT_LIST(_, EquippedGear, GearSetups) \
+                DL_STRING_LIST(_, SelfAndPartyBuffs) \
+                DL_STRING(_, Notes)
 
         DL_DECLARE_ACCESS(Character_PROPERTIES)
         DL_DECLARE_VARIABLES(Character_PROPERTIES)

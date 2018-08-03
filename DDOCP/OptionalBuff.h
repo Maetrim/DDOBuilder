@@ -14,6 +14,7 @@ class OptionalBuff :
         void Write(XmlLib::SaxWriter * writer) const;
 
         void VerifyObject() const;
+        bool operator<(const OptionalBuff & other) const;
     protected:
         XmlLib::SaxContentElementInterface * StartElement(
                 const XmlLib::SaxString & name,
@@ -23,6 +24,8 @@ class OptionalBuff :
 
         #define OptionalBuff_PROPERTIES(_) \
                 DL_STRING(_, Name) \
+                DL_OPTIONAL_STRING(_, Icon) \
+                DL_STRING(_, Description) \
                 DL_OBJECT_VECTOR(_, Effect, Effects)
 
         DL_DECLARE_ACCESS(OptionalBuff_PROPERTIES)

@@ -1,37 +1,1347 @@
 <SelfAndPartyBuffs>
-    <OptionalBuff>
-        <Name>This area is under development and not yet working properly</Name>
-    </OptionalBuff>
-    <OptionalBuff>
-        <Name>Greater Heroism</Name>
-        <Effect>
-            <Type>SkillBonus</Type>
-            <Bonus>Morale</Bonus>
-            <Amount>4</Amount>
-            <Skill>All</Skill>
-        </Effect>
-        <Effect>
-            <Type>SaveBonus</Type>
-            <Bonus>Morale</Bonus>
-            <Amount>4</Amount>
-            <Save>All</Save>
-        </Effect>
-        <Effect>
-            <Type>AttackBonus</Type>
-            <Bonus>Morale</Bonus>
-            <Amount>4</Amount>
-            <Weapon>All</Weapon>
-        </Effect>
-        <Effect>
-            <Type>CriticalAttackBonus</Type>
-            <Bonus>Morale</Bonus>
-            <Amount>4</Amount>
-            <Weapon>All</Weapon>
-        </Effect>
-        <Effect>
-            <Type>Immunity</Type>
-            <Bonus>Morale</Bonus>
-            <Immunity>Fear</Immunity>
-        </Effect>
-    </OptionalBuff>
+   <!--Spell Buffs-->
+   <OptionalBuff>
+      <Name>Barkskin</Name>
+      <Icon>Barkskin</Icon>
+      <Description>You have a Natural Armor bonus to AC.</Description>
+      <Effect>
+         <Type>ACBonus</Type>
+         <Bonus>NaturalArmor</Bonus>
+         <Amount>5</Amount>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Bless</Name>
+      <Icon>Bless</Icon>
+      <Description>Multiple targets are filled with courage, granting a +1 morale
+bonus on to-hit rolls and saves versus fear. Bless counters and dispels Bane.</Description>
+      <Effect>
+         <Type>AttackBonus</Type>
+         <Bonus>Morale</Bonus>
+         <Amount>1</Amount>
+         <Weapon>All</Weapon>
+      </Effect>
+      <Effect>
+         <Type>SaveBonus</Type>
+         <Bonus>Morale</Bonus>
+         <Amount>1</Amount>
+         <Save>Fear</Save>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Camouflage</Name>
+      <Icon>Camouflage</Icon>
+      <Description>An ally becomes more able to blend in with its surroundings giving
+them a +10 circumstance bonus to Hide.</Description>
+      <Effect>
+         <Type>SkillBonus</Type>
+         <Bonus>Circumstance</Bonus>
+         <Amount>10</Amount>
+         <Skill>Hide</Skill>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Deadly Weapons</Name>
+      <Description>Your currently equipped weapons deal +1[W].</Description>
+      <Icon>DeadlyWeapons</Icon>
+      <Effect>
+         <Type>WeaponBaseDamageBonus</Type>
+         <Bonus>Alchemical</Bonus>
+         <Amount>1</Amount>
+         <Weapon>All</Weapon>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Death Ward</Name>
+      <Description>You are immune to death spells and effects, Energy Drained, and negative energy effects.</Description>
+      <Icon>DeathWard</Icon>
+      <Effect>
+         <Type>Immunity</Type>
+         <Bonus>Enchantment</Bonus>
+         <Immunity>Death effect</Immunity>
+      </Effect>
+      <Effect>
+         <Type>Immunity</Type>
+         <Bonus>Enchantment</Bonus>
+         <Immunity>Level drain</Immunity>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Heroism</Name>
+      <Description>You gain a +2 morale bonus on attack rolls, saving throws, and skill checks.</Description>
+      <Icon>Heroism</Icon>
+      <Effect>
+         <Type>SkillBonus</Type>
+         <Bonus>Morale</Bonus>
+         <Amount>2</Amount>
+         <Skill>All</Skill>
+      </Effect>
+      <Effect>
+         <Type>SaveBonus</Type>
+         <Bonus>Morale</Bonus>
+         <Amount>2</Amount>
+         <Save>All</Save>
+      </Effect>
+      <Effect>
+         <Type>AttackBonus</Type>
+         <Bonus>Morale</Bonus>
+         <Amount>2</Amount>
+         <Weapon>All</Weapon>
+      </Effect>
+      <Effect>
+         <Type>CriticalAttackBonus</Type>
+         <Bonus>Morale</Bonus>
+         <Amount>2</Amount>
+         <Weapon>All</Weapon>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Fire Shield (Cold)</Name>
+      <Description>Wreaths you in cold flames and reduces all Fire damage by half.</Description>
+      <Icon>FireShield</Icon>
+      <Effect>
+         <DisplayName>Fire Shield: Cold</DisplayName>
+         <Type>EnergyAbsorbance</Type>
+         <Bonus>Enchantment</Bonus>
+         <Amount>50</Amount>
+         <Energy>Fire</Energy>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Fire Shield (Fire)</Name>
+      <Description>Wreaths you in flames and reduces all Cold damage by half.</Description>
+      <Icon>FireShield</Icon>
+      <Effect>
+         <DisplayName>Fire Shield: Fire</DisplayName>
+         <Type>EnergyAbsorbance</Type>
+         <Bonus>Enchantment</Bonus>
+         <Amount>50</Amount>
+         <Energy>Cold</Energy>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Freedom of Movement</Name>
+      <Description>You can move and attack normally for the duration of the spell, even under the influence of magic or conditions that normally impedes movement, such as Entangled, Paralyzed, or Solid Fog.</Description>
+      <Icon>FreedomOfMovement</Icon>
+      <Effect>
+         <Type>Immunity</Type>
+         <Bonus>Enchantment</Bonus>
+         <Immunity>Freedom of Movement</Immunity>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Greater Heroism</Name>
+      <Description>You gain a +4 morale bonus on attack rolls, saves, skill checks and immunity to fear.</Description>
+      <Icon>GreaterHeroism</Icon>
+      <Effect>
+         <Type>SkillBonus</Type>
+         <Bonus>Morale</Bonus>
+         <Amount>4</Amount>
+         <Skill>All</Skill>
+      </Effect>
+      <Effect>
+         <Type>SaveBonus</Type>
+         <Bonus>Morale</Bonus>
+         <Amount>4</Amount>
+         <Save>All</Save>
+      </Effect>
+      <Effect>
+         <Type>AttackBonus</Type>
+         <Bonus>Morale</Bonus>
+         <Amount>4</Amount>
+         <Weapon>All</Weapon>
+      </Effect>
+      <Effect>
+         <Type>CriticalAttackBonus</Type>
+         <Bonus>Morale</Bonus>
+         <Amount>4</Amount>
+         <Weapon>All</Weapon>
+      </Effect>
+      <Effect>
+         <Type>Immunity</Type>
+         <Bonus>Morale</Bonus>
+         <Immunity>Fear</Immunity>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Good Hope</Name>
+      <Description>You gain a +2 morale bonus to attack rolls, saving throws, skill checks, and weapon damage rolls.</Description>
+      <Icon>GoodHope</Icon>
+      <Effect>
+         <Type>AttackBonus</Type>
+         <Bonus>Morale</Bonus>
+         <Amount>2</Amount>
+         <Weapon>All</Weapon>
+      </Effect>
+      <Effect>
+         <Type>DamageBonus</Type>
+         <Bonus>Morale</Bonus>
+         <Amount>2</Amount>
+         <Weapon>All</Weapon>
+      </Effect>
+      <Effect>
+         <Type>SaveBonus</Type>
+         <Bonus>Morale</Bonus>
+         <Amount>2</Amount>
+         <Save>All</Save>
+      </Effect>
+      <Effect>
+         <Type>SkillBonus</Type>
+         <Bonus>Morale</Bonus>
+         <Amount>2</Amount>
+         <Skill>All</Skill>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Haste</Name>
+      <Description>You gain a 32% enhancement bonus to run speed, attack 15% faster than normal and in addition the gain a +1 enhancement bonus to attack rolls, plus a +1 dodge bonus to AC and Reflex saves.</Description>
+      <Icon>Haste</Icon>
+      <Effect>
+         <Type>MovementSpeed</Type>
+         <Bonus>Enhancement</Bonus>
+         <Amount>32</Amount>
+      </Effect>
+      <Effect>
+         <Type>Alacrity</Type>
+         <Bonus>Enhancement</Bonus>
+         <Amount>15</Amount>
+         <Weapon>All</Weapon>
+      </Effect>
+      <Effect>
+         <Type>AttackBonus</Type>
+         <Bonus>Enhancement</Bonus>
+         <Amount>1</Amount>
+         <Weapon>All</Weapon>
+      </Effect>
+      <Effect>
+         <Type>ACBonus</Type>
+         <Bonus>Dodge</Bonus>
+         <Amount>1</Amount>
+      </Effect>
+      <Effect>
+         <Type>SaveBonus</Type>
+         <Bonus>Dodge</Bonus>
+         <Amount>1</Amount>
+         <Save>Reflex</Save>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Holy Aura</Name>
+      <Description>You are warded with a +4 deflection bonuses to AC, +4 resistance bonuses to saves, and immunity to enchantment and charm spells.</Description>
+      <Icon>HolyAura</Icon>
+      <Effect>
+         <Type>ACBonus</Type>
+         <Bonus>Deflection</Bonus>
+         <Amount>4</Amount>
+      </Effect>
+      <Effect>
+         <Type>SaveBonus</Type>
+         <Bonus>Resistance</Bonus>
+         <Amount>4</Amount>
+         <Save>All</Save>
+      </Effect>
+      <Effect>
+         <Type>Immunity</Type>
+         <Bonus>Enchantment</Bonus>
+         <Immunity>Enchantment and charm spells</Immunity>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Jump</Name>
+      <Description>You are granted an Enhancement bonus to the Jump skill.</Description>
+      <Icon>Jump</Icon>
+      <Effect>
+         <Type>SkillBonus</Type>
+         <Bonus>Enhancement</Bonus>
+         <Amount>30</Amount>
+         <Skill>Jump</Skill>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Lucky Cape</Name>
+      <Description>Your cloak grants a +1 luck bonus to saving throws.</Description>
+      <Icon>LuckyCape</Icon>
+      <Effect>
+         <Type>SaveBonus</Type>
+         <Bonus>Luck</Bonus>
+         <Amount>1</Amount>
+         <Save>All</Save>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Masters Touch</Name>
+      <Description>EYour weapons are ennchanted to grant proficiency if the items are simple or martial weapons, or shields, and lasts until the rest.</Description>
+      <Icon>MastersTouch</Icon>
+      <Effect>
+         <Type>WeaponProficiency</Type>
+         <Bonus>Morale</Bonus>
+         <WeaponClass>Simple</WeaponClass>
+      </Effect>
+      <Effect>
+         <Type>WeaponProficiency</Type>
+         <Bonus>Morale</Bonus>
+         <WeaponClass>Martial</WeaponClass>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Merfolk's Blessing</Name>
+      <Description>You gain an enhancement bonus to the Swim skill.</Description>
+      <Icon>MerfolksBlessing</Icon>
+      <Effect>
+         <Type>SkillBonus</Type>
+         <Bonus>Enhancement</Bonus>
+         <Amount>30</Amount>
+         <Skill>Swim</Skill>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Nightshield</Name>
+      <Description>Grants a +3 resistance bonus to saves and protection from Magic Missiles</Description>
+      <Icon>Nightshield</Icon>
+      <Effect>
+         <Type>SaveBonus</Type>
+         <Bonus>Resistance</Bonus>
+         <Amount>3</Amount>
+         <Save>All</Save>
+      </Effect>
+      <Effect>
+         <Type>Immunity</Type>
+         <Bonus>Enchantment</Bonus>
+         <Immunity>Magic Missiles</Immunity>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Pass Without Trace</Name>
+      <Description>Your feet touch the ground, but leave no trace. Grants a +5 enhancement bonus on Move Silently skill checks</Description>
+      <Icon>PassWithoutTrace</Icon>
+      <Effect>
+         <Type>SkillBonus</Type>
+         <Bonus>Enhancement</Bonus>
+         <Amount>20</Amount>
+         <Skill>Move Silently</Skill>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Protection from Evil</Name>
+      <Description>You are warded by a magical barrier from attacks by Evil creatures. Granting a +2 deflection bonus to Armor Class, and a +2 resistance bonus to saves versus attacks from Evil creatures. You are also warded from Evil magical controls and compulsions.</Description>
+      <Icon>ProtectionFromEvil</Icon>
+      <Effect>
+         <Type>ACBonus</Type>
+         <Bonus>Deflection</Bonus>
+         <Amount>2</Amount>
+      </Effect>
+      <Effect>
+         <Type>Immunity</Type>
+         <Bonus>Enchantment</Bonus>
+         <Immunity>Magical Controls and Compulsion</Immunity>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Prayer</Name>
+      <Description>Grants a +1 luck bonus to Attack rolls, weapon Damage rolls, saves, and Skill checks.</Description>
+      <Icon>Prayer</Icon>
+      <Effect>
+         <Type>AttackBonus</Type>
+         <Bonus>Luck</Bonus>
+         <Amount>1</Amount>
+         <Weapon>All</Weapon>
+      </Effect>
+      <Effect>
+         <Type>DamageBonus</Type>
+         <Bonus>Luck</Bonus>
+         <Amount>1</Amount>
+         <Weapon>All</Weapon>
+      </Effect>
+      <Effect>
+         <Type>SaveBonus</Type>
+         <Bonus>Luck</Bonus>
+         <Amount>1</Amount>
+         <Save>All</Save>
+      </Effect>
+      <Effect>
+         <Type>SkillBonus</Type>
+         <Bonus>Luck</Bonus>
+         <Amount>1</Amount>
+         <Skill>All</Skill>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Rage</Name>
+      <Description>You are granted a +2 morale bonus to Strength and to Constitution, +1 morale bonus on will saves, and a -2 penalty to Armor Class.</Description>
+      <Icon>Rage</Icon>
+      <Effect>
+         <Type>AbilityBonus</Type>
+         <Bonus>Morale</Bonus>
+         <Amount>2</Amount>
+         <Ability>Strength</Ability>
+      </Effect>
+      <Effect>
+         <Type>AbilityBonus</Type>
+         <Bonus>Morale</Bonus>
+         <Amount>2</Amount>
+         <Ability>Constitution</Ability>
+      </Effect>
+      <Effect>
+         <Type>SaveBonus</Type>
+         <Bonus>Morale</Bonus>
+         <Amount>1</Amount>
+         <Save>Will</Save>
+      </Effect>
+      <Effect>
+         <Type>ACBonus</Type>
+         <Bonus>Penalty</Bonus>
+         <Amount>-2</Amount>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Recitation</Name>
+      <Description>Grants a +2 luck bonus to Attack rolls, Armor Class and saves.</Description>
+      <Icon>Recitation</Icon>
+      <Effect>
+         <Type>AttackBonus</Type>
+         <Bonus>Luck</Bonus>
+         <Amount>2</Amount>
+         <Weapon>All</Weapon>
+      </Effect>
+      <Effect>
+         <Type>ACBonus</Type>
+         <Bonus>Luck</Bonus>
+         <Amount>1</Amount>
+      </Effect>
+      <Effect>
+         <Type>SaveBonus</Type>
+         <Bonus>Luck</Bonus>
+         <Amount>2</Amount>
+         <Save>All</Save>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Shield</Name>
+      <Description>Grants a +4 shield bonus to Armor Class, and protection from Magic Missiles.</Description>
+      <Icon>Shield</Icon>
+      <Effect>
+         <Type>ACBonus</Type>
+         <Bonus>Shield</Bonus>
+         <Amount>4</Amount>
+      </Effect>
+      <Effect>
+         <Type>Immunity</Type>
+         <Bonus>Enchantment</Bonus>
+         <Immunity>Magic Missiles</Immunity>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Spiderskin</Name>
+      <Description>You gain a +2 enhancement bonus to saves against poison, a bonus to the hide skill equal to your caster level, and a +2 Natural Armor bonus to AC, with an additional +1 for every six of your caster levels.</Description>
+      <Icon>Spiderskin</Icon>
+      <Effect>
+         <Type>SaveBonus</Type>
+         <Bonus>Enhancement</Bonus>
+         <Amount>2</Amount>
+         <Save>Poison</Save>
+      </Effect>
+      <Effect>
+         <Type>SkillBonus</Type>
+         <Bonus>Enhancement</Bonus>
+         <Amount>7</Amount>
+         <Skill>Hide</Skill>
+      </Effect>
+      <Effect>
+         <Type>ACBonus</Type>
+         <Bonus>NaturalArmor</Bonus>
+         <Amount>6</Amount>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Stoneskin</Name>
+      <Description>You gain Damage Reduction 10/Adamantine.</Description>
+      <Icon>Stoneskin</Icon>
+      <Effect>
+         <Type>DR</Type>
+         <Bonus>Enhancement</Bonus>
+         <Amount>10</Amount>
+         <DR>Adamantine</DR>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Spell Resistance</Name>
+      <Description>you gain Spell Resistance equal to 12 plus 1 per caster level.</Description>
+      <Icon>SpellResistance</Icon>
+      <Effect>
+         <Type>SpellResistance</Type>
+         <Bonus>Enchantment</Bonus>
+         <Amount>32</Amount>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Tenser's Transformation</Name>
+      <Description>You become a virtual fighting machine becoming stronger, tougher, faster, and more skilled in combat. You gain a +4 alchemical bonus to Strength, Dexterity, and Constitution, a +6 alchemical bonus to Armor Class, and proficiency with all simple and martial weapons. Your base attack bonus equals your character level. Your spellcasting ability is reduced, resulting in a -2 penalty to all spell DCs, -2 to your rolls to bypass enemy Spell Resistance, and doubling the cooldown of your spells.</Description>
+      <Icon>TensersTransformation</Icon>
+      <Effect>
+         <Type>AbilityBonus</Type>
+         <Bonus>Alchemical</Bonus>
+         <Amount>4</Amount>
+         <Ability>Strength</Ability>
+      </Effect>
+      <Effect>
+         <Type>AbilityBonus</Type>
+         <Bonus>Alchemical</Bonus>
+         <Amount>4</Amount>
+         <Ability>Dexterity</Ability>
+      </Effect>
+      <Effect>
+         <Type>AbilityBonus</Type>
+         <Bonus>Alchemical</Bonus>
+         <Amount>4</Amount>
+         <Ability>Constitution</Ability>
+      </Effect>
+      <Effect>
+         <Type>ACBonus</Type>
+         <Bonus>Alchemical</Bonus>
+         <Amount>6</Amount>
+      </Effect>
+      <Effect>
+         <Type>SpellDC</Type>
+         <Bonus>Penalty</Bonus>
+         <Amount>-2</Amount>
+         <School>All</School>
+      </Effect>
+      <Effect>
+         <Type>SpellPenetrationBonus</Type>
+         <Bonus>Penalty</Bonus>
+         <Amount>-2</Amount>
+      </Effect>
+      <Effect>
+         <Type>WeaponProficiency</Type>
+         <Bonus>Alchemical</Bonus>
+         <WeaponClass>Simple</WeaponClass>
+      </Effect>
+      <Effect>
+         <Type>WeaponProficiency</Type>
+         <Bonus>Alchemical</Bonus>
+         <WeaponClass>Martial</WeaponClass>
+      </Effect>
+      <Effect>
+        <Type>OverrideBAB</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>30</Amount>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Tumble</Name>
+      <Description>Gain a +10 enhancement bonus to the Skill Tumble.</Description>
+      <Icon>Tumble</Icon>
+      <Effect>
+         <Type>SkillBonus</Type>
+         <Bonus>Enhancement</Bonus>
+         <Amount>10</Amount>
+         <Skill>Tumble</Skill>
+      </Effect>
+   </OptionalBuff>
+   <!--Enhancement Buffs-->
+   <OptionalBuff>
+      <Name>Heroic Companion</Name>
+      <Description>You are granted a +1[W], +6 to hit and saving throws, 4% Dodge and +10 Physical Resistance Rating.</Description>
+      <Icon>HalflingHeroicCompanion</Icon>
+      <Effect>
+         <Type>WeaponBaseDamageBonus</Type>
+         <Bonus>Stacking</Bonus>
+         <Amount>1</Amount>
+         <Weapon>All</Weapon>
+      </Effect>
+      <Effect>
+         <Type>AttackBonus</Type>
+         <Bonus>Stacking</Bonus>
+         <Amount>6</Amount>
+         <Weapon>All</Weapon>
+      </Effect>
+      <Effect>
+         <Type>CriticalAttackBonus</Type>
+         <Bonus>Stacking</Bonus>
+         <Amount>6</Amount>
+         <Weapon>All</Weapon>
+      </Effect>
+      <Effect>
+         <Type>SaveBonus</Type>
+         <Bonus>Stacking</Bonus>
+         <Amount>6</Amount>
+         <Save>All</Save>
+      </Effect>
+      <Effect>
+         <Type>DodgeBonus</Type>
+         <Bonus>Stacking</Bonus>
+         <Amount>4</Amount>
+      </Effect>
+      <Effect>
+         <Type>PRR</Type>
+         <Bonus>Stacking</Bonus>
+         <Amount>10</Amount>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Crown of Summer</Name>
+      <Description>You are filled with the light and vitality of summer. You gain +15% enhancement bonus to Healing Amplification, +10 melee power and +5 ranged power.</Description>
+      <Icon>SHCrownOfSummer</Icon>
+      <Effect>
+         <Type>HealingAmplification</Type>
+         <Bonus>Enhancement</Bonus>
+         <Amount>15</Amount>
+      </Effect>
+      <Effect>
+         <Type>MeleePower</Type>
+         <Bonus>Stacking</Bonus>
+         <Amount>10</Amount>
+      </Effect>
+      <Effect>
+         <Type>RangedPower</Type>
+         <Bonus>Stacking</Bonus>
+         <Amount>5</Amount>
+      </Effect>
+   </OptionalBuff>
+   <!--Epic Destiny Buffs-->
+   <OptionalBuff>
+      <Name>Primal Scream</Name>
+      <Description>You are raged gaining +5 morale bonus to Strength and Constitution, and suffer a -2 penalty to armor class.</Description>
+      <Icon>PrimalScream</Icon>
+      <Effect>
+         <Type>AbilityBonus</Type>
+         <Bonus>Morale</Bonus>
+         <Amount>5</Amount>
+         <Ability>Strength</Ability>
+      </Effect>
+      <Effect>
+         <Type>AbilityBonus</Type>
+         <Bonus>Morale</Bonus>
+         <Amount>5</Amount>
+         <Ability>Constitution</Ability>
+      </Effect>
+      <Effect>
+         <Type>ACBonus</Type>
+         <Bonus>Penalty</Bonus>
+         <Amount>-2</Amount>
+      </Effect>
+   </OptionalBuff>
+   <!--Bard Songs-->
+   <OptionalBuff>
+      <Name>Inspire Competence</Name>
+      <Icon>InspireCompetence</Icon>
+      <Description>You gain a +2 competence bonus to your skill checks.</Description>
+      <Effect>
+         <Type>SkillBonus</Type>
+         <Bonus>Competence</Bonus>
+         <Amount>2</Amount>
+         <Skill>All</Skill>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Inspire Courage</Name>
+      <Icon>InspireCourage</Icon>
+      <Description>You are granted a +4 morale bonus to saves against fear effects and a +1 morale bonus on attack and weapon damage rolls before enhancements.</Description>
+      <Effect>
+         <Type>AttackBonus</Type>
+         <Bonus>Morale</Bonus>
+         <Amount>4</Amount>
+         <Weapon>All</Weapon>
+      </Effect>
+      <Effect>
+         <Type>DamageBonus</Type>
+         <Bonus>Competence</Bonus>
+         <Amount>4</Amount>
+         <Weapon>All</Weapon>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Inspire Greatness</Name>
+      <Icon>InspireCourage</Icon>
+      <Description>You gain a +2 attack bonus, +1 Fortitude save bonus and temporary hit points.</Description>
+      <Effect>
+         <Type>AttackBonus</Type>
+         <Bonus>Stacking</Bonus>
+         <Amount>2</Amount>
+         <Weapon>All</Weapon>
+      </Effect>
+      <Effect>
+         <Type>SaveBonus</Type>
+         <Bonus>Stacking</Bonus>
+         <Amount>1</Amount>
+          <Save>Fortitude</Save>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Inspire Heroics</Name>
+      <Icon>InspireHeroics</Icon>
+      <Description>You gain a +4 morale bonus to saves and a +4% dodge.</Description>
+      <Effect>
+         <Type>AttackBonus</Type>
+         <Bonus>Morale</Bonus>
+         <Amount>4</Amount>
+         <Weapon>All</Weapon>
+      </Effect>
+      <Effect>
+         <Type>DodgeBonus</Type>
+         <Bonus>Morale</Bonus>
+         <Amount>4</Amount>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Inspire Excellence</Name>
+      <Icon>InspireExcellence</Icon>
+      <Description>This song grants a +2 comptetence bonus to all ability scores.</Description>
+      <Effect>
+         <Type>AbilityBonus</Type>
+         <Bonus>Competence</Bonus>
+         <Amount>2</Amount>
+         <Ability>All</Ability>
+      </Effect>
+      <Effect>
+         <Type>AbilityBonus</Type>
+         <Bonus>Morale</Bonus>
+         <Amount>5</Amount>
+         <Ability>Constitution</Ability>
+      </Effect>
+      <Effect>
+         <Type>ACBonus</Type>
+         <Bonus>Penalty</Bonus>
+         <Amount>-2</Amount>
+      </Effect>
+   </OptionalBuff>
+   <!--Monk Finishers-->
+   <OptionalBuff>
+      <Name>Grasp the Earth Dragon</Name>
+      <Icon>GraspOfTheEarthDragon</Icon>
+      <Description>You are immune to daze, stun and sleep for a short period of time.</Description>
+      <Effect>
+         <Type>Immunity</Type>
+         <Bonus>Enhancement</Bonus>
+         <Immunity>Daze</Immunity>
+      </Effect>
+      <Effect>
+         <Type>Immunity</Type>
+         <Bonus>Enhancement</Bonus>
+         <Immunity>Stun</Immunity>
+      </Effect>
+      <Effect>
+         <Type>Immunity</Type>
+         <Bonus>Enhancement</Bonus>
+         <Immunity>Sleep</Immunity>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Walk of the Sun</Name>
+      <Icon>WalkOfTheSun</Icon>
+      <Description>You have a bonus toAttack, Saves and Skills for a short period of time.</Description>
+      <Effect>
+         <Type>AttackBonus</Type>
+         <Bonus>Stacking</Bonus>
+         <Amount>2</Amount>
+         <Weapon>All</Weapon>
+      </Effect>
+      <Effect>
+         <Type>CriticalAttackBonus</Type>
+         <Bonus>Stacking</Bonus>
+         <Amount>2</Amount>
+         <Weapon>All</Weapon>
+      </Effect>
+      <Effect>
+         <Type>SaveBonus</Type>
+         <Bonus>Stacking</Bonus>
+         <Amount>2</Amount>
+         <Save>All</Save>
+      </Effect>
+      <Effect>
+         <Type>SkillBonus</Type>
+         <Bonus>Stacking</Bonus>
+         <Amount>2</Amount>
+         <Skill>All</Skill>
+      </Effect>
+   </OptionalBuff>
+   <!--Yugoloth Potions-->
+   <OptionalBuff>
+      <Name>Yugoloth: Essence of Betrayal (Dex)</Name>
+      <Icon>YugolothDex</Icon>
+      <Description>+2 stacking Dexterity, +6 Sneak Attack to hit (+4 after penalty) -2 Attack bonus</Description>
+      <Effect>
+         <Type>AbilityBonus</Type>
+         <Bonus>Stacking</Bonus>
+         <Amount>2</Amount>
+         <Ability>Dexterity</Ability>
+      </Effect>
+      <Effect>
+         <Type>AttackBonus</Type>
+         <Bonus>Penalty</Bonus>
+         <Amount>-2</Amount>
+         <Weapon>All</Weapon>
+      </Effect>
+      <Effect>
+         <Type>CriticalAttackBonus</Type>
+         <Bonus>Penalty</Bonus>
+         <Amount>-2</Amount>
+         <Weapon>All</Weapon>
+      </Effect>
+      <Effect>
+         <Type>SneakAttackAttack</Type>
+         <Bonus>Stacking</Bonus>
+         <Amount>6</Amount>
+         <Weapon>All</Weapon>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Yugoloth: Essence of Cunning (Int)</Name>
+      <Icon>YugolothInt</Icon>
+      <Description>+2 stacking Intelligence, slow SP regeneration and -50% Fortification</Description>
+      <Effect>
+         <Type>AbilityBonus</Type>
+         <Bonus>Stacking</Bonus>
+         <Amount>2</Amount>
+         <Ability>Intelligence</Ability>
+      </Effect>
+      <Effect>
+         <Type>Fortification</Type>
+         <Bonus>Penalty</Bonus>
+         <Amount>-50</Amount>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Yugoloth: Essence of Desire (Con)</Name>
+      <Icon>YugolothCon</Icon>
+      <Description>+2 stacking Constitution, +20 stacking HP and -5% Melee attack speed</Description>
+      <Effect>
+         <Type>AbilityBonus</Type>
+         <Bonus>Stacking</Bonus>
+         <Amount>2</Amount>
+         <Ability>Constitution</Ability>
+      </Effect>
+      <Effect>
+         <Type>Hitpoints</Type>
+         <Bonus>Stacking</Bonus>
+         <Amount>20</Amount>
+      </Effect>
+      <Effect>
+         <Type>Alacrity</Type>
+         <Bonus>Penalty</Bonus>
+         <Amount>-5</Amount>
+         <WeaponClass>Melee</WeaponClass>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Yugoloth: Essence of Despair (Wis)</Name>
+      <Icon>YugolothWis</Icon>
+      <Description>+2 stacking Wisdom, +4 Natural armor (Non-Stacking) and -4 Reflex save</Description>
+      <Effect>
+         <Type>AbilityBonus</Type>
+         <Bonus>Stacking</Bonus>
+         <Amount>2</Amount>
+         <Ability>Wisdom</Ability>
+      </Effect>
+      <Effect>
+         <Type>ACBonus</Type>
+         <Bonus>NaturalArmor</Bonus>
+         <Amount>4</Amount>
+      </Effect>
+      <Effect>
+         <Type>SaveBonus</Type>
+         <Bonus>Penalty</Bonus>
+         <Amount>-4</Amount>
+         <Save>Reflex</Save>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Yugoloth: Essence of Fury (Str)</Name>
+      <Icon>YugolothStr</Icon>
+      <Description>+2 stacking Strength, +8 Will save against Fear (+4 after penalty) and -4 Will save</Description>
+      <Effect>
+         <Type>AbilityBonus</Type>
+         <Bonus>Stacking</Bonus>
+         <Amount>2</Amount>
+         <Ability>Strength</Ability>
+      </Effect>
+      <Effect>
+         <Type>SaveBonus</Type>
+         <Bonus>Stacking</Bonus>
+         <Amount>8</Amount>
+         <Save>Fear</Save>
+      </Effect>
+      <Effect>
+         <Type>SaveBonus</Type>
+         <Bonus>Penalty</Bonus>
+         <Amount>-4</Amount>
+         <Save>Will</Save>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Yugoloth: Essence of Seduction (Cha)</Name>
+      <Icon>YugolothCha</Icon>
+      <Description>+2 stacking Charisma, +8 Fortitude save against Poison (+4 after penalty) and -4 Fortitude save</Description>
+      <Effect>
+         <Type>AbilityBonus</Type>
+         <Bonus>Stacking</Bonus>
+         <Amount>2</Amount>
+         <Ability>Charisma</Ability>
+      </Effect>
+      <Effect>
+         <Type>SaveBonus</Type>
+         <Bonus>Stacking</Bonus>
+         <Amount>8</Amount>
+         <Save>Poison</Save>
+      </Effect>
+      <Effect>
+         <Type>SaveBonus</Type>
+         <Bonus>Penalty</Bonus>
+         <Amount>-4</Amount>
+         <Save>Fortitude</Save>
+      </Effect>
+   </OptionalBuff>
+   <!--Store potions-->
+   <OptionalBuff>
+      <Name>Potion of Insighful Strength</Name>
+      <Icon>Potion</Icon>
+      <Description>Grants a +2 Insighful bonus to Strength</Description>
+      <Effect>
+         <Type>AbilityBonus</Type>
+         <Bonus>Insightful</Bonus>
+         <Amount>2</Amount>
+         <Ability>Strength</Ability>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Potion of Insighful Intelligence</Name>
+      <Icon>Potion</Icon>
+      <Description>Grants a +2 Insighful bonus to Intelligence</Description>
+      <Effect>
+         <Type>AbilityBonus</Type>
+         <Bonus>Insightful</Bonus>
+         <Amount>2</Amount>
+         <Ability>Intelligence</Ability>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Potion of Insighful Wisdom</Name>
+      <Icon>Potion</Icon>
+      <Description>Grants a +2 Insighful bonus to Wisdom</Description>
+      <Effect>
+         <Type>AbilityBonus</Type>
+         <Bonus>Insightful</Bonus>
+         <Amount>2</Amount>
+         <Ability>Wisdom</Ability>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Potion of Insighful Dexterity</Name>
+      <Icon>Potion</Icon>
+      <Description>Grants a +2 Insighful bonus to Dexterity</Description>
+      <Effect>
+         <Type>AbilityBonus</Type>
+         <Bonus>Insightful</Bonus>
+         <Amount>2</Amount>
+         <Ability>Dexterity</Ability>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Potion of Insighful Constitution</Name>
+      <Icon>Potion</Icon>
+      <Description>Grants a +2 Insighful bonus to Constitution</Description>
+      <Effect>
+         <Type>AbilityBonus</Type>
+         <Bonus>Insightful</Bonus>
+         <Amount>2</Amount>
+         <Ability>Constitution</Ability>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Potion of Insighful Charisma</Name>
+      <Icon>Potion</Icon>
+      <Description>Grants a +2 Insighful bonus to Charisma</Description>
+      <Effect>
+         <Type>AbilityBonus</Type>
+         <Bonus>Insightful</Bonus>
+         <Amount>2</Amount>
+         <Ability>Charisma</Ability>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Long Lasting Elixer of Strength</Name>
+      <Icon>Potion</Icon>
+      <Description>Grants a +2 Stacking bonus to Strength</Description>
+      <Effect>
+         <Type>AbilityBonus</Type>
+         <Bonus>Stacking</Bonus>
+         <Amount>2</Amount>
+         <Ability>Strength</Ability>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Long Lasting Elixer of Intelligence</Name>
+      <Icon>Potion</Icon>
+      <Description>Grants a +2 Stacking bonus to Intelligence</Description>
+      <Effect>
+         <Type>AbilityBonus</Type>
+         <Bonus>Stacking</Bonus>
+         <Amount>2</Amount>
+         <Ability>Intelligence</Ability>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Long Lasting Elixer of Wisdom</Name>
+      <Icon>Potion</Icon>
+      <Description>Grants a +2 Stacking bonus to Wisdom</Description>
+      <Effect>
+         <Type>AbilityBonus</Type>
+         <Bonus>Stacking</Bonus>
+         <Amount>2</Amount>
+         <Ability>Wisdom</Ability>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Long Lasting Elixer of Dexterity</Name>
+      <Icon>Potion</Icon>
+      <Description>Grants a +2 Stacking bonus to Dexterity</Description>
+      <Effect>
+         <Type>AbilityBonus</Type>
+         <Bonus>Stacking</Bonus>
+         <Amount>2</Amount>
+         <Ability>Dexterity</Ability>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Long Lasting Elixer of Constitution</Name>
+      <Icon>Potion</Icon>
+      <Description>Grants a +2 Stacking bonus to Constitution</Description>
+      <Effect>
+         <Type>AbilityBonus</Type>
+         <Bonus>Stacking</Bonus>
+         <Amount>2</Amount>
+         <Ability>Constitution</Ability>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Long Lasting Elixer of Charisma</Name>
+      <Icon>Potion</Icon>
+      <Description>Grants a +2 Stacking bonus to Charisma</Description>
+      <Effect>
+         <Type>AbilityBonus</Type>
+         <Bonus>Stacking</Bonus>
+         <Amount>2</Amount>
+         <Ability>Charisma</Ability>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Potion of Prowess +3</Name>
+      <Icon>Potion</Icon>
+      <Description>Grants a +3 Alchemical bonus to Strength (1 minute duration)</Description>
+      <Effect>
+         <Type>AbilityBonus</Type>
+         <Bonus>Alchemical</Bonus>
+         <Amount>3</Amount>
+         <Ability>Strength</Ability>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Potion of Grace +3</Name>
+      <Icon>Potion</Icon>
+      <Description>Grants a +3 Alchemical bonus to Dexterity (1 minute duration)</Description>
+      <Effect>
+         <Type>AbilityBonus</Type>
+         <Bonus>Alchemical</Bonus>
+         <Amount>3</Amount>
+         <Ability>Dexterity</Ability>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Potion of Health +3</Name>
+      <Icon>Potion</Icon>
+      <Description>Grants a +3 Alchemical bonus to Constitution (1 minute duration)</Description>
+      <Effect>
+         <Type>AbilityBonus</Type>
+         <Bonus>Alchemical</Bonus>
+         <Amount>3</Amount>
+         <Ability>Constitution</Ability>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Potion of Knowledge +3</Name>
+      <Icon>Potion</Icon>
+      <Description>Grants a +3 Alchemical bonus to Intelligence (1 minute duration)</Description>
+      <Effect>
+         <Type>AbilityBonus</Type>
+         <Bonus>Alchemical</Bonus>
+         <Amount>3</Amount>
+         <Ability>Intelligence</Ability>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Potion of Reason +3</Name>
+      <Icon>Potion</Icon>
+      <Description>Grants a +3 Alchemical bonus to Wisdom (1 minute duration)</Description>
+      <Effect>
+         <Type>AbilityBonus</Type>
+         <Bonus>Alchemical</Bonus>
+         <Amount>3</Amount>
+         <Ability>Wisdom</Ability>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Potion of Influence +3</Name>
+      <Icon>Potion</Icon>
+      <Description>Grants a +3 Alchemical bonus to Charisma (1 minute duration)</Description>
+      <Effect>
+         <Type>AbilityBonus</Type>
+         <Bonus>Alchemical</Bonus>
+         <Amount>3</Amount>
+         <Ability>Charisma</Ability>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Long Lasting Potion of 10 Magical Resistance</Name>
+      <Icon>Potion</Icon>
+      <Description>Grants one hour of +10 Special bonus to Magical Resistance.</Description>
+      <Effect>
+         <Type>MRR</Type>
+         <Bonus>Special</Bonus>
+         <Amount>10</Amount>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Oil of Incandescence</Name>
+      <Icon>Potion</Icon>
+      <Description>When used, enchants your currently equipped weapons to deal additional 1d6 light damage per hit for one hour.</Description>
+      <Effect>
+         <DisplayName>Oil of Incandescence</DisplayName>
+         <Type>WeaponOtherDamageBonus</Type>
+         <Bonus>Stacking</Bonus>
+         <Weapon>All</Weapon>
+         <Dice>
+            <Number size="1">1</Number>
+            <Sides size="1">6</Sides>
+            <Energy>Light</Energy>
+         </Dice>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Long Lasting Potion of 10 Melee Power</Name>
+      <Icon>Potion</Icon>
+      <Description>When used, grants one hour of +10 Special bonus to Melee Power.</Description>
+      <Effect>
+         <Type>MeleePower</Type>
+         <Bonus>Special</Bonus>
+         <Amount>10</Amount>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Long Lasting Potion of 10 Ranged Power</Name>
+      <Icon>Potion</Icon>
+      <Description>When used, grants one hour of +10 Special bonus to Ranged Power.</Description>
+      <Effect>
+         <Type>RangedPower</Type>
+         <Bonus>Special</Bonus>
+         <Amount>10</Amount>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Potion of Prowess</Name>
+      <Icon>Potion</Icon>
+      <Description>When used, grants +2 Alchemical bonus to Attack and Damage rolls for 10 minutes.</Description>
+      <Effect>
+         <Type>AttackBonus</Type>
+         <Bonus>Alchemical</Bonus>
+         <Amount>2</Amount>
+         <Weapon>All</Weapon>
+      </Effect>
+      <Effect>
+         <Type>DamageBonus</Type>
+         <Bonus>Alchemical</Bonus>
+         <Amount>2</Amount>
+         <Weapon>All</Weapon>
+      </Effect>
+      <Effect>
+         <Type>CriticalAttackBonus</Type>
+         <Bonus>Alchemical</Bonus>
+         <Amount>2</Amount>
+         <Weapon>All</Weapon>
+      </Effect>
+      <Effect>
+         <Type>Seeker</Type>
+         <Bonus>Alchemical</Bonus>
+         <Amount>2</Amount>
+         <Weapon>All</Weapon>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Potion of Greater Ardor</Name>
+      <Icon>Potion</Icon>
+      <Description>+20 Alchemical bonus to Healing Spell Power</Description>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Alchemical</Bonus>
+         <Amount>20</Amount>
+         <SpellPower>Positive</SpellPower>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Potion of Greater Brilliance</Name>
+      <Icon>Potion</Icon>
+      <Description>+20 Alchemical bonus to Light and Alignment Spell Power</Description>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Alchemical</Bonus>
+         <Amount>20</Amount>
+         <SpellPower>Light</SpellPower>
+         <SpellPower>Alignment</SpellPower>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Potion of Greater Cacophony</Name>
+      <Icon>Potion</Icon>
+      <Description>+20 Alchemical bonus to Sonic Spell Power</Description>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Alchemical</Bonus>
+         <Amount>20</Amount>
+         <SpellPower>Sonic</SpellPower>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Potion of Greater Efficacy</Name>
+      <Icon>Potion</Icon>
+      <Description>+12 Alchemical bonus to Universal Spell Power</Description>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Alchemical</Bonus>
+         <Amount>12</Amount>
+         <SpellPower>All</SpellPower>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Potion of Greater Erosion</Name>
+      <Icon>Potion</Icon>
+      <Description>+20 Alchemical bonus to Acid Spell Power</Description>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Alchemical</Bonus>
+         <Amount>20</Amount>
+         <SpellPower>Acid</SpellPower>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Potion of Greater Freeze</Name>
+      <Icon>Potion</Icon>
+      <Description>+20 Alchemical bonus to Cold Spell Power</Description>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Alchemical</Bonus>
+         <Amount>20</Amount>
+         <SpellPower>Cold</SpellPower>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Potion of Greater Impact</Name>
+      <Icon>Potion</Icon>
+      <Description>+20 Alchemical bonus to Force (includes physical and untyped) Spell Power</Description>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Alchemical</Bonus>
+         <Amount>20</Amount>
+         <SpellPower>Force</SpellPower>
+         <SpellPower>Untyped</SpellPower>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Potion of Greater Inferno</Name>
+      <Icon>Potion</Icon>
+      <Description>+20 Alchemical bonus to Fire Spell Power</Description>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Alchemical</Bonus>
+         <Amount>20</Amount>
+         <SpellPower>Fire</SpellPower>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Potion of Greater Mending</Name>
+      <Icon>Potion</Icon>
+      <Description>+20 Alchemical bonus to Repair and Rust Spell Power</Description>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Alchemical</Bonus>
+         <Amount>20</Amount>
+         <SpellPower>Repair</SpellPower>
+         <SpellPower>Rust</SpellPower>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Potion of Greater Nihil</Name>
+      <Icon>Potion</Icon>
+      <Description>+20 Alchemical bonus to Negative Energy Spell Power</Description>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Alchemical</Bonus>
+         <Amount>20</Amount>
+         <SpellPower>Negative</SpellPower>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Potion of Greater Spark</Name>
+      <Icon>Potion</Icon>
+      <Description>+20 Alchemical bonus to Electric Spell Power</Description>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Alchemical</Bonus>
+         <Amount>20</Amount>
+         <SpellPower>Electric</SpellPower>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Potion of Bull's Skill +3</Name>
+      <Icon>Potion</Icon>
+      <Description>You gain a +3 alchemical bonus to your Strength based skills</Description>
+      <Effect>
+         <Type>SkillBonus</Type>
+         <Bonus>Alchemical</Bonus>
+         <Amount>3</Amount>
+         <Ability>Strength</Ability>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Potion of Cat's Skill +3</Name>
+      <Icon>Potion</Icon>
+      <Description>You gain a +3 alchemical bonus to your Dexterity based skills</Description>
+      <Effect>
+         <Type>SkillBonus</Type>
+         <Bonus>Alchemical</Bonus>
+         <Amount>3</Amount>
+         <Ability>Dexterity</Ability>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Potion of Eagle's Skill +3</Name>
+      <Icon>Potion</Icon>
+      <Description>You gain a +3 alchemical bonus to your Charisma based skills</Description>
+      <Effect>
+         <Type>SkillBonus</Type>
+         <Bonus>Alchemical</Bonus>
+         <Amount>3</Amount>
+         <Ability>Charisma</Ability>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Potion of Fox's Skill +3</Name>
+      <Icon>Potion</Icon>
+      <Description>You gain a +3 alchemical bonus to your Intelligence based skills</Description>
+      <Effect>
+         <Type>SkillBonus</Type>
+         <Bonus>Alchemical</Bonus>
+         <Amount>3</Amount>
+         <Ability>Intelligence</Ability>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Potion of Owl's Skill +3</Name>
+      <Icon>Potion</Icon>
+      <Description> gain a +3 alchemical bonus to your Wisdom based skills</Description>
+      <Effect>
+         <Type>SkillBonus</Type>
+         <Bonus>Alchemical</Bonus>
+         <Amount>3</Amount>
+         <Ability>Wisdom</Ability>
+      </Effect>
+   </OptionalBuff>
 </SelfAndPartyBuffs>

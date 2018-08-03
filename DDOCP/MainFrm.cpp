@@ -10,6 +10,7 @@
 #include "EpicDestiniesView.h"
 #include "EquipmentView.h"
 #include "LevelUpView.h"
+#include "NotesView.h"
 #include "ReaperEnhancementsView.h"
 #include "SelfAndPartyBuffsView.h"
 #include "SpecialFeatsView.h"
@@ -47,6 +48,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWndEx)
     ON_UPDATE_COMMAND_UI(ID_DOCK_EPICDESTINIES, OnUpdateDockPane)
     ON_UPDATE_COMMAND_UI(ID_DOCK_STANCES, OnUpdateDockPane)
     ON_UPDATE_COMMAND_UI(ID_DOCK_SELFANDPARTYBUFFS, OnUpdateDockPane)
+    ON_UPDATE_COMMAND_UI(ID_DOCK_NOTES, OnUpdateDockPane)
     ON_COMMAND(ID_DOCK_BREAKDOWNS, OnDockPane)
     ON_COMMAND(ID_DOCK_LEVELUP, OnDockPane)
     ON_COMMAND(ID_DOCK_SPECIALFEATS, OnDockPane)
@@ -57,6 +59,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWndEx)
     ON_COMMAND(ID_DOCK_EPICDESTINIES, OnDockPane)
     ON_COMMAND(ID_DOCK_STANCES, OnDockPane)
     ON_COMMAND(ID_DOCK_SELFANDPARTYBUFFS, OnDockPane)
+    ON_COMMAND(ID_DOCK_NOTES, OnDockPane)
 END_MESSAGE_MAP()
 
 static UINT indicators[] =
@@ -525,7 +528,15 @@ void CMainFrame::CreateViews()
             ID_DOCK_SELFANDPARTYBUFFS);
     pBuffs->SetDocumentAndCharacter(GetActiveDocument(), NULL);
 
-    // next window id is 10010 if you add one
+    // create the floating views
+    CCustomDockablePane * pNotes = CreateDockablePane(
+            "Notes",
+            GetActiveDocument(),
+            RUNTIME_CLASS(CNotesView),
+            ID_DOCK_NOTES);
+    pBuffs->SetDocumentAndCharacter(GetActiveDocument(), NULL);
+
+    // next window id is 1011 if you add one
 }
 
 void CMainFrame::SetActiveDocumentAndCharacter(CDocument * pDoc, Character * pCharacter)

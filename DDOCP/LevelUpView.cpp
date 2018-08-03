@@ -189,6 +189,7 @@ LRESULT CLevelUpView::OnNewDocument(
         }
         // ensure all controls show correct state, even for no document
         PopulateControls();
+        EnableBuyButtons();
     }
     if (IsWindow(GetSafeHwnd()))
     {
@@ -317,6 +318,7 @@ void CLevelUpView::OnInitialUpdate()
     m_comboSkillTome.SetItemData(index, 5);
 
     PopulateControls();
+    EnableBuyButtons();
 
     // add the mouse hook areas used for feat tooltips
     for (size_t i = 0; i < 3; ++i)

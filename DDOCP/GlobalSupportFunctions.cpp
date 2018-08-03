@@ -2806,3 +2806,23 @@ size_t StanceStackCount(const std::string & stanceName)
     return count;
 }
 
+OptionalBuff FindOptionalBuff(const std::string & name)
+{
+    bool found = false;
+    OptionalBuff buff;
+    const std::list<OptionalBuff> & buffs = OptionalBuffs();
+    std::list<OptionalBuff>::const_iterator it = buffs.begin();
+    while (!found && it != buffs.end())
+    {
+        if ((*it).Name() == name)
+        {
+            found = true;
+            buff = (*it);
+        }
+        else
+        {
+            ++it;
+        }
+    }
+    return buff;
+}

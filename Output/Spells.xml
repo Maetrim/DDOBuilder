@@ -133,13 +133,23 @@ A successful Reflex save will reduce this damage by half.</Description>
       <Description>Enchants the items currently equipped in the target's right
 and left hands to grant their wielder proficiency if the items are simple or
 martial weapons, or shields, and lasts until the target rests.</Description>
-      <Icon>Masterstouch</Icon>
+      <Icon>MastersTouch</Icon>
       <School>Divination</School>
       <Artificer>1</Artificer>
       <Bard>1</Bard>
       <Sorcerer>1</Sorcerer>
       <Warlock>1</Warlock>
       <Wizard>1</Wizard>
+        <Effect>
+            <Type>WeaponProficiency</Type>
+            <Bonus>Morale</Bonus>
+            <WeaponClass>Simple</WeaponClass>
+        </Effect>
+        <Effect>
+            <Type>WeaponProficiency</Type>
+            <Bonus>Morale</Bonus>
+            <WeaponClass>Martial</WeaponClass>
+        </Effect>
    </Spell>
    <Spell>
       <Name>Static Shock</Name>
@@ -2329,24 +2339,35 @@ caster level and immunity to fear.</Description>
       <Bard>5</Bard>
       <Sorcerer>6</Sorcerer>
       <Wizard>6</Wizard>
-      <Effect>
-         <Type>AttackBonus</Type>
-         <Bonus>Morale</Bonus>
-         <Amount>4</Amount>
-         <Weapon>All</Weapon>
-      </Effect>
-      <Effect>
-         <Type>SaveBonus</Type>
-         <Bonus>Morale</Bonus>
-         <Amount>4</Amount>
-         <Save>All</Save>
-      </Effect>
-      <Effect>
-         <Type>SkillBonus</Type>
-         <Bonus>Morale</Bonus>
-         <Amount>4</Amount>
-         <Skill>All</Skill>
-      </Effect>
+        <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Morale</Bonus>
+            <Amount>4</Amount>
+            <Skill>All</Skill>
+        </Effect>
+        <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Morale</Bonus>
+            <Amount>4</Amount>
+            <Save>All</Save>
+        </Effect>
+        <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Morale</Bonus>
+            <Amount>4</Amount>
+            <Weapon>All</Weapon>
+        </Effect>
+        <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Morale</Bonus>
+            <Amount>4</Amount>
+            <Weapon>All</Weapon>
+        </Effect>
+        <Effect>
+            <Type>Immunity</Type>
+            <Bonus>Morale</Bonus>
+            <Immunity>Fear</Immunity>
+        </Effect>
    </Spell>
    <Spell>
       <Name>Suggestion, Mass</Name>
@@ -4158,7 +4179,7 @@ obtaining a Jump skill of 40.</Description>
       <MaxCasterLevel>9</MaxCasterLevel>
       <Effect>
          <Type>SkillBonus</Type>
-         <Bonus>Enchantment</Bonus>
+         <Bonus>Enhancement</Bonus>
          <AmountVector size="9">10 10 10 10 20 20 20 20 30</AmountVector>
          <Skill>Jump</Skill>
       </Effect>
@@ -4207,7 +4228,7 @@ levels to a maximum of 20.</Description>
       <Ranger>1</Ranger>
       <Effect>
          <Type>SkillBonus</Type>
-         <Bonus>Enchantment</Bonus>
+         <Bonus>Enhancement</Bonus>
          <AmountVector size="31">5 5 6 6 7 7 8 8 9 9 10 10 11 11 12 12 13 13 14 14 15 15 16 16 17 17 18 18 19 19 20</AmountVector>
          <Skill>Move Silently</Skill>
       </Effect>
@@ -5505,7 +5526,7 @@ them a +10 circumstance bonus to Hide.</Description>
       <Ranger>1</Ranger>
       <Effect>
          <Type>SkillBonus</Type>
-         <Bonus>Determination</Bonus>
+         <Bonus>Circumstance</Bonus>
          <Amount>10</Amount>
          <Skill>Hide</Skill>
       </Effect>
@@ -5540,7 +5561,7 @@ them a +10 circumstance bonus to Hide.</Description>
       <Ranger>2</Ranger>
       <Effect>
          <Type>SkillBonus</Type>
-         <Bonus>Determination</Bonus>
+         <Bonus>Circumstance</Bonus>
          <Amount>10</Amount>
          <Skill>Hide</Skill>
       </Effect>
@@ -7149,6 +7170,17 @@ saves and a +4% dodge. Requires 18 trained ranks (not total mod) of the Perform
 skill to use.</Description>
       <Icon>InspireHeroics</Icon>
       <SPCost/>
+      <Effect>
+         <Type>AttackBonus</Type>
+         <Bonus>Morale</Bonus>
+         <Amount>4</Amount>
+         <Weapon>All</Weapon>
+      </Effect>
+      <Effect>
+         <Type>DodgeBonus</Type>
+         <Bonus>Morale</Bonus>
+         <Amount>4</Amount>
+      </Effect>
    </Spell>
    <Spell>
       <Name>Evasive Trance</Name>
@@ -7226,7 +7258,7 @@ D&amp;D Dice: Deals 1d12 damage plus 1d12 damage additional per three caster lev
 Enhancement Bonus of your target's currently equipped weapons or shields by 1,
 or to increase the Enhancement Bonus of your target's currently equipped armor
 by 1. An item can have only one temporary item enchantment at a time.</Description>
-      <Icon>WeaponEnchantment</Icon>
+      <Icon>EnchantWeapon</Icon>
       <SPCost/>
    </Spell>
    <Spell>

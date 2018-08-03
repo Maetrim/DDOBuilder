@@ -425,61 +425,57 @@ void CEnhancementsView::UpdateRaceChanged(
     CreateEnhancementWindows();
 }
 
-void CEnhancementsView::UpdateEnhancementTrained(
-        Character * charData,
-        const std::string & enhancementName,
-        const std::string & selection,
-        bool isTier5)
+void CEnhancementsView::UpdateFeatEffect(Character * charData, const std::string & featName,  const Effect & effect)
 {
-    UpdateTrees(enhancementName);
-
-    UpdateWindowTitle();
-    EnableDisableComboboxes();
+     if (effect.Type() == Effect_EnhancementTree)
+     {
+        UpdateTrees();
+        UpdateWindowTitle();
+        EnableDisableComboboxes();
+     }
 }
 
-void CEnhancementsView::UpdateTrees(const std::string & enhancementName)
+void CEnhancementsView::UpdateFeatEffectRevoked(Character * charData, const std::string & featName, const Effect & effect)
 {
-    // some enhancements cause tree selection updates (arcane archer)
-    const EnhancementTreeItem * pTreeItem = FindEnhancement(enhancementName);
-    // see if it has an effect that causes a tree update
-    if (pTreeItem != NULL)
+     if (effect.Type() == Effect_EnhancementTree)
+     {
+        UpdateTrees();
+        UpdateWindowTitle();
+        EnableDisableComboboxes();
+     }
+}
+
+void CEnhancementsView::UpdateEnhancementEffect(Character * charData, const std::string & enhancementName,  const EffectTier & effect)
+{
+     if (effect.m_effect.Type() == Effect_EnhancementTree)
+     {
+        UpdateTrees();
+        UpdateWindowTitle();
+        EnableDisableComboboxes();
+     }
+}
+
+void CEnhancementsView::UpdateEnhancementEffectRevoked(Character * charData, const std::string & enhancementName, const EffectTier & effect)
+{
+     if (effect.m_effect.Type() == Effect_EnhancementTree)
+     {
+        UpdateTrees();
+        UpdateWindowTitle();
+        EnableDisableComboboxes();
+     }
+}
+
+void CEnhancementsView::UpdateTrees()
+{
+    // only update if there is a change in actual trees
+    std::list<EnhancementTree> trees = DetermineTrees();
+    if (trees != m_availableTrees)
     {
-        const std::list<Effect> & effects = pTreeItem->Effects();
-        bool updateTrees = false;
-        std::list<Effect>::const_iterator eit = effects.begin();
-        while (eit != effects.end() && !updateTrees)
-        {
-            if ((*eit).Type() == Effect_EnhancementTree)
-            {
-                updateTrees = true;
-            }
-            ++eit;
-        }
-        if (updateTrees)
-        {
-            // only update if there is a change in actual trees
-            std::list<EnhancementTree> trees = DetermineTrees();
-            if (trees != m_availableTrees)
-            {
-                // yup, they have changed
-                m_availableTrees = trees;
-                DestroyEnhancementWindows();
-                CreateEnhancementWindows();
-            }
-        }
+        // yup, they have changed
+        m_availableTrees = trees;
+        DestroyEnhancementWindows();
+        CreateEnhancementWindows();
     }
-}
-
-void CEnhancementsView::UpdateEnhancementRevoked(
-        Character * charData,
-        const std::string & enhancementName,
-        const std::string & selection,
-        bool isTier5)
-{
-    UpdateTrees(enhancementName);
-
-    UpdateWindowTitle();
-    EnableDisableComboboxes();
 }
 
 void CEnhancementsView::UpdateEnhancementTreeReset(Character * charData)

@@ -192,6 +192,9 @@ void CForumExportDlg::PopulateExport()
             case FES_ActiveStances:
                 AddActiveStances(forumExport);
                 break;
+            case FES_SelfAndPartyBuffs:
+                AddSelfAndPartyBuffs(forumExport);
+                break;
             case FES_EnhancementTrees:
                 AddEnhancements(forumExport);
                 break;
@@ -457,6 +460,7 @@ void CForumExportDlg::AddFeats(
 void CForumExportDlg::AddSaves(std::stringstream & forumExport)
 {
     forumExport << "Saves:\r\n";
+    forumExport << "------------------------------------------------------------------------------------------\r\n";
     AddBreakdown(forumExport, "Fortitude:        ", 3, Breakdown_SaveFortitude);
     AddBreakdown(forumExport, "\r\n  vs Poison:      ", 3, Breakdown_SavePoison);
     AddBreakdown(forumExport, "\r\n  vs Disease:     ", 3, Breakdown_SaveDisease);
@@ -536,6 +540,8 @@ void CForumExportDlg::AddBreakdown(
 
 void CForumExportDlg::AddFeatSelections(std::stringstream & forumExport)
 {
+    forumExport << "Class and Feat Selection\r\n";
+    forumExport << "------------------------------------------------------------------------------------------\r\n";
     forumExport << "Level Class            Feats\r\n";
     for (size_t level = 0; level < MAX_LEVEL; ++level)
     {
@@ -615,14 +621,15 @@ void CForumExportDlg::AddFeatSelections(std::stringstream & forumExport)
             forumExport << "\r\n";
         }
     }
+    forumExport << "\r\n";
 }
 
 void CForumExportDlg::AddGrantedFeats(std::stringstream & forumExport)
 {
     if (m_pCharacter->HasGrantedFeats())
     {
-        forumExport << "------------------------------------------------------------------------------------------\r\n";
         forumExport << "Granted Feats\r\n";
+        forumExport << "------------------------------------------------------------------------------------------\r\n";
         const std::list<TrainedFeat> & grantedFeats = m_pCharacter->GrantedFeats();
         std::list<TrainedFeat>::const_iterator it = grantedFeats.begin();
         while (it != grantedFeats.end())
@@ -640,6 +647,8 @@ void CForumExportDlg::AddGrantedFeats(std::stringstream & forumExport)
 void CForumExportDlg::AddAutomaticFeats(std::stringstream & forumExport)
 {
     // list all the automatic feats gained at each level
+    forumExport << "Automatic Feats\r\n";
+    forumExport << "------------------------------------------------------------------------------------------\r\n";
     forumExport << "Level Class            Feats\r\n";
     for (size_t level = 0; level < MAX_LEVEL; ++level)
     {
@@ -696,8 +705,8 @@ void CForumExportDlg::AddActiveStances(std::stringstream & forumExport)
             {
                 if (first)
                 {
-                    forumExport << "Active User Controlled Stances                                    \r\n";
-                    forumExport << "------------------------------------------------------------------\r\n";
+                    forumExport << "Active User Controlled Stances\r\n";
+                    forumExport << "------------------------------------------------------------------------------------------\r\n";
                 }
                 // this is an active stance
                 const Stance & stance = userStances[i]->GetStance();
@@ -714,8 +723,8 @@ void CForumExportDlg::AddActiveStances(std::stringstream & forumExport)
                 if (first)
                 {
                     forumExport << "\r\n";
-                    forumExport << "Active Auto Controlled Stances                                    \r\n";
-                    forumExport << "------------------------------------------------------------------\r\n";
+                    forumExport << "Active Auto Controlled Stances\r\n";
+                    forumExport << "------------------------------------------------------------------------------------------\r\n";
                 }
                 // this is an active stance
                 const Stance & stance = autoStances[i]->GetStance();
@@ -732,9 +741,25 @@ void CForumExportDlg::AddActiveStances(std::stringstream & forumExport)
     }
 }
 
+void CForumExportDlg::AddSelfAndPartyBuffs(std::stringstream & forumExport)
+{
+    forumExport << "Self and Party Buffs\r\n";
+    forumExport << "------------------------------------------------------------------------------------------\r\n";
+    const std::list<std::string> & buffs = m_pCharacter->SelfAndPartyBuffs();
+    std::list<std::string>::const_iterator it = buffs.begin();
+    while (it != buffs.end())
+    {
+        forumExport << (*it) << "\r\n";
+        ++it;
+    }
+    forumExport << "\r\n";
+}
+
 void CForumExportDlg::AddSkills(std::stringstream & forumExport)
 {
     // Example Output:
+    // Skills
+    // ------------------------------------------------------------------------------------------
     // Skill Points     18  9  9  9 10 10 10 10 10 10 11 11 11 11 11 12 12 12 12 12
     // Skill Name       01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 Total Buffed
     // -----------------------------------------------------------------------------------------
@@ -742,6 +767,8 @@ void CForumExportDlg::AddSkills(std::stringstream & forumExport)
     // Use Magic Device                                                             xxx   xxx
     // -----------------------------------------------------------------------------------------
     // Available Points 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+    forumExport << "Skills\r\n";
+    forumExport << "------------------------------------------------------------------------------------------\r\n";
     forumExport << "Skill Points    ";
     for (size_t level = 0; level < MAX_CLASS_LEVEL; ++level)
     {
@@ -846,7 +873,7 @@ void CForumExportDlg::AddEnergyResistances(std::stringstream & forumExport)
     // Poison:           [...]         [...]%
     // etc
     forumExport << "Energy       Resistance and Absorbance\r\n";
-    forumExport << "--------------------------------------\r\n";
+    forumExport << "------------------------------------------------------------------------------------------\r\n";
     AddEnergyResistances(forumExport, "Acid:", Breakdown_EnergyResistanceAcid, Breakdown_EnergyAbsorptionAcid);
     AddEnergyResistances(forumExport, "Cold:", Breakdown_EnergyResistanceCold, Breakdown_EnergyAbsorptionCold);
     AddEnergyResistances(forumExport, "Electric:", Breakdown_EnergyResistanceElectric, Breakdown_EnergyAbsorptionElectric);
@@ -1180,6 +1207,7 @@ void CForumExportDlg::AddTwistsOfFate(std::stringstream & forumExport)
     int totalFatePoints = m_pCharacter->FatePoints();
     size_t spentFatePoints = m_pCharacter->SpentFatePoints();
     forumExport << "Twists of fate - " << spentFatePoints << " of " << totalFatePoints;
+    forumExport << "------------------------------------------------------------------------------------------\r\n";
     forumExport << " Fate points spent.\r\n";
     for (size_t twist = 0; twist < MAX_TWISTS; ++twist)
     {
@@ -1218,7 +1246,7 @@ void CForumExportDlg::AddSpellPowers(std::stringstream & forumExport)
 {
     // Spell Power        Base    Critical Chance    Critical Multiplier
     forumExport << "Spell Power        Base    Critical Chance    Critical Multiplier.\r\n";
-    forumExport << "------------------------------------------------------------------\r\n";
+    forumExport << "------------------------------------------------------------------------------------------\r\n";
     AddSpellPower(forumExport, "Acid     ", Breakdown_SpellPowerAcid, Breakdown_SpellCriticalChanceAcid, Breakdown_SpellCriticalMultiplierAcid);
     AddSpellPower(forumExport, "Alignment", Breakdown_SpellPowerAlignment, Breakdown_SpellCriticalChanceAlignment, Breakdown_SpellCriticalMultiplierAlignment);
     AddSpellPower(forumExport, "Cold     ", Breakdown_SpellPowerCold, Breakdown_SpellCriticalChanceCold, Breakdown_SpellCriticalMultiplierCold);
@@ -1235,7 +1263,7 @@ void CForumExportDlg::AddSpellPowers(std::stringstream & forumExport)
     AddSpellPower(forumExport, "Sonic    ", Breakdown_SpellPowerSonic, Breakdown_SpellCriticalChanceSonic, Breakdown_SpellCriticalMultiplierSonic);
     AddSpellPower(forumExport, "Untyped  ", Breakdown_SpellPowerUntyped, Breakdown_SpellCriticalChanceUntyped, Breakdown_SpellCriticalMultiplierUntyped);
     AddSpellPower(forumExport, "Water    ", Breakdown_SpellPowerWater, Breakdown_SpellCriticalChanceWater, Breakdown_SpellCriticalMultiplierWater);
-    forumExport << "------------------------------------------------------------------\r\n";
+    forumExport << "------------------------------------------------------------------------------------------\r\n";
     forumExport << "\r\n";
 }
 
@@ -1283,8 +1311,8 @@ void CForumExportDlg::AddSpells(std::stringstream & forumExport)
             {
                 if (first)
                 {
-                    forumExport << "Spells                                      School         DC     \r\n";
-                    forumExport << "------------------------------------------------------------------\r\n";
+                    forumExport << "Spells                                      School         DC\r\n";
+                    forumExport << "------------------------------------------------------------------------------------------\r\n";
                     first = false;
                 }
                 forumExport << EnumEntryText((ClassType)ci, classTypeMap) << " Spells\r\n";
@@ -1320,7 +1348,7 @@ void CForumExportDlg::AddSpells(std::stringstream & forumExport)
     }
     if (!first)
     {
-        forumExport << "------------------------------------------------------------------\r\n";
+        forumExport << "------------------------------------------------------------------------------------------\r\n";
         forumExport << "\r\n";
     }
 }
@@ -1340,8 +1368,8 @@ void CForumExportDlg::AddSLAs(std::stringstream & forumExport)
         {
             if (first)
             {
-                forumExport << "Spell Like / Special Abilities                                    \r\n";
-                forumExport << "------------------------------------------------------------------\r\n";
+                forumExport << "Spell Like / Special Abilities\r\n";
+                forumExport << "------------------------------------------------------------------------------------------\r\n";
                 first = false;
             }
             forumExport.width(44);
@@ -1352,15 +1380,15 @@ void CForumExportDlg::AddSLAs(std::stringstream & forumExport)
     }
     if (!first)
     {
-        forumExport << "------------------------------------------------------------------\r\n";
+        forumExport << "------------------------------------------------------------------------------------------\r\n";
         forumExport << "\r\n";
     }
 }
 
 void CForumExportDlg::AddWeaponDamage(std::stringstream & forumExport)
 {
-    forumExport << "Weapon Damage                                                     \r\n";
-    forumExport << "------------------------------------------------------------------\r\n";
+    forumExport << "Weapon Damage\r\n";
+    forumExport << "------------------------------------------------------------------------------------------\r\n";
     BreakdownItem * pBI = FindBreakdown(Breakdown_MeleePower);
     forumExport << "Melee Power:  " << pBI->Total() << "\r\n";
     AddBreakdown(forumExport, "Doublestrike: ", 1, Breakdown_DoubleStrike);
@@ -1413,8 +1441,8 @@ void CForumExportDlg::AddWeaponDamage(std::stringstream & forumExport)
 
 void CForumExportDlg::AddTacticalDCs(std::stringstream & forumExport)
 {
-    forumExport << "Tactical DCs                                                      \r\n";
-    forumExport << "------------------------------------------------------------------\r\n";
+    forumExport << "Tactical DCs\r\n";
+    forumExport << "------------------------------------------------------------------------------------------\r\n";
     BreakdownItem * pBI = FindBreakdown(Breakdown_TacticalStunningBlow);
     forumExport << "Stunning Blow   " << pBI->Total() << "\r\n";
     pBI = FindBreakdown(Breakdown_TacticalStunningFist);
@@ -1427,7 +1455,7 @@ void CForumExportDlg::AddTacticalDCs(std::stringstream & forumExport)
     forumExport << "Stunning Shield " << pBI->Total() << "\r\n";
     pBI = FindBreakdown(Breakdown_Assassinate);
     forumExport << "Assassinate     " << pBI->Total() << "\r\n";
-    forumExport << "------------------------------------------------------------------\r\n";
+    forumExport << "------------------------------------------------------------------------------------------\r\n";
     forumExport << "\r\n";
 }
 
@@ -1440,7 +1468,7 @@ void CForumExportDlg::AddGear(std::stringstream & forumExport)
 void CForumExportDlg::ExportGear(const EquippedGear & gear, std::stringstream & forumExport)
 {
     forumExport << "Equipped Gear Set : " << gear.Name() << "\r\n";
-    forumExport << "------------------------------------------------------------------\r\n";
+    forumExport << "------------------------------------------------------------------------------------------\r\n";
     for (size_t gi = Inventory_Unknown; gi < Inventory_Count; ++gi)
     {
         if (gear.HasItemInSlot((InventorySlotType)gi))
@@ -1510,7 +1538,7 @@ void CForumExportDlg::ExportGear(const EquippedGear & gear, std::stringstream & 
             }
         }
     }
-    forumExport << "------------------------------------------------------------------\r\n";
+    forumExport << "------------------------------------------------------------------------------------------\r\n";
     forumExport << "\r\n";
 }
 

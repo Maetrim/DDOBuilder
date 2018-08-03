@@ -105,6 +105,8 @@ void BreakdownItemAssassinate::UpdateClassChanged(
 // BreakdownObserver overrides
 void BreakdownItemAssassinate::UpdateTotalChanged(BreakdownItem * item, BreakdownType type)
 {
+    // and also call the base class
+    BreakdownItem::UpdateTotalChanged(item, type);
     // a stat ability this breakdown uses as a component has changed
     CreateOtherEffects();
     Populate();

@@ -36,6 +36,19 @@ namespace
             return (a.levels > b.levels);
         }
     }
+    std::string ReplaceAll(
+            std::string str,
+            const std::string & from,
+            const std::string & to)
+    {
+        size_t start_pos = 0;
+        while ((start_pos = str.find(from, start_pos)) != std::string::npos)
+        {
+            str.replace(start_pos, from.length(), to);
+            start_pos += to.length(); // Handles case where 'to' is a substring of 'from'
+        }
+        return str;
+    }
 }
 
 Character::Character(CDDOCPDoc * pDoc) :
@@ -104,6 +117,10 @@ void Character::EndElement()
     }
     // keep older files working
     m_hasGuildLevel = true; // default guild level is 0
+    m_hasNotes = true;
+
+    // notes text is not saved as \r\n's replace all text
+    m_Notes = ReplaceAll(m_Notes, "\n", "\r\n");
 
     SaxContentElement::EndElement();
     DL_END(Character_PROPERTIES)
@@ -113,6 +130,24 @@ void Character::EndElement()
     // also remove the default "Standard" gear layout which we get by default
     m_GearSetups.pop_front();
     m_hasActiveGear = true;
+
+    // backwards compatibility for old files without special feats for enhancement
+    // trees trained.
+    if (IsTreeTrained("Falconry")
+            && !IsFeatTrained("Falconry Tree"))
+    {
+        TrainSpecialFeat("Falconry Tree", TFT_SpecialFeat);
+    }
+    if (IsTreeTrained("Harper Agent")
+            && !IsFeatTrained("Harper Agent Tree"))
+    {
+        TrainSpecialFeat("Harper Agent Tree", TFT_SpecialFeat);
+    }
+    if (IsTreeTrained("Vistani Knife Fighter")
+            && !IsFeatTrained("Vistani Knife Fighter Tree"))
+    {
+        TrainSpecialFeat("Vistani Knife Fighter Tree", TFT_SpecialFeat);
+    }
 }
 
 void Character::Write(XmlLib::SaxWriter * writer) const
@@ -617,18 +652,7 @@ void Character::NotifyAllEnhancementEffects()
     while (it != m_EnhancementTreeSpend.end())
     {
         const EnhancementSpendInTree & tree = (*it);
-        // for each item trained, apply its effects
-        std::list<TrainedEnhancement>::const_iterator eit = tree.m_Enhancements.begin();
-        while (eit != tree.m_Enhancements.end())
-        {
-            const EnhancementTreeItem * pTreeItem = FindEnhancement((*eit).EnhancementName());
-            ApplyEnhancementEffects(
-                    tree.TreeName(),
-                    (*eit).EnhancementName(),
-                    (*eit).HasSelection() ? (*eit).Selection() : "",
-                    (*eit).Ranks());
-            ++eit;
-        }
+        ApplyAllEffects(tree.TreeName(), tree.Enhancements());
         ++it;
     }
 }
@@ -1290,6 +1314,7 @@ void Character::NowActive()
     UpdateShieldStances();
     UpdateCenteredStance();
     UpdateGreensteelStances();
+    NotifyAllSelfAndPartyBuffs();
     NotifyGearChanged(Inventory_Weapon1);   // updates both in breakdowns
 }
 
@@ -2423,6 +2448,12 @@ const TrainedEnhancement * Character::IsTrained(
         }
     }
     return pItem;
+}
+
+bool Character::IsTreeTrained(const std::string & tree) const
+{
+    // return tree if this is one of the selected trees
+    return m_SelectedTrees.IsTreePresent(tree);
 }
 
 EnhancementSpendInTree * Character::Enhancement_FindTree(const std::string & treeName)
@@ -5558,5 +5589,85 @@ Item Character::GetLatestVersionOfItem(const Item & original)
         newVersion.CopyUserSetValues(original);
     }
     return newVersion;
+}
+
+// self and party buffs
+const std::list<std::string> Character::EnabledSelfAndPartyBuffs() const
+{
+    return SelfAndPartyBuffs();
+}
+
+void Character::EnableSelfAndPartyBuff(const std::string & name)
+{
+    // add it to the list of enabled buffs
+    m_SelfAndPartyBuffs.push_front(name);
+    // find the buff and notify its effects
+    OptionalBuff buff = FindOptionalBuff(name);
+    // get the list of effects this OptionalBuff has
+    const std::vector<Effect> & effects = buff.Effects();
+    std::vector<Effect>::const_iterator feit = effects.begin();
+    while (feit != effects.end())
+    {
+        NotifyItemEffect(name, (*feit));
+        ++feit;
+    }
+    m_pDocument->SetModifiedFlag(TRUE);
+}
+
+void Character::DisableSelfAndPartyBuff(const std::string & name)
+{
+    // remove it from the list of enabled buffs
+    bool found = false;
+    std::list<std::string>::iterator it = m_SelfAndPartyBuffs.begin();
+    while (!found && it != m_SelfAndPartyBuffs.end())
+    {
+        if ((*it) == name)
+        {
+            // this is the one to remove
+            found = true;
+            it = m_SelfAndPartyBuffs.erase(it);
+        }
+        else
+        {
+            ++it;
+        }
+    }
+    // find the buff and clear its effects
+    OptionalBuff buff = FindOptionalBuff(name);
+    // get the list of effects this OptionalBuff has
+    const std::vector<Effect> & effects = buff.Effects();
+    std::vector<Effect>::const_iterator feit = effects.begin();
+    while (feit != effects.end())
+    {
+        NotifyItemEffectRevoked(name, (*feit));
+        ++feit;
+    }
+    m_pDocument->SetModifiedFlag(TRUE);
+}
+
+void Character::NotifyAllSelfAndPartyBuffs()
+{
+    // character has just become active. Notify about all the self buff
+    // effects it has selected
+    std::list<std::string>::iterator it = m_SelfAndPartyBuffs.begin();
+    while (it != m_SelfAndPartyBuffs.end())
+    {
+        OptionalBuff buff = FindOptionalBuff((*it));
+        const std::vector<Effect> & effects = buff.Effects();
+        std::vector<Effect>::const_iterator feit = effects.begin();
+        while (feit != effects.end())
+        {
+            NotifyItemEffect((*it), (*feit));
+            ++feit;
+        }
+        ++it;
+    }
+}
+
+// Notes support
+void Character::SetNotes(const std::string & notes)
+{
+    Set_Notes(notes);
+    m_pDocument->SetModifiedFlag(TRUE);
 }
 

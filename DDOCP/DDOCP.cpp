@@ -318,6 +318,7 @@ void CDDOCPApp::LoadOptionalBuffs(const std::string & path)
     OptionalBuffsFile file(filename);
     file.Read();
     m_optionalBuffs = file.OptionalBuffs();
+    m_optionalBuffs.sort();
 }
 
 void CDDOCPApp::VerifyFeats()

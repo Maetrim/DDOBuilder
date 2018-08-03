@@ -116,8 +116,8 @@ bool BreakdownItemAC::AffectsUs(const Effect & effect) const
 
 void BreakdownItemAC::UpdateTotalChanged(BreakdownItem * item, BreakdownType type)
 {
-    // our Dex bonus to AC may have changed. Update
-    CreateOtherEffects();
     // and also call the base class
     BreakdownItem::UpdateTotalChanged(item, type);
+    // our Dex bonus to AC may have changed. Update
+    CreateOtherEffects();
 }

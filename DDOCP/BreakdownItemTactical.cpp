@@ -148,6 +148,7 @@ bool BreakdownItemTactical::AffectsUs(const Effect & effect) const
 // BreakdownObserver overrides
 void BreakdownItemTactical::UpdateTotalChanged(BreakdownItem * item, BreakdownType type)
 {
+    BreakdownItem::UpdateTotalChanged(item, type);  // call base class
     // a stat ability this breakdown uses as a component has changed
     CreateOtherEffects();
     Populate();

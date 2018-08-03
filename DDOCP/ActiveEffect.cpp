@@ -26,8 +26,9 @@ ActiveEffect::ActiveEffect() :
     m_bHasWeaponType(false),
     m_weaponType(Weapon_Unknown),
     m_clearValue(false),
-    m_bUseFullAbilityScore(false),
-    m_bIsItemEffect(false)
+    m_bIsItemEffect(false),
+    m_divider(1.0),
+    m_dividerType(DT_none)
 {
 }
 
@@ -54,8 +55,9 @@ ActiveEffect::ActiveEffect(
     m_bHasWeaponType(false),
     m_weaponType(Weapon_Unknown),
     m_clearValue(false),
-    m_bUseFullAbilityScore(false),
-    m_bIsItemEffect(false)
+    m_bIsItemEffect(false),
+    m_divider(1.0),
+    m_dividerType(DT_none)
 {
 }
 
@@ -81,8 +83,9 @@ ActiveEffect::ActiveEffect(
     m_bHasWeaponType(false),
     m_weaponType(Weapon_Unknown),
     m_clearValue(false),
-    m_bUseFullAbilityScore(false),
-    m_bIsItemEffect(false)
+    m_bIsItemEffect(false),
+    m_divider(1.0),
+    m_dividerType(DT_none)
 {
     // stacks is set immediately after this is constructed
 }
@@ -111,8 +114,9 @@ ActiveEffect::ActiveEffect(
     m_bHasWeaponType(false),
     m_weaponType(Weapon_Unknown),
     m_clearValue(false),
-    m_bUseFullAbilityScore(false),
-    m_bIsItemEffect(false)
+    m_bIsItemEffect(false),
+    m_divider(1.0),
+    m_dividerType(DT_none)
 {
 }
 
@@ -138,8 +142,9 @@ ActiveEffect::ActiveEffect(
     m_bHasWeaponType(false),
     m_weaponType(Weapon_Unknown),
     m_clearValue(false),
-    m_bUseFullAbilityScore(false),
-    m_bIsItemEffect(false)
+    m_bIsItemEffect(false),
+    m_divider(1.0),
+    m_dividerType(DT_none)
 {
 }
 
@@ -165,8 +170,9 @@ ActiveEffect::ActiveEffect(
     m_bHasWeaponType(false),
     m_weaponType(Weapon_Unknown),
     m_clearValue(false),
-    m_bUseFullAbilityScore(false),
-    m_bIsItemEffect(false)
+    m_bIsItemEffect(false),
+    m_divider(1.0),
+    m_dividerType(DT_none)
 {
 }
 
@@ -192,8 +198,9 @@ ActiveEffect::ActiveEffect(
     m_bHasWeaponType(false),
     m_weaponType(Weapon_Unknown),
     m_clearValue(false),
-    m_bUseFullAbilityScore(false),
-    m_bIsItemEffect(false)
+    m_bIsItemEffect(false),
+    m_divider(1.0),
+    m_dividerType(DT_none)
 {
 }
 
@@ -219,8 +226,9 @@ ActiveEffect::ActiveEffect(
     m_bHasWeaponType(false),
     m_weaponType(Weapon_Unknown),
     m_clearValue(false),
-    m_bUseFullAbilityScore(false),
-    m_bIsItemEffect(false)
+    m_bIsItemEffect(false),
+    m_divider(1.0),
+    m_dividerType(DT_none)
 {
 }
 
@@ -247,8 +255,9 @@ ActiveEffect::ActiveEffect(
     m_bHasWeaponType(false),
     m_weaponType(Weapon_Unknown),
     m_clearValue(false),
-    m_bUseFullAbilityScore(false),
-    m_bIsItemEffect(false)
+    m_bIsItemEffect(false),
+    m_divider(1.0),
+    m_dividerType(DT_none)
 {
 }
 
@@ -463,6 +472,18 @@ double ActiveEffect::Amount() const
 
 void ActiveEffect::SetAmount(double amount)
 {
+    switch (m_dividerType)
+    {
+    case DT_none:
+        // no change
+        break;
+    case DT_statBonus:
+        amount = (int)(BaseStatToBonus(amount) / m_divider);
+        break;
+    case DT_fullAbility:
+        amount = (int)(amount / m_divider);
+        break;
+    }
     m_amount = amount;
 }
 
@@ -692,16 +713,6 @@ void ActiveEffect::SetPercentageValue(double amount) const
     m_percentageAmount = amount;
 }
 
-void ActiveEffect::SetUseFullAbilityScore()
-{
-    m_bUseFullAbilityScore = true;
-}
-
-bool ActiveEffect::UseFullAbilityScore() const
-{
-    return m_bUseFullAbilityScore;
-}
-
 void ActiveEffect::SetWholeNumbersOnly()
 {
     m_bWholeNumbersOnly = true;
@@ -832,3 +843,10 @@ bool ActiveEffect::IsItemEffect() const
 {
     return m_bIsItemEffect;
 }
+
+void ActiveEffect::SetDivider(double divider, DividerType type)
+{
+    m_divider = divider;
+    m_dividerType = type;
+}
+

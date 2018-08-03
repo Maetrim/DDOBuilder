@@ -49,6 +49,7 @@ class CInfoTip :
                 size_t level,
                 const LevelTraining * levelData,
                 ClassType expectedClass);
+        void SetSelfBuff(const std::string & name);
 
         void SetOrigin(CPoint origin, CPoint alternate, bool rightAlign);
         void Show();

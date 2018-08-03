@@ -266,6 +266,18 @@ bool Requirement::CanTrainTree(
                 HasSelection() ? Selection() : "");
         met &= (te != NULL);
     }
+    if (HasFeat())
+    {
+        // must have this feat previously trained to access this tree
+        std::list<TrainedFeat> feats = charData.CurrentFeats(MAX_LEVEL);
+        size_t count = TrainedCount(feats, Feat());
+        size_t numNeeded = 1;
+        if (HasAmount())
+        {
+            numNeeded = Amount();
+        }
+        met = (count >= numNeeded);
+    }
     return met;
 }
 

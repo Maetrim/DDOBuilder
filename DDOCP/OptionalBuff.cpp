@@ -59,6 +59,21 @@ void OptionalBuff::VerifyObject() const
     bool ok = true;
     std::stringstream ss;
     ss << "===== Optional Buff " << m_Name << "=====\n";
+    // check the image file
+    if (Icon() != "")
+    {
+        if (!ImageFileExists(IT_spell, Icon()))
+        {
+            if (!ImageFileExists(IT_enhancement, Icon()))
+            {
+                if (!ImageFileExists(IT_feat, Icon()))
+                {
+                    ss << "OptionalBuff is missing image file \"" << Icon() << "\"\n";
+                    ok = false;
+                }
+            }
+        }
+    }
     // check the item effects also
     std::vector<Effect>::const_iterator it = m_Effects.begin();
     while (it != m_Effects.end())
@@ -71,4 +86,11 @@ void OptionalBuff::VerifyObject() const
     {
         ::OutputDebugString(ss.str().c_str());
     }
+}
+
+bool OptionalBuff::operator<(const OptionalBuff & other) const
+{
+    // (assumes all optional buff names are unique)
+    // sort by name
+    return (Name() < other.Name());
 }

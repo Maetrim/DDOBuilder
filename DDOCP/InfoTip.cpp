@@ -646,6 +646,30 @@ void CInfoTip::SetLevelItem(
     }
 }
 
+void CInfoTip::SetSelfBuff(const std::string & name)
+{
+    OptionalBuff buff = FindOptionalBuff(name);
+    m_effectDescriptions.clear();
+    m_image.Destroy();
+    if (S_OK != LoadImageFile(IT_spell, buff.HasIcon() ? buff.Icon() : "", &m_image, false))
+    {
+        // see if its a enhancement icon we need to use
+        if (S_OK != LoadImageFile(IT_enhancement, buff.HasIcon() ? buff.Icon() : "", &m_image, false))
+        {
+             LoadImageFile(IT_feat, buff.HasIcon() ? buff.Icon() : "", &m_image);
+        }
+    }
+    m_image.SetTransparentColor(c_transparentColour);
+    m_title = buff.Name().c_str();
+    m_description = buff.Description().c_str();
+    // actual carriage return are actual \n in text, convert to correct character
+    GenerateLineBreaks(&m_title);
+    GenerateLineBreaks(&m_description);
+    m_requirements.clear();
+    m_bRequirementMet.clear();
+    m_cost = "";
+}
+
 void CInfoTip::GenerateLineBreaks(CString * text)
 {
     // this can work in two ways:

@@ -87,6 +87,8 @@ bool BreakdownItemTurnUndeadLevel::AffectsUs(const Effect & effect) const
 // BreakdownObserver overrides
 void BreakdownItemTurnUndeadLevel::UpdateTotalChanged(BreakdownItem * item, BreakdownType type)
 {
+    // and also call the base class
+    BreakdownItem::UpdateTotalChanged(item, type);
     // a class level that a base effect depends on has changed
     CreateOtherEffects();
     Populate();
