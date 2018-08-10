@@ -44,7 +44,7 @@ class CSkillSpendDialog :
     private:
         void PopulateItems();
         CPoint IdentifyItemUnderMouse(bool wasClick);
-        void MaxThisSkill(SkillType skill);
+        void MaxThisSkill(SkillType skill, bool suppressUpdate);
         CListCtrl m_skillsList;
         CButton m_buttonMaxThisSkill;
         CButton m_buttonClearThisSkill;

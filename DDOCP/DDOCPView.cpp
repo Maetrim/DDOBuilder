@@ -338,7 +338,7 @@ void CDDOCPView::PopulateComboboxes()
             CString supreme;
             supreme.Format("%+d Supreme Tome", ti);
             i = m_comboTomeStr.AddString(supreme);
-            m_comboTomeStr.SetItemData(i, -ti);
+            m_comboTomeStr.SetItemData(i, -ti); // negative tome values for supreme
         }
         i = m_comboTomeDex.AddString(text);
         m_comboTomeDex.SetItemData(i, ti);
@@ -363,7 +363,7 @@ void CDDOCPView::PopulateComboboxes()
         size_t i = m_comboAILevel4.AddString(text);
         m_comboAILevel4.SetItemData(i, ai);
         i = m_comboAILevel4.AddString(textAll);
-        m_comboAILevel4.SetItemData(i, -ai);
+        m_comboAILevel4.SetItemData(i, -ai); // negative stat value for all
         i = m_comboAILevel8.AddString(text);
         m_comboAILevel8.SetItemData(i, ai);
         i = m_comboAILevel12.AddString(text);
@@ -864,10 +864,10 @@ void CDDOCPView::UpdateRadioPoints()
     {
         // for a Drow these buttons are always disabled
         // as its either 28, 30 (1 past life) or 32 (2+ past lives)
-        m_button28Pt.SetWindowText("28");
-        m_button32Pt.SetWindowText("28");
-        m_button34Pt.SetWindowText("30");
-        m_button36Pt.SetWindowText("32");
+        m_button28Pt.SetWindowText("28");   // adventurer
+        m_button32Pt.SetWindowText("28");   // champion
+        m_button34Pt.SetWindowText("30");   // hero
+        m_button36Pt.SetWindowText("32");   // legend
 
         m_button28Pt.SetCheck(buildPoints == 28 ? BST_CHECKED : BST_UNCHECKED);
         m_button32Pt.SetCheck(BST_UNCHECKED);
@@ -881,10 +881,10 @@ void CDDOCPView::UpdateRadioPoints()
     }
     else
     {
-        m_button28Pt.SetWindowText("28");
-        m_button32Pt.SetWindowText("32");
-        m_button34Pt.SetWindowText("34");
-        m_button36Pt.SetWindowText("36");
+        m_button28Pt.SetWindowText("28");   // adventurer
+        m_button32Pt.SetWindowText("32");   // champion
+        m_button34Pt.SetWindowText("34");   // hero
+        m_button36Pt.SetWindowText("36");   // legend
 
         m_button28Pt.SetCheck(buildPoints == 28 ? BST_CHECKED : BST_UNCHECKED);
         m_button32Pt.SetCheck(buildPoints == 32 ? BST_CHECKED : BST_UNCHECKED);

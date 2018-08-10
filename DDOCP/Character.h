@@ -128,7 +128,7 @@ class Character :
 
         // skill points
         bool IsClassSkill(SkillType skill, size_t level) const;
-        void SpendSkillPoint(size_t level, SkillType skill);
+        void SpendSkillPoint(size_t level, SkillType skill, bool suppressUpdate = false);
         void RevokeSkillPoint(size_t level, SkillType skill, bool suppressUpdate);
         double MaxSkillForLevel(SkillType skill, size_t level) const;
         size_t SpentAtLevel(SkillType skill, size_t level) const; // level is 0 based

@@ -10,6 +10,7 @@
 #include "BreakdownItemBAB.h"
 #include "BreakdownItemCasterLevel.h"
 #include "BreakdownItemDR.h"
+#include "BreakdownItemEDFCapped.h"
 #include "BreakdownItemEnergyAbsorption.h"
 #include "BreakdownItemEnergyResistance.h"
 #include "BreakdownItemHitpoints.h"
@@ -965,7 +966,7 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
                 "Doubleshot",
                 hOffensiveParent,
                 TVI_LAST);
-        BreakdownItem * pRA = new BreakdownItemSimple(
+        BreakdownItem * pRA = new BreakdownItemEDFCapped(
                 Breakdown_DoubleShot,
                 Effect_DoubleShot,
                 "Doubleshot",
@@ -993,7 +994,7 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
                 "Ranged Power",
                 hOffensiveParent,
                 TVI_LAST);
-        BreakdownItem * pRP = new BreakdownItemSimple(
+        BreakdownItem * pRP = new BreakdownItemEDFCapped(
                 Breakdown_RangedPower,
                 Effect_RangedPower,
                 "Ranged Power",

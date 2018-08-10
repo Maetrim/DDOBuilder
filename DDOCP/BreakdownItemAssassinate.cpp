@@ -60,6 +60,7 @@ void BreakdownItemAssassinate::CreateOtherEffects()
                     bonus,
                     "");        // no tree
             feat.SetBreakdownDependency(StatToBreakdown(ability)); // so we know which effect to update
+            feat.SetDivider(1, DT_statBonus);
             AddOtherEffect(feat);
         }
 

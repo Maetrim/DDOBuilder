@@ -1468,6 +1468,20 @@ every three barbarian levels thereafter.</Description>
          <Amount>1</Amount>
          <DR>%</DR>
       </Effect>
+      <Effect>
+         <DisplayName>Barbarian DR</DisplayName>
+         <Bonus>Feat</Bonus>
+         <Type>DR</Type>
+         <Amount>1</Amount>
+         <DR>%</DR>
+      </Effect>
+      <Effect>
+         <DisplayName>Barbarian DR</DisplayName>
+         <Bonus>Feat</Bonus>
+         <Type>DR</Type>
+         <Amount>1</Amount>
+         <DR>%</DR>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Defensive Fighting</Name>
@@ -2168,6 +2182,7 @@ but they consume 10 additional spell points.</Description>
          <Icon>EnlargeSpell</Icon>
          <Description>While this metamagic feat is active, spells have twice the range,
 but they consume 10 additional spell points.</Description>
+         <IncompatibleStance>Epic Defensive Fighting</IncompatibleStance>
       </Stance>
       <Requirements>
          <RequiresOneOf>
@@ -3427,6 +3442,15 @@ your appropriate ability score to your damage (similar to Two-Handed Fighting).<
          <Percent/>
          <AmountVector size="2">25 50</AmountVector>
       </Effect>
+       <Effect>
+           <DisplayName>Epic Defensive Fighting: Single Weapon Fighting</DisplayName>
+           <Type>Hitpoints</Type>
+           <Bonus>Competence</Bonus>
+           <Percent/>
+           <Stance>Epic Defensive Fighting</Stance>
+           <AmountVector size="5">10 20 30 40 50</AmountVector>
+           <ApplyAsItemEffect/>
+       </Effect>
    </Feat>
    <Feat>
       <Name>Greater Spell Focus: Abjuration</Name>
@@ -3606,6 +3630,15 @@ additional +2 to Melee Power (total of +6).</Description>
          <Stance>Two Handed Fighting</Stance>
          <Amount>2</Amount>
       </Effect>
+       <Effect>
+           <DisplayName>Epic Defensive Fighting: Two Handed Fighting</DisplayName>
+           <Type>Hitpoints</Type>
+           <Bonus>Competence</Bonus>
+           <Percent/>
+           <Stance>Epic Defensive Fighting</Stance>
+           <AmountVector size="5">10 20 30 40 50</AmountVector>
+           <ApplyAsItemEffect/>
+       </Effect>
    </Feat>
    <Feat>
       <Name>Greater Two Weapon Fighting</Name>
@@ -3639,6 +3672,15 @@ two weapons (or as an unarmed monk) by an additional 20% to 80%.</Description>
          <Bonus>Feat</Bonus>
          <Amount>20</Amount>
       </Effect>
+       <Effect>
+           <DisplayName>Epic Defensive Fighting: Two Weapon Fighting</DisplayName>
+           <Type>Hitpoints</Type>
+           <Bonus>Competence</Bonus>
+           <Percent/>
+           <Stance>Epic Defensive Fighting</Stance>
+           <AmountVector size="5">10 20 30 40 50</AmountVector>
+           <ApplyAsItemEffect/>
+       </Effect>
    </Feat>
    <Feat>
       <Name>Greater Weapon Focus: Bludgeoning Weapons</Name>
@@ -5296,6 +5338,7 @@ all foes in your path, until they strike your intended target.</Description>
          <Description>Your ranged attacks will now pass through friends and foes to damage
 all foes in your path, until they strike your intended target.</Description>
          <IncompatibleStance>Archer's Focus</IncompatibleStance>
+         <IncompatibleStance>Epic Defensive Fighting</IncompatibleStance>
       </Stance>
       <FeatGroup>
          <IsStandardFeat/>
@@ -5453,6 +5496,15 @@ of just your ability score (for instance, you add 1.25 times your Strength as da
          <Percent/>
          <AmountVector size="2">25 50</AmountVector>
       </Effect>
+       <Effect>
+           <DisplayName>Epic Defensive Fighting: Single Weapon Fighting</DisplayName>
+           <Type>Hitpoints</Type>
+           <Bonus>Competence</Bonus>
+           <Percent/>
+           <Stance>Epic Defensive Fighting</Stance>
+           <AmountVector size="5">10 20 30 40 50</AmountVector>
+           <ApplyAsItemEffect/>
+       </Effect>
    </Feat>
    <Feat>
       <Name>Improved Sunder</Name>
@@ -5559,6 +5611,15 @@ bonus to Melee Power (total of +4).</Description>
          <Stance>Two Handed Fighting</Stance>
          <Amount>2</Amount>
       </Effect>
+       <Effect>
+           <DisplayName>Epic Defensive Fighting: Two Handed Fighting</DisplayName>
+           <Type>Hitpoints</Type>
+           <Bonus>Competence</Bonus>
+           <Percent/>
+           <Stance>Epic Defensive Fighting</Stance>
+           <AmountVector size="5">10 20 30 40 50</AmountVector>
+           <ApplyAsItemEffect/>
+       </Effect>
    </Feat>
    <Feat>
       <Name>Improved Two Weapon Fighting</Name>
@@ -5592,6 +5653,15 @@ two weapons (or as an unarmed monk) by an additional 20% to 60%.</Description>
          <Bonus>Feat</Bonus>
          <Amount>20</Amount>
       </Effect>
+       <Effect>
+           <DisplayName>Epic Defensive Fighting: Two Weapon Fighting</DisplayName>
+           <Type>Hitpoints</Type>
+           <Bonus>Competence</Bonus>
+           <Percent/>
+           <Stance>Epic Defensive Fighting</Stance>
+           <AmountVector size="5">10 20 30 40 50</AmountVector>
+           <ApplyAsItemEffect/>
+       </Effect>
    </Feat>
    <Feat>
       <Name>Improved Uncanny Dodge</Name>
@@ -7915,6 +7985,15 @@ This feat can be taken up to three times, and gives no benefit to druids in elem
          <AnyOfStance>Bear</AnyOfStance>
          <AnyOfStance>Dire Bear</AnyOfStance>
       </Effect>
+       <Effect>
+           <DisplayName>Epic Defensive Fighting: Natural Fighting</DisplayName>
+           <Type>Hitpoints</Type>
+           <Bonus>Competence</Bonus>
+           <Percent/>
+           <Stance>Epic Defensive Fighting</Stance>
+           <AmountVector size="5">10 20 30 40 50</AmountVector>
+           <ApplyAsItemEffect/>
+       </Effect>
    </Feat>
    <Feat>
       <Name>Negotiator</Name>
@@ -8217,12 +8296,14 @@ You gain +3 to your Spellcraft skill. You can confuse an enemy for 12 seconds
    </Feat>
    <Feat>
       <Name>Past Life: Disciple of the Fist</Name>
-      <Description>You recall more about your past life as a monk. You have +2 to your
-Concentration skill, deal increased unarmed damage (one step higher than normal
-on the unarmed combat chart) and can enter an evasive trance once per rest,
-granting the evasion feat for a short period of time.
-(When you make a successful Reflex save to avoid damage, you suffer no damage
-instead of half damage.)</Description>
+      <Description>You recall more about your past life as a monk.
+You have +2 to your Concentration skill, deal increased unarmed damage (+0.5W),
+and can enter an evasive trance once per rest, granting the evasion feat for
+a short period of time (20sec).
+When you make a successful Reflex save to avoid damage, you suffer no damage
+instead of half damage.
+Note: You must meet normal evasion requirements for this one.
+No medium or heavy armor, no heavy encumbrance.</Description>
       <Requirements>
          <Requirement>
             <MinLevel>3</MinLevel>
@@ -8243,6 +8324,13 @@ instead of half damage.)</Description>
          <Bonus>Feat</Bonus>
          <Skill>Concentration</Skill>
          <Amount>2</Amount>
+      </Effect>
+      <Effect>
+         <Type>WeaponBaseDamageBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>0.5</Amount>
+         <Weapon>Handwraps</Weapon>
+         <Weapon>Unarmed</Weapon>
       </Effect>
       <Effect>
          <Type>SpellLikeAbility</Type>
@@ -8709,6 +8797,7 @@ attacks while standing still.</Description>
          <Description>Archer's Focus lets you deal progressively more damage with ranged
 attacks while standing still.</Description>
          <IncompatibleStance>Improved Precise Shot</IncompatibleStance>
+         <IncompatibleStance>Epic Defensive Fighting</IncompatibleStance>
       </Stance>
       <FeatGroup>
          <IsStandardFeat/>
@@ -9338,6 +9427,15 @@ and wielding only an orb, runearm, or nothing in your off hand.</Description>
          <Amount>10</Amount>
          <Stance>Single Weapon Fighting</Stance>
       </Effect>
+       <Effect>
+           <DisplayName>Epic Defensive Fighting: Single Weapon Fighting</DisplayName>
+           <Type>Hitpoints</Type>
+           <Bonus>Competence</Bonus>
+           <Percent/>
+           <Stance>Epic Defensive Fighting</Stance>
+           <AmountVector size="5">10 20 30 40 50</AmountVector>
+           <ApplyAsItemEffect/>
+       </Effect>
    </Feat>
    <Feat>
       <Name>Shuriken Expertise</Name>
@@ -12027,6 +12125,15 @@ weapon effects to trigger on glancing blows and a +2 Combat Style bonus to Melee
          <Stance>Two Handed Fighting</Stance>
          <Amount>2</Amount>
       </Effect>
+       <Effect>
+           <DisplayName>Epic Defensive Fighting: Two Handed Fighting</DisplayName>
+           <Type>Hitpoints</Type>
+           <Bonus>Competence</Bonus>
+           <Percent/>
+           <Stance>Epic Defensive Fighting</Stance>
+           <AmountVector size="5">10 20 30 40 50</AmountVector>
+           <ApplyAsItemEffect/>
+       </Effect>
    </Feat>
    <Feat>
       <Name>Two Weapon Blocking</Name>
@@ -12123,6 +12230,15 @@ Two Weapon Fighting also increases the chance to proc an off-hand attack by
          <Amount>0</Amount>
          <Weapon>All</Weapon>
       </Effect>
+       <Effect>
+           <DisplayName>Epic Defensive Fighting: Two Weapon Fighting</DisplayName>
+           <Type>Hitpoints</Type>
+           <Bonus>Competence</Bonus>
+           <Percent/>
+           <Stance>Epic Defensive Fighting</Stance>
+           <AmountVector size="5">10 20 30 40 50</AmountVector>
+           <ApplyAsItemEffect/>
+       </Effect>
    </Feat>
    <Feat>
       <Name>Unarmed Strike</Name>
@@ -15042,6 +15158,96 @@ This feat can be acquired multiple times and is granted every epic level.</Descr
       </AutomaticAcquisition>
    </Feat>
    <Feat>
+      <Name>Epic Defensive Fighting</Name>
+      <Description>Lamannia Preview: Your hero has learned to enter a reactive state,
+protecting themselves in the chaos of battle by rolling with the punches, but
+this hampers their ability to engage ranged threats.
+
+While Toggle is active:
+1: 10% Competence Bonus to max hit points, with an additional 10% for every
+combat "fighting" style feat you have, to a max of 50%.
+
+2: All spell or spell like abilities that are effected by metamagics have their
+ranged reduced to touch range.
+
+3: Reduces your Doubleshot and Ranged Power to 0 while active.
+
+4: Exclusive from Range stances
+---Improved Precise Shot, Archers Focus, Shiradi stances, Warlock Blast stances.
+
+5: Exclusive from the Enlarge Spell Metamagic toggle
+6: Remains active while dead
+7: Can be used with other defensive/offensive stances and Rage</Description>
+      <Requirements/>
+      <Acquire>Automatic</Acquire>
+      <Icon>EpicPower</Icon>
+      <AutomaticAcquisition>
+         <Level>21</Level>
+      </AutomaticAcquisition>
+      <Stance>
+         <Name>Epic Defensive Fighting</Name>
+         <Icon>EpicDefensiveFighting</Icon>
+         <Description>Your hero has learned to enter a reactive state, protecting themselves in the
+chaos of battle by rolling with the punches, but this hampers their ability to
+engage ranged threats.
+
+While Toggle is active:
+1: 10% Competence Bonus to max hit points, with an additional 10% for every
+combat "fighting" style feat you have, to a max of 50%.
+
+2: All spell or spell like abilities that are effected by metamagics have their
+ranged reduced to touch range.
+
+3: Reduces your Doubleshot and Ranged Power to 0 while active.
+
+4: Exclusive from Range stances
+---Improved Precise Shot, Archers Focus, Shiradi stances, Warlock Blast stances.
+
+5: Exclusive from the Enlarge Spell Metamagic toggle
+6: Remains active while dead
+7: Can be used with other defensive/offensive stances and Rage</Description>
+         <IncompatibleStance>Enlarge</IncompatibleStance>
+         <IncompatibleStance>Improved Precise Shot</IncompatibleStance>
+         <IncompatibleStance>Archer's Focus</IncompatibleStance>
+      </Stance>
+       <Effect>
+           <DisplayName>Epic Defensive Fighting: Single Weapon Fighting</DisplayName>
+           <Type>Hitpoints</Type>
+           <Bonus>Competence</Bonus>
+           <Percent/>
+           <Stance>Epic Defensive Fighting</Stance>
+           <AmountVector size="5">10 20 30 40 50</AmountVector>
+           <ApplyAsItemEffect/>
+       </Effect>
+       <Effect>
+           <DisplayName>Epic Defensive Fighting: Two Weapon Fighting</DisplayName>
+           <Type>Hitpoints</Type>
+           <Bonus>Competence</Bonus>
+           <Percent/>
+           <Stance>Epic Defensive Fighting</Stance>
+           <AmountVector size="5">10 20 30 40 50</AmountVector>
+           <ApplyAsItemEffect/>
+       </Effect>
+       <Effect>
+           <DisplayName>Epic Defensive Fighting: Two Handed Fighting</DisplayName>
+           <Type>Hitpoints</Type>
+           <Bonus>Competence</Bonus>
+           <Percent/>
+           <Stance>Epic Defensive Fighting</Stance>
+           <AmountVector size="5">10 20 30 40 50</AmountVector>
+           <ApplyAsItemEffect/>
+       </Effect>
+       <Effect>
+           <DisplayName>Epic Defensive Fighting: Natural Fighting</DisplayName>
+           <Type>Hitpoints</Type>
+           <Bonus>Competence</Bonus>
+           <Percent/>
+           <Stance>Epic Defensive Fighting</Stance>
+           <AmountVector size="5">10 20 30 40 50</AmountVector>
+           <ApplyAsItemEffect/>
+       </Effect>
+   </Feat>
+   <Feat>
       <Name>Epic Reflexes</Name>
       <Description>+2 Reflex Saving Throws. You don't automatically fail Reflex saving throws
 on a roll of 1.</Description>
@@ -17163,6 +17369,15 @@ Number of Destinies: 1</Description>
          <WeaponClass>Melee</WeaponClass>
          <Stance>Single Weapon Fighting</Stance>
       </Effect>
+       <Effect>
+           <DisplayName>Epic Defensive Fighting: Single Weapon Fighting</DisplayName>
+           <Type>Hitpoints</Type>
+           <Bonus>Competence</Bonus>
+           <Percent/>
+           <Stance>Epic Defensive Fighting</Stance>
+           <AmountVector size="5">10 20 30 40 50</AmountVector>
+           <ApplyAsItemEffect/>
+       </Effect>
    </Feat>
    <Feat>
       <Name>Pierce Adamantine</Name>
@@ -17628,6 +17843,15 @@ Number of Destinies: 1</Description>
          <Bonus>Feat</Bonus>
          <Amount>10</Amount>
       </Effect>
+       <Effect>
+           <DisplayName>Epic Defensive Fighting: Two Handed Fighting</DisplayName>
+           <Type>Hitpoints</Type>
+           <Bonus>Competence</Bonus>
+           <Percent/>
+           <Stance>Epic Defensive Fighting</Stance>
+           <AmountVector size="5">10 20 30 40 50</AmountVector>
+           <ApplyAsItemEffect/>
+       </Effect>
    </Feat>
    <Feat>
       <Name>Perfect Two Weapon Fighting</Name>
@@ -17654,6 +17878,15 @@ Number of Destinies: 1</Description>
          <Bonus>Feat</Bonus>
          <Amount>10</Amount>
       </Effect>
+       <Effect>
+           <DisplayName>Epic Defensive Fighting: Two Weapon Fighting</DisplayName>
+           <Type>Hitpoints</Type>
+           <Bonus>Competence</Bonus>
+           <Percent/>
+           <Stance>Epic Defensive Fighting</Stance>
+           <AmountVector size="5">10 20 30 40 50</AmountVector>
+           <ApplyAsItemEffect/>
+       </Effect>
    </Feat>
    <Feat>
       <Name>Arcane Warrior</Name>

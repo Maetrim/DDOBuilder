@@ -550,10 +550,10 @@ void CSkillSpendDialog::OnButtonMaxThisSkill()
     // first, what skill is selected?
     int sel = m_skillsList.GetSelectionMark();
     SkillType skill = (SkillType)(sel - 1);
-    MaxThisSkill(skill);
+    MaxThisSkill(skill, false);
 }
 
-void CSkillSpendDialog::MaxThisSkill(SkillType skill)
+void CSkillSpendDialog::MaxThisSkill(SkillType skill, bool suppressUpdate)
 {
     for (size_t level = 0; level < MAX_CLASS_LEVEL; ++level)
     {
@@ -593,7 +593,7 @@ void CSkillSpendDialog::MaxThisSkill(SkillType skill)
                     if (available > spentAtLevel)
                     {
                         // yes, the user can train this skill
-                        m_pCharacter->SpendSkillPoint(level, skill);
+                        m_pCharacter->SpendSkillPoint(level, skill, suppressUpdate);
                     }
                     else
                     {
@@ -708,6 +708,7 @@ BOOL CSkillSpendDialog::PreTranslateMessage(MSG* pMsg)
 
 void CSkillSpendDialog::OnButtonAutoSpendSkillPoints()
 {
+    CWaitCursor wait;
     // to auto spend skill points we first have to rank all the skills
     // into a spend order. This can be tricky if the character is multi-classed
     // first we will create a weighting scheme for all the skills based on the
@@ -818,8 +819,9 @@ void CSkillSpendDialog::OnButtonAutoSpendSkillPoints()
     // now we have the skills sorted, try and spend on each in order
     for (size_t i = 0; i < skills.size(); ++i)
     {
-        MaxThisSkill(skills[i].Skill());
+        MaxThisSkill(skills[i].Skill(), true);
     }
     PopulateItems();        // update display
+    m_pCharacter->SkillsUpdated();
 }
 

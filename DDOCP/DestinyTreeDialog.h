@@ -74,8 +74,6 @@ class CDestinyTreeDialog :
         // CharacterObserver overrides
         void UpdateFeatTrained(Character * charData, const std::string & featName);
         void UpdateFeatRevoked(Character * charData, const std::string & featName);
-        void UpdateEnhancementTrained(Character * charData, const std::string & enhancementName, const std::string & selection, bool isTier5) override;
-        void UpdateEnhancementRevoked(Character * charData, const std::string & enhancementName, const std::string & selection, bool isTier5) override;
         void UpdateEnhancementTreeReset(Character * charData) override;
 
         static void InitialiseStaticImages();

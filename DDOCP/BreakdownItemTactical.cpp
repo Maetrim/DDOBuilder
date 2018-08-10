@@ -78,17 +78,18 @@ void BreakdownItemTactical::CreateOtherEffects()
                     bonus,
                     "");        // no tree
             feat.SetBreakdownDependency(StatToBreakdown(ability)); // so we know which effect to update
+            feat.SetDivider(1, DT_statBonus);
             AddOtherEffect(feat);
         }
 
-        // stunning fits also includes 1/2 character level (always 15 currently)
+        // stunning fist also includes 1/2 character level (always 15 currently)
         if (Type() == Breakdown_TacticalStunningFist)
         {
             ActiveEffect feat(
                     Bonus_base,
                     "1/2 Character Level",
                     1,
-                    MAX_LEVEL / 2,
+                    (int)(MAX_LEVEL / 2),       // drop fractions
                     "");        // no tree
             AddOtherEffect(feat);
         }

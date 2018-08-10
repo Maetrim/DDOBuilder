@@ -37,11 +37,11 @@ void BreakdownItem::PopulateBreakdownControl(CListCtrl * pControl)
     std::list<ActiveEffect> nonStackingEffects;
     RemoveNonStacking(&itemEffects, &nonStackingEffects);
     AddActiveItems(itemEffects, pControl);
+
     // finally add the active percentage items
     AddActivePercentageItems(m_otherEffects, pControl);
     AddActivePercentageItems(m_effects, pControl);
     AddActivePercentageItems(itemEffects, pControl);
-
 
     size_t inactiveStart = pControl->GetItemCount();
     // also show inactive and non stack effects if we have any so user
@@ -104,6 +104,7 @@ BreakdownType BreakdownItem::Type() const
 
 void BreakdownItem::Populate()
 {
+    Total();    // ensure active percentage items have numbers
     if (m_pTreeList != NULL)
     {
         m_pTreeList->SetItemText(m_hItem, 0, Title());
@@ -132,7 +133,9 @@ double BreakdownItem::Total() const
     // now apply percentage effects
     total = DoPercentageEffects(m_otherEffects, total);
     total = DoPercentageEffects(m_effects, total);
-    total = DoPercentageEffects(m_itemEffects, total);
+    // make sure we update listed items
+    DoPercentageEffects(m_itemEffects, total, false);
+    total = DoPercentageEffects(itemEffects, total);
     return total;
 }
 
@@ -271,7 +274,10 @@ double BreakdownItem::SumItems(const std::list<ActiveEffect> & effects) const
     return total;
 }
 
-double BreakdownItem::DoPercentageEffects(const std::list<ActiveEffect> & effects, double total) const
+double BreakdownItem::DoPercentageEffects(
+        const std::list<ActiveEffect> & effects,
+        double total,
+        bool updateTotal) const
 {
     std::list<ActiveEffect>::const_iterator it = effects.begin();
     while (it != effects.end())
@@ -287,7 +293,10 @@ double BreakdownItem::DoPercentageEffects(const std::list<ActiveEffect> & effect
                 double amount = (total * percent / 100.0);
                 // round it to a whole number
                 amount = (double)(int)amount;
-                total += amount;                    // add it to the total
+                if (updateTotal)
+                {
+                    total += amount;                    // add it to the total
+                }
                 (*it).SetPercentageValue(amount);   // so it can display its amount
             }
         }

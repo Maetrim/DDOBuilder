@@ -1035,13 +1035,17 @@ void Character::SetClass(size_t level, ClassType type)
 
 void Character::SpendSkillPoint(
         size_t level,
-        SkillType skill)
+        SkillType skill,
+        bool suppressUpdate)
 {
     // update the skill point spend for the correct level data
     std::list<LevelTraining>::iterator it = m_Levels.begin();
     std::advance(it, level);
     (*it).TrainSkill(skill);
-    NotifySkillSpendChanged(level, skill);
+    if (!suppressUpdate)
+    {
+        NotifySkillSpendChanged(level, skill);
+    }
     m_pDocument->SetModifiedFlag(TRUE);
 }
 
@@ -3522,7 +3526,7 @@ void Character::EpicDestiny_SetActiveDestiny(const std::string & treeName)
         if (pPrevious != NULL)
         {
             // we cheat for this. To get everything to revoke correctly we
-            // do to a tree reset at this point, but to avoid losing the user
+            // do a tree reset at this point, but to avoid losing the user
             // selections, we first take a copy of the tree state and then re-insert the
             // copy back into the tree list after it becomes de-active
             EpicDestinySpendInTree copy = *pPrevious;
@@ -3539,7 +3543,7 @@ void Character::EpicDestiny_SetActiveDestiny(const std::string & treeName)
             ApplyAllEffects(pNewActive->TreeName(), pNewActive->Enhancements());
         }
         // active tree affects available twists
-        DetermineFatePoints(); // as we did a tree reset we lost the fate points, recalculate then back in
+        DetermineFatePoints(); // as we did a tree reset we lost the fate points, recalculate them back in
         NotifyAvailableTwistsChanged();
         m_pDocument->SetModifiedFlag(TRUE);
     }
@@ -4201,7 +4205,7 @@ void Character::ClearGearInSlot(const std::string & name, InventorySlotType slot
 
 void Character::RevokeGearEffects()
 {
-    EquippedGear gear = ActiveGearSet(); // empy if no gear found
+    EquippedGear gear = ActiveGearSet(); // empty if no gear found
     // iterate the items
     for (size_t i = Inventory_Unknown + 1; i < Inventory_Count; ++i)
     {

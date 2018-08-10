@@ -537,8 +537,6 @@ void CDestinyTreeDialog::RenderItemSelection(
         CDC * pDC,
         const CRect & itemRect)
 {
-    // first determine the items icon
-    bool isActive = false;
     if (m_pCharacter != NULL)
     {
         item.RenderIcon(*m_pCharacter, pDC, itemRect);
@@ -861,47 +859,6 @@ void CDestinyTreeDialog::UpdateFeatRevoked(
     {
         // let the user know that some enhancements were revoked due to the feat change
         AfxMessageBox(ss.str().c_str(), MB_ICONWARNING);
-    }
-}
-
-void CDestinyTreeDialog::UpdateEnhancementTrained(
-        Character * charData,
-        const std::string & enhancementName,
-        const std::string & selection,
-        bool isTier5)
-{
-    // some sorcerer core1 enhancements can lock out whole tree's. Redraw if
-    // it is a sorcerer "Core1" enhancement just trained.
-    if (enhancementName.find("Core1") != std::string::npos)
-    {
-        Invalidate();
-    }
-    // if a tier 5 enhancement has been trained, we may have to exclude the
-    // training of our own tier 5 enhancements (if any)
-    if (isTier5)
-    {
-        Invalidate();
-    }
-}
-
-void CDestinyTreeDialog::UpdateEnhancementRevoked(
-        Character * charData,
-        const std::string & enhancementName,
-        const std::string & selection,
-        bool isTier5)
-{
-    // some sorcerer core1 enhancements can lock out whole tree's. Redraw if
-    // it is a sorcerer "Core1" enhancement just trained.
-    if (enhancementName.find("Core1") != std::string::npos)
-    {
-        Invalidate();
-    }
-    // if a tier 5 enhancement has been revoked, we may have to include the
-    // training of our own tier 5 enhancements (if any)
-    if (isTier5 && !m_pCharacter->HasTier5Tree())
-    {
-        // the tier5 status has changed, update
-        Invalidate();
     }
 }
 
