@@ -655,6 +655,7 @@ void CEpicDestiniesView::SetTooltipText(
     {
         m_tooltip.SetEnhancementSelectionItem(
                 *m_pCharacter,
+                &item,
                 es,
                 te->Ranks());
     }

@@ -330,22 +330,31 @@ void CInfoTip::SetEnhancementTreeItem(
 
 void CInfoTip::SetEnhancementSelectionItem(
         const Character & charData,
-        const EnhancementSelection * pItem,
+        const EnhancementTreeItem * pItem,
+        const EnhancementSelection * pSelection,
         size_t ranks)
 {
     m_image.Destroy();
-    LoadImageFile(IT_enhancement, pItem->Icon(), &m_image);
+    LoadImageFile(IT_enhancement, pSelection->Icon(), &m_image);
     m_image.SetTransparentColor(c_transparentColour);
-    m_title = pItem->Name().c_str();
-    m_description = pItem->Description().c_str();
+    m_title = pSelection->Name().c_str();
+    m_description = pSelection->Description().c_str();
     // actual carriage return are actual \n in text, convert to correct character
     GenerateLineBreaks(&m_title);
     GenerateLineBreaks(&m_description);
     m_effectDescriptions.clear();
     m_requirements.clear();
     m_bRequirementMet.clear();
-    pItem->CreateRequirementStrings(charData, &m_requirements, &m_bRequirementMet, MAX_CLASS_LEVEL);
-    m_cost.Format("Cost %d", pItem->Cost());
+    CString text;
+    text.Format("Requires: %d AP spent in tree", pItem->MinSpent());
+    m_requirements.push_back(text);
+    m_bRequirementMet.push_back(true);
+    pSelection->CreateRequirementStrings(
+            charData,
+            &m_requirements,
+            &m_bRequirementMet,
+            MAX_CLASS_LEVEL);
+    m_cost.Format("Cost %d", pSelection->Cost());
     m_ranks.Format("Ranks %d", ranks);
 }
 

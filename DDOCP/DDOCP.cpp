@@ -160,6 +160,13 @@ BOOL CDDOCPApp::InitInstance()
         return FALSE;
     }
 
+    // only verify the loaded data in our debug sessions
+    CString commandLine = m_lpCmdLine;
+    if (commandLine.Find("/debug") >= 0)
+    {
+        VerifyLoadedData();
+    }
+
     // The main window has been initialized, so show and update it
     LoadState(pMainFrame);
     pMainFrame->UpdateWindow();
@@ -234,13 +241,17 @@ void CDDOCPApp::LoadData()
     LoadAugments(path);
     LoadGuildBuffs(path);
     LoadOptionalBuffs(path);
+    SeparateFeats();
+}
+
+void CDDOCPApp::VerifyLoadedData()
+{
     VerifyFeats();
     VerifyEnhancements();
     VerifyAugments();
     VerifySpells();
     VerifyItems();
     VerifyOptionalBuffs();
-    SeparateFeats();
 }
 
 void CDDOCPApp::LoadFeats(const std::string & path)

@@ -31,7 +31,7 @@ CString BreakdownItemEDFCapped::Value() const
     }
     else
     {
-        // get he base class to format it
+        // get the base class to format it
         value = BreakdownItemSimple::Value();
     }
     return value;

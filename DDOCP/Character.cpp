@@ -4065,7 +4065,7 @@ void Character::DeleteGearSet(const std::string & name)
         }
         ++it;
     }
-    // as we just deleted the active gear set, switch tot he first gear set remaining (if any)
+    // as we just deleted the active gear set, switch to the first gear set remaining (if any)
     if (m_GearSetups.size() > 0)
     {
         it = m_GearSetups.begin();

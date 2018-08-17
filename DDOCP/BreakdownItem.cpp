@@ -921,7 +921,8 @@ bool BreakdownItem::GetActiveEffect(
     {
         activeEffect->SetIsPercentage(true);
     }
-    if (effect.HasWeaponClass())
+    if (effect.HasWeaponClass()
+            && effect.WeaponClass() == WeaponClass_FocusGroup)
     {
         activeEffect->SetWeapon(Weapon());
     }

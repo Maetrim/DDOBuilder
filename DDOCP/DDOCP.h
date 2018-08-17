@@ -64,6 +64,7 @@ class CDDOCPApp :
         void LoadOptionalBuffs(const std::string & path);
         void VerifyFeats();     // verify that all feats are consistent
         void SeparateFeats();   // breaks them out into groups based on type
+        void VerifyLoadedData();
         void VerifyEnhancements();     // verify that all enhancements are consistent
         void VerifyAugments();     // verify that all augments are consistent
         void VerifySpells();    // verify all spells are consistent

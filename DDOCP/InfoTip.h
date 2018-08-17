@@ -29,7 +29,8 @@ class CInfoTip :
                 size_t spentInTree);
         void SetEnhancementSelectionItem(
                 const Character & charData,
-                const EnhancementSelection * pItem,
+                const EnhancementTreeItem * pItem,
+                const EnhancementSelection * pSelection,
                 size_t ranks);
         void SetFeatItem(
                 const Character & charData,
