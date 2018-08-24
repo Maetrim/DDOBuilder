@@ -49,6 +49,12 @@ void BreakdownItem::PopulateBreakdownControl(CListCtrl * pControl)
     AddDeactiveItems(m_otherEffects, pControl);
     AddDeactiveItems(m_effects, pControl);
     AddDeactiveItems(m_itemEffects, pControl);
+    if (inactiveStart != pControl->GetItemCount())
+    {
+        // blank item between active and inactive
+        pControl->InsertItem(inactiveStart, "");
+        pControl->InsertItem(inactiveStart + 1, "Inactive Items");
+    }
     if (nonStackingEffects.size() > 0)
     {
         // separate these non-stacking effects from the main list
@@ -61,12 +67,6 @@ void BreakdownItem::PopulateBreakdownControl(CListCtrl * pControl)
                 "Non-Stacking Effects",
                 0);
         AddActiveItems(nonStackingEffects, pControl);
-    }
-    if (inactiveStart != pControl->GetItemCount())
-    {
-        // blank item between active and inactive
-        pControl->InsertItem(inactiveStart, "");
-        pControl->InsertItem(inactiveStart + 1, "Inactive Items");
     }
 
     pControl->UnlockWindowUpdate();

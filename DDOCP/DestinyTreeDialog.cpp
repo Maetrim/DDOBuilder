@@ -461,7 +461,7 @@ void CDestinyTreeDialog::RenderItemClickie(
     RenderItemState(item, pDC, itemRect);
     // render the cores icon, this may depend on a selector sub item
     CRect iconRect(itemRect);
-    iconRect.DeflateRect(6, 6, 5, 15);
+    iconRect.DeflateRect(6, 7, 5, 14);
     ASSERT(iconRect.Width() == 32);
     ASSERT(iconRect.Height() == 32);
     RenderItemSelection(item, pDC, iconRect);

@@ -110,6 +110,7 @@ void CStancesView::OnSize(UINT nType, int cx, int cy)
         itemRect -= CPoint(itemRect.left, 0);
         itemRect += CPoint(c_controlSpacing, itemRect.Height() + c_controlSpacing);
         m_autoStances.MoveWindow(itemRect, TRUE);
+        // auto-controlled stances are only shown when active
         // move rectangle across for next set of controls
         itemRect += CPoint(itemRect.Width() + c_controlSpacing, 0);
         if (itemRect.right > (wndClient.right - c_controlSpacing))
@@ -122,15 +123,25 @@ void CStancesView::OnSize(UINT nType, int cx, int cy)
         // move each stance button
         for (size_t i = 0; i < m_autoStancebuttons.size(); ++i)
         {
-            m_autoStancebuttons[i]->MoveWindow(itemRect, TRUE);
-            // move rectangle across for next set of controls
-            itemRect += CPoint(itemRect.Width() + c_controlSpacing, 0);
-            if (itemRect.right > (wndClient.right - c_controlSpacing))
+            if (m_autoStancebuttons[i]->IsSelected())
             {
-                // oops, not enough space in client area here
-                // move down and start the next row of controls
-                itemRect -= CPoint(itemRect.left, 0);
-                itemRect += CPoint(c_controlSpacing, itemRect.Height() + c_controlSpacing);
+                m_autoStancebuttons[i]->MoveWindow(itemRect, TRUE);
+                m_autoStancebuttons[i]->ShowWindow(SW_SHOW);
+                // move rectangle across for next set of controls
+                itemRect += CPoint(itemRect.Width() + c_controlSpacing, 0);
+                if (itemRect.right > (wndClient.right - c_controlSpacing))
+                {
+                    // oops, not enough space in client area here
+                    // move down and start the next row of controls
+                    itemRect -= CPoint(itemRect.left, 0);
+                    itemRect += CPoint(c_controlSpacing, itemRect.Height() + c_controlSpacing);
+                }
+            }
+            else
+            {
+                m_autoStancebuttons[i]->ShowWindow(SW_HIDE);
+                CRect notVisibleRect(-100, -100, -68, -68);
+                m_autoStancebuttons[i]->MoveWindow(notVisibleRect, FALSE);
             }
         }
     }
@@ -257,7 +268,7 @@ void CStancesView::AddStance(const Stance & stance)
             // create a parent window that is c_windowSize by c_windowSize pixels in size
             m_autoStancebuttons.back()->Create(
                     "",
-                    WS_CHILD | WS_VISIBLE,
+                    WS_CHILD,       // default is not visible
                     itemRect,
                     this,
                     m_nextStanceId++);
@@ -356,6 +367,7 @@ void CStancesView::UpdateRevokeStance(Character * charData, const Stance & stanc
 
 void CStancesView::UpdateStanceActivated(Character * charData, const std::string & stanceName)
 {
+    bool resize = false;
     // update the state of the required stance buttons
     for (size_t i = 0; i < m_userStancebuttons.size(); ++i)
     {
@@ -370,12 +382,21 @@ void CStancesView::UpdateStanceActivated(Character * charData, const std::string
         if (m_autoStancebuttons[i]->GetStance().Name() == stanceName)
         {
             m_autoStancebuttons[i]->SetSelected(true);
+            resize = true;
         }
+    }
+    // if an auto-controlled stance changed state, we need to show/hide its button
+    if (resize)
+    {
+        CRect rctWnd;
+        GetClientRect(&rctWnd);
+        OnSize(SIZE_RESTORED, rctWnd.Width(), rctWnd.Height());
     }
 }
 
 void CStancesView::UpdateStanceDeactivated(Character * charData, const std::string & stanceName)
 {
+    bool resize = false;
     // update the state of the required stance buttons
     for (size_t i = 0; i < m_userStancebuttons.size(); ++i)
     {
@@ -390,7 +411,15 @@ void CStancesView::UpdateStanceDeactivated(Character * charData, const std::stri
         if (m_autoStancebuttons[i]->GetStance().Name() == stanceName)
         {
             m_autoStancebuttons[i]->SetSelected(false);
+            resize = true;
         }
+    }
+    // if an auto-controlled stance changed state, we need to show/hide its button
+    if (resize)
+    {
+        CRect rctWnd;
+        GetClientRect(&rctWnd);
+        OnSize(SIZE_RESTORED, rctWnd.Width(), rctWnd.Height());
     }
 }
 
@@ -420,6 +449,7 @@ void CStancesView::UpdateItemEffect(
     // see if this is an activate stance effect
     if (effect.Type() == Effect_ActivateStance)
     {
+        bool resize = false;
         ASSERT(effect.Stance().size() == 1);
         for (size_t i = 0; i < m_userStancebuttons.size(); ++i)
         {
@@ -433,7 +463,15 @@ void CStancesView::UpdateItemEffect(
             if (m_autoStancebuttons[i]->GetStance().Name() == effect.Stance()[0])
             {
                 m_pCharacter->ActivateStance(m_autoStancebuttons[i]->GetStance());
+                resize = true;
             }
+        }
+        // if an auto-controlled stance changed state, we need to show/hide its button
+        if (resize)
+        {
+            CRect rctWnd;
+            GetClientRect(&rctWnd);
+            OnSize(SIZE_RESTORED, rctWnd.Width(), rctWnd.Height());
         }
     }
 }
