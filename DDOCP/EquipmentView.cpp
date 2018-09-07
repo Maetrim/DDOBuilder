@@ -9,6 +9,7 @@
 #include "GearSetNameDialog.h"
 #include "ItemSelectDialog.h"
 #include "MouseHook.h"
+#include "XmlLib\SaxReader.h"
 
 namespace
 {
@@ -39,6 +40,7 @@ void CEquipmentView::DoDataExchange(CDataExchange* pDX)
     DDX_Control(pDX, IDC_COMBO_GEAR_NAME, m_comboGearSelections);
     DDX_Control(pDX, IDC_BUTTON_NEW, m_buttonNew);
     DDX_Control(pDX, IDC_BUTTON_COPY, m_buttonCopy);
+    DDX_Control(pDX, IDC_BUTTON_PASTE, m_buttonPaste);
     DDX_Control(pDX, IDC_BUTTON_DELETE, m_buttonDelete);
 }
 
@@ -48,15 +50,18 @@ BEGIN_MESSAGE_MAP(CEquipmentView, CFormView)
     ON_WM_SIZE()
     ON_WM_ERASEBKGND()
     ON_REGISTERED_MESSAGE(UWM_NEW_DOCUMENT, OnNewDocument)
-    ON_COMMAND(ID_GEAR_NEW, OnEditGearNew)
-    ON_COMMAND(ID_GEAR_COPY, OnEditGearCopy)
-    ON_COMMAND(ID_GEAR_DELETE, OnEditGearDelete)
-    ON_UPDATE_COMMAND_UI(ID_GEAR_NEW, OnUpdateEditGearNew)
-    ON_UPDATE_COMMAND_UI(ID_GEAR_COPY, OnUpdateEditGearCopy)
-    ON_UPDATE_COMMAND_UI(ID_GEAR_DELETE, OnUpdateEditGearDelete)
-    ON_BN_CLICKED(IDC_BUTTON_NEW, OnEditGearNew)
-    ON_BN_CLICKED(IDC_BUTTON_COPY, OnEditGearCopy)
-    ON_BN_CLICKED(IDC_BUTTON_DELETE, OnEditGearDelete)
+    ON_COMMAND(ID_GEAR_NEW, OnGearNew)
+    ON_COMMAND(ID_GEAR_COPY, OnGearCopy)
+    ON_COMMAND(ID_GEAR_PASTE, OnGearPaste)
+    ON_COMMAND(ID_GEAR_DELETE, OnGearDelete)
+    ON_UPDATE_COMMAND_UI(ID_GEAR_NEW, OnUpdateGearNew)
+    ON_UPDATE_COMMAND_UI(ID_GEAR_COPY, OnUpdateGearCopy)
+    ON_UPDATE_COMMAND_UI(ID_GEAR_PASTE, OnUpdateGearPaste)
+    ON_UPDATE_COMMAND_UI(ID_GEAR_DELETE, OnUpdateGearDelete)
+    ON_BN_CLICKED(IDC_BUTTON_NEW, OnGearNew)
+    ON_BN_CLICKED(IDC_BUTTON_COPY, OnGearCopy)
+    ON_BN_CLICKED(IDC_BUTTON_PASTE, OnGearPaste)
+    ON_BN_CLICKED(IDC_BUTTON_DELETE, OnGearDelete)
     ON_CBN_SELENDOK(IDC_COMBO_GEAR_NAME, OnGearSelectionSelEndOk)
 END_MESSAGE_MAP()
 #pragma warning(pop)
@@ -96,6 +101,7 @@ void CEquipmentView::OnInitialUpdate()
     // Images for new/copy/delete buttons
     m_buttonNew.SetImage(IDB_BITMAP_NEW);
     m_buttonCopy.SetImage(IDB_BITMAP_COPY);
+    m_buttonPaste.SetImage(IDB_BITMAP_PASTE);
     m_buttonDelete.SetImage(IDB_BITMAP_DELETE);
 
     EnableControls();
@@ -107,28 +113,32 @@ void CEquipmentView::OnSize(UINT nType, int cx, int cy)
     if (m_inventoryView != NULL)
     {
         // position all the windows
-        // +-----------------------------+
-        // | [Drop List Combo] [N][C][D] |
-        // | +-------------------------+ |
-        // | |                         | |
-        // | | Inventory Bitmap        | |
-        // | |                         | |
-        // | +-------------------------+ |
+        // +--------------------------------+
+        // | [Drop List Combo] [N][C][P][D] |
+        // | +----------------------------+ |
+        // | |                            | |
+        // | | Inventory Bitmap           | |
+        // | |                            | |
+        // | +---------------------   ----+ |
         CRect rctCombo;
         m_comboGearSelections.GetWindowRect(&rctCombo);
         rctCombo -= rctCombo.TopLeft();
         rctCombo += CPoint(c_controlSpacing, c_controlSpacing);
         CRect rctNew;
         CRect rctCopy;
+        CRect rctPaste;
         CRect rctDelete;
         m_buttonNew.GetWindowRect(&rctNew);
         m_buttonCopy.GetWindowRect(&rctCopy);
+        m_buttonPaste.GetWindowRect(&rctPaste);
         m_buttonDelete.GetWindowRect(&rctDelete);
 
         rctDelete -= rctDelete.TopLeft();
-        rctDelete += CSize(223 - c_controlSpacing - rctDelete.Width(), c_controlSpacing);
+        rctDelete += CSize(223 + c_controlSpacing - rctDelete.Width(), c_controlSpacing);
+        rctPaste -= rctPaste.TopLeft();
+        rctPaste += CSize(rctDelete.left - c_controlSpacing - rctPaste.Width(), c_controlSpacing);
         rctCopy -= rctCopy.TopLeft();
-        rctCopy += CSize(rctDelete.left - c_controlSpacing - rctCopy.Width(), c_controlSpacing);
+        rctCopy += CSize(rctPaste.left - c_controlSpacing - rctCopy.Width(), c_controlSpacing);
         rctNew -= rctNew.TopLeft();
         rctNew += CSize(rctCopy.left - c_controlSpacing - rctNew.Width(), c_controlSpacing);
         rctCombo.right = rctNew.left - c_controlSpacing;
@@ -141,6 +151,7 @@ void CEquipmentView::OnSize(UINT nType, int cx, int cy)
         m_comboGearSelections.MoveWindow(rctCombo);
         m_buttonNew.MoveWindow(rctNew);
         m_buttonCopy.MoveWindow(rctCopy);
+        m_buttonPaste.MoveWindow(rctPaste);
         m_buttonDelete.MoveWindow(rctDelete);
         m_inventoryView->MoveWindow(rctInventory);
         SetScrollSizes(
@@ -187,6 +198,10 @@ BOOL CEquipmentView::OnEraseBkgnd(CDC* pDC)
     static int controlsNotToBeErased[] =
     {
         IDC_COMBO_GEAR_NAME,
+        IDC_BUTTON_NEW,
+        IDC_BUTTON_COPY,
+        IDC_BUTTON_PASTE,
+        IDC_BUTTON_DELETE,
         0 // end marker
     };
 
@@ -256,6 +271,7 @@ void CEquipmentView::EnableControls()
         m_inventoryView->EnableWindow(FALSE);
         m_buttonNew.EnableWindow(FALSE);
         m_buttonCopy.EnableWindow(FALSE);
+        m_buttonPaste.EnableWindow(FALSE);
         m_buttonDelete.EnableWindow(FALSE);
     }
     else
@@ -265,6 +281,7 @@ void CEquipmentView::EnableControls()
         m_inventoryView->EnableWindow(setups.size() > 0);
         m_buttonNew.EnableWindow(TRUE);     // always available
         m_buttonCopy.EnableWindow(setups.size() > 0);
+        m_buttonPaste.EnableWindow(IsClipboardFormatAvailable(CF_PRIVATEFIRST));
         m_buttonDelete.EnableWindow(setups.size() > 0);
     }
 }
@@ -321,6 +338,7 @@ void CEquipmentView::UpdateSlotRightClicked(
         CInventoryDialog * dialog,
         InventorySlotType slot)
 {
+    // option to clear the gear item from the selected slot
     EquippedGear gear = m_pCharacter->GetGearSet(SelectedGearSet());
     if (gear.HasItemInSlot(slot))
     {
@@ -338,15 +356,17 @@ void CEquipmentView::UpdateGearChanged(Character * charData, InventorySlotType s
     m_inventoryView->SetGearSet(m_pCharacter->ActiveGearSet());
 }
 
-void CEquipmentView::OnUpdateEditGearNew(CCmdUI * pCmdUi)
+void CEquipmentView::OnUpdateGearNew(CCmdUI * pCmdUi)
 {
+    // can always create a new gear set if a document is open
     pCmdUi->Enable(m_pCharacter != NULL);
 }
 
-void CEquipmentView::OnUpdateEditGearCopy(CCmdUI * pCmdUi)
+void CEquipmentView::OnUpdateGearCopy(CCmdUI * pCmdUi)
 {
     if (m_pCharacter != NULL)
     {
+        // can copy a gear set if we have an active one
         const std::list<EquippedGear> & setups = m_pCharacter->GearSetups();
         pCmdUi->Enable(setups.size() > 0);
     }
@@ -356,10 +376,20 @@ void CEquipmentView::OnUpdateEditGearCopy(CCmdUI * pCmdUi)
     }
 }
 
-void CEquipmentView::OnUpdateEditGearDelete(CCmdUI * pCmdUi)
+void CEquipmentView::OnUpdateGearPaste(CCmdUI * pCmdUi)
+{
+    // can paste if we have data of the correct format available on the clipboard
+    bool enable = m_pCharacter != NULL
+            && ::IsClipboardFormatAvailable(CF_PRIVATEFIRST);
+    pCmdUi->Enable(enable);
+    m_buttonPaste.EnableWindow(enable);
+}
+
+void CEquipmentView::OnUpdateGearDelete(CCmdUI * pCmdUi)
 {
     if (m_pCharacter != NULL)
     {
+        // can delete a gear set if we have an active one
         const std::list<EquippedGear> & setups = m_pCharacter->GearSetups();
         pCmdUi->Enable(setups.size() > 0);
     }
@@ -369,7 +399,7 @@ void CEquipmentView::OnUpdateEditGearDelete(CCmdUI * pCmdUi)
     }
 }
 
-void CEquipmentView::OnEditGearNew()
+void CEquipmentView::OnGearNew()
 {
     // no tooltips while a dialog is displayed
     GetMouseHook()->SaveState();
@@ -406,36 +436,114 @@ void CEquipmentView::OnEditGearNew()
     GetMouseHook()->RestoreState();
 }
 
-void CEquipmentView::OnEditGearCopy()
+void CEquipmentView::OnGearCopy()
 {
-    // create a new gear set from the current selected gear set
-    // which they will have to name
-    // create a new gear set that they must name
-    CGearSetNameDialog dlg(this, m_pCharacter);
-    if (dlg.DoModal() == IDOK)
+    // copy the current gear set to the clipboard as xml text using a custom
+    // clipboard format to preserve any other data present on the clipboard
+    HGLOBAL hData = NULL;
+    if (m_pCharacter!= NULL)
     {
-        // ensure the gear set name is unique
-        if (!m_pCharacter->DoesGearSetExist(dlg.Name()))
-        {
-            EquippedGear copyGear = m_pCharacter->ActiveGearSet();
-            copyGear.Set_Name(dlg.Name());
-            m_pCharacter->AddGearSet(copyGear);
-            // once added the copy gear set automatically becomes active
-            m_pCharacter->SetActiveGearSet(dlg.Name());
+        // get the current gear
+        EquippedGear gear = m_pCharacter->GetGearSet(SelectedGearSet());
+        // write the gear as xml text
+        XmlLib::SaxWriter writer;
+        gear.Write(&writer);
+        std::string xmlText = writer.Text();
 
-            // add it to the combo box
-            // index is the count of gear items
-            int index = m_comboGearSelections.AddString(dlg.Name().c_str());
-            // new entry starts selected
-            m_comboGearSelections.SetCurSel(index);
-            PopulateGear();
-            // have the correct enable state
-            EnableControls();
+        // read the file into a global memory handle
+        hData = GlobalAlloc(GMEM_MOVEABLE, xmlText.size() + 1); // space for \0
+        if (hData != NULL)
+        {
+            char * buffer = (char *)GlobalLock(hData);
+            strcpy_s(buffer, xmlText.size() + 1, xmlText.data());
+            GlobalUnlock(hData);
+        }
+        if (::OpenClipboard(NULL))
+        {
+            ::SetClipboardData(CF_PRIVATEFIRST, hData);
+            ::CloseClipboard();
+            // if we copied, paste is available
+            m_buttonPaste.EnableWindow(true);
+        }
+        else
+        {
+            AfxMessageBox("Failed to open the clipboard.", MB_ICONERROR);
         }
     }
 }
 
-void CEquipmentView::OnEditGearDelete()
+void CEquipmentView::OnGearPaste()
+{
+    if (m_pCharacter != NULL
+            && ::IsClipboardFormatAvailable(CF_PRIVATEFIRST))
+    {
+        if (::OpenClipboard(NULL))
+        {
+            // is the data in the right format
+            HGLOBAL hGlobal = ::GetClipboardData(CF_PRIVATEFIRST);
+            if (hGlobal != NULL)
+            {
+                // get the data as text from the clipboard
+                std::string xmlText;
+                char * buffer = (char *)::GlobalLock(hGlobal);
+                xmlText = buffer;
+                GlobalUnlock(hGlobal);
+                ::CloseClipboard();
+
+                // parse the xml text and read into a local object
+                EquippedGear gear;
+                XmlLib::SaxReader reader(&gear, gear.ElementName());
+                bool ok = reader.ParseText(xmlText);
+                if (ok)
+                {
+                    // looks like it read ok, we can progress
+                    CGearSetNameDialog dlg(this, m_pCharacter);
+                    if (dlg.DoModal() == IDOK)
+                    {
+                        // ensure the gear set name is unique
+                        if (!m_pCharacter->DoesGearSetExist(dlg.Name()))
+                        {
+                            gear.Set_Name(dlg.Name());
+                            m_pCharacter->AddGearSet(gear);
+                            // once added the copy gear set automatically becomes active
+                            m_pCharacter->SetActiveGearSet(dlg.Name());
+
+                            // add it to the combo box
+                            // index is the count of gear items
+                            int index = m_comboGearSelections.AddString(dlg.Name().c_str());
+                            // new entry starts selected
+                            m_comboGearSelections.SetCurSel(index);
+                            PopulateGear();
+                            // have the correct enable state
+                            EnableControls();
+                        }
+                        else
+                        {
+                            // gear sets names must be unique, they can paste again
+                            AfxMessageBox("A Gear Set with that name already exists.", MB_ICONERROR);
+                        }
+                    }
+                }
+                else
+                {
+                    // something is wrong with the data on the clipboard
+                    AfxMessageBox("Failed to read data from clipboard.", MB_ICONERROR);
+                }
+            }
+        }
+        else
+        {
+            AfxMessageBox("Failed to open the clipboard.", MB_ICONERROR);
+        }
+    }
+    else
+    {
+        // no data of correct format on the clipboard
+        AfxMessageBox("No Gear Set data available on the clipboard.", MB_ICONERROR);
+    }
+}
+
+void CEquipmentView::OnGearDelete()
 {
     // delete the current gear selection
     int sel = m_comboGearSelections.GetCurSel();
@@ -472,3 +580,4 @@ void CEquipmentView::OnGearSelectionSelEndOk()
         PopulateGear();
     }
 }
+

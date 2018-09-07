@@ -441,7 +441,7 @@ hand gains an additional +1 to its Enhancement bonus.</Description>
       <EnhancementTreeItem>
          <Name>Swashbuckler: Insults</Name>
          <InternalName>SBInsults</InternalName>
-         <Description>Select an Insult to lower respective saves </Description>
+         <Description>Select an Insult to lower respective saves</Description>
          <Icon>SBInsults</Icon>
          <XPosition>2</XPosition>
          <YPosition>1</YPosition>
@@ -514,6 +514,13 @@ Cooldown: 20/15/10 seconds</Description>
             <Skill>Swim</Skill>
             <Skill>Tumble</Skill>
             <AmountVector size="3">1 2 3</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Save>Traps</Save>
+            <AmountVector size="3">0 0 3</AmountVector>
+            <Stance>Tumble</Stance>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -1074,11 +1081,36 @@ additional +1 for every five Bard levels.</Description>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
+         <Name>Swashbuckler: Coup de Grace</Name>
+         <InternalName>SBCoupDeGrace</InternalName>
+         <Description>Multiselector, Melee or Ranged Attack: Make an attack with +3[W].
+If it strikes any Fascinated, Sleeping, Dancing, Dazed, Tripped, Mesmerized,
+Paralyzed, Petrified, or Stunned enemy, it must make a Fortitude save
+(d20 + your Perform skill) or die instantly. (20 second cooldown)</Description>
+         <Icon>SBCoupDeGrace</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>12</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Class>Bard</Class>
+               <Level>5</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
          <Name>Swashbuckler: Second Skin</Name>
          <InternalName>SBSecondSkin</InternalName>
          <Description>While Swashbuckling, +2/4/6 to your Reflex Saves and +2/4/6 to the Max Dex Bonus of your Armor.</Description>
          <Icon>SBSecondSkin</Icon>
-         <XPosition>1</XPosition>
+         <XPosition>2</XPosition>
          <YPosition>5</YPosition>
          <Cost>2</Cost>
          <Ranks>3</Ranks>
@@ -1114,37 +1146,12 @@ additional +1 for every five Bard levels.</Description>
 you gain a stacking +1 Insight Bonus to Critical Threat Range until you
 successfully critically hit.</Description>
          <Icon>SBExploitWeaknesses</Icon>
-         <XPosition>2</XPosition>
+         <XPosition>4</XPosition>
          <YPosition>5</YPosition>
          <Cost>2</Cost>
          <Ranks>1</Ranks>
          <MinSpent>30</MinSpent>
          <Tier5/>
-         <Requirements>
-            <Requirement>
-               <MinLevel>12</MinLevel>
-            </Requirement>
-            <Requirement>
-               <Class>Bard</Class>
-               <Level>5</Level>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Swashbuckler: Coup de Grace</Name>
-         <InternalName>SBCoupDeGrace</InternalName>
-         <Description>Multiselector, Melee or Ranged Attack: Make an attack with +3[W].
-If it strikes any Fascinated, Sleeping, Dancing, Dazed, Tripped, Mesmerized,
-Paralyzed, Petrified, or Stunned enemy, it must make a Fortitude save
-(d20 + your Perform skill) or die instantly. (20 second cooldown)</Description>
-         <Icon>SBCoupDeGrace</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>5</YPosition>
-         <Cost>1</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <Tier5/>
-         <Clickie/>
          <Requirements>
             <Requirement>
                <MinLevel>12</MinLevel>

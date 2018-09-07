@@ -107,7 +107,7 @@ bool EnhancementTreeItem::MeetRequirements(
                 (pTE == NULL) ? 0 : pTE->Ranks());
     }
     // cannot train this enhancement if its tier5 and not from the same tier 5
-    // tree if one has already need trained
+    // tree if one has already been trained
     if (HasTier5()                  // are we a tier 5 enhancement?
             && charData.HasTier5Tree()
             && treeName != charData.Tier5Tree())

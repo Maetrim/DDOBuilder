@@ -270,11 +270,12 @@ void CForumExportDlg::AddCharacterHeader(std::stringstream & forumExport)
     //      Start Tome Final
     // Str: [...] [..] [...]     HP:    [....]       AC: [...]
     // Dex: [...] [..] [...]     PRR:   [....]       DR: [........................]
-    // Con: [...] [..] [...]     MRR:   [....]       +Healing Amp: [...]
+    // Con: [...] [..] [...]     MRR:   [....]/[MAX] +Healing Amp: [...]
     // Int: [...] [..] [...]     Dodge: [...]%/[MAX] -Healing Amp: [...]
     // Wis: [...] [..] [...]     Fort:  [...]%       Repair Amp:   [...]
     // Cha: [...] [..] [...]     SR:    [...]        BAB:   [..]
     // DR:  List of DR items
+    // immunities:  List of immunities
 
      // first line is the character name
     forumExport << "Character name: " << m_pCharacter->Name() << "\r\n";
@@ -307,7 +308,7 @@ void CForumExportDlg::AddCharacterHeader(std::stringstream & forumExport)
 
     AddAbilityValues(forumExport, Ability_Constitution);
     AddBreakdown(forumExport, "      MRR: ", 9, Breakdown_MRR);
-    AddBreakdown(forumExport, "     +Healing Amp: ", 5, Breakdown_HealingAmplification);
+    AddBreakdown(forumExport, "      +Healing Amp: ", 5, Breakdown_HealingAmplification);
     forumExport << "\r\n";
 
     AddAbilityValues(forumExport, Ability_Intelligence);
@@ -330,15 +331,6 @@ void CForumExportDlg::AddCharacterHeader(std::stringstream & forumExport)
     forumExport << "\r\n";
     BreakdownItem * pImmunities = FindBreakdown(Breakdown_Immunities);
     forumExport << "Immunities: " << pImmunities->Value();
-    forumExport << "\r\n";
-
-    BreakdownItem * pBIMRR = FindBreakdown(Breakdown_MRR);
-    BreakdownItem * pBIMRRCap = FindBreakdown(Breakdown_MRRCap);
-    if (pBIMRRCap->Value() != "None"
-            && pBIMRRCap->Total() < pBIMRR->Total())
-    {
-        forumExport << "*MRR Capped at " << pBIMRRCap->Total() << " due to armor worn.";
-    }
     forumExport << "\r\n\r\n";
 }
 
@@ -511,29 +503,39 @@ void CForumExportDlg::AddBreakdown(
 {
     BreakdownItem * pBI = FindBreakdown(bt);
     size_t value = (size_t)pBI->Total();      // whole numbers only
-    forumExport << header;
-    forumExport.width(width);
-    forumExport << std::right << value;
-    BreakdownItemSave * pBIS = dynamic_cast<BreakdownItemSave *>(pBI);
-    if (pBIS != NULL)
-    {
-        if (pBIS->HasNoFailOn1())
-        {
-            forumExport << "*";
-        }
-    }
     if (bt == Breakdown_MRR)
     {
-        BreakdownItem * pBIMRR = FindBreakdown(Breakdown_MRR);
         BreakdownItem * pBIMRRCap = FindBreakdown(Breakdown_MRRCap);
         if (pBIMRRCap->Total() > 0
-                && pBIMRRCap->Total() < pBIMRR->Total())
+                && pBIMRRCap->Total() < pBI->Total())
         {
-            forumExport << "*";     // notify it's capped
+            // show that he MRR value is capped
+            CString text;
+            text.Format("%d/%d", value, (size_t)pBIMRRCap->Total());
+            forumExport << header;
+            forumExport.width(width);
+            forumExport << std::right << (LPCTSTR)text;
         }
         else
         {
-            forumExport << " ";
+            // just show the MRR value
+            forumExport << header;
+            forumExport.width(width);
+            forumExport << std::right << value;
+        }
+    }
+    else
+    {
+        forumExport << header;
+        forumExport.width(width);
+        forumExport << std::right << value;
+        BreakdownItemSave * pBIS = dynamic_cast<BreakdownItemSave *>(pBI);
+        if (pBIS != NULL)
+        {
+            if (pBIS->HasNoFailOn1())
+            {
+                forumExport << "*";
+            }
         }
     }
 }
@@ -1398,6 +1400,10 @@ void CForumExportDlg::AddWeaponDamage(std::stringstream & forumExport)
     AddBreakdown(forumExport, "Off-Hand Doublestrike: ", 1, Breakdown_OffHandDoubleStrike);
     forumExport << "%\r\n";
     AddBreakdown(forumExport, "Fortification Bypass: ", 1, Breakdown_FortificationBypass);
+    forumExport << "%\r\n";
+    AddBreakdown(forumExport, "Dodge Bypass: ", 1, Breakdown_DodgeBypass);
+    forumExport << "%\r\n";
+    AddBreakdown(forumExport, "Helpless Damage bonus: ", 1, Breakdown_HelplessDamage);
     forumExport << "%\r\n";
 
     pBI = FindBreakdown(Breakdown_RangedPower);

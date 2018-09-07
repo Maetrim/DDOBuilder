@@ -68,6 +68,7 @@ enum BonusType
     Bonus_stacking,
     Bonus_unique,
     Bonus_vitality,
+    Bonus_weaponEnchantment,
 };
 
 const XmlLib::enumMapEntry<BonusType> bonusTypeMap[] =
@@ -130,5 +131,6 @@ const XmlLib::enumMapEntry<BonusType> bonusTypeMap[] =
     {Bonus_stacking, L"Stacking"},
     {Bonus_unique, L"Unique"},
     {Bonus_vitality, L"Vitality"},
+    {Bonus_weaponEnchantment, L"WeaponEnchantment"},
     {BonusType(0), NULL}
 };

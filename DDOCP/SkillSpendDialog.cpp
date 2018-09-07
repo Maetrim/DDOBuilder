@@ -748,6 +748,7 @@ void CSkillSpendDialog::OnButtonAutoSpendSkillPoints()
                     break;
                 case Class_Bard:
                     skills[Skill_Perform].AddWeighting(100);
+                    skills[Skill_UMD].AddWeighting(100);
                     break;
                 case Class_Cleric:
                     skills[Skill_Concentration].AddWeighting(100);
@@ -791,26 +792,32 @@ void CSkillSpendDialog::OnButtonAutoSpendSkillPoints()
             }
         }
     }
+    if (m_pCharacter->Race() == Race_Warforged
+            || m_pCharacter->Race() == Race_BladeForged)
+    {
+        // Warforged should also train repair if possible
+        skills[Skill_Repair].AddWeighting(50);
+    }
     // now add the basic weights for all skills. This is the order I would
     // take them if I had spare skill points
     skills[Skill_UMD].AddWeighting(21);
     skills[Skill_DisableDevice].AddWeighting(20);
     skills[Skill_OpenLock].AddWeighting(19);
-    skills[Skill_SpellCraft].AddWeighting(18);
-    skills[Skill_Spot].AddWeighting(17);
-    skills[Skill_Search].AddWeighting(16);
-    skills[Skill_Balance].AddWeighting(15);
-    skills[Skill_Swim].AddWeighting(14);
-    skills[Skill_Bluff].AddWeighting(13);
-    skills[Skill_Diplomacy].AddWeighting(12);
-    skills[Skill_Haggle].AddWeighting(11);
-    skills[Skill_Concentration].AddWeighting(10);
-    skills[Skill_Heal].AddWeighting(9);
-    skills[Skill_Hide].AddWeighting(8);
-    skills[Skill_Intimidate].AddWeighting(7);
-    skills[Skill_MoveSilently].AddWeighting(6);
-    skills[Skill_Perform].AddWeighting(5);
-    skills[Skill_Jump].AddWeighting(4);
+    skills[Skill_Spot].AddWeighting(18);
+    skills[Skill_Search].AddWeighting(17);
+    skills[Skill_Balance].AddWeighting(16);
+    skills[Skill_Swim].AddWeighting(15);
+    skills[Skill_Bluff].AddWeighting(14);
+    skills[Skill_Diplomacy].AddWeighting(13);
+    skills[Skill_Haggle].AddWeighting(12);
+    skills[Skill_Concentration].AddWeighting(11);
+    skills[Skill_Heal].AddWeighting(10);
+    skills[Skill_Hide].AddWeighting(9);
+    skills[Skill_Intimidate].AddWeighting(8);
+    skills[Skill_MoveSilently].AddWeighting(7);
+    skills[Skill_Perform].AddWeighting(6);
+    skills[Skill_Jump].AddWeighting(5);
+    skills[Skill_SpellCraft].AddWeighting(4);
     skills[Skill_Repair].AddWeighting(3);
     skills[Skill_Tumble].AddWeighting(2);
     skills[Skill_Listen].AddWeighting(1);

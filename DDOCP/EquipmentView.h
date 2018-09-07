@@ -29,12 +29,14 @@ class CEquipmentView :
         afx_msg void OnSize(UINT nType, int cx, int cy);
         afx_msg BOOL OnEraseBkgnd(CDC* pDC);
         afx_msg LRESULT OnNewDocument(WPARAM wParam, LPARAM lParam);
-        afx_msg void OnEditGearNew();
-        afx_msg void OnEditGearCopy();
-        afx_msg void OnEditGearDelete();
-        afx_msg void OnUpdateEditGearNew(CCmdUI * pCmdUi);
-        afx_msg void OnUpdateEditGearCopy(CCmdUI * pCmdUi);
-        afx_msg void OnUpdateEditGearDelete(CCmdUI * pCmdUi);
+        afx_msg void OnGearNew();
+        afx_msg void OnGearCopy();
+        afx_msg void OnGearPaste();
+        afx_msg void OnGearDelete();
+        afx_msg void OnUpdateGearNew(CCmdUI * pCmdUi);
+        afx_msg void OnUpdateGearCopy(CCmdUI * pCmdUi);
+        afx_msg void OnUpdateGearPaste(CCmdUI * pCmdUi);
+        afx_msg void OnUpdateGearDelete(CCmdUI * pCmdUi);
         afx_msg void OnGearSelectionSelEndOk();
         DECLARE_MESSAGE_MAP()
 
@@ -53,6 +55,7 @@ class CEquipmentView :
         CComboBox m_comboGearSelections;
         CMFCButton m_buttonNew;
         CMFCButton m_buttonCopy;
+        CMFCButton m_buttonPaste;
         CMFCButton m_buttonDelete;
         CInventoryDialog * m_inventoryView;
 

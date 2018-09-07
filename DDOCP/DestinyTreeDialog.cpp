@@ -459,7 +459,7 @@ void CDestinyTreeDialog::RenderItemClickie(
             itemRect.Height());
     // show whether it can be trained or not
     RenderItemState(item, pDC, itemRect);
-    // render the cores icon, this may depend on a selector sub item
+    // render the items icon, this may depend on a selector sub item
     CRect iconRect(itemRect);
     iconRect.DeflateRect(6, 7, 5, 14);
     ASSERT(iconRect.Width() == 32);
@@ -488,7 +488,7 @@ void CDestinyTreeDialog::RenderItemPassive(
             itemRect.Height());
     // show whether it can be trained or not
     RenderItemState(item, pDC, itemRect);
-    // render the cores icon, this may depend on a selector sub item
+    // render the items icon, this may depend on a selector sub item
     CRect iconRect(itemRect);
     iconRect.DeflateRect(6, 6, 5, 15);
     ASSERT(iconRect.Width() == 32);
@@ -643,7 +643,7 @@ const EnhancementTreeItem * CDestinyTreeDialog::FindByPoint(CRect * pRect) const
     CPoint point;
     GetCursorPos(&point);
     ScreenToClient(&point);
-    // see if we need to highlight the item under the cursor
+    // identify the item under the cursor
     const EnhancementTreeItem * item = NULL;
     std::list<DestinyHitBox>::const_iterator it = m_hitBoxes.begin();
     while (item == NULL && it != m_hitBoxes.end())

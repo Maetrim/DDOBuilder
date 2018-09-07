@@ -692,7 +692,7 @@ const EnhancementTreeItem * CEnhancementTreeDialog::FindByPoint(CRect * pRect) c
     CPoint point;
     GetCursorPos(&point);
     ScreenToClient(&point);
-    // see if we need to highlight the item under the cursor
+    // identify the item under the cursor
     const EnhancementTreeItem * item = NULL;
     std::list<EnhancementHitBox>::const_iterator it = m_hitBoxes.begin();
     while (item == NULL && it != m_hitBoxes.end())
@@ -939,8 +939,9 @@ void CEnhancementTreeDialog::UpdateEnhancementTreeReset(Character * charData)
 void CEnhancementTreeDialog::UpdateActionPointsChanged(Character * charData)
 {
     // if the number of available APs have changed, then some items buy
-    // states may have changed if we have 2 or less APs available
-    if (charData->AvailableActionPoints(m_tree.Name(), m_type) <= 3)
+    // states may have changed if we have 4 or less APs available
+    // (Note that 4 AP is the maximum cost of any specific enhancement - arcane archer tree)
+    if (charData->AvailableActionPoints(m_tree.Name(), m_type) <= 4)
     {
         // avoid un necessary redraws when there will be no visual change
         Invalidate();

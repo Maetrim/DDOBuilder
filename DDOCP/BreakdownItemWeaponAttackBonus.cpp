@@ -165,6 +165,11 @@ bool BreakdownItemWeaponAttackBonus::AffectsUs(const Effect & effect) const
         // weapon enchantments affect us if specific weapon
         isUs = true;
     }
+    if (effect.Type() == Effect_WeaponPlus)
+    {
+        // weapon plus affect us if specific weapon
+        isUs = true;
+    }
     return isUs;
 }
 
