@@ -7,6 +7,7 @@
 
 class BreakdownItem;
 class CCustomDockablePane;
+class CDCView;
 class Character;
 class CSLAControl;
 class CStancesView;
@@ -39,6 +40,7 @@ class CMainFrame :
 
         MouseHook * GetMouseHook();
 
+        const CDCView * GetDCView();
         const CSLAControl * GetSLAControl();
         const CStancesView * GetStancesView();
 

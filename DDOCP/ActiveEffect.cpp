@@ -667,14 +667,15 @@ bool ActiveEffect::IsActive(const Character * pCharacter) const
             active = false;
         }
     }
-    bool requiredStanceActive = false;
     if (m_anyOfStances.size() > 0)
     {
+        bool requiredStanceActive = false;
         for (size_t i = 0; i < m_anyOfStances.size(); ++i)
         {
-            if (!pCharacter->IsStanceActive(m_anyOfStances[i]))
+            if (pCharacter->IsStanceActive(m_anyOfStances[i]))
             {
-                requiredStanceActive = false;
+                requiredStanceActive = true;
+                break;  // we have one, don't bother with the rest (if any)
             }
         }
         if (!requiredStanceActive)

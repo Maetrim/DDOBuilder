@@ -104,12 +104,12 @@ and throwing hammers.</Description>
                <Cost>1</Cost>
             </EnhancementSelection>
          </Selector>
-        <Effect>
+         <Effect>
             <Type>AttackBonus</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>1</Amount>
             <WeaponClass>FocusGroup</WeaponClass>
-        </Effect>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>KenseiCore2</InternalName>
@@ -325,7 +325,10 @@ Passive: +20 Melee Power and Ranged Power.</Description>
          <Effect>
             <Type>TacticalDC</Type>
             <Bonus>Enhancement</Bonus>
-            <Tactical>All</Tactical>
+            <Tactical>Trip</Tactical>
+            <Tactical>Sunder</Tactical>
+            <Tactical>Stun</Tactical>
+            <Tactical>General</Tactical>
             <Amount>2</Amount>
          </Effect>
       </EnhancementTreeItem>
@@ -501,12 +504,12 @@ and throwing hammers.</Description>
                </Requirements>
             </EnhancementSelection>
          </Selector>
-        <Effect>
+         <Effect>
             <Type>AttackBonus</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>1</Amount>
             <WeaponClass>FocusGroup</WeaponClass>
-        </Effect>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>KenseiExoticWeaponMastery</InternalName>
@@ -530,20 +533,20 @@ Note: This enhancement does not grant exotic proficiency.</Description>
                <Class>Fighter</Class>
                <Level>1</Level>
             </Requirement>
-             <RequiresOneOf>
-                 <Requirement>
-                     <Enhancement>KenseiWeaponGroupSecializationI</Enhancement>
-                     <Selection>Kensei Focus: Axes</Selection>
-                 </Requirement>
-                 <Requirement>
-                     <Enhancement>KenseiWeaponGroupSecializationI</Enhancement>
-                     <Selection>Kensei Focus: Crossbows</Selection>
-                 </Requirement>
-                 <Requirement>
-                     <Enhancement>KenseiWeaponGroupSecializationI</Enhancement>
-                     <Selection>Kensei Focus: Heavy Blades</Selection>
-                 </Requirement>
-             </RequiresOneOf>
+            <RequiresOneOf>
+               <Requirement>
+                  <Enhancement>KenseiWeaponGroupSecializationI</Enhancement>
+                  <Selection>Kensei Focus: Axes</Selection>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>KenseiWeaponGroupSecializationI</Enhancement>
+                  <Selection>Kensei Focus: Crossbows</Selection>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>KenseiWeaponGroupSecializationI</Enhancement>
+                  <Selection>Kensei Focus: Heavy Blades</Selection>
+               </Requirement>
+            </RequiresOneOf>
          </Requirements>
          <!--Effects handled in C++ code-->
       </EnhancementTreeItem>
@@ -620,7 +623,10 @@ Dodge for 6 seconds. (Cooldown: 15 seconds.)</Description>
          <Effect>
             <Type>TacticalDC</Type>
             <Bonus>Enhancement</Bonus>
-            <Tactical>All</Tactical>
+            <Tactical>Trip</Tactical>
+            <Tactical>Sunder</Tactical>
+            <Tactical>Stun</Tactical>
+            <Tactical>General</Tactical>
             <AmountVector size="3">1 2 3</AmountVector>
          </Effect>
       </EnhancementTreeItem>
@@ -645,24 +651,24 @@ These bonuses only apply to weapons in your focus group.</Description>
                <Class>Fighter</Class>
                <Level>2</Level>
             </Requirement>
-             <RequiresOneOf>
-                  <DisplayDescription>Weapon Focus Feat for Kensei specialization selection</DisplayDescription>
-                  <Requirement>
-                     <Feat>Weapon Focus: Bludgeoning Weapons</Feat>
-                  </Requirement>
-                  <Requirement>
-                     <Feat>Weapon Focus: Piercing Weapons</Feat>
-                  </Requirement>
-                  <Requirement>
-                     <Feat>Weapon Focus: Ranged Weapons</Feat>
-                  </Requirement>
-                  <Requirement>
-                     <Feat>Weapon Focus: Slashing Weapons</Feat>
-                  </Requirement>
-                  <Requirement>
-                     <Feat>Weapon Focus: Thrown Weapons</Feat>
-                  </Requirement>
-             </RequiresOneOf>
+            <RequiresOneOf>
+               <DisplayDescription>Weapon Focus Feat for Kensei specialization selection</DisplayDescription>
+               <Requirement>
+                  <Feat>Weapon Focus: Bludgeoning Weapons</Feat>
+               </Requirement>
+               <Requirement>
+                  <Feat>Weapon Focus: Piercing Weapons</Feat>
+               </Requirement>
+               <Requirement>
+                  <Feat>Weapon Focus: Ranged Weapons</Feat>
+               </Requirement>
+               <Requirement>
+                  <Feat>Weapon Focus: Slashing Weapons</Feat>
+               </Requirement>
+               <Requirement>
+                  <Feat>Weapon Focus: Thrown Weapons</Feat>
+               </Requirement>
+            </RequiresOneOf>
          </Requirements>
          <Selector>
             <EnhancementSelection>
@@ -859,12 +865,12 @@ and throwing hammers.</Description>
                </Requirements>
             </EnhancementSelection>
          </Selector>
-        <Effect>
+         <Effect>
             <Type>AttackBonus</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>1</Amount>
             <WeaponClass>FocusGroup</WeaponClass>
-        </Effect>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>KenseiImprovedDodge</InternalName>
@@ -897,14 +903,14 @@ Note: Does not stack with Tempest: Improved Dodge.</Description>
             <Type>DodgeBonus</Type>
             <Bonus>Enhancement</Bonus>
             <AmountVector size="3">1 2 3</AmountVector>
-             <Stance>Light Armor</Stance>
+            <Stance>Light Armor</Stance>
          </Effect>
          <Effect>
             <DisplayName>Kensei: Improved Dodge: Cloth/No Armor</DisplayName>
             <Type>DodgeBonus</Type>
             <Bonus>Enhancement</Bonus>
             <AmountVector size="3">1 2 3</AmountVector>
-             <Stance>Cloth Armor</Stance>
+            <Stance>Cloth Armor</Stance>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -1058,24 +1064,24 @@ Rank 3: Your passive ki regeneration is increased by 1.</Description>
                <Class>Fighter</Class>
                <Level>3</Level>
             </Requirement>
-             <RequiresOneOf>
-                  <DisplayDescription>Weapon Specialization Feat for Kensei specialization selection</DisplayDescription>
-                  <Requirement>
-                     <Feat>Weapon Specialization: Bludgeoning Weapons</Feat>
-                  </Requirement>
-                  <Requirement>
-                     <Feat>Weapon Specialization: Piercing Weapons</Feat>
-                  </Requirement>
-                  <Requirement>
-                     <Feat>Weapon Specialization: Ranged Weapons</Feat>
-                  </Requirement>
-                  <Requirement>
-                     <Feat>Weapon Specialization: Slashing Weapons</Feat>
-                  </Requirement>
-                  <Requirement>
-                     <Feat>Weapon Specialization: Thrown Weapons</Feat>
-                  </Requirement>
-             </RequiresOneOf>
+            <RequiresOneOf>
+               <DisplayDescription>Weapon Specialization Feat for Kensei specialization selection</DisplayDescription>
+               <Requirement>
+                  <Feat>Weapon Specialization: Bludgeoning Weapons</Feat>
+               </Requirement>
+               <Requirement>
+                  <Feat>Weapon Specialization: Piercing Weapons</Feat>
+               </Requirement>
+               <Requirement>
+                  <Feat>Weapon Specialization: Ranged Weapons</Feat>
+               </Requirement>
+               <Requirement>
+                  <Feat>Weapon Specialization: Slashing Weapons</Feat>
+               </Requirement>
+               <Requirement>
+                  <Feat>Weapon Specialization: Thrown Weapons</Feat>
+               </Requirement>
+            </RequiresOneOf>
          </Requirements>
          <Selector>
             <EnhancementSelection>
@@ -1273,12 +1279,12 @@ and throwing hammers.</Description>
                </Requirements>
             </EnhancementSelection>
          </Selector>
-        <Effect>
+         <Effect>
             <Type>AttackBonus</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>1</Amount>
             <WeaponClass>FocusGroup</WeaponClass>
-        </Effect>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>KenseiAthleticMastery</InternalName>
@@ -1430,12 +1436,12 @@ There is a 10% chance to regain an expended charge of this enhancement.</Descrip
             </Requirement>
          </Requirements>
          <Clickie/>
-          <Effect>
-              <Type>MeleePower</Type>
-              <Bonus>Enhancement</Bonus>
-              <Amount>20</Amount>
-              <Stance>On hit with Opportunity Attack</Stance>
-          </Effect>
+         <Effect>
+            <Type>MeleePower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>20</Amount>
+            <Stance>On hit with Opportunity Attack</Stance>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>KenseiWeaponGroupSecializationIV</InternalName>
@@ -1458,24 +1464,24 @@ These bonuses only apply to weapons in your focus group.</Description>
                <Class>Fighter</Class>
                <Level>4</Level>
             </Requirement>
-             <RequiresOneOf>
-                  <DisplayDescription>Greater Weapon Focus Feat for Kensei specialization selection</DisplayDescription>
-                  <Requirement>
-                     <Feat>Greater Weapon Focus: Bludgeoning Weapons</Feat>
-                  </Requirement>
-                  <Requirement>
-                     <Feat>Greater Weapon Focus: Piercing Weapons</Feat>
-                  </Requirement>
-                  <Requirement>
-                     <Feat>Greater Weapon Focus: Ranged Weapons</Feat>
-                  </Requirement>
-                  <Requirement>
-                     <Feat>Greater Weapon Focus: Slashing Weapons</Feat>
-                  </Requirement>
-                  <Requirement>
-                     <Feat>Greater Weapon Focus: Thrown Weapons</Feat>
-                  </Requirement>
-             </RequiresOneOf>
+            <RequiresOneOf>
+               <DisplayDescription>Greater Weapon Focus Feat for Kensei specialization selection</DisplayDescription>
+               <Requirement>
+                  <Feat>Greater Weapon Focus: Bludgeoning Weapons</Feat>
+               </Requirement>
+               <Requirement>
+                  <Feat>Greater Weapon Focus: Piercing Weapons</Feat>
+               </Requirement>
+               <Requirement>
+                  <Feat>Greater Weapon Focus: Ranged Weapons</Feat>
+               </Requirement>
+               <Requirement>
+                  <Feat>Greater Weapon Focus: Slashing Weapons</Feat>
+               </Requirement>
+               <Requirement>
+                  <Feat>Greater Weapon Focus: Thrown Weapons</Feat>
+               </Requirement>
+            </RequiresOneOf>
          </Requirements>
          <Selector>
             <EnhancementSelection>
@@ -1673,12 +1679,12 @@ and throwing hammers.</Description>
                </Requirements>
             </EnhancementSelection>
          </Selector>
-        <Effect>
+         <Effect>
             <Type>AttackBonus</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>1</Amount>
             <WeaponClass>FocusGroup</WeaponClass>
-        </Effect>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>KenseiLiquidCourage</InternalName>
@@ -1897,7 +1903,7 @@ various benefits from levels in Monk or as a Grandmaster of Flowers.</Descriptio
             <Bonus>Enhancement</Bonus>
             <Amount>20</Amount>
          </Effect>
-          <!--Weapon centering handled in C++ for Focus Weapons-->
+         <!--Weapon centering handled in C++ for Focus Weapons-->
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>KenseiDeadlyStrike</InternalName>

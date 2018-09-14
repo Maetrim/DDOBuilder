@@ -18,6 +18,7 @@ class Selector :
         void RenderIcon(const std::string & selection, CDC * pDC, const CRect & itemRect) const;
         std::string Selector::DisplayName(const std::string & selection) const;
         std::list<Effect> Effects(const std::string & selection) const;
+        std::list<DC> EffectDCs(const std::string & selection) const;
         std::list<Stance> Stances(const std::string & selection) const;
         size_t Cost(const std::string & selection) const;
 

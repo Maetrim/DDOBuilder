@@ -1046,7 +1046,7 @@ from the Arcane Archer tree. </Description>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Improved Damage Reduction I</Name>
-               <Description>Your Barbarian damage reduction is increased by 1.
+               <Description>Your Dilettante: Barbarian DR damage reduction is increased by 1/-.
 This enhancement cannot be taken if you possess the Resistance enhancement
 from Occult Slayer tree.</Description>
                <Icon>HalfElfImprovedDamageReduction</Icon>
@@ -1061,6 +1061,13 @@ from Occult Slayer tree.</Description>
                      </Requirement>
                   </RequiresNoneOf>
                </Requirements>
+              <Effect>
+                 <DisplayName>Half-Elf Dilettante: Barbarian DR</DisplayName>
+                 <Type>DR</Type>
+                 <Bonus>Feat</Bonus>
+                 <Amount>1</Amount>
+                 <DR>-</DR>
+              </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Improved Recovery I</Name>
@@ -1757,7 +1764,7 @@ per point of Concentration skill you have. (Cooldown: 1 minute)</Description>
          <Selector>
             <EnhancementSelection>
                <Name>Improved Damage Reduction II</Name>
-               <Description>Your Barbarian damage reduction is increased by 1%.
+               <Description>Your Dilettante: Barbarian DR damage reduction is increased by 1/-.
 +10 Hit Points. This enhancement cannot be taken if you possess the Resistance
 enhancement from Occult Slayer tree.</Description>
                <Icon>HalfElfImprovedDamageReduction</Icon>
@@ -1772,13 +1779,13 @@ enhancement from Occult Slayer tree.</Description>
                      </Requirement>
                   </RequiresNoneOf>
                </Requirements>
-               <Effect>
-                  <DisplayName>Barbarian DR</DisplayName>
-                  <Bonus>Feat</Bonus>
-                  <Type>DR</Type>
-                  <Amount>1</Amount>
-                  <DR>%</DR>
-               </Effect>
+              <Effect>
+                 <DisplayName>Half-Elf Dilettante: Barbarian DR</DisplayName>
+                 <Type>DR</Type>
+                 <Bonus>Feat</Bonus>
+                 <Amount>1</Amount>
+                 <DR>-</DR>
+              </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Improved Recovery II</Name>
@@ -1881,7 +1888,10 @@ fail saving throws against fear on a roll of a natural 1.</Description>
                   <Type>TacticalDC</Type>
                   <Bonus>Enhancement</Bonus>
                   <Amount>2</Amount>
-                  <Tactical>All</Tactical>
+                    <Tactical>Trip</Tactical>
+                    <Tactical>Sunder</Tactical>
+                    <Tactical>Stun</Tactical>
+                    <Tactical>General</Tactical>
                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
@@ -1905,6 +1915,17 @@ from the Mechanic tree.</Description>
                      </Requirement>
                   </RequiresNoneOf>
                </Requirements>
+               <DC>
+                  <Name>Half-Elf: Tanglefoot</Name>
+                  <Description>Alchemical Trap Activate: Throws a cask of caustic liquid at your enemy,
+which explodes into a sticky mess. Enemies within the area of the goo puddle
+take 4d6 acid damage every 2 seconds and are slowed</Description>
+                  <Icon>FalconDeathFromAbove</Icon>
+                  <DCVersus>Reflex</DCVersus>
+                  <AmountVector size="1">10</AmountVector>
+                  <HalfClassLevel>All</HalfClassLevel>
+                  <ModAbility>Intelligence</ModAbility>
+               </DC>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Tempest</Name>

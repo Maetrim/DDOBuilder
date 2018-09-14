@@ -39,14 +39,17 @@ CString BreakdownItemSpellSchool::Value() const
 void BreakdownItemSpellSchool::CreateOtherEffects()
 {
     m_otherEffects.clear();
-    // all spell DC's start at a base of 10
-    ActiveEffect amountTrained(
-            Bonus_base,
-            "Base DC",
-            1,
-            10,
-            "");        // no tree
-    AddOtherEffect(amountTrained);
+    if (m_spellSchoolType != SpellSchool_GlobalDC)
+    {
+        // all spell DC's start at a base of 10
+        ActiveEffect amountTrained(
+                Bonus_base,
+                "Base DC",
+                1,
+                10,
+                "");        // no tree
+        AddOtherEffect(amountTrained);
+    }
 }
 
 bool BreakdownItemSpellSchool::AffectsUs(const Effect & effect) const

@@ -2,6 +2,7 @@
 //
 #pragma once
 #include "XmlLib\DLMacros.h"
+#include "DC.h"
 #include "EnhancementSelection.h"
 #include "Effect.h"
 #include "Requirements.h"
@@ -42,7 +43,8 @@ class EnhancementSelection :
                 DL_SIMPLE(_, size_t, Cost, 0) \
                 DL_OPTIONAL_OBJECT(_, Requirements, RequirementsToTrain) \
                 DL_OBJECT_LIST(_, Stance, Stances) \
-                DL_OBJECT_LIST(_, Effect, Effects)
+                DL_OBJECT_LIST(_, Effect, Effects) \
+                DL_OBJECT_LIST(_, DC, EffectDC)
 
         DL_DECLARE_ACCESS(EnhancementSelection_PROPERTIES)
         DL_DECLARE_VARIABLES(EnhancementSelection_PROPERTIES)

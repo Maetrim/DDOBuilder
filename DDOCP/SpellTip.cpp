@@ -348,7 +348,7 @@ void CSpellTip::SetSpell(
     m_spell = spell;
     m_class = ct;
     LoadImageFile(IT_spell, m_spell.Icon(), &m_image);
-    m_DC = m_spell.DC(*charData, ct, spellLevel, maxSpellLevel);
+    m_DC = m_spell.SpellDC(*charData, ct, spellLevel, maxSpellLevel);
     m_spellLevel = spellLevel;
     m_pCharacter = charData;
 }

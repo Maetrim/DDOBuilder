@@ -160,6 +160,11 @@ bool BreakdownItemWeaponAttackBonus::AffectsUs(const Effect & effect) const
         // it is the right weapon target type
         isUs = true;
     }
+    if (effect.Type() == Effect_WeaponAttackAbility)
+    {
+        // weapon enchantments affect us if specific weapon
+        isUs = true;
+    }
     if (effect.Type() == Effect_WeaponEnchantment)
     {
         // weapon enchantments affect us if specific weapon
@@ -200,7 +205,7 @@ void BreakdownItemWeaponAttackBonus::UpdateFeatEffect(
     if (AffectsUs(effect))
     {
         // handle special affects that change our list of available stats
-        if (effect.HasAbility())
+        if (effect.Type() == Effect_WeaponAttackAbility)
         {
             // add to the list of available stats for this weapon
             ASSERT(effect.HasAbility());
@@ -257,7 +262,7 @@ void BreakdownItemWeaponAttackBonus::UpdateItemEffect(
     if (AffectsUs(effect))
     {
         // handle special affects that change our list of available stats
-        if (effect.HasAbility())
+        if (effect.Type() == Effect_WeaponAttackAbility)
         {
             // add to the list of available stats for this weapon
             ASSERT(effect.HasAbility());
@@ -314,7 +319,7 @@ void BreakdownItemWeaponAttackBonus::UpdateEnhancementEffect(
     if (AffectsUs(effect.m_effect))
     {
         // handle special affects that change our list of available stats
-        if (effect.m_effect.HasAbility())
+        if (effect.m_effect.Type() == Effect_WeaponAttackAbility)
         {
             // add to the list of available stats for this weapon
             ASSERT(effect.m_effect.HasAbility());

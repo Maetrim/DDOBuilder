@@ -50,28 +50,49 @@ void BreakdownItemWeaponDamageBonus::CreateOtherEffects()
         AbilityType ability = LargestStatBonus();
         if (ability != Ability_Unknown)
         {
+            double multiplier = 1.0;
             BreakdownItem * pBI = FindBreakdown(StatToBreakdown(ability));
             ASSERT(pBI != NULL);
             int bonus = BaseStatToBonus(pBI->Total());
-            bool only50Percent = false;
             if (m_bOffHand)
             {
                 // off hand only gets 50% of ability bonus to damage unless
                 // TempestDualPerfection is trained
                 if (!m_pCharacter->IsEnhancementTrained("TempestDualPerfection", ""))
                 {
-                    // divide the bonus by 2
-                    only50Percent = true;
-                    bonus /= 2; // rounds down
+                    multiplier = 0.5;
+                }
+            }
+            else
+            {
+                // single weapon fighting line of feats can affect the amount of damage bonus
+                // from your main damage stat
+                if (m_pCharacter->IsStanceActive("Single Weapon Fighting"))
+                {
+                    // they are single weapon fighting, work out the total stat multiplier to use
+                    if (m_pCharacter->IsFeatTrained("Improved Single Weapon Fighting"))
+                    {
+                        multiplier = 1.25;
+                        if (m_pCharacter->IsFeatTrained("Greater Single Weapon Fighting"))
+                        {
+                            multiplier = 1.5;
+                        }
+                    }
                 }
             }
             if (bonus != 0) // only add to list if non zero
             {
                 // should now have the best option
                 std::string bonusName;
-                if (only50Percent)
+                if (multiplier != 1.0)
                 {
-                    bonusName = "50% of Ability bonus (" + EnumEntryText(ability, abilityTypeMap) + ")";
+                    CString text;
+                    text.Format(
+                            "%d%% of Ability bonus (%s)",
+                            (int)(multiplier * 100),
+                            EnumEntryText(ability, abilityTypeMap));
+                    bonusName = text;
+                    bonus = (int)(bonus * multiplier);
                 }
                 else
                 {
@@ -135,6 +156,11 @@ bool BreakdownItemWeaponDamageBonus::AffectsUs(const Effect & effect) const
         // it is the right weapon target type
         isUs = true;
     }
+    if (effect.Type() == Effect_WeaponDamageAbility)
+    {
+        // weapon enchantments affect us if specific weapon
+        isUs = true;
+    }
     if (effect.Type() == Effect_WeaponEnchantment)
     {
         // weapon enchantments affect us if specific weapon
@@ -168,7 +194,7 @@ void BreakdownItemWeaponDamageBonus::UpdateFeatEffect(
     // handle special affects that change our list of available stats
     if (AffectsUs(effect))
     {
-        if (effect.HasAbility())
+        if (effect.Type() == Effect_WeaponDamageAbility)
         {
             // add to the list of available stats for this weapon
             ASSERT(effect.HasAbility());
@@ -213,7 +239,7 @@ void BreakdownItemWeaponDamageBonus::UpdateItemEffect(
     // handle special affects that change our list of available stats
     if (AffectsUs(effect))
     {
-        if (effect.HasAbility())
+        if (effect.Type() == Effect_WeaponDamageAbility)
         {
             // add to the list of available stats for this weapon
             ASSERT(effect.HasAbility());
@@ -258,7 +284,7 @@ void BreakdownItemWeaponDamageBonus::UpdateEnhancementEffect(
     // handle special affects that change our list of available stats
     if (AffectsUs(effect.m_effect))
     {
-        if (effect.m_effect.HasAbility())
+        if (effect.m_effect.Type() == Effect_WeaponDamageAbility)
         {
             // add to the list of available stats for this weapon
             ASSERT(effect.m_effect.HasAbility());

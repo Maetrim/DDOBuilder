@@ -160,6 +160,13 @@ void Item::VerifyObject() const
         ok &= (*it).VerifyObject(&ss);
         ++it;
     }
+    // verify its DC objects
+    std::list<DC>::const_iterator edcit = m_EffectDC.begin();
+    while (edcit != m_EffectDC.end())
+    {
+        ok &= (*edcit).VerifyObject(&ss);
+        ++edcit;
+    }
 
     if (!ok)
     {

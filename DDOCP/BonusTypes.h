@@ -12,6 +12,7 @@ enum BonusType
     Bonus_Unknown = 0,
     // only the highest of these effects stack if multiple present
     Bonus_ability,
+    Bonus_actionBoost,
     Bonus_alchemical,
     Bonus_artifact,
     Bonus_armor,
@@ -75,6 +76,7 @@ const XmlLib::enumMapEntry<BonusType> bonusTypeMap[] =
 {
     {Bonus_Unknown, L"Unknown"},
     {Bonus_ability, L"Ability"},
+    {Bonus_actionBoost, L"Action Boost"},
     {Bonus_alchemical, L"Alchemical"},
     {Bonus_artifact, L"Artifact"},
     {Bonus_armor, L"Armor"},

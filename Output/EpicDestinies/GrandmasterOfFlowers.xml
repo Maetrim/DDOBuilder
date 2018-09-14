@@ -75,7 +75,10 @@ versus enchantments. Also gain +10 Melee power and +1 to the DC of your tactical
          <Effect>
             <Type>TacticalDC</Type>
             <Bonus>Destiny</Bonus>
-            <Tactical>All</Tactical>
+            <Tactical>Trip</Tactical>
+            <Tactical>Sunder</Tactical>
+            <Tactical>Stun</Tactical>
+            <Tactical>General</Tactical>
             <Amount>1</Amount>
          </Effect>
       </EnhancementTreeItem>
@@ -103,11 +106,11 @@ and other adverse conditions affecting you. Cost 30ki.
             <Bonus>Destiny</Bonus>
             <Amount>1</Amount>
          </Effect>
-          <Effect>
-              <Type>SpellLikeAbility</Type>
-              <Bonus>Destiny</Bonus>
-              <SpellLikeAbility>Wholeness of Spirit</SpellLikeAbility>
-          </Effect>
+         <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Destiny</Bonus>
+            <SpellLikeAbility>Wholeness of Spirit</SpellLikeAbility>
+         </Effect>
          <Effect>
             <Type>MeleePower</Type>
             <Bonus>Destiny</Bonus>
@@ -144,7 +147,10 @@ Gain +1 to the DC of your tactical feats and +10 Melee power.</Description>
          <Effect>
             <Type>TacticalDC</Type>
             <Bonus>Destiny</Bonus>
-            <Tactical>All</Tactical>
+            <Tactical>Trip</Tactical>
+            <Tactical>Sunder</Tactical>
+            <Tactical>Stun</Tactical>
+            <Tactical>General</Tactical>
             <Amount>1</Amount>
          </Effect>
          <Effect>
@@ -210,7 +216,10 @@ Gain +1 to the DC of your tactical feats and +10 Melee power.</Description>
          <Effect>
             <Type>TacticalDC</Type>
             <Bonus>Destiny</Bonus>
-            <Tactical>All</Tactical>
+            <Tactical>Trip</Tactical>
+            <Tactical>Sunder</Tactical>
+            <Tactical>Stun</Tactical>
+            <Tactical>General</Tactical>
             <Amount>1</Amount>
          </Effect>
          <Effect>
@@ -467,6 +476,16 @@ Reflex save for half (DC 10 + Character level + WIS mod). Cost 20 ki.</Descripti
                <Enhancement>LilyPetal</Enhancement>
             </Requirement>
          </Requirements>
+         <DC>
+            <Name>Grandmaster of Flowers: Orchid Blossom</Name>
+            <Description>Projects blast of ki, as with Lily Petal, but to multiple targets.
+80-120 +8-12 dmg per character level to enemies in area.</Description>
+            <Icon>OrchidBlossom</Icon>
+            <DCVersus>Reflex</DCVersus>
+            <AmountVector size="1">10</AmountVector>
+            <ClassLevel>All</ClassLevel>
+            <ModAbility>Wisdom</ModAbility>
+         </DC>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Grandmaster of Flowers: Walking with Waves</Name>
@@ -713,6 +732,16 @@ Enemies who fail save are knocked down. Cost 25ki.</Description>
                <Enhancement>OrchidBlossom</Enhancement>
             </Requirement>
          </Requirements>
+         <DC>
+            <Name>Grandmaster of Flowers: Drfiting Lotus</Name>
+            <Description>100-160 +10-14 dmg per character level area-of-effect ki blast centered around you.
+Reflex save for half damage. Enemies who fail save are knocked down.</Description>
+            <Icon>DriftingLotus</Icon>
+            <DCVersus>Reflex</DCVersus>
+            <AmountVector size="1">10</AmountVector>
+            <ClassLevel>All</ClassLevel>
+            <ModAbility>Wisdom</ModAbility>
+         </DC>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Grandmaster of Flowers: Dancing with Flames</Name>
@@ -837,6 +866,15 @@ For the next 12 seconds, gain +25% Dodge. Cost 30 Ki. (Cooldown 1 min)</Descript
                <Enhancement>DriftingLotus</Enhancement>
             </Requirement>
          </Requirements>
+         <DC>
+            <Name>Grandmaster of Flowers: A Scattering of Petals</Name>
+            <Description>Nearby enemies must make a Fortitude save or become blinded.</Description>
+            <Icon>AScatteringOfPetals</Icon>
+            <DCVersus>Fortitude</DCVersus>
+            <AmountVector size="1">10</AmountVector>
+            <ClassLevel>All</ClassLevel>
+            <ModAbility>Wisdom</ModAbility>
+         </DC>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Grandmaster of Flowers: Everything is Nothing</Name>
@@ -857,6 +895,26 @@ seconds (certain enemies are immune from this effect) and then take 1000 damage
          <MinSpent>20</MinSpent>
          <Clickie/>
          <Requirements/>
+         <DC>
+            <Name>Grandmaster of Flowers: Everything is Nothing (Erasure)</Name>
+            <Description>Everything is Nothing. On activation, enemies in a large radius from you must
+make a Will saving throw or be erased from the multiverse.</Description>
+            <Icon>EverythingIsNothing</Icon>
+            <DCVersus>Will</DCVersus>
+            <AmountVector size="1">10</AmountVector>
+            <ClassLevel>All</ClassLevel>
+            <ModAbility>Wisdom</ModAbility>
+         </DC>
+         <DC>
+            <Name>Grandmaster of Flowers: Everything is Nothing (Damage)</Name>
+            <Description>Everything is Nothing. On activation, enemies in a large radius from you must
+make a Will saving throw or be erased from the multiverse.</Description>
+            <Icon>EverythingIsNothing</Icon>
+            <DCVersus>Fortitude</DCVersus>
+            <AmountVector size="1">10</AmountVector>
+            <ClassLevel>All</ClassLevel>
+            <ModAbility>Wisdom</ModAbility>
+         </DC>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Grandmaster of Flowers: Ability VI</Name>

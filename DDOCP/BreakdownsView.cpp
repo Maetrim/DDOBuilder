@@ -1121,83 +1121,18 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
             hParent,
             TVI_LAST);
     m_itemBreakdownTree.SetItemData(hTacticalParent, 0);
-    {
-        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
-                "Assassinate",
-                hTacticalParent,
-                TVI_LAST);
-        BreakdownItem * pAssassinate = new BreakdownItemAssassinate(
-                Breakdown_Assassinate,
-                &m_itemBreakdownTree,
-                hItem);
-        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pAssassinate);
-        m_items.push_back(pAssassinate);
-    }
-    {
-        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
-                "Stunning Blow",
-                hTacticalParent,
-                TVI_LAST);
-        BreakdownItem * pSB = new BreakdownItemTactical(
-                Breakdown_TacticalStunningBlow,
-                Tactical_StunningBlow,
-                &m_itemBreakdownTree,
-                hItem);
-        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pSB);
-        m_items.push_back(pSB);
-    }
-    {
-        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
-                "Stunning Fist",
-                hTacticalParent,
-                TVI_LAST);
-        BreakdownItem * pSF = new BreakdownItemTactical(
-                Breakdown_TacticalStunningFist,
-                Tactical_StunningFist,
-                &m_itemBreakdownTree,
-                hItem);
-        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pSF);
-        m_items.push_back(pSF);
-    }
-    {
-        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
-                "Sunder",
-                hTacticalParent,
-                TVI_LAST);
-        BreakdownItem * pSunder = new BreakdownItemTactical(
-                Breakdown_TacticalSunder,
-                Tactical_Sunder,
-                &m_itemBreakdownTree,
-                hItem);
-        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pSunder);
-        m_items.push_back(pSunder);
-    }
-    {
-        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
-                "Trip",
-                hTacticalParent,
-                TVI_LAST);
-        BreakdownItem * pTrip = new BreakdownItemTactical(
-                Breakdown_TacticalTrip,
-                Tactical_Trip,
-                &m_itemBreakdownTree,
-                hItem);
-        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pTrip);
-        m_items.push_back(pTrip);
-    }
-    {
-        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
-                "Stunning Shield",
-                hTacticalParent,
-                TVI_LAST);
-        BreakdownItem * pSS = new BreakdownItemTactical(
-                Breakdown_TacticalStunningShield,
-                Tactical_StunningShield,
-                &m_itemBreakdownTree,
-                hItem);
-        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pSS);
-        m_items.push_back(pSS);
-    }
+    AddTacticalItem(Breakdown_TacticalAssassinate, Tactical_Assassinate, "Assassinate", hTacticalParent);
+    AddTacticalItem(Breakdown_TacticalStunning, Tactical_Stun, "Stun", hTacticalParent);
+    AddTacticalItem(Breakdown_TacticalSunder, Tactical_Sunder, "Sunder", hTacticalParent);
+    AddTacticalItem(Breakdown_TacticalTrip, Tactical_Trip, "Trip", hTacticalParent);
+    AddTacticalItem(Breakdown_TacticalGeneral, Tactical_General, "General", hTacticalParent);
+    AddTacticalItem(Breakdown_TacticalStunningShield, Tactical_StunningShield, "Stunning Shield", hTacticalParent);
+    AddTacticalItem(Breakdown_TacticalWands, Tactical_Wands, "Wands", hTacticalParent);
+    AddTacticalItem(Breakdown_TacticalFear, Tactical_Fear, "Fear", hTacticalParent);
+    AddTacticalItem(Breakdown_TacticalInnateAttack, Tactical_InnateAttack, "Innate Attack", hTacticalParent);
+    AddTacticalItem(Breakdown_TacticalBreathWeapon, Tactical_BreathWeapon, "Breath Weapon", hTacticalParent);
+    AddTacticalItem(Breakdown_TacticalPoison, Tactical_Poison, "Poison", hTacticalParent);
+    AddTacticalItem(Breakdown_TacticalRuneArm, Tactical_RuneArm, "Rune Arm", hTacticalParent);
 }
 
 void CBreakdownsView::CreateMagicalBreakdowns()
@@ -1375,6 +1310,7 @@ void CBreakdownsView::CreateMagicalBreakdowns()
         AddSpellSchool(Breakdown_SpellSchoolIllusion, SpellSchool_Illusion, "Illusion DC", hItem);
         AddSpellSchool(Breakdown_SpellSchoolNecromancy, SpellSchool_Necromancy, "Necromancy DC", hItem);
         AddSpellSchool(Breakdown_SpellSchoolTransmutation, SpellSchool_Transmutation, "Transmutation DC", hItem);
+        AddSpellSchool(Breakdown_SpellSchoolGlobalDC, SpellSchool_GlobalDC, "Global DC Bonus", hItem);
     }
 }
 
@@ -1735,6 +1671,25 @@ void CBreakdownsView::CreateHirelingBreakdowns()
         m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pSpell);
         m_items.push_back(pSpell);
     }
+}
+
+void CBreakdownsView::AddTacticalItem(
+        BreakdownType bt,
+        TacticalType tt,
+        const std::string & name,
+        HTREEITEM hParent)
+{
+    HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+            name.c_str(),
+            hParent,
+            TVI_LAST);
+    BreakdownItem * pTT = new BreakdownItemTactical(
+            bt,
+            tt,
+            &m_itemBreakdownTree,
+            hItem);
+    m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pTT);
+    m_items.push_back(pTT);
 }
 
 void CBreakdownsView::AddSpellPower(

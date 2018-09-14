@@ -312,9 +312,9 @@ to fear. Unlisted effect: +6 to reflex saves</Description>
             <AmountVector size="3">2 4 6</AmountVector>
          </Effect>
          <Effect>
-            <Type>SpellDC</Type>
+            <Type>TacticalDC</Type>
             <Bonus>Destiny</Bonus>
-            <School>Fear</School>
+            <Tactical>Fear</Tactical>
             <AmountVector size="3">1 2 3</AmountVector>
          </Effect>
          <Effect>
@@ -326,7 +326,7 @@ to fear. Unlisted effect: +6 to reflex saves</Description>
          <Effect>
             <Type>Immunity</Type>
             <Bonus>Destiny</Bonus>
-             <Immunity>Fear</Immunity>
+            <Immunity>Fear</Immunity>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -438,6 +438,17 @@ attacking or casting spells. (Cooldown 4mins)</Description>
                <Enhancement>EnergySheath</Enhancement>
             </Requirement>
          </Requirements>
+         <DC>
+            <Name>Draconic Incarnation: Go out with a bang</Name>
+            <Description>Can only be used when HP &lt;=50%. Nearby enemies take [1d8+8/1d10+10/1d12+12]
+[fire/cold/acid/electric] damage per caster level.</Description>
+            <Icon>GoOutWithABang</Icon>
+            <DCVersus>Reflex</DCVersus>
+            <AmountVector size="1">20</AmountVector>
+            <HalfClassLevel>All</HalfClassLevel>
+            <ModAbility>Intelligence</ModAbility>
+            <ModAbility>Charisma</ModAbility>
+         </DC>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Draconic Incarnation: Barrier of Scales</Name>
@@ -552,6 +563,17 @@ negates the effect (if save successful still shaken). (Cooldown 2mins)</Descript
                <Enhancement>DraconicPresence</Enhancement>
             </Requirement>
          </Requirements>
+         <DC>
+            <Name>Draconic Incarnation: Daunting Roar</Name>
+            <Description>Enemies within the AoE are subject to despair effect and will be paralyzed
+for 15 seconds.</Description>
+            <Icon>DauntingRoar</Icon>
+            <DCVersus>Will</DCVersus>
+            <AmountVector size="1">20</AmountVector>
+            <HalfClassLevel>All</HalfClassLevel>
+            <ModAbility>Intelligence</ModAbility>
+            <ModAbility>Charisma</ModAbility>
+         </DC>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Draconic Incarnation: Dragon Heritage</Name>
@@ -696,6 +718,17 @@ You gain +10/20/30 cold spell power</Description>
                <Enhancement>GoOutWithABang</Enhancement>
             </Requirement>
          </Requirements>
+         <DC>
+            <Name>Draconic Incarnation: Energy Burst</Name>
+            <Description>A pulse of [fire/ice/electricity/corrosion] emanates from your body dealing
+[1d10+10/1d12+12/1d15+15] [fire/cold/electric/acid] damage per character level.</Description>
+            <Icon>EnergyBurst</Icon>
+            <DCVersus>Reflex</DCVersus>
+            <AmountVector size="1">20</AmountVector>
+            <HalfClassLevel>All</HalfClassLevel>
+            <ModAbility>Intelligence</ModAbility>
+            <ModAbility>Charisma</ModAbility>
+         </DC>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Draconic Incarnation: Secondary Spell Speciality</Name>
@@ -935,11 +968,35 @@ character level + INT/CHA modifier negates knockdown). (Cooldown 1min)</Descript
                <Enhancement>DragonBreath</Enhancement>
             </Requirement>
          </Requirements>
-          <Effect>
-              <Type>SpellLikeAbility</Type>
-              <Bonus>Destiny</Bonus>
-              <SpellLikeAbility>Flyby Attack</SpellLikeAbility>
-          </Effect>
+         <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Destiny</Bonus>
+            <SpellLikeAbility>Flyby Attack</SpellLikeAbility>
+         </Effect>
+         <DC>
+            <Name>Draconic Incarnation: Flyby Attack (Damage)</Name>
+            <Description>Executes an abundant step which passes through enemies and deals 2d6
+[fire/cold/acid/electric] damage per character level to any enemy struck
+during the attack. Each enemy is also knocked down.</Description>
+            <Icon>FlybyAttack</Icon>
+            <DCVersus>Reflex</DCVersus>
+            <AmountVector size="1">20</AmountVector>
+            <HalfClassLevel>All</HalfClassLevel>
+            <ModAbility>Intelligence</ModAbility>
+            <ModAbility>Charisma</ModAbility>
+         </DC>
+         <DC>
+            <Name>Draconic Incarnation: Flyby Attack (Knockdown)</Name>
+            <Description>Executes an abundant step which passes through enemies and deals 2d6
+[fire/cold/acid/electric] damage per character level to any enemy struck
+during the attack. Each enemy is also knocked down.</Description>
+            <Icon>FlybyAttack</Icon>
+            <DCVersus>Str/Dex</DCVersus>
+            <AmountVector size="1">20</AmountVector>
+            <HalfClassLevel>All</HalfClassLevel>
+            <ModAbility>Intelligence</ModAbility>
+            <ModAbility>Charisma</ModAbility>
+         </DC>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Draconic Incarnation: Dragon Breath</Name>
@@ -1039,6 +1096,18 @@ INT/CHA modifier for half damage). (Cooldown 2mins, 30 sp)</Description>
                <Enhancement>EnergyBurst</Enhancement>
             </Requirement>
          </Requirements>
+         <DC>
+            <Name>Draconic Incarnation: Energy Vortex</Name>
+            <Description>Intense elemental energy swirl around you dealing damage to enemy in the AoE.
+Follows you and deal 1d6 [fire/cold/acid/electric] damage per caster level
+every 2 seconds for 45 seconds.</Description>
+            <Icon>EnergyVortex</Icon>
+            <DCVersus>Reflex</DCVersus>
+            <AmountVector size="1">20</AmountVector>
+            <HalfClassLevel>All</HalfClassLevel>
+            <ModAbility>Intelligence</ModAbility>
+            <ModAbility>Charisma</ModAbility>
+         </DC>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Draconic Incarnation: Draconic Hunger</Name>

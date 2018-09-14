@@ -109,9 +109,10 @@ LRESULT CReaperEnhancementsView::OnNewDocument(WPARAM wParam, LPARAM lParam)
     m_pDocument = pDoc;
     // lParam is the character pointer
     Character * pCharacter = (Character *)(lParam);
-    m_pCharacter = pCharacter;
-    if (m_pCharacter != NULL)
+    if (pCharacter != NULL)
     {
+        m_pCharacter = pCharacter;
+        m_pCharacter->AttachObserver(this);
         if (IsWindow(GetSafeHwnd()))
         {
             SetScrollPos(SB_HORZ, 0, TRUE);
@@ -124,6 +125,11 @@ LRESULT CReaperEnhancementsView::OnNewDocument(WPARAM wParam, LPARAM lParam)
     }
     else
     {
+        if (m_pCharacter != NULL)
+        {
+            m_pCharacter->DetachObserver(this);
+            m_pCharacter = NULL;
+        }
         DestroyEnhancementWindows();
     }
     UpdateWindowTitle();
@@ -223,7 +229,51 @@ void CReaperEnhancementsView::DestroyEnhancementWindows()
 void CReaperEnhancementsView::UpdateWindowTitle()
 {
     CString text;
-    text.Format("Reaper Enhancements");
+    if (m_pCharacter != NULL)
+    {
+        // total up the total number of spent reaper points
+        size_t totalReaperPoints = 0;
+        for (size_t i = 0; i < m_availableTrees.size(); ++i)
+        {
+            totalReaperPoints += m_pCharacter->APSpentInTree(m_availableTrees[i].Name());
+        }
+        // calculate the required reaper xp
+        size_t reaperXp = 0;
+        for (size_t i = 0; i < totalReaperPoints; ++i)
+        {
+            reaperXp += (i * 2 + 1);
+        }
+        text.Format("Reaper Enhancements - %d RAPs, Requires %dk Reaper XP",
+                totalReaperPoints,
+                reaperXp);
+    }
+    else
+    {
+        text = "Reaper Enhancements";
+    }
     GetParent()->SetWindowText(text);
 }
 
+void CReaperEnhancementsView::UpdateEnhancementTrained(
+        Character * charData,
+        const std::string & enhancementName,
+        const std::string & selection,
+        bool isTier5)
+{
+    UpdateWindowTitle();
+}
+
+void CReaperEnhancementsView::UpdateEnhancementRevoked(
+        Character * charData,
+        const std::string & enhancementName,
+        const std::string & selection,
+        bool isTier5)
+{
+    UpdateWindowTitle();
+}
+
+void CReaperEnhancementsView::UpdateEnhancementTreeReset(
+        Character * charData)
+{
+    UpdateWindowTitle();
+}

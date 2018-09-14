@@ -6,6 +6,7 @@
 
 class Augment;
 class Character;
+class DC;
 class EnhancementSelection;
 class EnhancementTreeItem;
 class Feat;
@@ -51,6 +52,9 @@ class CInfoTip :
                 const LevelTraining * levelData,
                 ClassType expectedClass);
         void SetSelfBuff(const std::string & name);
+        void SetDCItem(
+                const Character & charData,
+                const DC * pDC);
 
         void SetOrigin(CPoint origin, CPoint alternate, bool rightAlign);
         void Show();

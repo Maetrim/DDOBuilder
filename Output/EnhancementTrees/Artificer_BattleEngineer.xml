@@ -809,6 +809,18 @@ to Fortitude saves due to shock, stack 5 times. Lasts 24 seconds.
 This ability shares a cooldown with sunder.</Description>
                <Icon>BEShatterDefensesCrossbow</Icon>
                <Cost>1</Cost>
+               <DC>
+                  <Name>Battle Engineer: Shatter Defenses (Crossbow)</Name>
+                  <Description>Tactical Ranges Crossbow Attack +0.5[W]
+On Hit: Reduce the target's Armor Class by 5 and lowers fortification by 10%.
+A successful fortitude save negates this effect.</Description>
+                  <Icon>BEShatterDefensesCrossbow</Icon>
+                  <DCVersus>Fortitude</DCVersus>
+                  <AmountVector size="1">10</AmountVector>
+                  <HalfClassLevel>Artificer</HalfClassLevel>
+                  <FullAbility>Intelligence</FullAbility>
+                  <Tactical>Sunder</Tactical>
+               </DC>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Shatter Defenses (Melee)</Name>
@@ -820,6 +832,18 @@ to Fortitude saves due to shock, stack 5 times. Lasts 24 seconds.
 This ability shares a cooldown with sunder.</Description>
                <Icon>BEShatterDefensesMelee</Icon>
                <Cost>1</Cost>
+               <DC>
+                  <Name>Battle Engineer: Shatter Defenses (Melee)</Name>
+                  <Description>Tactical Melee Attack +1[W]
+On Hit: Reduce the target's Armor Class by 5 and lowers fortification by 10%.
+A successful fortitude save negates this effect.</Description>
+                  <Icon>BEShatterDefensesMelee</Icon>
+                  <DCVersus>Fortitude</DCVersus>
+                  <AmountVector size="1">10</AmountVector>
+                  <HalfClassLevel>Artificer</HalfClassLevel>
+                  <FullAbility>Intelligence</FullAbility>
+                  <Tactical>Sunder</Tactical>
+               </DC>
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
@@ -1034,18 +1058,18 @@ bonus for 20 seconds. (Cooldown: 30 seconds.)</Description>
                <Level>4</Level>
             </Requirement>
          </Requirements>
-          <Effect>
-              <Type>Doublestrike</Type>
-              <Bonus>Enhancement</Bonus>
-              <AmountVector size="3">3 6 10</AmountVector>
-              <Stance>Rune Arm</Stance>
-          </Effect>
-          <Effect>
-              <Type>Doubleshot</Type>
-              <Bonus>Enhancement</Bonus>
-              <AmountVector size="3">3 6 10</AmountVector>
-              <Stance>Rune Arm</Stance>
-          </Effect>
+         <Effect>
+            <Type>Doublestrike</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">3 6 10</AmountVector>
+            <Stance>Rune Arm</Stance>
+         </Effect>
+         <Effect>
+            <Type>Doubleshot</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">3 6 10</AmountVector>
+            <Stance>Rune Arm</Stance>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Battle Engineer: Ability II</Name>
@@ -1262,6 +1286,18 @@ Trips the target. A successful Strength check negates the Trip effect.
 (DC 14 + 1/2 Artificer Level + INT mod + Sunder bonuses)</Description>
                <Icon>BEthunderShockWeaponCrossbow</Icon>
                <Cost>1</Cost>
+               <DC>
+                  <Name>Battle Engineer: Thunder-Shock Weapon (Crossbow)</Name>
+                  <Description>Tactical Ranged Crossbow Attack +1.5[W]
+On Damage: Deals 6d6 extra Electric damage that scales with 200% Ranged Power and
+Trips the target. A successful Strength check negates the Trip effect.</Description>
+                  <Icon>BEthunderShockWeaponCrossbow</Icon>
+                  <DCVersus>Strength</DCVersus>
+                  <AmountVector size="1">14</AmountVector>
+                  <HalfClassLevel>Artificer</HalfClassLevel>
+                  <FullAbility>Intelligence</FullAbility>
+                  <Tactical>Sunder</Tactical>
+               </DC>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Thunder-Shock Weapon (Melee)</Name>
@@ -1271,6 +1307,18 @@ Trips the target. A successful Strength check negates the Trip effect.
 (DC 14 + 1/2 Artificer Level + INT mod + Sunder bonuses)</Description>
                <Icon>BEthunderShockWeaponMelee</Icon>
                <Cost>1</Cost>
+               <DC>
+                  <Name>Battle Engineer: Thunder-Shock Weapon (Melee)</Name>
+                  <Description>Tactical Melee Attack +3[W]
+On Damage: Deals 6d6 extra Electric damage that scales with 200% Melee Power and
+Trips the target. A successful Strength check negates the Trip effect.</Description>
+                  <Icon>BEthunderShockWeaponMelee</Icon>
+                  <DCVersus>Strength</DCVersus>
+                  <AmountVector size="1">14</AmountVector>
+                  <HalfClassLevel>Artificer</HalfClassLevel>
+                  <FullAbility>Intelligence</FullAbility>
+                  <Tactical>Sunder</Tactical>
+               </DC>
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
@@ -1297,18 +1345,18 @@ Trips the target. A successful Strength check negates the Trip effect.
                <Enhancement>BEAbilityEngine</Enhancement>
             </Requirement>
          </Requirements>
-          <Effect>
-              <Type>MeleePower</Type>
-              <Bonus>Enhancement</Bonus>
-              <Amount>20</Amount>
-              <Stance>Rune Arm</Stance>
-          </Effect>
-          <Effect>
-              <Type>RangedPower</Type>
-              <Bonus>Enhancement</Bonus>
-              <Amount>20</Amount>
-              <Stance>Rune Arm</Stance>
-          </Effect>
+         <Effect>
+            <Type>MeleePower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>20</Amount>
+            <Stance>Rune Arm</Stance>
+         </Effect>
+         <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>20</Amount>
+            <Stance>Rune Arm</Stance>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Battle Engineer: Tactical Mobility</Name>
@@ -1330,12 +1378,12 @@ Trips the target. A successful Strength check negates the Trip effect.
                <Level>5</Level>
             </Requirement>
          </Requirements>
-          <Effect>
-              <Type>MovementSpeed</Type>
-              <Bonus>Enhancement</Bonus>
-              <Amount>10</Amount>
-              <Stance>Rune Arm</Stance>
-          </Effect>
+         <Effect>
+            <Type>MovementSpeed</Type>
+            <Bonus>Action Boost</Bonus>
+            <Amount>10</Amount>
+            <Stance>Rune Arm</Stance>
+         </Effect>
       </EnhancementTreeItem>
    </EnhancementTree>
 </Enhancements>

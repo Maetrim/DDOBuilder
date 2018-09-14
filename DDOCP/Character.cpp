@@ -631,6 +631,16 @@ void Character::NotifyGrantedFeatsChanged()
     NotifyAll(&CharacterObserver::UpdateGrantedFeatsChanged, this);
 }
 
+void Character::NotifyNewDC(const DC & dc)
+{
+    NotifyAll(&CharacterObserver::UpdateNewDC, this, dc);
+}
+
+void Character::NotifyRevokeDC(const DC & dc)
+{
+    NotifyAll(&CharacterObserver::UpdateRevokeDC, this, dc);
+}
+
 void Character::NotifyAllLoadedEffects()
 {
     // get a list of all feats and notify for each feat effect
@@ -2229,6 +2239,14 @@ void Character::ApplyFeatEffects(const Feat & feat)
         NotifyNewStance((*sit));
         ++sit;
     }
+    // if we have any DC objects notify about them
+    const std::list<DC> & dcs = feat.EffectDC();
+    std::list<DC>::const_iterator dcit = dcs.begin();
+    while (dcit != dcs.end())
+    {
+        NotifyNewDC((*dcit));
+        ++dcit;
+    }
     // get the list of effects this feat has
     const std::list<Effect> & effects = feat.Effects();
     std::list<Effect>::const_iterator feit = effects.begin();
@@ -2258,6 +2276,14 @@ void Character::RevokeFeatEffects(const Feat & feat)
     {
         NotifyRevokeStance((*sit));
         ++sit;
+    }
+    // if we have any DC objects notify about them
+    const std::list<DC> & dcs = feat.EffectDC();
+    std::list<DC>::const_iterator dcit = dcs.begin();
+    while (dcit != dcs.end())
+    {
+        NotifyRevokeDC((*dcit));
+        ++dcit;
     }
 }
 
@@ -2565,15 +2591,7 @@ void Character::Enhancement_RevokeEnhancement(
         }
         // now notify all and sundry about the enhancement effects
         // get the list of effects this enhancement has
-        std::string displayName = GetEnhancementName(
-                treeName,
-                revokedEnhancement,
-                revokedEnhancementSelection);
-        std::list<Effect> effects = GetEnhancementEffects(
-                treeName,
-                revokedEnhancement,
-                revokedEnhancementSelection);
-        RevokeEnhancementEffects(displayName, ranks, effects);
+        RevokeEnhancementEffects(treeName, revokedEnhancement, revokedEnhancementSelection, ranks);
         // determine whether we still have a tier 5 enhancement trained if the tree just had one
         // revoked in it
         if (HasTier5Tree() && Tier5Tree() == treeName)
@@ -2697,6 +2715,37 @@ std::list<Effect> Character::GetEnhancementEffects(
         }
     }
     return effects;
+}
+
+std::list<DC> Character::GetEnhancementDCs(
+        const std::string & treeName,
+        const std::string & enhancementName,
+        const std::string & selection)
+{
+    std::list<DC> dcs;
+    const std::list<EnhancementTree> & trees = EnhancementTrees();
+    // first find the tree we want
+    std::list<EnhancementTree>::const_iterator tit = trees.begin();
+    while (tit != trees.end())
+    {
+        if ((*tit).Name() == treeName)
+        {
+            // this is the one we want
+            break;
+        }
+        ++tit;
+    }
+    if (tit != trees.end())
+    {
+        // we have the tree, now find the enhancement
+        const EnhancementTreeItem * pItem = (*tit).FindEnhancementItem(enhancementName);
+        if (pItem != NULL)
+        {
+            // we found the tree item
+            dcs = pItem->ActiveDCs(selection);
+        }
+    }
+    return dcs;
 }
 
 void Character::SetBuildPoints(size_t buildPoints)
@@ -3169,18 +3218,38 @@ void Character::ApplyEnhancementEffects(
         NotifyEnhancementEffect(displayName, (*eit), ranks);
         ++eit;
     }
+    std::list<DC> dcs = GetEnhancementDCs(treeName, enhancementName, selection);
+    std::list<DC>::const_iterator dcit = dcs.begin();
+    while (dcit != dcs.end())
+    {
+        for (size_t i = 0; i < ranks; ++i)
+        {
+            NotifyNewDC(*dcit);
+        }
+        ++dcit;
+    }
 }
 
 void Character::RevokeEnhancementEffects(
-        const std::string & name,
-        size_t ranks,
-        const std::list<Effect> & effects)
+        const std::string & treeName,
+        const std::string & enhancementName,
+        const std::string & selection,
+        size_t ranks)
 {
+    std::string displayName = GetEnhancementName(treeName, enhancementName, selection);
+    std::list<Effect> effects = GetEnhancementEffects(treeName, enhancementName, selection);
     std::list<Effect>::const_iterator eit = effects.begin();
     while (eit != effects.end())
     {
-        NotifyEnhancementEffectRevoked(name, (*eit), ranks);
+        NotifyEnhancementEffectRevoked(displayName, (*eit), ranks);
         ++eit;
+    }
+    std::list<DC> dcs = GetEnhancementDCs(treeName, enhancementName, selection);
+    std::list<DC>::const_iterator dcit = dcs.begin();
+    while (dcit != dcs.end())
+    {
+        NotifyRevokeDC(*dcit);
+        ++dcit;
     }
 }
 
@@ -3319,15 +3388,7 @@ void Character::Reaper_RevokeEnhancement(
                 &ranks);
         // now notify all and sundry about the enhancement effects
         // get the list of effects this enhancement has
-        std::string displayName = GetEnhancementName(
-                treeName,
-                revokedEnhancement,
-                revokedEnhancementSelection);
-        std::list<Effect> effects = GetEnhancementEffects(
-                treeName,
-                revokedEnhancement,
-                revokedEnhancementSelection);
-        RevokeEnhancementEffects(displayName, ranks, effects);
+        RevokeEnhancementEffects(treeName, revokedEnhancement, revokedEnhancementSelection, ranks);
         NotifyEnhancementRevoked(revokedEnhancement, revokedEnhancementSelection, false, true);
         NotifyAPSpentInTreeChanged(treeName);
         m_pDocument->SetModifiedFlag(TRUE);
@@ -3645,21 +3706,11 @@ void Character::EpicDestiny_RevokeEnhancement(
                 &revokedEnhancement,
                 &revokedEnhancementSelection,
                 &ranks);
-        // now notify all and sundry about the enhancement effects
-        // get the list of effects this enhancement has
-        std::string displayName = GetEnhancementName(
-                treeName,
-                revokedEnhancement,
-                revokedEnhancementSelection);
-        std::list<Effect> effects = GetEnhancementEffects(
-                treeName,
-                revokedEnhancement,
-                revokedEnhancementSelection);
         // now notify all and sundry about the enhancement effects only if this is the
         // active tree
         if (treeName == ActiveEpicDestiny())
         {
-            RevokeEnhancementEffects(displayName, ranks, effects);
+            RevokeEnhancementEffects(treeName, revokedEnhancement, revokedEnhancementSelection, ranks);
         }
         DetermineFatePoints();
         NotifyEnhancementRevoked(revokedEnhancement, revokedEnhancementSelection, false, (treeName == ActiveEpicDestiny()));
@@ -3767,18 +3818,11 @@ void Character::RevokeAllEffects(
     while (eit != enhancements.end())
     {
         const EnhancementTreeItem * pTreeItem = FindEnhancement((*eit).EnhancementName());
-        std::string displayName = GetEnhancementName(
-                treename,
-                (*eit).EnhancementName(),
-                (*eit).HasSelection() ? (*eit).Selection() : "");
-        std::list<Effect> effects = GetEnhancementEffects(
-                treename,
-                (*eit).EnhancementName(),
-                (*eit).HasSelection() ? (*eit).Selection() : "");
         RevokeEnhancementEffects(
-                displayName,
-                pTreeItem->Ranks(),
-                effects);
+                treename,
+                (*eit).EnhancementName(),
+                (*eit).HasSelection() ? (*eit).Selection() : "",
+                pTreeItem->Ranks());
         // enhancements may give multiple stances
         std::list<Stance> stances = pTreeItem->Stances((*eit).HasSelection() ? (*eit).Selection() : "");
         std::list<Stance>::const_iterator sit = stances.begin();
@@ -3967,22 +4011,11 @@ void Character::SetTwist(size_t twistIndex, const TrainedEnhancement * te)
         std::string treeName;
         const EnhancementTreeItem * item = FindEnhancement(trainedTwist->EnhancementName(), &treeName);
         ASSERT(item != NULL);
-        std::list<Effect> effects = GetEnhancementEffects(
+        RevokeEnhancementEffects(
                 treeName,
                 trainedTwist->EnhancementName(),
-                trainedTwist->HasSelection() ? trainedTwist->Selection() : "");
-        std::string displayName = GetEnhancementName(
-                treeName,
-                trainedTwist->EnhancementName(),
-                trainedTwist->HasSelection() ? trainedTwist->Selection() : "");
-        // need to call once per rank to fully revoke
-        for (size_t i = 0; i < trainedTwist->Ranks(); ++i)
-        {
-            RevokeEnhancementEffects(
-                    displayName,
-                    trainedTwist->Ranks(),
-                    effects);
-        }
+                trainedTwist->HasSelection() ? trainedTwist->Selection() : "",
+                trainedTwist->Ranks());
     }
 
     ASSERT(twistIndex < MAX_TWISTS);
@@ -4220,6 +4253,13 @@ void Character::RevokeGearEffects()
                 NotifyItemEffectRevoked(item.Name(), (*it));
                 ++it;
             }
+            const std::list<DC> & dcs = item.EffectDC();
+            std::list<DC>::const_iterator dcit = dcs.begin();
+            while (dcit != dcs.end())
+            {
+                NotifyRevokeDC(*dcit);
+                ++dcit;
+            }
             // do the same for any augment slots
             const std::vector<ItemAugment> & augments = item.Augments();
             for (size_t ai = 0; ai < augments.size(); ++ai)
@@ -4345,6 +4385,13 @@ void Character::ApplyGearEffects()
             {
                 NotifyItemEffect(item.Name(), (*it));
                 ++it;
+            }
+            const std::list<DC> & dcs = item.EffectDC();
+            std::list<DC>::const_iterator dcit = dcs.begin();
+            while (dcit != dcs.end())
+            {
+                NotifyNewDC(*dcit);
+                ++dcit;
             }
             // do the same for any augment slots
             const std::vector<ItemAugment> & augments = item.Augments();
@@ -4542,7 +4589,7 @@ void Character::UpdateWeaponStances()
         }
         // swashbuckling also requires a finessable or thrown weapon
         if (!IsThrownWeapon(item1.Weapon())
-                || !IsFinesseableWeapon(item1.Weapon()))
+                && !IsFinesseableWeapon(item1.Weapon()))
         {
             enableSwashbuckling = false;
         }

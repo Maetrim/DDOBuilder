@@ -34,7 +34,7 @@ to hit with Daggers and Kukris</Description>
             <Weapon>Kukri</Weapon>
          </Effect>
          <Effect>
-            <Type>AttackBonus</Type>
+            <Type>WeaponAttackAbility</Type>
             <Bonus>Enhancement</Bonus>
             <Ability>Dexterity</Ability>
             <Weapon>Dagger</Weapon>
@@ -65,7 +65,7 @@ This enhancement does not work with handwraps or unarmed attacks.</Description>
             </Requirement>
          </Requirements>
          <Effect>
-            <Type>DamageBonus</Type>
+            <Type>WeaponDamageAbility</Type>
             <Bonus>Enhancement</Bonus>
             <Ability>Dexterity</Ability>
             <Weapon>Dagger</Weapon>
@@ -239,6 +239,15 @@ On Crit: 1d6 Con damage,
 On vorpal: Heartseeker (-5% hit points, Fort save to negate DC 10 + half Rogue level + INT modifier) </Description>
                <Icon>AssHeartseekersPoison</Icon>
                <Cost>2</Cost>
+               <DC>
+                  <Name>Assassin: Heartseeker Poison</Name>
+                  <Description>Melee Poison Attack: On vorpal: Heartseeker</Description>
+                  <Icon>AssHeartseekersPoison</Icon>
+                  <DCVersus>Fortitude</DCVersus>
+                  <AmountVector size="1">10</AmountVector>
+                  <HalfClassLevel>Rogue</HalfClassLevel>
+                  <ModAbility>Intelligence</ModAbility>
+               </DC>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Ice Chill Poison</Name>
@@ -249,6 +258,15 @@ On vorpal: Paralysis (Fort DC 10 + half Rogue level + INT modifier negates)
 25% chance for additional save when the affected creature is damaged.</Description>
                <Icon>AssIceChillPoison</Icon>
                <Cost>2</Cost>
+               <DC>
+                  <Name>Assassin: Ice Chill Poison</Name>
+                  <Description>Melee Poison Attack: On vorpal: Paralysis</Description>
+                  <Icon>AssIceChillPoison</Icon>
+                  <DCVersus>Fortitude</DCVersus>
+                  <AmountVector size="1">10</AmountVector>
+                  <HalfClassLevel>Rogue</HalfClassLevel>
+                  <ModAbility>Intelligence</ModAbility>
+               </DC>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Soulshatter Poison</Name>
@@ -259,6 +277,15 @@ On Vorpal: Shattermantle (-100 Spell Resistance for 10 seconds;
 Will save to negate, DC 10 + half Rogue level + INT modifier)</Description>
                <Icon>AssSoulshatterPoison</Icon>
                <Cost>2</Cost>
+               <DC>
+                  <Name>Assassin: Soulshatter Poison</Name>
+                  <Description>Melee Poison Attack: On Vorpal: Shattermantle</Description>
+                  <Icon>AssSoulshatterPoison</Icon>
+                  <DCVersus>Will</DCVersus>
+                  <AmountVector size="1">10</AmountVector>
+                  <HalfClassLevel>Rogue</HalfClassLevel>
+                  <ModAbility>Intelligence</ModAbility>
+               </DC>
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
@@ -306,16 +333,16 @@ Passive: Reduces the threat of all your attacks by 5/10/15%.</Description>
                <Level>1</Level>
             </Requirement>
          </Requirements>
-          <Effect>
-              <Type>ThreatBonusMelee</Type>
-              <Bonus>Enhancement</Bonus>
-              <AmountVector size="3">-5 -10 -15</AmountVector>
-          </Effect>
-          <Effect>
-              <Type>ThreatBonusRanged</Type>
-              <Bonus>Enhancement</Bonus>
-              <AmountVector size="3">-5 -10 -15</AmountVector>
-          </Effect>
+         <Effect>
+            <Type>ThreatBonusMelee</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">-5 -10 -15</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>ThreatBonusRanged</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">-5 -10 -15</AmountVector>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Assassin: Sneak Attack Training I</Name>
@@ -403,6 +430,15 @@ On vorpal: Heartseeker (-5% hit points, Fort save to negate DC 10 + half Rogue l
                      </Requirement>
                   </RequiresNoneOf>
                </Requirements>
+               <DC>
+                  <Name>Assassin: Heartseeker Poison</Name>
+                  <Description>Melee Poison Attack: On vorpal: Heartseeker</Description>
+                  <Icon>AssHeartseekersPoison</Icon>
+                  <DCVersus>Fortitude</DCVersus>
+                  <AmountVector size="1">10</AmountVector>
+                  <HalfClassLevel>Rogue</HalfClassLevel>
+                  <ModAbility>Intelligence</ModAbility>
+               </DC>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Ice Chill Poison</Name>
@@ -421,6 +457,15 @@ On vorpal: Paralysis (Fort DC 10 + half Rogue level + INT modifier negates)
                      </Requirement>
                   </RequiresNoneOf>
                </Requirements>
+               <DC>
+                  <Name>Assassin: Ice Chill Poison</Name>
+                  <Description>Melee Poison Attack: On vorpal: Paralysis</Description>
+                  <Icon>AssIceChillPoison</Icon>
+                  <DCVersus>Fortitude</DCVersus>
+                  <AmountVector size="1">10</AmountVector>
+                  <HalfClassLevel>Rogue</HalfClassLevel>
+                  <ModAbility>Intelligence</ModAbility>
+               </DC>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Soulshatter Poison</Name>
@@ -439,6 +484,15 @@ Will save to negate, DC 10 + half Rogue level + INT modifier)</Description>
                      </Requirement>
                   </RequiresNoneOf>
                </Requirements>
+               <DC>
+                  <Name>Assassin: Soulshatter Poison</Name>
+                  <Description>Melee Poison Attack: On Vorpal: Shattermantle</Description>
+                  <Icon>AssSoulshatterPoison</Icon>
+                  <DCVersus>Will</DCVersus>
+                  <AmountVector size="1">10</AmountVector>
+                  <HalfClassLevel>Rogue</HalfClassLevel>
+                  <ModAbility>Intelligence</ModAbility>
+               </DC>
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
@@ -588,6 +642,15 @@ On vorpal: Heartseeker (-5% hit points, Fort save to negate DC 10 + half Rogue l
                      </Requirement>
                   </RequiresNoneOf>
                </Requirements>
+               <DC>
+                  <Name>Assassin: Heartseeker Poison</Name>
+                  <Description>Melee Poison Attack: On vorpal: Heartseeker</Description>
+                  <Icon>AssHeartseekersPoison</Icon>
+                  <DCVersus>Fortitude</DCVersus>
+                  <AmountVector size="1">10</AmountVector>
+                  <HalfClassLevel>Rogue</HalfClassLevel>
+                  <ModAbility>Intelligence</ModAbility>
+               </DC>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Ice Chill Poison</Name>
@@ -610,6 +673,15 @@ On vorpal: Paralysis (Fort DC 10 + half Rogue level + INT modifier negates)
                      </Requirement>
                   </RequiresNoneOf>
                </Requirements>
+               <DC>
+                  <Name>Assassin: Ice Chill Poison</Name>
+                  <Description>Melee Poison Attack: On vorpal: Paralysis</Description>
+                  <Icon>AssIceChillPoison</Icon>
+                  <DCVersus>Fortitude</DCVersus>
+                  <AmountVector size="1">10</AmountVector>
+                  <HalfClassLevel>Rogue</HalfClassLevel>
+                  <ModAbility>Intelligence</ModAbility>
+               </DC>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Soulshatter Poison</Name>
@@ -632,6 +704,15 @@ Will save to negate, DC 10 + half Rogue level + INT modifier)</Description>
                      </Requirement>
                   </RequiresNoneOf>
                </Requirements>
+               <DC>
+                  <Name>Assassin: Soulshatter Poison</Name>
+                  <Description>Melee Poison Attack: On Vorpal: Shattermantle</Description>
+                  <Icon>AssSoulshatterPoison</Icon>
+                  <DCVersus>Will</DCVersus>
+                  <AmountVector size="1">10</AmountVector>
+                  <HalfClassLevel>Rogue</HalfClassLevel>
+                  <ModAbility>Intelligence</ModAbility>
+               </DC>
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
@@ -685,6 +766,18 @@ This damage scales with 400% Melee Power. (Cooldown: 30/20/10 seconds)</Descript
                <Level>3</Level>
             </Requirement>
          </Requirements>
+         <DC>
+            <Name>Assassin: Shadow Dagger</Name>
+            <Description>Throw a dagger made of solidified shadows at your enemy.
+Deals 4d8/6d8/8d8 unholy damage and blinds the target.</Description>
+            <Icon>AssShadowDagger</Icon>
+            <DCVersus>Fortitude</DCVersus>
+            <AmountVector size="3">10 14 18</AmountVector>
+            <ClassLevel>Rogue</ClassLevel>
+            <ModAbility>Intelligence</ModAbility>
+            <ModAbility>Dexterity</ModAbility>
+            <Tactical>Assassinate</Tactical>
+         </DC>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Assassin: Sneak Attack Training III</Name>
@@ -799,12 +892,12 @@ The killer buff can stack up to 2/3/4 times.</Description>
                <Level>4</Level>
             </Requirement>
          </Requirements>
-          <Effect>
-              <Type>Doublestrike</Type>
-              <Bonus>Enhancement</Bonus>
-              <AmountVector size="3">10 15 20</AmountVector>
-              <Stance>Killer</Stance>
-          </Effect>
+         <Effect>
+            <Type>Doublestrike</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">10 15 20</AmountVector>
+            <Stance>Killer</Stance>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Assassin: Weakening Strikes</Name>
@@ -948,31 +1041,31 @@ This effect stacks up to five times, and lasts 10 seconds after you come out of 
                <Level>5</Level>
             </Requirement>
          </Requirements>
-          <Effect>
-              <Type>MeleePower</Type>
-              <Bonus>Enhancement</Bonus>
-              <AmountVector size="3">30 30 30</AmountVector>
-              <Stance>Measure the Foe</Stance>
-          </Effect>
-          <Effect>
-              <Type>DodgeBonus</Type>
-              <Bonus>Enhancement</Bonus>
-              <AmountVector size="3">10 10 10</AmountVector>
-              <Stance>Measure the Foe</Stance>
-          </Effect>
-          <Effect>
-              <Type>AttackBonus</Type>
-              <Bonus>Enhancement</Bonus>
-              <AmountVector size="3">5 5 5</AmountVector>
-              <Weapon>All</Weapon>
-              <Stance>Measure the Foe</Stance>
-          </Effect>
-          <Effect>
-              <Type>Assassinate</Type>
-              <Bonus>Enhancement</Bonus>
-              <AmountVector size="3">5 5 5</AmountVector>
-              <Stance>Measure the Foe</Stance>
-          </Effect>
+         <Effect>
+            <Type>MeleePower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">30 30 30</AmountVector>
+            <Stance>Measure the Foe</Stance>
+         </Effect>
+         <Effect>
+            <Type>DodgeBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">10 10 10</AmountVector>
+            <Stance>Measure the Foe</Stance>
+         </Effect>
+         <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">5 5 5</AmountVector>
+            <Weapon>All</Weapon>
+            <Stance>Measure the Foe</Stance>
+         </Effect>
+         <Effect>
+            <Type>Assassinate</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">5 5 5</AmountVector>
+            <Stance>Measure the Foe</Stance>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Assassin: Deadly Strikes</Name>

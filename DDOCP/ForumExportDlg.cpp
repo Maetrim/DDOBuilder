@@ -7,6 +7,7 @@
 #include "BreakdownItemSave.h"
 #include "BreakdownItemWeaponEffects.h"
 #include "MainFrm.h"
+#include "DCView.h"
 #include "SLAControl.h"
 #include "StancesView.h"
 #include <numeric>
@@ -1334,7 +1335,7 @@ void CForumExportDlg::AddSpells(std::stringstream & forumExport)
                         forumExport.width(15);
                         forumExport << std::left << EnumEntryText(spell.School(), spellSchoolTypeMap);
                         // show the spell DC also
-                        size_t spellDC = spell.DC(
+                        size_t spellDC = spell.SpellDC(
                                 *m_pCharacter,
                                 (ClassType)ci,
                                 spellLevel,
@@ -1447,22 +1448,35 @@ void CForumExportDlg::AddWeaponDamage(std::stringstream & forumExport)
 
 void CForumExportDlg::AddTacticalDCs(std::stringstream & forumExport)
 {
-    forumExport << "Tactical DCs\r\n";
-    forumExport << "------------------------------------------------------------------------------------------\r\n";
-    BreakdownItem * pBI = FindBreakdown(Breakdown_TacticalStunningBlow);
-    forumExport << "Stunning Blow   " << pBI->Total() << "\r\n";
-    pBI = FindBreakdown(Breakdown_TacticalStunningFist);
-    forumExport << "Stunning Fist   " << pBI->Total() << "\r\n";
-    pBI = FindBreakdown(Breakdown_TacticalSunder);
-    forumExport << "Sunder          " << pBI->Total() << "\r\n";
-    pBI = FindBreakdown(Breakdown_TacticalTrip);
-    forumExport << "Trip            " << pBI->Total() << "\r\n";
-    pBI = FindBreakdown(Breakdown_TacticalStunningShield);
-    forumExport << "Stunning Shield " << pBI->Total() << "\r\n";
-    pBI = FindBreakdown(Breakdown_Assassinate);
-    forumExport << "Assassinate     " << pBI->Total() << "\r\n";
-    forumExport << "------------------------------------------------------------------------------------------\r\n";
-    forumExport << "\r\n";
+    CWnd * pWnd = AfxGetMainWnd();
+    CMainFrame * pMainWnd = dynamic_cast<CMainFrame*>(pWnd);
+    const CDCView * pDCView = pMainWnd->GetDCView();
+    if (pDCView != NULL)
+    {
+        const std::vector<CDCButton *> & dcs = pDCView->DCs();
+        bool first = true;
+        for (size_t i = 0; i < dcs.size(); ++i)
+        {
+            if (first)
+            {
+                forumExport << "Tactical DCs\r\n";
+                forumExport << "------------------------------------------------------------------------------------------\r\n";
+            }
+            // this is an active stance
+            const DC & dc = dcs[i]->GetDCItem();
+            forumExport.fill(' ');
+            forumExport.width(35);
+            forumExport << std::left << dc.Name();
+            forumExport << dc.DCBreakdown(m_pCharacter);
+            forumExport << "\r\n";
+            first = false;
+        }
+        if (!first)
+        {
+            forumExport << "------------------------------------------------------------------------------------------\r\n";
+            forumExport << "\r\n";
+        }
+    }
 }
 
 void CForumExportDlg::AddGear(std::stringstream & forumExport)

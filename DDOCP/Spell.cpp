@@ -167,20 +167,19 @@ void Spell::VerifyObject() const
         ok = false;
     }
     // check the spell effects also
-    std::vector<Effect>::const_iterator it = m_Effects.begin();
-    while (it != m_Effects.end())
+    std::vector<Effect>::const_iterator eit = m_Effects.begin();
+    while (eit != m_Effects.end())
     {
-        ok &= (*it).VerifyObject(&ss);
-        ++it;
+        ok &= (*eit).VerifyObject(&ss);
+        ++eit;
     }
-
     if (!ok)
     {
         ::OutputDebugString(ss.str().c_str());
     }
 }
 
-size_t Spell::DC(
+size_t Spell::SpellDC(
         const Character & charData,
         ClassType ct,
         size_t spellLevel,

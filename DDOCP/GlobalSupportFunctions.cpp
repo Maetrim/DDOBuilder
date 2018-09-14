@@ -2341,6 +2341,87 @@ BreakdownType SkillToBreakdown(SkillType skill)
     return bt;
 }
 
+BreakdownType TacticalToBreakdown(TacticalType tactical)
+{
+    BreakdownType bt = Breakdown_Unknown;
+    switch (tactical)
+    {
+        case Tactical_Assassinate:
+            bt = Breakdown_TacticalAssassinate;
+            break;
+        case Tactical_Trip:
+            bt = Breakdown_TacticalTrip;
+            break;
+        case Tactical_Stun:
+            bt = Breakdown_TacticalStunning;
+            break;
+        case Tactical_Sunder:
+            bt = Breakdown_TacticalSunder;
+            break;
+        case Tactical_StunningShield:
+            bt = Breakdown_TacticalStunningShield;
+            break;
+        case Tactical_General:
+            bt = Breakdown_TacticalGeneral;
+            break;
+        case Tactical_Wands:
+            bt = Breakdown_TacticalWands;
+            break;
+        case Tactical_Fear:
+            bt = Breakdown_TacticalFear;
+            break;
+        case Tactical_InnateAttack:
+            bt = Breakdown_TacticalInnateAttack;
+            break;
+        case Tactical_BreathWeapon:
+            bt = Breakdown_TacticalBreathWeapon;
+            break;
+        case Tactical_Poison:
+            bt = Breakdown_TacticalPoison;
+            break;
+        case Tactical_RuneArm:
+            bt = Breakdown_TacticalRuneArm;
+            break;
+    }
+    return bt;
+}
+
+BreakdownType SchoolToBreakdown(SpellSchoolType school)
+{
+    BreakdownType bt = Breakdown_Unknown;
+    switch (school)
+    {
+        case SpellSchool_Abjuration:
+            bt = Breakdown_SpellSchoolAbjuration;
+            break;
+        case SpellSchool_Conjuration:
+            bt = Breakdown_SpellSchoolConjuration;
+            break;
+        case SpellSchool_Divination:
+            bt = Breakdown_SpellSchoolDivination;
+            break;
+        case SpellSchool_Enchantment:
+            bt = Breakdown_SpellSchoolEnchantment;
+            break;
+        case SpellSchool_Evocation:
+            bt = Breakdown_SpellSchoolEvocation;
+            break;
+        case SpellSchool_Illusion:
+            bt = Breakdown_SpellSchoolIllusion;
+            break;
+        case SpellSchool_Necromancy:
+            bt = Breakdown_SpellSchoolNecromancy;
+            break;
+        case SpellSchool_Transmutation:
+            bt = Breakdown_SpellSchoolTransmutation;
+            break;
+        case SpellSchool_GlobalDC:
+            bt = Breakdown_SpellSchoolGlobalDC;
+            break;
+    }
+    return bt;
+}
+
 BreakdownItem * FindBreakdown(BreakdownType type)
 {
     // we have to get the relevant view from the main frame class

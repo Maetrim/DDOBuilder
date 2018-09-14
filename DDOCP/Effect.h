@@ -142,8 +142,10 @@ enum EffectType
     Effect_TwistOfFate,
     Effect_UnconsciousRange,
     Effect_VorpalRange,
+    Effect_WeaponAttackAbility,
     Effect_WeaponBaseDamageBonus,
     Effect_WeaponDamageBonus,
+    Effect_WeaponDamageAbility,
     Effect_WeaponOtherDamageBonus,
     Effect_WeaponOtherCriticalDamageBonus,
     Effect_WeaponPlus,
@@ -270,6 +272,8 @@ const XmlLib::enumMapEntry<EffectType> effectTypeMap[] =
     {Effect_TwistOfFate, L"TwistOfFate"},
     {Effect_UnconsciousRange, L"UnconsciousRange"},
     {Effect_VorpalRange, L"VorpalRange"},
+    {Effect_WeaponAttackAbility, L"WeaponAttackAbility"},
+    {Effect_WeaponDamageAbility, L"WeaponDamageAbility"},
     {Effect_WeaponBaseDamageBonus,L"WeaponBaseDamageBonus"},
     {Effect_WeaponDamageBonus, L"WeaponDamageBonus"},
     {Effect_WeaponOtherDamageBonus, L"WeaponOtherDamageBonus"},
@@ -291,6 +295,7 @@ class Effect :
         bool IncludesSpellPower(SpellPowerType sp) const;
         bool IncludesEnergy(EnergyType energy) const;
         bool IncludesSkill(SkillType skill) const;
+        bool IncludesTactical(TacticalType tactcial) const;
         double Amount(size_t tier) const;
         bool VerifyObject(std::stringstream * ss) const;
 
@@ -338,7 +343,7 @@ class Effect :
                 DL_ENUM_LIST(_, SkillType, Skill, Skill_Unknown, skillTypeMap) \
                 DL_ENUM_LIST(_, SpellPowerType, SpellPower, SpellPower_Unknown, spellPowerTypeMap) \
                 DL_OPTIONAL_ENUM(_, SpellSchoolType, School, SpellSchool_Unknown, spellSchoolTypeMap) \
-                DL_OPTIONAL_ENUM(_, TacticalType, Tactical, Tactical_Unknown, tacticalTypeMap) \
+                DL_ENUM_LIST(_, TacticalType, Tactical, Tactical_Unknown, tacticalTypeMap) \
                 DL_OPTIONAL_ENUM(_, WeaponClassType, WeaponClass, WeaponClass_Unknown, weaponClassTypeMap) \
                 DL_OPTIONAL_ENUM(_, WeaponDamageType, DamageType, WeaponDamage_Unknown, weaponDamageTypeMap) \
                 DL_ENUM_LIST(_, WeaponType, Weapon, Weapon_Unknown, weaponTypeMap)

@@ -114,7 +114,8 @@ class BreakdownItem :
         void AddActivePercentageItems(const std::list<ActiveEffect> & effects, CListCtrl * pControl);
         void AddDeactiveItems(const std::list<ActiveEffect> & effects, CListCtrl * pControl);
         double SumItems(const std::list<ActiveEffect> & effects) const;
-        double DoPercentageEffects(const std::list<ActiveEffect> & effects, double total, bool updateTotal = true) const;
+        double DoPercentageEffects(const std::list<ActiveEffect> & effects, double total) const;
+        void RemoveInactive(std::list<ActiveEffect> * effects, std::list<ActiveEffect> * inactiveEffects) const;
         void RemoveNonStacking(std::list<ActiveEffect> * effects, std::list<ActiveEffect> * nonStackingEffects) const;
         void AddEffect(std::list<ActiveEffect> * effectList, const ActiveEffect & effect);
         void RevokeEffect(std::list<ActiveEffect> * effectList, const ActiveEffect & effect);

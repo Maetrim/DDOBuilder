@@ -679,6 +679,33 @@ void CInfoTip::SetSelfBuff(const std::string & name)
     m_cost = "";
 }
 
+void CInfoTip::SetDCItem(
+        const Character & charData,
+        const DC * pDC)
+{
+    m_effectDescriptions.clear();
+    m_image.Destroy();
+    // load its icon
+    if (S_OK != LoadImageFile(IT_enhancement, pDC->Icon(), &m_image, false))
+    {
+        if (S_OK != LoadImageFile(IT_feat, pDC->Icon(), &m_image, false))
+        {
+            LoadImageFile(IT_item, pDC->Icon(), &m_image);
+        }
+    }
+    m_image.SetTransparentColor(c_transparentColour);
+    m_title = pDC->Name().c_str();
+    m_description = pDC->Description().c_str();
+    // actual carriage return are actual \n in text, convert to correct character
+    GenerateLineBreaks(&m_title);
+    GenerateLineBreaks(&m_description);
+    m_requirements.clear();
+    m_bRequirementMet.clear();
+    m_requirements.push_back(pDC->DCBreakdown(&charData).c_str());
+    m_bRequirementMet.push_back(true);
+    m_cost.Format("DC: %d", pDC->CalculateDC(&charData));
+}
+
 void CInfoTip::GenerateLineBreaks(CString * text)
 {
     // this can work in two ways:

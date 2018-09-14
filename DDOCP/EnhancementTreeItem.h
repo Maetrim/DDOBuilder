@@ -2,6 +2,7 @@
 //
 #pragma once
 #include "XmlLib\DLMacros.h"
+#include "DC.h"
 #include "Effect.h"
 #include "Requirements.h"
 #include "Selector.h"
@@ -30,6 +31,7 @@ class EnhancementTreeItem :
                 size_t spentInTree,
                 TreeType type) const;
         std::list<Effect> ActiveEffects(const std::string & selection) const;
+        std::list<DC> ActiveDCs(const std::string & selection) const;
         void CreateRequirementStrings(
                 const Character & charData,
                 std::vector<CString> * requirements,
@@ -70,7 +72,8 @@ class EnhancementTreeItem :
                 DL_OBJECT_LIST(_, Stance, Stances) \
                 DL_OBJECT(_, Requirements, RequirementsToTrain) \
                 DL_OPTIONAL_OBJECT(_, Selector, Selections) \
-                DL_OBJECT_LIST(_, Effect, Effects)
+                DL_OBJECT_LIST(_, Effect, Effects) \
+                DL_OBJECT_VECTOR(_, DC, EffectDC)
 
         DL_DECLARE_ACCESS(EnhancementTreeItem_PROPERTIES)
         DL_DECLARE_VARIABLES(EnhancementTreeItem_PROPERTIES)

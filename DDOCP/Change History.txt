@@ -1,5 +1,170 @@
 History of changes made
 
+New Items:
+---Legendary Cursebane Ring (Ring) - (Reported missing by Kamdragon)
+---Epic Cutthroat's Smallblade (Level 28) (Shortsword - Treasure of the Crystal Cove update)
+---Epic Ornamented Dagger (Level 28) (Dagger - Treasure of the Crystal Cove update)
+---Epic Broken Oar (Level 28) (Quarterstaff - Treasure of the Crystal Cove update)
+---Epic Brawling Gloves (Level 28) (Gloves - Treasure of the Crystal Cove update)
+---Epic Ring of the Buccaneer (Level 28) (Ring- Treasure of the Crystal Cove update)
+---Epic Treasure Hunter's Spyglass (Level 28) (Trinket- Treasure of the Crystal Cove update)
+---Note that Level 24 versions of Crystal cove loot that now have level 28 versions have been renamed to include (Level 24) in their titles
+Augments: Missing "Mythic Shield Boost" augment added
+Fix: "Half-Elf Dilettante: Barbarian DR" effects broken away from new Barbarian %DR as they are officially different
+---Enhancement descriptions updated to clarify
+Fix: Toughness can now correctly be selected as an Epic Destiny feat (Reported by Kamdragon)
+Fix: Debug ASSERT in stances view fixed
+Fix: Incorrect condition that required a weapon to be both thrown and finessable for swashbuckling to be enabled was fixed. (Reported by Selvera)
+Fix: Swashbuckler: Resonant Arms dice effects vector sizes fixed (Found in build supplied by Selvera)
+Fix: Grim Barricade: Reaper's Defense VI now correctly gives +1% dodge cap, not +1% dodge (Reported by Selvera)
+Fix: A clash between Harper Agent: Know the Angles for weapon damage and effects for weapon attack/damage type abilities was fixed. (Reported by Selvera)
+Fix: A bug in <AnyOfStance> enabled code was fixed
+Fix: Sacred Defense and Stalwart Defense HP effects updated so will now apply correctly if your in stance and using a shield. (Reported by Selvera)
+Fix: Fighter/Paladin Tenachious Defense no longer stacks with Epic Defensive Fighting hp bonus (Both Competence)
+Fix: Ability damage for main hand weapons when single weapon fighting is now correctly scaled by the SWF line of feats.
+Fix: Many "MovementSpeed" effects had "ApplyAsItemEffect" flag added to solve incorrect stacking issues.
+---There may still be some issues with the stacking of movement speeds
+Fix: Inactive items are now excluded before considering stacking rules
+Fix: Inactive items are now listed correctly in the breakdown UI
+Fix: Percentage bonus items no longer add a percentage of other percentage items.
+---This is from testing on live for multiple percentage hp bonus's. (Aasimar +10%, Epic Defensive Fightning +25%)
+---If you have 1000hp and a 10% bonus and a 20% bonus you would get:
+------1000hp @ 10% = +100hp
+------1000hp @ 20% = +200hp
+------Total 1300hp not (1000 * 1.1 * 1.2) = 1320hp
+Fix: Arcane Archer (Elf): Shattermantle Shot now correctly states it uses half character level, not ranger levels
+Engine: Duplicate spell school type "Dragon Breath" eliminated
+Engine: Many DCs modelled as "SpellSchool" changed to be modelled as "Tactical" to get effects to work correctly
+Engine: Effects can now have multiple tactical items listed in replace of "All"
+---All tactical "All" effects updated
+---All old build files with items that use "All" will automatically update
+Engine: New spell school "Global DC" added to total universal DC bonus's that affect spells such as "Mass Frog"
+---Relevant effects added
+New: Reaper Enhancements View now shows total spent Reaper point count, and required Reaper xp for those points in its title
+New: New DC View added
+---Tactical breakdowns now only show bonus's to that tactic type only
+------Additional tactical breakdowns displayed
+------Check the new DCs view for actual tactical DC effect totals
+---Forum export for Tactical DC export updated
+---DCs can now be defined for Feats, Enhancements and items
+---Enhancement DCs:
+------Battle Engineer: Shatter Defenses (Crossbow)
+------Battle Engineer: Shatter Defenses (Melee)
+------Battle Engineer: Thunder-Shock Weapon (Crossbow)
+------Battle Engineer: Thunder-Shock Weapon (Melee)
+------Renegade Mastermaker: Mighty Slam
+------Ravager: Demoralizing Success
+------Spellsinger: Enthrallment
+------Deep Gnome: Conjure Stone
+------Dragonborn: Dragon Breath
+------Drow: Darkfire
+------Nature's Protector: Big Claws
+------Nature's Protector: Savage Roar
+------Nature's Protector: Bear Charge
+------Nature's Warrior: Throat Rip
+------Nature's Warrior: Go for the Kill
+------Dwarf: Hands of Stone
+------Arcane Archer (Elf): Shattermantle Shot
+------Arcane Archer (Elf): Terror Arrows
+------Arcane Archer (Elf): Banishing Arrows
+------Arcane Archer (Elf): Paralyzing Arrows
+------Arcane Archer (Elf): Smiting Arrows
+------Falconry: Diving Shot
+------Falconry: Diving Strike
+------Falconry: Shoot for the Eyes
+------Falconry: Strike for the Eyes
+------Falconry: Coordinated Cleave
+------Falconry: Shoot and Destroy
+------Falconry: Death From Above
+------Falconry: Death From Above Shot
+------Half-Elf: Tanglefoot
+------Henshin Mystic: Unbalancing Strike
+------Ninja Spy: Unbalancing Strike
+------Ninja Spy: Flash Bang (Blind)
+------Ninja Spy: Flash Bang (Daze)
+------Ninja Spy: Touch of Death
+------Shintao: Smite Tainted Creature
+------Shintao: Unbalancing Strike
+------Shintao: Jade Strike
+------Shintao: Dismissing Strike
+------Shintao: Tomb of Jade
+------Shintao: Kukan-Do
+------Knight of the Chalice: Holy Retribution
+------Arcane Archer: Shattermantle Shot
+------Arcane Archer: Terror Arrows
+------Arcane Archer: Banishing Arrows
+------Arcane Archer: Paralyzing Arrows
+------Arcane Archer: Smiting Arrows
+------Assassin: Heartseeker Poison
+------Assassin: Ice Chill Poison
+------Assassin: Soulshatter Poison
+------Assassin: Shadow Dagger
+------Mechanic: Tanglefoot
+------Mechanic: Thunderstone
+------Mechanic: Ooze Flask
+------Mechanic: Time Bomb
+------Thief-Acrobat: Sweeping Strikes
+------Earth Savant: Earthgrab
+------Fire Savant: Heat Death
+------Water Savant: Icy Prison
+------Soul Eater: Devour the Soul
+------Soul Eater: Stricken
+------Tainted Scholar: Stunning Blast
+------Divine Crusader: Stand and Be Judged
+------Draconic Incarnation: Go out with a bang
+------Draconic Incarnation: Daunting Roar
+------Draconic Incarnation: Energy Burst
+------Draconic Incarnation: Flyby Attack (Damage)
+------Draconic Incarnation: Flyby Attack (Knockdown)
+------Draconic Incarnation: Energy Vortex
+------Exalted Angel: Avenging Light
+------Exalted Angel: Soundburst
+------Exalted Angel: Sun Bolt
+------Exalted Angel: Divine Wrath
+------Fury of the Wild: Boulder Toss
+------Fury of the Wild: Fury Made Placid
+------Grandmaster of Flowers: Orchid Blossom
+------Grandmaster of Flowers: Drfiting Lotus
+------Grandmaster of Flowers: A Scattering of Petals
+------Grandmaster of Flowers: Everything is Nothing (Erasure)
+------Grandmaster of Flowers: Everything is Nothing (Damage)
+------Legendary Dreadnought: Lay Waste
+------Primal Avatar: Stormrage
+------Shadowdancer: Shadow Lance
+------Shadowdancer: Shadow Manipulation
+------Shadowdancer: Executioner's Strike/Shot
+---Feat DCs:
+------Breath of the Fire Dragon
+------Curse of the Void
+------Falling Star Strike
+------Freezing The Lifeblood
+------Improved Sunder
+------Improved Trip
+------Pain Touch
+------Path of Inevitable Dominion: Fists of Darkness
+------Quivering Palm
+------Shining Star
+------Stunning Blow
+------Stunning Fist
+------Sunder
+------The Gathering Storm
+------The Raging Sea
+------The Trembling Earth
+------Touch Of Despair
+------Trip
+------Warlock: Hurl Through Hell
+------Warlock: Pact: Fey
+------Warlock: Pact: Fiend
+------Warlock: Pact: Great Old One
+------Feat: Dire Charge
+------Mass Frog
+------Silver Flame Exorcism
+------Animal Domain Tier IV
+---Item DCs:
+------Epic Sirocco
+
+Version 1.0.0.49
+
 Fix: Arcane Archer Ranger and Elf variant trees split as they have different requirements that cannot be modelled as a single tree
 ---You cannot train in both trees as an elven ranger
 Fix: Reaper tree core enhancements 2..6 in each reaper tree now apply outside of Reaper mode

@@ -3,8 +3,8 @@
 #include "StdAfx.h"
 #include "DC.h"
 #include "XmlLib\SaxWriter.h"
-#include "Feat.h"
 #include "GlobalSupportFunctions.h"
+#include "BreakdownItem.h"
 
 #define DL_ELEMENT DC
 
@@ -17,7 +17,8 @@ namespace
 }
 
 DC::DC() :
-    XmlLib::SaxContentElement(f_saxElementName, f_verCurrent)
+    XmlLib::SaxContentElement(f_saxElementName, f_verCurrent),
+    m_stacks(1)
 {
     DL_INIT(DC_PROPERTIES)
 }
@@ -49,363 +50,316 @@ void DC::Write(XmlLib::SaxWriter * writer) const
     writer->EndElement();
 }
 
-double DC::Amount(size_t tier) const
-{
-    double amount = 0;
-    if (HasAmountVector())
-    {
-        ASSERT(tier <= m_AmountVector.size());
-        amount = m_AmountVector.at(tier-1);     // 0 based vs 1 based
-    }
-    else
-    {
-        ASSERT(HasAmount());
-        ASSERT(tier == 1);
-        amount = Amount();
-    }
-    return amount;
-}
-
-bool DC::IncludesWeapon(WeaponType wt) const
-{
-    bool included = false;
-    std::list<WeaponType>::const_iterator it = m_Weapon.begin();
-    while (!included && it != m_Weapon.end())
-    {
-        if ((*it) == Weapon_All
-                || (*it) == wt)
-        {
-            included = true;
-        }
-        ++it;
-    }
-    return included;
-}
-
-bool DC::IncludesSpellPower(SpellPowerType sp) const
-{
-    bool included = false;
-    std::list<SpellPowerType>::const_iterator it = m_SpellPower.begin();
-    while (!included && it != m_SpellPower.end())
-    {
-        if ((*it) == SpellPower_All
-                || (*it) == sp)
-        {
-            included = true;
-        }
-        ++it;
-    }
-    return included;
-}
-
-bool DC::IncludesEnergy(EnergyType energy) const
-{
-    bool included = false;
-    std::list<EnergyType>::const_iterator it = m_Energy.begin();
-    while (!included && it != m_Energy.end())
-    {
-        if ((*it) == Energy_All
-                || (*it) == energy)
-        {
-            included = true;
-        }
-        ++it;
-    }
-    return included;
-}
-
-bool DC::IncludesSkill(SkillType skill) const
-{
-    bool included = false;
-    std::list<SkillType>::const_iterator it = m_Skill.begin();
-    while (!included && it != m_Skill.end())
-    {
-        if ((*it) == Skill_All
-                || (*it) == skill)
-        {
-            included = true;
-        }
-        ++it;
-    }
-    return included;
-}
-
 bool DC::VerifyObject(std::stringstream * ss) const
 {
     bool ok = true;
-    switch (m_Type)
+    std::list<AbilityType>::const_iterator fait = m_FullAbility.begin();
+    while (fait != m_FullAbility.end())
     {
-        case DC_Unknown:
-            (*ss) << "Has unknown effect type\n";
-            ok = false;
-            break;
-        case DC_AbilityBonus:
-            if (!HasAbility())
-            {
-                (*ss) << "Ability effect missing ability field\n";
-                ok = false;
-            }
-            else if (Ability() == Ability_Unknown)
-            {
-                (*ss) << "Ability effect has bad enum value\n";
-                ok = false;
-            }
-            break;
-        case DC_EnergyAbsorbance:
-        case DC_EnergyResistance:
-            if (m_Energy.size() == 0)
-            {
-                (*ss) << "Energy resistance/absorbance effect missing Energy field\n";
-                ok = false;
-            }
-            else
-            {
-                std::list<EnergyType>::const_iterator it = m_Energy.begin();
-                while (it != m_Energy.end())
-                {
-                    if ((*it) == Energy_Unknown)
-                    {
-                        (*ss) << "Energy resistance/absorbance effect has bad enum value\n";
-                        ok = false;
-                        break;
-                    }
-                    ++it;
-                }
-            }
-            break;
-        case DC_SaveBonus:
-            if (!HasSave())
-            {
-                (*ss) << "SaveBonus effect missing save field\n";
-                ok = false;
-            }
-            else if (Save() == Save_Unknown)
-            {
-                (*ss) << "Save effect has bad enum value\n";
-                ok = false;
-            }
-            break;
-        case DC_SkillBonus:
-            if (m_Skill.size() == 0
-                    && !HasAbility())
-            {
-                (*ss) << "Skill effect missing skill field\n";
-                ok = false;
-            }
-            else
-            {
-                std::list<SkillType>::const_iterator it = m_Skill.begin();
-                while (it != m_Skill.end())
-                {
-                    if ((*it) == Skill_Unknown)
-                    {
-                        (*ss) << "SkillBonus effect has bad enum value\n";
-                        ok = false;
-                        break;
-                    }
-                    ++it;
-                }
-                if ((HasAbility() && Ability() == Ability_Unknown))
-                {
-                        (*ss) << "SkillBonus effect has bad Ability enum value\n";
-                        ok = false;
-                }
-            }
-            break;
-        case DC_TacticalDC:
-            if (!HasTactical())
-            {
-                (*ss) << "TacticalDC effect missing tactical field\n";
-                ok = false;
-            }
-            else if (Tactical() == Tactical_Unknown)
-            {
-                (*ss) << "Tactical effect has bad enum value\n";
-                ok = false;
-            }
-            break;
-        case DC_SpellDC:
-            if (!HasSchool())
-            {
-                (*ss) << "SpellDC effect missing school field\n";
-                ok = false;
-            }
-            else if (School() == SpellSchool_Unknown)
-            {
-                (*ss) << "School effect has bad enum value\n";
-                ok = false;
-            }
-            break;
-        case DC_SpellPower:
-            if (m_SpellPower.size() == 0)
-            {
-                (*ss) << "SpellPower effect missing school field\n";
-                ok = false;
-            }
-            else
-            {
-                std::list<SpellPowerType>::const_iterator it = m_SpellPower.begin();
-                while (it != m_SpellPower.end())
-                {
-                    if ((*it) == SpellPower_Unknown)
-                    {
-                        (*ss) << "SpellPower effect has bad enum value\n";
-                        ok = false;
-                        break;
-                    }
-                    ++it;
-                }
-            }
-            break;
-        case DC_DRBypass:
-            // must have a single DR value
-            if (m_DR.size() == 0)
-            {
-                (*ss) << "DRBypass effect missing DR field\n";
-                ok = false;
-            }
-            else if (m_DR.size() > 1)
-            {
-                (*ss) << "DRBypass effect can only handle a single value\n";
-                ok = false;
-            }
-            // fall through to check weapon/weaponclass settings
-        case DC_AttackBonus:
-        case DC_Alacrity:
-        case DC_CenteredWeapon:
-        case DC_CriticalAttackBonus:
-        case DC_CriticalMultiplier:
-        case DC_CriticalRange:
-        case DC_DamageBonus:
-        case DC_Seeker:
-        case DC_VorpalRange:
-        case DC_WeaponBaseDamageBonus:
-        case DC_WeaponDamageBonus:
-        case DC_WeaponEnchantment:
-        case DC_WeaponProficiency:
-        case DC_WeaponOtherDamageBonus:
-        case DC_WeaponOtherCriticalDamageBonus:
-            {
-                if (m_Weapon.size() == 0
-                        && !HasWeaponClass()
-                        && !HasDamageType())
-                {
-                    (*ss) << "Weapon effect missing Weapon/Class/DamageType field\n";
-                    ok = false;
-                }
-                std::list<WeaponType>::const_iterator it = m_Weapon.begin();
-                while (it != m_Weapon.end())
-                {
-                    if ((*it) == Weapon_Unknown)
-                    {
-                        (*ss) << "Weapon effect has bad enum value\n";
-                        ok = false;
-                        break;
-                    }
-                    ++it;
-                }
-                if (HasWeaponClass() && WeaponClass() == WeaponClass_Unknown)
-                {
-                    (*ss) << "WeaponClass effect has bad enum value\n";
-                    ok = false;
-                }
-                if (HasDamageType() && DamageType() == WeaponDamage_Unknown)
-                {
-                    (*ss) << "DamageType effect has bad enum value\n";
-                    ok = false;
-                }
-            }
-            break;
-        case DC_SpellLikeAbility:
-            if (!HasSpellLikeAbility())
-            {
-                (*ss) << "SpellLikeAbility effect missing SpellLikeAbility field\n";
-                ok = false;
-            }
-            else if (FindSpellByName(SpellLikeAbility()).Name() == "")
-            {
-                (*ss) << "SpellLikeAbility field missing from Spells.xml\n";
-                ok = false;
-            }
-            break;
-        case DC_Immunity:
-            if (Immunity().size() == 0)
-            {
-                (*ss) << "Immunity effect missing Immunity field\n";
-                ok = false;
-            }
-            break;
-    }
-    if (HasAmountVector())
-    {
-        // realize the vector to catch size/data mismatches
-        std::vector<double> d = m_AmountVector;
-    }
-    if (HasFeat())
-    {
-        // verify the feat exists
-        ::Feat feat = FindFeat(Feat());
-        if (feat.Name() != Feat())
+        if ((*fait) == Ability_Unknown)
         {
-            (*ss) << "Specified feat of \"" << Feat() << "\" not found \n";
+            *ss << "---DC has bad FullAbility value type\r\n";
             ok = false;
         }
+        ++fait;
+    }
+    std::list<AbilityType>::const_iterator mait = m_ModAbility.begin();
+    while (mait != m_ModAbility.end())
+    {
+        if ((*mait) == Ability_Unknown)
+        {
+            *ss << "---DC has bad ModAbility value type\r\n";
+            ok = false;
+        }
+        ++mait;
+    }
+    if (!ImageFileExists(IT_feat, Icon())
+            && !ImageFileExists(IT_enhancement, Icon())
+            && !ImageFileExists(IT_item, Icon()))
+    {
+        *ss << "DC is missing image file \"" << Icon() << "\"\n";
+        ok = false;
     }
     return ok;
 }
 
+int DC::CalculateDC(const Character * pCharacter) const
+{
+    int value = 0;
+    if (m_hasAmountVector)
+    {
+        if (m_stacks < m_AmountVector.size() + 1)
+        {
+            value += m_AmountVector[m_stacks-1];    // 0 based
+        }
+        else
+        {
+            // if we have more stacks than elements, use the last value
+            value += m_AmountVector[m_AmountVector.size()-1];
+        }
+    }
+    // use the largest of any FullAbility values
+    int fullAbilityBonus = 0;
+    std::list<AbilityType>::const_iterator fait = m_FullAbility.begin();
+    while (fait != m_FullAbility.end())
+    {
+        BreakdownType bt = StatToBreakdown(*fait);
+        BreakdownItem * pBI = FindBreakdown(bt);
+        int abilityBonus = (int)pBI->Total();
+        if (abilityBonus > fullAbilityBonus)
+        {
+            fullAbilityBonus = abilityBonus;
+        }
+        ++fait;
+    }
+    value += fullAbilityBonus;
+    // use the largest of any ModAbility values
+    int modAbilityBonus = 0;
+    std::list<AbilityType>::const_iterator mait = m_ModAbility.begin();
+    while (mait != m_ModAbility.end())
+    {
+        BreakdownType bt = StatToBreakdown(*mait);
+        BreakdownItem * pBI = FindBreakdown(bt);
+        int abilityBonus = BaseStatToBonus(pBI->Total());
+        if (abilityBonus > modAbilityBonus)
+        {
+            modAbilityBonus = abilityBonus;
+        }
+        ++mait;
+    }
+    value += modAbilityBonus;
+    // add any skill breakdown bonus
+    if (m_hasSkill)
+    {
+        BreakdownType bt = SkillToBreakdown(m_Skill);
+        BreakdownItem * pBI = FindBreakdown(bt);
+        int skillBonus = (int)pBI->Total();
+        value += skillBonus;
+    }
+    // add any tactical breakdown bonus
+    if (m_hasTactical)
+    {
+        BreakdownType bt = TacticalToBreakdown(m_Tactical);
+        BreakdownItem * pBI = FindBreakdown(bt);
+        int tacticalBonus = (int)pBI->Total();
+        value += tacticalBonus;
+    }
+    // spell school bonuses, all of these get added if present
+    std::list<SpellSchoolType>::const_iterator sit = m_School.begin();
+    while (sit != m_School.end())
+    {
+        BreakdownType bt = SchoolToBreakdown(*sit);
+        BreakdownItem * pBI = FindBreakdown(bt);
+        int schoolBonus = (int)pBI->Total();
+        if (*sit != SpellSchool_GlobalDC)
+        {
+            schoolBonus -= 10;  // ignore base 10 in schools
+        }
+        value += schoolBonus;
+        ++sit;
+    }
+    // add any class level bonus
+    if (m_hasClassLevel)
+    {
+        int classLevels = pCharacter->ClassLevels(m_ClassLevel);
+        value += classLevels;
+    }
+    // add any half class level bonus
+    if (m_hasHalfClassLevel)
+    {
+        int classLevels = pCharacter->ClassLevels(m_HalfClassLevel);
+        value += (int)(classLevels / 2); // round down
+    }
+    return value;
+}
+
+std::string DC::DCBreakdown(const Character * pCharacter) const
+{
+    std::stringstream ss;
+    ss << m_DCVersus << " vs " << CalculateDC(pCharacter) << " : ";
+    bool first = true;
+    if (m_hasAmountVector)
+    {
+        int value = 0;
+        if (m_stacks < m_AmountVector.size() + 1)
+        {
+            value += m_AmountVector[m_stacks-1];    // 0 based
+        }
+        else
+        {
+            // if we have more stacks than elements, use the last value
+            value += m_AmountVector[m_AmountVector.size()-1];
+        }
+        ss << value;
+        first = false;
+    }
+
+    // Show any FullAbility values
+    // Max Mod(Str 10, Wis 15) is multiple or Str(10) if one
+    {
+        std::list<AbilityType>::const_iterator fait = m_FullAbility.begin();
+        if (m_FullAbility.size() == 1)
+        {
+            if (!first)
+            {
+                ss << " + ";
+            }
+            first = false;
+            BreakdownType bt = StatToBreakdown(*fait);
+            BreakdownItem * pBI = FindBreakdown(bt);
+            int abilityBonus = (int)pBI->Total();
+            std::string name = EnumEntryText(*fait, abilityTypeMap);
+            name.resize(3);     // truncate to 1st 3 characters, e.g. "Strength" becomes "Str"
+            ss << name << "(" << abilityBonus << ")";
+        }
+        else if (m_FullAbility.size() > 1)
+        {
+            if (!first)
+            {
+                ss << " + ";
+            }
+            ss << "Max(";
+            while (fait != m_FullAbility.end())
+            {
+                BreakdownType bt = StatToBreakdown(*fait);
+                BreakdownItem * pBI = FindBreakdown(bt);
+                int abilityBonus = (int)pBI->Total();
+                if (fait != m_FullAbility.begin())
+                {
+                    ss << ", ";
+                }
+                std::string name = EnumEntryText(*fait, abilityTypeMap);
+                name.resize(3);     // truncate to 1st 3 characters, e.g. "Strength" becomes "Str"
+                ss << name << "(" << abilityBonus << ")";
+                ++fait;
+            }
+            ss << ")";
+        }
+    }
+    // use the largest of any ModAbility values
+    {
+        std::list<AbilityType>::const_iterator mait = m_ModAbility.begin();
+        if (m_ModAbility.size() == 1)
+        {
+            if (!first)
+            {
+                ss << " + ";
+            }
+            first = false;
+            BreakdownType bt = StatToBreakdown(*mait);
+            BreakdownItem * pBI = FindBreakdown(bt);
+            int abilityBonus = BaseStatToBonus(pBI->Total());
+            std::string name = EnumEntryText(*mait, abilityTypeMap);
+            name.resize(3);     // truncate to 1st 3 characters, e.g. "Strength" becomes "Str"
+            ss << name << " Mod(" << abilityBonus << ")";
+        }
+        else if (m_ModAbility.size() > 1)
+        {
+            if (!first)
+            {
+                ss << " + ";
+            }
+            ss << "Max Mod(";
+            while (mait != m_ModAbility.end())
+            {
+                BreakdownType bt = StatToBreakdown(*mait);
+                BreakdownItem * pBI = FindBreakdown(bt);
+                int abilityBonus = BaseStatToBonus(pBI->Total());
+                if (mait != m_ModAbility.begin())
+                {
+                    ss << ", ";
+                }
+                std::string name = EnumEntryText(*mait, abilityTypeMap);
+                name.resize(3);     // truncate to 1st 3 characters, e.g. "Strength" becomes "Str"
+                ss << name << "(" << abilityBonus << ")";
+                ++mait;
+            }
+            ss << ")";
+        }
+    }
+    // add any skill breakdown bonus
+    if (m_hasSkill)
+    {
+        if (!first)
+        {
+            ss << " + ";
+        }
+        first = false;
+        BreakdownType bt = SkillToBreakdown(m_Skill);
+        BreakdownItem * pBI = FindBreakdown(bt);
+        int skillBonus = (int)pBI->Total();
+        ss << EnumEntryText(m_Skill, skillTypeMap) << "(" << skillBonus << ")";
+    }
+    // add any tactical breakdown bonus
+    if (m_hasTactical)
+    {
+        if (!first)
+        {
+            ss << " + ";
+        }
+        first = false;
+        BreakdownType bt = TacticalToBreakdown(m_Tactical);
+        BreakdownItem * pBI = FindBreakdown(bt);
+        int tacticalBonus = (int)pBI->Total();
+        ss << EnumEntryText(m_Tactical, tacticalTypeMap) << "(" << tacticalBonus << ")";
+    }
+    // spell school bonuses, all of these get added if present
+    std::list<SpellSchoolType>::const_iterator sit = m_School.begin();
+    while (sit != m_School.end())
+    {
+        if (!first)
+        {
+            ss << " + ";
+        }
+        first = false;
+        BreakdownType bt = SchoolToBreakdown(*sit);
+        BreakdownItem * pBI = FindBreakdown(bt);
+        int schoolBonus = (int)pBI->Total();
+        if (*sit != SpellSchool_GlobalDC)
+        {
+            schoolBonus -= 10;
+        }
+        ss << EnumEntryText(*sit, spellSchoolTypeMap) << "(" << schoolBonus << ")";
+        ++sit;
+    }
+    // add any class level bonus
+    if (m_hasClassLevel)
+    {
+        if (!first)
+        {
+            ss << " + ";
+        }
+        first = false;
+        int classLevels = pCharacter->ClassLevels(m_ClassLevel);
+        std::string name = EnumEntryText(m_ClassLevel, classTypeMap);
+        if (name == "All")
+        {
+            name = "Character Level";
+        }
+        ss << name << "(" << classLevels << ")";
+    }
+    // add any half class level bonus
+    if (m_hasHalfClassLevel)
+    {
+        if (!first)
+        {
+            ss << " + ";
+        }
+        first = false;
+        int classLevels = (int)(pCharacter->ClassLevels(m_HalfClassLevel) / 2);
+        std::string name = EnumEntryText(m_HalfClassLevel, classTypeMap);
+        if (name == "All")
+        {
+            name = "Character Level";
+        }
+        ss << name << "/2(" << classLevels << ")";
+    }
+    std::string description = ss.str();
+    return description;
+}
+
 bool DC::operator==(const DC & other) const
 {
-    return (m_hasDisplayName == other.m_hasDisplayName)
-            && (m_DisplayName == other.m_DisplayName)
-            && (m_Type == other.m_Type)
-            && (m_Bonus == other.m_Bonus)
-            && (m_hasAmount == other.m_hasAmount)
-            && (m_Amount == other.m_Amount)
-            && (m_hasAmountVector == other.m_hasAmountVector)
-            && (m_AmountVector == other.m_AmountVector)
-            && (m_hasAmountPerLevel == other.m_hasAmountPerLevel)
-            && (m_AmountPerLevel == other.m_AmountPerLevel)
-            && (m_hasAmountPerAP == other.m_hasAmountPerAP)
-            && (m_AmountPerAP == other.m_AmountPerAP)
-            && (m_hasPercent == other.m_hasPercent)
-            && (m_hasDiceRoll == other.m_hasDiceRoll)
-            && (m_DiceRoll == other.m_DiceRoll)
-            && (m_hasDivider == other.m_hasDivider)
-            && (m_Divider == other.m_Divider)
-            && (m_hasFeat == other.m_hasFeat)
-            && (m_Feat == other.m_Feat)
-            && (m_hasNoFailOn1 == other.m_hasNoFailOn1)
-            && (m_NoFailOn1 == other.m_NoFailOn1)
-            && (m_hasSpell == other.m_hasSpell)
-            && (m_Spell == other.m_Spell)
-            && (m_hasSpellLevel == other.m_hasSpellLevel)
-            && (m_SpellLevel == other.m_SpellLevel)
-            && (m_Stance == other.m_Stance)
-            && (m_hasEnhancementTree == other.m_hasEnhancementTree)
-            && (m_EnhancementTree == other.m_EnhancementTree)
-            && (m_hasSpellLikeAbility == other.m_hasSpellLikeAbility)
-            && (m_SpellLikeAbility == other.m_SpellLikeAbility)
-            && (m_Immunity == other.m_Immunity)
-            && (m_hasAbility == other.m_hasAbility)
-            && (m_Ability == other.m_Ability)
-            && (m_hasClass == other.m_hasClass)
-            && (m_Class == other.m_Class)
-            && (m_DR == other.m_DR)
-            && (m_Energy == other.m_Energy)
-            && (m_hasFavoredEnemy == other.m_hasFavoredEnemy)
-            && (m_FavoredEnemy == other.m_FavoredEnemy)
-            && (m_hasSave == other.m_hasSave)
-            && (m_Save == other.m_Save)
-            && (m_Skill == other.m_Skill)
-            && (m_SpellPower == other.m_SpellPower)
-            && (m_hasSchool == other.m_hasSchool)
-            && (m_School == other.m_School)
-            && (m_hasTactical == other.m_hasTactical)
-            && (m_Tactical == other.m_Tactical)
-            && (m_hasWeaponClass == other.m_hasWeaponClass)
-            && (m_WeaponClass == other.m_WeaponClass)
-            && (m_hasDamageType == other.m_hasDamageType)
-            && (m_DamageType == other.m_DamageType)
-            && (m_Weapon == other.m_Weapon);
+    return (m_Name == other.m_Name)
+            && (m_Icon == other.m_Icon);
 }

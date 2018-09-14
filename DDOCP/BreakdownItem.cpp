@@ -34,7 +34,9 @@ void BreakdownItem::PopulateBreakdownControl(CListCtrl * pControl)
     AddActiveItems(m_otherEffects, pControl);
     AddActiveItems(m_effects, pControl);
     std::list<ActiveEffect> itemEffects = m_itemEffects;
+    std::list<ActiveEffect> inactiveEffects;
     std::list<ActiveEffect> nonStackingEffects;
+    RemoveInactive(&itemEffects, &inactiveEffects);
     RemoveNonStacking(&itemEffects, &nonStackingEffects);
     AddActiveItems(itemEffects, pControl);
 
@@ -67,6 +69,7 @@ void BreakdownItem::PopulateBreakdownControl(CListCtrl * pControl)
                 "Non-Stacking Effects",
                 0);
         AddActiveItems(nonStackingEffects, pControl);
+        AddActivePercentageItems(nonStackingEffects, pControl);
     }
 
     pControl->UnlockWindowUpdate();
@@ -126,16 +129,21 @@ double BreakdownItem::Total() const
     total += SumItems(m_effects);
 
     std::list<ActiveEffect> itemEffects = m_itemEffects;
+    std::list<ActiveEffect> inactiveEffects;
     std::list<ActiveEffect> nonStackingEffects;
+    RemoveInactive(&itemEffects, &inactiveEffects);
     RemoveNonStacking(&itemEffects, &nonStackingEffects);
     total += SumItems(itemEffects);
+    double baseTotal = total;
 
-    // now apply percentage effects
-    total = DoPercentageEffects(m_otherEffects, total);
-    total = DoPercentageEffects(m_effects, total);
+    // now apply percentage effects. Note percentage effects do not stack
+    // a test on live shows a two percentage bonus's to hp adds two lots
+    // of the base total (before percentages) to the total
+    total += DoPercentageEffects(m_otherEffects, baseTotal);
+    total += DoPercentageEffects(m_effects, baseTotal);
     // make sure we update listed items
-    DoPercentageEffects(m_itemEffects, total, false);
-    total = DoPercentageEffects(itemEffects, total);
+    DoPercentageEffects(m_itemEffects, baseTotal);
+    total += DoPercentageEffects(itemEffects, baseTotal);
     return total;
 }
 
@@ -276,9 +284,9 @@ double BreakdownItem::SumItems(const std::list<ActiveEffect> & effects) const
 
 double BreakdownItem::DoPercentageEffects(
         const std::list<ActiveEffect> & effects,
-        double total,
-        bool updateTotal) const
+        double total) const
 {
+    double amountAdded = 0;
     std::list<ActiveEffect>::const_iterator it = effects.begin();
     while (it != effects.end())
     {
@@ -293,16 +301,13 @@ double BreakdownItem::DoPercentageEffects(
                 double amount = (total * percent / 100.0);
                 // round it to a whole number
                 amount = (double)(int)amount;
-                if (updateTotal)
-                {
-                    total += amount;                    // add it to the total
-                }
+                amountAdded += amount;
                 (*it).SetPercentageValue(amount);   // so it can display its amount
             }
         }
         ++it;
     }
-    return total;
+    return amountAdded;
 }
 
 void BreakdownItem::AddAbility(
@@ -485,6 +490,27 @@ void BreakdownItem::RevokeEnhancementEffect(const ActiveEffect & effect)
 void BreakdownItem::RevokeItemEffect(const ActiveEffect & effect)
 {
     RevokeEffect(&m_itemEffects, effect);
+}
+
+void BreakdownItem::RemoveInactive(
+        std::list<ActiveEffect> * effects,
+        std::list<ActiveEffect> * inactiveEffects) const
+{
+    // add all inactive breakdown items from this particular list
+    inactiveEffects->clear(); // ensure empty
+
+    std::list<ActiveEffect>::iterator it = effects->begin();
+    while (it != effects->end())
+    {
+        // only add inactive items when it has a stance flag
+        if (!(*it).IsActive(m_pCharacter))
+        {
+            // add the item to be removed into the inactive list
+            inactiveEffects->push_back((*it));
+            it = effects->erase(it);      // remove from source list
+        }
+        ++it;
+    }
 }
 
 void BreakdownItem::RemoveNonStacking(

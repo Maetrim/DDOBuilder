@@ -132,6 +132,8 @@ CString TrainableFeatTypeLabel(TrainableFeatTypes type);
 int BaseStatToBonus(double ability);
 BreakdownType StatToBreakdown(AbilityType ability);
 BreakdownType SkillToBreakdown(SkillType skill);
+BreakdownType TacticalToBreakdown(TacticalType tactical);
+BreakdownType SchoolToBreakdown(SpellSchoolType school);
 BreakdownItem * FindBreakdown(BreakdownType type);
 double BAB(ClassType ct);
 bool IsInWeaponClass(WeaponClassType wc, WeaponType wt);

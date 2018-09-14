@@ -320,7 +320,10 @@ No spell point cost. (Cooldown: 10 seconds.)</Description>
          <Effect>
             <Type>TacticalDC</Type>
             <Bonus>Enhancement</Bonus>
-            <Tactical>All</Tactical>
+            <Tactical>Trip</Tactical>
+            <Tactical>Sunder</Tactical>
+            <Tactical>Stun</Tactical>
+            <Tactical>General</Tactical>
             <AmountVector size="3">1 2 3</AmountVector>
          </Effect>
       </EnhancementTreeItem>
@@ -619,8 +622,8 @@ to movement speed, sink in water, and cannot fly. (Cooldown: 3 minutes.)</Descri
          <Name>Dwarf: Hands of Stone</Name>
          <InternalName>DwarfHandsOfStone</InternalName>
          <Description>Greater Dragonmark Spell: Earthgrab
-(Target corporeal creature is grabbed by earthen hands and rendered helpless.
-(Reflex DC 10 + Level + Constitution Modifier Negates.))</Description>
+Target corporeal creature is grabbed by earthen hands and rendered helpless.
+(Reflex DC 10 + Level + Constitution Modifier Negates.)</Description>
          <Icon>DwarfHandsOfStone</Icon>
          <XPosition>0</XPosition>
          <YPosition>4</YPosition>
@@ -638,6 +641,16 @@ to movement speed, sink in water, and cannot fly. (Cooldown: 3 minutes.)</Descri
             <Bonus>Enhancement</Bonus>
             <SpellLikeAbility>Earth Grab</SpellLikeAbility>
          </Effect>
+         <DC>
+            <Name>Dwarf: Hands of Stone</Name>
+            <Description>Greater Dragonmark Spell: Earthgrab
+Target corporeal creature is grabbed by earthen hands and rendered helpless.</Description>
+            <Icon>DwarfHandsOfStone</Icon>
+            <DCVersus>Reflex</DCVersus>
+            <AmountVector size="1">10</AmountVector>
+            <ClassLevel>All</ClassLevel>
+            <ModAbility>Constitution</ModAbility>
+         </DC>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Dwarf Fortress</Name>
@@ -798,7 +811,7 @@ with battle axes, dwarven waraxes, hand axes, greataxes and throwing axes. </Des
                   </Requirement>
                </Requirements>
                <Effect>
-                  <Type>DamageBonus</Type>
+                  <Type>WeaponDamageAbility</Type>
                   <Bonus>Enhancement</Bonus>
                   <Ability>Constitution</Ability>
                   <Weapon>Battle Axe</Weapon>
@@ -821,7 +834,7 @@ with heavy picks, light hammer, light picks, mauls, throwing hammers, and warham
                   </Requirement>
                </Requirements>
                <Effect>
-                  <Type>DamageBonus</Type>
+                  <Type>WeaponDamageAbility</Type>
                   <Bonus>Enhancement</Bonus>
                   <Ability>Constitution</Ability>
                   <Weapon>Heavy Pick</Weapon>

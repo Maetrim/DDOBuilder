@@ -14,15 +14,6 @@ BreakdownItemTactical::BreakdownItemTactical(
     BreakdownItem(type, treeList, hItem),
     m_tacticalType(tactical)
 {
-    if (type != Breakdown_TacticalStunningFist)
-    {
-        AddAbility(Ability_Strength);
-    }
-    else
-    {
-        // stunning fist uses wisdom for its ability bonus
-        AddAbility(Ability_Wisdom);
-    }
 }
 
 BreakdownItemTactical::~BreakdownItemTactical()
@@ -53,46 +44,6 @@ void BreakdownItemTactical::CreateOtherEffects()
     if (m_pCharacter != NULL)
     {
         m_otherEffects.clear();
-        // all tactical effects have a base DC
-        ActiveEffect base(
-                Bonus_base,
-                "Base DC",
-                1,
-                10,
-                "");        // no tree
-        AddOtherEffect(base);
-
-        // Base ability bonus to tactical DC
-        AbilityType ability = LargestStatBonus();
-        BreakdownItem * pBI = FindBreakdown(StatToBreakdown(ability));
-        ASSERT(pBI != NULL);
-        int bonus = BaseStatToBonus(pBI->Total());
-        if (bonus != 0) // only add to list if non zero
-        {
-            // should now have the best option
-            std::string bonusName = "Ability bonus (" + EnumEntryText(ability, abilityTypeMap) + ")";
-            ActiveEffect feat(
-                    Bonus_ability,
-                    bonusName,
-                    1,
-                    bonus,
-                    "");        // no tree
-            feat.SetBreakdownDependency(StatToBreakdown(ability)); // so we know which effect to update
-            feat.SetDivider(1, DT_statBonus);
-            AddOtherEffect(feat);
-        }
-
-        // stunning fist also includes 1/2 character level (always 15 currently)
-        if (Type() == Breakdown_TacticalStunningFist)
-        {
-            ActiveEffect feat(
-                    Bonus_base,
-                    "1/2 Character Level",
-                    1,
-                    (int)(MAX_LEVEL / 2),       // drop fractions
-                    "");        // no tree
-            AddOtherEffect(feat);
-        }
         // handle divine presence which cannot be handled with effects
         if (m_pCharacter->IsEnhancementTrained("WSDivineMight", "Divine Presence"))
         {
@@ -134,14 +85,7 @@ bool BreakdownItemTactical::AffectsUs(const Effect & effect) const
     bool isUs = false;
     if (effect.Type() == Effect_TacticalDC)
     {
-        isUs = (effect.Tactical() == m_tacticalType
-                || effect.Tactical() == Tactical_All);
-        if (effect.Tactical() == Tactical_StunningBlow
-                && Type() == Breakdown_TacticalStunningFist)
-        {
-            // anything that affects stunning blow also affects stunning fist
-            isUs = true;
-        }
+        isUs = effect.IncludesTactical(m_tacticalType);
     }
     return isUs;
 }

@@ -130,6 +130,21 @@ bool Effect::IncludesSkill(SkillType skill) const
     return included;
 }
 
+bool Effect::IncludesTactical(TacticalType tactcial) const
+{
+    bool included = false;
+    std::list<TacticalType>::const_iterator it = m_Tactical.begin();
+    while (!included && it != m_Tactical.end())
+    {
+        if ((*it) == tactcial)
+        {
+            included = true;
+        }
+        ++it;
+    }
+    return included;
+}
+
 bool Effect::VerifyObject(std::stringstream * ss) const
 {
     bool ok = true;
@@ -213,15 +228,24 @@ bool Effect::VerifyObject(std::stringstream * ss) const
             }
             break;
         case Effect_TacticalDC:
-            if (!HasTactical())
+            if (m_Tactical.size() == 0)
             {
                 (*ss) << "TacticalDC effect missing tactical field\n";
                 ok = false;
             }
-            else if (Tactical() == Tactical_Unknown)
+            else
             {
-                (*ss) << "Tactical effect has bad enum value\n";
-                ok = false;
+                std::list<TacticalType>::const_iterator it = m_Tactical.begin();
+                while (it != m_Tactical.end())
+                {
+                    if ((*it) == Tactical_Unknown)
+                    {
+                        (*ss) << "Tactical effect has bad enum value\n";
+                        ok = false;
+                        break;
+                    }
+                    ++it;
+                }
             }
             break;
         case Effect_SpellDC:
@@ -255,6 +279,14 @@ bool Effect::VerifyObject(std::stringstream * ss) const
                     }
                     ++it;
                 }
+            }
+            break;
+        case Effect_WeaponAttackAbility:
+        case Effect_WeaponDamageAbility:
+            if (!HasAbility())
+            {
+                (*ss) << "Weapon effect missing Ability field\n";
+                ok = false;
             }
             break;
         case Effect_DRBypass:
@@ -401,7 +433,6 @@ bool Effect::operator==(const Effect & other) const
             && (m_SpellPower == other.m_SpellPower)
             && (m_hasSchool == other.m_hasSchool)
             && (m_School == other.m_School)
-            && (m_hasTactical == other.m_hasTactical)
             && (m_Tactical == other.m_Tactical)
             && (m_hasWeaponClass == other.m_hasWeaponClass)
             && (m_WeaponClass == other.m_WeaponClass)

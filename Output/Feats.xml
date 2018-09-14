@@ -932,7 +932,7 @@ Mass Repair Serious Damage.</Description>
       </AutomaticAcquisition>
       <Icon>BowStrength</Icon>
       <Effect>
-         <Type>DamageBonus</Type>
+         <Type>WeaponDamageAbility</Type>
          <Bonus>Feat</Bonus>
          <WeaponClass>Bows</WeaponClass>
          <Ability>Strength</Ability>
@@ -951,6 +951,16 @@ D&amp;D Dice: Deals 1d6 fire damage per monk level.</Description>
          <Class>Monk</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
+      <DC>
+         <Name>Breath of the Fire Dragon</Name>
+         <Description>A cone of searing flame shoots forth,
+damaging targets in the area of the flames for 1 to 6 damage for each monk level.</Description>
+         <Icon>BreathOfTheFireDragon</Icon>
+         <DCVersus>Reflex</DCVersus>
+         <AmountVector size="1">10</AmountVector>
+         <ClassLevel>Monk</ClassLevel>
+         <ModAbility>Wisdom</ModAbility>
+      </DC>
    </Feat>
    <Feat>
       <Name>Brutal Throw</Name>
@@ -968,7 +978,7 @@ bonus to attack with thrown weapons if it is higher.</Description>
       <Acquire>Train</Acquire>
       <Icon>BrutalThrow</Icon>
       <Effect>
-         <Type>AttackBonus</Type>
+         <Type>WeaponAttackAbility</Type>
          <Bonus>Feat</Bonus>
          <Ability>Strength</Ability>
          <WeaponClass>Thrown</WeaponClass>
@@ -1316,10 +1326,10 @@ healing. In addition, you now take 50% damage from rust effects.</Description>
       <Requirements>
          <RequiresNoneOf>
             <Requirement>
-                <Race>Bladeforged</Race>
+               <Race>Bladeforged</Race>
             </Requirement>
             <Requirement>
-                <Race>Warforged</Race>
+               <Race>Warforged</Race>
             </Requirement>
          </RequiresNoneOf>
          <Requirement>
@@ -1380,9 +1390,6 @@ curse, confusing their mind and rendering them unable to recognize their friends
 You can make an attack that charms your opponent for a short period of time.
 A successful Will save negates this effect. (DC 10 + Monk Level + Wisdom mod)
 Each time the target takes damage there is a chance that they will break free of this effect.</Description>
-      <FeatGroup>
-         <IsArtificerBonus/>
-      </FeatGroup>
       <Requirements/>
       <Acquire>Automatic</Acquire>
       <Icon>CurseOfTheVoid</Icon>
@@ -1390,6 +1397,16 @@ Each time the target takes damage there is a chance that they will break free of
          <Class>Monk</Class>
          <Level>10</Level>
       </AutomaticAcquisition>
+      <DC>
+         <Name>Curse of the Void</Name>
+         <Description>A cone of searing flame shoots forth,
+damaging targets in the area of the flames for 1 to 6 damage for each monk level.</Description>
+         <Icon>CurseOfTheVoid</Icon>
+         <DCVersus>Will</DCVersus>
+         <AmountVector size="1">10</AmountVector>
+         <ClassLevel>Monk</ClassLevel>
+         <ModAbility>Wisdom</ModAbility>
+      </DC>
    </Feat>
    <Feat>
       <Name>Dance Of Clouds</Name>
@@ -1714,11 +1731,11 @@ the controlling effect.</Description>
          <Level>1</Level>
       </AutomaticAcquisition>
       <Icon>DismissCharm</Icon>
-       <Effect>
-           <Type>SpellLikeAbility</Type>
-           <Bonus>Feat</Bonus>
-           <SpellLikeAbility>Dismiss Charm</SpellLikeAbility>
-       </Effect>
+      <Effect>
+         <Type>SpellLikeAbility</Type>
+         <Bonus>Feat</Bonus>
+         <SpellLikeAbility>Dismiss Charm</SpellLikeAbility>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Dismiss Rage</Name>
@@ -1730,11 +1747,11 @@ the controlling effect.</Description>
          <Level>1</Level>
       </AutomaticAcquisition>
       <Icon>DismissRage</Icon>
-       <Effect>
-           <Type>SpellLikeAbility</Type>
-           <Bonus>Feat</Bonus>
-           <SpellLikeAbility>Dismiss Rage</SpellLikeAbility>
-       </Effect>
+      <Effect>
+         <Type>SpellLikeAbility</Type>
+         <Bonus>Feat</Bonus>
+         <SpellLikeAbility>Dismiss Rage</SpellLikeAbility>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Divine Grace</Name>
@@ -2696,6 +2713,7 @@ Has a save DC of your perform skill plus the roll of a twenty-sided die.</Descri
          <AmountVector size="20">0 0 5 5 5 10 10 10 15 15 15 20 20 20 25 25 25 30 30 30</AmountVector>
          <Class>Monk</Class>
          <Stance>Centered</Stance>
+         <ApplyAsItemEffect/>
       </Effect>
    </Feat>
    <Feat>
@@ -2712,6 +2730,7 @@ Has a save DC of your perform skill plus the roll of a twenty-sided die.</Descri
          <Type>MovementSpeed</Type>
          <Bonus>Feat</Bonus>
          <Amount>10.0</Amount>
+         <ApplyAsItemEffect/>
       </Effect>
    </Feat>
    <Feat>
@@ -2727,6 +2746,16 @@ The target receives periodic saves to attempt to break free of this effect.</Des
          <Class>Monk</Class>
          <Level>3</Level>
       </AutomaticAcquisition>
+      <DC>
+         <Name>Falling Star Strike</Name>
+         <Description>You have studied esoteric nerve strikes.
+You can make an attack that has a chance of blinding your opponent.</Description>
+         <Icon>FallingStarStrike</Icon>
+         <DCVersus>Fortitude</DCVersus>
+         <AmountVector size="1">10</AmountVector>
+         <ClassLevel>Monk</ClassLevel>
+         <ModAbility>Wisdom</ModAbility>
+      </DC>
    </Feat>
    <Feat>
       <Name>Favored enemy: Aberration</Name>
@@ -3085,6 +3114,17 @@ The target receives periodic saves to attempt to break free of this effect.</Des
          <Class>Monk</Class>
          <Level>3</Level>
       </AutomaticAcquisition>
+      <DC>
+         <Name>Freezing The Lifeblood</Name>
+         <Description>Your attacks can paralyze humanoid opponents.
+You strike at pressure points, paralyzing them and rendering them helpless for
+a short period of time.</Description>
+         <Icon>FreezingTheLifeblood</Icon>
+         <DCVersus>Fortitude</DCVersus>
+         <AmountVector size="1">10</AmountVector>
+         <ClassLevel>Monk</ClassLevel>
+         <ModAbility>Wisdom</ModAbility>
+      </DC>
    </Feat>
    <Feat>
       <Name>Grandmaster of Forms</Name>
@@ -3448,15 +3488,15 @@ your appropriate ability score to your damage (similar to Two-Handed Fighting).<
          <Percent/>
          <AmountVector size="2">25 50</AmountVector>
       </Effect>
-       <Effect>
-           <DisplayName>Epic Defensive Fighting</DisplayName>
-           <Type>Hitpoints</Type>
-           <Bonus>Competence</Bonus>
-           <Percent/>
-           <Stance>Epic Defensive Fighting</Stance>
-           <AmountVector size="5">5 10 15 20 25</AmountVector>
-           <ApplyAsItemEffect/>
-       </Effect>
+      <Effect>
+         <DisplayName>Epic Defensive Fighting</DisplayName>
+         <Type>Hitpoints</Type>
+         <Bonus>Competence</Bonus>
+         <Percent/>
+         <Stance>Epic Defensive Fighting</Stance>
+         <AmountVector size="5">5 10 15 20 25</AmountVector>
+         <ApplyAsItemEffect/>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Greater Spell Focus: Abjuration</Name>
@@ -3636,15 +3676,15 @@ additional +2 to Melee Power (total of +6).</Description>
          <Stance>Two Handed Fighting</Stance>
          <Amount>2</Amount>
       </Effect>
-       <Effect>
-           <DisplayName>Epic Defensive Fighting</DisplayName>
-           <Type>Hitpoints</Type>
-           <Bonus>Competence</Bonus>
-           <Percent/>
-           <Stance>Epic Defensive Fighting</Stance>
-           <AmountVector size="5">5 10 15 20 25</AmountVector>
-           <ApplyAsItemEffect/>
-       </Effect>
+      <Effect>
+         <DisplayName>Epic Defensive Fighting</DisplayName>
+         <Type>Hitpoints</Type>
+         <Bonus>Competence</Bonus>
+         <Percent/>
+         <Stance>Epic Defensive Fighting</Stance>
+         <AmountVector size="5">5 10 15 20 25</AmountVector>
+         <ApplyAsItemEffect/>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Greater Two Weapon Fighting</Name>
@@ -3678,15 +3718,15 @@ two weapons (or as an unarmed monk) by an additional 20% to 80%.</Description>
          <Bonus>Feat</Bonus>
          <Amount>20</Amount>
       </Effect>
-       <Effect>
-           <DisplayName>Epic Defensive Fighting</DisplayName>
-           <Type>Hitpoints</Type>
-           <Bonus>Competence</Bonus>
-           <Percent/>
-           <Stance>Epic Defensive Fighting</Stance>
-           <AmountVector size="5">5 10 15 20 25</AmountVector>
-           <ApplyAsItemEffect/>
-       </Effect>
+      <Effect>
+         <DisplayName>Epic Defensive Fighting</DisplayName>
+         <Type>Hitpoints</Type>
+         <Bonus>Competence</Bonus>
+         <Percent/>
+         <Stance>Epic Defensive Fighting</Stance>
+         <AmountVector size="5">5 10 15 20 25</AmountVector>
+         <ApplyAsItemEffect/>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Greater Weapon Focus: Bludgeoning Weapons</Name>
@@ -4256,6 +4296,7 @@ This feat is not recommended for characters with actual barbarian levels.</Descr
       <Acquire>Train</Acquire>
       <Icon>DilettanteBarbarian</Icon>
       <Effect>
+         <DisplayName>Half-Elf Dilettante: Barbarian DR</DisplayName>
          <Type>DR</Type>
          <Bonus>Feat</Bonus>
          <Amount>1</Amount>
@@ -5502,21 +5543,21 @@ of just your ability score (for instance, you add 1.25 times your Strength as da
          <Percent/>
          <AmountVector size="2">25 50</AmountVector>
       </Effect>
-       <Effect>
-           <DisplayName>Epic Defensive Fighting</DisplayName>
-           <Type>Hitpoints</Type>
-           <Bonus>Competence</Bonus>
-           <Percent/>
-           <Stance>Epic Defensive Fighting</Stance>
-           <AmountVector size="5">5 10 15 20 25</AmountVector>
-           <ApplyAsItemEffect/>
-       </Effect>
+      <Effect>
+         <DisplayName>Epic Defensive Fighting</DisplayName>
+         <Type>Hitpoints</Type>
+         <Bonus>Competence</Bonus>
+         <Percent/>
+         <Stance>Epic Defensive Fighting</Stance>
+         <AmountVector size="5">5 10 15 20 25</AmountVector>
+         <ApplyAsItemEffect/>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Improved Sunder</Name>
       <Description>This melee special attack results in a -5 AC penalty and
 -10% fortification to the target for 24 seconds, if the target
-fails a Fortitude save (DC 14 + Str mod).
+fails a Fortitude save (DC 14 + Str mod + Sunder modifiers).
 Whether successful or unsuccessful, this attack will also reduce
 an enemy's Fortitude saves by 3, stacking up to 5 times.
 Some creatures may be immune to the sunder effect</Description>
@@ -5535,12 +5576,23 @@ Some creatures may be immune to the sunder effect</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>ImprovedSunder</Icon>
+      <DC>
+         <Name>Improved Sunder</Name>
+         <Description>This melee special attack results in a -5 AC penalty and
+-10% fortification to the target for 24 seconds, if the target
+fails a Fortitude save.</Description>
+         <Icon>ImprovedSunder</Icon>
+         <DCVersus>Fortitude</DCVersus>
+         <AmountVector size="1">14</AmountVector>
+         <ModAbility>Strength</ModAbility>
+         <Tactical>Sunder</Tactical>
+      </DC>
    </Feat>
    <Feat>
       <Name>Improved Trip</Name>
       <Description>Tactical Melee Attack: Using this attack, you may trip the target,
 rendering it prone for a longer time. Some creatures may be immune to this effect.
-A successful Balance check negates this effect. (DC 14 + Str mod)</Description>
+A successful Balance check negates this effect. (DC 14 + Str mod + Trip modifiers)</Description>
       <FeatGroup>
          <IsStandardFeat/>
          <IsFighterBonus/>
@@ -5554,6 +5606,17 @@ A successful Balance check negates this effect. (DC 14 + Str mod)</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>ImprovedTrip</Icon>
+      <DC>
+         <Name>Improved Trip</Name>
+         <Description>Tactical Melee Attack: Using this attack, you may trip the target,
+rendering it prone for a longer time. Some creatures may be immune to this effect.
+A successful Balance check negates this effect.</Description>
+         <Icon>ImprovedTrip</Icon>
+         <DCVersus>Balance</DCVersus>
+         <AmountVector size="1">14</AmountVector>
+         <ModAbility>Strength</ModAbility>
+         <Tactical>Trip</Tactical>
+      </DC>
    </Feat>
    <Feat>
       <Name>Improved Turning</Name>
@@ -5617,15 +5680,15 @@ bonus to Melee Power (total of +4).</Description>
          <Stance>Two Handed Fighting</Stance>
          <Amount>2</Amount>
       </Effect>
-       <Effect>
-           <DisplayName>Epic Defensive Fighting</DisplayName>
-           <Type>Hitpoints</Type>
-           <Bonus>Competence</Bonus>
-           <Percent/>
-           <Stance>Epic Defensive Fighting</Stance>
-           <AmountVector size="5">5 10 15 20 25</AmountVector>
-           <ApplyAsItemEffect/>
-       </Effect>
+      <Effect>
+         <DisplayName>Epic Defensive Fighting</DisplayName>
+         <Type>Hitpoints</Type>
+         <Bonus>Competence</Bonus>
+         <Percent/>
+         <Stance>Epic Defensive Fighting</Stance>
+         <AmountVector size="5">5 10 15 20 25</AmountVector>
+         <ApplyAsItemEffect/>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Improved Two Weapon Fighting</Name>
@@ -5659,15 +5722,15 @@ two weapons (or as an unarmed monk) by an additional 20% to 60%.</Description>
          <Bonus>Feat</Bonus>
          <Amount>20</Amount>
       </Effect>
-       <Effect>
-           <DisplayName>Epic Defensive Fighting</DisplayName>
-           <Type>Hitpoints</Type>
-           <Bonus>Competence</Bonus>
-           <Percent/>
-           <Stance>Epic Defensive Fighting</Stance>
-           <AmountVector size="5">5 10 15 20 25</AmountVector>
-           <ApplyAsItemEffect/>
-       </Effect>
+      <Effect>
+         <DisplayName>Epic Defensive Fighting</DisplayName>
+         <Type>Hitpoints</Type>
+         <Bonus>Competence</Bonus>
+         <Percent/>
+         <Stance>Epic Defensive Fighting</Stance>
+         <AmountVector size="5">5 10 15 20 25</AmountVector>
+         <ApplyAsItemEffect/>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Improved Uncanny Dodge</Name>
@@ -5902,7 +5965,7 @@ considered adamantine for damage reduction purposes.</Description>
          <Bonus>Feat</Bonus>
          <DR>Adamantine</DR>
          <Weapon>All</Weapon>
-          <Stance>Centered</Stance>
+         <Stance>Centered</Stance>
       </Effect>
    </Feat>
    <Feat>
@@ -5921,7 +5984,7 @@ considered lawful for damage reduction purposes.</Description>
          <Bonus>Feat</Bonus>
          <DR>Lawful</DR>
          <Weapon>All</Weapon>
-          <Stance>Centered</Stance>
+         <Stance>Centered</Stance>
       </Effect>
    </Feat>
    <Feat>
@@ -7964,15 +8027,15 @@ This feat can be taken up to three times, and gives no benefit to druids in elem
          <AnyOfStance>Bear</AnyOfStance>
          <AnyOfStance>Dire Bear</AnyOfStance>
       </Effect>
-       <Effect>
-           <DisplayName>Epic Defensive Fighting</DisplayName>
-           <Type>Hitpoints</Type>
-           <Bonus>Competence</Bonus>
-           <Percent/>
-           <Stance>Epic Defensive Fighting</Stance>
-           <AmountVector size="5">5 10 15 20 25</AmountVector>
-           <ApplyAsItemEffect/>
-       </Effect>
+      <Effect>
+         <DisplayName>Epic Defensive Fighting</DisplayName>
+         <Type>Hitpoints</Type>
+         <Bonus>Competence</Bonus>
+         <Percent/>
+         <Stance>Epic Defensive Fighting</Stance>
+         <AmountVector size="5">5 10 15 20 25</AmountVector>
+         <ApplyAsItemEffect/>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Negotiator</Name>
@@ -8083,6 +8146,17 @@ The target receives periodic saves to attempt to break free of this effect.</Des
          <Class>Monk</Class>
          <Level>3</Level>
       </AutomaticAcquisition>
+      <DC>
+         <Name>Pain Touch</Name>
+         <Description>Your attacks can twist the ki in a living creature.
+Your strike disrupts the harmony within your opponent, rending them nauseated.
+A successful Fortitude save negates this effect.</Description>
+         <Icon>PainTouch</Icon>
+         <DCVersus>Fortitude</DCVersus>
+         <AmountVector size="1">10</AmountVector>
+         <ClassLevel>Monk</ClassLevel>
+         <ModAbility>Wisdom</ModAbility>
+      </DC>
    </Feat>
    <Feat>
       <Name>Past Life: Acolyte of Divine Secrets</Name>
@@ -8606,6 +8680,17 @@ creatures plus another 1d50 damage on vorpal.</Description>
             <Energy>Negative</Energy>
          </Dice>
       </Effect>
+      <DC>
+         <Name>Path of Inevitable Dominion: Fists of Darkness</Name>
+         <Description>You can activate this ability to channel negative energy into your attack,
+dealing 2 to 20 additional damage against living creatures and then rendering
+the target shaken.(A successful Will save negate the shaken effect.</Description>
+         <Icon>PathOfInevitableDominion</Icon>
+         <DCVersus>Will</DCVersus>
+         <AmountVector size="1">10</AmountVector>
+         <ClassLevel>Monk</ClassLevel>
+         <ModAbility>Wisdom</ModAbility>
+      </DC>
    </Feat>
    <Feat>
       <Name>Perfect Self</Name>
@@ -8970,7 +9055,7 @@ be interrupted by enemy attacks, but they consume 10 additional spell points.</D
       <Name>Quivering Palm</Name>
       <Description>The monk delivers a fatal attack by sending waves of vibrations through the
 target with a weapon strike. The attack costs 30 Ki, and if it hits the victim
-must pass a Fortitude save (DC 10 + monk level/2 + Wisdom modifier) or die.
+must pass a Fortitude save (DC 10 + monk level/2 + Wisdom modifier + General modifiers) or die.
 Quivering Palm gains DC bonuses from general tactical combat boosts, but not
 Sundering items. Whenever an enemy saves vs. Quivering Palm, you get a stacking
 +4 bonus to your Quivering Palm DC. This stack is dispelled when you successfully
@@ -8985,11 +9070,23 @@ Invisibility effects.</Description>
          <Class>Monk</Class>
          <Level>15</Level>
       </AutomaticAcquisition>
-       <Effect>
-           <Type>SpellLikeAbility</Type>
-           <Bonus>Feat</Bonus>
-           <SpellLikeAbility>Quivering Palm</SpellLikeAbility>
-       </Effect>
+      <Effect>
+         <Type>SpellLikeAbility</Type>
+         <Bonus>Feat</Bonus>
+         <SpellLikeAbility>Quivering Palm</SpellLikeAbility>
+      </Effect>
+      <DC>
+         <Name>Quivering Palm</Name>
+         <Description>The monk delivers a fatal attack by sending waves of vibrations through the
+target with a weapon strike. The attack costs 30 Ki, and if it hits the victim
+must pass a Fortitude save or die.</Description>
+         <Icon>QuiveringPalm</Icon>
+         <DCVersus>Will</DCVersus>
+         <AmountVector size="1">10</AmountVector>
+         <HalfClassLevel>Monk</HalfClassLevel>
+         <ModAbility>Wisdom</ModAbility>
+         <Tactical>General</Tactical>
+      </DC>
    </Feat>
    <Feat>
       <Name>Racial Spell Resistance</Name>
@@ -9368,6 +9465,17 @@ negates this effect. (DC 10 + Monk Level + Charisma mod).</Description>
          <Class>Monk</Class>
          <Level>20</Level>
       </AutomaticAcquisition>
+      <DC>
+         <Name>Shining Star</Name>
+         <Description>You use the combined power of Earth, Wind and Fire to set up harmonic
+vibrations within your enemy that force them to dance. A successful Will save
+negates this effect.</Description>
+         <Icon>ShiningStar</Icon>
+         <DCVersus>Will</DCVersus>
+         <AmountVector size="1">10</AmountVector>
+         <HalfClassLevel>Monk</HalfClassLevel>
+         <ModAbility>Charisma</ModAbility>
+      </DC>
    </Feat>
    <Feat>
       <Name>Shot on the Run</Name>
@@ -9437,15 +9545,15 @@ and wielding only an orb, runearm, or nothing in your off hand.</Description>
          <Amount>10</Amount>
          <Stance>Single Weapon Fighting</Stance>
       </Effect>
-       <Effect>
-           <DisplayName>Epic Defensive Fighting</DisplayName>
-           <Type>Hitpoints</Type>
-           <Bonus>Competence</Bonus>
-           <Percent/>
-           <Stance>Epic Defensive Fighting</Stance>
-           <AmountVector size="5">5 10 15 20 25</AmountVector>
-           <ApplyAsItemEffect/>
-       </Effect>
+      <Effect>
+         <DisplayName>Epic Defensive Fighting</DisplayName>
+         <Type>Hitpoints</Type>
+         <Bonus>Competence</Bonus>
+         <Percent/>
+         <Stance>Epic Defensive Fighting</Stance>
+         <AmountVector size="5">5 10 15 20 25</AmountVector>
+         <ApplyAsItemEffect/>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Shuriken Expertise</Name>
@@ -11522,6 +11630,17 @@ negates this effect. (DC 10 + Str mod)</Description>
       <Requirements/>
       <Acquire>Train</Acquire>
       <Icon>StunningBlow</Icon>
+      <DC>
+         <Name>Stunning Blow</Name>
+         <Description>Tactical Melee Attack: Using this attack, you may stun the target for a few seconds.
+Some creatures may be immune to the stun effect. A successful Fortitude save
+negates this effect.</Description>
+         <Icon>StunningBlow</Icon>
+         <DCVersus>Fortitude</DCVersus>
+         <AmountVector size="1">10</AmountVector>
+         <ModAbility>Strength</ModAbility>
+         <Tactical>Stun</Tactical>
+      </DC>
    </Feat>
    <Feat>
       <Name>Stunning Fist</Name>
@@ -11534,6 +11653,17 @@ DC = 10 + half character levels + Wis mod + other modifiers</Description>
       <Requirements/>
       <Acquire>Train</Acquire>
       <Icon>StunningFist</Icon>
+      <DC>
+         <Name>Stunning Fist</Name>
+         <Description>A swift unarmed attack to vulnerable areas that cause your target to be stunned
+for 6 seconds if it fails a Fortitude save.</Description>
+         <Icon>StunningFist</Icon>
+         <DCVersus>Fortitude</DCVersus>
+         <AmountVector size="1">10</AmountVector>
+         <HalfClassLevel>All</HalfClassLevel>
+         <ModAbility>Wisdom</ModAbility>
+         <Tactical>Stun</Tactical>
+      </DC>
    </Feat>
    <Feat>
       <Name>Suggestion</Name>
@@ -11564,6 +11694,16 @@ Some creatures may be immune to the sunder effect</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>Sunder</Icon>
+      <DC>
+         <Name>Sunder</Name>
+         <Description>This melee special attack, when successful, results in a -4 AC penalty
+to the target for 12 seconds if it fails a Fortitude save.</Description>
+         <Icon>Sunder</Icon>
+         <DCVersus>Fortitude</DCVersus>
+         <AmountVector size="1">10</AmountVector>
+         <ModAbility>Strength</ModAbility>
+         <Tactical>Sunder</Tactical>
+      </DC>
    </Feat>
    <Feat>
       <Name>Superior Weapon Focus: Bludgeoning Weapons</Name>
@@ -11758,7 +11898,10 @@ Focus and Greater Weapon Focus feats.</Description>
       <Effect>
          <Type>TacticalDC</Type>
          <Bonus>Feat</Bonus>
-         <Tactical>All</Tactical>
+            <Tactical>Trip</Tactical>
+            <Tactical>Sunder</Tactical>
+            <Tactical>Stun</Tactical>
+            <Tactical>General</Tactical>
          <Amount>4</Amount>
       </Effect>
    </Feat>
@@ -11780,7 +11923,10 @@ Focus and Greater Weapon Focus feats.</Description>
       <Effect>
          <Type>TacticalDC</Type>
          <Bonus>Feat</Bonus>
-         <Tactical>All</Tactical>
+            <Tactical>Trip</Tactical>
+            <Tactical>Sunder</Tactical>
+            <Tactical>Stun</Tactical>
+            <Tactical>General</Tactical>
          <Amount>6</Amount>
       </Effect>
    </Feat>
@@ -11802,7 +11948,10 @@ Focus and Greater Weapon Focus feats.</Description>
       <Effect>
          <Type>TacticalDC</Type>
          <Bonus>Feat</Bonus>
-         <Tactical>All</Tactical>
+            <Tactical>Trip</Tactical>
+            <Tactical>Sunder</Tactical>
+            <Tactical>Stun</Tactical>
+            <Tactical>General</Tactical>
          <Amount>8</Amount>
       </Effect>
    </Feat>
@@ -11824,7 +11973,10 @@ Focus and Greater Weapon Focus feats.</Description>
       <Effect>
          <Type>TacticalDC</Type>
          <Bonus>Feat</Bonus>
-         <Tactical>All</Tactical>
+            <Tactical>Trip</Tactical>
+            <Tactical>Sunder</Tactical>
+            <Tactical>Stun</Tactical>
+            <Tactical>General</Tactical>
          <Amount>2</Amount>
       </Effect>
    </Feat>
@@ -11864,6 +12016,16 @@ opponent's chance to land attacks. A successful Fortitude save ends this effect.
          <Class>Monk</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
+      <DC>
+         <Name>The Gathering Storm</Name>
+         <Description>Winds gather about your enemy, decreasing your
+opponent's chance to land attacks. A successful Fortitude save ends this effect.</Description>
+         <Icon>TheGatheringStorm</Icon>
+         <DCVersus>Fortitude</DCVersus>
+         <AmountVector size="1">10</AmountVector>
+         <ClassLevel>Monk</ClassLevel>
+         <ModAbility>Wisdom</ModAbility>
+      </DC>
    </Feat>
    <Feat>
       <Name>The Raging Sea</Name>
@@ -11878,6 +12040,16 @@ attacks. A successful Fortitude save ends this effect.
          <Class>Monk</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
+      <DC>
+         <Name>The Raging Sea</Name>
+         <Description>Like a swimmer fighting against the raging sea, your enemy finds
+it difficult to act with speed. This attack slows your enemies attacks.</Description>
+         <Icon>TheRagingSea</Icon>
+         <DCVersus>Fortitude</DCVersus>
+         <AmountVector size="1">10</AmountVector>
+         <ClassLevel>Monk</ClassLevel>
+         <ModAbility>Wisdom</ModAbility>
+      </DC>
    </Feat>
    <Feat>
       <Name>The Trembling Earth</Name>
@@ -11893,6 +12065,18 @@ Fortitude save ends this effect.
          <Class>Monk</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
+      <DC>
+         <Name>The Trembling Earth</Name>
+         <Description>The force of earth is behind your attacks,
+increasing your critical threat multiplier for this attack by 2 and partially
+bewildering your foe, preventing them from casting spells. A successful
+Fortitude save ends this effect.</Description>
+         <Icon>TheTremblingEarth</Icon>
+         <DCVersus>Fortitude</DCVersus>
+         <AmountVector size="1">10</AmountVector>
+         <ClassLevel>Monk</ClassLevel>
+         <ModAbility>Wisdom</ModAbility>
+      </DC>
    </Feat>
    <Feat>
       <Name>Touch Of Despair</Name>
@@ -11909,6 +12093,18 @@ The target receives periodic saves to attempt to break free of this effect.</Des
          <Class>Monk</Class>
          <Level>3</Level>
       </AutomaticAcquisition>
+      <DC>
+         <Name>Touch Of Despair</Name>
+         <Description>You strike your opponent down with a terrible
+curse, halving all positive energy healing done to the target, reducing its
+fortification by 25% and increasing its negative energy vulnerability by 25%.
+A successful Fortitude save negates this effect.</Description>
+         <Icon>TouchOfDespair</Icon>
+         <DCVersus>Fortitude</DCVersus>
+         <AmountVector size="1">10</AmountVector>
+         <ClassLevel>Monk</ClassLevel>
+         <ModAbility>Wisdom</ModAbility>
+      </DC>
    </Feat>
    <Feat>
       <Name>Timeless Body</Name>
@@ -11950,6 +12146,7 @@ point for each additional level.</Description>
       <FeatGroup>
          <IsStandardFeat/>
          <IsMonkBonus/>
+         <IsEpicDestinyFeat/>
       </FeatGroup>
       <Requirements/>
       <Acquire>Train</Acquire>
@@ -12085,6 +12282,17 @@ A successful Balance check negates this effect.
       <AutomaticAcquisition>
          <BAB>1</BAB>
       </AutomaticAcquisition>
+      <DC>
+         <Name>Trip</Name>
+         <Description>Using this attack, you may trip the target, rendering it prone.
+Some creatures may be immune to this effect.
+A successful Balance check negates this effect.</Description>
+         <Icon>Trip</Icon>
+         <DCVersus>Balance</DCVersus>
+         <AmountVector size="1">10</AmountVector>
+         <ModAbility>Strength</ModAbility>
+         <Tactical>Trip</Tactical>
+      </DC>
    </Feat>
    <Feat>
       <Name>Turn Undead</Name>
@@ -12136,15 +12344,15 @@ weapon effects to trigger on glancing blows and a +2 Combat Style bonus to Melee
          <Stance>Two Handed Fighting</Stance>
          <Amount>2</Amount>
       </Effect>
-       <Effect>
-           <DisplayName>Epic Defensive Fighting</DisplayName>
-           <Type>Hitpoints</Type>
-           <Bonus>Competence</Bonus>
-           <Percent/>
-           <Stance>Epic Defensive Fighting</Stance>
-           <AmountVector size="5">5 10 15 20 25</AmountVector>
-           <ApplyAsItemEffect/>
-       </Effect>
+      <Effect>
+         <DisplayName>Epic Defensive Fighting</DisplayName>
+         <Type>Hitpoints</Type>
+         <Bonus>Competence</Bonus>
+         <Percent/>
+         <Stance>Epic Defensive Fighting</Stance>
+         <AmountVector size="5">5 10 15 20 25</AmountVector>
+         <ApplyAsItemEffect/>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Two Weapon Blocking</Name>
@@ -12241,15 +12449,15 @@ Two Weapon Fighting also increases the chance to proc an off-hand attack by
          <Amount>0</Amount>
          <Weapon>All</Weapon>
       </Effect>
-       <Effect>
-           <DisplayName>Epic Defensive Fighting</DisplayName>
-           <Type>Hitpoints</Type>
-           <Bonus>Competence</Bonus>
-           <Percent/>
-           <Stance>Epic Defensive Fighting</Stance>
-           <AmountVector size="5">5 10 15 20 25</AmountVector>
-           <ApplyAsItemEffect/>
-       </Effect>
+      <Effect>
+         <DisplayName>Epic Defensive Fighting</DisplayName>
+         <Type>Hitpoints</Type>
+         <Bonus>Competence</Bonus>
+         <Percent/>
+         <Stance>Epic Defensive Fighting</Stance>
+         <AmountVector size="5">5 10 15 20 25</AmountVector>
+         <ApplyAsItemEffect/>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Unarmed Strike</Name>
@@ -12286,7 +12494,7 @@ your fists and feat are lethal weapons.</Description>
       <Effect>
          <Type>WeaponBaseDamageBonus</Type>
          <Bonus>Feat</Bonus>
-          <!--Note that this is modelled as additional n[W] above the basic 1[W] which is assumed-->
+         <!--Note that this is modelled as additional n[W] above the basic 1[W] which is assumed-->
          <AmountVector size="6">0 0.5 1.0 1.5 2.0 2.5</AmountVector>
          <Weapon>Handwraps</Weapon>
          <Weapon>Unarmed</Weapon>
@@ -12665,6 +12873,16 @@ is instead paralyzed and helpless with fear for 6 seconds.</Description>
          <Bonus>Feat</Bonus>
          <SpellLikeAbility>Hurl Through Hell</SpellLikeAbility>
       </Effect>
+      <DC>
+         <Name>Warlock: Hurl Through Hell</Name>
+         <Description>Exile one target enemy from this existence.
+An enemy succeeding on a Will save is instead paralyzed and helpless with fear for 6 seconds.</Description>
+         <Icon>HurlThroughHell</Icon>
+         <DCVersus>Will</DCVersus>
+         <AmountVector size="1">10</AmountVector>
+         <ClassLevel>Warlock</ClassLevel>
+         <ModAbility>Charisma</ModAbility>
+      </DC>
    </Feat>
    <Feat>
       <Name>Warlock: Misty escape</Name>
@@ -12784,6 +13002,16 @@ DC(19 + Charisma Mod + Evocation Bonuses)</Description>
          <SpellLevel>1</SpellLevel>
          <Class>Warlock</Class>
       </Effect>
+      <DC>
+         <Name>Warlock: Pact: Fey</Name>
+         <Description>Toggle on: Your eldritch Blast deals +1 Sonic damage, plus 1d4 per two Warlock levels.
+This damage is halved on a successful Reflex saving throw.</Description>
+         <Icon>EpicEldritchBlast</Icon>
+         <DCVersus>Reflex</DCVersus>
+         <AmountVector size="1">19</AmountVector>
+         <ModAbility>Charisma</ModAbility>
+         <School>Evocation</School>
+      </DC>
    </Feat>
    <Feat>
       <Name>Warlock: Pact: Fiend</Name>
@@ -12833,6 +13061,16 @@ DC(19 + Charisma Mod + Evocation Bonuses)</Description>
          <SpellLevel>1</SpellLevel>
          <Class>Warlock</Class>
       </Effect>
+      <DC>
+         <Name>Warlock: Pact: Fiend</Name>
+         <Description>Toggle on: Your eldritch Blast deals +1 Fire damage, plus 1d4 per two Warlock levels.
+This damage is halved on a successful Fortitude saving throw.</Description>
+         <Icon>EpicEldritchBlast</Icon>
+         <DCVersus>Fortitude</DCVersus>
+         <AmountVector size="1">19</AmountVector>
+         <ModAbility>Charisma</ModAbility>
+         <School>Evocation</School>
+      </DC>
    </Feat>
    <Feat>
       <Name>Warlock: Pact: Great Old One</Name>
@@ -12876,6 +13114,16 @@ DC(19 + Charisma Mod + Evocation Bonuses)</Description>
          <SpellLevel>1</SpellLevel>
          <Class>Warlock</Class>
       </Effect>
+      <DC>
+         <Name>Warlock: Pact: Great Old One</Name>
+         <Description>Toggle on: Your eldritch Blast deals +1 Acid damage, plus 1d4 per two
+Warlock levels. This damage is halved on a successful Will saving throw.</Description>
+         <Icon>EpicEldritchBlast</Icon>
+         <DCVersus>Will</DCVersus>
+         <AmountVector size="1">19</AmountVector>
+         <ModAbility>Charisma</ModAbility>
+         <School>Evocation</School>
+      </DC>
    </Feat>
    <Feat>
       <Name>Warlock: Paragon's Aegis</Name>
@@ -12933,13 +13181,13 @@ Light Mace, Light Pick, Rapier, Short Sword, Sickle, or while unarmed or in a Dr
       <Acquire>Train</Acquire>
       <Icon>WeaponFinesse</Icon>
       <Effect>
-         <Type>AttackBonus</Type>
+         <Type>WeaponAttackAbility</Type>
          <Bonus>Feat</Bonus>
          <WeaponClass>Light</WeaponClass>
          <Ability>Dexterity</Ability>
       </Effect>
       <Effect>
-         <Type>AttackBonus</Type>
+         <Type>WeaponAttackAbility</Type>
          <Bonus>Feat</Bonus>
          <Weapon>Rapier</Weapon>
          <Ability>Dexterity</Ability>
@@ -13510,15 +13758,15 @@ effectively mesmerizing them.</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>WildShapeWinterWolf</Icon>
-       <Effect>
-           <DisplayName>Winter Wolf - Movement Speed</DisplayName>
-           <Type>MovementSpeed</Type>
-           <Bonus>Enhancement</Bonus>
-           <AmountVector size="20">11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30</AmountVector>
-           <Class>Druid</Class>
-           <Stance>Winter Wolf</Stance>
-           <ApplyAsItemEffect/>
-       </Effect>
+      <Effect>
+         <DisplayName>Winter Wolf - Movement Speed</DisplayName>
+         <Type>MovementSpeed</Type>
+         <Bonus>Enhancement</Bonus>
+         <AmountVector size="20">11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30</AmountVector>
+         <Class>Druid</Class>
+         <Stance>Winter Wolf</Stance>
+         <ApplyAsItemEffect/>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Zen Archery</Name>
@@ -13542,7 +13790,7 @@ You treat shortbows and longbows as if they were ki weapons.</Description>
       <Acquire>Train</Acquire>
       <Icon>ZenArchery</Icon>
       <Effect>
-         <Type>AttackBonus</Type>
+         <Type>WeaponAttackAbility</Type>
          <Bonus>Feat</Bonus>
          <WeaponClass>Ranged</WeaponClass>
          <Ability>Wisdom</Ability>
@@ -13714,7 +13962,10 @@ This feat can be stacked up to three times.</Description>
       <Effect>
          <Type>TacticalDC</Type>
          <Bonus>Feat</Bonus>
-         <Tactical>All</Tactical>
+            <Tactical>Trip</Tactical>
+            <Tactical>Sunder</Tactical>
+            <Tactical>Stun</Tactical>
+            <Tactical>General</Tactical>
          <Amount>1</Amount>
       </Effect>
    </Feat>
@@ -13856,9 +14107,9 @@ This feat can be stacked up to three times.</Description>
          <Amount>2</Amount>
       </Effect>
       <Effect>
-         <Type>SpellDC</Type>
+         <Type>TacticalDC</Type>
          <Bonus>Feat</Bonus>
-         <School>Wands</School>
+         <Tactical>Wands</Tactical>
          <Amount>2</Amount>
       </Effect>
    </Feat>
@@ -14596,10 +14847,10 @@ in the form of a free Feat.</Description>
       <Requirements/>
       <Acquire>Special</Acquire>
       <Icon>Falconry</Icon>
-         <Effect>
-            <Type>EnhancementTree</Type>
-            <Bonus>Enhancement</Bonus>
-         </Effect>
+      <Effect>
+         <Type>EnhancementTree</Type>
+         <Bonus>Enhancement</Bonus>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Harper Agent Tree</Name>
@@ -14607,10 +14858,10 @@ in the form of a free Feat.</Description>
       <Requirements/>
       <Acquire>Special</Acquire>
       <Icon>Harper</Icon>
-         <Effect>
-            <Type>EnhancementTree</Type>
-            <Bonus>Enhancement</Bonus>
-         </Effect>
+      <Effect>
+         <Type>EnhancementTree</Type>
+         <Bonus>Enhancement</Bonus>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Vistani Knife Fighter Tree</Name>
@@ -14618,10 +14869,10 @@ in the form of a free Feat.</Description>
       <Requirements/>
       <Acquire>Special</Acquire>
       <Icon>Vistani</Icon>
-         <Effect>
-            <Type>EnhancementTree</Type>
-            <Bonus>Enhancement</Bonus>
-         </Effect>
+      <Effect>
+         <Type>EnhancementTree</Type>
+         <Bonus>Enhancement</Bonus>
+      </Effect>
    </Feat>
    <!--Lore Feats-->
    <Feat>
@@ -14968,12 +15219,12 @@ You also gain 2% dodge bonus when using a ranged weapon.</Description>
       <Effect>
          <Type>RepairAmplification</Type>
          <Bonus>Feat</Bonus>
-          <Amount>20</Amount>
+         <Amount>20</Amount>
       </Effect>
       <Effect>
          <Type>MRR</Type>
          <Bonus>Feat</Bonus>
-          <Amount>10</Amount>
+         <Amount>10</Amount>
       </Effect>
    </Feat>
    <Feat>
@@ -15217,15 +15468,15 @@ ranged reduced to touch range.
          <IncompatibleStance>Improved Precise Shot</IncompatibleStance>
          <IncompatibleStance>Archer's Focus</IncompatibleStance>
       </Stance>
-       <Effect>
-           <DisplayName>Epic Defensive Fighting</DisplayName>
-           <Type>Hitpoints</Type>
-           <Bonus>Competence</Bonus>
-           <Percent/>
-           <Stance>Epic Defensive Fighting</Stance>
-           <AmountVector size="5">5 10 15 20 25</AmountVector>
-           <ApplyAsItemEffect/>
-       </Effect>
+      <Effect>
+         <DisplayName>Epic Defensive Fighting</DisplayName>
+         <Type>Hitpoints</Type>
+         <Bonus>Competence</Bonus>
+         <Percent/>
+         <Stance>Epic Defensive Fighting</Stance>
+         <AmountVector size="5">5 10 15 20 25</AmountVector>
+         <ApplyAsItemEffect/>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Epic Reflexes</Name>
@@ -17160,6 +17411,21 @@ Number of Destinies: 3</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>DireCharge</Icon>
+      <DC>
+         <Name>Dire Charge</Name>
+         <Description>Charge forward at the targeted foe. That foe and all nearby foes are
+subject to +2[W] damage and must make a Fortitude save or be stunned.</Description>
+         <Icon>DireCharge</Icon>
+         <DCVersus>Fortitude</DCVersus>
+         <AmountVector size="1">20</AmountVector>
+         <ModAbility>Strength</ModAbility>
+         <ModAbility>Dexterity</ModAbility>
+         <ModAbility>Constitution</ModAbility>
+         <ModAbility>Intelligence</ModAbility>
+         <ModAbility>Wisdom</ModAbility>
+         <ModAbility>Charisma</ModAbility>
+         <Tactical>Stun</Tactical>
+      </DC>
    </Feat>
    <Feat>
       <Name>Elusive Target</Name>
@@ -17350,15 +17616,15 @@ Number of Destinies: 1</Description>
          <WeaponClass>Melee</WeaponClass>
          <Stance>Single Weapon Fighting</Stance>
       </Effect>
-       <Effect>
-           <DisplayName>Epic Defensive Fighting</DisplayName>
-           <Type>Hitpoints</Type>
-           <Bonus>Competence</Bonus>
-           <Percent/>
-           <Stance>Epic Defensive Fighting</Stance>
-           <AmountVector size="5">5 10 15 20 25</AmountVector>
-           <ApplyAsItemEffect/>
-       </Effect>
+      <Effect>
+         <DisplayName>Epic Defensive Fighting</DisplayName>
+         <Type>Hitpoints</Type>
+         <Bonus>Competence</Bonus>
+         <Percent/>
+         <Stance>Epic Defensive Fighting</Stance>
+         <AmountVector size="5">5 10 15 20 25</AmountVector>
+         <ApplyAsItemEffect/>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Pierce Adamantine</Name>
@@ -17515,7 +17781,10 @@ Number of Destinies: 1</Description>
          <Type>TacticalDC</Type>
          <Bonus>Feat</Bonus>
          <Amount>2</Amount>
-         <Tactical>All</Tactical>
+            <Tactical>Trip</Tactical>
+            <Tactical>Sunder</Tactical>
+            <Tactical>Stun</Tactical>
+            <Tactical>General</Tactical>
       </Effect>
    </Feat>
    <Feat>
@@ -17796,11 +18065,16 @@ Number of Destinies: 2</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>MassFrog</Icon>
-      <Effect>
-         <Type>SpellLikeAbility</Type>
-         <Bonus>Feat</Bonus>
-         <SpellLikeAbility>Mass Frog</SpellLikeAbility>
-      </Effect>
+      <DC>
+         <Name>Mass Frog</Name>
+         <Description>Up to six nearby enemies are turned into frogs. Each may avoid ribbiting on
+a successful Fortitude saving throw. Base DC is officially 20, but currently 30 in game.</Description>
+         <Icon>MassFrog</Icon>
+         <DCVersus>Fortitude</DCVersus>
+         <AmountVector size="1">30</AmountVector>
+         <ModAbility>Wisdom</ModAbility>
+         <School>Global DC</School>
+      </DC>
    </Feat>
    <Feat>
       <Name>Perfect Two Handed Fighting</Name>
@@ -17829,15 +18103,15 @@ Number of Destinies: 1</Description>
          <Bonus>Feat</Bonus>
          <Amount>10</Amount>
       </Effect>
-       <Effect>
-           <DisplayName>Epic Defensive Fighting</DisplayName>
-           <Type>Hitpoints</Type>
-           <Bonus>Competence</Bonus>
-           <Percent/>
-           <Stance>Epic Defensive Fighting</Stance>
-           <AmountVector size="5">5 10 15 20 25</AmountVector>
-           <ApplyAsItemEffect/>
-       </Effect>
+      <Effect>
+         <DisplayName>Epic Defensive Fighting</DisplayName>
+         <Type>Hitpoints</Type>
+         <Bonus>Competence</Bonus>
+         <Percent/>
+         <Stance>Epic Defensive Fighting</Stance>
+         <AmountVector size="5">5 10 15 20 25</AmountVector>
+         <ApplyAsItemEffect/>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Perfect Two Weapon Fighting</Name>
@@ -17864,15 +18138,15 @@ Number of Destinies: 1</Description>
          <Bonus>Feat</Bonus>
          <Amount>10</Amount>
       </Effect>
-       <Effect>
-           <DisplayName>Epic Defensive Fighting</DisplayName>
-           <Type>Hitpoints</Type>
-           <Bonus>Competence</Bonus>
-           <Percent/>
-           <Stance>Epic Defensive Fighting</Stance>
-           <AmountVector size="5">5 10 15 20 25</AmountVector>
-           <ApplyAsItemEffect/>
-       </Effect>
+      <Effect>
+         <DisplayName>Epic Defensive Fighting</DisplayName>
+         <Type>Hitpoints</Type>
+         <Bonus>Competence</Bonus>
+         <Percent/>
+         <Stance>Epic Defensive Fighting</Stance>
+         <AmountVector size="5">5 10 15 20 25</AmountVector>
+         <ApplyAsItemEffect/>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Arcane Warrior</Name>
@@ -18008,9 +18282,9 @@ Number of Destinies: 2, 1</Description>
          <Type>WeaponOtherDamageBonus</Type>
          <Bonus>Feat</Bonus>
          <Dice>
-             <Number size="1">1</Number>
-             <Sides size="1">20</Sides>
-             <Energy>Bane</Energy>
+            <Number size="1">1</Number>
+            <Sides size="1">20</Sides>
+            <Energy>Bane</Energy>
          </Dice>
          <Weapon>All</Weapon>
       </Effect>
@@ -18018,9 +18292,9 @@ Number of Destinies: 2, 1</Description>
          <Type>WeaponOtherDamageBonus</Type>
          <Bonus>Feat</Bonus>
          <Dice>
-             <Number size="1">2</Number>
-             <Sides size="1">20</Sides>
-             <Energy>Chaos</Energy>
+            <Number size="1">2</Number>
+            <Sides size="1">20</Sides>
+            <Energy>Chaos</Energy>
          </Dice>
          <Weapon>All</Weapon>
          <Stance>Lawful Target</Stance>
@@ -18029,9 +18303,9 @@ Number of Destinies: 2, 1</Description>
          <Type>WeaponOtherCriticalDamageBonus</Type>
          <Bonus>Feat</Bonus>
          <Dice>
-             <Number size="1">1</Number>
-             <Sides size="1">20</Sides>
-             <Energy>Bane</Energy>
+            <Number size="1">1</Number>
+            <Sides size="1">20</Sides>
+            <Energy>Bane</Energy>
          </Dice>
          <Weapon>All</Weapon>
       </Effect>
@@ -18039,9 +18313,9 @@ Number of Destinies: 2, 1</Description>
          <Type>WeaponOtherCriticalDamageBonus</Type>
          <Bonus>Feat</Bonus>
          <Dice>
-             <Number size="1">2</Number>
-             <Sides size="1">20</Sides>
-             <Energy>Chaos</Energy>
+            <Number size="1">2</Number>
+            <Sides size="1">20</Sides>
+            <Energy>Chaos</Energy>
          </Dice>
          <Weapon>All</Weapon>
          <Stance>Lawful Target</Stance>
@@ -18315,7 +18589,10 @@ An additional +4 if you are centered.
       <Effect>
          <Type>TacticalDC</Type>
          <Bonus>Feat</Bonus>
-         <Tactical>All</Tactical>
+            <Tactical>Trip</Tactical>
+            <Tactical>Sunder</Tactical>
+            <Tactical>Stun</Tactical>
+            <Tactical>General</Tactical>
          <Amount>4</Amount>
       </Effect>
       <Effect>
@@ -20922,6 +21199,18 @@ to half. The Save DC for this ability is 10 + Cleric Level + Charisma Modifier.<
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>SilverFlame</Icon>
+      <DC>
+         <Name>Silver Flame Exorcism</Name>
+         <Description>Activate this ability to attempt to exorcise an extraplanar creature, which
+is entirely consumed in holy fire on a failed Will save or savagely burned by
+the light of the Silver Flame. A successful Fortitude save reduces the damage
+to half.</Description>
+         <Icon>SilverFlame</Icon>
+         <DCVersus>Will</DCVersus>
+         <AmountVector size="1">10</AmountVector>
+         <ClassLevel>Cleric</ClassLevel>
+         <ModAbility>Charisma</ModAbility>
+      </DC>
    </Feat>
    <Feat>
       <Name>Undying Call</Name>
@@ -21625,7 +21914,7 @@ You gain damage reduction 10/Cold Iron.</Description>
             <Level>20</Level>
          </Requirement>
          <Requirement>
-               <Feat>Beloved of Aureon</Feat>
+            <Feat>Beloved of Aureon</Feat>
          </Requirement>
       </Requirements>
       <Acquire>Train</Acquire>
@@ -21650,7 +21939,7 @@ You gain damage reduction 10/Good.</Description>
             <Level>20</Level>
          </Requirement>
          <Requirement>
-               <Feat>Beloved of the Blood of Vol</Feat>
+            <Feat>Beloved of the Blood of Vol</Feat>
          </Requirement>
       </Requirements>
       <Acquire>Train</Acquire>
@@ -21675,7 +21964,7 @@ You gain damage reduction 10/Adamantine.</Description>
             <Level>20</Level>
          </Requirement>
          <Requirement>
-               <Feat>Beloved of Helm</Feat>
+            <Feat>Beloved of Helm</Feat>
          </Requirement>
       </Requirements>
       <Acquire>Train</Acquire>
@@ -21700,7 +21989,7 @@ You gain damage reduction 10/Cold Iron.</Description>
             <Level>20</Level>
          </Requirement>
          <Requirement>
-               <Feat>Beloved of Olladra</Feat>
+            <Feat>Beloved of Olladra</Feat>
          </Requirement>
       </Requirements>
       <Acquire>Train</Acquire>
@@ -21725,7 +22014,7 @@ You gain damage reduction 10/Cold Iron.</Description>
             <Level>20</Level>
          </Requirement>
          <Requirement>
-               <Feat>Beloved of Onatar</Feat>
+            <Feat>Beloved of Onatar</Feat>
          </Requirement>
       </Requirements>
       <Acquire>Train</Acquire>
@@ -21750,7 +22039,7 @@ You gain damage reduction 10/Silver.</Description>
             <Level>20</Level>
          </Requirement>
          <Requirement>
-               <Feat>Beloved of Silvanus</Feat>
+            <Feat>Beloved of Silvanus</Feat>
          </Requirement>
       </Requirements>
       <Acquire>Train</Acquire>
@@ -22560,6 +22849,16 @@ a melee weapon.</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>AnimalDomain</Icon>
+      <DC>
+         <Name>Animal Domain Tier IV</Name>
+         <Description>The attack does weapon damage based on your equipped weapon with
+a +3(W) bonus and enemies must make a Reflex saving throw.</Description>
+         <Icon>AnimalDomain</Icon>
+         <DCVersus>Reflex</DCVersus>
+         <AmountVector size="1">19</AmountVector>
+         <ModAbility>Wisdom</ModAbility>
+         <Tactical>Trip</Tactical>
+      </DC>
    </Feat>
    <Feat>
       <Name>Chaos Domain Tier II</Name>
@@ -23630,7 +23929,10 @@ Chaotic creatures.</Description>
          <Bonus>Feat</Bonus>
          <AmountPerLevel>0.5</AmountPerLevel>
          <Class>Cleric</Class>
-         <Tactical>All</Tactical>
+            <Tactical>Trip</Tactical>
+            <Tactical>Sunder</Tactical>
+            <Tactical>Stun</Tactical>
+            <Tactical>General</Tactical>
       </Effect>
    </Feat>
    <Feat>
@@ -23727,7 +24029,7 @@ to or greater than half of your total Heroic Character level.</Description>
       <Acquire>Train</Acquire>
       <Icon>GraceOfBattle</Icon>
       <Effect>
-         <Type>AttackBonus</Type>
+         <Type>WeaponAttackAbility</Type>
          <Bonus>Feat</Bonus>
          <Ability>Charisma</Ability>
          <Weapon>Quarterstaff</Weapon>
@@ -23745,7 +24047,7 @@ to or greater than half of your total Heroic Character level.</Description>
          <Stance>FavoredWeapon</Stance>
       </Effect>
       <Effect>
-         <Type>DamageBonus</Type>
+         <Type>WeaponDamageAbility</Type>
          <Bonus>Feat</Bonus>
          <Ability>Charisma</Ability>
          <Weapon>Quarterstaff</Weapon>
@@ -23776,7 +24078,7 @@ to or greater than half of your total Heroic Character level.</Description>
       <Acquire>Train</Acquire>
       <Icon>KnowledgeOfBattle</Icon>
       <Effect>
-         <Type>AttackBonus</Type>
+         <Type>WeaponAttackAbility</Type>
          <Bonus>Feat</Bonus>
          <Ability>Wisdom</Ability>
          <Weapon>Quarterstaff</Weapon>
@@ -23794,7 +24096,7 @@ to or greater than half of your total Heroic Character level.</Description>
          <Stance>FavoredWeapon</Stance>
       </Effect>
       <Effect>
-         <Type>DamageBonus</Type>
+         <Type>WeaponDamageAbility</Type>
          <Bonus>Feat</Bonus>
          <Ability>Wisdom</Ability>
          <Weapon>Quarterstaff</Weapon>

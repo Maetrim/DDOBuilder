@@ -55,6 +55,7 @@ class CBreakdownsView :
         void CreateWeaponBreakdowns();
         void CreateHirelingBreakdowns();
         void AddCasterLevels(HTREEITEM hParent);
+        void AddTacticalItem(BreakdownType bt, TacticalType tt, const std::string & name, HTREEITEM hParent);
         void AddSpellPower(BreakdownType bt, SpellPowerType type, const std::string & name, HTREEITEM hParent);
         void AddSpellCriticalChance(BreakdownType bt, SpellPowerType type, const std::string & name, HTREEITEM hParent);
         void AddSpellCriticalMultiplier(BreakdownType bt, SpellPowerType type, const std::string & name, HTREEITEM hParent);

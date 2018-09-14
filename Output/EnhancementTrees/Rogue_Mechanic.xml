@@ -81,6 +81,17 @@ Cooldown: 30 seconds. Spell Resistance: No</Description>
             <Bonus>Enhancement</Bonus>
             <Amount>5</Amount>
          </Effect>
+         <DC>
+            <Name>Mechanic: Tanglefoot</Name>
+            <Description>Alchemical Trap Activate: Throws a flask of caustic liquid at your enemy,
+which explodes into a sticky mess. Enemies caught within by the goo puddle take
+4d6 acid damage every 2 seconds.</Description>
+            <Icon>MechTanglefoot</Icon>
+            <DCVersus>Reflex</DCVersus>
+            <AmountVector size="1">10</AmountVector>
+            <ClassLevel>Rogue</ClassLevel>
+            <ModAbility>Intelligence</ModAbility>
+         </DC>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Mechanic: Targeting Sights</Name>
@@ -109,13 +120,13 @@ crossbows and thrown weapons. You also gain proficiency with light repeating cro
             <Weapon>Repeating Light Crossbow</Weapon>
          </Effect>
          <Effect>
-            <Type>DamageBonus</Type>
+            <Type>WeaponDamageAbility</Type>
             <Bonus>Enhancement</Bonus>
             <WeaponClass>Crossbows</WeaponClass>
             <Ability>Intelligence</Ability>
          </Effect>
          <Effect>
-            <Type>DamageBonus</Type>
+            <Type>WeaponDamageAbility</Type>
             <Bonus>Enhancement</Bonus>
             <WeaponClass>Thrown</WeaponClass>
             <Ability>Intelligence</Ability>
@@ -286,49 +297,49 @@ For the next 60 seconds, you gain +1d6 to all ability scores, and +2d6 to attack
             <Bonus>Enhancement</Bonus>
             <Amount>5</Amount>
          </Effect>
-          <Effect>
-              <Type>AbilityBonus</Type>
-              <Bonus>Enhancement</Bonus>
-              <Amount>2</Amount>
-              <Ability>Dexterity</Ability>
-          </Effect>
-          <Effect>
-              <Type>AbilityBonus</Type>
-              <Bonus>Enhancement</Bonus>
-              <Amount>2</Amount>
-              <Ability>Intelligence</Ability>
-          </Effect>
-          <Effect>
-              <Type>AttackBonus</Type>
-              <Bonus>Enhancement</Bonus>
-              <Amount>1</Amount>
-              <WeaponClass>Crossbows</WeaponClass>
-          </Effect>
-          <Effect>
-              <Type>DamageBonus</Type>
-              <Bonus>Enhancement</Bonus>
-              <Amount>2</Amount>
-              <Weapon>Light Crossbow</Weapon>
-              <Weapon>Heavy Crossbow</Weapon>
-              <Weapon>Great Crossbow</Weapon>
-          </Effect>
-          <Effect>
-              <Type>DamageBonus</Type>
-              <Bonus>Enhancement</Bonus>
-              <Amount>1</Amount>
-              <Weapon>Repeating Light Crossbow</Weapon>
-              <Weapon>Repeating Heavy Crossbow</Weapon>
-          </Effect>
-          <Effect>
+         <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Ability>Dexterity</Ability>
+         </Effect>
+         <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Ability>Intelligence</Ability>
+         </Effect>
+         <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <WeaponClass>Crossbows</WeaponClass>
+         </Effect>
+         <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Weapon>Light Crossbow</Weapon>
+            <Weapon>Heavy Crossbow</Weapon>
+            <Weapon>Great Crossbow</Weapon>
+         </Effect>
+         <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>Repeating Light Crossbow</Weapon>
+            <Weapon>Repeating Heavy Crossbow</Weapon>
+         </Effect>
+         <Effect>
             <Type>SneakAttackDice</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>2</Amount>
-          </Effect>
-          <Effect>
-              <Type>SneakAttackAttack</Type>
-              <Bonus>Enhancement</Bonus>
-              <Amount>2</Amount>
-          </Effect>
+         </Effect>
+         <Effect>
+            <Type>SneakAttackAttack</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Mechanic: Sharpshooter I</Name>
@@ -384,11 +395,11 @@ Non-repeating crossbows increase the damage to +2 and +1 SA dice.</Description>
             <WeaponClass>Thrown</WeaponClass>
             <Amount>1</Amount>
          </Effect>
-          <Effect>
+         <Effect>
             <Type>SneakAttackDice</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>1</Amount>
-          </Effect>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Mechanic: Lacerating Shots</Name>
@@ -433,6 +444,17 @@ Cooldown: 12 seconds. Spell Resistance: No </Description>
                <Level>1</Level>
             </Requirement>
          </Requirements>
+         <DC>
+            <Name>Mechanic: Thunderstone</Name>
+            <Description>Alchemical Trap Attack: Throws an alchemical charge at your enemy.
+Deals 4d6/6d6/8d6 damage and dazes in area.
+The damage scales with 200% Ranged Power</Description>
+            <Icon>MechThunderstone</Icon>
+            <DCVersus>Fortitude</DCVersus>
+            <AmountVector size="3">12 16 20</AmountVector>
+            <ClassLevel>Rogue</ClassLevel>
+            <ModAbility>Intelligence</ModAbility>
+         </DC>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Mechanic: Mechanics</Name>
@@ -548,11 +570,11 @@ Non-repeating crossbows increase the damage to +2 and +1 SA dice.</Description>
             <WeaponClass>Thrown</WeaponClass>
             <Amount>1</Amount>
          </Effect>
-          <Effect>
+         <Effect>
             <Type>SneakAttackDice</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>1</Amount>
-          </Effect>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Mechanic: Improved Traps</Name>
@@ -697,11 +719,11 @@ Non-repeating crossbows increase the damage to +2 and +1 SA dice.</Description>
             <WeaponClass>Thrown</WeaponClass>
             <Amount>1</Amount>
          </Effect>
-          <Effect>
+         <Effect>
             <Type>SneakAttackDice</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>1</Amount>
-          </Effect>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Mechanic: Wrack Construct</Name>
@@ -767,6 +789,18 @@ Cooldown: 12 seconds. Spell Resistance: No </Description>
                <Enhancement>MechThunderstone</Enhancement>
             </Requirement>
          </Requirements>
+         <DC>
+            <Name>Mechanic: Ooze Flask</Name>
+            <Description>Alchemical Trap Attack: You throw a flask at your enemy that contains
+concentrated grey ooze secretions.
+Deals 4d8/8d8/12d8 acid damage (scales with 200% Melee Power), no save, and reduces
+the Armor Class and PRR of your opponent by 2/4/8 for 30 seconds</Description>
+            <Icon>MechOozeFlask</Icon>
+            <DCVersus>Fortitude</DCVersus>
+            <AmountVector size="1">10</AmountVector>
+            <ClassLevel>Rogue</ClassLevel>
+            <ModAbility>Intelligence</ModAbility>
+         </DC>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Mechanic: Use Magical Device</Name>
@@ -892,11 +926,11 @@ Non-repeating crossbows increase the damage to +2 and +1 SA dice.</Description>
             <WeaponClass>Thrown</WeaponClass>
             <Amount>1</Amount>
          </Effect>
-          <Effect>
+         <Effect>
             <Type>SneakAttackDice</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>1</Amount>
-          </Effect>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Mechanic: Disable Construct</Name>
@@ -1071,11 +1105,11 @@ bolts, and throwing weapons. +3/6/10 Ranged Power and your ammunition gains a
             <WeaponClass>Thrown</WeaponClass>
             <Amount>3</Amount>
          </Effect>
-          <Effect>
+         <Effect>
             <Type>SneakAttackDice</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>1</Amount>
-          </Effect>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Mechanic: Rapid Fire</Name>
@@ -1130,6 +1164,18 @@ Cooldown: 20 seconds. Spell Resistance: No </Description>
                <Level>5</Level>
             </Requirement>
          </Requirements>
+         <DC>
+            <Name>Mechanic: Time Bomb</Name>
+            <Description>Alchemical Trap Attack: Quickly creates an alchemical charge at your feet.
+Deals 10/25/50 sonic and 10/25/50 fire damage per rogue level to all nearby
+enemies after 2 seconds, and knocks them to the ground.</Description>
+            <Icon>MechTimeBomb</Icon>
+            <DCVersus>Balance</DCVersus>
+            <AmountVector size="3">10 14 18</AmountVector>
+            <ClassLevel>Rogue</ClassLevel>
+            <ModAbility>Intelligence</ModAbility>
+            <Skill>Disable Device</Skill>
+         </DC>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Mechanic: Sniper</Name>
@@ -1159,19 +1205,19 @@ Great Crossbows now vorpal on a 19-20.</Description>
             <Weapon>Great Crossbow</Weapon>
             <Amount>1</Amount>
          </Effect>
-          <Effect>
+         <Effect>
             <Type>SneakAttackDice</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>1</Amount>
-          </Effect>
-          <Effect>
-              <Type>WeaponBaseDamageBonus</Type>
-              <Bonus>Enhancement</Bonus>
-              <Amount>2</Amount>
-              <Weapon>Light Crossbow</Weapon>
-              <Weapon>Heavy Crossbow</Weapon>
-              <Weapon>Great Crossbow</Weapon>
-          </Effect>
+         </Effect>
+         <Effect>
+            <Type>WeaponBaseDamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Weapon>Light Crossbow</Weapon>
+            <Weapon>Heavy Crossbow</Weapon>
+            <Weapon>Great Crossbow</Weapon>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Mechanic: Mechanical Reloader</Name>

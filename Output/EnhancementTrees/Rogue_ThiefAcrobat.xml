@@ -28,7 +28,7 @@
             </Requirement>
          </Requirements>
          <Effect>
-            <Type>AttackBonus</Type>
+            <Type>WeaponAttackAbility</Type>
             <Bonus>Enhancement</Bonus>
             <Ability>Dexterity</Ability>
             <Weapon>Quarterstaff</Weapon>
@@ -55,7 +55,7 @@
             </Requirement>
          </Requirements>
          <Effect>
-            <Type>DamageBonus</Type>
+            <Type>WeaponDamageAbility</Type>
             <Bonus>Enhancement</Bonus>
             <Ability>Dexterity</Ability>
             <Weapon>Quarterstaff</Weapon>
@@ -376,6 +376,7 @@ or light armor.</Description>
             <Class>Rogue</Class>
             <AnyOfStance>Cloth Armor</AnyOfStance>
             <AnyOfStance>Light Armor</AnyOfStance>
+            <ApplyAsItemEffect/>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -610,6 +611,15 @@ Cooldown: 30/25/20 seconds.</Description>
                <Enhancement>TAQuickStrike</Enhancement>
             </Requirement>
          </Requirements>
+         <DC>
+            <Name>Thief-Acrobat: Sweeping Strikes</Name>
+            <Description>Melee Quarterstaff Trip Cleave Attack: +1/2/3[W] to all nearby enemies and trips them.</Description>
+            <Icon>TASweepingStrikes</Icon>
+            <DCVersus>Balance</DCVersus>
+            <AmountVector size="1">10</AmountVector>
+            <ClassLevel>Rogue</ClassLevel>
+            <ModAbility>Dexterity</ModAbility>
+         </DC>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Thief Acrobat: Ability I</Name>
@@ -703,9 +713,9 @@ Cooldown: 30/25/20 seconds.</Description>
                <Class>Rogue</Class>
                <Level>4</Level>
             </Requirement>
-             <Requirement>
-                <Feat>Defensive Roll</Feat>
-             </Requirement>
+            <Requirement>
+               <Feat>Defensive Roll</Feat>
+            </Requirement>
          </Requirements>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -724,11 +734,11 @@ Cooldown: 30/25/20 seconds.</Description>
                <Level>4</Level>
             </Requirement>
          </Requirements>
-          <Effect>
-              <Type>HelplessDamage</Type>
-              <Bonus>Enhancement</Bonus>
-              <AmountVector size="3">10 20 30</AmountVector>
-          </Effect>
+         <Effect>
+            <Type>HelplessDamage</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">10 20 30</AmountVector>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Thief-Acrobat: Staff Lunge</Name>
@@ -938,11 +948,11 @@ Requires you to have a quarterstaff equipped. (Cooldown: 15 seconds)</Descriptio
                <Enhancement>TAStaffLunge</Enhancement>
             </Requirement>
          </Requirements>
-          <Effect>
-              <Type>SpellLikeAbility</Type>
-              <Bonus>Enhancement</Bonus>
-              <SpellLikeAbility>Vault</SpellLikeAbility>
-          </Effect>
+         <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellLikeAbility>Vault</SpellLikeAbility>
+         </Effect>
       </EnhancementTreeItem>
    </EnhancementTree>
 </Enhancements>

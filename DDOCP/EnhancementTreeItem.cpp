@@ -77,12 +77,19 @@ bool EnhancementTreeItem::VerifyObject(
         // check each of the selections also
         ok &= m_Selections.VerifyObject(&lss, trees, feats);
     }
-    // check the spell effects also
+    // check the effects also
     std::list<Effect>::const_iterator it = m_Effects.begin();
     while (it != m_Effects.end())
     {
         ok &= (*it).VerifyObject(&lss);
         ++it;
+    }
+    // verify its DC objects
+    std::vector<DC>::const_iterator edcit = m_EffectDC.begin();
+    while (edcit != m_EffectDC.end())
+    {
+        ok &= (*edcit).VerifyObject(ss);
+        ++edcit;
     }
     if (!ok)
     {
@@ -258,6 +265,21 @@ std::list<Effect> EnhancementTreeItem::ActiveEffects(
     // always apply regardless of the sub-selection
     effects.insert(effects.end(), m_Effects.begin(), m_Effects.end());
     return effects;
+}
+
+std::list<DC> EnhancementTreeItem::ActiveDCs(const std::string & selection) const
+{
+    // an enhancement may have specific sub-selection DCs
+    std::list<DC> dcs;
+    if (HasSelections())
+    {
+        // we need to look up the DCs for a selection
+        dcs = m_Selections.EffectDCs(selection);
+    }
+    // even if it had a sub-selection it may still have DCs that
+    // always apply regardless of the sub-selection
+    dcs.insert(dcs.end(), m_EffectDC.begin(), m_EffectDC.end());
+    return dcs;
 }
 
 std::list<Stance> EnhancementTreeItem::Stances(const std::string & selection) const

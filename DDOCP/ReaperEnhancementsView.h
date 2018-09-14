@@ -4,11 +4,11 @@
 #include "Resource.h"
 #include <vector>
 #include "EnhancementTree.h"
-
-class Character;
+#include "Character.h"
 
 class CReaperEnhancementsView :
-    public CFormView
+    public CFormView,
+    public CharacterObserver
 {
     public:
         enum { IDD = IDD_REAPER_ENHANCEMENTS_VIEW };
@@ -32,6 +32,10 @@ class CReaperEnhancementsView :
         DECLARE_MESSAGE_MAP()
 
     private:
+        virtual void UpdateEnhancementTrained(Character * charData, const std::string & enhancementName, const std::string & selection, bool isTier5) override;
+        virtual void UpdateEnhancementRevoked(Character * charData, const std::string & enhancementName, const std::string & selection, bool isTier5) override;
+        virtual void UpdateEnhancementTreeReset(Character * charData) override;
+
         std::vector<EnhancementTree> DetermineTrees();
         void CreateEnhancementWindows();
         void DestroyEnhancementWindows();

@@ -6,6 +6,7 @@
 #include "BreakdownsView.h"
 #include "CustomDockablePane.h"
 #include "DDOCP.h"
+#include "DCView.h"
 #include "EnhancementsView.h"
 #include "EpicDestiniesView.h"
 #include "EquipmentView.h"
@@ -49,6 +50,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWndEx)
     ON_UPDATE_COMMAND_UI(ID_DOCK_STANCES, OnUpdateDockPane)
     ON_UPDATE_COMMAND_UI(ID_DOCK_SELFANDPARTYBUFFS, OnUpdateDockPane)
     ON_UPDATE_COMMAND_UI(ID_DOCK_NOTES, OnUpdateDockPane)
+    ON_UPDATE_COMMAND_UI(ID_DOCK_DC, OnUpdateDockPane)
     ON_COMMAND(ID_DOCK_BREAKDOWNS, OnDockPane)
     ON_COMMAND(ID_DOCK_LEVELUP, OnDockPane)
     ON_COMMAND(ID_DOCK_SPECIALFEATS, OnDockPane)
@@ -60,6 +62,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWndEx)
     ON_COMMAND(ID_DOCK_STANCES, OnDockPane)
     ON_COMMAND(ID_DOCK_SELFANDPARTYBUFFS, OnDockPane)
     ON_COMMAND(ID_DOCK_NOTES, OnDockPane)
+    ON_COMMAND(ID_DOCK_DC, OnDockPane)
 END_MESSAGE_MAP()
 
 static UINT indicators[] =
@@ -534,9 +537,17 @@ void CMainFrame::CreateViews()
             GetActiveDocument(),
             RUNTIME_CLASS(CNotesView),
             ID_DOCK_NOTES);
-    pBuffs->SetDocumentAndCharacter(GetActiveDocument(), NULL);
+    pNotes->SetDocumentAndCharacter(GetActiveDocument(), NULL);
 
-    // next window id is 1011 if you add one
+    // create the floating views
+    CCustomDockablePane * pDCs = CreateDockablePane(
+            "DCs",
+            GetActiveDocument(),
+            RUNTIME_CLASS(CDCView),
+            ID_DOCK_DC);
+    pDCs->SetDocumentAndCharacter(GetActiveDocument(), NULL);
+
+    // next window id is 1012 if you add one
 }
 
 void CMainFrame::SetActiveDocumentAndCharacter(CDocument * pDoc, Character * pCharacter)
@@ -749,6 +760,16 @@ void CMainFrame::CopyDefaultIniToDDOBuilderIni()
             ::CopyFile(defaultIni.c_str(), filename.c_str(), TRUE);
         }
     }
+}
+
+const CDCView * CMainFrame::GetDCView()
+{
+    const CDCView * pDCView = NULL;
+    for (size_t i = 0; pDCView == NULL && i < m_dockablePanes.size(); ++i)
+    {
+        pDCView = dynamic_cast<CDCView *>(m_dockablePanes[i]->GetView());
+    }
+    return pDCView;
 }
 
 const CSLAControl * CMainFrame::GetSLAControl()

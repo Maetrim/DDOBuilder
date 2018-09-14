@@ -179,12 +179,12 @@ opponents while any Action Boost is active.</Description>
             <Amount>1</Amount>
             <Stance>ActionBoost</Stance>
          </Effect>
-          <Effect>
-              <Type>HelplessDamage</Type>
-              <Bonus>Enhancement</Bonus>
-              <Amount>50</Amount>
-              <Stance>Action Boost</Stance>
-          </Effect>
+         <Effect>
+            <Type>HelplessDamage</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>50</Amount>
+            <Stance>Action Boost</Stance>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Legendary Dreadnought: Sundering Swing</Name>
@@ -214,7 +214,10 @@ Improved Sunder effect on hit. (Cooldown 1 min)</Description>
          <Effect>
             <Type>TacticalDC</Type>
             <Bonus>Destiny</Bonus>
-            <Tactical>All</Tactical>
+            <Tactical>Trip</Tactical>
+            <Tactical>Sunder</Tactical>
+            <Tactical>Stun</Tactical>
+            <Tactical>General</Tactical>
             <AmountVector size="3">2 4 6</AmountVector>
          </Effect>
       </EnhancementTreeItem>
@@ -250,7 +253,7 @@ enhancement, and it shares a cooldown with all other action boosts).</Descriptio
          <Clickie/>
          <Requirements>
             <RequiresNoneOf>
-                <DisplayDescription>Any other Action Boost Attack</DisplayDescription>
+               <DisplayDescription>Any other Action Boost Attack</DisplayDescription>
                <Requirement>
                   <Enhancement>BEAttackBoost</Enhancement>
                </Requirement>
@@ -462,6 +465,16 @@ You must have Stance: Power Attack active to perform this ability.</Description>
                <Feat>Power Attack</Feat>
             </Requirement>
          </Requirements>
+         <DC>
+            <Name>Legendary Dreadnought: Lay Waste</Name>
+            <Description>Perform an Area of Effect attack with +5[W] damage and +1 critical damage multiplier.
+On Hit Knocks the target down, Balance DC Negates.</Description>
+            <Icon>LayWaste</Icon>
+            <DCVersus>Fortitude</DCVersus>
+            <AmountVector size="1">10</AmountVector>
+            <ClassLevel>All</ClassLevel>
+            <ModAbility>Strength</ModAbility>
+         </DC>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Legendary Dreadnought: Critical Damage</Name>
@@ -647,20 +660,20 @@ Stacks 5 times.</Description>
          <Ranks>1</Ranks>
          <MinSpent>16</MinSpent>
          <Requirements/>
-          <Effect>
-              <Type>AttackBonus</Type>
-              <Bonus>Destiny</Bonus>
-              <Amount>5</Amount>
-              <Weapon>All</Weapon>
-              <Stance>CriticalHits</Stance>
-          </Effect>
-          <Effect>
-              <Type>DamageBonus</Type>
-              <Bonus>Destiny</Bonus>
-              <Amount>5</Amount>
-              <Weapon>All</Weapon>
-              <Stance>CriticalHits</Stance>
-          </Effect>
+         <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>5</Amount>
+            <Weapon>All</Weapon>
+            <Stance>CriticalHits</Stance>
+         </Effect>
+         <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>5</Amount>
+            <Weapon>All</Weapon>
+            <Stance>CriticalHits</Stance>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Legendary Dreadnought: Devastating Critical</Name>
@@ -778,20 +791,20 @@ and +30 PRR</Description>
                </Effect>
             </EnhancementSelection>
          </Selector>
-        <Effect>
+         <Effect>
             <DisplayName>Master's Blitz Epic Moment: Melee Power</DisplayName>
             <Type>MeleePower</Type>
             <Bonus>Destiny</Bonus>
             <Amount>70</Amount>
             <Stance>Masters Blitz</Stance>
-        </Effect>
-        <Effect>
+         </Effect>
+         <Effect>
             <DisplayName>Master's Blitz Epic Moment: Ranged Power</DisplayName>
             <Type>RangedPower</Type>
             <Bonus>Destiny</Bonus>
             <Amount>70</Amount>
             <Stance>Masters Blitz</Stance>
-        </Effect>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Legendary Dreadnought: Pulverizer</Name>

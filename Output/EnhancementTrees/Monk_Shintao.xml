@@ -536,6 +536,19 @@ avoid their fate. (Activation Cost: 15 Ki. Cooldown: 15 seconds)</Description>
                <Level>2</Level>
             </Requirement>
          </Requirements>
+         <DC>
+            <Name>Shintao: Smite Tainted Creature</Name>
+            <Description>Ki Melee Attack: You have the ability to expend Ki to deal devastating blows in
+melee against tainted creatures. A tainted target will be locked in a tomb of jade
+on vorpal attacks on a failed Will save.
+Extraplanar Aberrations or Undead must succeed at two consecutive Will saves to
+avoid their fate.</Description>
+            <Icon>ShintaoSmiteTaintedCreature</Icon>
+            <DCVersus>Will</DCVersus>
+            <AmountVector size="1">10</AmountVector>
+            <ClassLevel>Monk</ClassLevel>
+            <ModAbility>Wisdom</ModAbility>
+         </DC>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Shintao: Iron Skin</Name>
@@ -615,6 +628,19 @@ A successful Reflex save negates this effect
 The target receives periodic saves to attempt to break free of this effect.</Description>
                <Icon>HMUnbalancingStrike</Icon>
                <Cost>2</Cost>
+               <DC>
+                  <Name>Shintao: Unbalancing Strike</Name>
+                  <Description>Water Ki Melee Attack: You have learned several joint strikes.
+You can attack these weak points of your opponent, throwing them off balance for
+a short period of time. This reduces their armor class by 2, applies a -10
+penalty to their Balance skill, and renders them vulnerable to sneak attacks.</Description>
+                  <Icon>HMUnbalancingStrike</Icon>
+                  <DCVersus>Reflex</DCVersus>
+                  <AmountVector size="1">10</AmountVector>
+                  <HalfClassLevel>Monk</HalfClassLevel>
+                  <ModAbility>Wisdom</ModAbility>
+                  <Tactical>Trip</Tactical>
+               </DC>
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
@@ -757,6 +783,17 @@ must succeed at two consecutive Will saves to avoid their fate.
                <Enhancement>ShintaoSmiteTaintedCreature</Enhancement>
             </Requirement>
          </Requirements>
+         <DC>
+            <Name>Shintao: Jade Strike</Name>
+            <Description>Ki Melee Attack: You perform a melee attack that is anathema to tainted creatures,
+that increases their physical damage vulnerability by 10% and reduces their
+fortification by 25%. A successful Will save negates this effect.</Description>
+            <Icon>ShintaoJadeStrike</Icon>
+            <DCVersus>Will</DCVersus>
+            <AmountVector size="1">10</AmountVector>
+            <ClassLevel>Monk</ClassLevel>
+            <ModAbility>Wisdom</ModAbility>
+         </DC>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Shintao: Dismissing Strike</Name>
@@ -778,6 +815,16 @@ enemy back to its proper plane. A successful Will save negates this effect
                <Level>3</Level>
             </Requirement>
          </Requirements>
+         <DC>
+            <Name>Shintao: Dismissing Strike</Name>
+            <Description>Ki Melee Attack: You perform a melee attack that attempts to force an extraplanar
+enemy back to its proper plane. A successful Will save negates this effect.</Description>
+            <Icon>ShintaoDismissingStrike</Icon>
+            <DCVersus>Will</DCVersus>
+            <AmountVector size="1">10</AmountVector>
+            <ClassLevel>Monk</ClassLevel>
+            <ModAbility>Wisdom</ModAbility>
+         </DC>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Shintao: Ability I</Name>
@@ -923,6 +970,18 @@ avoid this fate. (Activation Cost: 25 Ki. Cooldown: 1 minute)</Description>
                <Enhancement>ShintaoJadeStrike</Enhancement>
             </Requirement>
          </Requirements>
+         <DC>
+            <Name>Shintao: Tomb of Jade</Name>
+            <Description>Ki Melee Attack: You perform an attack that encases a tainted target in a tomb
+of jade on a failed Will save.
+Extraplanar Aberrations or Undead must succeed at two consecutive Will saves to
+avoid this fate.</Description>
+            <Icon>ShintaoTombOfJade</Icon>
+            <DCVersus>Will</DCVersus>
+            <AmountVector size="1">10</AmountVector>
+            <ClassLevel>Monk</ClassLevel>
+            <ModAbility>Wisdom</ModAbility>
+         </DC>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Shintao: Instinctive Defense</Name>
@@ -1061,6 +1120,18 @@ ability. Sightless creatures are unaffected by this ability.
                <MinLevel>12</MinLevel>
             </Requirement>
          </Requirements>
+         <DC>
+            <Name>Shintao: Kukan-Do</Name>
+            <Description>Ki Activate: You lock gazes with an enemy, stunning them for a short period
+of time on a failed Will save. Any effects that modify your Stunning Blow or
+Stunning Fist DC's also affect this ability. Sightless creatures are unaffected
+by this ability.</Description>
+            <Icon>ShintaoKukanDo</Icon>
+            <DCVersus>Will</DCVersus>
+            <AmountVector size="1">10</AmountVector>
+            <ClassLevel>Monk</ClassLevel>
+            <ModAbility>Charisma</ModAbility>
+         </DC>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Shintao: Violence Begets Violence</Name>
@@ -1147,7 +1218,7 @@ Water Stance:
             <Weapon>All</Weapon>
             <Amount>2</Amount>
             <Stance>Wind Stance</Stance>
-             <Stance>Meditation of War</Stance>
+            <Stance>Meditation of War</Stance>
          </Effect>
          <Effect>
             <Type>OffHandAttackBonus</Type>
@@ -1158,7 +1229,10 @@ Water Stance:
          <Effect>
             <Type>TacticalDC</Type>
             <Bonus>Enhancement</Bonus>
-            <Tactical>All</Tactical>
+            <Tactical>Trip</Tactical>
+            <Tactical>Sunder</Tactical>
+            <Tactical>Stun</Tactical>
+            <Tactical>General</Tactical>
             <Amount>2</Amount>
             <Stance>Sun Stance</Stance>
          </Effect>
@@ -1166,7 +1240,7 @@ Water Stance:
             <Type>DamageBonus</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>2</Amount>
-             <Weapon>All</Weapon>
+            <Weapon>All</Weapon>
             <Stance>Sun Stance</Stance>
          </Effect>
          <Effect>

@@ -14,18 +14,12 @@ enum SpellSchoolType
     SpellSchool_All,
     SpellSchool_Conjuration,
     SpellSchool_Divination,
-    SpellSchool_DragonBreath,
     SpellSchool_Enchantment,
     SpellSchool_Evocation,
     SpellSchool_Illusion,
     SpellSchool_Necromancy,
     SpellSchool_Transmutation,
-    SpellSchool_Wands,
-    SpellSchool_Fear,
-    SpellSchool_InnateAttack,
-    SpellSchool_BreathWeapon,
-    SpellSchool_Poison,
-    SpellSchool_RuneArm,
+    SpellSchool_GlobalDC,
 };
 const XmlLib::enumMapEntry<SpellSchoolType> spellSchoolTypeMap[] =
 {
@@ -34,17 +28,11 @@ const XmlLib::enumMapEntry<SpellSchoolType> spellSchoolTypeMap[] =
     {SpellSchool_All,           L"All"},
     {SpellSchool_Conjuration,   L"Conjuration"},
     {SpellSchool_Divination,    L"Divination"},
-    {SpellSchool_DragonBreath,  L"DragonBreath"},
     {SpellSchool_Enchantment,   L"Enchantment"},
     {SpellSchool_Evocation,     L"Evocation"},
     {SpellSchool_Illusion,      L"Illusion"},
     {SpellSchool_Necromancy,    L"Necromancy"},
     {SpellSchool_Transmutation, L"Transmutation"},
-    {SpellSchool_Wands,         L"Wands"},
-    {SpellSchool_Fear,          L"Fear"},
-    {SpellSchool_InnateAttack,  L"Innate Attack"},
-    {SpellSchool_BreathWeapon,  L"Breath Weapon"},
-    {SpellSchool_Poison,        L"Poison"},
-    {SpellSchool_RuneArm,       L"Rune Arm"},
+    {SpellSchool_GlobalDC,      L"Global DC"},
     {SpellSchoolType(0), NULL}
 };

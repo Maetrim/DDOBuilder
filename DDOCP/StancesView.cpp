@@ -144,10 +144,10 @@ void CStancesView::OnSize(UINT nType, int cx, int cy)
                 m_autoStancebuttons[i]->MoveWindow(notVisibleRect, FALSE);
             }
         }
+        // ensure stances redraw correctly
+        m_userStances.Invalidate(TRUE);
+        m_autoStances.Invalidate(TRUE);
     }
-    // ensure stances redraw correctly
-    m_userStances.Invalidate(TRUE);
-    m_autoStances.Invalidate(TRUE);
     for (size_t i = 0; i < m_userStancebuttons.size(); ++i)
     {
         m_userStancebuttons[i]->Invalidate(TRUE);

@@ -370,12 +370,15 @@ cause them to feel the chill of death. On Hit: Target takes +1[W] damage,
                <Level>1</Level>
             </Requirement>
          </Requirements>
-          <Effect>
-              <Type>TacticalDC</Type>
-              <Bonus>Enhancement</Bonus>
-              <AmountVector size="3">1 2 3</AmountVector>
-              <Tactical>All</Tactical>
-          </Effect>
+         <Effect>
+            <Type>TacticalDC</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Tactical>Trip</Tactical>
+            <Tactical>Sunder</Tactical>
+            <Tactical>Stun</Tactical>
+            <Tactical>General</Tactical>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Henshin Mystic: Negotiator</Name>
@@ -711,6 +714,20 @@ this effect (DC 10 + Half Monk Level + Wisdom modifier + Trip modifiers).
 The target receives periodic saves to attempt to break free of this effect.</Description>
                <Icon>HMUnbalancingStrike</Icon>
                <Cost>2</Cost>
+               <DC>
+                  <Name>Henshin Mystic: Unbalancing Strike</Name>
+                  <Description>Water Ki Melee Attack: You have learned several joint strikes.
+You can attack these weak points of your opponent, dealing +3[W] and
+throwing them off balance for a short period of time. This reduces their
+armor class by 2, applies a -10 penalty to their Balance skill, and
+renders them vulnerable to sneak attacks.</Description>
+                  <Icon>HMUnbalancingStrike</Icon>
+                  <DCVersus>Reflex</DCVersus>
+                  <AmountVector size="1">10</AmountVector>
+                  <HalfClassLevel>Monk</HalfClassLevel>
+                  <ModAbility>Wisdom</ModAbility>
+                  <Tactical>Trip</Tactical>
+               </DC>
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
@@ -865,46 +882,46 @@ This damage scales with Melee Power. Your Ki generation on hit is reduced by 1.<
                <Level>3</Level>
             </Requirement>
          </Requirements>
-          <Effect>
-              <Type>WeaponOtherDamageBonus</Type>
-              <Bonus>Enhancement</Bonus>
-              <Dice>
-                  <Number size="3">2 2 2</Number>
-                  <Sides size="3">4 6 8</Sides>
-                 <Energy>Fire</Energy>
-              </Dice>
-              <WeaponClass>TwoHanded</WeaponClass>
-          </Effect>
-          <Effect>
-              <Type>WeaponOtherDamageBonus</Type>
-              <Bonus>Enhancement</Bonus>
-              <Dice>
-                  <Number size="3">2 2 2</Number>
-                  <Sides size="3">2 3 4</Sides>
-                  <Energy>Fire</Energy>
-              </Dice>
-              <WeaponClass>OneHanded</WeaponClass>
-          </Effect>
-          <Effect>
-              <Type>WeaponOtherCriticalDamageBonus</Type>
-              <Bonus>Enhancement</Bonus>
-              <Dice>
-                  <Number size="3">2 4 6</Number>
-                  <Sides size="3">10 10 10</Sides>
-                  <Energy>Force</Energy>
-              </Dice>
-              <WeaponClass>TwoHanded</WeaponClass>
-          </Effect>
-          <Effect>
-              <Type>WeaponOtherCriticalDamageBonus</Type>
-              <Bonus>Enhancement</Bonus>
-              <Dice>
-                  <Number size="3">2 4 6</Number>
-                  <Sides size="3">6 6 6</Sides>
-                  <Energy>Force</Energy>
-              </Dice>
-              <WeaponClass>OneHanded</WeaponClass>
-          </Effect>
+         <Effect>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Dice>
+               <Number size="3">2 2 2</Number>
+               <Sides size="3">4 6 8</Sides>
+               <Energy>Fire</Energy>
+            </Dice>
+            <WeaponClass>TwoHanded</WeaponClass>
+         </Effect>
+         <Effect>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Dice>
+               <Number size="3">2 2 2</Number>
+               <Sides size="3">2 3 4</Sides>
+               <Energy>Fire</Energy>
+            </Dice>
+            <WeaponClass>OneHanded</WeaponClass>
+         </Effect>
+         <Effect>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Dice>
+               <Number size="3">2 4 6</Number>
+               <Sides size="3">10 10 10</Sides>
+               <Energy>Force</Energy>
+            </Dice>
+            <WeaponClass>TwoHanded</WeaponClass>
+         </Effect>
+         <Effect>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Dice>
+               <Number size="3">2 4 6</Number>
+               <Sides size="3">6 6 6</Sides>
+               <Energy>Force</Energy>
+            </Dice>
+            <WeaponClass>OneHanded</WeaponClass>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Henshin Mystic: Embrace the Void</Name>

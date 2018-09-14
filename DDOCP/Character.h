@@ -74,6 +74,8 @@ class CharacterObserver :
         virtual void UpdateItemEffectRevoked(Character * charData, const std::string & itemName, const Effect & effect) {};
         virtual void UpdateGrantedFeatsChanged(Character * charData) {};
         virtual void UpdateGearChanged(Character * charData, InventorySlotType slot) {};
+        virtual void UpdateNewDC(Character * charData, const DC & dc) {};
+        virtual void UpdateRevokeDC(Character * charData, const DC & dc) {};
 };
 
 class Character :
@@ -306,6 +308,8 @@ class Character :
         void NotifySpellTrained(const TrainedSpell & spell);
         void NotifySpellRevoked(const TrainedSpell & spell);
         void NotifyGrantedFeatsChanged();
+        void NotifyNewDC(const DC & dc);
+        void NotifyRevokeDC(const DC & dc);
 
         // XML
         XmlLib::SaxContentElementInterface * StartElement(
@@ -371,7 +375,11 @@ class Character :
                 const std::string & enhancementName,
                 const std::string & selection,
                 size_t ranks);
-        void RevokeEnhancementEffects(const std::string & name, size_t ranks, const std::list<Effect> & effects);
+        void RevokeEnhancementEffects(
+                const std::string & treeName,
+                const std::string & enhancementName,
+                const std::string & selection,
+                size_t ranks);
         EnhancementSpendInTree * Enhancement_FindTree(const std::string & treeName);
         ReaperSpendInTree * Reaper_FindTree(const std::string & treeName);
         EpicDestinySpendInTree * EpicDestiny_FindTree(const std::string & treeName);
@@ -380,6 +388,10 @@ class Character :
                 const std::string & enhancementName,
                 const std::string & selection);
         std::list<Effect> GetEnhancementEffects(
+                const std::string & treeName,
+                const std::string & enhancementName,
+                const std::string & selection);
+        std::list<DC> GetEnhancementDCs(
                 const std::string & treeName,
                 const std::string & enhancementName,
                 const std::string & selection);

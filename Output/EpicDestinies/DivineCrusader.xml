@@ -334,13 +334,13 @@ Passively provides: +2 Melee Power and +2 Ranged power.</Description>
             </Requirement>
          </Requirements>
          <Stance>
-         <Name>Zeal of the Righteous</Name>
-         <Icon>ZealOfTheRighteous</Icon>
-         <Description>Gain 50 stacks of Righteous Zeal.
+            <Name>Zeal of the Righteous</Name>
+            <Icon>ZealOfTheRighteous</Icon>
+            <Description>Gain 50 stacks of Righteous Zeal.
 Righteous Zeal: +1 Spell Power, +1% doublestrike, +1% doubleshot,
 +1 Melee Power, +1 Ranged Power. Decays by 1 stack every 3 seconds, and is
 not lost by resting. (Cooldown: 4 minutes)</Description>
-      </Stance>
+         </Stance>
          <Effect>
             <Type>MeleePower</Type>
             <Bonus>Destiny</Bonus>
@@ -373,8 +373,8 @@ not lost by resting. (Cooldown: 4 minutes)</Description>
             <Type>SpellPower</Type>
             <Bonus>Destiny</Bonus>
             <Amount>50</Amount>
-             <SpellPower>All</SpellPower>
-             <Stance>Zeal of the Righteous</Stance>
+            <SpellPower>All</SpellPower>
+            <Stance>Zeal of the Righteous</Stance>
          </Effect>
          <Effect>
             <Type>Doublestrike</Type>
@@ -423,22 +423,22 @@ Weapons you equip gain undead bane (+2 enhancement bonus and +2d6 damage against
             <Type>WeaponOtherDamageBonus</Type>
             <Bonus>Stacking</Bonus>
             <Weapon>All</Weapon>
-              <Dice>
-                 <Number size="1">2</Number>
-                 <Sides size="1">6</Sides>
-                 <Energy>Bane</Energy>
-              </Dice>
+            <Dice>
+               <Number size="1">2</Number>
+               <Sides size="1">6</Sides>
+               <Energy>Bane</Energy>
+            </Dice>
          </Effect>
          <Effect>
             <DisplayName>Undead Bane</DisplayName>
             <Type>WeaponOtherCriticalDamageBonus</Type>
             <Bonus>Stacking</Bonus>
             <Weapon>All</Weapon>
-              <Dice>
-                 <Number size="1">2</Number>
-                 <Sides size="1">6</Sides>
-                 <Energy>Bane</Energy>
-              </Dice>
+            <Dice>
+               <Number size="1">2</Number>
+               <Sides size="1">6</Sides>
+               <Energy>Bane</Energy>
+            </Dice>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -697,6 +697,14 @@ Activation Cost: [25/20/15] Spell Points.</Description>
          <MinSpent>8</MinSpent>
          <Clickie/>
          <Requirements/>
+         <DC>
+            <Name>Divine Crusader: Stand and Be Judged</Name>
+            <Description>A targeted foe must make a Will saving throw or be stunned for 30 seconds.</Description>
+            <Icon>StandAndBeJudged</Icon>
+            <DCVersus>Will</DCVersus>
+            <AmountVector size="1">30</AmountVector>
+            <ModAbility>Wisdom</ModAbility>
+         </DC>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Divine Crusader: Sacred Ground</Name>
@@ -766,12 +774,12 @@ having your alignment for damage reduction bypass purpose.
          <Ranks>1</Ranks>
          <MinSpent>8</MinSpent>
          <Requirements/>
-          <Effect>
-              <Type>DRBypass</Type>
-              <Bonus>Destiny</Bonus>
-              <DR>Alignment</DR>
-              <Weapon>All</Weapon>
-          </Effect>
+         <Effect>
+            <Type>DRBypass</Type>
+            <Bonus>Destiny</Bonus>
+            <DR>Alignment</DR>
+            <Weapon>All</Weapon>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Divine Crusader: Ability III</Name>
@@ -1065,11 +1073,11 @@ Activation cost is [300/200/100] Spell points and has a cooldown of [3/2/1] minu
          <MinSpent>20</MinSpent>
          <Clickie/>
          <Requirements/>
-          <Effect>
-              <Type>SpellLikeAbility</Type>
-              <Bonus>Destiny</Bonus>
-              <SpellLikeAbility>Celestial Bombardment</SpellLikeAbility>
-          </Effect>
+         <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Destiny</Bonus>
+            <SpellLikeAbility>Celestial Bombardment</SpellLikeAbility>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Divine Crusader: Strike Down</Name>

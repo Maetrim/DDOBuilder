@@ -25,7 +25,7 @@ class Spell :
 
         void VerifyObject() const;
 
-        size_t DC(const Character & charData, ClassType ct, size_t spellLevel, size_t maxSpellLevel) const;
+        size_t SpellDC(const Character & charData, ClassType ct, size_t spellLevel, size_t maxSpellLevel) const;
         std::vector<Effect> UpdatedEffects(size_t castingLevel) const;
     protected:
         XmlLib::SaxContentElementInterface * StartElement(

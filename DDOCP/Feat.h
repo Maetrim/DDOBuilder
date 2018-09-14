@@ -4,6 +4,7 @@
 #pragma once
 #include "XmlLib\DLMacros.h"
 #include "AutomaticAcquisition.h"
+#include "DC.h"
 #include "Effect.h"
 #include "FeatGroup.h"
 #include "FeatTypes.h"
@@ -50,7 +51,8 @@ class Feat :
                 DL_ENUM(_, FeatAcquisitionType, Acquire, FeatAcquisition_Unknown, featAcquisitionMap) \
                 DL_OBJECT_LIST(_, AutomaticAcquisition, AutomaticAcquireAt) \
                 DL_STRING(_, Icon) \
-                DL_OBJECT_LIST(_, Effect, Effects)
+                DL_OBJECT_LIST(_, Effect, Effects) \
+                DL_OBJECT_LIST(_, DC, EffectDC)
 
         DL_DECLARE_ACCESS(Feat_PROPERTIES)
         DL_DECLARE_VARIABLES(Feat_PROPERTIES)
