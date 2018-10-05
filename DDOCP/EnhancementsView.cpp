@@ -11,6 +11,7 @@ namespace
 {
     const int c_controlSpacing = 3;
     const UINT UWM_NEW_DOCUMENT = ::RegisterWindowMessage(_T("NewActiveDocument"));
+    const UINT UWM_UPDATE_TREES = ::RegisterWindowMessage(_T("UpdateTrees"));
     // enhancement window size
     const size_t c_sizeX = 300;
     const size_t c_sizeY = 466;
@@ -52,6 +53,7 @@ BEGIN_MESSAGE_MAP(CEnhancementsView, CFormView)
     ON_WM_SIZE()
     ON_WM_ERASEBKGND()
     ON_REGISTERED_MESSAGE(UWM_NEW_DOCUMENT, OnNewDocument)
+    ON_REGISTERED_MESSAGE(UWM_UPDATE_TREES, OnUpdateTrees)
     ON_CONTROL_RANGE(CBN_SELENDOK, IDC_TREE_SELECT2, IDC_TREE_SELECT7, OnTreeSelect)
 END_MESSAGE_MAP()
 #pragma warning(pop)
@@ -429,9 +431,10 @@ void CEnhancementsView::UpdateFeatEffect(Character * charData, const std::string
 {
      if (effect.Type() == Effect_EnhancementTree)
      {
-        UpdateTrees();
-        UpdateWindowTitle();
-        EnableDisableComboboxes();
+         // do a delayed tree update as we do not want a current tree object
+         // to be destroyed while a const reference to it is being used during
+         // the notify
+        PostMessage(UWM_UPDATE_TREES, 0, 0L);
      }
 }
 
@@ -439,9 +442,10 @@ void CEnhancementsView::UpdateFeatEffectRevoked(Character * charData, const std:
 {
      if (effect.Type() == Effect_EnhancementTree)
      {
-        UpdateTrees();
-        UpdateWindowTitle();
-        EnableDisableComboboxes();
+         // do a delayed tree update as we do not want a current tree object
+         // to be destroyed while a const reference to it is being used during
+         // the notify
+        PostMessage(UWM_UPDATE_TREES, 0, 0L);
      }
 }
 
@@ -449,9 +453,10 @@ void CEnhancementsView::UpdateEnhancementEffect(Character * charData, const std:
 {
      if (effect.m_effect.Type() == Effect_EnhancementTree)
      {
-        UpdateTrees();
-        UpdateWindowTitle();
-        EnableDisableComboboxes();
+         // do a delayed tree update as we do not want a current tree object
+         // to be destroyed while a const reference to it is being used during
+         // the notify
+        PostMessage(UWM_UPDATE_TREES, 0, 0L);
      }
 }
 
@@ -459,10 +464,22 @@ void CEnhancementsView::UpdateEnhancementEffectRevoked(Character * charData, con
 {
      if (effect.m_effect.Type() == Effect_EnhancementTree)
      {
-        UpdateTrees();
-        UpdateWindowTitle();
-        EnableDisableComboboxes();
+         // do a delayed tree update as we do not want a current tree object
+         // to be destroyed while a const reference to it is being used during
+         // the notify
+        PostMessage(UWM_UPDATE_TREES, 0, 0L);
      }
+}
+
+LRESULT CEnhancementsView::OnUpdateTrees(WPARAM wParam, LPARAM lParam)
+{
+    UNREFERENCED_PARAMETER(wParam);
+    UNREFERENCED_PARAMETER(lParam);
+    // received a delayed tree update message, do the work
+    UpdateTrees();
+    UpdateWindowTitle();
+    EnableDisableComboboxes();
+    return 0;
 }
 
 void CEnhancementsView::UpdateTrees()

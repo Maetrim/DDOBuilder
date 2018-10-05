@@ -81,7 +81,7 @@ class ActiveEffect
         void AddAnyOfStance(const std::string & stance);
         const std::vector<std::string> & AnyOfStances() const;
         const std::string & Tree() const;
-        bool IsActive(const Character * pCharacter) const;
+        bool IsActive(const Character * pCharacter, WeaponType wt) const;
         void SetIsPercentage(bool isPercentage);
         bool IsPercentage() const;
         void SetPercentageValue(double amount) const;

@@ -10,7 +10,8 @@ namespace
 {
     const int c_controlSpacing = 3;
     const UINT UWM_NEW_DOCUMENT = ::RegisterWindowMessage(_T("NewActiveDocument"));
-    const int c_windowSize = 38;
+    const int c_windowSizeX = 38;
+    const int c_windowSizeY = 48;
 }
 
 IMPLEMENT_DYNCREATE(CDCView, CFormView)
@@ -76,8 +77,8 @@ void CDCView::OnSize(UINT nType, int cx, int cy)
         CRect itemRect(
                 c_controlSpacing,
                 c_controlSpacing,
-                c_windowSize + c_controlSpacing,
-                c_windowSize + c_controlSpacing);
+                c_windowSizeX + c_controlSpacing,
+                c_windowSizeY + c_controlSpacing);
         // move each DC button
         for (size_t i = 0; i < m_dcButtons.size(); ++i)
         {
@@ -157,18 +158,18 @@ void CDCView::AddDC(const DC & dc)
     {
         // position the created windows left to right until
         // they don't fit then move them down a row and start again
-        // each stance window is c_windowSize * c_windowSize pixels
+        // each stance window is c_windowSizeX * c_windowSizeY pixels
         CRect wndClient;
         GetClientRect(&wndClient);
         CRect itemRect(
                 c_controlSpacing,
                 c_controlSpacing,
-                c_windowSize + c_controlSpacing,
-                c_windowSize + c_controlSpacing);
+                c_windowSizeX + c_controlSpacing,
+                c_windowSizeY + c_controlSpacing);
 
         // now create the new user DC control
         m_dcButtons.push_back(new CDCButton(m_pCharacter, dc));
-        // create a parent window that is c_windowSize by c_windowSize pixels in size
+        // create a parent window that is c_windowSizeX by c_windowSizeY pixels in size
         m_dcButtons.back()->Create(
                 "",
                 WS_CHILD | WS_VISIBLE,

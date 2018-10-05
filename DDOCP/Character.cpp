@@ -1497,7 +1497,7 @@ bool Character::IsStanceActive(const std::string & name, WeaponType wt) const
             || name == "Favored Weapon")   // enhancements
     {
         // look through the trained feats to determine whether
-        // wt is the favored weapon type
+        // wt is the favored weapon type (Dieties)
         ret = (IsFeatTrained("Follower of Aureon") && wt == Weapon_Quarterstaff)
                 || (IsFeatTrained("Follower of the Blood of Vol") && wt == Weapon_Dagger)
                 || (IsFeatTrained("Follower of the Lord of Blades") && wt == Weapon_GreatSword)
@@ -1510,6 +1510,15 @@ bool Character::IsStanceActive(const std::string & name, WeaponType wt) const
                 || (IsFeatTrained("Favored by Amaunator") && wt == Weapon_HeavyMace)
                 || (IsFeatTrained("Favored by Helm") && wt == Weapon_BastardSword)
                 || (IsFeatTrained("Favored by Silvanus") && wt == Weapon_Maul);
+        // it can also become a favored weapon due to enhancements in the Wood Elf tree
+        if (IsEnhancementTrained("WoodElfForestOrigins", "Faith of the Forest"))
+        {
+            // wood elves with this enhancement count Rapiers, Falchions and Shortbows
+            // as their favored weapon also.
+            ret |= (wt == Weapon_Rapier)
+                    || (wt == Weapon_Falchion)
+                    || (wt == Weapon_Shortbow);
+        }
         if (name == "FavoredWeapon")
         {
             // must also have at least 10 favored soul levels for this to apply
@@ -3210,23 +3219,27 @@ void Character::ApplyEnhancementEffects(
         const std::string & selection,
         size_t ranks)
 {
-    std::string displayName = GetEnhancementName(treeName, enhancementName, selection);
-    std::list<Effect> effects = GetEnhancementEffects(treeName, enhancementName, selection);
-    std::list<Effect>::const_iterator eit = effects.begin();
-    while (eit != effects.end())
     {
-        NotifyEnhancementEffect(displayName, (*eit), ranks);
-        ++eit;
-    }
-    std::list<DC> dcs = GetEnhancementDCs(treeName, enhancementName, selection);
-    std::list<DC>::const_iterator dcit = dcs.begin();
-    while (dcit != dcs.end())
-    {
-        for (size_t i = 0; i < ranks; ++i)
+        std::string displayName = GetEnhancementName(treeName, enhancementName, selection);
+        std::list<Effect> effects = GetEnhancementEffects(treeName, enhancementName, selection);
+        std::list<Effect>::const_iterator eit = effects.begin();
+        while (eit != effects.end())
         {
-            NotifyNewDC(*dcit);
+            NotifyEnhancementEffect(displayName, (*eit), ranks);
+            ++eit;
         }
-        ++dcit;
+    }
+    {
+        std::list<DC> dcs = GetEnhancementDCs(treeName, enhancementName, selection);
+        std::list<DC>::const_iterator dcit = dcs.begin();
+        while (dcit != dcs.end())
+        {
+            for (size_t i = 0; i < ranks; ++i)
+            {
+                NotifyNewDC(*dcit);
+            }
+            ++dcit;
+        }
     }
 }
 

@@ -31,6 +31,7 @@ class CEnhancementsView :
         afx_msg BOOL OnEraseBkgnd(CDC* pDC);
         afx_msg LRESULT OnNewDocument(WPARAM wParam, LPARAM lParam);
         afx_msg void OnTreeSelect(UINT nID);
+        afx_msg LRESULT OnUpdateTrees(WPARAM wParam, LPARAM lParam);
         DECLARE_MESSAGE_MAP()
 
         // CharacterObserver overrides

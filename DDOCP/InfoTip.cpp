@@ -703,7 +703,17 @@ void CInfoTip::SetDCItem(
     m_bRequirementMet.clear();
     m_requirements.push_back(pDC->DCBreakdown(&charData).c_str());
     m_bRequirementMet.push_back(true);
-    m_cost.Format("DC: %d", pDC->CalculateDC(&charData));
+    if (pDC->HasOther())
+    {
+        m_cost.Format(
+                "DC: %s + %d",
+                pDC->Other().c_str(),
+                pDC->CalculateDC(&charData));
+    }
+    else
+    {
+        m_cost.Format("DC: %d", pDC->CalculateDC(&charData));
+    }
 }
 
 void CInfoTip::GenerateLineBreaks(CString * text)

@@ -32,6 +32,7 @@ CDCButton::CDCButton(Character * charData, const DC & dc) :
         }
     }
     m_image.SetTransparentColor(c_transparentColour);
+    charData->AttachObserver(this);
 }
 
 BOOL CDCButton::OnEraseBkgnd(CDC* pDC)
@@ -52,11 +53,34 @@ void CDCButton::OnPaint()
     pdc.FillSolidRect(rect, GetSysColor(COLOR_BTNFACE));
     m_image.TransparentBlt(
             pdc.GetSafeHdc(),
-            (rect.Width() - 32) / 2,
-            (rect.Height() - 32) / 2,
+            3,
+            3,
             32,
             32);
+    // also show the current DC value under the icon
+    int dc = m_dc.CalculateDC(m_pCharacter);
+    CString text;
+    text.Format("DC: %d", dc);
+
+    // shown in a small font
+    LOGFONT lf;
+    ZeroMemory((PVOID)&lf, sizeof(LOGFONT));
+    strcpy_s(lf.lfFaceName, "Consolas");
+    lf.lfHeight = 11;
+    CFont smallFont;
+    smallFont.CreateFontIndirect(&lf);
+    pdc.SelectObject(&smallFont);
+
+    // measure the text so its centered horizontally
+    CSize textSize = pdc.GetTextExtent(text);
+    pdc.SetBkMode(TRANSPARENT); // don't erase the text background
+    pdc.TextOut(
+            rect.left + (rect.Width() - textSize.cx) / 2,
+            rect.bottom - 12,
+            text);
+    // were done, restore the dc to pristine condition
     pdc.RestoreDC(-1);
+    // font resource destroyed automatically by destructor
 }
 
 const DC & CDCButton::GetDCItem() const
@@ -84,3 +108,87 @@ bool CDCButton::IsYou(const DC & dc)
     return (dc == m_dc);
 }
 
+void CDCButton::UpdateClassChanged(Character * charData, ClassType classFrom, ClassType classTo, size_t level)
+{
+    Invalidate(TRUE);
+}
+
+void CDCButton::UpdateAbilityValueChanged(Character * charData, AbilityType ability)
+{
+    Invalidate(TRUE);
+}
+
+void CDCButton::UpdateAbilityTomeChanged(Character * charData, AbilityType ability)
+{
+    Invalidate(TRUE);
+}
+
+void CDCButton::UpdateRaceChanged(Character * charData, RaceType race)
+{
+    Invalidate(TRUE);
+}
+
+void CDCButton::UpdateFeatTrained(Character * charData, const std::string & featName)
+{
+    Invalidate(TRUE);
+}
+
+void CDCButton::UpdateFeatRevoked(Character * charData, const std::string & featName)
+{
+    Invalidate(TRUE);
+}
+
+void CDCButton::UpdateFeatEffect(Character * charData, const std::string & featName,  const Effect & effect)
+{
+    Invalidate(TRUE);
+}
+
+void CDCButton::UpdateFeatEffectRevoked(Character * charData, const std::string & featName, const Effect & effect)
+{
+    Invalidate(TRUE);
+}
+
+void CDCButton::UpdateEnhancementEffect(Character * charData, const std::string & enhancementName,  const EffectTier & effect)
+{
+    Invalidate(TRUE);
+}
+
+void CDCButton::UpdateEnhancementEffectRevoked(Character * charData, const std::string & enhancementName, const EffectTier & effect)
+{
+    Invalidate(TRUE);
+}
+
+void CDCButton::UpdateEnhancementTrained(Character * charData, const std::string & enhancementName, const std::string & selection, bool isTier5)
+{
+    Invalidate(TRUE);
+}
+
+void CDCButton::UpdateEnhancementRevoked(Character * charData, const std::string & enhancementName, const std::string & selection, bool isTier5)
+{
+    Invalidate(TRUE);
+}
+
+void CDCButton::UpdateEnhancementTreeReset(Character * charData)
+{
+    Invalidate(TRUE);
+}
+
+void CDCButton::UpdateItemEffect(Character * charData, const std::string & itemName, const Effect & effect)
+{
+    Invalidate(TRUE);
+}
+
+void CDCButton::UpdateItemEffectRevoked(Character * charData, const std::string & itemName, const Effect & effect)
+{
+    Invalidate(TRUE);
+}
+
+void CDCButton::UpdateGrantedFeatsChanged(Character * charData)
+{
+    Invalidate(TRUE);
+}
+
+void CDCButton::UpdateGearChanged(Character * charData, InventorySlotType slot)
+{
+    Invalidate(TRUE);
+}

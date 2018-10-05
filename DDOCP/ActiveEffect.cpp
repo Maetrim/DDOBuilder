@@ -656,13 +656,13 @@ const std::string & ActiveEffect::Tree() const
     return m_tree;
 }
 
-bool ActiveEffect::IsActive(const Character * pCharacter) const
+bool ActiveEffect::IsActive(const Character * pCharacter, WeaponType wt) const
 {
     // return true if the required stance(s) are active
     bool active = true;
     for (size_t i = 0; i < m_stances.size(); ++i)
     {
-        if (!pCharacter->IsStanceActive(m_stances[i]))
+        if (!pCharacter->IsStanceActive(m_stances[i], wt))
         {
             active = false;
         }

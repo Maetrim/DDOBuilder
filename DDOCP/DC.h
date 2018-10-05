@@ -36,6 +36,7 @@ class DC :
                 DL_STRING(_, Description) \
                 DL_STRING(_, Icon) \
                 DL_STRING(_, DCVersus) \
+                DL_OPTIONAL_STRING(_, Other) \
                 DL_OPTIONAL_VECTOR(_, int, AmountVector) \
                 DL_ENUM_LIST(_, AbilityType, FullAbility, Ability_Unknown, abilityTypeMap) \
                 DL_ENUM_LIST(_, AbilityType, ModAbility, Ability_Unknown, abilityTypeMap) \

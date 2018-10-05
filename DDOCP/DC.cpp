@@ -176,10 +176,26 @@ int DC::CalculateDC(const Character * pCharacter) const
 std::string DC::DCBreakdown(const Character * pCharacter) const
 {
     std::stringstream ss;
-    ss << m_DCVersus << " vs " << CalculateDC(pCharacter) << " : ";
+    if (m_hasOther)
+    {
+        ss << m_DCVersus << " vs " << m_Other << " + " << CalculateDC(pCharacter) << " : ";
+    }
+    else
+    {
+        ss << m_DCVersus << " vs " << CalculateDC(pCharacter) << " : ";
+    }
     bool first = true;
+    if (m_hasOther)
+    {
+        ss << m_Other;
+        first = false;
+    }
     if (m_hasAmountVector)
     {
+        if (!first)
+        {
+            ss << " + ";
+        }
         int value = 0;
         if (m_stacks < m_AmountVector.size() + 1)
         {

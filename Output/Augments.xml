@@ -6882,6 +6882,7 @@ This can stack up to three times (up to Psionic Potency +24) and each stack last
       <Type>Cannith Goggles Suffix</Type>
       <Type>Cannith Rune-Arm Suffix</Type>
       <Type>Random Goggles Suffix</Type>
+      <EnterValue/>
       <Effect>
          <Type>SpellDC</Type>
          <Bonus>Insightful</Bonus>
@@ -6896,6 +6897,7 @@ This can stack up to three times (up to Psionic Potency +24) and each stack last
       <Type>Cannith Goggles Suffix</Type>
       <Type>Cannith Rune-Arm Suffix</Type>
       <Type>Random Goggles Suffix</Type>
+      <EnterValue/>
       <Effect>
          <Type>SpellDC</Type>
          <Bonus>Insightful</Bonus>
@@ -28538,8 +28540,8 @@ spellpoints (This has a one minute cooldown).</Description>
       <Name>Epic Fire 1st Upgrade</Name>
       <Description>Grants Greater Maiming and Greater Fiery Detonation</Description>
       <MinLevel>1</MinLevel>
-      <Type>TOEE Fire 1st Upgrade</Type>
-      <AddAugment>TOEE Fire 2nd Upgrade</AddAugment>
+      <Type>Fire Weapon 1st Upgrade</Type>
+      <AddAugment>Fire Weapon 2nd Upgrade</AddAugment>
       <Effect>
          <DisplayName>Greater Maiming</DisplayName>
          <Type>WeaponOtherCriticalDamageBonus</Type>
@@ -28556,9 +28558,49 @@ spellpoints (This has a one minute cooldown).</Description>
    </Augment>
    <Augment>
       <Name>Epic Fire 2nd Upgrade</Name>
-      <Description>Grants Greater Maiming and Greater Fiery Detonation</Description>
+      <Description>Grants Greater Flaming Blast, Purple Augment Slot and Epic Elemental Evil Set Bonus</Description>
       <MinLevel>1</MinLevel>
-      <Type>TOEE Fire 2nd Upgrade</Type>
+      <Type>Fire Weapon 2nd Upgrade</Type>
+      <AddAugment>Purple</AddAugment>
+      <Effect>
+         <DisplayName>Epic Elemental Evil Set Bonus</DisplayName>
+         <Type>MeleePower</Type>
+         <Bonus>Quality</Bonus>
+         <AmountVector size="2">0 20</AmountVector>
+      </Effect>
+      <Effect>
+         <DisplayName>Epic Elemental Evil Set Bonus</DisplayName>
+         <Type>RangedPower</Type>
+         <Bonus>Quality</Bonus>
+         <AmountVector size="2">0 20</AmountVector>
+      </Effect>
+      <Effect>
+         <DisplayName>Epic Elemental Evil Set Bonus</DisplayName>
+         <Type>SpellPower</Type>
+         <Bonus>Quality</Bonus>
+         <AmountVector size="2">0 20</AmountVector>
+         <SpellPower>All</SpellPower>
+      </Effect>
+      <Effect>
+         <DisplayName>Greater Flaming Blast</DisplayName>
+         <Type>WeaponOtherCriticalDamageBonus</Type>
+         <Bonus>Stacking</Bonus>
+         <Weapon>All</Weapon>
+         <CriticalMultiplier/>
+         <Dice>
+            <Number size="4">0 4 6 8</Number>
+            <Sides size="4">0 10 10 10</Sides>
+            <Energy>Fire</Energy>
+         </Dice>
+         <IsItemSpecific/>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>Epic Water 1st Upgrade</Name>
+      <Description>Grants Greater Maiming and Greater Freezing Gale</Description>
+      <MinLevel>1</MinLevel>
+      <Type>Water Weapon 1st Upgrade</Type>
+      <AddAugment>Water Weapon 2nd Upgrade</AddAugment>
       <Effect>
          <DisplayName>Greater Maiming</DisplayName>
          <Type>WeaponOtherCriticalDamageBonus</Type>
@@ -28569,6 +28611,163 @@ spellpoints (This has a one minute cooldown).</Description>
             <Number size="4">0 8 12 16</Number>
             <Sides size="4">0 6 6 6</Sides>
             <Energy>Untyped</Energy>
+         </Dice>
+         <IsItemSpecific/>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>Epic Water 2nd Upgrade</Name>
+      <Description>Grants Greater Icy Blast, Purple Augment Slot and Epic Elemental Evil Set Bonus</Description>
+      <MinLevel>1</MinLevel>
+      <Type>Water Weapon 2nd Upgrade</Type>
+      <AddAugment>Purple</AddAugment>
+      <Effect>
+         <DisplayName>Epic Elemental Evil Set Bonus</DisplayName>
+         <Type>MeleePower</Type>
+         <Bonus>Quality</Bonus>
+         <AmountVector size="2">0 20</AmountVector>
+      </Effect>
+      <Effect>
+         <DisplayName>Epic Elemental Evil Set Bonus</DisplayName>
+         <Type>RangedPower</Type>
+         <Bonus>Quality</Bonus>
+         <AmountVector size="2">0 20</AmountVector>
+      </Effect>
+      <Effect>
+         <DisplayName>Epic Elemental Evil Set Bonus</DisplayName>
+         <Type>SpellPower</Type>
+         <Bonus>Quality</Bonus>
+         <AmountVector size="2">0 20</AmountVector>
+         <SpellPower>All</SpellPower>
+      </Effect>
+      <Effect>
+         <DisplayName>Greater Icy Blast</DisplayName>
+         <Type>WeaponOtherCriticalDamageBonus</Type>
+         <Bonus>Stacking</Bonus>
+         <Weapon>All</Weapon>
+         <CriticalMultiplier/>
+         <Dice>
+            <Number size="4">0 4 6 8</Number>
+            <Sides size="4">0 10 10 10</Sides>
+            <Energy>Cold</Energy>
+         </Dice>
+         <IsItemSpecific/>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>Epic Earth 1st Upgrade</Name>
+      <Description>Grants Greater Maiming and Greater Acid Torrent</Description>
+      <MinLevel>1</MinLevel>
+      <Type>Earth Weapon 1st Upgrade</Type>
+      <AddAugment>Earth Weapon 2nd Upgrade</AddAugment>
+      <Effect>
+         <DisplayName>Greater Maiming</DisplayName>
+         <Type>WeaponOtherCriticalDamageBonus</Type>
+         <Bonus>Stacking</Bonus>
+         <Weapon>All</Weapon>
+         <CriticalMultiplier/>
+         <Dice>
+            <Number size="4">0 8 12 16</Number>
+            <Sides size="4">0 6 6 6</Sides>
+            <Energy>Untyped</Energy>
+         </Dice>
+         <IsItemSpecific/>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>Epic Earth 2nd Upgrade</Name>
+      <Description>Grants Greater Acid Blast, Purple Augment Slot and Epic Elemental Evil Set Bonus</Description>
+      <MinLevel>1</MinLevel>
+      <Type>Earth Weapon 2nd Upgrade</Type>
+      <AddAugment>Purple</AddAugment>
+      <Effect>
+         <DisplayName>Epic Elemental Evil Set Bonus</DisplayName>
+         <Type>MeleePower</Type>
+         <Bonus>Quality</Bonus>
+         <AmountVector size="2">0 20</AmountVector>
+      </Effect>
+      <Effect>
+         <DisplayName>Epic Elemental Evil Set Bonus</DisplayName>
+         <Type>RangedPower</Type>
+         <Bonus>Quality</Bonus>
+         <AmountVector size="2">0 20</AmountVector>
+      </Effect>
+      <Effect>
+         <DisplayName>Epic Elemental Evil Set Bonus</DisplayName>
+         <Type>SpellPower</Type>
+         <Bonus>Quality</Bonus>
+         <AmountVector size="2">0 20</AmountVector>
+         <SpellPower>All</SpellPower>
+      </Effect>
+      <Effect>
+         <DisplayName>Greater Acid Blast</DisplayName>
+         <Type>WeaponOtherCriticalDamageBonus</Type>
+         <Bonus>Stacking</Bonus>
+         <Weapon>All</Weapon>
+         <CriticalMultiplier/>
+         <Dice>
+            <Number size="4">0 4 6 8</Number>
+            <Sides size="4">0 10 10 10</Sides>
+            <Energy>Acid</Energy>
+         </Dice>
+         <IsItemSpecific/>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>Epic Air 1st Upgrade</Name>
+      <Description>Grants Greater Maiming and Greater Electric Storm</Description>
+      <MinLevel>1</MinLevel>
+      <Type>Air Weapon 1st Upgrade</Type>
+      <AddAugment>Air Weapon 2nd Upgrade</AddAugment>
+      <Effect>
+         <DisplayName>Greater Maiming</DisplayName>
+         <Type>WeaponOtherCriticalDamageBonus</Type>
+         <Bonus>Stacking</Bonus>
+         <Weapon>All</Weapon>
+         <CriticalMultiplier/>
+         <Dice>
+            <Number size="4">0 8 12 16</Number>
+            <Sides size="4">0 6 6 6</Sides>
+            <Energy>Untyped</Energy>
+         </Dice>
+         <IsItemSpecific/>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>Epic Air 2nd Upgrade</Name>
+      <Description>Grants Greater Shocking Blast, Purple Augment Slot and Epic Elemental Evil Set Bonus</Description>
+      <MinLevel>1</MinLevel>
+      <Type>Air Weapon 2nd Upgrade</Type>
+      <AddAugment>Purple</AddAugment>
+      <Effect>
+         <DisplayName>Epic Elemental Evil Set Bonus</DisplayName>
+         <Type>MeleePower</Type>
+         <Bonus>Quality</Bonus>
+         <AmountVector size="2">0 20</AmountVector>
+      </Effect>
+      <Effect>
+         <DisplayName>Epic Elemental Evil Set Bonus</DisplayName>
+         <Type>RangedPower</Type>
+         <Bonus>Quality</Bonus>
+         <AmountVector size="2">0 20</AmountVector>
+      </Effect>
+      <Effect>
+         <DisplayName>Epic Elemental Evil Set Bonus</DisplayName>
+         <Type>SpellPower</Type>
+         <Bonus>Quality</Bonus>
+         <AmountVector size="2">0 20</AmountVector>
+         <SpellPower>All</SpellPower>
+      </Effect>
+      <Effect>
+         <DisplayName>Greater Shocking Blast</DisplayName>
+         <Type>WeaponOtherCriticalDamageBonus</Type>
+         <Bonus>Stacking</Bonus>
+         <Weapon>All</Weapon>
+         <CriticalMultiplier/>
+         <Dice>
+            <Number size="4">0 4 6 8</Number>
+            <Sides size="4">0 10 10 10</Sides>
+            <Energy>Electric</Energy>
          </Dice>
          <IsItemSpecific/>
       </Effect>

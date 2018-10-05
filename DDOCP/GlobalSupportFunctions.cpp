@@ -1045,6 +1045,7 @@ int RacialModifier(
         if (race == Race_Drow
                 || race == Race_Halfling
                 || race == Race_Elf
+                || race == Race_WoodElf
                 || race == Race_ShadarKai)
         {
             mod = +2;
@@ -1065,7 +1066,8 @@ int RacialModifier(
         }
         break;
     case Ability_Intelligence:
-        if (race == Race_HalfOrc)
+        if (race == Race_HalfOrc
+                || race == Race_WoodElf)
         {
             mod = -2;
         }

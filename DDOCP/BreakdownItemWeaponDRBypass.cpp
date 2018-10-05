@@ -91,7 +91,7 @@ void BreakdownItemWeaponDRBypass::AddEffectToVector(
         const ActiveEffect & effect) const
 {
     // only add if its active
-    if (effect.IsActive(m_pCharacter))
+    if (effect.IsActive(m_pCharacter, m_weapon))
     {
         value->push_back(effect.Description());
     }

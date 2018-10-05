@@ -1,5 +1,96 @@
 History of changes made
 
+Update 40 Changes:
+---Unarmed Strike now gives +1 attack bonus to Handwraps/Unarmed instead of 0.5[W] per tier
+---Wood Elves are now supported
+------+2 Dex, -2 Int
+------Racial Enhancement Tree added
+------Automatic feats for elves updated to include Wood Elf
+------Deity feats updated (Undying Court)
+Divine Crusader: Crusade - Description updated
+U40 Items:
+---Epic Spectre Deflector (level 28) (Buckler)
+---The Staff of Shadows (Quarterstaff)
+---Brilliant Crescent (Sickle)
+---Chaosbow (Longbow)
+---Hellstroke (Heavy Mace)
+---Tornado (Handaxe)
+---Timeshard (Shortsword)
+---Nightshard (Scimitar)
+---Staff of Irian (Quarterstaff)
+---Lightning Coil (Light Mace)
+---Mail of the Mroranon (Medium Armor)
+---Nullcloth Armor (Heavy Armor)
+---Gauntlets of the Stormreaver (Gloves)
+---Ring of the Silver Tongue (Ring)
+---Clouded Dreams (Ring)
+---Trinket of Freewill (Trinket)
+---Elyd Charm (Necklace)
+------All Items with Anthem effects updated
+---Bracers of the Mountain (Bracers)
+---Cloak of the Mountain (Cloak)
+---Windhowler Mask (Helmet)
+---The Reflection of Blackrazor (Great Sword)
+---Soulrazor (Longsword)
+---The Reflection of Whelm (Warhammer)
+---Overwhelming impact (Throwing Hammer)
+---The Reflection of Wave (Quarterstaff)
+---Sphere of Waves (Orb)
+---Reflection of Angdrelve (Great Sword)
+---Soul's Sorrow (Bastard Sword)
+---The Reflection of the Frostblade (Scimitar)
+
+Other work:
+Fix: Kukan-Do DC breakdown now correctly includes "Stun" bonuses in its total
+Fix: Bad iterator increment after list item removal fixed
+Fix: Cleric "War Priest" and Favored Soul "War Soul" favored Weapon effects will now work correctly. (Reported by Frinkky)
+New: DCs now show their current value under the icon. You no longer have to mouse over to see the total.
+---Redrawn on a change that can affect its value
+---How To Guide updated.
+Fix: Enhancements tree update order changed to avoid tree destruction while in use causing a crash
+New: Additional Self and Party Buffs added:
+---Aura of Courage
+---Aura of Good
+---Mabar Candy: Almond-Coated Shaadow Apple
+---Mabar Candy: Darkswirl Caramel Bite
+---Mabar Candy: Sweet Cinnamon Cloud
+New: DCs can now have an optional "other" field used for arbitrary text (e.g. "1d20")
+New: Fascinate now has a DC listing
+Fix: Quivering Palm DC is now listed correctly as a Fortitude save (Not Will)
+Fix: All Shield items updated to use the correct "WeaponPlus" mechanic
+Fix: Divine Crusader: Extraordinary Virtue is now shown correctly as a passive enhancement
+Fix: Cannith/Random loot "Insightful Necromancy Focus" and "Insightful Transmutation Focus" augments can now correctly have values entered for them.
+Items: (Update of Crystal Cove items)
+---Glass Cannon (Level 24) - Stats updated (Rune Arm)
+---Epic Ratkiller (Level 24) - Stats updated (Maul)
+---Epic Ratkiller (Level 28) - Added (Maul)
+---Epic Brigand's Cutlass (Level 24) - Stats updated (Scimitar)
+---Epic Brigand's Cutlass (Level 28) - Added (Scimitar)
+---Epic Cutthroat's Smallblade (Level 24) - Stats updated (Shortsword)
+---Epic Cutthroat's Smallblade (Level 28) - Stats updated (Shortsword)
+---Epic Ornamented Dagger (Level 24) - Stats updated (Dagger)
+---Epic Ornamented Dagger (Level 28) - Stats updated (Dagger)
+---Epic Broken Oar (Level 24) - Added (Quarterstaff)
+---Epic Broken Oar (Level 28) - Stats updated (Quarterstaff)
+---Epic Flotsam (Level 24) - Added (Dagger)
+---Epic Flotsam (Level 28) - Added (Dagger)
+---Epic Swashbuckler (Level 24) - Stats updated (Buckler)
+---Epic Swashbuckler (Level 28) - Added (Buckler)
+---Epic Cavalry Plate (Level 24) - Added (Heavy Armor)
+---Epic Cavalry Plate (Level 28) - Added (Heavy Armor)
+---Epic Duelist's Leathers (Level 24) - Stats updated (Light Armor)
+---Epic Duelist's Leathers (Level 28) - Added (Light Armor)
+---Epic Brawling Gloves (Level 24) - Stats updated (Gloves)
+---Epic Brawling Gloves (Level 28) - Stats updated (Gloves)
+---Epic Ring of the Buccaneer (Level 24) - Stats updated (Ring)
+---Epic Ring of the Buccaneer (Level 28) - Stats updated (Ring)
+---Epic Treasure Hunter's Spyglass (Level 24) - Stats updated (Trinket)
+---Epic Treasure Hunter's Spyglass (Level 28) - Stats updated (Trinket)
+Items: (TOEE)
+---All 4 variants of Epic Bastard Swords done
+
+Version 1.0.0.50
+
 New Items:
 ---Legendary Cursebane Ring (Ring) - (Reported missing by Kamdragon)
 ---Epic Cutthroat's Smallblade (Level 28) (Shortsword - Treasure of the Crystal Cove update)
@@ -20,7 +111,7 @@ Fix: Grim Barricade: Reaper's Defense VI now correctly gives +1% dodge cap, not 
 Fix: A clash between Harper Agent: Know the Angles for weapon damage and effects for weapon attack/damage type abilities was fixed. (Reported by Selvera)
 Fix: A bug in <AnyOfStance> enabled code was fixed
 Fix: Sacred Defense and Stalwart Defense HP effects updated so will now apply correctly if your in stance and using a shield. (Reported by Selvera)
-Fix: Fighter/Paladin Tenachious Defense no longer stacks with Epic Defensive Fighting hp bonus (Both Competence)
+Fix: Fighter/Paladin Tenacious Defense no longer stacks with Epic Defensive Fighting hp bonus (Both Competence)
 Fix: Ability damage for main hand weapons when single weapon fighting is now correctly scaled by the SWF line of feats.
 Fix: Many "MovementSpeed" effects had "ApplyAsItemEffect" flag added to solve incorrect stacking issues.
 ---There may still be some issues with the stacking of movement speeds
@@ -156,7 +247,7 @@ New: New DC View added
 ------Warlock: Pact: Fey
 ------Warlock: Pact: Fiend
 ------Warlock: Pact: Great Old One
-------Feat: Dire Charge
+------Dire Charge
 ------Mass Frog
 ------Silver Flame Exorcism
 ------Animal Domain Tier IV

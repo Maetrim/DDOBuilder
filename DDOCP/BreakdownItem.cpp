@@ -156,7 +156,7 @@ void BreakdownItem::AddActiveItems(
     while (it != effects.end())
     {
         // only add active items when it has an active stance flag
-        if ((*it).IsActive(m_pCharacter)
+        if ((*it).IsActive(m_pCharacter, m_weapon)
                 && !(*it).IsPercentage())
         {
             // only list it if its non-zero
@@ -195,7 +195,7 @@ void BreakdownItem::AddActivePercentageItems(
     while (it != effects.end())
     {
         // only add active items when it has an active stance flag and is a percentage
-        if ((*it).IsActive(m_pCharacter)
+        if ((*it).IsActive(m_pCharacter, m_weapon)
                 && (*it).IsPercentage())
         {
             // only list it if its non-zero
@@ -234,7 +234,7 @@ void BreakdownItem::AddDeactiveItems(
     while (it != effects.end())
     {
         // only add inactive items when it has a stance flag
-        if (!(*it).IsActive(m_pCharacter))
+        if (!(*it).IsActive(m_pCharacter, m_weapon))
         {
             // only list it if its non-zero
             if ((*it).TotalAmount(false) != 0)
@@ -270,7 +270,7 @@ double BreakdownItem::SumItems(const std::list<ActiveEffect> & effects) const
     while (it != effects.end())
     {
         // only count the active items in the total
-        if ((*it).IsActive(m_pCharacter))
+        if ((*it).IsActive(m_pCharacter, m_weapon))
         {
             if (!(*it).IsPercentage())
             {
@@ -291,7 +291,7 @@ double BreakdownItem::DoPercentageEffects(
     while (it != effects.end())
     {
         // only count the active items in the total
-        if ((*it).IsActive(m_pCharacter))
+        if ((*it).IsActive(m_pCharacter, m_weapon))
         {
             if ((*it).IsPercentage())
             {
@@ -503,13 +503,16 @@ void BreakdownItem::RemoveInactive(
     while (it != effects->end())
     {
         // only add inactive items when it has a stance flag
-        if (!(*it).IsActive(m_pCharacter))
+        if (!(*it).IsActive(m_pCharacter, m_weapon))
         {
             // add the item to be removed into the inactive list
             inactiveEffects->push_back((*it));
             it = effects->erase(it);      // remove from source list
         }
-        ++it;
+        else
+        {
+            ++it;
+        }
     }
 }
 
