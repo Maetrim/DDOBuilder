@@ -75,7 +75,8 @@ bool DC::VerifyObject(std::stringstream * ss) const
     }
     if (!ImageFileExists(IT_feat, Icon())
             && !ImageFileExists(IT_enhancement, Icon())
-            && !ImageFileExists(IT_item, Icon()))
+            && !ImageFileExists(IT_item, Icon())
+            && !ImageFileExists(IT_ui, Icon()))
     {
         *ss << "DC is missing image file \"" << Icon() << "\"\n";
         ok = false;

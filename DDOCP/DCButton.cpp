@@ -28,7 +28,10 @@ CDCButton::CDCButton(Character * charData, const DC & dc) :
         // see if its a feat icon we need to use
         if (S_OK != LoadImageFile(IT_feat, dc.Icon(), &m_image, false))
         {
-            LoadImageFile(IT_item, dc.Icon(), &m_image);
+            if (S_OK != LoadImageFile(IT_item, dc.Icon(), &m_image, false))
+            {
+                LoadImageFile(IT_ui, dc.Icon(), &m_image);
+            }
         }
     }
     m_image.SetTransparentColor(c_transparentColour);

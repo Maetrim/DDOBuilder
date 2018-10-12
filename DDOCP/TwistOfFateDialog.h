@@ -50,9 +50,9 @@ class CTwistOfFateDialog :
         void PopulateTwistCombobox();
         void ShowTip(const EnhancementTreeItem & item, CRect itemRect);
         void SetTooltipText(
-            const EnhancementTreeItem & item,
-            CPoint tipTopLeft,
-            CPoint tipAlternate);
+                const EnhancementTreeItem & item,
+                CPoint tipTopLeft,
+                CPoint tipAlternate);
         size_t m_twistIndex;
         CButton m_buttonMinus;
         CButton m_buttonPlus;

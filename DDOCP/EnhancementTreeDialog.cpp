@@ -305,7 +305,18 @@ void CEnhancementTreeDialog::RenderTreeItem(
                 c_leftOffsetItem + c_xItemSpacingItem * item.XPosition(),
                 c_topItem1 - c_yItemSpacing * item.YPosition());
 
-        if (item.HasClickie())
+        // clickie item state may be overridden by item selection
+        const TrainedEnhancement * te = m_pCharacter->IsTrained(item.InternalName(), "");
+        bool clickie = item.HasClickie();
+        if (te != NULL)
+        {
+            if (te->HasSelection())
+            {
+                std::string sel = te->Selection();
+                clickie = item.IsSelectionClickie(sel);
+            }
+        }
+        if (clickie)
         {
             RenderItemClickie(item, pDC, itemRect);
         }
@@ -389,7 +400,18 @@ void CEnhancementTreeDialog::RenderItemCore(
     bool isTrainable = item.CanTrain(*m_pCharacter, m_tree.Name(), spentInTree, m_type);
     // now apply the item position to the rectangle
     itemRect += CPoint(c_leftOffsetCore + c_xItemSpacingCore * item.XPosition(), c_topCore);
-    if (item.HasClickie())
+    // clickie item state may be overridden by item selection
+    const TrainedEnhancement * te = m_pCharacter->IsTrained(item.InternalName(), "");
+    bool clickie = item.HasClickie();
+    if (te != NULL)
+    {
+        if (te->HasSelection())
+        {
+            std::string sel = te->Selection();
+            clickie = item.IsSelectionClickie(sel);
+        }
+    }
+    if (clickie)
     {
         s_imageBorders[IBE_CoreClickie].TransparentBlt(
                 pDC->GetSafeHdc(),

@@ -86,19 +86,8 @@ void BreakdownItemTurnUndeadHitDice::CreateOtherEffects()
                     bonus,
                     "");        // no tree
             feat.SetBreakdownDependency(StatToBreakdown(Ability_Charisma)); // so we know which effect to update
+            feat.SetDivider(1, DT_statBonus);
             AddOtherEffect(feat);
-        }
-
-        // seek eternal rest gives a stacking +4 (assumed used)
-        if (m_pCharacter->IsSpellTrained("Seek Eternal Rest"))
-        {
-            ActiveEffect ser(
-                    Bonus_sacred,
-                    "Seek Eternal Rest (Spell Bonus)",
-                    1,
-                    4,
-                    "");        // no tree
-            AddOtherEffect(ser);
         }
     }
 }

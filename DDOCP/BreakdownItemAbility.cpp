@@ -114,6 +114,7 @@ void BreakdownItemAbility::CreateOtherEffects()
                 feat.AddStance("Divine Might");
                 // ensure its updated on a change
                 feat.SetBreakdownDependency(StatToBreakdown(Ability_Charisma));
+                feat.SetDivider(1, DT_statBonus);
                 AddOtherEffect(feat);
             }
         }

@@ -1210,8 +1210,8 @@ void CForumExportDlg::AddTwistsOfFate(std::stringstream & forumExport)
     int totalFatePoints = m_pCharacter->FatePoints();
     size_t spentFatePoints = m_pCharacter->SpentFatePoints();
     forumExport << "Twists of fate - " << spentFatePoints << " of " << totalFatePoints;
-    forumExport << "------------------------------------------------------------------------------------------\r\n";
     forumExport << " Fate points spent.\r\n";
+    forumExport << "------------------------------------------------------------------------------------------\r\n";
     for (size_t twist = 0; twist < MAX_TWISTS; ++twist)
     {
         if (twist == MAX_TWISTS - 1

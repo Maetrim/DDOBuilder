@@ -21,6 +21,7 @@ class Selector :
         std::list<DC> EffectDCs(const std::string & selection) const;
         std::list<Stance> Stances(const std::string & selection) const;
         size_t Cost(const std::string & selection) const;
+        bool IsSelectionClickie(const std::string & selection) const;
 
         bool VerifyObject(
                 std::stringstream * ss,

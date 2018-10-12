@@ -58,6 +58,8 @@ void BreakdownItemTactical::CreateOtherEffects()
                     1,
                     bonus,
                     "");        // no tree
+            feat.AddStance("Divine Presence");
+            feat.SetDivider(2, DT_statBonus);
             AddOtherEffect(feat);
         }
         // handle divine will which cannot be handled with effects
@@ -74,6 +76,8 @@ void BreakdownItemTactical::CreateOtherEffects()
                     1,
                     bonus,
                     "");        // no tree
+            feat.AddStance("Divine Will");
+            feat.SetDivider(2, DT_statBonus);
             AddOtherEffect(feat);
         }
     }

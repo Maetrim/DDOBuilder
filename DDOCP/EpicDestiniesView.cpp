@@ -511,7 +511,7 @@ void CEpicDestiniesView::UpdateEnhancementTrained(
         const std::string & selection,
         bool isTier5)
 {
-        EnableControls();
+    EnableControls();
 }
 
 void CEpicDestiniesView::UpdateEnhancementRevoked(
@@ -520,7 +520,7 @@ void CEpicDestiniesView::UpdateEnhancementRevoked(
         const std::string & selection,
         bool isTier5)
 {
-        EnableControls();
+    EnableControls();
 }
 
 void CEpicDestiniesView::UpdateEnhancementTreeReset(

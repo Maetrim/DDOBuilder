@@ -41,6 +41,7 @@ class EnhancementSelection :
                 DL_STRING(_, Description) \
                 DL_STRING(_, Icon) \
                 DL_SIMPLE(_, size_t, Cost, 0) \
+                DL_FLAG(_, Clickie) \
                 DL_OPTIONAL_OBJECT(_, Requirements, RequirementsToTrain) \
                 DL_OBJECT_LIST(_, Stance, Stances) \
                 DL_OBJECT_LIST(_, Effect, Effects) \

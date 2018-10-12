@@ -307,3 +307,9 @@ size_t EnhancementTreeItem::Cost(const std::string & selection) const
     }
     return cost;
 }
+
+bool EnhancementTreeItem::IsSelectionClickie(const std::string & selection) const
+{
+    return m_Selections.IsSelectionClickie(selection);
+}
+

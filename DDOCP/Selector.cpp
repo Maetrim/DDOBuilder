@@ -181,3 +181,20 @@ size_t Selector::Cost(const std::string & selection) const
     }
     return cost;
 }
+
+bool Selector::IsSelectionClickie(const std::string & selection) const
+{
+    bool isClickie = false;
+    std::list<EnhancementSelection>::const_iterator it = m_Selections.begin();
+    while (it != m_Selections.end())
+    {
+        if ((*it).Name() == selection)
+        {
+            isClickie = (*it).HasClickie();
+            break;          // done
+        }
+        ++it;
+    }
+    return isClickie;
+}
+

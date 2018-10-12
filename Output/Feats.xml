@@ -725,6 +725,39 @@ Weilding weapons that are centering such as a staff.</Description>
          <IncompatibleStance>Large Shield</IncompatibleStance>
          <AutoControlled/>
       </Stance>
+      <DC>
+         <Name>Intimidate</Name>
+         <Description>Allows you to intimidate certain NPCs and to draw the attention of monsters while in battle.
+You will suffer a -4 penalty to your intimidate skill for every size category
+you are smaller than the creature your are trying to intimidate, or +4 for every
+size category your are larger. (15 second cooldown)</Description>
+         <Icon>Intimidate</Icon>
+         <DCVersus>10+HD+Wis Mod</DCVersus>
+         <Other>d20</Other>
+         <Skill>Intimidate</Skill>
+      </DC>
+      <DC>
+         <Name>Diplomacy</Name>
+         <Description>Allows you to negotiate more effectively with certain NPCs and to encourage
+monsters to find targets other than yourself. Any accumulated threat you
+have with enemies that you successfully diplomacize is reduced.
+(15 second cooldown, Shares cooldown with Bluff)</Description>
+         <Icon>Diplomacy</Icon>
+         <DCVersus>CR+Quest Level</DCVersus>
+         <Other>d20</Other>
+         <Skill>Diplomacy</Skill>
+      </DC>
+      <DC>
+         <Name>Bluff</Name>
+         <Description>Allows you to bluff certain NPCs, draw monsters away from their group,
+or make an individual monster vulnerable to sneak attack for six seconds.
+You also gain a decrease in threat generation for a short period of time after
+successfully using this ability. (15 second cooldown, Shares cooldown with Diplomacy)</Description>
+         <Icon>Bluff</Icon>
+         <DCVersus>CR+Quest Level</DCVersus>
+         <Other>d20</Other>
+         <Skill>Bluff</Skill>
+      </DC>
    </Feat>
    <Feat>
       <Name>Augment Summoning</Name>
@@ -12338,6 +12371,14 @@ A successful Balance check negates this effect.</Description>
          <Class>Paladin</Class>
          <Level>4</Level>
       </AutomaticAcquisition>
+      <DC>
+         <Name>Turn Undead</Name>
+         <Description>Attempts to drive away nearby undead or force them to cower.</Description>
+         <Icon>TurnUndead</Icon>
+         <DCVersus>Creature HD</DCVersus>
+         <Other>d20</Other>
+         <ModAbility>Charisma</ModAbility>
+      </DC>
    </Feat>
    <Feat>
       <Name>Two Handed Fighting</Name>
@@ -18102,7 +18143,7 @@ a successful Fortitude saving throw. Base DC is officially 20, but currently 30 
          <DCVersus>Fortitude</DCVersus>
          <AmountVector size="1">30</AmountVector>
          <ModAbility>Wisdom</ModAbility>
-         <School>Global DC</School>
+         <School>Transmutation</School>
       </DC>
    </Feat>
    <Feat>

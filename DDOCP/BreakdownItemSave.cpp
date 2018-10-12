@@ -109,6 +109,7 @@ void BreakdownItemSave::CreateOtherEffects()
                             bonus,
                             "");        // no tree
                     feat.SetBreakdownDependency(StatToBreakdown(Ability_Charisma)); // so we know which effect to update
+                    feat.SetDivider(1, DT_statBonus);
                     AddOtherEffect(feat);
                 }
             }
@@ -152,6 +153,7 @@ void BreakdownItemSave::CreateOtherEffects()
                                 1,
                                 bonus,
                                 "");        // no tree
+                        feat.SetDivider(1, DT_statBonus);
                         AddOtherEffect(feat);
                     }
                 }
