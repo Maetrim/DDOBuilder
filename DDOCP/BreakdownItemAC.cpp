@@ -100,6 +100,44 @@ void BreakdownItemAC::CreateOtherEffects()
                     "");        // no tree
             AddOtherEffect(feat);
         }
+        // some enhancements provide a bonus to existing totals
+        // of either Armor and Shields
+        BreakdownItem * pBI = FindBreakdown(Breakdown_BonusArmorAC);
+        if (pBI != NULL)
+        {
+            pBI->AttachObserver(this);      // need to know about changes
+            double percentBonus = pBI->Total();
+            double value = GetEffectValue(Bonus_armor);
+            int amount = (int)((value * percentBonus) / 100.0);
+            std::stringstream ss;
+            ss << "Armor " << percentBonus << "% Bonus";
+            // now add a percentage of that
+            ActiveEffect feat(
+                    Bonus_enhancement,
+                    ss.str(),
+                    1,
+                    amount,
+                    "");        // no tree
+            AddOtherEffect(feat);
+        }
+        pBI = FindBreakdown(Breakdown_BonusShieldAC);
+        if (pBI != NULL)
+        {
+            pBI->AttachObserver(this);      // need to know about changes
+            double percentBonus = pBI->Total();
+            double value = GetEffectValue(Bonus_shield);
+            int amount = (int)((value * percentBonus) / 100.0);
+            std::stringstream ss;
+            ss << "Shield " << percentBonus << "% Bonus";
+            // now add a percentage of that
+            ActiveEffect feat(
+                    Bonus_enhancement,
+                    ss.str(),
+                    1,
+                    amount,
+                    "");        // no tree
+            AddOtherEffect(feat);
+        }
     }
 }
 

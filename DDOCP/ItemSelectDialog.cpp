@@ -205,6 +205,7 @@ BOOL CItemSelectDialog::OnInitDialog()
     for (size_t i = 0 ; i < MAX_Augments; ++i)
     {
         m_comboAugmentDropList[i].GetWindowRect(&rect);
+        rect.DeflateRect(0, 1, 0, 1);   // ensure they do not overlap
         m_augmentHookHandles[i] = GetMouseHook()->AddRectangleToMonitor(
                 this->GetSafeHwnd(),
                 rect,           // screen coordinates,
@@ -784,6 +785,7 @@ void CItemSelectDialog::OnSize(UINT nType, int cx, int cy)
         for (size_t i = 0 ; i < MAX_Augments; ++i)
         {
             m_comboAugmentDropList[i].GetWindowRect(&rect);
+            rect.DeflateRect(0, 1, 0, 1);   // ensure they do not overlap
             GetMouseHook()->UpdateRectangle(
                     m_augmentHookHandles[i],
                     rect);          // screen coordinates
@@ -1138,11 +1140,11 @@ void CItemSelectDialog::SetSentientWeaponControls()
                 ? BST_CHECKED
                 : BST_UNCHECKED);
         m_buttonSentientSpark.EnableWindow(hasJewel);
-        m_buttonSentientSpark.SetCheck(m_item.SentientIntelligence().HasSentientSpark()
+        m_buttonSentientSpark.SetCheck(hasJewel && m_item.SentientIntelligence().HasSentientSpark()
                 ? BST_CHECKED
                 : BST_UNCHECKED);
         // enable and populate the Filigree drop list controls
-        m_comboSentientPersonality.EnableWindow(m_item.HasSentientIntelligence());
+        m_comboSentientPersonality.EnableWindow(hasJewel);
         PopulatePersonalityCombobox();
         for (size_t fi = 0; fi < MAX_Filigree; ++fi)
         {

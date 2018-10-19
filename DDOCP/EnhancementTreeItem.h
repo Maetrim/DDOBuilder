@@ -25,6 +25,10 @@ class EnhancementTreeItem :
                 const Character & charData,
                 const std::string & selection,
                 const std::string & treeName) const;
+        bool IsAllowed(
+                const Character & charData,
+                const std::string & selection,
+                const std::string & treeName) const;
         bool CanTrain(
                 const Character & charData,
                 const std::string & treeName,

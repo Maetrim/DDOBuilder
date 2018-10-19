@@ -4553,7 +4553,9 @@ void Character::UpdateWeaponStances()
         case Weapon_Orb:
         case Weapon_RuneArm:
             enableSwf = true;
-            // fall through
+            DeactivateStance(twf);
+            DeactivateStance(sab);
+            break;
         default:
             ActivateStance(twf);
             DeactivateStance(sab);

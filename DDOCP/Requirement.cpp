@@ -194,7 +194,6 @@ bool Requirement::CanTrainEnhancement(
             }
         }
     }
-    //?? this is not in the right place as it causes enhancements to be shown with a Red X
     if (HasEnhancement())
     {
         // this enhancement must be trained
@@ -205,6 +204,80 @@ bool Requirement::CanTrainEnhancement(
         if (te != NULL)
         {
             met &= (trainedRanks < te->Ranks());
+        }
+    }
+
+    if (HasSkill())
+    {
+        // must have this number of ranks in the skill at the current level to train
+        met &= (charData.SkillAtLevel(Skill(), MAX_LEVEL, true) >= Amount());
+    }
+    if (HasBAB())
+    {
+        // must have at least this BAB at the current total level to train
+        met &= (charData.BaseAttackBonus(MAX_LEVEL) >= BAB());
+    }
+    if (HasFeat())
+    {
+        // must have this feat previously trained at the current level to train
+        std::list<TrainedFeat> feats = charData.CurrentFeats(MAX_LEVEL);
+        size_t count = TrainedCount(feats, Feat());
+        size_t numNeeded = 1;
+        if (HasAmount())
+        {
+            numNeeded = Amount();
+        }
+        met = (count >= numNeeded);
+    }
+    if (HasAbility())
+    {
+        // must have this specific base ability value to train (Base + Tome + Level up only)
+        ASSERT(HasAmount());
+        size_t value = charData.AbilityAtLevel(Ability(), MAX_LEVEL, true);
+        met = (value >= Amount());
+    }
+    return met;
+}
+
+bool Requirement::IsAllowed(
+        const Character & charData,
+        size_t trainedRanks) const
+{
+    bool met = true;
+    if (HasRace())
+    {
+        // must be a required race
+        met &= (charData.Race() == Race()
+                || Race() == Race_All);
+    }
+    if (HasClass())
+    {
+        // must be a specific level/min level of a given class
+        std::vector<size_t> classLevels = charData.ClassLevels(MAX_LEVEL);
+        size_t classLevel = classLevels[Class()];
+        if (HasMinLevel())
+        {
+            met &= (classLevel >= MinLevel());
+        }
+        if (HasLevel())
+        {
+            if (HasTier())
+            {
+                // only deny if trying to train the tier that this enhancement applies to
+                if (trainedRanks +1 == Tier())
+                {
+                    met &= (classLevel >= Level());
+                }
+                else
+                {
+                    met = true;    // its a higher tier requirement, assume yes
+                    // enhancement requirement becomes active once a tier has been trained
+                }
+            }
+            else
+            {
+                met &= (classLevel >= Level());
+            }
         }
     }
 

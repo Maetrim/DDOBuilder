@@ -99,6 +99,34 @@ bool Requirements::CanTrainEnhancement(
     return met;
 }
 
+bool Requirements::IsAllowed(
+        const Character & charData,
+        size_t trainedRanks) const
+{
+    // only need to check any enhancement requirements
+    bool met = true;
+    std::list<Requirement>::const_iterator it = m_Requires.begin();
+    while (met && it != m_Requires.end())
+    {
+        // subset, excluding enhancements
+        met = (*it).IsAllowed(charData, trainedRanks);
+        ++it;
+    }
+    if (met
+            && HasOneOf())
+    {
+        // subset, excluding enhancements
+        met = OneOf().IsAllowed(charData, trainedRanks);
+    }
+    if (met
+            && HasNoneOf())
+    {
+        // all, including enhancements
+        met = NoneOf().CanTrainEnhancement(charData, trainedRanks);
+    }
+    return met;
+}
+
 bool Requirements::CanTrainTree(
         const Character & charData) const
 {

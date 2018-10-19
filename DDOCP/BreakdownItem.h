@@ -66,6 +66,8 @@ class BreakdownItem :
 
         void SetWeapon(WeaponType wt, size_t weaponCriticalMultiplier);
         WeaponType Weapon() const;
+
+        double GetEffectValue(BonusType bt) const;
     protected:
         void AddOtherEffect(const ActiveEffect & effect);
         void AddFeatEffect(const ActiveEffect & effect);

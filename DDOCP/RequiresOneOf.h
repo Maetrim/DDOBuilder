@@ -24,6 +24,9 @@ class RequiresOneOf :
         bool CanTrainEnhancement(
                 const Character & charData,
                 size_t trainedRanks) const;
+        bool IsAllowed(
+                const Character & charData,
+                size_t trainedRanks) const;
         bool CanTrainTree(
                 const Character & charData) const;
         void CreateRequirementStrings(

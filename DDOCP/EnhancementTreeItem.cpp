@@ -145,6 +145,52 @@ bool EnhancementTreeItem::MeetRequirements(
     return met;
 }
 
+bool EnhancementTreeItem::IsAllowed(
+        const Character & charData,
+        const std::string & selection,
+        const std::string & treeName) const
+{
+    bool met = true;
+    // must also meet a subset of the requirements of the item
+    if (met)
+    {
+        const TrainedEnhancement * pTE = charData.IsTrained(Name(), "");
+        met = m_RequirementsToTrain.IsAllowed(
+                charData,
+                (pTE == NULL) ? 0 : pTE->Ranks());
+    }
+    // cannot train this enhancement if its tier5 and not from the same tier 5
+    // tree if one has already been trained
+    if (HasTier5()                  // are we a tier 5 enhancement?
+            && charData.HasTier5Tree()
+            && treeName != charData.Tier5Tree())
+    {
+        // not allowed this tier 5 enhancement
+        met = false;
+    }
+    if (met && selection != "")
+    {
+        // check if we can train this selection
+        std::list<EnhancementSelection> selections = m_Selections.Selections();
+        std::list<EnhancementSelection>::const_iterator it = selections.begin();
+        while (it != selections.end())
+        {
+            if ((*it).Name() == selection)
+            {
+                // this is the one we need to check
+                if ((*it).HasRequirementsToTrain())
+                {
+                    met = (*it).RequirementsToTrain().IsAllowed(charData, 0);
+                }
+                // and were done
+                break;
+            }
+            ++it;
+        }
+    }
+    return met;
+}
+
 bool EnhancementTreeItem::CanTrain(
         const Character & charData,
         const std::string & treeName,

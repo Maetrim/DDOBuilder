@@ -325,7 +325,7 @@ void CEnhancementTreeDialog::RenderTreeItem(
             RenderItemPassive(item, pDC, itemRect);
         }
         // show how many have been acquired of max ranks
-        bool isAllowed = item.MeetRequirements(*m_pCharacter, "", m_tree.Name());
+        bool isAllowed = item.IsAllowed(*m_pCharacter, "", m_tree.Name());
         if (isAllowed)
         {
             // only show trained x/y if item is allowed
@@ -396,7 +396,7 @@ void CEnhancementTreeDialog::RenderItemCore(
     // core items are rendered across the bottom section of the bitmap
     CRect itemRect(0, 0, 38, 38);
     size_t spentInTree = m_pCharacter->APSpentInTree(m_tree.Name());
-    bool isAllowed = item.MeetRequirements(*m_pCharacter, "", m_tree.Name());
+    bool isAllowed = item.IsAllowed(*m_pCharacter, "", m_tree.Name());
     bool isTrainable = item.CanTrain(*m_pCharacter, m_tree.Name(), spentInTree, m_type);
     // now apply the item position to the rectangle
     itemRect += CPoint(c_leftOffsetCore + c_xItemSpacingCore * item.XPosition(), c_topCore);
@@ -535,7 +535,7 @@ void CEnhancementTreeDialog::RenderItemState(
         CRect itemRect) // work on a copy
 {
     size_t spentInTree = m_pCharacter->APSpentInTree(m_tree.Name());
-    bool isAllowed = item.MeetRequirements(*m_pCharacter, "", m_tree.Name());
+    bool isAllowed = item.IsAllowed(*m_pCharacter, "", m_tree.Name());
     bool isTrainable = item.CanTrain(*m_pCharacter, m_tree.Name(), spentInTree, m_type);
     if (!isAllowed)
     {

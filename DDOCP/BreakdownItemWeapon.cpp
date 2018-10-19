@@ -23,8 +23,8 @@ BreakdownItemWeapon::BreakdownItemWeapon(
     m_attackBonus(Breakdown_WeaponAttackBonus, Effect_AttackBonus, "Attack Bonus", treeList, NULL, this, slot),
     m_damageBonus(Breakdown_WeaponDamageBonus, Effect_DamageBonus, "Damage Bonus", treeList, NULL),
     m_otherDamageEffects(Breakdown_WeaponOtherDamageEffects, treeList, NULL),
-    m_criticalAttackBonus(Breakdown_WeaponAttackBonus, Effect_CriticalAttackBonus, "Critical Attack Bonus", treeList, NULL, this, slot),
-    m_criticalDamageBonus(Breakdown_WeaponDamageBonus, Effect_Seeker, "Critical Damage Bonus", treeList, NULL),
+    m_criticalAttackBonus(Breakdown_WeaponCriticalAttackBonus, Effect_CriticalAttackBonus, "Critical Attack Bonus", treeList, NULL, this, slot),
+    m_criticalDamageBonus(Breakdown_WeaponCriticalDamageBonus, Effect_Seeker, "Critical Damage Bonus", treeList, NULL),
     m_otherCriticalDamageEffects(Breakdown_WeaponCriticalOtherDamageEffects, treeList, NULL),
     m_criticalThreatRange(Breakdown_WeaponCriticalThreatRange, treeList, NULL),
     m_criticalMultiplier(Breakdown_WeaponCriticalMultiplier,  treeList, NULL, NULL),
@@ -809,3 +809,49 @@ void BreakdownItemWeapon::AddForumExportData(std::stringstream & forumExport)
     forumExport << "DR Bypass: " << m_drBypass.Value();
     forumExport << "\r\n\r\n";
 }
+
+BreakdownItem * BreakdownItemWeapon::GetWeaponBreakdown(BreakdownType bt)
+{
+    BreakdownItem * pBI = NULL;
+    switch (bt)
+    {
+    case Breakdown_WeaponBaseDamage:
+        pBI = &m_baseDamage;
+        break;
+    case Breakdown_WeaponAttackBonus:
+        pBI = &m_attackBonus;
+        break;
+    case Breakdown_WeaponDamageBonus:
+        pBI = &m_damageBonus;
+        break;
+    case Breakdown_WeaponOtherDamageEffects:
+        pBI = &m_otherDamageEffects;
+        break;
+    case Breakdown_WeaponCriticalAttackBonus:
+        pBI = &m_criticalAttackBonus;
+        break;
+    case Breakdown_WeaponCriticalDamageBonus:
+        pBI = &m_criticalDamageBonus;
+        break;
+    case Breakdown_WeaponCriticalOtherDamageEffects:
+        pBI = &m_otherCriticalDamageEffects;
+        break;
+    case Breakdown_WeaponCriticalThreatRange:
+        pBI = &m_criticalThreatRange;
+        break;
+    case Breakdown_WeaponCriticalMultiplier:
+        pBI = &m_criticalMultiplier;
+        break;
+    case Breakdown_WeaponCriticalMultiplier19To20:
+        pBI = &m_criticalMultiplier19To20;
+        break;
+    case Breakdown_WeaponAttackSpeed:
+        pBI = &m_attackSpeed;
+        break;
+    case Breakdown_DRBypass:
+        pBI = &m_drBypass;
+        break;
+    }
+    return pBI;
+}
+

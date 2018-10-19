@@ -30,6 +30,8 @@ class BreakdownItemWeaponEffects :
         bool AreWeaponsCentering() const;
         void AddForumExportData(std::stringstream & forumExport);
 
+        BreakdownItem * GetWeaponBreakdown(bool bMainhand, BreakdownType bt);
+
     protected:
         // BreakdownObserver overrides
         virtual void UpdateFeatEffect(Character * pCharacater, const std::string & featName, const Effect & effect) override;

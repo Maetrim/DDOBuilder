@@ -772,3 +772,20 @@ void BreakdownItemWeaponEffects::AddForumExportData(std::stringstream & forumExp
         m_pOffHandWeapon->AddForumExportData(forumExport);
     }
 }
+
+BreakdownItem * BreakdownItemWeaponEffects::GetWeaponBreakdown(bool bMainhand, BreakdownType bt)
+{
+    BreakdownItem * pBI = NULL;
+    if (bMainhand
+            && m_pMainHandWeapon != NULL)
+    {
+        pBI = m_pMainHandWeapon->GetWeaponBreakdown(bt);
+    }
+    if (!bMainhand
+            && m_pMainHandWeapon != NULL)
+    {
+        pBI = m_pOffHandWeapon->GetWeaponBreakdown(bt);
+    }
+    return pBI;
+}
+

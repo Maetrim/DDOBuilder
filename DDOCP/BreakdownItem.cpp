@@ -1169,3 +1169,30 @@ WeaponType BreakdownItem::Weapon() const
 {
     return m_weapon;
 }
+
+double BreakdownItem::GetEffectValue(BonusType bt) const
+{
+    // build a list of all the current active effects
+    std::list<ActiveEffect> allActiveEffects;
+    allActiveEffects = m_otherEffects;
+    allActiveEffects.insert(allActiveEffects.end(), m_effects.begin(), m_effects.end());
+    std::list<ActiveEffect> itemEffects = m_itemEffects;
+    std::list<ActiveEffect> inactiveEffects;
+    std::list<ActiveEffect> nonStackingEffects;
+    RemoveInactive(&itemEffects, &inactiveEffects);
+    RemoveNonStacking(&itemEffects, &nonStackingEffects);
+    allActiveEffects.insert(allActiveEffects.end(), itemEffects.begin(), itemEffects.end());
+    // now we have the list look for and sum all items with the given effect type
+    double total = 0.0;
+    std::list<ActiveEffect>::iterator it = allActiveEffects.begin();
+    while (it != allActiveEffects.end())
+    {
+        if ((*it).Bonus() == bt)
+        {
+            total += (*it).TotalAmount(false);
+        }
+        ++it;
+    }
+    return total;
+}
+

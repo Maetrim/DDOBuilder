@@ -87,6 +87,22 @@ bool RequiresOneOf::CanTrainEnhancement(
     return canTrain;
 }
 
+bool RequiresOneOf::IsAllowed(
+        const Character & charData,
+        size_t trainedRanks) const
+{
+    bool canTrain = false;
+    std::list<Requirement>::const_iterator it = m_Requirements.begin();
+    while (it != m_Requirements.end())
+    {
+        canTrain |= (*it).IsAllowed(
+                charData,
+                trainedRanks);
+        ++it;
+    }
+    return canTrain;
+}
+
 bool RequiresOneOf::CanTrainTree(
         const Character & charData) const
 {

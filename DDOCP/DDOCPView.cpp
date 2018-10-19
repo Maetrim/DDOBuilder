@@ -636,6 +636,7 @@ void CDDOCPView::OnSelendokComboRace()
     DisplayAbilityValue(Ability_Intelligence, &m_editInt);
     DisplayAbilityValue(Ability_Wisdom, &m_editWis);
     DisplayAbilityValue(Ability_Charisma, &m_editCha);
+    m_comboRace.SetFocus(); // ensure it keeps the focus
 }
 
 void CDDOCPView::OnSelendokComboAlignment()
@@ -643,6 +644,7 @@ void CDDOCPView::OnSelendokComboAlignment()
     AlignmentType alignment = static_cast<AlignmentType>(GetComboboxSelection(&m_comboAlignment));
     m_pCharacter->SetAlignment(alignment);
     // views affected by alignment changes update automatically
+    m_comboAlignment.SetFocus(); // ensure it keeps the focus
 }
 
 void CDDOCPView::OnSelendokComboTomeStr()

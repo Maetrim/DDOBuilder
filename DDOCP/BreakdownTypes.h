@@ -35,6 +35,8 @@ enum BreakdownType
     Breakdown_MRR,
     Breakdown_MRRCap,
     Breakdown_AC,
+    Breakdown_BonusArmorAC,
+    Breakdown_BonusShieldAC,
     Breakdown_DR,
     Breakdown_Dodge,
     Breakdown_DodgeCap,

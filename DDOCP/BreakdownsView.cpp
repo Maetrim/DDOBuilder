@@ -561,6 +561,8 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
     // defensive physical items
     // defensive items are:
     //      AC
+    //          Shield AC bonus
+    //          Armor AC bonus
     //      MaxDexBonus
     //          MaxDexBonusShields
     //      PRR
@@ -585,6 +587,34 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
                 hItem);
         m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pAC);
         m_items.push_back(pAC);
+        {
+            HTREEITEM hArmorItem = m_itemBreakdownTree.InsertItem(
+                    "Armor % Bonus",
+                    hItem,
+                    TVI_LAST);
+            BreakdownItem * pArmorAC = new BreakdownItemSimple(
+                    Breakdown_BonusArmorAC,
+                    Effect_ArmorACBonus,
+                    "Armor % Bonus",
+                    &m_itemBreakdownTree,
+                    hArmorItem);
+            m_itemBreakdownTree.SetItemData(hArmorItem, (DWORD)(void*)pArmorAC);
+            m_items.push_back(pArmorAC);
+        }
+        {
+            HTREEITEM hShieldItem = m_itemBreakdownTree.InsertItem(
+                    "Shield % Bonus",
+                    hItem,
+                    TVI_LAST);
+            BreakdownItem * pShieldAC = new BreakdownItemSimple(
+                    Breakdown_BonusShieldAC,
+                    Effect_ACBonusShield,
+                    "Shield % Bonus",
+                    &m_itemBreakdownTree,
+                    hShieldItem);
+            m_itemBreakdownTree.SetItemData(hShieldItem, (DWORD)(void*)pShieldAC);
+            m_items.push_back(pShieldAC);
+        }
     }
 
     {
