@@ -1,5 +1,84 @@
 History of changes made
 
+New: The Item Select Dialog now has an item text filter option (Suggested by Vilhena)
+---e.g. enter "charisma" if you want to find all items for a given equipment slot that affect that ability
+---How To Guide updated.
+Fix: Aasimar: Arcanum now correctly costs 2ap per rank (Reported by Vilhena)
+Fix: War Soul: Magic Backlash is now no longer erroneously marked as a tier 5 enhancement (Reported by Vilhena)
+Fix: All dock panes now have a minimum size of 30 * 30 pixels so they cannot become lost as 1 pixel high/wide in the UI due to an inadvertant resize (Reported by Vilhena)
+Fix: A possible resource leak of a font in the EnhancementTreeDialog class fixed
+Fix: A possible resource leak of a font in the DestinyTreeDialog class fixed
+Fix: Action points are now tracked internally as signed numbers to stop unlimited APs being available on loaded builds where AP costs for some enhancements have changed due to an update
+New: Breakdowns added for:
+---Song Count (new Songs section)
+---Song Duration (Based on the proposed Bard Changes currently on the forums - 30 seconds per bard level, all enhancements give 30 seconds per previous 10% duration bonus)
+---Eldritch Blast (in the Magical Breakdowns section)
+Internal: SongBonus effect renamed SongCount. All relevant effects updated.
+New: Fascinate feat (Bard Level 1) now grants basic number of bard songs (1 per Bard level)
+New: Fascinate feat (Bard Level 1) now grants basic duration for bard songs (30 seconds per Bard level)
+Fix: A bug where 0 stacks counted as max stacks for class level based enhancements was fixed
+---This also caused erroneous debug messages to be displayed
+Fix: Enlightened Spirit: Spiritual Retribution light damage vector fixed
+Fix: Enlightened Spirit: Spiritual Retribution now adds light damage to eldritch blast
+Fix: Warlock: Pact Damage now only awards +1d4 per 2 warlock levels, not +1d6
+Fix: Stack sizes of enhancement dice bonuses will now be correct on file load
+Fix: DC view will now correctly show icons of skills (such as Intimidate) correctly in its tooltips
+Undo: Arcanotechnician: Runic Efficacy is now shown as a passive enhancement again
+Fix: Frenzied Berserker: Supreme Cleave now has the correct icon (not Tantrum icon)
+New: Frenzied Berserker: Tantrum now has a DC entry
+Fix: Occult Slayer: Antimagic Boost icon fixed
+New: Ravager: Visage of Terror now has a DC entry
+Fix: Warchanter: Obstinance now correctly has 3 ranks at 1ap per rank and also awards +[5/10/15] Positive spell power
+Fix: Divine Disciple: Prophetic Zenith IV now correctly has 3 ranks at 1ap per rank
+Fix: Radiant Servant: Divine Health now correctly costs 2ap
+Fix: War Priest: Radiant Flourish now correctly has 3 tiers. Text updated.
+Fix: War Priest: Divine Power now correctly costs 1ap
+---Note there still seems to be a discreprancy between the wiki screenshot and this tree for all AP spent 64 (wiki), 66 (DDOBuilder)
+Fix: Season's Herald: Improved Metamagics I now has the correct base price of 2ap
+Fix: Season's Herald: Improved Metamagics II now has the correct base price of 2ap
+Fix: Angel of Vengeance: Archon's Fury is now shown as a clickie enhancement with the correct icon
+Fix: War Soul: Radiant Flourish now correctly has 3 ranks and no longer erroneously has an up arrow. Text updated.
+Fix: Earth Savant: Awaken Elemental Weakness: Acid is now correctly shown as a clickie enhancement
+Fix: Fire Savant: Fire Guard now correctly costs 2ap and has a single tier
+Fix: Fire Savant: Awaken Elemental Weakness: Fire is now correctly shown as a clickie enhancement
+Fix: Water Savant: Hypothermia tooltip text layout adjusted
+Fix: Enlightened Spirit: Displace Summons is now shown correctly as a passive enhancement
+New Items: (TOEE)
+---Epic Smoldering Battle Axe
+---Epic Quenched Battle Axe
+---Epic Etched Battle Axe
+---Epic Energised Battle Axe
+---Epic Smoldering Club (No Icon)
+---Epic Quenched Club
+---Epic Etched Club (No Icon)
+---Epic Energised Club
+---Epic Smoldering Dagger
+---Epic Quenched Dagger
+---Epic Etched Dagger
+---Epic Energised Dagger (No Icon)
+---Epic Smoldering Dwarven Waraxe
+---Epic Quenched Dwarven Waraxe
+---Epic Etched Dwarven Waraxe
+---Epic Energised Dwarven Waraxe
+---Epic Smoldering Falchion
+---Epic Quenched Falchion
+---Epic Etched Falchion
+---Epic Energised Falchion
+---Epic Scorched Greataxe
+---Epic Quenched Greataxe
+---Epic Etched Greataxe
+---Epic Energised Greataxe
+---Epic Scorched Greatclub
+---Epic Quenched Greatclub
+---Epic Etched Greatclub
+---Epic Energised Greatclub (No Icon)
+---Epic Scorched Great Crossbow
+---Epic Quenched Great Crossbow
+---Epic Etched Great Crossbow
+---Epic Energised Great Crossbow
+
+Version 1.0.0.53
+
 UI: Enhancements will no longer show as "Not Allowed" due to enhancement needed requirements
 UI: Many missing U40 item icons harvested
 Fix: Weapon Critical attack/damage breakdowns now have the correct internal id
@@ -16,11 +95,8 @@ New: Armor and Shield percent bonus breakdowns added as children of the AC break
 New: AC breakdown now includes Armor and Shield bonus effects in its total
 Fix: Arcanotechnician: Runic Efficacy is now shown correctly as a clickie type enhancement
 Fix: Arcanotechnician: Efficient Metamagic - Efficient Empower now requires the Empower Spell feat
-Fix: Arcanotechnician: Evocation now correctly costs 1ap per tier
-Fix: Arcanotechnician Imbue Defender, Automated repairs, Arcane Engine and Master Defender no longer are a requirements chain of enhancements
 Fix: Battle Engineer: Extra Action Boost now correctly costs 2ap per tier
 Fix: Battle Engineer: Disable Construct now correctly costs 1ap per tier
-Fix: Renegade Mastermaker: Reconstruct now correctly costs 2ap per tier
 
 Version 1.0.0.52
 

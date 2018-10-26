@@ -81,8 +81,20 @@ bool Dice::operator==(const Dice & other) const
 {
     bool equal = (m_Number == other.m_Number)
             && (m_Sides == other.m_Sides)
-            && (HasBonus() == other.HasBonus())
-            && m_Bonus == other.m_Bonus;
+            && (m_hasBonus == other.m_hasBonus)
+            && (m_Bonus == other.m_Bonus)
+            && (m_hasEnergy == other.m_hasEnergy)
+            && (m_Energy == other.m_Energy);
+    return equal;
+}
+
+bool Dice::IsSameDiceType(const Dice & other) const
+{
+    bool equal = (m_Sides == other.m_Sides)
+            && (m_hasBonus == other.m_hasBonus)
+            && (m_Bonus == other.m_Bonus)
+            && (m_hasEnergy == other.m_hasEnergy)
+            && (m_Energy == other.m_Energy);
     return equal;
 }
 
@@ -96,7 +108,8 @@ std::string Dice::Description(size_t numStacks) const
         ss << "(";
     }
     ss << Number(numStacks-1) << "D"<< Sides(numStacks-1);
-    if (m_hasBonus)
+    if (m_hasBonus
+            && Bonus(numStacks-1) != 0)
     {
         ss << "+" << Bonus(numStacks-1);
     }
@@ -130,5 +143,33 @@ std::string Dice::Description(size_t numStacks) const
         }
     }
     return ss.str();
+}
+
+void Dice::StripDown(size_t numStacks)
+{
+    size_t number = Number(numStacks-1);
+    size_t sides = Sides(numStacks-1);
+    int bonus = Bonus(numStacks-1);
+
+    std::vector<size_t> vnumber;
+    vnumber.push_back(number);
+    std::vector<size_t> vsides;
+    vsides.push_back(sides);
+    std::vector<int> vbonus;
+    vbonus.push_back(bonus);
+    Set_Number(vnumber);
+    Set_Sides(vsides);
+    if (bonus != 0)
+    {
+        Set_Bonus(vbonus);
+    }
+}
+
+void Dice::AddStacks(size_t numStacks)
+{
+    size_t number = Number(0);  // current value
+    std::vector<size_t> vnumber;
+    vnumber.push_back(number + numStacks);
+    Set_Number(vnumber);
 }
 

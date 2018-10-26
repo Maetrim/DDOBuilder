@@ -2735,6 +2735,20 @@ Has a save DC of your perform skill plus the roll of a twenty-sided die.</Descri
          <Bonus>Feat</Bonus>
          <SpellLikeAbility>Fascinate</SpellLikeAbility>
       </Effect>
+      <Effect>
+         <DisplayName>Song Duration per Bard level</DisplayName>
+         <Type>SongDuration</Type>
+         <Bonus>Feat</Bonus>
+         <AmountPerLevel>30</AmountPerLevel>
+         <Class>Bard</Class>
+      </Effect>
+      <Effect>
+         <DisplayName>Songs per Bard level</DisplayName>
+         <Type>SongCount</Type>
+         <Bonus>Feat</Bonus>
+          <AmountPerLevel>1</AmountPerLevel>
+         <Class>Bard</Class>
+      </Effect>
       <DC>
          <Name>Fascinate</Name>
          <Description>Activate this bard ability to make your foes stop what they're doing and
@@ -5800,12 +5814,14 @@ save bonus. This feat also grants you a 1% passive bonus to Dodge at levels
          <Level>8</Level>
       </AutomaticAcquisition>
       <Effect>
+         <DisplayName>Improved Uncanny Dodge (Barbarian)</DisplayName>
          <Type>DodgeBonus</Type>
          <Bonus>Feat</Bonus>
          <AmountVector size="20">0 0 0 1 1 2 2 3 3 3 3 4 4 4 4 5 5 5 5 6</AmountVector>
          <Class>Barbarian</Class>
       </Effect>
       <Effect>
+         <DisplayName>Improved Uncanny Dodge (Rogue)</DisplayName>
          <Type>DodgeBonus</Type>
          <Bonus>Feat</Bonus>
          <AmountVector size="20">0 0 0 1 1 2 2 3 3 3 3 4 4 4 4 5 5 5 5 6</AmountVector>
@@ -12869,8 +12885,8 @@ chance they break free. Does not affect bosses. There is no saving throw.</Descr
          <Type>EldritchBlast</Type>
          <Bonus>Feat</Bonus>
          <Dice>
-            <Number size="1">1</Number>
-            <Sides size="1">6</Sides>
+            <Number size="5">1 2 3 4 5</Number>
+            <Sides size="5">6 6 6 6 6</Sides>
          </Dice>
       </Effect>
    </Feat>
@@ -12981,7 +12997,7 @@ These effects last for six seconds</Description>
    </Feat>
    <Feat>
       <Name>Warlock: Pact Damage</Name>
-      <Description>+1d6 Eldritch Blast base Damage</Description>
+      <Description>+1d4 Eldritch Blast base Damage</Description>
       <MaxTimesAcquire>10</MaxTimesAcquire>
       <Requirements/>
       <Acquire>Automatic</Acquire>
@@ -13030,8 +13046,8 @@ These effects last for six seconds</Description>
          <Type>EldritchBlast</Type>
          <Bonus>Feat</Bonus>
          <Dice>
-            <Number size="1">1</Number>
-            <Sides size="1">6</Sides>
+            <Number size="10">1 2 3 4 5 6 7 8 9 10</Number>
+            <Sides size="10">4 4 4 4 4 4 4 4 4 4</Sides>
          </Dice>
       </Effect>
    </Feat>
@@ -13941,7 +13957,7 @@ This feat can be stacked up to three times.</Description>
          <Amount>2</Amount>
       </Effect>
       <Effect>
-         <Type>SongBonus</Type>
+         <Type>SongCount</Type>
          <Bonus>Feat</Bonus>
          <Amount>1</Amount>
       </Effect>
@@ -17164,7 +17180,7 @@ Number of Destinies: 2</Description>
    </Feat>
    <Feat>
       <Name>Lasting Inspiration</Name>
-      <Description>+3 Bard Songs per rest. Bard songs last +50% longer.
+      <Description>+3 Bard Songs per rest. Bard songs last 90 seconds longer.
 Sphere: Arcane
 Number of Destinies: 1</Description>
       <FeatGroup>
@@ -17178,15 +17194,14 @@ Number of Destinies: 1</Description>
       <Acquire>Train</Acquire>
       <Icon>LastingInspiration</Icon>
       <Effect>
-         <Type>SongBonus</Type>
+         <Type>SongCount</Type>
          <Bonus>Feat</Bonus>
          <Amount>3</Amount>
       </Effect>
       <Effect>
          <Type>SongDuration</Type>
          <Bonus>Feat</Bonus>
-         <Percent/>
-         <Amount>50</Amount>
+         <Amount>90</Amount>
       </Effect>
    </Feat>
    <Feat>

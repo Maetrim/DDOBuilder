@@ -688,9 +688,13 @@ void CInfoTip::SetDCItem(
     // load its icon
     if (S_OK != LoadImageFile(IT_enhancement, pDC->Icon(), &m_image, false))
     {
+        // see if its a feat icon we need to use
         if (S_OK != LoadImageFile(IT_feat, pDC->Icon(), &m_image, false))
         {
-            LoadImageFile(IT_item, pDC->Icon(), &m_image);
+            if (S_OK != LoadImageFile(IT_item, pDC->Icon(), &m_image, false))
+            {
+                LoadImageFile(IT_ui, pDC->Icon(), &m_image);
+            }
         }
     }
     m_image.SetTransparentColor(c_transparentColour);

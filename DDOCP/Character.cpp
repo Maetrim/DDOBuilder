@@ -2321,9 +2321,9 @@ std::list<TrainedEnhancement> Character::CurrentEnhancements() const
     return all;
 }
 
-size_t Character::TotalPointsAvailable(const std::string & treeName, TreeType type) const
+int Character::TotalPointsAvailable(const std::string & treeName, TreeType type) const
 {
-    size_t aps = 0;
+    int aps = 0;
     switch (type)
     {
     case TT_racial:
@@ -2346,13 +2346,13 @@ size_t Character::TotalPointsAvailable(const std::string & treeName, TreeType ty
     return aps;
 }
 
-size_t Character::AvailableActionPoints(const std::string & treeName, TreeType type) const
+int Character::AvailableActionPoints(const std::string & treeName, TreeType type) const
 {
     // for actions points we need to track:
     // how many bonus action points the character has (m_bonusActionPoints)
     // how many action points have been spent in the racial tree (m_racialTreeSpend)
     // how many action points have been spent in other trees (m_otherTreeSpend)
-    size_t aps = 0;
+    int aps = 0;
     switch (type)
     {
     case TT_racial:
@@ -2381,9 +2381,9 @@ size_t Character::AvailableActionPoints(const std::string & treeName, TreeType t
     return aps;
 }
 
-size_t Character::APSpentInTree(const std::string & treeName)
+int Character::APSpentInTree(const std::string & treeName)
 {
-    size_t spent = 0;
+    int spent = 0;
     EnhancementSpendInTree * pItem = Enhancement_FindTree(treeName);
     if (pItem != NULL)  // NULL if no items spent in tree or reaper/destiny tree
     {

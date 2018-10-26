@@ -19,6 +19,19 @@ enum DividerType
     DT_fullAbility,
 };
 
+enum ActiveEffectType
+{
+    ET_unknown,
+    ET_amount,
+    ET_amountVector,
+    ET_amountPerLevel,
+    ET_amountPerAp,
+    ET_dice,
+    ET_amountVectorPerClassLevel,
+    ET_immunity,
+    ET_DR,
+};
+
 class ActiveEffect
 {
     public:
@@ -68,6 +81,7 @@ class ActiveEffect
                 const std::list<DamageReductionType> & drTypes,
                 size_t stacks);
 
+        ActiveEffectType Type() const;
         BonusType Bonus() const;
         bool IsAmountPerAP() const;
         CString Name() const;
@@ -88,6 +102,7 @@ class ActiveEffect
         bool IsItemEffect() const;
         void SetIsItemEffect();
         void SetDivider(double divider, DividerType type);
+        Dice GetDice() const;
 
         std::string Description() const;
 
@@ -107,18 +122,7 @@ class ActiveEffect
         void SetWholeNumbersOnly();
         void SetWeapon(WeaponType wt);  // used when an effect has WeaponClass_FocusGroup
     private:
-        enum EffectType
-        {
-            ET_unknown,
-            ET_amount,
-            ET_amountVector,
-            ET_amountPerLevel,
-            ET_amountPerAp,
-            ET_dice,
-            ET_amountVectorPerClassLevel,
-            ET_immunity,
-            ET_DR,
-        } m_type;
+        ActiveEffectType m_type;
         double Amount() const;
         BonusType m_bonusType;
         std::string m_effectName;

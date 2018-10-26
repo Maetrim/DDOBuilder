@@ -18,6 +18,10 @@ class Dice :
         int Bonus(size_t index) const;
         std::string Description(size_t numStacks) const;
 
+        void StripDown(size_t numStacks);
+        void AddStacks(size_t numStacks);
+        bool IsSameDiceType(const Dice & other) const;
+
         bool operator==(const Dice & other) const;
     protected:
         XmlLib::SaxContentElementInterface * StartElement(
@@ -39,4 +43,6 @@ class Dice :
 
         DL_DECLARE_ACCESS(Dice_PROPERTIES)
         DL_DECLARE_VARIABLES(Dice_PROPERTIES)
+
+        friend class ActiveEffect;
 };

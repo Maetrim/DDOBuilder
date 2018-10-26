@@ -867,7 +867,7 @@ bool BreakdownItem::GetActiveEffect(
         *activeEffect = ActiveEffect(
                 effect.Bonus(),
                 name,
-                1,
+                activeEffect->NumStacks(),     // retain stack count passed in
                 effect.DiceRoll(),
                 "");
     }
@@ -983,6 +983,7 @@ void BreakdownItem::UpdateFeatEffect(
         }
         // yup, it applies to us, add it in
         ActiveEffect feat;
+        feat.SetStacks(1);  // starts with 1
         if (GetActiveEffect(pCharacter, name, effect, &feat))
         {
             // may not get an affect if the amount applied is 0
@@ -1006,6 +1007,7 @@ void BreakdownItem::UpdateFeatEffectRevoked(
         }
         // yup, it applies to us, revoke it
         ActiveEffect feat;
+        feat.SetStacks(1);  // starts with 1
         if (GetActiveEffect(pCharacter, name, effect, &feat))
         {
             // may not get an affect if the amount applied is 0
@@ -1029,6 +1031,7 @@ void BreakdownItem::UpdateItemEffect(
         }
         // yup, it applies to us, add it in
         ActiveEffect item;
+        item.SetStacks(1);  // starts with 1
         if (GetActiveEffect(pCharacter, name, effect, &item))
         {
             // may not get an affect if the amount applied is 0
@@ -1052,6 +1055,7 @@ void BreakdownItem::UpdateItemEffectRevoked(
         }
         // yup, it applies to us, revoke it
         ActiveEffect item;
+        item.SetStacks(1);  // starts with 1
         if (GetActiveEffect(pCharacter, name, effect, &item))
         {
             // may not get an affect if the amount applied is 0
@@ -1098,6 +1102,7 @@ void BreakdownItem::UpdateEnhancementEffectRevoked(
             name = effect.m_effect.DisplayName();
         }
         ActiveEffect activeEffect;
+        activeEffect.SetStacks(1);  // starts with 1
         bool hasActiveEffect = GetActiveEffect(charData, name, effect.m_effect, &activeEffect);
         if (hasActiveEffect)
         {
@@ -1172,18 +1177,9 @@ WeaponType BreakdownItem::Weapon() const
 
 double BreakdownItem::GetEffectValue(BonusType bt) const
 {
-    // build a list of all the current active effects
-    std::list<ActiveEffect> allActiveEffects;
-    allActiveEffects = m_otherEffects;
-    allActiveEffects.insert(allActiveEffects.end(), m_effects.begin(), m_effects.end());
-    std::list<ActiveEffect> itemEffects = m_itemEffects;
-    std::list<ActiveEffect> inactiveEffects;
-    std::list<ActiveEffect> nonStackingEffects;
-    RemoveInactive(&itemEffects, &inactiveEffects);
-    RemoveNonStacking(&itemEffects, &nonStackingEffects);
-    allActiveEffects.insert(allActiveEffects.end(), itemEffects.begin(), itemEffects.end());
     // now we have the list look for and sum all items with the given effect type
     double total = 0.0;
+    std::list<ActiveEffect> allActiveEffects = AllActiveEffects();
     std::list<ActiveEffect>::iterator it = allActiveEffects.begin();
     while (it != allActiveEffects.end())
     {
@@ -1196,3 +1192,17 @@ double BreakdownItem::GetEffectValue(BonusType bt) const
     return total;
 }
 
+std::list<ActiveEffect> BreakdownItem::AllActiveEffects() const
+{
+    // build a list of all the current active effects
+    std::list<ActiveEffect> allActiveEffects;
+    allActiveEffects = m_otherEffects;
+    allActiveEffects.insert(allActiveEffects.end(), m_effects.begin(), m_effects.end());
+    std::list<ActiveEffect> itemEffects = m_itemEffects;
+    std::list<ActiveEffect> inactiveEffects;
+    std::list<ActiveEffect> nonStackingEffects;
+    RemoveInactive(&itemEffects, &inactiveEffects);
+    RemoveNonStacking(&itemEffects, &nonStackingEffects);
+    allActiveEffects.insert(allActiveEffects.end(), itemEffects.begin(), itemEffects.end());
+    return allActiveEffects;
+}

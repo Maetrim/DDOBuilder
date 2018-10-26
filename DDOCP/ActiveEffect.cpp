@@ -261,6 +261,11 @@ ActiveEffect::ActiveEffect(
 {
 }
 
+ActiveEffectType ActiveEffect::Type() const
+{
+    return m_type;
+}
+
 BonusType ActiveEffect::Bonus() const
 {
     return m_bonusType;
@@ -336,15 +341,22 @@ CString ActiveEffect::AmountAsText() const
     case ET_amountVector:
     case ET_amountVectorPerClassLevel: // handled the same
         {
-            size_t index = m_numStacks-1;
-            if (index >= m_amounts.size())
+            int index = m_numStacks-1;
+            if (index >= 0)
             {
-                index = m_amounts.size()-1;
-                ::OutputDebugString("ActiveEffect ");
-                ::OutputDebugString((LPCTSTR)Name());
-                ::OutputDebugString(" has more stacks than amount vector\n");
+                if (index >= (int)m_amounts.size())
+                {
+                    index = m_amounts.size()-1;
+                    ::OutputDebugString("ActiveEffect ");
+                    ::OutputDebugString((LPCTSTR)Name());
+                    ::OutputDebugString(" has more stacks than amount vector\n");
+                }
+                text.Format("%.2f", m_amounts[index]);
             }
-            text.Format("%.2f", m_amounts[index]);
+            else
+            {
+                text = "0.00";
+            }
         }
         break;
     case ET_amountPerLevel:
@@ -423,15 +435,22 @@ CString ActiveEffect::AmountAsPercent() const
     case ET_amountVector:
     case ET_amountVectorPerClassLevel: // handled the same
         {
-            size_t index = m_numStacks-1;
-            if (index >= m_amounts.size())
+            int index =m_numStacks-1;
+            if (index >= 0)
             {
-                index = m_amounts.size()-1;
-                ::OutputDebugString("ActiveEffect ");
-                ::OutputDebugString((LPCTSTR)Name());
-                ::OutputDebugString(" has more stacks than amount vector\n");
+                if (index >= (int)m_amounts.size())
+                {
+                    index = m_amounts.size()-1;
+                    ::OutputDebugString("ActiveEffect ");
+                    ::OutputDebugString((LPCTSTR)Name());
+                    ::OutputDebugString(" has more stacks than amount vector\n");
+                }
+                text.Format("%.0f (%.0f%%)", m_percentageAmount, m_amounts[index]);
             }
-            text.Format("%.0f (%.0f%%)", m_percentageAmount, m_amounts[index]);
+            else
+            {
+                text.Format("%.0f (0%%)", m_percentageAmount);
+            }
         }
         break;
     case ET_amountPerLevel:
@@ -491,6 +510,10 @@ void ActiveEffect::SetEnergy(EnergyType type)
 {
     m_bHasEnergy = (type != Energy_Unknown);
     m_energy = type;
+    if (m_type == ET_dice)
+    {
+        m_dice.Set_Energy(m_energy);
+    }
 }
 
 void ActiveEffect::SetBreakdownDependency(BreakdownType bt)
@@ -586,15 +609,18 @@ double ActiveEffect::TotalAmount(bool allowTruncate) const
     case ET_amountVector:
     case ET_amountVectorPerClassLevel:
         {
-            size_t index = m_numStacks-1;
-            if (index >= m_amounts.size())
+            int index = m_numStacks-1;
+            if (index >= 0)
             {
-                index = m_amounts.size()-1;
-                ::OutputDebugString("ActiveEffect ");
-                ::OutputDebugString((LPCTSTR)Name());
-                ::OutputDebugString(" has more stacks than amount vector\n");
+                if (index >= (int)m_amounts.size())
+                {
+                    index = m_amounts.size()-1;
+                    ::OutputDebugString("ActiveEffect ");
+                    ::OutputDebugString((LPCTSTR)Name());
+                    ::OutputDebugString(" has more stacks than amount vector\n");
+                }
+                value = m_amounts[index];
             }
-            value = m_amounts[index];
         }
         break;
     case ET_amountPerLevel:
@@ -851,3 +877,8 @@ void ActiveEffect::SetDivider(double divider, DividerType type)
     m_dividerType = type;
 }
 
+Dice ActiveEffect::GetDice() const
+{
+    ASSERT(m_type == ET_dice);
+    return m_dice;
+}

@@ -111,6 +111,8 @@ class BreakdownItem :
 
         void NotifyTotalChanged();
         void SetHTreeItem(HTREEITEM hItem);
+
+        std::list<ActiveEffect> AllActiveEffects() const;
     private:
         void AddActiveItems(const std::list<ActiveEffect> & effects, CListCtrl * pControl);
         void AddActivePercentageItems(const std::list<ActiveEffect> & effects, CListCtrl * pControl);

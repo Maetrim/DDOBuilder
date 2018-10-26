@@ -4,7 +4,8 @@
 #include "Item.h"
 #include "XmlLib\SaxWriter.h"
 #include "GlobalSupportFunctions.h"
-
+#include <algorithm>
+#
 #define DL_ELEMENT Item
 
 namespace
@@ -183,5 +184,36 @@ void Item::CopyUserSetValues(const Item & original)
     m_SentientIntelligence = original.m_SentientIntelligence;
     m_Augments = original.m_Augments;
     m_SlotUpgrades = original.m_SlotUpgrades;
+}
+
+bool Item::ContainsSearchText(const std::string & searchText) const
+{
+    bool bHasSearchText = false;
+    // we have to search all of the following text fields of this item:
+    // Name
+    // Description
+    // Drop Location
+    // EffectDescription(s)
+    bHasSearchText |= SearchForText(Name(), searchText);
+    bHasSearchText |= SearchForText(Description(), searchText);
+    if (m_hasDropLocation)
+    {
+        bHasSearchText |= SearchForText(DropLocation(), searchText);
+    }
+    std::list<std::string>::const_iterator it = m_EffectDescription.begin();
+    while (!bHasSearchText && it != m_EffectDescription.end())
+    {
+        bHasSearchText |= SearchForText((*it), searchText);
+        ++it;
+    }
+    return bHasSearchText;
+}
+
+bool Item::SearchForText(std::string source, const std::string & find) const
+{
+    // the search is done in all lower case
+    std::transform(source.begin(), source.end(), source.begin(), ::tolower);
+    bool bTextPresent = (source.find(find.c_str()) != std::string::npos);
+    return bTextPresent;
 }
 

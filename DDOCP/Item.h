@@ -27,6 +27,7 @@ class Item :
         bool CanEquipToSlot(InventorySlotType slot) const;
         void AddImage(CImageList * pIL) const;
         void VerifyObject() const;
+        bool ContainsSearchText(const std::string & searchText) const;
 
         void CopyUserSetValues(const Item & original);
     protected:
@@ -35,6 +36,8 @@ class Item :
                 const XmlLib::SaxAttributes & attributes);
 
         virtual void EndElement();
+
+        bool SearchForText(std::string source, const std::string & find) const;
 
         #define Item_PROPERTIES(_) \
                 DL_STRING(_, Name) \

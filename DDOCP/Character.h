@@ -177,9 +177,9 @@ class Character :
         bool IsStanceActive(const std::string & name, WeaponType wt = Weapon_Unknown) const;
 
         // checks all possible tree types
-        size_t TotalPointsAvailable(const std::string & treeName, TreeType type) const;
-        size_t AvailableActionPoints(const std::string & treeName, TreeType type) const;
-        size_t APSpentInTree(const std::string & treeName);
+        int TotalPointsAvailable(const std::string & treeName, TreeType type) const;
+        int AvailableActionPoints(const std::string & treeName, TreeType type) const;
+        int APSpentInTree(const std::string & treeName);
         const TrainedEnhancement * IsTrained(
                 const std::string & enhancementName,
                 const std::string & selection) const;

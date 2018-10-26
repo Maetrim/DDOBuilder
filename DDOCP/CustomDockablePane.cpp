@@ -54,6 +54,8 @@ int CCustomDockablePane::OnCreate(LPCREATESTRUCT lpCreateStruct)
     SetView(theView, true);
     theView->SendMessage(WM_INITIALUPDATE, 0, 0);
 
+    SetMinSize(CSize(30, 30));
+
     return 0;
 }
 

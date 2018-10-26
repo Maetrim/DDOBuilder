@@ -9,6 +9,8 @@
 #include "BreakdownItemAssassinate.h"
 #include "BreakdownItemBAB.h"
 #include "BreakdownItemCasterLevel.h"
+#include "BreakdownItemDice.h"
+#include "BreakdownItemDuration.h"
 #include "BreakdownItemDR.h"
 #include "BreakdownItemEDFCapped.h"
 #include "BreakdownItemEnergyAbsorption.h"
@@ -219,6 +221,7 @@ void CBreakdownsView::CreateBreakdowns()
     CreateSkillBreakdowns();
     CreatePhysicalBreakdowns();
     CreateMagicalBreakdowns();
+    CreateSongBreakdowns();
     CreateTurnUndeadBreakdowns();
     CreateEnergyResistancesBreakdowns();
     CreateHirelingBreakdowns();
@@ -1187,6 +1190,21 @@ void CBreakdownsView::CreateMagicalBreakdowns()
         m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pSP);
         m_items.push_back(pSP);
     }
+    // Warlock Eldritch blast
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Eldritch Blast",
+                hParent,
+                TVI_LAST);
+        BreakdownItem * pEB = new BreakdownItemDice(
+                Breakdown_EldritchBlast,
+                Effect_EldritchBlast,
+                "Eldritch Blast",
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pEB);
+        m_items.push_back(pEB);
+    }
     {
         HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
                 "Arcane Spell Failure (Armor)",
@@ -1341,6 +1359,44 @@ void CBreakdownsView::CreateMagicalBreakdowns()
         AddSpellSchool(Breakdown_SpellSchoolNecromancy, SpellSchool_Necromancy, "Necromancy DC", hItem);
         AddSpellSchool(Breakdown_SpellSchoolTransmutation, SpellSchool_Transmutation, "Transmutation DC", hItem);
         AddSpellSchool(Breakdown_SpellSchoolGlobalDC, SpellSchool_GlobalDC, "Global DC Bonus", hItem);
+    }
+}
+
+void CBreakdownsView::CreateSongBreakdowns()
+{
+    // insert the magical root tree item
+    HTREEITEM hParent = m_itemBreakdownTree.InsertItem(
+            "Song Breakdowns", 
+            0,
+            TVI_ROOT);
+    m_itemBreakdownTree.SetItemData(hParent, 0);
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Song Count",
+                hParent,
+                TVI_LAST);
+        BreakdownItem * pSC = new BreakdownItemSimple(
+                Breakdown_SongCount,
+                Effect_SongCount,
+                "Song Count",
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pSC);
+        m_items.push_back(pSC);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Song Duration",
+                hParent,
+                TVI_LAST);
+        BreakdownItem * pSD = new BreakdownItemDuration(
+                Breakdown_SongDuration,
+                Effect_SongDuration,
+                "Song Duration",
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pSD);
+        m_items.push_back(pSD);
     }
 }
 

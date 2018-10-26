@@ -29,6 +29,7 @@ class CItemSelectDialog : public CDialog
     protected:
         virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
         virtual BOOL OnInitDialog();
+        virtual BOOL PreTranslateMessage(MSG* pMsg);
         afx_msg void OnItemSelected(NMHDR* pNMHDR, LRESULT* pResult);
         afx_msg void OnAugmentSelect(UINT nID);
         afx_msg void OnAugmentCancel(UINT nID);
@@ -50,6 +51,7 @@ class CItemSelectDialog : public CDialog
         afx_msg LRESULT OnMouseEnter(WPARAM wParam, LPARAM lParam);
         afx_msg LRESULT OnMouseLeave(WPARAM wParam, LPARAM lParam);
         afx_msg void OnWindowPosChanging(WINDOWPOS * pos);
+        afx_msg void OnSearchTextKillFocus();
     public:
         DECLARE_MESSAGE_MAP()
 
@@ -89,6 +91,8 @@ class CItemSelectDialog : public CDialog
         };
         CStatic m_staticType;
         CComboBox m_comboFilter;
+        CEdit m_editSearchText;
+        CButton m_buttonFilter;
         CListCtrl m_availableItemsCtrl;
         CSortHeaderCtrl m_sortHeader;
         CStatic m_staticAugments;

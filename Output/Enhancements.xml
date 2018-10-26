@@ -407,7 +407,7 @@ Fallen Bond now grants +2 to Tactics DCs.</Description>
          <Icon>Arcanum</Icon>
          <XPosition>1</XPosition>
          <YPosition>2</YPosition>
-         <Cost>1</Cost>
+         <Cost>2</Cost>
          <Ranks>3</Ranks>
          <MinSpent>5</MinSpent>
          <Requirements/>
@@ -15333,7 +15333,6 @@ Cooldown: 7 seconds.</Description>
          <Ranks>1</Ranks>
          <MinSpent>30</MinSpent>
          <ArrowRight/>
-         <Clickie/>
          <Requirements>
             <Requirement>
                <Enhancement>ATCore4</Enhancement>
@@ -19359,7 +19358,7 @@ Rank 3: Supreme Cleave gives +1 Temp HP per hit, up to +10. (Hidden Effect)</Des
          <InternalName>FBSupremeCleave</InternalName>
          <Description>Tactical Melee Cleave: Attack enemies all around you.
 (Activation Cost: 10 Hit Points. Cooldown: 9/6/3 seconds) </Description>
-         <Icon>FBTantrum</Icon>
+         <Icon>FBSupremeCleave</Icon>
          <XPosition>3</XPosition>
          <YPosition>3</YPosition>
          <Cost>1</Cost>
@@ -19608,6 +19607,17 @@ Cooldown: 30 seconds</Description>
          <Tier5/>
          <Clickie/>
          <Requirements/>
+      <DC>
+         <Name>Tantrum</Name>
+         <Description>Tactical Melee Cleave: Expend 25 hit points to activate this ability and
+attack enemies around you. This deals +5[W] damage and has a 50% chance to knock down
+each damaged enemy briefly on a failed Fortitude save.</Description>
+         <Icon>FBTantrum</Icon>
+         <DCVersus>Fortitude</DCVersus>
+         <AmountVector size="1">10</AmountVector>
+         <ModAbility>Strength</ModAbility>
+         <ClassLevel>Barbarian</ClassLevel>
+      </DC>
       </EnhancementTreeItem>
    </EnhancementTree>
    <EnhancementTree>
@@ -20688,6 +20698,17 @@ Passive:  +4 Constitution , +150 hitpoints and  +40 healing amplification</Descr
             <Bonus>Enhancement</Bonus>
             <Amount>40</Amount>
          </Effect>
+         <DC>
+            <Name>Visage of Terror</Name>
+            <Description>Terrorize up to six enemies, killing them with fear if they fail a Will
+save. Enemies who make their saving throw are paralyzed with Fear for six seconds instead.
+Does not affect bosses. (Cost 1 Rage. Cooldown: 30 seconds)</Description>
+            <Icon>RavVisageOfTerror</Icon>
+            <DCVersus>Will</DCVersus>
+            <AmountVector size="1">10</AmountVector>
+            <ModAbility>Constitution</ModAbility>
+            <HalfClassLevel>Barbarian</HalfClassLevel>
+         </DC>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Ravager: Ritual Scarring</Name>
@@ -21620,7 +21641,7 @@ the Magical Training feat. THIS IS NOT ENFORCED.</Description>
                <Icon>SSMusicalStudies</Icon>
                <Cost>1</Cost>
                <Effect>
-                  <Type>SongBonus</Type>
+                  <Type>SongCount</Type>
                   <Bonus>Enhancement</Bonus>
                   <AmountVector size="3">1 2 3</AmountVector>
                </Effect>
@@ -21630,7 +21651,7 @@ the Magical Training feat. THIS IS NOT ENFORCED.</Description>
       <EnhancementTreeItem>
          <Name>Spellsinger: Lingering Songs</Name>
          <InternalName>SSLingeringSongs</InternalName>
-         <Description>Your bard songs last 20/40/60% longer</Description>
+         <Description>Your bard songs last 30/60/90 seconds longer</Description>
          <Icon>SSLingeringSongs</Icon>
          <XPosition>2</XPosition>
          <YPosition>1</YPosition>
@@ -21641,7 +21662,7 @@ the Magical Training feat. THIS IS NOT ENFORCED.</Description>
          <Effect>
             <Type>SongDuration</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">20 40 60</AmountVector>
+            <AmountVector size="3">30 60 90</AmountVector>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -22220,7 +22241,7 @@ A successful Will save negates this effect.</Description>
                <Icon>SSAdvancedMusicalStudies</Icon>
                <Cost>1</Cost>
                <Effect>
-                  <Type>SongBonus</Type>
+                  <Type>SongCount</Type>
                   <Bonus>Enhancement</Bonus>
                   <School>Illusion</School>
                   <AmountVector size="3">1 2 3</AmountVector>
@@ -22848,7 +22869,7 @@ Cooldown: 20/15/10 seconds</Description>
          <MinSpent>1</MinSpent>
          <Requirements/>
          <Effect>
-            <Type>SongBonus</Type>
+            <Type>SongCount</Type>
             <Bonus>Enhancement</Bonus>
             <AmountVector size="3">1 2 3</AmountVector>
          </Effect>
@@ -23968,12 +23989,15 @@ Cooldown: 8 seconds.</Description>
       <EnhancementTreeItem>
          <Name>Warchanter: Obstinance</Name>
          <InternalName>WCObstinance</InternalName>
-         <Description>You gain +1 to saving throws while below 80% health.</Description>
+         <Description>+[5/10/15] Positive Spell power.
+Rank 1: You gain +1 to saving throws while below 80% health.
+Rank 2: Additional +1 while below 60% health.
+Rank 3: Additional +1 while below 40% health.</Description>
          <Icon>WCObstinance</Icon>
          <XPosition>1</XPosition>
          <YPosition>3</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
          <MinSpent>10</MinSpent>
          <Requirements>
             <Requirement>
@@ -23986,6 +24010,24 @@ Cooldown: 8 seconds.</Description>
             <Bonus>Enhancement</Bonus>
             <Stance>80% Health</Stance>
             <Save>All</Save>
+         </Effect>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Stance>60% Health</Stance>
+            <Save>All</Save>
+         </Effect>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Stance>40% Health</Stance>
+            <Save>All</Save>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">5 10 15</AmountVector>
+            <SpellPower>Positive</SpellPower>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -26849,8 +26891,8 @@ Requires Divine Emissary of Light</Description>
          <Icon>DDPropheticZenithIV</Icon>
          <XPosition>0</XPosition>
          <YPosition>5</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
          <MinSpent>30</MinSpent>
          <Tier5/>
          <Clickie/>
@@ -27676,7 +27718,7 @@ This ability toggles off on death.</Description>
          <Icon>RSDivineHealth</Icon>
          <XPosition>2</XPosition>
          <YPosition>4</YPosition>
-         <Cost>1</Cost>
+         <Cost>2</Cost>
          <Ranks>1</Ranks>
          <MinSpent>20</MinSpent>
          <Requirements>
@@ -28496,7 +28538,7 @@ will be knocked down. (Does not affect bosses.)</Description>
          <XPosition>1</XPosition>
          <YPosition>3</YPosition>
          <Cost>1</Cost>
-         <Ranks>1</Ranks>
+         <Ranks>3</Ranks>
          <MinSpent>10</MinSpent>
          <Clickie/>
          <Requirements>
@@ -28508,18 +28550,20 @@ will be knocked down. (Does not affect bosses.)</Description>
          <Selector>
             <EnhancementSelection>
                <Name>Radiant Flourish (Melee)</Name>
-               <Description>Favored Weapon Melee Attack: +1[W]: On Hit: Enemy takes 1d6 Light Damage.
+               <Description>Favored Weapon Melee Attack: +1/2/3[W]: On Hit: Enemy takes 1/2/3d6 Light Damage.
 This damage scales at 200% with the higher of your Melee and Ranged Power.
-Non-boss enemies have a small chance to be blinded with no save.</Description>
+Non-boss enemies have a small chance to be blinded with no save.
+6 Second cooldown.</Description>
                <Icon>WPRadiantFlourish</Icon>
                <Cost>1</Cost>
                <Clickie/>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Radiant Flourish (Ranged)</Name>
-               <Description>Favored Weapon Ranged Attack: +1[W]: On Hit: Enemy takes 1d6 Light Damage.
+               <Description>Favored Weapon Ranged Attack: +1/2/3[W]: On Hit: Enemy takes 1/2/3d6 Light Damage.
 This damage scales at 200% with the higher of your Melee and Ranged Power.
-Non-boss enemies have a small chance to be blinded with no save.</Description>
+Non-boss enemies have a small chance to be blinded with no save.
+6 Second cooldown</Description>
                <Icon>WPRadiantFlourishRanged</Icon>
                <Cost>1</Cost>
                <Clickie/>
@@ -28878,7 +28922,7 @@ and a base attack bonus equal to a fighter of the same level.</Description>
          <Icon>WPDivinePower</Icon>
          <XPosition>0</XPosition>
          <YPosition>5</YPosition>
-         <Cost>2</Cost>
+         <Cost>1</Cost>
          <Ranks>1</Ranks>
          <MinSpent>30</MinSpent>
          <Tier5/>
@@ -31915,13 +31959,13 @@ Summer: Fire, Light, Positive, Force and Sonic</Description>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Season's Herald: Improved Metamagics</Name>
+         <Name>Season's Herald: Improved Metamagics I</Name>
          <InternalName>SHImprovedMetamagicsI</InternalName>
          <Description>Improves a selected Metamagic ability.</Description>
          <Icon>SHImprovedMetamagics</Icon>
          <XPosition>0</XPosition>
          <YPosition>2</YPosition>
-         <Cost>1</Cost>
+         <Cost>2</Cost>
          <Ranks>3</Ranks>
          <MinSpent>5</MinSpent>
          <Requirements>
@@ -32324,7 +32368,7 @@ Summer: Fire, Light, Positive, Force and Sonic</Description>
          <Icon>SHImprovedMetamagics</Icon>
          <XPosition>1</XPosition>
          <YPosition>2</YPosition>
-         <Cost>1</Cost>
+         <Cost>2</Cost>
          <Ranks>3</Ranks>
          <MinSpent>5</MinSpent>
          <Requirements>
@@ -34006,7 +34050,6 @@ will be knocked down. (Does not affect bosses.)</Description>
          <Cost>1</Cost>
          <Ranks>3</Ranks>
          <MinSpent>10</MinSpent>
-         <Tier5/>
          <Requirements>
             <Requirement>
                <Class>Favored Soul</Class>
@@ -34022,10 +34065,9 @@ will be knocked down. (Does not affect bosses.)</Description>
          <XPosition>1</XPosition>
          <YPosition>3</YPosition>
          <Cost>1</Cost>
-         <Ranks>1</Ranks>
+         <Ranks>3</Ranks>
          <MinSpent>10</MinSpent>
          <Clickie/>
-         <ArrowUp/>
          <Requirements>
             <Requirement>
                <Class>Favored Soul</Class>
@@ -34035,18 +34077,20 @@ will be knocked down. (Does not affect bosses.)</Description>
          <Selector>
             <EnhancementSelection>
                <Name>Radiant Flourish (Melee)</Name>
-               <Description>Favored Weapon Melee Attack: +1[W]: On Hit: Enemy takes 1d6 Light Damage.
+               <Description>Favored Weapon Melee Attack: +1/2/3[W]: On Hit: Enemy takes 1/2/3d6 Light Damage.
 This damage scales at 200% with the higher of your Melee and Ranged Power.
-Non-boss enemies have a small chance to be blinded with no save.</Description>
+Non-boss enemies have a small chance to be blinded with no save.
+6 Second cooldown</Description>
                <Icon>WPRadiantFlourish</Icon>
                <Cost>1</Cost>
                <Clickie/>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Radiant Flourish (Ranged)</Name>
-               <Description>Favored Weapon Ranged Attack: +1[W]: On Hit: Enemy takes 1d6 Light Damage.
+               <Description>Favored Weapon Ranged Attack: +1/2/3[W]: On Hit: Enemy takes 1/2/3d6 Light Damage.
 This damage scales at 200% with the higher of your Melee and Ranged Power.
-Non-boss enemies have a small chance to be blinded with no save.</Description>
+Non-boss enemies have a small chance to be blinded with no save.
+6 Second cooldown</Description>
                <Icon>WPRadiantFlourishRanged</Icon>
                <Cost>1</Cost>
                <Clickie/>
@@ -36283,6 +36327,7 @@ While toggled on, every shot from your Archon costs 12 Spell Points.</Descriptio
          <Ranks>1</Ranks>
          <MinSpent>30</MinSpent>
          <Tier5/>
+         <Clickie/>
          <Requirements>
             <Requirement>
                <Class>Favored Soul</Class>
@@ -65372,6 +65417,7 @@ Spell Power for 6 seconds. This stacks up to 1/3/5 times.</Description>
          <Ranks>1</Ranks>
          <MinSpent>30</MinSpent>
          <Tier5/>
+         <Clickie/>
          <Requirements>
             <Requirement>
                <MinLevel>12</MinLevel>
@@ -67030,8 +67076,8 @@ using that Metamagic. </Description>
          <Icon>FSFireGuard</Icon>
          <XPosition>2</XPosition>
          <YPosition>4</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
          <MinSpent>20</MinSpent>
          <ArrowUp/>
          <Requirements>
@@ -67156,6 +67202,7 @@ using that Metamagic. </Description>
          <Ranks>1</Ranks>
          <MinSpent>30</MinSpent>
          <Tier5/>
+         <Clickie/>
          <Requirements>
             <Requirement>
                <MinLevel>12</MinLevel>
@@ -67431,7 +67478,10 @@ Selecting this enhancement will prevent you from spending points in the Fire Sav
       <EnhancementTreeItem>
          <Name>Water Savant: Hypothermia</Name>
          <InternalName>WSCore4</InternalName>
-         <Description>Passive: 50% Chance On Cold Spell Cast: Your target gains one stack of Lethargy (-1 to all Saving Throws. Non-bosses also move and attack 5% slower. This effect stacks up to 5 times.)  +10 Cold Spell Power 
+         <Description>Passive: 50% Chance On Cold Spell Cast: Your target gains one stack of Lethargy
+(-1 to all Saving Throws. Non-bosses also move and attack 5% slower.
+This effect stacks up to 5 times.)
++10 Cold Spell Power 
 +1 Caster Level when casting Cold or Water spells. 
 +1 Maximum Caster Level when casting Cold or Water spells. 
 -10 Fire Spell Power 
@@ -69822,12 +69872,21 @@ that scales with Spell Power.</Description>
             <Weapon>All</Weapon>
             <Dice>
                <Sides size="3">1 2 3</Sides>
-               <Number size="3">4 4 </Number>
+               <Number size="3">4 4 4</Number>
                <ScalesWithSpellPower/>
                <SpellPower>Light</SpellPower>
             </Dice>
             <Energy>Light</Energy>
          </Effect>
+      <Effect>
+         <Type>EldritchBlast</Type>
+         <Bonus>Feat</Bonus>
+         <Dice>
+            <Number size="3">1 2 3</Number>
+            <Sides size="3">4 4 4</Sides>
+         </Dice>
+         <Energy>Light</Energy>
+      </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Enlightened Spirit: Brilliance</Name>
@@ -82580,7 +82639,7 @@ destroy evil undead or evil outsiders under 1000 hit points. (Cooldown 10mins)</
          <ArrowRight/>
          <Requirements/>
          <Effect>
-            <Type>SongBonus</Type>
+            <Type>SongCount</Type>
             <Bonus>Destiny</Bonus>
             <Amount>2</Amount>
          </Effect>
@@ -82625,7 +82684,7 @@ radiate confidence: gain a +1 to all other Ability scores, except Charisma.</Des
             </Requirement>
          </Requirements>
          <Effect>
-            <Type>SongBonus</Type>
+            <Type>SongCount</Type>
             <Bonus>Destiny</Bonus>
             <Amount>2</Amount>
          </Effect>
@@ -82748,7 +82807,7 @@ to cast spells.</Description>
             </Requirement>
          </Requirements>
          <Effect>
-            <Type>SongBonus</Type>
+            <Type>SongCount</Type>
             <Bonus>Destiny</Bonus>
             <Amount>2</Amount>
          </Effect>
@@ -82806,7 +82865,7 @@ have a 5% chance of becoming Fascinated for 12 seconds, with no saving throw.</D
             </Requirement>
          </Requirements>
          <Effect>
-            <Type>SongBonus</Type>
+            <Type>SongCount</Type>
             <Bonus>Destiny</Bonus>
             <Amount>2</Amount>
          </Effect>
@@ -82871,7 +82930,7 @@ Charisma-based skills and a +3 Unique bonus to damage.</Description>
             </Requirement>
          </Requirements>
          <Effect>
-            <Type>SongBonus</Type>
+            <Type>SongCount</Type>
             <Bonus>Destiny</Bonus>
             <Amount>2</Amount>
          </Effect>
@@ -82952,7 +83011,7 @@ no saving throw.</Description>
             </Requirement>
          </Requirements>
          <Effect>
-            <Type>SongBonus</Type>
+            <Type>SongCount</Type>
             <Bonus>Destiny</Bonus>
             <Amount>2</Amount>
          </Effect>
@@ -83059,7 +83118,7 @@ In addition, you personally gain a +[1/2/3] to your Fortitude and Reflex saves
             <AmountVector size="3">2 4 6</AmountVector>
          </Effect>
          <Effect>
-            <Type>SongBonus</Type>
+            <Type>SongCount</Type>
             <Bonus>Destiny</Bonus>
             <AmountVector size="3">1 2 3</AmountVector>
          </Effect>
@@ -83187,7 +83246,7 @@ and an extra [1/+2/+3] song per rest.</Description>
             <AmountVector size="3">1 2 3</AmountVector>
          </Effect>
          <Effect>
-            <Type>SongBonus</Type>
+            <Type>SongCount</Type>
             <Bonus>Destiny</Bonus>
             <AmountVector size="3">1 2 3</AmountVector>
          </Effect>
@@ -83281,7 +83340,7 @@ Procs on melee, ranged, and unarmed attacks. Duration: 180 seconds.</Description
       <EnhancementTreeItem>
          <Name>Fatesinger: Aria</Name>
          <InternalName>Aria</InternalName>
-         <Description>All your songs gain [10/20/30]% to their duration.
+         <Description>All your songs gain [30/60/90] Seconds to their duration.
 Active: Spontaneous Song (expends a song but instant activation):
 You generate [15%/25%/35%] less threat for spellcasting. In addition, you
 gain a [20/40/60] Spell Power bonus to your Sonic spells, and a [5/10/15]
@@ -83298,7 +83357,7 @@ Duration 180 seconds.</Description>
          <Effect>
             <Type>SongDuration</Type>
             <Bonus>Destiny</Bonus>
-            <AmountVector size="3">10 20 30</AmountVector>
+            <AmountVector size="3">30 60 90</AmountVector>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -83310,7 +83369,7 @@ You also gain an additional 9 Spell Power to Acid, Cold, Electric, and Fire spel
 Finally, you gain a +20% bonus to the duration of your Songs. 
 Magister: Gain a +1 Intelligence, a +1 to Use Magic Device, a +4 Concentration,
 a +2 Spell Penetration bonus to your spells, a +2 to the DC's of your offensive wands.
-Finally, you gain a +20% bonus to the duration of your Songs.</Description>
+Finally, you gain a 1 minute bonus to the duration of your Songs.</Description>
          <Icon>EchoesOfTheAncestorsArcane</Icon>
          <XPosition>3</XPosition>
          <YPosition>3</YPosition>
@@ -83355,7 +83414,7 @@ You also gain an additional 9 Spell Power to Acid, Cold, Electric, and Fire spel
                <Effect>
                   <Type>SongDuration</Type>
                   <Bonus>Destiny</Bonus>
-                  <Amount>20</Amount>
+                  <Amount>60</Amount>
                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
@@ -83390,7 +83449,7 @@ a +2 Spell Penetration bonus to your spells, a +2 to the DC's of your offensive 
                <Effect>
                   <Type>SongDuration</Type>
                   <Bonus>Destiny</Bonus>
-                  <Amount>20</Amount>
+                  <Amount>60</Amount>
                </Effect>
             </EnhancementSelection>
          </Selector>
@@ -83554,7 +83613,7 @@ In addition your Inspire Courage grants an additional +1 to Hit and +1 to Damage
 Sneak Attack damage bonus. In addition, every time you are hit, you have a 5%
 chance of being affected by Lingering Shadows for 4 seconds.
 Lingering Shadows grants you displacement, a +4 to hit and +2 damage, and
-+15% attack speed, but is removed if you are damaged. Lastly, you gain a +20%
++15% attack speed, but is removed if you are damaged. Lastly, you gain 1 minute
 to the duration of your Songs.</Description>
                <Icon>Shadowdancer</Icon>
                <Cost>2</Cost>
@@ -83578,7 +83637,7 @@ to the duration of your Songs.</Description>
                <Effect>
                   <Type>SongDuration</Type>
                   <Bonus>Destiny</Bonus>
-                  <Amount>20</Amount>
+                  <Amount>60</Amount>
                </Effect>
             </EnhancementSelection>
          </Selector>
@@ -83608,7 +83667,7 @@ an additional +1 bonus to saves vs. Fear.</Description>
             <EnhancementSelection>
                <Name>Fatesinger: Divine Crusader</Name>
                <Description>Gain +1 Strength, +2 Sacred bonus to Seeker, +5 HP,
-+1 Turn Undead, +20% bonus to song duration.</Description>
++1 Turn Undead, +1 minute bonus to song duration.</Description>
                <Icon>DivineCrusader</Icon>
                <Cost>2</Cost>
                <Effect>
@@ -83636,7 +83695,7 @@ an additional +1 bonus to saves vs. Fear.</Description>
                <Effect>
                   <Type>SongDuration</Type>
                   <Bonus>Destiny</Bonus>
-                  <Amount>20</Amount>
+                  <Amount>60</Amount>
                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
@@ -83774,7 +83833,7 @@ additional +1 damage and +1 to your saves vs Fear.</Description>
                <Name>Fatesinger: Primal Avatar</Name>
                <Description>Gain a +1 Wisdom. Gain a +6 Spell Power to Fire, Cold, Electricity,
 Acid and Rust, as well as a +5 resistance to Fire, Cold and Electricity.
-Lastly, you gain a +20% to the duration of your Songs.</Description>
+Lastly, you gain a +1 minute to the duration of your Songs.</Description>
                <Icon>PrimalAvatar</Icon>
                <Cost>2</Cost>
                <Effect>
@@ -83804,7 +83863,7 @@ Lastly, you gain a +20% to the duration of your Songs.</Description>
                <Effect>
                   <Type>SongDuration</Type>
                   <Bonus>Destiny</Bonus>
-                  <Amount>20</Amount>
+                  <Amount>60</Amount>
                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
@@ -83901,7 +83960,7 @@ damage on attacks. Duration 45 seconds. Instant cast.(Active Cooldown: 4mins)</D
       <EnhancementTreeItem>
          <Name>Fatesinger: Fragment of the Song: Clarity</Name>
          <InternalName>FragmentOfTheSongClarity</InternalName>
-         <Description>All of your Songs gain [10/20]% to their duration.
+         <Description>All of your Songs gain [30/60] seconds to their duration.
 Additionally, your Inspire Courage grants additional effects only for you:
 Rank 1: Your spells cost 5% less SP, +3 Concentration and +20 temporary SP. (Competence)
 Rank 2: Your spells cost 5% less SP, +3 Concentration and +20 temporary SP. (Moral)</Description>
@@ -83916,7 +83975,7 @@ Rank 2: Your spells cost 5% less SP, +3 Concentration and +20 temporary SP. (Mor
          <Effect>
             <Type>SongDuration</Type>
             <Bonus>Destiny</Bonus>
-            <AmountVector size="2">10 20</AmountVector>
+            <AmountVector size="2">30 60</AmountVector>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>

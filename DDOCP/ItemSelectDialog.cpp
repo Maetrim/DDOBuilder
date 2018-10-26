@@ -64,6 +64,8 @@ void CItemSelectDialog::DoDataExchange(CDataExchange* pDX)
     CDialog::DoDataExchange(pDX);
     DDX_Control(pDX, IDC_COMBO_FILTER, m_comboFilter);
     DDX_Control(pDX, IDC_ITEM_TYPE, m_staticType);
+    DDX_Control(pDX, IDC_EDIT_TEXT, m_editSearchText);
+    DDX_Control(pDX, IDC_BUTTON_FILTER, m_buttonFilter);
     DDX_Control(pDX, IDC_ITEM_LIST, m_availableItemsCtrl);
     if (!pDX->m_bSaveAndValidate)
     {
@@ -117,6 +119,7 @@ BEGIN_MESSAGE_MAP(CItemSelectDialog, CDialog)
     ON_BN_CLICKED(IDC_CHECK_SENTIENT_SPARK, OnButtonSentientSpark)
     ON_MESSAGE(WM_MOUSEHOVER, OnHoverComboBox)
     ON_MESSAGE(WM_MOUSEENTER, OnMouseEnter)
+    ON_EN_KILLFOCUS(IDC_EDIT_TEXT, OnSearchTextKillFocus)
 END_MESSAGE_MAP()
 
 // CItemSelectDialog message handlers
@@ -161,6 +164,7 @@ BOOL CItemSelectDialog::OnInitDialog()
             m_availableItemsCtrl.GetExtendedStyle()
             | LVS_EX_FULLROWSELECT
             | LVS_EX_TRACKSELECT
+            | LVS_EX_ONECLICKACTIVATE
             //| LVS_EX_LABELTIP); // stop hover tooltips from working
             );
     EnableControls();
@@ -230,6 +234,10 @@ void CItemSelectDialog::PopulateAvailableItemList()
     m_availableItemsCtrl.LockWindowUpdate();
     m_availableItemsCtrl.DeleteAllItems();
 
+    CString searchText;
+    m_editSearchText.GetWindowText(searchText);
+    searchText.MakeLower(); // case less text match
+
     // need to know how many levels and of what classes they have trained
     std::vector<size_t> classLevels = m_pCharacter->ClassLevels(MAX_LEVEL);
     // need to know which feats have already been trained by this point
@@ -267,6 +275,11 @@ void CItemSelectDialog::PopulateAvailableItemList()
                 canSelect = (m_weaponType == Weapon_Unknown)
                         || (m_weaponType == (*it).Weapon());
                 break;
+            }
+            // must have the required search text present in the item
+            if (searchText.GetLength() > 0)
+            {
+                canSelect = (*it).ContainsSearchText((LPCTSTR)searchText);
             }
             // need to include the selected item in the list regardless of
             // filter category
@@ -1479,5 +1492,30 @@ void CItemSelectDialog::RemoveAugment(
             break;
         }
     }
+}
+
+void CItemSelectDialog::OnSearchTextKillFocus()
+{
+    // just update the list of items as the search text changes
+    PopulateAvailableItemList();
+}
+
+BOOL CItemSelectDialog::PreTranslateMessage(MSG* pMsg)
+{
+    BOOL handled = FALSE;
+    // if the user presses return/enter on text in the filter control,
+    // we just set the focus to the filter button
+    if (pMsg->message == WM_KEYDOWN
+            && pMsg->wParam == VK_RETURN
+            && GetFocus() == &m_editSearchText)
+    {
+        m_buttonFilter.SetFocus();
+        handled = TRUE;
+    }
+    if (!handled)
+    {
+        handled = CDialog::PreTranslateMessage(pMsg);
+    }
+    return handled;
 }
 

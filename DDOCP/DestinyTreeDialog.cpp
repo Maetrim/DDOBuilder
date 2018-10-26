@@ -260,7 +260,7 @@ void CDestinyTreeDialog::OnPaint()
         lf.lfHeight = 11;
         CFont smallFont;
         smallFont.CreateFontIndirect(&lf);
-        memoryDc.SelectObject(&smallFont);
+        CFont * pOldFont = memoryDc.SelectObject(&smallFont);
 
         m_bCreateHitBoxes = (m_hitBoxes.size() == 0);
         // now add all the tree enhancements and their states
@@ -271,6 +271,7 @@ void CDestinyTreeDialog::OnPaint()
             RenderTreeItem((*it), &memoryDc);
             ++it;
         }
+        memoryDc.SelectObject(pOldFont);
     }
     // now draw to display
     pdc.BitBlt(

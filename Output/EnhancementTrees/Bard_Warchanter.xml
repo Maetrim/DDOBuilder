@@ -438,12 +438,15 @@ Cooldown: 8 seconds.</Description>
       <EnhancementTreeItem>
          <Name>Warchanter: Obstinance</Name>
          <InternalName>WCObstinance</InternalName>
-         <Description>You gain +1 to saving throws while below 80% health.</Description>
+         <Description>+[5/10/15] Positive Spell power.
+Rank 1: You gain +1 to saving throws while below 80% health.
+Rank 2: Additional +1 while below 60% health.
+Rank 3: Additional +1 while below 40% health.</Description>
          <Icon>WCObstinance</Icon>
          <XPosition>1</XPosition>
          <YPosition>3</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
          <MinSpent>10</MinSpent>
          <Requirements>
             <Requirement>
@@ -456,6 +459,24 @@ Cooldown: 8 seconds.</Description>
             <Bonus>Enhancement</Bonus>
             <Stance>80% Health</Stance>
             <Save>All</Save>
+         </Effect>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Stance>60% Health</Stance>
+            <Save>All</Save>
+         </Effect>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Stance>40% Health</Stance>
+            <Save>All</Save>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">5 10 15</AmountVector>
+            <SpellPower>Positive</SpellPower>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>

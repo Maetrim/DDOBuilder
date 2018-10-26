@@ -103,6 +103,7 @@ enum BreakdownType
     Breakdown_SkillUMD,
     // magical
     Breakdown_Spellpoints,
+    Breakdown_EldritchBlast,
     Breakdown_ArcaneSpellfailure,
     Breakdown_ArcaneSpellfailureShields,
     Breakdown_SpellResistance,
@@ -173,6 +174,9 @@ enum BreakdownType
     Breakdown_SpellSchoolNecromancy,
     Breakdown_SpellSchoolTransmutation,
     Breakdown_SpellSchoolGlobalDC,
+    // songs
+    Breakdown_SongCount,
+    Breakdown_SongDuration,
     // other
     Breakdown_EnergyResistanceAcid,
     Breakdown_EnergyResistanceCold,

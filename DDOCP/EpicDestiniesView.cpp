@@ -686,3 +686,4 @@ void CEpicDestiniesView::OnVScroll(UINT p1, UINT p2, CScrollBar* p3)
     CFormView::OnVScroll(p1, p2, p3);
     UpdateMouseHooks();
 }
+
