@@ -279,7 +279,7 @@ void CItemSelectDialog::PopulateAvailableItemList()
             // must have the required search text present in the item
             if (searchText.GetLength() > 0)
             {
-                canSelect = (*it).ContainsSearchText((LPCTSTR)searchText);
+                canSelect &= (*it).ContainsSearchText((LPCTSTR)searchText);
             }
             // need to include the selected item in the list regardless of
             // filter category
@@ -1497,7 +1497,9 @@ void CItemSelectDialog::RemoveAugment(
 void CItemSelectDialog::OnSearchTextKillFocus()
 {
     // just update the list of items as the search text changes
+    m_bInitialising = true;
     PopulateAvailableItemList();
+    m_bInitialising = false;
 }
 
 BOOL CItemSelectDialog::PreTranslateMessage(MSG* pMsg)

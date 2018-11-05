@@ -311,8 +311,8 @@ You gain +2 to Spot and Listen.</Description>
       <EnhancementTreeItem>
          <Name>Falconry: Well Rounded II</Name>
          <InternalName>FalconCore5</InternalName>
-         <Description>You gain +6 Melee Power, Ranged Power, Physical Resistance Rating and Magical Resistance Rating.
-You gain +4 to Spot and Listen.</Description>
+         <Description>You gain +3 Melee Power, Ranged Power, Physical Resistance Rating and Magical Resistance Rating.
+You gain +2 to Spot and Listen.</Description>
          <Icon>FalconWellRounded</Icon>
          <XPosition>4</XPosition>
          <YPosition>0</YPosition>
@@ -331,27 +331,27 @@ You gain +4 to Spot and Listen.</Description>
          <Effect>
             <Type>MeleePower</Type>
             <Bonus>Enhancement</Bonus>
-            <Amount>6</Amount>
+            <Amount>3</Amount>
          </Effect>
          <Effect>
             <Type>RangedPower</Type>
             <Bonus>Enhancement</Bonus>
-            <Amount>6</Amount>
+            <Amount>3</Amount>
          </Effect>
          <Effect>
             <Type>PRR</Type>
             <Bonus>Enhancement</Bonus>
-            <Amount>6</Amount>
+            <Amount>3</Amount>
          </Effect>
          <Effect>
             <Type>MRR</Type>
             <Bonus>Enhancement</Bonus>
-            <Amount>6</Amount>
+            <Amount>3</Amount>
          </Effect>
          <Effect>
             <Type>SkillBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <Amount>4</Amount>
+            <Amount>2</Amount>
             <Skill>Spot</Skill>
             <Skill>Listen</Skill>
          </Effect>
@@ -494,7 +494,6 @@ Rank 3: You gain +1 to Fortitude saving throws.</Description>
          <Cost>2</Cost>
          <Ranks>1</Ranks>
          <MinSpent>5</MinSpent>
-         <ArrowUp/>
          <Requirements>
             <Requirement>
                <MinLevel>2</MinLevel>
@@ -674,9 +673,6 @@ Cooldown: 30 seconds</Description>
             <Requirement>
                <MinLevel>3</MinLevel>
             </Requirement>
-            <Requirement>
-               <Enhancement>FalconKillerInstinctI</Enhancement>
-            </Requirement>
          </Requirements>
          <Effect>
             <Type>WeaponDamageAbility</Type>
@@ -820,7 +816,7 @@ attempts to Blind the target, causing them to become Helpless.</Description>
       <EnhancementTreeItem>
          <Name>Falconry: Deadly Instinct</Name>
          <InternalName>FalconDeadlyInstinct</InternalName>
-         <Description>Trance: You gain an Insight bonus to dammage and the DC of tactical feats equal
+         <Description>Trance: You gain an Insight bonus to damage and the DC of tactical feats equal
 to 1/2 of your Wisdom modifier for 30/60/120 seconds. 5 Charges per rest.
 Each attack from your Hunting Bird has a chance to reset 1 charge.
 
@@ -837,6 +833,43 @@ Antirequisite: This ability can not be trained if you have any other Trance abil
                <MinLevel>4</MinLevel>
             </Requirement>
          </Requirements>
+         <Stance>
+            <Name>Deadly Instinct</Name>
+            <Icon>FalconDeadlyInstinct</Icon>
+            <Description>Trance: You gain an Insight bonus to damage and the DC of tactical feats equal
+to 1/2 of your Wisdom modifier for 30/60/120 seconds. 5 Charges per rest.
+Each attack from your Hunting Bird has a chance to reset 1 charge.</Description>
+         </Stance>
+         <Effect>
+            <DisplayName>Falconry: Deadly Instinct (Wis Mod / 2)</DisplayName>
+            <Type>TacticalDC</Type>
+            <Bonus>Insightful</Bonus>
+            <Ability>Wisdom</Ability>
+            <Divider>2</Divider>
+            <Tactical>Trip</Tactical>
+            <Tactical>Sunder</Tactical>
+            <Tactical>Stun</Tactical>
+            <Tactical>General</Tactical>
+            <Stance>Deadly Instinct</Stance>
+         </Effect>
+         <Effect>
+            <DisplayName>Falconry: Deadly Instinct (Wis Mod / 2)</DisplayName>
+            <Type>DamageBonus</Type>
+            <Bonus>Insightful</Bonus>
+            <Ability>Wisdom</Ability>
+            <Divider>2</Divider>
+            <Weapon>All</Weapon>
+            <Stance>Deadly Instinct</Stance>
+         </Effect>
+         <Effect>
+            <DisplayName>Falconry: Deadly Instinct (Wis Mod / 2)</DisplayName>
+            <Type>Seeker</Type>
+            <Bonus>Insightful</Bonus>
+            <Ability>Wisdom</Ability>
+            <Divider>2</Divider>
+            <Weapon>All</Weapon>
+            <Stance>Deadly Instinct</Stance>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Falconry: No Mercy</Name>

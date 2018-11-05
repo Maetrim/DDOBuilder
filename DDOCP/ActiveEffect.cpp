@@ -336,7 +336,15 @@ CString ActiveEffect::AmountAsText() const
         }
         break;
     case ET_amount:
-        text.Format("%.2f", m_amount * m_numStacks);
+        if (m_dividerType != DT_statBonus)
+        {
+            text.Format("%.2f", m_amount * m_numStacks);
+        }
+        else
+        {
+            // stacks don't multiply a stat bonus
+            text.Format("%.2f", m_amount);
+        }
         break;
     case ET_amountVector:
     case ET_amountVectorPerClassLevel: // handled the same
@@ -604,7 +612,15 @@ double ActiveEffect::TotalAmount(bool allowTruncate) const
         value = 1;  // just need a non-zero value
         break;
     case ET_amount:
-        value = m_amount * m_numStacks;
+        if (m_dividerType != DT_statBonus)
+        {
+            value = m_amount * m_numStacks;
+        }
+        else
+        {
+            // stacks don't multiply a stat bonus
+            value = m_amount;
+        }
         break;
     case ET_amountVector:
     case ET_amountVectorPerClassLevel:

@@ -129,15 +129,7 @@ class Subject :
                     T * p = dynamic_cast<T*>(*it);
                     if (p != NULL)
                     {
-                        try
-                        {
-                            (p->*f)(a);
-                        }
-                        catch(...)
-                        {
-                            // ignore any exception in the observer
-                            ::OutputDebugString("Exception ignored\n");
-                        }
+                        (p->*f)(a);
                     }
                 }
             }
@@ -156,15 +148,7 @@ class Subject :
                     T * p = dynamic_cast<T*>(*it);
                     if (p != NULL)
                     {
-                        try
-                        {
-                            (p->*f)(a, d);
-                        }
-                        catch(...)
-                        {
-                            // ignore any exception in the observer
-                            ::OutputDebugString("Exception ignored\n");
-                        }
+                        (p->*f)(a, d);
                     }
                 }
             }
@@ -183,15 +167,7 @@ class Subject :
                     T * p = dynamic_cast<T*>(*it);
                     if (p != NULL)
                     {
-                        try
-                        {
-                            (p->*f)(a, d1, d2);
-                        }
-                        catch(...)
-                        {
-                            // ignore any exception in the observer
-                            ::OutputDebugString("Exception ignored\n");
-                        }
+                        (p->*f)(a, d1, d2);
                     }
                 }
             }
@@ -210,15 +186,7 @@ class Subject :
                     T * p = dynamic_cast<T*>(*it);
                     if (p != NULL)
                     {
-                        try
-                        {
-                            (p->*f)(a, d1, d2, d3);
-                        }
-                        catch(...)
-                        {
-                            // ignore any exception in the observer
-                            ::OutputDebugString("Exception ignored\n");
-                        }
+                        (p->*f)(a, d1, d2, d3);
                     }
                 }
             }

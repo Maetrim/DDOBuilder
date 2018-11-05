@@ -184,9 +184,6 @@ LRESULT CEquipmentView::OnNewDocument(WPARAM wParam, LPARAM lParam)
         }
         m_pCharacter->AttachObserver(this);
     }
-    //else
-    //{
-    //}
     PopulateCombobox();
     PopulateGear();
     EnableControls();
@@ -412,7 +409,7 @@ void CEquipmentView::OnGearNew()
         {
             EquippedGear newGear(dlg.Name());
             m_pCharacter->AddGearSet(newGear);
-            // onc added the new gear set automatically becomes active
+            // once added the new gear set automatically becomes active
             m_pCharacter->SetActiveGearSet(dlg.Name());
 
             // add it to the combo box
@@ -552,7 +549,7 @@ void CEquipmentView::OnGearDelete()
         // get the name of the gear set to delete
         CString name;
         m_comboGearSelections.GetLBText(sel, name);
-        // double check thats what they really want
+        // double check that is what they really want
         CString message;
         message.Format("Are you sure you want to delete the gear set called:\n"
             "\"%s\"?", name);
