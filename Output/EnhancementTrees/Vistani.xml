@@ -23,7 +23,28 @@
          <ArrowRight/>
          <Requirements/>
          <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>Dagger</Weapon>
+            <Weapon>Throwing Dagger</Weapon>
+         </Effect>
+         <Effect>
             <Type>DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>Dagger</Weapon>
+            <Weapon>Throwing Dagger</Weapon>
+         </Effect>
+         <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>Dagger</Weapon>
+            <Weapon>Throwing Dagger</Weapon>
+         </Effect>
+         <Effect>
+            <Type>Seeker</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>1</Amount>
             <Weapon>Dagger</Weapon>
@@ -125,13 +146,6 @@ You gain +5% Doublestrike (main and off hand), and Doubleshot.</Description>
             </Requirement>
          </Requirements>
          <Effect>
-            <Type>CriticalAttackBonus</Type>
-            <Bonus>Competence</Bonus>
-            <Amount>1</Amount>
-            <Weapon>Dagger</Weapon>
-            <Weapon>Throwing Dagger</Weapon>
-         </Effect>
-         <Effect>
             <Type>CriticalMultiplier</Type>
             <Bonus>Competence</Bonus>
             <Amount>1</Amount>
@@ -186,7 +200,7 @@ Swords: You gain 15 Melee Power and Ranged Power for 60 seconds.</Description>
          <Name>Vistani: Knife Master</Name>
          <InternalName>VistaniCore6</InternalName>
          <Description>You gain +2 to all ability scores.
-You gain +5% attack speed one handed weapons and throwing weapons.
+You gain +5% attack speed when using two daggers or throwing knives.
 You gain 20 Melee Power and 20 Ranged Power.</Description>
          <Icon>KnifeMaster</Icon>
          <XPosition>5</XPosition>
@@ -212,13 +226,8 @@ You gain 20 Melee Power and 20 Ranged Power.</Description>
             <Type>Alacrity</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>5</Amount>
-            <WeaponClass>OneHanded</WeaponClass>
-         </Effect>
-         <Effect>
-            <Type>Alacrity</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>5</Amount>
-            <WeaponClass>Thrown</WeaponClass>
+            <Weapon>Dagger</Weapon>
+            <Weapon>Throwing Dagger</Weapon>
          </Effect>
          <Effect>
             <Type>MeleePower</Type>
@@ -254,6 +263,20 @@ daggers and throwing daggers.</Description>
          </Effect>
          <Effect>
             <Type>DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>Dagger</Weapon>
+            <Weapon>Throwing Dagger</Weapon>
+         </Effect>
+         <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>Dagger</Weapon>
+            <Weapon>Throwing Dagger</Weapon>
+         </Effect>
+         <Effect>
+            <Type>Seeker</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>1</Amount>
             <Weapon>Dagger</Weapon>
@@ -340,10 +363,10 @@ Rank 3: +1 to Reflex Saving Throws.</Description>
          <Name>Vistani: Rapid Attack</Name>
          <InternalName>RapidAttack</InternalName>
          <Description>You gain both of the following:
-Rapid Slash: Requires dagger. Melee Attack: Deals +3(W) damage.
+Rapid Slash: Requires dagger. Melee Attack: Deals +3[W] damage.
    You gain a 20% Morale bonus to (main hand) doublestrike for 10 seconds.
    Cooldown: 10 seconds. 
-Rapid Throw: Requires throwing knife. Missile Attack: Deals +3(W) damage.
+Rapid Throw: Requires throwing knife. Missile Attack: Deals +3[W] damage.
    You gain a 20% Morale bonus to doubleshot for 10 seconds.
    Cooldown: 10 seconds.
 This puts Ten Thousand Stars and Manyshot on a 10 second cooldown.</Description>
@@ -389,6 +412,20 @@ This puts Ten Thousand Stars and Manyshot on a 10 second cooldown.</Description>
             <Weapon>Dagger</Weapon>
             <Weapon>Throwing Dagger</Weapon>
          </Effect>
+         <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>Dagger</Weapon>
+            <Weapon>Throwing Dagger</Weapon>
+         </Effect>
+         <Effect>
+            <Type>Seeker</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Weapon>Dagger</Weapon>
+            <Weapon>Throwing Dagger</Weapon>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Vistani: Bleeding Cuts</Name>
@@ -396,7 +433,7 @@ This puts Ten Thousand Stars and Manyshot on a 10 second cooldown.</Description>
          <Description>When you score a Vorpal hit with a dagger or throwing knife you add a
 stack of Blood of Vengeance to your opponent.
 Blood of Vengeance: You deal 1d6 damage per two seconds for 30 seconds.
-This damage scales with 200% Melee Power. This stacks up to 10 times, with news
+This damage scales with 200% Melee Power. This stacks up to 10 times, with new
 stacks refreshing the duration.</Description>
          <Icon>BleedingCuts</Icon>
          <XPosition>1</XPosition>
@@ -450,7 +487,7 @@ You gain +3 Physical Resistance Rating and Magical Resistance Rating.</Descripti
       <EnhancementTreeItem>
          <Name>Vistani: Weapon Versatility</Name>
          <InternalName>WeaponVersatility</InternalName>
-         <Description>Dagger or Throwing dagger attacks use the higher of Melee Power or Ranged Power.</Description>
+         <Description>While using daggers and throwing daggers, your melee and missile attacks use the higher of Melee Power or Ranged Power.</Description>
          <Icon>WeaponVersatility</Icon>
          <XPosition>3</XPosition>
          <YPosition>2</YPosition>
@@ -509,6 +546,20 @@ You gain +3 Physical Resistance Rating and Magical Resistance Rating.</Descripti
          </Effect>
          <Effect>
             <Type>DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Weapon>Dagger</Weapon>
+            <Weapon>Throwing Dagger</Weapon>
+         </Effect>
+         <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>Dagger</Weapon>
+            <Weapon>Throwing Dagger</Weapon>
+         </Effect>
+         <Effect>
+            <Type>Seeker</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>2</Amount>
             <Weapon>Dagger</Weapon>
@@ -574,7 +625,9 @@ You gain +3 Physical Resistance Rating and Magical Resistance Rating.</Descripti
       <EnhancementTreeItem>
          <Name>Vistani: Deadly Blades</Name>
          <InternalName>DeadlyBlades</InternalName>
-         <Description>Your daggers and throwing daggers do an additional +1(W) of damage.</Description>
+         <Description>Your daggers and throwing daggers do an additional +1[W] of damage.
+You are centered when fighting with daggers.
+(Note: not centered with throwing daggers).</Description>
          <Icon>DeadlyBlades</Icon>
          <XPosition>3</XPosition>
          <YPosition>3</YPosition>
@@ -592,6 +645,11 @@ You gain +3 Physical Resistance Rating and Magical Resistance Rating.</Descripti
             <Amount>1</Amount>
             <Weapon>Dagger</Weapon>
             <Weapon>Throwing Dagger</Weapon>
+         </Effect>
+         <Effect>
+            <Type>CenteredWeapon</Type>
+            <Bonus>Enhancement</Bonus>
+            <Weapon>Dagger</Weapon>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -717,6 +775,20 @@ You gain +3 Physical Resistance Rating and Magical Resistance Rating.</Descripti
             <Weapon>Dagger</Weapon>
             <Weapon>Throwing Dagger</Weapon>
          </Effect>
+         <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>Dagger</Weapon>
+            <Weapon>Throwing Dagger</Weapon>
+         </Effect>
+         <Effect>
+            <Type>Seeker</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Weapon>Dagger</Weapon>
+            <Weapon>Throwing Dagger</Weapon>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Vistani: Celerity</Name>
@@ -753,7 +825,7 @@ You gain +3 Physical Resistance Rating and Magical Resistance Rating.</Descripti
          <Name>Vistani: Mist Stalker IV</Name>
          <InternalName>MistStalkerIV</InternalName>
          <Description>You gain immunity to Energy Drain.
-You gain +6 Physical Resistance Rating and Magical Resistance Rating.</Description>
+You gain +3 Physical Resistance Rating and Magical Resistance Rating.</Description>
          <Icon>MistStalkerIV</Icon>
          <XPosition>2</XPosition>
          <YPosition>4</YPosition>
@@ -777,12 +849,12 @@ You gain +6 Physical Resistance Rating and Magical Resistance Rating.</Descripti
          <Effect>
             <Type>PRR</Type>
             <Bonus>Enhancement</Bonus>
-            <Amount>6</Amount>
+            <Amount>3</Amount>
          </Effect>
          <Effect>
             <Type>MRR</Type>
             <Bonus>Enhancement</Bonus>
-            <Amount>6</Amount>
+            <Amount>3</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -825,7 +897,12 @@ You gain +6 Physical Resistance Rating and Magical Resistance Rating.</Descripti
 off-hand attacks when dual wielding weapons.</Description>
                <Icon>DoubleDaggers</Icon>
                <Cost>2</Cost>
-               <!--Missing effect-->
+             <Effect>
+                <Type>OffHandAttackBonus</Type>
+                <Bonus>Enhancement</Bonus>
+                <Amount>20</Amount>
+                <Stance>Two Weapon Fighting</Stance>
+             </Effect>
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
@@ -952,11 +1029,25 @@ off-hand attacks when dual wielding weapons.</Description>
             <Weapon>Dagger</Weapon>
             <Weapon>Throwing Dagger</Weapon>
          </Effect>
+         <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>3</Amount>
+            <Weapon>Dagger</Weapon>
+            <Weapon>Throwing Dagger</Weapon>
+         </Effect>
+         <Effect>
+            <Type>Seeker</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>3</Amount>
+            <Weapon>Dagger</Weapon>
+            <Weapon>Throwing Dagger</Weapon>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Vistani: Whirling Blades</Name>
          <InternalName>WhirlingBlades</InternalName>
-         <Description>Requires throwing knife. Missile Attack: +5(W) damage.
+         <Description>Requires throwing knife. Missile Attack: +5[W] damage.
 Your throwing knife gains 100 doubleshot for 15 seconds. Cooldown one minute.
 (Shares cooldown with 10K Stars.)</Description>
          <Icon>WhirlingBlades</Icon>
@@ -1029,10 +1120,10 @@ Cooldown: 60 seconds.</Description>
          <Name>Vistani: Blessed Blades</Name>
          <InternalName>BlessedBlades</InternalName>
          <Description>You gain both of the following:
-Blessed Blades: Requires dagger. Melee attack. +5(W) damage, plus one stack of Blood of Vengeance.
+Blessed Blades: Requires dagger. Melee attack. +5[W] damage, plus one stack of Blood of Vengeance.
    Your equipped daggers gain a +10 Enhancement bonus for 10 seconds.
    They also gain Silver, Good, and Ghost Touch. 10 second cooldown. 
-Blessed Knives: Requires throwing knife. Missile attack. +5(W) damage, plus one stack of Blood of Vengeance.
+Blessed Knives: Requires throwing knife. Missile attack. +5[W] damage, plus one stack of Blood of Vengeance.
    Your throwing knife gains a +10 Enhancement bonus for 10 seconds.
    It also gains Silver, Good, and Ghost touch. 10 second cooldown.</Description>
          <Icon>VistaniBlessedBlades</Icon>

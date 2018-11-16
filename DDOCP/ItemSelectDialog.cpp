@@ -476,36 +476,40 @@ void CItemSelectDialog::OnItemSelected(NMHDR* pNMHDR, LRESULT* pResult)
             sel = m_availableItemsCtrl.GetItemData(sel);
             if (sel >= 0 && sel < (int)m_availableItems.size())
             {
-                // backup any sentient jewel this item being swapped from has
-                bool hadSentience = false;
-                SentientJewel jewel;
-                if (m_item.HasSentientIntelligence())
-                {
-                    hadSentience = true;
-                    jewel = m_item.SentientIntelligence();
-                }
+                // must be a different item to the one already selected
                 std::list<Item>::const_iterator it = m_availableItems.begin();
                 std::advance(it, sel);
-                m_item = (*it);
-                // restore sentient jewel only if target item can accept one
-                if (hadSentience
-                        && m_item.HasCanAcceptSentientJewel())
+                if ((*it).Name() != m_item.Name())
                 {
-                    m_item.Set_SentientIntelligence(jewel);
+                    // backup any sentient jewel this item being swapped from has
+                    bool hadSentience = false;
+                    SentientJewel jewel;
+                    if (m_item.HasSentientIntelligence())
+                    {
+                        hadSentience = true;
+                        jewel = m_item.SentientIntelligence();
+                    }
+                    m_item = (*it);
+                    // restore sentient jewel only if target item can accept one
+                    if (hadSentience
+                            && m_item.HasCanAcceptSentientJewel())
+                    {
+                        m_item.Set_SentientIntelligence(jewel);
+                    }
+                    AddSpecialSlots();  // adds reaper or mythic slots to the item
+                    // update the other controls
+                    EnableControls();
+                    // item selected, can now click ok!
+                    GetDlgItem(IDOK)->EnableWindow(TRUE);
+                    // ensure sentient weapon controls are correct
+                    m_buttonSentientJewel.EnableWindow(m_slot == Inventory_Weapon1
+                            && m_item.HasCanAcceptSentientJewel());
+                    SetSentientWeaponControls();
+                    CString text;
+                    text.Format("Item Selection and Configuration - %s",
+                            m_item.Name().c_str());
+                    SetWindowText(text);
                 }
-                AddSpecialSlots();  // adds reaper or mythic slots to the item
-                // update the other controls
-                EnableControls();
-                // item selected, can now click ok!
-                GetDlgItem(IDOK)->EnableWindow(TRUE);
-                // ensure sentient weapon controls are correct
-                m_buttonSentientJewel.EnableWindow(m_slot == Inventory_Weapon1
-                        && m_item.HasCanAcceptSentientJewel());
-                SetSentientWeaponControls();
-                CString text;
-                text.Format("Item Selection and Configuration - %s",
-                        m_item.Name().c_str());
-                SetWindowText(text);
             }
         }
     }
@@ -1496,10 +1500,16 @@ void CItemSelectDialog::RemoveAugment(
 
 void CItemSelectDialog::OnSearchTextKillFocus()
 {
-    // just update the list of items as the search text changes
-    m_bInitialising = true;
-    PopulateAvailableItemList();
-    m_bInitialising = false;
+    CString text;
+    m_editSearchText.GetWindowText(text);
+    if (text != m_previousSearchText)
+    {
+        // just update the list of items as the search text changes
+        m_bInitialising = true;
+        PopulateAvailableItemList();
+        m_bInitialising = false;
+        m_previousSearchText = text;
+    }
 }
 
 BOOL CItemSelectDialog::PreTranslateMessage(MSG* pMsg)

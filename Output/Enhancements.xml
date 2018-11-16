@@ -10160,9 +10160,10 @@ You can use each of your action boosts 1/2/3 additional times per rest.</Descrip
       <EnhancementTreeItem>
          <Name>Half-Orc: Rage</Name>
          <InternalName>HalfOrcOrcishRage</InternalName>
-         <Description>Action Boost: You become enraged, and gain a +2 Primal bonus to Strength,
-but suffer -20 Physical Resistance Rating.
-Using this ability prevents spellcasting and uncenters you. (Cooldown: 30 seconds)</Description>
+         <Description>Action Boost: You become enraged, and gain gain +40 Melee Power
+and a +2 Primal Bonus to Strength. Using this ability prevents spellcasting
+and uncenters you. This Action Boost shares a cooldown with other Action Boosts.
+(Cooldown: 30 seconds)</Description>
          <Icon>HalfOrcOrcishRage</Icon>
          <XPosition>4</XPosition>
          <YPosition>2</YPosition>
@@ -18451,9 +18452,8 @@ is increased by [15/30/50]%.</Description>
             </Requirement>
          </Requirements>
          <Effect>
-            <Type>ACBonus</Type>
+            <Type>ArmorACBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <Percent/>
             <AmountVector size="3">15 30 50</AmountVector>
          </Effect>
       </EnhancementTreeItem>
@@ -19401,8 +19401,8 @@ Rank 3: Supreme Cleave gives +1 Temp HP per hit, up to +10. (Hidden Effect)</Des
       <EnhancementTreeItem>
          <Name>Frenzied Berserker: Crazy Strike</Name>
          <InternalName>FBCrazyStrike</InternalName>
-         <Description>When you score a critical hit with Cracking Attack, for 12 seconds you
-gain +0.5/1/2[W] damage and 1/2/3 Melee Power.</Description>
+         <Description>When you hit with Cracking Attack, for 12 seconds you gain +0.5/+0.1/+2[W]
+damage and 1/2/3 Melee Power.</Description>
          <Icon>FBCrazyStrike</Icon>
          <XPosition>1</XPosition>
          <YPosition>4</YPosition>
@@ -19607,17 +19607,17 @@ Cooldown: 30 seconds</Description>
          <Tier5/>
          <Clickie/>
          <Requirements/>
-         <DC>
-            <Name>Tantrum</Name>
-            <Description>Tactical Melee Cleave: Expend 25 hit points to activate this ability and
+      <DC>
+         <Name>Tantrum</Name>
+         <Description>Tactical Melee Cleave: Expend 25 hit points to activate this ability and
 attack enemies around you. This deals +5[W] damage and has a 50% chance to knock down
 each damaged enemy briefly on a failed Fortitude save.</Description>
-            <Icon>FBTantrum</Icon>
-            <DCVersus>Fortitude</DCVersus>
-            <AmountVector size="1">10</AmountVector>
-            <ModAbility>Strength</ModAbility>
-            <ClassLevel>Barbarian</ClassLevel>
-         </DC>
+         <Icon>FBTantrum</Icon>
+         <DCVersus>Fortitude</DCVersus>
+         <AmountVector size="1">10</AmountVector>
+         <ModAbility>Strength</ModAbility>
+         <ClassLevel>Barbarian</ClassLevel>
+      </DC>
       </EnhancementTreeItem>
    </EnhancementTree>
    <EnhancementTree>
@@ -33487,7 +33487,7 @@ Passive:
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>WarSoul War Domain: Blur</Name>
+         <Name>War Soul: War Caster: Blur</Name>
          <InternalName>WSCore4</InternalName>
          <Description>Blur is added to your spellbook as a level 2 spell.
 In addition, you permanently benefit from the effect of the Blur spell.
@@ -33532,7 +33532,7 @@ Passive:
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>WarSoul War Domain: Haste</Name>
+         <Name>War Soul: War caster: Haste</Name>
          <InternalName>WSCore5</InternalName>
          <Description>Haste is added to your spellbook as a level 3 spell.
 Passive:
@@ -34235,9 +34235,10 @@ Energy Absorption.</Description>
          <Name>War Soul: Ameliorating Strike</Name>
          <InternalName>WSAmelioratingStrike</InternalName>
          <Description>When you strike an enemy with Smite Foe, you and your nearby allies are
-healed by 1d2 per character level, and benefit from the effects of the Lesser
+healed by 1d3 per character level, and benefit from the effects of the Lesser
 Restoration spell. (The heal from Ameliorating Strike is affected by your
-Positive Spell Power)</Description>
+Positive Spell Power) You may only perform this AOE heal once per time you use
+this skill.</Description>
          <Icon>WPAmelioratingStrike</Icon>
          <XPosition>0</XPosition>
          <YPosition>4</YPosition>
@@ -34271,14 +34272,14 @@ Positive Spell Power)</Description>
          <Selector>
             <EnhancementSelection>
                <Name>Silence the Wicked (Melee)</Name>
-               <Description>Favored Weapon Melee Attack: +1[W]: On Hit: Affected enemy can't cast spells for 4/8/12 seconds</Description>
+               <Description>Favored Weapon Melee Attack: +1/2/3[W]: On Hit: Affected enemy can't cast spells for 4/8/12 seconds</Description>
                <Icon>WSSilenceTheWicked</Icon>
                <Cost>1</Cost>
                <Clickie/>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Silence the Wicked (Ranged)</Name>
-               <Description>Favored Weapon Ranged Attack: +1[W]: On Hit: Affected enemy can't cast spells for 4/8/12 seconds</Description>
+               <Description>Favored Weapon Ranged Attack: +1/2/3[W]: On Hit: Affected enemy can't cast spells for 4/8/12 seconds</Description>
                <Icon>WSSilenceTheWicked</Icon>
                <Cost>1</Cost>
                <Clickie/>
@@ -34478,13 +34479,11 @@ and a base attack bonus equal to a fighter of the same level.</Description>
       <EnhancementTreeItem>
          <Name>War Soul: Divine Vessel</Name>
          <InternalName>WSDivineVessel</InternalName>
-         <Description>Toggle: While active, your attacks generate a stack of Divine Conduit.
-When Divine Conduit reaches 25, it is removed and nearby enemies take 1d4 Fire
-and 1d4 Light damage per character level. (Damage from Divine Vessel is affected
-by Fire and Light Spell Power)
-You may only gain a stack of Divine Conduit once every 3/2/1 seconds.
-If you have Implacable Foe, Divine Vessel will trigger upon reaching 20 stacks
-of Divine Conduit, instead of 25.</Description>
+         <Description>Your attacks generate a stack of Divine Conduit.
+When Divine Conduit reaches 25, all stacks are cleared and you gain one
+charge of this attack. (Max uses: 1. You cannot gain stacks of Divine Vessel
+while you have any uses of this attack.)
+Choose between Melee and Ranged attacks:</Description>
          <Icon>WPDivineVessel</Icon>
          <XPosition>1</XPosition>
          <YPosition>5</YPosition>
@@ -34502,14 +34501,38 @@ of Divine Conduit, instead of 25.</Description>
                <MinLevel>12</MinLevel>
             </Requirement>
          </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Divine Vessel (Melee Attack)</Name>
+               <Description>Active: Melee Favored Weapon Cleave Attack: Expend 1 charge.
+Take a shot with your bow, dealing +5[W] damage. Each affected enemy is hit
+by a meteor, taking 1 to 4 Fire and 1 to 4 Light Damage per character level.
+(Damage from the meteor is affected by Fire and Light Spellpower.)</Description>
+               <Icon>WPDivineVessel</Icon>
+               <Cost>1</Cost>
+               <Clickie/>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Divine Vessel (Ranged Attack)</Name>
+               <Description>Active: Ranged Favored Weapon Attack: Expend 1 charge.
+Make a sweeping weapon attack against all nearby enemies for +5[W] damage.
+Each affected enemy is hit by a meteor, taking 1 to 4 Fire and 1 to 4 Light
+Damage per character level.
+(Damage from the meteor is affected by Fire and Light Spellpower.)</Description>
+               <Icon>WPDivineVessel</Icon>
+               <Cost>1</Cost>
+               <Clickie/>
+            </EnhancementSelection>
+         </Selector>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>War Soul: Wrathful Weapons</Name>
          <InternalName>WSWrathfulWeapons</InternalName>
-         <Description>When wielding your religion's favored weapon, it gains an additional +1
-to its Enhancement Bonus. When you score a Vorpal Hit with your religion's
-favored weapon, your attacks gain 10d6 Light Damage on hit for the next 6 seconds.
-This damage scales with 200% of the higher of your Melee or Ranged Power.</Description>
+         <Description>When wielding your religion's favored weapon in your main hand, you gain
++3 to hit and damage, and +9 Universal Spell Power. When you score a Vorpal
+Hit with your religion's favored weapon, your attacks gain 10d6 Light Damage
+on hit for the next 12 seconds. This damage scales at 200% with the higher of
+your Melee or Ranged Power.</Description>
          <Icon>WPWrathfulWeapons</Icon>
          <XPosition>2</XPosition>
          <YPosition>5</YPosition>
@@ -34532,8 +34555,14 @@ This damage scales with 200% of the higher of your Melee or Ranged Power.</Descr
          <Effect>
             <Type>WeaponEnchantment</Type>
             <Bonus>Enhancement</Bonus>
-            <Amount>1</Amount>
+            <Amount>3</Amount>
             <Weapon>All</Weapon>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>9</Amount>
+            <SpellPower>All</SpellPower>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -34625,7 +34654,11 @@ Cooldown: 2 minutes</Description>
       <EnhancementTreeItem>
          <Name>Angel of Vengeance: Font Of Power</Name>
          <InternalName>AoVCore1</InternalName>
-         <Description>For each action point spent in this tree, you gain +1 Universal Spell Power and +2 Spell Points.</Description>
+         <Description>For each action point spent in this tree, you gain +1 Universal Spell Power
+and +2 Spell Points. Passive: Each core enhancement in this tree grants
++1 Caster Level and +2 Max Caster Level with the following spells:
+Nimbus of Light, Searing Light, Sun Bolt, Cometfall, Divine Punishment,
+Flame Strike, and Fire Storm.</Description>
          <Icon>AoVFontOfPower</Icon>
          <XPosition>0</XPosition>
          <YPosition>0</YPosition>
@@ -34974,7 +35007,8 @@ chance to gain a stack of Scourge</Description>
       <EnhancementTreeItem>
          <Name>Angel of Vengeance: Wand and Scroll Mastery</Name>
          <InternalName>AoVWandAndScrollMastery</InternalName>
-         <Description>+[25/50/75]% effectiveness of your wands, scrolls and other items that cast spells.</Description>
+         <Description>+25%/+50%/+75% damage and healing from your wands, scrolls, and other
+items that cast spells, and +1/+2/+3 to the save DCs of your offensive wands.</Description>
          <Icon>AoVWandAndScrollMastery</Icon>
          <XPosition>0</XPosition>
          <YPosition>2</YPosition>
@@ -36033,11 +36067,11 @@ Cooldown: 12/9/6 seconds</Description>
          <Name>Angel of Vengeance: Crown of Retribution</Name>
          <InternalName>AoVCrownOfRetribution</InternalName>
          <Description>Toggle: You remove your Shield of Condemnation from yourself and transfer
-it to an ally. The Shield of Condemnation manifests itself on them while they
-remain within the area of your Aura of Menace. Enemies that strike your ally
-while this is active take an additional 1d8+1 points of light damage from your
-divine wrath. This ability can only target another player or a hireling, or a
-monster which you have personally summoned. Cooldown: 15 seconds.</Description>
+it to an ally. The Shield of Condemnation manifests itself on them while
+they remain within the area of your Aura of Menace. Enemies that strike
+your ally while this is active take an additional 1d8+1 points of light
+damage from your divine wrath. This ability can only be used once per rest,
+and can only target another player or a hireling. Duration: 10 minutes.</Description>
          <Icon>AoVCrownOfRetribution</Icon>
          <XPosition>0</XPosition>
          <YPosition>4</YPosition>
@@ -36391,7 +36425,7 @@ While toggled on, every shot from your Archon costs 12 Spell Points.</Descriptio
 Undead enemies ahead of you take the same amount of damage (Will save for half).
 Both scale with your Positive Spell Power. 6 second cooldown.
 This ability is considered a 1st Level Favored Soul spell of the Conjuration school.
-Spell Point Cost: 4 Spell points
+Spell Point Cost: 6 Spell points
 Cooldown: 6 seconds</Description>
          <Icon>BoHBeaconOfGrace</Icon>
          <XPosition>1</XPosition>
@@ -36485,7 +36519,7 @@ Restoration and Dispel Paralysis spell, and heal for 5 points of Positive Energy
 per Favored Soul level. Undead enemies ahead of you take the same amount of damage
 (Will save for half). Both scale with your Positive Spell Power.
 This ability is considered a 5th Level Favored Soul pell of the Conjuration school.
-Spell Point Cost: 15 Spell points
+Spell Point Cost: 30 Spell points
 Cooldown: 30 seconds</Description>
          <Icon>BoHBeaconOfHope</Icon>
          <XPosition>3</XPosition>
@@ -36525,8 +36559,9 @@ Cooldown: 30 seconds</Description>
       <EnhancementTreeItem>
          <Name>Beacon of Hope: Flight of Glory</Name>
          <InternalName>BoHCore5</InternalName>
-         <Description>When you use your Leap of Faith, nearby allies gain a Determination Bonus
-to Temporary Hit Points equal to triple your character level, plus an additional 50.</Description>
+         <Description>When you use your Leap of Faith, nearby allies gain Temporary
+Hit Points equal to triple your character level, plus an additional
+50 Hit Points. Cost 10 Spell Points. </Description>
          <Icon>BoHFlightOfGlory</Icon>
          <XPosition>4</XPosition>
          <YPosition>0</YPosition>
@@ -36925,7 +36960,7 @@ Favored Soul level for 18 seconds. 6 second cooldown.</Description>
          <Name>Beacon of Hope: Hope for Protection</Name>
          <InternalName>BoHHopeForProtection</InternalName>
          <Description>Target ally gains a Sacred bonus to PRR and MRR equal to 3 + Favored Soul
-level for 18 seconds. 6 Second cooldown.</Description>
+level for 20 seconds. 6 Second cooldown.</Description>
          <Icon>BoHHopeForProtection</Icon>
          <XPosition>1</XPosition>
          <YPosition>3</YPosition>
@@ -37069,10 +37104,9 @@ Cooldown: 4 seconds</Description>
       <EnhancementTreeItem>
          <Name>Beacon of Hope: Hope for Victory</Name>
          <InternalName>BoHHopeForVictory</InternalName>
-         <Description>Target ally gains a Sacred Bonus to
-Melee and Ranged power equal to 3 + half your Favored Soul level, and
-Universal Spell Power equal to 6 + your Favored Soul level.
-This lasts for 18 seconds, 6 second cooldown.</Description>
+         <Description>Target ally gains a Sacred Bonus to Melee and Ranged power equal
+to 3 + half your Favored Soul level, and Universal Spell Power equal to
+6 + your Favored Soul level. This lasts for 18 seconds, 6 second cooldown.</Description>
          <Icon>BoHHopeForVictory</Icon>
          <XPosition>1</XPosition>
          <YPosition>4</YPosition>
@@ -37185,7 +37219,8 @@ fade once every 12 seconds. Hope for Success grants 3 stacks.</Description>
          <Name>Beacon of Hope: Raise Dead</Name>
          <InternalName>BoHRaiseDead</InternalName>
          <Description>Spell Like Ability: Resurrects the target, restores 10% of the target's hit points
-and preserves current spell points.</Description>
+and preserves current spell points.
+15 Spell Points, 9 second cooldown.</Description>
          <Icon>BoHRaiseDead</Icon>
          <XPosition>0</XPosition>
          <YPosition>5</YPosition>
@@ -37210,7 +37245,7 @@ and preserves current spell points.</Description>
          <Name>Beacon of Hope: Hope for Success</Name>
          <InternalName>BoHHopeForSuccess</InternalName>
          <Description>Target ally's main hand weapon (at the time of casting) gains +1 to
-Critical Threat Range and Muliplier for 18 seconds. 1 Minute cooldown.</Description>
+Critical Threat Range and Muliplier for 20 seconds. 1 Minute cooldown.</Description>
          <Icon>BoHHopeForSuccess</Icon>
          <XPosition>1</XPosition>
          <YPosition>5</YPosition>
@@ -37235,7 +37270,8 @@ and afflictions, restore 10 Hit Points per caster level
 Ability Damaged, Blinded, Confused, Dazed, Dazzled, Deafened, Diseased,
 Exhausted, Fatigued, Feebleminded, Insanity, Nauseated and Poisoned.
 Against Undead this spell acts as Harm. Undead who make a successful
-Will save reduce the damage by half.</Description>
+Will save reduce the damage by half.
+40 Spell Points. 6 second cooldown.</Description>
          <Icon>BoHHeal</Icon>
          <XPosition>2</XPosition>
          <YPosition>5</YPosition>
@@ -37260,7 +37296,8 @@ Will save reduce the damage by half.</Description>
          <Name>Beacon of Hope: Undying Beacon</Name>
          <InternalName>BoHUndyingBeacon</InternalName>
          <Description>Allies affected by your Beacons gain Unconsciousness Range equal to
-10x your Favored Soul level. This lasts for 12 seconds.</Description>
+10x your Favored Soul level. This effect lasts for 12 seconds, and is refreshed
+if the target is affected by another Beacon spell.</Description>
          <Icon>BoHUndyingBeacon</Icon>
          <XPosition>3</XPosition>
          <YPosition>5</YPosition>
@@ -37276,12 +37313,12 @@ Will save reduce the damage by half.</Description>
          </Requirements>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Beacon of Hope: Wall of Healing</Name>
+         <Name>Beacon of Hope: Flame of the Favored</Name>
          <InternalName>BoHWallOfHealing</InternalName>
-         <Description>Spell Like Ability: Create a wall that persists for 30 seconds.
-Allies and Undead in the wall take 1 Cure Moderate Wounds spell every few seconds.
-Spell Point Cost: 30 Spell points
-Cooldown: 1 Minute cooldown.</Description>
+         <Description>Creates a wall that persists for 30 seconds.
+Allies within the aura are healing 1 hit point per 3 Favored Soul levels as
+long as they remain within it. Undead enemies are damaged for the same amount.
+Costs 40 Spell Points. 30 second cooldown.</Description>
          <Icon>BoHWallOfHealing</Icon>
          <XPosition>4</XPosition>
          <YPosition>5</YPosition>
@@ -37418,12 +37455,11 @@ and throwing hammers.</Description>
       <EnhancementTreeItem>
          <InternalName>KenseiCore2</InternalName>
          <Name>Kensei: Spiritual Bond</Name>
-         <Description>When you have a weapon equipped in your main hand that is part of your Focus,
-it gains On Vorpal: If this weapon has fewer stacks of Battle Meditation than
-the number of Kensei Core Abilities you possess, it gains one stack of Battle
-Meditation: This weapon gains a +1 Insight bonus to Enhancement bonus for 20 seconds.
-This stacks up to 10 times. On timer expiration, 1 stack of Meditative Focus is
-removed at a time</Description>
+         <Description>Spiritual Bond: When you have a weapon equipped in your main hand that
+is part of your Focus, it gains On Vorpal: one stack of Battle Meditation:
+This weapon gains a +1 Insight bonus to Enhancement bonus for 20 seconds.
+This stacks up to the number of Kensei Core Abilities you possess (max 10).
+On timer expiration, 1 stack of Meditative Focus is removed at a time.</Description>
          <Icon>SpiritualBond</Icon>
          <XPosition>1</XPosition>
          <YPosition>0</YPosition>
@@ -37906,6 +37942,9 @@ Dodge for 6 seconds. (Cooldown: 15 seconds.)</Description>
             <Requirement>
                <Class>Fighter</Class>
                <Level>1</Level>
+            </Requirement>
+            <Requirement>
+               <Feat>Dodge</Feat>
             </Requirement>
          </Requirements>
       </EnhancementTreeItem>
@@ -38997,7 +39036,7 @@ and throwing hammers.</Description>
       <EnhancementTreeItem>
          <InternalName>KenseiLiquidCourage</InternalName>
          <Name>Kensei: Liquid Courage</Name>
-         <Description>After drinking, you will receive a +50 Healing and repair Amplification
+         <Description>After drinking, you will receive a +50 Healing and Repair Amplification
 for 30 seconds.</Description>
          <Icon>KenseiLiquidCourage</Icon>
          <XPosition>2</XPosition>
@@ -40618,7 +40657,7 @@ While shield equipped, +5% Combat Style bonus to melee attack speed.</Descriptio
          <InternalName>VanguardCore4</InternalName>
          <Description>Additional +10% (total 30%) chance to make a secondary shield bash.
 While shield equipped, additional +5% (total 10%) Combat style bonus to Melee Attack Speed.
-Your shield gains +1(W).</Description>
+Your shield gains +1[W].</Description>
          <Icon>VanguardShieldCombatII</Icon>
          <XPosition>3</XPosition>
          <YPosition>0</YPosition>
@@ -40664,7 +40703,7 @@ Your shield gains +1(W).</Description>
       <EnhancementTreeItem>
          <Name>Vanguard: Vicious Shield II</Name>
          <InternalName>VanguardCore5</InternalName>
-         <Description>Shield gains +1 critical threat range, +1 critical multiplier, +1(W),
+         <Description>Shield gains +1 critical threat range, +1 critical multiplier, +1[W],
 and additional +5% (total 15%) Combat Style bonus to Melee Attack Speed</Description>
          <Icon>VanguardViciousShieldII</Icon>
          <XPosition>4</XPosition>
@@ -40718,7 +40757,7 @@ and additional +5% (total 15%) Combat Style bonus to Melee Attack Speed</Descrip
          <Name>Vanguard: Shield Champion</Name>
          <InternalName>VanguardCore6</InternalName>
          <Description>While shield is equipped: +2 attack, +2 damage, +5% doublestrike,
-+1(W) to your shield, an additional +5% (total 20%) Combat Style bonus to Melee Attack
++1[W] to your shield, an additional +5% (total 20%) Combat Style bonus to Melee Attack
 Speed, and shield bash stuns 10% of the time DC
 (10 + 1/2 Character lvl + strength modifier + stun bonus)</Description>
          <Icon>VanguardShieldChampion</Icon>
@@ -40863,7 +40902,7 @@ Speed, and shield bash stuns 10% of the time DC
          <Name>Vanguard: Shield Smash</Name>
          <InternalName>VanguardShieldSmash</InternalName>
          <Description>While shield equipped,
-Activate: Melee attack with your shield for [+1/+2/+3] (W) damage.
+Activate: Melee attack with your shield for [+1/+2/+3] [W] damage.
 On damage, PRR and MRR are increased by [2/4/6] points for [3/6/12] seconds.
 [12/9/6] seconds cooldown.</Description>
          <Icon>VanguardShieldSmash</Icon>
@@ -41031,7 +41070,7 @@ Reduces total penalty to skills from armor and shield by [1/2/3] points.</Descri
       <EnhancementTreeItem>
          <Name>Vanguard: Stunning Shield</Name>
          <InternalName>VanguardStunningShield</InternalName>
-         <Description>While shield equipped, Activate: Melee shield bash with shield for [+1/+2/+3] (W) attack.
+         <Description>While shield equipped, Activate: Melee shield bash with shield for [+1/+2/+3] [W] attack.
 This attack stuns enemies unless Fortitude save vs DC
 (10 + highest ability modifier + character level + stunning bonuses).
 [60/45/30] seconds cooldown.</Description>
@@ -41056,7 +41095,7 @@ This attack stuns enemies unless Fortitude save vs DC
          </Requirements>
          <DC>
             <Name>Vanguard: Shield Champion</Name>
-            <Description>While shield equipped, Activate: Melee shield bash with shield for [+1/+2/+3] (W) attack.</Description>
+            <Description>While shield equipped, Activate: Melee shield bash with shield for [+1/+2/+3] [W] attack.</Description>
             <Icon>VanguardStunningShield</Icon>
             <DCVersus>Fortitude</DCVersus>
             <AmountVector size="1">10</AmountVector>
@@ -41398,7 +41437,7 @@ bludgeoning damage to attacker. Damage scales with Melee Power.</Description>
          <Name>Vanguard: Shield Charge</Name>
          <InternalName>VanguardShieldCharge</InternalName>
          <Description>While shield equipped, Activate: Rush forward up to 30 feet to your selected opponent
-and deliver [+1/+2/+3] (W) shield attack that hits enemies around you.
+and deliver [+1/+2/+3] [W] shield attack that hits enemies around you.
 [36/24/12] seconds cooldown.</Description>
          <Icon>VanguardShieldCharge</Icon>
          <XPosition>2</XPosition>
@@ -41570,7 +41609,7 @@ damage for 3 seconds. This effect stacks up to 20 times, and loses one stack eve
          <Name>Vanguard: Shield Rush</Name>
          <InternalName>VanguardShieldRush</InternalName>
          <Description>While shield equipped, Activate: Rush forward in a line, delivering a shield
-bash to every creature hit. Each enemy is knocked down for [+2/+4/+6] (W) damage.
+bash to every creature hit. Each enemy is knocked down for [+2/+4/+6] [W] damage.
 The knockdown is negated on Fortitude saving throw vs DC
 (20 + highest ability modifier + class level + bonus to trip attacks).
 [60/45/25] seconds cooldown.</Description>
@@ -50625,7 +50664,28 @@ Passive: +1 DC for your spells</Description>
          <ArrowRight/>
          <Requirements/>
          <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>Dagger</Weapon>
+            <Weapon>Throwing Dagger</Weapon>
+         </Effect>
+         <Effect>
             <Type>DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>Dagger</Weapon>
+            <Weapon>Throwing Dagger</Weapon>
+         </Effect>
+         <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>Dagger</Weapon>
+            <Weapon>Throwing Dagger</Weapon>
+         </Effect>
+         <Effect>
+            <Type>Seeker</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>1</Amount>
             <Weapon>Dagger</Weapon>
@@ -50727,13 +50787,6 @@ You gain +5% Doublestrike (main and off hand), and Doubleshot.</Description>
             </Requirement>
          </Requirements>
          <Effect>
-            <Type>CriticalAttackBonus</Type>
-            <Bonus>Competence</Bonus>
-            <Amount>1</Amount>
-            <Weapon>Dagger</Weapon>
-            <Weapon>Throwing Dagger</Weapon>
-         </Effect>
-         <Effect>
             <Type>CriticalMultiplier</Type>
             <Bonus>Competence</Bonus>
             <Amount>1</Amount>
@@ -50788,7 +50841,7 @@ Swords: You gain 15 Melee Power and Ranged Power for 60 seconds.</Description>
          <Name>Vistani: Knife Master</Name>
          <InternalName>VistaniCore6</InternalName>
          <Description>You gain +2 to all ability scores.
-You gain +5% attack speed one handed weapons and throwing weapons.
+You gain +5% attack speed when using two daggers or throwing knives.
 You gain 20 Melee Power and 20 Ranged Power.</Description>
          <Icon>KnifeMaster</Icon>
          <XPosition>5</XPosition>
@@ -50814,13 +50867,8 @@ You gain 20 Melee Power and 20 Ranged Power.</Description>
             <Type>Alacrity</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>5</Amount>
-            <WeaponClass>OneHanded</WeaponClass>
-         </Effect>
-         <Effect>
-            <Type>Alacrity</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>5</Amount>
-            <WeaponClass>Thrown</WeaponClass>
+            <Weapon>Dagger</Weapon>
+            <Weapon>Throwing Dagger</Weapon>
          </Effect>
          <Effect>
             <Type>MeleePower</Type>
@@ -50856,6 +50904,20 @@ daggers and throwing daggers.</Description>
          </Effect>
          <Effect>
             <Type>DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>Dagger</Weapon>
+            <Weapon>Throwing Dagger</Weapon>
+         </Effect>
+         <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>Dagger</Weapon>
+            <Weapon>Throwing Dagger</Weapon>
+         </Effect>
+         <Effect>
+            <Type>Seeker</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>1</Amount>
             <Weapon>Dagger</Weapon>
@@ -50942,10 +51004,10 @@ Rank 3: +1 to Reflex Saving Throws.</Description>
          <Name>Vistani: Rapid Attack</Name>
          <InternalName>RapidAttack</InternalName>
          <Description>You gain both of the following:
-Rapid Slash: Requires dagger. Melee Attack: Deals +3(W) damage.
+Rapid Slash: Requires dagger. Melee Attack: Deals +3[W] damage.
    You gain a 20% Morale bonus to (main hand) doublestrike for 10 seconds.
    Cooldown: 10 seconds. 
-Rapid Throw: Requires throwing knife. Missile Attack: Deals +3(W) damage.
+Rapid Throw: Requires throwing knife. Missile Attack: Deals +3[W] damage.
    You gain a 20% Morale bonus to doubleshot for 10 seconds.
    Cooldown: 10 seconds.
 This puts Ten Thousand Stars and Manyshot on a 10 second cooldown.</Description>
@@ -50991,6 +51053,20 @@ This puts Ten Thousand Stars and Manyshot on a 10 second cooldown.</Description>
             <Weapon>Dagger</Weapon>
             <Weapon>Throwing Dagger</Weapon>
          </Effect>
+         <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>Dagger</Weapon>
+            <Weapon>Throwing Dagger</Weapon>
+         </Effect>
+         <Effect>
+            <Type>Seeker</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Weapon>Dagger</Weapon>
+            <Weapon>Throwing Dagger</Weapon>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Vistani: Bleeding Cuts</Name>
@@ -50998,7 +51074,7 @@ This puts Ten Thousand Stars and Manyshot on a 10 second cooldown.</Description>
          <Description>When you score a Vorpal hit with a dagger or throwing knife you add a
 stack of Blood of Vengeance to your opponent.
 Blood of Vengeance: You deal 1d6 damage per two seconds for 30 seconds.
-This damage scales with 200% Melee Power. This stacks up to 10 times, with news
+This damage scales with 200% Melee Power. This stacks up to 10 times, with new
 stacks refreshing the duration.</Description>
          <Icon>BleedingCuts</Icon>
          <XPosition>1</XPosition>
@@ -51052,7 +51128,7 @@ You gain +3 Physical Resistance Rating and Magical Resistance Rating.</Descripti
       <EnhancementTreeItem>
          <Name>Vistani: Weapon Versatility</Name>
          <InternalName>WeaponVersatility</InternalName>
-         <Description>Dagger or Throwing dagger attacks use the higher of Melee Power or Ranged Power.</Description>
+         <Description>While using daggers and throwing daggers, your melee and missile attacks use the higher of Melee Power or Ranged Power.</Description>
          <Icon>WeaponVersatility</Icon>
          <XPosition>3</XPosition>
          <YPosition>2</YPosition>
@@ -51111,6 +51187,20 @@ You gain +3 Physical Resistance Rating and Magical Resistance Rating.</Descripti
          </Effect>
          <Effect>
             <Type>DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Weapon>Dagger</Weapon>
+            <Weapon>Throwing Dagger</Weapon>
+         </Effect>
+         <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>Dagger</Weapon>
+            <Weapon>Throwing Dagger</Weapon>
+         </Effect>
+         <Effect>
+            <Type>Seeker</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>2</Amount>
             <Weapon>Dagger</Weapon>
@@ -51176,7 +51266,9 @@ You gain +3 Physical Resistance Rating and Magical Resistance Rating.</Descripti
       <EnhancementTreeItem>
          <Name>Vistani: Deadly Blades</Name>
          <InternalName>DeadlyBlades</InternalName>
-         <Description>Your daggers and throwing daggers do an additional +1(W) of damage.</Description>
+         <Description>Your daggers and throwing daggers do an additional +1[W] of damage.
+You are centered when fighting with daggers.
+(Note: not centered with throwing daggers).</Description>
          <Icon>DeadlyBlades</Icon>
          <XPosition>3</XPosition>
          <YPosition>3</YPosition>
@@ -51194,6 +51286,11 @@ You gain +3 Physical Resistance Rating and Magical Resistance Rating.</Descripti
             <Amount>1</Amount>
             <Weapon>Dagger</Weapon>
             <Weapon>Throwing Dagger</Weapon>
+         </Effect>
+         <Effect>
+            <Type>CenteredWeapon</Type>
+            <Bonus>Enhancement</Bonus>
+            <Weapon>Dagger</Weapon>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -51319,6 +51416,20 @@ You gain +3 Physical Resistance Rating and Magical Resistance Rating.</Descripti
             <Weapon>Dagger</Weapon>
             <Weapon>Throwing Dagger</Weapon>
          </Effect>
+         <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>Dagger</Weapon>
+            <Weapon>Throwing Dagger</Weapon>
+         </Effect>
+         <Effect>
+            <Type>Seeker</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Weapon>Dagger</Weapon>
+            <Weapon>Throwing Dagger</Weapon>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Vistani: Celerity</Name>
@@ -51355,7 +51466,7 @@ You gain +3 Physical Resistance Rating and Magical Resistance Rating.</Descripti
          <Name>Vistani: Mist Stalker IV</Name>
          <InternalName>MistStalkerIV</InternalName>
          <Description>You gain immunity to Energy Drain.
-You gain +6 Physical Resistance Rating and Magical Resistance Rating.</Description>
+You gain +3 Physical Resistance Rating and Magical Resistance Rating.</Description>
          <Icon>MistStalkerIV</Icon>
          <XPosition>2</XPosition>
          <YPosition>4</YPosition>
@@ -51379,12 +51490,12 @@ You gain +6 Physical Resistance Rating and Magical Resistance Rating.</Descripti
          <Effect>
             <Type>PRR</Type>
             <Bonus>Enhancement</Bonus>
-            <Amount>6</Amount>
+            <Amount>3</Amount>
          </Effect>
          <Effect>
             <Type>MRR</Type>
             <Bonus>Enhancement</Bonus>
-            <Amount>6</Amount>
+            <Amount>3</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -51427,7 +51538,12 @@ You gain +6 Physical Resistance Rating and Magical Resistance Rating.</Descripti
 off-hand attacks when dual wielding weapons.</Description>
                <Icon>DoubleDaggers</Icon>
                <Cost>2</Cost>
-               <!--Missing effect-->
+             <Effect>
+                <Type>OffHandAttackBonus</Type>
+                <Bonus>Enhancement</Bonus>
+                <Amount>20</Amount>
+                <Stance>Two Weapon Fighting</Stance>
+             </Effect>
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
@@ -51554,11 +51670,25 @@ off-hand attacks when dual wielding weapons.</Description>
             <Weapon>Dagger</Weapon>
             <Weapon>Throwing Dagger</Weapon>
          </Effect>
+         <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>3</Amount>
+            <Weapon>Dagger</Weapon>
+            <Weapon>Throwing Dagger</Weapon>
+         </Effect>
+         <Effect>
+            <Type>Seeker</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>3</Amount>
+            <Weapon>Dagger</Weapon>
+            <Weapon>Throwing Dagger</Weapon>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Vistani: Whirling Blades</Name>
          <InternalName>WhirlingBlades</InternalName>
-         <Description>Requires throwing knife. Missile Attack: +5(W) damage.
+         <Description>Requires throwing knife. Missile Attack: +5[W] damage.
 Your throwing knife gains 100 doubleshot for 15 seconds. Cooldown one minute.
 (Shares cooldown with 10K Stars.)</Description>
          <Icon>WhirlingBlades</Icon>
@@ -51631,10 +51761,10 @@ Cooldown: 60 seconds.</Description>
          <Name>Vistani: Blessed Blades</Name>
          <InternalName>BlessedBlades</InternalName>
          <Description>You gain both of the following:
-Blessed Blades: Requires dagger. Melee attack. +5(W) damage, plus one stack of Blood of Vengeance.
+Blessed Blades: Requires dagger. Melee attack. +5[W] damage, plus one stack of Blood of Vengeance.
    Your equipped daggers gain a +10 Enhancement bonus for 10 seconds.
    They also gain Silver, Good, and Ghost Touch. 10 second cooldown. 
-Blessed Knives: Requires throwing knife. Missile attack. +5(W) damage, plus one stack of Blood of Vengeance.
+Blessed Knives: Requires throwing knife. Missile attack. +5[W] damage, plus one stack of Blood of Vengeance.
    Your throwing knife gains a +10 Enhancement bonus for 10 seconds.
    It also gains Silver, Good, and Ghost touch. 10 second cooldown.</Description>
          <Icon>VistaniBlessedBlades</Icon>
@@ -62009,6 +62139,1317 @@ This additional force damage is affected by your spell power.</Description>
          </Requirements>
       </EnhancementTreeItem>
    </EnhancementTree>
+  <EnhancementTree>
+    <Name>Eldritch Knight (Lamannia)</Name>
+    <Version>2</Version>
+    <Requirements>
+      <RequiresOneOf>
+        <Requirement>
+          <Class>Sorcerer</Class>
+        </Requirement>
+        <Requirement>
+          <Class>Wizard</Class>
+        </Requirement>
+      </RequiresOneOf>
+    </Requirements>
+    <Icon>EldritchKnight</Icon>
+    <Background>SorcererBackground</Background>
+    <EnhancementTreeItem>
+      <Name>Eldritch Knight: Eldritch Strike</Name>
+      <InternalName>EKLCore1</InternalName>
+      <Description>Melee Cleave Attack: Sheathe your weapon in eldritch energies, striking foes in front
+of you for +1[W] damage. If this attack hits, your weapon also releases a blast of magical energy,
+dealing an additional 1 to 2 Force Damage per character level to all nearby foes.
+This additional Force damage is affected by your Force Spell Power.
+Cooldown: 12 seconds
+Passive:  You gain proficiency with Simple Weapons. Every Core Ability in this tree,
+including this one, grants +10 Maximum Hit Points.</Description>
+      <Icon>EKEldritchStrike</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>0</MinSpent>
+      <Clickie/>
+      <ArrowRight/>
+      <Requirements>
+        <RequiresOneOf>
+          <Requirement>
+            <Class>Sorcerer</Class>
+            <Level>1</Level>
+          </Requirement>
+          <Requirement>
+            <Class>Wizard</Class>
+            <Level>1</Level>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+      <Effect>
+        <Type>WeaponProficiency</Type>
+        <Bonus>Enhancement</Bonus>
+        <WeaponClass>Simple</WeaponClass>
+      </Effect>
+      <Effect>
+        <Type>Hitpoints</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>10</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Eldritch Knight: Spellsword I</Name>
+      <InternalName>EKLCore2</InternalName>
+      <Description>You gain four elemental toggles that each imbue your weapon with
+elemental power. Onl one may be active at a time, causing them to deal an additional
+1d6 (element) damage on hit. You gain an additional 1d6 every 3 Sorcerer/Wizard
+levels (at 6, 9, 12, 15 and 18). This damage scales with Spell Power. While active,
+your Eldritch Strike deals 1-2 additional Acid dmaage per Character Level which
+scales with Spell Power.
+Passive: +1% Doublestrike, +10 Universal Spell Power. You also gain proficientcy
+in Light Armor and Martial weapons.</Description>
+      <Icon>EKSpellsword</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <Clickie/>
+      <ArrowRight/>
+      <Requirements>
+        <Requirement>
+          <Enhancement>EKLCore1</Enhancement>
+        </Requirement>
+        <RequiresOneOf>
+          <Requirement>
+            <Class>Sorcerer</Class>
+            <Level>3</Level>
+          </Requirement>
+          <Requirement>
+            <Class>Wizard</Class>
+            <Level>3</Level>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+      <Effect>
+        <Type>WeaponProficiency</Type>
+        <Bonus>Enhancement</Bonus>
+        <WeaponClass>Martial</WeaponClass>
+      </Effect>
+      <Effect>
+        <Type>GrantFeat</Type>
+        <Bonus>Enhancement</Bonus>
+        <Feat>Light Armor Proficiency</Feat>
+      </Effect>
+      <Effect>
+        <Type>Hitpoints</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>10</Amount>
+      </Effect>
+      <Effect>
+        <Type>Doublestrike</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>1</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>10</Amount>
+        <SpellPower>All</SpellPower>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Eldritch Knight: Imbue the Blade</Name>
+      <InternalName>EKLCore3</InternalName>
+      <Description>Melee weapons are considered Spellcasting Implements in your hands.
+You gain the Quick Draw feat, reducing the time between spellcasting and weapon use.
+-15% Arcane Spell Failure from equipped Armor, Shields, and Warforged Body feats.
++1% Doublestrike, +10 Universal Spell Power.</Description>
+      <Icon>EKImbueTheBlade</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowRight/>
+      <Requirements>
+        <Requirement>
+          <Enhancement>EKLCore2</Enhancement>
+        </Requirement>
+        <RequiresOneOf>
+          <Requirement>
+            <Class>Sorcerer</Class>
+            <Level>6</Level>
+          </Requirement>
+          <Requirement>
+            <Class>Wizard</Class>
+            <Level>6</Level>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+      <Effect>
+        <Type>GrantFeat</Type>
+        <Bonus>Enhancement</Bonus>
+        <Feat>Quick Draw</Feat>
+      </Effect>
+      <Effect>
+        <Type>Hitpoints</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>10</Amount>
+      </Effect>
+      <Effect>
+        <Type>Doublestrike</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>1</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>10</Amount>
+        <SpellPower>All</SpellPower>
+      </Effect>
+      <Effect>
+        <Type>ArcaneSpellFailure</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>-15</Amount>
+      </Effect>
+      <Effect>
+        <Type>ArcaneSpellFailureShields</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>-15</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Eldritch Knight: Subtle Force I</Name>
+      <InternalName>EKLCore4</InternalName>
+      <Description>You gain the benefits of the Deflect Arrows feat, knocking aside one
+incoming projectile that would have struck you every 6 seconds. -20% Arcane Spell
+Failure from equipped Armor, Shields, and Warforged Body feats. +6 Resistance to
+Acid, Cold, Electric, Fire and Sonic damage. +10 Universal Spell Power.</Description>
+      <Icon>EKSubtleForceI</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <ArrowRight/>
+      <Requirements>
+        <Requirement>
+          <Enhancement>EKLCore3</Enhancement>
+        </Requirement>
+        <RequiresOneOf>
+          <Requirement>
+            <Class>Sorcerer</Class>
+            <Level>12</Level>
+          </Requirement>
+          <Requirement>
+            <Class>Wizard</Class>
+            <Level>12</Level>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+      <Effect>
+        <Type>GrantFeat</Type>
+        <Bonus>Enhancement</Bonus>
+        <Feat>Deflect Arrows</Feat>
+      </Effect>
+      <Effect>
+        <Type>Hitpoints</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>10</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>10</Amount>
+        <SpellPower>All</SpellPower>
+      </Effect>
+      <Effect>
+        <Type>ArcaneSpellFailure</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>-20</Amount>
+      </Effect>
+      <Effect>
+        <Type>ArcaneSpellFailureShields</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>-20</Amount>
+      </Effect>
+      <Effect>
+        <Type>EnergyResistance</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>6</Amount>
+        <Energy>Acid</Energy>
+        <Energy>Cold</Energy>
+        <Energy>Electric</Energy>
+        <Energy>Fire</Energy>
+        <Energy>Sonic</Energy>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Eldritch Knight: Subtle Force II</Name>
+      <InternalName>EKLCore5</InternalName>
+      <Description>+5% Stacking Incorpreality. Your Defelect Arrows now triggers every
+2 seconds. +1% Doublestrike. +10 Universal Spell Power.</Description>
+      <Icon>EKSubleForceII</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <ArrowRight/>
+      <Requirements>
+        <Requirement>
+          <Enhancement>EKLCore4</Enhancement>
+        </Requirement>
+        <RequiresOneOf>
+          <Requirement>
+            <Class>Sorcerer</Class>
+            <Level>18</Level>
+          </Requirement>
+          <Requirement>
+            <Class>Wizard</Class>
+            <Level>18</Level>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+      <Effect>
+        <Type>Hitpoints</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>10</Amount>
+      </Effect>
+      <Effect>
+        <Type>Doublestrike</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>1</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>10</Amount>
+        <SpellPower>All</SpellPower>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Eldritch Knight: Eldritch Blade</Name>
+      <InternalName>EKLCore6</InternalName>
+      <Description>Your Eldritch Strike now grants you a Power Charge. When you have 5
+Power Charges, they are removed, and you gain Eldritch Power.
+Eldritch Power: +10% to your damage with weapon attacks, +4d6 Spellsword Dice,
++25 Universal spellpower. Duration: 30 seconds.
+Passive:  +2 Charisma, + 2 Constitution
++10 Universal Spell Power</Description>
+      <Icon>EKEldritchBlade</Icon>
+      <XPosition>5</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>40</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Enhancement>EKLCore5</Enhancement>
+        </Requirement>
+        <RequiresOneOf>
+          <Requirement>
+            <Class>Sorcerer</Class>
+            <Level>20</Level>
+          </Requirement>
+          <Requirement>
+            <Class>Wizard</Class>
+            <Level>20</Level>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+      <Effect>
+        <Type>Hitpoints</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>10</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>10</Amount>
+        <SpellPower>All</SpellPower>
+      </Effect>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>2</Amount>
+        <Ability>Charisma</Ability>
+      </Effect>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>2</Amount>
+        <Ability>Constitution</Ability>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Eldritch Knight: Improved Mage Armor</Name>
+      <InternalName>EKLImprovedMageArmor</InternalName>
+      <Description>Spell Like Ability: Mage Armor.
+You gain Mage Armor as a spell-like ability. In addition, while you are under the
+effect of the Mage Armor spell, you gain a +3%/+6%/+10% exceptional bonus to your
+total Armor Class.
+Activation Cost: 8/6/4 Spell Points</Description>
+      <Icon>EKImprovedMageArmor</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Clickie/>
+      <ArrowUp/>
+      <Requirements>
+        <RequiresOneOf>
+          <Requirement>
+            <Class>Sorcerer</Class>
+            <Level>1</Level>
+          </Requirement>
+          <Requirement>
+            <Class>Wizard</Class>
+            <Level>1</Level>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+      <Effect>
+        <Type>SpellLikeAbility</Type>
+        <Bonus>Enhancement</Bonus>
+        <SpellLikeAbility>Mage Armor</SpellLikeAbility>
+      </Effect>
+      <Effect>
+        <Type>ACBonus</Type>
+        <Bonus>Exceptional</Bonus>
+        <AmountVector size="3">3 6 10</AmountVector>
+        <Percent/>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Eldritch Knight: Arcane Siphon</Name>
+      <InternalName>EKLArcaneSiphon</InternalName>
+      <Description>Melee Attack: +1/2/3[W]: On Hit: Gain +10/20/30 Universal Spell Power for 20 seconds.</Description>
+      <Icon>EKArcaneSiphon</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Clickie/>
+      <Requirements>
+        <RequiresOneOf>
+          <Requirement>
+            <Class>Sorcerer</Class>
+            <Level>1</Level>
+          </Requirement>
+          <Requirement>
+            <Class>Wizard</Class>
+            <Level>1</Level>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Eldritch Knight: Item Defense</Name>
+      <InternalName>EKLItemDefense</InternalName>
+      <Description>You have a 25%/50%/75% chance to negate potential item wear.</Description>
+      <Icon>EKItemDefense</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <RequiresOneOf>
+          <Requirement>
+            <Class>Sorcerer</Class>
+            <Level>1</Level>
+          </Requirement>
+          <Requirement>
+            <Class>Wizard</Class>
+            <Level>1</Level>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Eldritch Knight: Toughness</Name>
+      <InternalName>EKLToughness</InternalName>
+      <Description>+5/+10/+15 maximum Hit Points.</Description>
+      <Icon>Toughness</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <RequiresOneOf>
+          <Requirement>
+            <Class>Sorcerer</Class>
+            <Level>1</Level>
+          </Requirement>
+          <Requirement>
+            <Class>Wizard</Class>
+            <Level>1</Level>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+      <Effect>
+        <Type>Hitpoints</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">5 10 15</AmountVector>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Eldritch Knight: Battlemage</Name>
+      <InternalName>EKLBattleMage</InternalName>
+      <Description>+1/+2/+3 Concentration, Intimidate, and Spellcraft.</Description>
+      <Icon>EKBattleMage</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <RequiresOneOf>
+          <Requirement>
+            <Class>Sorcerer</Class>
+            <Level>1</Level>
+          </Requirement>
+          <Requirement>
+            <Class>Wizard</Class>
+            <Level>1</Level>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+      <Effect>
+        <Type>SkillBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">1 2 3</AmountVector>
+        <Skill>Concentration</Skill>
+        <Skill>Intimidate</Skill>
+        <Skill>Spell Craft</Skill>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Eldritch Knight: Improved Shield</Name>
+      <InternalName>EKLImprovedShield</InternalName>
+      <Description>Spell Like Ability: Shield
+You gain the Shield spell as a spell-like ability. In addition, while you are under
+the effect of the Shield spell, you gain +3/+6/+10 Physical Resistance Rating.
+Activation Cost: 8/6/4 Spell points</Description>
+      <Icon>EKImprovedShield</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Clickie/>
+      <Requirements>
+        <Requirement>
+          <Enhancement>EKLImprovedMageArmor</Enhancement>
+        </Requirement>
+        <RequiresOneOf>
+          <Requirement>
+            <Class>Sorcerer</Class>
+            <Level>2</Level>
+          </Requirement>
+          <Requirement>
+            <Class>Wizard</Class>
+            <Level>2</Level>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+      <Effect>
+        <Type>SpellLikeAbility</Type>
+        <Bonus>Enhancement</Bonus>
+        <SpellLikeAbility>Shield</SpellLikeAbility>
+      </Effect>
+      <Effect>
+        <Type>PRR</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">3 6 10</AmountVector>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Eldritch Knight: Mystic Wards</Name>
+      <InternalName>EKLMysticWards</InternalName>
+      <Description>+3/6/10 Magical Resistance Rating</Description>
+      <Icon>EKMysticWards</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <RequiresOneOf>
+          <Requirement>
+            <Class>Sorcerer</Class>
+            <Level>2</Level>
+          </Requirement>
+          <Requirement>
+            <Class>Wizard</Class>
+            <Level>2</Level>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+      <Effect>
+        <Type>MRR</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">3 6 10</AmountVector>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Eldritch Knight: Action Boost Spellpower</Name>
+      <InternalName>EKLActionBoost</InternalName>
+      <Description>You gain a +10/20/30 Action Boost bonus to Universal Spell Power for 20 seconds.</Description>
+      <Icon>EKActionBoostSpellpower</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Clickie/>
+      <ArrowUp/>
+      <Requirements>
+        <RequiresOneOf>
+          <Requirement>
+            <Class>Sorcerer</Class>
+            <Level>2</Level>
+          </Requirement>
+          <Requirement>
+            <Class>Wizard</Class>
+            <Level>2</Level>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Eldritch Knight: Shield Training</Name>
+      <InternalName>EKLShieldTraining</InternalName>
+      <Description>Passive: You gain proficiency with all shields except Tower Shields, and your
+Arcane Spell Failure chance from equipped shields is reduced by 5%.</Description>
+      <Icon>EKShieldTraining</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <RequiresOneOf>
+          <Requirement>
+            <Class>Sorcerer</Class>
+            <Level>2</Level>
+          </Requirement>
+          <Requirement>
+            <Class>Wizard</Class>
+            <Level>2</Level>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+      <Effect>
+        <Type>GrantFeat</Type>
+        <Bonus>Enhancement</Bonus>
+        <Feat>Shield Proficiency (General)</Feat>
+      </Effect>
+      <Effect>
+        <Type>ArcaneSpellFailureShields</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>-5</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Eldritch Knight: Wand and Scroll Mastery</Name>
+      <InternalName>EKLWandAndScrollMastery</InternalName>
+      <Description>+25%/+50%/+75% effectiveness from your wands, scrolls, and other items that cast spells,
+and +1/+2/+3 to the save DC of your offensive wands.</Description>
+      <Icon>EKWandAndScrollMastery</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <RequiresOneOf>
+          <Requirement>
+            <Class>Sorcerer</Class>
+            <Level>2</Level>
+          </Requirement>
+          <Requirement>
+            <Class>Wizard</Class>
+            <Level>2</Level>
+          </Requirement>
+        </RequiresOneOf>
+        <RequiresNoneOf>
+          <DisplayDescription>Any other Wand and Scroll Mastery enhancement</DisplayDescription>
+          <Requirement>
+            <Enhancement>DeepGnomeWandAndScrollMastery</Enhancement>
+          </Requirement>
+          <Requirement>
+            <Enhancement>GnomeWandAndScrollMastery</Enhancement>
+          </Requirement>
+          <Requirement>
+            <Enhancement>ATWandAndScrollMastery</Enhancement>
+          </Requirement>
+          <Requirement>
+            <Enhancement>SSWandAndScrollMastery</Enhancement>
+          </Requirement>
+          <Requirement>
+            <Enhancement>SHWandAndScrollMastery</Enhancement>
+          </Requirement>
+          <Requirement>
+            <Enhancement>AoVWandAndScrollMastery</Enhancement>
+          </Requirement>
+          <Requirement>
+            <Enhancement>MechWandAndScrollMastery</Enhancement>
+          </Requirement>
+          <Requirement>
+            <Enhancement>TSWandAndScrollMastery</Enhancement>
+          </Requirement>
+          <Requirement>
+            <Enhancement>AMWandAndScrollMastery</Enhancement>
+          </Requirement>
+        </RequiresNoneOf>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Eldritch Knight: Arcane Barrier</Name>
+      <InternalName>EKLArcaneBarrier</InternalName>
+      <Description>Passive: When your HP drop below 50% of maximum, you are immediately protected by
+an Arcane Barrier that reduces all incoming damage by 25% for the next 20 seconds.
+This effect may only trigger once every 90 seconds.</Description>
+      <Icon>EKArcaneBarrier</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements>
+        <RequiresOneOf>
+          <Requirement>
+            <Class>Sorcerer</Class>
+            <Level>3</Level>
+          </Requirement>
+          <Requirement>
+            <Class>Wizard</Class>
+            <Level>3</Level>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Eldritch Knight: Eldritch Accuracy</Name>
+      <InternalName>EKLEldritchAccuracy</InternalName>
+      <Description>You get Charisma to hit with weapons and shield bashes.</Description>
+      <Icon>EKEldritchAccuracy</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements>
+        <RequiresOneOf>
+          <Requirement>
+            <Class>Sorcerer</Class>
+            <Level>3</Level>
+          </Requirement>
+          <Requirement>
+            <Class>Wizard</Class>
+            <Level>3</Level>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+      <Effect>
+        <Type>WeaponAttackAbility</Type>
+        <Bonus>Enhancement</Bonus>
+        <Ability>Charisma</Ability>
+        <Weapon>All</Weapon>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Eldritch Knight: Synergetic Magic</Name>
+      <InternalName>EKLSynergeticMagic</InternalName>
+      <Description>When you activate Action Boost: Spell Power, you also gain an equal
+Action Boost bonus to Melee and Ranged Power for 20 seconds.</Description>
+      <Icon>EKSynergeticMagic</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Enhancement>EKLActionBoost</Enhancement>
+        </Requirement>
+        <RequiresOneOf>
+          <Requirement>
+            <Class>Sorcerer</Class>
+            <Level>3</Level>
+          </Requirement>
+          <Requirement>
+            <Class>Wizard</Class>
+            <Level>3</Level>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Eldritch Knight: Critical Mastery</Name>
+      <InternalName>EKLCriticalMastery</InternalName>
+      <Description> +1/2/3 to confirm critical hits and critical hit damage (before weapon multipliers)</Description>
+      <Icon>EKCriticalMastery</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements>
+        <RequiresOneOf>
+          <Requirement>
+            <Class>Sorcerer</Class>
+            <Level>3</Level>
+          </Requirement>
+          <Requirement>
+            <Class>Wizard</Class>
+            <Level>3</Level>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+      <Effect>
+        <Type>CriticalAttackBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">1 2 3</AmountVector>
+        <Weapon>All</Weapon>
+      </Effect>
+      <Effect>
+        <Type>Seeker</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">1 2 3</AmountVector>
+        <Weapon>All</Weapon>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Eldritch Knight: Ability I</Name>
+      <InternalName>EKLAbilityScoreI</InternalName>
+      <Description>Choose either Strength, Dexterity or Charisma</Description>
+      <Icon>StrDexCha</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <RequiresOneOf>
+          <Requirement>
+            <Class>Sorcerer</Class>
+            <Level>3</Level>
+          </Requirement>
+          <Requirement>
+            <Class>Wizard</Class>
+            <Level>3</Level>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>+1 Strength</Name>
+          <Description>+1 Strength</Description>
+          <Icon>Strength</Icon>
+          <Cost>2</Cost>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Ability>Strength</Ability>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Dexterity</Name>
+          <Description>+1 Dexterity</Description>
+          <Icon>Dexterity</Icon>
+          <Cost>2</Cost>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Ability>Dexterity</Ability>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Charisma</Name>
+          <Description>+1 Charisma</Description>
+          <Icon>Charisma</Icon>
+          <Cost>2</Cost>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Ability>Charisma</Ability>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Eldritch Knight: Knight's Transformation</Name>
+      <InternalName>EKLKnightsTransformation</InternalName>
+      <Description>Toggle: While this is turned on, all your spells and SLAs that are affected
+by Metamagics have their range reduced to touch range. You cannot enable the
+Enlarge Metamagic while this is active. You gain +30 Universal Spell Power and
++3% Spell Critical Damage. Your Base Attack Bonus equals your Character Lebel.
+You gain +5 to it with Melee Weapons.</Description>
+      <Icon>EKKnightsTransformation</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Clickie/>
+      <ArrowUp/>
+      <Stance>
+        <Name>Knight's Transformation</Name>
+        <Icon>EKKnightsTransformation</Icon>
+        <Description>While this is turned on, all your spells and SLAs that are affected
+by Metamagics have their range reduced to touch range. You cannot enable the
+Enlarge Metamagic while this is active. You gain +30 Universal Spell Power and
++3% Spell Critical Damage.</Description>
+      </Stance>
+      <Requirements>
+        <RequiresOneOf>
+          <Requirement>
+            <Class>Sorcerer</Class>
+            <Level>4</Level>
+          </Requirement>
+          <Requirement>
+            <Class>Wizard</Class>
+            <Level>4</Level>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+      <Effect>
+        <Type>AttackBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>5</Amount>
+        <Stance>Knight's Transformation</Stance>
+        <WeaponClass>Melee</WeaponClass>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>30</Amount>
+        <Stance>Knight's Transformation</Stance>
+        <SpellPower>All</SpellPower>
+      </Effect>
+      <Effect>
+        <Type>SpellCriticalDamage</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>3</Amount>
+        <Stance>Knight's Transformation</Stance>
+        <SpellPower>All</SpellPower>
+      </Effect>
+      <Effect>
+        <Type>OverrideBAB</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>30</Amount>
+        <Stance>Knight's Transformation</Stance>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Eldritch Knight: Offhand Defenses</Name>
+      <InternalName>EKLOffhandDefenses</InternalName>
+      <Description>Pick between Shield and Orb bonuses.</Description>
+      <Icon>EKOffhandDefenses</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <RequiresOneOf>
+          <Requirement>
+            <Class>Sorcerer</Class>
+            <Level>4</Level>
+          </Requirement>
+          <Requirement>
+            <Class>Wizard</Class>
+            <Level>4</Level>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Orb Saves</Name>
+          <Description>+1/2/3 to saving throws and +3/6/10 Universal Spell Power while holding an Orb</Description>
+          <Icon>EKOrbSaves</Icon>
+          <Cost>1</Cost>
+          <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Stance>Orb</Stance>
+            <Save>All</Save>
+          </Effect>
+          <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">3 6 10</AmountVector>
+            <Stance>Orb</Stance>
+            <SpellPower>All</SpellPower>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Shield Striking</Name>
+          <Description>On Hit: +5/10/15% chance to proc an immediate Shield Bash attack with an equipped shield.</Description>
+          <Icon>EKOffhandDefenses</Icon>
+          <Cost>1</Cost>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Eldritch Knight: Force's Point</Name>
+      <InternalName>EKLForcesPoint</InternalName>
+      <Description>When you cast a spell, you gain a stcak of Force's Point: Martial
+(+1 to Hit and Damage). This stacks up to 5 times. When you hit with a melee weapon,
+you gain a stack of Force's Point: Magical (+2 Universal Spell Power). This stacks
+up to 10 times. Stacks last 12 seconds each. You may only gain each effect once per
+second.</Description>
+      <Icon>EKForcesPoint</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <RequiresOneOf>
+          <Requirement>
+            <Class>Sorcerer</Class>
+            <Level>4</Level>
+          </Requirement>
+          <Requirement>
+            <Class>Wizard</Class>
+            <Level>4</Level>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Eldritch Knight: Armored Arcana</Name>
+      <InternalName>EKLArmoredArcana</InternalName>
+      <Description>Passive: You gain proficiency in Medium Armor, and you no longer
+suffer Arcane Spell Failure from Light Armor, Medium Armor or Mithral Body.</Description>
+      <Icon>EKArmoredArcana</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <RequiresOneOf>
+          <Requirement>
+            <Class>Sorcerer</Class>
+            <Level>4</Level>
+          </Requirement>
+          <Requirement>
+            <Class>Wizard</Class>
+            <Level>4</Level>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+      <Effect>
+        <Type>GrantFeat</Type>
+        <Bonus>Enhancement</Bonus>
+        <Feat>Medium Armor Proficiency</Feat>
+      </Effect>
+      <Effect>
+        <Type>ArcaneSpellFailure</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>-100</Amount>
+        <AnyOfStance>Light Armor</AnyOfStance>
+        <AnyOfStance>Medium Armor</AnyOfStance>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Eldritch Knight: Ability II</Name>
+      <InternalName>EKLAbilityScoreII</InternalName>
+      <Description>Choose either Strength, Dexterity or Charisma</Description>
+      <Icon>StrDexCha</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Enhancement>EKLAbilityScoreI</Enhancement>
+        </Requirement>
+        <RequiresOneOf>
+          <Requirement>
+            <Class>Sorcerer</Class>
+            <Level>4</Level>
+          </Requirement>
+          <Requirement>
+            <Class>Wizard</Class>
+            <Level>4</Level>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>+1 Strength</Name>
+          <Description>+1 Strength</Description>
+          <Icon>Strength</Icon>
+          <Cost>2</Cost>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Ability>Strength</Ability>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Dexterity</Name>
+          <Description>+1 Dexterity</Description>
+          <Icon>Dexterity</Icon>
+          <Cost>2</Cost>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Ability>Dexterity</Ability>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Charisma</Name>
+          <Description>+1 Charisma</Description>
+          <Icon>Charisma</Icon>
+          <Cost>2</Cost>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Ability>Charisma</Ability>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Eldritch Knight: Improved Knight's Transformation</Name>
+      <InternalName>EKLImprovedKnightsTransformation</InternalName>
+      <Description>If you have Knight's Transformation active, you also gain +1 Competence Bonus
+to Critical Multiplier with Melee Weapons.</Description>
+      <Icon>EKImprovedKnightsTransformation</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>5</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <ArrowRight/>
+      <Tier5/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>12</MinLevel>
+        </Requirement>
+        <Requirement>
+          <Enhancement>EKLKnightsTransformation</Enhancement>
+        </Requirement>
+        <RequiresOneOf>
+          <Requirement>
+            <Class>Sorcerer</Class>
+            <Level>5</Level>
+          </Requirement>
+          <Requirement>
+            <Class>Wizard</Class>
+            <Level>5</Level>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+      <Effect>
+        <Type>CriticalMultiplier</Type>
+        <Bonus>Competence</Bonus>
+        <Amount>1</Amount>
+        <Stance>Knight's Transformation</Stance>
+        <WeaponClass>Melee</WeaponClass>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Eldritch Knight: Knight's Arcanum</Name>
+      <InternalName>EKLKnightsArcanum</InternalName>
+      <Description>Pick a focus for your seplls while in Knight's Transformation</Description>
+      <Icon>EKKnightsArcanum</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>5</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>12</MinLevel>
+        </Requirement>
+        <Requirement>
+          <Enhancement>EKLImprovedKnightsTransformation</Enhancement>
+        </Requirement>
+        <RequiresOneOf>
+          <Requirement>
+            <Class>Sorcerer</Class>
+            <Level>5</Level>
+          </Requirement>
+          <Requirement>
+            <Class>Wizard</Class>
+            <Level>5</Level>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Knight's Controller</Name>
+          <Description>If you have Knight's Transformation active, you also gain +2 Enchantment DCs, +4 Spell Penetration</Description>
+          <Icon>EKKnightsController</Icon>
+          <Cost>2</Cost>
+          <Effect>
+            <Type>SpellDC</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Stance>Knight's Transformation</Stance>
+            <School>Enchantment</School>
+          </Effect>
+          <Effect>
+            <Type>SpellPenetrationBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>4</Amount>
+            <Stance>Knight's Transformation</Stance>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Knight's Striker</Name>
+          <Description>If you have Knight's Transformation active, you also gain +2 Evocation and Conjuration DCs</Description>
+          <Icon>EKKnightsController</Icon>
+          <Cost>2</Cost>
+          <Effect>
+            <Type>SpellDC</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Stance>Knight's Transformation</Stance>
+            <School>Evocation</School>
+          </Effect>
+          <Effect>
+            <Type>SpellDC</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Stance>Knight's Transformation</Stance>
+            <School>Conjuration</School>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Eldritch Knight: Force's Edge</Name>
+      <InternalName>EKLForcesEdge</InternalName>
+      <Description>When you cast a spell, you gain +1 Competence Bonus to Critical Threat
+Range for 12 seconds. When you make a Melee Attack, you gain +5% Spell Critical
+Chance for 12 seconds.</Description>
+      <Icon>EKForcesEdge</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>5</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>12</MinLevel>
+        </Requirement>
+        <RequiresOneOf>
+          <Requirement>
+            <Class>Sorcerer</Class>
+            <Level>5</Level>
+          </Requirement>
+          <Requirement>
+            <Class>Wizard</Class>
+            <Level>5</Level>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+      <Effect>
+        <Type>CriticalRange</Type>
+        <Bonus>Competence</Bonus>
+        <Amount>1</Amount>
+        <Stance>Spell Cast</Stance>
+        <Weapon>All</Weapon>
+      </Effect>
+      <Effect>
+        <Type>Unknown</Type>
+        <Bonus>Competence</Bonus>
+        <Amount>5</Amount>
+        <Stance>Melee Attack</Stance>
+        <Weapon>All</Weapon>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Eldritch Knight: Radiant Forcefield</Name>
+      <InternalName>EKLRadiantForcefield</InternalName>
+      <Description>Spell Like Ability: Radiant Forcefield
+Activation Cost: 30 Spell Points. Cooldown: 3 Minutes</Description>
+      <Icon>EKRadiantForcefield</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>5</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Clickie/>
+      <Tier5/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>12</MinLevel>
+        </Requirement>
+        <RequiresOneOf>
+          <Requirement>
+            <Class>Sorcerer</Class>
+            <Level>5</Level>
+          </Requirement>
+          <Requirement>
+            <Class>Wizard</Class>
+            <Level>5</Level>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+      <Effect>
+        <Type>SpellLikeAbility</Type>
+        <Bonus>Enhancement</Bonus>
+        <SpellLikeAbility>Radiant Forcefield</SpellLikeAbility>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Eldritch Knight: Eldritch Tempest</Name>
+      <InternalName>EKLEldritchTempest</InternalName>
+      <Description>Activate: Perform a spinning melee attack, dealing weapon damage +5[W] to all
+nearby enemies and knocking them prone for 1 second.
+If any foes are struck by Eldritch Tempest, your weapon also releases an explosion
+of magical force, dealing an additional 1d6 Force damage per character level to
+all nearby enemies. This additional force damage is affected by your spell power.
+Activation Cost: 50/40/30 Spell points.
+Cooldown: 60/45/30 seconds</Description>
+      <Icon>EKEldritchTempest</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>5</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>30</MinSpent>
+      <Clickie/>
+      <Tier5/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>12</MinLevel>
+        </Requirement>
+        <RequiresOneOf>
+          <Requirement>
+            <Class>Sorcerer</Class>
+            <Level>5</Level>
+          </Requirement>
+          <Requirement>
+            <Class>Wizard</Class>
+            <Level>5</Level>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+    </EnhancementTreeItem>
+  </EnhancementTree>
    <EnhancementTree>
       <Name>Air Savant</Name>
       <Version>1</Version>
@@ -77506,7 +78947,7 @@ Every ability you take in this tree grants +4 Maximum Hit Points in Reaper Diffi
          <Name>Reaper's Arcanum III</Name>
          <InternalName>DireCore3</InternalName>
          <Description>+1 Intelligence, Wisdom or Charisma</Description>
-         <Icon>ReapersArcanum</Icon>
+         <Icon>IntWisCha</Icon>
          <XPosition>2</XPosition>
          <YPosition>0</YPosition>
          <Cost>1</Cost>
@@ -79969,7 +81410,7 @@ Duration 15 seconds. Activation Cost: [50/40/30] Spell Points</Description>
          <InternalName>SmiteTheWicked</InternalName>
          <Description>Active Ability: (Cooldown 15 seconds, activation cost 10 spell points)
 Melee smite: Gain twice your Charisma bonus to your attack roll and damage
-bonus of 2(W) + 7 against evil opponents.
+bonus of 2[W] + 7 against evil opponents.
 On hit: 50 light damage against undead and evil outsiders.
 On vorpal: Destroy undead or evil outsiders under 1000 hit points.</Description>
          <Icon>SmiteTheWicked</Icon>
@@ -80430,7 +81871,7 @@ Activation cost is [300/200/100] Spell points and has a cooldown of [3/2/1] minu
       <EnhancementTreeItem>
          <Name>Divine Crusader: Strike Down</Name>
          <InternalName>StrikeDown</InternalName>
-         <Description>Active Ability: Melee smite cleave: Gain a damage bonus of +3(W). On hit 500 fire damage
+         <Description>Active Ability: Melee smite cleave: Gain a damage bonus of +3[W]. On hit 500 fire damage
 (does not scale with melee power nor spell power). On hit after damage destroy
 undead or evil outsiders below 1000 HP.
 (Cooldown 12 seconds, activation cost: 5 spell points)</Description>

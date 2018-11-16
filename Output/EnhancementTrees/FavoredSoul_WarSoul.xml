@@ -148,7 +148,7 @@ Passive:
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>WarSoul War Domain: Blur</Name>
+         <Name>War Soul: War Caster: Blur</Name>
          <InternalName>WSCore4</InternalName>
          <Description>Blur is added to your spellbook as a level 2 spell.
 In addition, you permanently benefit from the effect of the Blur spell.
@@ -193,7 +193,7 @@ Passive:
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>WarSoul War Domain: Haste</Name>
+         <Name>War Soul: War caster: Haste</Name>
          <InternalName>WSCore5</InternalName>
          <Description>Haste is added to your spellbook as a level 3 spell.
 Passive:
@@ -896,9 +896,10 @@ Energy Absorption.</Description>
          <Name>War Soul: Ameliorating Strike</Name>
          <InternalName>WSAmelioratingStrike</InternalName>
          <Description>When you strike an enemy with Smite Foe, you and your nearby allies are
-healed by 1d2 per character level, and benefit from the effects of the Lesser
+healed by 1d3 per character level, and benefit from the effects of the Lesser
 Restoration spell. (The heal from Ameliorating Strike is affected by your
-Positive Spell Power)</Description>
+Positive Spell Power) You may only perform this AOE heal once per time you use
+this skill.</Description>
          <Icon>WPAmelioratingStrike</Icon>
          <XPosition>0</XPosition>
          <YPosition>4</YPosition>
@@ -932,14 +933,14 @@ Positive Spell Power)</Description>
          <Selector>
             <EnhancementSelection>
                <Name>Silence the Wicked (Melee)</Name>
-               <Description>Favored Weapon Melee Attack: +1[W]: On Hit: Affected enemy can't cast spells for 4/8/12 seconds</Description>
+               <Description>Favored Weapon Melee Attack: +1/2/3[W]: On Hit: Affected enemy can't cast spells for 4/8/12 seconds</Description>
                <Icon>WSSilenceTheWicked</Icon>
                <Cost>1</Cost>
                <Clickie/>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Silence the Wicked (Ranged)</Name>
-               <Description>Favored Weapon Ranged Attack: +1[W]: On Hit: Affected enemy can't cast spells for 4/8/12 seconds</Description>
+               <Description>Favored Weapon Ranged Attack: +1/2/3[W]: On Hit: Affected enemy can't cast spells for 4/8/12 seconds</Description>
                <Icon>WSSilenceTheWicked</Icon>
                <Cost>1</Cost>
                <Clickie/>
@@ -1139,13 +1140,11 @@ and a base attack bonus equal to a fighter of the same level.</Description>
       <EnhancementTreeItem>
          <Name>War Soul: Divine Vessel</Name>
          <InternalName>WSDivineVessel</InternalName>
-         <Description>Toggle: While active, your attacks generate a stack of Divine Conduit.
-When Divine Conduit reaches 25, it is removed and nearby enemies take 1d4 Fire
-and 1d4 Light damage per character level. (Damage from Divine Vessel is affected
-by Fire and Light Spell Power)
-You may only gain a stack of Divine Conduit once every 3/2/1 seconds.
-If you have Implacable Foe, Divine Vessel will trigger upon reaching 20 stacks
-of Divine Conduit, instead of 25.</Description>
+         <Description>Your attacks generate a stack of Divine Conduit.
+When Divine Conduit reaches 25, all stacks are cleared and you gain one
+charge of this attack. (Max uses: 1. You cannot gain stacks of Divine Vessel
+while you have any uses of this attack.)
+Choose between Melee and Ranged attacks:</Description>
          <Icon>WPDivineVessel</Icon>
          <XPosition>1</XPosition>
          <YPosition>5</YPosition>
@@ -1163,14 +1162,38 @@ of Divine Conduit, instead of 25.</Description>
                <MinLevel>12</MinLevel>
             </Requirement>
          </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Divine Vessel (Melee Attack)</Name>
+               <Description>Active: Melee Favored Weapon Cleave Attack: Expend 1 charge.
+Take a shot with your bow, dealing +5[W] damage. Each affected enemy is hit
+by a meteor, taking 1 to 4 Fire and 1 to 4 Light Damage per character level.
+(Damage from the meteor is affected by Fire and Light Spellpower.)</Description>
+               <Icon>WPDivineVessel</Icon>
+               <Cost>1</Cost>
+               <Clickie/>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Divine Vessel (Ranged Attack)</Name>
+               <Description>Active: Ranged Favored Weapon Attack: Expend 1 charge.
+Make a sweeping weapon attack against all nearby enemies for +5[W] damage.
+Each affected enemy is hit by a meteor, taking 1 to 4 Fire and 1 to 4 Light
+Damage per character level.
+(Damage from the meteor is affected by Fire and Light Spellpower.)</Description>
+               <Icon>WPDivineVessel</Icon>
+               <Cost>1</Cost>
+               <Clickie/>
+            </EnhancementSelection>
+         </Selector>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>War Soul: Wrathful Weapons</Name>
          <InternalName>WSWrathfulWeapons</InternalName>
-         <Description>When wielding your religion's favored weapon, it gains an additional +1
-to its Enhancement Bonus. When you score a Vorpal Hit with your religion's
-favored weapon, your attacks gain 10d6 Light Damage on hit for the next 6 seconds.
-This damage scales with 200% of the higher of your Melee or Ranged Power.</Description>
+         <Description>When wielding your religion's favored weapon in your main hand, you gain
++3 to hit and damage, and +9 Universal Spell Power. When you score a Vorpal
+Hit with your religion's favored weapon, your attacks gain 10d6 Light Damage
+on hit for the next 12 seconds. This damage scales at 200% with the higher of
+your Melee or Ranged Power.</Description>
          <Icon>WPWrathfulWeapons</Icon>
          <XPosition>2</XPosition>
          <YPosition>5</YPosition>
@@ -1193,8 +1216,14 @@ This damage scales with 200% of the higher of your Melee or Ranged Power.</Descr
          <Effect>
             <Type>WeaponEnchantment</Type>
             <Bonus>Enhancement</Bonus>
-            <Amount>1</Amount>
+            <Amount>3</Amount>
             <Weapon>All</Weapon>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>9</Amount>
+            <SpellPower>All</SpellPower>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>

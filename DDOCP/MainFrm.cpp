@@ -714,7 +714,6 @@ void CMainFrame::CopyDefaultIniToDDOBuilderIni()
     // the ini file to be used. This allows new and existing users to get good
     // default settings on startup (new users get the defaults, old users get
     // their previous settings)
-    // load all the images for the skills and add to the image list
     char fullPath[MAX_PATH];
     ::GetModuleFileName(
             NULL,

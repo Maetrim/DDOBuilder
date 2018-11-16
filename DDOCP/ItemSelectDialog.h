@@ -126,4 +126,5 @@ class CItemSelectDialog : public CDialog
         int m_comboHookHandles[MAX_Filigree + 1];
         int m_augmentHookHandles[MAX_Augments];
         bool m_bIgnoreNextMessage;
+        CString m_previousSearchText;
 };
