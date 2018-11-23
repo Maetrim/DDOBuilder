@@ -200,6 +200,20 @@ Rank 3: Throw attacks you perform while sneaking deal +1[W] damage.</Description
          <MinSpent>1</MinSpent>
          <ArrowUp/>
          <Requirements/>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Skill>Balance</Skill>
+            <Skill>Jump</Skill>
+            <Skill>Tumble</Skill>
+            <AmountVector size="3">1 2 3</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>ACBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">2 4 6</AmountVector>
+            <Stance>Tumbling</Stance>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Halfling: Cunning</Name>
@@ -213,6 +227,27 @@ Rank 3: Throw attacks you perform while sneaking deal +1[W] damage.</Description
          <MinSpent>1</MinSpent>
          <ArrowUp/>
          <Requirements/>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Skill>Bluff</Skill>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Stance>Sneak Attacks</Stance>
+         </Effect>
+         <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Weapon>All</Weapon>
+            <Stance>Sneak Attacks</Stance>
+         </Effect>
+         <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Weapon>All</Weapon>
+            <Stance>Sneak Attacks</Stance>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Halfling: Bold</Name>
@@ -404,7 +439,8 @@ This ability shares a counter with Lesser Dragonmark of Healing.</Description>
             <Bonus>Enhancement</Bonus>
             <Type>DodgeBonus</Type>
             <AmountVector size="3">1 2 3</AmountVector>
-            <Stance>Cloth Armor</Stance>
+            <AnyOfStance>Cloth Armor</AnyOfStance>
+            <AnyOfStance>Light Armor</AnyOfStance>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -453,7 +489,7 @@ thrown weapons.</Description>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Halfling:  Agility</Name>
+         <Name>Halfling: Agility</Name>
          <InternalName>HalflingAgility</InternalName>
          <Description>Up to once per second when you are hit, you gain 1% dodge until you are missed. This effect can stack up to 5 times.</Description>
          <Icon>HalflingAgility</Icon>

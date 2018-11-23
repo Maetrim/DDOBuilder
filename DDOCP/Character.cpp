@@ -1475,17 +1475,37 @@ void Character::ActivateStance(const Stance & stance)
             NotifyStanceDeactivated((*isit));
             ++isit;
         }
+        // animal forms can affect weapon auto stances
+        if (stance.Name() == "Wolf"
+                || stance.Name() == "Winter Wolf"
+                || stance.Name() == "Bear"
+                || stance.Name() == "Dire Bear"
+                || stance.Name() == "Fire Elemental"
+                || stance.Name() == "Water Elemental")
+        {
+            UpdateWeaponStances();
+        }
     }
 }
 
 void Character::DeactivateStance(const Stance & stance)
 {
-    // de-activate the stance if active
+    // deactivate the stance if active
     if (IsStanceActive(stance.Name()))
     {
-        // de-activation of a stance only affects that stance
+        // deactivation of a stance only affects that stance
         m_Stances.RevokeStance(stance.Name());
         NotifyStanceDeactivated(stance.Name());
+        // animal forms can affect weapon auto stances
+        if (stance.Name() == "Wolf"
+                || stance.Name() == "Winter Wolf"
+                || stance.Name() == "Bear"
+                || stance.Name() == "Dire Bear"
+                || stance.Name() == "Fire Elemental"
+                || stance.Name() == "Water Elemental")
+        {
+            UpdateWeaponStances();
+        }
     }
 }
 
@@ -1497,7 +1517,7 @@ bool Character::IsStanceActive(const std::string & name, WeaponType wt) const
             || name == "Favored Weapon")   // enhancements
     {
         // look through the trained feats to determine whether
-        // wt is the favored weapon type (Dieties)
+        // wt is the favored weapon type (Deities)
         ret = (IsFeatTrained("Follower of Aureon") && wt == Weapon_Quarterstaff)
                 || (IsFeatTrained("Follower of the Blood of Vol") && wt == Weapon_Dagger)
                 || (IsFeatTrained("Follower of the Lord of Blades") && wt == Weapon_GreatSword)
@@ -2917,6 +2937,7 @@ void Character::JustLoaded()
     //    this is done dynamically like this to allow enhancement AP costs to change
     //    between updates without completely invaliding a series of enhancements
     //    spent in a tree.
+    // 3. If the tree no longer exists. Remove its entry.
 
     // keep a message that will inform the user about changes made
     bool displayMessage = false;
@@ -2927,14 +2948,11 @@ void Character::JustLoaded()
         while (etsit != m_EnhancementTreeSpend.end())
         {
             const EnhancementTree & tree = GetEnhancementTree((*etsit).TreeName());
-            // is the recorded tree spend up to date with that loaded?
-            size_t spendVersion = (*etsit).TreeVersion();
-            if (spendVersion != tree.Version())
+            if (tree.Name() == "")
             {
-                // looks like this tree is now out of date, have to revoke all these
-                // enhancements in this tree (i.e. just delete it)
+                // the tree no longer exists, just delete this entry
                 CString text;
-                text.Format("All enhancements in tree \"%s\" were revoked as the tree has since been superseded\n",
+                text.Format("The tree \"%s\" no longer exists. All enhancements spent in this tree were revoked.\n",
                         (*etsit).TreeName().c_str());
                 message += text;
                 displayMessage = true;
@@ -2942,31 +2960,47 @@ void Character::JustLoaded()
             }
             else
             {
-                // the tree is up to date, sum how many APs were spent in it
-                size_t apsSpent = 0;
-                std::list<TrainedEnhancement> te = (*etsit).Enhancements();
-                std::list<TrainedEnhancement>::iterator teit = te.begin();
-                while (teit != te.end())
+                // is the recorded tree spend up to date with that loaded?
+                size_t spendVersion = (*etsit).TreeVersion();
+                if (spendVersion != tree.Version())
                 {
-                    const EnhancementTreeItem * pTreeItem = FindEnhancement((*teit).EnhancementName());
-                    apsSpent += pTreeItem->Cost() * (*teit).Ranks();
-                    // cost also updated so revoke of items will work
-                    (*teit).SetCost(pTreeItem->Cost());
-                    ++teit;
-                }
-                // now set it on the tree so it knows how much has been spent in it
-                (*etsit).Set_Enhancements(te);
-                (*etsit).SetSpent(apsSpent);
-                // done
-                ++etsit;
-                // we have to track action points spent in tree types
-                if (tree.HasIsRacialTree())
-                {
-                    m_racialTreeSpend += apsSpent;
+                    // looks like this tree is now out of date, have to revoke all these
+                    // enhancements in this tree (i.e. just delete it)
+                    CString text;
+                    text.Format("All enhancements in tree \"%s\" were revoked as the tree has since been superseded\n",
+                            (*etsit).TreeName().c_str());
+                    message += text;
+                    displayMessage = true;
+                    etsit = m_EnhancementTreeSpend.erase(etsit);
                 }
                 else
                 {
-                    m_otherTreeSpend += apsSpent;
+                    // the tree is up to date, sum how many APs were spent in it
+                    size_t apsSpent = 0;
+                    std::list<TrainedEnhancement> te = (*etsit).Enhancements();
+                    std::list<TrainedEnhancement>::iterator teit = te.begin();
+                    while (teit != te.end())
+                    {
+                        const EnhancementTreeItem * pTreeItem = FindEnhancement((*teit).EnhancementName());
+                        apsSpent += pTreeItem->Cost() * (*teit).Ranks();
+                        // cost also updated so revoke of items will work
+                        (*teit).SetCost(pTreeItem->Cost());
+                        ++teit;
+                    }
+                    // now set it on the tree so it knows how much has been spent in it
+                    (*etsit).Set_Enhancements(te);
+                    (*etsit).SetSpent(apsSpent);
+                    // done
+                    ++etsit;
+                    // we have to track action points spent in tree types
+                    if (tree.HasIsRacialTree())
+                    {
+                        m_racialTreeSpend += apsSpent;
+                    }
+                    else
+                    {
+                        m_otherTreeSpend += apsSpent;
+                    }
                 }
             }
         }
@@ -4635,6 +4669,7 @@ void Character::UpdateWeaponStances()
             ActivateStance(thf);
             ActivateStance(staff);
             DeactivateStance(swashbuckling);
+            DeactivateStance(swf);
             break;
         case Weapon_GreatAxe:
         case Weapon_GreatClub:
@@ -4643,6 +4678,7 @@ void Character::UpdateWeaponStances()
             ActivateStance(thf);
             DeactivateStance(staff);
             DeactivateStance(swashbuckling);
+            DeactivateStance(swf);
             break;
         default:
             if (item1.Weapon() != Weapon_Handwraps
@@ -4709,6 +4745,25 @@ void Character::UpdateWeaponStances()
     else
     {
         // no items equipped
+        DeactivateStance(twf);
+        DeactivateStance(thf);
+        DeactivateStance(swf);
+        ActivateStance(unarmed);
+        DeactivateStance(sab);
+        DeactivateStance(staff);
+        DeactivateStance(orb);
+        DeactivateStance(ra);
+        DeactivateStance(swashbuckling);
+    }
+    if (IsStanceActive("Wolf")
+            || IsStanceActive("Bear")
+            || IsStanceActive("Winter Wolf")
+            || IsStanceActive("Dire Bear")
+            || IsStanceActive("Fire Elemental")
+            || IsStanceActive("Water Elemental"))
+    {
+        // if they are in an animal form, then all specialised figthing
+        // stances are disabled
         DeactivateStance(twf);
         DeactivateStance(thf);
         DeactivateStance(swf);
@@ -5607,7 +5662,17 @@ void Character::UpdateGreensteelStances()
         }
         if (oppositionCount > max(dominionCount, escalationCount))
         {
-            ActivateStance(opposition);
+            if (dominionCount == 0
+                    && escalationCount == 0)
+            {
+                ActivateStance(opposition);
+            }
+            else
+            {
+                // Opposition dominance only occurs when ALL augments are "Opposition"
+                // any other type present and the bonus does not apply
+                DeactivateStance(opposition);
+            }
         }
         else
         {

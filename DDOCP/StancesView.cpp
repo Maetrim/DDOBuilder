@@ -207,7 +207,7 @@ void CStancesView::CreateStanceWindows()
     Stance swf("Single Weapon Fighting", "SingleWeaponFighting", "You are fighting with a single weapon");
     swf.Set_AutoControlled();
     AddStance(swf);
-    Stance unarmed("Unarmed", "ADanceOfFlowers", "You are fighting with handwraps or fists");
+    Stance unarmed("Unarmed", "ADanceOfFlowers", "You are fighting in Animal form or with handwraps / fists");
     unarmed.Set_AutoControlled();
     AddStance(unarmed);
     Stance axe("Axe", "BEReconstructedEdges", "You are fighting with an Axe");

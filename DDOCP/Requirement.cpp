@@ -175,23 +175,7 @@ bool Requirement::CanTrainEnhancement(
         }
         if (HasLevel())
         {
-            if (HasTier())
-            {
-                // only deny if trying to train the tier that this enhancement applies to
-                if (trainedRanks +1 == Tier())
-                {
-                    met &= (classLevel >= Level());
-                }
-                else
-                {
-                    met = true;    // its a higher tier requirement, assume yes
-                    // enhancement requirement becomes active once a tier has been trained
-                }
-            }
-            else
-            {
-                met &= (classLevel >= Level());
-            }
+            met &= (classLevel >= Level());
         }
     }
     if (HasEnhancement())
@@ -261,23 +245,7 @@ bool Requirement::IsAllowed(
         }
         if (HasLevel())
         {
-            if (HasTier())
-            {
-                // only deny if trying to train the tier that this enhancement applies to
-                if (trainedRanks +1 == Tier())
-                {
-                    met &= (classLevel >= Level());
-                }
-                else
-                {
-                    met = true;    // its a higher tier requirement, assume yes
-                    // enhancement requirement becomes active once a tier has been trained
-                }
-            }
-            else
-            {
-                met &= (classLevel >= Level());
-            }
+            met &= (classLevel >= Level());
         }
     }
 
@@ -390,11 +358,6 @@ void Requirement::CreateRequirementStrings(
             CString extra;
             extra.Format("(%d)", MinLevel());
             description += extra;
-            if (HasTier())
-            {
-                extra.Format("(Tier %d)", Tier());
-                description += extra;
-            }
             met->push_back(classLevel >= MinLevel());
         }
         if (HasLevel())
@@ -402,11 +365,6 @@ void Requirement::CreateRequirementStrings(
             CString extra;
             extra.Format("(%d)", Level());
             description += extra;
-            if (HasTier())
-            {
-                extra.Format("(Tier %d)", Tier());
-                description += extra;
-            }
             met->push_back(classLevel >= Level());
         }
         requirements->push_back(description);

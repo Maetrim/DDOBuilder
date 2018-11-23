@@ -505,10 +505,10 @@ void ActiveEffect::SetAmount(double amount)
         // no change
         break;
     case DT_statBonus:
-        amount = (int)(BaseStatToBonus(amount) / m_divider);
+        amount = (int)(BaseStatToBonus(amount) / m_divider + 0.005);
         break;
     case DT_fullAbility:
-        amount = (int)(amount / m_divider);
+        amount = (int)(amount / m_divider + 0.005);
         break;
     }
     m_amount = amount;

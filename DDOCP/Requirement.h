@@ -62,7 +62,6 @@ class Requirement :
                 DL_OPTIONAL_SIMPLE(_, size_t, MinLevel, 0) \
                 DL_OPTIONAL_SIMPLE(_, size_t, Amount, 0) \
                 DL_OPTIONAL_STRING(_, Enhancement) \
-                DL_OPTIONAL_SIMPLE(_, size_t, Tier, 0) \
                 DL_OPTIONAL_STRING(_, Selection) \
                 DL_OPTIONAL_STRING(_, Feat)
 

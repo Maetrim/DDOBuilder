@@ -79,6 +79,11 @@ void BreakdownItemWeaponDamageBonus::CreateOtherEffects()
                         }
                     }
                 }
+                // two handed weapons get 1.5 times the damage bonus
+                if (IsTwoHandedWeapon(Weapon()))
+                {
+                    multiplier = 1.5;
+                }
             }
             if (bonus != 0) // only add to list if non zero
             {
@@ -105,7 +110,7 @@ void BreakdownItemWeaponDamageBonus::CreateOtherEffects()
                         bonus,
                         "");        // no tree
                 feat.SetBreakdownDependency(StatToBreakdown(ability)); // so we know which effect to update
-                feat.SetDivider(1, DT_statBonus);
+                feat.SetDivider(1.0 / multiplier, DT_statBonus);
                 AddOtherEffect(feat);
             }
         }
