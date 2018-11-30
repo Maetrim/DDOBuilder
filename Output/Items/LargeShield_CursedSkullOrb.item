@@ -5,7 +5,7 @@
         <Description>A lack of life leaves a void, one easily filled by a greater evil. </Description>
         <MinLevel>29</MinLevel>
         <DropLocation>Quest: Quarantine</DropLocation>
-        <Weapon>Large Shield</Weapon>
+        <Weapon>Orb</Weapon>
         <DamageType>Bludgeoning</DamageType>
         <AttackModifier>Strength</AttackModifier>
         <DamageModifier>Strength</DamageModifier>
@@ -24,14 +24,34 @@
                 <Level>1</Level>
             </Requirement>
         </Requirements>
-      <Effect>
-         <Type>ACBonus</Type>
-         <Bonus>Shield</Bonus>
-         <Amount>0</Amount>
-      </Effect>
-      <EffectDescription>Damage and Type [1d8+2] + 15 Bludgeon, Magic</EffectDescription>
+      <EffectDescription>Damage and Type [1d8+2] + 0 Force</EffectDescription>
       <EffectDescription>Critical Threat Range 19-20 x2</EffectDescription>
-      <EffectDescription>+15 Enhancement Bonus: +15 Enhancement bonus to Armor Class.</EffectDescription>
+        <EffectDescription>Spellcasting Implement +29: Passive: +29 implement bonus to Universal spell power.</EffectDescription>
+        <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Implement</Bonus>
+            <Amount>29</Amount>
+            <SpellPower>All</SpellPower>
+        </Effect>
+        <EffectDescription>+15 Orb Bonus: While this orb is equipped and you are actively blocking, you gain a +15 Orb bonus to all saving throws, as well as Acid, Cold, Electric, Fire and Sonic resistances.</EffectDescription>
+        <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Orb</Bonus>
+            <Amount>15</Amount>
+            <Save>All</Save>
+            <Stance>Blocking</Stance>
+        </Effect>
+        <Effect>
+            <Type>EnergyResistance</Type>
+            <Bonus>Orb</Bonus>
+            <Amount>15</Amount>
+            <Energy>Acid</Energy>
+            <Energy>Cold</Energy>
+            <Energy>Electric</Energy>
+            <Energy>Fire</Energy>
+            <Energy>Sonic</Energy>
+            <Stance>Blocking</Stance>
+        </Effect>
         <EffectDescription>Insightful Nullification +101: Passive: +101 Insight Bonus to Negative Spell Power.</EffectDescription>
         <Effect>
             <Type>SpellPower</Type>
@@ -59,32 +79,6 @@
             <Bonus>Competence</Bonus>
             <Amount>80</Amount>
         </Effect>
-      <ItemSpecificEffects>
-        <Effect>
-            <Type>WeaponBaseDamageBonus</Type>
-            <Bonus>Base</Bonus>
-            <Amount>1</Amount>
-            <Weapon>Large Shield</Weapon>
-        </Effect>
-         <Effect>
-            <Type>CriticalRange</Type>
-            <Bonus>Base</Bonus>
-            <Amount>2</Amount>
-            <Weapon>Large Shield</Weapon>
-         </Effect>
-         <Effect>
-            <Type>CriticalMultiplier</Type>
-            <Bonus>Base</Bonus>
-            <Amount>2</Amount>
-            <Weapon>Large Shield</Weapon>
-         </Effect>
-            <Effect>
-                <Type>WeaponPlus</Type>
-                <Bonus>WeaponEnchantment</Bonus>
-                <Amount>15</Amount>
-                <Weapon>All</Weapon>
-            </Effect>
-      </ItemSpecificEffects>
         <EffectDescription>Curse Necromancer Set:
 2 Pieces Equipped gives: +15 Artifact Bonus to Negative Healing Amplification.
                          Every time you cast a Negative spell, you have a chance to apply a stack of Dreadful Curse,

@@ -199,7 +199,7 @@ void BreakdownItemSave::CreateOtherEffects()
 bool BreakdownItemSave::AffectsUs(const Effect & effect) const
 {
     // return true if the effect applies to this save
-    // note that effect that apply to "All" only apply to Fort, reflex and will
+    // note that effect that apply to "All" only apply to Fortitude, Reflex and Will
     // as the sub-save types use the total from the main category as a part of their total
     // so we do not want to count the bonus twice
     bool isUs = false;

@@ -699,15 +699,11 @@ void Character::NotifyAllTwistEffects()
             // now train the effects of the selected twist
             std::string treeName;
             const EnhancementTreeItem * item = FindEnhancement(trainedTwist->EnhancementName(), &treeName);
-            for (size_t i = 0; i < trainedTwist->Ranks(); ++i)
-            {
-                // need to call once per rank of trained twist
-                ApplyEnhancementEffects(
-                        treeName,
-                        trainedTwist->EnhancementName(),
-                        trainedTwist->HasSelection() ? trainedTwist->Selection() : "",
-                        1);
-            }
+            ApplyEnhancementEffects(
+                    treeName,
+                    trainedTwist->EnhancementName(),
+                    trainedTwist->HasSelection() ? trainedTwist->Selection() : "",
+                    trainedTwist->Ranks());
         }
     }
 }
@@ -2598,7 +2594,8 @@ void Character::Enhancement_RevokeEnhancement(
         std::string * enhancementSelection)
 {
     EnhancementSpendInTree * pItem = Enhancement_FindTree(treeName);
-    if (pItem != NULL)
+    if (pItem != NULL
+            && pItem->Enhancements().size() > 0)
     {
         bool wasTier5 = pItem->HasTier5();
         // return points available to spend also
@@ -3423,7 +3420,8 @@ void Character::Reaper_RevokeEnhancement(
         const std::string & treeName)
 {
     ReaperSpendInTree * pItem = Reaper_FindTree(treeName);
-    if (pItem != NULL)
+    if (pItem != NULL
+            && pItem->Enhancements().size() > 0)
     {
         // return points available to spend also
         std::string revokedEnhancement;
@@ -3743,7 +3741,8 @@ void Character::EpicDestiny_RevokeEnhancement(
         std::string * enhancementSelection)
 {
     EpicDestinySpendInTree * pItem = EpicDestiny_FindTree(treeName);
-    if (pItem != NULL)
+    if (pItem != NULL
+            && pItem->Enhancements().size() > 0)
     {
         // return points available to spend also
         std::string revokedEnhancement;
@@ -4075,14 +4074,11 @@ void Character::SetTwist(size_t twistIndex, const TrainedEnhancement * te)
         std::string treeName;
         // need to call once per rank of trained twist
         const EnhancementTreeItem * item = FindEnhancement(te->EnhancementName(), &treeName);
-        for (size_t i = 0; i < te->Ranks(); ++i)
-        {
-            ApplyEnhancementEffects(
-                    treeName,
-                    te->EnhancementName(),
-                    te->HasSelection() ? te->Selection() : "",
-                    1);
-        }
+        ApplyEnhancementEffects(
+                treeName,
+                te->EnhancementName(),
+                te->HasSelection() ? te->Selection() : "",
+                te->Ranks());
     }
     else
     {
@@ -4762,7 +4758,7 @@ void Character::UpdateWeaponStances()
             || IsStanceActive("Fire Elemental")
             || IsStanceActive("Water Elemental"))
     {
-        // if they are in an animal form, then all specialised figthing
+        // if they are in an animal form, then all specialised fighting
         // stances are disabled
         DeactivateStance(twf);
         DeactivateStance(thf);
@@ -4861,7 +4857,7 @@ void Character::UpdateArmorStances()
             DeactivateStance(medium);
             DeactivateStance(heavy);
         }
-        else
+        else // must be "Composite Plating"
         {
             ActivateStance(cloth);
             DeactivateStance(light);
@@ -4935,16 +4931,19 @@ void Character::UpdateCenteredStance()
     {
         isCentered = false;
     }
-    // now check any weapon breakdowns
-    BreakdownItem * pBI = FindBreakdown(Breakdown_WeaponEffectHolder);
-    if (pBI != NULL)
+    else
     {
-        BreakdownItemWeaponEffects * pBIWE = dynamic_cast<BreakdownItemWeaponEffects*>(pBI);
-        if (pBIWE != NULL)
+        // now check any weapon breakdowns
+        BreakdownItem * pBI = FindBreakdown(Breakdown_WeaponEffectHolder);
+        if (pBI != NULL)
         {
-            if (!pBIWE->AreWeaponsCentering())
+            BreakdownItemWeaponEffects * pBIWE = dynamic_cast<BreakdownItemWeaponEffects*>(pBI);
+            if (pBIWE != NULL)
             {
-                isCentered = false;
+                if (!pBIWE->AreWeaponsCentering())
+                {
+                    isCentered = false;
+                }
             }
         }
     }
