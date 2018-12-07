@@ -15,7 +15,7 @@ namespace
     const unsigned f_verCurrent = 1;
 
     size_t c_maxSpend = 10;
-    size_t c_statIncreaseCosts[] = {1, 1, 1, 1, 1, 1, 2, 2, 3, 3};
+    int c_statIncreaseCosts[] = {1, 1, 1, 1, 1, 1, 2, 2, 3, 3};
     const unsigned arraySize = sizeof(c_statIncreaseCosts) / sizeof(*c_statIncreaseCosts);
     BOOST_STATIC_ASSERT(arraySize == 10);
 }
@@ -103,8 +103,8 @@ bool AbilitySpend::CanSpendOnAbility(
     {
         // its not at max, but are there enough points left to
         // spend to the next level?
-        size_t availablePoints = (m_AvailableSpend - PointsSpent());
-        size_t nextCost = c_statIncreaseCosts[currentSpend];
+        int availablePoints = ((int)m_AvailableSpend - (int)PointsSpent());
+        int nextCost = c_statIncreaseCosts[currentSpend];
         canSpend = (availablePoints >= nextCost); // true if enough points available
     }
     return canSpend;

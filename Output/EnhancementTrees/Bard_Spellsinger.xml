@@ -14,11 +14,8 @@
          <Name>Spellsinger</Name>
          <InternalName>SSCore1</InternalName>
          <Description>Each AP spent in Spellsinger grants +1 Universal Spell Power.
-Each Spellsinger Core Ability you acquire after this one grants
-+1 Diplomacy, Listen, Perform, UMD and 2% critical chance with sonic
-and positive spells.
-Each Spellsinger Core Ability other than the Capstone (Maestro of Life and Death)
-you acquire after this one grants +1 DCs to Enchantment, Evocation, and Illusion spells.</Description>
+Each Spellsinger Core Ability including this one allows you to sing Bardic
+Inspiration as if you had 1 additional Bard level.</Description>
          <Icon>SSSpellsinger</Icon>
          <XPosition>0</XPosition>
          <YPosition>0</YPosition>
@@ -26,7 +23,12 @@ you acquire after this one grants +1 DCs to Enchantment, Evocation, and Illusion
          <Ranks>1</Ranks>
          <MinSpent>0</MinSpent>
          <ArrowRight/>
-         <Requirements/>
+         <Requirements>
+            <Requirement>
+               <Class>Bard</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
          <Effect>
             <DisplayName>Spellsinger: Spell power per action point</DisplayName>
             <Bonus>Enhancement</Bonus>
@@ -36,22 +38,9 @@ you acquire after this one grants +1 DCs to Enchantment, Evocation, and Illusion
             <AmountPerAP>1.0</AmountPerAP>
          </Effect>
          <Effect>
-            <Type>SpellDC</Type>
+            <Type>SongDuration</Type>
             <Bonus>Enhancement</Bonus>
-            <Amount>1</Amount>
-            <School>Enchantment</School>
-         </Effect>
-         <Effect>
-            <Type>SpellDC</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>1</Amount>
-            <School>Evocation</School>
-         </Effect>
-         <Effect>
-            <Type>SpellDC</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>1</Amount>
-            <School>Illusion</School>
+            <Amount>30</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -60,7 +49,10 @@ you acquire after this one grants +1 DCs to Enchantment, Evocation, and Illusion
          <Description>Your Fascinate gains the power to mesmerize Oozes.
 They stop acting and behave like they have been fascinated.
 Unlike truly fascinated creatures, however, they are not susceptible
-to suggestion.</Description>
+to suggestion.
+Your Enchantment, Evocation and Illusion spells gain +1 to their DCs.
++1 Diplomacy, Listen, Perform and Use Magic Device.
++2% critical chance with Sonic and Positive spells.</Description>
          <Icon>SSMusicOfTheSewers</Icon>
          <XPosition>1</XPosition>
          <YPosition>0</YPosition>
@@ -111,6 +103,11 @@ to suggestion.</Description>
             <SpellPower>Sonic</SpellPower>
             <SpellPower>Positive</SpellPower>
          </Effect>
+         <Effect>
+            <Type>SongDuration</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>30</Amount>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Spellsinger: Music of the Dead</Name>
@@ -118,7 +115,13 @@ to suggestion.</Description>
          <Description>Your Fascinate gains the power to mesmerize Undead.
 They stop acting and behave like they have been fascinated.
 Unlike truly fascinated creatures, however, they are not susceptible
-to suggestion.</Description>
+to suggestion.
+Your Sustaining Song melody now works on Undead Allies, providing them with a
+Negative heal over time. Your Inspire Greatness now provides a +10 Music
+bonus to Negative Healing Amplification.
+Your Enchantment, Evocation and Illusion spells gain +1 to their DCs.
++1 Diplomacy, Listen, Perform and Use Magic Device.
++2% critical chance with Sonic and Positive spells.</Description>
          <Icon>SSMusicOfTheDead</Icon>
          <XPosition>2</XPosition>
          <YPosition>0</YPosition>
@@ -169,6 +172,16 @@ to suggestion.</Description>
             <SpellPower>Sonic</SpellPower>
             <SpellPower>Positive</SpellPower>
          </Effect>
+         <Effect>
+            <Type>NegativeHealingAmplification</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>10</Amount>
+         </Effect>
+         <Effect>
+            <Type>SongDuration</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>30</Amount>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Spellsinger: Music of the Makers</Name>
@@ -176,7 +189,14 @@ to suggestion.</Description>
          <Description>Your Fascinate gains the power to mesmerize Constructs.
 They stop acting and behave like they have been fascinated.
 Unlike truly fascinated creatures, however, they are not susceptible
-to suggestion.</Description>
+to suggestion.
+Your Sustaining Song melody now works on Construct and Living Construct Allies,
+such as Warforged and Artificer Iron Defenders, providing them with a Repair
+over time.
+Your Inspire Greatness now provides a +10 Music bonus to Repair Amplification.
+Your Enchantment, Evocation and Illusion spells gain +1 to their DCs.
++1 Diplomacy, Listen, Perform and Use Magic Device.
++2% critical chance with Sonic and Positive spells.</Description>
          <Icon>SSMusicOfTheMakers</Icon>
          <XPosition>3</XPosition>
          <YPosition>0</YPosition>
@@ -227,13 +247,26 @@ to suggestion.</Description>
             <SpellPower>Sonic</SpellPower>
             <SpellPower>Positive</SpellPower>
          </Effect>
+         <Effect>
+            <Type>RepairAmplification</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>10</Amount>
+         </Effect>
+         <Effect>
+            <Type>SongDuration</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>30</Amount>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Spellsinger: Virtuoso</Name>
          <InternalName>SSCore5</InternalName>
          <Description>You regenerate 1 Song every 5 minutes.
-+2 Songs per rest.
-+20% bard song duration</Description>
++2 Songs per rest. You sing your Bardic Inspiration as if you had two more Bard
+levels (for a total of 3 for this enhancement)
+Your Enchantment, Evocation and Illusion spells gain +1 to their DCs.
++1 Diplomacy, Listen, Perform and Use Magic Device.
++2% critical chance with Sonic and Positive spells.</Description>
          <Icon>SSVirtuoso</Icon>
          <XPosition>4</XPosition>
          <YPosition>0</YPosition>
@@ -284,15 +317,21 @@ to suggestion.</Description>
             <SpellPower>Sonic</SpellPower>
             <SpellPower>Positive</SpellPower>
          </Effect>
+         <Effect>
+            <Type>SongDuration</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>90</Amount>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Spellsinger: Maestro of Life and Death</Name>
          <InternalName>SSCore6</InternalName>
          <Description>Your songs can fill allies with healing energy or strike down those that
-oppose you.
+oppose you. You gain the Heal and Wail of the Banshee spells as level 6 Bard spells.
 +4 Charisma
 +25 Universal Spell Power
-You gain the Heal and Wail of the Banshee spells as level 6 Bard spells.</Description>
++1 Diplomacy, Listen, Perform and Use Magic Device.
++2% critical chance with Sonic and Positive spells.</Description>
          <Icon>SSMaestroOfLifeAndDeath</Icon>
          <XPosition>5</XPosition>
          <YPosition>0</YPosition>
@@ -350,6 +389,11 @@ You gain the Heal and Wail of the Banshee spells as level 6 Bard spells.</Descri
             <SpellLevel>6</SpellLevel>
             <Class>Bard</Class>
          </Effect>
+         <Effect>
+            <Type>SongDuration</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>30</Amount>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Spellsinger: Haunting Melody</Name>
@@ -363,7 +407,12 @@ Haunted: -2 on all Saving Throws, Skill checks and attack rolls.</Description>
          <Cost>1</Cost>
          <Ranks>3</Ranks>
          <MinSpent>1</MinSpent>
-         <Requirements/>
+         <Requirements>
+            <Requirement>
+               <Class>Bard</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Spellsinger: Studies</Name>
@@ -375,14 +424,17 @@ Haunted: -2 on all Saving Throws, Skill checks and attack rolls.</Description>
          <Cost>1</Cost>
          <Ranks>3</Ranks>
          <MinSpent>1</MinSpent>
-         <Requirements/>
+         <Requirements>
+            <Requirement>
+               <Class>Bard</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
          <Selector>
             <EnhancementSelection>
                <Name>Magical Studies</Name>
                <Description>+30/60/100 maximum Spell Points.
-Rank 3: You gain the Magical Training feat.
-Anti-Requisite: You cannot take Rank 3 of Magical Studies if you already possess
-the Magical Training feat. THIS IS NOT ENFORCED.</Description>
+Rank 3: You gain the Magical Training feat.</Description>
                <Icon>SSMagicalStudies</Icon>
                <Cost>1</Cost>
                <Effect>
@@ -413,18 +465,23 @@ the Magical Training feat. THIS IS NOT ENFORCED.</Description>
       <EnhancementTreeItem>
          <Name>Spellsinger: Lingering Songs</Name>
          <InternalName>SSLingeringSongs</InternalName>
-         <Description>Your bard songs last 30/60/90 seconds longer</Description>
+         <Description>You sing you Bardic Inspiration as if you had 2/4/6 more levels of Bard.</Description>
          <Icon>SSLingeringSongs</Icon>
          <XPosition>2</XPosition>
          <YPosition>1</YPosition>
          <Cost>1</Cost>
          <Ranks>3</Ranks>
          <MinSpent>1</MinSpent>
-         <Requirements/>
+         <Requirements>
+            <Requirement>
+               <Class>Bard</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
          <Effect>
             <Type>SongDuration</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">30 60 90</AmountVector>
+            <AmountVector size="3">60 120 180</AmountVector>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -441,7 +498,12 @@ Metamagic Feats can be used at no additional cost.</Description>
          <Ranks>3</Ranks>
          <MinSpent>1</MinSpent>
          <Clickie/>
-         <Requirements/>
+         <Requirements>
+            <Requirement>
+               <Class>Bard</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
          <Effect>
             <Type>SpellLikeAbility</Type>
             <Bonus>Enhancement</Bonus>
@@ -458,7 +520,12 @@ Metamagic Feats can be used at no additional cost.</Description>
          <Cost>1</Cost>
          <Ranks>3</Ranks>
          <MinSpent>1</MinSpent>
-         <Requirements/>
+         <Requirements>
+            <Requirement>
+               <Class>Bard</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
          <Effect>
             <Type>SkillBonus</Type>
             <Bonus>Enhancement</Bonus>
@@ -716,9 +783,9 @@ from their reverie.</Description>
          </DC>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Spellsinger: Multiple Enhancement Selector II</Name>
+         <Name>Spellsinger: Reviving Verse</Name>
          <InternalName>SSMultipleEnhancementSelectorII</InternalName>
-         <Description>Choose Raucous Refrain or Reviving Verse. </Description>
+         <Description>Choose permanent bonuses for yourself, or improvements to Inspire Courage.</Description>
          <Icon>SSMultipleEnhancementSelectorII</Icon>
          <XPosition>1</XPosition>
          <YPosition>3</YPosition>
@@ -734,10 +801,17 @@ from their reverie.</Description>
          <Selector>
             <EnhancementSelection>
                <Name>Raucous Refrain</Name>
-               <Description>When you Inspire Courage, allies gain +1/2/3 Morale bonus to save vs.
-Sleep, Paralysis, Exhaustion and Energy Drain for four minutes.</Description>
+               <Description>Inspiring Melody: When you use your Bardic Inspiration, your target
+gains a +1/2/3 Morale bonus to save vs. Sleep, Paralysis, Exhaustion and
+Energy Drain for th duration of your song.
+Passive: You sing your Bardic Inspiriation as if you had 1 more level of Bard.</Description>
                <Icon>SSRaucousRefrain</Icon>
                <Cost>1</Cost>
+                <Effect>
+                    <Type>SongDuration</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <Amount>30</Amount>
+                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Reviving Verse</Name>
@@ -777,8 +851,9 @@ Metamagic Feats can be used at no additional cost.</Description>
          <Name>Spellsinger: Spell Song Trance</Name>
          <InternalName>SSSpellSongTrance</InternalName>
          <Description>Expend a use of Bardic Music to grant a +1 morale bonus to spell DC's and
-10% morale discount on spell point costs to you and all nearby allies for 24
-seconds plus 6 seconds per bard level.</Description>
+10% morale discount on spell point costs to your target for the duration of
+the song.
+Passive: You sing your Bardic Inspiration as if you had 1 more level of Bard.</Description>
          <Icon>SSSpellSongTrance</Icon>
          <XPosition>3</XPosition>
          <YPosition>3</YPosition>
@@ -793,6 +868,11 @@ seconds plus 6 seconds per bard level.</Description>
                <Level>3</Level>
             </Requirement>
          </Requirements>
+                <Effect>
+                    <Type>SongDuration</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <Amount>30</Amount>
+                </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Spellsinger: Charisma I</Name>
@@ -820,8 +900,9 @@ seconds plus 6 seconds per bard level.</Description>
       <EnhancementTreeItem>
          <Name>Spellsinger: Sustaining Song</Name>
          <InternalName>SSSustainingSong</InternalName>
-         <Description>Expend a use of Bardic Music to apply a temporary fast-healing effect to
-all nearby allies. It lasts for 24 seconds plus 6 seconds per bard level. </Description>
+         <Description>Inspiration Melody: When you use you Bardic Inspiration, you apply a temporary
+fast-healing effect to your target for the duration of your song.
+Passive: You sing your Bardic Inspiation as if you had 1 more level of Bard.</Description>
          <Icon>SSSustainingSong</Icon>
          <XPosition>0</XPosition>
          <YPosition>4</YPosition>
@@ -836,9 +917,14 @@ all nearby allies. It lasts for 24 seconds plus 6 seconds per bard level. </Desc
                <Level>4</Level>
             </Requirement>
          </Requirements>
+                <Effect>
+                    <Type>SongDuration</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <Amount>30</Amount>
+                </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Spellsinger: Multiple Enhancement Selector III</Name>
+         <Name>Spellsinger: Spell Penetration</Name>
          <InternalName>SSMultipleEnhancementSelectorIII</InternalName>
          <Description>Choose Spell Penetration for yourself or for others. </Description>
          <Icon>SSMultipleEnhancementSelectorIII</Icon>
@@ -857,9 +943,15 @@ all nearby allies. It lasts for 24 seconds plus 6 seconds per bard level. </Desc
             <EnhancementSelection>
                <Name>Arcane Aid</Name>
                <Description>When you Inspire Competence on an ally, they gain +1/2/3 Spell
-Penetration for four minutes. </Description>
+Penetration for the duration of your song.
+Passive: You sing your Bardic Inspiation as if you had 1 more level of Bard.</Description>
                <Icon>SSArcaneAid</Icon>
                <Cost>1</Cost>
+                <Effect>
+                    <Type>SongDuration</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <Amount>30</Amount>
+                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Spell Penetration</Name>
@@ -877,8 +969,10 @@ Penetration for four minutes. </Description>
       <EnhancementTreeItem>
          <Name>Spellsinger: Frolic</Name>
          <InternalName>SSFrolic</InternalName>
-         <Description>When you sing a Song of Freedom on an ally, they gain a Freedom of Movement
-for three minutes. (This is a musical effect and cannot be dispelled.)</Description>
+         <Description>Inspiration Melody: When you use your Bardic Inspiration, you target
+gains Freedom of Movement for the duration of the song.
+(This is a musical effect and cannot be dispelled).
+Passive: You sing your Bardic Inspiation as if you had 1 more level of Bard.</Description>
          <Icon>SSFrolic</Icon>
          <XPosition>2</XPosition>
          <YPosition>4</YPosition>
@@ -891,12 +985,18 @@ for three minutes. (This is a musical effect and cannot be dispelled.)</Descript
                <Level>4</Level>
             </Requirement>
          </Requirements>
+        <Effect>
+            <Type>SongDuration</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>30</Amount>
+        </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Spellsinger: Song of Arcane Might</Name>
          <InternalName>SSSongOfArcaneMight</InternalName>
-         <Description>Expend a use of Bardic Music to grant a +1 morale bonus to caster level for
-spells cast by you and all nearby allies for 60 seconds plus 30 seconds per bard level.</Description>
+         <Description>Inspiration Melody: When you use your Bardic Inspiration, your target gains
+a +1 morale bonus to caster level for all spells for the duration of your song.
+Passive: You sing your Bardic Inspiation as if you had 1 more level of Bard.</Description>
          <Icon>SSSongOfArcaneMight</Icon>
          <XPosition>3</XPosition>
          <YPosition>4</YPosition>
@@ -914,6 +1014,11 @@ spells cast by you and all nearby allies for 60 seconds plus 30 seconds per bard
                <Enhancement>SSSpellSongTrance</Enhancement>
             </Requirement>
          </Requirements>
+                <Effect>
+                    <Type>SongDuration</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <Amount>30</Amount>
+                </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Spellsinger: Charisma II</Name>
@@ -942,7 +1047,7 @@ spells cast by you and all nearby allies for 60 seconds plus 30 seconds per bard
          <Name>Spellsinger: Song of Capering</Name>
          <InternalName>SSSongOfCapering</InternalName>
          <Description>Expend a use of Bardic Music to make a single enemy to dance helplessly.
-This effect lasts for 6 seconds plus 2 seconds per bard level.
+This effect lasts for 6 seconds plus 2 seconds per Bard level.
 A successful Will save negates this effect.</Description>
          <Icon>SSSongOfCapering</Icon>
          <XPosition>0</XPosition>
@@ -1017,8 +1122,9 @@ A successful Will save negates this effect.</Description>
          <Description>+1/2/2 Concentration and Perform
 +1/2/2 Spell Penetration
 +1/2/2 to DCs of your Enchantment spells
-Rank 3: When you finish singing a Bard Song, you grant temporary spell points
-to nearby allies including yourself.</Description>
+Rank 3: Inspiration Melody: When you use your Bardic Inspiration, your target
+gains a moderate amount of temporary spell points.
+Passive: You sing your Bardic Inspiation as if you had 1 more level of Bard.</Description>
          <Icon>SSProdigy</Icon>
          <XPosition>2</XPosition>
          <YPosition>5</YPosition>
@@ -1053,12 +1159,19 @@ to nearby allies including yourself.</Description>
             <AmountVector size="3">1 2 2</AmountVector>
             <School>Enchantment</School>
          </Effect>
+                <Effect>
+                    <Type>SongDuration</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <AmountVector size="3">0 0 30</AmountVector>
+                </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Spellsinger: Spell Song Vigor</Name>
          <InternalName>SSSpellSongVigor</InternalName>
-         <Description>Expend a use of Bardic Music to apply an effect to one target that restores
-spell points over time.</Description>
+         <Description>Inspiration Melody: When you use your Bardic Inspiration, you apply
+an effect to your target that restores spell points over time for the duration
+of your song.
+Passive: You sing your Bardic Inspiation as if you had 1 more level of Bard.</Description>
          <Icon>SSSpellSongVigor</Icon>
          <XPosition>3</XPosition>
          <YPosition>5</YPosition>
@@ -1079,6 +1192,11 @@ spell points over time.</Description>
                <Enhancement>SSSongOfArcaneMight</Enhancement>
             </Requirement>
          </Requirements>
+        <Effect>
+            <Type>SongDuration</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>30</Amount>
+        </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Spellsinger: Mass Hold/Horn of Thunder</Name>

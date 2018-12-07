@@ -22,7 +22,12 @@ Armor per Swashbuckler Core Ability you have.</Description>
          <Ranks>1</Ranks>
          <MinSpent>0</MinSpent>
          <ArrowRight/>
-         <Requirements/>
+         <Requirements>
+            <Requirement>
+               <Class>Bard</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
          <Effect>
             <Type>DodgeBonus</Type>
             <Bonus>Enhancement</Bonus>
@@ -49,7 +54,20 @@ wielding a Finesseable or Thrown weapon in your main hand, wielding a Buckler
 or nothing in your off hand, and wearing Light Armor or no armor.
 (Druids cannot Swashbuckle while in animal forms.)
 (For Warforged and Bladeforged, you must be using either the Composite Plating
-or Mithral Body feats).</Description>
+or Mithral Body feats).
+
+In addition, while Swashbuckling, the following weapons receive a Competence bonus
+to their critical profiles:
+Dagger, Shortsword, Throwing Dagger: +1 Threat, +1 Multiplier
+
+Light Mace, Light Hammer, Kama, Sickle, Dart, Shuriken, Throwing Axe and
+Throwing Hammer: +2 Threat Range, +1 Multiplier
+
+Kukri, Rapier: +1 Muliplier
+
+Handaxe: +2 Range
+
+Light Pick: +1 Range</Description>
          <Icon>SBSwashbuckling</Icon>
          <XPosition>1</XPosition>
          <YPosition>0</YPosition>
@@ -101,6 +119,49 @@ or Mithral Body feats).</Description>
             <Weapon>All</Weapon>
             <Amount>1</Amount>
             <Stance>Swashbuckling</Stance>
+         </Effect>
+         <Effect>
+            <Type>CriticalRange</Type>
+            <Bonus>Competence</Bonus>
+            <Amount>1</Amount>
+            <Weapon>Dagger</Weapon>
+            <Weapon>Shortsword</Weapon>
+            <Weapon>Throwing Dagger</Weapon>
+            <Weapon>Kukri</Weapon>
+            <Weapon>Rapier</Weapon>
+            <Weapon>Light Pick</Weapon>
+         </Effect>
+         <Effect>
+            <Type>CriticalRange</Type>
+            <Bonus>Competence</Bonus>
+            <Amount>2</Amount>
+            <Weapon>Light Mace</Weapon>
+            <Weapon>Light Hammer</Weapon>
+            <Weapon>Kama</Weapon>
+            <Weapon>Sickle</Weapon>
+            <Weapon>Dart</Weapon>
+            <Weapon>Shuriken</Weapon>
+            <Weapon>Throwing Axe</Weapon>
+            <Weapon>Throwing Hammer</Weapon>
+            <Weapon>Hand Axe</Weapon>
+         </Effect>
+         <Effect>
+            <Type>CriticalMultiplier</Type>
+            <Bonus>Competence</Bonus>
+            <Amount>1</Amount>
+            <Weapon>Dagger</Weapon>
+            <Weapon>Shortsword</Weapon>
+            <Weapon>Throwing Dagger</Weapon>
+            <Weapon>Kukri</Weapon>
+            <Weapon>Rapier</Weapon>
+            <Weapon>Light Mace</Weapon>
+            <Weapon>Light Hammer</Weapon>
+            <Weapon>Kama</Weapon>
+            <Weapon>Sickle</Weapon>
+            <Weapon>Dart</Weapon>
+            <Weapon>Shuriken</Weapon>
+            <Weapon>Throwing Axe</Weapon>
+            <Weapon>Throwing Hammer</Weapon>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -397,7 +458,12 @@ hand gains an additional +1 to its Enhancement bonus.</Description>
          <Cost>1</Cost>
          <Ranks>3</Ranks>
          <MinSpent>1</MinSpent>
-         <Requirements/>
+         <Requirements>
+            <Requirement>
+               <Class>Bard</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
          <Effect>
             <Type>DodgeBonus</Type>
             <Bonus>Enhancement</Bonus>
@@ -415,7 +481,12 @@ hand gains an additional +1 to its Enhancement bonus.</Description>
          <Ranks>3</Ranks>
          <MinSpent>1</MinSpent>
          <Clickie/>
-         <Requirements/>
+         <Requirements>
+            <Requirement>
+               <Class>Bard</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
          <Selector>
             <EnhancementSelection>
                <Name>Blow By Blow</Name>
@@ -440,7 +511,7 @@ hand gains an additional +1 to its Enhancement bonus.</Description>
       <EnhancementTreeItem>
          <Name>Swashbuckler: Insults</Name>
          <InternalName>SBInsults</InternalName>
-         <Description>Select an Insult to lower respective saves</Description>
+         <Description>Select an Insult that debuffs the saves of nearby enemies.</Description>
          <Icon>SBInsults</Icon>
          <XPosition>2</XPosition>
          <YPosition>1</YPosition>
@@ -448,7 +519,12 @@ hand gains an additional +1 to its Enhancement bonus.</Description>
          <Ranks>3</Ranks>
          <MinSpent>1</MinSpent>
          <Clickie/>
-         <Requirements/>
+         <Requirements>
+            <Requirement>
+               <Class>Bard</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
          <Selector>
             <EnhancementSelection>
                <Name>Appalling Diatribe</Name>
@@ -489,7 +565,12 @@ Cooldown: 20/15/10 seconds</Description>
          <Cost>1</Cost>
          <Ranks>3</Ranks>
          <MinSpent>1</MinSpent>
-         <Requirements/>
+         <Requirements>
+            <Requirement>
+               <Class>Bard</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
          <Effect>
             <Type>SongCount</Type>
             <Bonus>Enhancement</Bonus>
@@ -508,7 +589,12 @@ Cooldown: 20/15/10 seconds</Description>
          <Cost>1</Cost>
          <Ranks>3</Ranks>
          <MinSpent>1</MinSpent>
-         <Requirements/>
+         <Requirements>
+            <Requirement>
+               <Class>Bard</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
          <Effect>
             <Type>SkillBonus</Type>
             <Bonus>Enhancement</Bonus>
@@ -672,7 +758,7 @@ down with no save. Cooldown: 12 seconds.</Description>
       <EnhancementTreeItem>
          <Name>Swashbuckler: Swashbuckling Style</Name>
          <InternalName>SBSwashbucklingStyle</InternalName>
-         <Description>Choose One:</Description>
+         <Description>Select your Swashbuckling style: Open Hand, Buckler, Orb or Rune Arm.</Description>
          <Icon>SBSwashbucklingStyle</Icon>
          <XPosition>1</XPosition>
          <YPosition>3</YPosition>
@@ -690,7 +776,8 @@ down with no save. Cooldown: 12 seconds.</Description>
             <EnhancementSelection>
                <Name>Arcane Marauder</Name>
                <Description>Passive: You can now Swashbuckle with an Orb in your off hand.
-(Does not count as a Buckler for Buckler-specific abilities). </Description>
+(Does not count as a Buckler for Buckler-specific abilities).
+Requires Magical Training (or the Enhancement equivalent)</Description>
                <Icon>SBArcaneMarauder</Icon>
                <Cost>1</Cost>
             </EnhancementSelection>
@@ -732,8 +819,7 @@ down with no save. Cooldown: 12 seconds.</Description>
                <Name>Skirmisher</Name>
                <Description>Passive: While Swashbuckling with a Buckler in your off hand, you gain
 10% Dodge, and you may use a Buckler and still benefit from the Single Weapon
-Fighting line of feats. Does not require Swashbuckling. It may be used with non
-finesse weapon.</Description>
+Fighting line of feats.</Description>
                <Icon>SBSkirmisher</Icon>
                <Cost>1</Cost>
                <Effect>

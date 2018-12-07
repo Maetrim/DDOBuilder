@@ -622,20 +622,9 @@ them a +10 circumstance bonus to Hide.</Description>
          <Amount>-2</Amount>
       </Effect>
    </OptionalBuff>
-   <!--Bard Songs-->
+   <!--Bard Song Buffs-->
    <OptionalBuff>
-      <Name>Inspire Competence</Name>
-      <Icon>InspireCompetence</Icon>
-      <Description>You gain a +2 competence bonus to your skill checks.</Description>
-      <Effect>
-         <Type>SkillBonus</Type>
-         <Bonus>Competence</Bonus>
-         <Amount>2</Amount>
-         <Skill>All</Skill>
-      </Effect>
-   </OptionalBuff>
-   <OptionalBuff>
-      <Name>Inspire Courage</Name>
+      <Name>Bard: Inspire Courage</Name>
       <Icon>InspireCourage</Icon>
       <Description>You are granted a +4 morale bonus to saves against fear effects and a +1 morale bonus on attack and weapon damage rolls before enhancements.</Description>
       <Effect>
@@ -652,9 +641,38 @@ them a +10 circumstance bonus to Hide.</Description>
       </Effect>
    </OptionalBuff>
    <OptionalBuff>
-      <Name>Inspire Greatness</Name>
+      <Name>Bard: Inspire Competence</Name>
+      <Icon>InspireCompetence</Icon>
+      <Description>You gain a +2 competence bonus to your skill checks.</Description>
+      <Effect>
+         <Type>SkillBonus</Type>
+         <Bonus>Competence</Bonus>
+         <Amount>2</Amount>
+         <Skill>All</Skill>
+      </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Bard: Arcane Aid</Name>
+      <Icon>SSArcaneAid</Icon>
+      <Description>When you Inspire Competence on an ally, they gain +1/2/3 Spell
+Penetration for the duration of your song.</Description>
+    <Effect>
+        <Type>SpellPenetrationBonus</Type>
+        <Bonus>Music</Bonus>
+        <Amount>3</Amount>
+    </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Bard: Song of Arcane Might</Name>
+      <Icon>SSSongOfArcaneMight</Icon>
+      <Description>You gain a +1 morale bonus to caster level for all spells for the duration of the song.
+(Not modelled)</Description>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Bard: Inspire Greatness</Name>
       <Icon>InspireCourage</Icon>
-      <Description>You gain a +2 attack bonus, +1 Fortitude save bonus and temporary hit points.</Description>
+      <Description>You gain a +2 attack bonus, +1 Fortitude save bonus and temporary hit points.
++10 Healing/Repair/Negative Amplification</Description>
       <Effect>
          <Type>AttackBonus</Type>
          <Bonus>Stacking</Bonus>
@@ -667,9 +685,24 @@ them a +10 circumstance bonus to Hide.</Description>
          <Amount>1</Amount>
          <Save>Fortitude</Save>
       </Effect>
+         <Effect>
+            <Type>HealingAmplification</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>10</Amount>
+         </Effect>
+         <Effect>
+            <Type>NegativeHealingAmplification</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>10</Amount>
+         </Effect>
+         <Effect>
+            <Type>RepairAmplification</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>10</Amount>
+         </Effect>
    </OptionalBuff>
    <OptionalBuff>
-      <Name>Inspire Heroics</Name>
+      <Name>Bard: Inspire Heroics</Name>
       <Icon>InspireHeroics</Icon>
       <Description>You gain a +4 morale bonus to saves and a +4% dodge.</Description>
       <Effect>
@@ -685,7 +718,97 @@ them a +10 circumstance bonus to Hide.</Description>
       </Effect>
    </OptionalBuff>
    <OptionalBuff>
-      <Name>Inspire Excellence</Name>
+      <Name>Bard: Arcane Shield Chant</Name>
+      <Icon>WCArcaneShieldChant</Icon>
+      <Description>You and nearby allies gain +[2/4/6] Music bonus to resist Acid, Cold, Electric, Fire, and Sonic damage</Description>
+         <Effect>
+            <Type>EnergyResistance</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>6</Amount>
+            <Energy>Acid</Energy>
+            <Energy>Cold</Energy>
+            <Energy>Electric</Energy>
+            <Energy>Fire</Energy>
+            <Energy>Sonic</Energy>
+         </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Bard: Ironskin Chant</Name>
+      <Icon>WCIronskinChant</Icon>
+         <Description>You and nearby allies gain DR [2/4/6]/- and [2/4/6] Music bonus to PRR.</Description>
+         <Effect>
+            <Type>DR</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>6</Amount>
+            <DR>-</DR>
+         </Effect>
+         <Effect>
+            <Type>PRR</Type>
+            <Bonus>Music</Bonus>
+            <Amount>6</Amount>
+         </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Bard: Reckless Chant</Name>
+      <Icon>WCRecklessChant</Icon>
+         <Description>You and nearby allies gain +[2/4/6] Music bonus to Doublestrike and Doubleshot,
+and Inspire Courage gants an additional +[3/6/9] Universal Spell Power.</Description>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Music</Bonus>
+            <Amount>6</Amount>
+            <SpellPower>All</SpellPower>
+         </Effect>
+         <Effect>
+            <Type>Doublestrike</Type>
+            <Bonus>Music</Bonus>
+            <Amount>6</Amount>
+         </Effect>
+         <Effect>
+            <Type>Doubleshot</Type>
+            <Bonus>Music</Bonus>
+            <Amount>9</Amount>
+         </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Bard: Expeditious Chant</Name>
+      <Icon>WCExpeditiousChant</Icon>
+        <Description>You and nearby allies gain +(5/10/15)% Action Boost bonus to movement speed.</Description>
+        <Effect>
+            <Type>MovementSpeed</Type>
+            <Bonus>Action Boost</Bonus>
+            <AmountVector size="3">5 10 15</AmountVector>
+            <Stance>Action Boost</Stance>
+        </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Bard: Chant of Power</Name>
+      <Icon>WCChantOfPower</Icon>
+        <Description>You and nearby allies gain +(2/4/6)% Music bonus to melee damage,
+ranged damage, and spell critical chance.</Description>
+        <Effect>
+        <Type>DamageBonus</Type>
+        <Bonus>Music</Bonus>
+        <AmountVector size="3">2 4 6</AmountVector>
+        <Percent/>
+        <Weapon>All</Weapon>
+        </Effect>
+        <Effect>
+        <Type>Seeker</Type>
+        <Bonus>Music</Bonus>
+        <AmountVector size="3">2 4 6</AmountVector>
+        <Percent/>
+        <Weapon>All</Weapon>
+        </Effect>
+        <Effect>
+        <Type>SpellLore</Type>
+        <Bonus>Music</Bonus>
+        <AmountVector size="3">2 4 6</AmountVector>
+        <SpellPower>All</SpellPower>
+        </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Bard: Inspire Excellence</Name>
       <Icon>InspireExcellence</Icon>
       <Description>This song grants a +2 competence bonus to all ability scores.</Description>
       <Effect>
@@ -694,16 +817,17 @@ them a +10 circumstance bonus to Hide.</Description>
          <Amount>2</Amount>
          <Ability>All</Ability>
       </Effect>
+   </OptionalBuff>
+   <OptionalBuff>
+      <Name>Bard: Spell Song Trance</Name>
+      <Icon>SSSpellSongTrance</Icon>
+      <Description>Bardic Music grants a +1 morale bonus to spell DC's and
+10% morale discount on spell point costs for the duration of the song.</Description>
       <Effect>
-         <Type>AbilityBonus</Type>
+         <Type>SpellDC</Type>
          <Bonus>Morale</Bonus>
-         <Amount>5</Amount>
-         <Ability>Constitution</Ability>
-      </Effect>
-      <Effect>
-         <Type>ACBonus</Type>
-         <Bonus>Penalty</Bonus>
-         <Amount>-2</Amount>
+         <Amount>1</Amount>
+         <School>All</School>
       </Effect>
    </OptionalBuff>
    <!--Monk Finishers-->

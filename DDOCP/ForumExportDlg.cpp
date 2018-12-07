@@ -510,7 +510,7 @@ void CForumExportDlg::AddBreakdown(
         if (pBIMRRCap->Total() > 0
                 && pBIMRRCap->Total() < pBI->Total())
         {
-            // show that he MRR value is capped
+            // show that the MRR value is capped
             CString text;
             text.Format("%d/%d", value, (size_t)pBIMRRCap->Total());
             forumExport << header;
