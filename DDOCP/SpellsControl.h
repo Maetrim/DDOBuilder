@@ -79,12 +79,16 @@ class CSpellsControl :
         void AddFixedSpell(const std::string & spellName, size_t level);
         void RevokeFixedSpell(const std::string & spellName, size_t level);
 
+        CSize RequiredSize();
+
     protected:
         //{{AFX_VIRTUAL(CSpellsControl)
         //}}AFX_VIRTUAL
 
         //{{AFX_MSG(CSpellsControl)
         afx_msg void OnPaint();
+        afx_msg void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
+        afx_msg void OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
         afx_msg void OnSize(UINT nType, int cx, int cy);
         afx_msg BOOL OnEraseBkgnd(CDC* pDC);
         afx_msg void OnMouseMove(UINT nFlags, CPoint point);
@@ -108,13 +112,13 @@ class CSpellsControl :
         void ApplySpellEffects(const std::list<TrainedSpell> & spells);
         void RevokeSpellEffects(const std::list<TrainedSpell> & spells);
         size_t CasterLevel() const;
+        void ProcessScrollBars(int cx, int cy);
 
         Character * m_pCharacter;
         ClassType m_class;
         CSize m_bitmapSize;
         CBitmap m_cachedDisplay;
         std::list<SpellHitBox> m_hitBoxes;
-        bool m_bCreateHitBoxes;
         CSpellTip m_tooltip;
         bool m_showingTip;
         bool m_tipCreated;
@@ -126,6 +130,13 @@ class CSpellsControl :
         CImageList m_spellImagesList;
         size_t m_editSpellLevel;
         size_t m_editSpellIndex;
+
+        CRect m_clientSize;
+        CScrollBar m_scrollHorizontal;
+        CScrollBar m_scrollVertical;
+
+        bool m_bHVisible;
+        bool m_bVVisible;
 };
 
 //{{AFX_INSERT_LOCATION}}

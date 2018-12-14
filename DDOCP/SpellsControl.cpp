@@ -38,11 +38,13 @@ void CSpellsControl::InitialiseStaticImages()
 CSpellsControl::CSpellsControl() :
     m_pCharacter(NULL),
     m_bitmapSize(CSize(0, 0)),
-    m_bCreateHitBoxes(false),
     m_tipCreated(false),
     m_pTooltipItem(NULL),
     m_editSpellLevel(0),
-    m_editSpellIndex(0)
+    m_editSpellIndex(0),
+    m_clientSize(0, 0, 300, 300),
+    m_bHVisible(false),
+    m_bVVisible(false)
 {
     InitialiseStaticImages();
 }
@@ -56,6 +58,8 @@ CSpellsControl::~CSpellsControl()
 BEGIN_MESSAGE_MAP(CSpellsControl, CStatic)
     //{{AFX_MSG_MAP(CSpellsControl)
     ON_WM_PAINT()
+    ON_WM_HSCROLL()
+    ON_WM_VSCROLL()
     ON_WM_SIZE()
     ON_WM_ERASEBKGND()
     ON_WM_MOUSEMOVE()
@@ -73,6 +77,11 @@ END_MESSAGE_MAP()
 
 void CSpellsControl::OnPaint()
 {
+    // size is based on current window extent
+    CRect rect;
+    GetWindowRect(rect);
+    ScreenToClient(&rect);
+
     if (!IsWindow(m_comboSpellSelect.GetSafeHwnd()))
     {
         CComboBox test;
@@ -84,18 +93,42 @@ void CSpellsControl::OnPaint()
                 IDC_COMBO_SPELLSELECT);
         CFont* pDefaultGUIFont = CFont::FromHandle((HFONT) GetStockObject(DEFAULT_GUI_FONT));
         m_comboSpellSelect.SetFont(pDefaultGUIFont, TRUE);
+        CRect rctHorizontal(0, 0, rect.right, rect.bottom);
+        CRect rctVertical(0, 0, rect.right, rect.bottom);
+
+        m_scrollHorizontal.Create(
+                WS_CHILD | WS_VISIBLE | SBS_HORZ | SBS_BOTTOMALIGN,
+                rctHorizontal,
+                this,
+                0);
+        m_scrollVertical.Create(
+                WS_CHILD | WS_VISIBLE | SBS_VERT | SBS_RIGHTALIGN,
+                rctVertical,
+                this,
+                1);
+        ProcessScrollBars(rect.Width(), rect.Height());
     }
     if (!m_tipCreated)
     {
         m_tooltip.Create(this);
         m_tipCreated = true;
     }
+    int x_offset = m_scrollHorizontal.IsWindowVisible() ? m_scrollHorizontal.GetScrollPos() : 0;
+    int y_offset = m_scrollVertical.IsWindowVisible() ? m_scrollVertical.GetScrollPos() : 0;
+
+    // adjust the rect based on shown scrollbars, this stops flickering of the
+    // scrollbars
+    if (m_bVVisible)
+    {
+        rect.right -= GetSystemMetrics(SM_CXVSCROLL);
+    }
+    if (m_bHVisible)
+    {
+        rect.bottom -= GetSystemMetrics(SM_CYHSCROLL);
+    }
 
     CPaintDC pdc(this); // validates the client area on destruction
     pdc.SaveDC();
-    // size is based on current window extent
-    CRect rect;
-    GetClientRect(rect);
     // ensure we have a background bitmap
     if (m_bitmapSize != CSize(rect.Width(), rect.Height()))
     {
@@ -120,38 +153,35 @@ void CSpellsControl::OnPaint()
     CBrush bkBrush(bkColor);
     memoryDc.FillRect(rect, &bkBrush);
 
-    if (m_bCreateHitBoxes)
-    {
-        m_hitBoxes.clear();
-    }
+    m_hitBoxes.clear();
 
     // now render the number of spells for each level
-    for (size_t spellLevel = 0; spellLevel < m_spellsPerLevel.size(); ++spellLevel)
+    for (int spellLevel = 0; spellLevel < (int)m_spellsPerLevel.size(); ++spellLevel)
     {
         // how many spells at this level?
-        size_t count = m_spellsPerLevel[spellLevel];
+        int count = m_spellsPerLevel[spellLevel];
         if (count > 0)
         {
             // get the current trained spells at this level
             std::list<TrainedSpell> trainedSpells =
                     m_pCharacter->TrainedSpells(m_class, spellLevel + 1); // 1 based
             // now work out draw positions
-            size_t top = spellLevel * (c_spellSlotImageSize + c_controlSpacing);
+            int top = spellLevel * (c_spellSlotImageSize + c_controlSpacing) - y_offset;
             CString levelLabel;
             levelLabel.Format("Level %d", spellLevel +1);
             CSize labelSize = memoryDc.GetTextExtent(levelLabel);
             memoryDc.TextOut(
-                    c_controlSpacing, 
+                    c_controlSpacing - x_offset, 
                     top + (c_spellSlotImageSize - labelSize.cy) / 2,
                     levelLabel);
             // must have trainable spells at this level to be able to show spells slots
             // even if they are fixed known spells.
-            size_t offset = 0;
+            int offset = 0;
             // handle fixed spells here, increment offset for each
             for (int fs = 0; fs < (int)m_fixedSpells[spellLevel].size(); ++fs)
             {
-                size_t left = offset * (c_spellSlotImageSize + c_controlSpacing)
-                        + labelSize.cx + c_controlSpacing * 2;
+                int left = offset * (c_spellSlotImageSize + c_controlSpacing)
+                        + labelSize.cx + c_controlSpacing * 2 - x_offset;
                 CRect spellRect(
                         left,
                         top,
@@ -164,11 +194,8 @@ void CSpellsControl::OnPaint()
                         spellRect.top,
                         c_spellSlotImageSize,
                         c_spellSlotImageSize);
-                if (m_bCreateHitBoxes)
-                {
-                    SpellHitBox hitBox(spellLevel + 1, -(fs+1), spellRect);
-                    m_hitBoxes.push_back(hitBox);
-                }
+                SpellHitBox hitBox(spellLevel + 1, -(fs+1), spellRect);
+                m_hitBoxes.push_back(hitBox);
                 // show the fixed spell icon
                 std::list<FixedSpell>::iterator it = m_fixedSpells[spellLevel].begin();
                 std::advance(it, fs);
@@ -198,10 +225,10 @@ void CSpellsControl::OnPaint()
                 offset += 1;
             }
             // now handle trainable spells
-            for (size_t spellIndex = 0; spellIndex < count; ++spellIndex)
+            for (int spellIndex = 0; spellIndex < count; ++spellIndex)
             {
-                size_t left = offset * (c_spellSlotImageSize + c_controlSpacing)
-                        + labelSize.cx + c_controlSpacing * 2;
+                int left = offset * (c_spellSlotImageSize + c_controlSpacing)
+                        + labelSize.cx + c_controlSpacing * 2 - x_offset;
                 CRect spellRect(
                         left,
                         top,
@@ -214,13 +241,10 @@ void CSpellsControl::OnPaint()
                         spellRect.top,
                         c_spellSlotImageSize,
                         c_spellSlotImageSize);
-                if (m_bCreateHitBoxes)
-                {
-                    SpellHitBox hitBox(spellLevel + 1, spellIndex, spellRect);
-                    m_hitBoxes.push_back(hitBox);
-                }
+                SpellHitBox hitBox(spellLevel + 1, spellIndex, spellRect);
+                m_hitBoxes.push_back(hitBox);
                 // show the selected spell icon, if a selected spell
-                if (spellIndex < trainedSpells.size())
+                if (spellIndex < (int)trainedSpells.size())
                 {
                     std::list<TrainedSpell>::iterator it = trainedSpells.begin();
                     std::advance(it, spellIndex);
@@ -252,7 +276,6 @@ void CSpellsControl::OnPaint()
             }
         }
     }
-    m_bCreateHitBoxes = false;
 
     // now draw to display
     pdc.BitBlt(
@@ -271,7 +294,18 @@ void CSpellsControl::OnPaint()
 
 void CSpellsControl::OnSize(UINT nType, int cx, int cy)
 {
-    CStatic::OnSize(nType, cx, cy);
+    // get the current scroll positions for correct paint operations
+    CSize size = RequiredSize();
+    m_clientSize = CRect(0, 0, size.cx, size.cy);
+
+    if (IsWindow(m_scrollHorizontal.GetSafeHwnd()))
+    {
+        CRect rect;
+        GetWindowRect(rect);
+        ScreenToClient(&rect);
+        ProcessScrollBars(rect.Width(), rect.Height());
+        Invalidate();
+    }
 }
 
 BOOL CSpellsControl::OnEraseBkgnd(CDC* pDC)
@@ -368,7 +402,6 @@ void CSpellsControl::SetCharacter(Character * pCharacter, ClassType ct)
     {
         // no character == no spells to display
         m_spellsPerLevel.clear();
-        m_bCreateHitBoxes = true;
         if (IsWindow(GetSafeHwnd()))
         {
             Invalidate(TRUE);
@@ -379,7 +412,6 @@ void CSpellsControl::SetCharacter(Character * pCharacter, ClassType ct)
 void CSpellsControl::SetTrainableSpells(const std::vector<size_t> & spellsPerLevel)
 {
     m_spellsPerLevel = spellsPerLevel;
-    m_bCreateHitBoxes = true;
     // re-draw on spell count change
     if (IsWindow(GetSafeHwnd()))
     {
@@ -688,7 +720,6 @@ void CSpellsControl::AddFixedSpell(const std::string & spellName, size_t level)
     m_fixedSpells[level-1].push_back(spell);
     if (IsWindow(GetSafeHwnd()))
     {
-        m_bCreateHitBoxes = true;
         Invalidate();   // redraw
     }
 }
@@ -710,7 +741,6 @@ void CSpellsControl::RevokeFixedSpell(const std::string & spellName, size_t leve
     }
     if (IsWindow(GetSafeHwnd()))
     {
-        m_bCreateHitBoxes = true;
         Invalidate();   // redraw
     }
 }
@@ -777,4 +807,197 @@ size_t CSpellsControl::CasterLevel() const
         break;
     }
     return casterLevel;
+}
+
+CSize CSpellsControl::RequiredSize()
+{
+    CSize size(0, 0);
+    // need to measure the standard text size for basic width.
+    CDC * pDC = GetDC();
+    pDC->SaveDC();
+    pDC->SelectStockObject(DEFAULT_GUI_FONT);
+    CString levelLabel("Level 1");
+    CSize labelSize = pDC->GetTextExtent(levelLabel);
+    size.cx = labelSize.cx;
+    for (size_t spellLevel = 0; spellLevel < m_spellsPerLevel.size(); ++spellLevel)
+    {
+        // how many spells at this level?
+        size_t count = m_spellsPerLevel[spellLevel];
+        int cx = 0;
+        if (count > 0)
+        {
+            int top = spellLevel * (c_spellSlotImageSize + c_controlSpacing);
+            size.cy = max(size.cy, (int)(top + c_spellSlotImageSize));
+
+            cx += (c_spellSlotImageSize + c_controlSpacing) * m_fixedSpells[spellLevel].size();
+            cx += (c_spellSlotImageSize + c_controlSpacing) * count;
+        }
+        size.cx = max(size.cx, labelSize.cx + cx);
+    }
+    size.cx += c_controlSpacing;
+    size.cy += c_controlSpacing;
+    pDC->RestoreDC(-1);
+    ReleaseDC(pDC);
+    return size;
+}
+
+void CSpellsControl::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar) 
+{
+    // its horizontal scroll bar 
+    int nCurPos = m_scrollHorizontal.GetScrollPos();
+    int nPrevPos = nCurPos;
+    // decide what to do for each different scroll event
+    switch(nSBCode)
+        {
+        case SB_LEFT:
+            nCurPos = 0;
+            break;
+        case SB_RIGHT:
+            nCurPos = m_scrollHorizontal.GetScrollLimit()-1;
+            break;
+        case SB_LINELEFT:
+            nCurPos = max(nCurPos - 6, 0);
+            break;
+        case SB_LINERIGHT:
+            nCurPos = min(nCurPos + 6, m_scrollHorizontal.GetScrollLimit()-1);
+            break;
+        case SB_PAGELEFT:
+            nCurPos = max(nCurPos - m_clientSize.Width(), 0);
+            break;
+        case SB_PAGERIGHT:
+            nCurPos = min(nCurPos + m_clientSize.Width(), m_scrollHorizontal.GetScrollLimit()-1);
+            break;
+        case SB_THUMBTRACK:
+        case SB_THUMBPOSITION:
+            nCurPos = nPos;
+            break;
+        }
+
+    m_scrollHorizontal.SetScrollPos(nCurPos);
+    Invalidate();
+}
+
+void CSpellsControl::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar) 
+{
+    // its horizontal scroll bar 
+    int nCurPos = m_scrollVertical.GetScrollPos();
+    int nPrevPos = nCurPos;
+    // decide what to do for each different scroll event
+    switch(nSBCode)
+        {
+        case SB_LEFT:
+            nCurPos = 0;
+            break;
+        case SB_RIGHT:
+            nCurPos = m_scrollVertical.GetScrollLimit()-1;
+            break;
+        case SB_LINELEFT:
+            nCurPos = max(nCurPos - 6, 0);
+            break;
+        case SB_LINERIGHT:
+            nCurPos = min(nCurPos + 6, m_scrollVertical.GetScrollLimit()-1);
+            break;
+        case SB_PAGELEFT:
+            nCurPos = max(nCurPos - m_clientSize.Height(), 0);
+            break;
+        case SB_PAGERIGHT:
+            nCurPos = min(nCurPos + m_clientSize.Height(), m_scrollVertical.GetScrollLimit()-1);
+            break;
+        case SB_THUMBTRACK:
+        case SB_THUMBPOSITION:
+            nCurPos = nPos;
+            break;
+        }
+
+    m_scrollVertical.SetScrollPos(nCurPos);
+    Invalidate();
+}
+
+void CSpellsControl::ProcessScrollBars(int cx, int cy)
+{
+    bool newHVis = false;
+    bool newVVis = false;
+    // setup the scrollbars if required
+    if (cx < m_clientSize.Width())
+    {
+        newHVis = true;
+    }
+    // do the same for the vertical scrollbar
+    if (cy < m_clientSize.Height())
+    {
+        newVVis = true;
+    }
+    // check to see whether showing 1 scrollbar causes the other to need to be
+    // shown
+    if (newVVis
+            && !newHVis
+            && cx - GetSystemMetrics(SM_CXVSCROLL) < m_clientSize.Width())
+    {
+        newHVis = true;
+    }
+    if (newHVis
+            && !newVVis
+            && cy - GetSystemMetrics(SM_CYHSCROLL) < m_clientSize.Height())
+    {
+        newVVis = true;
+    }
+    // locations the scroll bars will be displayed
+    CRect rctHorz(0, cy - GetSystemMetrics(SM_CYHSCROLL), cx, cy);
+    CRect rctVert(cx - GetSystemMetrics(SM_CXVSCROLL), 0, cx, cy);
+
+    // if there has been a change in visibility state, get the scrollbars
+    // allow correct scrolling
+    //if (newHVis
+    //        && !m_bHVisible)
+    //{
+    //    cx -= GetSystemMetrics(SM_CXVSCROLL); // lose the space used by the scrollbar
+    //}
+    //if (newVVis
+    //        && !m_bVVisible)
+    //{
+    //    cy -= GetSystemMetrics(SM_CYHSCROLL); // lose the space used by the scrollbar
+    //}
+    // show/hide the horizontal scrollbars
+    m_scrollHorizontal.ShowWindow(newHVis ? SW_SHOW : SW_HIDE);
+    SCROLLINFO si;
+    si.cbSize = sizeof(SCROLLINFO);
+    si.fMask = SIF_PAGE | SIF_RANGE;
+    si.nPage = cx;
+    if (newVVis)
+    {
+        si.nMax = m_clientSize.Width() + GetSystemMetrics(SM_CXVSCROLL);
+    }
+    else
+    {
+        si.nMax = m_clientSize.Width();
+    }
+    si.nMin = 0;
+    m_scrollHorizontal.SetScrollInfo(&si);
+
+    // show/hide/setup the vertical scrollbar
+    m_scrollVertical.ShowWindow(newVVis ? SW_SHOW : SW_HIDE);
+    si.nPage = cy;
+    if (newVVis)
+    {
+        si.nMax = m_clientSize.Height() + GetSystemMetrics(SM_CYHSCROLL);
+    }
+    else
+    {
+        si.nMax = m_clientSize.Height();
+    }
+    si.nMin = 0;
+    m_scrollVertical.SetScrollInfo(&si);
+    // save state of scrollbars
+    m_bHVisible = newHVis;
+    m_bVVisible = newVVis;
+    if (m_bHVisible)
+    {
+        rctVert.bottom -= GetSystemMetrics(SM_CYHSCROLL);
+    }
+    if (m_bVVisible)
+    {
+        rctHorz.right -= GetSystemMetrics(SM_CXVSCROLL);
+    }
+    m_scrollHorizontal.MoveWindow(rctHorz);
+    m_scrollVertical.MoveWindow(rctVert);
 }
