@@ -101,3 +101,26 @@ bool SelectedEnhancementTrees::IsNotSelected(const std::string & treeName)
     return (treeName == f_noSelection);
 }
 
+void SelectedEnhancementTrees::SwapTrees(
+        const std::string & tree1,
+        const std::string & tree2)
+{
+    bool swapped1 = false;
+    bool swapped2 = false;
+    for (size_t i = 0; i < m_TreeName.size(); ++i)
+    {
+        if (!swapped1
+                && m_TreeName[i] == tree1)
+        {
+            swapped1 = true;
+            m_TreeName[i] = tree2;
+        }
+        else if (!swapped2
+                && m_TreeName[i] == tree2)
+        {
+            swapped2 = true;
+            m_TreeName[i] = tree1;
+        }
+    }
+}
+

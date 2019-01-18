@@ -65,8 +65,11 @@ class CEnhancementTreeDialog :
         afx_msg void OnPaint();
         afx_msg void OnMouseMove(UINT nFlags, CPoint point);
         afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
+        afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
         afx_msg void OnRButtonDown(UINT nFlags, CPoint point);
         afx_msg LRESULT OnMouseLeave(WPARAM wParam, LPARAM lParam);
+        afx_msg BOOL OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message);
+        afx_msg void OnCaptureChanged(CWnd* pWnd);
         //}}AFX_MSG
         DECLARE_MESSAGE_MAP()
 
@@ -90,6 +93,7 @@ class CEnhancementTreeDialog :
         void ShowTip(const EnhancementTreeItem & item, CRect itemRect);
         void HideTip();
         void SetTooltipText(const EnhancementTreeItem & item, CPoint tipTopLeft, CPoint tipAlternate);
+        bool CanSwapTree() const;
         EnhancementTree m_tree;
         TreeType m_type;
         Character * m_pCharacter;
@@ -102,6 +106,7 @@ class CEnhancementTreeDialog :
         bool m_showingTip;
         bool m_tipCreated;
         const EnhancementTreeItem * m_pTooltipItem;
+        bool m_bDraggingTree;
 };
 
 //{{AFX_INSERT_LOCATION}}

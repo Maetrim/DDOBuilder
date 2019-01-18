@@ -14,6 +14,7 @@ class SelectedEnhancementTrees :
         const std::string & Tree(size_t index) const;
         void SetTree(size_t index, const std::string & treeName);
         void SetNotSelected(size_t index);
+        void SwapTrees(const std::string & tree1, const std::string & tree2);
 
         static bool IsNotSelected(const std::string & treeName);
 

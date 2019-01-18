@@ -116,7 +116,10 @@ BEGIN_MESSAGE_MAP(CEnhancementTreeDialog, CDialog)
     ON_WM_MOUSEMOVE()
     ON_MESSAGE(WM_MOUSELEAVE, OnMouseLeave)
     ON_WM_LBUTTONDOWN()
+    ON_WM_LBUTTONUP()
     ON_WM_RBUTTONDOWN()
+    ON_WM_SETCURSOR()
+    ON_WM_CAPTURECHANGED()
 END_MESSAGE_MAP()
 #pragma warning(pop)
 
@@ -132,7 +135,8 @@ CEnhancementTreeDialog::CEnhancementTreeDialog(
     m_bitmapSize(CSize(0, 0)),
     m_bCreateHitBoxes(false),
     m_tipCreated(false),
-    m_pTooltipItem(NULL)
+    m_pTooltipItem(NULL),
+    m_bDraggingTree(false)
 {
     InitialiseStaticImages();
     //{{AFX_DATA_INIT(CEnhancementTreeDialog)
@@ -684,6 +688,51 @@ void CEnhancementTreeDialog::OnLButtonDown(UINT nFlags, CPoint point)
                 }
             }
         }
+        // optional tree drag and reposition option
+        if (!m_tree.HasIsRacialTree()
+                && !m_tree.HasIsReaperTree()
+                && !m_tree.HasIsEpicDestiny()
+                && m_tree.Items().size() > 0)
+        {
+            CPoint mouse;
+            GetCursorPos(&mouse);
+            ScreenToClient(&mouse);
+            if (mouse.x >= c_iconLeft && mouse.x < c_iconLeft + 32)
+            {
+                if (mouse.y >= c_iconTop && mouse.y < c_iconTop + 32)
+                {
+                    // start the tree drag operation
+                    m_bDraggingTree = true;
+                    SetCapture();
+                }
+            }
+        }
+    }
+}
+
+void CEnhancementTreeDialog::OnLButtonUp(UINT nFlags, CPoint point)
+{
+    if (m_bDraggingTree)
+    {
+        ReleaseCapture();
+        m_bDraggingTree = false;
+        // get the tree drag info
+        CPoint mouse;
+        GetCursorPos(&mouse);
+        CWnd * pWnd = WindowFromPoint(mouse);
+        // see if it can be converted to a CEnhancementTreeDialog *
+        CEnhancementTreeDialog * pTarget = dynamic_cast<CEnhancementTreeDialog*>(pWnd);
+        if (pTarget != NULL
+                && pTarget != this)
+        {
+            if (pTarget->CanSwapTree())
+            {
+                // get the names of the two trees to swap
+                std::string tree1 = m_tree.Name();
+                std::string tree2 = pTarget->m_tree.Name();
+                m_pCharacter->SwapTrees(tree1, tree2);
+            }
+        }
     }
 }
 
@@ -736,27 +785,58 @@ const EnhancementTreeItem * CEnhancementTreeDialog::FindByPoint(CRect * pRect) c
 
 void CEnhancementTreeDialog::OnMouseMove(UINT nFlags, CPoint point)
 {
-    // determine which enhancement the mouse may be over
-    CRect itemRect;
-    const EnhancementTreeItem * item = FindByPoint(&itemRect);
-    if (item != NULL
-            && item != m_pTooltipItem)
+    if (!m_bDraggingTree)
     {
-        // over a new item or a different item
-        m_pTooltipItem = item;
-        ShowTip(*item, itemRect);
+        // determine which enhancement the mouse may be over
+        CRect itemRect;
+        const EnhancementTreeItem * item = FindByPoint(&itemRect);
+        if (item != NULL
+                && item != m_pTooltipItem)
+        {
+            // over a new item or a different item
+            m_pTooltipItem = item;
+            ShowTip(*item, itemRect);
+        }
+        else
+        {
+            if (m_showingTip
+                    && item != m_pTooltipItem)
+            {
+                // no longer over the same item
+                HideTip();
+            }
+        }
+        // as the mouse is over the enhancement tree, ensure the status bar message prompts available actions
+        GetMainFrame()->SetStatusBarPromptText("Left click to train highlighted enhancement, right click to revoke last enhancement trained in this tree");
     }
     else
     {
-        if (m_showingTip
-                && item != m_pTooltipItem)
+        // ask the target window if it can accept this drop action
+        CPoint mouse;
+        GetCursorPos(&mouse);
+        CWnd * pWnd = WindowFromPoint(mouse);
+        // see if it can be converted to a CEnhancementTreeDialog *
+        CEnhancementTreeDialog * pTarget = dynamic_cast<CEnhancementTreeDialog*>(pWnd);
+        if (pTarget != NULL
+                && pTarget != this)
         {
-            // no longer over the same item
-            HideTip();
+            // has to be a valid target tree that is not us
+            if (pTarget->CanSwapTree())
+            {
+                SetCursor(LoadCursor(NULL, IDC_UPARROW));
+            }
+            else
+            {
+                SetCursor(LoadCursor(NULL, IDC_NO));
+            }
         }
+        else
+        {
+            // drag is in progress, but no valid target, override the mouse cu
+            SetCursor(LoadCursor(NULL, IDC_SIZEWE));
+        }
+        GetMainFrame()->SetStatusBarPromptText("Drop the tree at a valid target location to swap the trees.");
     }
-    // as the mouse is over the enhancement tree, ensure the status bar message prompts available actions
-    GetMainFrame()->SetStatusBarPromptText("Left click to train highlighted enhancement, right click to revoke last enhancement trained in this tree");
 }
 
 LRESULT CEnhancementTreeDialog::OnMouseLeave(WPARAM wParam, LPARAM lParam)
@@ -968,5 +1048,61 @@ void CEnhancementTreeDialog::UpdateActionPointsChanged(Character * charData)
     {
         // avoid un necessary redraws when there will be no visual change
         Invalidate();
+    }
+}
+
+BOOL CEnhancementTreeDialog::OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message)
+{
+    // to be able to do a tree drag event it cannot be the racial, reaper or epic
+    // destiny or an empty tree
+    BOOL retVal = FALSE;
+
+    if (!m_tree.HasIsRacialTree()
+            && !m_tree.HasIsReaperTree()
+            && !m_tree.HasIsEpicDestiny()
+            && m_tree.Items().size() > 0)
+    {
+        CPoint mouse;
+        GetCursorPos(&mouse);
+        ScreenToClient(&mouse);
+        if (mouse.x >= c_iconLeft && mouse.x < c_iconLeft + 32)
+        {
+            if (mouse.y >= c_iconTop && mouse.y < c_iconTop + 32)
+            {
+                // it is over the tree icon, show WE cursor
+                SetCursor(LoadCursor(NULL, IDC_SIZEWE));
+                retVal = TRUE;
+            }
+        }
+    }
+
+    if (retVal == FALSE)
+    {
+        // call base class if we didn't handle special case
+        retVal = CDialog::OnSetCursor(pWnd, nHitTest, message);
+    }
+    return retVal;
+}
+
+bool CEnhancementTreeDialog::CanSwapTree() const
+{
+    bool canSwap = false;
+    // can we accept this drop request?
+    if (!m_tree.HasIsRacialTree()
+            && !m_tree.HasIsReaperTree()
+            && !m_tree.HasIsEpicDestiny()
+            && m_tree.Items().size() > 0)
+    {
+        canSwap = true;
+    }
+    return canSwap;
+}
+
+void CEnhancementTreeDialog::OnCaptureChanged(CWnd* pWnd)
+{
+    // something else has captured the mouse, abort drag operation
+    if (m_bDraggingTree)
+    {
+        m_bDraggingTree = false;
     }
 }

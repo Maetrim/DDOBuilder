@@ -51,6 +51,13 @@ namespace
     }
 }
 
+Character::Character() :
+    XmlLib::SaxContentElement(f_saxElementName, f_verCurrent),
+    m_pDocument(NULL),
+    m_SpecialFeats(L"SpecialFeats")
+{
+}
+
 Character::Character(CDDOCPDoc * pDoc) :
     XmlLib::SaxContentElement(f_saxElementName, f_verCurrent),
     m_pDocument(pDoc),
@@ -605,6 +612,12 @@ void Character::NotifyEnhancementTreeReset()
 {
     NotifyAll(&CharacterObserver::UpdateEnhancementTreeReset, this);
 }
+
+void Character::NotifyEnhancementTreeOrderChanged()
+{
+    NotifyAll(&CharacterObserver::UpdateEnhancementTreeOrderChanged, this);
+}
+
 
 void Character::NotifyActionPointsChanged()
 {
@@ -2509,6 +2522,12 @@ bool Character::IsTreeTrained(const std::string & tree) const
 {
     // return tree if this is one of the selected trees
     return m_SelectedTrees.IsTreePresent(tree);
+}
+
+void Character::SwapTrees(const std::string & tree1, const std::string & tree2)
+{
+    m_SelectedTrees.SwapTrees(tree1, tree2);
+    NotifyEnhancementTreeOrderChanged();
 }
 
 EnhancementSpendInTree * Character::Enhancement_FindTree(const std::string & treeName)

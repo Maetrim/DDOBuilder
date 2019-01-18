@@ -471,6 +471,12 @@ void CEnhancementsView::UpdateEnhancementEffectRevoked(Character * charData, con
      }
 }
 
+void CEnhancementsView::UpdateEnhancementTreeOrderChanged(Character * charData)
+{
+    DestroyEnhancementWindows();
+    CreateEnhancementWindows();
+}
+
 LRESULT CEnhancementsView::OnUpdateTrees(WPARAM wParam, LPARAM lParam)
 {
     UNREFERENCED_PARAMETER(wParam);

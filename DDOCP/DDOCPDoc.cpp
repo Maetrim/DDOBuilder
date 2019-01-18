@@ -10,6 +10,7 @@
 #include "DDOCPDoc.h"
 #include "ForumExportDlg.h"
 #include "MainFrm.h"
+#include "AllFeatsDialog.h"
 #include "SkillSpendDialog.h"
 #include "XmlLib\SaxReader.h"
 #include "EnhancementEditorDialog.h"
@@ -30,6 +31,7 @@ BEGIN_MESSAGE_MAP(CDDOCPDoc, CDocument)
     ON_COMMAND(ID_EDIT_ENHANCEMENTTREEEDITOR, &CDDOCPDoc::OnEditEnhancementTreeEditor)
     ON_COMMAND(ID_FORUMEXPORT_EXPORTTOCLIPBOARD, &CDDOCPDoc::OnForumExportToClipboard)
     ON_COMMAND(ID_EDIT_SKILLPOINTS, &CDDOCPDoc::OnEditSkillPoints)
+    ON_COMMAND(ID_EDIT_FEATS, &CDDOCPDoc::OnEditFeats)
 END_MESSAGE_MAP()
 
 // CDDOCPDoc construction/destruction
@@ -245,6 +247,15 @@ void CDDOCPDoc::OnEditSkillPoints()
     // no tooltips while a dialog is displayed
     GetMouseHook()->SaveState();
     CSkillSpendDialog dlg(&m_characterData);
+    dlg.DoModal();
+    GetMouseHook()->RestoreState();
+}
+
+void CDDOCPDoc::OnEditFeats()
+{
+    // no tooltips while a dialog is displayed
+    GetMouseHook()->SaveState();
+    CAllFeatsDialog dlg(&m_characterData);
     dlg.DoModal();
     GetMouseHook()->RestoreState();
 }

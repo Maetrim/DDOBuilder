@@ -63,6 +63,7 @@ class CharacterObserver :
         virtual void UpdateEnhancementTrained(Character * charData, const std::string & enhancementName, const std::string & selection, bool isTier5) {};
         virtual void UpdateEnhancementRevoked(Character * charData, const std::string & enhancementName, const std::string & selection, bool isTier5) {};
         virtual void UpdateEnhancementTreeReset(Character * charData) {};
+        virtual void UpdateEnhancementTreeOrderChanged(Character * charData) {};
         virtual void UpdateActionPointsChanged(Character * charData) {};
         virtual void UpdateAPSpentInTreeChanged(Character * charData, const std::string & treeName) {};
         virtual void UpdateSpellTrained(Character * charData, const TrainedSpell & spell) {};
@@ -84,6 +85,7 @@ class Character :
     public CharacterObserver        // we observes ourselves
 {
     public:
+        explicit Character();
         Character(CDDOCPDoc * pDocument);
         void Write(XmlLib::SaxWriter * writer) const;
 
@@ -203,6 +205,7 @@ class Character :
         int AvailableActionPoints() const;
         int BonusActionPoints() const;
         bool IsTreeTrained(const std::string & tree) const;
+        void SwapTrees(const std::string & tree1, const std::string & tree2);
 
         // reaper enhancement support
         void Reaper_TrainEnhancement(
@@ -303,6 +306,7 @@ class Character :
         void NotifyEnhancementTrained(const std::string & enhancementName, const std::string & selection, bool isTier5, bool bActiveTree);
         void NotifyEnhancementRevoked(const std::string & enhancementName, const std::string & selection, bool isTier5, bool bActiveTree);
         void NotifyEnhancementTreeReset();
+        void NotifyEnhancementTreeOrderChanged();
         void NotifyActionPointsChanged();
         void NotifyAPSpentInTreeChanged(const std::string & treeName);
         void NotifySpellTrained(const TrainedSpell & spell);

@@ -5229,6 +5229,14 @@ This feat does not stack with item effects that double threat range like keen an
          <Bonus>Feat</Bonus>
          <DamageType>Slashing</DamageType>
       </Effect>
+      <Effect>
+         <!--additional stack for crit range for battle axes, has no effect if Knight's training not selected-->
+         <DisplayName>Knight's Training</DisplayName>
+         <Type>CriticalRange</Type>
+         <Bonus>Morale</Bonus>
+         <AmountVector size="3">0 1 2</AmountVector>
+         <Weapon>Battle Axe</Weapon>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Improved Critical: Thrown Weapons</Name>
@@ -24673,5 +24681,51 @@ Requires 18 trained ranks (not total mod) of the Perform skill to use.</Descript
            <Bonus>Music</Bonus>
            <Amount>4</Amount>
        </Effect>
+   </Feat>
+   <Feat>
+      <Name>Knight's Training</Name>
+      <Description>You have undergone rigorous military training with the traditional weapons of war.
+These weapons receive one of the following morale bonuses in your hands.
+* Longsword critical multiplier is increased by 1
+* Battle Axes critical threat range is increased by 1.
+  Increased by 2 if you have slashing improved critical.
+* Heavy Maces, Morning Stars and War Hammers critical threat range is increased by 1</Description>
+      <FeatGroup>
+         <IsStandardFeat/>
+         <IsFighterBonus/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <BAB>4</BAB>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>KnightsTraining</Icon>
+      <Effect>
+         <Type>CriticalMultiplier</Type>
+         <Bonus>Morale</Bonus>
+         <Amount>1</Amount>
+         <Weapon>Longsword</Weapon>
+      </Effect>
+      <Effect>
+         <Type>CriticalRange</Type>
+         <Bonus>Morale</Bonus>
+         <AmountVector size="3">0 1 2</AmountVector>
+         <Weapon>Battle Axe</Weapon>
+      </Effect>
+      <Effect>
+         <Type>CriticalRange</Type>
+         <Bonus>Morale</Bonus>
+         <AmountVector size="3">0 1 2</AmountVector>
+         <Weapon>Battle Axe</Weapon>
+      </Effect>
+      <Effect>
+         <Type>CriticalRange</Type>
+         <Bonus>Morale</Bonus>
+         <Amount>1</Amount>
+         <Weapon>Heavy Mace</Weapon>
+         <Weapon>Morningstar</Weapon>
+         <Weapon>Warhammer</Weapon>
+      </Effect>
    </Feat>
 </Feats>

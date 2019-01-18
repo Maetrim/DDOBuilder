@@ -35,6 +35,8 @@ class CDDOCPDoc :
 #endif
         afx_msg void OnEditEnhancementTreeEditor();
         afx_msg void OnForumExportToClipboard();
+        afx_msg void OnEditSkillPoints();
+        afx_msg void OnEditFeats();
 
     protected:
         DECLARE_MESSAGE_MAP()
@@ -50,6 +52,4 @@ class CDDOCPDoc :
 #endif // SHARED_HANDLERS
     private:
         Character m_characterData;
-public:
-    afx_msg void OnEditSkillPoints();
 };

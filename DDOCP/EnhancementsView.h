@@ -44,6 +44,7 @@ class CEnhancementsView :
         void UpdateFeatEffectRevoked(Character * charData, const std::string & featName, const Effect & effect) override;
         void UpdateEnhancementEffect(Character * charData, const std::string & enhancementName,  const EffectTier & effect) override;
         void UpdateEnhancementEffectRevoked(Character * charData, const std::string & enhancementName, const EffectTier & effect) override;
+        void UpdateEnhancementTreeOrderChanged(Character * charData) override;
     private:
         std::list<EnhancementTree> DetermineTrees();
         void CreateEnhancementWindows();
