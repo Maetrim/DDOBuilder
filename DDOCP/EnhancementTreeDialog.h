@@ -67,6 +67,7 @@ class CEnhancementTreeDialog :
         afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
         afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
         afx_msg void OnRButtonDown(UINT nFlags, CPoint point);
+        afx_msg void OnMButtonDown(UINT nFlags, CPoint point);
         afx_msg LRESULT OnMouseLeave(WPARAM wParam, LPARAM lParam);
         afx_msg BOOL OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message);
         afx_msg void OnCaptureChanged(CWnd* pWnd);

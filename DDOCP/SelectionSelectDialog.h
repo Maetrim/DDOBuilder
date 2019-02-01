@@ -17,7 +17,7 @@ class CSelectionSelectDialog :
     public:
         CSelectionSelectDialog(
                 CWnd * pParent,
-                const Character & charData,
+                Character & charData,
                 const EnhancementTreeItem & item,
                 const std::string & treeName,
                 TreeType type);
@@ -42,7 +42,7 @@ class CSelectionSelectDialog :
         void HideTip();
         void SetTooltipText(const EnhancementSelection & item, CPoint tipTopLeft, CPoint tipAlternate);
         enum {c_maxSelections = 16};
-        const Character & m_charData;
+        Character & m_charData;
         const EnhancementTreeItem & m_item;
         const std::string & m_treeName;
         TreeType m_type;

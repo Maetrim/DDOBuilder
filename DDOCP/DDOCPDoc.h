@@ -36,7 +36,6 @@ class CDDOCPDoc :
         afx_msg void OnEditEnhancementTreeEditor();
         afx_msg void OnForumExportToClipboard();
         afx_msg void OnEditSkillPoints();
-        afx_msg void OnEditFeats();
 
     protected:
         DECLARE_MESSAGE_MAP()

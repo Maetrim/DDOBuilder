@@ -66,6 +66,7 @@ class CDestinyTreeDialog :
         afx_msg void OnMouseMove(UINT nFlags, CPoint point);
         afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
         afx_msg void OnRButtonDown(UINT nFlags, CPoint point);
+        afx_msg void OnMButtonDown(UINT nFlags, CPoint point);
         afx_msg LRESULT OnMouseLeave(WPARAM wParam, LPARAM lParam);
         //}}AFX_MSG
         DECLARE_MESSAGE_MAP()

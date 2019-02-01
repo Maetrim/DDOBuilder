@@ -2107,7 +2107,7 @@ void CBreakdownsView::OnButtonClipboardCopy()
             }
             // now generate the total clipboard text, ensure mono-spaced
             CString clipboardText;
-            clipboardText += "[code]\r\n";
+            clipboardText += "[font=courier]\r\n";
             for (size_t i = 0; i < columns[0].size(); ++i)
             {
                 CString padded;
@@ -2117,7 +2117,8 @@ void CBreakdownsView::OnButtonClipboardCopy()
                 }
                 clipboardText += "\r\n";
             }
-            clipboardText += "[/code]\r\n";
+            clipboardText += "[/font]\r\n";
+            FormatExportData(&clipboardText);
             // now place the text on the clipboard
             if (OpenClipboard())
             {

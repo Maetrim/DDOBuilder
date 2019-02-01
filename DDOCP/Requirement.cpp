@@ -120,7 +120,7 @@ bool Requirement::Met(
     if (HasSkill())
     {
         // must have this number of ranks in the skill at the current level to train
-        met &= (charData.SkillAtLevel(Skill(), totalLevel, true) >= Amount());
+        met &= (charData.SkillAtLevel(Skill(), totalLevel, includeTomes) >= Amount());
     }
     if (HasBAB())
     {

@@ -2909,3 +2909,47 @@ OptionalBuff FindOptionalBuff(const std::string & name)
     }
     return buff;
 }
+
+void FormatExportData(std::string * exportData)
+{
+    // break the generated data up and process each line
+    std::vector<std::string> lines;
+    std::istringstream ss(*exportData);
+    std::string s;
+    while (std::getline(ss, s, '\n'))
+    {
+        lines.push_back(s);
+    }
+    // now process each line and convert double "  " on even character positions
+    for (size_t li = 0; li < lines.size(); ++li)
+    {
+        std::string line = lines[li];
+        size_t length = line.length();
+        for (size_t ci = 0; ci < length; ci += 2)
+        {
+            if (line[ci] == ' '
+                    && ((ci > 0 && line[ci-1] == ' ')
+                            || (ci < length - 1 && line[ci+1] == ' ')))
+            {
+                line[ci] = '·';
+            }
+        }
+        lines[li] = line;
+    }
+    // now re-build the forum export string
+    s = "";
+    for (size_t li = 0; li < lines.size(); ++li)
+    {
+        s += lines[li];
+        s += "\n";
+    }
+    *exportData = s;
+}
+
+void FormatExportData(CString * exportData)
+{
+    // implemented by the std;;string version
+    std::string copy = (LPCTSTR)(*exportData);
+    FormatExportData(&copy);
+    *exportData = copy.c_str();
+}

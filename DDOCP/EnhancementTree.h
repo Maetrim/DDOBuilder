@@ -5,6 +5,7 @@
 #include "EnhancementTreeItem.h"
 #include "Requirements.h"
 #include <list>
+#include <map>
 
 class Character;
 class Feat;
@@ -19,7 +20,10 @@ class EnhancementTree :
         bool MeetRequirements(const Character & charData) const;
 
         bool operator==(const EnhancementTree & other) const;
-        void VerifyObject(const std::list<EnhancementTree> & trees, const std::list<Feat> & feats) const;
+        void VerifyObject(
+                std::map<std::string, int> * names,
+                const std::list<EnhancementTree> & trees,
+                const std::list<Feat> & feats) const;
 
     protected:
         XmlLib::SaxContentElementInterface * StartElement(

@@ -344,10 +344,11 @@ void CDDOCPApp::VerifyFeats()
 
 void CDDOCPApp::VerifyEnhancements()
 {
+    std::map<std::string, int> names;
     std::list<EnhancementTree>::iterator it = m_enhancementTrees.begin();
     while (it != m_enhancementTrees.end())
     {
-        (*it).VerifyObject(m_enhancementTrees, m_allFeats);
+        (*it).VerifyObject(&names, m_enhancementTrees, m_allFeats);
         ++it;
     }
 }

@@ -9,13 +9,62 @@
         </EquipmentSlot>
         <MinLevel>29</MinLevel>
         <EffectDescription>Greater Reinforced Fists: This item surrounds your fists with kinetic energy. Your unarmed damage is boosted by one die.</EffectDescription>
+        <Effect>
+            <Type>WeaponBaseDamageBonus</Type>
+            <Bonus>Implement</Bonus>
+            <Amount>1.0</Amount>
+            <Weapon>Handwraps</Weapon>
+            <Weapon>Unarmed</Weapon>
+        </Effect>
         <EffectDescription>Deadly +16: +16 Competence bonus to weapon damage.</EffectDescription>
+        <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Competence</Bonus>
+            <Amount>16</Amount>
+            <Weapon>All</Weapon>
+        </Effect>
         <EffectDescription>Stunning +22: +22 Enhancement bonus to the DC of your Stunning Blow/Fist abilities.</EffectDescription>
+        <Effect>
+            <Type>TacticalDC</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>22</Amount>
+            <Tactical>Stun</Tactical>
+        </Effect>
         <EffectDescription>Soul of the Elements: While you are centered, this item grants a bonus depending on your surrent monk stance.
 ---Beyond the Soul of Storm: On hit 3d6 Electric damage, and target bleeds for 1d8 periodically.
 ---Beyond the Soul of Stone: +10 Insight bonus to AC and Reflex saves
 ---Beyond the Soul of Flame: Chance on hit of Blind and Fear
 ---Beyond the Soul of Tide:  Chance on hit of Trip</EffectDescription>
+        <Effect>
+            <DisplayName>Legendary Perfect Pinnacle: Beyond the Soul of Storm</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Equipment</Bonus>
+            <Dice>
+                <Number size="1">3</Number>
+                <Sides size="1">6</Sides>
+                <Energy>Electric</Energy>
+            </Dice>
+            <Weapon>All</Weapon>
+            <Stance>Centered</Stance>
+            <Stance>Wind Stance</Stance>
+        </Effect>
+        <Effect>
+            <DisplayName>Legendary Perfect Pinnacle: Beyond the Soul of Stone</DisplayName>
+            <Type>ACBonus</Type>
+            <Bonus>Insightful</Bonus>
+            <Amount>10</Amount>
+            <Stance>Centered</Stance>
+            <Stance>Mountain Stance</Stance>
+        </Effect>
+        <Effect>
+            <DisplayName>Legendary Perfect Pinnacle: Beyond the Soul of Storm</DisplayName>
+            <Type>SaveBonus</Type>
+            <Bonus>Insightful</Bonus>
+            <Amount>10</Amount>
+            <Save>Reflex</Save>
+            <Stance>Centered</Stance>
+            <Stance>Mountain Stance</Stance>
+        </Effect>
         <EffectDescription>Adherent of the Mists Set (Legendary):
 5 Pieces Equipped gives: +20 Profane Bonus to PRR
                          +20 Profane Bonus to Positive, Negative and Repair Amplification
@@ -63,63 +112,6 @@
             <Bonus>Profane</Bonus>
             <AmountVector size="5">0 0 0 0 20</AmountVector>
             <SpellPower>All</SpellPower>
-        </Effect>
-        <Effect>
-            <Type>WeaponBaseDamageBonus</Type>
-            <Bonus>Stacking</Bonus>
-            <Amount>1.0</Amount>
-            <Weapon>Handwraps</Weapon>
-        </Effect>
-        <Effect>
-            <Type>WeaponBaseDamageBonus</Type>
-            <Bonus>Stacking</Bonus>
-            <Amount>1.0</Amount>
-            <Weapon>Unarmed</Weapon>
-        </Effect>
-        <Effect>
-            <Type>DamageBonus</Type>
-            <Bonus>Competence</Bonus>
-            <Amount>16</Amount>
-            <Weapon>All</Weapon>
-        </Effect>
-        <Effect>
-            <Type>WeaponOtherDamageBonus</Type>
-            <Bonus>Equipment</Bonus>
-            <Dice>
-                <Number size="1">3</Number>
-                <Sides size="1">6</Sides>
-                <Energy>Electric</Energy>
-            </Dice>
-            <Weapon>All</Weapon>
-            <Stance>Centered</Stance>
-            <Stance>Wind Stance</Stance>
-        </Effect>
-        <Effect>
-            <Type>ACBonus</Type>
-            <Bonus>Insightful</Bonus>
-            <Amount>10</Amount>
-            <Stance>Centered</Stance>
-            <Stance>Mountain Stance</Stance>
-        </Effect>
-        <Effect>
-            <Type>SaveBonus</Type>
-            <Bonus>Insightful</Bonus>
-            <Amount>10</Amount>
-            <Save>Reflex</Save>
-            <Stance>Centered</Stance>
-            <Stance>Mountain Stance</Stance>
-        </Effect>
-        <Effect>
-            <Type>TacticalDC</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>22</Amount>
-            <Tactical>Stun</Tactical>
-        </Effect>
-        <Effect>
-            <Type>WeaponBaseDamageBonus</Type>
-            <Bonus>Stacking</Bonus>
-            <Amount>1.0</Amount>
-            <Weapon>Handwraps</Weapon>
         </Effect>
         <ItemAugment>
             <Type>Yellow</Type>

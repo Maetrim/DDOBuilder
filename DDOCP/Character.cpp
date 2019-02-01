@@ -1845,8 +1845,12 @@ double Character::SkillAtLevel(
     // add in any tome bonus if required
     if (includeTome)
     {
+        // Skill tomes apply at levels 1 (+1), 1 (+2), 3 (+3), 7 (+4), 11 (+5)
+        size_t maxTome = 2; // always at least +2 applies
+        if (level >= 2) maxTome += 1;
+        if (level >= 6) maxTome += 1;
+        if (level >= 10) maxTome += 1;
         size_t tomeValue = SkillTomeValue(skill);
-        size_t maxTome = (level / 4) + 1;
         skillLevel += min(tomeValue, maxTome);
     }
     return skillLevel;
@@ -3223,7 +3227,7 @@ bool Character::IsFeatTrainable(
                 classLevels,
                 level,
                 currentFeats,
-            includeTomes);
+                includeTomes);
     }
     if (canTrain)
     {

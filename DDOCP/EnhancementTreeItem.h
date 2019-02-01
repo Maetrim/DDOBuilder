@@ -88,4 +88,5 @@ class EnhancementTreeItem :
         mutable bool m_bDisabledImageLoaded;
         mutable CImage m_disabledImage;
         friend class CEnhancementEditorDialog;
+        friend class EnhancementTree;
 };

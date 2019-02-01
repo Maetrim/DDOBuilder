@@ -46,6 +46,22 @@ void Item::EndElement()
 {
     SaxContentElement::EndElement();
     DL_END(Item_PROPERTIES)
+    // fix: older files can contain augments that have erroneous "Value"
+    // fields in them. Clear these on load if present
+    std::vector<ItemAugment>::iterator it = m_Augments.begin();
+    while (it != m_Augments.end())
+    {
+        if ((*it).HasSelectedAugment())
+        {
+            const Augment & augment = FindAugmentByName((*it).SelectedAugment());
+            if (!augment.HasEnterValue())
+            {
+                // this augment should not have a Value field
+                (*it).Clear_Value();
+            }
+        }
+        ++it;
+    }
 }
 
 void Item::Write(XmlLib::SaxWriter * writer) const
@@ -177,7 +193,7 @@ void Item::VerifyObject() const
 
 void Item::CopyUserSetValues(const Item & original)
 {
-    // when updating an item to the latest version there are certain user
+    // when updating an item to the latest version there are certain user values
     // which we need to copy
     // sentient Jewel and augments/upgrade slots
     m_hasSentientIntelligence = original.m_hasSentientIntelligence;

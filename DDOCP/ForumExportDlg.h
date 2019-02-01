@@ -140,6 +140,7 @@ class CForumExportDlg : public CDialogEx
         void AddReaperTree(std::stringstream & forumExport, const ReaperSpendInTree & treeSpend);
 
         void ExportGear(const EquippedGear & gear, std::stringstream & forumExport);
+
         Character * m_pCharacter;
         CListCtrl m_listConfigureExport;
         CEdit m_editExport;

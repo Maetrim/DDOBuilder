@@ -300,7 +300,14 @@ double BreakdownItem::DoPercentageEffects(
                 double percent = (*it).TotalAmount(false);
                 double amount = (total * percent / 100.0);
                 // round it to a whole number
-                amount = (double)(int)amount;
+                if (amount > 0)
+                {
+                    amount = (double)(int)(amount + 0.5);   // round up
+                }
+                else
+                {
+                    amount = (double)(int)(amount - 0.5);   // round up
+                }
                 amountAdded += amount;
                 (*it).SetPercentageValue(amount);   // so it can display its amount
             }

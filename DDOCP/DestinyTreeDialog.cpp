@@ -117,6 +117,7 @@ BEGIN_MESSAGE_MAP(CDestinyTreeDialog, CDialog)
     ON_MESSAGE(WM_MOUSELEAVE, OnMouseLeave)
     ON_WM_LBUTTONDOWN()
     ON_WM_RBUTTONDOWN()
+    ON_WM_MBUTTONDOWN()
 END_MESSAGE_MAP()
 #pragma warning(pop)
 
@@ -601,6 +602,26 @@ void CDestinyTreeDialog::OnLButtonDown(UINT nFlags, CPoint point)
                     }
                 }
             }
+            else
+            {
+                // although this item cannot be trained, still allow the selection
+                // dialog to be displayed for item if it has one.
+                if (item->HasSelections()
+                        && te == NULL)
+                {
+                    // need to show the selection dialog
+                    CSelectionSelectDialog dlg(
+                            AfxGetApp()->m_pMainWnd->GetActiveWindow(),
+                            *m_pCharacter,
+                            *item,
+                            m_tree.Name(),
+                            m_type);
+                    // no tooltips while a dialog is displayed
+                    GetMouseHook()->SaveState();
+                    dlg.DoModal();
+                    GetMouseHook()->RestoreState();
+                }
+            }
         }
         // check for a click of the reset tree button
         CRect rctResetButton(
@@ -870,3 +891,39 @@ void CDestinyTreeDialog::UpdateEnhancementTreeReset(Character * charData)
     Invalidate();
 }
 
+void CDestinyTreeDialog::OnMButtonDown(UINT nFlags, CPoint point)
+{
+    // copy the bitmap content to the clipboard
+    CDC screenDC;
+    screenDC.Attach(::GetDC(NULL));
+    CDC clipboardDC;
+    CDC bitmapDC;
+    CBitmap clipboardBitmap;
+
+    bitmapDC.CreateCompatibleDC(&screenDC);
+    bitmapDC.SaveDC();
+    bitmapDC.SelectObject(&m_cachedDisplay);
+    // draw to a compatible device context and then copy to clipboard
+    clipboardDC.CreateCompatibleDC(&screenDC);
+    clipboardDC.SaveDC();
+    clipboardBitmap.CreateCompatibleBitmap(
+            &screenDC,
+            c_sizeX,
+            c_sizeY);
+    clipboardDC.SelectObject(&clipboardBitmap);
+    clipboardDC.BitBlt(0, 0, c_sizeX, c_sizeY, &bitmapDC, 0, 0, SRCCOPY);
+    clipboardDC.RestoreDC(-1);
+    clipboardDC.DeleteDC();
+    ::ReleaseDC(NULL, screenDC.Detach());
+
+    bitmapDC.RestoreDC(-1);
+    bitmapDC.DeleteDC();
+
+    // Open the clipboard
+    if (::OpenClipboard(NULL))
+    {
+        ::EmptyClipboard();
+        SetClipboardData(CF_BITMAP, clipboardBitmap.Detach());     // clipboard now owns the object
+        ::CloseClipboard();
+    }
+}

@@ -41,6 +41,55 @@ void EnhancementTree::EndElement()
 {
     SaxContentElement::EndElement();
     DL_END(EnhancementTree_PROPERTIES)
+
+    // some trees have had <InternName> updates.
+    // make sure any loaded enhancements in those trees are updated
+    if (m_Name == "War Soul"
+            || m_Name == "Vistani")
+    {
+        // iterate the loaded trained elements and update if required
+        std::list<EnhancementTreeItem>::iterator it = m_Items.begin();
+        while (it != m_Items.end())
+        {
+            if ((*it).InternalName() == "WSCore1")
+            {
+                (*it).Set_InternalName("WarSoulCore1");
+            }
+            if ((*it).InternalName() == "WSCore2")
+            {
+                (*it).Set_InternalName("WarSoulCore2");
+            }
+            if ((*it).InternalName() == "WSCore3")
+            {
+                (*it).Set_InternalName("WarSoulCore3");
+            }
+            if ((*it).InternalName() == "WSCore4")
+            {
+                (*it).Set_InternalName("WarSoulCore4");
+            }
+            if ((*it).InternalName() == "WSCore5")
+            {
+                (*it).Set_InternalName("WarSoulCore5");
+            }
+            if ((*it).InternalName() == "WSCore6")
+            {
+                (*it).Set_InternalName("WarSoulCore6");
+            }
+            if ((*it).InternalName() == "WSAbilityI")
+            {
+                (*it).Set_InternalName("WarSoulAbilityI");
+            }
+            if ((*it).InternalName() == "WSAbilityII")
+            {
+                (*it).Set_InternalName("WarSoulAbilityII");
+            }
+            if ((*it).InternalName() == "BlessedBlades")
+            {
+                (*it).Set_InternalName("VistaniBlessedBlades");
+            }
+            ++it;
+        }
+    }
 }
 
 void EnhancementTree::Write(XmlLib::SaxWriter * writer) const
@@ -63,6 +112,7 @@ bool EnhancementTree::MeetRequirements(const Character & charData) const
 }
 
 void EnhancementTree::VerifyObject(
+        std::map<std::string, int> * names,
         const std::list<EnhancementTree> & trees,
         const std::list<Feat> & feats) const
 {
@@ -79,6 +129,16 @@ void EnhancementTree::VerifyObject(
     while (it != m_Items.end())
     {
         ok &= (*it).VerifyObject(&ss, trees, feats);
+        if (names->find((*it).InternalName()) != names->end())
+        {
+            ss << "EnhancementTree item " << (*it).InternalName() << " is a duplicate\n";
+            ok = false;
+        }
+        else
+        {
+            // add this one to the map of used names
+            (*names)[(*it).InternalName()] = 0;
+        }
         ++it;
     }
     if (!ok)

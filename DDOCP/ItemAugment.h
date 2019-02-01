@@ -29,4 +29,5 @@ class ItemAugment :
         DL_DECLARE_VARIABLES(ItemAugment_PROPERTIES)
 
         friend class CItemSelectDialog;
+        friend class Item;
 };

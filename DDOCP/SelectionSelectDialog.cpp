@@ -14,7 +14,7 @@ IMPLEMENT_DYNAMIC(CSelectionSelectDialog, CDialog)
 
 CSelectionSelectDialog::CSelectionSelectDialog(
         CWnd* pParent,
-        const Character & charData,
+        Character & charData,
         const EnhancementTreeItem & item,
         const std::string & treeName,
         TreeType type) :
@@ -72,6 +72,7 @@ BOOL CSelectionSelectDialog::OnInitDialog()
     ASSERT(selections.size() <= c_maxSelections);
     std::list<EnhancementSelection>::const_iterator it = selections.begin();
     size_t index = 0;
+    size_t spentInTree = m_charData.APSpentInTree(m_treeName);
     while (it != selections.end())
     {
         // ensure buttons are correct size
@@ -120,7 +121,8 @@ BOOL CSelectionSelectDialog::OnInitDialog()
                     true);          // do include tomes
         }
         bool enoughAP = (m_charData.AvailableActionPoints(m_treeName, m_type) >= (int)(*it).Cost());
-        m_buttonOption[index].EnableWindow(!excluded && canTrain && enoughAP);
+        bool requiredAPSpent = (spentInTree >= m_item.MinSpent());
+        m_buttonOption[index].EnableWindow(!excluded && canTrain && enoughAP && requiredAPSpent);
         ++it;
         ++index;
     }

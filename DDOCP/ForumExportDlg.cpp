@@ -156,7 +156,7 @@ void CForumExportDlg::OnItemchangedListConfigureExport(NMHDR* pNMHDR, LRESULT* p
 void CForumExportDlg::PopulateExport()
 {
     std::stringstream forumExport;
-    forumExport << "[code]\r\n";
+    forumExport << "[font=courier]\r\n";
     for (size_t i = 0 ; i < FES_Count; ++i)
     {
         if (m_bShowSection[i])
@@ -235,10 +235,16 @@ void CForumExportDlg::PopulateExport()
             }
         }
     }
-    forumExport << "[/code]\r\n";
+    forumExport << "[/font]\r\n";
+    // to format correctly to the forums multiple space " " characters cannot
+    // be present else they get reduced to a single space losing all layout the formatting
+    // to avoid this we do a a replace of all "  " to " ." in the generated
+    // string on all odd character positions from the start of each line
+    std::string generatedData = forumExport.str();
+    FormatExportData(&generatedData);
     // need to retain the control scroll position
     int pos = m_editExport.GetFirstVisibleLine();
-    m_editExport.SetWindowText(forumExport.str().c_str());
+    m_editExport.SetWindowText(generatedData.c_str());
     m_editExport.LineScroll(pos, 0);
 }
 
@@ -572,8 +578,8 @@ void CForumExportDlg::AddFeatSelections(std::stringstream & forumExport)
         className.Format("%s(%d)",
                 EnumEntryText(levelData.HasClass() ? levelData.Class() : Class_Unknown, classTypeMap),
                 levelData.HasClass() ? classLevels[levelData.Class()] : 0);
-        forumExport.width(3);
-        forumExport << std::right << (level + 1) << "   ";
+        forumExport.width(2);
+        forumExport << std::left << (level + 1) << "    ";
         forumExport.fill(' ');
         forumExport.width(17);
         forumExport << std::left << className;

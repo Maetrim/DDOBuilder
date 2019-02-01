@@ -535,6 +535,7 @@ void CItemSelectDialog::OnAugmentSelect(UINT nID)
             oldSelection = augments[augmentIndex].SelectedAugment();
         }
         augments[augmentIndex].Set_SelectedAugment((LPCTSTR)text);
+        augments[augmentIndex].Clear_Value(); // if we just selected an augment ensure any previous value does not carry over
         if (oldSelection != "")
         {
             const Augment & oldAugment =
