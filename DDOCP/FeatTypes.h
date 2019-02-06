@@ -16,6 +16,7 @@ enum FeatAcquisitionType
     FeatAcquisition_IconicPastLife,
     FeatAcquisition_EpicPastLife,
     FeatAcquisition_Special,
+    FeatAcquisition_Favor,
     FeatAcquisition_Train,
 };
 const XmlLib::enumMapEntry<FeatAcquisitionType> featAcquisitionMap[] =
@@ -28,6 +29,7 @@ const XmlLib::enumMapEntry<FeatAcquisitionType> featAcquisitionMap[] =
     {FeatAcquisition_EpicPastLife, L"EpicPastLife"},
     {FeatAcquisition_Train, L"Train"},
     {FeatAcquisition_Special, L"Special"},
+    {FeatAcquisition_Favor, L"Favor"},
     {FeatAcquisitionType(0), NULL}
 };
 
@@ -41,6 +43,7 @@ enum TrainableFeatTypes
     TFT_IconicPastLife,
     TFT_RacialPastLife,
     TFT_SpecialFeat,
+    TFT_FavorFeat,
     TFT_GrantedFeat,
     TFT_Special,                // BACKWARDS COMPATABILITY, GETS TRANSLATED ON LOAD
 
@@ -87,6 +90,7 @@ const XmlLib::enumMapEntry<TrainableFeatTypes> trainableFeatTypesMap[] =
     {TFT_IconicPastLife, L"IconicPastLife"},
     {TFT_RacialPastLife, L"RacialPastLife"},
     {TFT_SpecialFeat, L"SpecialFeat"},
+    {TFT_FavorFeat, L"Favor"},
     {TFT_GrantedFeat, L"GrantedFeat"},
     {TFT_Special, L"Special"},
 

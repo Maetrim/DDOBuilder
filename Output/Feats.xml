@@ -14712,13 +14712,6 @@ extra damage or debuffs on the enemy you hit.)</Description>
    </Feat>
    <!--Special feats-->
    <Feat>
-      <Name>Blessings of a Feather</Name>
-      <Description>Grants a +2 saves bonus versus Undead</Description>
-      <Requirements/>
-      <Acquire>Special</Acquire>
-      <Icon>BlessingsOfAFeather</Icon>
-   </Feat>
-   <Feat>
       <Name>Coin Lord Finishing School Training</Name>
       <Description>Grants a +2 bonus to your Diplomacy and Intimidate skills.</Description>
       <Requirements/>
@@ -14730,18 +14723,6 @@ extra damage or debuffs on the enemy you hit.)</Description>
          <Skill>Diplomacy</Skill>
          <Skill>Intimidate</Skill>
          <Amount>2</Amount>
-      </Effect>
-   </Feat>
-   <Feat>
-      <Name>Draconic Vitality</Name>
-      <Description>Increases your maximum hitpoints by 10.</Description>
-      <Requirements/>
-      <Acquire>Special</Acquire>
-      <Icon>DraconicVitality</Icon>
-      <Effect>
-         <Type>Hitpoints</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>10</Amount>
       </Effect>
    </Feat>
    <Feat>
@@ -14844,39 +14825,6 @@ in the form of a free Feat.</Description>
       <Acquire>Special</Acquire>
       <Icon>TomeOfFate</Icon>
       <MaxTimesAcquire>3</MaxTimesAcquire>
-   </Feat>
-   <Feat>
-      <Name>Falconry Tree</Name>
-      <Description>You have access to the Falconry enhancement tree, either through a DDO store purchase or through a favor reward.</Description>
-      <Requirements/>
-      <Acquire>Special</Acquire>
-      <Icon>Falconry</Icon>
-      <Effect>
-         <Type>EnhancementTree</Type>
-         <Bonus>Enhancement</Bonus>
-      </Effect>
-   </Feat>
-   <Feat>
-      <Name>Harper Agent Tree</Name>
-      <Description>You have access to the Harper Agent enhancement tree, either through a DDO store purchase or through a favor reward.</Description>
-      <Requirements/>
-      <Acquire>Special</Acquire>
-      <Icon>Harper</Icon>
-      <Effect>
-         <Type>EnhancementTree</Type>
-         <Bonus>Enhancement</Bonus>
-      </Effect>
-   </Feat>
-   <Feat>
-      <Name>Vistani Knife Fighter Tree</Name>
-      <Description>You have access to the Vistani Knife Fighter enhancement tree, either through a DDO store purchase or through a favor reward.</Description>
-      <Requirements/>
-      <Acquire>Special</Acquire>
-      <Icon>Vistani</Icon>
-      <Effect>
-         <Type>EnhancementTree</Type>
-         <Bonus>Enhancement</Bonus>
-      </Effect>
    </Feat>
    <!--Lore Feats-->
    <Feat>
@@ -24726,6 +24674,233 @@ These weapons receive one of the following morale bonuses in your hands.
          <Weapon>Heavy Mace</Weapon>
          <Weapon>Morningstar</Weapon>
          <Weapon>Warhammer</Weapon>
+      </Effect>
+   </Feat>
+    <!--New U41 Patch 3 Favor feats-->
+   <Feat>
+      <Name>Gate Keepers Favor Rewards</Name>
+      <Description>Rank 1: Favor 75 - "Gatekeepers: Skill Bonus" - "This feat grants you +2 bonus to Concentration and Spot skills."
+Rank 2: Favor 150 - "Gatekeepers: Hit Point Bonus" - "This feat grants you +5 HP."</Description>
+      <MaxTimesAcquire>2</MaxTimesAcquire>
+      <Requirements/>
+      <Acquire>Favor</Acquire>
+      <Icon>Gatekeepers</Icon>
+      <Effect>
+         <DisplayName>Gatekeepers: Skill Bonus</DisplayName>
+         <Type>SkillBonus</Type>
+         <Bonus>Feat</Bonus>
+         <AmountVector size="2">2 2</AmountVector>
+         <Skill>Concentration</Skill>
+         <Skill>Spot</Skill>
+      </Effect>
+      <Effect>
+         <DisplayName>Gatekeepers: Hit Point Bonus</DisplayName>
+         <Type>Hitpoints</Type>
+         <Bonus>Feat</Bonus>
+         <AmountVector size="2">0 5</AmountVector>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>House Jorasco Favor Rewards</Name>
+      <Description>Rank 1 :"House Jorasco: Skill Bonus" "This feat grants you +2 bonus to the Heal and Diplomacy skills."
+Rank 2: "House Jorasco: Hit Point Bonus" "This feat grants you +5 HP."</Description>
+      <MaxTimesAcquire>2</MaxTimesAcquire>
+      <Requirements/>
+      <Acquire>Favor</Acquire>
+      <Icon>HouseJorasco</Icon>
+      <Effect>
+         <DisplayName>House Jorasco: Skill Bonus</DisplayName>
+         <Type>SkillBonus</Type>
+         <Bonus>Feat</Bonus>
+         <AmountVector size="2">2 2</AmountVector>
+         <Skill>Heal</Skill>
+         <Skill>Diplomacy</Skill>
+      </Effect>
+      <Effect>
+         <DisplayName>House Jorasco: Hit Point Bonus</DisplayName>
+         <Type>Hitpoints</Type>
+         <Bonus>Feat</Bonus>
+         <AmountVector size="2">0 5</AmountVector>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>House Deneith Favor Rewards</Name>
+      <Description>Rank 1: "House Deneith: Skill Bonus" "This feat grants you +2 Intimidate and Search skills."
+Rank 2: "House Deneith: Hit Points Bonus" "This feat grants you +5 HP."</Description>
+      <MaxTimesAcquire>2</MaxTimesAcquire>
+      <Requirements/>
+      <Acquire>Favor</Acquire>
+      <Icon>HouseDeneith</Icon>
+      <Effect>
+         <DisplayName>House Deneith: Skill Bonus</DisplayName>
+         <Type>SkillBonus</Type>
+         <Bonus>Feat</Bonus>
+         <AmountVector size="2">2 2</AmountVector>
+         <Skill>Intimidate</Skill>
+         <Skill>Search</Skill>
+      </Effect>
+      <Effect>
+         <DisplayName>House Deneith: Hit Point Bonus</DisplayName>
+         <Type>Hitpoints</Type>
+         <Bonus>Feat</Bonus>
+         <AmountVector size="2">0 5</AmountVector>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Purple Dragon Knight Favor Rewards</Name>
+      <Description>Rank 1: Key to Eveningstar
+Rank 2: "Purple Dragon Knights: Hit Point Bonus" "This feat grants you +5 HP."
+Rank 3: Apply Set bonuses to certain items.
+Rank 4: "Purple Dragon Knights: Save Bonus" "This feat grants you +2 saves versus Evil Creatures."</Description>
+      <MaxTimesAcquire>4</MaxTimesAcquire>
+      <Requirements/>
+      <Acquire>Favor</Acquire>
+      <Icon>PurpleDragonKnights</Icon>
+      <Effect>
+         <DisplayName>Purple Dragon Knights: Hit Point Bonus</DisplayName>
+         <Type>Hitpoints</Type>
+         <Bonus>Feat</Bonus>
+         <AmountVector size="4">0 5 5 5</AmountVector>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>House Phiarlan Favor Rewards</Name>
+      <Description>Rank 1: "House Phiarlan: Skill Bonus" "This feat grants you +2 bonus to Hide and Perform skills."</Description>
+      <MaxTimesAcquire>1</MaxTimesAcquire>
+      <Requirements/>
+      <Acquire>Favor</Acquire>
+      <Icon>HousePhiarlan</Icon>
+      <Effect>
+         <DisplayName>House Phiarlan: Skill Bonus</DisplayName>
+         <Type>SkillBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>2</Amount>
+         <Skill>Hide</Skill>
+         <Skill>Perform</Skill>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>The Twelve Favor Rewards</Name>
+      <Description>Rank 1: Small ingredients bag.
+Rank 2: Large Ingredients bag.
+Rank 3: Nothing*
+Rank 4: "Twelve: Save Bonus" "This feat grants you +2 saves versus Spell Saves."</Description>
+      <MaxTimesAcquire>4</MaxTimesAcquire>
+      <Requirements/>
+      <Acquire>Favor</Acquire>
+      <Icon>TheTwelve</Icon>
+      <Effect>
+         <DisplayName>Twelve: Save Bonus</DisplayName>
+         <Type>SaveBonus</Type>
+         <Bonus>Feat</Bonus>
+         <AmountVector size="4">0 0 0 2</AmountVector>
+         <Save>Spell</Save>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Agents of Argonnesson Favor Rewards</Name>
+      <Description>Rank 1: Choice of item.
+Rank 2: "Agents of Argonnesson: Draconic Vitality" "This feat grants you +10 HP"
+Rank 3: "Agents of Argonnesson: Save Bonus" "This feat grants you +2 saves versus Dragons."</Description>
+      <MaxTimesAcquire>3</MaxTimesAcquire>
+      <Requirements/>
+      <Acquire>Favor</Acquire>
+      <Icon>AgentsOfArgonnesson</Icon>
+      <Effect>
+         <DisplayName>Agents of Argonnesson: Draconic Vitality</DisplayName>
+         <Type>Hitpoints</Type>
+         <Bonus>Feat</Bonus>
+         <AmountVector size="3">0 10 10</AmountVector>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>The Harpers Favor Rewards</Name>
+      <Description>Rank 1: "Harpers: Skill Bonus" "This feat grants you +2 bonus to Perform and Bluff skills."
+Rank 2: "Harpers: Hit Point Bonus" "This feat grants you +5 HP."
+Rank 3: Access to the Harper Agent Enhancement Tree.</Description>
+      <MaxTimesAcquire>3</MaxTimesAcquire>
+      <Requirements/>
+      <Acquire>Favor</Acquire>
+      <Icon>TheHarpers</Icon>
+      <Effect>
+         <DisplayName>Harpers: Skill Bonus</DisplayName>
+         <Type>SkillBonus</Type>
+         <Bonus>Feat</Bonus>
+         <AmountVector size="3">2 2 2</AmountVector>
+         <Skill>Perform</Skill>
+         <Skill>Bluff</Skill>
+      </Effect>
+      <Effect>
+         <DisplayName>Harpers: Hit Point Bonus</DisplayName>
+         <Type>Hitpoints</Type>
+         <Bonus>Feat</Bonus>
+         <AmountVector size="3">0 5 5</AmountVector>
+      </Effect>
+      <Effect>
+         <Type>EnhancementTree</Type>
+         <Bonus>Enhancement</Bonus>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Keepers of a Feather Favor Rewards</Name>
+      <Description>Rank 1: Grants a +2 saves bonus versus Undead
+Rank 2: Small Augment Bag
+Rank 3: Access to the Vistani Enhancement Tree</Description>
+      <MaxTimesAcquire>3</MaxTimesAcquire>
+      <Requirements/>
+      <Acquire>Favor</Acquire>
+      <Icon>BlessingsOfAFeather</Icon>
+      <Effect>
+         <Type>EnhancementTree</Type>
+         <Bonus>Enhancement</Bonus>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>The Free Agents Favor Rewards</Name>
+      <Description>Rank 1: Access to Free Agents vendor in the Harbor.
+Rank 2: Additional purchases available from the Free Agents vendor
+Rank 3: Specialist item repair in Zawabis Refuge.
+Rank 4: Access to the Falconry Enhancement Tree</Description>
+      <MaxTimesAcquire>4</MaxTimesAcquire>
+      <Requirements/>
+      <Acquire>Favor</Acquire>
+      <Icon>TheFreeAgents</Icon>
+      <Effect>
+         <Type>EnhancementTree</Type>
+         <Bonus>Enhancement</Bonus>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Falconry Tree</Name>
+      <Description>You have access to the Falconry enhancement tree through a DDO store purchase.</Description>
+      <Requirements/>
+      <Acquire>Favor</Acquire>
+      <Icon>Falconry</Icon>
+      <Effect>
+         <Type>EnhancementTree</Type>
+         <Bonus>Enhancement</Bonus>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Harper Agent Tree</Name>
+      <Description>You have access to the Harper Agent enhancement tree through a DDO store purchase.</Description>
+      <Requirements/>
+      <Acquire>Favor</Acquire>
+      <Icon>Harper</Icon>
+      <Effect>
+         <Type>EnhancementTree</Type>
+         <Bonus>Enhancement</Bonus>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Vistani Knife Fighter Tree</Name>
+      <Description>You have access to the Vistani Knife Fighter enhancement tree through a DDO store purchase.</Description>
+      <Requirements/>
+      <Acquire>Favor</Acquire>
+      <Icon>Vistani</Icon>
+      <Effect>
+         <Type>EnhancementTree</Type>
+         <Bonus>Enhancement</Bonus>
       </Effect>
    </Feat>
 </Feats>

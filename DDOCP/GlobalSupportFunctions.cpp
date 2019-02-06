@@ -286,6 +286,12 @@ const std::list<Feat> & SpecialFeats()
     return pApp->SpecialFeats();
 }
 
+const std::list<Feat> & FavorFeats()
+{
+    CDDOCPApp * pApp = dynamic_cast<CDDOCPApp*>(AfxGetApp());
+    return pApp->FavorFeats();
+}
+
 const std::list<EnhancementTree> & EnhancementTrees()
 {
     CDDOCPApp * pApp = dynamic_cast<CDDOCPApp*>(AfxGetApp());

@@ -50,6 +50,5 @@ void CMFCButtonMMRelay::OnRButtonUp(UINT nFlags, CPoint point)
     hdr.code = NM_RCLICK;
     hdr.hwndFrom = this->GetSafeHwnd();
     hdr.idFrom = GetDlgCtrlID();
-    TRACE("OnRButtonUp");
     GetParent()->SendMessage(WM_NOTIFY, (WPARAM)hdr.idFrom, (LPARAM)&hdr);
 }

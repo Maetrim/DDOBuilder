@@ -11,7 +11,7 @@ namespace
 {
     const int c_controlSpacing = 1;
     const int c_windowSizeX = 39;
-    const int c_windowSizeY = 59;
+    const int c_windowSizeY = 55;
     const UINT UWM_NEW_DOCUMENT = ::RegisterWindowMessage(_T("NewActiveDocument"));
 }
 
@@ -53,6 +53,10 @@ CSpecialFeatsView::~CSpecialFeatsView()
     {
         delete m_specialSelectionViews[vi];
     }
+    for (size_t vi = 0; vi < m_favorSelectionViews.size(); ++vi)
+    {
+        delete m_favorSelectionViews[vi];
+    }
 }
 
 void CSpecialFeatsView::DoDataExchange(CDataExchange* pDX)
@@ -64,12 +68,14 @@ void CSpecialFeatsView::DoDataExchange(CDataExchange* pDX)
     DDX_Control(pDX, IDC_STATIC_ICONIC, m_staticIconic);
     DDX_Control(pDX, IDC_STATIC_EPIC, m_staticEpic);
     DDX_Control(pDX, IDC_STATIC_SPECIAL, m_staticSpecial);
+    DDX_Control(pDX, IDC_STATIC_FAVOR, m_staticFavor);
 
     m_staticHeroic.SetFont(&m_staticFont);
     m_staticRacial.SetFont(&m_staticFont);
     m_staticIconic.SetFont(&m_staticFont);
     m_staticEpic.SetFont(&m_staticFont);
     m_staticSpecial.SetFont(&m_staticFont);
+    m_staticFavor.SetFont(&m_staticFont);
 
     // create the dynamic controls used to add feats
     CWinApp * pApp = AfxGetApp();
@@ -81,17 +87,20 @@ void CSpecialFeatsView::DoDataExchange(CDataExchange* pDX)
         const std::list<Feat> & iconicPastLifeFeats = pDDOApp->IconicPastLifeFeats();
         const std::list<Feat> & epicPastLifeFeats = pDDOApp->EpicPastLifeFeats();
         const std::list<Feat> & specialFeats = pDDOApp->SpecialFeats();
+        const std::list<Feat> & favorFeats = pDDOApp->FavorFeats();
         m_heroicSelectionViews.reserve(heroicPastLifeFeats.size());
         m_racialSelectionViews.reserve(racialPastLifeFeats.size());
         m_iconicSelectionViews.reserve(iconicPastLifeFeats.size());
         m_epicSelectionViews.reserve(epicPastLifeFeats.size());
         m_specialSelectionViews.reserve(specialFeats.size());
+        m_favorSelectionViews.reserve(favorFeats.size());
 
         CreateFeatWindows(&m_staticHeroic, heroicPastLifeFeats, &m_heroicSelectionViews, TFT_HeroicPastLife);
         CreateFeatWindows(&m_staticRacial, racialPastLifeFeats, &m_racialSelectionViews, TFT_RacialPastLife);
         CreateFeatWindows(&m_staticIconic, iconicPastLifeFeats, &m_iconicSelectionViews, TFT_IconicPastLife);
         CreateFeatWindows(&m_staticEpic, epicPastLifeFeats, &m_epicSelectionViews, TFT_EpicPastLife);
         CreateFeatWindows(&m_staticSpecial, specialFeats, &m_specialSelectionViews, TFT_SpecialFeat);
+        CreateFeatWindows(&m_staticFavor, favorFeats, &m_favorSelectionViews, TFT_FavorFeat);
     }
 }
 
@@ -180,6 +189,7 @@ void CSpecialFeatsView::OnSize(UINT nType, int cx, int cy)
         fi = PositionWindows(&m_staticIconic, fi, m_iconicSelectionViews, &maxx, &maxy);
         fi = PositionWindows(&m_staticEpic, fi, m_epicSelectionViews, &maxx, &maxy);
         fi = PositionWindows(&m_staticSpecial, fi, m_specialSelectionViews, &maxx, &maxy);
+        fi = PositionWindows(&m_staticFavor, fi, m_favorSelectionViews, &maxx, &maxy);
         // set scale based on area used by the windows.
         // This will introduce scroll bars if required
         SetScrollSizes(MM_TEXT, CSize(maxx, maxy));
@@ -264,6 +274,13 @@ LRESULT CSpecialFeatsView::OnNewDocument(WPARAM wParam, LPARAM lParam)
                 m_specialSelectionViews[vi]->SendMessage(UWM_NEW_DOCUMENT, (WPARAM)m_pDocument, (LPARAM)pCharacter);
             }
         }
+        for (size_t vi = 0; vi < m_favorSelectionViews.size(); ++vi)
+        {
+            if (IsWindow(m_favorSelectionViews[vi]->GetSafeHwnd()))
+            {
+                m_favorSelectionViews[vi]->SendMessage(UWM_NEW_DOCUMENT, (WPARAM)m_pDocument, (LPARAM)pCharacter);
+            }
+        }
     }
     return 0L;
 }
@@ -278,6 +295,7 @@ BOOL CSpecialFeatsView::OnEraseBkgnd(CDC* pDC)
         IDC_STATIC_ICONIC,
         IDC_STATIC_EPIC,
         IDC_STATIC_SPECIAL,
+        IDC_STATIC_FAVOR,
         0 // end marker
     };
 
@@ -363,6 +381,25 @@ BOOL CSpecialFeatsView::OnEraseBkgnd(CDC* pDC)
     for (size_t i = 0; i < m_specialSelectionViews.size(); ++i)
     {
         CWnd * pControl = m_specialSelectionViews[i];
+        if (pControl && pControl->IsWindowVisible())
+        {
+            CRect controlClip;
+            pControl->GetWindowRect(&controlClip);
+            ScreenToClient(&controlClip);
+            if (pControl->IsKindOf(RUNTIME_CLASS(CComboBox)))
+            {
+                // combo boxes return the height of the whole control, including the drop rectangle
+                // limit to the the height of the selection combo
+                controlClip.bottom = controlClip.top
+                        + GetSystemMetrics(SM_CYHSCROLL)
+                        + GetSystemMetrics(SM_CYEDGE) * 2;
+            }
+            pDC->ExcludeClipRect(&controlClip);
+        }
+    }
+    for (size_t i = 0; i < m_favorSelectionViews.size(); ++i)
+    {
+        CWnd * pControl = m_favorSelectionViews[i];
         if (pControl && pControl->IsWindowVisible())
         {
             CRect controlClip;

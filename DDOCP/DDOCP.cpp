@@ -419,6 +419,10 @@ void CDDOCPApp::SeparateFeats()
         {
             m_specialFeats.push_back((*it));
         }
+        else if ((*it).Acquire() == FeatAcquisition_Favor)
+        {
+            m_favorFeats.push_back((*it));
+        }
         else
         {
             // has to be a bog standard feat
@@ -432,6 +436,7 @@ void CDDOCPApp::SeparateFeats()
     m_racialPastLifeFeats.sort();
     m_iconicPastLifeFeats.sort();
     m_specialFeats.sort();
+    m_favorFeats.sort();
     m_standardFeats.sort();
 }
 
@@ -468,6 +473,11 @@ const std::list<Feat> & CDDOCPApp::EpicPastLifeFeats() const
 const std::list<Feat> & CDDOCPApp::SpecialFeats() const
 {
     return m_specialFeats;
+}
+
+const std::list<Feat> & CDDOCPApp::FavorFeats() const
+{
+    return m_favorFeats;
 }
 
 const std::list<EnhancementTree> & CDDOCPApp::EnhancementTrees() const

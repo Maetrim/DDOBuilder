@@ -77,6 +77,7 @@ const std::list<Feat> & RacialPastLifeFeats();
 const std::list<Feat> & IconicPastLifeFeats();
 const std::list<Feat> & EpicPastLifeFeats();
 const std::list<Feat> & SpecialFeats();
+const std::list<Feat> & FavorFeats();
 const std::list<EnhancementTree> & EnhancementTrees();
 const std::list<Spell> & Spells();
 const std::list<Item> & Items();

@@ -49,11 +49,13 @@ class CSpecialFeatsView :
         std::vector<CDialog *> m_iconicSelectionViews;
         std::vector<CDialog *> m_epicSelectionViews;
         std::vector<CDialog *> m_specialSelectionViews;
+        std::vector<CDialog *> m_favorSelectionViews;
 
         CStatic m_staticHeroic;
         CStatic m_staticRacial;
         CStatic m_staticIconic;
         CStatic m_staticEpic;
         CStatic m_staticSpecial;
+        CStatic m_staticFavor;
         CFont m_staticFont;
 };
