@@ -36,7 +36,7 @@ namespace
 
     bool SortSkillDescending(const WeightedSkill & a, const WeightedSkill & b)
     {
-        // sort on number of class levels
+        // sort on skill weighting
         return (a.Weight() > b.Weight());
     }
 }
@@ -581,7 +581,7 @@ void CSkillSpendDialog::MaxThisSkill(SkillType skill, bool suppressUpdate)
                         && maxSkill == (MAX_CLASS_LEVEL + 3) / 2.0
                         && currentSkill == (MAX_CLASS_LEVEL + 2) / 2.0)
                 {
-                    // we don;t spend for this specific case
+                    // we don't spend for this specific case
                     spent = false;
                 }
                 else
@@ -607,7 +607,10 @@ void CSkillSpendDialog::MaxThisSkill(SkillType skill, bool suppressUpdate)
             }
         }
     }
-    PopulateItems();        // update display
+    if (!suppressUpdate)
+    {
+        PopulateItems();        // update display
+    }
 }
 
 void CSkillSpendDialog::OnButtonClearThisSkill()

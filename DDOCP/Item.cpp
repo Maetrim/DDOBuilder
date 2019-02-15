@@ -184,6 +184,13 @@ void Item::VerifyObject() const
         ok &= (*edcit).VerifyObject(&ss);
         ++edcit;
     }
+    // verify any augments
+    std::vector<ItemAugment>::const_iterator iacit = m_Augments.begin();
+    while (iacit != m_Augments.end())
+    {
+        ok &= (*iacit).VerifyObject(&ss);
+        ++iacit;
+    }
 
     if (!ok)
     {

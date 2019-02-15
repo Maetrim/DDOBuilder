@@ -55,6 +55,7 @@ class BreakdownItem :
         BreakdownType Type() const;
         virtual CString Title() const = 0;
         virtual CString Value() const = 0;
+        virtual double Multiplier() const;
         void Populate();            // updates the HTREEITEM
         void PopulateBreakdownControl(CListCtrl * pControl);
         double Total() const;
@@ -114,10 +115,10 @@ class BreakdownItem :
 
         std::list<ActiveEffect> AllActiveEffects() const;
     private:
-        void AddActiveItems(const std::list<ActiveEffect> & effects, CListCtrl * pControl);
+        void AddActiveItems(const std::list<ActiveEffect> & effects, CListCtrl * pControl, bool bShowMultiplier);
         void AddActivePercentageItems(const std::list<ActiveEffect> & effects, CListCtrl * pControl);
         void AddDeactiveItems(const std::list<ActiveEffect> & effects, CListCtrl * pControl);
-        double SumItems(const std::list<ActiveEffect> & effects) const;
+        double SumItems(const std::list<ActiveEffect> & effects, bool bApplyMultiplier) const;
         double DoPercentageEffects(const std::list<ActiveEffect> & effects, double total) const;
         void RemoveInactive(std::list<ActiveEffect> * effects, std::list<ActiveEffect> * inactiveEffects) const;
         void RemoveNonStacking(std::list<ActiveEffect> * effects, std::list<ActiveEffect> * nonStackingEffects) const;

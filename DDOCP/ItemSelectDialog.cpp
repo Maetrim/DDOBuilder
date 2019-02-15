@@ -436,6 +436,7 @@ void CItemSelectDialog::PopulateAugmentList(
         ++it;
         ++index;
     }
+
     if (selectedAugment != "")
     {
         combo->SelectString(0, selectedAugment.c_str());
@@ -524,63 +525,72 @@ void CItemSelectDialog::OnAugmentSelect(UINT nID)
     int sel = m_comboAugmentDropList[augmentIndex].GetCurSel();
     if (sel != CB_ERR)
     {
+        std::vector<ItemAugment> augments = m_item.Augments();
         // user has selected an augment. Get its name
         CString text;
         m_comboAugmentDropList[augmentIndex].GetLBText(sel, text);
-        std::vector<ItemAugment> augments = m_item.Augments();
-        // may need to clear previous augments granted augment slot
-        std::string oldSelection;
-        if (augments[augmentIndex].HasSelectedAugment())
+        if (text == " No Augment")
         {
-            oldSelection = augments[augmentIndex].SelectedAugment();
+            // "No Augment" select, clear any augment
+            augments[augmentIndex].Clear_SelectedAugment();
+            augments[augmentIndex].Clear_Value();
         }
-        augments[augmentIndex].Set_SelectedAugment((LPCTSTR)text);
-        augments[augmentIndex].Clear_Value(); // if we just selected an augment ensure any previous value does not carry over
-        if (oldSelection != "")
+        else
         {
-            const Augment & oldAugment =
-                    FindAugmentByName(oldSelection);
-            if (oldAugment.HasGrantAugment())
+            // may need to clear previous augments granted augment slot
+            std::string oldSelection;
+            if (augments[augmentIndex].HasSelectedAugment())
             {
-                RemoveAugment(&augments, oldAugment.GrantAugment());
+                oldSelection = augments[augmentIndex].SelectedAugment();
             }
-            // add a granted augment if required (only granted while augment selected)
-            if (oldAugment.HasGrantConditionalAugment())
+            augments[augmentIndex].Set_SelectedAugment((LPCTSTR)text);
+            augments[augmentIndex].Clear_Value(); // if we just selected an augment ensure any previous value does not carry over
+            if (oldSelection != "")
             {
-                if (oldAugment.HasWeaponClass()
-                        && m_item.HasWeapon()
-                        && IsInWeaponClass(oldAugment.WeaponClass(), m_item.Weapon()))
+                const Augment & oldAugment =
+                        FindAugmentByName(oldSelection);
+                if (oldAugment.HasGrantAugment())
                 {
-                    // this is a new augment slot that needs to be added
-                    RemoveAugment(&augments, oldAugment.GrantConditionalAugment());
+                    RemoveAugment(&augments, oldAugment.GrantAugment());
+                }
+                // add a granted augment if required (only granted while augment selected)
+                if (oldAugment.HasGrantConditionalAugment())
+                {
+                    if (oldAugment.HasWeaponClass()
+                            && m_item.HasWeapon()
+                            && IsInWeaponClass(oldAugment.WeaponClass(), m_item.Weapon()))
+                    {
+                        // this is a new augment slot that needs to be added
+                        RemoveAugment(&augments, oldAugment.GrantConditionalAugment());
+                    }
                 }
             }
-        }
-        // if an augment selected has AddAugment fields, add them to the
-        // item also if they do not already exist
-        const Augment & augment = FindAugmentByName((LPCTSTR)text);
-        std::list<std::string> augmentsToAdd = augment.AddAugment();
-        std::list<std::string>::const_iterator it = augmentsToAdd.begin();
-        while (it != augmentsToAdd.end())
-        {
-            AddAugment(&augments, (*it));
-            ++it;
-        }
-        // add a granted augment if required (only granted while augment selected)
-        if (augment.HasGrantAugment())
-        {
-            // this is a new augment slot that needs to be added
-            AddAugment(&augments, augment.GrantAugment());
-        }
-        // add a granted augment if required (only granted while augment selected)
-        if (augment.HasGrantConditionalAugment())
-        {
-            if (augment.HasWeaponClass()
-                    && m_item.HasWeapon()
-                    && IsInWeaponClass(augment.WeaponClass(), m_item.Weapon()))
+            // if an augment selected has AddAugment fields, add them to the
+            // item also if they do not already exist
+            const Augment & augment = FindAugmentByName((LPCTSTR)text);
+            std::list<std::string> augmentsToAdd = augment.AddAugment();
+            std::list<std::string>::const_iterator it = augmentsToAdd.begin();
+            while (it != augmentsToAdd.end())
+            {
+                AddAugment(&augments, (*it));
+                ++it;
+            }
+            // add a granted augment if required (only granted while augment selected)
+            if (augment.HasGrantAugment())
             {
                 // this is a new augment slot that needs to be added
-                AddAugment(&augments, augment.GrantConditionalAugment());
+                AddAugment(&augments, augment.GrantAugment());
+            }
+            // add a granted augment if required (only granted while augment selected)
+            if (augment.HasGrantConditionalAugment())
+            {
+                if (augment.HasWeaponClass()
+                        && m_item.HasWeapon()
+                        && IsInWeaponClass(augment.WeaponClass(), m_item.Weapon()))
+                {
+                    // this is a new augment slot that needs to be added
+                    AddAugment(&augments, augment.GrantConditionalAugment());
+                }
             }
         }
         m_item.Set_Augments(augments);
@@ -725,9 +735,19 @@ void CItemSelectDialog::OnUpgradeFiligree(UINT nID)
         // user has selected a Filigree. Get its name
         CString text;
         m_comboFiligreeDropList[filigreeIndex].GetLBText(selection, text);
-        SentientJewel jewel = m_item.SentientIntelligence();
-        jewel.SetFiligree(filigreeIndex, (LPCTSTR)text);
-        m_item.Set_SentientIntelligence(jewel);
+        if (text == " No Augment")
+        {
+            // "No Augment" select, clear any augment
+            SentientJewel jewel = m_item.SentientIntelligence();
+            jewel.ClearFiligree(filigreeIndex);
+            m_item.Set_SentientIntelligence(jewel);
+        }
+        else
+        {
+            SentientJewel jewel = m_item.SentientIntelligence();
+            jewel.SetFiligree(filigreeIndex, (LPCTSTR)text);
+            m_item.Set_SentientIntelligence(jewel);
+        }
         // update the controls after a selection as options in other
         // drop lists will need to be limited
         SetSentientWeaponControls();

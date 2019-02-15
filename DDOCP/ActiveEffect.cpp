@@ -288,7 +288,7 @@ CString ActiveEffect::Stacks() const
     return text;
 }
 
-CString ActiveEffect::AmountAsText() const
+CString ActiveEffect::AmountAsText(double multiplier) const
 {
     CString text;
     switch (m_type)
@@ -338,12 +338,26 @@ CString ActiveEffect::AmountAsText() const
     case ET_amount:
         if (m_dividerType != DT_statBonus)
         {
-            text.Format("%.2f", m_amount * m_numStacks);
+            if (multiplier != 1.0)
+            {
+                text.Format("%.2f (* %.2f)", m_amount * m_numStacks * multiplier, multiplier);
+            }
+            else
+            {
+                text.Format("%.2f", m_amount * m_numStacks * multiplier);
+            }
         }
         else
         {
             // stacks don't multiply a stat bonus
-            text.Format("%.2f", m_amount);
+            if (multiplier != 1.0)
+            {
+                text.Format("%.2f (* %.2f)", m_amount * multiplier, multiplier);
+            }
+            else
+            {
+                text.Format("%.2f", m_amount * multiplier);
+            }
         }
         break;
     case ET_amountVector:
@@ -359,7 +373,14 @@ CString ActiveEffect::AmountAsText() const
                     ::OutputDebugString((LPCTSTR)Name());
                     ::OutputDebugString(" has more stacks than amount vector\n");
                 }
-                text.Format("%.2f", m_amounts[index]);
+                if (multiplier != 1.0)
+                {
+                    text.Format("%.2f (* %.2f)", m_amounts[index] * multiplier, multiplier);
+                }
+                else
+                {
+                    text.Format("%.2f", m_amounts[index] * multiplier);
+                }
             }
             else
             {
@@ -368,10 +389,24 @@ CString ActiveEffect::AmountAsText() const
         }
         break;
     case ET_amountPerLevel:
-        text.Format("%.2f", m_amountPerLevel * m_numStacks);
+        if (multiplier != 1.0)
+        {
+            text.Format("%.2f (* %.2f)", m_amountPerLevel * m_numStacks * multiplier, multiplier);
+        }
+        else
+        {
+            text.Format("%.2f", m_amountPerLevel * m_numStacks * multiplier);
+        }
         break;
     case ET_amountPerAp:
-        text.Format("%.2f", m_amount * m_numStacks);
+        if (multiplier != 1.0)
+        {
+            text.Format("%.2f (* %.2f)", m_amount * m_numStacks * multiplier, multiplier);
+        }
+        else
+        {
+            text.Format("%.2f", m_amount * m_numStacks * multiplier);
+        }
         break;
     case ET_immunity:
     case ET_DR:
@@ -835,7 +870,7 @@ std::string ActiveEffect::Description() const
     case ET_amountPerLevel:
     case ET_amountPerAp:
     case ET_amountVectorPerClassLevel:
-        ss << AmountAsText();
+        ss << AmountAsText(false);
         break;
     case ET_dice:
         ss << m_dice.Description(m_numStacks);

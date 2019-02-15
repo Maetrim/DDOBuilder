@@ -86,7 +86,7 @@ class ActiveEffect
         bool IsAmountPerAP() const;
         CString Name() const;
         CString Stacks() const;
-        CString AmountAsText() const;
+        CString AmountAsText(double multiplier) const;
         CString AmountAsPercent() const;
         double TotalAmount(bool allowTruncate) const;
         void AddFeat(const std::string & featName);

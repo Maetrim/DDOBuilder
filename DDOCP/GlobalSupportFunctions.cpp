@@ -607,7 +607,8 @@ std::list<Augment> CompatibleAugments(const std::string & name)
     std::list<Augment>::const_iterator it = augments.begin();
     while (it != augments.end())
     {
-        if ((*it).IsCompatibleWithSlot(name))
+        if ((*it).IsCompatibleWithSlot(name)
+                || ((*it).Name() == " No Augment"))
         {
             compatibleAugments.push_back((*it));
         }

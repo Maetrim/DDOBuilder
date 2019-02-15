@@ -3,6 +3,7 @@
 #include "StdAfx.h"
 #include "ItemAugment.h"
 #include "XmlLib\SaxWriter.h"
+#include "GlobalSupportFunctions.h"
 
 #define DL_ELEMENT ItemAugment
 
@@ -46,3 +47,18 @@ void ItemAugment::Write(XmlLib::SaxWriter * writer) const
     DL_WRITE(ItemAugment_PROPERTIES)
     writer->EndElement();
 }
+
+bool ItemAugment::VerifyObject(std::stringstream * ss) const
+{
+    bool ok = true;
+    // problem only if this augment has no matching augments available
+    std::list<Augment> augments = CompatibleAugments(Type());
+    if (augments.size() == 0)
+    {
+        // no matching augments, this is a possible problem
+        (*ss) << "ItemAugment type \"" << Type() << "\" has no matching augments\"\n";
+        ok = false;
+    }
+    return ok;
+}
+

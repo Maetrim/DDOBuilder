@@ -20,6 +20,7 @@ class BreakdownItemSpellPoints :
         virtual CString Value() const override;
         virtual void CreateOtherEffects() override;
         virtual bool AffectsUs(const Effect & effect) const override;
+        virtual double Multiplier() const override;
 
         // CharacterObserver overrides
         virtual void UpdateClassChanged(Character * charData, ClassType classFrom, ClassType classTo, size_t level) override;

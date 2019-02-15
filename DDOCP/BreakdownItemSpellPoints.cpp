@@ -123,5 +123,13 @@ void BreakdownItemSpellPoints::UpdateTotalChanged(
     CreateOtherEffects();
 }
 
-//?? Note that favored souls get up to double spell points from item effects
-//?? (#favoredSoulLevels/20 + 1) * itemSp
+double BreakdownItemSpellPoints::Multiplier() const
+{
+    // Note that favored souls and sorcerers get up to double spell points
+    // from item effects
+    size_t fvsLevels = m_pCharacter->ClassLevels(Class_FavoredSoul);
+    size_t sorcLevels = m_pCharacter->ClassLevels(Class_Sorcerer);
+    double factor = 1.0 + (double)(fvsLevels + sorcLevels) / (double)MAX_CLASS_LEVEL;
+    return factor;
+}
+

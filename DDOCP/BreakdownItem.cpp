@@ -31,14 +31,14 @@ void BreakdownItem::PopulateBreakdownControl(CListCtrl * pControl)
     pControl->LockWindowUpdate();
     pControl->DeleteAllItems();
     // add all the items
-    AddActiveItems(m_otherEffects, pControl);
-    AddActiveItems(m_effects, pControl);
+    AddActiveItems(m_otherEffects, pControl, false);
+    AddActiveItems(m_effects, pControl, false);
     std::list<ActiveEffect> itemEffects = m_itemEffects;
     std::list<ActiveEffect> inactiveEffects;
     std::list<ActiveEffect> nonStackingEffects;
     RemoveInactive(&itemEffects, &inactiveEffects);
     RemoveNonStacking(&itemEffects, &nonStackingEffects);
-    AddActiveItems(itemEffects, pControl);
+    AddActiveItems(itemEffects, pControl, true);
 
     // finally add the active percentage items
     AddActivePercentageItems(m_otherEffects, pControl);
@@ -68,7 +68,7 @@ void BreakdownItem::PopulateBreakdownControl(CListCtrl * pControl)
                 pControl->GetItemCount(),
                 "Non-Stacking Effects",
                 0);
-        AddActiveItems(nonStackingEffects, pControl);
+        AddActiveItems(nonStackingEffects, pControl, false);
         AddActivePercentageItems(nonStackingEffects, pControl);
     }
 
@@ -125,15 +125,15 @@ double BreakdownItem::Total() const
 {
     // to sum the total, just get the contributions of all the stacking effects
     double total = 0;
-    total += SumItems(m_otherEffects);
-    total += SumItems(m_effects);
+    total += SumItems(m_otherEffects, false);
+    total += SumItems(m_effects, false);
 
     std::list<ActiveEffect> itemEffects = m_itemEffects;
     std::list<ActiveEffect> inactiveEffects;
     std::list<ActiveEffect> nonStackingEffects;
     RemoveInactive(&itemEffects, &inactiveEffects);
     RemoveNonStacking(&itemEffects, &nonStackingEffects);
-    total += SumItems(itemEffects);
+    total += SumItems(itemEffects, true);
     double baseTotal = total;
 
     // now apply percentage effects. Note percentage effects do not stack
@@ -149,7 +149,8 @@ double BreakdownItem::Total() const
 
 void BreakdownItem::AddActiveItems(
         const std::list<ActiveEffect> & effects,
-        CListCtrl * pControl)
+        CListCtrl * pControl,
+        bool bShowMultiplier)
 {
     // add all the breakdown items from this particular list
     std::list<ActiveEffect>::const_iterator it = effects.begin();
@@ -174,7 +175,7 @@ void BreakdownItem::AddActiveItems(
                 pControl->SetItemText(index, CO_Stacks, stacks);
 
                 // and the total amount the number of stacks contribute
-                CString amount  = (*it).AmountAsText();
+                CString amount  = (*it).AmountAsText(bShowMultiplier ? Multiplier() : 1.0);
                 pControl->SetItemText(index, CO_Value, amount);
 
                 // add the bonus type
@@ -251,7 +252,7 @@ void BreakdownItem::AddDeactiveItems(
                 pControl->SetItemText(index, CO_Stacks, stacks);
 
                 // and the total amount the number of stacks contribute
-                CString amount  = (*it).AmountAsText();
+                CString amount  = (*it).AmountAsText(false);
                 pControl->SetItemText(index, CO_Value, amount);
 
                 // add the bonus type
@@ -263,7 +264,9 @@ void BreakdownItem::AddDeactiveItems(
     }
 }
 
-double BreakdownItem::SumItems(const std::list<ActiveEffect> & effects) const
+double BreakdownItem::SumItems(
+        const std::list<ActiveEffect> & effects,
+        bool bApplyMultiplier) const
 {
     double total = 0;
     std::list<ActiveEffect>::const_iterator it = effects.begin();
@@ -274,7 +277,12 @@ double BreakdownItem::SumItems(const std::list<ActiveEffect> & effects) const
         {
             if (!(*it).IsPercentage())
             {
-                total += (*it).TotalAmount(true);
+                double amount = (*it).TotalAmount(true);
+                if (bApplyMultiplier)
+                {
+                    amount *= Multiplier();
+                }
+                total +=  amount;
             }
         }
         ++it;
@@ -298,7 +306,7 @@ double BreakdownItem::DoPercentageEffects(
                 // the amount is a percentage of the current total that
                 // needs to be added.
                 double percent = (*it).TotalAmount(false);
-                double amount = (total * percent / 100.0);
+                double amount = (total * percent / 100.0) * Multiplier();
                 // round it to a whole number
                 if (amount > 0)
                 {
@@ -315,6 +323,12 @@ double BreakdownItem::DoPercentageEffects(
         ++it;
     }
     return amountAdded;
+}
+
+double BreakdownItem::Multiplier() const
+{
+    // by default all items have a multiplier of 1
+    return 1.0;
 }
 
 void BreakdownItem::AddAbility(

@@ -2896,7 +2896,7 @@ void Character::CountBonusAP()
                         // APs are always whole numbers
                         if (ei->HasAmount())
                         {
-                            APcount += (size_t)ei->Amount();
+                            APcount += (size_t)ei->Amount() * count;
                         }
                         else if (ei->HasAmountVector())
                         {
@@ -2925,7 +2925,7 @@ void Character::CountBonusAP()
                         // APs are always whole numbers
                         if (ei->HasAmount())
                         {
-                            APcount += (size_t)ei->Amount();
+                            APcount += (size_t)ei->Amount() * count;
                         }
                         else if (ei->HasAmountVector())
                         {

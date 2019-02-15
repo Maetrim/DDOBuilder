@@ -13,6 +13,8 @@ class ItemAugment :
         ItemAugment(void);
         void Write(XmlLib::SaxWriter * writer) const;
 
+        bool VerifyObject(std::stringstream * ss) const;
+
     protected:
         XmlLib::SaxContentElementInterface * StartElement(
                 const XmlLib::SaxString & name,

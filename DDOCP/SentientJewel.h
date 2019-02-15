@@ -15,6 +15,7 @@ class SentientJewel :
         void SetFiligree(size_t fi, const std::string & name);
         void SetFiligreeRare(size_t fi, bool isRare);
         bool IsRareFiligree(size_t fi) const;
+        void ClearFiligree(size_t fi);
 
     protected:
         XmlLib::SaxContentElementInterface * StartElement(

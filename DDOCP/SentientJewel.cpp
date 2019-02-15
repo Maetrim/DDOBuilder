@@ -175,3 +175,17 @@ bool SentientJewel::IsRareFiligree(size_t fi) const
     return isRare;
 }
 
+void SentientJewel::ClearFiligree(size_t fi)
+{
+    switch (fi)
+    {
+    case 0: Clear_Filigree1(); break;
+    case 1: Clear_Filigree2(); break;
+    case 2: Clear_Filigree3(); break;
+    case 3: Clear_Filigree4(); break;
+    case 4: Clear_Filigree5(); break;
+    case 5: Clear_Filigree6(); break;
+    case 6: Clear_Filigree7(); break;
+    case 7: Clear_Filigree8(); break;
+    }
+}
