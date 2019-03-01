@@ -1573,6 +1573,15 @@ and +1/+2/+3 to the save DC of your offensive wands.</Description>
                <Requirement>
                   <Enhancement>AMWandAndScrollMastery</Enhancement>
                </Requirement>
+               <Requirement>
+                  <Enhancement>TieflingWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>ScoundrelWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>InquisitiveWandAndScrollMastery</Enhancement>
+               </Requirement>
             </RequiresNoneOf>
          </Requirements>
       </EnhancementTreeItem>
@@ -5299,6 +5308,15 @@ that cast spells, and +1/+2/+3 to the save DC of your offensive wands.</Descript
                </Requirement>
                <Requirement>
                   <Enhancement>AMWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>TieflingWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>ScoundrelWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>InquisitiveWandAndScrollMastery</Enhancement>
                </Requirement>
             </RequiresNoneOf>
          </Requirements>
@@ -13886,6 +13904,1440 @@ Your weapons also have a chance to blind their targets for a short time.</Descri
          <Requirements/>
       </EnhancementTreeItem>
    </EnhancementTree>
+  <EnhancementTree>
+    <Name>Tiefling</Name>
+    <Version>0</Version>
+    <Requirements>
+      <Requirement>
+        <Race>Tiefling</Race>
+      </Requirement>
+    </Requirements>
+    <IsRacialTree/>
+    <Icon>Tiefling</Icon>
+    <Background>HumanBackground</Background>
+    <EnhancementTreeItem>
+      <Name>Tiefling: Bloodhunt I</Name>
+      <InternalName>TieflingCore1</InternalName>
+      <Description>Your weapon attacks deal an additional 1d4 Fire damage to enemies under 75% HP.
+This damage scales with 100% Spell Power.
+
+Passive: +5 Fire Spell Power</Description>
+      <Icon>Bloodhunt</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>0</MinSpent>
+      <ArrowRight/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>1</MinLevel>
+        </Requirement>
+      </Requirements>
+        <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Feat</Bonus>
+            <Amount>5</Amount>
+            <SpellPower>Fire</SpellPower>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tiefling: Charisma I</Name>
+      <InternalName>TieflingCore2</InternalName>
+      <Description>+1 Charisma</Description>
+      <Icon>Charisma</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>1</MinSpent>
+      <ArrowRight/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>4</MinLevel>
+        </Requirement>
+        <Requirement>
+          <Enhancement>TieflingCore1</Enhancement>
+        </Requirement>
+      </Requirements>
+        <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Feat</Bonus>
+            <Amount>1</Amount>
+            <Ability>Charisma</Ability>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tiefling: Bloodhunt II</Name>
+      <InternalName>TieflingCore3</InternalName>
+      <Description>Your weapon attacks deal an additional 1d6 Fire damage to enemies under 50% HP.
+This damage scales with 100% Spell Power.
+
+Passive: +10 Fire Spell Power</Description>
+      <Icon>BloodhuntII</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>2</MinSpent>
+      <ArrowRight/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>7</MinLevel>
+        </Requirement>
+        <Requirement>
+          <Enhancement>TieflingCore2</Enhancement>
+        </Requirement>
+      </Requirements>
+        <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Feat</Bonus>
+            <Amount>10</Amount>
+            <SpellPower>Fire</SpellPower>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tiefling: Charisma II</Name>
+      <InternalName>TieflingCore4</InternalName>
+      <Description>+1 Charisma</Description>
+      <Icon>Charisma</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>3</MinSpent>
+      <ArrowRight/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>11</MinLevel>
+        </Requirement>
+        <Requirement>
+          <Enhancement>TieflingCore3</Enhancement>
+        </Requirement>
+      </Requirements>
+        <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Feat</Bonus>
+            <Amount>1</Amount>
+            <Ability>Charisma</Ability>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tiefling: Bloodhunt III</Name>
+      <InternalName>TieflingCore5</InternalName>
+      <Description>Your weapon attacks deal an additional 1d8 Fire damage to enemies under 25% HP.
+This damage scales with 100% Spell Power.
+
+Passive: +20 Fire Spell Power</Description>
+      <Icon>BloodhuntIII</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>4</MinSpent>
+      <Requirements>
+        <Requirement>
+          <MinLevel>16</MinLevel>
+        </Requirement>
+        <Requirement>
+          <Enhancement>TieflingCore4</Enhancement>
+        </Requirement>
+      </Requirements>
+        <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Feat</Bonus>
+            <Amount>20</Amount>
+            <SpellPower>Fire</SpellPower>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tiefling: Hellish Rebuke</Name>
+      <InternalName>TieflingHellishRebuke</InternalName>
+      <Description>Enveloped in a cloak of infernal flame, you have a chance to deal fire damage
+to foes that strike you in melee range. Enemies have a chance to take 1d10
+Fire Damage +1 per Caster Level. This damage scales with Fire Spell Power.
+Cooldown: 12 seconds</Description>
+      <Icon>HellishRebuke</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>1</MinSpent>
+      <Clickie/>
+      <ArrowUp/>
+      <Requirements/>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tiefling: Infernal Nature</Name>
+      <InternalName>TieflingInfernalNature</InternalName>
+      <Description>+1/2/3 Bluff, Diplomacy and Balance</Description>
+      <Icon>InfernalNature</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements/>
+        <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Feat</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Skill>Balance</Skill>
+            <Skill>Bluff</Skill>
+            <Skill>Diplomacy</Skill>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tiefling: Innate Protection</Name>
+      <InternalName>TieflingInnateProtection</InternalName>
+      <Description>+1/2/3 to Saves vs Spells</Description>
+      <Icon>InnateProtection</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements/>
+        <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Feat</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Save>Spell</Save>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tiefling: Wand and Scroll Mastery</Name>
+      <InternalName>TieflingWandAndScrollMastery</InternalName>
+      <Description>+25/50/75% damage and healing of your wands, scrolls and other items that cast spells. Adds +1/2/3 to the save DCs of your offensive wands.</Description>
+      <Icon>TieflingWandAndScrollMastery</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+            <Requirement>
+               <Class>Wizard</Class>
+               <Level>2</Level>
+            </Requirement>
+            <RequiresNoneOf>
+               <DisplayDescription>Any other Wand and Scroll Mastery enhancement</DisplayDescription>
+               <Requirement>
+                  <Enhancement>DeepGnomeWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>GnomeWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>ATWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>SSWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>SHWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>EKWizWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>AoVWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>MechWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>TSWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>AMWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>ScoundrelWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>InquisitiveWandAndScrollMastery</Enhancement>
+               </Requirement>
+            </RequiresNoneOf>
+         </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tiefling: Obscuring Darkness</Name>
+      <InternalName>TieflingObscuringDarkness</InternalName>
+      <Description>You can channel your fiendish nature to manifest a zone of Obscuring Darkness at will.
+Activation cost: 10 Spell Points
+Cooldown: 30 Seconds</Description>
+      <Icon>ObscuringDarkness</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>1</MinSpent>
+      <Clickie/>
+      <ArrowUp/>
+      <Requirements/>
+        <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Feat</Bonus>
+            <SpellLikeAbility>Obscuring Darkness</SpellLikeAbility>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tiefling: Ferocious Rebuke</Name>
+      <InternalName>TieflingFerociousRebuke</InternalName>
+      <Description>While Hellish Rebuke is active, enemies that strike you have a chance to be tripped with no save.</Description>
+      <Icon>FerociousRebuke</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Enhancement>TieflingHellishRebuke</Enhancement>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tiefling: Infernal Resistance I</Name>
+      <InternalName>TieflingInfernalResistanceI</InternalName>
+      <Description>Tieflings are naturally immune to certain elements.</Description>
+      <Icon>InfernalResistanceCold</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <ArrowUp/>
+      <Requirements/>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Infernal Resistance (Acid)</Name>
+          <Description>You gain Acid Resistance equal to your Character Level.</Description>
+          <Icon>InfernalResistanceAcid</Icon>
+          <Cost>2</Cost>
+            <Effect>
+                <Type>EnergyResistance</Type>
+                <Bonus>Feat</Bonus>
+                <Amount>30</Amount>
+                <Energy>Acid</Energy>
+            </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Infernal Resistance (Cold)</Name>
+          <Description>You gain Cold Resistance equal to your Character Level.</Description>
+          <Icon>InfernalResistanceCold</Icon>
+          <Cost>2</Cost>
+            <Effect>
+                <Type>EnergyResistance</Type>
+                <Bonus>Feat</Bonus>
+                <Amount>30</Amount>
+                <Energy>Cold</Energy>
+            </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tiefling: Infernal Defense</Name>
+      <InternalName>TieflingInfernalDefense</InternalName>
+      <Description>+2/4/6 Magical Resistance Rating</Description>
+      <Icon>InfernalDefense</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements/>
+        <Effect>
+            <Type>MRR</Type>
+            <Bonus>Feat</Bonus>
+            <AmountVector size="3">2 4 6</AmountVector>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tiefling: Traditionalist Caster</Name>
+      <InternalName>TieflingTraditionalistCaster</InternalName>
+      <Description>+3/6/10 Universal Spell Power while weilding an Orb or Staff.</Description>
+      <Icon>TraditionalistCaster</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Feat>Magical Training</Feat>
+        </Requirement>
+      </Requirements>
+        <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">3 6 10</AmountVector>
+            <Stance>Orb</Stance>
+            <SpellPower>All</SpellPower>
+        </Effect>
+        <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">3 6 10</AmountVector>
+            <Stance>Staff</Stance>
+            <SpellPower>All</SpellPower>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tiefling: Lasting Darkness</Name>
+      <InternalName>TieflingLastingDarkness</InternalName>
+      <Description>Enemies that enter your Obscuring Darkness have a chance to be blinded with no save.</Description>
+      <Icon>LastingDarkness</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Enhancement>TieflingObscuringDarkness</Enhancement>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tiefling: Scorch</Name>
+      <InternalName>TieflingScorch</InternalName>
+      <Description>You can cast the spell Scorch as a Spell Like Ability, with its Caster Level based on your Character Level. Subsequent ranks in this ability reduce the cooldown and Spell Point cost.
+Activation cost: 8/6/4 Spell Points
+Cooldown: 20/15/10 seconds</Description>
+      <Icon>TieflingScorch</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+      <Clickie/>
+      <ArrowUp/>
+      <Requirements/>
+        <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellLikeAbility>Scorch</SpellLikeAbility>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tiefling: Infernal Resistance II</Name>
+      <InternalName>TieflingInfernalResistanceII</InternalName>
+      <Description>Tieflings are naturally immune to certain elements.</Description>
+      <Icon>InfernalResistanceCold</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Enhancement>TieflingInfernalResistanceI</Enhancement>
+        </Requirement>
+      </Requirements>
+      <Selector>
+            <SelectorExclusions>
+               <SelectorExclusion>
+                  <InternalName>TieflingInfernalResistanceI</InternalName>
+               </SelectorExclusion>
+            </SelectorExclusions>
+        <EnhancementSelection>
+          <Name>Infernal Resistance (Acid)</Name>
+          <Description>You gain Acid Resistance equal to your Character Level.</Description>
+          <Icon>InfernalResistanceAcid</Icon>
+          <Cost>1</Cost>
+            <Effect>
+                <Type>EnergyResistance</Type>
+                <Bonus>Feat</Bonus>
+                <Amount>30</Amount>
+                <Energy>Acid</Energy>
+            </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Infernal Resistance (Cold)</Name>
+          <Description>You gain Cold Resistance equal to your Character Level.</Description>
+          <Icon>InfernalResistanceCold</Icon>
+          <Cost>1</Cost>
+            <Effect>
+                <Type>EnergyResistance</Type>
+                <Bonus>Feat</Bonus>
+                <Amount>30</Amount>
+                <Energy>Cold</Energy>
+            </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tiefling: Inceneration</Name>
+      <InternalName>TieflingInceneration</InternalName>
+      <Description>+2% Spell Critical Chance with all spells, plus an additional 2% with Fire Spells</Description>
+      <Icon>Inceneration</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp/>
+      <Requirements/>
+        <Effect>
+            <Type>SpellLore</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <SpellPower>All</SpellPower>
+        </Effect>
+        <Effect>
+            <Type>SpellLore</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <SpellPower>Fire</SpellPower>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tiefling: Student of Darkness</Name>
+      <InternalName>TieflingStudentOfDarkness</InternalName>
+      <Description>While in Obscuring Darkness, you gain +3 Saving Throws,
++3 Magical Resistance Rating and +15 Magical Resistance Cap.</Description>
+      <Icon>StudentOfDarkness</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Enhancement>TieflingLastingDarkness</Enhancement>
+        </Requirement>
+      </Requirements>
+        <Effect>
+            <Type>MRR</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>3</Amount>
+            <Stance>ObscuringDarkness</Stance>
+        </Effect>
+        <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>3</Amount>
+            <Save>All</Save>
+            <Stance>ObscuringDarkness</Stance>
+        </Effect>
+        <Effect>
+            <Type>MRRCap</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>15</Amount>
+            <Stance>ObscuringDarkness</Stance>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tiefling: Improved Scorch</Name>
+      <InternalName>TieflingImprovedScorch</InternalName>
+      <Description>Enemies affected by you Scorch spell increase Fire damage that take by 5%.
+When cast on a creature that is immune to Fire, it makes them vulnerable to
+that element for a short period of time.</Description>
+      <Icon>ImprovedScorch</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>15</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Enhancement>TieflingScorch</Enhancement>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tiefling: Infernal Sovereign</Name>
+      <InternalName>TieflingInfernalSovereign</InternalName>
+      <Description>Your Fire mastery conquers other elements.</Description>
+      <Icon>InfernalSovereign</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>15</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Enhancement>TieflingInfernalResistanceII</Enhancement>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Infernal Sovereign (Acid)</Name>
+          <Description>You use your Fire Spell Power in place of your Acid Spell Power if it is higher.</Description>
+          <Icon>InfernalSovereignAcid</Icon>
+          <Cost>1</Cost>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Infernal Sovereign (Cold)</Name>
+          <Description>You use your Fire Spell Power in place of your Cold Spell Power if it is higher.</Description>
+          <Icon>InfernalSovereign</Icon>
+          <Cost>1</Cost>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Infernal Sovereign (Electric)</Name>
+          <Description>You use your Fire Spell Power in place of your Electric Spell Power if it is higher.</Description>
+          <Icon>InfernalSovereignElectric</Icon>
+          <Cost>1</Cost>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tiefling: Incineration</Name>
+      <InternalName>TieflingIncineration</InternalName>
+      <Description>+2% Spell Critical Chance with all spells, plus an additional 2% with Fire Spells</Description>
+      <Icon>TieflingIncineration</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>15</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Enhancement>TieflingInceneration</Enhancement>
+        </Requirement>
+      </Requirements>
+        <Effect>
+            <Type>SpellLore</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <SpellPower>All</SpellPower>
+        </Effect>
+        <Effect>
+            <Type>SpellLore</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <SpellPower>Fire</SpellPower>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tiefling: Servant of Darkness</Name>
+      <InternalName>TieflingServantOfDarkness</InternalName>
+      <Description>While in Obscuring Darkness, you gain +10/20/30 Universal Spell Power
+and +1/2/3 Evocation and Conjuration DCs</Description>
+      <Icon>ServantOfDarkness</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>15</MinSpent>
+      <Requirements/>
+        <Effect>
+            <Type>SpellDC</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <School>Conjuration</School>
+            <Stance>ObscuringDarkness</Stance>
+        </Effect>
+        <Effect>
+            <Type>SpellDC</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <School>Evocation</School>
+            <Stance>ObscuringDarkness</Stance>
+        </Effect>
+    </EnhancementTreeItem>
+  </EnhancementTree>
+  <EnhancementTree>
+    <Name>Tiefling Scoundrel</Name>
+    <Version>0</Version>
+    <Requirements>
+      <Requirement>
+        <Race>Tiefling Scoundrel</Race>
+      </Requirement>
+    </Requirements>
+    <IsRacialTree/>
+    <Icon>Scoundrel</Icon>
+      <Background>HumanBackground</Background>
+    <EnhancementTreeItem>
+      <Name>Tiefling Scoundrel: Bloodsong I</Name>
+      <InternalName>ScoundrelCore1</InternalName>
+      <Description>Your weapon attacks deal an additional 1d4 Sonic damage to enemies under 75% HP.
+This damage scales with 100% Spell Power.
+
+Passive: +5 Fire and Sonic Spell Power</Description>
+      <Icon>Bloodsong</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>0</MinSpent>
+      <ArrowRight/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>1</MinLevel>
+        </Requirement>
+      </Requirements>
+        <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Feat</Bonus>
+            <Amount>5</Amount>
+            <SpellPower>Fire</SpellPower>
+            <SpellPower>Sonic</SpellPower>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tiefling Scoundrel: Charisma I</Name>
+      <InternalName>ScoundrelCore2</InternalName>
+      <Description>+1 Charisma</Description>
+      <Icon>Charisma</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>1</MinSpent>
+      <ArrowRight/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>4</MinLevel>
+        </Requirement>
+        <Requirement>
+          <Enhancement>ScoundrelCore1</Enhancement>
+        </Requirement>
+      </Requirements>
+        <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Feat</Bonus>
+            <Amount>1</Amount>
+            <Ability>Charisma</Ability>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tiefling Scoundrel: Bloodsong II</Name>
+      <InternalName>ScoundrelCore3</InternalName>
+      <Description>Your weapon attacks deal an additional 1d6 Sonic damage to enemies under 50% HP.
+This damage scales with 100% Spell Power.
+
+Passive: +10 Fire and Sonic Spell Power</Description>
+      <Icon>BloodsongII</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>2</MinSpent>
+      <ArrowRight/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>7</MinLevel>
+        </Requirement>
+        <Requirement>
+          <Enhancement>ScoundrelCore2</Enhancement>
+        </Requirement>
+      </Requirements>
+        <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Feat</Bonus>
+            <Amount>10</Amount>
+            <SpellPower>Fire</SpellPower>
+            <SpellPower>Sonic</SpellPower>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tiefling Scoundrel: Charisma II</Name>
+      <InternalName>ScoundrelCore4</InternalName>
+      <Description>+1 Charisma</Description>
+      <Icon>Charisma</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>3</MinSpent>
+      <ArrowRight/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>11</MinLevel>
+        </Requirement>
+        <Requirement>
+          <Enhancement>ScoundrelCore3</Enhancement>
+        </Requirement>
+      </Requirements>
+        <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Feat</Bonus>
+            <Amount>1</Amount>
+            <Ability>Charisma</Ability>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tiefling Scoundrel: Bloodsong III</Name>
+      <InternalName>ScoundrelCore5</InternalName>
+      <Description>Your weapon attacks deal an additional 1d8 Sonic damage to enemies under 25% HP.
+This damage scales with 100% Spell Power.
+
+Passive: +20 Fire and Sonic Spell Power</Description>
+      <Icon>BloodsongIII</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>4</MinSpent>
+      <Requirements>
+        <Requirement>
+          <MinLevel>16</MinLevel>
+        </Requirement>
+        <Requirement>
+          <Enhancement>ScoundrelCore4</Enhancement>
+        </Requirement>
+      </Requirements>
+        <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Feat</Bonus>
+            <Amount>20</Amount>
+            <SpellPower>Fire</SpellPower>
+            <SpellPower>Sonic</SpellPower>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tiefling Scoundrel: Scoundrel's Inspiration</Name>
+      <InternalName>ScoundrelsInspiration</InternalName>
+      <Description>+1/2/3 to Heal, Listen and Spot</Description>
+      <Icon>ScoundrelsInspiration</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements/>
+        <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Feat</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Skill>Heal</Skill>
+            <Skill>Listen</Skill>
+            <Skill>Spot</Skill>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tiefling Scoundrel: Scoundrel's Skills</Name>
+      <InternalName>ScoundrelsSkills</InternalName>
+      <Description>+1/2/3 Balance, Bluff and Spellcraft</Description>
+      <Icon>ScoundrelsSkills</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements/>
+        <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Feat</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Skill>Balance</Skill>
+            <Skill>Bluff</Skill>
+            <Skill>Spell Craft</Skill>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tiefling Scoundrel: Dashing Weapons</Name>
+      <InternalName>ScoundrelDashingWeapons</InternalName>
+      <Description>You are trained in the art of fine weaponry.
+You have +1 to Hit and Damage with the following weapons:
+Shortsword, Rapier, Handaxe, Light Hammer and Light Crossbow</Description>
+      <Icon>DashingWeaponsI</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>1</MinSpent>
+      <ArrowUp/>
+      <Requirements/>
+        <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>Shortsword</Weapon>
+            <Weapon>Light Crossbow</Weapon>
+            <Weapon>Light Hammer</Weapon>
+            <Weapon>Rapier</Weapon>
+            <Weapon>Hand Axe</Weapon>
+        </Effect>
+        <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>Shortsword</Weapon>
+            <Weapon>Light Crossbow</Weapon>
+            <Weapon>Light Hammer</Weapon>
+            <Weapon>Rapier</Weapon>
+            <Weapon>Hand Axe</Weapon>
+        </Effect>
+        <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>Shortsword</Weapon>
+            <Weapon>Light Crossbow</Weapon>
+            <Weapon>Light Hammer</Weapon>
+            <Weapon>Rapier</Weapon>
+            <Weapon>Hand Axe</Weapon>
+        </Effect>
+        <Effect>
+            <Type>Seeker</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>Shortsword</Weapon>
+            <Weapon>Light Crossbow</Weapon>
+            <Weapon>Light Hammer</Weapon>
+            <Weapon>Rapier</Weapon>
+            <Weapon>Hand Axe</Weapon>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tiefling Scoundrel: Wand and Scroll Mastery</Name>
+      <InternalName>ScoundrelWandAndScrollMastery</InternalName>
+      <Description>+25/50/75% damage and healing from your wands, scrolls and other items that cast spells. Adds +1/2/3 to the save DCs of your offensive wands.</Description>
+      <Icon>TieflingWandAndScrollMastery</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+            <Requirement>
+               <Class>Wizard</Class>
+               <Level>2</Level>
+            </Requirement>
+            <RequiresNoneOf>
+               <DisplayDescription>Any other Wand and Scroll Mastery enhancement</DisplayDescription>
+               <Requirement>
+                  <Enhancement>DeepGnomeWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>GnomeWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>ATWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>SSWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>SHWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>EKWizWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>AoVWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>MechWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>TSWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>AMWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>TieflingWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>InquisitiveWandAndScrollMastery</Enhancement>
+               </Requirement>
+            </RequiresNoneOf>
+         </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tiefling Scoundrel: Obscuring Darkness</Name>
+      <InternalName>ScoundrelObscuringDarkness</InternalName>
+      <Description>You can channel your fiendish nature to manifest a zone of Obscuring Darkness at will.
+Activation cost: 10 Spell Points
+Cooldown: 30 Seconds</Description>
+      <Icon>ObscuringDarkness</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>1</MinSpent>
+      <Clickie/>
+      <ArrowUp/>
+      <Requirements/>
+        <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Feat</Bonus>
+            <SpellLikeAbility>Obscuring Darkness</SpellLikeAbility>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tiefling Scoundrel: Improved Fiendish Arpeggio</Name>
+      <InternalName>ScoundrelImprovedFiendishArpeggio</InternalName>
+      <Description>The target of your Fiendish Arpeggio has their movement speed reduced by 50% for 12 seconds.</Description>
+      <Icon>ImprovedFiendishArpeggio</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <ArrowUp/>
+      <Requirements/>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tiefling Scoundrel: Infernal Resistance I</Name>
+      <InternalName>ScoundrelInfernalResistanceI</InternalName>
+      <Description>Tieflings are naturally immune to certain elements.</Description>
+      <Icon>InfernalResistanceCold</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <ArrowUp/>
+      <Requirements/>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Infernal Resistance (Acid)</Name>
+          <Description>You gain Acid Resistance equal to your Character Level.</Description>
+          <Icon>InfernalResistanceAcid</Icon>
+          <Cost>2</Cost>
+            <Effect>
+                <Type>EnergyResistance</Type>
+                <Bonus>Feat</Bonus>
+                <Amount>30</Amount>
+                <Energy>Acid</Energy>
+            </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Infernal Resistance (Cold)</Name>
+          <Description>You gain Cold Resistance equal to your Character Level.</Description>
+          <Icon>InfernalResistanceCold</Icon>
+          <Cost>2</Cost>
+            <Effect>
+                <Type>EnergyResistance</Type>
+                <Bonus>Feat</Bonus>
+                <Amount>30</Amount>
+                <Energy>Cold</Energy>
+            </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tiefling Scoundrel: Improved Dashing Weapons</Name>
+      <InternalName>ScoundrelImprovedDashingWeapons</InternalName>
+      <Description>+1 to Hit and Damage with your Dashing Weapons.</Description>
+      <Icon>ImprovedDashingWeapons</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Enhancement>ScoundrelDashingWeapons</Enhancement>
+        </Requirement>
+      </Requirements>
+        <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>Shortsword</Weapon>
+            <Weapon>Light Crossbow</Weapon>
+            <Weapon>Light Hammer</Weapon>
+            <Weapon>Rapier</Weapon>
+            <Weapon>Hand Axe</Weapon>
+        </Effect>
+        <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>Shortsword</Weapon>
+            <Weapon>Light Crossbow</Weapon>
+            <Weapon>Light Hammer</Weapon>
+            <Weapon>Rapier</Weapon>
+            <Weapon>Hand Axe</Weapon>
+        </Effect>
+        <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>Shortsword</Weapon>
+            <Weapon>Light Crossbow</Weapon>
+            <Weapon>Light Hammer</Weapon>
+            <Weapon>Rapier</Weapon>
+            <Weapon>Hand Axe</Weapon>
+        </Effect>
+        <Effect>
+            <Type>Seeker</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>Shortsword</Weapon>
+            <Weapon>Light Crossbow</Weapon>
+            <Weapon>Light Hammer</Weapon>
+            <Weapon>Rapier</Weapon>
+            <Weapon>Hand Axe</Weapon>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tiefling Scoundrel: Traditionalist Caster</Name>
+      <InternalName>ScoundrelTraditionalistCaster</InternalName>
+      <Description>+3/6/10 Universal Spell Power while weilding an Orb or Staff.</Description>
+      <Icon>TraditionalistCaster</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Feat>Magical Training</Feat>
+        </Requirement>
+      </Requirements>
+        <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">3 6 10</AmountVector>
+            <Stance>Orb</Stance>
+            <SpellPower>All</SpellPower>
+        </Effect>
+        <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">3 6 10</AmountVector>
+            <Stance>Staff</Stance>
+            <SpellPower>All</SpellPower>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tiefling Scoundrel: Lasting Darkness</Name>
+      <InternalName>ScoundrelLastingDarkness</InternalName>
+      <Description>Enemies that enter your Obscuring Darkness have a chance to be blinded with no save.</Description>
+      <Icon>LastingDarkness</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Enhancement>ScoundrelObscuringDarkness</Enhancement>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tiefling Scoundrel: Disarming Coda</Name>
+      <InternalName>ScoundrelDisarmingCoda</InternalName>
+      <Description>The target of your Fiendish Arpeggio has -4 Armor Class and -25% Fortification for 12 seconds.</Description>
+      <Icon>DisarmingCoda</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Enhancement>ScoundrelImprovedFiendishArpeggio</Enhancement>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tiefling Scoundrel: Infernal Resistance II</Name>
+      <InternalName>ScoundrelInfernalResistanceII</InternalName>
+      <Description>Tieflings are naturally immune to certain elements.</Description>
+      <Icon>InfernalResistanceCold</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Enhancement>ScoundrelInfernalResistanceI</Enhancement>
+        </Requirement>
+      </Requirements>
+      <Selector>
+            <SelectorExclusions>
+               <SelectorExclusion>
+                  <InternalName>ScoundrelInfernalResistanceI</InternalName>
+               </SelectorExclusion>
+            </SelectorExclusions>
+        <EnhancementSelection>
+          <Name>Infernal Resistance (Acid)</Name>
+          <Description>You gain Acid Resistance equal to your Character Level.</Description>
+          <Icon>InfernalResistanceAcid</Icon>
+          <Cost>1</Cost>
+            <Effect>
+                <Type>EnergyResistance</Type>
+                <Bonus>Feat</Bonus>
+                <Amount>30</Amount>
+                <Energy>Acid</Energy>
+            </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Infernal Resistance (Cold)</Name>
+          <Description>You gain Cold Resistance equal to your Character Level.</Description>
+          <Icon>InfernalResistanceCold</Icon>
+          <Cost>1</Cost>
+            <Effect>
+                <Type>EnergyResistance</Type>
+                <Bonus>Feat</Bonus>
+                <Amount>30</Amount>
+                <Energy>Cold</Energy>
+            </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tiefling Scoundrel: Greater Dashing Weapons</Name>
+      <InternalName>ScoundrelGreaterDashingWeapons</InternalName>
+      <Description>+1 to Hit and Damage with your Dashing Weapons.</Description>
+      <Icon>GreaterDashingWeapons</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Enhancement>ScoundrelImprovedDashingWeapons</Enhancement>
+        </Requirement>
+      </Requirements>
+        <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>Shortsword</Weapon>
+            <Weapon>Light Crossbow</Weapon>
+            <Weapon>Light Hammer</Weapon>
+            <Weapon>Rapier</Weapon>
+            <Weapon>Hand Axe</Weapon>
+        </Effect>
+        <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>Shortsword</Weapon>
+            <Weapon>Light Crossbow</Weapon>
+            <Weapon>Light Hammer</Weapon>
+            <Weapon>Rapier</Weapon>
+            <Weapon>Hand Axe</Weapon>
+        </Effect>
+        <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>Shortsword</Weapon>
+            <Weapon>Light Crossbow</Weapon>
+            <Weapon>Light Hammer</Weapon>
+            <Weapon>Rapier</Weapon>
+            <Weapon>Hand Axe</Weapon>
+        </Effect>
+        <Effect>
+            <Type>Seeker</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>Shortsword</Weapon>
+            <Weapon>Light Crossbow</Weapon>
+            <Weapon>Light Hammer</Weapon>
+            <Weapon>Rapier</Weapon>
+            <Weapon>Hand Axe</Weapon>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tiefling Scoundrel: Infernal Songs</Name>
+      <InternalName>ScoundrelInfernalSongs</InternalName>
+      <Description>Toggle: All Sonic damage in this Enhancement Tree (and from your Fiendish Arpeggio) is instead Fire damage, scaling with Fire Spell Power.</Description>
+      <Icon>InfernalSongs</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements/>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tiefling Scoundrel: Dance in the Darkness</Name>
+      <InternalName>ScoundrelDanceInTheDarkness</InternalName>
+      <Description>While in Obscuring Darkness, you gain +3 Saving Throws, +3 Magical Resistance Rating, and +15 Magical Resistance Cap.</Description>
+      <Icon>DanceInTheDarkness</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Enhancement>ScoundrelLastingDarkness</Enhancement>
+        </Requirement>
+      </Requirements>
+        <Effect>
+            <Type>MRR</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>3</Amount>
+            <Stance>ObscuringDarkness</Stance>
+        </Effect>
+        <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>3</Amount>
+            <Save>All</Save>
+            <Stance>ObscuringDarkness</Stance>
+        </Effect>
+        <Effect>
+            <Type>MRRCap</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>15</Amount>
+            <Stance>ObscuringDarkness</Stance>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tiefling Scoundrel: Grand Chord Works</Name>
+      <InternalName>ScoundrelGrandChordWorks</InternalName>
+      <Description>Enchant your Fiddle to cast this spell.
+If the target is not under the effect of Fiendish Arpeggio, they must save or
+be put to sleep for 12 seconds (Will Save vz 1d20 + Perform Skill).
+
+If the target is under the effect of Fiendish Arpeggio (and made of flesh),
+they must save or be turned to stone (Will Save vs 1d20 + Perform Skill) as
+if they were subject to a Flesh to Stone spell. The Flesh to Stone lasts for
+60 seconds plus 10 seconds per character level, but the target has a chance
+to save again every 24 seconds.</Description>
+      <Icon>GrandChordWorks</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>15</MinSpent>
+      <Clickie/>
+      <Requirements>
+        <Requirement>
+          <Enhancement>ScoundrelDisarmingCoda</Enhancement>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tiefling Scoundrel: Charm Hearts</Name>
+      <InternalName>ScoundrelCharmHearts</InternalName>
+      <Description>Enemies that attack you have a 10% chance to be subjegated to a Fascinate effect (Will Save vs 1d20 + Perform Skill negates).</Description>
+      <Icon>CharmHearts</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>15</MinSpent>
+      <Requirements/>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tiefling Scoundrel: Dark Weapons</Name>
+      <InternalName>ScoundrelDarkWeapons</InternalName>
+      <Description>+1 to Hit and Damage, as well as +1 Sneak Attack Die, with your Dashing Weapons.</Description>
+      <Icon>DarkWeapons</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>15</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Enhancement>ScoundrelGreaterDashingWeapons</Enhancement>
+        </Requirement>
+      </Requirements>
+        <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>Shortsword</Weapon>
+            <Weapon>Light Crossbow</Weapon>
+            <Weapon>Light Hammer</Weapon>
+            <Weapon>Rapier</Weapon>
+            <Weapon>Hand Axe</Weapon>
+        </Effect>
+        <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>Shortsword</Weapon>
+            <Weapon>Light Crossbow</Weapon>
+            <Weapon>Light Hammer</Weapon>
+            <Weapon>Rapier</Weapon>
+            <Weapon>Hand Axe</Weapon>
+        </Effect>
+        <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>Shortsword</Weapon>
+            <Weapon>Light Crossbow</Weapon>
+            <Weapon>Light Hammer</Weapon>
+            <Weapon>Rapier</Weapon>
+            <Weapon>Hand Axe</Weapon>
+        </Effect>
+        <Effect>
+            <Type>Seeker</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>Shortsword</Weapon>
+            <Weapon>Light Crossbow</Weapon>
+            <Weapon>Light Hammer</Weapon>
+            <Weapon>Rapier</Weapon>
+            <Weapon>Hand Axe</Weapon>
+        </Effect>
+         <Effect>
+            <Type>SneakAttackDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+         </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tiefling Scoundrel: Magic of Melodies</Name>
+      <InternalName>ScoundrelMagicOfMelodies</InternalName>
+      <Description>+1 Enchantment DC, +1 Caster Level and +1 Max Caster Level with Sonic Spells.</Description>
+      <Icon>MagicOfMelodies</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>15</MinSpent>
+      <Requirements/>
+        <Effect>
+            <Type>SpellDC</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <School>Enchantment</School>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Tiefling Scoundrel: Sonata of Darkness</Name>
+      <InternalName>ScoundrelSonataOfDarkness</InternalName>
+      <Description>While in Obscuring Darkness, you gain Displacement, +5% Dodge, +5 Dodge Cap, and +5 Max Dex Bonus.</Description>
+      <Icon>SonataOfDarkness</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>15</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Enhancement>ScoundrelDanceInTheDarkness</Enhancement>
+        </Requirement>
+      </Requirements>
+        <Effect>
+            <Type>DodgeBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>5</Amount>
+            <Stance>ObscuringDarkness</Stance>
+        </Effect>
+        <Effect>
+            <Type>DodgeCapBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>5</Amount>
+            <Stance>ObscuringDarkness</Stance>
+        </Effect>
+        <Effect>
+            <Type>MaxDexBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>5</Amount>
+            <Stance>ObscuringDarkness</Stance>
+        </Effect>
+    </EnhancementTreeItem>
+  </EnhancementTree>
    <EnhancementTree>
       <Name>Warforged</Name>
       <Version>1</Version>
@@ -15899,6 +17351,15 @@ Cooldown: 12/8/4 seconds</Description>
                </Requirement>
                <Requirement>
                   <Enhancement>AMWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>TieflingWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>ScoundrelWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>InquisitiveWandAndScrollMastery</Enhancement>
                </Requirement>
             </RequiresNoneOf>
          </Requirements>
@@ -22485,6 +23946,15 @@ that cast spells, and +1/2/3 to the DCs of your offensive wands.</Description>
                </Requirement>
                <Requirement>
                   <Enhancement>AMWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>TieflingWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>ScoundrelWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>InquisitiveWandAndScrollMastery</Enhancement>
                </Requirement>
             </RequiresNoneOf>
          </Requirements>
@@ -36022,6 +37492,15 @@ items that cast spells, and +1/+2/+3 to the save DCs of your offensive wands.</D
                </Requirement>
                <Requirement>
                   <Enhancement>AMWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>TieflingWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>ScoundrelWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>InquisitiveWandAndScrollMastery</Enhancement>
                </Requirement>
             </RequiresNoneOf>
          </Requirements>
@@ -52816,6 +54295,1069 @@ Passive: +1 DC for your spells</Description>
          </Effect>
       </EnhancementTreeItem>
    </EnhancementTree>
+  <EnhancementTree>
+    <Name>Inquisitive</Name>
+    <Version>1</Version>
+      <Requirements>
+          <Requirement>
+              <Feat>Inquisitive Tree</Feat>
+          </Requirement>
+      </Requirements>
+    <Icon>Inquisitive</Icon>
+    <Background>HarperBackground</Background>
+    <EnhancementTreeItem>
+      <Name>Inquisitive: Inquisitive</Name>
+      <InternalName>InquisitiveCore1</InternalName>
+      <Description>+1 to Attack with all weapons. +1 to Diplomacy, Intimidate and Bluff</Description>
+      <Icon>Inquisitive</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>0</MinSpent>
+      <ArrowRight/>
+      <Requirements/>
+        <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+        </Effect>
+        <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+        </Effect>
+        <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Feat</Bonus>
+            <Amount>1</Amount>
+            <Skill>Diplomacy</Skill>
+            <Skill>Intimidate</Skill>
+            <Skill>Bluff</Skill>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Inquisitive: Hit the Streets</Name>
+      <InternalName>InquisitiveCore2</InternalName>
+      <Description>You gain an additional copy of Diplomacy on a separate cooldown timer.
+This timer is shared with Half-Elven Social Grace's Diplomacy.
+Diplomacy allows you to attempt to encourage enemies to find targets other
+than yourself.
+
+Passive: +2% Dodge, +3 Diplomacy skill.
+If you are a Half-Elf, this Diplomacy bonus is instead +10.
+Cooldown: 1 Minute</Description>
+      <Icon>HitTheStreets</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <Clickie/>
+      <ArrowRight/>
+      <Requirements>
+        <Requirement>
+          <Enhancement>InquisitiveCore1</Enhancement>
+        </Requirement>
+      </Requirements>
+        <Effect>
+            <Type>DodgeBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+        </Effect>
+        <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">0 3 10</AmountVector>
+            <Skill>Diplomacy</Skill>
+        </Effect>
+        <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">0 3 10</AmountVector>
+            <Skill>Diplomacy</Skill>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Inquisitive: Mind Like Iron</Name>
+      <InternalName>InquisitiveCore3</InternalName>
+      <Description>+3 to Will Saving Throws.
+You no longer automatically fail Saving Throws for Fear, Enchantment or
+Illusion effects on a Natutal 1.
+You will automatically perform a Search check to locate traps and secret
+doors when you are in range to Spot them, although this Search check
+operates at a -4 penalty.
+In addition, you gain +2 Damage dice with Law on you Side.</Description>
+      <Icon>MindLikeIron</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowRight/>
+      <Requirements>
+        <Requirement>
+          <Enhancement>InquisitiveCore2</Enhancement>
+        </Requirement>
+      </Requirements>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Save>Will</Save>
+            <Amount>3</Amount>
+         </Effect>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Save>Fear</Save>
+            <Amount>0</Amount>
+            <NoFailOn1 size="1">1</NoFailOn1>
+         </Effect>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Save>Enchantment</Save>
+            <Amount>0</Amount>
+            <NoFailOn1 size="1">1</NoFailOn1>
+         </Effect>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Save>Illusion</Save>
+            <Amount>0</Amount>
+            <NoFailOn1 size="1">1</NoFailOn1>
+         </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Inquisitive: True Seeing</Name>
+      <InternalName>InquisitiveCore4</InternalName>
+      <Description>You permanently gain the effects of the True Seeing spell.
+You gain +1 Competence Bonus to Critical Threat Range and Multiplier with
+Light and Heavy (non-repeating) Crossbows.
+In addition, you gain +2 Damage dice with Law on your Side.</Description>
+      <Icon>TrueSeeing</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <ArrowRight/>
+      <Requirements>
+        <Requirement>
+          <Enhancement>InquisitiveCore3</Enhancement>
+        </Requirement>
+      </Requirements>
+        <Effect>
+            <Type>CriticalRange</Type>
+            <Bonus>Competence</Bonus>
+            <Amount>1</Amount>
+            <Weapon>Light Crossbow</Weapon>
+            <Weapon>Heavy Crossbow</Weapon>
+        </Effect>
+        <Effect>
+            <Type>CriticalMultiplier</Type>
+            <Bonus>Competence</Bonus>
+            <Amount>1</Amount>
+            <Weapon>Light Crossbow</Weapon>
+            <Weapon>Heavy Crossbow</Weapon>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Inquisitive: Undaunted</Name>
+      <InternalName>InquisitiveCore5</InternalName>
+      <Description>+10 Ranged Power, +3 to all Saving Throws, +4 to the Max Dex Bonus of equipped armor.
+You gain the Slippery Mind feat (you can wriggle free from magical effects
+that would otherwise control or compel you. You gain a second saving throw
+versus enchantments).
+In addition, you gain +2 Damage dice with Law on your Side.</Description>
+      <Icon>Undaunted</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <ArrowRight/>
+      <Requirements>
+        <Requirement>
+          <Enhancement>InquisitiveCore4</Enhancement>
+        </Requirement>
+      </Requirements>
+        <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>10</Amount>
+        </Effect>
+        <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>3</Amount>
+            <Save>All</Save>
+        </Effect>
+        <Effect>
+            <Type>MaxDexBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>4</Amount>
+        </Effect>
+        <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Enhancement</Bonus>
+            <Feat>Slippery Mind</Feat>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Inquisitive: Master Inquisitive</Name>
+      <InternalName>InquisitiveCore6</InternalName>
+      <Description>+2 to all Ability Scores. +10 Ranged Power.
+While wielding a Light or Heavy (non-repeating) Crossbow, your Vorpal hits
+will kock down targets hit on a natural 20 + confirmation for 6 seconds
+without a saving throw, as a Great Crossbow.
+In addition, you gain +3 Damage dice with Law on your Side.</Description>
+      <Icon>MasterInquisitive</Icon>
+      <XPosition>5</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>40</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Enhancement>InquisitiveCore5</Enhancement>
+        </Requirement>
+      </Requirements>
+        <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>10</Amount>
+        </Effect>
+        <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Ability>All</Ability>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Inquisitive: Dual Shooter</Name>
+      <InternalName>InquisitiveDualShooter</InternalName>
+      <Description>While you have a Light or Heavy (non-repeating) Crossbow equipped,
+you instead fight with a Hand Crossbow in each hand, with each mimicking
+the damage and effects of your equipped Crossbow.
++1 to Attack and Damage with Light and Heavy (non-repeating) crossbows.</Description>
+      <Icon>DualShooter</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements/>
+        <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>Light Crossbow</Weapon>
+            <Weapon>Heavy Crossbow</Weapon>
+        </Effect>
+        <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>Light Crossbow</Weapon>
+            <Weapon>Heavy Crossbow</Weapon>
+        </Effect>
+        <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>Light Crossbow</Weapon>
+            <Weapon>Heavy Crossbow</Weapon>
+        </Effect>
+        <Effect>
+            <Type>Seeker</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>Light Crossbow</Weapon>
+            <Weapon>Heavy Crossbow</Weapon>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Inquisitive: Eye for Accuracy</Name>
+      <InternalName>InquisitiveEyeForAccuracy</InternalName>
+      <Description>+1/2/3 to Attack with weapons.</Description>
+      <Icon>EyeForAccuracy</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements/>
+        <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Weapon>All</Weapon>
+        </Effect>
+        <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Weapon>All</Weapon>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Inquisitive: Conjure Bolts</Name>
+      <InternalName>InquisitiveConjureBolts</InternalName>
+      <Description>Conjures a stack of 1000 bolts for use with a crossbow.
+These bolts have a +1 enhancement bonus. These bolts dissolve into nothingness
+after logout.
+Spell Point Cost: 30/20/10</Description>
+      <Icon>ConjureBolts</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Clickie/>
+      <Requirements/>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Inquisitive: Law on your side</Name>
+      <InternalName>InquisitiveLawOnYourSide</InternalName>
+      <Description>Toggle: Your Light and Heavy (non-repeating) Crossbow attacks
+deal 1d8 Law damage on hit to non-Lawful creatures, scaling with 200% Ranged
+Power. Lawful creatures take 1d4 Law damage, scaling with 200% Ranged Power.</Description>
+      <Icon>LawOnYourSide</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>1</MinSpent>
+      <Clickie/>
+      <ArrowUp/>
+      <Requirements/>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Inquisitive: Inquisitive Skills</Name>
+      <InternalName>InquisitiveSkills</InternalName>
+      <Description>+1/2/3 to Diplomacy, Intimidate and Bluff.
+Rank 3: +1 to Will Saving Throws.</Description>
+      <Icon>InquisitiveSkills</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements/>
+        <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Skill>Diplomacy</Skill>
+            <Skill>Intimidate</Skill>
+            <Skill>Bluff</Skill>
+        </Effect>
+        <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">0 0 1</AmountVector>
+            <Save>Will</Save>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Inquisitive: Crossbow Adept</Name>
+      <InternalName>InquisitiveCrossbowAdept</InternalName>
+      <Description>+1 to Attack and +2 to Damage with Light and Heavy (non-repeating) Crossbows.</Description>
+      <Icon>CrossbowAdept</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements/>
+        <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>Light Crossbow</Weapon>
+            <Weapon>Heavy Crossbow</Weapon>
+        </Effect>
+        <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>Light Crossbow</Weapon>
+            <Weapon>Heavy Crossbow</Weapon>
+        </Effect>
+        <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Weapon>Light Crossbow</Weapon>
+            <Weapon>Heavy Crossbow</Weapon>
+        </Effect>
+        <Effect>
+            <Type>Seeker</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Weapon>Light Crossbow</Weapon>
+            <Weapon>Heavy Crossbow</Weapon>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Inquisitive: Wand and Scroll Mastery</Name>
+      <InternalName>InquisitiveWandAndScrollMastery</InternalName>
+      <Description>+25/50/75% damage and healing of your wands, scrolls and other items that cast spells. Adds +1/2/3 to the save DC's of your offensive wands. Taking Wand and Scroll Mastery in one enhancement tree will block its availability in other enhancement trees.</Description>
+      <Icon>WandAndScrollMastery</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+            <Requirement>
+               <Class>Wizard</Class>
+               <Level>2</Level>
+            </Requirement>
+            <RequiresNoneOf>
+               <DisplayDescription>Any other Wand and Scroll Mastery enhancement</DisplayDescription>
+               <Requirement>
+                  <Enhancement>DeepGnomeWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>GnomeWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>ATWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>SSWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>SHWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>EKWizWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>AoVWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>MechWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>TSWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>AMWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>TieflingWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>ScoundrelWandAndScrollMastery</Enhancement>
+               </Requirement>
+            </RequiresNoneOf>
+         </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Inquisitive: Observation</Name>
+      <InternalName>InquisitiveObservation</InternalName>
+      <Description>When you use Diplomacy on an enemy, you gain one stack of Observation
+(+2 to Armor Class, +2 to PRR, +2 to MRR). Each stack lasts 12 seconds before
+being removed. This stacks up to 5 times.</Description>
+      <Icon>Observation</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <ArrowUp/>
+      <Requirements/>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Inquisitive: Improved Law</Name>
+      <InternalName>InquisitiveImprovedLaw</InternalName>
+      <Description>+2 Damage dice with Law on your Side.</Description>
+      <Icon>ImprovedLaw</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Enhancement>InquisitiveLawOnYourSide</Enhancement>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Inquisitive: Action Boost: Skills</Name>
+      <InternalName>InquisitiveActionBoostSkills</InternalName>
+      <Description>Active to gain a +2/4/6 Action Boost bonus to all skills for 20 seconds.
+Cooldown: 30 seconds.</Description>
+      <Icon>ActionBoostSkills</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Clickie/>
+      <Requirements/>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Inquisitive: Crossbow Adept II</Name>
+      <InternalName>InquisitiveCrossbowAdeptII</InternalName>
+      <Description>+1 to Attack and +1 to Damage with Light and Heavy (non-repeating) Crossbows.</Description>
+      <Icon>CrossbowAdeptII</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements/>
+        <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>Light Crossbow</Weapon>
+            <Weapon>Heavy Crossbow</Weapon>
+        </Effect>
+        <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>Light Crossbow</Weapon>
+            <Weapon>Heavy Crossbow</Weapon>
+        </Effect>
+        <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>Light Crossbow</Weapon>
+            <Weapon>Heavy Crossbow</Weapon>
+        </Effect>
+        <Effect>
+            <Type>Seeker</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>Light Crossbow</Weapon>
+            <Weapon>Heavy Crossbow</Weapon>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Inquisitive: What First?</Name>
+      <InternalName>InquisitiveWhatFirst</InternalName>
+      <Description>Pick a skill that you'd use to enter a room.</Description>
+      <Icon>WhatFirst</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Clickie/>
+      <ArrowUp/>
+      <Requirements/>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Ask Questions First</Name>
+          <Description>Active this skill to gain +20 to Diplomacy and a 10% reduction in the cooldown time of
+Social Skills for 60 seconds. When you use Diplomacy on an enemy while this
+is active, you gain a stack of Preparation (+2% Dodge that ignores Dodge Cap).
+Each stack of Preparation lasts 12 seconds, and acquiring a new stack rests
+the duration. Preparation can stack up to 5 times.
+Cooldown: 2 Minutes</Description>
+          <Icon>AskQuestionsFirst</Icon>
+          <Cost>2</Cost>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Shoot First</Name>
+          <Description>&lt;Stringtable error&gt;
+Cooldown: 6 seconds</Description>
+          <Icon>WhatFirst</Icon>
+          <Cost>2</Cost>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Inquisitive: Improved Observation</Name>
+      <InternalName>InquisitiveImprovedObservation</InternalName>
+      <Description>Each stack of Observation now also grants you 5% Fortification bypass.</Description>
+      <Icon>ImprovedObservation</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Enhancement>InquisitiveObservation</Enhancement>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Inquisitive: Stop in the Name</Name>
+      <InternalName>InquisitiveStopInTheName</InternalName>
+      <Description>Active: Targeted enemy must save (DC Diplomacy + d20 vs. Will) or be Dazed for 10 seconds.
+Daze is removed on hit. Bosses are immune to Daze.
+Cooldown: 18 seconds</Description>
+      <Icon>StopInTheName</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Clickie/>
+      <Requirements/>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Inquisitive: Ability Score I</Name>
+      <InternalName>InquisitiveAbilityI</InternalName>
+      <Description>Choose an Ability Score.</Description>
+      <Icon>Wisdom</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements/>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Strength</Name>
+          <Description>+1 Strength</Description>
+          <Icon>Strength</Icon>
+          <Cost>2</Cost>
+        <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Ability>Strength</Ability>
+        </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Dexterity</Name>
+          <Description>+1 Dexterity</Description>
+          <Icon>Dexterity</Icon>
+          <Cost>2</Cost>
+        <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Ability>Dexterity</Ability>
+        </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Constitution</Name>
+          <Description>+1 Constitution</Description>
+          <Icon>Constitution</Icon>
+          <Cost>2</Cost>
+        <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Ability>Constitution</Ability>
+        </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Intelligence</Name>
+          <Description>+1 Intelligence</Description>
+          <Icon>Intelligence</Icon>
+          <Cost>2</Cost>
+        <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Ability>Intelligence</Ability>
+        </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Wisdom</Name>
+          <Description>+1 Wisdom</Description>
+          <Icon>Wisdom</Icon>
+          <Cost>2</Cost>
+        <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Ability>Wisdom</Ability>
+        </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Charisma</Name>
+          <Description>+1 Charisma</Description>
+          <Icon>Charisma</Icon>
+          <Cost>2</Cost>
+        <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Ability>Charisma</Ability>
+        </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Inquisitive: Crossbow Adept III</Name>
+      <InternalName>InquisitiveCrossbowAdeptIII</InternalName>
+      <Description>+1 to Attack and +2 to Damage with Light and Heavy (non-repeating) Crossbows.</Description>
+      <Icon>CrossbowAdeptIII</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements/>
+        <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>Light Crossbow</Weapon>
+            <Weapon>Heavy Crossbow</Weapon>
+        </Effect>
+        <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>Light Crossbow</Weapon>
+            <Weapon>Heavy Crossbow</Weapon>
+        </Effect>
+        <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Weapon>Light Crossbow</Weapon>
+            <Weapon>Heavy Crossbow</Weapon>
+        </Effect>
+        <Effect>
+            <Type>Seeker</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Weapon>Light Crossbow</Weapon>
+            <Weapon>Heavy Crossbow</Weapon>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Inquisitive: What Later?</Name>
+      <InternalName>InquisitiveWhatLater</InternalName>
+      <Description>Take a followup skill to handle the situation.</Description>
+      <Icon>WhatLater</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Enhancement>InquisitiveWhatFirst</Enhancement>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Ask Questions Later</Name>
+          <Description>Requires Shoot First. WHen you use Diplomacy on enemies who have at least one
+stack of Shot Wound, they take a Crushing Despair effect for 30 seconds.</Description>
+          <Icon>WhatLater</Icon>
+          <Cost>1</Cost>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Shoot Later</Name>
+          <Description>String table error</Description>
+          <Icon>ShootLater</Icon>
+          <Cost>1</Cost>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Inquisitive: Inquisition Style</Name>
+      <InternalName>InquisitiveInquisitionStyle</InternalName>
+      <Description>How do you interrogate?</Description>
+      <Icon>InquisitionStyle</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements/>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Arcane Inquisition</Name>
+          <Description>You gain +15 Universal Spell Power while you have a Light or Heavy (non-repeating) Crossbow equipped.</Description>
+          <Icon>ArcaneInquisition</Icon>
+          <Cost>1</Cost>
+            <Effect>
+                <Type>SpellPower</Type>
+                <Bonus>Enhancement</Bonus>
+                <Amount>15</Amount>
+                <SpellPower>All</SpellPower>
+            </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Dashing Inquisition</Name>
+          <Description>You can Swashbuckle while wielding a Light (non-repeating) Crossbow.</Description>
+          <Icon>DashingInquisition</Icon>
+          <Cost>1</Cost>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Divine Inquisition</Name>
+          <Description>You count Light and Heavy (non-repeating) Crossbows as Favored Weapons, regardless of your Deity.</Description>
+          <Icon>DivineInquisition</Icon>
+          <Cost>1</Cost>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Martial Inquisition</Name>
+          <Description>+5% Doubleshot with Light and Heavy (non-repeating) Crossbows.</Description>
+          <Icon>MartialInquisition</Icon>
+          <Cost>1</Cost>
+            <Effect>
+                <Type>Doubleshot</Type>
+                <Bonus>Enhancement</Bonus>
+                <Amount>5</Amount>
+            </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Inquisitive: Greater Law</Name>
+      <InternalName>InquisitiveGreaterLaw</InternalName>
+      <Description>+2 Damage dice with Law on your Side.</Description>
+      <Icon>GreaterLaw</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Enhancement>InquisitiveLawOnYourSide</Enhancement>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Inquisitive: Ability Score II</Name>
+      <InternalName>InquisitiveAbilityII</InternalName>
+      <Description>Choose an Ability Score.</Description>
+      <Icon>Wisdom</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements/>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Strength</Name>
+          <Description>+1 Strength</Description>
+          <Icon>Strength</Icon>
+          <Cost>2</Cost>
+        <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Ability>Strength</Ability>
+        </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Dexterity</Name>
+          <Description>+1 Dexterity</Description>
+          <Icon>Dexterity</Icon>
+          <Cost>2</Cost>
+        <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Ability>Dexterity</Ability>
+        </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Constitution</Name>
+          <Description>+1 Constitution</Description>
+          <Icon>Constitution</Icon>
+          <Cost>2</Cost>
+        <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Ability>Constitution</Ability>
+        </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Intelligence</Name>
+          <Description>+1 Intelligence</Description>
+          <Icon>Intelligence</Icon>
+          <Cost>2</Cost>
+        <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Ability>Intelligence</Ability>
+        </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Wisdom</Name>
+          <Description>+1 Wisdom</Description>
+          <Icon>Wisdom</Icon>
+          <Cost>2</Cost>
+        <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Ability>Wisdom</Ability>
+        </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Charisma</Name>
+          <Description>+1 Charisma</Description>
+          <Icon>Charisma</Icon>
+          <Cost>2</Cost>
+        <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Ability>Charisma</Ability>
+        </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Inquisitive: No Holds Barred</Name>
+      <InternalName>InquisitiveNoHoldsBarred</InternalName>
+      <Description>Action Boost: You may activate this ability to enchant your Light of Heavy
+(non-repeating) crossbow to instantly reload itself for 18 seocnds.
+This shares charges and a cooldown with Endless Fusilade.
+If you also have Endless Fusilade, you gain +10 Ranged Power while No Holds
+Barred is active.
+Passive: +5 Ranged Power, +10% Doubleshot.
+Cooldown: 30 seconds</Description>
+      <Icon>NoHoldsBarred</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>5</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Clickie/>
+      <Tier5/>
+      <Requirements/>
+        <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>5</Amount>
+        </Effect>
+        <Effect>
+            <Type>Doubleshot</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>10</Amount>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Inquisitive: Arresting Assault</Name>
+      <InternalName>InquisitiveArrestingAssault</InternalName>
+      <Description>Activate Ability: All nearby enemies take -10 Melee, Ranged, and Spell Power
+for 20 seconds and 5 stacks of Vulnerability. In addition, nearby enemies
+must save (DC Diplomacy + d20 vs. Will) or be subjected to a 10-second Daze.
+(Bosses are immune to Daze, but not the Power reduction or Vulnerability).
+Daze is removed on hit.
+Cooldown: 1 minute</Description>
+      <Icon>ArrestingAssault</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>5</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Clickie/>
+      <Tier5/>
+      <Requirements/>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Inquisitive: Improved Uncanny Dodge</Name>
+      <InternalName>InquisitiveImprovedUncannyDodge</InternalName>
+      <Description>Grants the Improved Uncanny Dodge feat. Activate this ability to gain a temporary 50% Dodge bonus and a +6 reflex save bonus. This feat also grants you a 1% passive bonus to Dodge at levels 4, 6, 8, 12, 16 and 20.</Description>
+      <Icon>UncannyDodge</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>5</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Clickie/>
+      <Tier5/>
+      <Requirements/>
+        <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Enhancement</Bonus>
+            <Feat>Improved Uncanny Dodge</Feat>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Inquisitive: Inquisitor's Path</Name>
+      <InternalName>InquisitiveInquisitorsPath</InternalName>
+      <Description>Which path will you follow?</Description>
+      <Icon>InquisitorsPath</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>5</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5/>
+      <Requirements>
+        <Requirement>
+          <Enhancement>InquisitiveGreaterLaw</Enhancement>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Jaded</Name>
+          <Description>Your damage dice with Law on your Side are now d8s for all enemies,
+regardless of alignment.
++10 Ranged Power, +30% Alacrity with non-Repeating Crossbows</Description>
+          <Icon>Jaded</Icon>
+          <Cost>1</Cost>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Optimistic</Name>
+          <Description>+2 Damage Dice with Law on your Side.
++10 Ranged Power, +30% Alacrity with non-Repeating Crossbows</Description>
+          <Icon>InquisitorsPath</Icon>
+          <Cost>1</Cost>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Vigilante</Name>
+          <Description>+1 Damage Dice with Law on your Side. Damage from Law on your Side is
+now Chaos damage, with non-Chaotic creatures taking d8s of damage, and
+Chaotic creatures taking d4s of damage.
++10 Ranged Power, +30% Alacrity with non-Repeating Crossbows</Description>
+          <Icon>Vigilante</Icon>
+          <Cost>1</Cost>
+        </EnhancementSelection>
+      </Selector>
+        <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>10</Amount>
+        </Effect>
+        <Effect>
+            <Type>Alacrity</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>30</Amount>
+            <Weapon>Light Crossbow</Weapon>
+            <Weapon>Heavy Crossbow</Weapon>
+            <Weapon>Great Crossbow</Weapon>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Inquisitive: Diplomatic Immunity</Name>
+      <InternalName>InquisitiveDiplomaticImmunity</InternalName>
+      <Description>Toggle: While active, your attacks with Light and Heavy (non-repeating)
+Crossbows have a chance to automatically trigger Diplomacy around you.</Description>
+      <Icon>DiplomaticImmunity</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>5</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Clickie/>
+      <Tier5/>
+      <Requirements/>
+    </EnhancementTreeItem>
+  </EnhancementTree>
    <EnhancementTree>
       <Name>Vistani Knife Fighter</Name>
       <Version>1</Version>
@@ -62319,6 +64861,15 @@ items that cast spells. Adds +1/+2/+3 to the save DC's of your offensive wands.<
                <Requirement>
                   <Enhancement>AMWandAndScrollMastery</Enhancement>
                </Requirement>
+               <Requirement>
+                  <Enhancement>TieflingWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>ScoundrelWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>InquisitiveWandAndScrollMastery</Enhancement>
+               </Requirement>
             </RequiresNoneOf>
          </Requirements>
       </EnhancementTreeItem>
@@ -63544,6 +66095,15 @@ and +1/+2/+3 to the save DC of your offensive wands.</Description>
                </Requirement>
                <Requirement>
                   <Enhancement>AMWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>TieflingWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>ScoundrelWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>InquisitiveWandAndScrollMastery</Enhancement>
                </Requirement>
             </RequiresNoneOf>
          </Requirements>
@@ -73834,6 +76394,15 @@ that cast spells, and +[1/2/3] to the DCs of your offensive wands.</Description>
                <Requirement>
                   <Enhancement>AMWandAndScrollMastery</Enhancement>
                </Requirement>
+               <Requirement>
+                  <Enhancement>TieflingWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>ScoundrelWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>InquisitiveWandAndScrollMastery</Enhancement>
+               </Requirement>
             </RequiresNoneOf>
          </Requirements>
       </EnhancementTreeItem>
@@ -75341,6 +77910,15 @@ cast spells, and +1/+2/+3 to the save DC of your offensive wands.</Description>
                </Requirement>
                <Requirement>
                   <Enhancement>TSWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>TieflingWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>ScoundrelWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>InquisitiveWandAndScrollMastery</Enhancement>
                </Requirement>
             </RequiresNoneOf>
          </Requirements>
@@ -77959,6 +80537,15 @@ and +1/+2/+3 to the save DC of your offensive wands.</Description>
                </Requirement>
                <Requirement>
                   <Enhancement>AMWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>TieflingWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>ScoundrelWandAndScrollMastery</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>InquisitiveWandAndScrollMastery</Enhancement>
                </Requirement>
             </RequiresNoneOf>
          </Requirements>

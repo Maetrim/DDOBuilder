@@ -2081,6 +2081,7 @@ void CLevelUpView::SetLevelTooltipText(
         case Race_Morninglord: expectedClass = Class_Cleric; break;
         case Race_PurpleDragonKnight: expectedClass = Class_Fighter; break;
         case Race_ShadarKai: expectedClass = Class_Rogue; break;
+        case Race_TieflingScoundrel: expectedClass = Class_Bard; break;
         }
     }
     m_tooltip.SetOrigin(tipTopLeft, tipAlternate, false);

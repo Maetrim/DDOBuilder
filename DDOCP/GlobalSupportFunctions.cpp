@@ -1109,7 +1109,9 @@ int RacialModifier(
             mod = -2;
         }
         if (race == Race_Drow
-                || race == Race_Dragonborn)
+                || race == Race_Dragonborn
+                || race == Race_Tiefling
+                || race == Race_TieflingScoundrel)
         {
             mod = +2;
         }

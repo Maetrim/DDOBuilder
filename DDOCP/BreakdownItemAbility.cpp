@@ -115,6 +115,7 @@ void BreakdownItemAbility::CreateOtherEffects()
                 // ensure its updated on a change
                 feat.SetBreakdownDependency(StatToBreakdown(Ability_Charisma));
                 feat.SetDivider(1, DT_statBonus);
+                feat.SetIsItemEffect(); // treat this as an item effect
                 AddOtherEffect(feat);
             }
         }

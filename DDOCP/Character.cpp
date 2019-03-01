@@ -1548,6 +1548,13 @@ bool Character::IsStanceActive(const std::string & name, WeaponType wt) const
                     || (wt == Weapon_Falchion)
                     || (wt == Weapon_Shortbow);
         }
+        if (IsEnhancementTrained("InquisitiveInquisitionStyle", "Divine Inquisition"))
+        {
+            // Inquision grants light/heavy crossbows
+            // as their favored weapon also.
+            ret |= (wt == Weapon_LightCrossbow)
+                    || (wt == Weapon_HeavyCrossbow);
+        }
         if (name == "FavoredWeapon")
         {
             // must also have at least 10 favored soul levels for this to apply

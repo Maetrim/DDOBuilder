@@ -607,6 +607,12 @@ attack repeatedly until your target is defeated, or activated once by right-clic
          <Bonus>Feat</Bonus>
          <Amount>20</Amount>
       </Effect>
+      <Effect>
+         <DisplayName>Base AC</DisplayName>
+         <Type>ACBonus</Type>
+         <Bonus>Base</Bonus>
+         <Amount>10</Amount>
+      </Effect>
       <Stance>
          <Name>Cloth Armor</Name>
          <Icon>ClothArmorProficiency</Icon>
@@ -1846,6 +1852,11 @@ the controlling effect.</Description>
          <Type>DodgeBonus</Type>
          <Bonus>Feat</Bonus>
          <Amount>3</Amount>
+      </Effect>
+      <Effect>
+         <Type>ACBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
       </Effect>
    </Feat>
    <Feat>
@@ -4144,6 +4155,13 @@ a +1 racial bonus to Listen, Search and Spot checks.</Description>
          <Skill>Spot</Skill>
          <Amount>1</Amount>
       </Effect>
+        <Effect>
+            <DisplayName>Inquisitive: Hit the Streets</DisplayName>
+            <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">0 3 10</AmountVector>
+            <Skill>Diplomacy</Skill>
+        </Effect>
    </Feat>
    <Feat>
       <Name>Half-Elven Social Graces</Name>
@@ -5854,6 +5872,63 @@ save bonus. This feat also grants you a 1% passive bonus to Dodge at levels
          <Class>Ranger</Class>
          <Level>7</Level>
       </AutomaticAcquisition>
+   </Feat>
+   <Feat>
+      <Name>Infernal Ancestry</Name>
+      <Description>You gain Fire Resistance equal to your Character Level.
+You gain +2 to the Balance skill, as well as a +2 bonus to Saves vs Spells.
+You have a +2 bonus to hit and damage Lawful Outsiders and Good Outsiders.
+You are Immune to Fear.</Description>
+      <Requirements/>
+      <Acquire>Automatic</Acquire>
+      <Icon>InfernalAncestry</Icon>
+      <AutomaticAcquisition>
+            <Race>Tiefling</Race>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+            <Race>Tiefling Scoundrel</Race>
+      </AutomaticAcquisition>
+       <Effect>
+           <Type>SkillBonus</Type>
+           <Bonus>Feat</Bonus>
+           <Amount>2</Amount>
+           <Skill>Balance</Skill>
+       </Effect>
+       <Effect>
+           <Type>SaveBonus</Type>
+           <Bonus>Feat</Bonus>
+           <Amount>2</Amount>
+           <Save>Spell</Save>
+       </Effect>
+      <Effect>
+         <Type>Immunity</Type>
+         <Bonus>Feat</Bonus>
+         <Immunity>Fear</Immunity>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Fiendish Arpeggio</Name>
+      <Description>Enchant your fiddle to cast this spell, dealing 2d4 Fire damage, plus 1 fire damage
+per 2 caster levels (max 2d4+10), to a target. The damage repeats itself every
+2 seconds for 12 seconds.
+
+Passive: +18 Spell Points</Description>
+      <Requirements/>
+      <Acquire>Automatic</Acquire>
+      <Icon>FiendishArpeggio</Icon>
+      <AutomaticAcquisition>
+         <Race>Tiefling Scoundrel</Race>
+      </AutomaticAcquisition>
+       <Effect>
+           <Type>SpellLikeAbility</Type>
+           <Bonus>Feat</Bonus>
+           <SpellLikeAbility>Fiendish Arpeggio</SpellLikeAbility>
+       </Effect>
+       <Effect>
+           <Type>SpellPoints</Type>
+           <Bonus>Feat</Bonus>
+           <Amount>18</Amount>
+       </Effect>
    </Feat>
    <Feat>
       <Name>Inscribe Artificer Scroll</Name>
@@ -14130,6 +14205,7 @@ Passive Bonus: +1 Fortitude Save per stack of this Past Life.</Description>
          <IncompatibleStance>Deep Gnome</IncompatibleStance>
          <IncompatibleStance>Morninglord</IncompatibleStance>
          <IncompatibleStance>Shadar-Kai</IncompatibleStance>
+         <IncompatibleStance>Tiefling Scoundrel</IncompatibleStance>
       </Stance>
       <Requirements/>
       <MaxTimesAcquire>3</MaxTimesAcquire>
@@ -14166,6 +14242,7 @@ Passive Bonus: +5% Fortification per stack of this Past Life.</Description>
          <IncompatibleStance>Deep Gnome</IncompatibleStance>
          <IncompatibleStance>Morninglord</IncompatibleStance>
          <IncompatibleStance>Shadar-Kai</IncompatibleStance>
+         <IncompatibleStance>Tiefling Scoundrel</IncompatibleStance>
       </Stance>
       <Requirements/>
       <MaxTimesAcquire>3</MaxTimesAcquire>
@@ -14196,6 +14273,7 @@ Passive Bonus: +3 Positive Spell Power per stack of this Past Life.</Description
          <IncompatibleStance>Bladeforged</IncompatibleStance>
          <IncompatibleStance>Deep Gnome</IncompatibleStance>
          <IncompatibleStance>Shadar-Kai</IncompatibleStance>
+         <IncompatibleStance>Tiefling Scoundrel</IncompatibleStance>
       </Stance>
       <Requirements/>
       <MaxTimesAcquire>3</MaxTimesAcquire>
@@ -14248,6 +14326,7 @@ This can occur once every two minutes.</Description>
          <IncompatibleStance>Bladeforged</IncompatibleStance>
          <IncompatibleStance>Morninglord</IncompatibleStance>
          <IncompatibleStance>Deep Gnome</IncompatibleStance>
+         <IncompatibleStance>Tiefling Scoundrel</IncompatibleStance>
       </Stance>
       <Requirements/>
       <MaxTimesAcquire>3</MaxTimesAcquire>
@@ -14258,6 +14337,31 @@ This can occur once every two minutes.</Description>
          <Bonus>Feat</Bonus>
          <Amount>1</Amount>
       </Effect>
+   </Feat>
+   <Feat>
+      <Name>Past Life: Tiefling Scoundrel</Name>
+      <Description>Inconic Past Life Stance: +10% Striding per stack of this past life.
+Passive Bonus: +1 Reflex Saving throws per stack of this Past Life Feat.</Description>
+      <Requirements/>
+      <MaxTimesAcquire>3</MaxTimesAcquire>
+      <Acquire>IconicPastLife</Acquire>
+      <Icon>IconicPastLifeTieflingScoundrel</Icon>
+      <Effect>
+         <Type>SaveBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
+          <Save>Reflex</Save>
+      </Effect>
+      <Stance>
+         <Name>Tiefling Scoundrel</Name>
+         <Icon>IconicPastLifeTieflingScoundrel</Icon>
+         <Description>Iconic Past Life Stance: +10% Striding per stack of this past life.</Description>
+         <IncompatibleStance>Aasimar</IncompatibleStance>
+         <IncompatibleStance>Bladeforged</IncompatibleStance>
+         <IncompatibleStance>Deep Gnome</IncompatibleStance>
+         <IncompatibleStance>Morninglord</IncompatibleStance>
+         <IncompatibleStance>ShadarKai</IncompatibleStance>
+      </Stance>
    </Feat>
    <Feat>
       <Name>Past Life: Deep Gnome</Name>
@@ -14272,6 +14376,7 @@ Passive Bonus: +3 Magical Resistance per stack of this Past Life.</Description>
          <IncompatibleStance>Bladeforged</IncompatibleStance>
          <IncompatibleStance>Morninglord</IncompatibleStance>
          <IncompatibleStance>ShadarKai</IncompatibleStance>
+         <IncompatibleStance>Tiefling Scoundrel</IncompatibleStance>
       </Stance>
       <Requirements/>
       <MaxTimesAcquire>3</MaxTimesAcquire>
@@ -19281,6 +19386,35 @@ Tier3: +1 Racial Tree Action point</Description>
          <Type>AbilityBonus</Type>
          <Bonus>Feat</Bonus>
          <Ability>Wisdom</Ability>
+         <AmountVector size="3">0 1 1</AmountVector>
+      </Effect>
+      <Effect>
+         <Type>APBonus</Type>
+         <Bonus>Feat</Bonus>
+         <AmountVector size="3">0 0 1</AmountVector>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Past Life: Tiefling</Name>
+      <Description>You were a Tiefling in a previous life
+Tier1: +1 Spell Craft
+Tier2: +1 Charisma
+Tier3: +1 Racial Tree Action point
+(NOT CURRENTLY REQUIRED FOR RACIAL COMPLETIONIST)</Description>
+      <Requirements/>
+      <MaxTimesAcquire>3</MaxTimesAcquire>
+      <Acquire>RacialPastLife</Acquire>
+      <Icon>PastLifeTiefling</Icon>
+      <Effect>
+         <Type>SkillBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Skill>Spell Craft</Skill>
+         <AmountVector size="3">1 1 1</AmountVector>
+      </Effect>
+      <Effect>
+         <Type>AbilityBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Ability>Charisma</Ability>
          <AmountVector size="3">0 1 1</AmountVector>
       </Effect>
       <Effect>
@@ -24875,6 +25009,18 @@ or you have previously unlocked this tree for this character.</Description>
       <Requirements/>
       <Acquire>Special</Acquire>
       <Icon>Harper</Icon>
+      <Effect>
+         <Type>EnhancementTree</Type>
+         <Bonus>Enhancement</Bonus>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Inquisitive Tree</Name>
+      <Description>You have access to the Inquisitive enhancement tree through a DDO store purchase
+or you have previously unlocked this tree for this character.</Description>
+      <Requirements/>
+      <Acquire>Special</Acquire>
+      <Icon>Inquisitive</Icon>
       <Effect>
          <Type>EnhancementTree</Type>
          <Bonus>Enhancement</Bonus>

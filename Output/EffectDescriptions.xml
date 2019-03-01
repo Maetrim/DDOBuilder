@@ -125,7 +125,13 @@
             <Ability>Charisma</Ability>
         </Effect>
 
-    <EffectDescription>Accuracy VI: Passive: +6 Competence bonus to Attack rolls.</EffectDescription>
+        <EffectDescription>Accuracy +15: Passive: +15 Competence bonus to Attack rolls.</EffectDescription>
+        <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Competence</Bonus>
+            <Amount>15</Amount>
+            <Weapon>All</Weapon>
+        </Effect>
         <EffectDescription>Quality Accuracy +6: Passive: +6 Quality bonus to Attack rolls.</EffectDescription>
         <Effect>
             <Type>AttackBonus</Type>
@@ -1914,6 +1920,13 @@
             <Amount>76</Amount>
             <Energy>Fire</Energy>
         </Effect>
+        <EffectDescription>Negative Resistance +36: Passive +36 Enhancement bonus to resist Negative.</EffectDescription>
+        <Effect>
+            <Type>EnergyResistance</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>36</Amount>
+            <Energy>Negative</Energy>
+        </Effect>
         <EffectDescription>Tira's Splendor: Any weapon you wield becomes able to bypass silver damage reduction</EffectDescription>
         <Effect>
             <Type>DRBypass</Type>
@@ -2968,6 +2981,14 @@
             <Bonus>Equipment</Bonus>
             <Weapon>All</Weapon>
          </Effect>
+        <EffectDescription>Keen II: Passive: This weapon deals an additional +0.5[W] damage. In addition, the base critical threat range of this weapon is doubled. This does not stack with the Improved Critical feat.</EffectDescription>
+            <Effect>
+                <DisplayName>Keen II</DisplayName>
+                <Type>WeaponBaseDamageBonus</Type>
+                <Bonus>Keen</Bonus>
+                <Amount>0.5</Amount>
+                <Weapon>All</Weapon>
+            </Effect>
         <EffectDescription>Keen III: Passive: This weapon deals an additional +1[W] damage. In addition, the base critical threat range of this weapon is doubled. This does not stack with the Improved Critical feat.</EffectDescription>
             <Effect>
                 <DisplayName>Keen III</DisplayName>
@@ -6027,6 +6048,13 @@ When 3 pieces are equipped: +1 Artifact Bonus to Critical Multiplier on a 19-20.
             <Amount>20</Amount>
             <Skill>Repair</Skill>
         </Effect>
+        <EffectDescription>Diplomacy +17: Passive: +17 Competence Bonus to the Diplomacy skill.</EffectDescription>
+        <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Competence</Bonus>
+            <Amount>17</Amount>
+            <Skill>Diplomacy</Skill>
+        </Effect>
         <EffectDescription>Eternal Fire: While you are wearing this item, your melee, ranged, and unarmed attacks gain the Flaming Burst ability. (This weapon is sheathed in fire. The weapon deals an additional 1 to 6 fire damage each hit. In addition, critical hits deal an additional 1 to 10 fire damage for weapons with a x2 critical multiplier, 2 to 20 for a x3 critical multiplier and 3 to 30 for a x4 multiplier.)</EffectDescription>
          <Effect>
             <DisplayName>Eternal Fire</DisplayName>
@@ -6333,4 +6361,108 @@ When struck you will occasionally have the Stoneskin spell cast on you.</EffectD
         </Effect>
         <EffectDescription>Light Bringer: On Vorpal Hit: If an undead struck by this weapon has fewer than 1000 Hit Points, it is instantly slain else it takes 100 damage.</EffectDescription>
         <EffectDescription>Greater Sunburst: This weapon blazes with the eternal fury at the heart of a sun. Occasionally, this power comes to the surface, unleashing a nova of light which will blind the struck enemy, delaing severe light damage to it and any other nearby foes.</EffectDescription>
+        <EffectDescription>Legendary Inevitable Balance: You represent balance beneath the depths... +10 Melee Power, 10% Doublestrike, Your Sneak Attacks do additional Bane damage. (Requires 2 Kamas equipped)</EffectDescription>
+        <Effect>
+            <DisplayName>Legendary Inevitable Balance: Melee Power</DisplayName>
+            <Type>MeleePower</Type>
+            <Bonus>Artifact</Bonus>
+            <AmountVector size="2">0 10</AmountVector>
+        </Effect>
+        <Effect>
+            <DisplayName>Legendary Inevitable Balance: Doublestrike</DisplayName>
+            <Type>Doublestrike</Type>
+            <Bonus>Artifact</Bonus>
+            <AmountVector size="2">0 10</AmountVector>
+        </Effect>
+        <EffectDescription>Negativity 9: This effect causes this weapon to be shrouded in dark mists, dealing 9d6 negative energy damage on each hit.</EffectDescription>
+         <Effect>
+            <DisplayName>Negativity 9</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+              <Dice>
+                 <Number size="1">9</Number>
+                 <Sides size="1">6</Sides>
+                 <Energy>Negative</Energy>
+              </Dice>
+         </Effect>
+         <Effect>
+            <DisplayName>Negativity 9</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+              <Dice>
+                 <Number size="1">9</Number>
+                 <Sides size="1">6</Sides>
+                 <Energy>Negative</Energy>
+              </Dice>
+         </Effect>
+        <EffectDescription>Impactful 4: This effect causes the edges of this weapon to ripple with force, dealing 4d6 force damage on each hit.</EffectDescription>
+            <Effect>
+                <DisplayName>Impactful 4</DisplayName>
+                <Type>WeaponOtherDamageBonus</Type>
+                <Bonus>Stacking</Bonus>
+                <Dice>
+                    <Number size="1">4</Number>
+                    <Sides size="1">8</Sides>
+                    <Energy>Force</Energy>
+                </Dice>
+                <Weapon>All</Weapon>
+            </Effect>
+         <EffectDescription>Befouling 2: This deadly weapon saps the charm from your enemies, dealing 2 Charisma damage on each critical hit.</EffectDescription>
+            <Effect>
+                <DisplayName>Befouling 2</DisplayName>
+                <Type>WeaponOtherCriticalDamageBonus</Type>
+                <Bonus>Stacking</Bonus>
+                <Amount>2</Amount>
+                <Energy>Charisma</Energy>
+                <Weapon>All</Weapon>
+            </Effect>
+         <EffectDescription>Vermin Bane 4: This weapon is ideal for clearing out rats and other annoying beasts. It deals an additional 4d10 bane damage vs. Vermin</EffectDescription>
+         <Effect>
+            <DisplayName>Vermin Bane 4</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+              <Dice>
+                 <Number size="1">4</Number>
+                 <Sides size="1">10</Sides>
+                 <Energy>Bane</Energy>
+              </Dice>
+         </Effect>
+         <Effect>
+            <DisplayName>Vermin Bane 4</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+              <Dice>
+                 <Number size="1">4</Number>
+                 <Sides size="1">10</Sides>
+                 <Energy>Bane</Energy>
+              </Dice>
+         </Effect>
+        <EffectDescription>Gashing 10: The edges of this weapon are sharpened beyond beleif, dealing an additional 10d6 slashing damage on each critical hit.</EffectDescription>
+         <Effect>
+            <DisplayName>Gashing 5</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+              <Dice>
+                 <Number size="1">10</Number>
+                 <Sides size="1">6</Sides>
+                 <Energy>Slash</Energy>
+              </Dice>
+         </Effect>
+        <EffectDescription>Slashing 4: The edges of this weapon are sharpened beyond beleif, dealing an additional 4d6 slashing damage on each hit.</EffectDescription>
+         <Effect>
+            <DisplayName>Slashing 4</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+              <Dice>
+                 <Number size="1">4</Number>
+                 <Sides size="1">10</Sides>
+                 <Energy>Slash</Energy>
+              </Dice>
+         </Effect>
 </EffectDescriptions>
