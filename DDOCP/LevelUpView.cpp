@@ -1498,6 +1498,17 @@ void CLevelUpView::PopulateFeatCombobox(
             m_trainable[comboIndex],
             m_level,
             selection);
+    // include a "No Selection" feat, if > 1 feat in list
+    // (i.e. user cannot un-train single feat selections)
+    if (availableFeats.size() > 1
+            && selection != "")         // must already have a selection also
+    {
+        Feat feat;
+        feat.Set_Name(" No Selection");     // space causes to appear at top of list
+        feat.Set_Description("Clears the current feat selection");
+        feat.Set_Icon("NoSelection");
+        availableFeats.push_back(feat);
+    }
     std::sort(availableFeats.begin(), availableFeats.end());
 
     // lock the window to stop flickering while updates are done
@@ -2054,7 +2065,8 @@ void CLevelUpView::SetFeatTooltipText(
     // determine whether there is a feat swap warning if training at level 1
     bool warn = false;
     if (type != TFT_Automatic
-            && type != TFT_GrantedFeat)
+            && type != TFT_GrantedFeat
+            && featName != " No Selection")
     {
         warn = !m_pCharacter->IsFeatTrainable(m_level, type, feat, (m_level != 0), alreadyTrained);
     }

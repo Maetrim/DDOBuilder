@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Feats>
+   <Feat>
+      <!--This is a special feat that can be selected to clear a current feat selection-->
+      <!--It does not appear automatically in any feat lists, but is added manually in the code when required-->
+      <Name> No Selection</Name>
+      <Description>Clears the current feat selection</Description>
+      <Requirements/>
+      <Acquire>Automatic</Acquire>
+      <Icon>NoSelection</Icon>
+   </Feat>
    <!--A list of all the feats that can be selected in game-->
    <Feat>
       <Name>Abundant Step</Name>
@@ -1091,6 +1100,10 @@ This attack deals +1[W] damage.</Description>
       <Requirements>
          <RequiresOneOf>
             <Requirement>
+               <Class>Artificer</Class>
+               <Level>1</Level>
+            </Requirement>
+            <Requirement>
                <Class>Bard</Class>
                <Level>1</Level>
             </Requirement>
@@ -1115,12 +1128,16 @@ This attack deals +1[W] damage.</Description>
                <Level>4</Level>
             </Requirement>
             <Requirement>
+               <Class>Sorcerer</Class>
+               <Level>1</Level>
+            </Requirement>
+            <Requirement>
                <Class>Warlock</Class>
                <Level>1</Level>
             </Requirement>
             <Requirement>
                <Class>Wizard</Class>
-               <Level>4</Level>
+               <Level>1</Level>
             </Requirement>
          </RequiresOneOf>
       </Requirements>
@@ -1149,6 +1166,7 @@ their normal cooldown when this mode is active.</Description>
          <IncompatibleStance>Rage</IncompatibleStance>
          <IncompatibleStance>Power Attack</IncompatibleStance>
          <IncompatibleStance>Defensive Fighting</IncompatibleStance>
+         <IncompatibleStance>Precision</IncompatibleStance>
       </Stance>
       <FeatGroup>
          <IsArtificerBonus/>
@@ -1619,7 +1637,7 @@ would otherwise hit you.</Description>
    <Feat>
       <Name>Diamond Body</Name>
       <Description>You have firm control over your metabolism and are immune to ability
-score damage from natural poisons. You gain a +10 racial bonus to saving throws
+score damage from natural poisons. You gain a +10 Racial bonus to saving throws
 against magical poisons and do not fail saving throws against them on a roll of
 a natural 1 (this renders you immune to magical poisons with a DC of less than
 11+your Fortitude save).</Description>
@@ -1722,7 +1740,7 @@ steps on the path to understanding the way of the sea.</Description>
    <Feat>
       <Name>Discipline</Name>
       <Description>You are difficult to distract with spell or blow. You receive a
-+1 to Will saves and a +2 bonus on Concentration checks.</Description>
++1 bonus to Will saves and a +2 bonus on Concentration checks.</Description>
       <FeatGroup>
          <IsStandardFeat/>
          <IsMonkBonus/>
@@ -1834,7 +1852,7 @@ the controlling effect.</Description>
    </Feat>
    <Feat>
       <Name>Dodge</Name>
-      <Description>Grants you a 3% Dodge bonus.</Description>
+      <Description>Grants you a 3% Dodge bonus. Bug: Also grants +1 AC.</Description>
       <FeatGroup>
          <IsStandardFeat/>
          <IsFighterBonus/>
@@ -2760,7 +2778,7 @@ Has a save DC of your perform skill plus the roll of a twenty-sided die.</Descri
          <DisplayName>Songs per Bard level</DisplayName>
          <Type>SongCount</Type>
          <Bonus>Feat</Bonus>
-          <AmountPerLevel>1</AmountPerLevel>
+         <AmountPerLevel>1</AmountPerLevel>
          <Class>Bard</Class>
       </Effect>
       <DC>
@@ -3428,15 +3446,7 @@ the caster level, the more nourishing the Goodberries are.</Description>
          <Type>WeaponProficiency</Type>
          <Bonus>Feat</Bonus>
          <Weapon>Light Hammer</Weapon>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Throwing Hammer</Weapon>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Warhammer</Weapon>
       </Effect>
    </Feat>
@@ -3557,14 +3567,6 @@ your appropriate ability score to your damage (similar to Two-Handed Fighting).<
          <WeaponClass>OneHanded</WeaponClass>
          <Amount>10</Amount>
          <Stance>Single Weapon Fighting</Stance>
-      </Effect>
-      <Effect>
-         <DisplayName>Single Weapon Fighting: Bonus Damage</DisplayName>
-         <Bonus>Feat</Bonus>
-         <Type>WeaponDamageBonus</Type>
-         <WeaponClass>OneHanded</WeaponClass>
-         <Percent/>
-         <AmountVector size="2">25 50</AmountVector>
       </Effect>
       <Effect>
          <DisplayName>Epic Defensive Fighting</DisplayName>
@@ -4155,13 +4157,14 @@ a +1 racial bonus to Listen, Search and Spot checks.</Description>
          <Skill>Spot</Skill>
          <Amount>1</Amount>
       </Effect>
-        <Effect>
-            <DisplayName>Inquisitive: Hit the Streets</DisplayName>
-            <Type>SkillBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">0 3 10</AmountVector>
-            <Skill>Diplomacy</Skill>
-        </Effect>
+       <!--Inquisitive tree - Hit the streets bonus to Diplomacy if a half elf-->
+      <Effect>
+         <DisplayName>Inquisitive: Hit the Streets</DisplayName>
+         <Type>SkillBonus</Type>
+         <Bonus>Enhancement</Bonus>
+         <AmountVector size="3">0 3 10</AmountVector>
+         <Skill>Diplomacy</Skill>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Half-Elven Social Graces</Name>
@@ -4315,10 +4318,10 @@ You gain proficiency with all crossbows and Artificer Knowledge:
 Scrolls (You gain a +2 bonus to Use Magic Device checks when using scrolls and
 their Caster Level is increased by one - this Caster Level increase is capped by
 your Intelligence modifier.) You are able to use wands and scrolls as if you
-were a level one artificers. For item use purposes you count as a level one
-artificer in addition to any other classes you possess (though this does not
+were a level one Artificer. For item use purposes you count as a level one
+Artificer in addition to any other classes you possess (though this does not
 grant the ability to use Rune Arms). This feat is not recommended for characters
-with actual artificer levels.</Description>
+with actual Artificer levels.</Description>
       <FeatGroup>
          <IsDilettante/>
       </FeatGroup>
@@ -4337,25 +4340,9 @@ with actual artificer levels.</Description>
          <Type>WeaponProficiency</Type>
          <Bonus>Feat</Bonus>
          <Weapon>Great Crossbow</Weapon>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Heavy Crossbow</Weapon>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Light Crossbow</Weapon>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Repeating Heavy Crossbow</Weapon>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Repeating Light Crossbow</Weapon>
       </Effect>
    </Feat>
@@ -4364,7 +4351,7 @@ with actual artificer levels.</Description>
       <Description>You have become toughened by time spent outdoors and amongst barbarian tribes.
 You gain Damage Reduction 1/- as if you were a barbarian. This feat does not
 stack with Barbarian Damage Reduction. For item use purposes, you count as a
-level one barbarian in addition to any other classes you possess.
+level one Barbarian in addition to any other classes you possess.
 This feat is not recommended for characters with actual barbarian levels.</Description>
       <FeatGroup>
          <IsDilettante/>
@@ -4394,9 +4381,9 @@ This feat is not recommended for characters with actual barbarian levels.</Descr
 You can produce a Bardic Fascinate effect three times per rest that mesmerizes
 nearby enemies, with a Will DC based on a Perform check (or 1d20 + Charisma
 Modifier if untrained) to negate. You are able to use wands and scrolls as if
-you were a level one bard and for item use purposes you count as a level one
-bard in addition to any other classes you possess.
-This feat is not recommended for characters with actual bard levels.</Description>
+you were a level one Bard and for item use purposes you count as a level one
+Bard in addition to any other classes you possess.
+This feat is not recommended for characters with actual Bard levels.</Description>
       <FeatGroup>
          <IsDilettante/>
       </FeatGroup>
@@ -4420,9 +4407,9 @@ This feat is not recommended for characters with actual bard levels.</Descriptio
    <Feat>
       <Name>Half-Elf Dilettante: Cleric</Name>
       <Description>You have learned much by watching clerics perform their arts.
-You are able to use wands and scrolls as if you were a level one cleric and for
-item use purposes you count as a level one cleric in addition to any other classes you possess.
-This feat is not recommended for characters with actual cleric levels.</Description>
+You are able to use wands and scrolls as if you were a level one Cleric and for
+item use purposes you count as a level one Cleric in addition to any other classes you possess.
+This feat is not recommended for characters with actual Cleric levels.</Description>
       <FeatGroup>
          <IsDilettante/>
       </FeatGroup>
@@ -4441,10 +4428,10 @@ This feat is not recommended for characters with actual cleric levels.</Descript
    <Feat>
       <Name>Half-Elf Dilettante: Druid</Name>
       <Description>You have watched some of the secret rituals of the druids.
-You are able to use wands and scrolls as if you were a level one druid and for
-item use purposes you count as a level one druid in addition to any other
+You are able to use wands and scrolls as if you were a level one Druid and for
+item use purposes you count as a level one Druid in addition to any other
 classes you possess.
-This feat is not recommended for characters with actual druid levels.</Description>
+This feat is not recommended for characters with actual Druid levels.</Description>
       <FeatGroup>
          <IsDilettante/>
       </FeatGroup>
@@ -4464,9 +4451,9 @@ This feat is not recommended for characters with actual druid levels.</Descripti
       <Name>Half-Elf Dilettante: Favored Soul</Name>
       <Description>You have fought alongside the chosen of the gods and a little bit
 of divine favor appears to have rubbed off on you. You are able to use wands
-and scrolls as if you were a level one favored soul and for item use purposes
-you count as a level one favored soul in addition to any other classes you possess.
-This feat is not recommended for characters with actual favored soul levels.</Description>
+and scrolls as if you were a level one Favored Soul and for item use purposes
+you count as a level one Favored Soul in addition to any other classes you possess.
+This feat is not recommended for characters with actual Favored Soul levels.</Description>
       <FeatGroup>
          <IsDilettante/>
       </FeatGroup>
@@ -4486,8 +4473,8 @@ This feat is not recommended for characters with actual favored soul levels.</De
       <Name>Half-Elf Dilettante: Fighter</Name>
       <Description>You have trained with the best and your martial skills have improved.
 You gain proficiency with all martial melee weapons and for item use purposes
-you count as a level one fighter in addition to any other classes you possess.
-This feat is not recommended for characters with actual fighter levels.</Description>
+you count as a level one Fighter in addition to any other classes you possess.
+This feat is not recommended for characters with actual Fighter levels.</Description>
       <FeatGroup>
          <IsDilettante/>
       </FeatGroup>
@@ -4506,100 +4493,24 @@ This feat is not recommended for characters with actual fighter levels.</Descrip
          <Type>WeaponProficiency</Type>
          <Bonus>Feat</Bonus>
          <Weapon>Battle Axe</Weapon>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Falchion</Weapon>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Great Axe</Weapon>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Great Club</Weapon>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Great Sword</Weapon>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Hand Axe</Weapon>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Heavy Pick</Weapon>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Kukri</Weapon>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Light Hammer</Weapon>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Light Pick</Weapon>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Longbow</Weapon>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Longsword</Weapon>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Maul</Weapon>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Rapier</Weapon>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Scimitar</Weapon>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Shortsword</Weapon>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Shortbow</Weapon>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Throwing Axe</Weapon>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Throwing Hammer</Weapon>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Warhammer</Weapon>
       </Effect>
    </Feat>
@@ -4610,9 +4521,9 @@ You gain proficiency with the quarterstaff, kama and shuriken and can add up
 to 2 points of your Wisdom bonus to your Armor Class as long as you are
 Defensively Centered (unarmored and unencumbered).
 This Armor Class bonus does not stack with the similar monk class ability.
-For item use purposes you count as a level one monk in addition to any other
+For item use purposes you count as a level one Monk in addition to any other
 classes you possess.
-This feat is not recommended for characters with actual monk levels.</Description>
+This feat is not recommended for characters with actual Monk levels.</Description>
       <FeatGroup>
          <IsDilettante/>
       </FeatGroup>
@@ -4627,19 +4538,18 @@ This feat is not recommended for characters with actual monk levels.</Descriptio
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>DilettanteMonk</Icon>
+       <Effect>
+           <!--Just assume the max amount 2, which should be attained as you only need 14 wisdom-->
+           <Type>ACBonus</Type>
+           <Bonus>Feat</Bonus>
+           <Amount>2</Amount>
+           <Stance>Centered</Stance>
+       </Effect>
       <Effect>
          <Type>WeaponProficiency</Type>
          <Bonus>Feat</Bonus>
          <Weapon>Kama</Weapon>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Shuriken</Weapon>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Quarterstaff</Weapon>
       </Effect>
    </Feat>
@@ -4648,10 +4558,10 @@ This feat is not recommended for characters with actual monk levels.</Descriptio
       <Description>You have spent enough time among holy warriors that you know their
 chants by heart. You can add up to 2 points of your Charisma bonus to all saves.
 This bonus does not stack with the Divine Grace ability.
-You are able to use wands and scrolls as if you were a level one paladin and
-for item use purposes you count as a level one paladin in addition to any other
+You are able to use wands and scrolls as if you were a level one Paladin and
+for item use purposes you count as a level one Paladin in addition to any other
 classes you possess.
-This feat is not recommended for characters with actual paladin levels.</Description>
+This feat is not recommended for characters with actual Paladin levels.</Description>
       <FeatGroup>
          <IsDilettante/>
       </FeatGroup>
@@ -4673,9 +4583,9 @@ This feat is not recommended for characters with actual paladin levels.</Descrip
       <Description>You have hunted with some of the greatest rangers of Khorvaire.
 You gain proficiency with all martial ranged weapons and can add up to 2 points
 of your Strength bonus to bow damage. You are able to use wands and scrolls as
-if you were a level one ranger. For item use purposes you count as a level one
-ranger in addition to any other classes you possess.
-This feat is not recommended for characters with actual ranger levels.</Description>
+if you were a level one Ranger. For item use purposes you count as a level one
+Ranger in addition to any other classes you possess.
+This feat is not recommended for characters with actual Ranger levels.</Description>
       <FeatGroup>
          <IsDilettante/>
       </FeatGroup>
@@ -4707,9 +4617,9 @@ This feat is not recommended for characters with actual ranger levels.</Descript
       <Name>Half-Elf Dilettante: Rogue</Name>
       <Description>You have learned a few tricks from less reputable sources.
 You deal +1d6 Sneak Attack damage, but this does not stack with the Rogue Sneak
-Attack ability. For item use purposes you count as a level one rogue in addition
+Attack ability. For item use purposes you count as a level one Rogue in addition
 to any other classes you possess.
-This feat is not recommended for characters with actual rogue levels.</Description>
+This feat is not recommended for characters with actual Rogue levels.</Description>
       <FeatGroup>
          <IsDilettante/>
       </FeatGroup>
@@ -4734,9 +4644,9 @@ This feat is not recommended for characters with actual rogue levels.</Descripti
       <Name>Half-Elf Dilettante: Sorcerer</Name>
       <Description>Your travels and adventures seem to have awakened a bit of power
 within your blood. You are able to use wands and scrolls as if you were a level
-one sorcerer and for item use purposes you count as a level one sorcerer in
+one Sorcerer and for item use purposes you count as a level one Sorcerer in
 addition to any other classes you possess.
-This feat is not recommended for characters with actual sorcerer levels.</Description>
+This feat is not recommended for characters with actual Sorcerer levels.</Description>
       <FeatGroup>
          <IsDilettante/>
       </FeatGroup>
@@ -4754,7 +4664,7 @@ This feat is not recommended for characters with actual sorcerer levels.</Descri
    </Feat>
    <Feat>
       <Name>Half-Elf Dilettante: Warlock</Name>
-      <Description>Able to use wands and scrolls as if you were a level one warlock.
+      <Description>Able to use wands and scrolls as if you were a level one Warlock.
 Toggle: You deal 1D4 extra Fire damage with attacks and spells.
 This trigger at most once every two seconds.
 This toggle is exclusive with Warlock Pact toggles.</Description>
@@ -4776,10 +4686,10 @@ This toggle is exclusive with Warlock Pact toggles.</Description>
    <Feat>
       <Name>Half-Elf Dilettante: Wizard</Name>
       <Description>You have studied ancient tomes alongside powerful wizards.
-You are able to use wands and scrolls as if you were a level one wizard and for
-item use purposes you count as a level one wizard in addition to any other
+You are able to use wands and scrolls as if you were a level one Wizard and for
+item use purposes you count as a level one Wizard in addition to any other
 classes you possess.
-This feat is not recommended for characters with actual wizard levels.</Description>
+This feat is not recommended for characters with actual Wizard levels.</Description>
       <FeatGroup>
          <IsDilettante/>
       </FeatGroup>
@@ -4946,8 +4856,8 @@ D&amp;D Dice: Heals allies with 1d4 positive energy for every two monk levels.</
    <Feat>
       <Name>Heavy Armor Proficiency</Name>
       <Description>You are proficient with heavy armor and do not suffer armor penalties
-to your attack rolls when wearing heavy armor. You also gain 6 + your base
-attack bonus in physical resistance when wearing heavy armor.</Description>
+to your attack rolls when wearing heavy armor. You also gain 2 times your BAB
+in physical resistance when wearing heavy armor.</Description>
       <Requirements>
          <Requirement>
             <Feat>Medium Armor Proficiency</Feat>
@@ -5040,7 +4950,7 @@ resist, but increasing their spell point cost.</Description>
          <Amount>10</Amount>
          <Stance>Heighten</Stance>
          <!--Double check cost here-->
-         <!--How to increase spell DC levels?-->
+         <!--How to increase spell DC levels - handled in C++-->
       </Effect>
    </Feat>
    <Feat>
@@ -5062,8 +4972,9 @@ resist, but increasing their spell point cost.</Description>
       <Name>Hide in Plain Sight</Name>
       <Description>You are a master when it comes to hiding in places others think impossible.
 You gain +1 Hide and +1 Move Silently for every three seconds you stand still,
-up to +5. While you are sneaking and standing still (for 3 seconds),
-enemies don't gain Spot bonuses until they get much closer to you, and the bonuses are smaller.</Description>
+up to +5. While you are sneaking and standing still (for 3 seconds), enemies
+don't gain Spot bonuses until they get much closer to you, and the bonuses are
+smaller.</Description>
       <Requirements/>
       <Acquire>Automatic</Acquire>
       <Icon>HideInPlainSight</Icon>
@@ -5089,6 +5000,9 @@ enemies don't gain Spot bonuses until they get much closer to you, and the bonus
       </AutomaticAcquisition>
       <AutomaticAcquisition>
          <Race>Wood Elf</Race>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Race>Morninglord</Race>
       </AutomaticAcquisition>
       <Effect>
          <Type>Immunity</Type>
@@ -5623,14 +5537,6 @@ of just your ability score (for instance, you add 1.25 times your Strength as da
          <Stance>Single Weapon Fighting</Stance>
       </Effect>
       <Effect>
-         <DisplayName>Single Weapon Fighting: Bonus Damage</DisplayName>
-         <Bonus>Feat</Bonus>
-         <Type>WeaponDamageBonus</Type>
-         <WeaponClass>OneHanded</WeaponClass>
-         <Percent/>
-         <AmountVector size="2">25 50</AmountVector>
-      </Effect>
-      <Effect>
          <DisplayName>Epic Defensive Fighting</DisplayName>
          <Type>Hitpoints</Type>
          <Bonus>Competence</Bonus>
@@ -5642,12 +5548,11 @@ of just your ability score (for instance, you add 1.25 times your Strength as da
    </Feat>
    <Feat>
       <Name>Improved Sunder</Name>
-      <Description>This melee special attack results in a -5 AC penalty and
--10% fortification to the target for 24 seconds, if the target
-fails a Fortitude save (DC 14 + Str mod + Sunder modifiers).
-Whether successful or unsuccessful, this attack will also reduce
-an enemy's Fortitude saves by 3, stacking up to 5 times.
-Some creatures may be immune to the sunder effect</Description>
+      <Description>This melee special attack results in a -5 AC penalty and -10% fortification
+to the target for 24 seconds, if the target fails a Fortitude save
+(DC 14 + Str mod + Sunder modifiers). Whether successful or unsuccessful,
+this attack will also reduce an enemy's Fortitude save by 3, stacking up to
+5 times. Some creatures may be immune to the sunder effect</Description>
       <FeatGroup>
          <IsStandardFeat/>
          <IsFighterBonus/>
@@ -5877,29 +5782,29 @@ save bonus. This feat also grants you a 1% passive bonus to Dodge at levels
       <Name>Infernal Ancestry</Name>
       <Description>You gain Fire Resistance equal to your Character Level.
 You gain +2 to the Balance skill, as well as a +2 bonus to Saves vs Spells.
-You have a +2 bonus to hit and damage Lawful Outsiders and Good Outsiders.
+You have a +2 bonus to hit and damage against Lawful and Good Outsiders.
 You are Immune to Fear.</Description>
       <Requirements/>
       <Acquire>Automatic</Acquire>
       <Icon>InfernalAncestry</Icon>
       <AutomaticAcquisition>
-            <Race>Tiefling</Race>
+         <Race>Tiefling</Race>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
-            <Race>Tiefling Scoundrel</Race>
+         <Race>Tiefling Scoundrel</Race>
       </AutomaticAcquisition>
-       <Effect>
-           <Type>SkillBonus</Type>
-           <Bonus>Feat</Bonus>
-           <Amount>2</Amount>
-           <Skill>Balance</Skill>
-       </Effect>
-       <Effect>
-           <Type>SaveBonus</Type>
-           <Bonus>Feat</Bonus>
-           <Amount>2</Amount>
-           <Save>Spell</Save>
-       </Effect>
+      <Effect>
+         <Type>SkillBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>2</Amount>
+         <Skill>Balance</Skill>
+      </Effect>
+      <Effect>
+         <Type>SaveBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>2</Amount>
+         <Save>Spell</Save>
+      </Effect>
       <Effect>
          <Type>Immunity</Type>
          <Bonus>Feat</Bonus>
@@ -5908,9 +5813,9 @@ You are Immune to Fear.</Description>
    </Feat>
    <Feat>
       <Name>Fiendish Arpeggio</Name>
-      <Description>Enchant your fiddle to cast this spell, dealing 2d4 Fire damage, plus 1 fire damage
-per 2 caster levels (max 2d4+10), to a target. The damage repeats itself every
-2 seconds for 12 seconds.
+      <Description>Enchant your fiddle to cast this spell, dealing 2d4 Fire damage, plus 1 fire
+damage per 2 caster levels (max 2d4+10), to a target. The damage repeats itself
+every 2 seconds for 12 seconds.
 
 Passive: +18 Spell Points</Description>
       <Requirements/>
@@ -5919,16 +5824,16 @@ Passive: +18 Spell Points</Description>
       <AutomaticAcquisition>
          <Race>Tiefling Scoundrel</Race>
       </AutomaticAcquisition>
-       <Effect>
-           <Type>SpellLikeAbility</Type>
-           <Bonus>Feat</Bonus>
-           <SpellLikeAbility>Fiendish Arpeggio</SpellLikeAbility>
-       </Effect>
-       <Effect>
-           <Type>SpellPoints</Type>
-           <Bonus>Feat</Bonus>
-           <Amount>18</Amount>
-       </Effect>
+      <Effect>
+         <Type>SpellLikeAbility</Type>
+         <Bonus>Feat</Bonus>
+         <SpellLikeAbility>Fiendish Arpeggio</SpellLikeAbility>
+      </Effect>
+      <Effect>
+         <Type>SpellPoints</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>18</Amount>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Inscribe Artificer Scroll</Name>
@@ -6669,8 +6574,8 @@ at the cost of -2 Constitution.</Description>
    <Feat>
       <Name>Light Armor Proficiency</Name>
       <Description>You are proficient with light armor and do not suffer armor penalties
-to your attack rolls when wearing light armor. You also gain 2 + 1/2 of your
-base attack bonus in physical resistance when wearing light armor.</Description>
+to your attack rolls when wearing light armor. You also gain you BAB in 
+physical resistance when wearing light armor.</Description>
       <Requirements/>
       <Acquire>Train</Acquire>
       <Icon>LightArmorProficiency</Icon>
@@ -6765,9 +6670,9 @@ base attack bonus in physical resistance when wearing light armor.</Description>
    </Feat>
    <Feat>
       <Name>Magical Training</Name>
-      <Description>This feat increases the maximum spell points by 80, increases
-the spell critical chance by 5% and grants Echoes of Power if the
-spell points pool drops below 12.</Description>
+      <Description>This feat increases the maximum spell points by 80, increases the spell
+critical chance by 5% and grants Echoes of Power if the spell points pool
+drops below 12.</Description>
       <Requirements/>
       <Acquire>Train</Acquire>
       <Icon>MagicalTraining</Icon>
@@ -6813,9 +6718,9 @@ spell points pool drops below 12.</Description>
    </Feat>
    <Feat>
       <Name>Manyshot</Name>
-      <Description>For the next 20 seconds, add your base attack bonus * 4 to your
-Doubleshot and Ranged power. This ability puts Ten Thousand Stars on a 30
-second cooldown. Cooldown: 2 minutes.</Description>
+      <Description>For the next 20 seconds, add your BAB * 4 to your Doubleshot and Ranged power.
+This ability puts Ten Thousand Stars on a 30 second cooldown.
+Cooldown: 2 minutes.</Description>
       <FeatGroup>
          <IsStandardFeat/>
          <IsFighterBonus/>
@@ -7734,8 +7639,8 @@ casting spells affected by Maximize Spell, but they consume 25 additional spell 
    <Feat>
       <Name>Medium Armor Proficiency</Name>
       <Description>You are proficient with medium armor and do not suffer armor penalties
-to your attack rolls when wearing medium armor. You also gain 4 + 2/3rds of your
-base attack bonus in physical resistance when wearing medium armor.</Description>
+to your attack rolls when wearing medium armor. You also gain 1.5 * BAB in
+physical resistance when wearing medium armor.</Description>
       <Requirements>
          <Requirement>
             <Feat>Light Armor Proficiency</Feat>
@@ -7853,10 +7758,9 @@ Also increases your spell critical chance by 1%. </Description>
    </Feat>
    <Feat>
       <Name>Mighty Rage</Name>
-      <Description>
-Upon reaching level 20, a barbarian's rage grows stronger. When raging, your
-base bonus to Strength and Constitution are increased to +8 and your morale
-bonus to Will saves is increased to +4.</Description>
+      <Description>Upon reaching level 20, a barbarian's rage grows stronger.
+When raging, your base bonus to Strength and Constitution are increased to +8
+and your morale bonus to Will saves is increased to +4.</Description>
       <Requirements/>
       <Acquire>Automatic</Acquire>
       <Icon>Rage</Icon>
@@ -7981,7 +7885,7 @@ penalties are decreased by 1.</Description>
          <RequiresOneOf>
             <Requirement>
                <Class>Artificer</Class>
-               <Level>4</Level>
+               <Level>3</Level>
             </Requirement>
             <Requirement>
                <Class>Bard</Class>
@@ -7997,15 +7901,15 @@ penalties are decreased by 1.</Description>
             </Requirement>
             <Requirement>
                <Class>Favored Soul</Class>
-               <Level>3</Level>
+               <Level>4</Level>
             </Requirement>
             <Requirement>
                <Class>Paladin</Class>
-               <Level>8</Level>
+               <Level>7</Level>
             </Requirement>
             <Requirement>
                <Class>Ranger</Class>
-               <Level>8</Level>
+               <Level>7</Level>
             </Requirement>
             <Requirement>
                <Class>Sorcerer</Class>
@@ -8013,7 +7917,7 @@ penalties are decreased by 1.</Description>
             </Requirement>
             <Requirement>
                <Class>Warlock</Class>
-               <Level>3</Level>
+               <Level>4</Level>
             </Requirement>
             <Requirement>
                <Class>Wizard</Class>
@@ -8253,10 +8157,10 @@ A successful Fortitude save negates this effect.</Description>
    </Feat>
    <Feat>
       <Name>Past Life: Acolyte of Divine Secrets</Name>
-      <Description>You recall more about your past life as a favored soul.
+      <Description>You recall more about your past life as a Favored Soul.
 You have +2 to your Diplomacy skill and can call down the wrath of your former
 deity, producing an Avenging Light effect ten times per rest.
-(Activate this favored soul ability to cause a searing orb of radiant light to
+(Activate this Favored Soul ability to cause a searing orb of radiant light to
 smite your target, dealing 1 to 8 hit points of light damage plus an additional
 1 to 8 for every three caster levels past level 1.)
 D&amp;D Dice: Deals 1d8 damage plus 1d8 additional per three caster levels.</Description>
@@ -8419,7 +8323,7 @@ This feat grants access to Racial and Class Toughness enhancements.</Description
       </Effect>
    </Feat>
    <Feat>
-      <Name>Past Life: Delver of the Forbidden </Name>
+      <Name>Past Life: Delver of the Forbidden</Name>
       <Description>You recall more about your past life as a Warlock.
 You gain +3 to your Spellcraft skill. You can confuse an enemy for 12 seconds
 (no saving throw). This can be used ten times per rest. </Description>
@@ -8864,6 +8768,7 @@ Two-handed weapons get twice that damage bonus.</Description>
          <IncompatibleStance>Defensive Fighting</IncompatibleStance>
          <IncompatibleStance>Combat Expertise</IncompatibleStance>
          <IncompatibleStance>Resilience</IncompatibleStance>
+         <IncompatibleStance>Precision</IncompatibleStance>
       </Stance>
       <Requirements>
          <Requirement>
@@ -9018,6 +8923,9 @@ fortification against your attacks by 25%.</Description>
          <Icon>Precision</Icon>
          <Description>While using Precision mode, you gain +5% to hit and reduces the target's
 fortification against your attacks by 25%.</Description>
+         <IncompatibleStance>Combat Expertise</IncompatibleStance>
+         <IncompatibleStance>Rage</IncompatibleStance>
+         <IncompatibleStance>Power Attack</IncompatibleStance>
       </Stance>
       <Effect>
          <Type>AttackBonus</Type>
@@ -9148,11 +9056,11 @@ be interrupted by enemy attacks, but they consume 10 additional spell points.</D
       <Name>Quivering Palm</Name>
       <Description>The monk delivers a fatal attack by sending waves of vibrations through the
 target with a weapon strike. The attack costs 30 Ki, and if it hits the victim
-must pass a Fortitude save (DC 10 + monk level/2 + Wisdom modifier + General modifiers) or die.
-Quivering Palm gains DC bonuses from general tactical combat boosts, but not
-Sundering items. Whenever an enemy saves vs. Quivering Palm, you get a stacking
-+4 bonus to your Quivering Palm DC. This stack is dispelled when you successfully
-kill someone with Quivering Palm (or 3 minutes pass). 
+must pass a Fortitude save (DC 10 + monk level/2 + Wisdom modifier + General modifiers)
+or die. Quivering Palm gains DC bonuses from general tactical combat boosts,
+but not Sundering items. Whenever an enemy saves vs. Quivering Palm, you get
+a stacking +4 bonus to your Quivering Palm DC. This stack is dispelled when you
+successfully kill someone with Quivering Palm (or 3 minutes pass).
 This ability emulates other death spells, so deathblock or death ward both grant
 immunity. Using Quivering Palm will drop you out of Sneak and remove any
 Invisibility effects.</Description>
@@ -9213,6 +9121,7 @@ You can prematurely end your rage by using the Dismiss Rage feat.</Description>
 Constitution, a +2 Morale bonus to Will saves and a -2 penalty to AC.</Description>
          <IncompatibleStance>Combat Expertise</IncompatibleStance>
          <IncompatibleStance>Defensive Fighting</IncompatibleStance>
+         <IncompatibleStance>Precision</IncompatibleStance>
       </Stance>
       <Requirements/>
       <Acquire>Automatic</Acquire>
@@ -9394,13 +9303,13 @@ Modifier)% chance not to expend a charge.</Description>
    </Feat>
    <Feat>
       <Name>Sap</Name>
-      <Description>Tactical Melee Attack: Using this attack, you may render the target briefly
-senseless, though it will become active if damaged again. Some creatures, such
-as those without intelligence or those immune to stun effects, may be immune to
-or resist the sap effect and sap is more effective when performed as a
-successful sneak attack. (Whether or not your character can normally perform
-sneak attacks.) Successful saps last up to 18 seconds, or up to 30 seconds
-off a sneak attack.</Description>
+      <Description>Tactical Melee Attack: When activated, a melee special attack is made.
+If it hits, the victim is dazed for 18 seconds normally or 30 seconds from
+a successful sneak attack. (Whether or not your character can normally perform
+sneak attacks) or until they are damaged. Unlike Trip and Stunning Blow,
+no save is made against this effect
+
+Creatures who cannot be sneak attacked will not be affected.</Description>
       <FeatGroup>
          <IsStandardFeat/>
          <IsFighterBonus/>
@@ -10872,7 +10781,9 @@ or when attacking from an animal form.</Description>
       <Description>Tactical Melee Attack: Using this attack, you deal 1 point of Constitution
 damage to your target and deal 1 to 4 additional damage 2 seconds later as the
 target bleeds. The target suffers an additional round of bleeding for every 3
-characters levels, up to a max of 6 at level 15.
+characters levels, up to a max of 6 at level 15. Unlike Trip and Stunning Blow,
+no save is made against this effect.
+Cooldown 15 seconds.
 Some creatures may be immune to the bleeding or wounding effect.</Description>
       <FeatGroup>
          <IsStandardFeat/>
@@ -10988,7 +10899,7 @@ Armor Class and a +4 bonus on Hide checks. -4 penalty to Intimidate.</Descriptio
       <Name>Smite Evil</Name>
       <Description>Using this attack, you call on the paladin's ability to strike down evil
 creatures, gaining twice your Charisma bonus to your attack roll and a damage
-bonus based on your paladin level. Smites return at a rate of one every 90 seconds.</Description>
+bonus based on your Paladin level. Smites return at a rate of one every 90 seconds.</Description>
       <MaxTimesAcquire>5</MaxTimesAcquire>
       <Requirements/>
       <Acquire>Automatic</Acquire>
@@ -11698,7 +11609,7 @@ Your attack deals 4 additional damage.</Description>
       <Name>Stunning Blow</Name>
       <Description>Tactical Melee Attack: Using this attack, you may stun the target for a few seconds.
 Some creatures may be immune to the stun effect. A successful Fortitude save
-negates this effect. (DC 10 + Str mod)</Description>
+negates this effect. (DC 10 + Str mod + Stun bonuses)</Description>
       <FeatGroup>
          <IsStandardFeat/>
          <IsFighterBonus/>
@@ -11744,7 +11655,8 @@ for 6 seconds if it fails a Fortitude save.</Description>
    <Feat>
       <Name>Sunder</Name>
       <Description>This melee special attack, when successful, results in a -4 AC penalty
-to the target for 12 seconds if it fails a Fortitude save (DC 10 + Str mod).
+to the target for 12 seconds if it fails a Fortitude save.
+DC 10 + Str mod + sunder modifiers.
 Some creatures may be immune to the sunder effect</Description>
       <Requirements>
          <Requirement>
@@ -11957,10 +11869,10 @@ Focus and Greater Weapon Focus feats.</Description>
       <Effect>
          <Type>TacticalDC</Type>
          <Bonus>Feat</Bonus>
-            <Tactical>Trip</Tactical>
-            <Tactical>Sunder</Tactical>
-            <Tactical>Stun</Tactical>
-            <Tactical>General</Tactical>
+         <Tactical>Trip</Tactical>
+         <Tactical>Sunder</Tactical>
+         <Tactical>Stun</Tactical>
+         <Tactical>General</Tactical>
          <Amount>4</Amount>
       </Effect>
    </Feat>
@@ -11982,10 +11894,10 @@ Focus and Greater Weapon Focus feats.</Description>
       <Effect>
          <Type>TacticalDC</Type>
          <Bonus>Feat</Bonus>
-            <Tactical>Trip</Tactical>
-            <Tactical>Sunder</Tactical>
-            <Tactical>Stun</Tactical>
-            <Tactical>General</Tactical>
+         <Tactical>Trip</Tactical>
+         <Tactical>Sunder</Tactical>
+         <Tactical>Stun</Tactical>
+         <Tactical>General</Tactical>
          <Amount>6</Amount>
       </Effect>
    </Feat>
@@ -12007,10 +11919,10 @@ Focus and Greater Weapon Focus feats.</Description>
       <Effect>
          <Type>TacticalDC</Type>
          <Bonus>Feat</Bonus>
-            <Tactical>Trip</Tactical>
-            <Tactical>Sunder</Tactical>
-            <Tactical>Stun</Tactical>
-            <Tactical>General</Tactical>
+         <Tactical>Trip</Tactical>
+         <Tactical>Sunder</Tactical>
+         <Tactical>Stun</Tactical>
+         <Tactical>General</Tactical>
          <Amount>8</Amount>
       </Effect>
    </Feat>
@@ -12032,17 +11944,17 @@ Focus and Greater Weapon Focus feats.</Description>
       <Effect>
          <Type>TacticalDC</Type>
          <Bonus>Feat</Bonus>
-            <Tactical>Trip</Tactical>
-            <Tactical>Sunder</Tactical>
-            <Tactical>Stun</Tactical>
-            <Tactical>General</Tactical>
+         <Tactical>Trip</Tactical>
+         <Tactical>Sunder</Tactical>
+         <Tactical>Stun</Tactical>
+         <Tactical>General</Tactical>
          <Amount>2</Amount>
       </Effect>
    </Feat>
    <Feat>
       <Name>Ten Thousand Stars</Name>
       <Description>For the next 30 seconds, add your Wisdom ability score to your
-Ranged Power and add your monk level * 5 to your Doubleshot.
+Ranged Power and add your Monk level * 5 to your Doubleshot.
 This ability puts Manyshot on a 30 second cooldown.
 Cooldown: one minute.</Description>
       <FeatGroup>
@@ -12244,7 +12156,7 @@ The -2 attack penalty still applies. </Description>
    <Feat>
       <Name>Trap Sense</Name>
       <Description>Barbarians receive a +1 bonus to saves against traps.
-This bonus increases every three barbarian levels thereafter.</Description>
+This bonus increases every three Barbarian levels thereafter.</Description>
       <Requirements/>
       <Acquire>Automatic</Acquire>
       <Icon>TrapSense</Icon>
@@ -12263,7 +12175,7 @@ This bonus increases every three barbarian levels thereafter.</Description>
    <Feat>
       <Name>Trap Sense</Name>
       <Description>Rogues receive a +1 bonus to saves against traps.
-This bonus increases every three rogue levels thereafter.</Description>
+This bonus increases every three Rogue levels thereafter.</Description>
       <Requirements/>
       <Acquire>Automatic</Acquire>
       <Icon>TrapSense</Icon>
@@ -12281,7 +12193,7 @@ This bonus increases every three rogue levels thereafter.</Description>
    </Feat>
    <Feat>
       <Name>Trapfinding</Name>
-      <Description>A rogue or artificer can detect and disable difficult traps.</Description>
+      <Description>A Rogue or Artificer can detect and disable difficult traps.</Description>
       <Requirements/>
       <Acquire>Automatic</Acquire>
       <Icon>TrapFinding</Icon>
@@ -12379,8 +12291,9 @@ A successful Balance check negates this effect.</Description>
    <Feat>
       <Name>Two Handed Fighting</Name>
       <Description>Increases the damage of glancing blow attacks when wielding a two-handed
-weapon by 10% (from a base of 20% normal weapon damage). Also grants a 3% chance for
-weapon effects to trigger on glancing blows and a +2 Combat Style bonus to Melee Power.</Description>
+weapon by 10% (from a base of 20% normal weapon damage). Also grants a 3%
+chance for weapon effects to trigger on glancing blows and a +2 Combat Style
+bonus to Melee Power.</Description>
       <FeatGroup>
          <IsStandardFeat/>
          <IsFighterBonus/>
@@ -12464,6 +12377,7 @@ two weapons. (This bonus does not apply when fighting unarmed/with handwraps.)</
          <Type>ACBonus</Type>
          <Bonus>Feat</Bonus>
          <Amount>1</Amount>
+         <Stance>Two Weapon Fighting</Stance>
       </Effect>
       <Effect>
          <Type>PRR</Type>
@@ -12510,7 +12424,7 @@ Two Weapon Fighting also increases the chance to proc an off-hand attack by
          <Amount>20</Amount>
       </Effect>
       <Effect>
-         <DisplayName>Fake effect to cause updated, never displayed</DisplayName>
+         <DisplayName>Fake effect to cause update, never displayed, as effects handled in C++ code</DisplayName>
          <Type>AttackBonus</Type>
          <Bonus>Feat</Bonus>
          <Amount>0</Amount>
@@ -13618,7 +13532,12 @@ a 360 degree arc around you. This attack deals +4[W] damage.</Description>
    </Feat>
    <Feat>
       <Name>Wholeness of Body</Name>
-      <Description>Your enlightenment allows you to heal your own wounds.</Description>
+      <Description>Your enlightenment allows you to heal your own wounds.
+This feat allows Monks expend 10 Ki to heal some hit points over time in a
+meditative state. The exact number regained is (Monk level)/2 + Wisdom modifier
+(rounded up) every two seconds for thirty seconds.
+This ability is not suitable for use in combat, as the Monk may neither move
+nor act while regenerating. </Description>
       <Requirements/>
       <Acquire>Automatic</Acquire>
       <Icon>WholenessOfBody</Icon>
@@ -13697,13 +13616,13 @@ effectively mesmerizing them.</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>WildShapeWolf</Icon>
-       <Effect>
-          <Type>Alacrity</Type>
-           <Bonus>Enhancement</Bonus>
-           <Amount>15</Amount>
-           <Weapon>All</Weapon>
-           <Stance>Wolf</Stance>
-       </Effect>
+      <Effect>
+         <Type>Alacrity</Type>
+         <Bonus>Enhancement</Bonus>
+         <Amount>15</Amount>
+         <Weapon>All</Weapon>
+         <Stance>Wolf</Stance>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Wild Shape: Dire Bear</Name>
@@ -13832,20 +13751,20 @@ effectively mesmerizing them.</Description>
       <Acquire>Train</Acquire>
       <Icon>WildShapeWinterWolf</Icon>
       <Effect>
-         <DisplayName></DisplayName>
+         <DisplayName/>
          <Type>MovementSpeed</Type>
          <Bonus>Enhancement</Bonus>
          <AmountVector size="20">11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30</AmountVector>
          <Class>Druid</Class>
          <Stance>Winter Wolf</Stance>
       </Effect>
-       <Effect>
-          <Type>Alacrity</Type>
-           <Bonus>Enhancement</Bonus>
-           <Amount>30</Amount>
-           <Weapon>All</Weapon>
-           <Stance>Winter Wolf</Stance>
-       </Effect>
+      <Effect>
+         <Type>Alacrity</Type>
+         <Bonus>Enhancement</Bonus>
+         <Amount>30</Amount>
+         <Weapon>All</Weapon>
+         <Stance>Winter Wolf</Stance>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Zen Archery</Name>
@@ -14041,10 +13960,10 @@ This feat can be stacked up to three times.</Description>
       <Effect>
          <Type>TacticalDC</Type>
          <Bonus>Feat</Bonus>
-            <Tactical>Trip</Tactical>
-            <Tactical>Sunder</Tactical>
-            <Tactical>Stun</Tactical>
-            <Tactical>General</Tactical>
+         <Tactical>Trip</Tactical>
+         <Tactical>Sunder</Tactical>
+         <Tactical>Stun</Tactical>
+         <Tactical>General</Tactical>
          <Amount>1</Amount>
       </Effect>
    </Feat>
@@ -14350,7 +14269,7 @@ Passive Bonus: +1 Reflex Saving throws per stack of this Past Life Feat.</Descri
          <Type>SaveBonus</Type>
          <Bonus>Feat</Bonus>
          <Amount>1</Amount>
-          <Save>Reflex</Save>
+         <Save>Reflex</Save>
       </Effect>
       <Stance>
          <Name>Tiefling Scoundrel</Name>
@@ -15167,26 +15086,21 @@ all saving throws and +4 Armor Class.</Description>
          <Bonus>Feat</Bonus>
          <Save>All</Save>
          <Amount>2</Amount>
-         <Stance>Defensive Fighting</Stance>
-      </Effect>
-      <Effect>
-         <Type>SaveBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Save>All</Save>
-         <Amount>2</Amount>
-         <Stance>Combat Expertise</Stance>
+         <AnyOfStance>Defensive Fighting</AnyOfStance>
+         <AnyOfStance>Combat Expertise</AnyOfStance>
+         <AnyOfStance>Resilience</AnyOfStance>
+         <AnyOfStance>Stalwart Defense</AnyOfStance>
+         <AnyOfStance>Sacred Defense</AnyOfStance>
       </Effect>
       <Effect>
          <Type>ACBonus</Type>
          <Bonus>Feat</Bonus>
          <Amount>4</Amount>
-         <Stance>Defensive Fighting</Stance>
-      </Effect>
-      <Effect>
-         <Type>ACBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>4</Amount>
-         <Stance>Combat Expertise</Stance>
+         <AnyOfStance>Defensive Fighting</AnyOfStance>
+         <AnyOfStance>Combat Expertise</AnyOfStance>
+         <AnyOfStance>Resilience</AnyOfStance>
+         <AnyOfStance>Stalwart Defense</AnyOfStance>
+         <AnyOfStance>Sacred Defense</AnyOfStance>
       </Effect>
    </Feat>
    <Feat>
@@ -15256,17 +15170,17 @@ You also gain 2% dodge bonus when using a ranged weapon.</Description>
          <Requirement>
             <MinLevel>21</MinLevel>
          </Requirement>
-          <RequiresOneOf>
-              <Requirement>
-                  <Feat>Improved Construct Essence</Feat>
-              </Requirement>
-              <Requirement>
-                  <Race>Warforged</Race>
-              </Requirement>
-              <Requirement>
-                  <Race>Bladeforged</Race>
-              </Requirement>
-          </RequiresOneOf>
+         <RequiresOneOf>
+            <Requirement>
+               <Feat>Improved Construct Essence</Feat>
+            </Requirement>
+            <Requirement>
+               <Race>Warforged</Race>
+            </Requirement>
+            <Requirement>
+               <Race>Bladeforged</Race>
+            </Requirement>
+         </RequiresOneOf>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>ConstructExemplar</Icon>
@@ -16819,7 +16733,13 @@ and off and is off when you first log in.</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>VorpalStrikes</Icon>
-      <!--stance effects here-->
+      <Effect>
+         <Type>DRBypass</Type>
+         <Bonus>Feat</Bonus>
+         <DR>Slash</DR>
+         <Weapon>Handwraps</Weapon>
+         <Stance>Vorpal Strikes</Stance>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Watchful Eye</Name>
@@ -17838,10 +17758,10 @@ Number of Destinies: 1</Description>
          <Type>TacticalDC</Type>
          <Bonus>Feat</Bonus>
          <Amount>2</Amount>
-            <Tactical>Trip</Tactical>
-            <Tactical>Sunder</Tactical>
-            <Tactical>Stun</Tactical>
-            <Tactical>General</Tactical>
+         <Tactical>Trip</Tactical>
+         <Tactical>Sunder</Tactical>
+         <Tactical>Stun</Tactical>
+         <Tactical>General</Tactical>
       </Effect>
    </Feat>
    <Feat>
@@ -18646,10 +18566,10 @@ An additional +4 if you are centered.
       <Effect>
          <Type>TacticalDC</Type>
          <Bonus>Feat</Bonus>
-            <Tactical>Trip</Tactical>
-            <Tactical>Sunder</Tactical>
-            <Tactical>Stun</Tactical>
-            <Tactical>General</Tactical>
+         <Tactical>Trip</Tactical>
+         <Tactical>Sunder</Tactical>
+         <Tactical>Stun</Tactical>
+         <Tactical>General</Tactical>
          <Amount>4</Amount>
       </Effect>
       <Effect>
@@ -21073,119 +20993,24 @@ healing spells.</Description>
          <Type>WeaponProficiency</Type>
          <Bonus>Feat</Bonus>
          <Weapon>Battle Axe</Weapon>
-         <Stance>Bladesworn Transformation</Stance>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Falchion</Weapon>
-         <Stance>Bladesworn Transformation</Stance>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Great Axe</Weapon>
-         <Stance>Bladesworn Transformation</Stance>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Great Club</Weapon>
-         <Stance>Bladesworn Transformation</Stance>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Great Sword</Weapon>
-         <Stance>Bladesworn Transformation</Stance>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Hand Axe</Weapon>
-         <Stance>Bladesworn Transformation</Stance>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Heavy Pick</Weapon>
-         <Stance>Bladesworn Transformation</Stance>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Kukri</Weapon>
-         <Stance>Bladesworn Transformation</Stance>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Light Hammer</Weapon>
-         <Stance>Bladesworn Transformation</Stance>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Light Pick</Weapon>
-         <Stance>Bladesworn Transformation</Stance>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Longbow</Weapon>
-         <Stance>Bladesworn Transformation</Stance>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Longsword</Weapon>
-         <Stance>Bladesworn Transformation</Stance>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Maul</Weapon>
-         <Stance>Bladesworn Transformation</Stance>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Rapier</Weapon>
-         <Stance>Bladesworn Transformation</Stance>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Scimitar</Weapon>
-         <Stance>Bladesworn Transformation</Stance>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Shortsword</Weapon>
-         <Stance>Bladesworn Transformation</Stance>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Shortbow</Weapon>
-         <Stance>Bladesworn Transformation</Stance>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Throwing Axe</Weapon>
-         <Stance>Bladesworn Transformation</Stance>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Throwing Hammer</Weapon>
-         <Stance>Bladesworn Transformation</Stance>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Warhammer</Weapon>
          <Stance>Bladesworn Transformation</Stance>
       </Effect>
@@ -23863,140 +23688,32 @@ Chaotic creatures.</Description>
          <Type>WeaponProficiency</Type>
          <Bonus>Feat</Bonus>
          <Weapon>Battle Axe</Weapon>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Falchion</Weapon>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Great Axe</Weapon>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Great Club</Weapon>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Great Sword</Weapon>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Hand Axe</Weapon>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Heavy Pick</Weapon>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Kukri</Weapon>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Light Hammer</Weapon>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Light Pick</Weapon>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Longbow</Weapon>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Longsword</Weapon>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Maul</Weapon>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Rapier</Weapon>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Scimitar</Weapon>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Shortsword</Weapon>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Shortbow</Weapon>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Throwing Axe</Weapon>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Throwing Hammer</Weapon>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Warhammer</Weapon>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Bastard Sword</Weapon>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Dwarven Axe</Weapon>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Great Crossbow</Weapon>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Kama</Weapon>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Khopesh</Weapon>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Repeating Heavy Crossbow</Weapon>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Repeating Light Crossbow</Weapon>
-      </Effect>
-      <Effect>
-         <Type>WeaponProficiency</Type>
-         <Bonus>Feat</Bonus>
          <Weapon>Shuriken</Weapon>
       </Effect>
    </Feat>
@@ -24018,10 +23735,10 @@ Chaotic creatures.</Description>
          <Bonus>Feat</Bonus>
          <AmountPerLevel>0.5</AmountPerLevel>
          <Class>Cleric</Class>
-            <Tactical>Trip</Tactical>
-            <Tactical>Sunder</Tactical>
-            <Tactical>Stun</Tactical>
-            <Tactical>General</Tactical>
+         <Tactical>Trip</Tactical>
+         <Tactical>Sunder</Tactical>
+         <Tactical>Stun</Tactical>
+         <Tactical>General</Tactical>
       </Effect>
    </Feat>
    <Feat>
@@ -24395,7 +24112,7 @@ enhancements trained dependant on this stance being active</Description>
          <Energy>Electric</Energy>
       </Effect>
    </Feat>
-    <!--Bard Feats-->
+   <!--Bard Feats-->
    <Feat>
       <Name>Bardic Ballad</Name>
       <Description>You are constantly surrounded by a faint aura of Bardic Music, and
@@ -24410,51 +24127,51 @@ Duration: 1 Minute</Description>
       <Acquire>Automatic</Acquire>
       <AutomaticAcquisition>
          <Class>Bard</Class>
-          <Level>1</Level>
+         <Level>1</Level>
       </AutomaticAcquisition>
       <Icon>BardicBallad</Icon>
-       <Effect>
-           <DisplayName>Inspire Courage</DisplayName>
-           <Type>AttackBonus</Type>
-           <Bonus>Music</Bonus>
-           <Amount>1</Amount>
-           <Weapon>All</Weapon>
-       </Effect>
-       <Effect>
-           <DisplayName>Inspire Courage</DisplayName>
-           <Type>CriticalAttackBonus</Type>
-           <Bonus>Music</Bonus>
-           <Amount>1</Amount>
-           <Weapon>All</Weapon>
-       </Effect>
-       <Effect>
-           <DisplayName>Inspire Courage</DisplayName>
-           <Type>DamageBonus</Type>
-           <Bonus>Music</Bonus>
-           <Amount>1</Amount>
-           <Weapon>All</Weapon>
-       </Effect>
-       <Effect>
-           <DisplayName>Inspire Courage</DisplayName>
-           <Type>Seeker</Type>
-           <Bonus>Music</Bonus>
-           <Amount>1</Amount>
-           <Weapon>All</Weapon>
-       </Effect>
-       <Effect>
-           <DisplayName>Inspire Courage</DisplayName>
-           <Type>SaveBonus</Type>
-           <Bonus>Music</Bonus>
-           <Amount>1</Amount>
-           <Save>Fear</Save>
-       </Effect>
-       <Effect>
-           <DisplayName>Inspire Courage</DisplayName>
-           <Type>SpellPower</Type>
-           <Bonus>Music</Bonus>
-           <Amount>3</Amount>
-           <SpellPower>All</SpellPower>
-       </Effect>
+      <Effect>
+         <DisplayName>Inspire Courage</DisplayName>
+         <Type>AttackBonus</Type>
+         <Bonus>Music</Bonus>
+         <Amount>1</Amount>
+         <Weapon>All</Weapon>
+      </Effect>
+      <Effect>
+         <DisplayName>Inspire Courage</DisplayName>
+         <Type>CriticalAttackBonus</Type>
+         <Bonus>Music</Bonus>
+         <Amount>1</Amount>
+         <Weapon>All</Weapon>
+      </Effect>
+      <Effect>
+         <DisplayName>Inspire Courage</DisplayName>
+         <Type>DamageBonus</Type>
+         <Bonus>Music</Bonus>
+         <Amount>1</Amount>
+         <Weapon>All</Weapon>
+      </Effect>
+      <Effect>
+         <DisplayName>Inspire Courage</DisplayName>
+         <Type>Seeker</Type>
+         <Bonus>Music</Bonus>
+         <Amount>1</Amount>
+         <Weapon>All</Weapon>
+      </Effect>
+      <Effect>
+         <DisplayName>Inspire Courage</DisplayName>
+         <Type>SaveBonus</Type>
+         <Bonus>Music</Bonus>
+         <Amount>1</Amount>
+         <Save>Fear</Save>
+      </Effect>
+      <Effect>
+         <DisplayName>Inspire Courage</DisplayName>
+         <Type>SpellPower</Type>
+         <Bonus>Music</Bonus>
+         <Amount>3</Amount>
+         <SpellPower>All</SpellPower>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Bardic Inspiration</Name>
@@ -24472,12 +24189,12 @@ Inspire Competence: Grants you or a single ally +4 Music Bonus to all Skills.</D
          <Level>3</Level>
       </AutomaticAcquisition>
       <Icon>BardicInspiration</Icon>
-       <Effect>
-           <Type>SkillBonus</Type>
-           <Bonus>Music</Bonus>
-           <Amount>4</Amount>
-           <Skill>All</Skill>
-       </Effect>
+      <Effect>
+         <Type>SkillBonus</Type>
+         <Bonus>Music</Bonus>
+         <Amount>4</Amount>
+         <Skill>All</Skill>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Suggestion</Name>
@@ -24517,51 +24234,51 @@ and fear saves, and +3 Universal Spell Power</Description>
       <Acquire>Automatic</Acquire>
       <AutomaticAcquisition>
          <Class>Bard</Class>
-          <Level>8</Level>
+         <Level>8</Level>
       </AutomaticAcquisition>
       <Icon>SoothingSong</Icon>
-       <Effect>
-           <DisplayName>Inspire Courage</DisplayName>
-           <Type>AttackBonus</Type>
-           <Bonus>Music</Bonus>
-           <Amount>1</Amount>
-           <Weapon>All</Weapon>
-       </Effect>
-       <Effect>
-           <DisplayName>Inspire Courage</DisplayName>
-           <Type>CriticalAttackBonus</Type>
-           <Bonus>Music</Bonus>
-           <Amount>1</Amount>
-           <Weapon>All</Weapon>
-       </Effect>
-       <Effect>
-           <DisplayName>Inspire Courage</DisplayName>
-           <Type>DamageBonus</Type>
-           <Bonus>Music</Bonus>
-           <Amount>1</Amount>
-           <Weapon>All</Weapon>
-       </Effect>
-       <Effect>
-           <DisplayName>Inspire Courage</DisplayName>
-           <Type>Seeker</Type>
-           <Bonus>Music</Bonus>
-           <Amount>1</Amount>
-           <Weapon>All</Weapon>
-       </Effect>
-       <Effect>
-           <DisplayName>Inspire Courage</DisplayName>
-           <Type>SaveBonus</Type>
-           <Bonus>Music</Bonus>
-           <Amount>1</Amount>
-           <Save>Fear</Save>
-       </Effect>
-       <Effect>
-           <DisplayName>Inspire Courage</DisplayName>
-           <Type>SpellPower</Type>
-           <Bonus>Music</Bonus>
-           <Amount>3</Amount>
-           <SpellPower>All</SpellPower>
-       </Effect>
+      <Effect>
+         <DisplayName>Inspire Courage</DisplayName>
+         <Type>AttackBonus</Type>
+         <Bonus>Music</Bonus>
+         <Amount>1</Amount>
+         <Weapon>All</Weapon>
+      </Effect>
+      <Effect>
+         <DisplayName>Inspire Courage</DisplayName>
+         <Type>CriticalAttackBonus</Type>
+         <Bonus>Music</Bonus>
+         <Amount>1</Amount>
+         <Weapon>All</Weapon>
+      </Effect>
+      <Effect>
+         <DisplayName>Inspire Courage</DisplayName>
+         <Type>DamageBonus</Type>
+         <Bonus>Music</Bonus>
+         <Amount>1</Amount>
+         <Weapon>All</Weapon>
+      </Effect>
+      <Effect>
+         <DisplayName>Inspire Courage</DisplayName>
+         <Type>Seeker</Type>
+         <Bonus>Music</Bonus>
+         <Amount>1</Amount>
+         <Weapon>All</Weapon>
+      </Effect>
+      <Effect>
+         <DisplayName>Inspire Courage</DisplayName>
+         <Type>SaveBonus</Type>
+         <Bonus>Music</Bonus>
+         <Amount>1</Amount>
+         <Save>Fear</Save>
+      </Effect>
+      <Effect>
+         <DisplayName>Inspire Courage</DisplayName>
+         <Type>SpellPower</Type>
+         <Bonus>Music</Bonus>
+         <Amount>3</Amount>
+         <SpellPower>All</SpellPower>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Ballad Melody: Greatness</Name>
@@ -24580,30 +24297,30 @@ Requires 12 trained ranks (not total mod) of the Perform skill.</Description>
          <Class>Bard</Class>
          <Level>9</Level>
       </AutomaticAcquisition>
-       <Effect>
-           <DisplayName>Inspire Greatness</DisplayName>
-           <Type>Hitpoints</Type>
-           <Bonus>Music</Bonus>
-           <Amount>20</Amount>
-       </Effect>
-       <Effect>
-           <DisplayName>Inspire Greatness</DisplayName>
-           <Type>PRR</Type>
-           <Bonus>Music</Bonus>
-           <Amount>3</Amount>
-       </Effect>
-       <Effect>
-           <DisplayName>Inspire Greatness</DisplayName>
-           <Type>HealingAmplification</Type>
-           <Bonus>Music</Bonus>
-           <Amount>10</Amount>
-       </Effect>
-       <Effect>
-           <DisplayName>Inspire Greatness</DisplayName>
-           <Type>RepairAmplification</Type>
-           <Bonus>Music</Bonus>
-           <Amount>10</Amount>
-       </Effect>
+      <Effect>
+         <DisplayName>Inspire Greatness</DisplayName>
+         <Type>Hitpoints</Type>
+         <Bonus>Music</Bonus>
+         <Amount>20</Amount>
+      </Effect>
+      <Effect>
+         <DisplayName>Inspire Greatness</DisplayName>
+         <Type>PRR</Type>
+         <Bonus>Music</Bonus>
+         <Amount>3</Amount>
+      </Effect>
+      <Effect>
+         <DisplayName>Inspire Greatness</DisplayName>
+         <Type>HealingAmplification</Type>
+         <Bonus>Music</Bonus>
+         <Amount>10</Amount>
+      </Effect>
+      <Effect>
+         <DisplayName>Inspire Greatness</DisplayName>
+         <Type>RepairAmplification</Type>
+         <Bonus>Music</Bonus>
+         <Amount>10</Amount>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Song of Freedom</Name>
@@ -24632,14 +24349,14 @@ your Bardic Inspiration as if you had two more Bard Levels.</Description>
          <IsStandardFeat/>
       </FeatGroup>
       <Requirements>
-          <Requirement>
-              <Class>Bard</Class>
-              <Level>12</Level>
-          </Requirement>
-          <Requirement>
-              <Skill>Perform</Skill>
-              <Amount>15</Amount>
-          </Requirement>
+         <Requirement>
+            <Class>Bard</Class>
+            <Level>12</Level>
+         </Requirement>
+         <Requirement>
+            <Skill>Perform</Skill>
+            <Amount>15</Amount>
+         </Requirement>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>ImprovedBardicMusic</Icon>
@@ -24648,28 +24365,28 @@ your Bardic Inspiration as if you had two more Bard Levels.</Description>
          <Bonus>Feat</Bonus>
          <Amount>60</Amount>
       </Effect>
-       <Effect>
-           <Type>SkillBonus</Type>
-           <Bonus>Music</Bonus>
-           <Amount>1</Amount>
-           <Skill>All</Skill>
-       </Effect>
-       <Effect>
-           <Type>ACBonus</Type>
-           <Bonus>Music</Bonus>
-           <Amount>1</Amount>
-       </Effect>
-       <Effect>
-           <Type>DodgeBonus</Type>
-           <Bonus>Music</Bonus>
-           <Amount>1</Amount>
-       </Effect>
-       <Effect>
-           <Type>SaveBonus</Type>
-           <Bonus>Music</Bonus>
-           <Amount>1</Amount>
-           <Save>All</Save>
-       </Effect>
+      <Effect>
+         <Type>SkillBonus</Type>
+         <Bonus>Music</Bonus>
+         <Amount>1</Amount>
+         <Skill>All</Skill>
+      </Effect>
+      <Effect>
+         <Type>ACBonus</Type>
+         <Bonus>Music</Bonus>
+         <Amount>1</Amount>
+      </Effect>
+      <Effect>
+         <Type>DodgeBonus</Type>
+         <Bonus>Music</Bonus>
+         <Amount>1</Amount>
+      </Effect>
+      <Effect>
+         <Type>SaveBonus</Type>
+         <Bonus>Music</Bonus>
+         <Amount>1</Amount>
+         <Save>All</Save>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Improved Inspire Courage</Name>
@@ -24683,42 +24400,42 @@ Duration: 1 minute</Description>
          <Class>Bard</Class>
          <Level>14</Level>
       </AutomaticAcquisition>
-       <Effect>
-           <Type>AttackBonus</Type>
-           <Bonus>Music</Bonus>
-           <Amount>2</Amount>
-           <Weapon>All</Weapon>
-       </Effect>
-       <Effect>
-           <Type>CriticalAttackBonus</Type>
-           <Bonus>Music</Bonus>
-           <Amount>2</Amount>
-           <Weapon>All</Weapon>
-       </Effect>
-       <Effect>
-           <Type>DamageBonus</Type>
-           <Bonus>Music</Bonus>
-           <Amount>2</Amount>
-           <Weapon>All</Weapon>
-       </Effect>
-       <Effect>
-           <Type>Seeker</Type>
-           <Bonus>Music</Bonus>
-           <Amount>2</Amount>
-           <Weapon>All</Weapon>
-       </Effect>
-       <Effect>
-           <Type>SaveBonus</Type>
-           <Bonus>Music</Bonus>
-           <Amount>2</Amount>
-           <Save>Fear</Save>
-       </Effect>
-       <Effect>
-           <Type>SpellPower</Type>
-           <Bonus>Music</Bonus>
-           <Amount>3</Amount>
-           <SpellPower>All</SpellPower>
-       </Effect>
+      <Effect>
+         <Type>AttackBonus</Type>
+         <Bonus>Music</Bonus>
+         <Amount>2</Amount>
+         <Weapon>All</Weapon>
+      </Effect>
+      <Effect>
+         <Type>CriticalAttackBonus</Type>
+         <Bonus>Music</Bonus>
+         <Amount>2</Amount>
+         <Weapon>All</Weapon>
+      </Effect>
+      <Effect>
+         <Type>DamageBonus</Type>
+         <Bonus>Music</Bonus>
+         <Amount>2</Amount>
+         <Weapon>All</Weapon>
+      </Effect>
+      <Effect>
+         <Type>Seeker</Type>
+         <Bonus>Music</Bonus>
+         <Amount>2</Amount>
+         <Weapon>All</Weapon>
+      </Effect>
+      <Effect>
+         <Type>SaveBonus</Type>
+         <Bonus>Music</Bonus>
+         <Amount>2</Amount>
+         <Save>Fear</Save>
+      </Effect>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Music</Bonus>
+         <Amount>3</Amount>
+         <SpellPower>All</SpellPower>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Inspire Heroics</Name>
@@ -24733,22 +24450,22 @@ Requires 18 trained ranks (not total mod) of the Perform skill to use.</Descript
          <Class>Bard</Class>
          <Level>15</Level>
       </AutomaticAcquisition>
-       <Effect>
-           <Type>SaveBonus</Type>
-           <Bonus>Music</Bonus>
-           <Amount>4</Amount>
-           <Save>All</Save>
-       </Effect>
-       <Effect>
-           <Type>ACBonus</Type>
-           <Bonus>Music</Bonus>
-           <Amount>4</Amount>
-       </Effect>
-       <Effect>
-           <Type>DodgeBonus</Type>
-           <Bonus>Music</Bonus>
-           <Amount>4</Amount>
-       </Effect>
+      <Effect>
+         <Type>SaveBonus</Type>
+         <Bonus>Music</Bonus>
+         <Amount>4</Amount>
+         <Save>All</Save>
+      </Effect>
+      <Effect>
+         <Type>ACBonus</Type>
+         <Bonus>Music</Bonus>
+         <Amount>4</Amount>
+      </Effect>
+      <Effect>
+         <Type>DodgeBonus</Type>
+         <Bonus>Music</Bonus>
+         <Amount>4</Amount>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Knight's Training</Name>
@@ -24796,7 +24513,7 @@ These weapons receive one of the following morale bonuses in your hands.
          <Weapon>Warhammer</Weapon>
       </Effect>
    </Feat>
-    <!--New U41 Patch 3 Favor feats-->
+   <!--New U41 Patch 3 Favor feats-->
    <Feat>
       <Name>Gate Keepers Favor Rewards</Name>
       <Description>Rank 1: Favor 75 - "Gatekeepers: Skill Bonus" - "This feat grants you +2 bonus to Concentration and Spot skills."

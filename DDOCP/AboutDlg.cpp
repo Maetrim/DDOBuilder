@@ -13,6 +13,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
 {
     CDialogEx::DoDataExchange(pDX);
     DDX_Control(pDX, IDC_STATIC_VERSION, m_staticVersion);
+    DDX_Control(pDX, IDC_BUG_REPORTERS, m_bugReporters);
 
     CString text;
     text.Format("DDOBuilder, Version %s", BUILDINFO_VERSION);
@@ -41,7 +42,38 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
     count = OptionalBuffs().size();
     text.Format("Self and Party Buff Count: %d", count);
     SetDlgItemText(IDC_STATIC_PARTYBUFF_COUNT, text);
+
+    m_bugReporters.SetWindowText(
+            "In alphabetical order:\r\n"
+            "\r\n"
+            "Aganthor\r\n"
+            "Brakkart\r\n"
+            "Civet\r\n"
+            "Frinkky\r\n"
+            "Kamdragon\r\n"
+            "LittleTealeaf\r\n"
+            "nymcraian\r\n"
+            "pcloke123\r\n"
+            "peng\r\n"
+            "Question2\r\n"
+            "RetroDark\r\n"
+            "Selvera\r\n"
+            "ShintaoMonk\r\n"
+            "Strambotica\r\n"
+            "Vilhena\r\n"
+            "wolvemd\r\n");
+    m_bugReporters.SetSel(-1);    // nothing starts selected
 }
 
 BEGIN_MESSAGE_MAP(CAboutDlg, CDialogEx)
 END_MESSAGE_MAP()
+
+
+BOOL CAboutDlg::OnInitDialog()
+{
+    CDialogEx::OnInitDialog();
+
+    GetDlgItem(IDOK)->SetFocus();
+
+    return FALSE;
+}

@@ -69,6 +69,7 @@ class CDDOCPView :
         afx_msg void OnBnClickedRadio28pt();
         afx_msg void OnBnClickedRadio32pt();
         afx_msg BOOL OnEraseBkgnd(CDC* pDC);
+        afx_msg void OnEditResetbuild();
         DECLARE_MESSAGE_MAP()
 
         // Character overrides

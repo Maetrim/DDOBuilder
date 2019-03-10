@@ -234,4 +234,3 @@ size_t AbilitySpend::GetAbilitySpendPoints(
     }
     return spentPoints;
 }
-

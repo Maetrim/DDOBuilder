@@ -68,6 +68,7 @@ BEGIN_MESSAGE_MAP(CDDOCPView, CFormView)
     ON_EN_KILLFOCUS(IDC_EDIT_GUILD_LEVEL, OnKillFocusGuildLevel)
     ON_BN_CLICKED(IDC_RADIO_28PT, &CDDOCPView::OnBnClickedRadio28pt)
     ON_BN_CLICKED(IDC_RADIO_32PT, &CDDOCPView::OnBnClickedRadio32pt)
+    ON_COMMAND(ID_EDIT_RESETBUILD, &CDDOCPView::OnEditResetbuild)
 END_MESSAGE_MAP()
 #pragma warning(pop)
 
@@ -920,4 +921,46 @@ void CDDOCPView::OnBnClickedRadio32pt()
 {
     // set the number of build points to 32
     m_pCharacter->SetBuildPoints(32);
+}
+
+
+void CDDOCPView::OnEditResetbuild()
+{
+    // make sure the user really wants to do this, as its a big change
+    UINT ret = AfxMessageBox("Warning: This command will reset to default all of the following:\r\n"
+            "Ability Point Spends\r\n"
+            "Class Selections\r\n"
+            "Feat Selections\r\n"
+            "Skill Points\r\n"
+            "Enhancement Tree Selections\r\n"
+            "Notes\r\n"
+            "\r\n"
+            "It will not touch any selected Past Lives, Gear setups or Tomes,\r\n"
+            "but may affect Epic Destinies where the selections now become\r\n"
+            "invalid due to missing feats.\r\n"
+            "\r\n"
+            "Are you sure you wish to do this?",
+            MB_ICONQUESTION | MB_YESNO);
+    if (ret == IDYES)
+    {
+        CWaitCursor longOperation;
+        CWnd * pWnd = AfxGetMainWnd();
+        CMainFrame * pMainFrame = dynamic_cast<CMainFrame*>(pWnd);
+        if (pMainFrame != NULL)
+        {
+            // reset the windows first
+            pMainFrame->SetActiveDocumentAndCharacter(NULL, NULL);
+            // reset the build with nothing displayed
+            m_pCharacter->ResetBuild();
+            // notify the main frame that we are active so that everything gets
+            // reset correctly in the views
+            pMainFrame->SetActiveDocumentAndCharacter(GetDocument(), m_pCharacter);
+        }
+        // ensure this view is up to date
+        UpdateRadioPoints();
+
+        RestoreControls();
+        EnableButtons();
+        UpdateBuildDescription();
+    }
 }

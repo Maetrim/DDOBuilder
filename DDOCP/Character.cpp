@@ -54,8 +54,30 @@ namespace
 Character::Character() :
     XmlLib::SaxContentElement(f_saxElementName, f_verCurrent),
     m_pDocument(NULL),
-    m_SpecialFeats(L"SpecialFeats")
+    m_SpecialFeats(L"SpecialFeats"),
+    m_bonusActionPoints(0),
+    m_racialTreeSpend(0),
+    m_otherTreeSpend(0),
+    m_previousGuildLevel(0)
 {
+    DL_INIT(Character_PROPERTIES)
+    // make sure we have MAX_LEVEL default LevelTraining objects in the list
+    size_t count = m_Levels.size();
+    for (size_t index = count; index < MAX_LEVEL; ++index)
+    {
+        LevelTraining lt;
+        if (index >= MAX_CLASS_LEVEL)
+        {
+            // all levels above level MAX_CLASS_LEVEL are epic levels by default
+            lt.Set_Class(Class_Epic);
+        }
+        m_Levels.push_back(lt);
+    }
+    // ensure we have MAX_TWISTS twist of fate objects
+    while (m_Twists.size() < MAX_TWISTS)
+    {
+        m_Twists.push_back(TwistOfFate());
+    }
 }
 
 Character::Character(CDDOCPDoc * pDoc) :
@@ -770,17 +792,17 @@ void Character::SetAlignment(AlignmentType alignment)
     while (!IsClassAvailable(Class2())
             && Class2() != Class_Unknown)
     {
-        // class 1 is now no longer valid, bump it from all levels
+        // class 2 is now no longer valid, bump it from all levels
         RevokeClass(Class2());
         Set_Class2(Class3());
         Set_Class3(Class_Unknown);
         classChoiceChange = true;
     }
-    // do the same for class 2 and class 3
+    // do the same for class 3
     while (!IsClassAvailable(Class3())
             && Class3() != Class_Unknown)
     {
-        // class 1 is now no longer valid, bump it from all levels
+        // class 3 is now no longer valid, bump it from all levels
         RevokeClass(Class3());
         Set_Class3(Class_Unknown);
         classChoiceChange = true;
@@ -1277,7 +1299,8 @@ void Character::TrainFeat(
         // applied to the characters abilities. This allows us to determine
         // whether the feat can be selected before entering the world or
         // after via a feat swap with Fred the Mind Flayer.
-        if (!IsFeatTrainable(level, type, feat, false))
+        if (!IsFeatTrainable(level, type, feat, false)
+                && featName != " No Selection")
         {
             // this feat although trainable with Fred is not trainable
             // during character creation.
@@ -1288,7 +1311,8 @@ void Character::TrainFeat(
     // as this can cause enhancements and feats to be revoked.
     std::list<LevelTraining>::iterator it = m_Levels.begin();
     std::advance(it, level);
-    if (featName != (*it).FeatName(type)) // is it the same feat that was previously selected?
+    if (featName != (*it).FeatName(type) // is it the same feat that was previously selected?
+            && !(featName == " No Selection" && (*it).FeatName(type) == ""))
     {
         // first revoke any previous trained feat in this slot at level
         std::string lostFeat = (*it).RevokeFeat(type);
@@ -1297,9 +1321,12 @@ void Character::TrainFeat(
             const Feat & feat = FindFeat(lostFeat);
             RevokeFeatEffects(feat);
         }
-        // train new
-        (*it).TrainFeat(featName, type, level, featSwapWarning);
-        ApplyFeatEffects(feat);
+        if (featName != " No Selection")
+        {
+            // train new
+            (*it).TrainFeat(featName, type, level, featSwapWarning);
+            ApplyFeatEffects(feat);
+        }
 
         NotifyFeatTrained(featName);
         // some automatic feats may have changed due to the trained feat
@@ -5831,3 +5858,29 @@ void Character::SetNotes(const std::string & notes)
     m_pDocument->SetModifiedFlag(TRUE);
 }
 
+void Character::ResetBuild()
+{
+    // create a new blank character
+    Character blankCharacter;
+    blankCharacter.m_pDocument = m_pDocument;
+    // copy across what we want to keep
+    blankCharacter.m_Name = m_Name;
+    blankCharacter.m_GuildLevel = m_GuildLevel;
+    blankCharacter.m_hasApplyGuildBuffs = m_hasApplyGuildBuffs;
+    blankCharacter.m_StrTome = m_StrTome;
+    blankCharacter.m_DexTome = m_DexTome;
+    blankCharacter.m_ConTome = m_ConTome;
+    blankCharacter.m_IntTome = m_IntTome;
+    blankCharacter.m_WisTome = m_WisTome;
+    blankCharacter.m_ChaTome = m_ChaTome;
+    blankCharacter.m_Tomes = m_Tomes;
+    blankCharacter.m_SpecialFeats = m_SpecialFeats;
+    blankCharacter.m_EpicDestinyTreeSpend = m_EpicDestinyTreeSpend;
+    blankCharacter.m_ReaperTreeSpend = m_ReaperTreeSpend;
+    blankCharacter.m_GearSetups = m_GearSetups;
+    blankCharacter.m_ActiveGear = m_ActiveGear;
+    blankCharacter.m_SelfAndPartyBuffs = m_SelfAndPartyBuffs;
+    // now assign to ourselves
+    (*this) = blankCharacter;
+    JustLoaded();
+}

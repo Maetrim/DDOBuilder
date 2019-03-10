@@ -30,6 +30,7 @@ class LevelTraining :
         // that would have been generated for us.
         const FeatsListObject & AutomaticFeats() const;
         void Set_AutomaticFeats(const FeatsListObject & newValue);
+
     protected:
         XmlLib::SaxContentElementInterface * StartElement(
                 const XmlLib::SaxString & name,

@@ -92,6 +92,8 @@ class Character :
         void JustLoaded();  // called when file loaded and needs to be checked / updated
         void NowActive();   // called when active MDI changed
 
+        void ResetBuild();
+
         // active point build affected
         size_t BaseAbilityValue(AbilityType ability) const;
         void SpendOnAbility(AbilityType ability);

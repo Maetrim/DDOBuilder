@@ -20,6 +20,7 @@ class AbilitySpend :
         size_t GetAbilitySpend(AbilityType ability) const;
         void SpendOnAbility(AbilityType ability);
         void RevokeSpendOnAbility(AbilityType ability);
+
     protected:
         XmlLib::SaxContentElementInterface * StartElement(
                 const XmlLib::SaxString & name,

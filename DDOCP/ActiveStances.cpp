@@ -88,3 +88,4 @@ void ActiveStances::RevokeStance(const std::string & name)
         }
     }
 }
+
