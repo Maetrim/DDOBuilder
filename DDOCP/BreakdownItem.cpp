@@ -48,9 +48,9 @@ void BreakdownItem::PopulateBreakdownControl(CListCtrl * pControl)
     size_t inactiveStart = pControl->GetItemCount();
     // also show inactive and non stack effects if we have any so user
     // knows which duplicate effects they have in place
-    AddDeactiveItems(m_otherEffects, pControl);
-    AddDeactiveItems(m_effects, pControl);
-    AddDeactiveItems(m_itemEffects, pControl);
+    AddDeactiveItems(m_otherEffects, pControl, true);
+    AddDeactiveItems(m_effects, pControl, true);
+    AddDeactiveItems(m_itemEffects, pControl, true);
     if (inactiveStart != pControl->GetItemCount())
     {
         // blank item between active and inactive
@@ -68,7 +68,7 @@ void BreakdownItem::PopulateBreakdownControl(CListCtrl * pControl)
                 pControl->GetItemCount(),
                 "Non-Stacking Effects",
                 0);
-        AddActiveItems(nonStackingEffects, pControl, false);
+        AddActiveItems(nonStackingEffects, pControl, true);
         AddActivePercentageItems(nonStackingEffects, pControl);
     }
 
@@ -228,7 +228,8 @@ void BreakdownItem::AddActivePercentageItems(
 
 void BreakdownItem::AddDeactiveItems(
         const std::list<ActiveEffect> & effects,
-        CListCtrl * pControl)
+        CListCtrl * pControl,
+        bool bShowMultiplier)
 {
     // add all inactive breakdown items from this particular list
     std::list<ActiveEffect>::const_iterator it = effects.begin();
@@ -252,7 +253,7 @@ void BreakdownItem::AddDeactiveItems(
                 pControl->SetItemText(index, CO_Stacks, stacks);
 
                 // and the total amount the number of stacks contribute
-                CString amount  = (*it).AmountAsText(false);
+                CString amount  = (*it).AmountAsText(bShowMultiplier ? Multiplier() : 1.0);
                 pControl->SetItemText(index, CO_Value, amount);
 
                 // add the bonus type

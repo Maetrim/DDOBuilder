@@ -1710,7 +1710,7 @@ void CLevelUpView::OnButtonLevel(UINT nID)
     }
     else if (level < MAX_CLASS_LEVEL) // can only set for heroic levels
     {
-        // if they click the same button again, show a pop up window
+        // if they click the same button again, show a pop up menu
         // to allow them to select a class to train
         CMenu cMenu;
         cMenu.CreatePopupMenu();

@@ -117,7 +117,7 @@ class BreakdownItem :
     private:
         void AddActiveItems(const std::list<ActiveEffect> & effects, CListCtrl * pControl, bool bShowMultiplier);
         void AddActivePercentageItems(const std::list<ActiveEffect> & effects, CListCtrl * pControl);
-        void AddDeactiveItems(const std::list<ActiveEffect> & effects, CListCtrl * pControl);
+        void AddDeactiveItems(const std::list<ActiveEffect> & effects, CListCtrl * pControl, bool bShowMultiplier);
         double SumItems(const std::list<ActiveEffect> & effects, bool bApplyMultiplier) const;
         double DoPercentageEffects(const std::list<ActiveEffect> & effects, double total) const;
         void RemoveInactive(std::list<ActiveEffect> * effects, std::list<ActiveEffect> * inactiveEffects) const;
