@@ -11658,12 +11658,12 @@ for 6 seconds if it fails a Fortitude save.</Description>
 to the target for 12 seconds if it fails a Fortitude save.
 DC 10 + Str mod + sunder modifiers.
 Some creatures may be immune to the sunder effect</Description>
-      <Requirements>
-         <Requirement>
-            <BAB>1</BAB>
-         </Requirement>
-      </Requirements>
-      <Acquire>Train</Acquire>
+      <Requirements/>
+      <Acquire>Automatic</Acquire>
+      <AutomaticAcquisition>
+         <!--Reduced requirements down to a BAB check instead-->
+         <BAB>1</BAB>
+      </AutomaticAcquisition>
       <Icon>Sunder</Icon>
       <DC>
          <Name>Sunder</Name>
@@ -11675,8 +11675,7 @@ to the target for 12 seconds if it fails a Fortitude save.</Description>
          <ModAbility>Strength</ModAbility>
          <Tactical>Sunder</Tactical>
       </DC>
-   </Feat>
-   <Feat>
+   </Feat>   <Feat>
       <Name>Superior Weapon Focus: Bludgeoning Weapons</Name>
       <Description>Provides a +1 bonus to attack rolls when using a bludgeoning weapon,
 including attacks from a druid in animal form and an additional +2 stacking
@@ -14839,7 +14838,7 @@ in the form of a free Feat.</Description>
    <!--Lore Feats-->
    <Feat>
       <Name>Wilderness Lore</Name>
-      <Description>Represents your knowledge of the wildernes</Description>
+      <Description>Represents your knowledge of the wilderness</Description>
       <MaxTimesAcquire>20</MaxTimesAcquire>
       <Requirements/>
       <Acquire>Automatic</Acquire>
@@ -17098,8 +17097,9 @@ Number of Destinies: 1</Description>
    </Feat>
    <Feat>
       <Name>Deific Warding</Name>
-      <Description>When you take damage, add one stack of Deific Warding (+1 Sacred Bonus to MRR).
-This effect can stack up to 30 times. One stack is removed every 3 seconds.
+      <Description>+10 PRR and MRR. When you take damage from an enemy's attack or spell,
+add one stack of Deific Warding (+2 to PRR and MRR). This effect can stack
+up to 10 times. One stack is removed every 3 seconds.
 Sphere: Divine
 Number of Destinies: 3</Description>
       <FeatGroup>
@@ -17113,9 +17113,27 @@ Number of Destinies: 3</Description>
       <Acquire>Train</Acquire>
       <Icon>DeificWarding</Icon>
       <Effect>
+         <Type>PRR</Type>
+         <Bonus>Destiny</Bonus>
+         <Amount>10</Amount>
+      </Effect>
+      <Effect>
          <Type>MRR</Type>
-         <Bonus>Sacred</Bonus>
-         <Amount>30</Amount>
+         <Bonus>Destiny</Bonus>
+         <Amount>10</Amount>
+      </Effect>
+      <Effect>
+         <DisplayName>Deific Warding: Stacks from being hit</DisplayName>
+         <Type>PRR</Type>
+         <Bonus>Destiny</Bonus>
+         <Amount>20</Amount>
+         <Stance>Deific Warding</Stance>
+      </Effect>
+      <Effect>
+         <DisplayName>Deific Warding: Stacks from being hit</DisplayName>
+         <Type>MRR</Type>
+         <Bonus>Destiny</Bonus>
+         <Amount>20</Amount>
          <Stance>Deific Warding</Stance>
       </Effect>
    </Feat>

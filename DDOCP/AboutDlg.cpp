@@ -52,6 +52,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
             "Frinkky\r\n"
             "Kamdragon\r\n"
             "LittleTealeaf\r\n"
+            "MaxPaxy\r\n"
             "nymcraian\r\n"
             "pcloke123\r\n"
             "peng\r\n"
@@ -61,6 +62,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
             "ShintaoMonk\r\n"
             "Strambotica\r\n"
             "Vilhena\r\n"
+            "warioman91\r\n"
             "wolvemd\r\n");
     m_bugReporters.SetSel(-1);    // nothing starts selected
 }

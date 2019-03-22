@@ -1143,7 +1143,8 @@ bool CanTrainClass(
         // any neutral variant
         canTrain = (alignment == Alignment_TrueNeutral)
                 || (alignment == Alignment_ChaoticNeutral)
-                || (alignment == Alignment_LawfulNeutral);
+                || (alignment == Alignment_LawfulNeutral)
+                || (alignment == Alignment_NeutralGood);
         break;
 
     case Class_Monk:
