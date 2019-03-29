@@ -181,6 +181,15 @@ void SaxReader::StartElement(
         }
         throw;
     }
+    catch (const std::string & txt)
+    {
+        if (!m_errorReported)
+        {
+            m_errorMessage = txt;
+            m_errorReported = true;
+        }
+        throw;
+    }
     catch (...)
     {
         throw;

@@ -38,6 +38,7 @@ class CEquipmentView :
         afx_msg void OnUpdateGearPaste(CCmdUI * pCmdUi);
         afx_msg void OnUpdateGearDelete(CCmdUI * pCmdUi);
         afx_msg void OnGearSelectionSelEndOk();
+        afx_msg void OnGearNumFiligreesSelEndOk();
         DECLARE_MESSAGE_MAP()
 
         // InventoryObserver overrides
@@ -57,6 +58,8 @@ class CEquipmentView :
         CMFCButton m_buttonCopy;
         CMFCButton m_buttonPaste;
         CMFCButton m_buttonDelete;
+        CStatic m_staticNumFiligrees;
+        CComboBox m_comboNumFiligrees;
         CInventoryDialog * m_inventoryView;
 
         CDocument * m_pDocument;

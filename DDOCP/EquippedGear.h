@@ -18,6 +18,8 @@ class EquippedGear :
         void SetItem(InventorySlotType slot, const Item & item);
         void ClearItem(InventorySlotType slot);
 
+        void SetNumFiligrees(size_t count);
+
     protected:
         XmlLib::SaxContentElementInterface * StartElement(
                 const XmlLib::SaxString & name,
@@ -42,10 +44,12 @@ class EquippedGear :
                 DL_OPTIONAL_OBJECT(_, Item, Quiver) \
                 DL_OPTIONAL_OBJECT(_, Item, Arrow) \
                 DL_OPTIONAL_OBJECT(_, Item, Ring1) \
-                DL_OPTIONAL_OBJECT(_, Item, Ring2)
+                DL_OPTIONAL_OBJECT(_, Item, Ring2) \
+                /*DL_OPTIONAL_OBJECT(_, SentientJewel, SentientIntelligence) */
 
         DL_DECLARE_ACCESS(EquippedGear_PROPERTIES)
         DL_DECLARE_VARIABLES(EquippedGear_PROPERTIES)
 
         friend class CEquipmentView;
+        friend class EquippedGear;
 };

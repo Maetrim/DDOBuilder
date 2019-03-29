@@ -286,12 +286,19 @@ void CEnhancementsView::CreateEnhancementWindows()
                 PopulateTreeCombo(&m_comboTreeSelect[i-1], treeName);
             }
             // create the tree dialog
+            TreeType tt = TT_racial;
+            if (i > 0)  // first tree is always racial
+            {
+                tt = GetEnhancementTree(treeName).HasIsUniversalTree()
+                        ? TT_universal
+                        : TT_enhancement;
+            }
             // show an enhancement dialog
             CEnhancementTreeDialog * dlg = new CEnhancementTreeDialog(
                     this,
                     m_pCharacter,
                     GetEnhancementTree(treeName),
-                    (i == 0) ? TT_racial : TT_enhancement); // first tree is always racial
+                    tt);
             dlg->Create(CEnhancementTreeDialog::IDD, this);
             dlg->MoveWindow(&itemRect);
             dlg->ShowWindow(SW_SHOW);
@@ -518,9 +525,22 @@ void CEnhancementsView::UpdateWindowTitle()
     if (m_pCharacter != NULL)
     {
         CString text;
-        text.Format("Enhancements - %d points available to spend, Racial APs %d",
-                m_pCharacter->AvailableActionPoints(),
-                m_pCharacter->BonusActionPoints());
+        text.Format("Enhancements - %d points available to spend",
+                m_pCharacter->AvailableActionPoints());
+        size_t bonusRacial = m_pCharacter->BonusRacialActionPoints();
+        if (bonusRacial > 0)
+        {
+            CString additional;
+            additional.Format(", Racial %d", bonusRacial);
+            text += additional;
+        }
+        size_t bonusUniversal = m_pCharacter->BonusUniversalActionPoints();
+        if (bonusUniversal > 0)
+        {
+            CString additional;
+            additional.Format(", Universal %d", bonusUniversal);
+            text += additional;
+        }
         GetParent()->SetWindowText(text);
     }
     else

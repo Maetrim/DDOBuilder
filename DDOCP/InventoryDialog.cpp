@@ -12,8 +12,14 @@ namespace
 {
     const size_t c_controlSpacing = 3;
     // inventory window size
-    const size_t c_sizeX = 223;
-    const size_t c_sizeY = 290;
+    const int c_sizeX = 418;
+    const int c_sizeY = 290;
+    const int c_jewelX = 357;
+    const int c_jewelY = 24;
+    const int c_filigreeX = 232;
+    const int c_filigreeY = 115;
+    const int c_filigreeXOffset = 36;
+    const int c_filigreeYOffset = 52;
 }
 
 #pragma warning(push)
@@ -34,34 +40,57 @@ CInventoryDialog::CInventoryDialog(CWnd* pParent) :
     CDialog(CInventoryDialog::IDD, pParent),
     m_pCharacter(NULL),
     m_bitmapSize(CSize(0, 0)),
+    m_showingItemTip(false),
+    m_showingFiligreeTip(false),
     m_tipCreated(false),
-    m_tooltipItem(Inventory_Unknown)
+    m_tooltipItem(Inventory_Unknown),
+    m_tooltipFiligree(-2)
 {
     //{{AFX_DATA_INIT(CInventoryDialog)
     //}}AFX_DATA_INIT
     // there are a fixed list of hit boxes which are hard coded here
     // order is important as used for drawing items (declare in same order as enum InventorySlotType)
-    m_hitBoxes.push_back(InventoryHitBox(Inventory_Arrows, CRect(164, 237, 196, 269)));
-    m_hitBoxes.push_back(InventoryHitBox(Inventory_Armor, CRect(30, 78, 62, 110)));
-    m_hitBoxes.push_back(InventoryHitBox(Inventory_Belt, CRect(164, 124, 196, 156)));
-    m_hitBoxes.push_back(InventoryHitBox(Inventory_Boots, CRect(72, 180, 104, 212)));
-    m_hitBoxes.push_back(InventoryHitBox(Inventory_Bracers, CRect(30, 124, 62, 156)));
-    m_hitBoxes.push_back(InventoryHitBox(Inventory_Cloak, CRect(164, 78, 196, 110)));
-    m_hitBoxes.push_back(InventoryHitBox(Inventory_Gloves, CRect(117, 180, 149, 212)));
-    m_hitBoxes.push_back(InventoryHitBox(Inventory_Goggles, CRect(30, 35, 62, 67)));
-    m_hitBoxes.push_back(InventoryHitBox(Inventory_Helmet, CRect(72, 24, 104, 56)));
-    m_hitBoxes.push_back(InventoryHitBox(Inventory_Necklace, CRect(117, 24, 149, 56)));
-    m_hitBoxes.push_back(InventoryHitBox(Inventory_Quiver, CRect(117, 237, 149, 269)));
-    m_hitBoxes.push_back(InventoryHitBox(Inventory_Ring1, CRect(30, 169, 62, 200)));
-    m_hitBoxes.push_back(InventoryHitBox(Inventory_Ring2, CRect(164, 168, 196, 200)));
-    m_hitBoxes.push_back(InventoryHitBox(Inventory_Trinket, CRect(164, 35, 196, 67)));
-    m_hitBoxes.push_back(InventoryHitBox(Inventory_Weapon1, CRect(30, 237, 62, 269)));
-    m_hitBoxes.push_back(InventoryHitBox(Inventory_Weapon2, CRect(72, 237, 104, 269)));
-
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Arrows, CRect(164, 237, 196, 269)));
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Armor, CRect(30, 78, 62, 110)));
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Belt, CRect(164, 124, 196, 156)));
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Boots, CRect(72, 180, 104, 212)));
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Bracers, CRect(30, 124, 62, 156)));
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Cloak, CRect(164, 78, 196, 110)));
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Gloves, CRect(117, 180, 149, 212)));
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Goggles, CRect(30, 35, 62, 67)));
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Helmet, CRect(72, 24, 104, 56)));
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Necklace, CRect(117, 24, 149, 56)));
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Quiver, CRect(117, 237, 149, 269)));
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Ring1, CRect(30, 169, 62, 200)));
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Ring2, CRect(164, 168, 196, 200)));
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Trinket, CRect(164, 35, 196, 67)));
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Weapon1, CRect(30, 237, 62, 269)));
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Weapon2, CRect(72, 237, 104, 269)));
+    // fixed hit boxes for Filigree items
+    m_hitBoxesFiligrees.push_back(FiligreeHitBox(-1, CRect(c_jewelX, c_jewelY, c_jewelX + 34, c_jewelY + 34)));
+    CRect filigreeLocation(c_filigreeX, c_filigreeY, c_filigreeX + 34, c_filigreeY + 48);
+    for (size_t i = 0; i < MAX_FILIGREE; ++i)
+    {
+        m_hitBoxesFiligrees.push_back(FiligreeHitBox(i, filigreeLocation));
+        // move location for next filigree
+        if ((i % 5) == 4)
+        {
+            // start of next row
+            filigreeLocation += CPoint(c_filigreeXOffset * -4, c_filigreeYOffset);
+        }
+        else
+        {
+            // move across one
+            filigreeLocation += CPoint(c_filigreeXOffset, 0);
+        }
+    }
     // load images used
     LoadImageFile(IT_ui, "Inventory", &m_imageBackground);
     LoadImageFile(IT_ui, "Inventory", &m_imageBackgroundDisabled);
     LoadImageFile(IT_ui, "CannotEquip", &m_imagesCannotEquip);
+    LoadImageFile(IT_ui, "SpellSlotTrainable", &m_imagesJewel);
+    LoadImageFile(IT_ui, "RareUnchecked", &m_imagesFiligree);
+    LoadImageFile(IT_ui, "RareChecked", &m_imagesFiligreeRare);
     MakeGrayScale(&m_imageBackgroundDisabled, c_transparentColour);
 }
 
@@ -142,7 +171,7 @@ void CInventoryDialog::OnPaint()
         {
             // Weapon equipped in main hand that precludes weapon in off hand
             // do not permit selection of an item in the off hand slot
-            CRect itemRect = m_hitBoxes[i - 1].Rect();
+            CRect itemRect = m_hitBoxesInventory[i - 1].Rect();
             m_imagesCannotEquip.TransparentBlt(
                     memoryDc.GetSafeHdc(),
                     itemRect.left,
@@ -155,7 +184,7 @@ void CInventoryDialog::OnPaint()
             Item item = m_gearSet.ItemInSlot((InventorySlotType)i);
             CImage image;
             LoadImageFile(IT_item, item.Icon(), &image);
-            CRect itemRect = m_hitBoxes[i - 1].Rect();
+            CRect itemRect = m_hitBoxesInventory[i - 1].Rect();
             image.TransparentBlt(
                     memoryDc.GetSafeHdc(),
                     itemRect.left,
@@ -164,7 +193,92 @@ void CInventoryDialog::OnPaint()
                     32);
         }
     }
-
+    // now pain the Jewel and Filigrees
+    if (IsWindowEnabled()
+            && m_gearSet.HasItemInSlot(Inventory_Weapon1)
+            && m_gearSet.ItemInSlot(Inventory_Weapon1).HasSentientIntelligence())
+    {
+        SentientJewel jewel = m_gearSet.ItemInSlot(Inventory_Weapon1).SentientIntelligence();
+        m_imagesJewel.TransparentBlt(
+                memoryDc.GetSafeHdc(),
+                c_jewelX,
+                c_jewelY,
+                34,
+                34);
+        if (jewel.HasPersonality())
+        {
+            std::string personality = jewel.Personality();
+            Augment jewelAugment = FindAugmentByName(personality);
+            CImage image;
+            LoadImageFile(IT_augment, jewelAugment.Icon(), &image);
+            image.TransparentBlt(
+                    memoryDc.GetSafeHdc(),
+                    c_jewelX+1,
+                    c_jewelY+1,
+                    32,
+                    32);
+        }
+        // now draw all the filigrees
+        CSize filigreeLocation(c_filigreeX, c_filigreeY);
+        size_t count = jewel.NumFiligrees();
+        for (size_t i = 0; i < count; ++i)
+        {
+            // and draw the selected filigree icon if there is one
+            Augment filigree = FindAugmentByName(jewel.Filigree(i));
+            if (filigree.Name() != "")     // may not have a filigree selection
+            {
+                bool isRare = jewel.IsRareFiligree(i);
+                if (isRare)
+                {
+                    m_imagesFiligreeRare.TransparentBlt(
+                            memoryDc.GetSafeHdc(),
+                            filigreeLocation.cx,
+                            filigreeLocation.cy,
+                            34,
+                            48);
+                }
+                else
+                {
+                    m_imagesFiligree.TransparentBlt(
+                            memoryDc.GetSafeHdc(),
+                            filigreeLocation.cx,
+                            filigreeLocation.cy,
+                            34,
+                            48);
+                }
+                CImage image;
+                LoadImageFile(IT_augment, filigree.Icon(), &image);
+                image.TransparentBlt(
+                        memoryDc.GetSafeHdc(),
+                        filigreeLocation.cx+1,
+                        filigreeLocation.cy+1,
+                        32,
+                        32);
+            }
+            else
+            {
+                // no rare option shown if no filigree selected
+                m_imagesJewel.TransparentBlt(
+                        memoryDc.GetSafeHdc(),
+                        filigreeLocation.cx+1,
+                        filigreeLocation.cy+1,
+                        34,
+                        34);
+            }
+            // move draw location for next filigree
+            if ((i % 5) == 4)
+            {
+                // start of next row
+                filigreeLocation.cx = c_filigreeX;
+                filigreeLocation.cy += c_filigreeYOffset;
+            }
+            else
+            {
+                // move across one
+                filigreeLocation.cx += c_filigreeXOffset;
+            }
+        }
+    }
     // now draw to display
     pdc.BitBlt(
             0,
@@ -183,7 +297,7 @@ void CInventoryDialog::OnPaint()
 void CInventoryDialog::OnLButtonDown(UINT nFlags, CPoint point)
 {
     CDialog::OnLButtonDown(nFlags, point);
-    InventorySlotType slotClicked = FindByPoint(NULL);
+    InventorySlotType slotClicked = FindItemByPoint(NULL);
     if (slotClicked != Inventory_Unknown)
     {
         NotifySlotLeftClicked(slotClicked);
@@ -193,7 +307,7 @@ void CInventoryDialog::OnLButtonDown(UINT nFlags, CPoint point)
 void CInventoryDialog::OnRButtonDown(UINT nFlags, CPoint point)
 {
     CDialog::OnRButtonDown(nFlags, point);
-    InventorySlotType slotClicked = FindByPoint(NULL);
+    InventorySlotType slotClicked = FindItemByPoint(NULL);
     if (slotClicked != Inventory_Unknown)
     {
         NotifySlotRightClicked(slotClicked);
@@ -201,15 +315,15 @@ void CInventoryDialog::OnRButtonDown(UINT nFlags, CPoint point)
 }
 
 
-InventorySlotType CInventoryDialog::FindByPoint(CRect * pRect) const
+InventorySlotType CInventoryDialog::FindItemByPoint(CRect * pRect) const
 {
     CPoint point;
     GetCursorPos(&point);
     ScreenToClient(&point);
     // see if we need to highlight the item under the cursor
     InventorySlotType slot = Inventory_Unknown;
-    std::vector<InventoryHitBox>::const_iterator it = m_hitBoxes.begin();
-    while (slot == Inventory_Unknown && it != m_hitBoxes.end())
+    std::vector<InventoryHitBox>::const_iterator it = m_hitBoxesInventory.begin();
+    while (slot == Inventory_Unknown && it != m_hitBoxesInventory.end())
     {
         if ((*it).IsInRect(point))
         {
@@ -225,11 +339,50 @@ InventorySlotType CInventoryDialog::FindByPoint(CRect * pRect) const
     return slot;
 }
 
+bool CInventoryDialog::FindFiligreeByPoint(
+        int * filigree,
+        CRect * pRect) const
+{
+    bool found = false;
+    CPoint point;
+    GetCursorPos(&point);
+    ScreenToClient(&point);
+    size_t count = 0;
+    if (m_gearSet.HasItemInSlot(Inventory_Weapon1)
+            && m_gearSet.ItemInSlot(Inventory_Weapon1).HasSentientIntelligence())
+    {
+        SentientJewel jewel = m_gearSet.ItemInSlot(Inventory_Weapon1).SentientIntelligence();
+        // see if we need to highlight the item under the cursor
+        std::vector<FiligreeHitBox>::const_iterator it = m_hitBoxesFiligrees.begin();
+        while (!found && it != m_hitBoxesFiligrees.end())
+        {
+            if ((*it).IsInRect(point))
+            {
+                // mouse is over this item
+                // but the item must exist (slot always exists for jewel (-1))
+                if ((*it).Slot() < (int)jewel.NumFiligrees())
+                {
+                    *filigree = (*it).Slot();
+                    if (pRect != NULL)
+                    {
+                        *pRect = (*it).Rect();
+                    }
+                    found = true;
+                }
+            }
+            ++it;
+        }
+    }
+    return found;
+}
+
 void CInventoryDialog::OnMouseMove(UINT nFlags, CPoint point)
 {
     // determine which item the mouse may be over
     CRect itemRect;
-    InventorySlotType slot = FindByPoint(&itemRect);
+    InventorySlotType slot = FindItemByPoint(&itemRect);
+    int filigree = 0;
+    bool bFiligree = FindFiligreeByPoint(&filigree, &itemRect);
     if (slot != Inventory_Unknown
             && slot != m_tooltipItem)
     {
@@ -240,13 +393,39 @@ void CInventoryDialog::OnMouseMove(UINT nFlags, CPoint point)
             ShowTip(m_gearSet.ItemInSlot(slot), itemRect);
         }
     }
+    else if (bFiligree && filigree != m_tooltipFiligree)
+    {
+        m_tooltipFiligree = filigree;
+        // over a jewel/filigree item
+        SentientJewel jewel = m_gearSet.ItemInSlot(Inventory_Weapon1).SentientIntelligence();
+        if (filigree == -1) // jewel
+        {
+            if (jewel.HasPersonality())
+            {
+                std::string augmentName = jewel.Personality();
+                Augment augment = FindAugmentByName(augmentName);
+                ShowTip(augment, itemRect);
+            }
+        }
+        else    // filigree
+        {
+            std::string filigreeName = jewel.Filigree(filigree);
+            if (filigreeName.size() != 0)
+            {
+                Augment augment = FindAugmentByName(filigreeName);
+                ShowTip(augment, itemRect);
+            }
+        }
+    }
     else
     {
-        if (m_showingTip
-                && slot != m_tooltipItem)
+        // over neither an item or a filigree
+        if ((m_showingItemTip && slot != m_tooltipItem)
+                || (m_showingFiligreeTip && filigree != m_tooltipFiligree))
         {
             // no longer over the same item
             HideTip();
+            m_tooltipFiligree = -2;
         }
     }
     // as the mouse is over the enhancement tree, ensure the status bar message prompts available actions
@@ -263,7 +442,7 @@ LRESULT CInventoryDialog::OnMouseLeave(WPARAM wParam, LPARAM lParam)
 
 void CInventoryDialog::ShowTip(const Item & item, CRect itemRect)
 {
-    if (m_showingTip)
+    if (m_showingItemTip || m_showingFiligreeTip)
     {
         m_tooltip.Hide();
     }
@@ -271,7 +450,27 @@ void CInventoryDialog::ShowTip(const Item & item, CRect itemRect)
     CPoint tipTopLeft(itemRect.left, itemRect.bottom + 2);
     CPoint tipAlternate(itemRect.left, itemRect.top - 2);
     SetTooltipText(item, tipTopLeft, tipAlternate);
-    m_showingTip = true;
+    m_showingItemTip = true;
+    // track the mouse so we know when it leaves our window
+    TRACKMOUSEEVENT tme;
+    tme.cbSize = sizeof(tme);
+    tme.hwndTrack = m_hWnd;
+    tme.dwFlags = TME_LEAVE;
+    tme.dwHoverTime = 1;
+    _TrackMouseEvent(&tme);
+}
+
+void CInventoryDialog::ShowTip(const Augment & augment, CRect itemRect)
+{
+    if (m_showingItemTip || m_showingFiligreeTip)
+    {
+        m_tooltip.Hide();
+    }
+    ClientToScreen(&itemRect);
+    CPoint tipTopLeft(itemRect.left, itemRect.bottom + 2);
+    CPoint tipAlternate(itemRect.left, itemRect.top - 2);
+    SetTooltipText(augment, tipTopLeft, tipAlternate);
+    m_showingFiligreeTip = true;
     // track the mouse so we know when it leaves our window
     TRACKMOUSEEVENT tme;
     tme.cbSize = sizeof(tme);
@@ -284,10 +483,11 @@ void CInventoryDialog::ShowTip(const Item & item, CRect itemRect)
 void CInventoryDialog::HideTip()
 {
     // tip not shown if not over a gear slot
-    if (m_tipCreated && m_showingTip)
+    if (m_tipCreated && (m_showingItemTip || m_showingFiligreeTip))
     {
         m_tooltip.Hide();
-        m_showingTip = false;
+        m_showingItemTip = false;
+        m_showingFiligreeTip = false;
         m_tooltipItem = Inventory_Unknown;
     }
 }
@@ -302,13 +502,23 @@ void CInventoryDialog::SetTooltipText(
     m_tooltip.Show();
 }
 
+void CInventoryDialog::SetTooltipText(
+        const Augment & augment,
+        CPoint tipTopLeft,
+        CPoint tipAlternate)
+{
+    m_tooltip.SetOrigin(tipTopLeft, tipAlternate, false);
+    m_tooltip.SetAugment(&augment);
+    m_tooltip.Show();
+}
+
 CRect CInventoryDialog::GetItemRect(InventorySlotType slot) const
 {
     // iterate the list of hit boxes looking for the item that matches
     CRect itemRect(0, 0, 0, 0);
     bool found = false;
-    std::vector<InventoryHitBox>::const_iterator it = m_hitBoxes.begin();
-    while (!found && it != m_hitBoxes.end())
+    std::vector<InventoryHitBox>::const_iterator it = m_hitBoxesInventory.begin();
+    while (!found && it != m_hitBoxesInventory.end())
     {
         if ((*it).Slot() == slot)
         {

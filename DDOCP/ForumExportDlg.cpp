@@ -921,12 +921,17 @@ void CForumExportDlg::AddEnergyResistances(
 void CForumExportDlg::AddEnhancements(std::stringstream & forumExport)
 {
     forumExport << "Enhancements: 80 APs";
-    if (m_pCharacter->BonusActionPoints() > 0)
+    if (m_pCharacter->BonusRacialActionPoints() > 0)
     {
-        forumExport << " and ";
+        forumExport << ", Racial ";
         forumExport.width(1);
-        forumExport << m_pCharacter->BonusActionPoints();
-        forumExport << " Racial APs";
+        forumExport << m_pCharacter->BonusRacialActionPoints();
+    }
+    if (m_pCharacter->BonusUniversalActionPoints() > 0)
+    {
+        forumExport << ", Universal ";
+        forumExport.width(1);
+        forumExport << m_pCharacter->BonusUniversalActionPoints();
     }
     forumExport << "\r\n";
     forumExport << "------------------------------------------------------------------------------------------\r\n";
@@ -1565,6 +1570,27 @@ void CForumExportDlg::ExportGear(const EquippedGear & gear, std::stringstream & 
             }
         }
     }
+    //// add any sentient weapon Filigree to the list also
+    //if (gear.HasSentientIntelligence())
+    //{
+    //    forumExport << "              Sentient Weapon Personality: ";
+    //    if (gear.SentientIntelligence().HasPersonality())
+    //    {
+    //        forumExport << gear.SentientIntelligence().Personality();
+    //    }
+    //    forumExport << "\r\n";
+    //    // now add the Filigree upgrades
+    //    for (size_t fi = 0; fi < MAX_FILIGREE; ++fi)
+    //    {
+    //        forumExport << "              Filigree " << (fi + 1) << ": ";
+    //        forumExport << gear.SentientIntelligence().GetFiligree(fi);
+    //        if (gear.SentientIntelligence().IsRareFiligree(fi))
+    //        {
+    //            forumExport << "(Rare Version)";
+    //        }
+    //        forumExport << "\r\n";
+    //    }
+    //}
     forumExport << "------------------------------------------------------------------------------------------\r\n";
     forumExport << "\r\n";
 }

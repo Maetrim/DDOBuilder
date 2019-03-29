@@ -42,6 +42,8 @@ void CEquipmentView::DoDataExchange(CDataExchange* pDX)
     DDX_Control(pDX, IDC_BUTTON_COPY, m_buttonCopy);
     DDX_Control(pDX, IDC_BUTTON_PASTE, m_buttonPaste);
     DDX_Control(pDX, IDC_BUTTON_DELETE, m_buttonDelete);
+    DDX_Control(pDX, IDC_STATIC_NUM_FILIGREES, m_staticNumFiligrees);
+    DDX_Control(pDX, IDC_COMBO_NUM_FILLIGREES, m_comboNumFiligrees);
 }
 
 #pragma warning(push)
@@ -63,6 +65,7 @@ BEGIN_MESSAGE_MAP(CEquipmentView, CFormView)
     ON_BN_CLICKED(IDC_BUTTON_PASTE, OnGearPaste)
     ON_BN_CLICKED(IDC_BUTTON_DELETE, OnGearDelete)
     ON_CBN_SELENDOK(IDC_COMBO_GEAR_NAME, OnGearSelectionSelEndOk)
+    ON_CBN_SELENDOK(IDC_COMBO_NUM_FILLIGREES, OnGearNumFiligreesSelEndOk)
 END_MESSAGE_MAP()
 #pragma warning(pop)
 
@@ -113,13 +116,13 @@ void CEquipmentView::OnSize(UINT nType, int cx, int cy)
     if (m_inventoryView != NULL)
     {
         // position all the windows
-        // +--------------------------------+
-        // | [Drop List Combo] [N][C][P][D] |
-        // | +----------------------------+ |
-        // | |                            | |
-        // | | Inventory Bitmap           | |
-        // | |                            | |
-        // | +---------------------   ----+ |
+        // +---------------------------------------------------------+
+        // | [Drop List Combo] [N][C][P][D] [Num Filigrees] [FopList]|
+        // | +----------------------------+ +-----------------------+|
+        // | |                            | |                       ||
+        // | | Inventory Bitmap           | | Filigrees Bitmap      ||
+        // | |                            | |                       ||
+        // | +---------------------   ----+ +-----------------------+|
         CRect rctCombo;
         m_comboGearSelections.GetWindowRect(&rctCombo);
         rctCombo -= rctCombo.TopLeft();
@@ -128,6 +131,8 @@ void CEquipmentView::OnSize(UINT nType, int cx, int cy)
         CRect rctCopy;
         CRect rctPaste;
         CRect rctDelete;
+        CRect rctNumFiligrees;
+        CRect rctNumFiligreesCombo;
         m_buttonNew.GetWindowRect(&rctNew);
         m_buttonCopy.GetWindowRect(&rctCopy);
         m_buttonPaste.GetWindowRect(&rctPaste);
@@ -142,11 +147,18 @@ void CEquipmentView::OnSize(UINT nType, int cx, int cy)
         rctNew -= rctNew.TopLeft();
         rctNew += CSize(rctCopy.left - c_controlSpacing - rctNew.Width(), c_controlSpacing);
         rctCombo.right = rctNew.left - c_controlSpacing;
+        m_staticNumFiligrees.GetWindowRect(rctNumFiligrees);
+        rctNumFiligrees -= rctNumFiligrees.TopLeft();
+        rctNumFiligrees += CPoint(rctDelete.right + c_controlSpacing, c_controlSpacing);
+        m_comboNumFiligrees.GetWindowRect(rctNumFiligreesCombo);
+        rctNumFiligreesCombo -= rctNumFiligreesCombo.TopLeft();
+        rctNumFiligreesCombo += CPoint(rctNumFiligrees.right + c_controlSpacing, c_controlSpacing);
+        rctNumFiligreesCombo.bottom = cy;   // drop list to bottom of view
 
         CRect rctInventory(
                 c_controlSpacing,
                 rctDelete.bottom + c_controlSpacing,
-                c_controlSpacing + 223,
+                c_controlSpacing + 418,
                 rctDelete.bottom + c_controlSpacing + 290);
         m_comboGearSelections.MoveWindow(rctCombo);
         m_buttonNew.MoveWindow(rctNew);
@@ -154,6 +166,8 @@ void CEquipmentView::OnSize(UINT nType, int cx, int cy)
         m_buttonPaste.MoveWindow(rctPaste);
         m_buttonDelete.MoveWindow(rctDelete);
         m_inventoryView->MoveWindow(rctInventory);
+        m_staticNumFiligrees.MoveWindow(rctNumFiligrees);
+        m_comboNumFiligrees.MoveWindow(rctNumFiligreesCombo);
         SetScrollSizes(
                 MM_TEXT,
                 CSize(
@@ -244,6 +258,29 @@ void CEquipmentView::PopulateCombobox()
         }
     }
     m_comboGearSelections.UnlockWindowUpdate();
+
+    // populate the Filigree combobox
+    m_comboNumFiligrees.LockWindowUpdate();
+    m_comboNumFiligrees.ResetContent();
+    for (size_t i = 0; i <= MAX_FILIGREE; ++i)
+    {
+        CString text;
+        text.Format("%d", i);
+        m_comboNumFiligrees.AddString(text);
+    }
+    size_t count = 0;
+    if (m_pCharacter != NULL)
+    {
+        if (m_pCharacter->ActiveGearSet().HasItemInSlot(Inventory_Weapon1))
+        {
+            if (m_pCharacter->ActiveGearSet().ItemInSlot(Inventory_Weapon1).HasSentientIntelligence())
+            {
+                count = m_pCharacter->ActiveGearSet().ItemInSlot(Inventory_Weapon1).SentientIntelligence().NumFiligrees();
+            }
+        }
+    }
+    m_comboNumFiligrees.SetCurSel(count);
+    m_comboNumFiligrees.UnlockWindowUpdate();
 }
 
 std::string CEquipmentView::SelectedGearSet() const
@@ -270,6 +307,8 @@ void CEquipmentView::EnableControls()
         m_buttonCopy.EnableWindow(FALSE);
         m_buttonPaste.EnableWindow(FALSE);
         m_buttonDelete.EnableWindow(FALSE);
+        m_staticNumFiligrees.EnableWindow(FALSE);
+        m_comboNumFiligrees.EnableWindow(FALSE);
     }
     else
     {
@@ -280,6 +319,8 @@ void CEquipmentView::EnableControls()
         m_buttonCopy.EnableWindow(setups.size() > 0);
         m_buttonPaste.EnableWindow(IsClipboardFormatAvailable(CF_PRIVATEFIRST));
         m_buttonDelete.EnableWindow(setups.size() > 0);
+        m_staticNumFiligrees.EnableWindow(TRUE);
+        m_comboNumFiligrees.EnableWindow(TRUE);
     }
 }
 
@@ -578,3 +619,13 @@ void CEquipmentView::OnGearSelectionSelEndOk()
     }
 }
 
+void CEquipmentView::OnGearNumFiligreesSelEndOk()
+{
+    int sel = m_comboNumFiligrees.GetCurSel();
+    if (sel != CB_ERR)
+    {
+        // applies to active gear set
+        m_pCharacter->SetNumFiligrees(sel);
+        PopulateGear();
+    }
+}

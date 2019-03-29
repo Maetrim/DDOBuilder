@@ -33,6 +33,31 @@ class InventoryHitBox
         InventorySlotType m_slot;
         CRect m_rect;
 };
+class FiligreeHitBox
+{
+    public:
+        FiligreeHitBox(int slot, const CRect & rect) :
+                m_slot(slot), m_rect(rect)
+        {
+        };
+        ~FiligreeHitBox() {};
+
+        bool IsInRect(CPoint point) const
+        {
+            return (m_rect.PtInRect(point) != 0);
+        };
+        int Slot() const
+        {
+            return m_slot;
+        };
+        CRect Rect() const
+        {
+            return m_rect;
+        };
+    private:
+        int m_slot;      // -1 for jewel
+        CRect m_rect;
+};
 class CInventoryDialog;
 
 // this dialog handles selection of gear
@@ -79,10 +104,13 @@ class CInventoryDialog :
 
     private:
         void RenderInventoryItem(CDC * pDC);
-        InventorySlotType FindByPoint(CRect * pRect = NULL) const;
+        InventorySlotType FindItemByPoint(CRect * pRect = NULL) const;
+        bool FindFiligreeByPoint(int * filigree, CRect * pRect = NULL) const;
         void ShowTip(const Item & item, CRect itemRect);
+        void ShowTip(const Augment & augment, CRect itemRect);
         void HideTip();
         void SetTooltipText(const Item & item, CPoint tipTopLeft, CPoint tipAlternate);
+        void SetTooltipText(const Augment & augment, CPoint tipTopLeft, CPoint tipAlternate);
         CRect GetItemRect(InventorySlotType slot) const;
         void NotifySlotLeftClicked(InventorySlotType slot);
         void NotifySlotRightClicked(InventorySlotType slot);
@@ -92,11 +120,17 @@ class CInventoryDialog :
         CImage m_imageBackground;
         CImage m_imageBackgroundDisabled;
         CImage m_imagesCannotEquip;
-        std::vector<InventoryHitBox> m_hitBoxes;
+        CImage m_imagesJewel;
+        CImage m_imagesFiligree;
+        CImage m_imagesFiligreeRare;
+        std::vector<InventoryHitBox> m_hitBoxesInventory;
+        std::vector<FiligreeHitBox> m_hitBoxesFiligrees;
         CInfoTip m_tooltip;
-        bool m_showingTip;
+        bool m_showingItemTip;
+        bool m_showingFiligreeTip;
         bool m_tipCreated;
         InventorySlotType m_tooltipItem;
+        int m_tooltipFiligree;
         EquippedGear m_gearSet;
 };
 

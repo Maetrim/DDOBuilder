@@ -205,8 +205,8 @@ bool EnhancementTreeItem::CanTrain(
     // verify and enhancements we are dependent on have enough trained ranks also
     canTrain &= m_RequirementsToTrain.CanTrainEnhancement(charData, trainedRanks);
     // must have enough action points to buy it
-    size_t availableAP = charData.AvailableActionPoints(treeName, type);
-    canTrain &= (availableAP >= Cost());
+    int availableAP = charData.AvailableActionPoints(treeName, type);
+    canTrain &= (availableAP >= (int)Cost());
     return canTrain;
 }
 

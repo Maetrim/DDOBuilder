@@ -205,7 +205,8 @@ class Character :
         void Enhancement_ResetEnhancementTree(std::string treeName);
         void Enhancement_SetSelectedTrees(const SelectedEnhancementTrees & trees);
         int AvailableActionPoints() const;
-        int BonusActionPoints() const;
+        int BonusRacialActionPoints() const;
+        int BonusUniversalActionPoints() const;
         bool IsTreeTrained(const std::string & tree) const;
         void SwapTrees(const std::string & tree1, const std::string & tree2);
 
@@ -255,6 +256,7 @@ class Character :
         void ClearGearInSlot(const std::string & name, InventorySlotType slot);
         bool LightWeaponInOffHand() const;
         bool IsFocusWeapon(WeaponType wt) const;
+        void SetNumFiligrees(size_t count);
 
         // guild support
         void ToggleApplyGuildBuffs();
@@ -408,7 +410,8 @@ class Character :
                 const std::string & treename,
                 const std::list<TrainedEnhancement> & enhancements);
         void DetermineEpicCompletionist();
-        void CountBonusAP();
+        void CountBonusRacialAP();
+        void CountBonusUniversalAP();
         void DetermineFatePoints();
         void RevokeGearEffects();
         void ApplyGearEffects();
@@ -438,9 +441,11 @@ class Character :
         virtual void UpdateItemEffectRevoked(Character * charData, const std::string & itemName, const Effect & effect) override;
 
         CDDOCPDoc * m_pDocument;
-        int m_bonusActionPoints;
+        int m_bonusRacialActionPoints;
+        int m_bonusUniversalActionPoints;
         int m_racialTreeSpend;
-        int m_otherTreeSpend;
+        int m_universalTreeSpend;
+        int m_classTreeSpend;
         size_t m_previousGuildLevel;
         // we track the granted feats from all sources on the character
         // but this information is not saved. Note that granted feats cannot

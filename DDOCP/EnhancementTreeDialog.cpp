@@ -613,6 +613,7 @@ void CEnhancementTreeDialog::OnLButtonDown(UINT nFlags, CPoint point)
                         // they made a valid selection
                         switch (m_type)
                         {
+                        case TT_universal:
                         case TT_racial:
                         case TT_enhancement:
                             m_pCharacter->Enhancement_TrainEnhancement(
@@ -640,6 +641,7 @@ void CEnhancementTreeDialog::OnLButtonDown(UINT nFlags, CPoint point)
                     {
                         switch (m_type)
                         {
+                        case TT_universal:
                         case TT_racial:
                         case TT_enhancement:
                             m_pCharacter->Enhancement_TrainEnhancement(
@@ -698,6 +700,7 @@ void CEnhancementTreeDialog::OnLButtonDown(UINT nFlags, CPoint point)
                     // lets go for a tree reset action
                     switch (m_type)
                     {
+                    case TT_universal:
                     case TT_racial:
                     case TT_enhancement:
                         m_pCharacter->Enhancement_ResetEnhancementTree(m_tree.Name());
@@ -767,6 +770,7 @@ void CEnhancementTreeDialog::OnRButtonDown(UINT nFlags, CPoint point)
         {
             switch (m_type)
             {
+            case TT_universal:
             case TT_racial:
             case TT_enhancement:
                 m_pCharacter->Enhancement_RevokeEnhancement(m_tree.Name());

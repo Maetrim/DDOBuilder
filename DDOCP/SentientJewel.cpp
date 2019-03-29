@@ -36,6 +36,30 @@ XmlLib::SaxContentElementInterface * SentientJewel::StartElement(
 
 void SentientJewel::EndElement()
 {
+    // backwards compatibility, convert all old Filigreex/RareFiligreex to
+    // Filigree objects and the remove them
+    //bool bConverted = false;
+    //m_hasSentientSpark = false;     // just clear it
+    //for (size_t i = 0; i < 8; ++i)
+    //{
+    //    if (Deprecated_Filigree(i) != "")
+    //    {
+    //        Filigree f;
+    //        f.Set_Name(Deprecated_Filigree(i));
+    //        if (Deprecated_IsRareFiligree(i))
+    //        {
+    //            f.Set_Rare();
+    //        }
+    //        m_Filigrees.push_back(f);
+    //        bConverted = true;
+    //        Deprecated_ClearFiligree(i);
+    //    }
+    //}
+    //if (bConverted)
+    //{
+    //    m_NumFiligrees = m_Filigrees.size();
+    //    m_hasNumFiligrees = true;
+    //}
     SaxContentElement::EndElement();
     DL_END(SentientJewel_PROPERTIES)
 }
@@ -45,6 +69,50 @@ void SentientJewel::Write(XmlLib::SaxWriter * writer) const
     writer->StartElement(ElementName());//, VersionAttributes());
     DL_WRITE(SentientJewel_PROPERTIES)
     writer->EndElement();
+}
+
+//std::string SentientJewel::Future_GetFiligree(size_t fi) const
+//{
+//    std::string name;
+//    if (fi < m_Filigrees.size())
+//    {
+//        std::list<Filigree>::const_iterator it = m_Filigrees.begin();
+//        std::advance(it, fi);
+//        name = (*it).Name();
+//    }
+//    return name;
+//}
+
+//bool SentientJewel::Future_IsRareFiligree(size_t fi) const
+//{
+//    bool bRare = false;
+//    if (fi < m_Filigrees.size())
+//    {
+//        std::list<Filigree>::const_iterator it = m_Filigrees.begin();
+//        std::advance(it, fi);
+//        bRare = (*it).HasRare();
+//    }
+//    return bRare;
+//}
+
+//void SentientJewel::Future_SetNumFiligrees(size_t count)
+//{
+//    // ensure we do not have too many filigrees setup
+//    m_NumFiligrees = count;
+//    while (m_Filigrees.size() > count)
+//    {
+//        m_Filigrees.pop_back();
+//    }
+//}
+
+size_t SentientJewel::NumFiligrees() const
+{
+    size_t count = MAX_FILIGREE - 1;
+    if (HasSentientSpark())
+    {
+        count++;
+    }
+    return count;
 }
 
 std::string SentientJewel::Filigree(size_t fi) const

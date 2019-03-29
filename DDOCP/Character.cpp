@@ -55,9 +55,11 @@ Character::Character() :
     XmlLib::SaxContentElement(f_saxElementName, f_verCurrent),
     m_pDocument(NULL),
     m_SpecialFeats(L"SpecialFeats"),
-    m_bonusActionPoints(0),
+    m_bonusRacialActionPoints(0),
+    m_bonusUniversalActionPoints(0),
     m_racialTreeSpend(0),
-    m_otherTreeSpend(0),
+    m_universalTreeSpend(0),
+    m_classTreeSpend(0),
     m_previousGuildLevel(0)
 {
     DL_INIT(Character_PROPERTIES)
@@ -84,9 +86,11 @@ Character::Character(CDDOCPDoc * pDoc) :
     XmlLib::SaxContentElement(f_saxElementName, f_verCurrent),
     m_pDocument(pDoc),
     m_SpecialFeats(L"SpecialFeats"),
-    m_bonusActionPoints(0),
+    m_bonusRacialActionPoints(0),
+    m_bonusUniversalActionPoints(0),
     m_racialTreeSpend(0),
-    m_otherTreeSpend(0),
+    m_universalTreeSpend(0),
+    m_classTreeSpend(0),
     m_previousGuildLevel(0)
 {
     DL_INIT(Character_PROPERTIES)
@@ -1187,7 +1191,8 @@ void Character::TrainSpecialFeat(
     DetermineEpicCompletionist();
 
     // special feats may change the number of action points available
-    CountBonusAP();
+    CountBonusRacialAP();
+    CountBonusUniversalAP();
 }
 
 void Character::RevokeSpecialFeat(
@@ -1226,7 +1231,8 @@ void Character::RevokeSpecialFeat(
         DetermineFatePoints();
         DetermineEpicCompletionist();
         // special feats may change the number of action points available
-        CountBonusAP();
+        CountBonusRacialAP();
+        CountBonusUniversalAP();
         if (feat.Acquire() == FeatAcquisition_RacialPastLife)
         {
             std::list<TrainedFeat> allFeats = SpecialFeats().Feats();
@@ -2394,10 +2400,13 @@ int Character::TotalPointsAvailable(const std::string & treeName, TreeType type)
     switch (type)
     {
     case TT_racial:
-        aps = MAX_ACTION_POINTS + m_bonusActionPoints;  // bonus APs only apply to racial tree
+        aps = MAX_ACTION_POINTS + m_bonusRacialActionPoints;  // bonus APs only apply to racial tree
         break;
     case TT_enhancement:
         aps = MAX_ACTION_POINTS;
+        break;
+    case TT_universal:
+        aps = MAX_ACTION_POINTS + m_bonusUniversalActionPoints;  // bonus APs only apply to universal tree(s)
         break;
     case TT_reaper:
         aps = 1000;  // no upper limit on reaper APs (i.e. you can buy all)
@@ -2418,19 +2427,28 @@ int Character::AvailableActionPoints(const std::string & treeName, TreeType type
     // for actions points we need to track:
     // how many bonus action points the character has (m_bonusActionPoints)
     // how many action points have been spent in the racial tree (m_racialTreeSpend)
-    // how many action points have been spent in other trees (m_otherTreeSpend)
+    // how many action points have been spent in the universal tree(s) (m_universalTreeSpend)
+    // how many action points have been spent in other trees (m_classTreeSpend)
     int aps = 0;
     switch (type)
     {
     case TT_racial:
-        aps = MAX_ACTION_POINTS + m_bonusActionPoints
-                - m_racialTreeSpend
-                - m_otherTreeSpend;
+        aps = MAX_ACTION_POINTS
+                + m_bonusRacialActionPoints - m_racialTreeSpend
+                - max(m_universalTreeSpend - m_bonusUniversalActionPoints, 0)
+                - m_classTreeSpend;
         break;
     case TT_enhancement:
         aps = MAX_ACTION_POINTS
-                - max(m_racialTreeSpend - m_bonusActionPoints, 0)
-                - m_otherTreeSpend;
+                - max(m_racialTreeSpend - m_bonusRacialActionPoints, 0)
+                - max(m_universalTreeSpend - m_bonusUniversalActionPoints, 0)
+                - m_classTreeSpend;
+        break;
+    case TT_universal:
+        aps = MAX_ACTION_POINTS
+                - max(m_racialTreeSpend - m_bonusRacialActionPoints, 0)
+                + m_bonusUniversalActionPoints - m_universalTreeSpend
+                - m_classTreeSpend;
         break;
     case TT_reaper:
         aps = 1000;  // no upper limit on reaper APs (i.e. you can buy all)
@@ -2619,7 +2637,14 @@ void Character::Enhancement_TrainEnhancement(
     }
     else
     {
-        m_otherTreeSpend += spent;
+        if (eTree.HasIsUniversalTree())
+        {
+            m_universalTreeSpend += spent;
+        }
+        else
+        {
+            m_classTreeSpend += spent;
+        }
     }
     ASSERT(pTreeItem != NULL);
     if (HasTier5Tree() && pTreeItem->HasTier5())
@@ -2670,7 +2695,14 @@ void Character::Enhancement_RevokeEnhancement(
         }
         else
         {
-            m_otherTreeSpend -= spent;
+            if (eTree.HasIsUniversalTree())
+            {
+                m_universalTreeSpend -= spent;
+            }
+            else
+            {
+                m_classTreeSpend -= spent;
+            }
         }
         // now notify all and sundry about the enhancement effects
         // get the list of effects this enhancement has
@@ -2904,7 +2936,7 @@ size_t Character::DetermineBuildPoints()
     return buildPoints;
 }
 
-void Character::CountBonusAP()
+void Character::CountBonusRacialAP()
 {
     // look through the list of all special feats and count how many bonus AP there are
     // if the number has changed from what we currently have, change it and notify
@@ -2971,9 +3003,55 @@ void Character::CountBonusAP()
             }
             fi++;
         }
-        if (APcount != m_bonusActionPoints)
+        if (APcount != m_bonusRacialActionPoints)
         {
-            m_bonusActionPoints = APcount;
+            m_bonusRacialActionPoints = APcount;
+            NotifyActionPointsChanged();
+        }
+    }
+}
+
+void Character::CountBonusUniversalAP()
+{
+    // look through the list of all special feats and count how many bonus AP there are
+    // if the number has changed from what we currently have, change it and notify
+    CWinApp * pApp = AfxGetApp();
+    CDDOCPApp * pDDOApp = dynamic_cast<CDDOCPApp*>(pApp);
+    if (pDDOApp != NULL)
+    {
+        size_t APcount = 0;
+        const std::list<Feat> & specialFeats = pDDOApp->SpecialFeats();
+        std::list<Feat>::const_iterator fi = specialFeats.begin();
+        while (fi != specialFeats.end())
+        {
+            size_t count = GetSpecialFeatTrainedCount(fi->Name());
+            if (count > 0)
+            {
+                // look at all the feat effects and see if any affect our AP count
+                const std::list<Effect> & effects = (*fi).Effects();
+                std::list<Effect>::const_iterator ei = effects.begin();
+                while (ei != effects.end())
+                {
+                    if (ei->Type() == Effect_UAPBonus)
+                    {
+                        // APs are always whole numbers
+                        if (ei->HasAmount())
+                        {
+                            APcount += (size_t)ei->Amount() * count;
+                        }
+                        else if (ei->HasAmountVector())
+                        {
+                            APcount += (size_t)ei->AmountVector()[count-1];
+                        }
+                    }
+                    ei++;
+                }
+            }
+            fi++;
+        }
+        if (APcount != m_bonusUniversalActionPoints)
+        {
+            m_bonusUniversalActionPoints = APcount;
             NotifyActionPointsChanged();
         }
     }
@@ -3053,7 +3131,14 @@ void Character::JustLoaded()
                     }
                     else
                     {
-                        m_otherTreeSpend += apsSpent;
+                        if (tree.HasIsUniversalTree())
+                        {
+                            m_universalTreeSpend += apsSpent;
+                        }
+                        else
+                        {
+                            m_classTreeSpend += apsSpent;
+                        }
                     }
                 }
             }
@@ -3154,7 +3239,8 @@ void Character::JustLoaded()
         AfxMessageBox(message, MB_ICONWARNING);
         m_pDocument->SetModifiedFlag(TRUE);
     }
-    CountBonusAP();
+    CountBonusRacialAP();
+    CountBonusUniversalAP();
     UpdateSkillPoints(); // when tomes apply has changed
 
     // update loaded gear objects to latest versions loaded to pick up any changes
@@ -4166,14 +4252,21 @@ size_t Character::SpentFatePoints() const
 int Character::AvailableActionPoints() const
 {
     return MAX_ACTION_POINTS
-            + m_bonusActionPoints
+            + m_bonusRacialActionPoints
             - m_racialTreeSpend
-            - m_otherTreeSpend;
+            + m_bonusUniversalActionPoints
+            - m_universalTreeSpend
+            - m_classTreeSpend;
 }
 
-int Character::BonusActionPoints() const
+int Character::BonusRacialActionPoints() const
 {
-    return m_bonusActionPoints;
+    return m_bonusRacialActionPoints;
+}
+
+int Character::BonusUniversalActionPoints() const
+{
+    return m_bonusUniversalActionPoints;
 }
 
 // gear support
@@ -4262,6 +4355,22 @@ void Character::SetActiveGearSet(const std::string & name)
 EquippedGear Character::ActiveGearSet() const
 {
     return GetGearSet(ActiveGear());
+}
+
+void Character::SetNumFiligrees(size_t count)
+{
+    bool found = false;
+    std::list<EquippedGear>::iterator it = m_GearSetups.begin();
+    while (!found && it != m_GearSetups.end())
+    {
+        if ((*it).Name() == ActiveGear())
+        {
+            (*it).SetNumFiligrees(count);
+            found = true;
+        }
+        ++it;
+    }
+    m_pDocument->SetModifiedFlag(TRUE);
 }
 
 void Character::SetGear(
@@ -4455,6 +4564,45 @@ void Character::RevokeGearEffects()
             }
         }
     }
+    //if (gear.HasSentientIntelligence())
+    //{
+    //    // revoke this items sentient weapon Filigrees
+    //    for (size_t si = 0 ; si < MAX_FILIGREE; ++si)
+    //    {
+    //        std::string filigree = gear.SentientIntelligence().GetFiligree(si);
+    //        if (filigree != "")
+    //        {
+    //            // there is an augment in this position
+    //            const Augment & augment = FindAugmentByName(filigree);
+    //            // name is:
+    //            // <item>:<augment type>:<Augment name>
+    //            std::stringstream ss;
+    //            ss << "Filigree " << (si + 1)
+    //                    << ": " << augment.Name();
+    //            // now revoke the augments effects
+    //            std::string name;
+    //            name = ss.str();
+    //            std::list<Effect> effects = augment.Effects();
+    //            std::list<Effect>::iterator it = effects.begin();
+    //            while (it != effects.end())
+    //            {
+    //                NotifyItemEffectRevoked(name, (*it));
+    //                ++it;
+    //            }
+    //            // now do any rare effects
+    //            if (gear.SentientIntelligence().IsRareFiligree(si))
+    //            {
+    //                std::list<Effect> effects = augment.Rares().Effects();
+    //                std::list<Effect>::iterator it = effects.begin();
+    //                while (it != effects.end())
+    //                {
+    //                    NotifyItemEffectRevoked(name, (*it));
+    //                    ++it;
+    //                }
+    //            }
+    //        }
+    //    }
+    //}
 }
 
 void Character::ApplyGearEffects()
@@ -4591,6 +4739,45 @@ void Character::ApplyGearEffects()
             }
         }
     }
+    //if (gear.HasSentientIntelligence())
+    //{
+    //    // apply this items sentient weapon Filigrees
+    //    for (size_t si = 0 ; si < MAX_FILIGREE; ++si)
+    //    {
+    //        std::string filigree = gear.SentientIntelligence().GetFiligree(si);
+    //        if (filigree != "")
+    //        {
+    //            // there is an augment in this position
+    //            const Augment & augment = FindAugmentByName(filigree);
+    //            // name is:
+    //            // <item>:<augment type>:<Augment name>
+    //            std::stringstream ss;
+    //            ss << "Filigree " << (si + 1)
+    //                    << ": " << augment.Name();
+    //            // now revoke the augments effects
+    //            std::string name;
+    //            name = ss.str();
+    //            std::list<Effect> effects = augment.Effects();
+    //            std::list<Effect>::iterator it = effects.begin();
+    //            while (it != effects.end())
+    //            {
+    //                NotifyItemEffect(name, (*it));
+    //                ++it;
+    //            }
+    //            // now do any rare effects
+    //            if (gear.SentientIntelligence().IsRareFiligree(si))
+    //            {
+    //                std::list<Effect> effects = augment.Rares().Effects();
+    //                std::list<Effect>::iterator it = effects.begin();
+    //                while (it != effects.end())
+    //                {
+    //                    NotifyItemEffect(name, (*it));
+    //                    ++it;
+    //                }
+    //            }
+    //        }
+    //    }
+    //}
 
     UpdateWeaponStances();
     UpdateArmorStances();
