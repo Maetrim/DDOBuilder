@@ -53,21 +53,22 @@ XmlLib::SaxContentElementInterface * EquippedGear::StartElement(
 
 void EquippedGear::EndElement()
 {
+    // legacy file conversion
+    // if the main hand weapon has a SentientJewel object, move it
+    // to us instead
+    if (m_hasMainHand)
+    {
+        if (m_MainHand.HasSentientIntelligence())
+        {
+            // copy it
+            m_SentientIntelligence = m_MainHand.m_SentientIntelligence;
+            m_hasSentientIntelligence = true;
+            // and remove it from item
+            m_MainHand.m_hasSentientIntelligence = false;
+        }
+    }
     SaxContentElement::EndElement();
     DL_END(EquippedGear_PROPERTIES)
-    //// legacy file conversion
-    //// if the main hand weapon has a SentientJewel object, move it
-    //// to us instead
-    //if (m_hasMainHand)
-    //{
-    //    if (m_MainHand.HasSentientIntelligence())
-    //    {
-    //        // copy it
-    //        m_SentientIntelligence = m_MainHand.m_SentientIntelligence;
-    //        // and remove it
-    //        m_MainHand.m_hasSentientIntelligence = false;
-    //    }
-    //}
 }
 
 void EquippedGear::Write(XmlLib::SaxWriter * writer) const
@@ -262,6 +263,6 @@ void EquippedGear::ClearItem(InventorySlotType slot)
 
 void EquippedGear::SetNumFiligrees(size_t count)
 {
-    //m_SentientIntelligence.SetNumFiligrees(count);
+    m_SentientIntelligence.SetNumFiligrees(count);
 }
 

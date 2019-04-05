@@ -12,16 +12,14 @@ class SentientJewel :
         SentientJewel(void);
         void Write(XmlLib::SaxWriter * writer) const;
 
-        std::string Filigree(size_t fi) const;
+        void SetNumFiligrees(size_t count);
+        void SetPersonality(const std::string & name);
+
+        std::string GetFiligree(size_t fi) const;
+        bool IsRareFiligree(size_t fi) const;
+
         void SetFiligree(size_t fi, const std::string & name);
         void SetFiligreeRare(size_t fi, bool isRare);
-        bool IsRareFiligree(size_t fi) const;
-        void ClearFiligree(size_t fi);
-
-        //std::string Future_GetFiligree(size_t fi) const;
-        //bool Future_IsRareFiligree(size_t fi) const;
-        //void Future_SetNumFiligrees(size_t count);
-        size_t NumFiligrees() const;
 
     protected:
         XmlLib::SaxContentElementInterface * StartElement(
@@ -32,10 +30,9 @@ class SentientJewel :
 
         #define SentientJewel_PROPERTIES(_) \
                 DL_OPTIONAL_STRING(_, Personality) \
-                /* for a future change */ \
-                /* DL_SIMPLE(_, size_t, NumFiligrees, 0) */ \
-                /* DL_OBJECT_LIST(_, Filigree, Filigrees) */ \
-                /* all following will be for backwards compatibility on the change */ \
+                DL_SIMPLE(_, size_t, NumFiligrees, 0) \
+                DL_OBJECT_LIST(_, Filigree, Filigrees) \
+                /* all following is for backwards compatibility */ \
                 DL_FLAG(_, SentientSpark) \
                 DL_OPTIONAL_STRING(_, Filigree1) \
                 DL_OPTIONAL_STRING(_, Filigree2) \
@@ -56,6 +53,12 @@ class SentientJewel :
 
         DL_DECLARE_ACCESS(SentientJewel_PROPERTIES)
         DL_DECLARE_VARIABLES(SentientJewel_PROPERTIES)
+
+    private:
+        bool Deprecated_HasFiligree(size_t fi) const;
+        std::string Deprecated_Filigree(size_t fi) const;
+        bool Deprecated_IsRareFiligree(size_t fi) const;
+        void Deprecated_ClearFiligree(size_t fi);
 
         friend class CItemSelectDialog;
 };

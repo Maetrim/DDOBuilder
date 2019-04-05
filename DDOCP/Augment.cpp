@@ -96,6 +96,13 @@ void Augment::AddImage(CImageList * pIL) const
     }
 }
 
+bool Augment::operator<(const Augment & other) const
+{
+    // (assumes all augment names are unique)
+    // sort by name
+    return (Name() < other.Name());
+}
+
 void Augment::VerifyObject() const
 {
     bool ok = true;

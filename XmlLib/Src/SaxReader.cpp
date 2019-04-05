@@ -54,6 +54,14 @@ bool SaxReader::Open(const std::string & pathname)
             m_errorReported = true;
         }
     }
+    catch (const std::string & s)
+    {
+        if (!m_errorReported)
+        {
+            m_errorMessage = s;
+            m_errorReported = true;
+        }
+    }
     catch (...)
     {
         // there's always an exception thrown after a failure, need to ignore it

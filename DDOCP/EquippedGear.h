@@ -45,11 +45,12 @@ class EquippedGear :
                 DL_OPTIONAL_OBJECT(_, Item, Arrow) \
                 DL_OPTIONAL_OBJECT(_, Item, Ring1) \
                 DL_OPTIONAL_OBJECT(_, Item, Ring2) \
-                /*DL_OPTIONAL_OBJECT(_, SentientJewel, SentientIntelligence) */
+                DL_OBJECT(_, SentientJewel, SentientIntelligence)
 
         DL_DECLARE_ACCESS(EquippedGear_PROPERTIES)
         DL_DECLARE_VARIABLES(EquippedGear_PROPERTIES)
 
         friend class CEquipmentView;
         friend class EquippedGear;
+        friend class CInventoryDialog;
 };

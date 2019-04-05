@@ -252,6 +252,7 @@ class Character :
         void SetActiveGearSet(const std::string & name);
         EquippedGear GetGearSet(const std::string & name) const;
         EquippedGear ActiveGearSet() const;
+        void UpdateActiveGearSet(const EquippedGear & newGear);
         void SetGear(const std::string & name, InventorySlotType slot, const Item & item);
         void ClearGearInSlot(const std::string & name, InventorySlotType slot);
         bool LightWeaponInOffHand() const;

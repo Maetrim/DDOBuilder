@@ -61,7 +61,6 @@ class Item :
                 DL_OBJECT_VECTOR(_, ItemAugment, Augments) \
                 DL_OBJECT_VECTOR(_, SlotUpgrade, SlotUpgrades) \
                 DL_FLAG(_, IsGreensteel) \
-                DL_FLAG(_, CanAcceptSentientJewel) \
                 DL_OBJECT_LIST(_, DC, EffectDC) \
                 DL_OPTIONAL_OBJECT(_, SentientJewel, SentientIntelligence)
 

@@ -52,7 +52,7 @@ bool ItemAugment::VerifyObject(std::stringstream * ss) const
 {
     bool ok = true;
     // problem only if this augment has no matching augments available
-    std::list<Augment> augments = CompatibleAugments(Type());
+    std::vector<Augment> augments = CompatibleAugments(Type());
     if (augments.size() == 0)
     {
         // no matching augments, this is a possible problem

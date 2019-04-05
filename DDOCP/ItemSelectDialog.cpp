@@ -84,16 +84,6 @@ void CItemSelectDialog::DoDataExchange(CDataExchange* pDX)
         DDX_Control(pDX, IDC_STATIC_UPGRADE_TYPE1 + i, m_upgradeType[i]);
         DDX_Control(pDX, IDC_COMBO_UPGRADE1 + i, m_comboUpgradeDropList[i]);
     }
-    DDX_Control(pDX, IDC_CHECK_SENTIENT_SLOTTED, m_buttonSentientJewel);
-    DDX_Control(pDX, IDC_CHECK_SENTIENT_SPARK, m_buttonSentientSpark);
-    DDX_Control(pDX, IDC_STATIC_SENTIENT_LABEL, m_sentientLabel);
-    DDX_Control(pDX, IDC_COMBO_PERSONALITY, m_comboSentientPersonality);
-    for (size_t i = 0; i < MAX_Filigree; ++i)
-    {
-        DDX_Control(pDX, IDC_STATIC_FILIGREE1 + i, m_staticLabelFiligree[i]);
-        DDX_Control(pDX, IDC_COMBO_FILIGREE1 + i, m_comboFiligreeDropList[i]);
-        DDX_Control(pDX, IDC_CHECK_FILGREE_RARE1 + i, m_buttonFiligreeRare[i]);
-    }
 }
 
 BEGIN_MESSAGE_MAP(CItemSelectDialog, CDialog)
@@ -103,11 +93,7 @@ BEGIN_MESSAGE_MAP(CItemSelectDialog, CDialog)
     ON_CONTROL_RANGE(CBN_SELENDOK, IDC_COMBO_UPGRADE1, IDC_COMBO_UPGRADE1 + MAX_Upgrades - 1, OnUpgradeSelect)
     ON_CONTROL_RANGE(CBN_SELENDCANCEL, IDC_COMBO_UPGRADE1, IDC_COMBO_UPGRADE1 + MAX_Upgrades - 1, OnUpgradeCancel)
     ON_CONTROL_RANGE(EN_KILLFOCUS, IDC_EDIT_AUGMENT1, IDC_EDIT_AUGMENT1 + MAX_Augments - 1, OnKillFocusAugmentEdit)
-    ON_CBN_SELENDOK(IDC_COMBO_PERSONALITY, OnSelEndOkPersonality)
     ON_CBN_SELENDOK(IDC_COMBO_FILTER, OnSelEndOkFilter)
-    ON_CONTROL_RANGE(CBN_SELENDOK, IDC_COMBO_UPGRADE1, IDC_COMBO_FILIGREE1 + MAX_Filigree - 1, OnUpgradeFiligree)
-    ON_CONTROL_RANGE(CBN_SELENDCANCEL, IDC_COMBO_UPGRADE1, IDC_COMBO_FILIGREE1 + MAX_Filigree - 1, OnUpgradeFiligreeCancel)
-    ON_CONTROL_RANGE(BN_CLICKED, IDC_CHECK_FILGREE_RARE1, IDC_CHECK_FILGREE_RARE1 + MAX_Filigree - 1, OnUpgradeFiligreeRare)
     ON_WM_SIZE()
     ON_WM_WINDOWPOSCHANGING()
     ON_NOTIFY(HDN_ENDTRACK, IDC_ITEM_LIST, OnEndtrackListItems)
@@ -115,8 +101,6 @@ BEGIN_MESSAGE_MAP(CItemSelectDialog, CDialog)
     ON_NOTIFY(LVN_COLUMNCLICK, IDC_ITEM_LIST, OnColumnclickListItems)
     ON_NOTIFY(NM_HOVER, IDC_ITEM_LIST, OnHoverListItems)
     ON_MESSAGE(WM_MOUSELEAVE, OnMouseLeave)
-    ON_BN_CLICKED(IDC_CHECK_SENTIENT_SLOTTED, OnButtonSentientJewel)
-    ON_BN_CLICKED(IDC_CHECK_SENTIENT_SPARK, OnButtonSentientSpark)
     ON_MESSAGE(WM_MOUSEHOVER, OnHoverComboBox)
     ON_MESSAGE(WM_MOUSEENTER, OnMouseEnter)
     ON_EN_KILLFOCUS(IDC_EDIT_TEXT, OnSearchTextKillFocus)
@@ -169,45 +153,10 @@ BOOL CItemSelectDialog::OnInitDialog()
             );
     EnableControls();
 
-    if (m_slot != Inventory_Weapon1)
-    {
-        // resize the dialog so that the sentient weapon filigree controls
-        // are not visible
-        CRect rct;
-        m_sentientLabel.GetWindowRect(rct);
-        ScreenToClient(rct);
-        int newWidth = rct.left;
-        GetWindowRect(rct);
-        rct.right = rct.left + newWidth;
-        MoveWindow(rct);
-    }
-    SetSentientWeaponControls();
-    // add monitor locations to show sentient weapon and filigree tooltips
-    CRect rect;
-    if (m_slot == Inventory_Weapon1)
-    {
-        m_comboSentientPersonality.GetWindowRect(&rect);
-        m_comboHookHandles[0] = GetMouseHook()->AddRectangleToMonitor(
-                this->GetSafeHwnd(),
-                rect,           // screen coordinates,
-                WM_MOUSEENTER,
-                WM_MOUSELEAVE,
-                false);
-        for (size_t i = 0 ; i < MAX_Filigree; ++i)
-        {
-            m_comboFiligreeDropList[i].GetWindowRect(&rect);
-            m_comboHookHandles[i+1] = GetMouseHook()->AddRectangleToMonitor(
-                    this->GetSafeHwnd(),
-                    rect,           // screen coordinates,
-                    WM_MOUSEENTER,
-                    WM_MOUSELEAVE,
-                    false);
-        }
-    }
-
     // add monitor locations to show augment tooltips
     for (size_t i = 0 ; i < MAX_Augments; ++i)
     {
+        CRect rect;
         m_comboAugmentDropList[i].GetWindowRect(&rect);
         rect.DeflateRect(0, 1, 0, 1);   // ensure they do not overlap
         m_augmentHookHandles[i] = GetMouseHook()->AddRectangleToMonitor(
@@ -358,8 +307,6 @@ void CItemSelectDialog::PopulateAvailableItemList()
     {
         // ok not available until item selected
         GetDlgItem(IDOK)->EnableWindow(FALSE);
-        // cannot select sentient jewel until an item selected
-        m_buttonSentientJewel.EnableWindow(FALSE);
         // show the name of the selected item in the dialog title
         SetWindowText("Item Selection and Configuration - No item selected");
     }
@@ -421,8 +368,8 @@ void CItemSelectDialog::PopulateAugmentList(
     combo->LockWindowUpdate();
     combo->ResetContent();
     // get all the augments compatible with this slot type
-    std::list<Augment> augments = CompatibleAugments(augment.Type());
-    std::list<Augment>::const_iterator it = augments.begin();
+    std::vector<Augment> augments = CompatibleAugments(augment.Type());
+    std::vector<Augment>::const_iterator it = augments.begin();
     std::string selectedAugment = augment.HasSelectedAugment()
             ? augment.SelectedAugment()
             : "";
@@ -482,30 +429,12 @@ void CItemSelectDialog::OnItemSelected(NMHDR* pNMHDR, LRESULT* pResult)
                 std::advance(it, sel);
                 if ((*it).Name() != m_item.Name())
                 {
-                    // backup any sentient jewel this item being swapped from has
-                    bool hadSentience = false;
-                    SentientJewel jewel;
-                    if (m_item.HasSentientIntelligence())
-                    {
-                        hadSentience = true;
-                        jewel = m_item.SentientIntelligence();
-                    }
                     m_item = (*it);
-                    // restore sentient jewel only if target item can accept one
-                    if (hadSentience
-                            && m_item.HasCanAcceptSentientJewel())
-                    {
-                        m_item.Set_SentientIntelligence(jewel);
-                    }
                     AddSpecialSlots();  // adds reaper or mythic slots to the item
                     // update the other controls
                     EnableControls();
                     // item selected, can now click ok!
                     GetDlgItem(IDOK)->EnableWindow(TRUE);
-                    // ensure sentient weapon controls are correct
-                    m_buttonSentientJewel.EnableWindow(m_slot == Inventory_Weapon1
-                            && m_item.HasCanAcceptSentientJewel());
-                    SetSentientWeaponControls();
                     CString text;
                     text.Format("Item Selection and Configuration - %s",
                             m_item.Name().c_str());
@@ -673,104 +602,6 @@ void CItemSelectDialog::OnUpgradeCancel(UINT nID)
     m_bIgnoreNextMessage = true;
 }
 
-void CItemSelectDialog::OnButtonSentientJewel()
-{
-    bool enabled = (m_buttonSentientJewel.GetCheck() != 0);
-    if (enabled)
-    {
-        // add sentient jewel to the item
-        SentientJewel jewel;
-        m_item.Set_SentientIntelligence(jewel);
-    }
-    else
-    {
-        // just clear the sentient jewel
-        m_item.Clear_SentientIntelligence();
-    }
-    SetSentientWeaponControls();
-}
-
-void CItemSelectDialog::OnButtonSentientSpark()
-{
-    bool enabled = (m_buttonSentientSpark.GetCheck() != 0);
-    if (enabled)
-    {
-        SentientJewel jewel = m_item.SentientIntelligence();
-        jewel.Set_SentientSpark();
-        m_item.Set_SentientIntelligence(jewel);
-    }
-    else
-    {
-        // just clear the sentient spark
-        SentientJewel jewel = m_item.SentientIntelligence();
-        jewel.Clear_SentientSpark();
-        jewel.Clear_Filigree8();        // no filigree
-        jewel.Clear_RareFiligree8();    // no filigree rare
-        m_item.Set_SentientIntelligence(jewel);
-    }
-    SetSentientWeaponControls();
-}
-
-void CItemSelectDialog::OnSelEndOkPersonality()
-{
-    int selection = m_comboSentientPersonality.GetCurSel();
-    if (selection != CB_ERR)
-    {
-        selection = m_comboSentientPersonality.GetItemData(selection);
-        // user has selected a personality. Get its name
-        CString text;
-        m_comboSentientPersonality.GetLBText(selection, text);
-        SentientJewel jewel = m_item.SentientIntelligence();
-        jewel.Set_Personality((LPCTSTR)text);
-        m_item.Set_SentientIntelligence(jewel);
-    }
-}
-
-void CItemSelectDialog::OnUpgradeFiligree(UINT nID)
-{
-    size_t filigreeIndex = nID - IDC_COMBO_FILIGREE1;
-    int selection = m_comboFiligreeDropList[filigreeIndex].GetCurSel();
-    if (selection != CB_ERR)
-    {
-        // user has selected a Filigree. Get its name
-        CString text;
-        m_comboFiligreeDropList[filigreeIndex].GetLBText(selection, text);
-        if (text == " No Augment")
-        {
-            // "No Augment" select, clear any augment
-            SentientJewel jewel = m_item.SentientIntelligence();
-            jewel.ClearFiligree(filigreeIndex);
-            m_item.Set_SentientIntelligence(jewel);
-        }
-        else
-        {
-            SentientJewel jewel = m_item.SentientIntelligence();
-            jewel.SetFiligree(filigreeIndex, (LPCTSTR)text);
-            m_item.Set_SentientIntelligence(jewel);
-        }
-        // update the controls after a selection as options in other
-        // drop lists will need to be limited
-        SetSentientWeaponControls();
-    }
-    HideTip();
-}
-
-void CItemSelectDialog::OnUpgradeFiligreeCancel(UINT nID)
-{
-    HideTip();
-    m_bIgnoreNextMessage = true;
-}
-
-void CItemSelectDialog::OnUpgradeFiligreeRare(UINT nID)
-{
-    // user is changing the rare state of a selected filigree
-    size_t filigreeIndex = nID - IDC_CHECK_FILGREE_RARE1;
-    bool checked = (m_buttonFiligreeRare[filigreeIndex].GetCheck() != 0);
-    SentientJewel jewel = m_item.SentientIntelligence();
-    jewel.SetFiligreeRare(filigreeIndex, checked);
-    m_item.Set_SentientIntelligence(jewel);
-}
-
 void CItemSelectDialog::OnKillFocusAugmentEdit(UINT nID)
 {
     // user may have completed editing an edit field for a selectable augment
@@ -799,27 +630,10 @@ void CItemSelectDialog::OnSize(UINT nType, int cx, int cy)
 
         // TBD!
     }
-    if (IsWindow(m_comboSentientPersonality.GetSafeHwnd()))
+    if (IsWindow(m_staticType.GetSafeHwnd()))
     {
         // update the mouse hook handles for tooltips
         CRect rect;
-        if (m_slot == Inventory_Weapon1)
-        {
-            m_comboSentientPersonality.GetWindowRect(&rect);
-            // gives the wrong rectangle, ensure large enough
-            rect.bottom = rect.top + 32 + GetSystemMetrics(SM_CYBORDER) * 4;
-            GetMouseHook()->UpdateRectangle(
-                    m_comboHookHandles[0],
-                    rect);          // screen coordinates
-            for (size_t i = 0; i < MAX_Filigree; ++i)
-            {
-                CRect rect;
-                m_comboFiligreeDropList[i].GetWindowRect(&rect);
-                GetMouseHook()->UpdateRectangle(
-                        m_comboHookHandles[i+1],
-                        rect);          // screen coordinates
-            }
-        }
         for (size_t i = 0 ; i < MAX_Augments; ++i)
         {
             m_comboAugmentDropList[i].GetWindowRect(&rect);
@@ -1169,171 +983,6 @@ void CItemSelectDialog::AddSpecialSlots()
     }
 }
 
-void CItemSelectDialog::SetSentientWeaponControls()
-{
-    if (m_slot == Inventory_Weapon1)
-    {
-        bool hasJewel = m_item.HasSentientIntelligence();
-        m_buttonSentientJewel.SetCheck(hasJewel
-                ? BST_CHECKED
-                : BST_UNCHECKED);
-        m_buttonSentientSpark.EnableWindow(hasJewel);
-        m_buttonSentientSpark.SetCheck(hasJewel && m_item.SentientIntelligence().HasSentientSpark()
-                ? BST_CHECKED
-                : BST_UNCHECKED);
-        // enable and populate the Filigree drop list controls
-        m_comboSentientPersonality.EnableWindow(hasJewel);
-        PopulatePersonalityCombobox();
-        for (size_t fi = 0; fi < MAX_Filigree; ++fi)
-        {
-            PopulateFiligreeCombobox(fi);
-        }
-    }
-    else
-    {
-        m_buttonSentientJewel.EnableWindow(false);
-    }
-}
-
-void CItemSelectDialog::PopulatePersonalityCombobox()
-{
-    if (m_item.HasSentientIntelligence())
-    {
-        m_comboSentientPersonality.EnableWindow(true);
-        // populate with the list of available personalities
-        std::list<Augment> augments = CompatibleAugments("Personality");
-        // build the image list for this control
-        BuildImageList(&m_ilJewel, augments);
-        m_comboSentientPersonality.SetImageList(&m_ilJewel);
-        // now add the available personalities
-        m_comboSentientPersonality.ResetContent();
-        std::string selectedPersonality;
-        if (m_item.SentientIntelligence().HasPersonality())
-        {
-            selectedPersonality = m_item.SentientIntelligence().Personality();
-        }
-        size_t index = 0;
-        std::list<Augment>::iterator it = augments.begin();
-        while (it != augments.end())
-        {
-            size_t pos = m_comboSentientPersonality.AddString((*it).Name().c_str());
-            m_comboSentientPersonality.SetItemData(pos, index);
-            if ((*it).Name() == selectedPersonality)
-            {
-                 // this is the selected personality, select it
-                m_comboSentientPersonality.SetCurSel(pos);
-            }
-            ++it;
-            ++index;
-        }
-    }
-    else
-    {
-        // disabled with no items or selections
-        m_comboSentientPersonality.EnableWindow(false);
-        m_comboSentientPersonality.ResetContent();
-    }
-}
-
-void CItemSelectDialog::PopulateFiligreeCombobox(size_t filigreeIndex)
-{
-    if (m_item.HasSentientIntelligence())
-    {
-        m_comboFiligreeDropList[filigreeIndex].EnableWindow(true);
-        m_buttonFiligreeRare[filigreeIndex].EnableWindow(true);
-        // populate with the list of available filigree minus any selections
-        // made in other filigree slots
-        std::list<Augment> augments = CompatibleAugments("Filigree");
-        for (size_t fi = 0; fi < MAX_Filigree; ++fi)
-        {
-            // do not remove any selection from current slot
-            if (fi != filigreeIndex)
-            {
-                // get current selection (if any)
-                std::string filigree = m_item.SentientIntelligence().Filigree(fi);
-                if (filigree != "")
-                {
-                    // remove it from the augments list
-                    std::list<Augment>::iterator it = augments.begin();
-                    while (it != augments.end())
-                    {
-                        if ((*it).Name() == filigree)
-                        {
-                            it = augments.erase(it);
-                        }
-                        ++it;
-                    }
-                }
-            }
-        }
-        // now add the available augments
-        m_comboFiligreeDropList[filigreeIndex].ResetContent();
-        std::string selectedFiligree =
-                m_item.SentientIntelligence().Filigree(filigreeIndex);
-        // build the image list for this control
-        BuildImageList(&m_ilFiligree[filigreeIndex], augments);
-        m_comboFiligreeDropList[filigreeIndex].SetImageList(&m_ilFiligree[filigreeIndex]);
-        bool isRare = m_item.SentientIntelligence().IsRareFiligree(filigreeIndex);
-        size_t index = 0;
-        std::list<Augment>::iterator it = augments.begin();
-        while (it != augments.end())
-        {
-            size_t pos = m_comboFiligreeDropList[filigreeIndex].AddString((*it).Name().c_str());
-            m_comboFiligreeDropList[filigreeIndex].SetItemData(pos, index);
-            if ((*it).Name() == selectedFiligree)
-            {
-                 // this is the selected augment, select it
-                m_comboFiligreeDropList[filigreeIndex].SetCurSel(pos);
-                m_buttonFiligreeRare[filigreeIndex].SetCheck(isRare ? BST_CHECKED : BST_UNCHECKED);
-            }
-            ++it;
-            ++index;
-        }
-        if (filigreeIndex == MAX_Filigree - 1)
-        {
-            // for this control to be displayed, "Sentient Spark" must be
-            // enabled
-            bool visible = m_item.SentientIntelligence().HasSentientSpark();
-            m_staticLabelFiligree[filigreeIndex].ShowWindow(visible ? SW_SHOW : SW_HIDE);
-            m_comboFiligreeDropList[filigreeIndex].ShowWindow(visible ? SW_SHOW : SW_HIDE);
-            m_buttonFiligreeRare[filigreeIndex].ShowWindow(visible ? SW_SHOW : SW_HIDE);
-        }
-    }
-    else
-    {
-        // disabled with no items or selections
-        m_comboFiligreeDropList[filigreeIndex].EnableWindow(false);
-        m_comboFiligreeDropList[filigreeIndex].ResetContent();
-        m_buttonFiligreeRare[filigreeIndex].EnableWindow(false);
-        if (filigreeIndex == MAX_Filigree - 1)
-        {
-            // no filigree 8 without a sentient jewel
-            m_staticLabelFiligree[filigreeIndex].ShowWindow(SW_HIDE);
-            m_comboFiligreeDropList[filigreeIndex].ShowWindow(SW_HIDE);
-            m_buttonFiligreeRare[filigreeIndex].ShowWindow(SW_HIDE);
-        }
-    }
-}
-
-void CItemSelectDialog::BuildImageList(
-        CImageList * il,
-        const std::list<Augment> & augments)
-{
-    il->DeleteImageList();
-    il->Create(
-            32,             // all icons are 32x32 pixels
-            32,
-            ILC_COLOR32,
-            0,
-            augments.size());
-    std::list<Augment>::const_iterator it = augments.begin();
-    while (it != augments.end())
-    {
-        (*it).AddImage(il);
-        ++it;
-    }
-}
-
 LRESULT CItemSelectDialog::OnHoverComboBox(WPARAM wParam, LPARAM lParam)
 {
     if (!m_bIgnoreNextMessage)
@@ -1373,75 +1022,26 @@ LRESULT CItemSelectDialog::OnHoverComboBox(WPARAM wParam, LPARAM lParam)
 LRESULT CItemSelectDialog::OnMouseEnter(WPARAM wParam, LPARAM lParam)
 {
     // is it a jewel or a filigree?
-    if (wParam == m_comboHookHandles[0])
+    for (size_t i = 0 ; i < MAX_Augments; ++i)
     {
-        // its over the jewel
-        int sel = m_comboSentientPersonality.GetCurSel();
-        if (sel != CB_ERR)
+        if (wParam == m_augmentHookHandles[i])
         {
-            CString augmentName;
-            m_comboSentientPersonality.GetLBText(
-                    sel,
-                    augmentName);
-            if (!augmentName.IsEmpty())
+            int sel = m_comboAugmentDropList[i].GetCurSel();
+            if (sel != CB_ERR)
             {
-                CRect itemRect;
-                m_comboSentientPersonality.GetWindowRect(&itemRect);
-                Augment augment = FindAugmentByName((LPCTSTR)augmentName);
-                CPoint tipTopLeft(itemRect.left, itemRect.bottom + 2);
-                CPoint tipAlternate(itemRect.left, itemRect.top - 2);
-                SetTooltipText(augment, tipTopLeft, tipAlternate, false);
-            }
-        }
-    }
-    else
-    {
-        // must be over one of the filigrees or augments
-        for (size_t i = 0 ; i < MAX_Filigree; ++i)
-        {
-            if (wParam == m_comboHookHandles[i+1])
-            {
-                int sel = m_comboFiligreeDropList[i].GetCurSel();
-                if (sel != CB_ERR)
+                CString augmentName;
+                m_comboAugmentDropList[i].GetLBText(
+                        sel,
+                        augmentName);
+                if (!augmentName.IsEmpty())
                 {
-                    CString augmentName;
-                    m_comboFiligreeDropList[i].GetLBText(
-                            sel,
-                            augmentName);
-                    if (!augmentName.IsEmpty())
-                    {
-                        CRect itemRect;
-                        m_comboFiligreeDropList[i].GetWindowRect(&itemRect);
-                        Augment augment = FindAugmentByName((LPCTSTR)augmentName);
-                        CPoint tipTopLeft(itemRect.left, itemRect.bottom + 2);
-                        CPoint tipAlternate(itemRect.left, itemRect.top - 2);
-                        SetTooltipText(augment, tipTopLeft, tipAlternate, false);
-                        break;
-                    }
-                }
-            }
-        }
-        for (size_t i = 0 ; i < MAX_Augments; ++i)
-        {
-            if (wParam == m_augmentHookHandles[i])
-            {
-                int sel = m_comboAugmentDropList[i].GetCurSel();
-                if (sel != CB_ERR)
-                {
-                    CString augmentName;
-                    m_comboAugmentDropList[i].GetLBText(
-                            sel,
-                            augmentName);
-                    if (!augmentName.IsEmpty())
-                    {
-                        CRect itemRect;
-                        m_comboAugmentDropList[i].GetWindowRect(&itemRect);
-                        Augment augment = FindAugmentByName((LPCTSTR)augmentName);
-                        CPoint tipTopLeft(itemRect.left, itemRect.bottom + 2);
-                        CPoint tipAlternate(itemRect.left, itemRect.top - 2);
-                        SetTooltipText(augment, tipTopLeft, tipAlternate, false);
-                        break;
-                    }
+                    CRect itemRect;
+                    m_comboAugmentDropList[i].GetWindowRect(&itemRect);
+                    Augment augment = FindAugmentByName((LPCTSTR)augmentName);
+                    CPoint tipTopLeft(itemRect.left, itemRect.bottom + 2);
+                    CPoint tipAlternate(itemRect.left, itemRect.top - 2);
+                    SetTooltipText(augment, tipTopLeft, tipAlternate, false);
+                    break;
                 }
             }
         }

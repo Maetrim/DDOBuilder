@@ -53,6 +53,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
             "Kamdragon\r\n"
             "LittleTealeaf\r\n"
             "MaxPaxy\r\n"
+            "Neith\r\n"
             "nymcraian\r\n"
             "pcloke123\r\n"
             "peng\r\n"

@@ -4359,8 +4359,11 @@ EquippedGear Character::ActiveGearSet() const
 
 void Character::SetNumFiligrees(size_t count)
 {
-    bool found = false;
+    // first revoke all gear effects as the gear is about to change
+    RevokeGearEffects();        // always for active gear
+    // update the gear
     std::list<EquippedGear>::iterator it = m_GearSetups.begin();
+    bool found = false;
     while (!found && it != m_GearSetups.end())
     {
         if ((*it).Name() == ActiveGear())
@@ -4370,6 +4373,29 @@ void Character::SetNumFiligrees(size_t count)
         }
         ++it;
     }
+    // now apply the gear effects if its the active gear set
+    ApplyGearEffects();         // always for active gear
+    m_pDocument->SetModifiedFlag(TRUE);
+}
+
+void Character::UpdateActiveGearSet(const EquippedGear & newGear)
+{
+    // first revoke all gear effects as the gear is about to change
+    RevokeGearEffects();        // always for active gear
+    // update the gear
+    std::list<EquippedGear>::iterator it = m_GearSetups.begin();
+    bool found = false;
+    while (!found && it != m_GearSetups.end())
+    {
+        if ((*it).Name() == ActiveGear())
+        {
+            (*it) = newGear;
+            found = true;
+        }
+        ++it;
+    }
+    // now apply the gear effects if its the active gear set
+    ApplyGearEffects();         // always for active gear
     m_pDocument->SetModifiedFlag(TRUE);
 }
 
@@ -4511,45 +4537,6 @@ void Character::RevokeGearEffects()
                     }
                 }
             }
-            if (item.HasSentientIntelligence())
-            {
-                // revoke this items sentient weapon Filigrees
-                for (size_t si = 0 ; si < MAX_FILIGREE; ++si)
-                {
-                    std::string filigree = item.SentientIntelligence().Filigree(si);
-                    if (filigree != "")
-                    {
-                        // there is an augment in this position
-                        const Augment & augment = FindAugmentByName(filigree);
-                        // name is:
-                        // <item>:<augment type>:<Augment name>
-                        std::stringstream ss;
-                        ss << "Filigree " << (si + 1)
-                                << ": " << augment.Name();
-                        // now revoke the augments effects
-                        std::string name;
-                        name = ss.str();
-                        std::list<Effect> effects = augment.Effects();
-                        std::list<Effect>::iterator it = effects.begin();
-                        while (it != effects.end())
-                        {
-                            NotifyItemEffectRevoked(name, (*it));
-                            ++it;
-                        }
-                        // now do any rare effects
-                        if (item.SentientIntelligence().IsRareFiligree(si))
-                        {
-                            std::list<Effect> effects = augment.Rares().Effects();
-                            std::list<Effect>::iterator it = effects.begin();
-                            while (it != effects.end())
-                            {
-                                NotifyItemEffectRevoked(name, (*it));
-                                ++it;
-                            }
-                        }
-                    }
-                }
-            }
         }
         else if (i == Inventory_Armor)
         {
@@ -4564,45 +4551,42 @@ void Character::RevokeGearEffects()
             }
         }
     }
-    //if (gear.HasSentientIntelligence())
-    //{
-    //    // revoke this items sentient weapon Filigrees
-    //    for (size_t si = 0 ; si < MAX_FILIGREE; ++si)
-    //    {
-    //        std::string filigree = gear.SentientIntelligence().GetFiligree(si);
-    //        if (filigree != "")
-    //        {
-    //            // there is an augment in this position
-    //            const Augment & augment = FindAugmentByName(filigree);
-    //            // name is:
-    //            // <item>:<augment type>:<Augment name>
-    //            std::stringstream ss;
-    //            ss << "Filigree " << (si + 1)
-    //                    << ": " << augment.Name();
-    //            // now revoke the augments effects
-    //            std::string name;
-    //            name = ss.str();
-    //            std::list<Effect> effects = augment.Effects();
-    //            std::list<Effect>::iterator it = effects.begin();
-    //            while (it != effects.end())
-    //            {
-    //                NotifyItemEffectRevoked(name, (*it));
-    //                ++it;
-    //            }
-    //            // now do any rare effects
-    //            if (gear.SentientIntelligence().IsRareFiligree(si))
-    //            {
-    //                std::list<Effect> effects = augment.Rares().Effects();
-    //                std::list<Effect>::iterator it = effects.begin();
-    //                while (it != effects.end())
-    //                {
-    //                    NotifyItemEffectRevoked(name, (*it));
-    //                    ++it;
-    //                }
-    //            }
-    //        }
-    //    }
-    //}
+    // revoke this gears sentient weapon Filigrees
+    for (size_t si = 0 ; si < MAX_FILIGREE; ++si)
+    {
+        std::string filigree = gear.SentientIntelligence().GetFiligree(si);
+        if (filigree != "")
+        {
+            // there is an augment in this position
+            const Augment & augment = FindAugmentByName(filigree);
+            // name is:
+            // <item>:<augment type>:<Augment name>
+            std::stringstream ss;
+            ss << "Filigree " << (si + 1)
+                    << ": " << augment.Name();
+            // now revoke the augments effects
+            std::string name;
+            name = ss.str();
+            std::list<Effect> effects = augment.Effects();
+            std::list<Effect>::iterator it = effects.begin();
+            while (it != effects.end())
+            {
+                NotifyItemEffectRevoked(name, (*it));
+                ++it;
+            }
+            // now do any rare effects
+            if (gear.SentientIntelligence().IsRareFiligree(si))
+            {
+                std::list<Effect> effects = augment.Rares().Effects();
+                std::list<Effect>::iterator it = effects.begin();
+                while (it != effects.end())
+                {
+                    NotifyItemEffectRevoked(name, (*it));
+                    ++it;
+                }
+            }
+        }
+    }
 }
 
 void Character::ApplyGearEffects()
@@ -4683,45 +4667,6 @@ void Character::ApplyGearEffects()
                     }
                 }
             }
-            if (item.HasSentientIntelligence())
-            {
-                // apply this items sentient weapon Filigrees
-                for (size_t si = 0 ; si < MAX_FILIGREE; ++si)
-                {
-                    std::string filigree = item.SentientIntelligence().Filigree(si);
-                    if (filigree != "")
-                    {
-                        // there is an augment in this position
-                        const Augment & augment = FindAugmentByName(filigree);
-                        // name is:
-                        // <item>:<augment type>:<Augment name>
-                        std::stringstream ss;
-                        ss << "Filigree " << (si + 1)
-                                << ": " << augment.Name();
-                        // now revoke the augments effects
-                        std::string name;
-                        name = ss.str();
-                        std::list<Effect> effects = augment.Effects();
-                        std::list<Effect>::iterator it = effects.begin();
-                        while (it != effects.end())
-                        {
-                            NotifyItemEffect(name, (*it));
-                            ++it;
-                        }
-                        // now do any rare effects
-                        if (item.SentientIntelligence().IsRareFiligree(si))
-                        {
-                            std::list<Effect> effects = augment.Rares().Effects();
-                            std::list<Effect>::iterator it = effects.begin();
-                            while (it != effects.end())
-                            {
-                                NotifyItemEffect(name, (*it));
-                                ++it;
-                            }
-                        }
-                    }
-                }
-            }
         }
         else
         {
@@ -4739,45 +4684,42 @@ void Character::ApplyGearEffects()
             }
         }
     }
-    //if (gear.HasSentientIntelligence())
-    //{
-    //    // apply this items sentient weapon Filigrees
-    //    for (size_t si = 0 ; si < MAX_FILIGREE; ++si)
-    //    {
-    //        std::string filigree = gear.SentientIntelligence().GetFiligree(si);
-    //        if (filigree != "")
-    //        {
-    //            // there is an augment in this position
-    //            const Augment & augment = FindAugmentByName(filigree);
-    //            // name is:
-    //            // <item>:<augment type>:<Augment name>
-    //            std::stringstream ss;
-    //            ss << "Filigree " << (si + 1)
-    //                    << ": " << augment.Name();
-    //            // now revoke the augments effects
-    //            std::string name;
-    //            name = ss.str();
-    //            std::list<Effect> effects = augment.Effects();
-    //            std::list<Effect>::iterator it = effects.begin();
-    //            while (it != effects.end())
-    //            {
-    //                NotifyItemEffect(name, (*it));
-    //                ++it;
-    //            }
-    //            // now do any rare effects
-    //            if (gear.SentientIntelligence().IsRareFiligree(si))
-    //            {
-    //                std::list<Effect> effects = augment.Rares().Effects();
-    //                std::list<Effect>::iterator it = effects.begin();
-    //                while (it != effects.end())
-    //                {
-    //                    NotifyItemEffect(name, (*it));
-    //                    ++it;
-    //                }
-    //            }
-    //        }
-    //    }
-    //}
+    // apply this gears sentient weapon Filigrees
+    for (size_t si = 0 ; si < MAX_FILIGREE; ++si)
+    {
+        std::string filigree = gear.SentientIntelligence().GetFiligree(si);
+        if (filigree != "")
+        {
+            // there is an augment in this position
+            const Augment & augment = FindAugmentByName(filigree);
+            // name is:
+            // <item>:<augment type>:<Augment name>
+            std::stringstream ss;
+            ss << "Filigree " << (si + 1)
+                    << ": " << augment.Name();
+            // now revoke the augments effects
+            std::string name;
+            name = ss.str();
+            std::list<Effect> effects = augment.Effects();
+            std::list<Effect>::iterator it = effects.begin();
+            while (it != effects.end())
+            {
+                NotifyItemEffect(name, (*it));
+                ++it;
+            }
+            // now do any rare effects
+            if (gear.SentientIntelligence().IsRareFiligree(si))
+            {
+                std::list<Effect> effects = augment.Rares().Effects();
+                std::list<Effect>::iterator it = effects.begin();
+                while (it != effects.end())
+                {
+                    NotifyItemEffect(name, (*it));
+                    ++it;
+                }
+            }
+        }
+    }
 
     UpdateWeaponStances();
     UpdateArmorStances();

@@ -600,9 +600,9 @@ const Augment & FindAugmentByName(const std::string & name)
     return badAugment;
 }
 
-std::list<Augment> CompatibleAugments(const std::string & name)
+std::vector<Augment> CompatibleAugments(const std::string & name)
 {
-    std::list<Augment> compatibleAugments;
+    std::vector<Augment> compatibleAugments;
     const std::list<Augment> & augments = Augments();
     std::list<Augment>::const_iterator it = augments.begin();
     while (it != augments.end())
@@ -614,6 +614,7 @@ std::list<Augment> CompatibleAugments(const std::string & name)
         }
         ++it;
     }
+    std::sort(compatibleAugments.begin(), compatibleAugments.end());
     return compatibleAugments;
 }
 

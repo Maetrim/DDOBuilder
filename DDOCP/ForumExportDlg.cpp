@@ -1547,50 +1547,26 @@ void CForumExportDlg::ExportGear(const EquippedGear & gear, std::stringstream & 
                 }
                 forumExport << "\r\n";
             }
-            // add any sentient weapon Filigree to the list also
-            if (item.HasSentientIntelligence())
-            {
-                forumExport << "              Sentient Weapon Personality: ";
-                if (item.SentientIntelligence().HasPersonality())
-                {
-                    forumExport << item.SentientIntelligence().Personality();
-                }
-                forumExport << "\r\n";
-                // now add the Filigree upgrades
-                for (size_t fi = 0; fi < MAX_FILIGREE; ++fi)
-                {
-                    forumExport << "              Filigree " << (fi + 1) << ": ";
-                    forumExport << item.SentientIntelligence().Filigree(fi);
-                    if (item.SentientIntelligence().IsRareFiligree(fi))
-                    {
-                        forumExport << "(Rare Version)";
-                    }
-                    forumExport << "\r\n";
-                }
-            }
         }
     }
-    //// add any sentient weapon Filigree to the list also
-    //if (gear.HasSentientIntelligence())
-    //{
-    //    forumExport << "              Sentient Weapon Personality: ";
-    //    if (gear.SentientIntelligence().HasPersonality())
-    //    {
-    //        forumExport << gear.SentientIntelligence().Personality();
-    //    }
-    //    forumExport << "\r\n";
-    //    // now add the Filigree upgrades
-    //    for (size_t fi = 0; fi < MAX_FILIGREE; ++fi)
-    //    {
-    //        forumExport << "              Filigree " << (fi + 1) << ": ";
-    //        forumExport << gear.SentientIntelligence().GetFiligree(fi);
-    //        if (gear.SentientIntelligence().IsRareFiligree(fi))
-    //        {
-    //            forumExport << "(Rare Version)";
-    //        }
-    //        forumExport << "\r\n";
-    //    }
-    //}
+    // add any sentient weapon Filigree to the list also
+    forumExport << "              Sentient Weapon Personality: ";
+    if (gear.SentientIntelligence().HasPersonality())
+    {
+        forumExport << gear.SentientIntelligence().Personality();
+    }
+    forumExport << "\r\n";
+    // now add the Filigree upgrades
+    for (size_t fi = 0; fi < MAX_FILIGREE; ++fi)
+    {
+        forumExport << "              Filigree " << (fi + 1) << ": ";
+        forumExport << gear.SentientIntelligence().GetFiligree(fi);
+        if (gear.SentientIntelligence().IsRareFiligree(fi))
+        {
+            forumExport << "(Rare Version)";
+        }
+        forumExport << "\r\n";
+    }
     forumExport << "------------------------------------------------------------------------------------------\r\n";
     forumExport << "\r\n";
 }

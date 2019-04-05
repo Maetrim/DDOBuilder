@@ -205,9 +205,10 @@ You gain +2 to the DC of your Assassinate.</Description>
             <Amount>4</Amount>
          </Effect>
          <Effect>
-            <Type>Assassinate</Type>
+            <Type>TacticalDC</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>2</Amount>
+            <Tactical>Assassinate</Tactical>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -248,6 +249,7 @@ On vorpal: Heartseeker (-5% hit points, Fort save to negate DC 10 + half Rogue l
                   <AmountVector size="1">10</AmountVector>
                   <HalfClassLevel>Rogue</HalfClassLevel>
                   <ModAbility>Intelligence</ModAbility>
+                  <Tactical>Poison</Tactical>
                </DC>
             </EnhancementSelection>
             <EnhancementSelection>
@@ -268,6 +270,7 @@ On vorpal: Paralysis (Fort DC 10 + half Rogue level + INT modifier negates)
                   <AmountVector size="1">10</AmountVector>
                   <HalfClassLevel>Rogue</HalfClassLevel>
                   <ModAbility>Intelligence</ModAbility>
+                  <Tactical>Poison</Tactical>
                </DC>
             </EnhancementSelection>
             <EnhancementSelection>
@@ -288,6 +291,7 @@ Will save to negate, DC 10 + half Rogue level + INT modifier)</Description>
                   <AmountVector size="1">10</AmountVector>
                   <HalfClassLevel>Rogue</HalfClassLevel>
                   <ModAbility>Intelligence</ModAbility>
+                  <Tactical>Poison</Tactical>
                </DC>
             </EnhancementSelection>
          </Selector>
@@ -314,6 +318,12 @@ Will save to negate, DC 10 + half Rogue level + INT modifier)</Description>
             <Save>Poison</Save>
             <AmountVector size="3">1 2 3</AmountVector>
          </Effect>
+          <Effect>
+              <Type>TacticalDC</Type>
+              <Bonus>Enhancement</Bonus>
+              <AmountVector size="3">1 2 3</AmountVector>
+              <Tactical>Poison</Tactical>
+          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Assassin: Shiv</Name>
@@ -442,6 +452,7 @@ On vorpal: Heartseeker (-5% hit points, Fort save to negate DC 10 + half Rogue l
                   <AmountVector size="1">10</AmountVector>
                   <HalfClassLevel>Rogue</HalfClassLevel>
                   <ModAbility>Intelligence</ModAbility>
+                  <Tactical>Poison</Tactical>
                </DC>
             </EnhancementSelection>
             <EnhancementSelection>
@@ -470,6 +481,7 @@ On vorpal: Paralysis (Fort DC 10 + half Rogue level + INT modifier negates)
                   <AmountVector size="1">10</AmountVector>
                   <HalfClassLevel>Rogue</HalfClassLevel>
                   <ModAbility>Intelligence</ModAbility>
+                  <Tactical>Poison</Tactical>
                </DC>
             </EnhancementSelection>
             <EnhancementSelection>
@@ -498,6 +510,7 @@ Will save to negate, DC 10 + half Rogue level + INT modifier)</Description>
                   <AmountVector size="1">10</AmountVector>
                   <HalfClassLevel>Rogue</HalfClassLevel>
                   <ModAbility>Intelligence</ModAbility>
+                  <Tactical>Poison</Tactical>
                </DC>
             </EnhancementSelection>
          </Selector>
@@ -657,6 +670,7 @@ On vorpal: Heartseeker (-5% hit points, Fort save to negate DC 10 + half Rogue l
                   <AmountVector size="1">10</AmountVector>
                   <HalfClassLevel>Rogue</HalfClassLevel>
                   <ModAbility>Intelligence</ModAbility>
+                  <Tactical>Poison</Tactical>
                </DC>
             </EnhancementSelection>
             <EnhancementSelection>
@@ -689,6 +703,7 @@ On vorpal: Paralysis (Fort DC 10 + half Rogue level + INT modifier negates)
                   <AmountVector size="1">10</AmountVector>
                   <HalfClassLevel>Rogue</HalfClassLevel>
                   <ModAbility>Intelligence</ModAbility>
+                  <Tactical>Poison</Tactical>
                </DC>
             </EnhancementSelection>
             <EnhancementSelection>
@@ -721,6 +736,7 @@ Will save to negate, DC 10 + half Rogue level + INT modifier)</Description>
                   <AmountVector size="1">10</AmountVector>
                   <HalfClassLevel>Rogue</HalfClassLevel>
                   <ModAbility>Intelligence</ModAbility>
+                  <Tactical>Poison</Tactical>
                </DC>
             </EnhancementSelection>
          </Selector>
@@ -1027,6 +1043,18 @@ On Sneak Attack: Kills a target instantly, Fortitude save
                <Level>5</Level>
             </Requirement>
          </Requirements>
+        <DC>
+            <Name>Assassinate</Name>
+            <Description>Stealth Melee Assassinate Attack: +10 Sneak Attack dice.
+On Sneak Attack: Kills a target instantly, Fortitude save negates.</Description>
+            <Icon>AssAssassinate</Icon>
+            <DCVersus>Fortitude</DCVersus>
+            <AmountVector size="1">10</AmountVector>
+            <ClassLevel>Rogue</ClassLevel>
+            <ModAbility>Intelligence</ModAbility>
+            <ModAbility>Dexterity</ModAbility>
+            <Tactical>Assassinate</Tactical>
+        </DC>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Assassin: Measure the Foe</Name>
@@ -1070,9 +1098,10 @@ This effect stacks up to five times, and lasts 10 seconds after you come out of 
             <Stance>Measure the Foe</Stance>
          </Effect>
          <Effect>
-            <Type>Assassinate</Type>
+            <Type>TacticalDC</Type>
             <Bonus>Enhancement</Bonus>
             <AmountVector size="3">5 5 5</AmountVector>
+            <Tactical>Assassinate</Tactical>
             <Stance>Measure the Foe</Stance>
          </Effect>
       </EnhancementTreeItem>

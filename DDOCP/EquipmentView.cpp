@@ -99,7 +99,7 @@ void CEquipmentView::OnInitialUpdate()
     m_inventoryView->AttachObserver(this);
     if (m_pCharacter != NULL)
     {
-        m_inventoryView->SetGearSet(m_pCharacter->ActiveGearSet());
+        m_inventoryView->SetGearSet(m_pCharacter, m_pCharacter->ActiveGearSet());
     }
     // Images for new/copy/delete buttons
     m_buttonNew.SetImage(IDB_BITMAP_NEW);
@@ -271,13 +271,7 @@ void CEquipmentView::PopulateCombobox()
     size_t count = 0;
     if (m_pCharacter != NULL)
     {
-        if (m_pCharacter->ActiveGearSet().HasItemInSlot(Inventory_Weapon1))
-        {
-            if (m_pCharacter->ActiveGearSet().ItemInSlot(Inventory_Weapon1).HasSentientIntelligence())
-            {
-                count = m_pCharacter->ActiveGearSet().ItemInSlot(Inventory_Weapon1).SentientIntelligence().NumFiligrees();
-            }
-        }
+        count = m_pCharacter->ActiveGearSet().SentientIntelligence().NumFiligrees();
     }
     m_comboNumFiligrees.SetCurSel(count);
     m_comboNumFiligrees.UnlockWindowUpdate();
@@ -329,12 +323,12 @@ void CEquipmentView::PopulateGear()
     if (m_inventoryView != NULL
             && m_pCharacter != NULL)
     {
-        m_inventoryView->SetGearSet(m_pCharacter->ActiveGearSet());
+        m_inventoryView->SetGearSet(m_pCharacter, m_pCharacter->ActiveGearSet());
     }
     else
     {
         EquippedGear emptyGear;
-        m_inventoryView->SetGearSet(emptyGear);
+        m_inventoryView->SetGearSet(NULL, emptyGear);
     }
 }
 
@@ -366,7 +360,7 @@ void CEquipmentView::UpdateSlotLeftClicked(
         {
             gear.SetItem(slot, dlg.SelectedItem());
             m_pCharacter->SetGear(SelectedGearSet(), slot, dlg.SelectedItem());
-            m_inventoryView->SetGearSet(m_pCharacter->ActiveGearSet());
+            m_inventoryView->SetGearSet(m_pCharacter, m_pCharacter->ActiveGearSet());
         }
         GetMouseHook()->RestoreState();
     }
@@ -384,14 +378,14 @@ void CEquipmentView::UpdateSlotRightClicked(
         if (sel == IDYES)
         {
             m_pCharacter->ClearGearInSlot(SelectedGearSet(), slot);
-            m_inventoryView->SetGearSet(m_pCharacter->ActiveGearSet());
+            m_inventoryView->SetGearSet(m_pCharacter, m_pCharacter->ActiveGearSet());
         }
     }
 }
 
 void CEquipmentView::UpdateGearChanged(Character * charData, InventorySlotType slot)
 {
-    m_inventoryView->SetGearSet(m_pCharacter->ActiveGearSet());
+    m_inventoryView->SetGearSet(m_pCharacter, m_pCharacter->ActiveGearSet());
 }
 
 void CEquipmentView::OnUpdateGearNew(CCmdUI * pCmdUi)

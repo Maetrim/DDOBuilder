@@ -35,18 +35,12 @@ class CItemSelectDialog : public CDialog
         afx_msg void OnAugmentCancel(UINT nID);
         afx_msg void OnUpgradeSelect(UINT nID);
         afx_msg void OnUpgradeCancel(UINT nID);
-        afx_msg void OnSelEndOkPersonality();
-        afx_msg void OnUpgradeFiligree(UINT nID);
-        afx_msg void OnUpgradeFiligreeCancel(UINT nID);
-        afx_msg void OnUpgradeFiligreeRare(UINT nID);
         afx_msg void OnKillFocusAugmentEdit(UINT nID);
         afx_msg void OnSize(UINT nType, int cx, int cy);
         afx_msg void OnEndtrackListItems(NMHDR* pNMHDR, LRESULT* pResult);
         afx_msg void OnColumnclickListItems(NMHDR* pNMHDR, LRESULT* pResult);
         afx_msg void OnHoverListItems(NMHDR* pNMHDR, LRESULT* pResult);
         afx_msg void OnSelEndOkFilter();
-        afx_msg void OnButtonSentientJewel();
-        afx_msg void OnButtonSentientSpark();
         afx_msg LRESULT OnHoverComboBox(WPARAM wParam, LPARAM lParam);
         afx_msg LRESULT OnMouseEnter(WPARAM wParam, LPARAM lParam);
         afx_msg LRESULT OnMouseLeave(WPARAM wParam, LPARAM lParam);
@@ -72,10 +66,6 @@ class CItemSelectDialog : public CDialog
         void SetTooltipText(const Augment & augment, CPoint tipTopLeft, CPoint tipAlternate, bool rightAlign);
         void SetupFilterCombobox();
         void AddSpecialSlots();
-        void SetSentientWeaponControls();
-        void PopulatePersonalityCombobox();
-        void PopulateFiligreeCombobox(size_t filigreeIndex);
-        void BuildImageList(CImageList * il, const std::list<Augment> & augments);
         void AddAugment(std::vector<ItemAugment> * augments, const std::string & name, bool atEnd = false);
         void RemoveAugment(std::vector<ItemAugment> * augments, const std::string & name);
 
@@ -87,7 +77,6 @@ class CItemSelectDialog : public CDialog
         {
             MAX_Augments = 10,
             MAX_Upgrades = 4,
-            MAX_Filigree = MAX_FILIGREE,
         };
         CStatic m_staticType;
         CComboBox m_comboFilter;
@@ -102,15 +91,6 @@ class CItemSelectDialog : public CDialog
         CStatic m_staticUpgrades;
         CStatic m_upgradeType[MAX_Upgrades];
         CComboBox m_comboUpgradeDropList[MAX_Upgrades];
-        CButton m_buttonSentientJewel;
-        CButton m_buttonSentientSpark;
-        CStatic m_sentientLabel;
-        CComboBoxTooltip m_comboSentientPersonality;
-        CImageList m_ilJewel;
-        CStatic m_staticLabelFiligree[MAX_Filigree];
-        CComboBoxTooltip m_comboFiligreeDropList[MAX_Filigree];
-        CButton m_buttonFiligreeRare[MAX_Filigree];
-        CImageList m_ilFiligree[MAX_Filigree];
 
         std::list<Item> m_availableItems;
         CImageList m_itemImages;
@@ -123,7 +103,6 @@ class CItemSelectDialog : public CDialog
         bool m_tipCreated;
         int m_hoverItem;
         UINT m_hoverHandle;
-        int m_comboHookHandles[MAX_Filigree + 1];
         int m_augmentHookHandles[MAX_Augments];
         bool m_bIgnoreNextMessage;
         CString m_previousSearchText;

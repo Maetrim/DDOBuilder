@@ -6,7 +6,6 @@
 
 #include "BreakdownItemAbility.h"
 #include "BreakdownItemAC.h"
-#include "BreakdownItemAssassinate.h"
 #include "BreakdownItemBAB.h"
 #include "BreakdownItemCasterLevel.h"
 #include "BreakdownItemDice.h"
@@ -1150,7 +1149,7 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
     }
 
     HTREEITEM hTacticalParent = m_itemBreakdownTree.InsertItem(
-            "Tactical Breakdowns", 
+            "Tactical Breakdown Bonuses", 
             hParent,
             TVI_LAST);
     m_itemBreakdownTree.SetItemData(hTacticalParent, 0);

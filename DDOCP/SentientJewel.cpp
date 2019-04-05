@@ -37,29 +37,29 @@ XmlLib::SaxContentElementInterface * SentientJewel::StartElement(
 void SentientJewel::EndElement()
 {
     // backwards compatibility, convert all old Filigreex/RareFiligreex to
-    // Filigree objects and the remove them
-    //bool bConverted = false;
-    //m_hasSentientSpark = false;     // just clear it
-    //for (size_t i = 0; i < 8; ++i)
-    //{
-    //    if (Deprecated_Filigree(i) != "")
-    //    {
-    //        Filigree f;
-    //        f.Set_Name(Deprecated_Filigree(i));
-    //        if (Deprecated_IsRareFiligree(i))
-    //        {
-    //            f.Set_Rare();
-    //        }
-    //        m_Filigrees.push_back(f);
-    //        bConverted = true;
-    //        Deprecated_ClearFiligree(i);
-    //    }
-    //}
-    //if (bConverted)
-    //{
-    //    m_NumFiligrees = m_Filigrees.size();
-    //    m_hasNumFiligrees = true;
-    //}
+    // Filigree objects and then remove them
+    bool bConverted = false;
+    m_hasSentientSpark = false;     // just clear it
+    for (size_t i = 0; i < 8; ++i)  // used to be max 8 filigrees
+    {
+        if (Deprecated_HasFiligree(i))
+        {
+            Filigree f;
+            f.Set_Name(Deprecated_Filigree(i));
+            if (Deprecated_IsRareFiligree(i))
+            {
+                f.Set_Rare();
+            }
+            m_Filigrees.push_back(f);
+            bConverted = true;
+            Deprecated_ClearFiligree(i);
+        }
+    }
+    if (bConverted)
+    {
+        m_NumFiligrees = m_Filigrees.size();
+        m_hasNumFiligrees = true;
+    }
     SaxContentElement::EndElement();
     DL_END(SentientJewel_PROPERTIES)
 }
@@ -71,51 +71,96 @@ void SentientJewel::Write(XmlLib::SaxWriter * writer) const
     writer->EndElement();
 }
 
-//std::string SentientJewel::Future_GetFiligree(size_t fi) const
-//{
-//    std::string name;
-//    if (fi < m_Filigrees.size())
-//    {
-//        std::list<Filigree>::const_iterator it = m_Filigrees.begin();
-//        std::advance(it, fi);
-//        name = (*it).Name();
-//    }
-//    return name;
-//}
-
-//bool SentientJewel::Future_IsRareFiligree(size_t fi) const
-//{
-//    bool bRare = false;
-//    if (fi < m_Filigrees.size())
-//    {
-//        std::list<Filigree>::const_iterator it = m_Filigrees.begin();
-//        std::advance(it, fi);
-//        bRare = (*it).HasRare();
-//    }
-//    return bRare;
-//}
-
-//void SentientJewel::Future_SetNumFiligrees(size_t count)
-//{
-//    // ensure we do not have too many filigrees setup
-//    m_NumFiligrees = count;
-//    while (m_Filigrees.size() > count)
-//    {
-//        m_Filigrees.pop_back();
-//    }
-//}
-
-size_t SentientJewel::NumFiligrees() const
+std::string SentientJewel::GetFiligree(size_t fi) const
 {
-    size_t count = MAX_FILIGREE - 1;
-    if (HasSentientSpark())
+    std::string name;
+    if (fi < m_Filigrees.size())
     {
-        count++;
+        std::list<Filigree>::const_iterator it = m_Filigrees.begin();
+        std::advance(it, fi);
+        name = (*it).Name();
     }
-    return count;
+    return name;
 }
 
-std::string SentientJewel::Filigree(size_t fi) const
+bool SentientJewel::IsRareFiligree(size_t fi) const
+{
+    bool bRare = false;
+    if (fi < m_Filigrees.size())
+    {
+        std::list<Filigree>::const_iterator it = m_Filigrees.begin();
+        std::advance(it, fi);
+        bRare = (*it).HasRare();
+    }
+    return bRare;
+}
+
+void SentientJewel::SetNumFiligrees(size_t count)
+{
+    // ensure we do not have too many filigrees setup
+    m_NumFiligrees = count;
+    // remove any extra filigrees we no longer have space for
+    while (m_Filigrees.size() > count)
+    {
+        m_Filigrees.pop_back();
+    }
+    // add any required blank filigrees
+    while (m_Filigrees.size() < count)
+    {
+        m_Filigrees.push_back(Filigree());  // add a blank filigree
+    }
+}
+
+void SentientJewel::SetPersonality(const std::string & name)
+{
+    Set_Personality(name);
+}
+
+void SentientJewel::SetFiligree(size_t fi, const std::string & name)
+{
+    if (fi < m_NumFiligrees)
+    {
+        std::list<Filigree>::iterator it = m_Filigrees.begin();
+        std::advance(it, fi);
+        (*it).Set_Name(name);
+    }
+}
+
+void SentientJewel::SetFiligreeRare(size_t fi, bool isRare)
+{
+    if (fi < m_NumFiligrees)
+    {
+        std::list<Filigree>::iterator it = m_Filigrees.begin();
+        std::advance(it, fi);
+        if (isRare)
+        {
+            (*it).Set_Rare();
+        }
+        else
+        {
+            (*it).Clear_Rare();
+        }
+    }
+}
+
+bool SentientJewel::Deprecated_HasFiligree(size_t fi) const
+{
+    bool bHas = false;
+    switch (fi)
+    {
+    case 0: bHas = HasFiligree1(); break;
+    case 1: bHas = HasFiligree2(); break;
+    case 2: bHas = HasFiligree3(); break;
+    case 3: bHas = HasFiligree4(); break;
+    case 4: bHas = HasFiligree5(); break;
+    case 5: bHas = HasFiligree6(); break;
+    case 6: bHas = HasFiligree7(); break;
+    case 7: bHas = HasFiligree8(); break;
+    }
+    return bHas;
+}
+
+std::string SentientJewel::Deprecated_Filigree(size_t fi) const
 {
     std::string filigree;       // return "" if no filigree
     switch (fi)
@@ -132,101 +177,7 @@ std::string SentientJewel::Filigree(size_t fi) const
     return filigree;
 }
 
-void SentientJewel::SetFiligree(size_t fi, const std::string & name)
-{
-    switch (fi)
-    {
-    case 0: Set_Filigree1(name); break;
-    case 1: Set_Filigree2(name); break;
-    case 2: Set_Filigree3(name); break;
-    case 3: Set_Filigree4(name); break;
-    case 4: Set_Filigree5(name); break;
-    case 5: Set_Filigree6(name); break;
-    case 6: Set_Filigree7(name); break;
-    case 7: Set_Filigree8(name); break;
-    }
-}
-
-void SentientJewel::SetFiligreeRare(size_t fi, bool isRare)
-{
-    switch (fi)
-    {
-    case 0: if (isRare)
-            {
-                Set_RareFiligree1();
-            }
-            else
-            {
-                Clear_RareFiligree1();
-            }
-            break;
-    case 1: if (isRare)
-            {
-                Set_RareFiligree2();
-            }
-            else
-            {
-                Clear_RareFiligree2();
-            }
-            break;
-    case 2: if (isRare)
-            {
-                Set_RareFiligree3();
-            }
-            else
-            {
-                Clear_RareFiligree3();
-            }
-            break;
-    case 3: if (isRare)
-            {
-                Set_RareFiligree4();
-            }
-            else
-            {
-                Clear_RareFiligree4();
-            }
-            break;
-    case 4: if (isRare)
-            {
-                Set_RareFiligree5();
-            }
-            else
-            {
-                Clear_RareFiligree5();
-            }
-            break;
-    case 5: if (isRare)
-            {
-                Set_RareFiligree6();
-            }
-            else
-            {
-                Clear_RareFiligree6();
-            }
-            break;
-    case 6: if (isRare)
-            {
-                Set_RareFiligree7();
-            }
-            else
-            {
-                Clear_RareFiligree7();
-            }
-            break;
-    case 7: if (isRare)
-            {
-                Set_RareFiligree8();
-            }
-            else
-            {
-                Clear_RareFiligree8();
-            }
-            break;
-    }
-}
-
-bool SentientJewel::IsRareFiligree(size_t fi) const
+bool SentientJewel::Deprecated_IsRareFiligree(size_t fi) const
 {
     bool isRare = false;
     switch (fi)
@@ -243,7 +194,7 @@ bool SentientJewel::IsRareFiligree(size_t fi) const
     return isRare;
 }
 
-void SentientJewel::ClearFiligree(size_t fi)
+void SentientJewel::Deprecated_ClearFiligree(size_t fi)
 {
     switch (fi)
     {
