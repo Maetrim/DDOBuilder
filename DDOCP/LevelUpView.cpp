@@ -306,16 +306,13 @@ void CLevelUpView::OnInitialUpdate()
     // put the available skill tome values in the skill tome select combo box
     size_t index = m_comboSkillTome.AddString("No Tome");
     m_comboSkillTome.SetItemData(index, 0);
-    index = m_comboSkillTome.AddString("+1 Tome");
-    m_comboSkillTome.SetItemData(index, 1);
-    index = m_comboSkillTome.AddString("+2 Tome");
-    m_comboSkillTome.SetItemData(index, 2);
-    index = m_comboSkillTome.AddString("+3 Tome");
-    m_comboSkillTome.SetItemData(index, 3);
-    index = m_comboSkillTome.AddString("+4 Tome");
-    m_comboSkillTome.SetItemData(index, 4);
-    index = m_comboSkillTome.AddString("+5 Tome");
-    m_comboSkillTome.SetItemData(index, 5);
+    for (size_t i = 1; i <= MAX_SKILL_TOME; ++i)
+    {
+        CString text;
+        text.Format("%+d Tome", i);
+        index = m_comboSkillTome.AddString(text);
+        m_comboSkillTome.SetItemData(index, 1);
+    }
 
     PopulateControls();
     EnableBuyButtons();

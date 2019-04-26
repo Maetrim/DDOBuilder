@@ -2,7 +2,6 @@
 //
 #include "stdafx.h"
 #include "DCView.h"
-#include "Character.h"
 #include "GlobalSupportFunctions.h"
 #include "MainFrm.h"
 

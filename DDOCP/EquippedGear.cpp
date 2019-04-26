@@ -67,6 +67,11 @@ void EquippedGear::EndElement()
             m_MainHand.m_hasSentientIntelligence = false;
         }
     }
+    else
+    {
+        // make sure gear sets without a sentient weapon load
+        m_hasSentientIntelligence = true;
+    }
     SaxContentElement::EndElement();
     DL_END(EquippedGear_PROPERTIES)
 }

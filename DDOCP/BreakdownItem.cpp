@@ -124,7 +124,7 @@ void BreakdownItem::Populate()
 double BreakdownItem::Total() const
 {
     // to sum the total, just get the contributions of all the stacking effects
-    double total = 0;
+    double total = 0.0;
     total += SumItems(m_otherEffects, false);
     total += SumItems(m_effects, false);
 
@@ -136,14 +136,18 @@ double BreakdownItem::Total() const
     total += SumItems(itemEffects, true);
     double baseTotal = total;
 
-    // now apply percentage effects. Note percentage effects do not stack
-    // a test on live shows a two percentage bonus's to hp adds two lots
+    // TBD Future: Handle percentage effects for items that stack by multiplication
+    // there should not currently be any cases for this
+
+    // now apply percentage effects. Note percentage effects do not stack.
+    // a test on live shows two percentage bonus's to hp adds two lots
     // of the base total (before percentages) to the total
     total += DoPercentageEffects(m_otherEffects, baseTotal);
     total += DoPercentageEffects(m_effects, baseTotal);
     // make sure we update listed items
     DoPercentageEffects(m_itemEffects, baseTotal);
     total += DoPercentageEffects(itemEffects, baseTotal);
+
     return total;
 }
 
@@ -269,7 +273,7 @@ double BreakdownItem::SumItems(
         const std::list<ActiveEffect> & effects,
         bool bApplyMultiplier) const
 {
-    double total = 0;
+    double total = StacksByMultiplication() ? 100.0 : 0.0;
     std::list<ActiveEffect>::const_iterator it = effects.begin();
     while (it != effects.end())
     {
@@ -283,7 +287,16 @@ double BreakdownItem::SumItems(
                 {
                     amount *= Multiplier();
                 }
-                total +=  amount;
+                if (StacksByMultiplication())
+                {
+                    // fractional multiplication
+                    total *= ((100.0 - amount) / 100.0);
+                }
+                else
+                {
+                    // its straight addition
+                    total +=  amount;
+                }
             }
         }
         ++it;

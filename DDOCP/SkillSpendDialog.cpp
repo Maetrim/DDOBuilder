@@ -59,9 +59,9 @@ END_MESSAGE_MAP()
 
 CSkillSpendDialog::CSkillSpendDialog(Character * pCharacter) :
     CDialog(CSkillSpendDialog::IDD, NULL),
-        m_pCharacter(pCharacter),
-        m_hlightlightColumn(-1),
-        m_hlightlightRow(-1)
+    m_pCharacter(pCharacter),
+    m_hlightlightColumn(-1),
+    m_hlightlightRow(-1)
 {
     //{{AFX_DATA_INIT(CSkillSpendDialog)
     //}}AFX_DATA_INIT

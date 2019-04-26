@@ -47,6 +47,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
             "In alphabetical order:\r\n"
             "\r\n"
             "Aganthor\r\n"
+            "Amberlink\r\n"
             "Brakkart\r\n"
             "Civet\r\n"
             "Frinkky\r\n"

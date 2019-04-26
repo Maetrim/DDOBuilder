@@ -131,6 +131,7 @@ class Character :
         void SetClass3(size_t level, ClassType type);
         void SetClass(size_t level, ClassType type);
         bool RevokeClass(ClassType type);
+        ClassType Class(size_t index) const;
 
         // skill points
         bool IsClassSkill(SkillType skill, size_t level) const;

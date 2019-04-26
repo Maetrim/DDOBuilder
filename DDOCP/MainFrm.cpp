@@ -4,6 +4,7 @@
 #include "MainFrm.h"
 
 #include "BreakdownsView.h"
+#include "ClassAndFeatView.h"
 #include "CustomDockablePane.h"
 #include "DDOCP.h"
 #include "DCView.h"
@@ -16,6 +17,7 @@
 #include "SelfAndPartyBuffsView.h"
 #include "SpecialFeatsView.h"
 #include "SpellsView.h"
+#include "SkillsView.h"
 #include "StancesView.h"
 #include "afxdatarecovery.h"
 
@@ -51,6 +53,8 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWndEx)
     ON_UPDATE_COMMAND_UI(ID_DOCK_SELFANDPARTYBUFFS, OnUpdateDockPane)
     ON_UPDATE_COMMAND_UI(ID_DOCK_NOTES, OnUpdateDockPane)
     ON_UPDATE_COMMAND_UI(ID_DOCK_DC, OnUpdateDockPane)
+    ON_UPDATE_COMMAND_UI(ID_DOCK_SKILLS, OnUpdateDockPane)
+    ON_UPDATE_COMMAND_UI(ID_DOCK_CLASSFEATS, OnUpdateDockPane)
     ON_COMMAND(ID_DOCK_BREAKDOWNS, OnDockPane)
     ON_COMMAND(ID_DOCK_LEVELUP, OnDockPane)
     ON_COMMAND(ID_DOCK_SPECIALFEATS, OnDockPane)
@@ -63,6 +67,8 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWndEx)
     ON_COMMAND(ID_DOCK_SELFANDPARTYBUFFS, OnDockPane)
     ON_COMMAND(ID_DOCK_NOTES, OnDockPane)
     ON_COMMAND(ID_DOCK_DC, OnDockPane)
+    ON_COMMAND(ID_DOCK_SKILLS, OnDockPane)
+    ON_COMMAND(ID_DOCK_CLASSFEATS, OnDockPane)
 END_MESSAGE_MAP()
 
 static UINT indicators[] =
@@ -547,7 +553,22 @@ void CMainFrame::CreateViews()
             ID_DOCK_DC);
     pDCs->SetDocumentAndCharacter(GetActiveDocument(), NULL);
 
-    // next window id is 1012 if you add one
+    // create the floating views
+    CCustomDockablePane * pSkills = CreateDockablePane(
+            "Skills",
+            GetActiveDocument(),
+            RUNTIME_CLASS(CSkillsView),
+            ID_DOCK_SKILLS);
+    pSkills->SetDocumentAndCharacter(GetActiveDocument(), NULL);
+
+    // create the floating views
+    CCustomDockablePane * pClassAndLevel = CreateDockablePane(
+            "Class and Levels",
+            GetActiveDocument(),
+            RUNTIME_CLASS(CClassAndFeatView),
+            ID_DOCK_CLASSFEATS);
+    pClassAndLevel->SetDocumentAndCharacter(GetActiveDocument(), NULL);
+    // next window id is 1014 if you add one
 }
 
 void CMainFrame::SetActiveDocumentAndCharacter(CDocument * pDoc, Character * pCharacter)

@@ -22,7 +22,6 @@
 namespace
 {
     const int c_controlSpacing = 3;
-    const size_t c_maxTomeValue = 8;    // max tome is +8 at level 22
     COLORREF f_abilityOverspendColour = RGB(0xE9, 0x96, 0x7A); // dark salmon
 }
 
@@ -319,7 +318,7 @@ void CDDOCPView::PopulateComboboxes()
     }
 
     // ability tomes
-    for (int ti = 0; ti <= c_maxTomeValue; ++ti)
+    for (int ti = 0; ti <= MAX_ABILITY_TOME; ++ti)
     {
         CString text;
         if (ti > 0)

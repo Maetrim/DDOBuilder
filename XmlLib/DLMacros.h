@@ -470,6 +470,7 @@ namespace XmlLib
             std::stringstream ss; \
             ss << "Object " DL_STRINGIZE(DL_ELEMENT) " did not handle element named " << name << "\n"; \
             ::OutputDebugString(ss.str().c_str()); \
+            ASSERT(FALSE); \
         }
 #define DL_GENERIC_DUPLICATE(flag,xname) SAXASSERT(!flag,DL_STRINGIZE(DL_ELEMENT) " had duplicate " DL_STRINGIZE(xname) " elements")
 #define DL_FLAG_START(xname) \

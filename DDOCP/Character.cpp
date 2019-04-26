@@ -1818,6 +1818,18 @@ double Character::MaxSkillForLevel(
     return maxSkill;
 }
 
+ClassType Character::Class(size_t index) const
+{
+    ClassType ct = Class_Unknown;
+    switch (index)
+    {
+    case 0: ct = Class1(); break;
+    case 1: ct = Class2(); break;
+    case 2: ct = Class3(); break;
+    }
+    return ct;
+}
+
 bool Character::IsClassAvailable(
         ClassType type) const
 {

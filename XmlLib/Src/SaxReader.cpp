@@ -228,6 +228,15 @@ void SaxReader::EndElement(
         HandleComError(e);
         throw;
     }
+    catch (const std::string & s)
+    {
+        if (!m_errorReported)
+        {
+            m_errorMessage = s;
+            m_errorReported = true;
+        }
+        throw;
+    }
     catch (const std::exception & e)
     {
         if (!m_errorReported)

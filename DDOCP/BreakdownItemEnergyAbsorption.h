@@ -22,6 +22,10 @@ class BreakdownItemEnergyAbsorption :
         virtual void CreateOtherEffects() override;
         virtual bool AffectsUs(const Effect & effect) const override;
     private:
+        virtual double Total() const override;
+        virtual double SumItems(
+                const std::list<ActiveEffect> & effects,
+                bool bApplyMultiplier) const override;
         CString m_title;
         EffectType m_effect;
         EnergyType m_energyType;

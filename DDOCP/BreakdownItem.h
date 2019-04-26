@@ -58,7 +58,7 @@ class BreakdownItem :
         virtual double Multiplier() const;
         void Populate();            // updates the HTREEITEM
         void PopulateBreakdownControl(CListCtrl * pControl);
-        double Total() const;
+        virtual double Total() const;
 
         void AddAbility(AbilityType ability);
         void RemoveFirstAbility(AbilityType ability);
@@ -84,6 +84,8 @@ class BreakdownItem :
         bool UpdateTreeItemTotals(std::list<ActiveEffect> * list);
         bool UpdateEffectAmounts(std::list<ActiveEffect> * list, BreakdownType bt);
         bool UpdateEffectAmounts(std::list<ActiveEffect> * list, ClassType type);
+
+        virtual bool StacksByMultiplication() const { return false;};
 
         virtual void CreateOtherEffects() = 0;
         virtual bool AffectsUs(const Effect & effect) const = 0;
@@ -118,10 +120,7 @@ class BreakdownItem :
         void AddActiveItems(const std::list<ActiveEffect> & effects, CListCtrl * pControl, bool bShowMultiplier);
         void AddActivePercentageItems(const std::list<ActiveEffect> & effects, CListCtrl * pControl);
         void AddDeactiveItems(const std::list<ActiveEffect> & effects, CListCtrl * pControl, bool bShowMultiplier);
-        double SumItems(const std::list<ActiveEffect> & effects, bool bApplyMultiplier) const;
-        double DoPercentageEffects(const std::list<ActiveEffect> & effects, double total) const;
-        void RemoveInactive(std::list<ActiveEffect> * effects, std::list<ActiveEffect> * inactiveEffects) const;
-        void RemoveNonStacking(std::list<ActiveEffect> * effects, std::list<ActiveEffect> * nonStackingEffects) const;
+        virtual double SumItems(const std::list<ActiveEffect> & effects, bool bApplyMultiplier) const;
         void AddEffect(std::list<ActiveEffect> * effectList, const ActiveEffect & effect);
         void RevokeEffect(std::list<ActiveEffect> * effectList, const ActiveEffect & effect);
         bool GetActiveEffect(Character * pCharacter, const std::string & name, const Effect & effect, ActiveEffect * activeEffect);
@@ -130,6 +129,9 @@ class BreakdownItem :
         BreakdownType m_type;
     protected:
         AbilityType LargestStatBonus();
+        double DoPercentageEffects(const std::list<ActiveEffect> & effects, double total) const;
+        void RemoveInactive(std::list<ActiveEffect> * effects, std::list<ActiveEffect> * inactiveEffects) const;
+        void RemoveNonStacking(std::list<ActiveEffect> * effects, std::list<ActiveEffect> * nonStackingEffects) const;
         struct AbilityStance
         {
             AbilityType ability;
