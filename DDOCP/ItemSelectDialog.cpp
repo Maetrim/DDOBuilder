@@ -953,7 +953,7 @@ void CItemSelectDialog::AddSpecialSlots()
     // add Mythic and reaper slots to the item as long as its a named item.
     // We can tell its named as it will not have a minimum level of 1 as all
     // non-named items (random loot and Cannith crafted) are set to min level 1
-    if (m_item.MinLevel() > 1)
+    if (m_item.MinLevel() >= 1)
     {
         std::vector<ItemAugment> currentAugments = m_item.Augments();
         AddAugment(&currentAugments, "Mythic", true);

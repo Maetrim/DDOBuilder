@@ -2810,13 +2810,18 @@ bool CanEquipTo2ndWeapon(const Item & item)
         // only need weapon types that preclude off hand in this list
         // TBD: Verify the list of weapons here
         case Weapon_Falchion:
+        case Weapon_GreatCrossbow:
         case Weapon_GreatAxe:
         case Weapon_GreatClub:
         case Weapon_GreatSword:
         case Weapon_Handwraps:
+        case Weapon_HeavyCrossbow:
+        case Weapon_LightCrossbow:
         case Weapon_Longbow:
         case Weapon_Maul:
         case Weapon_Quarterstaff:
+        case Weapon_RepeatingHeavyCrossbow:
+        case Weapon_RepeatingLightCrossbow:
         case Weapon_Shortbow:
             canEquip = false;
             break;
