@@ -152,7 +152,8 @@ bool IsBow(WeaponType wt);
 bool IsCrossbow(WeaponType wt);
 bool IsRepeatingCrossbow(WeaponType wt);
 bool IsMeleeWeapon(WeaponType wt);
-bool CanEquipTo2ndWeapon(const Item & item);
+bool CanEquipTo2ndWeapon(Character * pCharacter, const Item & item);
+bool LimitToRuneArm(Character * pCharacter);
 
 OptionalBuff FindOptionalBuff(const std::string & name);
 void FormatExportData(std::string * exportData);

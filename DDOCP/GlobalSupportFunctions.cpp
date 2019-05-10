@@ -2801,8 +2801,16 @@ bool IsRepeatingCrossbow(WeaponType wt)
     return isRepeatingCrossbow;
 }
 
-bool CanEquipTo2ndWeapon(const Item & item)
+bool CanEquipTo2ndWeapon(
+        Character * pCharacter,
+        const Item & item)
 {
+    bool bAllowRuneArm = false;
+    if (pCharacter != NULL
+            && pCharacter->IsFeatTrained("Artificer Rune Arm Use"))
+    {
+        bAllowRuneArm = true;
+    }
     // return true if this item allows an item to be equipped in off hand slot
     bool canEquip = true;   // assume we can
     switch (item.Weapon())
@@ -2810,23 +2818,46 @@ bool CanEquipTo2ndWeapon(const Item & item)
         // only need weapon types that preclude off hand in this list
         // TBD: Verify the list of weapons here
         case Weapon_Falchion:
-        case Weapon_GreatCrossbow:
         case Weapon_GreatAxe:
         case Weapon_GreatClub:
         case Weapon_GreatSword:
         case Weapon_Handwraps:
-        case Weapon_HeavyCrossbow:
-        case Weapon_LightCrossbow:
         case Weapon_Longbow:
         case Weapon_Maul:
         case Weapon_Quarterstaff:
-        case Weapon_RepeatingHeavyCrossbow:
-        case Weapon_RepeatingLightCrossbow:
         case Weapon_Shortbow:
             canEquip = false;
             break;
+        case Weapon_GreatCrossbow:
+        case Weapon_HeavyCrossbow:
+        case Weapon_LightCrossbow:
+        case Weapon_RepeatingHeavyCrossbow:
+        case Weapon_RepeatingLightCrossbow:
+            canEquip = bAllowRuneArm;
+            break;
     }
     return canEquip;
+}
+
+bool LimitToRuneArm(Character * pCharacter)
+{
+    bool bLimitToRuneArm = false;
+    if (pCharacter != NULL
+            && pCharacter->IsFeatTrained("Artificer Rune Arm Use"))
+    {
+        Item item = pCharacter->ActiveGearSet().MainHand();
+        switch (item.Weapon())
+        {
+            case Weapon_GreatCrossbow:
+            case Weapon_HeavyCrossbow:
+            case Weapon_LightCrossbow:
+            case Weapon_RepeatingHeavyCrossbow:
+            case Weapon_RepeatingLightCrossbow:
+                bLimitToRuneArm = true;
+                break;
+        }
+    }
+    return bLimitToRuneArm;
 }
 
 bool IsInWeaponClass(WeaponClassType wc, WeaponType wt)

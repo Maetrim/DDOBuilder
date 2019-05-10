@@ -188,7 +188,7 @@ void CInventoryDialog::OnPaint()
     {
         if (i == Inventory_Weapon2
                 && m_gearSet.HasItemInSlot(Inventory_Weapon1)
-                && !CanEquipTo2ndWeapon(m_gearSet.ItemInSlot(Inventory_Weapon1)))
+                && !CanEquipTo2ndWeapon(m_pCharacter, m_gearSet.ItemInSlot(Inventory_Weapon1)))
         {
             // Weapon equipped in main hand that precludes weapon in off hand
             // do not permit selection of an item in the off hand slot

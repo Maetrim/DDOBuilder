@@ -4428,7 +4428,7 @@ void Character::SetGear(
     {
         if ((*it).Name() == name)
         {
-            (*it).SetItem(slot, item);
+            (*it).SetItem(slot, this, item);
             found = true;
         }
         ++it;
@@ -5897,7 +5897,7 @@ void Character::UpdateGearToLatestVersions()
             if ((*it).HasItemInSlot((InventorySlotType)i))
             {
                 Item latestVersion = GetLatestVersionOfItem((*it).ItemInSlot((InventorySlotType)i));
-                (*it).SetItem((InventorySlotType)i, latestVersion);
+                (*it).SetItem((InventorySlotType)i, this, latestVersion);
             }
         }
         ++it;

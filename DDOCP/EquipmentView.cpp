@@ -346,7 +346,7 @@ void CEquipmentView::UpdateSlotLeftClicked(
     }
     if (slot == Inventory_Weapon2
             && gear.HasItemInSlot(Inventory_Weapon1)
-            && !CanEquipTo2ndWeapon(gear.ItemInSlot(Inventory_Weapon1)))
+            && !CanEquipTo2ndWeapon(m_pCharacter, gear.ItemInSlot(Inventory_Weapon1)))
     {
         // not allowed to equip in this due to item in weapon slot 1
         ::MessageBeep(MB_OK);
@@ -358,7 +358,7 @@ void CEquipmentView::UpdateSlotLeftClicked(
         CItemSelectDialog dlg(this, slot, item, m_pCharacter);
         if (dlg.DoModal() == IDOK)
         {
-            gear.SetItem(slot, dlg.SelectedItem());
+            gear.SetItem(slot, m_pCharacter, dlg.SelectedItem());
             m_pCharacter->SetGear(SelectedGearSet(), slot, dlg.SelectedItem());
             m_inventoryView->SetGearSet(m_pCharacter, m_pCharacter->ActiveGearSet());
         }

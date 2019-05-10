@@ -918,24 +918,35 @@ void CItemSelectDialog::SetupFilterCombobox()
     }
     else if (m_slot == Inventory_Weapon2)
     {
-        m_comboFilter.AddString("All");
-        m_comboFilter.SetItemData(0, 0);
-        // any single handed weapon, orb, shield or rune-arm
-        // any one handed weapon
-        for (size_t i = Weapon_Unknown; i < Weapon_Count; ++i)
+        // if the gear has an item that restricts in the main hand, we may only be
+        // allowed to equip a rune arm
+        if (LimitToRuneArm(m_pCharacter))
         {
-            if ((IsOneHandedWeapon((WeaponType)i)
-                    || IsShield((WeaponType)i)
-                    || i == Weapon_Orb
-                    || (i == Weapon_RuneArm && m_pCharacter->IsFeatTrained("Artificer Rune Arm Use")))
-                    && i != Weapon_BastardSword)
+            selItem = m_comboFilter.AddString(EnumEntryText(Weapon_RuneArm, weaponTypeMap));
+            m_comboFilter.SetItemData(selItem, Weapon_RuneArm);
+            m_weaponType = Weapon_RuneArm;
+        }
+        else
+        {
+            m_comboFilter.AddString("All");
+            m_comboFilter.SetItemData(0, 0);
+            // any single handed weapon, orb, shield or rune-arm
+            // any one handed weapon
+            for (size_t i = Weapon_Unknown; i < Weapon_Count; ++i)
             {
-                // we can add this one
-                int index = m_comboFilter.AddString(EnumEntryText((WeaponType)i, weaponTypeMap));
-                m_comboFilter.SetItemData(index, i);
-                if (i == m_weaponType)
+                if ((IsOneHandedWeapon((WeaponType)i)
+                        || IsShield((WeaponType)i)
+                        || i == Weapon_Orb
+                        || (i == Weapon_RuneArm && m_pCharacter->IsFeatTrained("Artificer Rune Arm Use")))
+                        && i != Weapon_BastardSword)
                 {
-                    selItem = index;
+                    // we can add this one
+                    int index = m_comboFilter.AddString(EnumEntryText((WeaponType)i, weaponTypeMap));
+                    m_comboFilter.SetItemData(index, i);
+                    if (i == m_weaponType)
+                    {
+                        selItem = index;
+                    }
                 }
             }
         }

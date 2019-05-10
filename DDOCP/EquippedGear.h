@@ -15,7 +15,9 @@ class EquippedGear :
 
         bool HasItemInSlot(InventorySlotType slot) const;
         Item ItemInSlot(InventorySlotType slot) const;
-        void SetItem(InventorySlotType slot, const Item & item);
+        void SetItem(InventorySlotType slot,
+                Character * pCharacter,
+                const Item & item);
         void ClearItem(InventorySlotType slot);
 
         void SetNumFiligrees(size_t count);
