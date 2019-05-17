@@ -215,6 +215,8 @@ void EquippedGear::SetItem(
         Character * pCharacter,
         const Item & item)
 {
+    bool itemsRemoved = false;
+    std:: stringstream ss;
     switch (slot)
     {
     case Inventory_Arrows:  Set_Arrow(item); break;
@@ -236,10 +238,43 @@ void EquippedGear::SetItem(
     default: ASSERT(FALSE); break;
     }
     if (slot == Inventory_Weapon1
-            && !CanEquipTo2ndWeapon(pCharacter, item))
+            && !CanEquipTo2ndWeapon(pCharacter, item)
+            && HasItemInSlot(Inventory_Weapon2))
     {
+        ss << "The following item was removed because you cannot have an item in your off hand:\r\n\r\n";
+        ss << ItemInSlot(Inventory_Weapon2).Name();
         // item in this slot now stops an item in weapon slot 2
         ClearItem(Inventory_Weapon2);
+        itemsRemoved = true;
+    }
+    // if the item just equipped is a Minor Artifact, make sure
+    // we do not have any other minor artifacts equipped.
+    if (item.HasMinorArtifact())
+    {
+        // need to check all other slots
+        for (size_t s = Inventory_Unknown + 1; s < Inventory_Count; ++s)
+        {
+            // make sure we do not remove the just equipped item
+            if (s != slot)
+            {
+                if (HasItemInSlot((InventorySlotType)s))
+                {
+                    if (ItemInSlot((InventorySlotType)s).HasMinorArtifact())
+                    {
+                        // we do have at least 1 other minor artifact, remove it
+                        ss << "You can only have a single Minor Artifact equipped at any time.\r\n"
+                            "The following item was removed: ";
+                        ss << ItemInSlot((InventorySlotType)s).Name();
+                        ClearItem((InventorySlotType)s);
+                        itemsRemoved = true;
+                    }
+                }
+            }
+        }
+    }
+    if (itemsRemoved)
+    {
+        AfxMessageBox(ss.str().c_str(), MB_ICONEXCLAMATION);
     }
 }
 

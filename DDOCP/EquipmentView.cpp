@@ -358,7 +358,6 @@ void CEquipmentView::UpdateSlotLeftClicked(
         CItemSelectDialog dlg(this, slot, item, m_pCharacter);
         if (dlg.DoModal() == IDOK)
         {
-            gear.SetItem(slot, m_pCharacter, dlg.SelectedItem());
             m_pCharacter->SetGear(SelectedGearSet(), slot, dlg.SelectedItem());
             m_inventoryView->SetGearSet(m_pCharacter, m_pCharacter->ActiveGearSet());
         }
