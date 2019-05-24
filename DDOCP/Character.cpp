@@ -136,6 +136,7 @@ XmlLib::SaxContentElementInterface * Character::StartElement(
 
 void Character::EndElement()
 {
+    m_hasHitpointPercent = true;
     // when we load in we end up with MAX_LEVEL blank levels followed by what was loaded
     // clear the first MAX_LEVEL
     while (m_Levels.size() > MAX_LEVEL)
@@ -982,9 +983,9 @@ void Character::SetSkillTome(SkillType skill, size_t value)
 
 void Character::SetClass1(size_t level, ClassType type)
 {
+    ClassType classFrom = Class1();
     if (Class1() != Class_Unknown)
     {
-        ClassType classFrom = Class1();
         if (RevokeClass(Class1()))
         {
             // if a class got revoked keep the class list up to date
@@ -999,12 +1000,31 @@ void Character::SetClass1(size_t level, ClassType type)
         Set_Class2(Class3());
         Set_Class3(Class_Unknown);
     }
+    // now set all levels that were classFrom to current Class1
+    for (level = 0; level < MAX_CLASS_LEVEL; ++level)
+    {
+        if (!LevelData(level).HasClass()
+                || LevelData(level).Class() == classFrom
+                || LevelData(level).Class() == Class_Unknown)
+        {
+            std::list<LevelTraining>::iterator it = m_Levels.begin();
+            std::advance(it, level);
+            (*it).Set_Class(Class1());
+            UpdateSkillPoints(level);
+            NotifyClassChanged(classFrom, Class1(), level);    // must be done before feat updates to keep spell lists kosher
+        }
+    }
+    UpdateFeats();
+    VerifyTrainedFeats();
+    AutoTrainSingleSelectionFeats();
+    VerifyGear();
     NotifyClassChoiceChanged();
     m_pDocument->SetModifiedFlag(TRUE);
 }
 
 void Character::SetClass2(size_t level, ClassType type)
 {
+    ClassType classFrom = Class2();
     if (Class2() != Class_Unknown)
     {
         ClassType classFrom = Class2();
@@ -1021,12 +1041,31 @@ void Character::SetClass2(size_t level, ClassType type)
         Set_Class2(Class3());
         Set_Class3(Class_Unknown);
     }
+    // now set all levels that were classFrom to current Class1
+    for (level = 0; level < MAX_CLASS_LEVEL; ++level)
+    {
+        if (!LevelData(level).HasClass()
+                || LevelData(level).Class() == classFrom
+                || LevelData(level).Class() == Class_Unknown)
+        {
+            std::list<LevelTraining>::iterator it = m_Levels.begin();
+            std::advance(it, level);
+            (*it).Set_Class(Class2());
+            UpdateSkillPoints(level);
+            NotifyClassChanged(classFrom, Class2(), level);    // must be done before feat updates to keep spell lists kosher
+        }
+    }
+    UpdateFeats();
+    VerifyTrainedFeats();
+    AutoTrainSingleSelectionFeats();
+    VerifyGear();
     NotifyClassChoiceChanged();
     m_pDocument->SetModifiedFlag(TRUE);
 }
 
 void Character::SetClass3(size_t level, ClassType type)
 {
+    ClassType classFrom = Class3();
     if (Class3() != Class_Unknown)
     {
         ClassType classFrom = Class3();
@@ -1037,13 +1076,31 @@ void Character::SetClass3(size_t level, ClassType type)
         }
     }
     Set_Class3(type);
+    // now set all levels that were classFrom to current Class1
+    for (level = 0; level < MAX_CLASS_LEVEL; ++level)
+    {
+        if (!LevelData(level).HasClass()
+                || LevelData(level).Class() == classFrom
+                || LevelData(level).Class() == Class_Unknown)
+        {
+            std::list<LevelTraining>::iterator it = m_Levels.begin();
+            std::advance(it, level);
+            (*it).Set_Class(Class3());
+            UpdateSkillPoints(level);
+            NotifyClassChanged(classFrom, Class3(), level);    // must be done before feat updates to keep spell lists kosher
+        }
+    }
+    UpdateFeats();
+    VerifyTrainedFeats();
+    AutoTrainSingleSelectionFeats();
+    VerifyGear();
     NotifyClassChoiceChanged();
     m_pDocument->SetModifiedFlag(TRUE);
 }
 
 void Character::SetClass(size_t level, ClassType type)
 {
-    ClassType classFrom = Class_Unknown;;
+    ClassType classFrom = Class_Unknown;
     if (level < MAX_CLASS_LEVEL)    // 0 based
     {
         ASSERT(m_Levels.size() == MAX_LEVEL);
@@ -1052,23 +1109,6 @@ void Character::SetClass(size_t level, ClassType type)
         classFrom = (*it).HasClass() ? (*it).Class() : Class_Unknown;
         (*it).Set_Class(type);
         UpdateSkillPoints(level);
-        // special case. When setting the class for level 1, all other heroic levels
-        // currently set to Class_Unknown are also changed to the chosen class
-        if (level == 0)
-        {
-            while (level < MAX_CLASS_LEVEL)
-            {
-                ++level;
-                ++it;
-                if (!(*it).HasClass()
-                        || (*it).Class() == Class_Unknown)
-                {
-                    // train this class as well
-                    (*it).Set_Class(type);
-                    UpdateSkillPoints(level);
-                }
-            }
-        }
         m_pDocument->SetModifiedFlag(TRUE);
     }
     NotifyClassChanged(classFrom, type, level);    // must be done before feat updates to keep spell lists kosher
@@ -1601,9 +1641,37 @@ bool Character::IsStanceActive(const std::string & name, WeaponType wt) const
     }
     else
     {
-        ret = m_Stances.IsStanceActive(name);
+        // some special stances are based on the Hitpoints slider position
+        // all these stances start with a numeric with the format of
+        // "<number>% Hitpoints"
+        if (name.find("% Hitpoints") != std::string::npos)
+        {
+            // this is a special hit point stance
+            int value = atoi(name.c_str());
+            // if the value is negative its an under comparison else its an over
+            if (value < 0)
+            {
+                value = -value;
+                ret = ((int)HitpointPercent() < value);
+            }
+            else
+            {
+                ret = ((int)HitpointPercent() >= value);
+            }
+        }
+        else
+        {
+            ret = m_Stances.IsStanceActive(name);
+        }
     }
     return ret;
+}
+
+void Character::SetHitpointPercent(size_t percent)
+{
+    Set_HitpointPercent(percent);
+    NotifyStanceActivated("");
+    m_pDocument->SetModifiedFlag(TRUE);
 }
 
 bool Character::IsClassSkill(

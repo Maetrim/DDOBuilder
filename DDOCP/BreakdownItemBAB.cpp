@@ -69,7 +69,7 @@ void BreakdownItemBAB::CreateOtherEffects()
                     Bonus_enhancement,
                     "BAB boost to character level",
                     1,
-                    MAX_LEVEL - currentBab,
+                    MAX_LEVEL - currentBab - 5,
                     "");        // no tree
             AddOtherEffect(amountTrained);
         }

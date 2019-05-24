@@ -5314,7 +5314,7 @@ be healed by spells from the healing subschool, such as cure light wounds.</Desc
       <Name>Improved Mental Toughness</Name>
       <Description>This feat increases the character maximum spell points by 10 at level 1
 and 5 spell points for each additional level. Also increases your spell critical
-chance by 1%. Stacks with Mental Toughness. </Description>
+chance by 1%. Stacks with Mental Toughness.</Description>
       <FeatGroup>
          <IsStandardFeat/>
          <IsMetamagic/>
@@ -7697,7 +7697,7 @@ physical resistance when wearing medium armor.</Description>
       <Name>Mental Toughness</Name>
       <Description>This feat Increases the character maximum spell points by 10 at level 1
 and 5 spell points for each additional level.
-Also increases your spell critical chance by 1%. </Description>
+Also increases your spell critical chance by 1%.</Description>
       <FeatGroup>
          <IsStandardFeat/>
          <IsMetamagic/>
@@ -8330,7 +8330,7 @@ This feat grants access to Racial and Class Toughness enhancements.</Description
       <Name>Past Life: Delver of the Forbidden</Name>
       <Description>You recall more about your past life as a Warlock.
 You gain +3 to your Spellcraft skill. You can confuse an enemy for 12 seconds
-(no saving throw). This can be used ten times per rest. </Description>
+(no saving throw). This can be used ten times per rest.</Description>
       <Requirements>
          <Requirement>
             <MinLevel>3</MinLevel>
@@ -9426,6 +9426,10 @@ Add +3 Melee Power</Description>
       <Requirements/>
       <Acquire>Train</Acquire>
       <Icon>ShieldProficiencyGeneral</Icon>
+      <AutomaticAcquisition>
+         <Class>Artificer</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
       <AutomaticAcquisition>
          <Class>Barbarian</Class>
          <Level>1</Level>
@@ -12135,7 +12139,7 @@ point for each additional level.</Description>
    <Feat>
       <Name>Tower Shield Proficiency</Name>
       <Description>This feat negates the extra penalties from using a tower shield while untrained.
-The -2 attack penalty still applies. </Description>
+The -2 attack penalty still applies.</Description>
       <Requirements>
          <Requirement>
             <Feat>Shield Proficiency (General)</Feat>
@@ -13540,7 +13544,7 @@ This feat allows Monks expend 10 Ki to heal some hit points over time in a
 meditative state. The exact number regained is (Monk level)/2 + Wisdom modifier
 (rounded up) every two seconds for thirty seconds.
 This ability is not suitable for use in combat, as the Monk may neither move
-nor act while regenerating. </Description>
+nor act while regenerating.</Description>
       <Requirements/>
       <Acquire>Automatic</Acquire>
       <Icon>WholenessOfBody</Icon>
@@ -18201,7 +18205,7 @@ Number of Destinies: 2, 1</Description>
       <Icon>Dreamscape</Icon>
    </Feat>
    <Feat>
-      <Name>Embodiment of Order</Name>
+      <Name>Embodiment of Law</Name>
       <Description>With weapon and unarmed attacks, deal 10 Bane damage against all targets
 and an additional 20 Law damage against Chaotic targets.
 This scales with Melee or Ranged power depending on your weapons.
@@ -20278,7 +20282,7 @@ You are proficient with heavy maces and gain +1 to hit with them.</Description>
    <Feat>
       <Name>Favored by Helm</Name>
       <Description>You follow Helm.
-You are proficient with bastard swords and gain +1 to hit with them. </Description>
+You are proficient with bastard swords and gain +1 to hit with them.</Description>
       <FeatGroup>
          <IsFollowerOf/>
       </FeatGroup>
@@ -24546,6 +24550,29 @@ These weapons receive one of the following morale bonuses in your hands.
       </Effect>
    </Feat>
    <!--New U41 Patch 3 Favor feats-->
+   <Feat>
+      <Name>Sharn City Council Favor Rewards</Name>
+      <Description>Rank 1: Favor 75 - "Sharn City Council: Skill Bonus" - "This feat grants you +2 bonus to Bluff and Haggle skills."
+Rank 2: Favor 150 - "Sharn City Council: Hit Point Bonus" - "This feat grants you +5 HP."</Description>
+      <MaxTimesAcquire>2</MaxTimesAcquire>
+      <Requirements/>
+      <Acquire>Favor</Acquire>
+      <Icon>SharnCityCouncil</Icon>
+      <Effect>
+         <DisplayName>Sharn City Council: Skill Bonus</DisplayName>
+         <Type>SkillBonus</Type>
+         <Bonus>Feat</Bonus>
+         <AmountVector size="2">2 2</AmountVector>
+         <Skill>Bluff</Skill>
+         <Skill>Haggle</Skill>
+      </Effect>
+      <Effect>
+         <DisplayName>Sharn City Council: Hit Point Bonus</DisplayName>
+         <Type>Hitpoints</Type>
+         <Bonus>Feat</Bonus>
+         <AmountVector size="2">0 5</AmountVector>
+      </Effect>
+   </Feat>
    <Feat>
       <Name>Gate Keepers Favor Rewards</Name>
       <Description>Rank 1: Favor 75 - "Gatekeepers: Skill Bonus" - "This feat grants you +2 bonus to Concentration and Spot skills."

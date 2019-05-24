@@ -38,6 +38,10 @@ XmlLib::SaxContentElementInterface * TrainedFeat::StartElement(
 
 void TrainedFeat::EndElement()
 {
+    if (m_FeatName == "Embodiment of Order")
+    {
+        m_FeatName = "Embodiment of Law";
+    }
     SaxContentElement::EndElement();
     DL_END(TrainedFeat_PROPERTIES)
     // update TFT_Special to correct type

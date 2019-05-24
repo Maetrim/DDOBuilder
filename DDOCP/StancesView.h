@@ -36,6 +36,7 @@ class CStancesView :
         afx_msg void OnMouseMove(UINT nFlags, CPoint point);
         afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
         afx_msg LRESULT OnMouseLeave(WPARAM wParam, LPARAM lParam);
+        afx_msg void OnHScroll(UINT sbCode, UINT nPos, CScrollBar * pScrollbar);
         DECLARE_MESSAGE_MAP()
 
     private:
@@ -56,9 +57,12 @@ class CStancesView :
         void ShowTip(const CStanceButton & item, CRect itemRect);
         void HideTip();
         void SetTooltipText(const CStanceButton & item, CPoint tipTopLeft, CPoint tipAlternate);
+        void SetHitpointsPercent();
 
         CDocument * m_pDocument;
         Character * m_pCharacter;
+        CStatic m_staticHitpointsLabel;
+        CSliderCtrl m_sliderHitpoints;
         CStatic m_userStances;
         CStatic m_autoStances;
         std::vector<CStanceButton *> m_userStancebuttons;

@@ -31,6 +31,8 @@ CStancesView::~CStancesView()
 void CStancesView::DoDataExchange(CDataExchange* pDX)
 {
     CFormView::DoDataExchange(pDX);
+    DDX_Control(pDX, IDC_STATIC_HITPOINTS, m_staticHitpointsLabel);
+    DDX_Control(pDX, IDC_SLIDER_HITPOINTS, m_sliderHitpoints);
     DDX_Control(pDX, IDC_STATIC_USERCONTROLLED, m_userStances);
     DDX_Control(pDX, IDC_STATIC_AUTOCONTROLLED, m_autoStances);
 }
@@ -44,6 +46,7 @@ BEGIN_MESSAGE_MAP(CStancesView, CFormView)
     ON_WM_MOUSEMOVE()
     ON_MESSAGE(WM_MOUSELEAVE, OnMouseLeave)
     ON_WM_LBUTTONDOWN()
+    ON_WM_HSCROLL()
 END_MESSAGE_MAP()
 #pragma warning(pop)
 
@@ -66,6 +69,9 @@ void CStancesView::OnInitialUpdate()
     CFormView::OnInitialUpdate();
     m_tooltip.Create(this);
     m_tipCreated = true;
+    m_sliderHitpoints.SetRange(0, 100);
+    m_sliderHitpoints.SetTic(5);
+    SetHitpointsPercent();
 }
 
 void CStancesView::OnSize(UINT nType, int cx, int cy)
@@ -73,13 +79,27 @@ void CStancesView::OnSize(UINT nType, int cx, int cy)
     CWnd::OnSize(nType, cx, cy);
     if (IsWindow(m_userStances.GetSafeHwnd()))
     {
+        // [Hitpoints][Hitpoints slider..........]
+        // [User] [][][][][][][][][][][][][][][][]
+        // [Auto] [][][][][][][][][][][][][][][][]
         CRect wndClient;
         GetClientRect(&wndClient);
+        CRect rctHitpointsLabel;
+        CRect rctHitpointsSlider;
+        m_staticHitpointsLabel.GetWindowRect(&rctHitpointsLabel);
+        rctHitpointsLabel -= rctHitpointsLabel.TopLeft();
+        rctHitpointsLabel += CPoint(c_controlSpacing, c_controlSpacing);
+        m_sliderHitpoints.GetWindowRect(&rctHitpointsSlider);
+        rctHitpointsSlider -= rctHitpointsSlider.TopLeft();
+        rctHitpointsSlider += CPoint(rctHitpointsLabel.right + c_controlSpacing, c_controlSpacing);
+        rctHitpointsSlider.right = max(rctHitpointsSlider.left + 25, wndClient.Width() - c_controlSpacing);
+        m_staticHitpointsLabel.MoveWindow(rctHitpointsLabel, TRUE);
+        m_sliderHitpoints.MoveWindow(rctHitpointsSlider, TRUE);
         CRect itemRect(
                 c_controlSpacing,
-                c_controlSpacing,
+                rctHitpointsLabel.bottom + c_controlSpacing,
                 c_windowSize + c_controlSpacing,
-                c_windowSize + c_controlSpacing);
+                rctHitpointsLabel.bottom + c_windowSize + c_controlSpacing);
         // user stance header first
         m_userStances.MoveWindow(itemRect, TRUE);
         // move rectangle across for next set of controls
@@ -176,7 +196,10 @@ LRESULT CStancesView::OnNewDocument(WPARAM wParam, LPARAM lParam)
     {
         m_pCharacter->AttachObserver(this);
         CreateStanceWindows();
+        SetHitpointsPercent();
+        m_sliderHitpoints.SetPos(m_pCharacter->HitpointPercent());
     }
+    m_sliderHitpoints.EnableWindow(m_pCharacter != NULL);
     return 0L;
 }
 
@@ -643,3 +666,27 @@ const CStanceButton * CStancesView::GetStance(const std::string & stanceName) co
     }
     return pButton;
 }
+
+void CStancesView::SetHitpointsPercent()
+{
+    size_t percentHitpoints = 100;
+    if (m_pCharacter != NULL)
+    {
+        percentHitpoints = m_pCharacter->HitpointPercent();
+    }
+    CString text;
+    text.Format("Hitpoints %d%%", percentHitpoints);
+    m_staticHitpointsLabel.SetWindowText(text);
+}
+
+void CStancesView::OnHScroll(UINT sbCode, UINT nPos, CScrollBar * pScrollbar)
+{
+    int pos = m_sliderHitpoints.GetPos();
+    if (pos != (int)m_pCharacter->HitpointPercent())
+    {
+        // its changed. Update
+        m_pCharacter->SetHitpointPercent(pos);
+        SetHitpointsPercent();  // update UI also
+    }
+}
+

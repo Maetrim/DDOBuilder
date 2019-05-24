@@ -56,6 +56,7 @@ bool ActiveStances::IsStanceActive(const std::string & name) const
         if ((*it) == name)
         {
             isActive = true;
+            break;      // found
         }
         ++it;
     }

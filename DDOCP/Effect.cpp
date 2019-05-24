@@ -188,6 +188,16 @@ bool Effect::VerifyObject(std::stringstream * ss) const
                 }
             }
             break;
+        case Effect_OverrideBAB:
+            if (HasAmount()
+                    || HasAmountVector()
+                    || HasAmountPerLevel()
+                    || HasAmountPerLevel())
+            {
+                (*ss) << "OverrideBAB has erroneous Amount field\n";
+                ok = false;
+            }
+            break;
         case Effect_SaveBonus:
             if (!HasSave())
             {
