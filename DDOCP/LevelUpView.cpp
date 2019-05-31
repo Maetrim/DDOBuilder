@@ -2077,7 +2077,7 @@ void CLevelUpView::SetLevelTooltipText(
         CPoint tipTopLeft,
         CPoint tipAlternate)
 {
-    // look up the selected feat for this control
+    // look up the selected class
     const LevelTraining & levelData = m_pCharacter->LevelData(level);
     ClassType expectedClass = levelData.HasClass() ? levelData.Class() : Class_Unknown;
     if (level == 0)

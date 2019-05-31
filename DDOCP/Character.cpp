@@ -388,6 +388,43 @@ bool Character::RevokeClass(ClassType type)
     return hadRevoke;
 }
 
+void Character::UpdateSpells()
+{
+    bool showMsg = false;
+    std::stringstream ss;
+    ss << "The following spells were revoked due to class level changes:\r\n"
+        "\r\n";
+    // check that we do not have more spells trained at a given spell
+    // level than the current class assignments allow. If we do,
+    // revoke the spells over the maximum size
+    std::vector<size_t> classLevels = ClassLevels(MAX_LEVEL);
+    for (size_t ci = Class_Unknown + 1; ci < Class_Count; ++ci)
+    {
+        // get the number of spells available for this class at this level
+        std::vector<size_t> spellSlots = SpellSlotsForClass((ClassType)ci, classLevels[ci]);
+        for (int spellLevel = 0; spellLevel < (int)spellSlots.size(); ++spellLevel)
+        {
+            // get the current trained spells at this level
+            std::list<TrainedSpell> trainedSpells = TrainedSpells((ClassType)ci, spellLevel + 1); // 1 based
+            while (trainedSpells.size() > spellSlots[spellLevel])
+            {
+                TrainedSpell ts = trainedSpells.back();
+                trainedSpells.pop_back(); // remove oldest
+                // need to revoke this spell
+                ss << EnumEntryText((ClassType)ci, classTypeMap) << ": ";
+                ss << ts.SpellName() << " Spell Level " << ts.Level();
+                ss << "\r\n";
+                showMsg = true;
+                RevokeSpell((ClassType)ci, ts.Level(), ts.SpellName());
+            }
+        }
+    }
+    if (showMsg)
+    {
+        AfxMessageBox(ss.str().c_str(), MB_ICONWARNING);
+    }
+}
+
 void Character::UpdateFeats()
 {
     // we start with any special feats (past lives etc)
@@ -1014,6 +1051,7 @@ void Character::SetClass1(size_t level, ClassType type)
             NotifyClassChanged(classFrom, Class1(), level);    // must be done before feat updates to keep spell lists kosher
         }
     }
+    UpdateSpells();
     UpdateFeats();
     VerifyTrainedFeats();
     AutoTrainSingleSelectionFeats();
@@ -1055,6 +1093,7 @@ void Character::SetClass2(size_t level, ClassType type)
             NotifyClassChanged(classFrom, Class2(), level);    // must be done before feat updates to keep spell lists kosher
         }
     }
+    UpdateSpells();
     UpdateFeats();
     VerifyTrainedFeats();
     AutoTrainSingleSelectionFeats();
@@ -1090,6 +1129,7 @@ void Character::SetClass3(size_t level, ClassType type)
             NotifyClassChanged(classFrom, Class3(), level);    // must be done before feat updates to keep spell lists kosher
         }
     }
+    UpdateSpells();
     UpdateFeats();
     VerifyTrainedFeats();
     AutoTrainSingleSelectionFeats();
@@ -1112,6 +1152,7 @@ void Character::SetClass(size_t level, ClassType type)
         m_pDocument->SetModifiedFlag(TRUE);
     }
     NotifyClassChanged(classFrom, type, level);    // must be done before feat updates to keep spell lists kosher
+    UpdateSpells();
     UpdateFeats();
     VerifyTrainedFeats();
     AutoTrainSingleSelectionFeats();

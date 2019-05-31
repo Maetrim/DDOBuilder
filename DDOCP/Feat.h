@@ -58,4 +58,5 @@ class Feat :
         DL_DECLARE_VARIABLES(Feat_PROPERTIES)
 
         friend class CLevelUpView;
+        friend class CFeatsClassControl;
 };

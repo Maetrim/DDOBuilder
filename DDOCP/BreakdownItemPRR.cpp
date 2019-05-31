@@ -58,15 +58,10 @@ void BreakdownItemPRR::CreateOtherEffects()
         // note that the Mithral body and Adamantine body feats control the state
         // of the stances, so we only need to check them
 
-        if (m_pCharacter->IsStanceActive("Light Armor"))
+        if (m_pCharacter->IsStanceActive("Light Armor")
+                && (m_pCharacter->IsFeatTrained("Light Armor Proficiency")
+                    || m_pCharacter->IsFeatTrained("Mithral Body")))
         {
-            ActiveEffect la(
-                    Bonus_armor,
-                    "Light Armor",
-                    1,
-                    2,
-                    "");        // no tree
-            AddOtherEffect(la);
             ActiveEffect prr(
                     Bonus_armor,
                     "Light Armor PRR (BAB * 1)",
@@ -75,15 +70,9 @@ void BreakdownItemPRR::CreateOtherEffects()
                     "");        // no tree
             AddOtherEffect(prr);
         }
-        if (m_pCharacter->IsStanceActive("Medium Armor"))
+        if (m_pCharacter->IsStanceActive("Medium Armor")
+                && m_pCharacter->IsFeatTrained("Medium Armor Proficiency"))
         {
-            ActiveEffect ma(
-                    Bonus_armor,
-                    "Medium Armor",
-                    1,
-                    4,
-                    "");        // no tree
-            AddOtherEffect(ma);
             ActiveEffect prr(
                     Bonus_armor,
                     "Medium Armor PRR (BAB * 1.5)",
@@ -92,15 +81,10 @@ void BreakdownItemPRR::CreateOtherEffects()
                     "");        // no tree
             AddOtherEffect(prr);
         }
-        if (m_pCharacter->IsStanceActive("Heavy Armor"))
+        if (m_pCharacter->IsStanceActive("Heavy Armor")
+                && (m_pCharacter->IsFeatTrained("Heavy Armor Proficiency")
+                    || m_pCharacter->IsFeatTrained("Adamantine Body")))
         {
-            ActiveEffect ha(
-                    Bonus_armor,
-                    "Heavy Armor",
-                    1,
-                    6,
-                    "");        // no tree
-            AddOtherEffect(ha);
             ActiveEffect prr(
                     Bonus_armor,
                     "Heavy Armor PRR (BAB * 2)",

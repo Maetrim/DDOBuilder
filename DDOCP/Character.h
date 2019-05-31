@@ -376,6 +376,7 @@ class Character :
         DL_DECLARE_ACCESS(Character_PROPERTIES)
         DL_DECLARE_VARIABLES(Character_PROPERTIES)
     private:
+        void UpdateSpells();
         void UpdateFeats();
         void UpdateFeats(size_t level, std::list<TrainedFeat> * allFeats);
         void ApplyFeatEffects(const Feat & feat);

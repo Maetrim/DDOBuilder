@@ -30,7 +30,7 @@ CLevelButton::CLevelButton() :
     //{{AFX_DATA_INIT(CLevelButton)
     //}}AFX_DATA_INIT
     HRESULT result = LoadImageFile(
-            IT_ui,
+            IT_enhancement,
             (LPCTSTR)EnumEntryText(m_class, classTypeMap),
             &m_image);
     m_image.SetTransparentColor(c_transparentColour);

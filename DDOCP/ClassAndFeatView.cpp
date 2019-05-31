@@ -59,25 +59,25 @@ void CClassAndFeatView::OnInitialUpdate()
     CFormView::OnInitialUpdate();
     if (!m_bHadCreate)
     {
-        m_wndFeatNavigationBar.Create(
-                CRect(0, 0, 100, 100),
-                this,
-                1);
-        CRect rectDummy(0, 0, 0, 0);
-        m_listFeats[0].Create(
-                WS_VISIBLE | WS_CHILD,
-                rectDummy,
-                &m_wndFeatNavigationBar,
-                2);
-        m_wndFeatNavigationBar.AddControl(&m_listFeats[0], "Control 1", 2, TRUE, AFX_CBRS_FLOAT | AFX_CBRS_AUTOHIDE | AFX_CBRS_RESIZE);
-        m_listFeats[1].Create(WS_VISIBLE | WS_CHILD, rectDummy, &m_wndFeatNavigationBar, 3);
-        m_wndFeatNavigationBar.AddControl(&m_listFeats[1], "Control 2", 3, TRUE, AFX_CBRS_FLOAT | AFX_CBRS_AUTOHIDE | AFX_CBRS_RESIZE);
-        m_listFeats[2].Create(WS_VISIBLE | WS_CHILD, rectDummy, &m_wndFeatNavigationBar, 4);
-        m_wndFeatNavigationBar.AddControl(&m_listFeats[2], "Control 3", 4, TRUE, AFX_CBRS_FLOAT | AFX_CBRS_AUTOHIDE | AFX_CBRS_RESIZE);
-        m_listFeats[3].Create(WS_VISIBLE | WS_CHILD, rectDummy, &m_wndFeatNavigationBar, 5);
-        m_wndFeatNavigationBar.AddControl(&m_listFeats[3], "Control 4", 5, TRUE, AFX_CBRS_FLOAT | AFX_CBRS_AUTOHIDE | AFX_CBRS_RESIZE);
-        m_listFeats[4].Create(WS_VISIBLE | WS_CHILD, rectDummy, &m_wndFeatNavigationBar, 6);
-        m_wndFeatNavigationBar.AddControl(&m_listFeats[4], "Control 5", 6, TRUE, AFX_CBRS_FLOAT | AFX_CBRS_AUTOHIDE | AFX_CBRS_RESIZE);
+        //m_wndFeatNavigationBar.Create(
+        //        CRect(0, 0, 100, 100),
+        //        this,
+        //        1);
+        //CRect rectDummy(0, 0, 0, 0);
+        //m_listFeats[0].Create(
+        //        WS_VISIBLE | WS_CHILD,
+        //        rectDummy,
+        //        &m_wndFeatNavigationBar,
+        //        2);
+        //m_wndFeatNavigationBar.AddControl(&m_listFeats[0], "Control 1", 2, TRUE, AFX_CBRS_FLOAT | AFX_CBRS_AUTOHIDE | AFX_CBRS_RESIZE);
+        //m_listFeats[1].Create(WS_VISIBLE | WS_CHILD, rectDummy, &m_wndFeatNavigationBar, 3);
+        //m_wndFeatNavigationBar.AddControl(&m_listFeats[1], "Control 2", 3, TRUE, AFX_CBRS_FLOAT | AFX_CBRS_AUTOHIDE | AFX_CBRS_RESIZE);
+        //m_listFeats[2].Create(WS_VISIBLE | WS_CHILD, rectDummy, &m_wndFeatNavigationBar, 4);
+        //m_wndFeatNavigationBar.AddControl(&m_listFeats[2], "Control 3", 4, TRUE, AFX_CBRS_FLOAT | AFX_CBRS_AUTOHIDE | AFX_CBRS_RESIZE);
+        //m_listFeats[3].Create(WS_VISIBLE | WS_CHILD, rectDummy, &m_wndFeatNavigationBar, 5);
+        //m_wndFeatNavigationBar.AddControl(&m_listFeats[3], "Control 4", 5, TRUE, AFX_CBRS_FLOAT | AFX_CBRS_AUTOHIDE | AFX_CBRS_RESIZE);
+        //m_listFeats[4].Create(WS_VISIBLE | WS_CHILD, rectDummy, &m_wndFeatNavigationBar, 6);
+        //m_wndFeatNavigationBar.AddControl(&m_listFeats[4], "Control 5", 6, TRUE, AFX_CBRS_FLOAT | AFX_CBRS_AUTOHIDE | AFX_CBRS_RESIZE);
     }
     m_bHadCreate = true;
 }
@@ -85,20 +85,22 @@ void CClassAndFeatView::OnInitialUpdate()
 void CClassAndFeatView::OnSize(UINT nType, int cx, int cy)
 {
     CFormView::OnSize(nType, cx, cy);
-    if (IsWindow(m_wndFeatNavigationBar.GetSafeHwnd()))
+    if (IsWindow(m_featsAndClasses.GetSafeHwnd()))
     {
+        CSize requiredSize = m_featsAndClasses.RequiredSize();
         CRect rctFeats;
         rctFeats.left = 0;
-        rctFeats.right = cx - (cx / 3) - 3;
+        rctFeats.right = max(requiredSize.cx, cx); //cx - (cx / 3) - 3;
         rctFeats.top = 0;
-        rctFeats.bottom = cy;
+        rctFeats.bottom = max(requiredSize.cy, cy);
         m_featsAndClasses.MoveWindow(rctFeats, TRUE);
-        CRect rctNavBar;
-        rctNavBar.left = cx - (cx / 3);
-        rctNavBar.right = cx - 1;
-        rctNavBar.top = 0;
-        rctNavBar.bottom = cy;
-        m_wndFeatNavigationBar.MoveWindow(rctNavBar);
+        //CRect rctNavBar;
+        //rctNavBar.left = cx - (cx / 3);
+        //rctNavBar.right = cx - 1;
+        //rctNavBar.top = 0;
+        //rctNavBar.bottom = cy;
+        //m_wndFeatNavigationBar.MoveWindow(rctNavBar);
+        SetScrollSizes(MM_TEXT, requiredSize);
     }
 }
 
@@ -120,6 +122,9 @@ LRESULT CClassAndFeatView::OnNewDocument(WPARAM wParam, LPARAM lParam)
         m_pCharacter->AttachObserver(this);
     }
     m_featsAndClasses.SetCharacter(m_pCharacter);
+    CRect rect;
+    GetClientRect(&rect);
+    OnSize(SIZE_RESTORED, rect.Width(), rect.Height());
     return 0L;
 }
 
@@ -128,7 +133,7 @@ BOOL CClassAndFeatView::OnEraseBkgnd(CDC* pDC)
     static int controlsNotToBeErased[] =
     {
         IDC_CLASS_AND_FEAT_LIST,
-        1,                  // m_wndFeatNavigationBar
+        //1,                  // m_wndFeatNavigationBar
         0 // end marker
     };
 

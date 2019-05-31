@@ -84,7 +84,6 @@ void CSpellsControl::OnPaint()
 
     if (!IsWindow(m_comboSpellSelect.GetSafeHwnd()))
     {
-        CComboBox test;
         m_comboSpellSelect.Create(
                 WS_CHILD | WS_VSCROLL | WS_TABSTOP
                 | CBS_DROPDOWNLIST | CBS_OWNERDRAWVARIABLE | CBS_HASSTRINGS,

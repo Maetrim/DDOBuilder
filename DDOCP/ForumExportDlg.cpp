@@ -187,6 +187,9 @@ void CForumExportDlg::PopulateExport()
             case FES_AutomaticFeats:
                 AddAutomaticFeats(forumExport);
                 break;
+            case FES_ConsolidatedFeats:
+                AddConsolidatedFeats(forumExport);
+                break;
             case FES_Skills:
                 AddSkills(forumExport);
                 break;
@@ -693,6 +696,109 @@ void CForumExportDlg::AddAutomaticFeats(std::stringstream & forumExport)
         {
             forumExport << "\r\n";
         }
+    }
+    forumExport << "\r\n";
+}
+
+void CForumExportDlg::AddConsolidatedFeats(std::stringstream & forumExport)
+{
+    forumExport << "Class and Feat Selection (Consolidated)\r\n";
+    forumExport << "------------------------------------------------------------------------------------------\r\n";
+    forumExport << "Level Class            Feats\r\n";
+    for (size_t level = 0; level < MAX_LEVEL; ++level)
+    {
+        bool first = true;
+        const LevelTraining & levelData = m_pCharacter->LevelData(level);
+        if (level == 0)
+        {
+            bool requiresHeartOfWood = false;
+            ClassType expectedClass = levelData.HasClass() ? levelData.Class() : Class_Unknown;
+            switch (m_pCharacter->Race())
+            {
+            case Race_AasimarScourge: requiresHeartOfWood = (expectedClass != Class_Ranger); break;
+            case Race_BladeForged: requiresHeartOfWood = (expectedClass != Class_Paladin); break;
+            case Race_DeepGnome: requiresHeartOfWood = (expectedClass != Class_Wizard); break;
+            case Race_Morninglord: requiresHeartOfWood = (expectedClass != Class_Cleric); break;
+            case Race_PurpleDragonKnight: requiresHeartOfWood = (expectedClass != Class_Fighter); break;
+            case Race_ShadarKai: requiresHeartOfWood = (expectedClass != Class_Rogue); break;
+            case Race_TieflingScoundrel: requiresHeartOfWood = (expectedClass != Class_Bard); break;
+            }
+            if (requiresHeartOfWood)
+            {
+                forumExport << "                       Level 1 Requires a +1 Heart of Wood to switch out of Iconic Class\r\n";
+                first = false;
+            }
+        }
+        std::vector<size_t> classLevels = m_pCharacter->ClassLevels(level);
+        CString className;
+        className.Format("%s(%d)",
+                EnumEntryText(levelData.HasClass() ? levelData.Class() : Class_Unknown, classTypeMap),
+                levelData.HasClass() ? classLevels[levelData.Class()] : 0);
+        forumExport.width(2);
+        forumExport << std::left << (level + 1) << "    ";
+        forumExport.fill(' ');
+        forumExport.width(17);
+        forumExport << std::left << className;
+        // now add the trainable feat types and their selections
+        std::vector<TrainableFeatTypes> trainable = m_pCharacter->TrainableFeatTypeAtLevel(level);
+        if (trainable.size() > 0)
+        {
+            for (size_t tft = 0; tft < trainable.size(); ++tft)
+            {
+                CString label = TrainableFeatTypeLabel(trainable[tft]);
+                label += ": ";
+                TrainedFeat tf = m_pCharacter->GetTrainedFeat(
+                        level,
+                        trainable[tft]);
+                if (tf.FeatName().empty())
+                {
+                    label += "Empty Feat Slot";
+                }
+                else
+                {
+                    label += tf.FeatName().c_str();
+                    if (tf.HasFeatSwapWarning())
+                    {
+                        label += " (Requires Feat Swap with Fred)";
+                    }
+                }
+                if (tft > 0)
+                {
+                    forumExport << "                       ";
+                }
+                forumExport << label;
+                forumExport << "\r\n";
+            }
+            first = false;
+        }
+        // also need to show ability adjustment on every 4th level
+        AbilityType ability = m_pCharacter->AbilityLevelUp(level + 1);
+        if (ability != Ability_Unknown)
+        {
+            if (trainable.size() > 0)
+            {
+                forumExport << "                       ";
+            }
+            forumExport << EnumEntryText(ability, abilityTypeMap);
+            forumExport << ": +1 Level up\r\n";
+            first = false;
+        }
+        // now add the automatic feats
+        const FeatsListObject & automaticFeats = levelData.AutomaticFeats();
+        const std::list<TrainedFeat> & feats = automaticFeats.Feats();
+        std::list<TrainedFeat>::const_iterator it = feats.begin();
+        while (it != feats.end())
+        {
+            if (!first)
+            {
+                forumExport << "                       ";
+            }
+            forumExport << "Automatic: " << (*it).FeatName();
+            forumExport << "\r\n";
+            ++it;
+            first = false;
+        }
+        forumExport << "\r\n";
     }
     forumExport << "\r\n";
 }

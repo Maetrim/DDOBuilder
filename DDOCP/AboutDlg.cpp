@@ -67,10 +67,12 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
             "Selvera, "
             "ShintaoMonk, "
             "Strambotica, "
+            "Swimms, "
             "Vilhena, "
             "warioman91, "
             "wolvemd, "
-            "Xycona");
+            "Xycona, "
+            "Zretch");
     m_bugReporters.SetSel(-1);    // nothing starts selected
 }
 
