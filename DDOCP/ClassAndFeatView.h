@@ -25,10 +25,14 @@ class CClassAndFeatView :
         CClassAndFeatView();           // protected constructor used by dynamic creation
         virtual ~CClassAndFeatView();
 
+        virtual void UpdateClassChoiceChanged(Character * charData) override;
+
         virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
         afx_msg void OnSize(UINT nType, int cx, int cy);
         afx_msg BOOL OnEraseBkgnd(CDC* pDC);
         afx_msg LRESULT OnNewDocument(WPARAM wParam, LPARAM lParam);
+        afx_msg void OnHScroll(UINT, UINT, CScrollBar*);
+        afx_msg void OnVScroll( UINT, UINT, CScrollBar* );
         DECLARE_MESSAGE_MAP()
 
     private:
@@ -36,6 +40,4 @@ class CClassAndFeatView :
         Character * m_pCharacter;
         CMFCOutlookBarTabCtrl m_wndFeatNavigationBar;
         CFeatsClassControl m_featsAndClasses;
-        CListCtrl m_listFeats[8];
-        bool m_bHadCreate;
 };

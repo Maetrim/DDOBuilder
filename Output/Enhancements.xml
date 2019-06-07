@@ -444,6 +444,11 @@ Positive Spell Power equal to your Character Level.</Description>
                <Icon>DivinePurpose</Icon>
                <Cost>1</Cost>
                <Clickie/>
+               <Requirements>
+                  <Requirement>
+                      <Feat>Aasimar: Protector Bond</Feat>
+                  </Requirement>
+               </Requirements>
                <Stance>
                   <Name>Aasimar: Divine Purpose</Name>
                   <Icon>DivinePurpose</Icon>
@@ -472,6 +477,11 @@ For one minute, you gain +2 Primal bonus to Strength and +5% Primal bonus to Dou
                <Icon>Fallen</Icon>
                <Cost>1</Cost>
                <Clickie/>
+               <Requirements>
+                  <Requirement>
+                      <Feat>Aasimar: Fallen Bond</Feat>
+                  </Requirement>
+               </Requirements>
                <Stance>
                   <Name>Aasimar: Divine Purpose</Name>
                   <Icon>DivinePurpose</Icon>
@@ -709,28 +719,43 @@ Must have your Bond Feat active to use. Mutually exclusive with Form feats (PM, 
                <Icon>DivineFormProtector</Icon>
                <Cost>1</Cost>
                <Clickie/>
+               <Requirements>
+                  <Requirement>
+                      <Feat>Aasimar: Protector Bond</Feat>
+                  </Requirement>
+               </Requirements>
+               <Stance>
+                  <Name>Aasimar: Ascendant Bond: Protector</Name>
+                  <Icon>DivineFormProtector</Icon>
+                  <Description>You gain +3 stacking bonus to all Saving Throws,
+10% Sacred Bonus to Max HP, and a +10 Determination Bonus to PRR and MRR.</Description>
+               </Stance>
                <Effect>
                   <Type>SaveBonus</Type>
                   <Bonus>Stacking</Bonus>
                   <Amount>3</Amount>
                   <Save>All</Save>
+                  <Stance>Aasimar: Ascendant Bond: Protector</Stance>
                </Effect>
                <Effect>
                   <Type>Hitpoints</Type>
                   <Bonus>Sacred</Bonus>
                   <Percent/>
                   <Amount>10</Amount>
+                  <Stance>Aasimar: Ascendant Bond: Protector</Stance>
                   <ApplyAsItemEffect/>
                </Effect>
                <Effect>
                   <Type>PRR</Type>
                   <Bonus>Determination</Bonus>
                   <Amount>10</Amount>
+                  <Stance>Aasimar: Ascendant Bond: Protector</Stance>
                </Effect>
                <Effect>
                   <Type>MRR</Type>
                   <Bonus>Determination</Bonus>
                   <Amount>10</Amount>
+                  <Stance>Aasimar: Ascendant Bond: Protector</Stance>
                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
@@ -740,15 +765,28 @@ and your melee weapon attacks add a stack of Vulnerability once per second.</Des
                <Icon>DivineFormFallen</Icon>
                <Cost>1</Cost>
                <Clickie/>
+               <Requirements>
+                  <Requirement>
+                      <Feat>Aasimar: Fallen Bond</Feat>
+                  </Requirement>
+               </Requirements>
+               <Stance>
+                  <Name>Aasimar: Ascendant Bond: Fallen</Name>
+                  <Icon>DivineFormFallen</Icon>
+                  <Description>You gain immunity to Fear, a +10 Determination bonus to Melee Power,
+and your melee weapon attacks add a stack of Vulnerability once per second.</Description>
+               </Stance>
                <Effect>
                   <Type>Immunity</Type>
                   <Bonus>Enhancement</Bonus>
                   <Immunity>Fear</Immunity>
+                  <Stance>Aasimar: Ascendant Bond: Fallen</Stance>
                </Effect>
                <Effect>
                   <Type>MeleePower</Type>
                   <Bonus>Determination</Bonus>
                   <Amount>10</Amount>
+                  <Stance>Aasimar: Ascendant Bond: Fallen</Stance>
                </Effect>
             </EnhancementSelection>
          </Selector>
@@ -1078,6 +1116,7 @@ and your melee weapon attacks add a stack of Vulnerability once per second.</Des
             <Tactical>Sunder</Tactical>
             <Tactical>Stun</Tactical>
             <Tactical>General</Tactical>
+            <Tactical>Quivering Palm</Tactical>
             <AmountVector size="3">1 2 3</AmountVector>
          </Effect>
       </EnhancementTreeItem>
@@ -2209,7 +2248,7 @@ shortbows, light crossbows, and light repeating crossbows.
          <ArrowUp/>
          <Requirements/>
          <Effect>
-            <Type>ACBonus</Type>
+            <Type>NaturalArmor</Type>
             <Bonus>Enhancement</Bonus>
             <AmountVector size="3">2 4 6</AmountVector>
          </Effect>
@@ -3612,6 +3651,7 @@ No spell point cost. (Cooldown: 10 seconds.)</Description>
             <Tactical>Sunder</Tactical>
             <Tactical>Stun</Tactical>
             <Tactical>General</Tactical>
+            <Tactical>Quivering Palm</Tactical>
             <AmountVector size="3">1 2 3</AmountVector>
          </Effect>
       </EnhancementTreeItem>
@@ -11938,6 +11978,7 @@ your Charisma modifier.</Description>
             <Tactical>Sunder</Tactical>
             <Tactical>Stun</Tactical>
             <Tactical>General</Tactical>
+            <Tactical>Quivering Palm</Tactical>
             <Ability>Charisma</Ability>
             <Divider>3</Divider>
          </Effect>
@@ -15653,6 +15694,7 @@ Duration: 20 seconds</Description>
             <Tactical>Sunder</Tactical>
             <Tactical>Stun</Tactical>
             <Tactical>General</Tactical>
+            <Tactical>Quivering Palm</Tactical>
             <AmountVector size="3">1 2 3</AmountVector>
          </Effect>
       </EnhancementTreeItem>
@@ -32158,8 +32200,8 @@ all saving throws.</Description>
             </Requirement>
          </Requirements>
          <Effect>
-            <Type>ACBonus</Type>
-            <Bonus>NaturalArmor</Bonus>
+            <Type>NaturalArmor</Type>
+            <Bonus>Enhancement</Bonus>
             <AmountVector size="3">2 4 6</AmountVector>
          </Effect>
       </EnhancementTreeItem>
@@ -40632,6 +40674,7 @@ Dodge for 6 seconds. (Cooldown: 15 seconds.)</Description>
             <Tactical>Sunder</Tactical>
             <Tactical>Stun</Tactical>
             <Tactical>General</Tactical>
+            <Tactical>Quivering Palm</Tactical>
             <AmountVector size="3">1 2 3</AmountVector>
          </Effect>
       </EnhancementTreeItem>
@@ -52825,7 +52868,7 @@ Blind DC: 10 + Character Level + Wisdom Modifier + Assassinate bonuses.</Descrip
                   <Name>Falconry: Shoot for the Eyes</Name>
                   <Description>Ranged Falconer Attack: You and your Hunting Bird attack as one against a single target.
 Activate this ability to attack for +1/2/3[W] against a single target.
-Your Hunting Bird will follow up for an additional /6/10 damage that scales with
+Your Hunting Bird will follow up for an additional 3/6/10d6 damage that scales with
 200% of melee or ranged power, whichever is higher. Your Hunting Bird also
 attempts to Blind the target, causing them to become Helpless.</Description>
                   <Icon>FalconDivingStrike</Icon>
@@ -52839,8 +52882,8 @@ attempts to Blind the target, causing them to become Helpless.</Description>
             <EnhancementSelection>
                <Name>Strike for the Eyes</Name>
                <Description>Melee Falconer Attack: You and your Hunting Bird attack as one against a single target.
-Activate this ability to attack for +1[W] against a single target.
-Your Hunting Bird will follow up for an additional 3d6 damage that scales with
+Activate this ability to attack for +1/2/3[W] against a single target.
+Your Hunting Bird will follow up for an additional 3/6/10d6 damage that scales with
 200% of melee or ranged power, whichever is higher. Your Hunting Bird also
 attempts to Blind the target, causing them to become Helpless. Your target is
 slowed by 30% for 10 seconds whether they make the saving throw or not.
@@ -52852,8 +52895,8 @@ Blind DC: 10 + Character Level + Wisdom Modifier + Assassinate bonuses.</Descrip
                <DC>
                   <Name>Falconry: Strike for the Eyes</Name>
                   <Description>Melee Falconer Attack: You and your Hunting Bird attack as one against a single target.
-Activate this ability to attack for +1[W] against a single target.
-Your Hunting Bird will follow up for an additional 3d6 damage that scales with
+Activate this ability to attack for +1/2/3[W] against a single target.
+Your Hunting Bird will follow up for an additional 3/6/10d6 damage that scales with
 200% of melee or ranged power, whichever is higher. Your Hunting Bird also
 attempts to Blind the target, causing them to become Helpless.</Description>
                   <Icon>FalconDivingStrike</Icon>
@@ -53560,7 +53603,7 @@ for 20 seconds. Cooldown: 5 minutes.</Description>
          <InternalName>StrategicCombatI</InternalName>
          <Name>Harper Agent: Strategic Combat I</Name>
          <Description>You can use your Intelligence modifier to hit with Melee and Missile weapons.
-Note: This does not function while unarmed or on shields.</Description>
+Note: This does not function with shields.</Description>
          <Icon>StrategicCombatI</Icon>
          <XPosition>3</XPosition>
          <YPosition>1</YPosition>
@@ -53737,6 +53780,7 @@ to 1/2 of your Intelligence modifier for [30/60/120] seconds</Description>
             <Tactical>Sunder</Tactical>
             <Tactical>Stun</Tactical>
             <Tactical>General</Tactical>
+            <Tactical>Quivering Palm</Tactical>
             <Stance>Know the Angles</Stance>
          </Effect>
          <Effect>
@@ -53940,7 +53984,7 @@ Aberration / Construct / Dragon / Evil Outsider / Giant / Monstrous Humanoid / U
          <InternalName>StrategicCombatII</InternalName>
          <Name>Harper Agent: Strategic Combat II</Name>
          <Description>You can use your Intelligence modifier for damage with Melee and Missile weapons.
-Note: This does not function while unarmed or on shields.</Description>
+Note: This does not function with shields.</Description>
          <Icon>StrategicCombatI</Icon>
          <XPosition>3</XPosition>
          <YPosition>3</YPosition>
@@ -63179,6 +63223,12 @@ This effect stacks up to five times, and lasts 10 seconds after you come out of 
          </Effect>
          <Effect>
             <Type>DodgeBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">10 10 10</AmountVector>
+            <Stance>Measure the Foe</Stance>
+         </Effect>
+         <Effect>
+            <Type>DodgeCapBonus</Type>
             <Bonus>Enhancement</Bonus>
             <AmountVector size="3">10 10 10</AmountVector>
             <Stance>Measure the Foe</Stance>
@@ -86811,8 +86861,8 @@ At rank 3 you no longer automatically fail fort save on a 1.</Description>
          <ArrowUp/>
          <Requirements/>
          <Effect>
-            <Type>ACBonus</Type>
-            <Bonus>NaturalArmor</Bonus>
+            <Type>NaturalArmor</Type>
+            <Bonus>Destiny</Bonus>
             <AmountVector size="3">1 2 3</AmountVector>
          </Effect>
          <Effect>
@@ -89415,7 +89465,7 @@ You also gain an additional 9 Spell Power to Acid, Cold, Electric, and Fire spel
                   <Amount>1</Amount>
                </Effect>
                <Effect>
-                  <Type>ACBonus</Type>
+                  <Type>NaturalArmor</Type>
                   <Bonus>Destiny</Bonus>
                   <Amount>1</Amount>
                </Effect>
@@ -91186,6 +91236,7 @@ versus enchantments. Also gain +10 Melee power and +1 to the DC of your tactical
             <Tactical>Sunder</Tactical>
             <Tactical>Stun</Tactical>
             <Tactical>General</Tactical>
+            <Tactical>Quivering Palm</Tactical>
             <Amount>1</Amount>
          </Effect>
       </EnhancementTreeItem>
@@ -91258,6 +91309,7 @@ Gain +1 to the DC of your tactical feats and +10 Melee power.</Description>
             <Tactical>Sunder</Tactical>
             <Tactical>Stun</Tactical>
             <Tactical>General</Tactical>
+            <Tactical>Quivering Palm</Tactical>
             <Amount>1</Amount>
          </Effect>
          <Effect>
@@ -91327,6 +91379,7 @@ Gain +1 to the DC of your tactical feats and +10 Melee power.</Description>
             <Tactical>Sunder</Tactical>
             <Tactical>Stun</Tactical>
             <Tactical>General</Tactical>
+            <Tactical>Quivering Palm</Tactical>
             <Amount>1</Amount>
          </Effect>
          <Effect>
@@ -91490,7 +91543,8 @@ If you have Monk levels and are in Wind stance, +[1/2/3]% chance to doublestrike
       <EnhancementTreeItem>
          <Name>Grandmaster of Flowers: Serenity</Name>
          <InternalName>Serenity</InternalName>
-         <Description>+[3/6/9] stacking spell resistance.</Description>
+         <Description>+[3/9/18] stacking spell resistance.
+Note: Wiki says 3/6/9 but it is reported each tier stacks with itself also. So 3/9/18 it is.</Description>
          <Icon>Serenity</Icon>
          <XPosition>2</XPosition>
          <YPosition>2</YPosition>
@@ -91501,7 +91555,7 @@ If you have Monk levels and are in Wind stance, +[1/2/3]% chance to doublestrike
          <Effect>
             <Type>SpellResistance</Type>
             <Bonus>Destiny</Bonus>
-            <AmountVector size="3">3 6 9</AmountVector>
+            <AmountVector size="3">3 9 18</AmountVector>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -92280,6 +92334,7 @@ Improved Sunder effect on hit. (Cooldown 1 min)</Description>
             <Tactical>Sunder</Tactical>
             <Tactical>Stun</Tactical>
             <Tactical>General</Tactical>
+            <Tactical>Quivering Palm</Tactical>
             <AmountVector size="3">2 4 6</AmountVector>
          </Effect>
       </EnhancementTreeItem>
@@ -97277,12 +97332,14 @@ for 3 seconds, which grants 10 temporary HP to targets they attack.</Description
             <Amount>1</Amount>
          </Effect>
          <Effect>
+            <DisplayName>Unyielding Sentinel: Vigor of Battle: Stance</DisplayName>
             <Type>Hitpoints</Type>
             <Bonus>Destiny</Bonus>
             <Amount>50</Amount>
             <Stance>Vigor of Battle</Stance>
          </Effect>
          <Effect>
+            <DisplayName>Unyielding Sentinel: Vigor of Battle: Stance</DisplayName>
             <Type>HealingAmplification</Type>
             <Bonus>Destiny</Bonus>
             <Amount>20</Amount>
@@ -97315,7 +97372,7 @@ Sentinel Stance: (Cooldown 20 seconds) You gain DR 10/epic.</Description>
             <IncompatibleStance>Stand Against the Tide</IncompatibleStance>
          </Stance>
          <Effect>
-            <Type>ACBonus</Type>
+            <Type>NaturalArmor</Type>
             <Bonus>Sacred</Bonus>
             <Amount>5</Amount>
          </Effect>

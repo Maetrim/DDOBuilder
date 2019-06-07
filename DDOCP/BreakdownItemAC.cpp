@@ -138,6 +138,19 @@ void BreakdownItemAC::CreateOtherEffects()
                     "");        // no tree
             AddOtherEffect(feat);
         }
+        pBI = FindBreakdown(Breakdown_NaturalArmor);
+        if (pBI != NULL)
+        {
+            pBI->AttachObserver(this);      // need to know about changes
+            double naturalArmor = pBI->Total();
+            ActiveEffect na(
+                    Bonus_naturalArmor,
+                    "Natural Armor",
+                    1,
+                    naturalArmor,
+                    "");        // no tree
+            AddOtherEffect(na);
+        }
     }
 }
 

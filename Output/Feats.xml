@@ -9060,7 +9060,7 @@ be interrupted by enemy attacks, but they consume 10 additional spell points.</D
       <Name>Quivering Palm</Name>
       <Description>The monk delivers a fatal attack by sending waves of vibrations through the
 target with a weapon strike. The attack costs 30 Ki, and if it hits the victim
-must pass a Fortitude save (DC 10 + monk level/2 + Wisdom modifier + General modifiers)
+must pass a Fortitude save (DC 10 + monk level/2 + Wisdom modifier + QP modifiers)
 or die. Quivering Palm gains DC bonuses from general tactical combat boosts,
 but not Sundering items. Whenever an enemy saves vs. Quivering Palm, you get
 a stacking +4 bonus to your Quivering Palm DC. This stack is dispelled when you
@@ -9090,7 +9090,7 @@ must pass a Fortitude save or die.</Description>
          <AmountVector size="1">10</AmountVector>
          <HalfClassLevel>Monk</HalfClassLevel>
          <ModAbility>Wisdom</ModAbility>
-         <Tactical>General</Tactical>
+         <Tactical>Quivering Palm</Tactical>
       </DC>
    </Feat>
    <Feat>
@@ -11955,6 +11955,7 @@ Focus and Greater Weapon Focus feats.</Description>
          <Tactical>Sunder</Tactical>
          <Tactical>Stun</Tactical>
          <Tactical>General</Tactical>
+         <Tactical>Quivering Palm</Tactical>
          <Amount>2</Amount>
       </Effect>
    </Feat>
@@ -14055,6 +14056,7 @@ This feat can be stacked up to three times.</Description>
          <Tactical>Sunder</Tactical>
          <Tactical>Stun</Tactical>
          <Tactical>General</Tactical>
+         <Tactical>Quivering Palm</Tactical>
          <Amount>1</Amount>
       </Effect>
    </Feat>
@@ -14414,6 +14416,39 @@ Passive Bonus: +3 Magical Resistance per stack of this Past Life.</Description>
    </Feat>
    <!--Epic Past Lives-->
    <Feat>
+      <Name>Past Life: Arcane Sphere: Ancient Knowledge</Name>
+      <Description>Arcane Past Life Stance: +3 MRR per stack of this past life.
+Passive Bonus: +1% Absorption of Acid, Cold, Electric and Fire damage.</Description>
+      <Stance>
+         <Name>Ancient Knowledge</Name>
+         <Icon>EpicPastLifeAncientKnowledge</Icon>
+         <Description>Arcane Past Life Stance: +3 MRR per stack of this past life.</Description>
+         <IncompatibleStance>Energy Criticals</IncompatibleStance>
+         <IncompatibleStance>Enchant Weapon</IncompatibleStance>
+         <IncompatibleStance>Arcane Alacrity</IncompatibleStance>
+      </Stance>
+      <Requirements/>
+      <MaxTimesAcquire>3</MaxTimesAcquire>
+      <Acquire>EpicPastLife</Acquire>
+      <Sphere>Arcane</Sphere>
+      <Icon>EpicPastLifeAncientKnowledge</Icon>
+      <Effect>
+         <Type>MRR</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>3</Amount>
+         <Stance>Ancient Knowledge</Stance>
+      </Effect>
+      <Effect>
+         <Type>EnergyAbsorbance</Type>
+         <Bonus>Feat</Bonus>
+         <Energy>Acid</Energy>
+         <Energy>Cold</Energy>
+         <Energy>Electric</Energy>
+         <Energy>Fire</Energy>
+         <Amount>1</Amount>
+      </Effect>
+   </Feat>
+   <Feat>
       <Name>Past Life: Arcane Sphere: Energy Criticals</Name>
       <Description>Arcane Past Life Stance: 3% Critical Chance with Acid, Cold, Electric, Fire,
 and Sonic Spells per stack of this past life.
@@ -14423,6 +14458,7 @@ Passive Bonus: +1% Absorption of Acid, Cold, Electric and Fire damage.</Descript
          <Icon>EpicPastLifeEnergyCriticals</Icon>
          <Description>Arcane Past Life Stance: 3% Critical Chance with Acid, Cold, Electric, Fire,
 and Sonic Spells per stack of this past life.</Description>
+         <IncompatibleStance>Ancient Knowledge</IncompatibleStance>
          <IncompatibleStance>Enchant Weapon</IncompatibleStance>
          <IncompatibleStance>Arcane Alacrity</IncompatibleStance>
       </Stance>
@@ -14486,6 +14522,7 @@ Passive Bonus: +1% Absorption of Acid, Cold, Electric and Fire damage.</Descript
          <Icon>EpicPastLifeEnchantWeapon</Icon>
          <Description>Arcane Past Life Stance: Your mainhand equipped weapon gains +1 enhancement
 bonus per Enchant Weapon past life feat.</Description>
+         <IncompatibleStance>Ancient Knowledge</IncompatibleStance>
          <IncompatibleStance>Energy Criticals</IncompatibleStance>
          <IncompatibleStance>Arcane Alacrity</IncompatibleStance>
       </Stance>
@@ -14521,6 +14558,7 @@ Passive Bonus: +1% Absorption of Acid, Cold, Electric and Fire damage.</Descript
          <Icon>EpicPastLifeArcaneAlacrity</Icon>
          <Description>Arcane Past Life Stance: Cooldowns on your spells are reduced by 3%.
 Additional stacks of Arcane Alacrity past life increases this to 6% and then 10%.</Description>
+         <IncompatibleStance>Ancient Knowledge</IncompatibleStance>
          <IncompatibleStance>Energy Criticals</IncompatibleStance>
          <IncompatibleStance>Enchant Weapon</IncompatibleStance>
       </Stance>
@@ -14541,6 +14579,45 @@ Additional stacks of Arcane Alacrity past life increases this to 6% and then 10%
       </Effect>
    </Feat>
    <Feat>
+      <Name>Past Life: Divine Sphere: Ancient Blessings</Name>
+      <Description>Divine Past Life Stance: +5 Positive, Negative and Repair Healing Amplification
+per stack of this Past Life.
+Passive Bonus: +3 PRR per stack of this Past Life.</Description>
+      <Stance>
+         <Name>Ancient Blessings</Name>
+         <Icon>EpicPastLifeAncientBlessings</Icon>
+         <Description>Divine Past Life Stance: +5 Positive, Negative and Repair Healing Amplification
+per stack of this Past Life.</Description>
+         <IncompatibleStance>Brace</IncompatibleStance>
+         <IncompatibleStance>Block Energy</IncompatibleStance>
+         <IncompatibleStance>Power Over Life and Death</IncompatibleStance>
+      </Stance>
+      <Requirements/>
+      <MaxTimesAcquire>3</MaxTimesAcquire>
+      <Acquire>EpicPastLife</Acquire>
+      <Sphere>Divine</Sphere>
+      <Icon>EpicPastLifeAncientBlessings</Icon>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Feat</Bonus>
+         <SpellPower>Negative</SpellPower>
+         <SpellPower>Positive</SpellPower>
+         <Amount>5</Amount>
+         <Stance>Ancient Blessings</Stance>
+      </Effect>
+      <Effect>
+         <Type>RepairAmplification</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>5</Amount>
+         <Stance>Ancient Blessings</Stance>
+      </Effect>
+      <Effect>
+         <Type>PRR</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>3</Amount>
+      </Effect>
+   </Feat>
+   <Feat>
       <Name>Past Life: Divine Sphere: Power Over Life and Death</Name>
       <Description>Divine Past Life Stance: +10 Positive and +10 Negative Energy Spell Power
 per stack of this Past Life.
@@ -14550,6 +14627,7 @@ Passive Bonus: +3 PRR per stack of this Past Life.</Description>
          <Icon>EpicPastLifePowerOverLifeAndDeath</Icon>
          <Description>Divine Past Life Stance: +10 Positive and +10 Negative Energy Spell Power
 per stack of this Past Life.</Description>
+         <IncompatibleStance>Ancient Blessings</IncompatibleStance>
          <IncompatibleStance>Brace</IncompatibleStance>
          <IncompatibleStance>Block Energy</IncompatibleStance>
       </Stance>
@@ -14586,6 +14664,7 @@ Passive Bonus: +3 PRR per stack of this Past Life.</Description>
          <Name>Brace</Name>
          <Icon>EpicPastLifeBrace</Icon>
          <Description>Divine Past Life Stance: +1 to all Saving Throws per stack of this Past Life.</Description>
+         <IncompatibleStance>Ancient Blessings</IncompatibleStance>
          <IncompatibleStance>Power Over Life and Death</IncompatibleStance>
          <IncompatibleStance>Block Energy</IncompatibleStance>
       </Stance>
@@ -14617,6 +14696,7 @@ Passive Bonus: +3 PRR per stack of this Past Life.</Description>
          <Icon>EpicPastLifeBlockEnergy</Icon>
          <Description>Divine Past Life Stance: While blocking, +10% damage absorption against Acid,
 Cold, Electric and Fire damage, per stack of this Past Life.</Description>
+         <IncompatibleStance>Ancient Blessings</IncompatibleStance>
          <IncompatibleStance>Power Over Life and Death</IncompatibleStance>
          <IncompatibleStance>Brace</IncompatibleStance>
       </Stance>
@@ -14643,6 +14723,48 @@ Cold, Electric and Fire damage, per stack of this Past Life.</Description>
       </Effect>
    </Feat>
    <Feat>
+      <Name>Past Life: Martial Sphere: Ancient Tactics</Name>
+      <Description>Martial Past Life Stance: +2 to Tactics DCs and +1 to Assassinate DCs per stack of this past life.
+Passive Bonus: +2 AC per stack of this Past Life and +1 AC per ten character levels.</Description>
+      <Stance>
+         <Name>Ancient Tactics</Name>
+         <Icon>EpicPastLifeAncientTactics</Icon>
+         <Description>Martial Past Life Stance: +2 to Tactics DCs and +1 to Assassinate DCs per stack of this past life.</Description>
+         <IncompatibleStance>Doublestrike</IncompatibleStance>
+         <IncompatibleStance>Skill Mastery</IncompatibleStance>
+         <IncompatibleStance>Fortification</IncompatibleStance>
+      </Stance>
+      <Requirements/>
+      <MaxTimesAcquire>3</MaxTimesAcquire>
+      <Acquire>EpicPastLife</Acquire>
+      <Sphere>Martial</Sphere>
+      <Icon>EpicPastLifeAncientTactics</Icon>
+      <Effect>
+         <Type>TacticalDC</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>2</Amount>
+         <Tactical>Trip</Tactical>
+         <Tactical>Sunder</Tactical>
+         <Tactical>Stun</Tactical>
+         <Tactical>General</Tactical>
+         <Tactical>Quivering Palm</Tactical>
+         <Stance>Ancient Tactics</Stance>
+      </Effect>
+      <Effect>
+         <Type>TacticalDC</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
+         <Tactical>Assassinate</Tactical>
+         <Stance>Ancient Tactics</Stance>
+      </Effect>
+      <Effect>
+         <Type>ACBonus</Type>
+         <Bonus>Feat</Bonus>
+         <!--Although it should be 2 + 3 per 10 levels, just use the bonus at level 30 which is 5-->
+         <Amount>5</Amount>
+      </Effect>
+   </Feat>
+   <Feat>
       <Name>Past Life: Martial Sphere: Doublestrike</Name>
       <Description>Martial Past Life Stance: +3% Doublestrike per stack of this Past Life.
 Passive Bonus: +2 AC per stack of this Past Life and +1 AC per ten character levels.</Description>
@@ -14650,6 +14772,7 @@ Passive Bonus: +2 AC per stack of this Past Life and +1 AC per ten character lev
          <Name>Doublestrike</Name>
          <Icon>EpicPastLifeDoublestrike</Icon>
          <Description>Martial Past Life Stance: +3% Doublestrike per stack of this Past Life.</Description>
+         <IncompatibleStance>Ancient Tactics</IncompatibleStance>
          <IncompatibleStance>Skill Mastery</IncompatibleStance>
          <IncompatibleStance>Fortification</IncompatibleStance>
       </Stance>
@@ -14679,6 +14802,7 @@ Passive Bonus: +2 AC per stack of this Past Life and +1 AC per ten character lev
          <Name>Skill Mastery</Name>
          <Icon>EpicPastLifeSkillMAstery</Icon>
          <Description>Martial Past Life Stance: +1 to all skills per stack of this Past Life.</Description>
+         <IncompatibleStance>Ancient Tactics</IncompatibleStance>
          <IncompatibleStance>Doublestrike</IncompatibleStance>
          <IncompatibleStance>Fortification</IncompatibleStance>
       </Stance>
@@ -14709,6 +14833,7 @@ Passive Bonus: +2 AC per stack of this Past Life and +1 AC per ten character lev
          <Name>Fortification</Name>
          <Icon>EpicPastLifeFortification</Icon>
          <Description>Martial Past Life Stance: +10% Fortification per stack of this Past Life.</Description>
+         <IncompatibleStance>Ancient Tactics</IncompatibleStance>
          <IncompatibleStance>Doublestrike</IncompatibleStance>
          <IncompatibleStance>Skill Mastery</IncompatibleStance>
       </Stance>
@@ -14731,6 +14856,62 @@ Passive Bonus: +2 AC per stack of this Past Life and +1 AC per ten character lev
       </Effect>
    </Feat>
    <Feat>
+      <Name>Past Life: Primal Sphere: Ancient Power</Name>
+      <Description>Primal Past Life Stance: +2 to Attack per stack of this past life.
+If you are fighting in Two Handed Fighting style, you also gain +2 Damage per stack of this past life.
+Passive Bonus: +3 maximum HP and +4 per ten character levels.</Description>
+      <Stance>
+         <Name>Ancient Power</Name>
+         <Icon>EpicPastLifeAncientPower</Icon>
+         <Description>Primal Past Life Stance: +2 to Attack per stack of this past life.
+If you are fighting in Two Handed Fighting style, you also gain +2 Damage per stack of this past life.</Description>
+         <IncompatibleStance>Doubleshot</IncompatibleStance>
+         <IncompatibleStance>Fast Healing</IncompatibleStance>
+         <IncompatibleStance>Colors of the Queen</IncompatibleStance>
+      </Stance>
+      <Requirements/>
+      <MaxTimesAcquire>3</MaxTimesAcquire>
+      <Acquire>EpicPastLife</Acquire>
+      <Sphere>Primal</Sphere>
+      <Icon>EpicPastLifeAncientPower</Icon>
+      <Effect>
+         <Type>AttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>2</Amount>
+         <Weapon>All</Weapon>
+         <Stance>AncientPower</Stance>
+      </Effect>
+      <Effect>
+         <Type>CriticalAttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>2</Amount>
+         <Weapon>All</Weapon>
+         <Stance>AncientPower</Stance>
+      </Effect>
+      <Effect>
+         <Type>DamageBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>2</Amount>
+         <Weapon>All</Weapon>
+         <Stance>Two Handed Fighting</Stance>
+         <Stance>AncientPower</Stance>
+      </Effect>
+      <Effect>
+         <Type>Seeker</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>2</Amount>
+         <Weapon>All</Weapon>
+         <Stance>Two Handed Fighting</Stance>
+         <Stance>AncientPower</Stance>
+      </Effect>
+      <Effect>
+         <Type>Hitpoints</Type>
+         <Bonus>Feat</Bonus>
+         <!--Although it should be 3 + 4 per 10 levels, just use the bonus at level 30 which is 15-->
+         <Amount>15</Amount>
+      </Effect>
+   </Feat>
+   <Feat>
       <Name>Past Life: Primal Sphere: Doubleshot</Name>
       <Description>Primal Past Life Stance: +3% Doubleshot per stack of this Past Life.
 Passive Bonus: +3 maximum HP and +4 per ten character levels.</Description>
@@ -14738,6 +14919,7 @@ Passive Bonus: +3 maximum HP and +4 per ten character levels.</Description>
          <Name>Doubleshot</Name>
          <Icon>EpicPastLifeDoubleshot</Icon>
          <Description>Primal Past Life Stance: +3% Doubleshot per stack of this Past Life.</Description>
+         <IncompatibleStance>Ancient Power</IncompatibleStance>
          <IncompatibleStance>Fast Healing</IncompatibleStance>
          <IncompatibleStance>Colors of the Queen</IncompatibleStance>
       </Stance>
@@ -14771,6 +14953,7 @@ Passive Bonus: +3 maximum HP and +4 per ten character levels.</Description>
          <Description>Primal Past Life Stance: Each minute you heal with positive energy, 5 HP + 5 HP
 per every 5 character levels. Healing is doubled and tripled with two or three
 stacks of this Past Life.</Description>
+         <IncompatibleStance>Ancient Power</IncompatibleStance>
          <IncompatibleStance>Doubleshot</IncompatibleStance>
          <IncompatibleStance>Colors of the Queen</IncompatibleStance>
       </Stance>
@@ -14809,6 +14992,7 @@ have a 7% chance to produce a random effect. This triggers at most once every
 30 seconds. Additional stacks of this past life reduce the triggered effect
 cooldown to 20 seconds and then 10 seconds. (Most of the random effects are
 extra damage or debuffs on the enemy you hit.)</Description>
+         <IncompatibleStance>Ancient Power</IncompatibleStance>
          <IncompatibleStance>Doubleshot</IncompatibleStance>
          <IncompatibleStance>Fast Healing</IncompatibleStance>
       </Stance>
@@ -15276,17 +15460,6 @@ You also gain 2% dodge bonus when using a ranged weapon.</Description>
          <Requirement>
             <MinLevel>21</MinLevel>
          </Requirement>
-         <RequiresOneOf>
-            <Requirement>
-               <Feat>Improved Construct Essence</Feat>
-            </Requirement>
-            <Requirement>
-               <Race>Warforged</Race>
-            </Requirement>
-            <Requirement>
-               <Race>Bladeforged</Race>
-            </Requirement>
-         </RequiresOneOf>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>ConstructExemplar</Icon>
@@ -18695,6 +18868,7 @@ An additional +4 if you are centered.
          <Tactical>Sunder</Tactical>
          <Tactical>Stun</Tactical>
          <Tactical>General</Tactical>
+         <Tactical>Quivering Palm</Tactical>
          <Tactical>Assassinate</Tactical>
          <Amount>4</Amount>
       </Effect>
@@ -20074,6 +20248,9 @@ You are proficient with Quarterstaves and gain +1 to hit with them.</Description
       <Requirements>
          <RequiresNoneOf>
             <Requirement>
+               <Race>Aasimar Scourge</Race>
+            </Requirement>
+            <Requirement>
                <Race>Bladeforged</Race>
             </Requirement>
             <Requirement>
@@ -20113,6 +20290,9 @@ You are proficient with Daggers and gain +1 to hit with them.</Description>
       </FeatGroup>
       <Requirements>
          <RequiresNoneOf>
+            <Requirement>
+               <Race>Aasimar Scourge</Race>
+            </Requirement>
             <Requirement>
                <Race>Bladeforged</Race>
             </Requirement>
@@ -20185,6 +20365,9 @@ You are proficient with Sickles and gain +1 to hit with them.</Description>
       <Requirements>
          <RequiresNoneOf>
             <Requirement>
+               <Race>Aasimar Scourge</Race>
+            </Requirement>
+            <Requirement>
                <Race>Bladeforged</Race>
             </Requirement>
             <Requirement>
@@ -20224,6 +20407,9 @@ You are proficient with Warhammers and gain +1 to hit with them.</Description>
       </FeatGroup>
       <Requirements>
          <RequiresNoneOf>
+            <Requirement>
+               <Race>Aasimar Scourge</Race>
+            </Requirement>
             <Requirement>
                <Race>Bladeforged</Race>
             </Requirement>
@@ -20265,6 +20451,9 @@ You are proficient with Longbows and gain +1 to hit with them</Description>
       <Requirements>
          <RequiresNoneOf>
             <Requirement>
+               <Race>Aasimar Scourge</Race>
+            </Requirement>
+            <Requirement>
                <Race>Bladeforged</Race>
             </Requirement>
             <Requirement>
@@ -20304,6 +20493,9 @@ You are proficient with Longswords and gain +1 to hit with them.</Description>
       </FeatGroup>
       <Requirements>
          <RequiresNoneOf>
+            <Requirement>
+               <Race>Aasimar Scourge</Race>
+            </Requirement>
             <Requirement>
                <Race>Bladeforged</Race>
             </Requirement>
@@ -20406,6 +20598,9 @@ You are proficient with heavy maces and gain +1 to hit with them.</Description>
          <RequiresOneOf>
             <Requirement>
                <Race>Aasimar Scourge</Race>
+            </Requirement>
+            <Requirement>
+               <Race>Deep Gnome</Race>
             </Requirement>
             <Requirement>
                <Race>Morninglord</Race>
@@ -21222,8 +21417,8 @@ healing spells.</Description>
          <Stance>Bladesworn Transformation</Stance>
       </Effect>
       <Effect>
-         <Type>ACBonus</Type>
-         <Bonus>NaturalArmor</Bonus>
+         <Type>NaturalArmor</Type>
+         <Bonus>Feat</Bonus>
          <Amount>4</Amount>
          <Stance>Bladesworn Transformation</Stance>
       </Effect>
@@ -21671,8 +21866,8 @@ Toggling this on gives you Blessing of Silvanus: You permanently gain a
 +4 natural armor bonus to AC and Mauls you wield gain +2 to their Critical Threat Range.</Description>
       </Stance>
        <Effect>
-           <Type>ACBonus</Type>
-           <Bonus>NaturalArmor</Bonus>
+            <Type>NaturalArmor</Type>
+            <Bonus>Feat</Bonus>
            <Amount>4</Amount>
            <Stance>Blessing of Silvanus</Stance>
        </Effect>

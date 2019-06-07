@@ -75,6 +75,8 @@ private:
     // CharacterObserver
     void UpdateClassChoiceChanged(Character * charData) override;
     void UpdateClassChanged(Character * charData, ClassType classFrom, ClassType classTo, size_t level) override;
+    void UpdateFeatTrained(Character * charData, const std::string & featName) override;
+    void UpdateFeatRevoked(Character * charData, const std::string & featName) override;
 
     Character * m_pCharacter;
     bool m_bMenuDisplayed;
@@ -98,6 +100,7 @@ private:
     bool m_showingTip;
     bool m_tipCreated;
     HitCheckItem m_tooltipItem;
+    HitCheckItem m_featSelectItem;
     CComboBoxTooltip m_featSelector;
 };
 

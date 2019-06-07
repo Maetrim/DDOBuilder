@@ -425,6 +425,11 @@ Positive Spell Power equal to your Character Level.</Description>
                <Icon>DivinePurpose</Icon>
                <Cost>1</Cost>
                <Clickie/>
+               <Requirements>
+                  <Requirement>
+                      <Feat>Aasimar: Protector Bond</Feat>
+                  </Requirement>
+               </Requirements>
                <Stance>
                   <Name>Aasimar: Divine Purpose</Name>
                   <Icon>DivinePurpose</Icon>
@@ -453,6 +458,11 @@ For one minute, you gain +2 Primal bonus to Strength and +5% Primal bonus to Dou
                <Icon>Fallen</Icon>
                <Cost>1</Cost>
                <Clickie/>
+               <Requirements>
+                  <Requirement>
+                      <Feat>Aasimar: Fallen Bond</Feat>
+                  </Requirement>
+               </Requirements>
                <Stance>
                   <Name>Aasimar: Divine Purpose</Name>
                   <Icon>DivinePurpose</Icon>
@@ -690,28 +700,43 @@ Must have your Bond Feat active to use. Mutually exclusive with Form feats (PM, 
                <Icon>DivineFormProtector</Icon>
                <Cost>1</Cost>
                <Clickie/>
+               <Requirements>
+                  <Requirement>
+                      <Feat>Aasimar: Protector Bond</Feat>
+                  </Requirement>
+               </Requirements>
+               <Stance>
+                  <Name>Aasimar: Ascendant Bond: Protector</Name>
+                  <Icon>DivineFormProtector</Icon>
+                  <Description>You gain +3 stacking bonus to all Saving Throws,
+10% Sacred Bonus to Max HP, and a +10 Determination Bonus to PRR and MRR.</Description>
+               </Stance>
                <Effect>
                   <Type>SaveBonus</Type>
                   <Bonus>Stacking</Bonus>
                   <Amount>3</Amount>
                   <Save>All</Save>
+                  <Stance>Aasimar: Ascendant Bond: Protector</Stance>
                </Effect>
                <Effect>
                   <Type>Hitpoints</Type>
                   <Bonus>Sacred</Bonus>
                   <Percent/>
                   <Amount>10</Amount>
+                  <Stance>Aasimar: Ascendant Bond: Protector</Stance>
                   <ApplyAsItemEffect/>
                </Effect>
                <Effect>
                   <Type>PRR</Type>
                   <Bonus>Determination</Bonus>
                   <Amount>10</Amount>
+                  <Stance>Aasimar: Ascendant Bond: Protector</Stance>
                </Effect>
                <Effect>
                   <Type>MRR</Type>
                   <Bonus>Determination</Bonus>
                   <Amount>10</Amount>
+                  <Stance>Aasimar: Ascendant Bond: Protector</Stance>
                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
@@ -721,15 +746,28 @@ and your melee weapon attacks add a stack of Vulnerability once per second.</Des
                <Icon>DivineFormFallen</Icon>
                <Cost>1</Cost>
                <Clickie/>
+               <Requirements>
+                  <Requirement>
+                      <Feat>Aasimar: Fallen Bond</Feat>
+                  </Requirement>
+               </Requirements>
+               <Stance>
+                  <Name>Aasimar: Ascendant Bond: Fallen</Name>
+                  <Icon>DivineFormFallen</Icon>
+                  <Description>You gain immunity to Fear, a +10 Determination bonus to Melee Power,
+and your melee weapon attacks add a stack of Vulnerability once per second.</Description>
+               </Stance>
                <Effect>
                   <Type>Immunity</Type>
                   <Bonus>Enhancement</Bonus>
                   <Immunity>Fear</Immunity>
+                  <Stance>Aasimar: Ascendant Bond: Fallen</Stance>
                </Effect>
                <Effect>
                   <Type>MeleePower</Type>
                   <Bonus>Determination</Bonus>
                   <Amount>10</Amount>
+                  <Stance>Aasimar: Ascendant Bond: Fallen</Stance>
                </Effect>
             </EnhancementSelection>
          </Selector>

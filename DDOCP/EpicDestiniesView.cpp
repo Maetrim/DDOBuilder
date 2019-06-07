@@ -120,7 +120,7 @@ void CEpicDestiniesView::OnInitialUpdate()
 
 void CEpicDestiniesView::OnSize(UINT nType, int cx, int cy)
 {
-    CWnd::OnSize(nType, cx, cy);
+    CFormView::OnSize(nType, cx, cy);
     if (m_treeViews.size() > 0
             && IsWindow(m_treeViews[0]->GetSafeHwnd()))
     {

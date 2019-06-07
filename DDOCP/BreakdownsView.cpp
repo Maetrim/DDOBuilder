@@ -590,6 +590,20 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
         m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pAC);
         m_items.push_back(pAC);
         {
+            HTREEITEM hNaturalArmor = m_itemBreakdownTree.InsertItem(
+                    "Natural Armor",
+                    hItem,
+                    TVI_LAST);
+            BreakdownItem * pNaturalArmor = new BreakdownItemSimple(
+                    Breakdown_NaturalArmor,
+                    Effect_NaturalArmor,
+                    "Natural Armor",
+                    &m_itemBreakdownTree,
+                    hNaturalArmor);
+            m_itemBreakdownTree.SetItemData(hNaturalArmor, (DWORD)(void*)pNaturalArmor);
+            m_items.push_back(pNaturalArmor);
+        }
+        {
             HTREEITEM hArmorItem = m_itemBreakdownTree.InsertItem(
                     "Armor % Bonus",
                     hItem,
@@ -1158,6 +1172,7 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
     AddTacticalItem(Breakdown_TacticalSunder, Tactical_Sunder, "Sunder", hTacticalParent);
     AddTacticalItem(Breakdown_TacticalTrip, Tactical_Trip, "Trip", hTacticalParent);
     AddTacticalItem(Breakdown_TacticalGeneral, Tactical_General, "General", hTacticalParent);
+    AddTacticalItem(Breakdown_QuiveringPalm, Tactical_QuiveringPalm, "Quivering Palm", hTacticalParent);
     AddTacticalItem(Breakdown_TacticalStunningShield, Tactical_StunningShield, "Stunning Shield", hTacticalParent);
     AddTacticalItem(Breakdown_TacticalWands, Tactical_Wands, "Wands", hTacticalParent);
     AddTacticalItem(Breakdown_TacticalFear, Tactical_Fear, "Fear", hTacticalParent);

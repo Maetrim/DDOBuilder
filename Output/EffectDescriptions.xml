@@ -616,8 +616,8 @@
          </Effect>
         <EffectDescription>Natural Armor Bonus +19: Natural Armor bonus to AC.</EffectDescription>
         <Effect>
-            <Type>ACBonus</Type>
-            <Bonus>NaturalArmor</Bonus>
+            <Type>NaturalArmor</Type>
+            <Bonus>Enhancement</Bonus>
             <Amount>19</Amount>
         </Effect>
         <EffectDescription>Healing Amplification +83: +83 Competence Bonus to your incoming Positive healing.</EffectDescription>
@@ -4739,7 +4739,7 @@ When 2 pieces are equipped: +5 Artifact Bonus to Natural Armor.
                             +2 Artifact Bonus to Constitution.</EffectDescription>
         <Effect>
             <DisplayName>Wayward Warrior Set: Natural Armor</DisplayName>
-            <Type>ACBonus</Type>
+            <Type>NaturalArmor</Type>
             <Bonus>Artifact</Bonus>
             <AmountVector size="2">0 5</AmountVector>
         </Effect>
@@ -4807,7 +4807,7 @@ When 3 pieces are equipped: +1 Artifact Bonus to Critical Multiplier on a 19-20.
       </Effect>
       <Effect>
          <DisplayName>Greensteel Escalation Dominance - Dodge Cap Bonus</DisplayName>
-         <Type>DodgeCap</Type>
+         <Type>DodgeCapBonus</Type>
          <Bonus>Enhancement</Bonus>
          <AmountVector size="30">0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29</AmountVector>
          <Stance>Escalation</Stance>
@@ -5309,7 +5309,7 @@ When 3 pieces are equipped: +1 Artifact Bonus to Critical Multiplier on a 19-20.
         </Effect>
         <EffectDescription>Rough Hide +6: This item fuses with your body and toughens your skin, providing a +6 Primal bonus to your natural armor.</EffectDescription>
         <Effect>
-            <Type>ACBonus</Type>
+            <Type>NaturalArmor</Type>
             <Bonus>Primal</Bonus>
             <Amount>6</Amount>
         </Effect>
@@ -6912,8 +6912,10 @@ When struck you will occasionally have the Stoneskin spell cast on you.</EffectD
         </Effect>
         <EffectDescription>Legendary Guardian of the Gates:
 3 Pieces Equipped: +10% Artifact bonus to Armor Class
-                   +30 Artifact bonus to PRR
-                   +75% Artifact bonus to Threat Generation</EffectDescription>
+                   +15 Artifact bonus to PRR
+                   +30 Artifact bonus to MRR
+                   +75% Artifact bonus to Threat Generation
+                   +10% Artifact bonus to Fire, Cold, Acid and Electric Absorption</EffectDescription>
         <Effect>
             <DisplayName>Legendary Guardian of the Gates: AC Bonus</DisplayName>
             <Type>ACBonus</Type>
@@ -6924,6 +6926,12 @@ When struck you will occasionally have the Stoneskin spell cast on you.</EffectD
         <Effect>
             <DisplayName>Legendary Guardian of the Gates: PRR</DisplayName>
             <Type>PRR</Type>
+            <Bonus>Artifact</Bonus>
+            <AmountVector size="3">0 0 15</AmountVector>
+        </Effect>
+        <Effect>
+            <DisplayName>Legendary Guardian of the Gates: MRR</DisplayName>
+            <Type>MRR</Type>
             <Bonus>Artifact</Bonus>
             <AmountVector size="3">0 0 30</AmountVector>
         </Effect>
@@ -6944,6 +6952,16 @@ When struck you will occasionally have the Stoneskin spell cast on you.</EffectD
             <Type>ThreatBonusSpell</Type>
             <Bonus>Artifact</Bonus>
             <AmountVector size="3">0 0 75</AmountVector>
+        </Effect>
+        <Effect>
+            <DisplayName>Legendary Guardian of the Gates: Energy Absorption</DisplayName>
+            <Type>EnergyAbsorbance</Type>
+            <Bonus>Artifact</Bonus>
+            <AmountVector size="3">0 0 10</AmountVector>
+            <Energy>Fire</Energy>
+            <Energy>Cold</Energy>
+            <Energy>Acid</Energy>
+            <Energy>Electric</Energy>
         </Effect>
         <EffectDescription>Legendary Hruit's Influence:
 3 Pieces Equipped: +50 Artifact bonus to Fire, Cold, Lightning and Positive spell power

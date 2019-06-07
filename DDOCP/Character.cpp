@@ -3514,26 +3514,26 @@ void Character::ApplyEnhancementEffects(
         const std::string & selection,
         size_t ranks)
 {
+    std::string displayName = GetEnhancementName(treeName, enhancementName, selection);
+    std::list<Effect> effects = GetEnhancementEffects(treeName, enhancementName, selection);
+    std::list<DC> dcs = GetEnhancementDCs(treeName, enhancementName, selection);
+    for (size_t rank = 0; rank < ranks; ++rank)
     {
-        std::string displayName = GetEnhancementName(treeName, enhancementName, selection);
-        std::list<Effect> effects = GetEnhancementEffects(treeName, enhancementName, selection);
-        std::list<Effect>::const_iterator eit = effects.begin();
-        while (eit != effects.end())
         {
-            NotifyEnhancementEffect(displayName, (*eit), ranks);
-            ++eit;
+            std::list<Effect>::const_iterator eit = effects.begin();
+            while (eit != effects.end())
+            {
+                NotifyEnhancementEffect(displayName, (*eit), 1);
+                ++eit;
+            }
         }
-    }
-    {
-        std::list<DC> dcs = GetEnhancementDCs(treeName, enhancementName, selection);
-        std::list<DC>::const_iterator dcit = dcs.begin();
-        while (dcit != dcs.end())
         {
-            for (size_t i = 0; i < ranks; ++i)
+            std::list<DC>::const_iterator dcit = dcs.begin();
+            while (dcit != dcs.end())
             {
                 NotifyNewDC(*dcit);
+                ++dcit;
             }
-            ++dcit;
         }
     }
 }
@@ -3546,18 +3546,21 @@ void Character::RevokeEnhancementEffects(
 {
     std::string displayName = GetEnhancementName(treeName, enhancementName, selection);
     std::list<Effect> effects = GetEnhancementEffects(treeName, enhancementName, selection);
-    std::list<Effect>::const_iterator eit = effects.begin();
-    while (eit != effects.end())
-    {
-        NotifyEnhancementEffectRevoked(displayName, (*eit), ranks);
-        ++eit;
-    }
     std::list<DC> dcs = GetEnhancementDCs(treeName, enhancementName, selection);
-    std::list<DC>::const_iterator dcit = dcs.begin();
-    while (dcit != dcs.end())
+    for (size_t rank = 0; rank < ranks; ++rank)
     {
-        NotifyRevokeDC(*dcit);
-        ++dcit;
+        std::list<Effect>::const_iterator eit = effects.begin();
+        while (eit != effects.end())
+        {
+            NotifyEnhancementEffectRevoked(displayName, (*eit), 1);
+            ++eit;
+        }
+        std::list<DC>::const_iterator dcit = dcs.begin();
+        while (dcit != dcs.end())
+        {
+            NotifyRevokeDC(*dcit);
+            ++dcit;
+        }
     }
 }
 
@@ -5454,6 +5457,7 @@ void Character::ApplyGuildBuffs()
                 }
                 ++it;
             }
+            m_previousGuildLevel = GuildLevel();
         }
     }
     else
