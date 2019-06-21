@@ -40,6 +40,7 @@ enum EffectType
     Effect_BlockingDR,
     Effect_CasterLevel,
     Effect_CenteredWeapon,
+    Effect_CreateSlider,
     Effect_CriticalAttackBonus,
     Effect_CriticalMultiplier,
     Effect_CriticalMultiplier19To20,
@@ -171,6 +172,7 @@ const XmlLib::enumMapEntry<EffectType> effectTypeMap[] =
     {Effect_BlockingDR, L"BlockingDR"},
     {Effect_CasterLevel, L"CasterLevel"},
     {Effect_CenteredWeapon, L"CenteredWeapon"},
+    {Effect_CreateSlider, L"CreateSlider"},
     {Effect_CriticalAttackBonus, L"CriticalAttackBonus"},
     {Effect_CriticalMultiplier, L"CriticalMultiplier"},
     {Effect_CriticalMultiplier19To20, L"CriticalMultiplier19To20"},
@@ -334,6 +336,7 @@ class Effect :
                 DL_STRING_VECTOR(_, AnyOfStance) \
                 DL_OPTIONAL_STRING(_, EnhancementTree) \
                 DL_OPTIONAL_STRING(_, SpellLikeAbility) \
+                DL_OPTIONAL_STRING(_, Slider) \
                 DL_STRING_LIST(_, Immunity) \
                 DL_OPTIONAL_ENUM(_, AbilityType, Ability, Ability_Unknown, abilityTypeMap) \
                 DL_OPTIONAL_ENUM(_, AbilityType, FullAbility, Ability_Unknown, abilityTypeMap) \

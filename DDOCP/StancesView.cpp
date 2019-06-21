@@ -20,7 +20,8 @@ CStancesView::CStancesView() :
     m_pDocument(NULL),
     m_tipCreated(false),
     m_pTooltipItem(NULL),
-    m_nextStanceId(IDC_SPECIALFEAT_0)
+    m_nextStanceId(IDC_SPECIALFEAT_0),
+    m_nextSliderId(50)
 {
 }
 
@@ -31,8 +32,7 @@ CStancesView::~CStancesView()
 void CStancesView::DoDataExchange(CDataExchange* pDX)
 {
     CFormView::DoDataExchange(pDX);
-    DDX_Control(pDX, IDC_STATIC_HITPOINTS, m_staticHitpointsLabel);
-    DDX_Control(pDX, IDC_SLIDER_HITPOINTS, m_sliderHitpoints);
+    DDX_Control(pDX, IDC_HIDDEN_SIZER, m_staticHiddenSizer);
     DDX_Control(pDX, IDC_STATIC_USERCONTROLLED, m_userStances);
     DDX_Control(pDX, IDC_STATIC_AUTOCONTROLLED, m_autoStances);
 }
@@ -69,9 +69,6 @@ void CStancesView::OnInitialUpdate()
     CFormView::OnInitialUpdate();
     m_tooltip.Create(this);
     m_tipCreated = true;
-    m_sliderHitpoints.SetRange(0, 100);
-    m_sliderHitpoints.SetTic(5);
-    SetHitpointsPercent();
 }
 
 void CStancesView::OnSize(UINT nType, int cx, int cy)
@@ -79,27 +76,34 @@ void CStancesView::OnSize(UINT nType, int cx, int cy)
     CWnd::OnSize(nType, cx, cy);
     if (IsWindow(m_userStances.GetSafeHwnd()))
     {
-        // [Hitpoints][Hitpoints slider..........]
+        // [Slider Label][Slider Control.........]
         // [User] [][][][][][][][][][][][][][][][]
         // [Auto] [][][][][][][][][][][][][][][][]
         CRect wndClient;
         GetClientRect(&wndClient);
-        CRect rctHitpointsLabel;
-        CRect rctHitpointsSlider;
-        m_staticHitpointsLabel.GetWindowRect(&rctHitpointsLabel);
-        rctHitpointsLabel -= rctHitpointsLabel.TopLeft();
-        rctHitpointsLabel += CPoint(c_controlSpacing, c_controlSpacing);
-        m_sliderHitpoints.GetWindowRect(&rctHitpointsSlider);
-        rctHitpointsSlider -= rctHitpointsSlider.TopLeft();
-        rctHitpointsSlider += CPoint(rctHitpointsLabel.right + c_controlSpacing, c_controlSpacing);
-        rctHitpointsSlider.right = max(rctHitpointsSlider.left + 25, wndClient.Width() - c_controlSpacing);
-        m_staticHitpointsLabel.MoveWindow(rctHitpointsLabel, TRUE);
-        m_sliderHitpoints.MoveWindow(rctHitpointsSlider, TRUE);
+        int sliderBottom = c_controlSpacing;
+        // do all the sliders
+        std::list<SliderItem>::iterator si = m_sliders.begin();
+        CRect rctSizer;
+        m_staticHiddenSizer.GetWindowRect(rctSizer);
+        rctSizer -= rctSizer.TopLeft();
+        while (si != m_sliders.end())
+        {
+            CRect rctLabel(c_controlSpacing, sliderBottom, c_controlSpacing + 100, sliderBottom + rctSizer.Height());
+            CRect rctSlider(rctLabel.right + c_controlSpacing, sliderBottom, cx - c_controlSpacing, sliderBottom + rctSizer.Height());
+            // now position the controls
+            (*si).m_label->MoveWindow(rctLabel, TRUE);
+            (*si).m_slider->MoveWindow(rctSlider, TRUE);
+            (*si).m_label->ShowWindow(SW_SHOW);
+            (*si).m_slider->ShowWindow(SW_SHOW);
+            sliderBottom = rctSlider.bottom + c_controlSpacing;
+            ++si;
+        }
         CRect itemRect(
                 c_controlSpacing,
-                rctHitpointsLabel.bottom + c_controlSpacing,
+                sliderBottom,
                 c_windowSize + c_controlSpacing,
-                rctHitpointsLabel.bottom + c_windowSize + c_controlSpacing);
+                sliderBottom + c_windowSize);
         // user stance header first
         m_userStances.MoveWindow(itemRect, TRUE);
         // move rectangle across for next set of controls
@@ -196,10 +200,7 @@ LRESULT CStancesView::OnNewDocument(WPARAM wParam, LPARAM lParam)
     {
         m_pCharacter->AttachObserver(this);
         CreateStanceWindows();
-        SetHitpointsPercent();
-        m_sliderHitpoints.SetPos(m_pCharacter->HitpointPercent());
     }
-    m_sliderHitpoints.EnableWindow(m_pCharacter != NULL);
     return 0L;
 }
 
@@ -457,6 +458,14 @@ void CStancesView::UpdateFeatEffect(
     UpdateItemEffect(charData, featName, effect);
 }
 
+void CStancesView::UpdateFeatEffectRevoked(
+        Character * charData,
+        const std::string & featName,
+        const Effect & effect)
+{
+    UpdateSliders(effect, false);
+}
+
 void CStancesView::UpdateEnhancementEffect(
         Character * charData,
         const std::string & enhancementName,
@@ -464,6 +473,14 @@ void CStancesView::UpdateEnhancementEffect(
 {
     // all handled the same way
     UpdateItemEffect(charData, enhancementName, effect.m_effect);
+}
+
+void CStancesView::UpdateEnhancementEffectRevoked(
+        Character * charData,
+        const std::string & enhancementName,
+        const EffectTier & effect)
+{
+    UpdateSliders(effect.m_effect, false);
 }
 
 void CStancesView::UpdateItemEffect(
@@ -499,6 +516,15 @@ void CStancesView::UpdateItemEffect(
             OnSize(SIZE_RESTORED, rctWnd.Width(), rctWnd.Height());
         }
     }
+    UpdateSliders(effect, true);
+}
+
+void CStancesView::UpdateItemEffectRevoked(
+        Character * charData,
+        const std::string & itemName,
+        const Effect & effect)
+{
+    UpdateSliders(effect, false);
 }
 
 void CStancesView::OnLButtonDown(UINT nFlags, CPoint point)
@@ -635,6 +661,15 @@ void CStancesView::DestroyAllStances()
         m_autoStancebuttons[i] = NULL;
     }
     m_autoStancebuttons.clear();
+
+    std::list<SliderItem>::iterator it = m_sliders.begin();
+    while (it != m_sliders.end())
+    {
+        // time for this slider to disappear
+        (*it).m_label->DestroyWindow();
+        (*it).m_slider->DestroyWindow();
+        it = m_sliders.erase(it);
+    }
 }
 
 const std::vector<CStanceButton *> & CStancesView::UserStances() const
@@ -667,26 +702,183 @@ const CStanceButton * CStancesView::GetStance(const std::string & stanceName) co
     return pButton;
 }
 
-void CStancesView::SetHitpointsPercent()
-{
-    size_t percentHitpoints = 100;
-    if (m_pCharacter != NULL)
-    {
-        percentHitpoints = m_pCharacter->HitpointPercent();
-    }
-    CString text;
-    text.Format("Hitpoints %d%%", percentHitpoints);
-    m_staticHitpointsLabel.SetWindowText(text);
-}
-
 void CStancesView::OnHScroll(UINT sbCode, UINT nPos, CScrollBar * pScrollbar)
 {
-    int pos = m_sliderHitpoints.GetPos();
-    if (pos != (int)m_pCharacter->HitpointPercent())
+    // find which control has changed and update if required
+    UINT id = pScrollbar->GetDlgCtrlID();
+    std::list<SliderItem>::iterator it = GetSlider(id);
+    if (it != m_sliders.end())
     {
-        // its changed. Update
-        m_pCharacter->SetHitpointPercent(pos);
-        SetHitpointsPercent();  // update UI also
+        nPos = (*it).m_slider->GetPos();
+        if ((*it).m_position != nPos)
+        {
+            (*it).m_position = nPos;
+            CString windowText;
+            windowText.Format("%s: %d", (*it).m_name.c_str(), (*it).m_position);
+            (*it).m_label->SetWindowText(windowText);
+            m_pCharacter->StanceSliderChanged();
+        }
     }
 }
 
+void CStancesView::UpdateSliders(const Effect & effect, bool bApply)
+{
+    if (effect.Type() == Effect_CreateSlider)
+    {
+        if (bApply)
+        {
+            // need to create or increment slider
+            std::list<SliderItem>::iterator it = GetSlider(effect, true);
+            (*it).m_creationCount++;    // count a reference
+        }
+        else
+        {
+            // need to decrement or removal slider
+            std::list<SliderItem>::iterator it = GetSlider(effect, false);
+            if (it != m_sliders.end())
+            {
+                // does exist, we can revoke a layer
+                (*it).m_creationCount--;    // lose a reference
+                if ((*it).m_creationCount == 0)
+                {
+                    // time for this slider to disappear
+                    (*it).m_label->DestroyWindow();
+                    (*it).m_slider->DestroyWindow();
+                    m_sliders.erase(it);
+                    // make sure controls are positioned
+                    CRect rctWindow;
+                    GetWindowRect(&rctWindow);
+                    OnSize(SIZE_RESTORED, rctWindow.Width(), rctWindow.Height());
+                }
+            }
+        }
+    }
+}
+
+std::list<SliderItem>::iterator CStancesView::GetSlider(
+        const Effect & effect,
+        bool bCreateIfMissing)
+{
+    bool bFound = false;
+    std::list<SliderItem>::iterator it = m_sliders.begin();
+    while (!bFound && it != m_sliders.end())
+    {
+        if ((*it).m_name == effect.Slider())
+        {
+            bFound = true;  // this is the droid we're looking for
+        }
+        else
+        {
+            ++it;
+        }
+    }
+    if (!bFound && bCreateIfMissing)
+    {
+        // add a new entry to the end
+        SliderItem slider;
+        m_sliders.push_front(slider);
+        it = m_sliders.begin();
+        (*it).CreateControls();
+        // now initialise it fully
+        (*it).m_sliderControlId = m_nextSliderId;
+        (*it).m_name = effect.Slider();
+        (*it).m_creationCount = 0;  // increment outside
+        (*it).m_sliderMin = (int)effect.AmountVector().at(0);
+        (*it).m_sliderMax = (int)effect.AmountVector().at(1);
+        (*it).m_position = (*it).m_sliderMax;
+        // and create the windows controls
+        CString windowText;
+        windowText.Format("%s: %d", effect.Slider().c_str(), (*it).m_position);
+        (*it).m_label->Create(
+                windowText,
+                SS_CENTERIMAGE | WS_VISIBLE | WS_CHILD,
+                CRect(0, 0, 10, 10),        // updates on OnSize
+                this,
+                (*it).m_sliderControlId+1);
+        (*it).m_slider->Create(
+                WS_VISIBLE | WS_CHILD | TBS_AUTOTICKS | TBS_HORZ | TBS_BOTTOM,
+                CRect(0, 0, 10, 10),        // updates on OnSize
+                this,
+                (*it).m_sliderControlId);
+        CFont* pDefaultGUIFont = CFont::FromHandle((HFONT) GetStockObject(DEFAULT_GUI_FONT));
+        (*it).m_label->SetFont(pDefaultGUIFont, TRUE);
+        (*it).m_slider->SetFont(pDefaultGUIFont, TRUE);
+        (*it).m_slider->SetRange((*it).m_sliderMin, (*it).m_sliderMax);
+        (*it).m_slider->SetPos((*it).m_position);
+        m_nextSliderId += 2;    // skip 2 control ids (label, slider)
+        // make sure controls are positioned
+        CRect rctWindow;
+        GetWindowRect(&rctWindow);
+        OnSize(SIZE_RESTORED, rctWindow.Width(), rctWindow.Height());
+    }
+    return it;
+}
+
+std::list<SliderItem>::iterator CStancesView::GetSlider(UINT controlId)
+{
+    bool bFound = false;
+    std::list<SliderItem>::iterator it = m_sliders.begin();
+    while (!bFound && it != m_sliders.end())
+    {
+        if ((*it).m_sliderControlId == controlId)
+        {
+            bFound = true;  // this is the droid we're looking for
+        }
+        else
+        {
+            ++it;
+        }
+    }
+    ASSERT(bFound);
+    return it;
+}
+
+std::list<SliderItem>::const_iterator CStancesView::GetSlider(
+        const std::string & name) const
+{
+    bool bFound = false;
+    std::list<SliderItem>::const_iterator it = m_sliders.begin();
+    while (!bFound && it != m_sliders.end())
+    {
+        if ((*it).m_name == name)
+        {
+            bFound = true;  // this is the droid we're looking for
+        }
+        else
+        {
+            ++it;
+        }
+    }
+    ASSERT(bFound);
+    return it;
+}
+
+bool CStancesView::IsStanceActive(const std::string & name) const
+{
+    bool bEnabled = false;
+    // some special stances are based on a slider position
+    // all these stances start with a numeric with the format of
+    // "<number>% <stance name>"
+    if (name.find("%") != std::string::npos)
+    {
+        // this is a special stance
+        int value = atoi(name.c_str());
+        // identify the slider stance in question
+        std::string stanceName = name.substr(name.find('%') + 2, 50);
+        std::list<SliderItem>::const_iterator it = GetSlider(stanceName);
+        if (it != m_sliders.end())
+        {
+            // if the value is negative its an under comparison else its an over
+            if (value < 0)
+            {
+                value = -value;
+                bEnabled = ((*it).m_position < value);
+            }
+            else
+            {
+                bEnabled = ((*it).m_position >= value);
+            }
+        }
+    }
+    return bEnabled;
+}

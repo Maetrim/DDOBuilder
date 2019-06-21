@@ -180,8 +180,7 @@ class Character :
         void ActivateStance(const Stance & stance);
         void DeactivateStance(const Stance & stance);
         bool IsStanceActive(const std::string & name, WeaponType wt = Weapon_Unknown) const;
-        void SetHitpointPercent(size_t percent);
-
+        void StanceSliderChanged();
 
         // checks all possible tree types
         int TotalPointsAvailable(const std::string & treeName, TreeType type) const;
@@ -370,8 +369,7 @@ class Character :
                 DL_STRING(_, ActiveGear) \
                 DL_OBJECT_LIST(_, EquippedGear, GearSetups) \
                 DL_STRING_LIST(_, SelfAndPartyBuffs) \
-                DL_STRING(_, Notes) \
-                DL_SIMPLE(_, size_t, HitpointPercent, 100)
+                DL_STRING(_, Notes)
 
         DL_DECLARE_ACCESS(Character_PROPERTIES)
         DL_DECLARE_VARIABLES(Character_PROPERTIES)

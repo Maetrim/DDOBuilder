@@ -95,21 +95,28 @@ void BreakdownItemSave::CreateOtherEffects()
             if (count > 0)
             {
                 // character has divine grace feat trained. Add charisma bonus for this save
+                // Divine Grace is capped at 2+(3 x paladin level).
+                // For multiclassing, this means 2 levels of Paladin would at best
+                // grant a max of +8 to saves (2 + {3x2}). 
+                int maxBonus = (classLevels[Class_Paladin] * 3) + 2;
                 BreakdownItem * pBI = FindBreakdown(StatToBreakdown(Ability_Charisma));
                 ASSERT(pBI != NULL);
                 pBI->AttachObserver(this); // watch for any changes
                 int bonus = BaseStatToBonus(pBI->Total());
-                if (bonus != 0) // only add to list if non zero
+                bonus = min(bonus, maxBonus);
+                if (bonus > 0) // only add to list if not negative
                 {
                     // should now have the best option
+                    CString text;
+                    text.Format(
+                            "Divine Grace (Charisma) (Capped @ %d)",
+                            maxBonus);
                     ActiveEffect feat(
                             Bonus_ability,
-                            "Divine Grace (Charisma)",
+                            (LPCTSTR)text,
                             1,
                             bonus,
                             "");        // no tree
-                    feat.SetBreakdownDependency(StatToBreakdown(Ability_Charisma)); // so we know which effect to update
-                    feat.SetDivider(1, DT_statBonus);
                     AddOtherEffect(feat);
                 }
             }
@@ -153,7 +160,6 @@ void BreakdownItemSave::CreateOtherEffects()
                                 1,
                                 bonus,
                                 "");        // no tree
-                        feat.SetDivider(1, DT_statBonus);
                         AddOtherEffect(feat);
                     }
                 }

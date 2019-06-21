@@ -9,6 +9,7 @@
 #include "BreakdownItemBAB.h"
 #include "BreakdownItemCasterLevel.h"
 #include "BreakdownItemDice.h"
+#include "BreakdownItemDodge.h"
 #include "BreakdownItemDuration.h"
 #include "BreakdownItemDR.h"
 #include "BreakdownItemEDFCapped.h"
@@ -734,9 +735,8 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
                 "Dodge",
                 hDefensiveParent,
                 TVI_LAST);
-        BreakdownItem * pDodge = new BreakdownItemSimple(
+        BreakdownItem * pDodge = new BreakdownItemDodge(
                 Breakdown_Dodge,
-                Effect_DodgeBonus,
                 "Dodge",
                 &m_itemBreakdownTree,
                 hItem);
@@ -1290,21 +1290,17 @@ void CBreakdownsView::CreateMagicalBreakdowns()
                 TVI_LAST);
         m_itemBreakdownTree.SetItemData(hItem, 0);
         AddSpellPower(Breakdown_SpellPowerAcid, SpellPower_Acid, "Acid Spell power", hItem);
-        AddSpellPower(Breakdown_SpellPowerAlignment, SpellPower_Alignment, "Alignment Spell power", hItem);
+        AddSpellPower(Breakdown_SpellPowerLightAlignment, SpellPower_LightAlignment, "Light/Alignment Spell power", hItem);
         AddSpellPower(Breakdown_SpellPowerCold, SpellPower_Cold, "Cold Spell power", hItem);
-        AddSpellPower(Breakdown_SpellPowerEarth, SpellPower_Earth, "Earth Spell power", hItem);
         AddSpellPower(Breakdown_SpellPowerElectric, SpellPower_Electric, "Electric Spell power", hItem);
         AddSpellPower(Breakdown_SpellPowerFire, SpellPower_Fire, "Fire Spell power", hItem);
-        AddSpellPower(Breakdown_SpellPowerForce, SpellPower_Force, "Force Spell power", hItem);
-        AddSpellPower(Breakdown_SpellPowerLight, SpellPower_Light, "Light Spell power", hItem);
+        AddSpellPower(Breakdown_SpellPowerForceUntyped, SpellPower_ForceUntyped, "Force/Untyped Spell power", hItem);
         AddSpellPower(Breakdown_SpellPowerNegative, SpellPower_Negative, "Negative Spell power", hItem);
         AddSpellPower(Breakdown_SpellPowerPhysical, SpellPower_Physical, "Physical Spell power", hItem);
         AddSpellPower(Breakdown_SpellPowerPositive, SpellPower_Positive, "Positive Spell power", hItem);
         AddSpellPower(Breakdown_SpellPowerRepair, SpellPower_Repair, "Repair Spell power", hItem);
         AddSpellPower(Breakdown_SpellPowerRust, SpellPower_Rust, "Rust Spell power", hItem);
         AddSpellPower(Breakdown_SpellPowerSonic, SpellPower_Sonic, "Sonic Spell power", hItem);
-        AddSpellPower(Breakdown_SpellPowerUntyped, SpellPower_Untyped, "Untyped Spell power", hItem);
-        AddSpellPower(Breakdown_SpellPowerWater, SpellPower_Water, "Water Spell power", hItem);
     }
 
     {
@@ -1315,21 +1311,17 @@ void CBreakdownsView::CreateMagicalBreakdowns()
                 TVI_LAST);
         m_itemBreakdownTree.SetItemData(hItem, 0);
         AddSpellCriticalChance(Breakdown_SpellCriticalChanceAcid, SpellPower_Acid, "Acid Critical Chance", hItem);
-        AddSpellCriticalChance(Breakdown_SpellCriticalChanceAlignment, SpellPower_Alignment, "Alignment Critical Chance", hItem);
+        AddSpellCriticalChance(Breakdown_SpellCriticalChanceLightAlignment, SpellPower_LightAlignment, "Light/Alignment Critical Chance", hItem);
         AddSpellCriticalChance(Breakdown_SpellCriticalChanceCold, SpellPower_Cold, "Cold Critical Chance", hItem);
-        AddSpellCriticalChance(Breakdown_SpellCriticalChanceEarth, SpellPower_Earth, "Earth Critical Chance", hItem);
         AddSpellCriticalChance(Breakdown_SpellCriticalChanceElectric, SpellPower_Electric, "Electric Critical Chance", hItem);
         AddSpellCriticalChance(Breakdown_SpellCriticalChanceFire, SpellPower_Fire, "Fire Critical Chance", hItem);
-        AddSpellCriticalChance(Breakdown_SpellCriticalChanceForce, SpellPower_Force, "Force Critical Chance", hItem);
-        AddSpellCriticalChance(Breakdown_SpellCriticalChanceLight, SpellPower_Light, "Light Critical Chance", hItem);
+        AddSpellCriticalChance(Breakdown_SpellCriticalChanceForceUntyped, SpellPower_ForceUntyped, "Force/Untyped Critical Chance", hItem);
         AddSpellCriticalChance(Breakdown_SpellCriticalChanceNegative, SpellPower_Negative, "Negative Critical Chance", hItem);
         AddSpellCriticalChance(Breakdown_SpellCriticalChancePhysical, SpellPower_Physical, "Physical Critical Chance", hItem);
         AddSpellCriticalChance(Breakdown_SpellCriticalChancePositive, SpellPower_Positive, "Positive Critical Chance", hItem);
         AddSpellCriticalChance(Breakdown_SpellCriticalChanceRepair, SpellPower_Repair, "Repair Critical Chance", hItem);
         AddSpellCriticalChance(Breakdown_SpellCriticalChanceRust, SpellPower_Rust, "Rust Critical Chance", hItem);
         AddSpellCriticalChance(Breakdown_SpellCriticalChanceSonic, SpellPower_Sonic, "Sonic Critical Chance", hItem);
-        AddSpellCriticalChance(Breakdown_SpellCriticalChanceUntyped, SpellPower_Untyped, "Untyped Critical Chance", hItem);
-        AddSpellCriticalChance(Breakdown_SpellCriticalChanceWater, SpellPower_Water, "Water Critical Chance", hItem);
     }
 
     {
@@ -1340,21 +1332,17 @@ void CBreakdownsView::CreateMagicalBreakdowns()
                 TVI_LAST);
         m_itemBreakdownTree.SetItemData(hItem, 0);
         AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierAcid, SpellPower_Acid, "Acid Critical Multiplier", hItem);
-        AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierAlignment, SpellPower_Alignment, "Alignment Critical Multiplier", hItem);
+        AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierLightAlignment, SpellPower_LightAlignment, "Light/Alignment Critical Multiplier", hItem);
         AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierCold, SpellPower_Cold, "Cold Critical Multiplier", hItem);
-        AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierEarth, SpellPower_Earth, "Earth Critical Multiplier", hItem);
         AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierElectric, SpellPower_Electric, "Electric Critical Multiplier", hItem);
         AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierFire, SpellPower_Fire, "Fire Critical Multiplier", hItem);
-        AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierForce, SpellPower_Force, "Force Critical Multiplier", hItem);
-        AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierLight, SpellPower_Light, "Light Critical Multiplier", hItem);
+        AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierForceUntyped, SpellPower_ForceUntyped, "Force/Untyped Critical Multiplier", hItem);
         AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierNegative, SpellPower_Negative, "Negative Critical Multiplier", hItem);
         AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierPhysical, SpellPower_Physical, "Physical Critical Multiplier", hItem);
         AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierPositive, SpellPower_Positive, "Positive Critical Multiplier", hItem);
         AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierRepair, SpellPower_Repair, "Repair Critical Multiplier", hItem);
         AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierRust, SpellPower_Rust, "Rust Critical Multiplier", hItem);
         AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierSonic, SpellPower_Sonic, "Sonic Critical Multiplier", hItem);
-        AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierUntyped, SpellPower_Untyped, "Untyped Critical Multiplier", hItem);
-        AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierWater, SpellPower_Water, "Water Critical Multiplier", hItem);
     }
 
     {

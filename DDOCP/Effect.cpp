@@ -154,6 +154,14 @@ bool Effect::VerifyObject(std::stringstream * ss) const
             (*ss) << "Has unknown effect type\n";
             ok = false;
             break;
+        case Effect_CreateSlider:
+            if (!HasSlider()
+                    || !HasAmountVector())
+            {
+                (*ss) << "CreateSlider effect missing required element\n";
+                ok = false;
+            }
+            break;
         case Effect_AbilityBonus:
             if (!HasAbility())
             {

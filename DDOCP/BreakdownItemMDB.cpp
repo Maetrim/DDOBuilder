@@ -47,8 +47,7 @@ void BreakdownItemMDB::CreateOtherEffects()
     {
         m_otherEffects.clear();
         const Character & charData = *m_pCharacter;
-        m_bNoLimit = !(charData.IsStanceActive("Medium Armor")
-                || charData.IsStanceActive("Heavy Armor"));
+        m_bNoLimit = charData.IsStanceActive("Cloth Armor");
     }
 }
 

@@ -7,6 +7,39 @@
 #include "StanceButton.h"
 #include "InfoTip.h"
 
+struct SliderItem
+{
+public:
+    UINT m_sliderControlId;
+    std::string m_name;
+    CStatic * m_label;
+    CSliderCtrl * m_slider;
+    size_t m_creationCount;
+    int m_position;
+    int m_sliderMin;
+    int m_sliderMax;
+    SliderItem() :
+            m_sliderControlId(0),
+            m_creationCount(0),
+            m_position(0),
+            m_sliderMin(0),
+            m_sliderMax(0),
+            m_label(NULL),
+            m_slider(NULL)
+    {
+    }
+    void CreateControls()
+    {
+        m_label = new CStatic;
+        m_slider = new CSliderCtrl;
+    };
+    ~SliderItem()
+    {
+        delete m_label;
+        delete m_slider;
+    };
+};
+
 class CStancesView :
     public CFormView,
     public CharacterObserver
@@ -25,6 +58,7 @@ class CStancesView :
         const std::vector<CStanceButton *> & UserStances() const;
         const std::vector<CStanceButton *> & AutoStances() const;
         const CStanceButton * GetStance(const std::string & stanceName) const;
+        bool IsStanceActive(const std::string & name) const;
     protected:
         CStancesView();           // protected constructor used by dynamic creation
         virtual ~CStancesView();
@@ -45,9 +79,13 @@ class CStancesView :
         virtual void UpdateRevokeStance(Character * charData, const Stance & stance) override;
         virtual void UpdateStanceActivated(Character * charData, const std::string & stanceName) override;
         virtual void UpdateStanceDeactivated(Character * charData, const std::string & stanceName) override;
-        virtual void UpdateFeatEffect(Character * charData, const std::string & featName,  const Effect & effect) override;
+        // updates used for sliders
         virtual void UpdateEnhancementEffect(Character * charData, const std::string & enhancementName,  const EffectTier & effect) override;
+        virtual void UpdateEnhancementEffectRevoked(Character * charData, const std::string & enhancementName, const EffectTier & effect) override;
+        virtual void UpdateFeatEffect(Character * charData, const std::string & featName,  const Effect & effect) override;
+        virtual void UpdateFeatEffectRevoked(Character * charData, const std::string & featName, const Effect & effect) override;
         virtual void UpdateItemEffect(Character * charData, const std::string & itemName,  const Effect & effect) override;
+        virtual void UpdateItemEffectRevoked(Character * charData, const std::string & itemName, const Effect & effect) override;
 
         void CreateStanceWindows();
         void AddStance(const Stance & stance);
@@ -57,12 +95,15 @@ class CStancesView :
         void ShowTip(const CStanceButton & item, CRect itemRect);
         void HideTip();
         void SetTooltipText(const CStanceButton & item, CPoint tipTopLeft, CPoint tipAlternate);
-        void SetHitpointsPercent();
+        void UpdateSliders(const Effect & effect, bool bApply);
+        std::list<SliderItem>::iterator GetSlider(const Effect & effect, bool bCreateIfMissing);
+        std::list<SliderItem>::iterator GetSlider(UINT controlId);
+        std::list<SliderItem>::const_iterator GetSlider(const std::string & name) const;
 
         CDocument * m_pDocument;
         Character * m_pCharacter;
-        CStatic m_staticHitpointsLabel;
-        CSliderCtrl m_sliderHitpoints;
+        std::list<SliderItem> m_sliders;
+        CStatic m_staticHiddenSizer;
         CStatic m_userStances;
         CStatic m_autoStances;
         std::vector<CStanceButton *> m_userStancebuttons;
@@ -72,4 +113,5 @@ class CStancesView :
         bool m_tipCreated;
         const CStanceButton * m_pTooltipItem;
         int m_nextStanceId;
+        int m_nextSliderId;
 };

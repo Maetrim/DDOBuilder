@@ -7,6 +7,8 @@
 #include "DDOCPDoc.h"
 #include <algorithm>
 #include "BreakdownItemWeaponEffects.h"
+#include "MainFrm.h"
+#include "StancesView.h"
 
 #define DL_ELEMENT Character
 
@@ -136,7 +138,6 @@ XmlLib::SaxContentElementInterface * Character::StartElement(
 
 void Character::EndElement()
 {
-    m_hasHitpointPercent = true;
     // when we load in we end up with MAX_LEVEL blank levels followed by what was loaded
     // clear the first MAX_LEVEL
     while (m_Levels.size() > MAX_LEVEL)
@@ -1682,23 +1683,15 @@ bool Character::IsStanceActive(const std::string & name, WeaponType wt) const
     }
     else
     {
-        // some special stances are based on the Hitpoints slider position
+        // some special stances are based on a slider position
         // all these stances start with a numeric with the format of
-        // "<number>% Hitpoints"
-        if (name.find("% Hitpoints") != std::string::npos)
+        // "<number>% <stance name>"
+        if (name.find("%") != std::string::npos)
         {
-            // this is a special hit point stance
-            int value = atoi(name.c_str());
-            // if the value is negative its an under comparison else its an over
-            if (value < 0)
-            {
-                value = -value;
-                ret = ((int)HitpointPercent() < value);
-            }
-            else
-            {
-                ret = ((int)HitpointPercent() >= value);
-            }
+            CWnd * pWnd = AfxGetMainWnd();
+            CMainFrame * pMainWnd = dynamic_cast<CMainFrame*>(pWnd);
+            const CStancesView * pStancesView = pMainWnd->GetStancesView();
+            ret = pStancesView->IsStanceActive(name);
         }
         else
         {
@@ -1708,11 +1701,9 @@ bool Character::IsStanceActive(const std::string & name, WeaponType wt) const
     return ret;
 }
 
-void Character::SetHitpointPercent(size_t percent)
+void Character::StanceSliderChanged()
 {
-    Set_HitpointPercent(percent);
     NotifyStanceActivated("");
-    m_pDocument->SetModifiedFlag(TRUE);
 }
 
 bool Character::IsClassSkill(
@@ -2783,7 +2774,7 @@ void Character::Enhancement_TrainEnhancement(
     }
     // track whether this is a tier 5 enhancement
     // now notify all and sundry about the enhancement effects
-    ApplyEnhancementEffects(treeName, enhancementName, selection, ranks);
+    ApplyEnhancementEffects(treeName, enhancementName, selection, 1);
     NotifyEnhancementTrained(enhancementName, selection, pTreeItem->HasTier5(), true);
     NotifyActionPointsChanged();
     NotifyAPSpentInTreeChanged(treeName);
@@ -2827,7 +2818,7 @@ void Character::Enhancement_RevokeEnhancement(
         }
         // now notify all and sundry about the enhancement effects
         // get the list of effects this enhancement has
-        RevokeEnhancementEffects(treeName, revokedEnhancement, revokedEnhancementSelection, ranks);
+        RevokeEnhancementEffects(treeName, revokedEnhancement, revokedEnhancementSelection, 1);
         // determine whether we still have a tier 5 enhancement trained if the tree just had one
         // revoked in it
         if (HasTier5Tree() && Tier5Tree() == treeName)
@@ -3677,7 +3668,7 @@ void Character::Reaper_TrainEnhancement(
             false,
             &ranks);
     // now notify all and sundry about the enhancement effects
-    ApplyEnhancementEffects(treeName, enhancementName, selection, ranks);
+    ApplyEnhancementEffects(treeName, enhancementName, selection, 1);
     NotifyEnhancementTrained(enhancementName, selection, false, true);
     NotifyAPSpentInTreeChanged(treeName);
     m_pDocument->SetModifiedFlag(TRUE);
@@ -3700,7 +3691,7 @@ void Character::Reaper_RevokeEnhancement(
                 &ranks);
         // now notify all and sundry about the enhancement effects
         // get the list of effects this enhancement has
-        RevokeEnhancementEffects(treeName, revokedEnhancement, revokedEnhancementSelection, ranks);
+        RevokeEnhancementEffects(treeName, revokedEnhancement, revokedEnhancementSelection, 1);
         NotifyEnhancementRevoked(revokedEnhancement, revokedEnhancementSelection, false, true);
         NotifyAPSpentInTreeChanged(treeName);
         m_pDocument->SetModifiedFlag(TRUE);
@@ -3986,7 +3977,7 @@ void Character::EpicDestiny_TrainEnhancement(
     // active tree
     if (treeName == ActiveEpicDestiny())
     {
-        ApplyEnhancementEffects(treeName, enhancementName, selection, ranks);
+        ApplyEnhancementEffects(treeName, enhancementName, selection, 1);
     }
     DetermineFatePoints();
     NotifyEnhancementTrained(enhancementName, selection, false, (treeName == ActiveEpicDestiny()));
@@ -4023,7 +4014,7 @@ void Character::EpicDestiny_RevokeEnhancement(
         // active tree
         if (treeName == ActiveEpicDestiny())
         {
-            RevokeEnhancementEffects(treeName, revokedEnhancement, revokedEnhancementSelection, ranks);
+            RevokeEnhancementEffects(treeName, revokedEnhancement, revokedEnhancementSelection, 1);
         }
         DetermineFatePoints();
         NotifyEnhancementRevoked(revokedEnhancement, revokedEnhancementSelection, false, (treeName == ActiveEpicDestiny()));
@@ -5938,7 +5929,10 @@ void Character::UpdateGreensteelStances()
     size_t greensteelItemCount = 0;
     for (size_t i = Inventory_Unknown + 1; i < Inventory_Count; ++i)
     {
-        if (gear.HasItemInSlot((InventorySlotType)i))
+        // only equipment items count towards Greensteel set bonuses
+        if (gear.HasItemInSlot((InventorySlotType)i)
+                && i != Inventory_Weapon1
+                && i != Inventory_Weapon2)
         {
             Item item = gear.ItemInSlot((InventorySlotType)i);
             if (item.HasIsGreensteel())
