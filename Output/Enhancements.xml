@@ -6495,6 +6495,7 @@ a +3/+6/+10 bonus to Physical Resistance Rating while you are under 50% health.<
             <Bonus>Enhancement</Bonus>
             <Slider>Hitpoints</Slider>
             <AmountVector size="2">0 100</AmountVector>
+            <Amount>100</Amount>
          </Effect>
          <Effect>
             <Type>UnconsciousRange</Type>
@@ -10096,6 +10097,7 @@ thrown weapons.</Description>
             <Bonus>Enhancement</Bonus>
             <Slider>Hitpoints</Slider>
             <AmountVector size="2">0 100</AmountVector>
+            <Amount>100</Amount>
          </Effect>
          <Effect>
             <Type>AbilityBonus</Type>
@@ -12233,6 +12235,7 @@ a +3/+6/+10 bonus to Physical Resistance Rating while you are under 50% health.<
             <Bonus>Enhancement</Bonus>
             <Slider>Hitpoints</Slider>
             <AmountVector size="2">0 100</AmountVector>
+            <Amount>100</Amount>
          </Effect>
          <Effect>
             <Type>UnconsciousRange</Type>
@@ -21639,6 +21642,7 @@ Switching weapons activates a 30 seconds cooldown timer.</Description>
             <Bonus>Enhancement</Bonus>
             <Slider>Weapon Bond</Slider>
             <AmountVector size="2">0 200</AmountVector>
+            <Amount>0</Amount>
          </Effect>
          <Effect>
             <Type>AttackBonus</Type>
@@ -22150,6 +22154,7 @@ Cooldown: 30 seconds</Description>
             <Bonus>Enhancement</Bonus>
             <Slider>Hitpoints</Slider>
             <AmountVector size="2">0 100</AmountVector>
+            <Amount>100</Amount>
          </Effect>
          <Effect>
             <Type>CriticalMultiplier19To20</Type>
@@ -26439,6 +26444,7 @@ Rank 3: Additional +1 while below 40% health.</Description>
             <Bonus>Enhancement</Bonus>
             <Slider>Hitpoints</Slider>
             <AmountVector size="2">0 100</AmountVector>
+            <Amount>100</Amount>
          </Effect>
          <Effect>
             <DisplayName>Warchanter: Obstinance: Below 80%</DisplayName>
@@ -45824,6 +45830,7 @@ increases by +0.25[W].</Description>
                     <Bonus>Enhancement</Bonus>
                     <Slider>Hitpoints</Slider>
                     <AmountVector size="2">0 100</AmountVector>
+                    <Amount>100</Amount>
                  </Effect>
                <Effect>
                   <Type>SkillBonus</Type>
@@ -87818,6 +87825,7 @@ enhancement. (Cooldown 10 seconds)</Description>
             <Bonus>Enhancement</Bonus>
             <Slider>Hitpoints</Slider>
             <AmountVector size="2">0 100</AmountVector>
+            <Amount>100</Amount>
          </Effect>
          <Effect>
             <Type>SpellPoints</Type>
@@ -89009,6 +89017,7 @@ Charisma-based skills and a +3 Unique bonus to damage.</Description>
             <Bonus>Enhancement</Bonus>
             <Slider>Hitpoints</Slider>
             <AmountVector size="2">0 100</AmountVector>
+            <Amount>100</Amount>
          </Effect>
          <Effect>
             <Type>SongCount</Type>
@@ -90915,6 +90924,13 @@ extra damage to enemies below 25% HP. These are cumulative.</Description>
             </Requirement>
          </Requirements>
          <Effect>
+            <Type>CreateSlider</Type>
+            <Bonus>Enhancement</Bonus>
+            <Slider>Enemy HP</Slider>
+            <AmountVector size="2">0 100</AmountVector>
+            <Amount>100</Amount>
+         </Effect>
+         <Effect>
             <DisplayName>Fury of the Wild: Sense Weakness: Below 75%</DisplayName>
             <Type>WeaponOtherDamageBonus</Type>
             <Bonus>Destiny</Bonus>
@@ -90923,7 +90939,7 @@ extra damage to enemies below 25% HP. These are cumulative.</Description>
                <Number size="3">1 1 1</Number>
                <Sides size="3">8 8 8</Sides>
             </Dice>
-            <Stance>Enemy 75%</Stance>
+            <Stance>-75% Enemy HP</Stance>
          </Effect>
          <Effect>
             <DisplayName>Fury of the Wild: Sense Weakness: Below 50%</DisplayName>
@@ -90934,7 +90950,7 @@ extra damage to enemies below 25% HP. These are cumulative.</Description>
                <Number size="3">0 1 1</Number>
                <Sides size="3">0 12 12</Sides>
             </Dice>
-            <Stance>Enemy 50%</Stance>
+            <Stance>-50% Enemy HP</Stance>
          </Effect>
          <Effect>
             <DisplayName>Fury of the Wild: Sense Weakness: Below 25%</DisplayName>
@@ -90945,7 +90961,7 @@ extra damage to enemies below 25% HP. These are cumulative.</Description>
                <Number size="3">0 0 1</Number>
                <Sides size="3">0 0 20</Sides>
             </Dice>
-            <Stance>Enemy 25%</Stance>
+            <Stance>-25% Enemy HP</Stance>
          </Effect>
          <Effect>
             <Type>HelplessDamage</Type>

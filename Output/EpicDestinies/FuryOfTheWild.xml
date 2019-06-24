@@ -704,6 +704,13 @@ extra damage to enemies below 25% HP. These are cumulative.</Description>
             </Requirement>
          </Requirements>
          <Effect>
+            <Type>CreateSlider</Type>
+            <Bonus>Enhancement</Bonus>
+            <Slider>Enemy HP</Slider>
+            <AmountVector size="2">0 100</AmountVector>
+            <Amount>100</Amount>
+         </Effect>
+         <Effect>
             <DisplayName>Fury of the Wild: Sense Weakness: Below 75%</DisplayName>
             <Type>WeaponOtherDamageBonus</Type>
             <Bonus>Destiny</Bonus>
@@ -712,7 +719,7 @@ extra damage to enemies below 25% HP. These are cumulative.</Description>
                <Number size="3">1 1 1</Number>
                <Sides size="3">8 8 8</Sides>
             </Dice>
-            <Stance>Enemy 75%</Stance>
+            <Stance>-75% Enemy HP</Stance>
          </Effect>
          <Effect>
             <DisplayName>Fury of the Wild: Sense Weakness: Below 50%</DisplayName>
@@ -723,7 +730,7 @@ extra damage to enemies below 25% HP. These are cumulative.</Description>
                <Number size="3">0 1 1</Number>
                <Sides size="3">0 12 12</Sides>
             </Dice>
-            <Stance>Enemy 50%</Stance>
+            <Stance>-50% Enemy HP</Stance>
          </Effect>
          <Effect>
             <DisplayName>Fury of the Wild: Sense Weakness: Below 25%</DisplayName>
@@ -734,7 +741,7 @@ extra damage to enemies below 25% HP. These are cumulative.</Description>
                <Number size="3">0 0 1</Number>
                <Sides size="3">0 0 20</Sides>
             </Dice>
-            <Stance>Enemy 25%</Stance>
+            <Stance>-25% Enemy HP</Stance>
          </Effect>
          <Effect>
             <Type>HelplessDamage</Type>

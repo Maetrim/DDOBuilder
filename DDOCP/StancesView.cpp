@@ -704,21 +704,24 @@ const CStanceButton * CStancesView::GetStance(const std::string & stanceName) co
 
 void CStancesView::OnHScroll(UINT sbCode, UINT nPos, CScrollBar * pScrollbar)
 {
-    // find which control has changed and update if required
-    UINT id = pScrollbar->GetDlgCtrlID();
-    std::list<SliderItem>::iterator it = GetSlider(id);
-    if (it != m_sliders.end())
-    {
-        nPos = (*it).m_slider->GetPos();
-        if ((*it).m_position != nPos)
+    //if (m_pCharacter != NULL)
+    //{
+        // find which control has changed and update if required
+        UINT id = pScrollbar->GetDlgCtrlID();
+        std::list<SliderItem>::iterator it = GetSlider(id);
+        if (it != m_sliders.end())
         {
-            (*it).m_position = nPos;
-            CString windowText;
-            windowText.Format("%s: %d", (*it).m_name.c_str(), (*it).m_position);
-            (*it).m_label->SetWindowText(windowText);
-            m_pCharacter->StanceSliderChanged();
+            nPos = (*it).m_slider->GetPos();
+            if ((*it).m_position != nPos)
+            {
+                (*it).m_position = nPos;
+                CString windowText;
+                windowText.Format("%s: %d", (*it).m_name.c_str(), (*it).m_position);
+                (*it).m_label->SetWindowText(windowText);
+                m_pCharacter->StanceSliderChanged();
+            }
         }
-    }
+    //}
 }
 
 void CStancesView::UpdateSliders(const Effect & effect, bool bApply)
@@ -785,7 +788,7 @@ std::list<SliderItem>::iterator CStancesView::GetSlider(
         (*it).m_creationCount = 0;  // increment outside
         (*it).m_sliderMin = (int)effect.AmountVector().at(0);
         (*it).m_sliderMax = (int)effect.AmountVector().at(1);
-        (*it).m_position = (*it).m_sliderMax;
+        (*it).m_position = (int)effect.Amount();
         // and create the windows controls
         CString windowText;
         windowText.Format("%s: %d", effect.Slider().c_str(), (*it).m_position);

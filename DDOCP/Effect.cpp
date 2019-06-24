@@ -156,7 +156,8 @@ bool Effect::VerifyObject(std::stringstream * ss) const
             break;
         case Effect_CreateSlider:
             if (!HasSlider()
-                    || !HasAmountVector())
+                    || !HasAmountVector()
+                    || !HasAmount())
             {
                 (*ss) << "CreateSlider effect missing required element\n";
                 ok = false;
