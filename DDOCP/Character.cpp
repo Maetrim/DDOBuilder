@@ -1059,6 +1059,7 @@ void Character::SetClass1(size_t level, ClassType type)
     VerifyGear();
     NotifyClassChoiceChanged();
     m_pDocument->SetModifiedFlag(TRUE);
+    NotifyStanceDeactivated("Force correct update of effects");
 }
 
 void Character::SetClass2(size_t level, ClassType type)
@@ -1101,6 +1102,7 @@ void Character::SetClass2(size_t level, ClassType type)
     VerifyGear();
     NotifyClassChoiceChanged();
     m_pDocument->SetModifiedFlag(TRUE);
+    NotifyStanceDeactivated("Force correct update of effects");
 }
 
 void Character::SetClass3(size_t level, ClassType type)
@@ -1137,6 +1139,7 @@ void Character::SetClass3(size_t level, ClassType type)
     VerifyGear();
     NotifyClassChoiceChanged();
     m_pDocument->SetModifiedFlag(TRUE);
+    NotifyStanceDeactivated("Force correct update of effects");
 }
 
 void Character::SetClass(size_t level, ClassType type)

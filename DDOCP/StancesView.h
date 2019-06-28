@@ -59,6 +59,7 @@ class CStancesView :
         const std::vector<CStanceButton *> & AutoStances() const;
         const CStanceButton * GetStance(const std::string & stanceName) const;
         bool IsStanceActive(const std::string & name) const;
+        const SliderItem * GetSlider(const std::string & name) const;
     protected:
         CStancesView();           // protected constructor used by dynamic creation
         virtual ~CStancesView();
@@ -98,7 +99,6 @@ class CStancesView :
         void UpdateSliders(const Effect & effect, bool bApply);
         std::list<SliderItem>::iterator GetSlider(const Effect & effect, bool bCreateIfMissing);
         std::list<SliderItem>::iterator GetSlider(UINT controlId);
-        std::list<SliderItem>::const_iterator GetSlider(const std::string & name) const;
 
         CDocument * m_pDocument;
         Character * m_pCharacter;

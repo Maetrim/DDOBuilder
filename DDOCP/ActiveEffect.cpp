@@ -5,6 +5,8 @@
 
 #include "Character.h"
 #include "GlobalSupportFunctions.h"
+#include "MainFrm.h"
+#include "StancesView.h"
 
 //============================================================================
 // ActiveEffect
@@ -28,7 +30,9 @@ ActiveEffect::ActiveEffect() :
     m_clearValue(false),
     m_bIsItemEffect(false),
     m_divider(1.0),
-    m_dividerType(DT_none)
+    m_dividerType(DT_none),
+    m_bHasStacksControl(false),
+    m_pCharacter(NULL)
 {
 }
 
@@ -57,7 +61,9 @@ ActiveEffect::ActiveEffect(
     m_clearValue(false),
     m_bIsItemEffect(false),
     m_divider(1.0),
-    m_dividerType(DT_none)
+    m_dividerType(DT_none),
+    m_bHasStacksControl(false),
+    m_pCharacter(NULL)
 {
 }
 
@@ -85,7 +91,9 @@ ActiveEffect::ActiveEffect(
     m_clearValue(false),
     m_bIsItemEffect(false),
     m_divider(1.0),
-    m_dividerType(DT_none)
+    m_dividerType(DT_none),
+    m_bHasStacksControl(false),
+    m_pCharacter(NULL)
 {
     // stacks is set immediately after this is constructed
 }
@@ -116,7 +124,9 @@ ActiveEffect::ActiveEffect(
     m_clearValue(false),
     m_bIsItemEffect(false),
     m_divider(1.0),
-    m_dividerType(DT_none)
+    m_dividerType(DT_none),
+    m_bHasStacksControl(false),
+    m_pCharacter(NULL)
 {
 }
 
@@ -144,7 +154,9 @@ ActiveEffect::ActiveEffect(
     m_clearValue(false),
     m_bIsItemEffect(false),
     m_divider(1.0),
-    m_dividerType(DT_none)
+    m_dividerType(DT_none),
+    m_bHasStacksControl(false),
+    m_pCharacter(NULL)
 {
 }
 
@@ -172,7 +184,9 @@ ActiveEffect::ActiveEffect(
     m_clearValue(false),
     m_bIsItemEffect(false),
     m_divider(1.0),
-    m_dividerType(DT_none)
+    m_dividerType(DT_none),
+    m_bHasStacksControl(false),
+    m_pCharacter(NULL)
 {
 }
 
@@ -200,7 +214,9 @@ ActiveEffect::ActiveEffect(
     m_clearValue(false),
     m_bIsItemEffect(false),
     m_divider(1.0),
-    m_dividerType(DT_none)
+    m_dividerType(DT_none),
+    m_bHasStacksControl(false),
+    m_pCharacter(NULL)
 {
 }
 
@@ -228,7 +244,9 @@ ActiveEffect::ActiveEffect(
     m_clearValue(false),
     m_bIsItemEffect(false),
     m_divider(1.0),
-    m_dividerType(DT_none)
+    m_dividerType(DT_none),
+    m_bHasStacksControl(false),
+    m_pCharacter(NULL)
 {
 }
 
@@ -257,7 +275,9 @@ ActiveEffect::ActiveEffect(
     m_clearValue(false),
     m_bIsItemEffect(false),
     m_divider(1.0),
-    m_dividerType(DT_none)
+    m_dividerType(DT_none),
+    m_bHasStacksControl(false),
+    m_pCharacter(NULL)
 {
 }
 
@@ -284,7 +304,7 @@ CString ActiveEffect::Name() const
 CString ActiveEffect::Stacks() const
 {
     CString text;
-    text.Format("%d", m_numStacks);
+    text.Format("%d", NumStacks());
     return text;
 }
 
@@ -295,12 +315,12 @@ CString ActiveEffect::AmountAsText(double multiplier) const
     {
     case ET_dice:
         text.Format("%dD%d",
-                (int)m_dice.Number(m_numStacks-1),
-                (int)m_dice.Sides(m_numStacks-1));
+                (int)m_dice.Number(NumStacks()-1),
+                (int)m_dice.Sides(NumStacks()-1));
         if (m_dice.HasBonus())
         {
             CString bonus;
-            bonus.Format("+%d", (int)m_dice.Bonus(m_numStacks-1));
+            bonus.Format("+%d", (int)m_dice.Bonus(NumStacks()-1));
             text += bonus;
         }
         if (m_dice.HasScalesWithMeleePower()
@@ -340,11 +360,11 @@ CString ActiveEffect::AmountAsText(double multiplier) const
         {
             if (multiplier != 1.0)
             {
-                text.Format("%.2f (* %.2f)", m_amount * m_numStacks * multiplier, multiplier);
+                text.Format("%.2f (* %.2f)", m_amount * NumStacks() * multiplier, multiplier);
             }
             else
             {
-                text.Format("%.2f", m_amount * m_numStacks * multiplier);
+                text.Format("%.2f", m_amount * NumStacks() * multiplier);
             }
         }
         else
@@ -363,7 +383,7 @@ CString ActiveEffect::AmountAsText(double multiplier) const
     case ET_amountVector:
     case ET_amountVectorPerClassLevel: // handled the same
         {
-            int index = m_numStacks-1;
+            int index = NumStacks()-1;
             if (index >= 0)
             {
                 if (index >= (int)m_amounts.size())
@@ -391,21 +411,21 @@ CString ActiveEffect::AmountAsText(double multiplier) const
     case ET_amountPerLevel:
         if (multiplier != 1.0)
         {
-            text.Format("%.2f (* %.2f)", m_amountPerLevel * m_numStacks * multiplier, multiplier);
+            text.Format("%.2f (* %.2f)", m_amountPerLevel * NumStacks() * multiplier, multiplier);
         }
         else
         {
-            text.Format("%.2f", m_amountPerLevel * m_numStacks * multiplier);
+            text.Format("%.2f", m_amountPerLevel * NumStacks() * multiplier);
         }
         break;
     case ET_amountPerAp:
         if (multiplier != 1.0)
         {
-            text.Format("%.2f (* %.2f)", m_amount * m_numStacks * multiplier, multiplier);
+            text.Format("%.2f (* %.2f)", m_amount * NumStacks() * multiplier, multiplier);
         }
         else
         {
-            text.Format("%.2f", m_amount * m_numStacks * multiplier);
+            text.Format("%.2f", m_amount * NumStacks() * multiplier);
         }
         break;
     case ET_immunity:
@@ -432,12 +452,12 @@ CString ActiveEffect::AmountAsPercent() const
     {
     case ET_dice:
         text.Format("%dD%d",
-                (int)m_dice.Number(m_numStacks-1),
-                (int)m_dice.Sides(m_numStacks-1));
+                (int)m_dice.Number(NumStacks()-1),
+                (int)m_dice.Sides(NumStacks()-1));
         if (m_dice.HasBonus())
         {
             CString bonus;
-            bonus.Format("+%d", (int)m_dice.Bonus(m_numStacks-1));
+            bonus.Format("+%d", (int)m_dice.Bonus(NumStacks()-1));
             text += bonus;
         }
         if (m_dice.HasScalesWithMeleePower()
@@ -473,12 +493,12 @@ CString ActiveEffect::AmountAsPercent() const
         }
         break;
     case ET_amount:
-        text.Format("%.0f (%.0f%%)", m_percentageAmount, m_amount * m_numStacks);
+        text.Format("%.0f (%.0f%%)", m_percentageAmount, m_amount * NumStacks());
         break;
     case ET_amountVector:
     case ET_amountVectorPerClassLevel: // handled the same
         {
-            int index =m_numStacks-1;
+            int index = NumStacks()-1;
             if (index >= 0)
             {
                 if (index >= (int)m_amounts.size())
@@ -497,10 +517,10 @@ CString ActiveEffect::AmountAsPercent() const
         }
         break;
     case ET_amountPerLevel:
-        text.Format("%.0f (%.0f%%)", m_percentageAmount, m_amountPerLevel * m_numStacks);
+        text.Format("%.0f (%.0f%%)", m_percentageAmount, m_amountPerLevel * NumStacks());
         break;
     case ET_amountPerAp:
-        text.Format("%.0f (%.0f%%)", m_percentageAmount, m_amount * m_numStacks);
+        text.Format("%.0f (%.0f%%)", m_percentageAmount, m_amount * NumStacks());
         break;
     case ET_immunity:
     case ET_DR:
@@ -635,7 +655,28 @@ void ActiveEffect::SetStacks(size_t count)
 
 size_t ActiveEffect::NumStacks() const
 {
-    return m_numStacks;
+    size_t count = m_numStacks;
+    if (m_bHasStacksControl)
+    {
+        // look up the actual number of stacks
+        // this could be a feat name or a slider name
+        CWnd * pWnd = AfxGetMainWnd();
+        CMainFrame * pMainWnd = dynamic_cast<CMainFrame*>(pWnd);
+        const CStancesView * pStancesView = pMainWnd->GetStancesView();
+        const SliderItem * pSlider = pStancesView->GetSlider(m_stacksControl);
+        if (pSlider != NULL)
+        {
+            // its a controlling slider, update our stacks
+            count = pSlider->m_position;
+        }
+        else
+        {
+            // must be a feat count
+            std::list<TrainedFeat> currentFeats = m_pCharacter->CurrentFeats(MAX_LEVEL);
+            count = TrainedCount(currentFeats, m_stacksControl);
+        }
+    }
+    return count;
 }
 
 double ActiveEffect::TotalAmount(bool allowTruncate) const
@@ -649,7 +690,7 @@ double ActiveEffect::TotalAmount(bool allowTruncate) const
     case ET_amount:
         if (m_dividerType != DT_statBonus)
         {
-            value = m_amount * m_numStacks;
+            value = m_amount * NumStacks();
         }
         else
         {
@@ -660,7 +701,7 @@ double ActiveEffect::TotalAmount(bool allowTruncate) const
     case ET_amountVector:
     case ET_amountVectorPerClassLevel:
         {
-            int index = m_numStacks-1;
+            int index = NumStacks()-1;
             if (index >= 0)
             {
                 if (index >= (int)m_amounts.size())
@@ -675,10 +716,10 @@ double ActiveEffect::TotalAmount(bool allowTruncate) const
         }
         break;
     case ET_amountPerLevel:
-        value = m_amountPerLevel * m_numStacks;
+        value = m_amountPerLevel * NumStacks();
         break;
     case ET_amountPerAp:
-        value = m_amount * m_numStacks;
+        value = m_amount * NumStacks();
         break;
     case ET_immunity:
         value = Description() != "" ? 1 : 0; // just need a non-zero value
@@ -873,13 +914,13 @@ std::string ActiveEffect::Description() const
         ss << AmountAsText(false);
         break;
     case ET_dice:
-        ss << m_dice.Description(m_numStacks);
+        ss << m_dice.Description(NumStacks());
         break;
     case ET_immunity:
-        if (m_numStacks <= m_immunities.size())
+        if (NumStacks() <= m_immunities.size())
         {
             std::list<std::string>::const_iterator it = m_immunities.begin();
-            std::advance(it, m_numStacks - 1);
+            std::advance(it, NumStacks() - 1);
             ss << (*it);
         }
         else
@@ -891,11 +932,11 @@ std::string ActiveEffect::Description() const
         // barbarian DR is displayed slightly differently
         if (m_drTypes.size() == 1 && m_drTypes.front() == DR_Percent)
         {
-            ss << m_amount * m_numStacks << "%";
+            ss << m_amount * NumStacks() << "%";
         }
         else
         {
-            ss << m_amount * m_numStacks << "\\";
+            ss << m_amount * NumStacks() << "\\";
             std::list<DamageReductionType>::const_iterator it = m_drTypes.begin();
             while (it != m_drTypes.end())
             {
@@ -932,4 +973,13 @@ Dice ActiveEffect::GetDice() const
 {
     ASSERT(m_type == ET_dice);
     return m_dice;
+}
+
+void ActiveEffect::SetStacksControl(
+        const std::string & control,
+        Character * pCharacter)
+{
+    m_bHasStacksControl = true;
+    m_stacksControl = control;  // thing that controls the number of stacks
+    m_pCharacter = pCharacter;
 }

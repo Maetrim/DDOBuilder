@@ -82,6 +82,12 @@ void CStancesView::OnSize(UINT nType, int cx, int cy)
         CRect wndClient;
         GetClientRect(&wndClient);
         int sliderBottom = c_controlSpacing;
+        // work out the right hand end of the slider controls
+        int sliderEnd = c_windowSize + c_controlSpacing;
+        while (sliderEnd < cx - (c_windowSize + c_controlSpacing))
+        {
+            sliderEnd += (c_windowSize + c_controlSpacing);
+        }
         // do all the sliders
         std::list<SliderItem>::iterator si = m_sliders.begin();
         CRect rctSizer;
@@ -90,7 +96,7 @@ void CStancesView::OnSize(UINT nType, int cx, int cy)
         while (si != m_sliders.end())
         {
             CRect rctLabel(c_controlSpacing, sliderBottom, c_controlSpacing + 100, sliderBottom + rctSizer.Height());
-            CRect rctSlider(rctLabel.right + c_controlSpacing, sliderBottom, cx - c_controlSpacing, sliderBottom + rctSizer.Height());
+            CRect rctSlider(rctLabel.right + c_controlSpacing, sliderBottom, sliderEnd, sliderBottom + rctSizer.Height());
             // now position the controls
             (*si).m_label->MoveWindow(rctLabel, TRUE);
             (*si).m_slider->MoveWindow(rctSlider, TRUE);
@@ -171,6 +177,10 @@ void CStancesView::OnSize(UINT nType, int cx, int cy)
         // ensure stances redraw correctly
         m_userStances.Invalidate(TRUE);
         m_autoStances.Invalidate(TRUE);
+        // show srcoll bars if required
+        SetScrollSizes(
+                MM_TEXT,
+                CSize(cx, itemRect.bottom + c_controlSpacing));
     }
     for (size_t i = 0; i < m_userStancebuttons.size(); ++i)
     {
@@ -704,8 +714,9 @@ const CStanceButton * CStancesView::GetStance(const std::string & stanceName) co
 
 void CStancesView::OnHScroll(UINT sbCode, UINT nPos, CScrollBar * pScrollbar)
 {
-    //if (m_pCharacter != NULL)
-    //{
+    if (m_pCharacter != NULL
+            && pScrollbar != NULL)  // must not be the window scroll bar
+    {
         // find which control has changed and update if required
         UINT id = pScrollbar->GetDlgCtrlID();
         std::list<SliderItem>::iterator it = GetSlider(id);
@@ -721,7 +732,7 @@ void CStancesView::OnHScroll(UINT sbCode, UINT nPos, CScrollBar * pScrollbar)
                 m_pCharacter->StanceSliderChanged();
             }
         }
-    //}
+    }
 }
 
 void CStancesView::UpdateSliders(const Effect & effect, bool bApply)
@@ -836,9 +847,10 @@ std::list<SliderItem>::iterator CStancesView::GetSlider(UINT controlId)
     return it;
 }
 
-std::list<SliderItem>::const_iterator CStancesView::GetSlider(
+const SliderItem * CStancesView::GetSlider(
         const std::string & name) const
 {
+    const SliderItem * pSlider = NULL;
     bool bFound = false;
     std::list<SliderItem>::const_iterator it = m_sliders.begin();
     while (!bFound && it != m_sliders.end())
@@ -846,14 +858,14 @@ std::list<SliderItem>::const_iterator CStancesView::GetSlider(
         if ((*it).m_name == name)
         {
             bFound = true;  // this is the droid we're looking for
+            pSlider = &(*it);
         }
         else
         {
             ++it;
         }
     }
-    ASSERT(bFound);
-    return it;
+    return pSlider;
 }
 
 bool CStancesView::IsStanceActive(const std::string & name) const
@@ -862,24 +874,26 @@ bool CStancesView::IsStanceActive(const std::string & name) const
     // some special stances are based on a slider position
     // all these stances start with a numeric with the format of
     // "<number>% <stance name>"
-    if (name.find("%") != std::string::npos)
+    size_t percentPos = name.find("%");
+    if (percentPos != std::string::npos
+            && percentPos + 2 <= name.length()) // don't crash on badly formatted stance name
     {
         // this is a special stance
         int value = atoi(name.c_str());
         // identify the slider stance in question
         std::string stanceName = name.substr(name.find('%') + 2, 50);
-        std::list<SliderItem>::const_iterator it = GetSlider(stanceName);
-        if (it != m_sliders.end())
+        const SliderItem * pSlider = GetSlider(stanceName);
+        if (pSlider != NULL)
         {
             // if the value is negative its an under comparison else its an over
             if (value < 0)
             {
                 value = -value;
-                bEnabled = ((*it).m_position < value);
+                bEnabled = (pSlider->m_position < value);
             }
             else
             {
-                bEnabled = ((*it).m_position >= value);
+                bEnabled = (pSlider->m_position >= value);
             }
         }
     }

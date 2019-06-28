@@ -8912,15 +8912,31 @@ hit damage (before multipliers are applied).</Description>
       <Description>Your missile attacks may pass through other characters and monsters
 to strike their target. This feat also grants you the Offensive Ranged Stance
 'Archer's Focus', which lets you deal progressively more damage with ranged
-attacks while standing still.</Description>
+attacks while standing still. +3 Ranged Power per stack, Max stacks: 15
+or 25 wih Deepwood Stalker enhancement</Description>
+      <Effect>
+        <Type>CreateSlider</Type>
+        <Bonus>Enhancement</Bonus>
+        <!--Deliberate space in slider name to keep separate from "Archer's Focus" stance-->
+        <Slider>Archer's Focus </Slider>
+        <AmountVector size="2">0 25</AmountVector>
+        <Amount>0</Amount>
+      </Effect>
       <Stance>
          <Name>Archer's Focus</Name>
          <Icon>ArchersFocus</Icon>
          <Description>Archer's Focus lets you deal progressively more damage with ranged
-attacks while standing still.</Description>
+attacks while standing still. +3 Ranged Power per stack, Max stacks: 15
+or 25 wih Deepwood Stalker enhancement</Description>
          <IncompatibleStance>Improved Precise Shot</IncompatibleStance>
          <IncompatibleStance>Epic Defensive Fighting</IncompatibleStance>
       </Stance>
+         <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>3</Amount>
+            <Stacks>Archer's Focus </Stacks>
+         </Effect>
       <FeatGroup>
          <IsStandardFeat/>
          <IsArtificerBonus/>

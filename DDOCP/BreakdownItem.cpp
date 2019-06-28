@@ -1000,6 +1000,13 @@ bool BreakdownItem::GetActiveEffect(
     {
         activeEffect->SetIsItemEffect();
     }
+    // The number of stacks of an active effect can be controlled
+    // by the count of something else
+    if (effect.HasStacks())
+    {
+        activeEffect->SetStacksControl(effect.Stacks(), m_pCharacter);
+    }
+
     return hasActiveEffect;
 }
 

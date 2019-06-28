@@ -737,12 +737,29 @@ void CInventoryDialog::OnFiligreeSelectOk()
         SentientJewel jewel = m_gearSet.SentientIntelligence();
         if (m_filigreeIndex < 0)
         {
-            // its the personality thats been changed
-            jewel.SetPersonality((LPCTSTR)selectedItem);
+            // if they selected "No Augment" then clear the selection
+            if (selectedItem == " No Augment")
+            {
+                jewel.SetPersonality("");
+            }
+            else
+            {
+                // its the personality thats been changed
+                jewel.SetPersonality((LPCTSTR)selectedItem);
+            }
         }
         else
         {
-            jewel.SetFiligree(m_filigreeIndex, (LPCTSTR)selectedItem);
+            // if they selected "No Augment" then clear the selection
+            if (selectedItem == " No Augment")
+            {
+                jewel.SetFiligreeRare(m_filigreeIndex, false);
+                jewel.SetFiligree(m_filigreeIndex, "");
+            }
+            else
+            {
+                jewel.SetFiligree(m_filigreeIndex, (LPCTSTR)selectedItem);
+            }
         }
         m_gearSet.Set_SentientIntelligence(jewel);
         m_pCharacter->UpdateActiveGearSet(m_gearSet);

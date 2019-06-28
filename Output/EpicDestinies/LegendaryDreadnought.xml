@@ -662,18 +662,39 @@ Stacks 5 times.</Description>
          <MinSpent>16</MinSpent>
          <Requirements/>
          <Effect>
+            <Type>CreateSlider</Type>
+            <Bonus>Enhancement</Bonus>
+            <Slider>Advancing Blows</Slider>
+            <AmountVector size="2">0 5</AmountVector>
+            <Amount>0</Amount>
+         </Effect>
+         <Effect>
             <Type>AttackBonus</Type>
             <Bonus>Destiny</Bonus>
-            <Amount>5</Amount>
+            <Amount>1</Amount>
             <Weapon>All</Weapon>
-            <Stance>CriticalHits</Stance>
+            <Stacks>Advancing Blows</Stacks>
          </Effect>
          <Effect>
             <Type>DamageBonus</Type>
             <Bonus>Destiny</Bonus>
-            <Amount>5</Amount>
+            <Amount>1</Amount>
             <Weapon>All</Weapon>
-            <Stance>CriticalHits</Stance>
+            <Stacks>Advancing Blows</Stacks>
+         </Effect>
+         <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+            <Stacks>Advancing Blows</Stacks>
+         </Effect>
+         <Effect>
+            <Type>Seeker</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+            <Stacks>Advancing Blows</Stacks>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -752,16 +773,14 @@ The damage bonus stacks up to 10 times, and decrements by 1 every 15 seconds.</D
          <Ranks>1</Ranks>
          <MinSpent>20</MinSpent>
          <Clickie/>
-         <Stance>
-            <Name>Masters Blitz</Name>
-            <Icon>MastersBlitz</Icon>
-            <Description>Activate: For 15 seconds, you gain +7 Melee Power, +7 Ranged Power
-and select either +50% Dodge (dodge cap applies!) or +30 PRR.
-Any time you hit an opponent while under the effects of Master's Blitz, you
-have a chance to gain an additional stack of the melee/ranged damage bonus
-and restart the duration.</Description>
-         </Stance>
          <Requirements/>
+         <Effect>
+            <Type>CreateSlider</Type>
+            <Bonus>Enhancement</Bonus>
+            <Slider>Master's Blitz</Slider>
+            <AmountVector size="2">0 10</AmountVector>
+            <Amount>10</Amount>
+         </Effect>
          <Selector>
             <EnhancementSelection>
                <Name>Masters Blitz: Dodge</Name>
@@ -774,7 +793,7 @@ and +50% Dodge</Description>
                   <Type>DodgeBonus</Type>
                   <Bonus>Destiny</Bonus>
                   <Amount>50</Amount>
-                  <Stance>Masters Blitz</Stance>
+                  <Stance>1% Master's Blitz</Stance>
                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
@@ -788,7 +807,7 @@ and +30 PRR</Description>
                   <Type>PRR</Type>
                   <Bonus>Destiny</Bonus>
                   <Amount>30</Amount>
-                  <Stance>Masters Blitz</Stance>
+                  <Stance>1% Master's Blitz</Stance>
                </Effect>
             </EnhancementSelection>
          </Selector>
@@ -796,15 +815,15 @@ and +30 PRR</Description>
             <DisplayName>Master's Blitz Epic Moment: Melee Power</DisplayName>
             <Type>MeleePower</Type>
             <Bonus>Destiny</Bonus>
-            <Amount>70</Amount>
-            <Stance>Masters Blitz</Stance>
+            <Amount>7</Amount>
+            <Stacks>Master's Blitz</Stacks>
          </Effect>
          <Effect>
             <DisplayName>Master's Blitz Epic Moment: Ranged Power</DisplayName>
             <Type>RangedPower</Type>
             <Bonus>Destiny</Bonus>
-            <Amount>70</Amount>
-            <Stance>Masters Blitz</Stance>
+            <Amount>7</Amount>
+            <Stacks>Master's Blitz</Stacks>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>

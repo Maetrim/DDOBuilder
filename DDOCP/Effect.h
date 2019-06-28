@@ -337,6 +337,7 @@ class Effect :
                 DL_OPTIONAL_STRING(_, EnhancementTree) \
                 DL_OPTIONAL_STRING(_, SpellLikeAbility) \
                 DL_OPTIONAL_STRING(_, Slider) \
+                DL_OPTIONAL_STRING(_, Stacks) \
                 DL_STRING_LIST(_, Immunity) \
                 DL_OPTIONAL_ENUM(_, AbilityType, Ability, Ability_Unknown, abilityTypeMap) \
                 DL_OPTIONAL_ENUM(_, AbilityType, FullAbility, Ability_Unknown, abilityTypeMap) \

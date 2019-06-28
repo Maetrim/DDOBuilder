@@ -12,14 +12,14 @@
          <InternalName>UnyieldingCore1</InternalName>
          <Description>Passive bonuses:
 You gain 40 spell points, and each level of Unyielding Sentinel grants +5 Melee Power,
-+40 Spell points, and +1 Cleric, Favored Soul, and Paladin caster levels if
-you have any levels in those classes.
++3 Ranged Power, +40 Spell points, and +1 Cleric, Favored Soul, and Paladin caster
+levels if you have any levels in those classes.
 +50 HP. You gain +1 intimidate for each level of Unyielding Sentinel, including level 0.
 Sentinel Stance: (Cooldown 20 seconds) Activate to enjoy the Vigor of Battle.
 +20 Positive Healing Amplification
-+50 HP
-Enemies you hit gain Healing Touch for 3 seconds, which grants 10 temporary HP to targets they attack.
-(You can only be in one Sentinel Stance at a time.) </Description>
++100 HP (In game tooltip says 50)
+Enemies you hit gain Healing Touch for 3 seconds, which grants 10 temporary HP to
+targets they attack. (You can only be in one Sentinel Stance at a time.) </Description>
          <Icon>VigorOfBattle</Icon>
          <XPosition>0</XPosition>
          <YPosition>0</YPosition>
@@ -33,7 +33,7 @@ Enemies you hit gain Healing Touch for 3 seconds, which grants 10 temporary HP t
             <Name>Vigor of Battle</Name>
             <Icon>VigorOfBattle</Icon>
             <Description>Sentinel Stance: (Cooldown 20 seconds) Activate to enjoy the Vigor of Battle.
-+20 Positive Healing Amplification, +50 HP. Enemies you hit gain Healing Touch
++20 Positive Healing Amplification, +100 HP. Enemies you hit gain Healing Touch
 for 3 seconds, which grants 10 temporary HP to targets they attack.</Description>
             <IncompatibleStance>Unbreakable</IncompatibleStance>
             <IncompatibleStance>Stand Against the Tide</IncompatibleStance>
@@ -47,6 +47,11 @@ for 3 seconds, which grants 10 temporary HP to targets they attack.</Description
             <Type>MeleePower</Type>
             <Bonus>Destiny</Bonus>
             <Amount>5</Amount>
+         </Effect>
+         <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>3</Amount>
          </Effect>
          <Effect>
             <Type>CasterLevel</Type>
@@ -81,7 +86,7 @@ for 3 seconds, which grants 10 temporary HP to targets they attack.</Description
             <DisplayName>Unyielding Sentinel: Vigor of Battle: Stance</DisplayName>
             <Type>Hitpoints</Type>
             <Bonus>Destiny</Bonus>
-            <Amount>50</Amount>
+            <AmountVector size="2">100 150</AmountVector>
             <Stance>Vigor of Battle</Stance>
          </Effect>
          <Effect>
@@ -95,7 +100,8 @@ for 3 seconds, which grants 10 temporary HP to targets they attack.</Description
       <EnhancementTreeItem>
          <Name>Unyielding Sentinel: Unbreakable</Name>
          <InternalName>UnyieldingCore2</InternalName>
-         <Description>Passive bonuses: +5 sacred bonus to natural armor. You gain the Diehard feat.
+         <Description>Passive bonuses: +5 sacred bonus to natural armor.
+You gain the Diehard feat.
 Sentinel Stance: (Cooldown 20 seconds) You gain DR 10/epic.</Description>
          <Icon>Unbreakable</Icon>
          <XPosition>1</XPosition>
@@ -143,6 +149,11 @@ Sentinel Stance: (Cooldown 20 seconds) You gain DR 10/epic.</Description>
             <Type>MeleePower</Type>
             <Bonus>Destiny</Bonus>
             <Amount>5</Amount>
+         </Effect>
+         <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>3</Amount>
          </Effect>
          <Effect>
             <Type>CasterLevel</Type>
@@ -204,30 +215,41 @@ This bonus stacks up to four extra times while standing still.</Description>
             <Amount>2</Amount>
          </Effect>
          <Effect>
+            <Type>CreateSlider</Type>
+            <Bonus>Enhancement</Bonus>
+            <Slider>SAtT Stacks</Slider>
+            <AmountVector size="2">1 5</AmountVector>
+            <Amount>1</Amount>
+         </Effect>
+         <Effect>
             <Type>DamageBonus</Type>
             <Bonus>Destiny</Bonus>
-            <Weapon>All</Weapon>
-            <Amount>4</Amount>
-            <Stance>Stand Againast the Tide</Stance>
+            <WeaponClass>Melee</WeaponClass>
+            <Amount>1</Amount>
+            <Stacks>SAtT Stacks</Stacks>
+            <Stance>Stand Against the Tide</Stance>
          </Effect>
          <Effect>
             <Type>ThreatBonusMelee</Type>
             <Bonus>Destiny</Bonus>
-            <Amount>80</Amount>
-            <Stance>Stand Againast the Tide</Stance>
+            <Amount>20</Amount>
+            <Stacks>SAtT Stacks</Stacks>
+            <Stance>Stand Against the Tide</Stance>
          </Effect>
          <Effect>
             <Type>Fortification</Type>
             <Bonus>Destiny</Bonus>
-            <Amount>20</Amount>
-            <Stance>Stand Againast the Tide</Stance>
+            <Amount>5</Amount>
+            <Stacks>SAtT Stacks</Stacks>
+            <Stance>Stand Against the Tide</Stance>
          </Effect>
          <Effect>
             <Type>SaveBonus</Type>
             <Bonus>Destiny</Bonus>
             <Save>All</Save>
-            <Amount>4</Amount>
-            <Stance>Stand Againast the Tide</Stance>
+            <Amount>1</Amount>
+            <Stacks>SAtT Stacks</Stacks>
+            <Stance>Stand Against the Tide</Stance>
          </Effect>
          <Effect>
             <Type>SpellPoints</Type>
@@ -238,6 +260,11 @@ This bonus stacks up to four extra times while standing still.</Description>
             <Type>MeleePower</Type>
             <Bonus>Destiny</Bonus>
             <Amount>5</Amount>
+         </Effect>
+         <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>3</Amount>
          </Effect>
          <Effect>
             <Type>CasterLevel</Type>
@@ -298,6 +325,11 @@ This bonus stacks up to four extra times while standing still.</Description>
             <Amount>5</Amount>
          </Effect>
          <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>3</Amount>
+         </Effect>
+         <Effect>
             <Type>CasterLevel</Type>
             <Bonus>Destiny</Bonus>
             <Class>Cleric</Class>
@@ -327,9 +359,10 @@ This bonus stacks up to four extra times while standing still.</Description>
             <Amount>1</Amount>
          </Effect>
          <Effect>
+            <DisplayName>Unyielding Sentinel: Vigor of Battle: Stance</DisplayName>
             <Type>Hitpoints</Type>
             <Bonus>Destiny</Bonus>
-            <Amount>50</Amount>
+            <AmountVector size="2">100 150</AmountVector>
             <Stance>Vigor of Battle</Stance>
          </Effect>
       </EnhancementTreeItem>
@@ -372,6 +405,11 @@ This bonus stacks up to four extra times while standing still.</Description>
             <Amount>5</Amount>
          </Effect>
          <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>3</Amount>
+         </Effect>
+         <Effect>
             <Type>CasterLevel</Type>
             <Bonus>Destiny</Bonus>
             <Class>Cleric</Class>
@@ -388,11 +426,6 @@ This bonus stacks up to four extra times while standing still.</Description>
             <Bonus>Destiny</Bonus>
             <Class>Paladin</Class>
             <Amount>1</Amount>
-         </Effect>
-         <Effect>
-            <Type>Hitpoints</Type>
-            <Bonus>Destiny</Bonus>
-            <Amount>50</Amount>
          </Effect>
          <Effect>
             <Type>SkillBonus</Type>
@@ -440,6 +473,11 @@ You cannot be knocked down while Standing Against the Tide.</Description>
             <Amount>5</Amount>
          </Effect>
          <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>3</Amount>
+         </Effect>
+         <Effect>
             <Type>CasterLevel</Type>
             <Bonus>Destiny</Bonus>
             <Class>Cleric</Class>
@@ -462,6 +500,12 @@ You cannot be knocked down while Standing Against the Tide.</Description>
             <Bonus>Destiny</Bonus>
             <Skill>Intimidate</Skill>
             <Amount>1</Amount>
+         </Effect>
+         <Effect>
+            <Type>Immunity</Type>
+            <Bonus>Destiny</Bonus>
+            <Immunity>Most Knockdown</Immunity>
+            <Stance>Stand Against the Tide</Stance>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>

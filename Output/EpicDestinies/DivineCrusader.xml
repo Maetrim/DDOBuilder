@@ -331,14 +331,6 @@ Passively provides: +2 Melee Power and +2 Ranged power.</Description>
                <Enhancement>DivineCore5</Enhancement>
             </Requirement>
          </Requirements>
-         <Stance>
-            <Name>Zeal of the Righteous</Name>
-            <Icon>ZealOfTheRighteous</Icon>
-            <Description>Gain 50 stacks of Righteous Zeal.
-Righteous Zeal: +1 Spell Power, +1% doublestrike, +1% doubleshot,
-+1 Melee Power, +1 Ranged Power. Decays by 1 stack every 3 seconds, and is
-not lost by resting. (Cooldown: 4 minutes)</Description>
-         </Stance>
          <Effect>
             <Type>MeleePower</Type>
             <Bonus>Destiny</Bonus>
@@ -368,35 +360,42 @@ not lost by resting. (Cooldown: 4 minutes)</Description>
             <Amount>1</Amount>
          </Effect>
          <Effect>
+            <Type>CreateSlider</Type>
+            <Bonus>Enhancement</Bonus>
+            <Slider>Righteous Zeal</Slider>
+            <AmountVector size="2">0 50</AmountVector>
+            <Amount>0</Amount>
+         </Effect>
+         <Effect>
             <Type>SpellPower</Type>
             <Bonus>Destiny</Bonus>
-            <Amount>50</Amount>
+            <Amount>1</Amount>
             <SpellPower>All</SpellPower>
-            <Stance>Zeal of the Righteous</Stance>
+            <Stacks>Righteous Zeal</Stacks>
          </Effect>
          <Effect>
             <Type>Doublestrike</Type>
             <Bonus>Destiny</Bonus>
-            <Amount>50</Amount>
-            <Stance>Zeal of the Righteous</Stance>
+            <Amount>1</Amount>
+            <Stacks>Righteous Zeal</Stacks>
          </Effect>
          <Effect>
             <Type>Doubleshot</Type>
             <Bonus>Destiny</Bonus>
-            <Amount>50</Amount>
-            <Stance>Zeal of the Righteous</Stance>
+            <Amount>1</Amount>
+            <Stacks>Righteous Zeal</Stacks>
          </Effect>
          <Effect>
             <Type>MeleePower</Type>
             <Bonus>Destiny</Bonus>
-            <Amount>50</Amount>
-            <Stance>Zeal of the Righteous</Stance>
+            <Amount>1</Amount>
+            <Stacks>Righteous Zeal</Stacks>
          </Effect>
          <Effect>
             <Type>RangedPower</Type>
             <Bonus>Destiny</Bonus>
-            <Amount>50</Amount>
-            <Stance>Zeal of the Righteous</Stance>
+            <Amount>1</Amount>
+            <Stacks>Righteous Zeal</Stacks>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -737,26 +736,26 @@ spells. Duration: 10 seconds. Stacks 10 times.</Description>
          <Ranks>1</Ranks>
          <MinSpent>8</MinSpent>
          <Requirements/>
-         <Stance>
-            <Name>Empyrean Magic</Name>
-            <Icon>EmpyreanMagic</Icon>
-            <Description>Each stack of Empyrean Fervor gives you +2 Sacred
-bonus to Universal Spell power, +1% Sacred Bonus to Critical Chance with all
-spells. Duration: 10 seconds. Stacks 10 times.</Description>
-         </Stance>
+         <Effect>
+            <Type>CreateSlider</Type>
+            <Bonus>Enhancement</Bonus>
+            <Slider>Empyrean Fervor</Slider>
+            <AmountVector size="2">0 10</AmountVector>
+            <Amount>0</Amount>
+         </Effect>
          <Effect>
             <Type>SpellPower</Type>
-            <Bonus>Destiny</Bonus>
+            <Bonus>Sacred</Bonus>
             <SpellPower>All</SpellPower>
-            <Amount>20</Amount>
-            <Stance>Empyrean Magic</Stance>
+            <Amount>2</Amount>
+            <Stacks>Empyrean Fervor</Stacks>
          </Effect>
          <Effect>
             <Type>SpellLore</Type>
-            <Bonus>Destiny</Bonus>
+            <Bonus>Sacred</Bonus>
             <SpellPower>All</SpellPower>
-            <Amount>10</Amount>
-            <Stance>Empyrean Magic</Stance>
+            <Amount>1</Amount>
+            <Stacks>Empyrean Fervor</Stacks>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -983,12 +982,13 @@ and Doubleshot chance. Stacks up to 10 times, with a duration of 6 seconds.</Des
          <Ranks>1</Ranks>
          <MinSpent>16</MinSpent>
          <Requirements/>
-         <Stance>
-            <Name>Celestial Fervor</Name>
-            <Icon>CelestialChampion</Icon>
-            <Description>A stack of Celestial Fervor grants you +1 Enhancement Bonus to Doublestrike
-and Doubleshot chance. Stacks up to 10 times, with a duration of 6 seconds.</Description>
-         </Stance>
+         <Effect>
+            <Type>CreateSlider</Type>
+            <Bonus>Enhancement</Bonus>
+            <Slider>Celestial Fervor</Slider>
+            <AmountVector size="2">0 10</AmountVector>
+            <Amount>0</Amount>
+         </Effect>
          <Effect>
             <Type>CriticalRange</Type>
             <Bonus>Destiny</Bonus>
@@ -996,11 +996,16 @@ and Doubleshot chance. Stacks up to 10 times, with a duration of 6 seconds.</Des
             <Amount>1</Amount>
          </Effect>
          <Effect>
-            <DisplayName>Celestial Fervor</DisplayName>
-            <Bonus>Destiny</Bonus>
+            <Bonus>Enhancement</Bonus>
             <Type>Doublestrike</Type>
-            <Amount>10</Amount>
-            <Stance>Celestial Fervor</Stance>
+            <Amount>1</Amount>
+            <Stacks>Celestial Fervor</Stacks>
+         </Effect>
+         <Effect>
+            <Bonus>Enhancement</Bonus>
+            <Type>Doubleshot</Type>
+            <Amount>1</Amount>
+            <Stacks>Celestial Fervor</Stacks>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>

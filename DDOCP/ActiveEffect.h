@@ -121,6 +121,7 @@ class ActiveEffect
         bool HasClass(ClassType type) const;
         void SetWholeNumbersOnly();
         void SetWeapon(WeaponType wt);  // used when an effect has WeaponClass_FocusGroup
+        void SetStacksControl(const std::string & control, Character * pCharacter);
     private:
         ActiveEffectType m_type;
         double Amount() const;
@@ -151,4 +152,7 @@ class ActiveEffect
         bool m_bIsItemEffect;
         double m_divider;
         DividerType m_dividerType;
+        bool m_bHasStacksControl;
+        std::string m_stacksControl;
+        Character * m_pCharacter;
 };
