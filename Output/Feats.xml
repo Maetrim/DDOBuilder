@@ -1390,6 +1390,7 @@ some of your weak flesh. You are still considered your original race (at this ti
 gaining 50% healing from Repair spells but suffering a -25% penalty to positive energy
 healing. In addition, you now take 50% damage from rust effects.</Description>
       <FeatGroup>
+         <IsStandardFeat/>
          <IsArtificerBonus/>
       </FeatGroup>
       <Requirements>
@@ -2480,7 +2481,30 @@ attack styles.)</Description>
       <Acquire>Train</Acquire>
       <Icon>ExoticWeaponProficiency</Icon>
       <AutomaticAcquisition>
-         <Race>Dwarf</Race>
+          <IgnoreRequirements/>
+          <Requirements>
+             <Requirement>
+                <Race>Dwarf</Race>
+             </Requirement>
+              <RequiresOneOf>
+                  <Requirement>
+                    <Class>Barbarian</Class>
+                    <Level>1</Level>
+                  </Requirement>
+                  <Requirement>
+                    <Class>Fighter</Class>
+                    <Level>1</Level>
+                  </Requirement>
+                  <Requirement>
+                    <Class>Paladin</Class>
+                    <Level>1</Level>
+                  </Requirement>
+                  <Requirement>
+                    <Class>Ranger</Class>
+                    <Level>1</Level>
+                  </Requirement>
+              </RequiresOneOf>
+          </Requirements>
       </AutomaticAcquisition>
       <Effect>
          <Type>WeaponProficiency</Type>
@@ -2742,14 +2766,16 @@ but they consume 10 additional spell points.</Description>
       <Name>Extra Turning</Name>
       <Description>Allows you to turn undead four more times per rest period.</Description>
       <Requirements>
-         <Requirement>
-            <Class>Cleric</Class>
-            <Level>1</Level>
-         </Requirement>
-         <Requirement>
-            <Class>Paladin</Class>
-            <Level>4</Level>
-         </Requirement>
+          <RequiresOneOf>
+             <Requirement>
+                <Class>Cleric</Class>
+                <Level>1</Level>
+             </Requirement>
+             <Requirement>
+                <Class>Paladin</Class>
+                <Level>4</Level>
+             </Requirement>
+         </RequiresOneOf>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>ExtraTurning</Icon>
@@ -5039,6 +5065,7 @@ skill instead of your Heal skill.
 If you transform into a different type of creature, you will lose these benefits
 until you return to your normal form.</Description>
       <FeatGroup>
+         <IsStandardFeat/>
          <IsArtificerBonus/>
       </FeatGroup>
       <Requirements>
@@ -14296,7 +14323,8 @@ Passive Bonus: +5% Fortification per stack of this Past Life.</Description>
    </Feat>
    <Feat>
       <Name>Past Life: Morninglord</Name>
-      <Description>Iconic Past Life Stance: +10/20/30 Light and +10/20/30 Alignment Spell Power</Description>
+      <Description>Iconic Past Life Stance: +10/20/30 Light and +10/20/30 Alignment Spell Power
+Passive Bonus: +3 Positive Spell Power per stack of this Past Life.</Description>
       <Stance>
          <Name>Morninglord</Name>
          <Icon>IconicPastLifeMorninglord</Icon>

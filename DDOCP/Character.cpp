@@ -1537,12 +1537,23 @@ std::list<TrainedFeat> Character::AutomaticFeats(
             {
                 meetsSpecificLevel = ((*aait).SpecificLevel() == level);
             }
+            bool meetsRequirementsToGain = true;
+            if ((*aait).HasRequirementsToGain())
+            {
+                meetsRequirementsToGain = (*aait).RequirementsToGain().Met(
+                        *this,
+                        classLevels,
+                        level,
+                        currentFeats,
+                        true);      // do include tomes
+            }
             // if we meet the auto acquire criteria, make sure
             // we also meet the feats Requirements
             if (meetsRace
                     && meetsClass
                     && meetsLevel
-                    && meetsSpecificLevel)
+                    && meetsSpecificLevel
+                    && meetsRequirementsToGain)
             {
                 if ((*aait).HasIgnoreRequirements())
                 {
