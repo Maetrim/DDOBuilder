@@ -14,8 +14,8 @@
       <EnhancementTreeItem>
          <Name>Pale Master: Dark Reaping</Name>
          <InternalName>PaleCore1</InternalName>
-         <Description>For each Core Ability in this tree you get +3 Negative Spell Power and
-+3 Negative Healing Amplification.</Description>
+         <Description>For each Core Ability in this tree you get +5 Negative Spell Power and
++5 Negative Healing Amplification.</Description>
          <Icon>PMDarkReaping</Icon>
          <XPosition>0</XPosition>
          <YPosition>0</YPosition>
@@ -30,17 +30,17 @@
             </Requirement>
          </Requirements>
          <Effect>
-            <DisplayName>Pale Master: +3 Negative Spell Power per Core</DisplayName>
+            <DisplayName>Pale Master: +5 Negative Spell Power per Core</DisplayName>
             <Bonus>Enhancement</Bonus>
             <Type>SpellPower</Type>
-            <Amount>3</Amount>
+            <Amount>5</Amount>
             <SpellPower>Negative</SpellPower>
          </Effect>
          <Effect>
-            <DisplayName>Pale Master: +3 Negative Healing Amplification per Core</DisplayName>
+            <DisplayName>Pale Master: +5 Negative Healing Amplification per Core</DisplayName>
             <Bonus>Enhancement</Bonus>
             <Type>NegativeHealingAmplification</Type>
-            <Amount>3</Amount>
+            <Amount>5</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -73,8 +73,8 @@ double damage from Light. You are considered undead.</Description>
             </SelectorExclusions>
             <EnhancementSelection>
                <Name>Shroud of the Zombie</Name>
-               <Description>While in this form, +4 Constitution, +20% damage with attacks but you attack
-20% slower than normal. You gain +3 PRR, +3 MRR.</Description>
+               <Description>While in this form, +4 Constitution, +2 Strength, +20% damage with attacks
+but you attack 20% slower than normal. You gain +3 PRR, +3 MRR.</Description>
                <Icon>PMShroudOfTheZombie</Icon>
                <Cost>1</Cost>
                <Clickie/>
@@ -89,6 +89,13 @@ double damage from Light. You are considered undead.</Description>
                     <Bonus>Enhancement</Bonus>
                     <Ability>Constitution</Ability>
                     <Amount>4</Amount>
+                    <Stance>Shroud of the Zombie</Stance>
+                 </Effect>
+                 <Effect>
+                    <Type>AbilityBonus</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <Ability>Strength</Ability>
+                    <Amount>2</Amount>
                     <Stance>Shroud of the Zombie</Stance>
                  </Effect>
                  <Effect>
@@ -226,17 +233,17 @@ Enemy attacks have a 10% chance to miss you due to incorporeality,
             </EnhancementSelection>
          </Selector>
          <Effect>
-            <DisplayName>Pale Master: +3 Negative Spell Power per Core</DisplayName>
+            <DisplayName>Pale Master: +5 Negative Spell Power per Core</DisplayName>
             <Bonus>Enhancement</Bonus>
             <Type>SpellPower</Type>
-            <Amount>3</Amount>
+            <Amount>5</Amount>
             <SpellPower>Negative</SpellPower>
          </Effect>
          <Effect>
-            <DisplayName>Pale Master: +3 Negative Healing Amplification per Core</DisplayName>
+            <DisplayName>Pale Master: +5 Negative Healing Amplification per Core</DisplayName>
             <Bonus>Enhancement</Bonus>
             <Type>NegativeHealingAmplification</Type>
-            <Amount>3</Amount>
+            <Amount>5</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -262,13 +269,22 @@ Passive: While in a Shroud, you can breathe underwater. +1 Spell Penetration.</D
          <Selector>
             <EnhancementSelection>
                <Name>Deathly Touch</Name>
-               <Description>+15 Maximum Hitpoints</Description>
+               <Description>+25 Maximum Hitpoints, +5 PRR</Description>
                <Icon></Icon>
                <Cost>1</Cost>
                  <Effect>
                     <Type>Hitpoints</Type>
                     <Bonus>Enhancement</Bonus>
-                    <Amount>15</Amount>
+                    <Amount>25</Amount>
+                    <AnyOfStance>Shroud of the Zombie</AnyOfStance>
+                    <AnyOfStance>Shroud of the Vampire</AnyOfStance>
+                    <AnyOfStance>Shroud of the Wraith</AnyOfStance>
+                    <AnyOfStance>Shroud of the Lich</AnyOfStance>
+                 </Effect>
+                 <Effect>
+                    <Type>PRR</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <Amount>5</Amount>
                     <AnyOfStance>Shroud of the Zombie</AnyOfStance>
                     <AnyOfStance>Shroud of the Vampire</AnyOfStance>
                     <AnyOfStance>Shroud of the Wraith</AnyOfStance>
@@ -310,7 +326,7 @@ inflicting 1 Negative Level on victims.</Description>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Haunting in the Dark</Name>
-               <Description>+2 Assassinate DCs.</Description>
+               <Description>+2 Assassinate DCs, +1 Sneak Attack Dice</Description>
                <Icon></Icon>
                <Cost>1</Cost>
                <Effect>
@@ -323,11 +339,20 @@ inflicting 1 Negative Level on victims.</Description>
                     <AnyOfStance>Shroud of the Wraith</AnyOfStance>
                     <AnyOfStance>Shroud of the Lich</AnyOfStance>
                  </Effect>
+                 <Effect>
+                    <Type>SneakAttackDice</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <Amount>1</Amount>
+                    <AnyOfStance>Shroud of the Zombie</AnyOfStance>
+                    <AnyOfStance>Shroud of the Vampire</AnyOfStance>
+                    <AnyOfStance>Shroud of the Wraith</AnyOfStance>
+                    <AnyOfStance>Shroud of the Lich</AnyOfStance>
+                 </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Ghost in the Wind</Name>
-               <Description>+15% Incorporeal Miss Chance.
-If you are in Wraith Form, this increases your total to 25%.</Description>
+               <Description>+10% Incorporeal Miss Chance.
+If you are in Wraith Form, this increases your total to 20%.</Description>
                <Icon></Icon>
                <Cost>1</Cost>
             </EnhancementSelection>
@@ -435,17 +460,17 @@ If you are in Wraith Form, this increases your total to 25%.</Description>
             <Amount>1</Amount>
          </Effect>
          <Effect>
-            <DisplayName>Pale Master: +3 Negative Spell Power per Core</DisplayName>
+            <DisplayName>Pale Master: +5 Negative Spell Power per Core</DisplayName>
             <Bonus>Enhancement</Bonus>
             <Type>SpellPower</Type>
-            <Amount>3</Amount>
+            <Amount>5</Amount>
             <SpellPower>Negative</SpellPower>
          </Effect>
          <Effect>
-            <DisplayName>Pale Master: +3 Negative Healing Amplification per Core</DisplayName>
+            <DisplayName>Pale Master: +5 Negative Healing Amplification per Core</DisplayName>
             <Bonus>Enhancement</Bonus>
             <Type>NegativeHealingAmplification</Type>
-            <Amount>3</Amount>
+            <Amount>5</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -649,17 +674,17 @@ If you are in Wraith Form, this increases your total to 25%.</Description>
             <Amount>1</Amount>
          </Effect>
          <Effect>
-            <DisplayName>Pale Master: +3 Negative Spell Power per Core</DisplayName>
+            <DisplayName>Pale Master: +5 Negative Spell Power per Core</DisplayName>
             <Bonus>Enhancement</Bonus>
             <Type>SpellPower</Type>
-            <Amount>3</Amount>
+            <Amount>5</Amount>
             <SpellPower>Negative</SpellPower>
          </Effect>
          <Effect>
-            <DisplayName>Pale Master: +3 Negative Healing Amplification per Core</DisplayName>
+            <DisplayName>Pale Master: +5 Negative Healing Amplification per Core</DisplayName>
             <Bonus>Enhancement</Bonus>
             <Type>NegativeHealingAmplification</Type>
-            <Amount>3</Amount>
+            <Amount>5</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -871,17 +896,17 @@ If you are in Wraith Form, this increases your total to 25%.</Description>
             <Amount>50</Amount>
          </Effect>
          <Effect>
-            <DisplayName>Pale Master: +3 Negative Spell Power per Core</DisplayName>
+            <DisplayName>Pale Master: +5 Negative Spell Power per Core</DisplayName>
             <Bonus>Enhancement</Bonus>
             <Type>SpellPower</Type>
-            <Amount>3</Amount>
+            <Amount>5</Amount>
             <SpellPower>Negative</SpellPower>
          </Effect>
          <Effect>
-            <DisplayName>Pale Master: +3 Negative Healing Amplification per Core</DisplayName>
+            <DisplayName>Pale Master: +5 Negative Healing Amplification per Core</DisplayName>
             <Bonus>Enhancement</Bonus>
             <Type>NegativeHealingAmplification</Type>
-            <Amount>3</Amount>
+            <Amount>5</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -929,17 +954,17 @@ Passive: You gain +4 Intelligence and Deathblock. +10 Negative Healing Amplifica
             <Amount>10</Amount>
          </Effect>
          <Effect>
-            <DisplayName>Pale Master: +3 Negative Spell Power per Core</DisplayName>
+            <DisplayName>Pale Master: +5 Negative Spell Power per Core</DisplayName>
             <Bonus>Enhancement</Bonus>
             <Type>SpellPower</Type>
-            <Amount>3</Amount>
+            <Amount>5</Amount>
             <SpellPower>Negative</SpellPower>
          </Effect>
          <Effect>
-            <DisplayName>Pale Master: +3 Negative Healing Amplification per Core</DisplayName>
+            <DisplayName>Pale Master: +5 Negative Healing Amplification per Core</DisplayName>
             <Bonus>Enhancement</Bonus>
             <Type>NegativeHealingAmplification</Type>
-            <Amount>3</Amount>
+            <Amount>5</Amount>
          </Effect>
       </EnhancementTreeItem>
       <!--Tier 1 Enhancements-->
@@ -2098,13 +2123,13 @@ While in Vampire Form:
     On Hit: Target has a chance to be Paralyzed (Will save vs. DC 20 + INT Mod + Enchantment Spell Bonuses).
     On Save: -10% Movement and Attack Speed.
 While in Wraith Form:
-    +10% Incorporeality (bringing your total to 20%, or 35% if you have Ghost in the Wind),
+    +5% Incorporeality (bringing your total to 20%, or 25% if you have Ghost in the Wind),
     +2 Sneak Attack Dice.
     +3% Dodge and Dodge Cap.
     +10 to Hide and Move Silently.
 While in Lich Form:
     +15 to MRR cap
-    +5 Negative Spell Power
+    +10 Negative Spell Power
     +10 Cold and Electric Resistance.</Description>
          <Icon>PMImprovedShrouding</Icon>
          <XPosition>4</XPosition>
@@ -2181,7 +2206,7 @@ While in Lich Form:
             <Type>SpellPower</Type>
             <Bonus>Enhancement</Bonus>
             <SpellPower>Negative</SpellPower>
-            <Amount>5</Amount>
+            <Amount>10</Amount>
             <Stance>Shroud of the Lich</Stance>
          </Effect>
          <Effect>

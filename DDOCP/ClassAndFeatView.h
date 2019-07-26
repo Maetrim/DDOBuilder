@@ -38,6 +38,5 @@ class CClassAndFeatView :
     private:
         CDocument * m_pDocument;
         Character * m_pCharacter;
-        CMFCOutlookBarTabCtrl m_wndFeatNavigationBar;
         CFeatsClassControl m_featsAndClasses;
 };

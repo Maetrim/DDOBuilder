@@ -60,7 +60,6 @@ void BreakdownItemBAB::CreateOtherEffects()
             }
         }
 
-        // must be proficient with the weapon
         if (m_overrideBabCount > 0)
         {
             // have at least 1 enhancement that boosts BAB to Character level

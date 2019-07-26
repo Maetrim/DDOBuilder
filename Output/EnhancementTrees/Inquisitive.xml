@@ -10,6 +10,7 @@
       </Requirements>
     <Icon>Inquisitive</Icon>
     <Background>HarperBackground</Background>
+    <!--Inquisitive tree core items-->
     <EnhancementTreeItem>
       <Name>Inquisitive: Inquisitive</Name>
       <InternalName>InquisitiveCore1</InternalName>
@@ -63,6 +64,9 @@ Cooldown: 1 Minute</Description>
       <Clickie/>
       <ArrowRight/>
       <Requirements>
+            <Requirement>
+               <MinLevel>3</MinLevel>
+            </Requirement>
         <Requirement>
           <Enhancement>InquisitiveCore1</Enhancement>
         </Requirement>
@@ -103,6 +107,9 @@ In addition, you gain +2 Damage dice with Law on you Side.</Description>
       <MinSpent>10</MinSpent>
       <ArrowRight/>
       <Requirements>
+            <Requirement>
+               <MinLevel>6</MinLevel>
+            </Requirement>
         <Requirement>
           <Enhancement>InquisitiveCore2</Enhancement>
         </Requirement>
@@ -150,6 +157,9 @@ In addition, you gain +2 Damage dice with Law on your Side.</Description>
       <MinSpent>20</MinSpent>
       <ArrowRight/>
       <Requirements>
+            <Requirement>
+               <MinLevel>12</MinLevel>
+            </Requirement>
         <Requirement>
           <Enhancement>InquisitiveCore3</Enhancement>
         </Requirement>
@@ -185,6 +195,9 @@ In addition, you gain +2 Damage dice with Law on your Side.</Description>
       <MinSpent>30</MinSpent>
       <ArrowRight/>
       <Requirements>
+            <Requirement>
+               <MinLevel>18</MinLevel>
+            </Requirement>
         <Requirement>
           <Enhancement>InquisitiveCore4</Enhancement>
         </Requirement>
@@ -226,6 +239,9 @@ In addition, you gain +3 Damage dice with Law on your Side.</Description>
       <Ranks>1</Ranks>
       <MinSpent>40</MinSpent>
       <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
         <Requirement>
           <Enhancement>InquisitiveCore5</Enhancement>
         </Requirement>
@@ -242,6 +258,7 @@ In addition, you gain +3 Damage dice with Law on your Side.</Description>
             <Ability>All</Ability>
         </Effect>
     </EnhancementTreeItem>
+    <!--Inquisitive Tier 1 Enhancements-->
     <EnhancementTreeItem>
       <Name>Inquisitive: Dual Shooter</Name>
       <InternalName>InquisitiveDualShooter</InternalName>
@@ -368,8 +385,9 @@ Rank 3: +1 to Will Saving Throws.</Description>
             <Save>Will</Save>
         </Effect>
     </EnhancementTreeItem>
+    <!--Inquisitive Tier 2 Enhancements-->
     <EnhancementTreeItem>
-      <Name>Inquisitive: Crossbow Adept</Name>
+      <Name>Inquisitive: Crossbow Adept I</Name>
       <InternalName>InquisitiveCrossbowAdept</InternalName>
       <Description>+1 to Attack and +2 to Damage with Light and Heavy (non-repeating) Crossbows.</Description>
       <Icon>CrossbowAdept</Icon>
@@ -378,7 +396,12 @@ Rank 3: +1 to Will Saving Throws.</Description>
       <Cost>2</Cost>
       <Ranks>1</Ranks>
       <MinSpent>5</MinSpent>
-      <Requirements/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>2</MinLevel>
+            </Requirement>
+         </Requirements>
+      <ArrowUp/>
         <Effect>
             <Type>AttackBonus</Type>
             <Bonus>Enhancement</Bonus>
@@ -419,6 +442,9 @@ Rank 3: +1 to Will Saving Throws.</Description>
       <Ranks>3</Ranks>
       <MinSpent>5</MinSpent>
       <Requirements>
+            <Requirement>
+               <MinLevel>2</MinLevel>
+            </Requirement>
             <RequiresNoneOf>
                <DisplayDescription>Any other Wand and Scroll Mastery enhancement</DisplayDescription>
                <Requirement>
@@ -470,7 +496,11 @@ being removed. This stacks up to 5 times.</Description>
       <Ranks>1</Ranks>
       <MinSpent>5</MinSpent>
       <ArrowUp/>
-      <Requirements/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>2</MinLevel>
+            </Requirement>
+         </Requirements>
          <Effect>
             <Type>CreateSlider</Type>
             <Bonus>Enhancement</Bonus>
@@ -507,7 +537,10 @@ being removed. This stacks up to 5 times.</Description>
       <Cost>2</Cost>
       <Ranks>1</Ranks>
       <MinSpent>5</MinSpent>
-      <Requirements>
+         <Requirements>
+            <Requirement>
+               <MinLevel>2</MinLevel>
+            </Requirement>
         <Requirement>
           <Enhancement>InquisitiveLawOnYourSide</Enhancement>
         </Requirement>
@@ -525,8 +558,13 @@ Cooldown: 30 seconds.</Description>
       <Ranks>3</Ranks>
       <MinSpent>5</MinSpent>
       <Clickie/>
-      <Requirements/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>2</MinLevel>
+            </Requirement>
+         </Requirements>
     </EnhancementTreeItem>
+    <!--Inquisitive Tier 3 Enhancements-->
     <EnhancementTreeItem>
       <Name>Inquisitive: Crossbow Adept II</Name>
       <InternalName>InquisitiveCrossbowAdeptII</InternalName>
@@ -537,7 +575,15 @@ Cooldown: 30 seconds.</Description>
       <Cost>2</Cost>
       <Ranks>1</Ranks>
       <MinSpent>10</MinSpent>
-      <Requirements/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>3</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Enhancement>InquisitiveCrossbowAdept</Enhancement>
+            </Requirement>
+         </Requirements>
+      <ArrowUp/>
         <Effect>
             <Type>AttackBonus</Type>
             <Bonus>Enhancement</Bonus>
@@ -579,7 +625,11 @@ Cooldown: 30 seconds.</Description>
       <MinSpent>10</MinSpent>
       <Clickie/>
       <ArrowUp/>
-      <Requirements/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>3</MinLevel>
+            </Requirement>
+         </Requirements>
       <Selector>
         <EnhancementSelection>
           <Name>Ask Questions First</Name>
@@ -615,7 +665,10 @@ every 2 seconds for 12 seconds. This damage scales with 200% Ranged Power.</Desc
       <Cost>1</Cost>
       <Ranks>1</Ranks>
       <MinSpent>10</MinSpent>
-      <Requirements>
+         <Requirements>
+            <Requirement>
+               <MinLevel>3</MinLevel>
+            </Requirement>
         <Requirement>
           <Enhancement>InquisitiveObservation</Enhancement>
         </Requirement>
@@ -634,7 +687,11 @@ Cooldown: 18 seconds</Description>
       <Ranks>1</Ranks>
       <MinSpent>10</MinSpent>
       <Clickie/>
-      <Requirements/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>3</MinLevel>
+            </Requirement>
+         </Requirements>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Inquisitive: Ability Score I</Name>
@@ -646,7 +703,11 @@ Cooldown: 18 seconds</Description>
       <Cost>2</Cost>
       <Ranks>1</Ranks>
       <MinSpent>10</MinSpent>
-      <Requirements/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>3</MinLevel>
+            </Requirement>
+         </Requirements>
       <Selector>
         <EnhancementSelection>
           <Name>Strength</Name>
@@ -722,6 +783,7 @@ Cooldown: 18 seconds</Description>
         </EnhancementSelection>
       </Selector>
     </EnhancementTreeItem>
+    <!--Inquisitive Tier 4 Enhancements-->
     <EnhancementTreeItem>
       <Name>Inquisitive: Crossbow Adept III</Name>
       <InternalName>InquisitiveCrossbowAdeptIII</InternalName>
@@ -732,7 +794,14 @@ Cooldown: 18 seconds</Description>
       <Cost>2</Cost>
       <Ranks>1</Ranks>
       <MinSpent>20</MinSpent>
-      <Requirements/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>4</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Enhancement>InquisitiveCrossbowAdeptII</Enhancement>
+            </Requirement>
+         </Requirements>
         <Effect>
             <Type>AttackBonus</Type>
             <Bonus>Enhancement</Bonus>
@@ -772,7 +841,10 @@ Cooldown: 18 seconds</Description>
       <Cost>1</Cost>
       <Ranks>1</Ranks>
       <MinSpent>20</MinSpent>
-      <Requirements>
+         <Requirements>
+            <Requirement>
+               <MinLevel>4</MinLevel>
+            </Requirement>
         <Requirement>
           <Enhancement>InquisitiveWhatFirst</Enhancement>
         </Requirement>
@@ -803,7 +875,11 @@ stack of Shot Wound, they take a Crushing Despair effect for 30 seconds.</Descri
       <Cost>2</Cost>
       <Ranks>1</Ranks>
       <MinSpent>20</MinSpent>
-      <Requirements/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>4</MinLevel>
+            </Requirement>
+         </Requirements>
       <Selector>
         <EnhancementSelection>
           <Name>Arcane Inquisition</Name>
@@ -853,7 +929,10 @@ stack of Shot Wound, they take a Crushing Despair effect for 30 seconds.</Descri
       <Ranks>1</Ranks>
       <MinSpent>20</MinSpent>
       <ArrowUp/>
-      <Requirements>
+         <Requirements>
+            <Requirement>
+               <MinLevel>4</MinLevel>
+            </Requirement>
         <Requirement>
           <Enhancement>InquisitiveLawOnYourSide</Enhancement>
         </Requirement>
@@ -869,7 +948,11 @@ stack of Shot Wound, they take a Crushing Despair effect for 30 seconds.</Descri
       <Cost>2</Cost>
       <Ranks>1</Ranks>
       <MinSpent>20</MinSpent>
-      <Requirements/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>4</MinLevel>
+            </Requirement>
+         </Requirements>
       <Selector>
         <EnhancementSelection>
           <Name>Strength</Name>
@@ -945,6 +1028,7 @@ stack of Shot Wound, they take a Crushing Despair effect for 30 seconds.</Descri
         </EnhancementSelection>
       </Selector>
     </EnhancementTreeItem>
+    <!--Inquisitive Tier 5 Enhancements-->
     <EnhancementTreeItem>
       <Name>Inquisitive: No Holds Barred</Name>
       <InternalName>InquisitiveNoHoldsBarred</InternalName>
@@ -963,7 +1047,11 @@ Cooldown: 30 seconds</Description>
       <MinSpent>30</MinSpent>
       <Clickie/>
       <Tier5/>
-      <Requirements/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>12</MinLevel>
+            </Requirement>
+         </Requirements>
         <Effect>
             <Type>RangedPower</Type>
             <Bonus>Enhancement</Bonus>
@@ -987,12 +1075,16 @@ Cooldown: 1 minute</Description>
       <Icon>ArrestingAssault</Icon>
       <XPosition>1</XPosition>
       <YPosition>5</YPosition>
-      <Cost>2</Cost>
+      <Cost>1</Cost>
       <Ranks>1</Ranks>
       <MinSpent>30</MinSpent>
       <Clickie/>
       <Tier5/>
-      <Requirements/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>12</MinLevel>
+            </Requirement>
+         </Requirements>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Inquisitive: Improved Uncanny Dodge</Name>
@@ -1006,7 +1098,11 @@ Cooldown: 1 minute</Description>
       <MinSpent>30</MinSpent>
       <Clickie/>
       <Tier5/>
-      <Requirements/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>12</MinLevel>
+            </Requirement>
+         </Requirements>
         <Effect>
             <Type>GrantFeat</Type>
             <Bonus>Enhancement</Bonus>
@@ -1024,7 +1120,10 @@ Cooldown: 1 minute</Description>
       <Ranks>1</Ranks>
       <MinSpent>30</MinSpent>
       <Tier5/>
-      <Requirements>
+         <Requirements>
+            <Requirement>
+               <MinLevel>12</MinLevel>
+            </Requirement>
         <Requirement>
           <Enhancement>InquisitiveGreaterLaw</Enhancement>
         </Requirement>
@@ -1082,7 +1181,11 @@ Crossbows have a chance to automatically trigger Diplomacy around you.</Descript
       <MinSpent>30</MinSpent>
       <Clickie/>
       <Tier5/>
-      <Requirements/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>12</MinLevel>
+            </Requirement>
+         </Requirements>
     </EnhancementTreeItem>
   </EnhancementTree>
 </Enhancements>

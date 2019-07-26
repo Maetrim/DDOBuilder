@@ -109,7 +109,6 @@ BOOL CClassAndFeatView::OnEraseBkgnd(CDC* pDC)
     static int controlsNotToBeErased[] =
     {
         IDC_CLASS_AND_FEAT_LIST,
-        //1,                  // m_wndFeatNavigationBar
         0 // end marker
     };
 
