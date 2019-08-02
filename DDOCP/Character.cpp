@@ -1391,7 +1391,8 @@ void Character::TrainFeat(
         // whether the feat can be selected before entering the world or
         // after via a feat swap with Fred the Mind Flayer.
         if (!IsFeatTrainable(level, type, feat, false)
-                && featName != " No Selection")
+                && featName != " No Selection"
+                || featName == "Completionist")
         {
             // this feat although trainable with Fred is not trainable
             // during character creation.

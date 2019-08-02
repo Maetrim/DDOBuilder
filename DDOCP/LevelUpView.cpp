@@ -2065,7 +2065,8 @@ void CLevelUpView::SetFeatTooltipText(
             && type != TFT_GrantedFeat
             && featName != " No Selection")
     {
-        warn = !m_pCharacter->IsFeatTrainable(m_level, type, feat, (m_level != 0), alreadyTrained);
+        warn = !m_pCharacter->IsFeatTrainable(m_level, type, feat, (m_level != 0), alreadyTrained)
+                || (featName == "Completionist" && (m_level == 0));
     }
     m_tooltip.SetOrigin(tipTopLeft, tipAlternate, rightAlign);
     m_tooltip.SetFeatItem(*m_pCharacter, &feat, warn, m_level, type == TFT_GrantedFeat);

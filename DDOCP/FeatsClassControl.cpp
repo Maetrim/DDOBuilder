@@ -637,7 +637,8 @@ void CFeatsClassControl::OnMouseMove(UINT nFlags, CPoint point)
                                 tfts[ht.Data()],
                                 feat,
                                 false,
-                                true);
+                                true)
+                                || (featName == "Completionist" && (ht.Level() == 0));
                     }
                     CPoint tipTopLeft(ht.Rect().left, ht.Rect().bottom);
                     CPoint tipAlternate(ht.Rect().left, ht.Rect().top);
@@ -1139,7 +1140,8 @@ LRESULT CFeatsClassControl::OnHoverComboBox(WPARAM wParam, LPARAM lParam)
                         tfts[m_featSelectItem.Data()],
                         feat,
                         false,
-                        false);
+                        false)
+                        || (featName == "Completionist" && (m_featSelectItem.Level() == 0));
             }
             m_tooltip.SetOrigin(tipTopLeft, tipAlternate, true);
             m_tooltip.SetFeatItem(*m_pCharacter, &feat, warn, m_featSelectItem.Level(), false);
