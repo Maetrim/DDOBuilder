@@ -69,5 +69,6 @@ class Item :
         DL_DECLARE_VARIABLES(Item_PROPERTIES)
 
         friend class CItemSelectDialog;
+        friend class CFindGearDialog;
         friend class EquippedGear;
 };

@@ -28,7 +28,8 @@ enum InventorySlotType
     Inventory_Weapon1,
     Inventory_Weapon2,
 
-    Inventory_Count
+    Inventory_Count,
+    Inventory_FindItems,
 };
 const XmlLib::enumMapEntry<InventorySlotType> InventorySlotTypeMap[] =
 {

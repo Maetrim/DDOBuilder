@@ -180,6 +180,7 @@ Item CItemSelectDialog::SelectedItem()
 
 void CItemSelectDialog::PopulateAvailableItemList()
 {
+    CWaitCursor longOperation;
     m_availableItemsCtrl.LockWindowUpdate();
     m_availableItemsCtrl.DeleteAllItems();
 

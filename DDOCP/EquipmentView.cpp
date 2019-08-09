@@ -8,6 +8,7 @@
 #include "GlobalSupportFunctions.h"
 #include "GearSetNameDialog.h"
 #include "ItemSelectDialog.h"
+#include "FindGearDialog.h"
 #include "MouseHook.h"
 #include "XmlLib\SaxReader.h"
 
@@ -337,31 +338,42 @@ void CEquipmentView::UpdateSlotLeftClicked(
         CInventoryDialog * dialog,
         InventorySlotType slot)
 {
-    // determine the item selected in this slot already (if any)
-    EquippedGear gear = m_pCharacter->GetGearSet(SelectedGearSet());
-    Item item;
-    if (gear.HasItemInSlot(slot))
-    {
-        item = gear.ItemInSlot(slot);
-    }
-    if (slot == Inventory_Weapon2
-            && gear.HasItemInSlot(Inventory_Weapon1)
-            && !CanEquipTo2ndWeapon(m_pCharacter, gear.ItemInSlot(Inventory_Weapon1)))
-    {
-        // not allowed to equip in this due to item in weapon slot 1
-        ::MessageBeep(MB_OK);
-    }
-    else
+    if (slot == Inventory_FindItems)
     {
         // no tooltips while a dialog is displayed
         GetMouseHook()->SaveState();
-        CItemSelectDialog dlg(this, slot, item, m_pCharacter);
-        if (dlg.DoModal() == IDOK)
-        {
-            m_pCharacter->SetGear(SelectedGearSet(), slot, dlg.SelectedItem());
-            m_inventoryView->SetGearSet(m_pCharacter, m_pCharacter->ActiveGearSet());
-        }
+        CFindGearDialog dlg(this, m_pCharacter);
+        dlg.DoModal();
         GetMouseHook()->RestoreState();
+    }
+    else
+    {
+        // determine the item selected in this slot already (if any)
+        EquippedGear gear = m_pCharacter->GetGearSet(SelectedGearSet());
+        Item item;
+        if (gear.HasItemInSlot(slot))
+        {
+            item = gear.ItemInSlot(slot);
+        }
+        if (slot == Inventory_Weapon2
+                && gear.HasItemInSlot(Inventory_Weapon1)
+                && !CanEquipTo2ndWeapon(m_pCharacter, gear.ItemInSlot(Inventory_Weapon1)))
+        {
+            // not allowed to equip in this due to item in weapon slot 1
+            ::MessageBeep(MB_OK);
+        }
+        else
+        {
+            // no tooltips while a dialog is displayed
+            GetMouseHook()->SaveState();
+            CItemSelectDialog dlg(this, slot, item, m_pCharacter);
+            if (dlg.DoModal() == IDOK)
+            {
+                m_pCharacter->SetGear(SelectedGearSet(), slot, dlg.SelectedItem());
+                m_inventoryView->SetGearSet(m_pCharacter, m_pCharacter->ActiveGearSet());
+            }
+            GetMouseHook()->RestoreState();
+        }
     }
 }
 
@@ -369,15 +381,22 @@ void CEquipmentView::UpdateSlotRightClicked(
         CInventoryDialog * dialog,
         InventorySlotType slot)
 {
-    // option to clear the gear item from the selected slot
-    EquippedGear gear = m_pCharacter->GetGearSet(SelectedGearSet());
-    if (gear.HasItemInSlot(slot))
+    if (slot == Inventory_FindItems)
     {
-        int sel = AfxMessageBox("Clear the equipped item from this slot?", MB_YESNO);
-        if (sel == IDYES)
+        // right click "Find Gear" does nothing
+    }
+    else
+    {
+        // option to clear the gear item from the selected slot
+        EquippedGear gear = m_pCharacter->GetGearSet(SelectedGearSet());
+        if (gear.HasItemInSlot(slot))
         {
-            m_pCharacter->ClearGearInSlot(SelectedGearSet(), slot);
-            m_inventoryView->SetGearSet(m_pCharacter, m_pCharacter->ActiveGearSet());
+            int sel = AfxMessageBox("Clear the equipped item from this slot?", MB_YESNO);
+            if (sel == IDYES)
+            {
+                m_pCharacter->ClearGearInSlot(SelectedGearSet(), slot);
+                m_inventoryView->SetGearSet(m_pCharacter, m_pCharacter->ActiveGearSet());
+            }
         }
     }
 }

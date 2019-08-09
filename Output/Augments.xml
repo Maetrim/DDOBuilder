@@ -3716,7 +3716,7 @@ This can stack up to three times (up to Psionic Potency +24) and each stack last
          <Type>SaveBonus</Type>
          <Save>Spell</Save>
          <Bonus>Artifact</Bonus>
-         <AmountVector size="5">0 0 0 0 4</AmountVector>
+         <AmountVector size="5">0 0 2 2 4</AmountVector>
       </Effect>
       <Effect>
          <DisplayName>Legendary Slavelords Endurance: Constitution Bonus</DisplayName>
@@ -33344,6 +33344,7 @@ spellpoints (This has a one minute cooldown).</Description>
       <Type>Nearly Finished (DIC)</Type>
       <Type>Nearly Finished (SDI)</Type>
       <Type>Nearly Finished (SDCIWC)</Type>
+      <Type>Nearly Finished (DIW)</Type>
       <Effect>
          <Type>AbilityBonus</Type>
          <Bonus>Enhancement</Bonus>
@@ -33373,6 +33374,7 @@ spellpoints (This has a one minute cooldown).</Description>
       <Type>Nearly Finished (DIC)</Type>
       <Type>Nearly Finished (SDI)</Type>
       <Type>Nearly Finished (SDCIWC)</Type>
+      <Type>Nearly Finished (DIW)</Type>
       <Effect>
          <Type>AbilityBonus</Type>
          <Bonus>Enhancement</Bonus>
@@ -33386,6 +33388,7 @@ spellpoints (This has a one minute cooldown).</Description>
       <MinLevel>1</MinLevel>
       <Type>Nearly Finished (SCW)</Type>
       <Type>Nearly Finished (SDCIWC)</Type>
+      <Type>Nearly Finished (DIW)</Type>
       <Effect>
          <Type>AbilityBonus</Type>
          <Bonus>Enhancement</Bonus>
@@ -33411,6 +33414,7 @@ spellpoints (This has a one minute cooldown).</Description>
       <Description>+10 Insightful bonus to Strength</Description>
       <MinLevel>1</MinLevel>
       <Type>Nearly Finished (Ins SDCIWC)</Type>
+      <Type>Nearly Finished (Ins SDI)</Type>
       <Effect>
          <Type>AbilityBonus</Type>
          <Bonus>Insightful</Bonus>
@@ -33423,6 +33427,7 @@ spellpoints (This has a one minute cooldown).</Description>
       <Description>+10 Insightful bonus to Dexterity</Description>
       <MinLevel>1</MinLevel>
       <Type>Nearly Finished (Ins SDCIWC)</Type>
+      <Type>Nearly Finished (Ins SDI)</Type>
       <Effect>
          <Type>AbilityBonus</Type>
          <Bonus>Insightful</Bonus>
@@ -33448,6 +33453,7 @@ spellpoints (This has a one minute cooldown).</Description>
       <MinLevel>1</MinLevel>
       <Type>Nearly Finished (Ins IWC)</Type>
       <Type>Nearly Finished (Ins SDCIWC)</Type>
+      <Type>Nearly Finished (Ins SDI)</Type>
       <Effect>
          <Type>AbilityBonus</Type>
          <Bonus>Insightful</Bonus>
@@ -33482,10 +33488,49 @@ spellpoints (This has a one minute cooldown).</Description>
       </Effect>
    </Augment>
    <Augment>
+      <Name>+5 Quality Strength</Name>
+      <Description>+5 Quality bonus to Strength</Description>
+      <MinLevel>1</MinLevel>
+      <Type>Nearly Finished (Qual SDI)</Type>
+      <Type>Nearly Finished (Qual SDC)</Type>
+       <Effect>
+         <Type>AbilityBonus</Type>
+         <Bonus>Quality</Bonus>
+         <Amount>5</Amount>
+         <Ability>Strength</Ability>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>+5 Quality Dexterity</Name>
+      <Description>+5 Quality bonus to Dexterity</Description>
+      <MinLevel>1</MinLevel>
+      <Type>Nearly Finished (Qual SDI)</Type>
+      <Type>Nearly Finished (Qual SDC)</Type>
+      <Effect>
+         <Type>AbilityBonus</Type>
+         <Bonus>Quality</Bonus>
+         <Amount>5</Amount>
+         <Ability>Dexterity</Ability>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>+5 Quality Constitution</Name>
+      <Description>+5 Quality bonus to Constitution</Description>
+      <MinLevel>1</MinLevel>
+      <Type>Nearly Finished (Qual SDC)</Type>
+      <Effect>
+         <Type>AbilityBonus</Type>
+         <Bonus>Quality</Bonus>
+         <Amount>5</Amount>
+         <Ability>Constitution</Ability>
+      </Effect>
+   </Augment>
+   <Augment>
       <Name>+5 Quality Intelligence</Name>
       <Description>+5 Quality bonus to Intelligence</Description>
       <MinLevel>1</MinLevel>
       <Type>Nearly Finished (Qual IWC)</Type>
+      <Type>Nearly Finished (Qual SDI)</Type>
       <Effect>
          <Type>AbilityBonus</Type>
          <Bonus>Quality</Bonus>
@@ -33515,6 +33560,244 @@ spellpoints (This has a one minute cooldown).</Description>
          <Bonus>Quality</Bonus>
          <Amount>5</Amount>
          <Ability>Charisma</Ability>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>Completed Weapon</Name>
+      <Description>This item is fully completed, and as a result deals an additional 0.5[W] damage.</Description>
+      <MinLevel>1</MinLevel>
+      <Type>Finishing Touch</Type>
+      <Effect>
+         <Type>WeaponBaseDamageBonus</Type>
+         <Bonus>Stacking</Bonus>
+         <Amount>0.5</Amount>
+         <Weapon>All</Weapon>
+         <IsItemSpecific/>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>Purple Augment Slot (Sharn)</Name>
+      <Description>Adds a Purple Augment slot to your weapon</Description>
+      <MinLevel>1</MinLevel>
+      <Type>Nearly Finished</Type>
+      <AddAugment>Purple</AddAugment>
+   </Augment>
+   <Augment>
+      <Name>Armor-Piercing +1</Name>
+      <Description>+1 Enhancement bonus to Bypass enemy fortification</Description>
+      <MinLevel>1</MinLevel>
+      <Type>Almost There</Type>
+      <Effect>
+         <Type>FortificationBypass</Type>
+         <Bonus>Enhancement</Bonus>
+         <Amount>1</Amount>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>Fetters of Unreality</Name>
+      <Description>This item is cruel and deadly, and leaves behind wounds that affect both the body and the soul.
+This weapon has a chance to inflict multiple stacks of Vulnerable.
+Vulnerable: You take 1% more damage for 3 seconds.
+This effect stacks up to 20 times, and loses one stack on expiration.</Description>
+      <MinLevel>1</MinLevel>
+      <Type>Almost There (FoU)</Type>
+   </Augment>
+   <Augment>
+      <Name>Conjure Radiant Bolt</Name>
+      <Description>This weapon can summon its Radiant Bolt - The Everstar - at will once per day.
+The Everstar can explode on impact, dealing Light damage to your enemies in an area.</Description>
+      <MinLevel>1</MinLevel>
+      <Type>Almost There (CRB)</Type>
+   </Augment>
+   <Augment>
+      <Name>Utter Disintegration</Name>
+      <Description>This weapon has a dark, insidious power deep within.
+Occasionally, this power lashes out violently at enemies and attempts to disintegrate them.
+This disintegrate is incredibly powerful, and will utterly destroy weaker foes.</Description>
+      <MinLevel>1</MinLevel>
+      <Type>Almost There (UD)</Type>
+   </Augment>
+   <Augment>
+      <Name>Combustion/Fire Lore</Name>
+      <Description>Fire Lore +5%: Passive: Your Fire spells gain a +5% Equipment bonus to their chance to Critical Hit.
+Combustion +30: Passive: +30 Equipment bonus to Fire Spell Power.</Description>
+      <MinLevel>1</MinLevel>
+      <Type>Almost There (TEI)</Type>
+      <Effect>
+         <Type>SpellLore</Type>
+         <Bonus>Equipment</Bonus>
+         <SpellPower>Fire</SpellPower>
+         <Amount>5</Amount>
+      </Effect>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Equipment</Bonus>
+         <SpellPower>Fire</SpellPower>
+         <Amount>30</Amount>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>Devotion/Healing Lore</Name>
+      <Description>Healing Lore +5%: Passive: Your Healing spells gain a +5% Equipment bonus to their chance to Critical Hit.
+Devotion +30: Passive: +30 Equipment bonus to Positive Spell Power.</Description>
+      <MinLevel>1</MinLevel>
+      <Type>Almost There (TEI)</Type>
+      <Effect>
+         <Type>SpellLore</Type>
+         <Bonus>Equipment</Bonus>
+         <SpellPower>Positive</SpellPower>
+         <Amount>5</Amount>
+      </Effect>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Equipment</Bonus>
+         <SpellPower>Positive</SpellPower>
+         <Amount>30</Amount>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>Nullification/Void Lore</Name>
+      <Description>Void Lore +5%: Passive: Your Negative spells gain a +5% Equipment bonus to their chance to Critical Hit.
+Nullification +30: Passive: +30 Equipment bonus to Negative Spell Power.</Description>
+      <MinLevel>1</MinLevel>
+      <Type>Almost There (TEI)</Type>
+      <Effect>
+         <Type>SpellLore</Type>
+         <Bonus>Equipment</Bonus>
+         <SpellPower>Negative</SpellPower>
+         <Amount>5</Amount>
+      </Effect>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Equipment</Bonus>
+         <SpellPower>Negative</SpellPower>
+         <Amount>30</Amount>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>Magnetism/Lightning Lore</Name>
+      <Description>Lightning Lore +5%: Passive: Your Electric spells gain a +5% Equipment bonus to their chance to Critical Hit.
+Magnetism +30: Passive: +30 Equipment bonus to Electric Spell Power.</Description>
+      <MinLevel>1</MinLevel>
+      <Type>Almost There (TEI)</Type>
+      <Effect>
+         <Type>SpellLore</Type>
+         <Bonus>Equipment</Bonus>
+         <SpellPower>Electric</SpellPower>
+         <Amount>5</Amount>
+      </Effect>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Equipment</Bonus>
+         <SpellPower>Electric</SpellPower>
+         <Amount>30</Amount>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>Impulse/Kinetic Lore</Name>
+      <Description>Kinetic Lore +5%: Passive: Your Force, Physical, and Untyped spells gain a +5% Equipment bonus to their chance to Critical Hit.
+Impulse +30: Passive: +30 Equipment bonus to Force, Physical, and Untyped Spells Spell Power.</Description>
+      <MinLevel>1</MinLevel>
+      <Type>Almost There (TEI)</Type>
+      <Effect>
+         <Type>SpellLore</Type>
+         <Bonus>Equipment</Bonus>
+         <SpellPower>Force/Untyped</SpellPower>
+         <Amount>5</Amount>
+      </Effect>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Equipment</Bonus>
+         <SpellPower>Force/Untyped</SpellPower>
+         <Amount>30</Amount>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>Corrosion/Acid Lore</Name>
+      <Description>Acid Lore +5%: Passive: Your Acid spells gain a +5% Equipment bonus to their chance to Critical Hit.
+Corrosion +30: Passive: +30 Equipment bonus to Acid Spell Power.</Description>
+      <MinLevel>1</MinLevel>
+      <Type>Almost There (TEI)</Type>
+      <Effect>
+         <Type>SpellLore</Type>
+         <Bonus>Equipment</Bonus>
+         <SpellPower>Acid</SpellPower>
+         <Amount>5</Amount>
+      </Effect>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Equipment</Bonus>
+         <SpellPower>Acid</SpellPower>
+         <Amount>30</Amount>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>Resonance/Sonic Lore</Name>
+      <Description>Sonic Lore +5%: Passive: Your Sonic spells gain a +5% Equipment bonus to their chance to Critical Hit.
+Resonance +30: Passive: +30 Equipment bonus to Sonic Spell Power.</Description>
+      <MinLevel>1</MinLevel>
+      <Type>Almost There (TEI)</Type>
+      <Effect>
+         <Type>SpellLore</Type>
+         <Bonus>Equipment</Bonus>
+         <SpellPower>Sonic</SpellPower>
+         <Amount>5</Amount>
+      </Effect>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Equipment</Bonus>
+         <SpellPower>Sonic</SpellPower>
+         <Amount>30</Amount>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>Sovereighn Vorpal</Name>
+      <Description>Passive: +0.5[W] damage dice.
+On Vorpal Hit: If your target has fewer than 3000 Hit Points, they are Instantly Slain.
+If your target has above 3000 Hit Points, they take 300 damage.</Description>
+      <MinLevel>1</MinLevel>
+      <Type>Almost There (SV)</Type>
+      <Effect>
+         <Type>WeaponBaseDamageBonus</Type>
+         <Bonus>Stacking</Bonus>
+         <Amount>0.5</Amount>
+         <Weapon>All</Weapon>
+         <IsItemSpecific/>
+      </Effect>
+   </Augment>
+   <Augment>
+      <Name>Aligned</Name>
+      <Description>This weapon transmutes into a form that is able to bypass any alignment based Damage Reduction.
+(Chaotic, Good, Evil, Lawful)</Description>
+      <MinLevel>1</MinLevel>
+      <Type>Almost There (Aligned)</Type>
+      <Effect>
+          <Type>DRBypass</Type>
+          <Bonus>Stacking</Bonus>
+          <DR>Chaotic</DR>
+          <Weapon>All</Weapon>
+          <IsItemSpecific/>
+      </Effect>
+      <Effect>
+          <Type>DRBypass</Type>
+          <Bonus>Stacking</Bonus>
+          <DR>Good</DR>
+          <Weapon>All</Weapon>
+          <IsItemSpecific/>
+      </Effect>
+      <Effect>
+          <Type>DRBypass</Type>
+          <Bonus>Stacking</Bonus>
+          <DR>Evil</DR>
+          <Weapon>All</Weapon>
+          <IsItemSpecific/>
+      </Effect>
+      <Effect>
+          <Type>DRBypass</Type>
+          <Bonus>Stacking</Bonus>
+          <DR>Lawful</DR>
+          <Weapon>All</Weapon>
+          <IsItemSpecific/>
       </Effect>
    </Augment>
 </Augments>

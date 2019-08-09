@@ -267,9 +267,25 @@ void CDDOCPApp::LoadFeats(const std::string & path)
 
 void CDDOCPApp::LoadEnhancements(const std::string & path)
 {
+    UINT ret = AfxMessageBox(
+        "Use current release Epic Destinies or use the U43 versions?\r\n"
+        "\r\n"
+        "Yes: Current Live Epic Destinies\r\n"
+        "No:  U43 versions of Epic Destinies\r\n"
+        "\r\n"
+        "Not updated Legendary Dreadnought, Unyielding Sentinel, Shadowdancer and Magister yet\r\n"
+        "Note that opening an existing character with these new trees will force a re-spend\r\n"
+        "of Destiny tree points in any affected trees.", MB_YESNO);
     // create the filename to load from
     std::string filename = path;
-    filename += "Enhancements.xml";
+    if (ret == IDYES)
+    {
+        filename += "Enhancements.xml";
+    }
+    else
+    {
+        filename += "EnhancementsU43.xml";
+    }
 
     EnhancementsFile file(filename);
     file.Read();

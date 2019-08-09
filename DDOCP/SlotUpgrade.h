@@ -28,4 +28,5 @@ class SlotUpgrade :
         DL_DECLARE_VARIABLES(SlotUpgrade_PROPERTIES)
 
         friend class CItemSelectDialog;
+        friend class CFindGearDialog;
 };

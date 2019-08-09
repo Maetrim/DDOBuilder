@@ -1,0 +1,1018 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Enhancements>
+   <EnhancementTree>
+      <Name>Exalted Angel</Name>
+      <Version>2</Version>
+      <Requirements/>
+      <IsEpicDestiny/>
+      <Icon>ExaltedAngel</Icon>
+      <Background>DestinyDivine</Background>
+      <EnhancementTreeItem>
+         <Name>Exalted Angel: Celestial Destiny</Name>
+         <InternalName>ExaltedCore1</InternalName>
+         <Description>Gain 50 spell points. Each additional level of Exalted Angel grants
+50 spell points and +1 to your Cleric, Favored Soul and Paladin caster levels
+if you have any levels in the class.</Description>
+         <Icon>CelestialDestiny</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>0</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>0</MinSpent>
+         <ArrowRight/>
+         <Requirements/>
+         <Effect>
+            <Type>SpellPoints</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>50</Amount>
+         </Effect>
+         <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Destiny</Bonus>
+            <Class>Cleric</Class>
+            <Amount>1</Amount>
+         </Effect>
+         <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Destiny</Bonus>
+            <Class>Favored Soul</Class>
+            <Amount>1</Amount>
+         </Effect>
+         <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Destiny</Bonus>
+            <Class>Paladin</Class>
+            <Amount>1</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Exalted Angel: Mass Cure Moderate Wounds</Name>
+         <InternalName>ExaltedCore2</InternalName>
+         <Description>Casts Cure Moderate Wounds on multiple targets.
+Positive energy is channeled to heal moderate wounds of allies or damage undead
+for 2d6+4 hit points plus an addition 1 for every caster level up to caster level
+30. Undead who make a successful Will save reduce the damage by half.
+
+Spell-Like Ability: This ability benefits from your Metamagic Feats without paying
+the normal additional spell point cost.
+Cooldown: 9 seconds
+Cost: 35 Spell Points</Description>
+         <Icon>MassCureModerateWounds</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>0</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>0</MinSpent>
+         <Clickie/>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>ExaltedCore1</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SpellPoints</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>50</Amount>
+         </Effect>
+         <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Destiny</Bonus>
+            <Class>Cleric</Class>
+            <Amount>1</Amount>
+         </Effect>
+         <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Destiny</Bonus>
+            <Class>Favored Soul</Class>
+            <Amount>1</Amount>
+         </Effect>
+         <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Destiny</Bonus>
+            <Class>Paladin</Class>
+            <Amount>1</Amount>
+         </Effect>
+         <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Destiny</Bonus>
+            <SpellLikeAbility>Cure Moderate Wounds, Mass</SpellLikeAbility>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Exalted Angel: Angelic Presence</Name>
+         <InternalName>ExaltedCore3</InternalName>
+         <Description>Toggle: While you are above 50% Health, you have a +2 Sacred bonus to Charisma,
+and all nearby enemies have a -2 penalty to attack rolls. This penalty counts as a
+Fear effect and stacks with the Aura of Menace from the Angel of Vengeance
+enhancement.
+Cooldown: 10 seconds</Description>
+         <Icon>AngelicPresence</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>0</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>0</MinSpent>
+         <Clickie/>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>ExaltedCore2</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SpellPoints</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>50</Amount>
+         </Effect>
+         <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Destiny</Bonus>
+            <Class>Cleric</Class>
+            <Amount>1</Amount>
+         </Effect>
+         <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Destiny</Bonus>
+            <Class>Favored Soul</Class>
+            <Amount>1</Amount>
+         </Effect>
+         <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Destiny</Bonus>
+            <Class>Paladin</Class>
+            <Amount>1</Amount>
+         </Effect>
+         <Effect>
+            <Type>CreateSlider</Type>
+            <Bonus>Enhancement</Bonus>
+            <Slider>Hitpoints</Slider>
+            <AmountVector size="2">0 100</AmountVector>
+            <Amount>100</Amount>
+         </Effect>
+         <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Sacred</Bonus>
+            <Amount>2</Amount>
+            <Ability>Charisma</Ability>
+            <Stance>50% Hitpoints</Stance>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Exalted Angel: Astral Vibrance</Name>
+         <InternalName>ExaltedCore4</InternalName>
+         <Description>Toggle: While you are above 50% health, nearby enemies below 50% health take 1d4
+Light damage every 2 seconds, increasing by 1d4 every 2 seconds they remain
+in your aura (up to 20d4 per 2 seconds) and nearby allies below 50% health
+receive 1d4 Positive Energy healing every 2 seconds increasing by 1d4 Positive
+Energy healing every 2 seconds, increasing by by 1d4 every 2 secons they  remain
+in your aura (up to 20d4 per 2 seconds). Having this ability active costs 1 sp
+every 2 seconds, increasing by 1 every 2 seconds.
+Cooldown: 1 minute</Description>
+         <Icon>AstralVibrance</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>0</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>0</MinSpent>
+         <Clickie/>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>ExaltedCore3</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SpellPoints</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>50</Amount>
+         </Effect>
+         <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Destiny</Bonus>
+            <Class>Cleric</Class>
+            <Amount>1</Amount>
+         </Effect>
+         <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Destiny</Bonus>
+            <Class>Favored Soul</Class>
+            <Amount>1</Amount>
+         </Effect>
+         <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Destiny</Bonus>
+            <Class>Paladin</Class>
+            <Amount>1</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Exalted Angel: Transcendental Magic</Name>
+         <InternalName>ExaltedCore5</InternalName>
+         <Description>+3 to the DC of all of your spells.</Description>
+         <Icon>TranscendentalMagic</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>0</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>0</MinSpent>
+         <ArrowRight/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>ExaltedCore4</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SpellPoints</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>50</Amount>
+         </Effect>
+         <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Destiny</Bonus>
+            <Class>Cleric</Class>
+            <Amount>1</Amount>
+         </Effect>
+         <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Destiny</Bonus>
+            <Class>Favored Soul</Class>
+            <Amount>1</Amount>
+         </Effect>
+         <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Destiny</Bonus>
+            <Class>Paladin</Class>
+            <Amount>1</Amount>
+         </Effect>
+         <Effect>
+            <Type>SpellDC</Type>
+            <Bonus>Destiny</Bonus>
+            <School>All</School>
+            <Amount>3</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Exalted Angel: Ascendance</Name>
+         <InternalName>ExaltedCore6</InternalName>
+         <Description>Major Form Toggle: Assume angelic form, changing your type to
+Outsider Good (Angel). As an Angel, your unarmed attacks deal Light damage,
+and when you smite an enemy, you migt gain temporary hit points.
+
+When you cast Light damage spells, you might gain temporary spell points.
+
+When you cast Positive Energy healing spells on allies, you might grant the target
+temporary hit points.
+
+Your Vorpal hits deal large amounts of extra Light damage. Against undead your
+critical hits deal large amounts of extra Light damage.
+
+While in Angelic form, Angelic Presence and Astral Vibrance work whether or not you
+are above 50% health.
+
+Astral Vibrance has no spell point drain while you are in Angelic form.
+You can only be in one Major Form at a time.
+Duration: 2 minutes
+Cooldown: 5 minutes
+Cost: 50 Spell Points</Description>
+         <Icon>Ascendance</Icon>
+         <XPosition>5</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>0</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>0</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>ExaltedCore5</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SpellPoints</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>50</Amount>
+         </Effect>
+         <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Destiny</Bonus>
+            <Class>Cleric</Class>
+            <Amount>1</Amount>
+         </Effect>
+         <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Destiny</Bonus>
+            <Class>Favored Soul</Class>
+            <Amount>1</Amount>
+         </Effect>
+         <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Destiny</Bonus>
+            <Class>Paladin</Class>
+            <Amount>1</Amount>
+         </Effect>
+         <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <Ability>Wisdom</Ability>
+            <Amount>2</Amount>
+            <Stance>Angelic Form</Stance>
+         </Effect>
+         <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <Ability>Charisma</Ability>
+            <Amount>2</Amount>
+            <Stance>Angelic Form</Stance>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Exalted Angel: Avenging Light</Name>
+         <InternalName>AvengingLight</InternalName>
+         <Description>Activate: A searing orb of radiant light shoots forth to smite your target,
+dealing 1d6+2 hit points of Light damage per Character Level.
+A successful Fortitude save (DC 10 + character level + Cha/Wis modifier + Evocation bonuses)
+reduces the damage by half.
+Cooldown: 3 seconds
+Cost: 3 spell points</Description>
+         <Icon>AvengingLight</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>0</MinSpent>
+         <Clickie/>
+         <Requirements/>
+         <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Destiny</Bonus>
+            <SpellLikeAbility>Avenging Light</SpellLikeAbility>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Exalted Angel: Radiant Power</Name>
+         <InternalName>RadiantPower</InternalName>
+         <Description>+[10/20/30] Light Spell Power.</Description>
+         <Icon>RadiantPower</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>0</MinSpent>
+         <ArrowUp/>
+         <Requirements/>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Destiny</Bonus>
+            <SpellPower>Light/Alignment</SpellPower>
+            <AmountVector size="3">10 20 30</AmountVector>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Exalted Angel: Endless faith</Name>
+         <InternalName>EndlessFaith</InternalName>
+         <Description>Your Spell Point pool increased by [4/7/10]%.
+Echoes of Power now restore up to [18/24/30] spell points.
+(If you previously did noy have the Echoes of Power ability, it is granted to you.)</Description>
+         <Icon>EndlessFaith</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>0</MinSpent>
+         <Requirements/>
+         <Effect>
+            <Type>SpellPoints</Type>
+            <Bonus>Destiny</Bonus>
+            <Percent/>
+            <AmountVector size="3">4 7 10</AmountVector>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Exalted Angel: Healing power</Name>
+         <InternalName>HealingPower</InternalName>
+         <Description>+[10/20/30] Positive Energy Spellpower.</Description>
+         <Icon>HealingPower</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>0</MinSpent>
+         <Requirements/>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Destiny</Bonus>
+            <SpellPower>Positive</SpellPower>
+            <AmountVector size="3">10 20 30</AmountVector>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Exalted Angel: Ability I</Name>
+         <InternalName>EAWisCha1</InternalName>
+         <Description>Choose either Wisdom or Charisma</Description>
+         <Icon>WisCha</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>0</MinSpent>
+         <Requirements/>
+         <Selector>
+            <EnhancementSelection>
+               <Name>+1 Wisdom</Name>
+               <Description>+1 Wisdom</Description>
+               <Icon>Wisdom</Icon>
+               <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Destiny</Bonus>
+                  <Ability>Wisdom</Ability>
+                  <Amount>1</Amount>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Charisma</Name>
+               <Description>+1 Charisma</Description>
+               <Icon>Charisma</Icon>
+               <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Destiny</Bonus>
+                  <Ability>Charisma</Ability>
+                  <Amount>1</Amount>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Exalted Angel: Judgment</Name>
+         <InternalName>Judgment</InternalName>
+         <Description>Activate: Target Undead or Evil Outsider will explode when killed, dealing 10d100
+Light damage to other undead or evil outsiders near them. This ability cannot
+affect players.
+Cooldown: 15 seconds
+Cost: 10 spell points</Description>
+         <Icon>Judgment</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>4</MinSpent>
+         <ArrowUp/>
+         <Requirements/>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Exalted Angel: Embrace the Light</Name>
+         <InternalName>EmbraceThelight</InternalName>
+         <Description>You take [10/20/30]% less Light damage.</Description>
+         <Icon>EmbraceThelight</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>4</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Enhancement>RadiantPower</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>EnergyAbsorbance</Type>
+            <Bonus>Destiny</Bonus>
+            <Energy>Light</Energy>
+            <AmountVector size="3">10 20 30</AmountVector>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Exalted Angel: Soundburst</Name>
+         <InternalName>Soundburst</InternalName>
+         <Description>Blasts an area with tremendous cacophany, doing 1d4+4 Sonic
+damage and stunnin enemies for 6 seconds. A successful Fortitude or Spell Resistance
+save negates the stun. (DC 10 + character level + Cha/Wis Modifier)
+Spell-Like Ability: This ability benefits from your Metamagic Feats (such as Quicken)
+without paying the normal additional spell point cost.
+Cooldown: 15/11/7 seconds
+Costs: 12/9/6 Spell Points</Description>
+         <Icon>Soundburst</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>4</MinSpent>
+         <Clickie/>
+         <Requirements/>
+         <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Destiny</Bonus>
+            <SpellLikeAbility>Soundburst SLA</SpellLikeAbility>
+         </Effect>
+         <DC>
+            <Name>Exalted Angel: Soundburst</Name>
+            <Description>Blasts an area with tremendous cacophany, doing 1d4+4 Sonic
+damage and stunnin enemies for 6 seconds. A successful Fortitude or Spell Resistance
+save negates the stun.</Description>
+            <Icon>Soundburst</Icon>
+            <DCVersus>Fortitude</DCVersus>
+            <AmountVector size="1">10</AmountVector>
+            <ClassLevel>All</ClassLevel>
+            <ModAbility>Wisdom</ModAbility>
+            <ModAbility>Charisma</ModAbility>
+         </DC>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Exalted Angel: Ability II</Name>
+         <InternalName>EAWisCha2</InternalName>
+         <Description>Choose either Wisdom or Charisma</Description>
+         <Icon>WisCha</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>4</MinSpent>
+         <Requirements/>
+         <Selector>
+            <EnhancementSelection>
+               <Name>+1 Wisdom</Name>
+               <Description>+1 Wisdom</Description>
+               <Icon>Wisdom</Icon>
+               <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Destiny</Bonus>
+                  <Ability>Wisdom</Ability>
+                  <Amount>1</Amount>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Charisma</Name>
+               <Description>+1 Charisma</Description>
+               <Icon>Charisma</Icon>
+               <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Destiny</Bonus>
+                  <Ability>Charisma</Ability>
+                  <Amount>1</Amount>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Exalted Angel: Lay to rest</Name>
+         <InternalName>LayToRest</InternalName>
+         <Description>Touch Activate: Target Undead or Evil Outsider that is under the effects
+of Judgement takes 10d100 Light damage.
+Cooldown: 15 seconds
+Cost: 10 spell points</Description>
+         <Icon>LayToRest</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>8</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>Judgment</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Exalted Angel: Shadows Upon You</Name>
+         <InternalName>ShadowsUponYou</InternalName>
+         <Description>Target foe becomes cursed with Shadows Upon You, reducing all saving throws
+by -2 for 20 seconds. Whenever this foe is damaged by spells or attacks,
+saving throws are reduced by an additional -1 for five seconds.
+Stacks up to 10 times.
+Cooldown: 20 seconds
+Cost: 20 spell points</Description>
+         <Icon>ShadowsUponYou</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>8</MinSpent>
+         <Clickie/>
+         <Requirements/>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Exalted Angel: Piercing Spellcraft</Name>
+         <InternalName>EAPiercingSpellcraft</InternalName>
+         <Description>+[1/2/3] to spell penetration.</Description>
+         <Icon>PiercingSpellcraft</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>8</MinSpent>
+         <Requirements/>
+         <Effect>
+            <Type>SpellPenetrationBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Exalted Angel: Purity of Essence</Name>
+         <InternalName>PurityOfEssence</InternalName>
+         <Description>+[3/6/10] Healing Amplification.</Description>
+         <Icon>PurityOfEssence</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>8</MinSpent>
+         <Requirements/>
+         <Effect>
+            <Type>HealingAmplification</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">3 6 10</AmountVector>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Exalted Angel: Ability III</Name>
+         <InternalName>EAWisCha3</InternalName>
+         <Description>Choose either Wisdom or Charisma</Description>
+         <Icon>WisCha</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>8</MinSpent>
+         <Requirements/>
+         <Selector>
+            <EnhancementSelection>
+               <Name>+1 Wisdom</Name>
+               <Description>+1 Wisdom</Description>
+               <Icon>Wisdom</Icon>
+               <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Destiny</Bonus>
+                  <Ability>Wisdom</Ability>
+                  <Amount>1</Amount>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Charisma</Name>
+               <Description>+1 Charisma</Description>
+               <Icon>Charisma</Icon>
+               <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Destiny</Bonus>
+                  <Ability>Charisma</Ability>
+                  <Amount>1</Amount>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Exalted Angel: Judge the Many</Name>
+         <InternalName>JudgeTheMany</InternalName>
+         <Description>Undead or Evil Outsiders judged by you gain "Guilt by Association".
+When an Undead or Evil Outsider with Guilt by Association dies, any Undead or
+Evil Outsiders caught in the Judegment blast have a 50% chance to be affected
+by Judgement.</Description>
+         <Icon>JudgeTheMany</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>12</MinSpent>
+         <Requirements/>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Exalted Angel: Rebuke Foe</Name>
+         <InternalName>RebukeFoe</InternalName>
+         <Description>Only usable when Endless Ardor stack is 5 or higher.
+Target enemy tales 5% additional damage from physical and Light damage for 30
+seconds. Your Endless Ardor is reset to zero.
+Cooldown: 3 seconds</Description>
+         <Icon>RebukeFoe</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>12</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>BloodAndRadiance</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Exalted Angel: Blood and Radiance</Name>
+         <InternalName>BloodAndRadiance</InternalName>
+         <Description>Each time you cast a Light based spell, you gain Endless Ardor: +1/+2/+3 Sacred
+bonus to Positive Energy spellpower for 10 seconds.
+
+Each time you cast a Positive Energy based spell, you gain Righteous Fervor:
++1/+2/+3 Sacred bonus to light spellpower for 10 seconds.
+
+Each of these effects can stack up to 10 times, and new stacks add 10 seconds
+to the remaining duration.</Description>
+         <Icon>BloodAndRadiance</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>12</MinSpent>
+         <ArrowLeft/>
+         <ArrowRight/>
+         <LongArrowUp/>
+         <Requirements/>
+         <Stance>
+            <Name>Blood and Radiance</Name>
+            <Icon>BloodAndRadiance</Icon>
+            <Description>Each time you cast a light based spell, you gain
+Endless Ardor: +1/+2/+3 sacred bonus to positive energy for 10 seconds.
+Each time you cast a positive energy spell, gain
+Righteous Fervor: +1/+2/+3 sacred bonus to light spellpower for 10 seconds.
+Can stack up to 10 times.</Description>
+         </Stance>
+         <Effect>
+            <DisplayName>Endless Ardor</DisplayName>
+            <Bonus>Destiny</Bonus>
+            <Type>SpellPower</Type>
+            <SpellPower>Positive</SpellPower>
+            <Stance>Blood and Radiance</Stance>
+            <AmountVector size="3">10 20 30</AmountVector>
+         </Effect>
+         <Effect>
+            <DisplayName>Righteos Fervor</DisplayName>
+            <Bonus>Destiny</Bonus>
+            <Type>SpellPower</Type>
+            <SpellPower>Light/Alignment</SpellPower>
+            <Stance>Blood and Radiance</Stance>
+            <AmountVector size="3">10 20 30</AmountVector>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Exalted Angel: Excoriate</Name>
+         <InternalName>Excoriate</InternalName>
+         <Description>When your Righteous Fervor stack is 5 or higher, your Light
+spells and Smites have a 3% chance to stun opponents for 6 seconds.</Description>
+         <Icon>Excoriate</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>12</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Enhancement>BloodAndRadiance</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Exalted Angel: Ability IV</Name>
+         <InternalName>EAWisCha4</InternalName>
+         <Description>Choose either Wisdom or Charisma</Description>
+         <Icon>WisCha</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>12</MinSpent>
+         <Requirements/>
+         <Selector>
+            <EnhancementSelection>
+               <Name>+1 Wisdom</Name>
+               <Description>+1 Wisdom</Description>
+               <Icon>Wisdom</Icon>
+               <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Destiny</Bonus>
+                  <Ability>Wisdom</Ability>
+                  <Amount>1</Amount>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Charisma</Name>
+               <Description>+1 Charisma</Description>
+               <Icon>Charisma</Icon>
+               <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Destiny</Bonus>
+                  <Ability>Charisma</Ability>
+                  <Amount>1</Amount>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Exalted Angel: Be at Peace</Name>
+         <InternalName>BeAtPeace</InternalName>
+         <Description>Target enemy is dazed for one minute, no save.
+Damage breaks this effect. Endless Ardor and Righteous Fervor stacks are reset to zero.
+Cooldown: 2 minutes
+Cost: 10 spell points</Description>
+         <Icon>BeAtPeace</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>16</MinSpent>
+         <Clickie/>
+         <Requirements/>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Exalted Angel: Leap of Faith</Name>
+         <InternalName>LeapOfFaith</InternalName>
+         <Description>Activate: You are able to leap through air to bring the fight to your
+enemies or traverse casms that make normal adventurers balk. Using this ability
+costs 10 spell points. Uses of this ability recharge at a rate of one every 15
+seconds in private areas, and 3 seconds in public areas.
+If you already possess this ability, it now recharges at a rate of one every
+12 seconds in private areas instead.
+Cooldown: 3 seconds
+Cost: 10 spell points</Description>
+         <Icon>LeapOfFaith</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>16</MinSpent>
+         <Clickie/>
+         <Requirements/>
+         <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Feat</Bonus>
+            <SpellLikeAbility>Leap Of Faith</SpellLikeAbility>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Exalted Angel: Ability V</Name>
+         <InternalName>EAWisCha5</InternalName>
+         <Description>Choose either Wisdom or Charisma</Description>
+         <Icon>WisCha</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>16</MinSpent>
+         <Requirements/>
+         <Selector>
+            <EnhancementSelection>
+               <Name>+1 Wisdom</Name>
+               <Description>+1 Wisdom</Description>
+               <Icon>Wisdom</Icon>
+               <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Destiny</Bonus>
+                  <Ability>Wisdom</Ability>
+                  <Amount>1</Amount>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Charisma</Name>
+               <Description>+1 Charisma</Description>
+               <Icon>Charisma</Icon>
+               <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Destiny</Bonus>
+                  <Ability>Charisma</Ability>
+                  <Amount>1</Amount>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Exalted Angel: Sun Bolt</Name>
+         <InternalName>SunBolt</InternalName>
+         <Description>Casts A powerful bolt of light deals 1d4+4 Light damage per caster level
+(up to a maximum of caster level 15) to targets in its path. A successful Reflex
+save reduces the damage by half, vs. DC 10 + character level + Cha/Wis modifier.
+This spell is a bolt and has double range.
+Spell-Like Ability: This ability benefits from your Metamagic Feats (such as Quicken)
+without paying the normal additional spell point cost.
+Cooldown: 12 seconds
+Cost: 12 spell points</Description>
+         <Icon>SunBolt</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>6</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Clickie/>
+         <Requirements/>
+         <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Destiny</Bonus>
+            <SpellLikeAbility>Sun Bolt</SpellLikeAbility>
+         </Effect>
+         <DC>
+            <Name>Exalted Angel: Sun Bolt</Name>
+            <Description>Casts Sun Bolt as a Spell-Like Ability (benefits from metamagic feats
+at no additional cost). Reflex save for half damage.</Description>
+            <Icon>SunBolt</Icon>
+            <DCVersus>Reflex</DCVersus>
+            <AmountVector size="1">10</AmountVector>
+            <ClassLevel>All</ClassLevel>
+            <ModAbility>Wisdom</ModAbility>
+            <ModAbility>Charisma</ModAbility>
+         </DC>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Exalted Angel: Divine Wrath</Name>
+         <InternalName>DivineWrath</InternalName>
+         <Description>Activate: You call down divine wrath on your foes, dealing 2d6 light damage
+per character level, Will DC 10 + character level + Cha/Wis modifier reduces
+damage by half. Allies caught within blast are healed for 1d6 HP Positive Energy
+per character level.
+Cooldown: 20 seconds
+Cost: 40 spell points</Description>
+         <Icon>DivineWrath</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>6</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Clickie/>
+         <Requirements/>
+         <DC>
+            <Name>Exalted Angel: Divine Wrath</Name>
+            <Description>Call down divine wrath on foes, dealing 2d6 light damage per character level,
+will save for half.</Description>
+            <Icon>DivineWrath</Icon>
+            <DCVersus>Will</DCVersus>
+            <AmountVector size="1">10</AmountVector>
+            <ClassLevel>All</ClassLevel>
+            <ModAbility>Wisdom</ModAbility>
+            <ModAbility>Charisma</ModAbility>
+         </DC>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Exalted Angel: Reborn in Light</Name>
+         <InternalName>RebornInLight</InternalName>
+         <Description>True Resurrection: You are healed to full heath, and activate Ascendance,
+Angelic Presence, and Astral Vibrance (even if they are currently on cooldown).
+For two minutes (or until you leave Angelic form), you are immune to Light damage,
+have 50% incorpreality, and gain +100 Light and Healing Power.
+
+This ability can be used while dead, raising you at full health and in addition to
+the above benefits, the cooldowns of Light and Positive Energy spells are reduced
+to one fifth of normal, all spells cost 50% spell points, and all of your physical
+attacks gain On Hit: 100 Light damage and On Critical: Destroy evil Undead or
+Evil Outsiders under 1000 hit points.
+
+This ability can be used once per rest.
+Cooldown: 10 minutes</Description>
+         <Icon>RebornInLight</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>6</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Enhancement>BloodAndRadiance</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Exalted Angel: Ability VI</Name>
+         <InternalName>EAWisCha6</InternalName>
+         <Description>Choose either Wisdom or Charisma</Description>
+         <Icon>WisCha</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>6</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements/>
+         <Selector>
+            <EnhancementSelection>
+               <Name>+1 Wisdom</Name>
+               <Description>+1 Wisdom</Description>
+               <Icon>Wisdom</Icon>
+               <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Destiny</Bonus>
+                  <Ability>Wisdom</Ability>
+                  <Amount>1</Amount>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Charisma</Name>
+               <Description>+1 Charisma</Description>
+               <Icon>Charisma</Icon>
+               <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Destiny</Bonus>
+                  <Ability>Charisma</Ability>
+                  <Amount>1</Amount>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+   </EnhancementTree>
+</Enhancements>

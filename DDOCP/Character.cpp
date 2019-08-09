@@ -1680,10 +1680,27 @@ bool Character::IsStanceActive(const std::string & name, WeaponType wt) const
         }
         if (IsEnhancementTrained("InquisitiveInquisitionStyle", "Divine Inquisition"))
         {
-            // Inquision grants light/heavy crossbows
+            // Inquisition grants light/heavy crossbows
             // as their favored weapon also.
             ret |= (wt == Weapon_LightCrossbow)
                     || (wt == Weapon_HeavyCrossbow);
+        }
+        // divine crusader can award favored weapons also
+        if (IsEnhancementTrained("BookOfWar", "Longsword"))
+        {
+            ret |= (wt == Weapon_Longsword);
+        }
+        if (IsEnhancementTrained("BookOfWar", "Longbow"))
+        {
+            ret |= (wt == Weapon_Longbow);
+        }
+        if (IsEnhancementTrained("BookOfWar", "Morningstar"))
+        {
+            ret |= (wt == Weapon_Morningstar);
+        }
+        if (IsEnhancementTrained("BookOfWar", "Greatsword"))
+        {
+            ret |= (wt == Weapon_GreatSword);
         }
         if (name == "FavoredWeapon")
         {
@@ -3529,7 +3546,7 @@ void Character::ApplyEnhancementEffects(
             std::list<Effect>::const_iterator eit = effects.begin();
             while (eit != effects.end())
             {
-                NotifyEnhancementEffect(displayName, (*eit), 1);
+                NotifyEnhancementEffect(displayName, (*eit), rank + 1);
                 ++eit;
             }
         }
@@ -3558,7 +3575,7 @@ void Character::RevokeEnhancementEffects(
         std::list<Effect>::const_iterator eit = effects.begin();
         while (eit != effects.end())
         {
-            NotifyEnhancementEffectRevoked(displayName, (*eit), 1);
+            NotifyEnhancementEffectRevoked(displayName, (*eit), rank + 1);
             ++eit;
         }
         std::list<DC>::const_iterator dcit = dcs.begin();
@@ -3998,8 +4015,9 @@ void Character::EpicDestiny_TrainEnhancement(
     NotifyEnhancementTrained(enhancementName, selection, false, (treeName == ActiveEpicDestiny()));
 
     const EnhancementTreeItem * pTreeItem = FindEnhancement(enhancementName);
-    ASSERT(pTreeItem != NULL);
-    if (pTreeItem->YPosition() > 0 && pTreeItem->YPosition() <= MAX_TWIST_LEVEL)
+    if (pTreeItem != NULL
+            && pTreeItem->YPosition() > 0
+            && pTreeItem->YPosition() <= MAX_TWIST_LEVEL)
     {
         // this item affects the available twists
         NotifyAvailableTwistsChanged();
@@ -4035,8 +4053,9 @@ void Character::EpicDestiny_RevokeEnhancement(
         NotifyEnhancementRevoked(revokedEnhancement, revokedEnhancementSelection, false, (treeName == ActiveEpicDestiny()));
 
         const EnhancementTreeItem * pTreeItem = FindEnhancement(revokedEnhancement);
-        ASSERT(pTreeItem != NULL);
-        if (pTreeItem->YPosition() > 0 && pTreeItem->YPosition() <= MAX_TWIST_LEVEL)
+        if (pTreeItem != NULL
+                && pTreeItem->YPosition() > 0
+                && pTreeItem->YPosition() <= MAX_TWIST_LEVEL)
         {
             // this item affects the available twists
             NotifyAvailableTwistsChanged();

@@ -71,6 +71,7 @@ CInventoryDialog::CInventoryDialog(CWnd* pParent) :
     m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Trinket, CRect(164, 35, 196, 67)));
     m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Weapon1, CRect(30, 237, 62, 269)));
     m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Weapon2, CRect(72, 237, 104, 269)));
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_FindItems, CRect(99, 96, 128, 124)));
     // fixed hit boxes for Filigree items
     m_hitBoxesFiligrees.push_back(FiligreeHitBox(-1, CRect(c_jewelX, c_jewelY, c_jewelX + 34, c_jewelY + 34)));
     CRect filigreeLocation(c_filigreeX, c_filigreeY, c_filigreeX + 34, c_filigreeY + 48);
@@ -467,7 +468,8 @@ void CInventoryDialog::OnMouseMove(UINT nFlags, CPoint point)
     bool isRareSection = false;
     bool bFiligree = FindFiligreeByPoint(&filigree, &isRareSection, &itemRect);
     if (slot != Inventory_Unknown
-            && slot != m_tooltipItem)
+            && slot != m_tooltipItem
+            && slot != Inventory_FindItems)
     {
         // over a new item or a different item
         m_tooltipItem = slot;
