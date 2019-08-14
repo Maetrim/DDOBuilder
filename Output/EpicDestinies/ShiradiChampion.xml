@@ -2,7 +2,7 @@
 <Enhancements>
    <EnhancementTree>
       <Name>Shiradi Champion</Name>
-      <Version>1</Version>
+      <Version>2</Version>
       <Requirements/>
       <IsEpicDestiny/>
       <Icon>ShiradiChampion</Icon>
@@ -10,11 +10,14 @@
       <EnhancementTreeItem>
          <Name>Shiradi Champion: Fey Favor</Name>
          <InternalName>ShiradiCore1</InternalName>
-         <Description>You gain 100 SP and proficiency with longbows and shortbows and +1 ranged damage.
-You gain Druid and Ranger caster levels equal to your Shiradi Champion level
-if you have any levels in those classes.
+         <Description>You gain 100 SP and proficiency with longbows and shortbows and +1 to attack and damage
+with ranged weapons. You gain Druid and Ranger caster levels equal to your Shiradi level
+if you have any levels in those classes. Each level of Shiradi Champion, including
+this one, grants +10 Ranged Power.
+
 Each time you Vorpal with ranged and thrown attacks you gain Favor of the Fey.
 You gain Favor of the Fey 7% of the time you cast offensive spells.
+
 Favor of the Fey: +1 Luck bonus to Ranged Attacks and +1 Diplomacy.
 This stacks up to 10 times.</Description>
          <Icon>FeyFavor</Icon>
@@ -29,6 +32,11 @@ This stacks up to 10 times.</Description>
             <Type>SpellPoints</Type>
             <Bonus>Destiny</Bonus>
             <Amount>100</Amount>
+         </Effect>
+         <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>10</Amount>
          </Effect>
          <Effect>
             <Type>WeaponProficiency</Type>
@@ -49,37 +57,48 @@ This stacks up to 10 times.</Description>
             <Amount>1</Amount>
          </Effect>
          <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <WeaponClass>Ranged</WeaponClass>
+            <Amount>1</Amount>
+         </Effect>
+         <Effect>
             <Type>DamageBonus</Type>
             <Bonus>Destiny</Bonus>
             <WeaponClass>Ranged</WeaponClass>
             <Amount>1</Amount>
          </Effect>
          <Effect>
-            <Type>CreateSlider</Type>
-            <Bonus>Enhancement</Bonus>
-            <Slider>Favor of the Fey</Slider>
-            <AmountVector size="2">0 10</AmountVector>
-            <Amount>0</Amount>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <WeaponClass>Ranged</WeaponClass>
+            <Amount>1</Amount>
+         </Effect>
+         <Effect>
+            <Type>Seeker</Type>
+            <Bonus>Destiny</Bonus>
+            <WeaponClass>Ranged</WeaponClass>
+            <Amount>1</Amount>
          </Effect>
          <Effect>
             <Type>AttackBonus</Type>
             <Bonus>Luck</Bonus>
             <WeaponClass>Ranged</WeaponClass>
-            <Amount>1</Amount>
-            <Stacks>Favor of the Fey</Stacks>
+            <Amount>10</Amount>
+            <Stance>Favor of the Fey</Stance>
          </Effect>
          <Effect>
             <Type>SkillBonus</Type>
-            <Bonus>Destiny</Bonus>
+            <Bonus>Luck</Bonus>
             <Skill>Diplomacy</Skill>
-            <Amount>1</Amount>
-            <Stacks>Favor of the Fey</Stacks>
+            <Amount>10</Amount>
+            <Stance>Favor of the Fey</Stance>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Shiradi Champion: Fey Visions</Name>
          <InternalName>ShiradiCore2</InternalName>
-         <Description>+1 Ranged Damage, +5 Spell Power, +5 Search.
+         <Description>+1 to Attack and damage with ranged weapons, +5 Spell Power, +5 Search.
 You automatically detect nearby secret doors with a DC of 45 or lower.</Description>
          <Icon>FeyVisions</Icon>
          <XPosition>1</XPosition>
@@ -94,6 +113,11 @@ You automatically detect nearby secret doors with a DC of 45 or lower.</Descript
             </Requirement>
          </Requirements>
          <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>10</Amount>
+         </Effect>
+         <Effect>
             <Type>CasterLevel</Type>
             <Bonus>Destiny</Bonus>
             <Class>Druid</Class>
@@ -106,7 +130,25 @@ You automatically detect nearby secret doors with a DC of 45 or lower.</Descript
             <Amount>1</Amount>
          </Effect>
          <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <WeaponClass>Ranged</WeaponClass>
+            <Amount>1</Amount>
+         </Effect>
+         <Effect>
             <Type>DamageBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <WeaponClass>Ranged</WeaponClass>
+            <Amount>1</Amount>
+         </Effect>
+         <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <WeaponClass>Ranged</WeaponClass>
+            <Amount>1</Amount>
+         </Effect>
+         <Effect>
+            <Type>Seeker</Type>
             <Bonus>Destiny</Bonus>
             <WeaponClass>Ranged</WeaponClass>
             <Amount>1</Amount>
@@ -127,9 +169,9 @@ You automatically detect nearby secret doors with a DC of 45 or lower.</Descript
       <EnhancementTreeItem>
          <Name>Shiradi Champion: Favorable Winds</Name>
          <InternalName>ShiradiCore3</InternalName>
-         <Description>+1 Attack.
-Your ranged and thrown attacks and offensive spells have a 7% chance to deal
-5d10 additional sonic damage.</Description>
+         <Description>+1 to attack and damage with ranged weapons. Your ranged and thrown attacks
+and offensive spells have a 7% chance to deal 5d10 additional sonic damage.
+This damage scales with 200% Ranged Power.</Description>
          <Icon>FavorableWinds</Icon>
          <XPosition>2</XPosition>
          <YPosition>0</YPosition>
@@ -143,9 +185,32 @@ Your ranged and thrown attacks and offensive spells have a 7% chance to deal
             </Requirement>
          </Requirements>
          <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>10</Amount>
+         </Effect>
+         <Effect>
             <Type>AttackBonus</Type>
             <Bonus>Destiny</Bonus>
-            <Weapon>All</Weapon>
+            <WeaponClass>Ranged</WeaponClass>
+            <Amount>1</Amount>
+         </Effect>
+         <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <WeaponClass>Ranged</WeaponClass>
+            <Amount>1</Amount>
+         </Effect>
+         <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <WeaponClass>Ranged</WeaponClass>
+            <Amount>1</Amount>
+         </Effect>
+         <Effect>
+            <Type>Seeker</Type>
+            <Bonus>Destiny</Bonus>
+            <WeaponClass>Ranged</WeaponClass>
             <Amount>1</Amount>
          </Effect>
          <Effect>
@@ -164,7 +229,7 @@ Your ranged and thrown attacks and offensive spells have a 7% chance to deal
       <EnhancementTreeItem>
          <Name>Shiradi Champion: Sixth Sense</Name>
          <InternalName>ShiradiCore4</InternalName>
-         <Description>+1 Ranged Damage, +5 Spell Power, +5 Listen.
+         <Description>+1 attack and damage with ranged weapons. +5 Spell Power, +5 Listen.
 You bypass 20% Dodge and have Ghost Touch.</Description>
          <Icon>SixthSense</Icon>
          <XPosition>3</XPosition>
@@ -179,6 +244,11 @@ You bypass 20% Dodge and have Ghost Touch.</Description>
             </Requirement>
          </Requirements>
          <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>10</Amount>
+         </Effect>
+         <Effect>
             <Type>CasterLevel</Type>
             <Bonus>Destiny</Bonus>
             <Class>Druid</Class>
@@ -191,7 +261,25 @@ You bypass 20% Dodge and have Ghost Touch.</Description>
             <Amount>1</Amount>
          </Effect>
          <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <WeaponClass>Ranged</WeaponClass>
+            <Amount>1</Amount>
+         </Effect>
+         <Effect>
             <Type>DamageBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <WeaponClass>Ranged</WeaponClass>
+            <Amount>1</Amount>
+         </Effect>
+         <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <WeaponClass>Ranged</WeaponClass>
+            <Amount>1</Amount>
+         </Effect>
+         <Effect>
+            <Type>Seeker</Type>
             <Bonus>Destiny</Bonus>
             <WeaponClass>Ranged</WeaponClass>
             <Amount>1</Amount>
@@ -217,7 +305,9 @@ You bypass 20% Dodge and have Ghost Touch.</Description>
       <EnhancementTreeItem>
          <Name>Shiradi Champion: Favorable Wind</Name>
          <InternalName>ShiradiCore5</InternalName>
-         <Description>+1 Attack. Favorable Winds upgraded to 7% to deal 10d10 sonic damage.</Description>
+         <Description>+1 to attack and damage with ranged weapons.
+Favorable Winds upgraded to 7% chance to deal 10d10 additional sonic damage.
+This damage scales with 200% Ranged Power.</Description>
          <Icon>FavorableWind</Icon>
          <XPosition>4</XPosition>
          <YPosition>0</YPosition>
@@ -230,6 +320,11 @@ You bypass 20% Dodge and have Ghost Touch.</Description>
                <Enhancement>ShiradiCore4</Enhancement>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>10</Amount>
+         </Effect>
          <Effect>
             <Type>CasterLevel</Type>
             <Bonus>Destiny</Bonus>
@@ -245,7 +340,25 @@ You bypass 20% Dodge and have Ghost Touch.</Description>
          <Effect>
             <Type>AttackBonus</Type>
             <Bonus>Destiny</Bonus>
-            <Weapon>All</Weapon>
+            <WeaponClass>Ranged</WeaponClass>
+            <Amount>1</Amount>
+         </Effect>
+         <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <WeaponClass>Ranged</WeaponClass>
+            <Amount>1</Amount>
+         </Effect>
+         <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <WeaponClass>Ranged</WeaponClass>
+            <Amount>1</Amount>
+         </Effect>
+         <Effect>
+            <Type>Seeker</Type>
+            <Bonus>Destiny</Bonus>
+            <WeaponClass>Ranged</WeaponClass>
             <Amount>1</Amount>
          </Effect>
       </EnhancementTreeItem>
@@ -253,7 +366,7 @@ You bypass 20% Dodge and have Ghost Touch.</Description>
          <Name>Shiradi Champion: Fey Power</Name>
          <InternalName>ShiradiCore6</InternalName>
          <Description>Your ranged and thrown attacks and offensive spells have a 7% chance
-to deal 2d100 extra force damage.</Description>
+to deal 2d100 extra force damage. This damage scales wih 200% Ranged Power.</Description>
          <Icon>FeyPower</Icon>
          <XPosition>5</XPosition>
          <YPosition>0</YPosition>
@@ -265,6 +378,11 @@ to deal 2d100 extra force damage.</Description>
                <Enhancement>ShiradiCore5</Enhancement>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>10</Amount>
+         </Effect>
          <Effect>
             <Type>CasterLevel</Type>
             <Bonus>Destiny</Bonus>
@@ -282,11 +400,10 @@ to deal 2d100 extra force damage.</Description>
          <Name>Shiradi Champion: Stay Frosty</Name>
          <InternalName>StayFrosty</InternalName>
          <Description>Shiradi Ranged Stance: Ranged and thrown attacks and offensive spells
-have a 7% chance to deal [3d10/3d20] extra cold damage and slow movement
-speed for [5/10] seconds.
-[+3/+6] Listen and Spot.
-Note: Can be active at the same time as Archer's Focus or Improved Precise
-Shot Ranged Stances. (Cooldown: 5 seconds)</Description>
+have a 7% chance to deal [3d10/3d20] extra cold damage, and have a 20% chance to
+slow enemies by 50% for 10 seconds. This Cold damage scales with 200% Ranged Power.
+Cooldown: 5 seconds.
+Passive: [+3/+6] Listen and Spot.</Description>
          <Icon>StayFrosty</Icon>
          <XPosition>0</XPosition>
          <YPosition>1</YPosition>
@@ -313,10 +430,10 @@ speed for [5/10] seconds.</Description>
       <EnhancementTreeItem>
          <Name>Shiradi Champion: Wild Shots</Name>
          <InternalName>WildShots</InternalName>
-         <Description>Active Ability: Hurl nine daggers in a wide arc in front you.
-Each deals [10d20/15d20/20d20] piercing damage.
+         <Description>Hurl nine daggers in a wide arc in front you.
+Each deals [10/15/20]d20 piercing damage that scales with 200% Ranged Power.
 Enemies hit by daggers are immune to further hits from Wild Shots for 5 seconds.
-(Cooldown: [30/20/15] seconds)</Description>
+Cooldown: [30/20/15] seconds</Description>
          <Icon>WildShots</Icon>
          <XPosition>1</XPosition>
          <YPosition>1</YPosition>
@@ -329,8 +446,9 @@ Enemies hit by daggers are immune to further hits from Wild Shots for 5 seconds.
       <EnhancementTreeItem>
          <Name>Shiradi Champion: Healing Spring</Name>
          <InternalName>HealingSpring</InternalName>
-         <Description>Active Ability: Nearby allies heal 1d100 positive energy every [60/40/20]
-seconds for five minutes. Usable once per rest. (Cooldown: 30 seconds)</Description>
+         <Description>Nearby allies heal 1d100 positive energy every [60/40/20] seconds for five minutes.
+Usable once per rest.
+Cooldown: 30 seconds</Description>
          <Icon>HealingSpring</Icon>
          <XPosition>2</XPosition>
          <YPosition>1</YPosition>
@@ -346,8 +464,8 @@ seconds for five minutes. Usable once per rest. (Cooldown: 30 seconds)</Descript
          <Name>Shiradi Champion: Illusion of Well Being</Name>
          <InternalName>IllusionOfWellBeing</InternalName>
          <Description>Healing spring additionally grants [10/15/20] temporary hitpoints
-when it heals for at least one HP. Grants one additional use of healing spring
-per rest.</Description>
+when it heals for at least one HP.
+Grants one additional use of healing spring per rest.</Description>
          <Icon>IllusionOfWellBeing</Icon>
          <XPosition>3</XPosition>
          <YPosition>1</YPosition>
@@ -403,7 +521,7 @@ per rest.</Description>
          <InternalName>Prism</InternalName>
          <Description>Shiradi Ranged Stance: Ranged and thrown attacks and offensive spells have
 a 7% chance to deal 2d10 damage to a random ability score.
-(Cooldown: 5 seconds)</Description>
+Cooldown: 5 seconds</Description>
          <Icon>Prism</Icon>
          <XPosition>0</XPosition>
          <YPosition>2</YPosition>
@@ -417,10 +535,9 @@ a 7% chance to deal 2d10 damage to a random ability score.
       <EnhancementTreeItem>
          <Name>Shiradi Champion: Pin</Name>
          <InternalName>Pin</InternalName>
-         <Description>Ranged or Thrown Attack: Deals [+2/+3][W].
+         <Description>Ranged or Thrown Attack: Deals +[2/3][W].
 If enemy is not moving, enemy is pinned in place for [9/18] seconds.
-Enemy is slowed if moving. Note: No saving throw observed for either effect.
-When pinned the enemy is also helpless. (Cooldown: [20/15] seconds)</Description>
+Enemy is slowed if moving.</Description>
          <Icon>Pin</Icon>
          <XPosition>1</XPosition>
          <YPosition>2</YPosition>
@@ -433,8 +550,8 @@ When pinned the enemy is also helpless. (Cooldown: [20/15] seconds)</Description
       <EnhancementTreeItem>
          <Name>Shiradi Champion: Fey Spring</Name>
          <InternalName>FeySpring</InternalName>
-         <Description>Healing spring additionally grants DR[2/4/6]/Cold Iron and
-stacking [2/4/6] Spell Power to nearby allies.
+         <Description>Healing spring additionally grants non-stacking DR [2/4/6]/Cold Iron
+and stacking [2/4/6] Spell Power to nearby allies.
 Grants one additional use of healing spring per rest.</Description>
          <Icon>FeySpring</Icon>
          <XPosition>2</XPosition>
@@ -454,7 +571,7 @@ Grants one additional use of healing spring per rest.</Description>
       <EnhancementTreeItem>
          <Name>Shiradi Champion: Fey Form</Name>
          <InternalName>FeyForm</InternalName>
-         <Description>Gain DR[3/5/7]/Cold Iron and +[5/10/15] Spell Power.</Description>
+         <Description>Gain DR [3/5/7]/Cold Iron and +[5/10/15] Spell Power.</Description>
          <Icon>FeyForm</Icon>
          <XPosition>3</XPosition>
          <YPosition>2</YPosition>
@@ -519,7 +636,8 @@ Grants one additional use of healing spring per rest.</Description>
          <Name>Shiradi Champion: Rainbow</Name>
          <InternalName>Rainbow</InternalName>
          <Description>While in Prism Stance, your ranged and thrown attacks and offensive spells
-have a 7% chance to deal 1d100 extra damage of a random type.</Description>
+have a 7% chance to deal 1d100 extra damage of a random type. This damage scales
+with 200% Ranged Power.</Description>
          <Icon>Rainbow</Icon>
          <XPosition>0</XPosition>
          <YPosition>3</YPosition>
@@ -536,9 +654,9 @@ have a 7% chance to deal 1d100 extra damage of a random type.</Description>
       <EnhancementTreeItem>
          <Name>Shiradi Champion: Otto's Whistler</Name>
          <InternalName>OttosWhistler</InternalName>
-         <Description>Ranged or Thrown Attack: Deals [+2/+3][W] damage.
+         <Description>Ranged or Thrown Attack: Deals +[2/3][W].
 If enemy is moving, enemy starts dancing for [9/18] seconds.
-(Cooldown: [20/15] seconds)</Description>
+Cooldown: [20/15] seconds</Description>
          <Icon>OttosWhistler</Icon>
          <XPosition>1</XPosition>
          <YPosition>3</YPosition>
@@ -552,7 +670,7 @@ If enemy is moving, enemy starts dancing for [9/18] seconds.
          <Name>Shiradi Champion: Whirling Wrists</Name>
          <InternalName>WhirlingWrists</InternalName>
          <Description>Increases your attack speed with thrown weapons by [20%/40%/60%].
-(Feat Bonus)</Description>
+You also gain [2/4/6]% Doubleshot</Description>
          <Icon>WhirlingWrists</Icon>
          <XPosition>2</XPosition>
          <YPosition>3</YPosition>
@@ -565,6 +683,11 @@ If enemy is moving, enemy starts dancing for [9/18] seconds.
             <Bonus>Feat</Bonus>
             <WeaponClass>Thrown</WeaponClass>
             <AmountVector size="3">20 40 60</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>Doubleshot</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">2 4 6</AmountVector>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -609,7 +732,9 @@ If enemy is moving, enemy starts dancing for [9/18] seconds.
          <Name>Shiradi Champion: Double Rainbow</Name>
          <InternalName>DoubleRainbow</InternalName>
          <Description>While in Prism Stance, your ranged and thrown attacks and offensive spells
-have a 7% chance to inflict a random effect on your target.</Description>
+have a 7% chance to inflict a random effect on your target. These effects scale
+with various different things depending on their origins, including Melee, Ranged
+and Spell Power.</Description>
          <Icon>DoubleRainbow</Icon>
          <XPosition>0</XPosition>
          <YPosition>4</YPosition>
@@ -626,9 +751,10 @@ have a 7% chance to inflict a random effect on your target.</Description>
          <Name>Shiradi Champion: Stay Good</Name>
          <InternalName>StayGood</InternalName>
          <Description>Shiradi Ranged Stance: Ranged and thrown attacks and offensive spells have
-a 7% chance to deal [3d10/3d20/3d20] extra light damage.
+a 7% chance to deal [3d10/3d20/3d20] extra light damage. The Light damage scales
+with 200% Ranged Power.
 Rank 3: Ranged and throwing weapons you equip are considered Good.
-(Cooldown: 5 seconds)</Description>
+Cooldown: 5 seconds</Description>
          <Icon>StayGood</Icon>
          <XPosition>1</XPosition>
          <YPosition>4</YPosition>
@@ -654,7 +780,7 @@ Rank 3: Ranged and throwing weapons you equip are considered Good.
          <Name>Shiradi Champion: In the Weeds</Name>
          <InternalName>InTheWeeds</InternalName>
          <Description>+[1/2/3] Dodge, +[2/4/6] Hide.
-After standing still for a few seconds you gain +1 Dodge, +3 Hide.
+After standing still for a few seconds you gain +1 Dodge, +3 Hide, +3 PRR and +3 MRR.
 Ranks 2/3: This can stack [2/3] times.</Description>
          <Icon>InTheWeeds</Icon>
          <XPosition>2</XPosition>
@@ -674,13 +800,43 @@ Ranks 2/3: This can stack [2/3] times.</Description>
             <Skill>Hide</Skill>
             <AmountVector size="3">2 4 6</AmountVector>
          </Effect>
+         <Effect>
+            <DisplayName>Shiradi Champion: In the Weeds: Standing Still Bonus</DisplayName>
+            <Type>DodgeBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Stance>Standing Still</Stance>
+         </Effect>
+         <Effect>
+            <DisplayName>Shiradi Champion: In the Weeds: Standing Still Bonus</DisplayName>
+            <Type>SkillBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">3 6 9</AmountVector>
+            <Skill>Hide</Skill>
+            <Stance>Standing Still</Stance>
+         </Effect>
+         <Effect>
+            <DisplayName>Shiradi Champion: In the Weeds: Standing Still Bonus</DisplayName>
+            <Type>PRR</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">3 6 9</AmountVector>
+            <Stance>Standing Still</Stance>
+         </Effect>
+         <Effect>
+            <DisplayName>Shiradi Champion: In the Weeds: Standing Still Bonus</DisplayName>
+            <Type>MRR</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">3 6 9</AmountVector>
+            <Stance>Standing Still</Stance>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Shiradi Champion: Elemental Absorption</Name>
          <InternalName>ElementalAbsorption</InternalName>
-         <Description>Active Ability: Target ally receives a primal shield that reduces [5%/10%/15%]
+         <Description>Target ally receives a primal shield that reduces [5%/10%/15%]
 damage from fire, cold, electric, acid, and sonic.
-Two uses per rest. Lasts until rest. (Cooldown: 2 seconds)</Description>
+Two uses per rest. Lasts until rest.
+Cooldown: 2 seconds</Description>
          <Icon>ElementalAbsorption</Icon>
          <XPosition>3</XPosition>
          <YPosition>4</YPosition>
@@ -735,8 +891,8 @@ Two uses per rest. Lasts until rest. (Cooldown: 2 seconds)</Description>
       <EnhancementTreeItem>
          <Name>Shiradi Champion: Track</Name>
          <InternalName>Track</InternalName>
-         <Description>Ranged attack and thrown weapon attacks reduce enemy AC by -1 for 5 seconds.
-This effect stacks up to [3/6/10] times.</Description>
+         <Description>Ranged and thrown weapon attacks reduce enemy AC by -1 and Fortification
+by 2% for 5 seconds. This effect stacks up to [3/6/10] times.</Description>
          <Icon>Track</Icon>
          <XPosition>0</XPosition>
          <YPosition>5</YPosition>
@@ -748,8 +904,9 @@ This effect stacks up to [3/6/10] times.</Description>
       <EnhancementTreeItem>
          <Name>Shiradi Champion: Stand and Deliver</Name>
          <InternalName>StandAndDeliver</InternalName>
-         <Description>While standing still you gain +1 competence bonus to ranged damage and +1% Spell
-Power every few seconds, stacking up to ten times.</Description>
+         <Description>While standing still, you gain +1 competence bonus to ranged damage and +1% Spell
+Power every few seconds, stacking up to ten times.
+Passive Bonus: +1 Critical Damage Multiplier on rolls of 19-20.</Description>
          <Icon>StandAndDeliver</Icon>
          <XPosition>1</XPosition>
          <YPosition>5</YPosition>
@@ -770,6 +927,18 @@ Power every few seconds, stacking up to ten times.</Description>
             <SpellPower>All</SpellPower>
             <Amount>10</Amount>
             <Stance>Stand and Deliver</Stance>
+         </Effect>
+         <Effect>
+            <Type>CriticalMultiplier19To20</Type>
+            <Bonus>Destiny</Bonus>
+            <WeaponClass>Ranged</WeaponClass>
+            <Amount>1</Amount>
+         </Effect>
+         <Effect>
+            <Type>CriticalMultiplier19To20</Type>
+            <Bonus>Destiny</Bonus>
+            <WeaponClass>Thrown</WeaponClass>
+            <Amount>1</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -826,16 +995,17 @@ to paralyze living creatures for 6 seconds.</Description>
       <EnhancementTreeItem>
          <Name>Shiradi Champion: Audience with the Queen</Name>
          <InternalName>AudienceWithTheQueen</InternalName>
-         <Description>Active Ability: Pop off for some tea with your lady, the Queen of Summer,
-returning a few seconds later. Unusable while incapacitated.
+         <Description>Once per Rst, you can spiritiually pop off for some tea with your lady,
+the Queen of Summer, returning a few seconds later. Unusable while incapacitated.
+
 Depending on your Diplomacy with the Queen, you may experience effects either
-favorable or ill, though the tea is always delicious.
-(Diplomacy check) Diplomacy DC: 20 - Success, 40 - Critical Success.
-(Cooldown: 2 minutes 34 seconds)</Description>
+favorable or ill, though the tea is always delicious. (Diplomacy check)
+Diplomacy DC: 20 - Success, 40 - Critical Success.
+Cooldown: 2 minutes 34 seconds</Description>
          <Icon>AudienceWithTheQueen</Icon>
          <XPosition>1</XPosition>
          <YPosition>6</YPosition>
-         <Cost>2</Cost>
+         <Cost>1</Cost>
          <Ranks>1</Ranks>
          <MinSpent>20</MinSpent>
          <Clickie/>
@@ -844,14 +1014,30 @@ favorable or ill, though the tea is always delicious.
       <EnhancementTreeItem>
          <Name>Shiradi Champion: Rain of Arrows</Name>
          <InternalName>RainOfArrows</InternalName>
-         <Description>Active Ability: Call upon a thousand invisible fairies to rain pointy wooden
-death around you! Every second for thirty seconds each enemy around you has
-10% to take 10d100 damage. Damage may consist of up to 10 damage types.
-Cost: 10 Favor of the Fey. (Cooldown: 5 minutes)</Description>
+         <Description>Call upon a thousand invisible fairies to rain pointy wooden death around you!
+
+Every second for thirty seconds each enemy around you has a 20% to take 10d100 damage.
+Damage may consist of up to 10 damage types. This damage scales with 200% Ranged Power.
+Cooldown: 3 minutes</Description>
          <Icon>RainOfArrows</Icon>
          <XPosition>2</XPosition>
          <YPosition>6</YPosition>
-         <Cost>2</Cost>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Clickie/>
+         <Requirements/>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shiradi Champion: Hunt's End</Name>
+         <InternalName>HuntsEnd</InternalName>
+         <Description>Your next shot with a Ranged or Thrown weapon has +400% damage and +16 to
+its Critical Threat Range. This shot ignores incorpreality.
+Cooldown: 30 seconds.</Description>
+         <Icon>HuntsEnd</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>6</YPosition>
+         <Cost>1</Cost>
          <Ranks>1</Ranks>
          <MinSpent>20</MinSpent>
          <Clickie/>

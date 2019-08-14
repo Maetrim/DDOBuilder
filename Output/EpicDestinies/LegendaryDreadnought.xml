@@ -2,7 +2,7 @@
 <Enhancements>
    <EnhancementTree>
       <Name>Legendary Dreadnought</Name>
-      <Version>1</Version>
+      <Version>2</Version>
       <Requirements/>
       <IsEpicDestiny/>
       <Icon>LegendaryDreadnought</Icon>
@@ -10,7 +10,8 @@
       <EnhancementTreeItem>
          <Name>Legendary Dreadnought: Shrug Off Punishment</Name>
          <InternalName>DreadnoughtCore1</InternalName>
-         <Description>+10 Max Hitpoints and +3 Melee Power per level of Legendary Dreadnought.</Description>
+         <Description>For each level of Legendary Dreadnought, including this one, you gain
++10 Max Hitpoints, +3 Melee Power and +2 Ranged Power.</Description>
          <Icon>ShrugOffPunishment</Icon>
          <XPosition>0</XPosition>
          <YPosition>0</YPosition>
@@ -28,6 +29,11 @@
             <Type>MeleePower</Type>
             <Bonus>Destiny</Bonus>
             <Amount>3</Amount>
+         </Effect>
+         <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>2</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -55,6 +61,11 @@
             <Type>MeleePower</Type>
             <Bonus>Destiny</Bonus>
             <Amount>3</Amount>
+         </Effect>
+         <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>2</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -85,13 +96,17 @@ This ability can be used while helpless.</Description>
             <Bonus>Destiny</Bonus>
             <Amount>3</Amount>
          </Effect>
+         <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>2</Amount>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Legendary Dreadnought: Action Boost Unmovable</Name>
+         <Name>Legendary Dreadnought: Unmovable</Name>
          <InternalName>DreadnoughtCore4</InternalName>
          <Description>Activate to gain a +20 Action Boost bonus to to Fortitude and Balance saves for 60 seconds.
-This ability can be used while helpless.
-This is on a separate cooldown from other action boosts.</Description>
+This ability can be used while helpless.</Description>
          <Icon>ActionBoostUnmovable</Icon>
          <XPosition>3</XPosition>
          <YPosition>0</YPosition>
@@ -115,13 +130,17 @@ This is on a separate cooldown from other action boosts.</Description>
             <Bonus>Destiny</Bonus>
             <Amount>3</Amount>
          </Effect>
+         <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>2</Amount>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Legendary Dreadnought: Action Boost Thick Skinned</Name>
+         <Name>Legendary Dreadnought: Thick Skinned</Name>
          <InternalName>DreadnoughtCore5</InternalName>
          <Description>Activate to take 25% less damage from all sources for 30 seconds.
-This ability can be used while helpless.
-This is on a separate cooldown from other action boosts.</Description>
+This ability can be used while helpless.</Description>
          <Icon>ActionBoostThickSkinned</Icon>
          <XPosition>4</XPosition>
          <YPosition>0</YPosition>
@@ -145,12 +164,17 @@ This is on a separate cooldown from other action boosts.</Description>
             <Bonus>Destiny</Bonus>
             <Amount>3</Amount>
          </Effect>
+         <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>2</Amount>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Legendary Dreadnought: Combat Brute</Name>
          <InternalName>DreadnoughtCore6</InternalName>
-         <Description>You gain +1[W] damage with melee weapons and deal +50% damage to helpless
-opponents while any Action Boost is active.</Description>
+         <Description>While under the effects of any Action Boost, you gain both +1[W] damage
+with melee weapons and deal +20% damage to helpless opponents.</Description>
          <Icon>CombatBrute</Icon>
          <XPosition>5</XPosition>
          <YPosition>0</YPosition>
@@ -173,6 +197,11 @@ opponents while any Action Boost is active.</Description>
             <Amount>3</Amount>
          </Effect>
          <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>2</Amount>
+         </Effect>
+         <Effect>
             <Type>WeaponBaseDamageBonus</Type>
             <Bonus>Destiny</Bonus>
             <Weapon>All</Weapon>
@@ -182,15 +211,16 @@ opponents while any Action Boost is active.</Description>
          <Effect>
             <Type>HelplessDamage</Type>
             <Bonus>Enhancement</Bonus>
-            <Amount>50</Amount>
+            <Amount>20</Amount>
             <Stance>Action Boost</Stance>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Legendary Dreadnought: Sundering Swing</Name>
+         <Name>Legendary Dreadnought: Sundering Swings</Name>
          <InternalName>SunderingSwing</InternalName>
-         <Description>For the next [9/12/15] seconds, all attacks you make apply an
-Improved Sunder effect on hit. (Cooldown 1 min)</Description>
+         <Description>Activate: For the next [9/12/15] seconds, all attacks you make apply an
+Improved Sunder effect on hit.
+Cooldown: 1 min</Description>
          <Icon>SunderingSwing</Icon>
          <XPosition>0</XPosition>
          <YPosition>1</YPosition>
@@ -325,10 +355,11 @@ enhancement, and it shares a cooldown with all other action boosts).</Descriptio
       <EnhancementTreeItem>
          <Name>Legendary Dreadnought: Momentum Swing</Name>
          <InternalName>MomentumSwing</InternalName>
-         <Description>Tactical Melee Attack Perform an attack with +5[W] damage and +[1/2/3] critical threat range.
-Cleave attacks have a [15/30/50]% chance to reset the cooldown of this ability
-(this cannot occur more than once every 3 seconds).
-You must have Power Attack active to perform this ability.</Description>
+         <Description>Tactical Melee Weapon Attack: Perform an attack with +5[W] damage and
++[1/2/3] Critical Threat Range. Cleave attacks have a [15/30/50]% chance to
+reset the cooldown of this ability (this cannot occur more than once every 3 seconds).
+
+(Requires an equipped melee weapon.)</Description>
          <Icon>MomentumSwing</Icon>
          <XPosition>0</XPosition>
          <YPosition>2</YPosition>
@@ -337,16 +368,12 @@ You must have Power Attack active to perform this ability.</Description>
          <MinSpent>4</MinSpent>
          <Clickie/>
          <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Feat>Power Attack</Feat>
-            </Requirement>
-         </Requirements>
+         <Requirements/>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Legendary Dreadnought: Improved Combat Expertise</Name>
          <InternalName>ImprovedCombatExpertise</InternalName>
-         <Description>When Stance: Combat Expertise is active, you gain +20 Physical Resistance Rating.</Description>
+         <Description>When the Combat Expertise stance is active, you gain +20 Physical Resistance Rating.</Description>
          <Icon>ImprovedCombatExpertise</Icon>
          <XPosition>1</XPosition>
          <YPosition>2</YPosition>
@@ -369,7 +396,7 @@ You must have Power Attack active to perform this ability.</Description>
       <EnhancementTreeItem>
          <Name>Legendary Dreadnought: Improved Power Attack</Name>
          <InternalName>ImprovedPowerAttack</InternalName>
-         <Description>When Stance: Power Attack is active, you deal +0.5[W] damage with weapons.</Description>
+         <Description>When the Power Attack stance is active, you deal +0.5[W] damage with weapons.</Description>
          <Icon>ImprovedPowerAttack</Icon>
          <XPosition>2</XPosition>
          <YPosition>2</YPosition>
@@ -391,11 +418,11 @@ You must have Power Attack active to perform this ability.</Description>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Legendary Dreadnought: Action Boost Damage</Name>
+         <Name>Legendary Dreadnought: Action Boost Power</Name>
          <InternalName>ActionBoostDamage</InternalName>
-         <Description>Activate to gain a +[20/25/30]% Action Boost bonus to weapon damage for 20 seconds
-(This epic ability cannot be taken if you have Action Boost Damage as a class
-enhancement, and it shares a cooldown with all other action boosts).</Description>
+         <Description>Activate to gain a +[10/20/30]%Action Boost bonus to Melee and Ranged
+Power for 20 seconds. (This enhancement  cannot be taken if you have Action Boost:
+Melee Power as a class enhancement).</Description>
          <Icon>ActionBoostDamage</Icon>
          <XPosition>3</XPosition>
          <YPosition>2</YPosition>
@@ -404,6 +431,18 @@ enhancement, and it shares a cooldown with all other action boosts).</Descriptio
          <MinSpent>4</MinSpent>
          <Clickie/>
          <Requirements/>
+         <Effect>
+            <Type>MeleePower</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">10 20 30</AmountVector>
+            <Stance>Action Boost: Power</Stance>
+         </Effect>
+         <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">10 20 30</AmountVector>
+            <Stance>Action Boost: Power</Stance>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Legendary Dreadnought: Ability II</Name>
@@ -446,11 +485,11 @@ enhancement, and it shares a cooldown with all other action boosts).</Descriptio
       <EnhancementTreeItem>
          <Name>Legendary Dreadnought: Lay Waste</Name>
          <InternalName>LayWaste</InternalName>
-         <Description>Perform an Area of Effect attack with +5[W] damage and +1 critical damage multiplier.
-On Hit Knocks the target down, Balance DC (10 + Character Level + Strength Modifier)
-Negates. Momentum Swing has a 25% chance to reset the cooldown of this ability
-(this cannot occur more than once every 3 seconds).
-You must have Stance: Power Attack active to perform this ability.</Description>
+         <Description>Tactical Melee Cleave: Perform an Area of Effect attack with +5[W] damage
+with +1 Critical Threat Multiplier.
+On Hit: Knocks the target down, Balance DC (10 + Character Level + Strength
+Modifier + Ttip DC Bonuses) Negates. Momentum Swing has a 25% chance to reset
+the cooldown of this ability (this cannot occur more than once every 3 seconds).</Description>
          <Icon>LayWaste</Icon>
          <XPosition>0</XPosition>
          <YPosition>3</YPosition>
@@ -462,19 +501,17 @@ You must have Stance: Power Attack active to perform this ability.</Description>
             <Requirement>
                <Enhancement>MomentumSwing</Enhancement>
             </Requirement>
-            <Requirement>
-               <Feat>Power Attack</Feat>
-            </Requirement>
          </Requirements>
          <DC>
             <Name>Legendary Dreadnought: Lay Waste</Name>
-            <Description>Perform an Area of Effect attack with +5[W] damage and +1 critical damage multiplier.
+            <Description>Perform an Area of Effect attack with +5[W] damage with +1 Critical Threat Multiplier.
 On Hit Knocks the target down, Balance DC Negates.</Description>
             <Icon>LayWaste</Icon>
             <DCVersus>Fortitude</DCVersus>
             <AmountVector size="1">10</AmountVector>
             <ClassLevel>All</ClassLevel>
             <ModAbility>Strength</ModAbility>
+            <Tactical>Trip</Tactical>
          </DC>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -500,7 +537,7 @@ On Hit Knocks the target down, Balance DC Negates.</Description>
          <InternalName>ActionBoostHaste</InternalName>
          <Description>Activate this ability to receive a +[20/25/30]% Action Boost attack speed
 bonus for 20 seconds. (This ability cannot be taken if you have Action Boost
-Haste as a class enhancement, and it shares a cooldown with all other action boosts).</Description>
+Haste as a class enhancement).</Description>
          <Icon>ActionBoostHaste</Icon>
          <XPosition>3</XPosition>
          <YPosition>3</YPosition>
@@ -551,23 +588,49 @@ Haste as a class enhancement, and it shares a cooldown with all other action boo
       <EnhancementTreeItem>
          <Name>Legendary Dreadnought: Tactical Genius</Name>
          <InternalName>TacticalGenius</InternalName>
-         <Description>Activate to clear the cooldowns of all Tactical feats. </Description>
-         <Icon>TacticalGenius</Icon>
+         <Description>You are a studied master of a wide variety of methods for gaining the upper
+hand. +2 to the DCs of your Tactical Feats, DC of Rune Arm Shots, DC of Breath
+Weapons, DC of Assassinate, DC of Poisons, and +2 to the Perform, Bluff, Diplomacy,
+and Intimidate skills.</Description>
+         <Icon>TacticalGeniusPassive</Icon>
          <XPosition>0</XPosition>
          <YPosition>4</YPosition>
          <Cost>2</Cost>
          <Ranks>1</Ranks>
          <MinSpent>12</MinSpent>
-         <Clickie/>
          <Requirements/>
+         <Effect>
+            <Type>TacticalDC</Type>
+            <Bonus>Destiny</Bonus>
+            <Tactical>Trip</Tactical>
+            <Tactical>Sunder</Tactical>
+            <Tactical>Stun</Tactical>
+            <Tactical>General</Tactical>
+            <Tactical>Quivering Palm</Tactical>
+            <Tactical>Assassinate</Tactical>
+            <Tactical>Rune Arm</Tactical>
+            <Tactical>Breath Weapon</Tactical>
+            <Tactical>Poison</Tactical>
+            <Amount>2</Amount>
+         </Effect>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>2</Amount>
+            <Skill>Perform</Skill>
+            <Skill>Bluff</Skill>
+            <Skill>Diplomacy</Skill>
+            <Skill>Intimidate</Skill>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Legendary Dreadnought: Volcano's Edge</Name>
          <InternalName>VolcanosEdge</InternalName>
-         <Description>Melee Attack On Hit 100 Fire damage.
-On Critical Target takes Magma Surge damage.
-On Vorpal Target takes 10d100 Fire damage.
-Requires a Dagger, Kama, Sickle or Sword to be equipped in your main hand.</Description>
+         <Description>Melee Attack: On Hit: 100 Fire damage.
+On Critical: Target takes incineration damage.
+On Vorpal: 10d100 Fire damage.
+Requires a Kama, knife, sickle or Sword to be equipped in your main hand.
+Cooldwon: 12 seconds</Description>
          <Icon>VolcanosEdge</Icon>
          <XPosition>1</XPosition>
          <YPosition>4</YPosition>
@@ -580,11 +643,12 @@ Requires a Dagger, Kama, Sickle or Sword to be equipped in your main hand.</Desc
       <EnhancementTreeItem>
          <Name>Legendary Dreadnought: Lightning Mace</Name>
          <InternalName>LightningMace</InternalName>
-         <Description>Attack On Hit 100 Electrical damage.
-On Critical Gain +15% enhancement bonus to melee doublestrike for 6 seconds.
-On Vorpal Target takes 10d100 Electrical damage.
-Requires a Club (weapon), Greatclub, Heavy Mace, Light Mace, Morningstar
-or Quarterstaff to be equipped in your main hand.</Description>
+         <Description>Melee Attack: On Hit: 100 Electrical damage.
+On Critical: Gain +15% enhancement bonus to melee doublestrike for 6 seconds.
+On Vorpal: 10d100 Electrical damage.
+Requires a club, greatclub, mace, morningstar, or Quarterstaff to be equipped in
+your main hand.
+Cooldown: 12 seconds</Description>
          <Icon>LightningMace</Icon>
          <XPosition>2</XPosition>
          <YPosition>4</YPosition>
@@ -597,11 +661,11 @@ or Quarterstaff to be equipped in your main hand.</Description>
       <EnhancementTreeItem>
          <Name>Legendary Dreadnought: Anvil of Thunder</Name>
          <InternalName>AnvilOfThunder</InternalName>
-         <Description>Melee Attack On Hit 100 Sonic damage.
-On Critical Target is stunned for 6 seconds.
-On Vorpal Target takes 10d100 Sonic damage.
-Requires a Dwarven Waraxe, Greataxe, Battleaxe, Handaxe, Warhammer, Maul,
-Light Pick or Heavy Pick to be equipped in your main hand.</Description>
+         <Description>Melee Attack: On Hit: 100 Sonic damage.
+On Critical: Target is stunned for 6 seconds.
+On Vorpal: 10d100 Sonic damage.
+Requires an axe, hammer, maul, or pick to be equipped in your main hand.
+Cooldwon: 12 seconds</Description>
          <Icon>AnvilOfThunder</Icon>
          <XPosition>3</XPosition>
          <YPosition>4</YPosition>
@@ -652,7 +716,7 @@ Light Pick or Heavy Pick to be equipped in your main hand.</Description>
       <EnhancementTreeItem>
          <Name>Legendary Dreadnought: Advancing Blows</Name>
          <InternalName>AdvancingBlows</InternalName>
-         <Description>You gain On Melee Critical Hit +1 to hit and damage for 6 seconds.
+         <Description>You gain: On Critical Hit: +1 to hit and damage for 6 seconds.
 Stacks 5 times.</Description>
          <Icon>AdvancingBlows</Icon>
          <XPosition>0</XPosition>
@@ -662,47 +726,24 @@ Stacks 5 times.</Description>
          <MinSpent>16</MinSpent>
          <Requirements/>
          <Effect>
-            <Type>CreateSlider</Type>
-            <Bonus>Enhancement</Bonus>
-            <Slider>Advancing Blows</Slider>
-            <AmountVector size="2">0 5</AmountVector>
-            <Amount>0</Amount>
-         </Effect>
-         <Effect>
             <Type>AttackBonus</Type>
             <Bonus>Destiny</Bonus>
-            <Amount>1</Amount>
+            <Amount>5</Amount>
             <Weapon>All</Weapon>
-            <Stacks>Advancing Blows</Stacks>
+            <Stance>CriticalHits</Stance>
          </Effect>
          <Effect>
             <Type>DamageBonus</Type>
             <Bonus>Destiny</Bonus>
-            <Amount>1</Amount>
+            <Amount>5</Amount>
             <Weapon>All</Weapon>
-            <Stacks>Advancing Blows</Stacks>
-         </Effect>
-         <Effect>
-            <Type>CriticalAttackBonus</Type>
-            <Bonus>Destiny</Bonus>
-            <Amount>1</Amount>
-            <Weapon>All</Weapon>
-            <Stacks>Advancing Blows</Stacks>
-         </Effect>
-         <Effect>
-            <Type>Seeker</Type>
-            <Bonus>Destiny</Bonus>
-            <Amount>1</Amount>
-            <Weapon>All</Weapon>
-            <Stacks>Advancing Blows</Stacks>
+            <Stance>CriticalHits</Stance>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Legendary Dreadnought: Devastating Critical</Name>
          <InternalName>DevastatingCritical</InternalName>
-         <Description>+1 Critical Damage Multiplier on rolls of 19-20.
-Stacks with Headman's Chop and Overwhelming Critical.
-Functions with handwraps and shields.</Description>
+         <Description>+1 Critical Damage Multiplier on rolls of 19-20.</Description>
          <Icon>DevastatingCritical</Icon>
          <XPosition>3</XPosition>
          <YPosition>5</YPosition>
@@ -757,7 +798,7 @@ Functions with handwraps and shields.</Description>
          </Selector>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Legendary Dreadnought: Master's Blitz Epic Moment</Name>
+         <Name>Legendary Dreadnought: Master's Blitz</Name>
          <InternalName>MastersBlitz</InternalName>
          <Description>Activate: For 15 seconds, you gain +7 Melee Power, +7 Ranged Power
 and select either +50% Dodge (dodge cap applies!) or +30 PRR.
@@ -773,14 +814,16 @@ The damage bonus stacks up to 10 times, and decrements by 1 every 15 seconds.</D
          <Ranks>1</Ranks>
          <MinSpent>20</MinSpent>
          <Clickie/>
+         <Stance>
+            <Name>Masters Blitz</Name>
+            <Icon>MastersBlitz</Icon>
+            <Description>Activate: For 15 seconds, you gain +7 Melee Power, +7 Ranged Power
+and select either +50% Dodge (dodge cap applies!) or +30 PRR.
+Any time you hit an opponent while under the effects of Master's Blitz, you
+have a chance to gain an additional stack of the melee/ranged damage bonus
+and restart the duration.</Description>
+         </Stance>
          <Requirements/>
-         <Effect>
-            <Type>CreateSlider</Type>
-            <Bonus>Enhancement</Bonus>
-            <Slider>Master's Blitz</Slider>
-            <AmountVector size="2">0 10</AmountVector>
-            <Amount>10</Amount>
-         </Effect>
          <Selector>
             <EnhancementSelection>
                <Name>Masters Blitz: Dodge</Name>
@@ -793,7 +836,7 @@ and +50% Dodge</Description>
                   <Type>DodgeBonus</Type>
                   <Bonus>Destiny</Bonus>
                   <Amount>50</Amount>
-                  <Stance>1% Master's Blitz</Stance>
+                  <Stance>Masters Blitz</Stance>
                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
@@ -807,7 +850,7 @@ and +30 PRR</Description>
                   <Type>PRR</Type>
                   <Bonus>Destiny</Bonus>
                   <Amount>30</Amount>
-                  <Stance>1% Master's Blitz</Stance>
+                  <Stance>Masters Blitz</Stance>
                </Effect>
             </EnhancementSelection>
          </Selector>
@@ -815,21 +858,21 @@ and +30 PRR</Description>
             <DisplayName>Master's Blitz Epic Moment: Melee Power</DisplayName>
             <Type>MeleePower</Type>
             <Bonus>Destiny</Bonus>
-            <Amount>7</Amount>
-            <Stacks>Master's Blitz</Stacks>
+            <Amount>70</Amount>
+            <Stance>Masters Blitz</Stance>
          </Effect>
          <Effect>
             <DisplayName>Master's Blitz Epic Moment: Ranged Power</DisplayName>
             <Type>RangedPower</Type>
             <Bonus>Destiny</Bonus>
-            <Amount>7</Amount>
-            <Stacks>Master's Blitz</Stacks>
+            <Amount>70</Amount>
+            <Stance>Masters Blitz</Stance>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Legendary Dreadnought: Pulverizer</Name>
          <InternalName>Pulverizer</InternalName>
-         <Description>Increases the critical threat range of bludgeoning weapons you equip by 1</Description>
+         <Description>You gain a +1 Inishgt bonus to critical threat range of bludgeoning weapons.</Description>
          <Icon>Pulverizer</Icon>
          <XPosition>2</XPosition>
          <YPosition>6</YPosition>
@@ -848,10 +891,7 @@ and +30 PRR</Description>
          <Name>Legendary Dreadnought: Headman's Chop</Name>
          <InternalName>HeadmansChop</InternalName>
          <Description>When you have an axe equipped in your main hand, you gain an additional
-+1 Critical Damage Multiplier on rolls of 19-20. This also increases
-the Critical Damage Multiplier of your off-hand weapons and shields,
-as long as you have an axe equipped in your main hand.
-Stacks with Devastating Critical and Overwhelming Critical.</Description>
++1 Critical Damage Multiplier on rolls of 19-20.</Description>
          <Icon>HeadmansChop</Icon>
          <XPosition>3</XPosition>
          <YPosition>6</YPosition>

@@ -2,24 +2,27 @@
 <Enhancements>
    <EnhancementTree>
       <Name>Unyielding Sentinel</Name>
-      <Version>1</Version>
+      <Version>2</Version>
       <Requirements/>
       <IsEpicDestiny/>
       <Icon>UnyieldingSentinel</Icon>
       <Background>DestinyDivine</Background>
+       <!--Cores-->
       <EnhancementTreeItem>
          <Name>Unyielding Sentinel: Vigor of Battle</Name>
          <InternalName>UnyieldingCore1</InternalName>
-         <Description>Passive bonuses:
-You gain 40 spell points, and each level of Unyielding Sentinel grants +5 Melee Power,
+         <Description>You gain 40 spell points, and each level of Unyielding Sentinel grants +5 Melee Power,
 +3 Ranged Power, +40 Spell points, and +1 Cleric, Favored Soul, and Paladin caster
 levels if you have any levels in those classes.
-+50 HP. You gain +1 intimidate for each level of Unyielding Sentinel, including level 0.
-Sentinel Stance: (Cooldown 20 seconds) Activate to enjoy the Vigor of Battle.
++50 HP.
+You gain +1 Intimidate for each level of Unyielding Sentinel, including level 0.
+Sentinel Stance: Activate to enjoy the Vigor of Battle.
 +20 Positive Healing Amplification
-+100 HP (In game tooltip says 50)
++50 HP
 Enemies you hit gain Healing Touch for 3 seconds, which grants 10 temporary HP to
-targets they attack. (You can only be in one Sentinel Stance at a time.) </Description>
+targets they attack.
+(You can only be in one Sentinel Stance at a time.)
+Cooldown 20 seconds</Description>
          <Icon>VigorOfBattle</Icon>
          <XPosition>0</XPosition>
          <YPosition>0</YPosition>
@@ -32,8 +35,8 @@ targets they attack. (You can only be in one Sentinel Stance at a time.) </Descr
          <Stance>
             <Name>Vigor of Battle</Name>
             <Icon>VigorOfBattle</Icon>
-            <Description>Sentinel Stance: (Cooldown 20 seconds) Activate to enjoy the Vigor of Battle.
-+20 Positive Healing Amplification, +100 HP. Enemies you hit gain Healing Touch
+            <Description>Sentinel Stance: Activate to enjoy the Vigor of Battle.
++20 Positive Healing Amplification, +50 HP. Enemies you hit gain Healing Touch
 for 3 seconds, which grants 10 temporary HP to targets they attack.</Description>
             <IncompatibleStance>Unbreakable</IncompatibleStance>
             <IncompatibleStance>Stand Against the Tide</IncompatibleStance>
@@ -86,7 +89,7 @@ for 3 seconds, which grants 10 temporary HP to targets they attack.</Description
             <DisplayName>Unyielding Sentinel: Vigor of Battle: Stance</DisplayName>
             <Type>Hitpoints</Type>
             <Bonus>Destiny</Bonus>
-            <AmountVector size="2">100 150</AmountVector>
+            <Amount>50</Amount>
             <Stance>Vigor of Battle</Stance>
          </Effect>
          <Effect>
@@ -100,9 +103,10 @@ for 3 seconds, which grants 10 temporary HP to targets they attack.</Description
       <EnhancementTreeItem>
          <Name>Unyielding Sentinel: Unbreakable</Name>
          <InternalName>UnyieldingCore2</InternalName>
-         <Description>Passive bonuses: +5 sacred bonus to natural armor.
-You gain the Diehard feat.
-Sentinel Stance: (Cooldown 20 seconds) You gain DR 10/epic.</Description>
+         <Description>Passive bonuses: +5 Sacred bonus to Natural Armor. You gain the Diehard feat.
+Sentinel Stance: Activate to become Unbreakable. You gain DR 10/epic.
+(You can only be in one Sentinel Stance at a time.)
+Cooldown: 20 seconds</Description>
          <Icon>Unbreakable</Icon>
          <XPosition>1</XPosition>
          <YPosition>0</YPosition>
@@ -124,7 +128,7 @@ Sentinel Stance: (Cooldown 20 seconds) You gain DR 10/epic.</Description>
             <IncompatibleStance>Stand Against the Tide</IncompatibleStance>
          </Stance>
          <Effect>
-            <Type>NaturalArmor</Type>
+            <Type>ACBonus</Type>
             <Bonus>Sacred</Bonus>
             <Amount>5</Amount>
          </Effect>
@@ -184,9 +188,15 @@ Sentinel Stance: (Cooldown 20 seconds) You gain DR 10/epic.</Description>
          <Name>Unyielding Sentinel: Stand Against the Tide</Name>
          <InternalName>UnyieldingCore3</InternalName>
          <Description>Passive bonus: +2 Attack.
-Sentinel Stance: +1 melee damage, 20% threat generation, 5% fort, +1 all saves.
-This bonus stacks up to four extra times while standing still.
-(Cooldown 20 seconds)</Description>
+Sentinel Stance: Activate to Stand Against the Tide.
++1 Attack Damage
++60% threat generation
++5% fortification
++1 to Fortitude, Relfex and Will saving throws
+
+This bonus stacks up to five times while standing still.
+(You can only be in one Sentinel Stance at a time.)
+Cooldown: 20 seconds</Description>
          <Icon>StandAgainstTheTide</Icon>
          <XPosition>2</XPosition>
          <YPosition>0</YPosition>
@@ -203,8 +213,11 @@ This bonus stacks up to four extra times while standing still.
          <Stance>
             <Name>Stand Against the Tide</Name>
             <Icon>StandAgainstTheTide</Icon>
-            <Description>Sentinel Stance: +1 melee damage, 20% threat generation, 5% fort, +1 all saves.
-This bonus stacks up to four extra times while standing still.</Description>
+            <Description>Sentinel Stance: Activate to Stand Against the Tide.
++1 Attack Damage, +60% threat generation, +5% fortification, +1 to Fortitude,
+Relfex and Will saving throws
+
+This bonus stacks up to five times while standing still.</Description>
             <IncompatibleStance>Vigor of Battle</IncompatibleStance>
             <IncompatibleStance>Unbreakable</IncompatibleStance>
          </Stance>
@@ -232,7 +245,21 @@ This bonus stacks up to four extra times while standing still.</Description>
          <Effect>
             <Type>ThreatBonusMelee</Type>
             <Bonus>Destiny</Bonus>
-            <Amount>20</Amount>
+            <Amount>60</Amount>
+            <Stacks>SAtT Stacks</Stacks>
+            <Stance>Stand Against the Tide</Stance>
+         </Effect>
+         <Effect>
+            <Type>ThreatBonusRanged</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>60</Amount>
+            <Stacks>SAtT Stacks</Stacks>
+            <Stance>Stand Against the Tide</Stance>
+         </Effect>
+         <Effect>
+            <Type>ThreatBonusSpell</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>60</Amount>
             <Stacks>SAtT Stacks</Stacks>
             <Stance>Stand Against the Tide</Stance>
          </Effect>
@@ -301,7 +328,7 @@ This bonus stacks up to four extra times while standing still.</Description>
          <Name>Unyielding Sentinel: Stalwart Guardian</Name>
          <InternalName>UnyieldingCore4</InternalName>
          <Description>Passive bonus: +50 HP.
-+50 additional HP while enjoying the Vigor of Battle.</Description>
++50 HP while enjoying the Vigor of Battle.</Description>
          <Icon>StalwartGuardian</Icon>
          <XPosition>3</XPosition>
          <YPosition>0</YPosition>
@@ -359,10 +386,9 @@ This bonus stacks up to four extra times while standing still.</Description>
             <Amount>1</Amount>
          </Effect>
          <Effect>
-            <DisplayName>Unyielding Sentinel: Vigor of Battle: Stance</DisplayName>
             <Type>Hitpoints</Type>
             <Bonus>Destiny</Bonus>
-            <AmountVector size="2">100 150</AmountVector>
+            <Amount>50</Amount>
             <Stance>Vigor of Battle</Stance>
          </Effect>
       </EnhancementTreeItem>
@@ -428,6 +454,11 @@ This bonus stacks up to four extra times while standing still.</Description>
             <Amount>1</Amount>
          </Effect>
          <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>50</Amount>
+         </Effect>
+         <Effect>
             <Type>SkillBonus</Type>
             <Bonus>Destiny</Bonus>
             <Skill>Intimidate</Skill>
@@ -437,7 +468,7 @@ This bonus stacks up to four extra times while standing still.</Description>
       <EnhancementTreeItem>
          <Name>Unyielding Sentinel: Steadfast</Name>
          <InternalName>UnyieldingCore6</InternalName>
-         <Description>Passive bonuses: +2 attack, +1 bonus to all saves.
+         <Description>Passive bonuses: +2 Attack, +1 bonus to all saves.
 You cannot be knocked down while Standing Against the Tide.</Description>
          <Icon>Steadfast</Icon>
          <XPosition>5</XPosition>
@@ -501,20 +532,17 @@ You cannot be knocked down while Standing Against the Tide.</Description>
             <Skill>Intimidate</Skill>
             <Amount>1</Amount>
          </Effect>
-         <Effect>
-            <Type>Immunity</Type>
-            <Bonus>Destiny</Bonus>
-            <Immunity>Most Knockdown</Immunity>
-            <Stance>Stand Against the Tide</Stance>
-         </Effect>
       </EnhancementTreeItem>
+       <!--Tier 1-->
       <EnhancementTreeItem>
          <Name>Unyielding Sentinel: Divine Energy Resistance</Name>
          <InternalName>DivineEnergyResistance</InternalName>
-         <Description>This SLA grants 35 resistance to acid, cold, fire, sonic, electric for 1
-min per character level [225/150/75] sp to all allies in the standard area of
-effect; centered on the caster. You can apply metamagic feats to this SLA for
-free (extend, quicken). The effect does not stack with Resist Energy spell.</Description>
+         <Description>You and nearby allies gain +35 Enhancement bonus to resist Enegy for
+1 minute per character level (Includes Acid, Cold, Electric, Fire and Sonic)
+Spell-Line Ability: This ability benefits from your Metamagic Feats (such as Quicken)
+without paying the normal additional spell point cost.
+Cooldown: 6 seconds
+Cost: 225/150/75 spell points</Description>
          <Icon>DivineEnergyResistance</Icon>
          <XPosition>0</XPosition>
          <YPosition>1</YPosition>
@@ -532,7 +560,7 @@ free (extend, quicken). The effect does not stack with Resist Energy spell.</Des
       <EnhancementTreeItem>
          <Name>Unyielding Sentinel: Commanding Presence</Name>
          <InternalName>CommandingPresence</InternalName>
-         <Description>+50/100/150% Threat Generation</Description>
+         <Description>You generate +150/300/450% threat at all times, with melee, raned and magical attacks.</Description>
          <Icon>CommandingPresence</Icon>
          <XPosition>1</XPosition>
          <YPosition>1</YPosition>
@@ -543,13 +571,23 @@ free (extend, quicken). The effect does not stack with Resist Energy spell.</Des
          <Effect>
             <Type>ThreatBonusMelee</Type>
             <Bonus>Destiny</Bonus>
-            <AmountVector size="3">50 100 150</AmountVector>
+            <AmountVector size="3">150 300 450</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>ThreatBonusRanged</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">150 300 450</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>ThreatBonusSpell</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">150 300 450</AmountVector>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Unyielding Sentinel: Brace for Impact</Name>
          <InternalName>BraceForImpact</InternalName>
-         <Description>Passive Bonus: +[20/40]% fortification. +[1/2] all saves.</Description>
+         <Description>+[20/40]% Fortification. +[1/2] bonus to Fortitude, Reflex and Will saving throws.</Description>
          <Icon>BraceForImpact</Icon>
          <XPosition>2</XPosition>
          <YPosition>1</YPosition>
@@ -572,7 +610,7 @@ free (extend, quicken). The effect does not stack with Resist Energy spell.</Des
       <EnhancementTreeItem>
          <Name>Unyielding Sentinel: Shield Prowess</Name>
          <InternalName>ShieldProwess</InternalName>
-         <Description>Passive Bonus: Your shield's AC contribution is increased by [15/30/50]%.</Description>
+         <Description>Your shield's AC contribution is increased by [15/30/50]%.</Description>
          <Icon>ShieldProwess</Icon>
          <XPosition>3</XPosition>
          <YPosition>1</YPosition>
@@ -625,10 +663,11 @@ free (extend, quicken). The effect does not stack with Resist Energy spell.</Des
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
+       <!--Tier 2-->
       <EnhancementTreeItem>
          <Name>Unyielding Sentinel: Block Energy</Name>
          <InternalName>BlockEnergy</InternalName>
-         <Description>Passive Bonus: While blocking, you absorb [10/20/30]% of Acid, Cold, Electric,
+         <Description>While blocking, you absorb [10/20/30]% of Acid, Cold, Electric,
 Fire, Force, Light, and Sonic damage.</Description>
          <Icon>BlockEnergy</Icon>
          <XPosition>0</XPosition>
@@ -647,7 +686,6 @@ Fire, Force, Light, and Sonic damage.</Description>
             <Energy>Force</Energy>
             <Energy>Light</Energy>
             <Energy>Sonic</Energy>
-            <Percent/>
             <AmountVector size="3">10 20 30</AmountVector>
             <Stance>Blocking</Stance>
          </Effect>
@@ -655,10 +693,9 @@ Fire, Force, Light, and Sonic damage.</Description>
       <EnhancementTreeItem>
          <Name>Unyielding Sentinel: Fanaticism</Name>
          <InternalName>Fanaticism</InternalName>
-         <Description>Passive Bonus: You gain the Smite Evil feat.
-While you are Unbreakable, weapons you equip gain True Law if you are Lawful,
-and True Chaos if you are Chaotic, dealing 1d6 damage of that alignment to
-enemies of different alignments.</Description>
+         <Description>You gain the Smite Evil feat. While you are Unbreakable, weapons you equip
+gain True Law if you are Lawful, and True Chaos if you are Chaotic, dealing 1d6
+damage of that alignment to enemies of different alignments.</Description>
          <Icon>Fanaticism</Icon>
          <XPosition>1</XPosition>
          <YPosition>2</YPosition>
@@ -675,16 +712,24 @@ enemies of different alignments.</Description>
       <EnhancementTreeItem>
          <Name>Unyielding Sentinel: Endless Smiting</Name>
          <InternalName>EndlessSmiting</InternalName>
-         <Description>Passive Bonus: +[1/2/3] Smite Evil use per rest.
-Smite Evil uses regenerate [10/20/30]% faster.
-(Note, this means you regenerate uses once every 81/72/63 seconds)</Description>
+         <Description>+[1/2/3] Smite Evil use per rest.
+Smite Evil uses regenerate [10/20/30]% faster.</Description>
          <Icon>EndlessSmiting</Icon>
          <XPosition>2</XPosition>
          <YPosition>2</YPosition>
          <Cost>1</Cost>
          <Ranks>3</Ranks>
          <MinSpent>4</MinSpent>
-         <Requirements/>
+         <Requirements>
+             <RequiresOneOf>
+                 <Requirement>
+                     <Enhancement>Fanaticism</Enhancement>
+                 </Requirement>
+                 <Requirement>
+                     <Feat>Smite Evil</Feat>
+                 </Requirement>
+             </RequiresOneOf>
+         </Requirements>
          <Effect>
             <Type>ExtraSmite</Type>
             <Bonus>Destiny</Bonus>
@@ -694,8 +739,8 @@ Smite Evil uses regenerate [10/20/30]% faster.
       <EnhancementTreeItem>
          <Name>Unyielding Sentinel: Legendary Shield Mastery</Name>
          <InternalName>LegendaryShieldMastery</InternalName>
-         <Description>Passive Bonus: While wearing a shield, you gain +[5/10/15] PRR
-and +[2/4/7]% chance to doublestrike.</Description>
+         <Description>While wearing a shield, you gain +[5/10/15] Physical Resistance
+and +[2/4/7]% to doublestrike.</Description>
          <Icon>LegendaryShieldMastery</Icon>
          <XPosition>3</XPosition>
          <YPosition>2</YPosition>
@@ -758,14 +803,17 @@ and +[2/4/7]% chance to doublestrike.</Description>
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
+       <!--Tier 3-->
       <EnhancementTreeItem>
          <Name>Unyielding Sentinel: Renewal</Name>
          <InternalName>Renewal</InternalName>
-         <Description>Active Ability: Heals 1d2 HP per 4/3/2 character levels every 2 seconds for 8 seconds.
-If target is below 50% health, grants celestial shield absorbing the 30/40/50
-next damage. Requires being in Unyielding Sentinel destiny to self-target.
-As a Spell-like ability it benefits from metamagic feats at no additional cost.
-(Cooldown 3 seconds, 5 sp)</Description>
+         <Description>Activate: Positive Energy soothes a living ally, healing them for 1d2
+per 4/3/2 character levels every 2 seconds for 8 seconds. If target is below 50%
+health, it also grants Celestial Shield, absorbing the 30/40/50 damage the target
+takes. This ability cannot target yourself unless your active destiny is
+Unyielding Sentinel.
+Cooldown: 3 seconds
+Cost: 5 spell points</Description>
          <Icon>Renewal</Icon>
          <XPosition>0</XPosition>
          <YPosition>3</YPosition>
@@ -778,8 +826,9 @@ As a Spell-like ability it benefits from metamagic feats at no additional cost.
       <EnhancementTreeItem>
          <Name>Unyielding Sentinel: Intolerant Blows</Name>
          <InternalName>IntolerantBlows</InternalName>
-         <Description>Active Ability: Expend one Smite Evil: For 60 seconds you gain +200% Sacred
-bonus to threat generation and deal +1[W] damage. (Cooldown 20 seconds)</Description>
+         <Description>Expend one use of Smite Evil: For 60 seconds you gain +200% Sacred
+bonus to threat generation and deal +1[W] damage.
+Cooldown: 20 seconds</Description>
          <Icon>IntolerantBlows</Icon>
          <XPosition>1</XPosition>
          <YPosition>3</YPosition>
@@ -791,8 +840,8 @@ bonus to threat generation and deal +1[W] damage. (Cooldown 20 seconds)</Descrip
          <Stance>
             <Name>Intolerant Blows</Name>
             <Icon>IntolerantBlows</Icon>
-            <Description>Active Ability: Expend one Smite Evil: For 60 seconds you gain +200% Sacred
-bonus to threat generation and deal +1[W] damage. (Cooldown 20 seconds)</Description>
+            <Description>Expend one use of Smite Evil: For 60 seconds you gain +200% Sacred
+bonus to threat generation and deal +1[W] damage.</Description>
          </Stance>
          <Effect>
             <Type>WeaponBaseDamageBonus</Type>
@@ -811,8 +860,7 @@ bonus to threat generation and deal +1[W] damage. (Cooldown 20 seconds)</Descrip
       <EnhancementTreeItem>
          <Name>Unyielding Sentinel: Healing Hands</Name>
          <InternalName>HealingHands</InternalName>
-         <Description>Passive Bonus: You gain the Lay On Hands feat.
-You gain +25 positive spellpower.</Description>
+         <Description>You gain the Lay On Hands feat. You gain +25 Positive Spell Power.</Description>
          <Icon>HealingHands</Icon>
          <XPosition>2</XPosition>
          <YPosition>3</YPosition>
@@ -835,15 +883,24 @@ You gain +25 positive spellpower.</Description>
       <EnhancementTreeItem>
          <Name>Unyielding Sentinel: Endless Lay on Hands</Name>
          <InternalName>EndlessLayOnHands</InternalName>
-         <Description>Passive Bonus: +[1/2/3] Lay On Hands use per rest.
-Lay On Hands regenerate one use every 3 minutes and regenerate [0/10/20]% faster.</Description>
+         <Description>+[1/2/3] Lay On Hands use per rest. Lay On Hands regenerate one use
+every 3 minutes and regenerate [0/10/20]% faster.</Description>
          <Icon>EndlessLayOnHands</Icon>
          <XPosition>3</XPosition>
          <YPosition>3</YPosition>
          <Cost>1</Cost>
          <Ranks>3</Ranks>
          <MinSpent>8</MinSpent>
-         <Requirements/>
+         <Requirements>
+             <RequiresOneOf>
+                 <Requirement>
+                     <Enhancement>HealingHands</Enhancement>
+                 </Requirement>
+                 <Requirement>
+                     <Feat>Lay on Hands</Feat>
+                 </Requirement>
+             </RequiresOneOf>
+         </Requirements>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Unyielding Sentinel: Ability III</Name>
@@ -883,10 +940,25 @@ Lay On Hands regenerate one use every 3 minutes and regenerate [0/10/20]% faster
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
+       <!--Tier 4-->
+      <EnhancementTreeItem>
+         <Name>Unyielding Sentinel: Draw Them Out</Name>
+         <InternalName>DrawThemOut</InternalName>
+         <Description>Melee Attack: +3[W], this attack adds 300 hate for the user to creatures
+it hits on top of its normal damage.
+Cooldown: 6 seconds</Description>
+         <Icon>DrawThemOut</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>12</MinSpent>
+         <Requirements/>
+      </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Unyielding Sentinel: Spark of Life</Name>
          <InternalName>SparkOfLife</InternalName>
-         <Description>Passive Bonus: Your armor gains Deathblock, protecting you from death effects.</Description>
+         <Description>Your armor gains Deathblock, protecting you from death effects.</Description>
          <Icon>SparkOfLife</Icon>
          <XPosition>1</XPosition>
          <YPosition>4</YPosition>
@@ -903,8 +975,12 @@ Lay On Hands regenerate one use every 3 minutes and regenerate [0/10/20]% faster
       <EnhancementTreeItem>
          <Name>Unyielding Sentinel: Light the Dark</Name>
          <InternalName>LightTheDark</InternalName>
-         <Description>Active Ability: Expend one Lay on Hands: Heals 150HP to allies around you,
-and deals that much damage to nearby undead enemies. (Cooldown 12 seconds)</Description>
+         <Description>Expend one use of Lay on Hands: Heals 150HP to allies around you,
+and deals that much damage to nearby undead enemies. This benefits from Positive
+Spell Power, 50% more than most spells.
+Spell-Like Ability: This ability benefits from your Metamagic Feats (such as Quicken)
+without paying the normal additional apell point cost.
+Cooldown: 12 seconds</Description>
          <Icon>LightTheDark</Icon>
          <XPosition>2</XPosition>
          <YPosition>4</YPosition>
@@ -913,12 +989,17 @@ and deals that much damage to nearby undead enemies. (Cooldown 12 seconds)</Desc
          <MinSpent>12</MinSpent>
          <Clickie/>
          <Requirements/>
+         <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Destiny</Bonus>
+            <SpellLikeAbility>Light the Dark</SpellLikeAbility>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Unyielding Sentinel: Purify Weapon</Name>
          <InternalName>PurifyWeapon</InternalName>
-         <Description>Passive Bonus: If you are Good, weapons you equip gain Pure Good,
-dealing 1d6 Good damage vs. non-Good targets.</Description>
+         <Description>If you are Good, weapons you equip gain Purified Weapon,
+dealing 1d6 extra damage vs. non-Good targets.</Description>
          <Icon>PurifyWeapon</Icon>
          <XPosition>3</XPosition>
          <YPosition>4</YPosition>
@@ -988,10 +1069,11 @@ dealing 1d6 Good damage vs. non-Good targets.</Description>
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
+       <!--Tier 5-->
       <EnhancementTreeItem>
          <Name>Unyielding Sentinel: Hardened</Name>
          <InternalName>Hardened</InternalName>
-         <Description>Passive Bonus: +[5/10/15] AC.</Description>
+         <Description>+[5/10/15] Armor Class</Description>
          <Icon>Hardened</Icon>
          <XPosition>0</XPosition>
          <YPosition>5</YPosition>
@@ -1008,7 +1090,7 @@ dealing 1d6 Good damage vs. non-Good targets.</Description>
       <EnhancementTreeItem>
          <Name>Unyielding Sentinel: Strength of Vitality</Name>
          <InternalName>StrengthOfVitality</InternalName>
-         <Description>Passive Bonus: +10/15/20% Insight bonus to maximum hit points.</Description>
+         <Description>+10/15/20% Insight bonus to maximum hit points</Description>
          <Icon>StrengthOfVitality</Icon>
          <XPosition>1</XPosition>
          <YPosition>5</YPosition>
@@ -1026,8 +1108,7 @@ dealing 1d6 Good damage vs. non-Good targets.</Description>
       <EnhancementTreeItem>
          <Name>Unyielding Sentinel: Ward Against Evil</Name>
          <InternalName>WardAgainstEvil</InternalName>
-         <Description>Passive Bonus: When you are hit or miss by Evil, you have 100% chance
-to deal [3/6/10]d6 Good damage to those attackers.</Description>
+         <Description>When you are hit or missed by Evil, you deal [3/6/10]d6 Good damage to the attacker.</Description>
          <Icon>WardAgainstEvil</Icon>
          <XPosition>2</XPosition>
          <YPosition>5</YPosition>
@@ -1039,8 +1120,8 @@ to deal [3/6/10]d6 Good damage to those attackers.</Description>
       <EnhancementTreeItem>
          <Name>Unyielding Sentinel: Anoint Weapon</Name>
          <InternalName>AnointWeapon</InternalName>
-         <Description>Passive Bonus: If you are Good, while you Stand Against the Tide
-weapons you equip gain Holy, dealing 2d6 extra damage vs. Evil targets.</Description>
+         <Description>If you are Good, while you Stand Against the Tide weapons you equip gain
+Anointed Weapon, dealing 2d6 extra damage vs. Evil targets.</Description>
          <Icon>AnointWeapon</Icon>
          <XPosition>3</XPosition>
          <YPosition>5</YPosition>
@@ -1111,13 +1192,31 @@ weapons you equip gain Holy, dealing 2d6 extra damage vs. Evil targets.</Descrip
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
+       <!--Tier 6-->
+      <EnhancementTreeItem>
+         <Name>Unyielding Sentinel: Celestial Mandate</Name>
+         <InternalName>CelestialMandate</InternalName>
+         <Description>Melee Attack: +5[W], this attack adds 2000 hate for the user to creatures it
+hits on top of its normal damage.
+Cooldown: 6 seconds</Description>
+         <Icon>CelestialMandate</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>6</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Clickie/>
+         <Requirements/>
+      </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Unyielding Sentinel: Resurrection</Name>
          <InternalName>Resurrection</InternalName>
-         <Description>Can cast Resurrection as a spell-like ability
-(Cooldown 6 seconds, Cost 15 sp).</Description>
+         <Description>Resurrects the target, restores half of the target's hit points, and preserves
+current spell points.
+Spell-Like Ability: This ability benefits from your Metamagic Feats (such as Quicken)
+without paying the normal additional apell point cost.</Description>
          <Icon>Resurrection</Icon>
-         <XPosition>0</XPosition>
+         <XPosition>1</XPosition>
          <YPosition>6</YPosition>
          <Cost>2</Cost>
          <Ranks>1</Ranks>
@@ -1131,10 +1230,11 @@ weapons you equip gain Holy, dealing 2d6 extra damage vs. Evil targets.</Descrip
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Unyielding Sentinel: 'Undying Vanguard' Epic Moment</Name>
+         <Name>Unyielding Sentinel: Undying Vanguard</Name>
          <InternalName>UndyingVanguard</InternalName>
-         <Description>Active Ability: Heal yourself for 1000 HP.
-For 20 seconds, you gain 10,000 temporary HP. (Cooldown 2 minutes, usable once per rest)</Description>
+         <Description>Heal yourself for 1000 HP. For 30 seconds, you gain 10,000 temporary HP.
+Usable once per rest.
+Cooldown: 2 minutes</Description>
          <Icon>UndyingVanguard</Icon>
          <XPosition>2</XPosition>
          <YPosition>6</YPosition>

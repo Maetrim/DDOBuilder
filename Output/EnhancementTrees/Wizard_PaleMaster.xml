@@ -1,1378 +1,2287 @@
-<?xml version="1.0" encoding="utf-8"?>
 <Enhancements>
-   <EnhancementTree>
-      <Name>Pale Master</Name>
-      <Version>1</Version>
+  <EnhancementTree>
+    <Name>Pale Master</Name>
+    <Version>2</Version>
+    <Requirements>
+      <Requirement>
+        <Class>Wizard</Class>
+      </Requirement>
+    </Requirements>
+    <Icon>Wizard</Icon>
+    <Background>WizardBackground</Background>
+    <EnhancementTreeItem>
+      <Name>Pale Master: Dark Reaping</Name>
+      <InternalName>PaleCore1</InternalName>
+      <Description>For each Core Ability in this tree, including this one, you gain
++5 Negative Spell Power, +5 Universal Spell Power and +3 Negative Healing Amplification.</Description>
+      <Icon>PMDarkReaping</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>0</MinSpent>
+      <ArrowRight/>
       <Requirements>
-         <Requirement>
-            <Class>Wizard</Class>
-         </Requirement>
+        <Requirement>
+          <Class>Wizard</Class>
+          <Level>1</Level>
+        </Requirement>
       </Requirements>
-      <Background>WizardBackground</Background>
-      <Icon>Wizard</Icon>
-      <EnhancementTreeItem>
-         <Name>Pale Master: Dark Reaping</Name>
-         <InternalName>PMCore1</InternalName>
-         <Description>For each point spent in this tree you gain +0.75 Universal Spell Power
-and +0.75 Negative Energy Spell Power
-(for a total of 1.5 Negative Energy SpellPower per point spent).
-            </Description>
-         <Icon>PMDarkReaping</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>0</YPosition>
-         <Cost>1</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>0</MinSpent>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <Class>Wizard</Class>
-               <Level>1</Level>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <DisplayName>Pale Master: 0.75 Universal Spell Power per AP</DisplayName>
-            <Bonus>Enhancement</Bonus>
-            <Type>SpellPower</Type>
-            <SpellPower>All</SpellPower>
-            <EnhancementTree>Pale Master</EnhancementTree>
-            <AmountPerAP>0.75</AmountPerAP>
-         </Effect>
-         <Effect>
-            <DisplayName>Pale Master: 0.75 Negative Spell Power per AP</DisplayName>
-            <Bonus>Enhancement</Bonus>
-            <Type>SpellPower</Type>
-            <EnhancementTree>Pale Master</EnhancementTree>
-            <AmountPerAP>0.75</AmountPerAP>
-            <SpellPower>Negative</SpellPower>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Pale Master: Shroud of the Zombie</Name>
-         <InternalName>PMCore2</InternalName>
-         <Description>Shroud Toggle: You shroud yourself with negative energy and assume many of the traits of a zombie.
-(Activation Cost: 25 Spell Points. Cooldown: 30 seconds)
-While in this form, you hunger for brains and gain
-+2 Strength, +2 Constitution, -2 Intelligence, -4 Charisma, and Damage Reduction 5/Slashing.
-Your unarmed damage is increased by 1[W], but you attack 20% slower than normal.
-You have +100% critical hit resistance, are healed by negative energy, and are unaffected
-by positive energy or repair effects, but take double damage from light effects.
-You are considered undead rather than your original type for the purpose of most effects.</Description>
-         <Icon>PMShroudOfTheZombie</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>0</YPosition>
-         <Cost>1</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>5</MinSpent>
-         <Clickie/>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <Enhancement>PMCore1</Enhancement>
-            </Requirement>
-            <Requirement>
-               <Class>Wizard</Class>
-               <Level>3</Level>
-            </Requirement>
-         </Requirements>
-         <Stance>
+      <Effect>
+        <DisplayName>Pale Master: +5 Negative Spell Power per Core</DisplayName>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>5</Amount>
+        <SpellPower>Negative</SpellPower>
+      </Effect>
+      <Effect>
+        <DisplayName>Pale Master: +5 Universal Spell Power per Core</DisplayName>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>5</Amount>
+        <SpellPower>All</SpellPower>
+      </Effect>
+      <Effect>
+        <DisplayName>Pale Master: +3 Negative Healing Amplification per Core</DisplayName>
+        <Type>NegativeHealingAmplification</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>3</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Pale Master: Pale Shroud</Name>
+      <InternalName>PaleCore2</InternalName>
+      <Description>Multiselector: Choose an Undead Shroud.
+All forms grant 100% critical hit resistance and allow you to be healed by Negative Energy.
+You take 50% healing from Positive, and double damage from Light. You are considered undead.</Description>
+      <Icon>PMShroudOfTheZombie</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <Clickie/>
+      <Requirements>
+        <Requirement>
+          <Enhancement>PaleCore1</Enhancement>
+        </Requirement>
+        <Requirement>
+          <Class>Wizard</Class>
+          <Level>3</Level>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <SelectorExclusions>
+          <SelectorExclusion>
+            <InternalName>PaleDeathlyVersatile</InternalName>
+          </SelectorExclusion>
+        </SelectorExclusions>
+        <EnhancementSelection>
+          <Name>Shroud of the Zombie</Name>
+          <Description>While in this form, +4 Constitution, +2 Strength, +20% damage with attacks
+but you attack 20% slower than normal. You gain +3 PRR, +3 MRR.</Description>
+          <Icon>PMShroudOfTheZombie</Icon>
+          <Cost>1</Cost>
+          <Clickie/>
+          <Stance>
             <Name>Shround of the Zombie</Name>
             <Icon>PMShroudOfTheZombie</Icon>
-            <Description>While in this form, you hunger for brains and gain
-+2 Strength, +2 Constitution, -2 Intelligence, -4 Charisma, and Damage Reduction 5/Slashing.
-Your unarmed damage is increased by 1[W], but you attack 20% slower than normal.
-You have +100% critical hit resistance, are healed by negative energy, and are unaffected
-by positive energy or repair effects, but take double damage from light effects.</Description>
-         </Stance>
-         <Effect>
+            <Description>While in this form, +4 Constitution, +20% damage with attacks but you attack
+20% slower than normal. You gain +3 PRR, +3 MRR.</Description>
+          </Stance>
+          <Effect>
             <Type>AbilityBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <Ability>Strength</Ability>
-            <Amount>2</Amount>
+            <Amount>4</Amount>
             <Stance>Shroud of the Zombie</Stance>
-         </Effect>
-         <Effect>
-            <Type>AbilityBonus</Type>
-            <Bonus>Enhancement</Bonus>
             <Ability>Constitution</Ability>
+          </Effect>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
             <Amount>2</Amount>
             <Stance>Shroud of the Zombie</Stance>
-         </Effect>
-         <Effect>
-            <Type>AbilityBonus</Type>
+            <Ability>Strength</Ability>
+          </Effect>
+          <Effect>
+            <Type>PRR</Type>
             <Bonus>Enhancement</Bonus>
-            <Ability>Intelligence</Ability>
-            <Amount>-2</Amount>
+            <Amount>3</Amount>
             <Stance>Shroud of the Zombie</Stance>
-         </Effect>
-         <Effect>
-            <Type>AbilityBonus</Type>
+          </Effect>
+          <Effect>
+            <Type>MRR</Type>
             <Bonus>Enhancement</Bonus>
-            <Ability>Charisma</Ability>
-            <Amount>-4</Amount>
+            <Amount>3</Amount>
             <Stance>Shroud of the Zombie</Stance>
-         </Effect>
-         <Effect>
-            <Type>DR</Type>
-            <Bonus>Enhancement</Bonus>
-            <DR>Slash</DR>
-            <Amount>5</Amount>
-            <Stance>Shroud of the Zombie</Stance>
-         </Effect>
-         <Effect>
-            <Type>Fortification</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>100</Amount>
-            <Stance>Shroud of the Zombie</Stance>
-         </Effect>
-         <Effect>
-            <Type>WeaponBaseDamageBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>1</Amount>
-            <Weapon>Unarmed</Weapon>
-            <Stance>Shroud of the Zombie</Stance>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Pale Master: Shroud of the Vampire</Name>
-         <InternalName>PMCore3</InternalName>
-         <Description>Shroud Toggle: You shroud yourself with negative energy and assume many of the traits of a vampire.
-(Activation Cost: 50 Spell Points. Cooldown: 30 seconds)
-While in this form, you gain +2 Strength, +2 Charisma, +2 to the DC's of your Enchantment spells,
-and generate 25% less threat from spells and attacks.
-On Vorpal Melee Hit: Your attack causes Energy Drain, inflicting 1 Negative Level on your victim.
-You have +100% critical hit resistance, are healed by negative energy, and are unaffected by
-positive energy or repair effects, but take triple damage from light effects.
-You are considered undead rather than your original type for the purpose of most effects.</Description>
-         <Icon>PMShroudOfTheVampire</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>0</YPosition>
-         <Cost>1</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
-         <Clickie/>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <Enhancement>PMCore2</Enhancement>
-            </Requirement>
-            <Requirement>
-               <Class>Wizard</Class>
-               <Level>6</Level>
-            </Requirement>
-         </Requirements>
-         <Stance>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Shroud of the Vampire</Name>
+          <Description>While in this form, +2 Charisma, +2 Intelligence, +2 Wisdom.
++3 Perform skill, and your melee and unarmed attacks have a chance to heal
+you for 1d3 Negative Energy damage per Wizard Level.</Description>
+          <Icon>PMShroudOfTheVampire</Icon>
+          <Cost>1</Cost>
+          <Clickie/>
+          <Stance>
             <Name>Shroud of the Vampire</Name>
             <Icon>PMShroudOfTheVampire</Icon>
-            <Description>While in this form, you gain +2 Strength, +2 Charisma, +2 to the DC's of your Enchantment spells,
-and generate 25% less threat from spells and attacks.
-On Vorpal Melee Hit: Your attack causes Energy Drain, inflicting 1 Negative Level on your victim.
-You have +100% critical hit resistance, are healed by negative energy, and are unaffected by
-positive energy or repair effects, but take triple damage from light effects.</Description>
-         </Stance>
-         <Effect>
+            <Description>While in this form, +2 Charisma, +2 Intelligence, +2 Wisdom.
++3 Perform skill, and your melee and unarmed attacks have a chance to heal
+you for 1d3 Negative Energy damage per Wizard Level.</Description>
+          </Stance>
+          <Effect>
             <Type>AbilityBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <Ability>Strength</Ability>
             <Amount>2</Amount>
             <Stance>Shroud of the Vampire</Stance>
-         </Effect>
-         <Effect>
-            <Type>AbilityBonus</Type>
-            <Bonus>Enhancement</Bonus>
             <Ability>Charisma</Ability>
+          </Effect>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
             <Amount>2</Amount>
             <Stance>Shroud of the Vampire</Stance>
-         </Effect>
-         <Effect>
-            <Type>SpellDC</Type>
+            <Ability>Intelligence</Ability>
+          </Effect>
+          <Effect>
+            <Type>AbilityBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <School>Enchantment</School>
             <Amount>2</Amount>
             <Stance>Shroud of the Vampire</Stance>
-         </Effect>
-         <Effect>
-            <Type>ThreatBonusSpell</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>-25</Amount>
-            <Stance>Shroud of the Vampire</Stance>
-         </Effect>
-         <Effect>
-            <Type>Fortification</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>100</Amount>
-            <Stance>Shroud of the Vampire</Stance>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Pale Master: Shroud of the Wraith</Name>
-         <InternalName>PMCore4</InternalName>
-         <Description>Shroud Toggle: You shroud yourself with negative energy and assume many of the traits of a wraith.
-(Activation Cost: 75 Spell Points. Cooldown: 30 seconds)
-While in this form, enemy attacks have a 25% chance to miss you due to your incorporeality,
-you float as if affected by featherfall, have a +20 bonus to the Move Silently and Balance skills,
-and your attacks funcion as if they had Ghost Touch.
-On Critical Melee Hit: Your attack deals 1d6 Constitution damage to the victim.
-You have +100% critical hit resistance, are healed by negative energy, and are unaffected by
-positive energy or repair effects, but take double damage from light effects.
-You are considered undead rather than your original type for the purpose of most effects.</Description>
-         <Icon>PMShroudOfTheWraith</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>0</YPosition>
-         <Cost>1</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
-         <Clickie/>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <Enhancement>PMCore3</Enhancement>
-            </Requirement>
-            <Requirement>
-               <Class>Wizard</Class>
-               <Level>12</Level>
-            </Requirement>
-         </Requirements>
-         <Stance>
+            <Ability>Wisdom</Ability>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Pale Master: Shroud of the Wraith</Name>
+          <Description>While in this form, +2 Dexterity, +2 Intelligence.
+Enemy attacks have a 10% chance to miss you due to incorporeality,
++1 Sneak Attack Dice, and you gain Feather Falling.</Description>
+          <Icon>PMShroudOfTheWraith</Icon>
+          <Cost>1</Cost>
+          <Clickie/>
+          <Stance>
             <Name>Shroud of the Wraith</Name>
             <Icon>PMShroudOfTheWraith</Icon>
-            <Description>While in this form, enemy attacks have a 25% chance to miss you due to your incorporeality,
-you float as if affected by featherfall, have a +20 bonus to the Move Silently and Balance skills,
-and your attacks funcion as if they had Ghost Touch.
-On Critical Melee Hit: Your attack deals 1d6 Constitution damage to the victim.
-You have +100% critical hit resistance, are healed by negative energy, and are unaffected by
-positive energy or repair effects, but take double damage from light effects.</Description>
-         </Stance>
-         <Effect>
-            <Type>Fortification</Type>
+            <Description>While in this form, +2 Dexterity, +2 Intelligence.
+Enemy attacks have a 10% chance to miss you due to incorporeality,
++1 Sneak Attack Dice, and you gain Feather Falling.</Description>
+          </Stance>
+          <Effect>
+            <Type>AbilityBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <Amount>100</Amount>
+            <Amount>2</Amount>
             <Stance>Shroud of the Wraith</Stance>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Pale Master: Shroud of the Lich</Name>
-         <InternalName>PMCore5</InternalName>
-         <Description>Shroud Toggle: You shroud yourself with negative energy and assume many of the traits of a lich.
-(Activation Cost: 100 Spell Points. Cooldown: 30 seconds)
-While in this form, you gain +4 Constitution, +2 Intelligence, +2 Wisdom, +2 Charisma,
-+1 to DCs of your Necromancy spells, and occasionally gain temporary hit points when damaged.
-On Melee Hit: Your attack inflicts 2-9 points of Negative Energy damage to a living target.
-You have +100% critical hit resistance, are healed by negative energy, and are unaffected by
-positive energy or repair effects, but take double damage from light effects.
-You are considered undead rather than your original type for the purpose of most effects.</Description>
-         <Icon>PMShroudOfTheLich</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>0</YPosition>
-         <Cost>1</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <Clickie/>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <Enhancement>PMCore4</Enhancement>
-            </Requirement>
-            <Requirement>
-               <Class>Wizard</Class>
-               <Level>18</Level>
-            </Requirement>
-         </Requirements>
-         <Stance>
+            <Ability>Dexterity</Ability>
+          </Effect>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Stance>Shroud of the Wraith</Stance>
+            <Ability>Intelligence</Ability>
+          </Effect>
+          <Effect>
+            <Type>SneakAttackDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Stance>Shroud of the Wraith</Stance>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Shroud of the Lich</Name>
+          <Description>While in this form, +2 Constitution, +2 Intelligence, +10 Negative Amplification,
++5 Negative Spell Power, and +15 Magical Resistance Rating.</Description>
+          <Icon>PMShroudOfTheLich</Icon>
+          <Cost>1</Cost>
+          <Clickie/>
+          <Stance>
             <Name>Shroud of the Lich</Name>
             <Icon>PMShroudOfTheLich</Icon>
-            <Description>While in this form, you gain +4 Constitution, +2 Intelligence, +2 Wisdom, +2 Charisma,
-+1 to DCs of your Necromancy spells, and occasionally gain temporary hit points when damaged.
-On Melee Hit: Your attack inflicts 2-9 points of Negative Energy damage to a living target.
-You have +100% critical hit resistance, are healed by negative energy, and are unaffected by
-positive energy or repair effects, but take double damage from light effects.</Description>
-         </Stance>
-         <Effect>
+            <Description>While in this form, +2 Constitution, +2 Intelligence, +10 Negative Amplification,
++5 Negative Spell Power, and +15 Magical Resistance Rating.</Description>
+          </Stance>
+          <Effect>
             <Type>AbilityBonus</Type>
             <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Stance>Shroud of the Lich</Stance>
             <Ability>Constitution</Ability>
-            <Amount>4</Amount>
-            <Stance>Shroud of the Lich</Stance>
-         </Effect>
-         <Effect>
+          </Effect>
+          <Effect>
             <Type>AbilityBonus</Type>
             <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Stance>Shroud of the Lich</Stance>
             <Ability>Intelligence</Ability>
-            <Amount>2</Amount>
-            <Stance>Shroud of the Lich</Stance>
-         </Effect>
-         <Effect>
-            <Type>AbilityBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Ability>Wisdom</Ability>
-            <Amount>2</Amount>
-            <Stance>Shroud of the Lich</Stance>
-         </Effect>
-         <Effect>
-            <Type>AbilityBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Ability>Charisma</Ability>
-            <Amount>2</Amount>
-            <Stance>Shroud of the Lich</Stance>
-         </Effect>
-         <Effect>
-            <Type>SpellDC</Type>
-            <Bonus>Enhancement</Bonus>
-            <School>Necromancy</School>
-            <Amount>1</Amount>
-            <Stance>Shroud of the Lich</Stance>
-         </Effect>
-         <Effect>
-            <Type>Fortification</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>100</Amount>
-            <Stance>Shroud of the Lich</Stance>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Pale Master: Master of Death</Name>
-         <InternalName>PMCore6</InternalName>
-         <Description>You gain +2 intelligence and deathblock.
-When you have a Shroud toggle active, receive 5% more healing from Negative Energy.</Description>
-         <Icon>PMMasterOfDeath</Icon>
-         <XPosition>5</XPosition>
-         <YPosition>0</YPosition>
-         <Cost>1</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>40</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Enhancement>PMCore5</Enhancement>
-            </Requirement>
-            <Requirement>
-               <Class>Wizard</Class>
-               <Level>20</Level>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>AbilityBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Ability>Intelligence</Ability>
-            <Amount>2</Amount>
-         </Effect>
-         <Effect>
-            <Type>Immunity</Type>
-            <Bonus>Enhancement</Bonus>
-            <Immunity>Deathblock</Immunity>
-         </Effect>
-         <Effect>
+          </Effect>
+          <Effect>
             <Type>NegativeHealingAmplification</Type>
             <Bonus>Enhancement</Bonus>
-            <Amount>5</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Pale Master: Necrotic Touch</Name>
-         <InternalName>PMNecroticTouch</InternalName>
-         <Description>Spell Like Ability: Necrotic Touch
-(Activation Cost: 2 Hit Points. Cooldown: 12/8/4 seconds.)</Description>
-         <Icon>PMNecroticTouch</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>1</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>1</MinSpent>
-         <Clickie/>
-         <LongArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Class>Wizard</Class>
-               <Level>1</Level>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellLikeAbility</Type>
+            <Amount>10</Amount>
+            <Stance>Shroud of the Lich</Stance>
+          </Effect>
+          <Effect>
+            <Type>SpellPower</Type>
             <Bonus>Enhancement</Bonus>
-            <SpellLikeAbility>Necrotic Touch</SpellLikeAbility>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Pale Master: Deathless Vigor</Name>
-         <InternalName>PMDeathlessVigor</InternalName>
-         <Description>The power of undeath has toughened your flesh, providing you with an additional +10/+20/+30 Hit Points.</Description>
-         <Icon>PMDeathlessVigor</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>1</YPosition>
-         <Cost>2</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>1</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Class>Wizard</Class>
-               <Level>1</Level>
-            </Requirement>
-         </Requirements>
-         <Effect>
+            <Amount>5</Amount>
+            <Stance>Shroud of the Lich</Stance>
+            <SpellPower>Negative</SpellPower>
+          </Effect>
+          <Effect>
+            <Type>MRR</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>15</Amount>
+            <Stance>Shroud of the Lich</Stance>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+      <Effect>
+        <DisplayName>Pale Master: +5 Negative Spell Power per Core</DisplayName>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>5</Amount>
+        <SpellPower>Negative</SpellPower>
+      </Effect>
+      <Effect>
+        <DisplayName>Pale Master: +5 Universal Spell Power per Core</DisplayName>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>5</Amount>
+        <SpellPower>All</SpellPower>
+      </Effect>
+      <Effect>
+        <DisplayName>Pale Master: +3 Negative Healing Amplification per Core</DisplayName>
+        <Type>NegativeHealingAmplification</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>3</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Pale Master: Undead Augmentation I</Name>
+      <InternalName>PaleCore3</InternalName>
+      <Description>Enhance you Undead Forms.
+Pick one of the following abilities that applies while in a Pale Shroud.
+Passive: While in a Shroud, you can breathe underwater. +1 Spell Penetration.</Description>
+      <Icon>PMUndeadAugmentation</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Enhancement>PaleCore2</Enhancement>
+        </Requirement>
+        <Requirement>
+          <Class>Wizard</Class>
+          <Level>6</Level>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Deathly Touch</Name>
+          <Description>+25 Maximum Hitpoints, +5 PRR</Description>
+          <Icon>PMUndeadAugmentation</Icon>
+          <Cost>1</Cost>
+          <Effect>
             <Type>Hitpoints</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">10 20 30</AmountVector>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Pale Master: Spell Critical: Negative Energy I</Name>
-         <InternalName>PMSpellCriticalNegativeEnergyI</InternalName>
-         <Description>Your Negative Energy damage spells have an additional 2% chance to critically hit.</Description>
-         <Icon>PMSpellCriticalNegativeEnergy</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>1</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>1</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Class>Wizard</Class>
-               <Level>1</Level>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellLore</Type>
+            <Amount>25</Amount>
+            <AnyOfStance>Shroud of the Zombie</AnyOfStance>
+            <AnyOfStance>Shroud of the Vampire</AnyOfStance>
+            <AnyOfStance>Shroud of the Wraith</AnyOfStance>
+            <AnyOfStance>Shroud of the Lich</AnyOfStance>
+          </Effect>
+          <Effect>
+            <Type>PRR</Type>
             <Bonus>Enhancement</Bonus>
-            <SpellPower>Negative</SpellPower>
+            <Amount>5</Amount>
+            <AnyOfStance>Shroud of the Zombie</AnyOfStance>
+            <AnyOfStance>Shroud of the Vampire</AnyOfStance>
+            <AnyOfStance>Shroud of the Wraith</AnyOfStance>
+            <AnyOfStance>Shroud of the Lich</AnyOfStance>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Deathly Resistance</Name>
+          <Description>+15 Magical Resistance Rating, +2 to all Saves</Description>
+          <Icon>PMUndeadAugmentation</Icon>
+          <Cost>1</Cost>
+          <Effect>
+            <Type>MRR</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>15</Amount>
+            <AnyOfStance>Shroud of the Zombie</AnyOfStance>
+            <AnyOfStance>Shroud of the Vampire</AnyOfStance>
+            <AnyOfStance>Shroud of the Wraith</AnyOfStance>
+            <AnyOfStance>Shroud of the Lich</AnyOfStance>
+          </Effect>
+          <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
             <Amount>2</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Pale Master: Skeletal Knight</Name>
-         <InternalName>PMSkeletalKnight</InternalName>
-         <Description>Summon the reanimated body of an ancient knight to do your bidding once per rest.
-(Activation Cost: 10 Hit Points and 10 Spell Points. Cooldown: 5 minutes.)
+            <AnyOfStance>Shroud of the Zombie</AnyOfStance>
+            <AnyOfStance>Shroud of the Vampire</AnyOfStance>
+            <AnyOfStance>Shroud of the Wraith</AnyOfStance>
+            <AnyOfStance>Shroud of the Lich</AnyOfStance>
+            <Save>All</Save>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Inflict Weariness</Name>
+          <Description>Your attacks inflict 2-9 points of Negative Energy damage to a living target.
+This scales with 100% Spell Power. Your Vorpal Melee Hits cause Energy Drain,
+inflicting 1 Negative Level on victims.</Description>
+          <Icon>PMUndeadAugmentation</Icon>
+          <Cost>1</Cost>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Haunting in the Dark</Name>
+          <Description>+2 Assassinate DCs, +1 Sneak Attack Dice</Description>
+          <Icon>PMUndeadAugmentation</Icon>
+          <Cost>1</Cost>
+          <Effect>
+            <Type>TacticalDC</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <AnyOfStance>Shroud of the Zombie</AnyOfStance>
+            <AnyOfStance>Shroud of the Vampire</AnyOfStance>
+            <AnyOfStance>Shroud of the Wraith</AnyOfStance>
+            <AnyOfStance>Shroud of the Lich</AnyOfStance>
+            <Tactical>Assassinate</Tactical>
+          </Effect>
+          <Effect>
+            <Type>SneakAttackDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <AnyOfStance>Shroud of the Zombie</AnyOfStance>
+            <AnyOfStance>Shroud of the Vampire</AnyOfStance>
+            <AnyOfStance>Shroud of the Wraith</AnyOfStance>
+            <AnyOfStance>Shroud of the Lich</AnyOfStance>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Ghost in the Wind</Name>
+          <Description>+10% Incorporeal Miss Chance.
+If you are in Wraith Form, this increases your total to 20%.</Description>
+          <Icon>PMUndeadAugmentation</Icon>
+          <Cost>1</Cost>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Deathly Power</Name>
+          <Description>+10 to Negative Energy Spellpower.</Description>
+          <Icon>PMUndeadAugmentation</Icon>
+          <Cost>1</Cost>
+          <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>10</Amount>
+            <AnyOfStance>Shroud of the Zombie</AnyOfStance>
+            <AnyOfStance>Shroud of the Vampire</AnyOfStance>
+            <AnyOfStance>Shroud of the Wraith</AnyOfStance>
+            <AnyOfStance>Shroud of the Lich</AnyOfStance>
+            <SpellPower>Negative</SpellPower>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+2 Necromancy DC</Name>
+          <Description>+2 Necromancy DC</Description>
+          <Icon>PMUndeadAugmentation</Icon>
+          <Cost>1</Cost>
+          <Effect>
+            <Type>SpellDC</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <AnyOfStance>Shroud of the Zombie</AnyOfStance>
+            <AnyOfStance>Shroud of the Vampire</AnyOfStance>
+            <AnyOfStance>Shroud of the Wraith</AnyOfStance>
+            <AnyOfStance>Shroud of the Lich</AnyOfStance>
+            <School>Necromancy</School>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+2 Enchantment DC</Name>
+          <Description>+2 Enchantment DC</Description>
+          <Icon>PMUndeadAugmentation</Icon>
+          <Cost>1</Cost>
+          <Effect>
+            <Type>SpellDC</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <AnyOfStance>Shroud of the Zombie</AnyOfStance>
+            <AnyOfStance>Shroud of the Vampire</AnyOfStance>
+            <AnyOfStance>Shroud of the Wraith</AnyOfStance>
+            <AnyOfStance>Shroud of the Lich</AnyOfStance>
+            <School>Enchantment</School>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Undead Chill</Name>
+          <Description>+15% bonus to Cold Absorption. You no longer take extra damage from Light.</Description>
+          <Icon>PMUndeadAugmentation</Icon>
+          <Cost>1</Cost>
+          <Effect>
+            <Type>EnergyAbsorbance</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>15</Amount>
+            <AnyOfStance>Shroud of the Zombie</AnyOfStance>
+            <AnyOfStance>Shroud of the Vampire</AnyOfStance>
+            <AnyOfStance>Shroud of the Wraith</AnyOfStance>
+            <AnyOfStance>Shroud of the Lich</AnyOfStance>
+            <Energy>Cold</Energy>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Undead Shock</Name>
+          <Description>+15% bonus to Electric Absorption. You no longer take extra damage from Light.</Description>
+          <Icon>PMUndeadAugmentation</Icon>
+          <Cost>1</Cost>
+          <Effect>
+            <Type>EnergyAbsorbance</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>15</Amount>
+            <AnyOfStance>Shroud of the Zombie</AnyOfStance>
+            <AnyOfStance>Shroud of the Vampire</AnyOfStance>
+            <AnyOfStance>Shroud of the Wraith</AnyOfStance>
+            <AnyOfStance>Shroud of the Lich</AnyOfStance>
+            <Energy>Electric</Energy>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Unhallowed Touch</Name>
+          <Description>You gain Ghost Touch on all attacks, +5 Hide and Move Silently</Description>
+          <Icon>PMUndeadAugmentation</Icon>
+          <Cost>1</Cost>
+          <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>5</Amount>
+            <AnyOfStance>Shroud of the Zombie</AnyOfStance>
+            <AnyOfStance>Shroud of the Vampire</AnyOfStance>
+            <AnyOfStance>Shroud of the Wraith</AnyOfStance>
+            <AnyOfStance>Shroud of the Lich</AnyOfStance>
+            <Skill>Hide</Skill>
+            <Skill>Move Silently</Skill>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+      <Effect>
+        <Type>SpellPenetrationBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>1</Amount>
+      </Effect>
+      <Effect>
+        <DisplayName>Pale Master: +5 Negative Spell Power per Core</DisplayName>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>5</Amount>
+        <SpellPower>Negative</SpellPower>
+      </Effect>
+      <Effect>
+        <DisplayName>Pale Master: +5 Universal Spell Power per Core</DisplayName>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>5</Amount>
+        <SpellPower>All</SpellPower>
+      </Effect>
+      <Effect>
+        <DisplayName>Pale Master: +3 Negative Healing Amplification per Core</DisplayName>
+        <Type>NegativeHealingAmplification</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>3</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Pale Master: Undead Augmentation II</Name>
+      <InternalName>PaleCore4</InternalName>
+      <Description>Pick a different ability that applies while in a Pale Shroud.
+Passive: +1 Spell Penetration.</Description>
+      <Icon>PMUndeadAugmentation</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Enhancement>PaleCore3</Enhancement>
+        </Requirement>
+        <Requirement>
+          <Class>Wizard</Class>
+          <Level>12</Level>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <SelectorExclusions>
+          <SelectorExclusion>
+            <InternalName>PaleCore3</InternalName>
+          </SelectorExclusion>
+        </SelectorExclusions>
+        <EnhancementSelection>
+          <Name>Deathly Touch</Name>
+          <Description>+15 Maximum Hitpoints</Description>
+          <Icon>PMUndeadAugmentation</Icon>
+          <Cost>1</Cost>
+          <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>15</Amount>
+            <AnyOfStance>Shroud of the Zombie</AnyOfStance>
+            <AnyOfStance>Shroud of the Vampire</AnyOfStance>
+            <AnyOfStance>Shroud of the Wraith</AnyOfStance>
+            <AnyOfStance>Shroud of the Lich</AnyOfStance>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Deathly Resistance</Name>
+          <Description>+15 Magical Resistance Rating, +2 to all Saves</Description>
+          <Icon>PMUndeadAugmentation</Icon>
+          <Cost>1</Cost>
+          <Effect>
+            <Type>MRR</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>15</Amount>
+            <AnyOfStance>Shroud of the Zombie</AnyOfStance>
+            <AnyOfStance>Shroud of the Vampire</AnyOfStance>
+            <AnyOfStance>Shroud of the Wraith</AnyOfStance>
+            <AnyOfStance>Shroud of the Lich</AnyOfStance>
+          </Effect>
+          <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <AnyOfStance>Shroud of the Zombie</AnyOfStance>
+            <AnyOfStance>Shroud of the Vampire</AnyOfStance>
+            <AnyOfStance>Shroud of the Wraith</AnyOfStance>
+            <AnyOfStance>Shroud of the Lich</AnyOfStance>
+            <Save>All</Save>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Inflict Weariness</Name>
+          <Description>Your attacks inflict 2-9 points of Negative Energy damage to a living target.
+This scales with 100% Spell Power. Your Vorpal Melee Hits cause Energy Drain,
+inflicting 1 Negative Level on victims.</Description>
+          <Icon>PMUndeadAugmentation</Icon>
+          <Cost>1</Cost>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Haunting in the Dark</Name>
+          <Description>+2 Assassinate DCs.</Description>
+          <Icon>PMUndeadAugmentation</Icon>
+          <Cost>1</Cost>
+          <Effect>
+            <Type>TacticalDC</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <AnyOfStance>Shroud of the Zombie</AnyOfStance>
+            <AnyOfStance>Shroud of the Vampire</AnyOfStance>
+            <AnyOfStance>Shroud of the Wraith</AnyOfStance>
+            <AnyOfStance>Shroud of the Lich</AnyOfStance>
+            <Tactical>Assassinate</Tactical>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Ghost in the Wind</Name>
+          <Description>+15% Incorporeal Miss Chance.
+If you are in Wraith Form, this increases your total to 25%.</Description>
+          <Icon>PMUndeadAugmentation</Icon>
+          <Cost>1</Cost>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Deathly Power</Name>
+          <Description>+10 to Negative Energy Spellpower.</Description>
+          <Icon>PMUndeadAugmentation</Icon>
+          <Cost>1</Cost>
+          <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>10</Amount>
+            <AnyOfStance>Shroud of the Zombie</AnyOfStance>
+            <AnyOfStance>Shroud of the Vampire</AnyOfStance>
+            <AnyOfStance>Shroud of the Wraith</AnyOfStance>
+            <AnyOfStance>Shroud of the Lich</AnyOfStance>
+            <SpellPower>Negative</SpellPower>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+2 Necromancy DC</Name>
+          <Description>+2 Necromancy DC</Description>
+          <Icon>PMUndeadAugmentation</Icon>
+          <Cost>1</Cost>
+          <Effect>
+            <Type>SpellDC</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <AnyOfStance>Shroud of the Zombie</AnyOfStance>
+            <AnyOfStance>Shroud of the Vampire</AnyOfStance>
+            <AnyOfStance>Shroud of the Wraith</AnyOfStance>
+            <AnyOfStance>Shroud of the Lich</AnyOfStance>
+            <School>Necromancy</School>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+2 Enchantment DC</Name>
+          <Description>+2 Enchantment DC</Description>
+          <Icon>PMUndeadAugmentation</Icon>
+          <Cost>1</Cost>
+          <Effect>
+            <Type>SpellDC</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <AnyOfStance>Shroud of the Zombie</AnyOfStance>
+            <AnyOfStance>Shroud of the Vampire</AnyOfStance>
+            <AnyOfStance>Shroud of the Wraith</AnyOfStance>
+            <AnyOfStance>Shroud of the Lich</AnyOfStance>
+            <School>Enchantment</School>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Undead Chill</Name>
+          <Description>+15% bonus to Cold Absorption. You no longer take extra damage from Light.</Description>
+          <Icon>PMUndeadAugmentation</Icon>
+          <Cost>1</Cost>
+          <Effect>
+            <Type>EnergyAbsorbance</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>15</Amount>
+            <AnyOfStance>Shroud of the Zombie</AnyOfStance>
+            <AnyOfStance>Shroud of the Vampire</AnyOfStance>
+            <AnyOfStance>Shroud of the Wraith</AnyOfStance>
+            <AnyOfStance>Shroud of the Lich</AnyOfStance>
+            <Energy>Cold</Energy>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Undead Shock</Name>
+          <Description>+15% bonus to Electric Absorption. You no longer take extra damage from Light.</Description>
+          <Icon>PMUndeadAugmentation</Icon>
+          <Cost>1</Cost>
+          <Effect>
+            <Type>EnergyAbsorbance</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>15</Amount>
+            <AnyOfStance>Shroud of the Zombie</AnyOfStance>
+            <AnyOfStance>Shroud of the Vampire</AnyOfStance>
+            <AnyOfStance>Shroud of the Wraith</AnyOfStance>
+            <AnyOfStance>Shroud of the Lich</AnyOfStance>
+            <Energy>Electric</Energy>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Unhallowed Touch</Name>
+          <Description>You gain Ghost Touch on all attacks, +5 Hide and Move Silently</Description>
+          <Icon>PMUndeadAugmentation</Icon>
+          <Cost>1</Cost>
+          <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>5</Amount>
+            <AnyOfStance>Shroud of the Zombie</AnyOfStance>
+            <AnyOfStance>Shroud of the Vampire</AnyOfStance>
+            <AnyOfStance>Shroud of the Wraith</AnyOfStance>
+            <AnyOfStance>Shroud of the Lich</AnyOfStance>
+            <Skill>Hide</Skill>
+            <Skill>Move Silently</Skill>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+      <Effect>
+        <Type>SpellPenetrationBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>1</Amount>
+      </Effect>
+      <Effect>
+        <DisplayName>Pale Master: +5 Negative Spell Power per Core</DisplayName>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>5</Amount>
+        <SpellPower>Negative</SpellPower>
+      </Effect>
+      <Effect>
+        <DisplayName>Pale Master: +5 Universal Spell Power per Core</DisplayName>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>5</Amount>
+        <SpellPower>All</SpellPower>
+      </Effect>
+      <Effect>
+        <DisplayName>Pale Master: +3 Negative Healing Amplification per Core</DisplayName>
+        <Type>NegativeHealingAmplification</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>3</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Pale Master: Undead Augmentation III</Name>
+      <InternalName>PaleCore5</InternalName>
+      <Description>Pick a different ability that applies while in a Pale Shroud.
+Passive: +1 Spell Penetration, +50 Spell Points</Description>
+      <Icon>PMUndeadAugmentation</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Enhancement>PaleCore4</Enhancement>
+        </Requirement>
+        <Requirement>
+          <Class>Wizard</Class>
+          <Level>18</Level>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <SelectorExclusions>
+          <SelectorExclusion>
+            <InternalName>PaleCore3</InternalName>
+          </SelectorExclusion>
+          <SelectorExclusion>
+            <InternalName>PaleCore4</InternalName>
+          </SelectorExclusion>
+        </SelectorExclusions>
+        <EnhancementSelection>
+          <Name>Deathly Touch</Name>
+          <Description>+15 Maximum Hitpoints</Description>
+          <Icon>PMUndeadAugmentation</Icon>
+          <Cost>1</Cost>
+          <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>15</Amount>
+            <AnyOfStance>Shroud of the Zombie</AnyOfStance>
+            <AnyOfStance>Shroud of the Vampire</AnyOfStance>
+            <AnyOfStance>Shroud of the Wraith</AnyOfStance>
+            <AnyOfStance>Shroud of the Lich</AnyOfStance>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Deathly Resistance</Name>
+          <Description>+15 Magical Resistance Rating, +2 to all Saves</Description>
+          <Icon>PMUndeadAugmentation</Icon>
+          <Cost>1</Cost>
+          <Effect>
+            <Type>MRR</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>15</Amount>
+            <AnyOfStance>Shroud of the Zombie</AnyOfStance>
+            <AnyOfStance>Shroud of the Vampire</AnyOfStance>
+            <AnyOfStance>Shroud of the Wraith</AnyOfStance>
+            <AnyOfStance>Shroud of the Lich</AnyOfStance>
+          </Effect>
+          <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <AnyOfStance>Shroud of the Zombie</AnyOfStance>
+            <AnyOfStance>Shroud of the Vampire</AnyOfStance>
+            <AnyOfStance>Shroud of the Wraith</AnyOfStance>
+            <AnyOfStance>Shroud of the Lich</AnyOfStance>
+            <Save>All</Save>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Inflict Weariness</Name>
+          <Description>Your attacks inflict 2-9 points of Negative Energy damage to a living target.
+This scales with 100% Spell Power. Your Vorpal Melee Hits cause Energy Drain,
+inflicting 1 Negative Level on victims.</Description>
+          <Icon>PMUndeadAugmentation</Icon>
+          <Cost>1</Cost>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Haunting in the Dark</Name>
+          <Description>+2 Assassinate DCs.</Description>
+          <Icon>PMUndeadAugmentation</Icon>
+          <Cost>1</Cost>
+          <Effect>
+            <Type>TacticalDC</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <AnyOfStance>Shroud of the Zombie</AnyOfStance>
+            <AnyOfStance>Shroud of the Vampire</AnyOfStance>
+            <AnyOfStance>Shroud of the Wraith</AnyOfStance>
+            <AnyOfStance>Shroud of the Lich</AnyOfStance>
+            <Tactical>Assassinate</Tactical>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Ghost in the Wind</Name>
+          <Description>+15% Incorporeal Miss Chance.
+If you are in Wraith Form, this increases your total to 25%.</Description>
+          <Icon>PMUndeadAugmentation</Icon>
+          <Cost>1</Cost>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Deathly Power</Name>
+          <Description>+10 to Negative Energy Spellpower.</Description>
+          <Icon>PMUndeadAugmentation</Icon>
+          <Cost>1</Cost>
+          <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>10</Amount>
+            <AnyOfStance>Shroud of the Zombie</AnyOfStance>
+            <AnyOfStance>Shroud of the Vampire</AnyOfStance>
+            <AnyOfStance>Shroud of the Wraith</AnyOfStance>
+            <AnyOfStance>Shroud of the Lich</AnyOfStance>
+            <SpellPower>Negative</SpellPower>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+2 Necromancy DC</Name>
+          <Description>+2 Necromancy DC</Description>
+          <Icon>PMUndeadAugmentation</Icon>
+          <Cost>1</Cost>
+          <Effect>
+            <Type>SpellDC</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <AnyOfStance>Shroud of the Zombie</AnyOfStance>
+            <AnyOfStance>Shroud of the Vampire</AnyOfStance>
+            <AnyOfStance>Shroud of the Wraith</AnyOfStance>
+            <AnyOfStance>Shroud of the Lich</AnyOfStance>
+            <School>Necromancy</School>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+2 Enchantment DC</Name>
+          <Description>+2 Enchantment DC</Description>
+          <Icon>PMUndeadAugmentation</Icon>
+          <Cost>1</Cost>
+          <Effect>
+            <Type>SpellDC</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <AnyOfStance>Shroud of the Zombie</AnyOfStance>
+            <AnyOfStance>Shroud of the Vampire</AnyOfStance>
+            <AnyOfStance>Shroud of the Wraith</AnyOfStance>
+            <AnyOfStance>Shroud of the Lich</AnyOfStance>
+            <School>Enchantment</School>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Undead Chill</Name>
+          <Description>+15% bonus to Cold Absorption. You no longer take extra damage from Light.</Description>
+          <Icon>PMUndeadAugmentation</Icon>
+          <Cost>1</Cost>
+          <Effect>
+            <Type>EnergyAbsorbance</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>15</Amount>
+            <AnyOfStance>Shroud of the Zombie</AnyOfStance>
+            <AnyOfStance>Shroud of the Vampire</AnyOfStance>
+            <AnyOfStance>Shroud of the Wraith</AnyOfStance>
+            <AnyOfStance>Shroud of the Lich</AnyOfStance>
+            <Energy>Cold</Energy>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Undead Shock</Name>
+          <Description>+15% bonus to Electric Absorption. You no longer take extra damage from Light.</Description>
+          <Icon>PMUndeadAugmentation</Icon>
+          <Cost>1</Cost>
+          <Effect>
+            <Type>EnergyAbsorbance</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>15</Amount>
+            <AnyOfStance>Shroud of the Zombie</AnyOfStance>
+            <AnyOfStance>Shroud of the Vampire</AnyOfStance>
+            <AnyOfStance>Shroud of the Wraith</AnyOfStance>
+            <AnyOfStance>Shroud of the Lich</AnyOfStance>
+            <Energy>Electric</Energy>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Unhallowed Touch</Name>
+          <Description>You gain Ghost Touch on all attacks, +5 Hide and Move Silently</Description>
+          <Icon>PMUndeadAugmentation</Icon>
+          <Cost>1</Cost>
+          <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>5</Amount>
+            <AnyOfStance>Shroud of the Zombie</AnyOfStance>
+            <AnyOfStance>Shroud of the Vampire</AnyOfStance>
+            <AnyOfStance>Shroud of the Wraith</AnyOfStance>
+            <AnyOfStance>Shroud of the Lich</AnyOfStance>
+            <Skill>Hide</Skill>
+            <Skill>Move Silently</Skill>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+      <Effect>
+        <Type>SpellPenetrationBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>1</Amount>
+      </Effect>
+      <Effect>
+        <Type>SpellPoints</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>50</Amount>
+      </Effect>
+      <Effect>
+        <DisplayName>Pale Master: +5 Negative Spell Power per Core</DisplayName>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>5</Amount>
+        <SpellPower>Negative</SpellPower>
+      </Effect>
+      <Effect>
+        <DisplayName>Pale Master: +5 Universal Spell Power per Core</DisplayName>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>5</Amount>
+        <SpellPower>All</SpellPower>
+      </Effect>
+      <Effect>
+        <DisplayName>Pale Master: +3 Negative Healing Amplification per Core</DisplayName>
+        <Type>NegativeHealingAmplification</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>3</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Pale Master: Embrace the Void</Name>
+      <InternalName>PaleCore6</InternalName>
+      <Description>Active: Greater Death Aura SLA.
+Envelops the caster in a sickly aura of negative energy. Living enemies stepping
+inside the aura take 3 to 12 negative energy damage plus 1 additional point per
+caster level every two seconds as long as they remain within it. A successful
+Fortitude save reduces the damage by half. Undead are instead healed by the aura.
+This aura can affect up to one target per caster level. D&amp;D Dice: Deals 3d4
+negative energy damage plus 1 per caster level every two seconds.
+This can be cast simultaneously with Lesser Death Aura and Death Aura.
+Passive: You gain +4 Intelligence and Deathblock. +10 Negative Healing Amplification.
++2 Spell Penetration.</Description>
+      <Icon>PMEmbraceTheVoid</Icon>
+      <XPosition>5</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>40</MinSpent>
+      <Clickie/>
+      <Requirements>
+        <Requirement>
+          <Enhancement>PaleCore5</Enhancement>
+        </Requirement>
+        <Requirement>
+          <Class>Wizard</Class>
+          <Level>20</Level>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>4</Amount>
+        <Ability>Intelligence</Ability>
+      </Effect>
+      <Effect>
+        <Type>Immunity</Type>
+        <Bonus>Enhancement</Bonus>
+        <Immunity>Deathblock</Immunity>
+      </Effect>
+      <Effect>
+        <Type>NegativeHealingAmplification</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>10</Amount>
+      </Effect>
+      <Effect>
+        <DisplayName>Pale Master: +5 Negative Spell Power per Core</DisplayName>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>5</Amount>
+        <SpellPower>Negative</SpellPower>
+      </Effect>
+      <Effect>
+        <DisplayName>Pale Master: +5 Universal Spell Power per Core</DisplayName>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>5</Amount>
+        <SpellPower>All</SpellPower>
+      </Effect>
+      <Effect>
+        <DisplayName>Pale Master: +3 Negative Healing Amplification per Core</DisplayName>
+        <Type>NegativeHealingAmplification</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>3</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Pale Master: Necrotic Touch</Name>
+      <InternalName>PaleNecroticTouch</InternalName>
+      <Description>Spell Like Ability: Necrotic Touch
+Cost: 6/4/2 SP, 12/8/4 seconds.
+Accepts Metamagics. Scales with full Spell Power.
+For 12 seconds after casting this, your Skeletal Knight reduces its incoming damage by 50%.</Description>
+      <Icon>PMNecroticTouch</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Clickie/>
+      <LongArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Class>Wizard</Class>
+          <Level>1</Level>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLikeAbility</Type>
+        <Bonus>Enhancement</Bonus>
+        <SpellLikeAbility>Necrotic Touch</SpellLikeAbility>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Pale Master: Negative Energy Conduit</Name>
+      <InternalName>PaleNegativeEnergyConduit</InternalName>
+      <Description>Your vulnerability to Negative Energy is increased by 6% / 12% / 20%.
+This increases the amount by which you are healed from Negative Energy while you
+have a Shroud toggle active.</Description>
+      <Icon>PMNegativeEnergyConduit</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Wizard</Class>
+          <Level>1</Level>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>NegativeHealingAmplification</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">6 12 20</AmountVector>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Pale Master: Spell Critical: Negative Energy I</Name>
+      <InternalName>PaleSpellCriticalNegativeEnergyI</InternalName>
+      <Description>Your Negative Energy damage spells have an additional 2% chance to critically hit.</Description>
+      <Icon>PMSpellCriticalNegativeEnergy</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>1</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Class>Wizard</Class>
+          <Level>1</Level>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLore</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>2</Amount>
+        <SpellPower>Negative</SpellPower>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Pale Master: Skeletal Knight</Name>
+      <InternalName>PaleSkeletalKnight</InternalName>
+      <Description>Summon the reanimated body of an ancient knight to do your bidding once per rest.
+Cooldown: 20 seocnds
 The Skeletal Knight is a very strong Fighter with a level equal to your current Wizard
 level plus any Epic levels. You can summon it in addition to any Summon Monster spell
 you might be using. Additional ranks in this enhancement increase your Knight's Damage,
 Attack Speed, Movement Speed, and Fortification.</Description>
-         <Icon>PMSkeletalKnight</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>1</YPosition>
-         <Cost>2</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>1</MinSpent>
-         <Clickie/>
-         <ArrowUp/>
-         <Requirements>
+      <Icon>PMSkeletalKnight</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>2</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Clickie/>
+      <Requirements>
+        <Requirement>
+          <Class>Wizard</Class>
+          <Level>1</Level>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Pale Master: Deathless Vigor</Name>
+      <InternalName>PaleDeathlessVigor</InternalName>
+      <Description>The power of undeath has toughened your flesh, providing you with an additional +10/+20/+30 Hit Points.</Description>
+      <Icon>PMDeathlessVigor</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>2</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Wizard</Class>
+          <Level>1</Level>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>Hitpoints</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">10 20 30</AmountVector>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Pale Master: Cloak of Night</Name>
+      <InternalName>PaleCloakOfNight</InternalName>
+      <Description>While blocking in a Pale Shroud, you gain invisibility, displacement,
+and do not take extra damage from Light. Passive: +5 Hide.</Description>
+      <Icon>PaleCloakOfNight</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Wizard</Class>
+          <Level>2</Level>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SkillBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>5</Amount>
+        <Skill>Hide</Skill>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Pale Master: Spell Critical: Negative Energy II</Name>
+      <InternalName>PaleSpellCriticalNegativeEnergyII</InternalName>
+      <Description>Your Negative Energy damage spells have an additional 2% chance to critically hit.</Description>
+      <Icon>PMSpellCriticalNegativeEnergyII</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Class>Wizard</Class>
+          <Level>2</Level>
+        </Requirement>
+        <Requirement>
+          <Enhancement>PaleSpellCriticalNegativeEnergyI</Enhancement>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLore</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>2</Amount>
+        <SpellPower>Negative</SpellPower>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Pale Master: Corpsecrafter</Name>
+      <InternalName>PaleCorpsecrafter</InternalName>
+      <Description>Your Skeletal Knight gains a +2/+4/+6 Profane Bonus to Strength, Dexterity, and Constitution.
+Rank 3: You gain +1 Strength, Dexterity, and Constitution.</Description>
+      <Icon>PMCorpsecrafter</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Wizard</Class>
+          <Level>2</Level>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">0 0 1</AmountVector>
+        <Ability>Strength</Ability>
+      </Effect>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">0 0 1</AmountVector>
+        <Ability>Dexterity</Ability>
+      </Effect>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">0 0 1</AmountVector>
+        <Ability>Constitution</Ability>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Pale Master: Efficient Metamagic</Name>
+      <InternalName>PaleEfficientMetamagic</InternalName>
+      <Description>Choose one of the following Metamagic feats.
+Reduce the spell point cost of using that Metamagic.</Description>
+      <Icon>EfficientMetamagic</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Wizard</Class>
+          <Level>2</Level>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Efficient Empower</Name>
+          <Description>Using the Empower Spell Metamagic costs you 2/4/6 fewer Spell Points. </Description>
+          <Icon>EfficientEmpower</Icon>
+          <Cost>2</Cost>
+          <Requirements>
             <Requirement>
-               <Class>Wizard</Class>
-               <Level>1</Level>
+              <Feat>Empower Spell</Feat>
             </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Pale Master: Negative Energy Conduit</Name>
-         <InternalName>PMNegativeEnergyConduit</InternalName>
-         <Description>Your vulnerability to Negative Energy is increased by 6% / 12% / 20%.
-This increases the amount by which you are healed from Negative Energy while you
-have a Shroud toggle active.</Description>
-         <Icon>PMNegativeEnergyConduit</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>1</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>1</MinSpent>
-         <Requirements>
+            <RequiresNoneOf>
+              <DisplayDescription>Any other Efficient Empower enhancement</DisplayDescription>
+              <Requirement>
+                <Enhancement>ATEfficientMetamagic</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>ATEfficientMetamagicII</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>DDEfficientMetamagicI</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>DDEfficientMetamagicII</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>DDEfficientMetamagicIII</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>SHImprovedMetamagicsI</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>SHImprovedMetamagicsII</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>AoVEfficientMetamagicI</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>AoVEfficientMetamagicII</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>ASEfficientMetamagicI</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>ASEfficientMetamagicII</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>ESEfficientMetamagicI</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>ESEfficientMetamagicII</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>FSEfficientMetamagicI</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>FSEfficientMetamagicII</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>WSEfficientMetamagicI</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>WSEfficientMetamagicII</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>AMEfficientMetamagicLeft</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>AMEfficientMetamagicI</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>AMEfficientMetamagicRight</Enhancement>
+                <Selection>Efficient Empower</Selection>
+              </Requirement>
+            </RequiresNoneOf>
+          </Requirements>
+          <Effect>
+            <Type>AdditionalSpellPointCost</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">-2 -4 -6</AmountVector>
+            <Stance>Empower</Stance>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Efficient Enlarge</Name>
+          <Description>Using the Enlarge Spell Metamagic costs you 1/2/4 fewer Spell Points. </Description>
+          <Icon>EfficientEnlarge</Icon>
+          <Cost>2</Cost>
+          <Requirements>
             <Requirement>
-               <Class>Wizard</Class>
-               <Level>1</Level>
+              <Feat>Enlarge Spell</Feat>
             </Requirement>
-         </Requirements>
-         <Effect>
+            <RequiresNoneOf>
+              <DisplayDescription>Any other Efficient Enlarge enhancement</DisplayDescription>
+              <Requirement>
+                <Enhancement>DDEfficientMetamagicI</Enhancement>
+                <Selection>Efficient Enlarge</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>DDEfficientMetamagicII</Enhancement>
+                <Selection>Efficient Enlarge</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>DDEfficientMetamagicIII</Enhancement>
+                <Selection>Efficient Enlarge</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>SHImprovedMetamagicsI</Enhancement>
+                <Selection>Efficient Enlarge</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>SHImprovedMetamagicsII</Enhancement>
+                <Selection>Efficient Enlarge</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>AoVEfficientMetamagicI</Enhancement>
+                <Selection>Efficient Enlarge</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>AoVEfficientMetamagicII</Enhancement>
+                <Selection>Efficient Enlarge</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>ASEfficientMetamagicI</Enhancement>
+                <Selection>Efficient Enlarge</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>ASEfficientMetamagicII</Enhancement>
+                <Selection>Efficient Enlarge</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>ESEfficientMetamagicI</Enhancement>
+                <Selection>Efficient Enlarge</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>ESEfficientMetamagicII</Enhancement>
+                <Selection>Efficient Enlarge</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>FSEfficientMetamagicI</Enhancement>
+                <Selection>Efficient Enlarge</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>FSEfficientMetamagicII</Enhancement>
+                <Selection>Efficient Enlarge</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>WSEfficientMetamagicI</Enhancement>
+                <Selection>Efficient Enlarge</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>WSEfficientMetamagicII</Enhancement>
+                <Selection>Efficient Enlarge</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>AMEfficientMetamagicLeft</Enhancement>
+                <Selection>Efficient Enlarge</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>AMEfficientMetamagicI</Enhancement>
+                <Selection>Efficient Enlarge</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>AMEfficientMetamagicRight</Enhancement>
+                <Selection>Efficient Enlarge</Selection>
+              </Requirement>
+            </RequiresNoneOf>
+          </Requirements>
+          <Effect>
+            <Type>AdditionalSpellPointCost</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">-1 -2 -4</AmountVector>
+            <Stance>Enlarge</Stance>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Efficient Maximize</Name>
+          <Description>Using the Maximize Spell Metamagic costs you 3/6/9 fewer Spell Points. </Description>
+          <Icon>EfficientMaximize</Icon>
+          <Cost>2</Cost>
+          <Requirements>
+            <Requirement>
+              <Feat>Maximize Spell</Feat>
+            </Requirement>
+            <RequiresNoneOf>
+              <DisplayDescription>Any other Efficient Maximize enhancement</DisplayDescription>
+              <Requirement>
+                <Enhancement>DDEfficientMetamagicI</Enhancement>
+                <Selection>Efficient Maximize</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>DDEfficientMetamagicII</Enhancement>
+                <Selection>Efficient Maximize</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>DDEfficientMetamagicIII</Enhancement>
+                <Selection>Efficient Maximize</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>SHImprovedMetamagicsI</Enhancement>
+                <Selection>Efficient Maximize</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>SHImprovedMetamagicsII</Enhancement>
+                <Selection>Efficient Maximize</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>AoVEfficientMetamagicI</Enhancement>
+                <Selection>Efficient Maximize</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>AoVEfficientMetamagicII</Enhancement>
+                <Selection>Efficient Maximize</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>ASEfficientMetamagicI</Enhancement>
+                <Selection>Efficient Maximize</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>ASEfficientMetamagicII</Enhancement>
+                <Selection>Efficient Maximize</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>ESEfficientMetamagicI</Enhancement>
+                <Selection>Efficient Maximize</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>ESEfficientMetamagicII</Enhancement>
+                <Selection>Efficient Maximize</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>FSEfficientMetamagicI</Enhancement>
+                <Selection>Efficient Maximize</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>FSEfficientMetamagicII</Enhancement>
+                <Selection>Efficient Maximize</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>WSEfficientMetamagicI</Enhancement>
+                <Selection>Efficient Maximize</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>WSEfficientMetamagicII</Enhancement>
+                <Selection>Efficient Maximize</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>AMEfficientMetamagicLeft</Enhancement>
+                <Selection>Efficient Maximize</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>AMEfficientMetamagicI</Enhancement>
+                <Selection>Efficient Maximize</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>AMEfficientMetamagicRight</Enhancement>
+                <Selection>Efficient Maximize</Selection>
+              </Requirement>
+            </RequiresNoneOf>
+          </Requirements>
+          <Effect>
+            <Type>AdditionalSpellPointCost</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">-3 -6 -9</AmountVector>
+            <Stance>Maximize</Stance>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Efficient Quicken</Name>
+          <Description>Using the Quicken Spell Metamagic costs you 1/2/4 fewer Spell Points.</Description>
+          <Icon>EfficientQuicken</Icon>
+          <Cost>2</Cost>
+          <Requirements>
+            <Requirement>
+              <Feat>Quicken Spell</Feat>
+            </Requirement>
+            <RequiresNoneOf>
+              <DisplayDescription>Any other Efficient Quicken enhancement</DisplayDescription>
+              <Requirement>
+                <Enhancement>ATEfficientMetamagic</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>ATEfficientMetamagicII</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>DDEfficientMetamagicI</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>DDEfficientMetamagicII</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>DDEfficientMetamagicIII</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>SHImprovedMetamagicsI</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>SHImprovedMetamagicsII</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>AoVEfficientMetamagicI</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>AoVEfficientMetamagicII</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>ASEfficientMetamagicI</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>ASEfficientMetamagicII</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>ESEfficientMetamagicI</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>ESEfficientMetamagicII</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>FSEfficientMetamagicI</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>FSEfficientMetamagicII</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>WSEfficientMetamagicI</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>WSEfficientMetamagicII</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>AMEfficientMetamagicLeft</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>AMEfficientMetamagicI</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+              <Requirement>
+                <Enhancement>AMEfficientMetamagicRight</Enhancement>
+                <Selection>Efficient Quicken</Selection>
+              </Requirement>
+            </RequiresNoneOf>
+          </Requirements>
+          <Effect>
+            <Type>AdditionalSpellPointCost</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">-1 -2 -4</AmountVector>
+            <Stance>Quicken</Stance>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Pale Master: Necrotic Bolt</Name>
+      <InternalName>PaleNecroticBolt</InternalName>
+      <Description>Spell Like Ability: Necrotic Bolt
+Cost: 10/8/5 SP, 15/10/5 seconds. Accepts Metamagics. Scales with full Spell Power.</Description>
+      <Icon>PMNecroticBolt</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+      <Clickie/>
+      <LongArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Class>Wizard</Class>
+          <Level>3</Level>
+        </Requirement>
+        <Requirement>
+          <Enhancement>PaleNecroticTouch</Enhancement>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLikeAbility</Type>
+        <Bonus>Enhancement</Bonus>
+        <SpellLikeAbility>Necrotic Bolt</SpellLikeAbility>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Pale Master: Negative Energy Adept</Name>
+      <InternalName>PaleNegativeEnergyAdept</InternalName>
+      <Description>+10/20/30 Negative Healing Amplification</Description>
+      <Icon>PMNegativeEnergyAdept</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Wizard</Class>
+          <Level>3</Level>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>NegativeHealingAmplification</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">10 20 30</AmountVector>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Pale Master: Spell Critical: Negative Energy III</Name>
+      <InternalName>PaleSpellCriticalNegativeEnergyIII</InternalName>
+      <Description>Your Negative Energy damage spells have an additional 2% chance to critically hit.</Description>
+      <Icon>PMSpellCriticalNegativeEnergyIII</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Class>Wizard</Class>
+          <Level>3</Level>
+        </Requirement>
+        <Requirement>
+          <Enhancement>PaleSpellCriticalNegativeEnergyII</Enhancement>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLore</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>2</Amount>
+        <SpellPower>Negative</SpellPower>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Pale Master: Eternal Furor</Name>
+      <InternalName>PaleEternalFuror</InternalName>
+      <Description>You (while in a Shroud) AND your Skeleton Knight gain +5/10/15 Profane
+Bonus to PRR. Your Skeletal Knight gains +3/6/10 to hit and damage, +2/4/6 Profane
+Bonus to AC, and and its attacks bypass 10%/20%/50% of enemy Fortification.</Description>
+      <Icon>PMEternalServitude</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements/>
+      <Effect>
+        <Type>PRR</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">5 10 15</AmountVector>
+        <AnyOfStance>Shroud of the Zombie</AnyOfStance>
+        <AnyOfStance>Shroud of the Vampire</AnyOfStance>
+        <AnyOfStance>Shroud of the Wraith</AnyOfStance>
+        <AnyOfStance>Shroud of the Lich</AnyOfStance>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Pale Master: Ability I</Name>
+      <InternalName>PaleAbilityScoreI</InternalName>
+      <Description>Choose either Constitution or Intelligence</Description>
+      <Icon>ConInt</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Class>Wizard</Class>
+          <Level>3</Level>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>+1 Constitution</Name>
+          <Description>+1 Constitution</Description>
+          <Icon>Constitution</Icon>
+          <Cost>2</Cost>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Ability>Constitution</Ability>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Intelligence</Name>
+          <Description>+1 Intelligence</Description>
+          <Icon>Intelligence</Icon>
+          <Cost>2</Cost>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Ability>Intelligence</Ability>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Pale Master: Unholy Avatar</Name>
+      <InternalName>PaleUnholyAvatar</InternalName>
+      <Description>You are cloaked in the darkness itself, and can reach out with your
+Negative Energy Spells to taint the Undead with mortality. When you strike an
+Undead with a damage-dealing Negative Energy Spell, it leaves a lingering weakness
+to Negative Energy that bypasses an Undead's natural resistance to Negative Energy.
+Only works while in a Shroud form.</Description>
+      <Icon>PMUnholyAvatar</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Wizard</Class>
+          <Level>4</Level>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Pale Master: Spell Critical: Negative Energy IV</Name>
+      <InternalName>PaleSpellCriticalNegativeEnergyIV</InternalName>
+      <Description>Your Negative Energy damage spells have an additional 2% chance to critically hit.</Description>
+      <Icon>PMSpellCriticalNegativeEnergyIV</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Wizard</Class>
+          <Level>4</Level>
+        </Requirement>
+        <Requirement>
+          <Enhancement>PaleSpellCriticalNegativeEnergyIII</Enhancement>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLore</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>2</Amount>
+        <SpellPower>Negative</SpellPower>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Pale Master: Deathly Versatile</Name>
+      <InternalName>PaleDeathlyVersatile</InternalName>
+      <Description>Pick a second Shroud Toggle. You may only have one active at a time.</Description>
+      <Icon>PMShroudOfTheZombie</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Clickie/>
+      <Requirements>
+        <Requirement>
+          <Class>Wizard</Class>
+          <Level>4</Level>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <SelectorExclusions>
+          <SelectorExclusion>
+            <InternalName>PaleCore2</InternalName>
+          </SelectorExclusion>
+        </SelectorExclusions>
+        <EnhancementSelection>
+          <Name>Shroud of the Zombie</Name>
+          <Description>While in this form, +4 Constitution, +20% damage with attacks but you attack
+20% slower than normal. You gain +3 PRR, +3 MRR.</Description>
+          <Icon>PMShroudOfTheZombie</Icon>
+          <Cost>1</Cost>
+          <Clickie/>
+          <Stance>
+            <Name>Shround of the Zombie</Name>
+            <Icon>PMShroudOfTheZombie</Icon>
+            <Description>While in this form, +4 Constitution, +20% damage with attacks but you attack
+20% slower than normal. You gain +3 PRR, +3 MRR.</Description>
+          </Stance>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>4</Amount>
+            <Stance>Shroud of the Zombie</Stance>
+            <Ability>Constitution</Ability>
+          </Effect>
+          <Effect>
+            <Type>PRR</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>3</Amount>
+            <Stance>Shroud of the Zombie</Stance>
+          </Effect>
+          <Effect>
+            <Type>MRR</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>3</Amount>
+            <Stance>Shroud of the Zombie</Stance>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Shroud of the Vampire</Name>
+          <Description>While in this form, +2 Charisma, +2 Intelligence, +2 Wisdom.
++3 Perform skill, and your melee and unarmed attacks have a chance to heal
+you for 1d3 Negative Energy damage per Wizard Level.</Description>
+          <Icon>PMShroudOfTheVampire</Icon>
+          <Cost>1</Cost>
+          <Clickie/>
+          <Stance>
+            <Name>Shroud of the Vampire</Name>
+            <Icon>PMShroudOfTheVampire</Icon>
+            <Description>While in this form, +2 Charisma, +2 Intelligence, +2 Wisdom.
++3 Perform skill, and your melee and unarmed attacks have a chance to heal
+you for 1d3 Negative Energy damage per Wizard Level.</Description>
+          </Stance>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Stance>Shroud of the Vampire</Stance>
+            <Ability>Charisma</Ability>
+          </Effect>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Stance>Shroud of the Vampire</Stance>
+            <Ability>Intelligence</Ability>
+          </Effect>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Stance>Shroud of the Vampire</Stance>
+            <Ability>Wisdom</Ability>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Pale Master: Shroud of the Wraith</Name>
+          <Description>While in this form, +2 Dexterity, +2 Intelligence.
+Enemy attacks have a 10% chance to miss you due to incorporeality,
++1 Sneak Attack Dice, and you gain Feather Falling.</Description>
+          <Icon>PMShroudOfTheWraith</Icon>
+          <Cost>1</Cost>
+          <Clickie/>
+          <Stance>
+            <Name>Shroud of the Wraith</Name>
+            <Icon>PMShroudOfTheWraith</Icon>
+            <Description>While in this form, +2 Dexterity, +2 Intelligence.
+Enemy attacks have a 10% chance to miss you due to incorporeality,
++1 Sneak Attack Dice, and you gain Feather Falling.</Description>
+          </Stance>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Stance>Shroud of the Wraith</Stance>
+            <Ability>Dexterity</Ability>
+          </Effect>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Stance>Shroud of the Wraith</Stance>
+            <Ability>Intelligence</Ability>
+          </Effect>
+          <Effect>
+            <Type>SneakAttackDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Stance>Shroud of the Wraith</Stance>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Shroud of the Lich</Name>
+          <Description>While in this form, +2 Constitution, +2 Intelligence, +10 Negative Amplification,
++5 Negative Spell Power, and +15 Magical Resistance Rating.</Description>
+          <Icon>PMShroudOfTheLich</Icon>
+          <Cost>1</Cost>
+          <Clickie/>
+          <Stance>
+            <Name>Shroud of the Lich</Name>
+            <Icon>PMShroudOfTheLich</Icon>
+            <Description>While in this form, +2 Constitution, +2 Intelligence, +10 Negative Amplification,
++5 Negative Spell Power, and +15 Magical Resistance Rating.</Description>
+          </Stance>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Stance>Shroud of the Lich</Stance>
+            <Ability>Constitution</Ability>
+          </Effect>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Stance>Shroud of the Lich</Stance>
+            <Ability>Intelligence</Ability>
+          </Effect>
+          <Effect>
             <Type>NegativeHealingAmplification</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">6 12 20</AmountVector>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Pale Master: Efficient Metamagic</Name>
-         <InternalName>PMEfficientMetamagic</InternalName>
-         <Description>Choose one of the following Metamagic feats.
-Reduce the spell point cost of using that Metamagic.</Description>
-         <Icon>EfficientMetamagic</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>2</YPosition>
-         <Cost>2</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>5</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Class>Wizard</Class>
-               <Level>2</Level>
-            </Requirement>
-         </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>Efficient Empower</Name>
-               <Description>Using the Empower Spell Metamagic costs you 2/4/6 fewer Spell Points. </Description>
-               <Icon>EfficientEmpower</Icon>
-               <Cost>2</Cost>
-               <Requirements>
-                  <Requirement>
-                     <Feat>Empower Spell</Feat>
-                  </Requirement>
-                  <RequiresNoneOf>
-                     <DisplayDescription>Any other Efficient Empower enhancement</DisplayDescription>
-                     <Requirement>
-                        <Enhancement>ATEfficientMetamagic</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>ATEfficientMetamagicII</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>DDEfficientMetamagicI</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>DDEfficientMetamagicII</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>DDEfficientMetamagicIII</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>SHImprovedMetamagicsI</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>SHImprovedMetamagicsII</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>AoVEfficientMetamagicI</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>AoVEfficientMetamagicII</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>ASEfficientMetamagicI</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>ASEfficientMetamagicII</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>ESEfficientMetamagicI</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>ESEfficientMetamagicII</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>FSEfficientMetamagicI</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>FSEfficientMetamagicII</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>WSEfficientMetamagicI</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>WSEfficientMetamagicII</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>AMEfficientMetamagicLeft</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>AMEfficientMetamagicI</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>AMEfficientMetamagicRight</Enhancement>
-                        <Selection>Efficient Empower</Selection>
-                     </Requirement>
-                  </RequiresNoneOf>
-               </Requirements>
-               <Effect>
-                  <Type>AdditionalSpellPointCost</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AmountVector size="3">-2 -4 -6</AmountVector>
-                  <Stance>Empower</Stance>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Efficient Enlarge</Name>
-               <Description>Using the Enlarge Spell Metamagic costs you 1/2/4 fewer Spell Points. </Description>
-               <Icon>EfficientEnlarge</Icon>
-               <Cost>2</Cost>
-               <Requirements>
-                  <Requirement>
-                     <Feat>Enlarge Spell</Feat>
-                  </Requirement>
-                  <RequiresNoneOf>
-                     <DisplayDescription>Any other Efficient Enlarge enhancement</DisplayDescription>
-                     <Requirement>
-                        <Enhancement>DDEfficientMetamagicI</Enhancement>
-                        <Selection>Efficient Enlarge</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>DDEfficientMetamagicII</Enhancement>
-                        <Selection>Efficient Enlarge</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>DDEfficientMetamagicIII</Enhancement>
-                        <Selection>Efficient Enlarge</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>SHImprovedMetamagicsI</Enhancement>
-                        <Selection>Efficient Enlarge</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>SHImprovedMetamagicsII</Enhancement>
-                        <Selection>Efficient Enlarge</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>AoVEfficientMetamagicI</Enhancement>
-                        <Selection>Efficient Enlarge</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>AoVEfficientMetamagicII</Enhancement>
-                        <Selection>Efficient Enlarge</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>ASEfficientMetamagicI</Enhancement>
-                        <Selection>Efficient Enlarge</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>ASEfficientMetamagicII</Enhancement>
-                        <Selection>Efficient Enlarge</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>ESEfficientMetamagicI</Enhancement>
-                        <Selection>Efficient Enlarge</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>ESEfficientMetamagicII</Enhancement>
-                        <Selection>Efficient Enlarge</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>FSEfficientMetamagicI</Enhancement>
-                        <Selection>Efficient Enlarge</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>FSEfficientMetamagicII</Enhancement>
-                        <Selection>Efficient Enlarge</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>WSEfficientMetamagicI</Enhancement>
-                        <Selection>Efficient Enlarge</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>WSEfficientMetamagicII</Enhancement>
-                        <Selection>Efficient Enlarge</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>AMEfficientMetamagicLeft</Enhancement>
-                        <Selection>Efficient Enlarge</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>AMEfficientMetamagicI</Enhancement>
-                        <Selection>Efficient Enlarge</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>AMEfficientMetamagicRight</Enhancement>
-                        <Selection>Efficient Enlarge</Selection>
-                     </Requirement>
-                  </RequiresNoneOf>
-               </Requirements>
-               <Effect>
-                  <Type>AdditionalSpellPointCost</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AmountVector size="3">-1 -2 -4</AmountVector>
-                  <Stance>Enlarge</Stance>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Efficient Maximize</Name>
-               <Description>Using the Maximize Spell Metamagic costs you 3/6/9 fewer Spell Points. </Description>
-               <Icon>EfficientMaximize</Icon>
-               <Cost>2</Cost>
-               <Requirements>
-                  <Requirement>
-                     <Feat>Maximize Spell</Feat>
-                  </Requirement>
-                  <RequiresNoneOf>
-                     <DisplayDescription>Any other Efficient Maximize enhancement</DisplayDescription>
-                     <Requirement>
-                        <Enhancement>DDEfficientMetamagicI</Enhancement>
-                        <Selection>Efficient Maximize</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>DDEfficientMetamagicII</Enhancement>
-                        <Selection>Efficient Maximize</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>DDEfficientMetamagicIII</Enhancement>
-                        <Selection>Efficient Maximize</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>SHImprovedMetamagicsI</Enhancement>
-                        <Selection>Efficient Maximize</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>SHImprovedMetamagicsII</Enhancement>
-                        <Selection>Efficient Maximize</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>AoVEfficientMetamagicI</Enhancement>
-                        <Selection>Efficient Maximize</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>AoVEfficientMetamagicII</Enhancement>
-                        <Selection>Efficient Maximize</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>ASEfficientMetamagicI</Enhancement>
-                        <Selection>Efficient Maximize</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>ASEfficientMetamagicII</Enhancement>
-                        <Selection>Efficient Maximize</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>ESEfficientMetamagicI</Enhancement>
-                        <Selection>Efficient Maximize</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>ESEfficientMetamagicII</Enhancement>
-                        <Selection>Efficient Maximize</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>FSEfficientMetamagicI</Enhancement>
-                        <Selection>Efficient Maximize</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>FSEfficientMetamagicII</Enhancement>
-                        <Selection>Efficient Maximize</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>WSEfficientMetamagicI</Enhancement>
-                        <Selection>Efficient Maximize</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>WSEfficientMetamagicII</Enhancement>
-                        <Selection>Efficient Maximize</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>AMEfficientMetamagicLeft</Enhancement>
-                        <Selection>Efficient Maximize</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>AMEfficientMetamagicI</Enhancement>
-                        <Selection>Efficient Maximize</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>AMEfficientMetamagicRight</Enhancement>
-                        <Selection>Efficient Maximize</Selection>
-                     </Requirement>
-                  </RequiresNoneOf>
-               </Requirements>
-               <Effect>
-                  <Type>AdditionalSpellPointCost</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AmountVector size="3">-3 -6 -9</AmountVector>
-                  <Stance>Maximize</Stance>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Efficient Quicken</Name>
-               <Description>Using the Quicken Spell Metamagic costs you 1/2/4 fewer Spell Points.</Description>
-               <Icon>EfficientQuicken</Icon>
-               <Cost>2</Cost>
-               <Requirements>
-                  <Requirement>
-                     <Feat>Quicken Spell</Feat>
-                  </Requirement>
-                  <RequiresNoneOf>
-                     <DisplayDescription>Any other Efficient Quicken enhancement</DisplayDescription>
-                     <Requirement>
-                        <Enhancement>ATEfficientMetamagic</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>ATEfficientMetamagicII</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>DDEfficientMetamagicI</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>DDEfficientMetamagicII</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>DDEfficientMetamagicIII</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>SHImprovedMetamagicsI</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>SHImprovedMetamagicsII</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>AoVEfficientMetamagicI</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>AoVEfficientMetamagicII</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>ASEfficientMetamagicI</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>ASEfficientMetamagicII</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>ESEfficientMetamagicI</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>ESEfficientMetamagicII</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>FSEfficientMetamagicI</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>FSEfficientMetamagicII</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>WSEfficientMetamagicI</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>WSEfficientMetamagicII</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>AMEfficientMetamagicLeft</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>AMEfficientMetamagicI</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>AMEfficientMetamagicRight</Enhancement>
-                        <Selection>Efficient Quicken</Selection>
-                     </Requirement>
-                  </RequiresNoneOf>
-               </Requirements>
-               <Effect>
-                  <Type>AdditionalSpellPointCost</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <AmountVector size="3">-1 -2 -4</AmountVector>
-                  <Stance>Quicken</Stance>
-               </Effect>
-            </EnhancementSelection>
-         </Selector>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Pale Master: Spell Critical: Negative Energy II</Name>
-         <InternalName>PMSpellCriticalNegativeEnergyII</InternalName>
-         <Description>Your Negative Energy damage spells have an additional 2% chance to critically hit.</Description>
-         <Icon>PMSpellCriticalNegativeEnergyII</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>2</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>5</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Class>Wizard</Class>
-               <Level>2</Level>
-            </Requirement>
-            <Requirement>
-               <Enhancement>PMSpellCriticalNegativeEnergyI</Enhancement>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellLore</Type>
-            <Bonus>Enhancement</Bonus>
-            <SpellPower>Negative</SpellPower>
-            <Amount>2</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Pale Master: Corpsecrafter</Name>
-         <InternalName>PMCorpsecrafter</InternalName>
-         <Description>Your Skeletal Knight gains a +2/+4/+6 Profane Bonus to Strength, Dexterity, and Constitution</Description>
-         <Icon>PMCorpsecrafter</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>2</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>5</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Class>Wizard</Class>
-               <Level>2</Level>
-            </Requirement>
-            <Requirement>
-               <Enhancement>PMSkeletalKnight</Enhancement>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Pale Master: Bone Armor</Name>
-         <InternalName>PMBoneArmor</InternalName>
-         <Description>While under the effect of Shroud of the Zombie, Vampire, or Lich,
-you gain 3/6/10 Physical Resistance. While under the effect of Shroud of the Wraith, you gain 1%/2%/3% Dodge.</Description>
-         <Icon>PMBoneArmor</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>2</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>5</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Class>Wizard</Class>
-               <Level>2</Level>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>PRR</Type>
-            <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">3 6 10</AmountVector>
-            <Stance>Shroud of the Zombie</Stance>
-         </Effect>
-         <Effect>
-            <Type>PRR</Type>
-            <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">3 6 10</AmountVector>
-            <Stance>Shroud of the Vampire</Stance>
-         </Effect>
-         <Effect>
-            <Type>PRR</Type>
-            <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">3 6 10</AmountVector>
-            <Stance>Shroud of the Lich</Stance>
-         </Effect>
-         <Effect>
-            <Type>DodgeBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">1 2 3</AmountVector>
-            <Stance>Shroud of the Wraith</Stance>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Pale Master: Necrotic Bolt</Name>
-         <InternalName>PMNecroticBolt</InternalName>
-         <Description>Spell Like Ability: Necrotic Bolt
-(Activation Cost: 5 Hit Points. Cooldown: 15/10/5 seconds.)</Description>
-         <Icon>PMNecroticBolt</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>3</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>10</MinSpent>
-         <Clickie/>
-         <LongArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Class>Wizard</Class>
-               <Level>3</Level>
-            </Requirement>
-            <Requirement>
-               <Enhancement>PMNecroticTouch</Enhancement>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellLikeAbility</Type>
-            <Bonus>Enhancement</Bonus>
-            <SpellLikeAbility>Necrotic Bolt</SpellLikeAbility>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Pale Master: Cloak of Night</Name>
-         <InternalName>PMCloakOfNight</InternalName>
-         <Description>Toggle: While active, Cloak of Night reduces the effectiveness of
-Positive Energy, Negative Energy, Repair, and Light damage on you by 20%/35%/50%.
-(Activation Cost: 25 Spell Points. Cooldown: 1 second.)</Description>
-         <Icon>PMCloakOfNight</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>3</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>10</MinSpent>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Class>Wizard</Class>
-               <Level>3</Level>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Pale Master: Spell Critical: Negative Energy III</Name>
-         <InternalName>PMSpellCriticalNegativeEnergyIII</InternalName>
-         <Description>Your Negative Energy damage spells have an additional 2% chance to critically hit.</Description>
-         <Icon>PMSpellCriticalNegativeEnergyIII</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>3</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Class>Wizard</Class>
-               <Level>3</Level>
-            </Requirement>
-            <Requirement>
-               <Enhancement>PMSpellCriticalNegativeEnergyII</Enhancement>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellLore</Type>
-            <Bonus>Enhancement</Bonus>
-            <SpellPower>Negative</SpellPower>
-            <Amount>2</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Pale Master: Eternal Servitude</Name>
-         <InternalName>PMEternalServitude</InternalName>
-         <Description>Your Skeletal Knight gains +2/+4/+6 Profane Bonus to AC,
-and a +5/+10/+15 Profane Bonus to Physical Resistance.</Description>
-         <Icon>PMEternalServitude</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>3</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>10</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Class>Wizard</Class>
-               <Level>3</Level>
-            </Requirement>
-            <Requirement>
-               <Enhancement>PMCorpsecrafter</Enhancement>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Pale Master: Ability I</Name>
-         <InternalName>PMAbilityScoreI</InternalName>
-         <Description>Choose either Constitution or Intelligence</Description>
-         <Icon>ConInt</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>3</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Class>Wizard</Class>
-               <Level>3</Level>
-            </Requirement>
-         </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>+1 Constitution</Name>
-               <Description>+1 Constitution</Description>
-               <Icon>Constitution</Icon>
-               <Cost>2</Cost>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Ability>Constitution</Ability>
-                  <Amount>1</Amount>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>+1 Intelligence</Name>
-               <Description>+1 Intelligence</Description>
-               <Icon>Intelligence</Icon>
-               <Cost>2</Cost>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Ability>Intelligence</Ability>
-                  <Amount>1</Amount>
-               </Effect>
-            </EnhancementSelection>
-         </Selector>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Pale Master: Spell Critical: Negative Energy IV</Name>
-         <InternalName>PMSpellCriticalNegativeEnergyIV</InternalName>
-         <Description>Your Negative Energy damage spells have an additional 2% chance to critically hit.</Description>
-         <Icon>PMSpellCriticalNegativeEnergyIV</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>4</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Class>Wizard</Class>
-               <Level>4</Level>
-            </Requirement>
-            <Requirement>
-               <Enhancement>PMSpellCriticalNegativeEnergyIII</Enhancement>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellLore</Type>
-            <Bonus>Enhancement</Bonus>
-            <SpellPower>Negative</SpellPower>
-            <Amount>2</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Pale Master: Dark Furor</Name>
-         <InternalName>PMDarkFuror</InternalName>
-         <Description>Your Skeletal Knight gains 15%/30%/45% Doublestrike,
-and its attacks bypass 5%/10%/15% of enemy Fortification.</Description>
-         <Icon>PMDarkFuror</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>4</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>20</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Class>Wizard</Class>
-               <Level>4</Level>
-            </Requirement>
-            <Requirement>
-               <Enhancement>PMEternalServitude</Enhancement>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Pale Master: Ability II</Name>
-         <InternalName>PMAbilityScoreII</InternalName>
-         <Description>Choose either Constitution or Intelligence</Description>
-         <Icon>ConInt</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>4</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Class>Wizard</Class>
-               <Level>4</Level>
-            </Requirement>
-            <Requirement>
-               <Enhancement>PMAbilityScoreI</Enhancement>
-            </Requirement>
-         </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>+1 Constitution</Name>
-               <Description>+1 Constitution</Description>
-               <Icon>Constitution</Icon>
-               <Cost>2</Cost>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Ability>Constitution</Ability>
-                  <Amount>1</Amount>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>+1 Intelligence</Name>
-               <Description>+1 Intelligence</Description>
-               <Icon>Intelligence</Icon>
-               <Cost>2</Cost>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Ability>Intelligence</Ability>
-                  <Amount>1</Amount>
-               </Effect>
-            </EnhancementSelection>
-         </Selector>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Pale Master: Necrotic Blast</Name>
-         <InternalName>PMNecroticBlast</InternalName>
-         <Description>Spell Like Ability: Necrotic Blast
-(Activation Cost: 10 Hit Points. Cooldown: 18/12/6 seconds.)</Description>
-         <Icon>PMNecroticBlast</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>5</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>30</MinSpent>
-         <Clickie/>
-         <Tier5/>
-         <Requirements>
-            <Requirement>
-               <MinLevel>12</MinLevel>
-            </Requirement>
-            <Requirement>
-               <Class>Wizard</Class>
-               <Level>5</Level>
-            </Requirement>
-            <Requirement>
-               <Enhancement>PMNecroticBolt</Enhancement>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellLikeAbility</Type>
-            <Bonus>Enhancement</Bonus>
-            <SpellLikeAbility>Necrotic Blast</SpellLikeAbility>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Pale Master: Animate Ally</Name>
-         <InternalName>PMAnimateAlly</InternalName>
-         <Description>Activate to Animate a dead ally, restoring 100% of the target's hit points.
-(Cooldown: 5 minutes. Metamagic: Quicken, Enlarge. Spell Resistance: No)
-Your ally is considered an undead zombie (gaining the benefits and drawbacks of Shroud of the Zombie)
-and will rot for increasing damage over time until death reclaims it.</Description>
-         <Icon>PMAnimateAlly</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>5</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <Clickie/>
-         <Tier5/>
-         <Requirements>
-            <Requirement>
-               <MinLevel>12</MinLevel>
-            </Requirement>
-            <Requirement>
-               <Class>Wizard</Class>
-               <Level>5</Level>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Pale Master: Necromantic Focus</Name>
-         <InternalName>PMNecromanticFocus</InternalName>
-         <Description>You benefit from dark knowledge, granting you a +1 DC to spells from the Necromancy school.</Description>
-         <Icon>PMNecromanticFocus</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>5</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <Tier5/>
-         <Requirements>
-            <Requirement>
-               <MinLevel>12</MinLevel>
-            </Requirement>
-            <Requirement>
-               <Class>Wizard</Class>
-               <Level>5</Level>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellDC</Type>
-            <Bonus>Enhancement</Bonus>
-            <School>Necromancy</School>
-            <Amount>1</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Pale Master: Improved Shrouding</Name>
-         <InternalName>PMImprovedShrouding</InternalName>
-         <Description>Your Undead Shrouds gain the following additional benefits:
-While in Shroud of the Juju Zombie, you gain +2 Constitution, 15 Physical Resistance Rating,
-and your Damage Reduction increases to 10/Slashing.
-While in Shroud of the Master Vampire, you gain +2 Dexterity, your vulnerability to Light damage
-is reduced to 200% (from 300%), and your melee and unarmed attacks heal you for 1 point of
-Negative Energy damage.
-While in Shroud of the Dread Wraith, you gain +2 Dexterity and your Incorporeal Miss Chance
-increases from 25% to 35%.
-While in Shroud of the Archlich, you gain an additional +2 Intelligence and +10 to Negative
-Energy Spellpower.</Description>
-         <Icon>PMImprovedShrouding</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>5</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <Tier5/>
-         <Requirements>
-            <Requirement>
-               <MinLevel>12</MinLevel>
-            </Requirement>
-            <Requirement>
-               <Class>Wizard</Class>
-               <Level>5</Level>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>AbilityBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Ability>Constitution</Ability>
-            <Amount>2</Amount>
-            <Stance>Shroud of the Zombie</Stance>
-         </Effect>
-         <Effect>
-            <Type>PRR</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>15</Amount>
-            <Stance>Shroud of the Zombie</Stance>
-         </Effect>
-         <Effect>
-            <Type>DR</Type>
-            <Bonus>Enhancement</Bonus>
-            <DR>Slash</DR>
-            <Amount>5</Amount>
-            <Stance>Shroud of the Zombie</Stance>
-         </Effect>
-         <Effect>
-            <Type>AbilityBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Ability>Dexterity</Ability>
-            <Amount>2</Amount>
-            <Stance>Shroud of the Vampire</Stance>
-         </Effect>
-         <Effect>
-            <Type>AbilityBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Ability>Dexterity</Ability>
-            <Amount>2</Amount>
-            <Stance>Shroud of the Wraith</Stance>
-         </Effect>
-         <Effect>
-            <Type>AbilityBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Ability>Intelligence</Ability>
-            <Amount>2</Amount>
-            <Stance>Shroud of the Lich</Stance>
-         </Effect>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <SpellPower>Negative</SpellPower>
             <Amount>10</Amount>
             <Stance>Shroud of the Lich</Stance>
-         </Effect>
-      </EnhancementTreeItem>
-   </EnhancementTree>
+          </Effect>
+          <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>5</Amount>
+            <Stance>Shroud of the Lich</Stance>
+            <SpellPower>Negative</SpellPower>
+          </Effect>
+          <Effect>
+            <Type>MRR</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>15</Amount>
+            <Stance>Shroud of the Lich</Stance>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Pale Master: Ability II</Name>
+      <InternalName>PaleAbilityScoreII</InternalName>
+      <Description>Choose either Constitution or Intelligence</Description>
+      <Icon>ConInt</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Wizard</Class>
+          <Level>4</Level>
+        </Requirement>
+        <Requirement>
+          <Enhancement>PaleAbilityScoreI</Enhancement>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>+1 Constitution</Name>
+          <Description>+1 Constitution</Description>
+          <Icon>Constitution</Icon>
+          <Cost>2</Cost>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Ability>Constitution</Ability>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Intelligence</Name>
+          <Description>+1 Intelligence</Description>
+          <Icon>Intelligence</Icon>
+          <Cost>2</Cost>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Ability>Intelligence</Ability>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Pale Master: Necrotic Blast</Name>
+      <InternalName>PaleNecroticBlast</InternalName>
+      <Description>Spell Like Ability: Necrotic Blast
+Cost: 20/15/10 SP, 18/12/6 seconds. Accepts Metamagics. Scales with full Spell Power.</Description>
+      <Icon>PMNecroticBlast</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>5</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+      <Clickie/>
+      <Tier5/>
+      <Requirements>
+        <Requirement>
+          <Class>Wizard</Class>
+          <Level>5</Level>
+        </Requirement>
+        <Requirement>
+          <MinLevel>12</MinLevel>
+        </Requirement>
+        <Requirement>
+          <Enhancement>PaleNecroticBolt</Enhancement>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLikeAbility</Type>
+        <Bonus>Enhancement</Bonus>
+        <SpellLikeAbility>Necrotic Blast</SpellLikeAbility>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Pale Master: Animate Ally</Name>
+      <InternalName>PaleAnimateAlly</InternalName>
+      <Description>Activate to Animate a dead ally, restoring 100% of the target's hit points.
+(Cooldown: 18 seconds. Metamagic: Quicken, Enlarge. Spell Resistance: No)
+Your ally is considered an undead zombie gaining the benefits and drawbacks of Shroud of the Zombie.
+Zombie Form is removed on Rest or Death.</Description>
+      <Icon>PMAnimateAlly</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>5</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Clickie/>
+      <Tier5/>
+      <Requirements>
+        <Requirement>
+          <Class>Wizard</Class>
+          <Level>5</Level>
+        </Requirement>
+        <Requirement>
+          <MinLevel>12</MinLevel>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Pale Master: Necromantic Focus</Name>
+      <InternalName>PaleNecromanticFocus</InternalName>
+      <Description>You benefit from dark knowledge, granting you a +1 DC to spells from the Necromancy school.</Description>
+      <Icon>PMNecromanticFocus</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>5</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5/>
+      <Requirements>
+        <Requirement>
+          <Class>Wizard</Class>
+          <Level>5</Level>
+        </Requirement>
+        <Requirement>
+          <MinLevel>12</MinLevel>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>1</Amount>
+        <School>Necromancy</School>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Pale Master: Dark Discorporation</Name>
+      <InternalName>PaleDarkDiscorporation</InternalName>
+      <Description>Select your Bat Form!</Description>
+      <Icon>PMDarkDiscorporation</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>5</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Clickie/>
+      <Tier5/>
+      <Requirements>
+        <Requirement>
+          <Class>Wizard</Class>
+          <Level>5</Level>
+        </Requirement>
+        <Requirement>
+          <MinLevel>12</MinLevel>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Dark Discorporation</Name>
+          <Description>(as per the Warlock spell... Because Pale Masters should get to turn into bats and float away).</Description>
+          <Icon>PMDarkDiscorporation</Icon>
+          <Cost>1</Cost>
+          <Clickie/>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellLikeAbility>Dark Discorporation</SpellLikeAbility>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Reactive Discorporation</Name>
+          <Description>When your HP drops below 50% o your maximum, you automatically cast
+Dark Discorporation on youself, turning into a swarm of dark fluttering bats for 20 seconds.
+This spell will still end if you attack as per the original version of the spell.
+This may only trigger once every 60 seconds.</Description>
+          <Icon>PMReactiveDiscorporation</Icon>
+          <Cost>1</Cost>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Pale Master: Ascendant Shroud</Name>
+      <InternalName>PaleAscendantShroud</InternalName>
+      <Description>Your Undead Shrouds gain the following additional benefits:
+While in Zombie Form:
+    +20 Melee Power
+    +10 PRR
+    +20% Racial Bonus to maximum Hit Points.
+While in Vampire Form:
+    +1 Enchantment DC.
+    Your melee attacks have a chance to dominate your adversaries.
+    On Hit: Target has a chance to be Paralyzed (Will save vs. DC 20 + INT Mod + Enchantment Spell Bonuses).
+    On Save: -10% Movement and Attack Speed.
+While in Wraith Form:
+    +5% Incorporeality (bringing your total to 20%, or 25% if you have Ghost in the Wind),
+    +2 Sneak Attack Dice.
+    +3% Dodge and Dodge Cap.
+    +10 to Hide and Move Silently.
+While in Lich Form:
+    +15 to MRR cap
+    +10 Negative Spell Power
+    +10 Cold and Electric Resistance
+    5% spell point cost reduction on all spells</Description>
+      <Icon>PMImprovedShrouding</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>5</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5/>
+      <Requirements>
+        <Requirement>
+          <Class>Wizard</Class>
+          <Level>5</Level>
+        </Requirement>
+        <Requirement>
+          <MinLevel>12</MinLevel>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>MeleePower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>20</Amount>
+        <Stance>Shroud of the Zombie</Stance>
+      </Effect>
+      <Effect>
+        <Type>PRR</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>10</Amount>
+        <Stance>Shroud of the Zombie</Stance>
+      </Effect>
+      <Effect>
+        <Type>Hitpoints</Type>
+        <Bonus>Racial</Bonus>
+        <Amount>20</Amount>
+        <Percent/>
+        <Stance>Shroud of the Zombie</Stance>
+      </Effect>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>1</Amount>
+        <Stance>Shroud of the Vampire</Stance>
+        <School>Enchantment</School>
+      </Effect>
+      <Effect>
+        <Type>SneakAttackDice</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>2</Amount>
+        <Stance>Shroud of the Wraith</Stance>
+      </Effect>
+      <Effect>
+        <Type>DodgeBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>3</Amount>
+        <Stance>Shroud of the Wraith</Stance>
+      </Effect>
+      <Effect>
+        <Type>DodgeCapBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>3</Amount>
+        <Stance>Shroud of the Wraith</Stance>
+      </Effect>
+      <Effect>
+        <Type>SkillBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>10</Amount>
+        <Stance>Shroud of the Wraith</Stance>
+        <Skill>Hide</Skill>
+        <Skill>Move Silently</Skill>
+      </Effect>
+      <Effect>
+        <Type>MRRCap</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>15</Amount>
+        <Stance>Shroud of the Lich</Stance>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>10</Amount>
+        <Stance>Shroud of the Lich</Stance>
+        <SpellPower>Negative</SpellPower>
+      </Effect>
+      <Effect>
+        <Type>EnergyResistance</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>10</Amount>
+        <Stance>Shroud of the Lich</Stance>
+        <Energy>Cold</Energy>
+        <Energy>Electric</Energy>
+      </Effect>
+      <Effect>
+        <Type>AdditionalSpellPointCost</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>-5</Amount>
+        <Stance>Shroud of the Lich</Stance>
+        <Percent/>
+      </Effect>
+    </EnhancementTreeItem>
+  </EnhancementTree>
 </Enhancements>

@@ -2,16 +2,26 @@
 <Enhancements>
    <EnhancementTree>
       <Name>Fatesinger</Name>
-      <Version>1</Version>
+      <Version>2</Version>
       <Requirements/>
       <IsEpicDestiny/>
       <Icon>Fatesinger</Icon>
       <Background>DestinyArcane</Background>
+      <!--Cores-->
       <EnhancementTreeItem>
          <Name>Fatesinger's Repertoire</Name>
          <InternalName>FateCore1</InternalName>
-         <Description>For every level of Fatesinger, gain 2 Songs, +10 Melee Power, +3 sonic resistance and
-25 Spell Points. If you didn't have "Bardic Ballad" gain that feat.</Description>
+         <Description>Passive: For every level of Fatesinger, you gain +2 Bard Songs, +25 Spell Points,
++10 Universal Spell Power, 2 additional levels of your Bardic Inspiration, and
++10 Melee Power, and +4 Ranged Power.
+
+If you do not have Bardic Aria, you gain the feat Inspire Courage as an independent
+Song. Abilities that enhance your bard songs will also enhance that feat as if you
+were a bard. Abilities that trigger off of a Bardic Inspiration use will trigger
+when you use Inspire Courage.
+
+For every subsequent level of Fatesinger, you gain 1 effective arcane caster level,
+for a total of 5.</Description>
          <Icon>FatesingersRepertoire</Icon>
          <XPosition>0</XPosition>
          <YPosition>0</YPosition>
@@ -27,33 +37,36 @@
             <Amount>2</Amount>
          </Effect>
          <Effect>
-            <Type>MeleePower</Type>
-            <Bonus>Destiny</Bonus>
-            <Amount>10</Amount>
-         </Effect>
-         <Effect>
-            <Type>EnergyResistance</Type>
-            <Bonus>Destiny</Bonus>
-            <Energy>Sonic</Energy>
-            <Amount>3</Amount>
-         </Effect>
-         <Effect>
             <Type>SpellPoints</Type>
             <Bonus>Destiny</Bonus>
             <Amount>25</Amount>
          </Effect>
          <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>10</Amount>
+            <SpellPower>All</SpellPower>
+         </Effect>
+         <Effect>
+            <Type>MeleePower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>10</Amount>
+         </Effect>
+         <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>4</Amount>
+         </Effect>
+         <Effect>
             <Type>GrantFeat</Type>
             <Bonus>Destiny</Bonus>
-            <Feat>Bardic Ballad</Feat>
+            <Feat>Inspire Courage</Feat>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Fatesinger: Glitter of Fame</Name>
          <InternalName>FateCore2</InternalName>
-         <Description>Gain +1 to your effective Arcane caster level, +1 Charisma, +1 Constitution
-and a +1 to hit. Special Effect: As long as you are above 10% Health, you
-radiate confidence: gain a +1 to all other Ability scores, except Charisma.</Description>
+         <Description>Passive: Gain +1 to all Attributes, +1 to all Saves</Description>
          <Icon>GlitterOfFame</Icon>
          <XPosition>1</XPosition>
          <YPosition>0</YPosition>
@@ -72,80 +85,37 @@ radiate confidence: gain a +1 to all other Ability scores, except Charisma.</Des
             <Amount>2</Amount>
          </Effect>
          <Effect>
-            <Type>MeleePower</Type>
-            <Bonus>Destiny</Bonus>
-            <Amount>10</Amount>
-         </Effect>
-         <Effect>
-            <Type>EnergyResistance</Type>
-            <Bonus>Destiny</Bonus>
-            <Energy>Sonic</Energy>
-            <Amount>3</Amount>
-         </Effect>
-         <Effect>
             <Type>SpellPoints</Type>
             <Bonus>Destiny</Bonus>
             <Amount>25</Amount>
          </Effect>
          <Effect>
-            <Type>AbilityBonus</Type>
+            <Type>SpellPower</Type>
             <Bonus>Destiny</Bonus>
-            <Ability>Charisma</Ability>
-            <Amount>1</Amount>
+            <Amount>10</Amount>
+            <SpellPower>All</SpellPower>
+         </Effect>
+         <Effect>
+            <Type>MeleePower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>10</Amount>
+         </Effect>
+         <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>4</Amount>
          </Effect>
          <Effect>
             <Type>AbilityBonus</Type>
             <Bonus>Destiny</Bonus>
-            <Ability>Constitution</Ability>
+            <Ability>All</Ability>
             <Amount>1</Amount>
          </Effect>
          <Effect>
-            <Type>AttackBonus</Type>
+            <Type>SaveBonus</Type>
             <Bonus>Destiny</Bonus>
-            <Weapon>All</Weapon>
+            <Save>All</Save>
             <Amount>1</Amount>
-         </Effect>
-         <Effect>
-            <Type>AbilityBonus</Type>
-            <Bonus>Destiny</Bonus>
-            <Ability>Strength</Ability>
-            <Amount>1</Amount>
-            <Stance>10% Hitpoints</Stance>
-         </Effect>
-         <Effect>
-            <Type>AbilityBonus</Type>
-            <Bonus>Destiny</Bonus>
-            <Ability>Strength</Ability>
-            <Amount>1</Amount>
-            <Stance>10% Hitpoints</Stance>
-         </Effect>
-         <Effect>
-            <Type>AbilityBonus</Type>
-            <Bonus>Destiny</Bonus>
-            <Ability>Dexterity</Ability>
-            <Amount>1</Amount>
-            <Stance>10% Hitpoints</Stance>
-         </Effect>
-         <Effect>
-            <Type>AbilityBonus</Type>
-            <Bonus>Destiny</Bonus>
-            <Ability>Intelligence</Ability>
-            <Amount>1</Amount>
-            <Stance>10% Hitpoints</Stance>
-         </Effect>
-         <Effect>
-            <Type>AbilityBonus</Type>
-            <Bonus>Destiny</Bonus>
-            <Ability>Wisdom</Ability>
-            <Amount>1</Amount>
-            <Stance>10% Hitpoints</Stance>
-         </Effect>
-         <Effect>
-            <Type>AbilityBonus</Type>
-            <Bonus>Destiny</Bonus>
-            <Ability>Constitution</Ability>
-            <Amount>1</Amount>
-            <Stance>10% Hitpoints</Stance>
          </Effect>
          <Effect>
             <Type>CasterLevel</Type>
@@ -169,14 +139,11 @@ radiate confidence: gain a +1 to all other Ability scores, except Charisma.</Des
       <EnhancementTreeItem>
          <Name>Fatesinger: Harmonic Resonance</Name>
          <InternalName>FateCore3</InternalName>
-         <Description>Your melee, missile, and unarmed attacks have a 10% chance per hit of
-building a stacking resonance in your enemies. Each stack increases the
-creature's vulnerability to Sonic damage by 10%. The effect may stack up
-to 5 times and lasts up to 20 seconds. You also gain +1 effective Arcane
-caster level.
-(Active) You may expend a Song to activate Harmonic Resonance. If you do so,
-your voice thrums with magic, and you no longer require material components
-to cast spells.</Description>
+         <Description>Passive: Your attacks have a 10% chance per hit of building a stacking
+Harmonic Resonance in your enemies.
+Harmonc Resonance: Each stack increases the creature's vulnerability to Sonic
+damage by 10% and reduces their AC by 2. The effect may stack up to 5 times and
+lasts up to 20 seconds.</Description>
          <Icon>HarmonicResonance</Icon>
          <XPosition>2</XPosition>
          <YPosition>0</YPosition>
@@ -195,20 +162,25 @@ to cast spells.</Description>
             <Amount>2</Amount>
          </Effect>
          <Effect>
+            <Type>SpellPoints</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>25</Amount>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>10</Amount>
+            <SpellPower>All</SpellPower>
+         </Effect>
+         <Effect>
             <Type>MeleePower</Type>
             <Bonus>Destiny</Bonus>
             <Amount>10</Amount>
          </Effect>
          <Effect>
-            <Type>EnergyResistance</Type>
+            <Type>RangedPower</Type>
             <Bonus>Destiny</Bonus>
-            <Energy>Sonic</Energy>
-            <Amount>3</Amount>
-         </Effect>
-         <Effect>
-            <Type>SpellPoints</Type>
-            <Bonus>Destiny</Bonus>
-            <Amount>25</Amount>
+            <Amount>4</Amount>
          </Effect>
          <Effect>
             <Type>CasterLevel</Type>
@@ -232,9 +204,8 @@ to cast spells.</Description>
       <EnhancementTreeItem>
          <Name>Fatesinger: Intoxicating Presence</Name>
          <InternalName>FateCore4</InternalName>
-         <Description>Gain +1 to your effective Arcane caster level and a +1 to hit.
-Special Effect: As long as you are above 10% Health, enemies that strike you
-have a 5% chance of becoming Fascinated for 12 seconds, with no saving throw.</Description>
+         <Description>Passive: Enemies that strike you have a 5% chance of becoming Fascinated
+fo 12 seconds, with no saving throw.</Description>
          <Icon>IntoxicatingPresence</Icon>
          <XPosition>3</XPosition>
          <YPosition>0</YPosition>
@@ -253,20 +224,25 @@ have a 5% chance of becoming Fascinated for 12 seconds, with no saving throw.</D
             <Amount>2</Amount>
          </Effect>
          <Effect>
+            <Type>SpellPoints</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>25</Amount>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>10</Amount>
+            <SpellPower>All</SpellPower>
+         </Effect>
+         <Effect>
             <Type>MeleePower</Type>
             <Bonus>Destiny</Bonus>
             <Amount>10</Amount>
          </Effect>
          <Effect>
-            <Type>EnergyResistance</Type>
+            <Type>RangedPower</Type>
             <Bonus>Destiny</Bonus>
-            <Energy>Sonic</Energy>
-            <Amount>3</Amount>
-         </Effect>
-         <Effect>
-            <Type>SpellPoints</Type>
-            <Bonus>Destiny</Bonus>
-            <Amount>25</Amount>
+            <Amount>4</Amount>
          </Effect>
          <Effect>
             <Type>CasterLevel</Type>
@@ -286,20 +262,17 @@ have a 5% chance of becoming Fascinated for 12 seconds, with no saving throw.</D
             <Class>Warlock</Class>
             <Amount>1</Amount>
          </Effect>
-         <Effect>
-            <Type>AttackBonus</Type>
-            <Bonus>Destiny</Bonus>
-            <Weapon>All</Weapon>
-            <Amount>1</Amount>
-         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Fatesinger: Grandeur</Name>
          <InternalName>FateCore5</InternalName>
-         <Description>Gain +1 to your effective Arcane caster level.
-Special Effect: As long as you are above 10% Health, you project an Aura of
-Grandeur. This aura grants you a +1 to all saving throws, a +2 to all
-Charisma-based skills and a +3 Unique bonus to damage.</Description>
+         <Description>Passive: Your friendly spellcasts leave a lingering buff that grants
++3 AC and +3 PRR per stack up to 2 (for a total of +6 AC and +6 PRR), and your
+offensive spellcasts now have a chance to cause Harmonic Resonance i your foes.
+
+Harmonc Resonance: Each stack increases the creature's vulnerability to Sonic
+damage by 10% and reduces their AC by 2. The effect may stack up to 5 times and
+lasts up to 20 seconds.</Description>
          <Icon>Grandeur</Icon>
          <XPosition>4</XPosition>
          <YPosition>0</YPosition>
@@ -313,16 +286,20 @@ Charisma-based skills and a +3 Unique bonus to damage.</Description>
             </Requirement>
          </Requirements>
          <Effect>
-            <Type>CreateSlider</Type>
-            <Bonus>Enhancement</Bonus>
-            <Slider>Hitpoints</Slider>
-            <AmountVector size="2">0 100</AmountVector>
-            <Amount>100</Amount>
-         </Effect>
-         <Effect>
             <Type>SongCount</Type>
             <Bonus>Destiny</Bonus>
             <Amount>2</Amount>
+         </Effect>
+         <Effect>
+            <Type>SpellPoints</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>25</Amount>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>10</Amount>
+            <SpellPower>All</SpellPower>
          </Effect>
          <Effect>
             <Type>MeleePower</Type>
@@ -330,15 +307,9 @@ Charisma-based skills and a +3 Unique bonus to damage.</Description>
             <Amount>10</Amount>
          </Effect>
          <Effect>
-            <Type>EnergyResistance</Type>
+            <Type>RangedPower</Type>
             <Bonus>Destiny</Bonus>
-            <Energy>Sonic</Energy>
-            <Amount>3</Amount>
-         </Effect>
-         <Effect>
-            <Type>SpellPoints</Type>
-            <Bonus>Destiny</Bonus>
-            <Amount>25</Amount>
+            <Amount>4</Amount>
          </Effect>
          <Effect>
             <Type>CasterLevel</Type>
@@ -358,37 +329,12 @@ Charisma-based skills and a +3 Unique bonus to damage.</Description>
             <Class>Warlock</Class>
             <Amount>1</Amount>
          </Effect>
-         <Effect>
-            <Type>SaveBonus</Type>
-            <Bonus>Destiny</Bonus>
-            <Save>All</Save>
-            <Amount>1</Amount>
-            <Stance>10% Hitpoints</Stance>
-         </Effect>
-         <Effect>
-            <Type>DamageBonus</Type>
-            <Bonus>Unique</Bonus>
-            <Weapon>All</Weapon>
-            <Amount>3</Amount>
-            <Stance>10% Hitpoints</Stance>
-         </Effect>
-         <Effect>
-            <Type>SkillBonus</Type>
-            <Bonus>Destiny</Bonus>
-            <Ability>Charisma</Ability>
-            <Amount>2</Amount>
-            <Stance>10% Hitpoints</Stance>
-         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Fatesinger: Majesty</Name>
          <InternalName>FateCore6</InternalName>
-         <Description>+1 to your effective Arcane caster level and a +1 to hit.
-You also gain a +5 to all saving throws vs. Enchantments and a +10 to the
-Spell Power of your Sonic, Light and Positive spells.
-Special Effect: Enemies that strike you also have a 5% chance to become
-blinded by your glory for 12 seconds (in addition to other effects), with
-no saving throw.</Description>
+         <Description>Passive: You no longer suffer from Arcane Spell Failure, are immune to
+Charisma Damage, and have +25 Universal Spell Power.</Description>
          <Icon>Majesty</Icon>
          <XPosition>5</XPosition>
          <YPosition>0</YPosition>
@@ -401,9 +347,30 @@ no saving throw.</Description>
             </Requirement>
          </Requirements>
          <Effect>
+            <Type>Immunity</Type>
+            <Bonus>Destiny</Bonus>
+            <Immunity>Charisma Damage</Immunity>
+         </Effect>
+         <Effect>
             <Type>SongCount</Type>
             <Bonus>Destiny</Bonus>
             <Amount>2</Amount>
+         </Effect>
+         <Effect>
+            <Type>ArcaneSpellFailure</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>-100</Amount>
+         </Effect>
+         <Effect>
+            <Type>SpellPoints</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>25</Amount>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>35</Amount>
+            <SpellPower>All</SpellPower>
          </Effect>
          <Effect>
             <Type>MeleePower</Type>
@@ -411,15 +378,9 @@ no saving throw.</Description>
             <Amount>10</Amount>
          </Effect>
          <Effect>
-            <Type>EnergyResistance</Type>
+            <Type>RangedPower</Type>
             <Bonus>Destiny</Bonus>
-            <Energy>Sonic</Energy>
-            <Amount>3</Amount>
-         </Effect>
-         <Effect>
-            <Type>SpellPoints</Type>
-            <Bonus>Destiny</Bonus>
-            <Amount>25</Amount>
+            <Amount>4</Amount>
          </Effect>
          <Effect>
             <Type>CasterLevel</Type>
@@ -439,34 +400,20 @@ no saving throw.</Description>
             <Class>Warlock</Class>
             <Amount>1</Amount>
          </Effect>
-         <Effect>
-            <Type>AttackBonus</Type>
-            <Bonus>Destiny</Bonus>
-            <Weapon>All</Weapon>
-            <Amount>1</Amount>
-         </Effect>
-         <Effect>
-            <Type>SaveBonus</Type>
-            <Bonus>Destiny</Bonus>
-            <Save>Enchantment</Save>
-            <Amount>5</Amount>
-         </Effect>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Destiny</Bonus>
-            <Amount>10</Amount>
-            <SpellPower>Sonic</SpellPower>
-            <SpellPower>Light/Alignment</SpellPower>
-            <SpellPower>Positive</SpellPower>
-         </Effect>
       </EnhancementTreeItem>
+      <!--Tier 1-->
       <EnhancementTreeItem>
-         <Name>Fatesinger: O Fortuna</Name>
-         <InternalName>OFortuna</InternalName>
-         <Description>Adds to Inspire Courage: You and your party gain +[1/2/3] to saves vs. fear.
-In addition, you personally gain a +[1/2/3] to your Fortitude and Reflex saves
-(morale bonus, does not stack with Heroism)</Description>
-         <Icon>OFortuna</Icon>
+         <Name>Fatesinger: First Harmonic Chord</Name>
+         <InternalName>FirstHarmonicChord</InternalName>
+         <Description>Your Inspire Courage has an additional +[1/2/3] to hit, damage,
+saves versus Fear, and +[3/6/9] Universal Spell Power.
+
+Passively, you benefit from an additional +[1/2/3] to hit, damage, saves versus Fear,
+and +[3/6/9] Universal Spell Power.
+
+'Look to the prepared for Fortune's blessing.'
+ --Lin Dazzar, Envoy of the Twelve</Description>
+         <Icon>FirstHarmonicChord</Icon>
          <XPosition>0</XPosition>
          <YPosition>1</YPosition>
          <Cost>1</Cost>
@@ -477,40 +424,7 @@ In addition, you personally gain a +[1/2/3] to your Fortitude and Reflex saves
          <Effect>
             <Type>SaveBonus</Type>
             <Bonus>Destiny</Bonus>
-            <Save>Fortitude</Save>
-            <AmountVector size="3">1 2 3</AmountVector>
-         </Effect>
-         <Effect>
-            <Type>SaveBonus</Type>
-            <Bonus>Destiny</Bonus>
-            <Save>Reflex</Save>
-            <AmountVector size="3">1 2 3</AmountVector>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Fatesinger: Allure</Name>
-         <InternalName>Allure</InternalName>
-         <Description>+3/6/9 Universal Spell Power from Inspire Courage,
-+2/4/6 to Perform, Haggle, and Bluff. +1/2/3 Song(s)</Description>
-         <Icon>Allure</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>1</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>0</MinSpent>
-         <ArrowUp/>
-         <Requirements/>
-         <Effect>
-            <Type>SkillBonus</Type>
-            <Bonus>Destiny</Bonus>
-            <Skill>Haggle</Skill>
-            <Skill>Perform</Skill>
-            <Skill>Bluff</Skill>
-            <AmountVector size="3">2 4 6</AmountVector>
-         </Effect>
-         <Effect>
-            <Type>SongCount</Type>
-            <Bonus>Destiny</Bonus>
+            <Save>Fear</Save>
             <AmountVector size="3">1 2 3</AmountVector>
          </Effect>
          <Effect>
@@ -519,13 +433,56 @@ In addition, you personally gain a +[1/2/3] to your Fortitude and Reflex saves
             <AmountVector size="3">3 6 9</AmountVector>
             <SpellPower>All</SpellPower>
          </Effect>
+         <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Weapon>All</Weapon>
+         </Effect>
+         <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Weapon>All</Weapon>
+         </Effect>
+         <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Weapon>All</Weapon>
+         </Effect>
+         <Effect>
+            <Type>Seeker</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Weapon>All</Weapon>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Fatesinger: Siren's Song</Name>
+         <InternalName>SirensSong</InternalName>
+         <Description>Mesmerize a single target. The target also takes 2 Constitution damage
+every [3/2/1] seconds.
+Duration: 12 seconds
+
+'Look into my eyes. Trust in me, my pet, and let all the world melt away...'
+--Selis</Description>
+         <Icon>SirensSong</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>0</MinSpent>
+         <Clickie/>
+         <ArrowUp/>
+         <Requirements/>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Fatesinger: Music of the Spider Queen</Name>
          <InternalName>MusicOfTheSpiderQueen</InternalName>
          <Description>Adds to your Fascinate: Your Fascinate gains the power to mesmerize Vermin.
 Mesmerized Vermin stop acting and behave like they have been fascinated.
-Unlike truly fascinated creatures, however, they are not susceptible to suggestion.</Description>
+However, unlike truly fascinated creatures, they are not susceptible to suggestion.</Description>
          <Icon>MusicOfTheSpiderQueen</Icon>
          <XPosition>2</XPosition>
          <YPosition>1</YPosition>
@@ -537,11 +494,21 @@ Unlike truly fascinated creatures, however, they are not susceptible to suggesti
       <EnhancementTreeItem>
          <Name>Fatesinger: Dirge</Name>
          <InternalName>Dirge</InternalName>
-         <Description>Expend a song to produce a haunting funeral march.
-You deal 10d[4/6/8] Negative damage and 10d[8/10/12] Sonic damage every 3
-seconds for 18 seconds (fort save for half). In addition, enemies may be
-slowed by 5% if they fail their fort save. Duration 18 seconds
-(modified by enhancements that increase song duration).</Description>
+         <Description>Bard Song: Produce a haunting funeral march that affects nearby enemies.
+Affected enemies suffer from Dirge.
+
+Dirge: For every two caster levels you have, this creature takes 10d[4/6/8]
+Negative damage and 10d[8/10/12] Sonic damage every 3 seconds (Fortitude save
+for half damage). In addition, enemies affected by Dirge may be slowed by 5%
+if they fail the Fortitude save.
+
+Duration: 18 seconds
+'The Enemy faills to our wrath, and evewhere, their light is fading. But though
+our caus eis just, it must also be emembered that our enemy fougt for his own
+cause and believed in it as strongly as we did in ours. And so I have come to
+this quiet splot to light a candle in honor of his memory. Has Fate favored him
+this day, I should like to think that he would have done the same for me.'
+--Elemar's Payer</Description>
          <Icon>Dirge</Icon>
          <XPosition>3</XPosition>
          <YPosition>1</YPosition>
@@ -589,78 +556,64 @@ slowed by 5% if they fail their fort save. Duration 18 seconds
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
+      <!--Tier 2-->
       <EnhancementTreeItem>
-         <Name>Fatesinger: Tailwind</Name>
-         <InternalName>Tailwind</InternalName>
-         <Description>Adds to your Inspire Courage: You and your party gain an additional
-+[0/0/1] damage from Inspire Couraget, and you an additional +[1/2/3] competence
-bonus to damage for all missile weapons (damage stacks with other competence bonuses!).</Description>
-         <Icon>Tailwind</Icon>
+         <Name>Fatesinger: Second Harmonic Chord</Name>
+         <InternalName>SecondHarmonicChord</InternalName>
+         <Description>Your Inspire Courage now grants an additional +[1/2/3] to all Skills.
+Passively, you benefit from an additional +[1/2/3] to all Skills.
+
+'Unleash the winds! Fly, my friends! Fly on to your deadly marks!'
+--Gwynn Glowsing, Huntmaster of House Phiarlan</Description>
+         <Icon>FirstHarmonicChord</Icon>
          <XPosition>0</XPosition>
          <YPosition>2</YPosition>
          <Cost>1</Cost>
          <Ranks>3</Ranks>
          <MinSpent>4</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Enhancement>OFortuna</Enhancement>
-            </Requirement>
-         </Requirements>
+         <Requirements/>
          <Effect>
-            <Type>DamageBonus</Type>
-            <Bonus>Competence</Bonus>
-            <WeaponClass>Thrown</WeaponClass>
+            <Type>SkillBonus</Type>
+            <Bonus>Destiny</Bonus>
             <AmountVector size="3">1 2 3</AmountVector>
+            <Skill>All</Skill>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Fatesinger: Lucidity</Name>
-         <InternalName>Lucidity</InternalName>
-         <Description>+0/0/1 Attack from Inspire Courage, +2/4/6 Concentration/Diplomacy, +1/2/3 UMD, +1 Song.</Description>
-         <Icon>Lucidity</Icon>
+         <Name>Fatesinger: Bound Fate</Name>
+         <InternalName>BoundFate</InternalName>
+         <Description>Bardic Curse: Your target must make a Will save or be bound in place briefly.
+In addition, your target will become [6/10/12]% more vulnerable to magical damage,
+and also suffers -[5/10/15] Sepll Resistance and -[4/6/8] damage.
+Duration: 45 seconds
+'The chains of Fate have you, demon, and you are too dumb to know you are already
+dead.'
+--Larisong</Description>
+         <Icon>BoundFate</Icon>
          <XPosition>1</XPosition>
          <YPosition>2</YPosition>
          <Cost>1</Cost>
          <Ranks>3</Ranks>
          <MinSpent>4</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Enhancement>Allure</Enhancement>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SkillBonus</Type>
-            <Bonus>Destiny</Bonus>
-            <Skill>Concentration</Skill>
-            <Skill>Diplomacy</Skill>
-            <AmountVector size="3">2 4 6</AmountVector>
-         </Effect>
-         <Effect>
-            <Type>SkillBonus</Type>
-            <Bonus>Destiny</Bonus>
-            <Skill>Use Magic Device</Skill>
-            <AmountVector size="3">1 2 3</AmountVector>
-         </Effect>
-         <Effect>
-            <Type>SongCount</Type>
-            <Bonus>Destiny</Bonus>
-            <AmountVector size="3">0 0 1</AmountVector>
-         </Effect>
+         <Clickie/>
+         <ArrowUp/>
+         <Requirements/>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Fatesinger: Masked Ball</Name>
-         <InternalName>MaskedBall</InternalName>
-         <Description>Fascinate or Dirge grants you and your allies [+10/+20] to Jump and Tumble
-(enhancement bonus), [+0/+1] charisma, and the ability to run over slippery
-surfaces (duration: 4 minutes). In the confusion, you open up a brief window
-of opportunity, granting your party a +2 bonus to hit when Sneak Attacking,
-and an additional [+0/+1d6] Sneak Attack die (duration: 10 seconds).</Description>
-         <Icon>MaskedBall</Icon>
-         <XPosition>2</XPosition>
+         <Name>Fatesinger: Reign</Name>
+         <InternalName>Reign</InternalName>
+         <Description>Spontaneous Song: You gain +[20/40/60] temporary hitpoints.
+For the duration of the buff, on a vorpal strike, you unleash a debilitating
+thunderclap for [7/9/11]d20 Sonic and [7/9/11]d20 Electrical damage.
+
+Vanquish your foes in battle with a song of glory.</Description>
+         <Icon>Reign</Icon>
+         <XPosition>3</XPosition>
          <YPosition>2</YPosition>
          <Cost>1</Cost>
-         <Ranks>2</Ranks>
+         <Ranks>3</Ranks>
          <MinSpent>4</MinSpent>
+         <Clickie/>
          <Requirements/>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -701,47 +654,144 @@ and an additional [+0/+1d6] Sneak Attack die (duration: 10 seconds).</Descriptio
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
+      <!--Tier 3-->
       <EnhancementTreeItem>
-         <Name>Fatesinger: Siren's Song</Name>
-         <InternalName>SirensSong</InternalName>
-         <Description>Spontaneous song: Unbreakable mesmerize on a single target and deals 2
-Constitution damage every [3/2/1] seconds.
-Duration 12 seconds. (Active Cooldown: [60/50/40] seconds) </Description>
-         <Icon>SirensSong</Icon>
+         <Name>Fatesinger: Third Harmonic Chord</Name>
+         <InternalName>ThirdHarmonicChord</InternalName>
+         <Description>Your Inspire Greatness now grants an additional +[1/2/3] Physical Resistance Rating.
+Passively, you benefit from an additional +[1/2/3] Physical Resistance Rating.
+'Seductive, enchanting, tantalizing... these are the qualities that might describe
+my lessers...'
+--Lolth, Demon Queen</Description>
+         <Icon>FirstHarmonicChord</Icon>
          <XPosition>0</XPosition>
          <YPosition>3</YPosition>
          <Cost>1</Cost>
          <Ranks>3</Ranks>
          <MinSpent>8</MinSpent>
-         <Clickie/>
-         <ArrowUp/>
          <Requirements/>
+         <Effect>
+            <Type>PRR</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Fatesinger: Reign</Name>
-         <InternalName>Reign</InternalName>
-         <Description>Spontaneous Song (expends a song but instant activation):
-You gain a +[20/40/60] temporary Health. On a vorpal strike, you unleash a
-thunderclap for [7/9/11]d20 Sonic and [7/9/11]d20 Electrical damage.
-Procs on melee, ranged, and unarmed attacks. Duration: 5 Minutes</Description>
-         <Icon>Reign</Icon>
+         <Name>Fatesinger: Grim Fate</Name>
+         <InternalName>GrimFate</InternalName>
+         <Description>Adds to your Bound Fate: Your Bound Fate now inflicts affected creatures
+with an additional [6/10/12]% vulnerability to physical attacks. Grim Fate may
+take effect, even if Bound Fate does not.
+Duration: 60 seconds
+
+'Fate, one day, claims us all. Today, she visits you.'
+--Larafeal Loommistriss, upon confronting Ihlazur</Description>
+         <Icon>GrimFate</Icon>
          <XPosition>1</XPosition>
          <YPosition>3</YPosition>
          <Cost>1</Cost>
          <Ranks>3</Ranks>
          <MinSpent>8</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Enhancement>BoundFate</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Fatesinger: Arcane Hymn</Name>
+         <InternalName>ArcaneHymn</InternalName>
+         <Description>You sing a magical Hymn that resonates within the Arcane Sphere. When you
+activate this ability, your target is surrounded by magical energies, bestowing Arcane Resonance.
+
+Each member of your party, including yourself, may only benefit from one Hymn at
+a time, regardless of source. Attempting to activate this ability on someone else
+willdispel the Hymn from your former target. If you attempt to activate a different
+Hymn on someone who is already benefitting from this Hymn, it will dispel this Hymn
+as it applies the new one. You may activate this ability on yourself.
+
+Arcane Resonance: +1 to Intelligence, Wisdom and Charisma, +20 Universal Spell Power,
++2 Spell Penetration, +4 Use Magic Device, +10% to your Fire, Cold, Acid and Electric
+Absorption.</Description>
+         <Icon>ArcaneHymn</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>8</MinSpent>
          <Clickie/>
          <Requirements/>
+         <Stance>
+            <Name>Arcane Hymn</Name>
+            <Icon>ArcaneHymn</Icon>
+            <Description>Arcane Resonance: +1 to Intelligence, Wisdom and Charisma, +20 Universal Spell Power,
++2 Spell Penetration, +4 Use Magic Device, +10% to your Fire, Cold, Acid and Electric
+Absorption.</Description>
+            <IncompatibleStance>Divine Hymn</IncompatibleStance>
+            <IncompatibleStance>Martial Hymn</IncompatibleStance>
+             <IncompatibleStance>Primal Hymn</IncompatibleStance>
+         </Stance>
+        <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <Ability>Intelligence</Ability>
+            <Amount>1</Amount>
+            <Stance>Arcane Hymn</Stance>
+        </Effect>
+        <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <Ability>Wisdom</Ability>
+            <Amount>1</Amount>
+            <Stance>Arcane Hymn</Stance>
+        </Effect>
+        <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <Ability>Charisma</Ability>
+            <Amount>1</Amount>
+            <Stance>Arcane Hymn</Stance>
+        </Effect>
+        <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>20</Amount>
+            <SpellPower>All</SpellPower>
+            <Stance>Arcane Hymn</Stance>
+        </Effect>
+        <Effect>
+            <Type>SpellPenetrationBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>2</Amount>
+            <Stance>Arcane Hymn</Stance>
+        </Effect>
+        <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>4</Amount>
+            <Skill>Use Magic Device</Skill>
+            <Stance>Arcane Hymn</Stance>
+        </Effect>
+        <Effect>
+            <Type>EnergyAbsorbance</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>10</Amount>
+            <Energy>Acid</Energy>
+            <Energy>Cold</Energy>
+            <Energy>Electric</Energy>
+            <Energy>Fire</Energy>
+            <Stance>Arcane Hymn</Stance>
+        </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Fatesinger: Aria</Name>
          <InternalName>Aria</InternalName>
-         <Description>All your songs gain [30/60/90] Seconds to their duration.
-Active: Spontaneous Song (expends a song but instant activation):
-You generate [15%/25%/35%] less threat for spellcasting. In addition, you
-gain a [20/40/60] Spell Power bonus to your Sonic spells, and a [5/10/15]
-Spell Power bonus to your Force, Positive and Negative spells.
-Duration: 5 Minutes</Description>
+         <Description>Passive: You sing your Bardic Inspiration as if you had [1/2/3] additional Bard levels.
+Spontaneous Song: Generate [15/25/35]% less threat when you cast spells for the
+duration of this song. In addition, you gain +[20/40/40] Sonic Spell Power, and
++[5/10/15] Force, Positive, and Negative Spell Power.
+
+Your voice carries like a gale over the skein of Fate.</Description>
          <Icon>Aria</Icon>
          <XPosition>2</XPosition>
          <YPosition>3</YPosition>
@@ -755,100 +805,35 @@ Duration: 5 Minutes</Description>
             <Bonus>Destiny</Bonus>
             <AmountVector size="3">30 60 90</AmountVector>
          </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Fatesinger: Echoes of the Ancestors: Arcane</Name>
-         <InternalName>EchoesOfTheAncestorsArcane</InternalName>
-         <Description>Stance: Grants you either
-Draconic Incarnation: Gain a +1 Charisma, a +1 Natural Armor and a +2 to your saves vs. Poison.
-You also gain an additional 9 Spell Power to Acid, Cold, Electric, and Fire spells.
-Finally, you gain a +20% bonus to the duration of your Songs. 
-Magister: Gain a +1 Intelligence, a +1 to Use Magic Device, a +4 Concentration,
-a +2 Spell Penetration bonus to your spells, a +2 to the DC's of your offensive wands.
-Finally, you gain a 1 minute bonus to the duration of your Songs.</Description>
-         <Icon>EchoesOfTheAncestorsArcane</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>3</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>8</MinSpent>
-         <Clickie/>
-         <Requirements/>
-         <Selector>
-            <EnhancementSelection>
-               <Name>Fatesinger: Draconic Incarnation</Name>
-               <Description>Gain a +1 Charisma, a +1 Natural Armor and a +2 to your saves vs. Poison.
-You also gain an additional 9 Spell Power to Acid, Cold, Electric, and Fire spells.</Description>
-               <Icon>Strength</Icon>
-               <Cost>2</Cost>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Destiny</Bonus>
-                  <Ability>Charisma</Ability>
-                  <Amount>1</Amount>
-               </Effect>
-               <Effect>
-                  <Type>NaturalArmor</Type>
-                  <Bonus>Destiny</Bonus>
-                  <Amount>1</Amount>
-               </Effect>
-               <Effect>
-                  <Type>SaveBonus</Type>
-                  <Bonus>Destiny</Bonus>
-                  <Save>Poison</Save>
-                  <Amount>2</Amount>
-               </Effect>
-               <Effect>
-                  <Type>SpellPower</Type>
-                  <Bonus>Destiny</Bonus>
-                  <Amount>9</Amount>
-                  <SpellPower>Acid</SpellPower>
-                  <SpellPower>Cold</SpellPower>
-                  <SpellPower>Electric</SpellPower>
-                  <SpellPower>Fire</SpellPower>
-               </Effect>
-               <Effect>
-                  <Type>SongDuration</Type>
-                  <Bonus>Destiny</Bonus>
-                  <Amount>60</Amount>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Fatesinger: Magister</Name>
-               <Description>Gain a +1 Intelligence, a +1 to Use Magic Device, a +4 Concentration,
-a +2 Spell Penetration bonus to your spells, a +2 to the DC's of your offensive wands.</Description>
-               <Icon>Charisma</Icon>
-               <Cost>2</Cost>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Destiny</Bonus>
-                  <Ability>Intelligence</Ability>
-                  <Amount>1</Amount>
-               </Effect>
-               <Effect>
-                  <Type>SkillBonus</Type>
-                  <Bonus>Destiny</Bonus>
-                  <Skill>Use Magic Device</Skill>
-                  <Amount>1</Amount>
-               </Effect>
-               <Effect>
-                  <Type>SkillBonus</Type>
-                  <Bonus>Destiny</Bonus>
-                  <Skill>Concentration</Skill>
-                  <Amount>4</Amount>
-               </Effect>
-               <Effect>
-                  <Type>SpellPenetrationBonus</Type>
-                  <Bonus>Destiny</Bonus>
-                  <Amount>2</Amount>
-               </Effect>
-               <Effect>
-                  <Type>SongDuration</Type>
-                  <Bonus>Destiny</Bonus>
-                  <Amount>60</Amount>
-               </Effect>
-            </EnhancementSelection>
-         </Selector>
+         <Effect>
+            <Type>ThreatBonusMelee</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">-15 -25 -35</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>ThreatBonusRanged</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">-15 -25 -35</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>ThreatBonusSpell</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">-15 -25 -35</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">20 40 40</AmountVector>
+            <SpellPower>Sonic</SpellPower>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">5 10 15</AmountVector>
+            <SpellPower>Force/Untyped</SpellPower>
+            <SpellPower>Positive</SpellPower>
+            <SpellPower>Negative</SpellPower>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Fatesinger: Ability III</Name>
@@ -888,42 +873,55 @@ a +2 Spell Penetration bonus to your spells, a +2 to the DC's of your offensive 
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
+      <!--Tier 4-->
       <EnhancementTreeItem>
-         <Name>Fatesinger: Chord of Disruption</Name>
-         <InternalName>ChordOfDisruption</InternalName>
-         <Description>When Siren's Song expires, Chord of Disruption focuses your energy to
-a single disruptive point causing [5d100+700 / 6d100+800 / 7d100+900]
-disintegrating sonic damage. If a Fortitude save is made effects are halved.</Description>
-         <Icon>ChordOfDisruption</Icon>
+         <Name>Fatesinger: Fourth Harmonic Chord</Name>
+         <InternalName>FourthHarmonicChord</InternalName>
+         <Description>Your Inspire Heroics now grants an additional +[1/2/3] Armor Class,
++[1/2/3]% Dodge, and +[1/2/3] to all Saving throws.
+
+Passively, you benefit from an additional +[1/2/3] Armor Class,
++[1/2/3]% Dodge, and +[1/2/3] to all Saving throws.</Description>
+         <Icon>FirstHarmonicChord</Icon>
          <XPosition>0</XPosition>
          <YPosition>4</YPosition>
          <Cost>1</Cost>
          <Ranks>3</Ranks>
          <MinSpent>12</MinSpent>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Enhancement>SirensSong</Enhancement>
-            </Requirement>
-         </Requirements>
+         <Requirements/>
+         <Effect>
+            <Type>ACBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>DodgeBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+             <Save>All</Save>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Echoes of the Ancestors: Martial</Name>
-         <InternalName>EchoesOfTheAncestorsMartial</InternalName>
-         <Description>Stance, 1 song to activate: either
-Grandmaster of Flowers: Gain a +1 Wisdom, a +2 AC while Tumbling and a +1 to all saving throws.
-You gain a +2 to your Concentration, a +2 to Balance and a 2% Dodge bonus.
-Lastly, your Inspire Courage grants an additional +2 to saves vs. Fear. 
-Legendary Dreadnought: Gain a +1 Strength, +10 to your maximum health, +1 to
-the DCs of all combat feats, +1 to Hit, 1 Extra Action boost per rest.
-In addition your Inspire Courage grants an additional +1 to Hit and +1 to Damage. 
-Shadowdancer: Gain a +1 Dexterity, a +2 to saving throws vs. traps and a 1d6
-Sneak Attack damage bonus. In addition, every time you are hit, you have a 5%
-chance of being affected by Lingering Shadows for 4 seconds.
-Lingering Shadows grants you displacement, a +4 to hit and +2 damage, and
-+15% attack speed, but is removed if you are damaged. Lastly, you gain a +20%
-to the duration of your Songs.</Description>
-         <Icon>EchoesOfTheAncestorsMartial</Icon>
+         <Name>Fatesinger: Divine Hymn</Name>
+         <InternalName>DivineHymn</InternalName>
+         <Description>You sing a magical Hymn that resonates within the Divine Sphere. When you
+activate this ability, your target is surrounded by magical energies, bestowing Divine Resonance.
+
+Each member of your party, including yourself, may only benefit from one Hymn at
+a time, regardless of source. Attempting to activate this ability on someone else
+willdispel the Hymn from your former target. If you attempt to activate a different
+Hymn on someone who is already benefitting from this Hymn, it will dispel this Hymn
+as it applies the new one. You may activate this ability on yourself.
+
+Divine Resonance: +1 to Strengh, Charisma and Wisdom, +1 maximum Spite Evil charges,
++2 to hit damage, and to confirm critical hits, +10 Physical Resistance Rating, and
++25 Positive and Negative Spell Power.</Description>
+         <Icon>DivineHymn</Icon>
          <XPosition>1</XPosition>
          <YPosition>4</YPosition>
          <Cost>2</Cost>
@@ -931,127 +929,96 @@ to the duration of your Songs.</Description>
          <MinSpent>12</MinSpent>
          <Clickie/>
          <Requirements/>
-         <Selector>
-            <EnhancementSelection>
-               <Name>Fatesinger: Grandmaster of Flowers</Name>
-               <Description>Gain a +1 Wisdom, a +2 AC while Tumbling and a +1 to all saving throws.
-You gain a +2 to your Concentration, a +2 to Balance and a 2% Dodge bonus.
-Lastly, your Inspire Courage grants an additional +2 to saves vs. Fear.</Description>
-               <Icon>GrandmasterOfFlowers</Icon>
-               <Cost>2</Cost>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Destiny</Bonus>
-                  <Ability>Wisdom</Ability>
-                  <Amount>1</Amount>
-               </Effect>
-               <Effect>
-                  <Type>SaveBonus</Type>
-                  <Bonus>Destiny</Bonus>
-                  <Save>All</Save>
-                  <Amount>1</Amount>
-               </Effect>
-               <Effect>
-                  <Type>SkillBonus</Type>
-                  <Bonus>Destiny</Bonus>
-                  <Skill>Balance</Skill>
-                  <Skill>Concentration</Skill>
-                  <Amount>2</Amount>
-               </Effect>
-               <Effect>
-                  <Type>DodgeBonus</Type>
-                  <Bonus>Destiny</Bonus>
-                  <Amount>2</Amount>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Fatesinger: Legendary Dreadnought</Name>
-               <Description>Gain a +1 Strength, +10 to your maximum health, +1 to
-the DCs of all combat feats, +1 to Hit, 1 Extra Action boost per rest.
-In addition your Inspire Courage grants an additional +1 to Hit and +1 to Damage.</Description>
-               <Icon>LegendaryDreadnought</Icon>
-               <Cost>2</Cost>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Destiny</Bonus>
-                  <Ability>Strength</Ability>
-                  <Amount>1</Amount>
-               </Effect>
-               <Effect>
-                  <Type>Hitpoints</Type>
-                  <Bonus>Destiny</Bonus>
-                  <Amount>10</Amount>
-               </Effect>
-               <Effect>
-                  <Type>TacticalDC</Type>
-                  <Bonus>Destiny</Bonus>
-                <Tactical>Trip</Tactical>
-                <Tactical>Sunder</Tactical>
-                <Tactical>Stun</Tactical>
-                <Tactical>General</Tactical>
-                  <Amount>1</Amount>
-               </Effect>
-               <Effect>
-                  <Type>AttackBonus</Type>
-                  <Bonus>Destiny</Bonus>
-                  <Weapon>All</Weapon>
-                  <Amount>2</Amount>
-               </Effect>
-               <Effect>
-                  <Type>ExtraActionBoost</Type>
-                  <Bonus>Destiny</Bonus>
-                  <Amount>1</Amount>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Fatesinger: Shadowdancer</Name>
-               <Description>Gain a +1 Dexterity, a +2 to saving throws vs. traps and a 1d6
-Sneak Attack damage bonus. In addition, every time you are hit, you have a 5%
-chance of being affected by Lingering Shadows for 4 seconds.
-Lingering Shadows grants you displacement, a +4 to hit and +2 damage, and
-+15% attack speed, but is removed if you are damaged. Lastly, you gain 1 minute
-to the duration of your Songs.</Description>
-               <Icon>Shadowdancer</Icon>
-               <Cost>2</Cost>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Destiny</Bonus>
-                  <Ability>Dexterity</Ability>
-                  <Amount>1</Amount>
-               </Effect>
-               <Effect>
-                  <Type>SaveBonus</Type>
-                  <Bonus>Destiny</Bonus>
-                  <Save>Traps</Save>
-                  <Amount>2</Amount>
-               </Effect>
-               <Effect>
-                  <Type>SneakAttackDice</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Amount>1</Amount>
-               </Effect>
-               <Effect>
-                  <Type>SongDuration</Type>
-                  <Bonus>Destiny</Bonus>
-                  <Amount>60</Amount>
-               </Effect>
-            </EnhancementSelection>
-         </Selector>
+         <Stance>
+            <Name>Divine Hymn</Name>
+            <Icon>DivineHymn</Icon>
+            <Description>Divine Resonance: +1 to Strengh, Charisma and Wisdom, +1 maximum Spite Evil charges,
++2 to hit damage, and to confirm critical hits, +10 Physical Resistance Rating, and
++25 Positive and Negative Spell Power.</Description>
+             <IncompatibleStance>Arcane Hymn</IncompatibleStance>
+             <IncompatibleStance>Martial Hymn</IncompatibleStance>
+             <IncompatibleStance>Primal Hymn</IncompatibleStance>
+         </Stance>
+        <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <Ability>Strength</Ability>
+            <Amount>1</Amount>
+            <Stance>Divine Hymn</Stance>
+        </Effect>
+        <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <Ability>Wisdom</Ability>
+            <Amount>1</Amount>
+            <Stance>Divine Hymn</Stance>
+        </Effect>
+        <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <Ability>Charisma</Ability>
+            <Amount>1</Amount>
+            <Stance>Divine Hymn</Stance>
+        </Effect>
+        <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>2</Amount>
+            <Stance>Divine Hymn</Stance>
+            <Weapon>All</Weapon>
+        </Effect>
+        <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>2</Amount>
+            <Stance>Divine Hymn</Stance>
+            <Weapon>All</Weapon>
+        </Effect>
+        <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>2</Amount>
+            <Stance>Divine Hymn</Stance>
+            <Weapon>All</Weapon>
+        </Effect>
+        <Effect>
+            <Type>Seeker</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>2</Amount>
+            <Stance>Divine Hymn</Stance>
+            <Weapon>All</Weapon>
+        </Effect>
+        <Effect>
+            <Type>PRR</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>10</Amount>
+            <Stance>Divine Hymn</Stance>
+        </Effect>
+        <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>25</Amount>
+            <Stance>Divine Hymn</Stance>
+            <SpellPower>Positive</SpellPower>
+            <SpellPower>Negative</SpellPower>
+        </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Fatesinger: Echoes of the Ancestors: Divine</Name>
-         <InternalName>EchoesOfTheAncestorsDivine</InternalName>
-         <Description>(-1 song) (Passive, Cooldown 6 seconds) Stance, 1 song to activate: Either
-Divine Crusader: Gain +1 Strength, +2 Sacred bonus to Seeker, +5 HP,
-+1 Turn Undead, +20% bonus to song duration. 
-Exalted Angel: Gain +1 Charisma, +3 Jump, a +4 to Fortitude saves vs. Disease,
-and +25 Spell Power when casting Positive Energy spells.
-Finally, your Inspire Courage grants an additional +1 to hit and +1 save vs. fear. 
-Unyielding Sentinel: Gain a +1 Charisma, a +1 to all saving throws, a 2/- DR
-bonus to blocking, and a +1 to hit. Your Inspire Courage grants an additional
-+1 to hit and +1 to saves vs. Fear. If you possess an Aura of Good, that grants
-an additional +1 bonus to saves vs. Fear.</Description>
-         <Icon>EchoesOfTheAncestorsDivine</Icon>
+         <Name>Fatesinger: Martial Hymn</Name>
+         <InternalName>MartialHymn</InternalName>
+         <Description>You sing a magical Hymn that resonates within the Martial Sphere. When you
+activate this ability, your target is surrounded by magical energies, bestowing Martial Resonance.
+
+Each member of your party, including yourself, may only benefit from one Hymn at
+a time, regardless of source. Attempting to activate this ability on someone else
+willdispel the Hymn from your former target. If you attempt to activate a different
+Hymn on someone who is already benefitting from this Hymn, it will dispel this Hymn
+as it applies the new one. You may activate this ability on yourself.
+
+Martial Resonance: +1 to Strengh, Dexterity and Wisdom, +2 Sneak Dice, +20 Maximum
+Hit Points, +10 Physical and Magical Resistance rating, +5 Armor Class, and +10
+Melee and Ranged Power</Description>
+         <Icon>MartialHymn</Icon>
          <XPosition>2</XPosition>
          <YPosition>4</YPosition>
          <Cost>2</Cost>
@@ -1059,125 +1026,96 @@ an additional +1 bonus to saves vs. Fear.</Description>
          <MinSpent>12</MinSpent>
          <Clickie/>
          <Requirements/>
-         <Selector>
-            <EnhancementSelection>
-               <Name>Fatesinger: Divine Crusader</Name>
-               <Description>Gain +1 Strength, +2 Sacred bonus to Seeker, +5 HP,
-+1 Turn Undead, +1 minute bonus to song duration.</Description>
-               <Icon>DivineCrusader</Icon>
-               <Cost>2</Cost>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Destiny</Bonus>
-                  <Ability>Strength</Ability>
-                  <Amount>1</Amount>
-               </Effect>
-               <Effect>
-                  <Type>Seeker</Type>
-                  <Bonus>Destiny</Bonus>
-                  <Amount>2</Amount>
-                  <Weapon>All</Weapon>
-               </Effect>
-               <Effect>
-                  <Type>Hitpoints</Type>
-                  <Bonus>Destiny</Bonus>
-                  <Amount>5</Amount>
-               </Effect>
-               <Effect>
-                  <Type>TurnBonus</Type>
-                  <Bonus>Destiny</Bonus>
-                  <Amount>1</Amount>
-               </Effect>
-               <Effect>
-                  <Type>SongDuration</Type>
-                  <Bonus>Destiny</Bonus>
-                  <Amount>60</Amount>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Fatesinger: Exalted Angel</Name>
-               <Description>Gain +1 Charisma, +3 Jump, a +4 to Fortitude saves vs. Disease,
-and +25 Spell Power when casting Positive Energy spells.
-Finally, your Inspire Courage grants an additional +1 to hit and +1 save vs. fear.</Description>
-               <Icon>ExaltedAngel</Icon>
-               <Cost>2</Cost>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Destiny</Bonus>
-                  <Ability>Charisma</Ability>
-                  <Amount>1</Amount>
-               </Effect>
-               <Effect>
-                  <Type>SkillBonus</Type>
-                  <Bonus>Destiny</Bonus>
-                  <Skill>Jump</Skill>
-                  <Amount>3</Amount>
-               </Effect>
-               <Effect>
-                  <Type>SaveBonus</Type>
-                  <Bonus>Destiny</Bonus>
-                  <Save>Disease</Save>
-                  <Amount>4</Amount>
-               </Effect>
-               <Effect>
-                  <Type>SpellPower</Type>
-                  <Bonus>Destiny</Bonus>
-                  <SpellPower>Positive</SpellPower>
-                  <Weapon>All</Weapon>
-                  <Amount>25</Amount>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Fatesinger: Unyielding Sentinel</Name>
-               <Description>Gain a +1 Charisma, a +1 to all saving throws, a 2/- DR
-bonus to blocking, and a +1 to hit. Your Inspire Courage grants an additional
-+1 to hit and +1 to saves vs. Fear. If you possess an Aura of Good, that grants
-an additional +1 bonus to saves vs. Fear.</Description>
-               <Icon>UnyieldingSentinel</Icon>
-               <Cost>2</Cost>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Destiny</Bonus>
-                  <Ability>Charisma</Ability>
-                  <Amount>1</Amount>
-               </Effect>
-               <Effect>
-                  <Type>SaveBonus</Type>
-                  <Bonus>Destiny</Bonus>
-                  <Save>All</Save>
-                  <Amount>1</Amount>
-               </Effect>
-               <Effect>
-                  <Type>SaveBonus</Type>
-                  <Bonus>Destiny</Bonus>
-                  <Save>Fear</Save>
-                  <Amount>1</Amount>
-               </Effect>
-               <Effect>
-                  <Type>AttackBonus</Type>
-                  <Bonus>Destiny</Bonus>
-                  <Weapon>All</Weapon>
-                  <Amount>1</Amount>
-               </Effect>
-            </EnhancementSelection>
-         </Selector>
+         <Stance>
+            <Name>Martial Hymn</Name>
+            <Icon>MartialHymn</Icon>
+            <Description>Martial Resonance: +1 to Strengh, Dexterity and Wisdom, +2 Sneak Dice, +20 Maximum
+Hit Points, +10 Physical and Magical Resistance rating, +5 Armor Class, and +10
+Melee and Ranged Power</Description>
+             <IncompatibleStance>Arcane Hymn</IncompatibleStance>
+             <IncompatibleStance>Divine Hymn</IncompatibleStance>
+             <IncompatibleStance>Primal Hymn</IncompatibleStance>
+         </Stance>
+        <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <Ability>Strength</Ability>
+            <Amount>1</Amount>
+            <Stance>Martial Hymn</Stance>
+        </Effect>
+        <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <Ability>Wisdom</Ability>
+            <Amount>1</Amount>
+            <Stance>Martial Hymn</Stance>
+        </Effect>
+        <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <Ability>Dexterity</Ability>
+            <Amount>1</Amount>
+            <Stance>Martial Hymn</Stance>
+        </Effect>
+        <Effect>
+            <Type>SneakAttackDice</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>2</Amount>
+            <Stance>Martial Hymn</Stance>
+        </Effect>
+        <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>20</Amount>
+            <Stance>Martial Hymn</Stance>
+        </Effect>
+        <Effect>
+            <Type>PRR</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>10</Amount>
+            <Stance>Martial Hymn</Stance>
+        </Effect>
+        <Effect>
+            <Type>MRR</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>10</Amount>
+            <Stance>Martial Hymn</Stance>
+        </Effect>
+        <Effect>
+            <Type>ACBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>5</Amount>
+            <Stance>Martial Hymn</Stance>
+        </Effect>
+        <Effect>
+            <Type>MeleePower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>10</Amount>
+            <Stance>Martial Hymn</Stance>
+        </Effect>
+        <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>10</Amount>
+            <Stance>Martial Hymn</Stance>
+        </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Fatesinger: Echoes of the Ancestors: Primal</Name>
-         <InternalName>EchoesOfTheAncestorsPrimal</InternalName>
-         <Description>(-1 song) (Passive, Cooldown 6 seconds) Stance, 1 song to activate: Either
-Fury of the Wild: Gain a +1 Constitution and +25 to your maximum Health and a
-+2 to all Fortitude saves. If you have Rage feat, your Rage grants you an
-additional +1 Strength while raging. You also have a +3% chance to trigger
-weapon effects on glancing blows. Finally, your Inspire Courage grants an
-additional +1 damage and +1 to your saves vs Fear. 
-Primal Avatar: Gain a +1 Wisdom. Gain a +6 Spell Power to Fire, Cold, Electricity,
-Acid and Rust, as well as a +5 resistance to Fire, Cold and Electricity.
-Lastly, you gain a +20% to the duration of your Songs. 
-Shiradi Champion: Gain a +1 Dexterity, +5 Spot, +2 Listen and 2 Diplomacy.
-Your attack speed with bows and thrown weapons is 10% faster. Finally, you
-gain a +20% bonus to the duration of your Songs.</Description>
-         <Icon>EchoesOfTheAncestorsPrimal</Icon>
+         <Name>Fatesinger: Primal Hymn</Name>
+         <InternalName>PrimalHymn</InternalName>
+         <Description>You sing a magical Hymn that resonates within the Primal Sphere. When you
+activate this ability, your target is surrounded by magical energies, bestowing Primal Resonance.
+
+Each member of your party, including yourself, may only benefit from one Hymn at
+a time, regardless of source. Attempting to activate this ability on someone else
+willdispel the Hymn from your former target. If you attempt to activate a different
+Hymn on someone who is already benefitting from this Hymn, it will dispel this Hymn
+as it applies the new one. You may activate this ability on yourself.
+
+Primal Resonance: +1 to Dexterity, Constitution and Wisdom, +25 Maximum Hit Points,
++10 Spell resistance, +10 Healing Amplification, +10% Attack Speed with Throwing
+Weapons and Bows, and an additional +3 Strength while Raging.</Description>
+         <Icon>PrimalHymn</Icon>
          <XPosition>3</XPosition>
          <YPosition>4</YPosition>
          <Cost>2</Cost>
@@ -1185,117 +1123,77 @@ gain a +20% bonus to the duration of your Songs.</Description>
          <MinSpent>12</MinSpent>
          <Clickie/>
          <Requirements/>
-         <Selector>
-            <EnhancementSelection>
-               <Name>Fatesinger: Fury of the Wild</Name>
-               <Description>Gain a +1 Constitution and +25 to your maximum Health and a
-+2 to all Fortitude saves. If you have Rage feat, your Rage grants you an
-additional +1 Strength while raging. You also have a +3% chance to trigger
-weapon effects on glancing blows. Finally, your Inspire Courage grants an
-additional +1 damage and +1 to your saves vs Fear.</Description>
-               <Icon>FuryOfTheWild</Icon>
-               <Cost>2</Cost>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Destiny</Bonus>
-                  <Ability>Constitution</Ability>
-                  <Amount>1</Amount>
-               </Effect>
-               <Effect>
-                  <Type>Hitpoints</Type>
-                  <Bonus>Destiny</Bonus>
-                  <Amount>25</Amount>
-               </Effect>
-               <Effect>
-                  <Type>SaveBonus</Type>
-                  <Bonus>Destiny</Bonus>
-                  <Save>Fortitude</Save>
-                  <Amount>2</Amount>
-               </Effect>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Destiny</Bonus>
-                  <Ability>Strength</Ability>
-                  <Amount>1</Amount>
-                  <Stance>Rage</Stance>
-               </Effect>
-               <Effect>
-                  <Type>GlancingBlowEffects</Type>
-                  <Bonus>Destiny</Bonus>
-                  <Amount>3</Amount>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Fatesinger: Primal Avatar</Name>
-               <Description>Gain a +1 Wisdom. Gain a +6 Spell Power to Fire, Cold, Electricity,
-Acid and Rust, as well as a +5 resistance to Fire, Cold and Electricity.
-Lastly, you gain a +1 minute to the duration of your Songs.</Description>
-               <Icon>PrimalAvatar</Icon>
-               <Cost>2</Cost>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Destiny</Bonus>
-                  <Ability>Wisdom</Ability>
-                  <Amount>1</Amount>
-               </Effect>
-               <Effect>
-                  <Type>SpellPower</Type>
-                  <Bonus>Destiny</Bonus>
-                  <Amount>6</Amount>
-                  <SpellPower>Fire</SpellPower>
-                  <SpellPower>Cold</SpellPower>
-                  <SpellPower>Electric</SpellPower>
-                  <SpellPower>Acid</SpellPower>
-                  <SpellPower>Rust</SpellPower>
-               </Effect>
-               <Effect>
-                  <Type>EnergyResistance</Type>
-                  <Bonus>Destiny</Bonus>
-                  <Energy>Fire</Energy>
-                  <Energy>Cold</Energy>
-                  <Energy>Electric</Energy>
-                  <Amount>5</Amount>
-               </Effect>
-               <Effect>
-                  <Type>SongDuration</Type>
-                  <Bonus>Destiny</Bonus>
-                  <Amount>60</Amount>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Fatesinger: Shiradi Champion</Name>
-               <Description>Gain a +1 Charisma, a +1 to all saving throws, a 2/- DR
-bonus to blocking, and a +1 to hit. Your Inspire Courage grants an additional
-+1 to hit and +1 to saves vs. Fear. If you possess an Aura of Good, that grants
-an additional +1 bonus to saves vs. Fear.</Description>
-               <Icon>ShiradiChampion</Icon>
-               <Cost>2</Cost>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Destiny</Bonus>
-                  <Ability>Charisma</Ability>
-                  <Amount>1</Amount>
-               </Effect>
-               <Effect>
-                  <Type>SaveBonus</Type>
-                  <Bonus>Destiny</Bonus>
-                  <Save>All</Save>
-                  <Amount>1</Amount>
-               </Effect>
-               <Effect>
-                  <Type>SaveBonus</Type>
-                  <Bonus>Destiny</Bonus>
-                  <Save>Fear</Save>
-                  <Amount>1</Amount>
-               </Effect>
-               <Effect>
-                  <Type>AttackBonus</Type>
-                  <Bonus>Destiny</Bonus>
-                  <Weapon>All</Weapon>
-                  <Amount>1</Amount>
-               </Effect>
-            </EnhancementSelection>
-         </Selector>
+         <Stance>
+            <Name>Martial Hymn</Name>
+            <Icon>MartialHymn</Icon>
+            <Description>Primal Resonance: +1 to Dexterity, Constitution and Wisdom, +25 Maximum Hit Points,
++10 Spell Resistance, +10 Healing Amplification, +10% Attack Speed with Throwing
+Weapons and Bows, and an additional +3 Strength while Raging.</Description>
+             <IncompatibleStance>Arcane Hymn</IncompatibleStance>
+             <IncompatibleStance>Divine Hymn</IncompatibleStance>
+             <IncompatibleStance>Martial Hymn</IncompatibleStance>
+         </Stance>
+        <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <Ability>Constitution</Ability>
+            <Amount>1</Amount>
+            <Stance>Primal Hymn</Stance>
+        </Effect>
+        <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <Ability>Wisdom</Ability>
+            <Amount>1</Amount>
+            <Stance>Primal Hymn</Stance>
+        </Effect>
+        <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <Ability>Dexterity</Ability>
+            <Amount>1</Amount>
+            <Stance>Primal Hymn</Stance>
+        </Effect>
+        <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>25</Amount>
+            <Stance>Primal Hymn</Stance>
+        </Effect>
+        <Effect>
+            <Type>SpellResistance</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>10</Amount>
+            <Stance>Primal Hymn</Stance>
+        </Effect>
+        <Effect>
+            <Type>HealingAmplification</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>10</Amount>
+            <Stance>Primal Hymn</Stance>
+        </Effect>
+        <Effect>
+            <Type>Alacrity</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>10</Amount>
+            <Stance>Primal Hymn</Stance>
+            <WeaponClass>Thrown</WeaponClass>
+        </Effect>
+        <Effect>
+            <Type>Alacrity</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>10</Amount>
+            <Stance>Primal Hymn</Stance>
+            <WeaponClass>Bows</WeaponClass>
+        </Effect>
+        <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <Ability>Strength</Ability>
+            <Amount>3</Amount>
+            <Stance>Primal Hymn</Stance>
+            <Stance>Raged</Stance>
+        </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Fatesinger: Ability IV</Name>
@@ -1335,77 +1233,228 @@ an additional +1 bonus to saves vs. Fear.</Description>
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
+      <!--Tier 5-->
       <EnhancementTreeItem>
-         <Name>Fatesinger: Bound Fate</Name>
-         <InternalName>BoundFate</InternalName>
-         <Description>A single target must make a Will save with a DC modified by the caster's
-Charisma modifier. On a failed save, the target is bound briefly to the spot,
-and for one minute is also [6/10/12]% more vulnerable to magical damage, and
-has -[6/10/12] Spell Resistance. In addition, the creature deals -[4/6/8]
-damage on attacks. Duration 45 seconds. Instant cast.(Active Cooldown: 4mins)</Description>
-         <Icon>BoundFate</Icon>
+         <Name>Fatesinger: The Fith Chord</Name>
+         <InternalName>TheFifthChord</InternalName>
+         <Description>Adds Inspire Transcendence to your Bardic Ballad.
+
+Inspire Transcendence: +1 to all Spell DCs, +1 to the DC of all Tactical Feats,
++3 Spell Resistance and True Seeing.
+
+Passively, you benefit from an additional +1 to all Spell DCs, +1 to the DC of
+all Tactical Feats, +3 Spell Resistance and you are immune to Blindness and benefit
+from the True Seeing spell.
+
+A verse from the Song of Heroes, whose powerful notes fill your limbs with vigor
+in battle.</Description>
+         <Icon>TheFifthChord</Icon>
          <XPosition>0</XPosition>
          <YPosition>5</YPosition>
          <Cost>1</Cost>
-         <Ranks>3</Ranks>
+         <Ranks>1</Ranks>
          <MinSpent>16</MinSpent>
-         <Clickie/>
-         <ArrowUp/>
          <Requirements/>
+         <Effect>
+            <Type>SpellDC</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>1</Amount>
+            <School>All</School>
+         </Effect>
+         <Effect>
+            <Type>TacticalDC</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>1</Amount>
+            <Tactical>Trip</Tactical>
+            <Tactical>Stun</Tactical>
+            <Tactical>Sunder</Tactical>
+            <Tactical>Quivering Palm</Tactical>
+         </Effect>
+         <Effect>
+            <Type>SpellResistance</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>3</Amount>
+         </Effect>
+         <Effect>
+            <Type>Immunity</Type>
+            <Bonus>Destiny</Bonus>
+            <Immunity>Blindness</Immunity>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Fatesinger: Fragment of the Song: Clarity</Name>
-         <InternalName>FragmentOfTheSongClarity</InternalName>
-         <Description>All of your Songs gain [30/60] seconds to their duration.
-Additionally, your Inspire Courage grants additional effects only for you:
-Rank 1: Your spells cost 5% less SP, +3 Concentration and +20 temporary SP. (Competence)
-Rank 2: Your spells cost 5% less SP, +3 Concentration and +20 temporary SP. (Moral)</Description>
-         <Icon>FragmentOfTheSongClarity</Icon>
+         <Name>Fatesinger: Metamagic Attunement I</Name>
+         <InternalName>MetamagicAttunementI</InternalName>
+         <Description>Select a metamagic</Description>
+         <Icon>MetamagicAttunement</Icon>
          <XPosition>1</XPosition>
          <YPosition>5</YPosition>
          <Cost>1</Cost>
-         <Ranks>2</Ranks>
+         <Ranks>1</Ranks>
          <MinSpent>16</MinSpent>
-         <Clickie/>
          <Requirements/>
-         <Effect>
-            <Type>SongDuration</Type>
-            <Bonus>Destiny</Bonus>
-            <AmountVector size="2">30 60</AmountVector>
-         </Effect>
+         <Selector>
+            <SelectorExclusions>
+               <SelectorExclusion>
+                  <InternalName>MetamagicAttunementII</InternalName>
+               </SelectorExclusion>
+            </SelectorExclusions>
+            <EnhancementSelection>
+               <Name>Efficient Empower</Name>
+               <Description>Using the Empower Spell Metamagic costs you 2 fewer Spell Points.</Description>
+               <Icon>EfficientEmpower</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Feat>Empower Spell</Feat>
+                  </Requirement>
+               </Requirements>
+               <Effect>
+                  <Type>AdditionalSpellPointCost</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Amount>-2</Amount>
+                  <Stance>Empower</Stance>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Efficient Enlarge</Name>
+               <Description>Using the Enlarge Spell Metamagic costs you 1 fewer Spell Points.</Description>
+               <Icon>EfficientEnlarge</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Feat>Enlarge Spell</Feat>
+                  </Requirement>
+               </Requirements>
+               <Effect>
+                  <Type>AdditionalSpellPointCost</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Amount>-1</Amount>
+                  <Stance>Enlarge</Stance>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Efficient Maximize</Name>
+               <Description>Using the Maximize Spell Metamagic costs you 3 fewer Spell Points.</Description>
+               <Icon>EfficientMaximize</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Feat>Maximize Spell</Feat>
+                  </Requirement>
+               </Requirements>
+               <Effect>
+                  <Type>AdditionalSpellPointCost</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Amount>-3</Amount>
+                  <Stance>Maximize</Stance>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Efficient Quicken</Name>
+               <Description>Using the Quicken Spell Metamagic costs you 1 fewer Spell Points.</Description>
+               <Icon>EfficientQuicken</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Feat>Quicken Spell</Feat>
+                  </Requirement>
+               </Requirements>
+               <Effect>
+                  <Type>AdditionalSpellPointCost</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Amount>-1</Amount>
+                  <Stance>Quicken</Stance>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Fatesinger: Masquerade</Name>
          <InternalName>Masquerade</InternalName>
-         <Description>You can switch your Twist of Fate at a Rest Shrine.</Description>
+         <Description>Passive: You have a 10% reduction on the costs of your spells.
+You also have the power to switch your Twist of Fate at a Rest Shrine.
+
+Close your eyes.
+Roll a dream into a ball.
+Count to three and throw it over your shoulder.
+open your eyes, and let Destiny be undone!
+--excerpt from 'Secret Recipes'</Description>
          <Icon>Masquerade</Icon>
          <XPosition>2</XPosition>
          <YPosition>5</YPosition>
          <Cost>1</Cost>
          <Ranks>1</Ranks>
          <MinSpent>16</MinSpent>
-         <Clickie/>
          <Requirements/>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Fatesinger: Fragment of the Song: Valor</Name>
-         <InternalName>FragmentOfTheSongValor</InternalName>
-         <Description>Your Inspire Courage grants you and your party an additional [+1/+2] to damage.
-In addition, you gain the following personal bonuses: 
-Rank 1: Inspire Courage increases your melee attack speed by +3%
-(competence bonus, stacks with Haste spell) and grants you +10 competence
-bonus to temporary HP. Removes combat penalties for moving. 
-Rank 2: +1 to hit, +10 morale bonus to temporary HP, +2 to Intimidate
-(Morale bonus). Gives you a 2% chance to cause 5% electric/light/sonic
-vulnerability (stacks 3 times).</Description>
-         <Icon>FragmentOfTheSongValor</Icon>
+         <Name>Fatesinger: Bladesong</Name>
+         <InternalName>Bladesong</InternalName>
+         <Description>Your Melee and Missile attacks deal an additional 2d6 Sonic damage on hit,
+scaling with Sonic Spell Power.
++3% Competence Bonus to Melee Attack Speed.
+You have +1 Critical Mulitplier on rolls of 19-20.
+A verse from the Song of Heroes, whose harmonious notes sweep away the strain of
+concentration.</Description>
+         <Icon>Bladesong</Icon>
          <XPosition>3</XPosition>
          <YPosition>5</YPosition>
          <Cost>1</Cost>
-         <Ranks>2</Ranks>
+         <Ranks>1</Ranks>
          <MinSpent>16</MinSpent>
-         <Clickie/>
          <Requirements/>
+         <Effect>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <WeaponClass>Melee</WeaponClass>
+              <Dice>
+                 <Number size="1">2</Number>
+                 <Sides size="1">6</Sides>
+                 <Energy>Sonic</Energy>
+              </Dice>
+         </Effect>
+         <Effect>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <WeaponClass>Melee</WeaponClass>
+              <Dice>
+                 <Number size="1">2</Number>
+                 <Sides size="1">6</Sides>
+                 <Energy>Sonic</Energy>
+              </Dice>
+         </Effect>
+         <Effect>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <WeaponClass>Thrown</WeaponClass>
+              <Dice>
+                 <Number size="1">2</Number>
+                 <Sides size="1">6</Sides>
+                 <Energy>Sonic</Energy>
+              </Dice>
+         </Effect>
+         <Effect>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <WeaponClass>Thrown</WeaponClass>
+              <Dice>
+                 <Number size="1">2</Number>
+                 <Sides size="1">6</Sides>
+                 <Energy>Sonic</Energy>
+              </Dice>
+         </Effect>
+        <Effect>
+            <Type>Alacrity</Type>
+            <Bonus>Competence</Bonus>
+            <Amount>3</Amount>
+            <WeaponClass>Melee</WeaponClass>
+        </Effect>
+        <Effect>
+            <Type>CriticalMultiplier19To20</Type>
+            <Bonus>Competence</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+        </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Fatesinger: Ability V</Name>
@@ -1445,33 +1494,137 @@ vulnerability (stacks 3 times).</Description>
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
+      <!--Tier 6-->
       <EnhancementTreeItem>
-         <Name>Fatesinger: Grim Fate</Name>
-         <InternalName>GrimFate</InternalName>
-         <Description>Your Bound Fate now inflicts creatures with an additional [6%/10%/12%]
-vulnerability to Physical attacks. Grim Fate may take effect even if Bound
-Fate does not. Duration 1 minute.</Description>
-         <Icon>GrimFate</Icon>
+         <Name>Fatesinger: Greater Shout</Name>
+         <InternalName>GreaterShout</InternalName>
+         <Description>You may cast the spell Greater Shout as a Spell-like ability.
+Emits an ear splitting yell that deals 1d3+3 Sonic damage per caster level and
+stuns targets in its path. A successful Fortitude save halves the damage and negates
+the stun.
+Cooldown: 6 seconds
+Cost: 6 spell points</Description>
+         <Icon>GreaterShout</Icon>
          <XPosition>0</XPosition>
          <YPosition>6</YPosition>
          <Cost>1</Cost>
-         <Ranks>3</Ranks>
+         <Ranks>1</Ranks>
          <MinSpent>20</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Enhancement>BoundFate</Enhancement>
-            </Requirement>
-         </Requirements>
+         <Requirements/>
+         <Clickie/>
+        <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Destiny</Bonus>
+            <SpellLikeAbility>Greater Shout</SpellLikeAbility>
+        </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Fatesinger: Metamagic Attunement II</Name>
+         <InternalName>MetamagicAttunementII</InternalName>
+         <Description>Select a metamagic</Description>
+         <Icon>MetamagicAttunement</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>6</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements/>
+         <Selector>
+            <SelectorExclusions>
+               <SelectorExclusion>
+                  <InternalName>MetamagicAttunementI</InternalName>
+               </SelectorExclusion>
+            </SelectorExclusions>
+            <EnhancementSelection>
+               <Name>Efficient Empower</Name>
+               <Description>Using the Empower Spell Metamagic costs you 2 fewer Spell Points.</Description>
+               <Icon>EfficientEmpower</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Feat>Empower Spell</Feat>
+                  </Requirement>
+               </Requirements>
+               <Effect>
+                  <Type>AdditionalSpellPointCost</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Amount>-2</Amount>
+                  <Stance>Empower</Stance>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Efficient Enlarge</Name>
+               <Description>Using the Enlarge Spell Metamagic costs you 1 fewer Spell Points.</Description>
+               <Icon>EfficientEnlarge</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Feat>Enlarge Spell</Feat>
+                  </Requirement>
+               </Requirements>
+               <Effect>
+                  <Type>AdditionalSpellPointCost</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Amount>-1</Amount>
+                  <Stance>Enlarge</Stance>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Efficient Maximize</Name>
+               <Description>Using the Maximize Spell Metamagic costs you 3 fewer Spell Points.</Description>
+               <Icon>EfficientMaximize</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Feat>Maximize Spell</Feat>
+                  </Requirement>
+               </Requirements>
+               <Effect>
+                  <Type>AdditionalSpellPointCost</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Amount>-3</Amount>
+                  <Stance>Maximize</Stance>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Efficient Quicken</Name>
+               <Description>Using the Quicken Spell Metamagic costs you 1 fewer Spell Points.</Description>
+               <Icon>EfficientQuicken</Icon>
+               <Cost>2</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Feat>Quicken Spell</Feat>
+                  </Requirement>
+               </Requirements>
+               <Effect>
+                  <Type>AdditionalSpellPointCost</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Amount>-1</Amount>
+                  <Stance>Quicken</Stance>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Fatesinger: Turn of the Tide</Name>
          <InternalName>TurnOfTheTide</InternalName>
-         <Description>Spontaneous Song (expend a song to activate).
-Turn of the Tide grants a full BAB, +3 to hit, +40% damage, DR 15/-, a +4 Charisma,
-and deals +5d10 +75 Sonic damage and +5d10 +75 Light damage per hit.
-(This magical damage does not affect Bosses.) While under the effects of Turn
-of the Tide, rolling a 1 on a Will save is not an automatic failure.
-Duration: 45 seconds</Description>
+         <Description>Spontaneous Song: Activate this ability to gain:
+Full Base Attack Bonus
++40% weapon damage
+DR 15/-
++4 Charisma
++3 to hit
+Your attacks from weapons deal an additional 5d10+75 Sonic damage and 5d10+75
+Light damage per hit
+While under the effects of Turn of the Tide, you do not automatically fail Will
+save by rolling a natural 1.
+Cooldown: 3 minutes
+
+'Shining like the sun, the Singer fell upon the horde. Fiery, his sword gleamed,
+cutting through their ranks. And when light had faded, and with the carnage all
+around, he quietly cleaned his blade, sat upon a lonely rock and wrote a poem of
+I know not what.'
+--Recollections, Lormac Stoutarm</Description>
          <Icon>TurnOfTheTide</Icon>
          <XPosition>2</XPosition>
          <YPosition>6</YPosition>
@@ -1479,6 +1632,7 @@ Duration: 45 seconds</Description>
          <Ranks>1</Ranks>
          <MinSpent>20</MinSpent>
          <Requirements/>
+         <Clickie/>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Fatesinger: Ability VI</Name>

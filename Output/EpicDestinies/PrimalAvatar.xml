@@ -2,7 +2,7 @@
 <Enhancements>
    <EnhancementTree>
       <Name>Primal Avatar</Name>
-      <Version>1</Version>
+      <Version>2</Version>
       <Requirements/>
       <IsEpicDestiny/>
       <Icon>PrimalAvatar</Icon>
@@ -10,14 +10,8 @@
       <EnhancementTreeItem>
          <Name>Primal Avatar: Strength of Spirit</Name>
          <InternalName>PrimalCore1</InternalName>
-         <Description>When you hit with a melee attack, or cast a spell on an ally, or cast an
-offensive spell on an enemy, you gain 1 Spirit. Each of these three
-categories triggers only once every three seconds. You can have up to
-30 Spirit. Spirit decays at a rate of one every 9 seconds.
-Toggle: You gain +30 Universal Spell Power.
-Costs 1 Spirit to activate and 1 Spirit every six seconds.
-Active (5 sec cooldown)
-+10 Melee power per core</Description>
+         <Description>Passive: +20 Universal Spell Power.
++10 Melee Power and +4 Ranged Power per level in Primal Avatar, including this one.</Description>
          <Icon>StrengthOfSpirit</Icon>
          <XPosition>0</XPosition>
          <YPosition>0</YPosition>
@@ -27,31 +21,30 @@ Active (5 sec cooldown)
          <Clickie/>
          <ArrowRight/>
          <Requirements/>
-         <Stance>
-            <Name>Strength of Spirit</Name>
-            <Icon>StrengthOfSpirit</Icon>
-            <Description>Toggle: You gain +30 Universal Spell Power.
-Costs 1 Spirit to activate and 1 Spirit every six seconds.</Description>
-         </Stance>
          <Effect>
             <Type>SpellPower</Type>
             <Bonus>Destiny</Bonus>
             <SpellPower>All</SpellPower>
-            <Amount>30</Amount>
-            <Stance>Strength of Spirit</Stance>
+            <Amount>20</Amount>
          </Effect>
          <Effect>
             <Type>MeleePower</Type>
             <Bonus>Destiny</Bonus>
             <Amount>10</Amount>
          </Effect>
+         <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>4</Amount>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Primal Avatar: Magic of Nature</Name>
          <InternalName>PrimalCore2</InternalName>
-         <Description>+50 SP per level of Primal Avatar. You gain caster levels equal to your
-Primal Avatar level for Druid and Ranger spells, if you have any levels
-in those classes.</Description>
+         <Description>+50 SP per level of Primal Avatar.
+You gain caster levels equal to your Primal Avatar level for Druid and Ranger spells,
+if you have any levels in those classes.
++1 Evocation and Transmutation DC</Description>
          <Icon>MagicOfNature</Icon>
          <XPosition>1</XPosition>
          <YPosition>0</YPosition>
@@ -82,18 +75,34 @@ in those classes.</Description>
             <Amount>1</Amount>
          </Effect>
          <Effect>
+            <Type>SpellDC</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>1</Amount>
+            <School>Evocation</School>
+         </Effect>
+         <Effect>
+            <Type>SpellDC</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>1</Amount>
+            <School>Transmutation</School>
+         </Effect>
+         <Effect>
             <Type>MeleePower</Type>
             <Bonus>Destiny</Bonus>
             <Amount>10</Amount>
+         </Effect>
+         <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>4</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Primal Avatar: Primal Travel</Name>
          <InternalName>PrimalCore3</InternalName>
          <Description>You quickly jump backwards several times.
-For the next 12 seconds you gain +10 primal bonus to tumble and 50% primal
-bonus to dodge (ignoring your maximum dodge).
-Costs 1 Spirit. Active (1 min cooldown)</Description>
+For 20 seconds you gain +10 Primal bonus to tumble and 50% Primal bonus to dodge
+(ignoring your maximum dodge).</Description>
          <Icon>PrimalTravel</Icon>
          <XPosition>2</XPosition>
          <YPosition>0</YPosition>
@@ -129,12 +138,17 @@ Costs 1 Spirit. Active (1 min cooldown)</Description>
             <Bonus>Destiny</Bonus>
             <Amount>10</Amount>
          </Effect>
+         <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>4</Amount>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Primal Avatar: Mighty Among Spirits</Name>
          <InternalName>PrimalCore4</InternalName>
-         <Description>+20 HP.
-Spirit decays every 15 seconds instead of every 9 seconds.</Description>
+         <Description>+20 HP and +15 MRR.
++1 Evocation and Transmutation DC</Description>
          <Icon>MightyAmongSpirits</Icon>
          <XPosition>3</XPosition>
          <YPosition>0</YPosition>
@@ -153,9 +167,26 @@ Spirit decays every 15 seconds instead of every 9 seconds.</Description>
             <Amount>20</Amount>
          </Effect>
          <Effect>
+            <Type>MRR</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>15</Amount>
+         </Effect>
+         <Effect>
             <Type>SpellPoints</Type>
             <Bonus>Destiny</Bonus>
             <Amount>50</Amount>
+         </Effect>
+         <Effect>
+            <Type>SpellDC</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>1</Amount>
+            <School>Evocation</School>
+         </Effect>
+         <Effect>
+            <Type>SpellDC</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>1</Amount>
+            <School>Transmutation</School>
          </Effect>
          <Effect>
             <Type>CasterLevel</Type>
@@ -174,13 +205,18 @@ Spirit decays every 15 seconds instead of every 9 seconds.</Description>
             <Bonus>Destiny</Bonus>
             <Amount>10</Amount>
          </Effect>
+         <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>4</Amount>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Primal Avatar: Eternal Return</Name>
          <InternalName>PrimalCore5</InternalName>
-         <Description>Toggle: While below 50% health, you gain 12 health and lose one
-spirit and 4 SP every two seconds. Costs 1 Spirit to activate.
-Active Ability: (5 sec cooldown) </Description>
+         <Description>Toggle: While below 50% health, you gain 12 health and lose 4 SP every two seconds.
+(Stays toggled on until manually turned off.)
+Cooldown: 5 Seconds</Description>
          <Icon>EternalReturn</Icon>
          <XPosition>4</XPosition>
          <YPosition>0</YPosition>
@@ -216,13 +252,18 @@ Active Ability: (5 sec cooldown) </Description>
             <Bonus>Destiny</Bonus>
             <Amount>10</Amount>
          </Effect>
+         <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>4</Amount>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Primal Avatar: Walk with the Spirits</Name>
          <InternalName>PrimalCore6</InternalName>
-         <Description>You become 25% incorporeal, invisible and ethereal to monsters,
-and gain +30 Hide and Move Silently. This consumes 1 Spirit each second.
-Active (5 sec cooldown) (100 SP, 1 Spirit to activate) </Description>
+         <Description>For 30 seconds, you become 25% incorporeal, invisible and ethereal to
+monsters, and gain +30 Hide and Move Silently. Cost: 100 SP
+Passive: +1 Evocation and Transmutation DC</Description>
          <Icon>WalkWithTheSpirits</Icon>
          <XPosition>5</XPosition>
          <YPosition>0</YPosition>
@@ -253,9 +294,34 @@ Active (5 sec cooldown) (100 SP, 1 Spirit to activate) </Description>
             <Amount>1</Amount>
          </Effect>
          <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>30</Amount>
+            <Skill>Hide</Skill>
+            <Skill>Move Silently</Skill>
+             <Stance>Walk with the Spirits</Stance>
+         </Effect>
+         <Effect>
+            <Type>SpellDC</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>1</Amount>
+            <School>Evocation</School>
+         </Effect>
+         <Effect>
+            <Type>SpellDC</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>1</Amount>
+            <School>Transmutation</School>
+         </Effect>
+         <Effect>
             <Type>MeleePower</Type>
             <Bonus>Destiny</Bonus>
             <Amount>10</Amount>
+         </Effect>
+         <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>4</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -272,17 +338,10 @@ Stacks fade away 1 at a time.</Description>
          <MinSpent>0</MinSpent>
          <Requirements/>
          <Effect>
-            <Type>CreateSlider</Type>
-            <Bonus>Enhancement</Bonus>
-            <Slider>Ephemeral Evolution</Slider>
-            <AmountVector size="2">0 15</AmountVector>
-            <Amount>0</Amount>
-         </Effect>
-         <Effect>
             <Type>PRR</Type>
             <Bonus>Destiny</Bonus>
-            <Amount>1</Amount>
-            <Stacks>Ephemeral Evolution</Stacks>
+            <AmountVector size="3">5 10 15</AmountVector>
+            <Stance>On hit</Stance>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -291,7 +350,7 @@ Stacks fade away 1 at a time.</Description>
          <Description>Protect target ally with a shield of [90/120/150] temporary HP for 9 seconds.
 Heals 5d6 HP every 2 seconds while the shield persists.
 Costs 12sp to activate. 12 second cooldown.
-Affected by: Empower Heal, Quicken and Enlarge</Description>
+(Metamagic abilities don't increase the cost of Rejuvenation Cocoon.)</Description>
          <Icon>RejuvenationCocoon</Icon>
          <XPosition>1</XPosition>
          <YPosition>1</YPosition>
@@ -310,12 +369,11 @@ Affected by: Empower Heal, Quicken and Enlarge</Description>
          <Name>Primal Avatar: Insidious Spores</Name>
          <InternalName>InsidiousSpores</InternalName>
          <Description>Target enemy becomes contaminated with spores for 18 seconds.
-Every 2 seconds the target takes [6d6] Poison and Rust damage.
-Stacks up to [2/3/4] times. Enemies damaged by Insidious Spores become
-Contagious for five minutes after, spreading Insidious Spores to some nearby
-enemies when they die.
-Costs 30sp to activate. 12 second cooldown.
-Affected by: Empower, Maximize, Quicken and Enlarge</Description>
+Every 2 seconds the target takes [6d6] Poison and Rust damage. Stacks up to [2/3/4] times.
+Enemies damaged by Insidious Spores become Contagious for five minutes after,
+spreading Insidious Spores to some nearby enemies when they die.
+Costs 30sp to activate. 5 second cooldown.
+(Many monsters are immune to Rust damage, exept for Constructs.)</Description>
          <Icon>InsidiousSpores</Icon>
          <XPosition>2</XPosition>
          <YPosition>1</YPosition>
@@ -333,12 +391,12 @@ Affected by: Empower, Maximize, Quicken and Enlarge</Description>
       <EnhancementTreeItem>
          <Name>Primal Avatar: Friends of Nature</Name>
          <InternalName>FriendsOfNature</InternalName>
-         <Description>You call forth a small nature animal, providing a bonus to nearby allies.
+         <Description>You call forth a small animal from nature, providing a bonus to nearby allies.
 Duration: 3 minutes. Cooldown: 3 minutes. 
-Bat: +10 Sonic Spell Power, +5 Sonic Resistance, +3 Listen 
-Bird: +1 Dodge, +3 Spot 
-Fox: +1 sneak attack damage, +3 Move Silently 
-Frog: +2 PRR, +3 Jump 
+Bat:      +10 Sonic Spell Power, +5 Sonic Resistance, +3 Listen 
+Bird:     +1 Dodge, +3 Spot 
+Fox:      +1 sneak attack damage, +3 Move Silently 
+Frog:     +2 PRR, +3 Jump 
 Squirrel: +2 attack while flanking, +3 Hide</Description>
          <Icon>FriendsOfNature</Icon>
          <XPosition>3</XPosition>
@@ -390,10 +448,10 @@ Squirrel: +2 attack while flanking, +3 Hide</Description>
       <EnhancementTreeItem>
          <Name>Primal Avatar: Seeking Balance</Name>
          <InternalName>SeekingBalance</InternalName>
-         <Description>You gain +[1/2/3] Reflex Saving Throws, +[2/4/6] Tumble
-and +[2/4/6] Balance while shapeshifted into an animal form,
-wielding two weapons, or unarmed. These are Primal bonuses.
-Skill bonuses required already having at least one rank in the skill.</Description>
+         <Description>You gain +[1/2/3] Reflex Saving Throws, +[2/4/6] Tumble and +[2/4/6] Balance
+while shapeshifted into an animal form, wielding two weapons, or unarmed.
+These are Primal bonuses. Skill bonuses required already having at least one rank
+in the skill.</Description>
          <Icon>SeekingBalance</Icon>
          <XPosition>0</XPosition>
          <YPosition>2</YPosition>
@@ -419,7 +477,7 @@ Skill bonuses required already having at least one rank in the skill.</Descripti
       <EnhancementTreeItem>
          <Name>Primal Avatar: Supple as Spring</Name>
          <InternalName>SuppleAsSpring</InternalName>
-         <Description>Nearby allies gain +[1/2/3]% Primal Bonus to Dodge if they have been
+         <Description>You and nearby party members gain +[1/2/3]% Primal Bonus to Dodge if they have been
 damaged in combat in the past six seconds.</Description>
          <Icon>SuppleAsSpring</Icon>
          <XPosition>1</XPosition>
@@ -428,15 +486,18 @@ damaged in combat in the past six seconds.</Description>
          <Ranks>3</Ranks>
          <MinSpent>4</MinSpent>
          <Requirements/>
+         <Effect>
+            <Type>DodgeBonus</Type>
+            <Bonus>Primal</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Stance>On hit last 6 seconds</Stance>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Primal Avatar: Favored Enemy: Aberrations / Constructs / Undead</Name>
+         <Name>Primal Avatar: Favored Enemy</Name>
          <InternalName>FavoredEnemy</InternalName>
-         <Description>Some things should not be.
-Gain the feat Favored Enemy Aberrations, Constructs, or Undead, dealing
-+2 damage to that race per Favored Enemy feat you have.
-This also increases the damage dealt against any of your other Favored
-Enemies by 2. (You cannot pick a Favored Enemy you already have.)</Description>
+         <Description>Some things should not be. Gain +2 damage against Aberrations, Constructs or Undead.
+This also increases your damage against anoy of your other Favored Enemies by +2.</Description>
          <Icon>FavoredEnemy</Icon>
          <XPosition>2</XPosition>
          <YPosition>2</YPosition>
@@ -447,7 +508,7 @@ Enemies by 2. (You cannot pick a Favored Enemy you already have.)</Description>
          <Selector>
             <EnhancementSelection>
                <Name>Favored Enemy: Aberration</Name>
-               <Description>You do 2 extra points of damage against aberrations</Description>
+               <Description>You do 2 extra points of damage against Aberrations</Description>
                <Icon>FavoredEnemyAberration</Icon>
                <Cost>2</Cost>
                <Requirements>
@@ -465,7 +526,7 @@ Enemies by 2. (You cannot pick a Favored Enemy you already have.)</Description>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Favored Enemy: Construct</Name>
-               <Description>You do 2 extra points of damage against constructs</Description>
+               <Description>You do 2 extra points of damage against Constructs</Description>
                <Icon>FavoredEnemyConstruct</Icon>
                <Cost>2</Cost>
                <Requirements>
@@ -483,7 +544,7 @@ Enemies by 2. (You cannot pick a Favored Enemy you already have.)</Description>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Favored Enemy: Undead</Name>
-               <Description>You do 2 extra points of damage against undead</Description>
+               <Description>You do 2 extra points of damage against Undead</Description>
                <Icon>FavoredEnemyUndead</Icon>
                <Cost>2</Cost>
                <Requirements>
@@ -508,7 +569,8 @@ Enemies by 2. (You cannot pick a Favored Enemy you already have.)</Description>
 maximum HP and +[10/20/30] PRR.
 Rank 3: Natural Creatures also gain evasion: When they make a successful
 Reflex save to avoid damage, they suffer no damage instead of half damage.
-(Natural Creatures include: Animals, Elementals, Magical Beasts, Plants, and Vermin)</Description>
+(Natural Creatures include: Air Elemental, Animal, Earth Elemental, Fire Elemental,
+Magical Beast, Plant, Vermin and Water Elemental.)</Description>
          <Icon>NaturalShielding</Icon>
          <XPosition>3</XPosition>
          <YPosition>2</YPosition>
@@ -571,8 +633,7 @@ Reflex save to avoid damage, they suffer no damage instead of half damage.
          <InternalName>BalancedAttacks</InternalName>
          <Description>You gain a +[2/4/6] Primal bonus to Attack as long as you are shapeshifted
 into an animal form, wielding two weapons, or unarmed.
-Rank 3: Knock down enemies for 2 seconds on vorpal hit.
-Enemies knocked down by this effect are helpless.</Description>
+Rank 3: these attacks knock down enemies for 2 seconds on Vorpal.</Description>
          <Icon>BalancedAttacks</Icon>
          <XPosition>0</XPosition>
          <YPosition>3</YPosition>
@@ -588,15 +649,16 @@ Enemies knocked down by this effect are helpless.</Description>
          <Effect>
             <Type>AttackBonus</Type>
             <Bonus>Primal</Bonus>
-            <Amount>2</Amount>
+            <AmountVector size="3">2 4 6</AmountVector>
             <Weapon>All</Weapon>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Primal Avatar: Summer Smoke</Name>
          <InternalName>SummerSmoke</InternalName>
-         <Description>Toggle: Nearby allies have a small chance to deal [5/10/15]d20 extra
-fire damage with their attacks. Active Ability: (5 sec cooldown) </Description>
+         <Description>Toggle: You and nearby paty members and your nearby summons  have a small
+chance to deal [5/10/15]d20 extra fire damage with melee, ranged or offensive spells.
+Cooldown: 5 seconds</Description>
          <Icon>SummerSmoke</Icon>
          <XPosition>1</XPosition>
          <YPosition>3</YPosition>
@@ -614,8 +676,7 @@ damage plus 1d10 per character level and 30 bludgeoning damage plus 1d10
 per character level. The cold damage and knockdown are negated on a
 successful Fortitude save vs. 10 + Wisdom modifier + Character level.
 Some monsters can resist Tsunami completely, such as Water Elementals and Oozes.
-Costs 50sp to activate. 7 second cooldown.
-Affected by: Empower, Maximize, Quicken, Heighten and Enlarge</Description>
+Cost: 50 SP. 7 second cooldown.</Description>
          <Icon>Tsunami</Icon>
          <XPosition>2</XPosition>
          <YPosition>3</YPosition>
@@ -635,10 +696,8 @@ Affected by: Empower, Maximize, Quicken, Heighten and Enlarge</Description>
          <InternalName>TheOncomingStorm</InternalName>
          <Description>Attacks by your summoned and charmed pets, hirelings, and monsters
 gain a 1% chance to knockdown enemies.
-Rank 2: Attacks by your summoned and charmed pets, hirelings, and monsters
-gain a 1% chance to deal 20d20 sonic damage.
-Rank 3: Attacks by your summoned and charmed pets, hirelings, and monsters
-gain a 1% chance to deal 20d20 lightning damage.</Description>
+Rank 2: and a 1% chance to deal 20d20 Sonic damage when they attack.
+Rank 3: and a 1% chance to deal 20d20 Electric damage when they attack.</Description>
          <Icon>TheOncomingStorm</Icon>
          <XPosition>3</XPosition>
          <YPosition>3</YPosition>
@@ -692,7 +751,7 @@ gain a 1% chance to deal 20d20 lightning damage.</Description>
       <EnhancementTreeItem>
          <Name>Primal Avatar: Paired Parry / Symetric Strikes</Name>
          <InternalName>PairedParrySymetricStrikes</InternalName>
-         <Description>Gain +5 AC or +5% Primal bonus to physical damage, while in animal form, unarmed, or two-weapon fighting.</Description>
+         <Description>Gain +5 AC or +3% physical damage, while in animal form, unarmed, or two-weapon fighting.</Description>
          <Icon>PairedParry</Icon>
          <XPosition>0</XPosition>
          <YPosition>4</YPosition>
@@ -719,7 +778,7 @@ gain a 1% chance to deal 20d20 lightning damage.</Description>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Symetric Strikes</Name>
-               <Description>+5% Primal bonus to physical damage, while in animal form, unarmed, or two-weapon fighting</Description>
+               <Description>+3% Primal bonus to physical damage, while in animal form, unarmed, or two-weapon fighting</Description>
                <Icon>SymetricStrikes</Icon>
                <Cost>2</Cost>
                <Effect>
@@ -727,7 +786,7 @@ gain a 1% chance to deal 20d20 lightning damage.</Description>
                   <Bonus>Destiny</Bonus>
                   <Weapon>All</Weapon>
                   <Percent/>
-                  <Amount>5</Amount>
+                  <Amount>3</Amount>
                </Effect>
             </EnhancementSelection>
          </Selector>
@@ -735,8 +794,9 @@ gain a 1% chance to deal 20d20 lightning damage.</Description>
       <EnhancementTreeItem>
          <Name>Primal Avatar: Autumn Harvest</Name>
          <InternalName>AutumnHarvest</InternalName>
-         <Description>You and nearby allies have a 5% chance to heal [10/15/20]d10 when
-nearby enemies die. Not affected by spell power.</Description>
+         <Description>When nearby enemies die there's a 5% chance for all party members near
+that enemy to receive [10/15/20]d10 positive healing.
+(This is not affected by spell power.)</Description>
          <Icon>AutumnHarvest</Icon>
          <XPosition>1</XPosition>
          <YPosition>4</YPosition>
@@ -751,8 +811,8 @@ nearby enemies die. Not affected by spell power.</Description>
          <Description>Enemies damaged by your attacks or spells are also struck by lightning,
 dealing 10d20 electric damage, halved on a reflex save vs. DC 50.
 Lightning strikes up to one enemy each second. You also gain featherfall
-and Deflect Arrows. Lasts 18 seconds.
-Active (50SP to activate) (12 sec cooldown) (SR: No) (Quicken) </Description>
+and Deflect Arrows. Duration 18 seconds.
+Cost: 50 SP, 12 second cooldown</Description>
          <Icon>Stormrage</Icon>
          <XPosition>2</XPosition>
          <YPosition>4</YPosition>
@@ -788,11 +848,8 @@ dealing 10d20 electric damage, halved on a reflex save.</Description>
       <EnhancementTreeItem>
          <Name>Primal Avatar: Summon Dryad Elder</Name>
          <InternalName>SummonDryadElder</InternalName>
-         <Description>Summon a Dryad Elder. She uses her magic for damage spells as
-well as support and healing (Regenerate on self, Deathward on group,
-Mass Cure Critical Wounds on others - heals enemies as well).
-Costs 50sp to activate. 30 second cooldown.
-Affected by: Quicken</Description>
+         <Description>Summon a Dryad Elder. She uses her magic for damage spells as well as support and healing.
+Costs 50 SP, 2 minute cooldown.</Description>
          <Icon>SummonDryadElder</Icon>
          <XPosition>3</XPosition>
          <YPosition>4</YPosition>
@@ -843,10 +900,10 @@ Affected by: Quicken</Description>
       <EnhancementTreeItem>
          <Name>Primal Avatar: Chill of Winter</Name>
          <InternalName>ChillOfWinter</InternalName>
-         <Description>Toggle: Enemies that damage your nearby allies have a 20% chance to become
-chilled, receiving 1d20 cold and 1d20 rust damage every two seconds and
-slowing their attack and movement speed by [5/15/25]% for 20 seconds. 
-This damage can stack up to 10 times. 5 second cooldown.</Description>
+         <Description>Toggle: Enemies that damage you or nearby allies with melee attacks
+have a 20% chance to become chilled, receiving 1d20 cold and 1d20 rust damage
+every two seconds and slowing their attack and movement speed by [5/15/25]% for
+20 seconds. This damage can stack up to 10 times. 5 second cooldown.</Description>
          <Icon>ChillOfWinter</Icon>
          <XPosition>1</XPosition>
          <YPosition>5</YPosition>
@@ -860,9 +917,7 @@ This damage can stack up to 10 times. 5 second cooldown.</Description>
          <Name>Primal Avatar: Spirit Boon</Name>
          <InternalName>SpiritBoon</InternalName>
          <Description>Toggle: Temporarily gain +2 Primal bonus to all physical abilities
-(Str, Dex, Con) or mental abilities (Int, Wis, Cha).
-Consumes 1 Spirit to activate and 1 every 6 seconds.
-Stays toggled indefinitely unless turned off.</Description>
+(Str, Dex, Con) or mental abilities (Int, Wis, Cha).</Description>
          <Icon>SpiritBoon</Icon>
          <XPosition>2</XPosition>
          <YPosition>5</YPosition>
@@ -875,32 +930,31 @@ Stays toggled indefinitely unless turned off.</Description>
             <Name>Spirit Boon</Name>
             <Icon>SpiritBoon</Icon>
             <Description>Temporarily gain +2 Primal bonus to all physical abilities
-(Str, Dex, Con) or mental abilities (Int, Wis, Cha).
-Consumes 1 Spirit to activate and 1 every 6 seconds.</Description>
+(Str, Dex, Con) or mental abilities (Int, Wis, Cha).</Description>
          </Stance>
          <Selector>
             <EnhancementSelection>
                <Name>Physical</Name>
-               <Description>+2 primal bonus to Strength, Dexterity and Constitution</Description>
+               <Description>+2 Primal bonus to Strength, Dexterity and Constitution</Description>
                <Icon>SpiritBoon</Icon>
                <Cost>2</Cost>
                <Effect>
                   <Type>AbilityBonus</Type>
-                  <Bonus>Destiny</Bonus>
+                  <Bonus>Primal</Bonus>
                   <Ability>Strength</Ability>
                   <Amount>2</Amount>
                   <Stance>Spirit Boon</Stance>
                </Effect>
                <Effect>
                   <Type>AbilityBonus</Type>
-                  <Bonus>Destiny</Bonus>
+                  <Bonus>Primal</Bonus>
                   <Ability>Dexterity</Ability>
                   <Amount>2</Amount>
                   <Stance>Spirit Boon</Stance>
                </Effect>
                <Effect>
                   <Type>AbilityBonus</Type>
-                  <Bonus>Destiny</Bonus>
+                  <Bonus>Primal</Bonus>
                   <Ability>Constitution</Ability>
                   <Amount>2</Amount>
                   <Stance>Spirit Boon</Stance>
@@ -908,26 +962,26 @@ Consumes 1 Spirit to activate and 1 every 6 seconds.</Description>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Mental</Name>
-               <Description>+2 primal bonus to Intelligence, Wisdom and Charisma</Description>
+               <Description>+2 Primal bonus to Intelligence, Wisdom and Charisma</Description>
                <Icon>SpiritBoon</Icon>
                <Cost>2</Cost>
                <Effect>
                   <Type>AbilityBonus</Type>
-                  <Bonus>Destiny</Bonus>
+                  <Bonus>Primal</Bonus>
                   <Ability>Intelligence</Ability>
                   <Amount>2</Amount>
                   <Stance>Spirit Boon</Stance>
                </Effect>
                <Effect>
                   <Type>AbilityBonus</Type>
-                  <Bonus>Destiny</Bonus>
+                  <Bonus>Primal</Bonus>
                   <Ability>Wisdom</Ability>
                   <Amount>2</Amount>
                   <Stance>Spirit Boon</Stance>
                </Effect>
                <Effect>
                   <Type>AbilityBonus</Type>
-                  <Bonus>Destiny</Bonus>
+                  <Bonus>Primal</Bonus>
                   <Ability>Charisma</Ability>
                   <Amount>2</Amount>
                   <Stance>Spirit Boon</Stance>
@@ -976,7 +1030,7 @@ Consumes 1 Spirit to activate and 1 every 6 seconds.</Description>
       <EnhancementTreeItem>
          <Name>Primal Avatar: Nature's Fury / Natural Evasion</Name>
          <InternalName>NaturesFuryNaturalEvasion</InternalName>
-         <Description>Gain +1 critical damage multiplier on a roll of 19-20, or Evasion,
+         <Description>Gain +1 critical damage multiplier, or Evasion,
 while in animal form, unarmed, or two-weapon fighting.</Description>
          <Icon>NaturesFury</Icon>
          <XPosition>0</XPosition>
@@ -992,11 +1046,11 @@ while in animal form, unarmed, or two-weapon fighting.</Description>
          <Selector>
             <EnhancementSelection>
                <Name>Natures Fury</Name>
-               <Description>Gain +1 critical damage multiplier on a roll of 19-20</Description>
+               <Description>Gain +1 critical damage multiplier</Description>
                <Icon>NaturesFury</Icon>
                <Cost>2</Cost>
                <Effect>
-                  <Type>CriticalMultiplier19To20</Type>
+                  <Type>CriticalMultiplier</Type>
                   <Bonus>Destiny</Bonus>
                   <Weapon>All</Weapon>
                </Effect>
@@ -1015,27 +1069,24 @@ while in animal form, unarmed, or two-weapon fighting.</Description>
          </Selector>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Primal Avatar: Avatar of Nature Epic Moment</Name>
+         <Name>Primal Avatar: Avatar of Nature</Name>
          <InternalName>AvatarOfNature</InternalName>
-         <Description>You become an Avatar of Nature (Wood woad)
-Every 3 seconds, you gain +1 size, +2 Strength, +2 Constitution,
-a large bonus to damage based on size, and lose some movement speed,
-stacking up to size 4.
-    Size 1+: +50 size bonus to PRR (Damage dice: 18.5[1d20]) 
+         <Description>Major Form: You become an Avatar of Nature
+Every 6 seconds, you gain +1 size, +2 Strength, +2 Constitution, a large bonus to
+damage based on size, and lose some movement speed and cannot jump or cast spells.
+These bonuses increase up to size 4. Once at size 4, you stay there for 12 seconds
+before reverting back to your normal form. You may toggle off the stance to end
+the form early.
+    Size 1+: +50 Size bonus to PRR 
     Size 2+: When you attack enemies they become poisoned,
              taking 2d10 poison damage every 2 seconds for several seconds.
-             This poison stacks up to 5 times. (Damage dice: 36.0[1d20])
+             This poison stacks up to 5 times.
     Size 3+: Enemies attacking you have a chance to become diseased,
              dealing 1d4 Constitution damage every two seconds for 10 seconds.
-             (Damage dice:53.5[1d20])
     Size 4:  The ground shakes when you put your foot down.
              Your third attack while standing still knocks down nearby enemies
              and deals extra bludgeoning damage in an area.
-             (Damage dice:71.0[1d20]) 
-Fighting in this form counts as Unarmed combat, uses Two Weapon Fighting feats
-and has a base critical profile of 20 x2, regardless of weapon(s) wielded. 
-This costs 1 Spirit every few seconds per size you've gained (Turns off if you run out of Spirit.)
-Costs 35sp to activate, 5 second cooldown.</Description>
+You can only be in one Major Form at a time.</Description>
          <Icon>AvatarOfNature</Icon>
          <XPosition>2</XPosition>
          <YPosition>6</YPosition>

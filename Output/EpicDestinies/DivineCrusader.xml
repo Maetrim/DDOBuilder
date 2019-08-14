@@ -2,7 +2,7 @@
 <Enhancements>
    <EnhancementTree>
       <Name>Divine Crusader</Name>
-      <Version>1</Version>
+      <Version>2</Version>
       <Requirements/>
       <Icon>DivineCrusader</Icon>
       <IsEpicDestiny/>
@@ -10,10 +10,12 @@
       <EnhancementTreeItem>
          <Name>Divine Crusader: Just Cause</Name>
          <InternalName>DivineCore1</InternalName>
-         <Description>Passive: You gain Cleric, Favored Soul, and Paladin Caster Levels equal in your
-level in Divine Crusader. +25 Spell Points, +10 Hit points, and Your Base
-Attack Bonus is equal to your total Character Level.
-Passively Provides: +3 Melee Power and +2 Ranged power.</Description>
+         <Description>You gain Cleric, Favored Soul, and Paladin Caster Levels equal to your level
+in Divine Crusader. Your Base Attack Bonus is equal to your total Character Level.
+Passive:
++25 Spell Points
++10 Hit points
++3 Melee Power and +2 Ranged power.</Description>
          <Icon>JustCause</Icon>
          <XPosition>0</XPosition>
          <YPosition>0</YPosition>
@@ -68,11 +70,12 @@ Passively Provides: +3 Melee Power and +2 Ranged power.</Description>
       <EnhancementTreeItem>
          <Name>Divine Crusader: Aura of Purification</Name>
          <InternalName>DivineCore2</InternalName>
-         <Description>Active Ability: (Cooldown 3 seconds) Toggle: Every 3 Seconds
-While Active: Nearby enemies gain a stack of Purification.
+         <Description>Toggle: Every 3 Seconds, nearby enemies gain a stack of Purification.
 Purification: -1 Attack Damage, -2 Spell Power, stacks up to 25 times.
-Passive: +25 Spell Points, +10 Hit Points, +3 Melee Power and +2 Ranged Power.
-Note: Attack damage cannot be reduced below 1.</Description>
+Passive:
++25 Spell Points
++10 Hit Points
++3 Melee Power and +2 Ranged Power.</Description>
          <Icon>AuraOfPurification</Icon>
          <XPosition>1</XPosition>
          <YPosition>0</YPosition>
@@ -128,8 +131,11 @@ Note: Attack damage cannot be reduced below 1.</Description>
       <EnhancementTreeItem>
          <Name>Divine Crusader: Extraordinary Virtue</Name>
          <InternalName>DivineCore3</InternalName>
-         <Description>Passive: +20 Positive Healing Amplification, +10 Positive Spell Power,
-+25 Spell Points, +10 Hit Points, +3 Melee Power and +2 Ranged power.</Description>
+         <Description>+20 Positive Healing Amplification, +10 Positive Spell Power.
+Passive:
++25 Spell Points
++10 Hit Points
++3 Melee Power and +2 Ranged power.</Description>
          <Icon>ExtraordinaryVirtue</Icon>
          <XPosition>2</XPosition>
          <YPosition>0</YPosition>
@@ -197,7 +203,10 @@ Note: Attack damage cannot be reduced below 1.</Description>
          <InternalName>DivineCore4</InternalName>
          <Description>Whenever an enemy who was recently affected by your Aura of Purification is slain,
 nearby allies are healed for Positive Energy equal to the CR of the slain enemy.
-Passive: +25 Spell Points, +10 hit Points, +3 Melee Power and +2 Ranged power.</Description>
+Passive:
++25 Spell Points
++10 hit Points
++3 Melee Power and +2 Ranged power.</Description>
          <Icon>NoRemorse</Icon>
          <XPosition>3</XPosition>
          <YPosition>0</YPosition>
@@ -252,7 +261,10 @@ Passive: +25 Spell Points, +10 hit Points, +3 Melee Power and +2 Ranged power.</
       <EnhancementTreeItem>
          <Name>Divine Crusader: Sword of Justice</Name>
          <InternalName>DivineCore5</InternalName>
-         <Description>Passive: +4 damage with all attacks, +25 Spell Points, and +10 Hit Points,
+         <Description>Passive:
++4 damage with all attacks
++25 Spell Points
++10 Hit Points
 +3 Melee Power and +2 Ranged power.</Description>
          <Icon>SwordOfJustice</Icon>
          <XPosition>4</XPosition>
@@ -268,6 +280,12 @@ Passive: +25 Spell Points, +10 hit Points, +3 Melee Power and +2 Ranged power.</
          </Requirements>
          <Effect>
             <Type>DamageBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <Weapon>All</Weapon>
+            <Amount>4</Amount>
+         </Effect>
+         <Effect>
+            <Type>Seeker</Type>
             <Bonus>Destiny</Bonus>
             <Weapon>All</Weapon>
             <Amount>4</Amount>
@@ -314,11 +332,16 @@ Passive: +25 Spell Points, +10 hit Points, +3 Melee Power and +2 Ranged power.</
       <EnhancementTreeItem>
          <Name>Divine Crusader: Zeal of the Righteous</Name>
          <InternalName>DivineCore6</InternalName>
-         <Description>Active Ability: Gain 50 stacks of Righteous Zeal.
+         <Description>Activate: Gain 50 stacks of Righteous Zeal.
 Righteous Zeal: +1 Spell Power, +1% doublestrike, +1% doubleshot,
-+1 Melee Power, +1 Ranged Power. Decays by 1 stack every 3 seconds, and is
-not lost by resting. (Cooldown: 4 minutes)
-Passively provides: +2 Melee Power and +2 Ranged power.</Description>
++1 Melee Power, +1 Ranged Power.
+Decays by 1 stack every 3 seconds, and is not lost by resting.
+Cooldown: 4 minutes
+
+Passive:
++25 Spell Points
++10 Hit Points
++3 Melee Power and +2 Ranged power.</Description>
          <Icon>ZealOfTheRighteous</Icon>
          <XPosition>5</XPosition>
          <YPosition>0</YPosition>
@@ -332,9 +355,16 @@ Passively provides: +2 Melee Power and +2 Ranged power.</Description>
             </Requirement>
          </Requirements>
          <Effect>
+            <Type>CreateSlider</Type>
+            <Bonus>Enhancement</Bonus>
+            <Slider>Righteous Zeal</Slider>
+            <AmountVector size="2">0 50</AmountVector>
+            <Amount>50</Amount>
+         </Effect>
+         <Effect>
             <Type>MeleePower</Type>
             <Bonus>Destiny</Bonus>
-            <Amount>2</Amount>
+            <Amount>3</Amount>
          </Effect>
          <Effect>
             <Type>RangedPower</Type>
@@ -360,13 +390,7 @@ Passively provides: +2 Melee Power and +2 Ranged power.</Description>
             <Amount>1</Amount>
          </Effect>
          <Effect>
-            <Type>CreateSlider</Type>
-            <Bonus>Enhancement</Bonus>
-            <Slider>Righteous Zeal</Slider>
-            <AmountVector size="2">0 50</AmountVector>
-            <Amount>0</Amount>
-         </Effect>
-         <Effect>
+            <DisplayName>Righteous Zeal: Spell Power</DisplayName>
             <Type>SpellPower</Type>
             <Bonus>Destiny</Bonus>
             <Amount>1</Amount>
@@ -374,24 +398,28 @@ Passively provides: +2 Melee Power and +2 Ranged power.</Description>
             <Stacks>Righteous Zeal</Stacks>
          </Effect>
          <Effect>
+            <DisplayName>Righteous Zeal: Doublestrike</DisplayName>
             <Type>Doublestrike</Type>
             <Bonus>Destiny</Bonus>
             <Amount>1</Amount>
             <Stacks>Righteous Zeal</Stacks>
          </Effect>
          <Effect>
+            <DisplayName>Righteous Zeal: Doubleshot</DisplayName>
             <Type>Doubleshot</Type>
             <Bonus>Destiny</Bonus>
             <Amount>1</Amount>
             <Stacks>Righteous Zeal</Stacks>
          </Effect>
          <Effect>
+            <DisplayName>Righteous Zeal: Melee Power</DisplayName>
             <Type>MeleePower</Type>
             <Bonus>Destiny</Bonus>
             <Amount>1</Amount>
             <Stacks>Righteous Zeal</Stacks>
          </Effect>
          <Effect>
+            <DisplayName>Righteous Zeal: Ranged Power</DisplayName>
             <Type>RangedPower</Type>
             <Bonus>Destiny</Bonus>
             <Amount>1</Amount>
@@ -401,8 +429,8 @@ Passively provides: +2 Melee Power and +2 Ranged power.</Description>
       <EnhancementTreeItem>
          <Name>Divine Crusader: Bane of Undeath</Name>
          <InternalName>BaneOfUndeath</InternalName>
-         <Description>Passive Bonus: You gain the Turn Undead feat.
-Weapons you equip gain undead bane (+2 enhancement bonus and +2d6 damage against undead).</Description>
+         <Description>You gain the Turn Undead feat. Weapons you equip gain Bane of Undeath:
+Against Undead they gain +2 enhancement bonus and deal 2d6 extra damage.</Description>
          <Icon>BaneOfUndeath</Icon>
          <XPosition>0</XPosition>
          <YPosition>1</YPosition>
@@ -441,8 +469,9 @@ Weapons you equip gain undead bane (+2 enhancement bonus and +2d6 damage against
       <EnhancementTreeItem>
          <Name>Divine Crusader: Endless Turning</Name>
          <InternalName>EndlessTurning</InternalName>
-         <Description>Passive Bonus: +[1/2/3] Turn Undead per rest. Turn Undead uses regenerate
-every 2 minutes, or [10/20/30]% faster if it already regenerates.</Description>
+         <Description>+[1/2/3] Turn Undead per rest.
+You now regenerate one use of Turn Undead every [120/108/96] seconds, or [10/20/30]%
+faster if you already regenerated Turn Undead uses.</Description>
          <Icon>EndlessTurning</Icon>
          <XPosition>1</XPosition>
          <YPosition>1</YPosition>
@@ -459,10 +488,11 @@ every 2 minutes, or [10/20/30]% faster if it already regenerates.</Description>
       <EnhancementTreeItem>
          <Name>Divine Crusader: Interrogation</Name>
          <InternalName>Interrogation</InternalName>
-         <Description>Passive Bonus: +5 Universal Spell Power and +1% Spell Critical Chance.
+         <Description>+5 Universal Spell Power
++1% Spell Critical Chance.
 Your offensive spells cause enemies to gain a stack of Purification.
 This affects each enemy up to once per 2 seconds.
-Purification: -1 attack damage, -2 spell power. Stacks up to 25 times.</Description>
+Purification: -1 Attack Damage, -2 Spell Power, stacks up to 25 times.</Description>
          <Icon>Interrogation</Icon>
          <XPosition>2</XPosition>
          <YPosition>1</YPosition>
@@ -486,10 +516,11 @@ Purification: -1 attack damage, -2 spell power. Stacks up to 25 times.</Descript
       <EnhancementTreeItem>
          <Name>Divine Crusader: Purge the Wicked</Name>
          <InternalName>PurgeTheWicked</InternalName>
-         <Description>Passive Bonus: +2 bonus to Confirm Critical Hits and Critical Hit Damage.
-Your Critical Hits with weapons also cause enemies to gain a stack of Purification.
+         <Description>+2 to Confirm Critical Hits
++2 to Critical Hit Damage
+Your critical hits with weapons also cause enemies to gain a stack of Purification.
 This affects each enemy up to once per 2 seconds.
-Purification: -1 attack damage, -2 spell power. Stacks up to 25 times.</Description>
+Purification: -1 Attack Damage, -2 Spell Power, atacks up to 25 times.</Description>
          <Icon>PurgeTheWicked</Icon>
          <XPosition>3</XPosition>
          <YPosition>1</YPosition>
@@ -563,10 +594,9 @@ Purification: -1 attack damage, -2 spell power. Stacks up to 25 times.</Descript
       <EnhancementTreeItem>
          <Name>Divine Crusader: Confront Any Foe</Name>
          <InternalName>ConfrontAnyFoe</InternalName>
-         <Description>Active Ability: (No Cooldown) Melee Attack: Expend one Turn Undead:
-Deals 10d10 extra Light Damage on a successful hit.
-Note: Strikes multiple enemies in a small arc three times and may doublestrike
-for a fourth strike.</Description>
+         <Description>Melee Attack: Expend 1 use of Turn Undead: +3[W].
+Deal 10d10 extra Light Damage on a successful hit.
+This damage scales with 300% Melee Power.</Description>
          <Icon>ConfrontAnyFoe</Icon>
          <XPosition>0</XPosition>
          <YPosition>2</YPosition>
@@ -579,12 +609,14 @@ for a fourth strike.</Description>
       <EnhancementTreeItem>
          <Name>Divine Crusader: Consecration</Name>
          <InternalName>Consecration</InternalName>
-         <Description>Active Ability: The ground you are standing on is consecrated.
+         <Description>Activate: The ground you stand on is consecrated.
 Evil creatures standing on consecrated ground are burned every 3 seconds,
 gaining a stack of Purification and taking 1d6 damage per character level.
-This damage is half Fire, half Good. Both damage components are affected by
-Fire Spell Power. (Cooldown: [30/25/20] seconds).
-Duration 15 seconds. Activation Cost: [50/40/30] Spell Points</Description>
+This damage is half Fire, half Good. Both the Fire and Good damage from this
+ability benefit from Fire Spell Power.
+Cooldown: [30/25/20] seconds
+Duration: 15 seconds
+Cost: [50/40/30] Spell Points</Description>
          <Icon>Consecration</Icon>
          <XPosition>1</XPosition>
          <YPosition>2</YPosition>
@@ -598,7 +630,7 @@ Duration 15 seconds. Activation Cost: [50/40/30] Spell Points</Description>
       <EnhancementTreeItem>
          <Name>Divine Crusader: Flames of Purity</Name>
          <InternalName>FlamesOfPurity</InternalName>
-         <Description>Passive Bonus: +[10/20/30] Fire Spell Power.</Description>
+         <Description>+[10/20/30] Fire Spell Power.</Description>
          <Icon>FlamesOfPurity</Icon>
          <XPosition>2</XPosition>
          <YPosition>2</YPosition>
@@ -616,11 +648,12 @@ Duration 15 seconds. Activation Cost: [50/40/30] Spell Points</Description>
       <EnhancementTreeItem>
          <Name>Divine Crusader: Smite the Wicked</Name>
          <InternalName>SmiteTheWicked</InternalName>
-         <Description>Active Ability: (Cooldown 15 seconds, activation cost 10 spell points)
-Melee smite: Gain twice your Charisma bonus to your attack roll and damage
+         <Description>Melee Smite: Gain twice your Charisma bonus to your attack roll and a damage
 bonus of 2[W] + 7 against evil opponents.
-On hit: 50 light damage against undead and evil outsiders.
-On vorpal: Destroy undead or evil outsiders under 1000 hit points.</Description>
+On Hit: 50 light damage against undead and evil outsiders.
+On Vorpal: Destroy undead or evil outsiders under 1000 hit points.
+Cooldown: 15 seconds
+Cost: 10 spell points</Description>
          <Icon>SmiteTheWicked</Icon>
          <XPosition>3</XPosition>
          <YPosition>2</YPosition>
@@ -683,9 +716,10 @@ On vorpal: Destroy undead or evil outsiders under 1000 hit points.</Description>
       <EnhancementTreeItem>
          <Name>Divine Crusader: Stand and Be Judged</Name>
          <InternalName>StandAndBeJudged</InternalName>
-         <Description> A targeted foe must make a Will saving throw or be stunned for 30 seconds.
-(DC: 30+Wisdom Modifier) (Cooldown [30/25/20] seconds)
-Activation Cost: [25/20/15] Spell Points.</Description>
+         <Description>Activate: A targeted foe must make a Will saving throw or be stunned for 30 seconds.
+DC: 10+Wisdom Modifier+ Character Level + Stunning Bonuses
+Cooldown: [30/25/20] seconds
+Cost: [25/20/15] Spell Points.</Description>
          <Icon>StandAndBeJudged</Icon>
          <XPosition>0</XPosition>
          <YPosition>3</YPosition>
@@ -699,16 +733,18 @@ Activation Cost: [25/20/15] Spell Points.</Description>
             <Description>A targeted foe must make a Will saving throw or be stunned for 30 seconds.</Description>
             <Icon>StandAndBeJudged</Icon>
             <DCVersus>Will</DCVersus>
-            <AmountVector size="1">30</AmountVector>
+            <AmountVector size="1">10</AmountVector>
             <ModAbility>Wisdom</ModAbility>
+            <ClassLevel>All</ClassLevel>
+            <Tactical>Stun</Tactical>
          </DC>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Divine Crusader: Sacred Ground</Name>
          <InternalName>SacredGround</InternalName>
-         <Description>Passive Bonus: While standing on consecrated ground you and your allies are
-healed every 3 seconds for 1 point of positive energy per character level.
-This is affected by your positive spell power.</Description>
+         <Description>While standing on consecrated ground, you and your allies are
+healed every 3 seconds for 1 point of Positive Energy per character level.
+This is affected by your Positive Spell Power.</Description>
          <Icon>SacredGround</Icon>
          <XPosition>1</XPosition>
          <YPosition>3</YPosition>
@@ -725,10 +761,13 @@ This is affected by your positive spell power.</Description>
       <EnhancementTreeItem>
          <Name>Divine Crusader: Empyrean Magic</Name>
          <InternalName>EmpyreanMagic</InternalName>
-         <Description>Passive Bonus: Whenever you cast a fire, light, or healing spell you gain a
-stack of Empyrean Fervor. Each stack of Empyrean Fervor gives you +2 Sacred
-bonus to Universal Spell power, +1% Sacred Bonus to Critical Chance with all
-spells. Duration: 10 seconds. Stacks 10 times.</Description>
+         <Description>Whenever you cast a Fire, Light, or Healing spell, you gain a
+stack of Empyrean Fervor.
+
+Empyrean Fervor: +2 Sacred Bonus to Universal Spell power, +1% Sacred Bonus to
+Critical Chance with all spells.
+Duration: 10 seconds
+Stacks: 10 times.</Description>
          <Icon>EmpyreanMagic</Icon>
          <XPosition>2</XPosition>
          <YPosition>3</YPosition>
@@ -739,7 +778,7 @@ spells. Duration: 10 seconds. Stacks 10 times.</Description>
          <Effect>
             <Type>CreateSlider</Type>
             <Bonus>Enhancement</Bonus>
-            <Slider>Empyrean Fervor</Slider>
+            <Slider>Empyrean Magic</Slider>
             <AmountVector size="2">0 10</AmountVector>
             <Amount>0</Amount>
          </Effect>
@@ -748,22 +787,22 @@ spells. Duration: 10 seconds. Stacks 10 times.</Description>
             <Bonus>Sacred</Bonus>
             <SpellPower>All</SpellPower>
             <Amount>2</Amount>
-            <Stacks>Empyrean Fervor</Stacks>
+            <Stacks>Empyrean Magic</Stacks>
          </Effect>
          <Effect>
             <Type>SpellLore</Type>
             <Bonus>Sacred</Bonus>
             <SpellPower>All</SpellPower>
             <Amount>1</Amount>
-            <Stacks>Empyrean Fervor</Stacks>
+            <Stance>Empyrean Magic</Stance>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Divine Crusader: Blessed Blades</Name>
          <InternalName>BlessedBlades</InternalName>
-         <Description>Passive Bonus: Any weapon you wield and your unarmed attacks are treated as
-having your alignment for damage reduction bypass purpose.
-(Has no effect if you are True Neutral.)</Description>
+         <Description>Any weapon you wield and your unarmed attacks are treated as having your
+alignment for damage reduction bypass purposes in addition to any other traits.
+(This has no effect if you are True Neutral.)</Description>
          <Icon>BlessedBlades</Icon>
          <XPosition>3</XPosition>
          <YPosition>3</YPosition>
@@ -833,7 +872,8 @@ having your alignment for damage reduction bypass purpose.
          <InternalName>NoRegret</InternalName>
          <Description>Whenever an enemy who was recently affected by your Aura of Purification
 is slain, other nearby enemies gain 1 to 4 stacks of Purification.
-This ability also grants +2 Melee Power. </Description>
+
+Passive: +3 Melee Power and +2 Ranged Power.</Description>
          <Icon>NoRegret</Icon>
          <XPosition>0</XPosition>
          <YPosition>4</YPosition>
@@ -844,6 +884,11 @@ This ability also grants +2 Melee Power. </Description>
          <Effect>
             <Type>MeleePower</Type>
             <Bonus>Destiny</Bonus>
+            <Amount>3</Amount>
+         </Effect>
+         <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Destiny</Bonus>
             <Amount>2</Amount>
          </Effect>
       </EnhancementTreeItem>
@@ -851,8 +896,7 @@ This ability also grants +2 Melee Power. </Description>
          <Name>Divine Crusader: Crusade</Name>
          <InternalName>Crusade</InternalName>
          <Description>While standing on consecrated ground, you and your allies gain a 10%
-enhancement bonus to the damage of all your melee and ranged attacks. This is a 4
-second buff that activates every 4 seconds when standing on consecrated ground.</Description>
+Enhancement Bonus to the damage of your attacks.</Description>
          <Icon>Crusade</Icon>
          <XPosition>1</XPosition>
          <YPosition>4</YPosition>
@@ -864,6 +908,44 @@ second buff that activates every 4 seconds when standing on consecrated ground.<
                <Enhancement>SacredGround</Enhancement>
             </Requirement>
          </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Divine Crusader: The Book of War</Name>
+         <InternalName>BookOfWar</InternalName>
+         <Description>Open the Book of War and select a new Favored Weapon.</Description>
+         <Icon>BookOfWar</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>12</MinSpent>
+         <Requirements/>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Longsword</Name>
+               <Description>Adds Longsword to your list of Favored Weapons</Description>
+               <Icon>Longsword</Icon>
+               <Cost>1</Cost>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Longbow</Name>
+               <Description>Adds Longbow to your list of Favored Weapons</Description>
+               <Icon>Longbow</Icon>
+               <Cost>1</Cost>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Morningstar</Name>
+               <Description>Adds Morningstar to your list of Favored Weapons</Description>
+               <Icon>Morningstar</Icon>
+               <Cost>1</Cost>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Greatsword</Name>
+               <Description>Adds Greatsword to your list of Favored Weapons</Description>
+               <Icon>Greatsword</Icon>
+               <Cost>1</Cost>
+            </EnhancementSelection>
+         </Selector>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Divine Crusader: Ability IV</Name>
@@ -921,7 +1003,8 @@ second buff that activates every 4 seconds when standing on consecrated ground.<
          <Description>Your Aura of Purification also harms nearby enemies, dealing Bane damage
 every 3 seconds. Non-bosses take damage equal to 1% of their current health
 for each stack of Purification they have. Bosses instead take 1d6 Bane damage
-per stack of Purification. This ability also grants +2 Melee Power.</Description>
+per stack of Purification.
+PAssive: +3 Melee Power and +2 Ranged Power.</Description>
          <Icon>Castigation</Icon>
          <XPosition>0</XPosition>
          <YPosition>5</YPosition>
@@ -932,6 +1015,11 @@ per stack of Purification. This ability also grants +2 Melee Power.</Description
          <Effect>
             <Type>MeleePower</Type>
             <Bonus>Destiny</Bonus>
+            <Amount>3</Amount>
+         </Effect>
+         <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Destiny</Bonus>
             <Amount>2</Amount>
          </Effect>
       </EnhancementTreeItem>
@@ -939,8 +1027,12 @@ per stack of Purification. This ability also grants +2 Melee Power.</Description
          <Name>Divine Crusader: Heavenly Presence</Name>
          <InternalName>HeavenlyPresence</InternalName>
          <Description>You gain some abilities of a Celestial.
-Passive Bonus: Grants you +10 Physical Resistance Rating and 10% Acid, Cold
-and Electricity absorption. In addition, you are immune to petrification.</Description>
+Passive:
+    +10 Physical Resistance Rating
+    10% Acid Absorption
+    10% Cold Absorption
+    10% Electricity Absorption
+    Immunity to Petrification.</Description>
          <Icon>HeavenlyPresence</Icon>
          <XPosition>1</XPosition>
          <YPosition>5</YPosition>
@@ -970,11 +1062,10 @@ and Electricity absorption. In addition, you are immune to petrification.</Descr
       <EnhancementTreeItem>
          <Name>Divine Crusader: Celestial Champion</Name>
          <InternalName>CelestialChampion</InternalName>
-         <Description>+1 Feat Bonus to Critical Threat Range with all weapons
-(does not apply in an animal form). 
+         <Description>+1 Critical Threat Range with all weapons
 When you critically hit with an attack, you gain a stack of Celestial Fervor.
-A stack of Celestial Fervor grants you +1 Enhancement Bonus to Doublestrike
-and Doubleshot chance. Stacks up to 10 times, with a duration of 6 seconds.</Description>
+Celestial Fervor: +1 Sacred Bonus to Melee and Ranged Power. Duration 6 seconds.
+Stacks 10 times.</Description>
          <Icon>CelestialChampion</Icon>
          <XPosition>3</XPosition>
          <YPosition>5</YPosition>
@@ -996,14 +1087,16 @@ and Doubleshot chance. Stacks up to 10 times, with a duration of 6 seconds.</Des
             <Amount>1</Amount>
          </Effect>
          <Effect>
-            <Bonus>Enhancement</Bonus>
-            <Type>Doublestrike</Type>
+            <DisplayName>Celestial Fervor</DisplayName>
+            <Bonus>Sacred</Bonus>
+            <Type>MeleePower</Type>
             <Amount>1</Amount>
             <Stacks>Celestial Fervor</Stacks>
          </Effect>
          <Effect>
-            <Bonus>Enhancement</Bonus>
-            <Type>Doubleshot</Type>
+            <DisplayName>Celestial Fervor</DisplayName>
+            <Bonus>Sacred</Bonus>
+            <Type>RangedPower</Type>
             <Amount>1</Amount>
             <Stacks>Celestial Fervor</Stacks>
          </Effect>
@@ -1061,17 +1154,19 @@ and Doubleshot chance. Stacks up to 10 times, with a duration of 6 seconds.</Des
       <EnhancementTreeItem>
          <Name>Divine Crusader: Celestial Bombardment</Name>
          <InternalName>CelestialBombardment</InternalName>
-         <Description>Active Ability: Evocation SLA. Divine wrath falls from the heavens to smite
-your foes. This spell calls down three stars at your target, dealing a total
-of 3d6 fire damage per character level, split into three hits. This damage is
-affected by fire spell power and may critically hit. In addition, enemies must
+         <Description>Evocation Spell-like Ability:
+Celestial Bombardment: Divine wrath falls from the heavens to smite your foes.
+This spell calls down three blazing stars at your target, dealing a total of
+3d6 Fire damage per character level, split into three hits. This damage is
+affected by Fire Spell Power and may critically hit. In addition, enemies must
 succeed at three consecutive Reflex saving throws versus a DC of
-20+Wisdom mod+Evocation spell DC modifier or be knocked prone.
-Activation cost is [300/200/100] Spell points and has a cooldown of [3/2/1] minutes.</Description>
+20+Wisdom mod+Evocation spell DC modifiers or be knocked prone.
+Cost: 20 SP
+Cooldown: 1 minute</Description>
          <Icon>CelestialBombardment</Icon>
          <XPosition>1</XPosition>
          <YPosition>6</YPosition>
-         <Cost>2</Cost>
+         <Cost>1</Cost>
          <Ranks>1</Ranks>
          <MinSpent>20</MinSpent>
          <Clickie/>
@@ -1083,12 +1178,58 @@ Activation cost is [300/200/100] Spell points and has a cooldown of [3/2/1] minu
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
+         <Name>Divine Crusader: The Book of War: Wrath of the Divine</Name>
+         <InternalName>WrathOfTheDivine</InternalName>
+         <Description>While wielding a Favored Weapon in your Main Hand, you gain +1 to Hit and
+Damage per every 2 Religious Lore Feats you have with all equipped weapons and shields.</Description>
+         <Icon>WrathOfTheDivine</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>6</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements/>
+         <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <Stacks>Religious Lore</Stacks>
+            <Amount>0.5</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+         </Effect>
+         <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <Stacks>Religious Lore</Stacks>
+            <Amount>0.5</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+         </Effect>
+         <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <Stacks>Religious Lore</Stacks>
+            <Amount>0.5</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+         </Effect>
+         <Effect>
+            <Type>Seeker</Type>
+            <Bonus>Destiny</Bonus>
+            <Stacks>Religious Lore</Stacks>
+            <Amount>0.5</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
          <Name>Divine Crusader: Strike Down</Name>
          <InternalName>StrikeDown</InternalName>
-         <Description>Active Ability: Melee smite cleave: Gain a damage bonus of +3[W]. On hit 500 fire damage
-(does not scale with melee power nor spell power). On hit after damage destroy
-undead or evil outsiders below 1000 HP.
-(Cooldown 12 seconds, activation cost: 5 spell points)</Description>
+         <Description>Melee Smite Cleave: Gain a damage bonus of +3[W].
+On Hit: Each enemy hit takes 500 Light damage. This damage scales with 200% Melee Power.
+On Hit After Damage: Destroy undead or evil outsiders under 1500 hit points.
+Cooldown: 12 seconds
+Cost: 5 Spell Points</Description>
          <Icon>StrikeDown</Icon>
          <XPosition>3</XPosition>
          <YPosition>6</YPosition>
