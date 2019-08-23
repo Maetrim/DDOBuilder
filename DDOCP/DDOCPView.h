@@ -136,6 +136,8 @@ class CDDOCPView :
         CComboBox m_comboAILevel20;
         CComboBox m_comboAILevel24;
         CComboBox m_comboAILevel28;
+
+        bool m_bIgnoreFocus;
 };
 
 #ifndef _DEBUG  // debug version in DDOCPView.cpp

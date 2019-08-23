@@ -74,7 +74,8 @@ END_MESSAGE_MAP()
 // CDDOCPView construction/destruction
 CDDOCPView::CDDOCPView() :
     CFormView(CDDOCPView::IDD),
-    m_pCharacter(NULL)
+    m_pCharacter(NULL),
+    m_bIgnoreFocus(false)
 {
     // TODO: add construction code here
 }
@@ -706,6 +707,7 @@ void CDDOCPView::OnSelendokComboTomeCha()
 
 void CDDOCPView::OnActivateView(BOOL bActivate, CView* pActivateView, CView* pDeactiveView)
 {
+    m_bIgnoreFocus = true;
     if (bActivate == TRUE)
     {
         // notify the main frame that we are active so that it can keep all
@@ -719,6 +721,7 @@ void CDDOCPView::OnActivateView(BOOL bActivate, CView* pActivateView, CView* pDe
     }
 
     CFormView::OnActivateView(bActivate, pActivateView, pDeactiveView);
+    m_bIgnoreFocus = false;
 }
 
 void CDDOCPView::OnChangeName()
@@ -912,8 +915,11 @@ void CDDOCPView::UpdateRadioPoints()
 
 void CDDOCPView::OnBnClickedRadio28pt()
 {
-    // set the number of build points to 28
-    m_pCharacter->SetBuildPoints(28);
+    if (!m_bIgnoreFocus)
+    {
+        // set the number of build points to 28
+        m_pCharacter->SetBuildPoints(28);
+    }
 }
 
 void CDDOCPView::OnBnClickedRadio32pt()

@@ -174,6 +174,13 @@ bool Effect::VerifyObject(std::stringstream * ss) const
                 (*ss) << "Ability effect has bad enum value\n";
                 ok = false;
             }
+            if (!HasAmountVector()
+                    && !HasAmount()
+                    && !HasAmountPerLevel())
+            {
+                (*ss) << "Ability effect missing required element\n";
+                ok = false;
+            }
             break;
         case Effect_EnergyAbsorbance:
         case Effect_EnergyResistance:
@@ -196,11 +203,17 @@ bool Effect::VerifyObject(std::stringstream * ss) const
                     ++it;
                 }
             }
+            if (!HasAmountVector()
+                    && !HasAmount()
+                    && !HasAmountPerLevel())
+            {
+                (*ss) << "Energy resistance/absorbance effect missing required element\n";
+                ok = false;
+            }
             break;
         case Effect_OverrideBAB:
             if (HasAmount()
                     || HasAmountVector()
-                    || HasAmountPerLevel()
                     || HasAmountPerLevel())
             {
                 (*ss) << "OverrideBAB has erroneous Amount field\n";
@@ -216,6 +229,15 @@ bool Effect::VerifyObject(std::stringstream * ss) const
             else if (Save() == Save_Unknown)
             {
                 (*ss) << "Save effect has bad enum value\n";
+                ok = false;
+            }
+            if (!HasAmountVector()
+                    && !HasAmount()
+                    && !HasAbility()
+                    && !HasAmountPerLevel()
+                    && !HasNoFailOn1())
+            {
+                (*ss) << "Save effect missing required element\n";
                 ok = false;
             }
             break;
@@ -245,6 +267,13 @@ bool Effect::VerifyObject(std::stringstream * ss) const
                         ok = false;
                 }
             }
+            if (!HasAmountVector()
+                    && !HasAmount()
+                    && !HasAmountPerLevel())
+            {
+                (*ss) << "Skill effect missing required element\n";
+                ok = false;
+            }
             break;
         case Effect_TacticalDC:
             if (m_Tactical.size() == 0)
@@ -266,6 +295,14 @@ bool Effect::VerifyObject(std::stringstream * ss) const
                     ++it;
                 }
             }
+            if (!HasAmountVector()
+                    && !HasAmount()
+                    && !HasAmountPerLevel()
+                    && !HasAbility())
+            {
+                (*ss) << "TacticalDC effect missing required element\n";
+                ok = false;
+            }
             break;
         case Effect_SpellDC:
             if (!HasSchool())
@@ -276,6 +313,12 @@ bool Effect::VerifyObject(std::stringstream * ss) const
             else if (School() == SpellSchool_Unknown)
             {
                 (*ss) << "School effect has bad enum value\n";
+                ok = false;
+            }
+            if (!HasAmountVector()
+                    && !HasAmount())
+            {
+                (*ss) << "SpellDC effect missing required element\n";
                 ok = false;
             }
             break;
@@ -299,6 +342,14 @@ bool Effect::VerifyObject(std::stringstream * ss) const
                     ++it;
                 }
             }
+            if (!HasAmountVector()
+                    && !HasAmount()
+                    && !HasAmountPerLevel()
+                    && !HasAmountPerAP())
+            {
+                (*ss) << "SpellPower effect missing required element\n";
+                ok = false;
+            }
             break;
         case Effect_WeaponAttackAbility:
         case Effect_WeaponDamageAbility:
@@ -320,10 +371,34 @@ bool Effect::VerifyObject(std::stringstream * ss) const
                 (*ss) << "DRBypass effect can only handle a single value\n";
                 ok = false;
             }
-            // fall through to check weapon/weaponclass settings
+            if (m_Weapon.size() == 0
+                    && !HasWeaponClass()
+                    && !HasDamageType())
+            {
+                (*ss) << "DRBypass effect missing Weapon/Class/DamageType field\n";
+                ok = false;
+            }
+            {
+                std::list<WeaponType>::const_iterator it = m_Weapon.begin();
+                while (it != m_Weapon.end())
+                {
+                    if ((*it) == Weapon_Unknown)
+                    {
+                        (*ss) << "DRBypass effect has bad enum value\n";
+                        ok = false;
+                        break;
+                    }
+                    ++it;
+                }
+                if (HasWeaponClass() && WeaponClass() == WeaponClass_Unknown)
+                {
+                    (*ss) << "DRBypass effect has bad enum value\n";
+                    ok = false;
+                }
+            }
+            break;
         case Effect_AttackBonus:
         case Effect_Alacrity:
-        case Effect_CenteredWeapon:
         case Effect_CriticalAttackBonus:
         case Effect_CriticalMultiplier:
         case Effect_CriticalRange:
@@ -333,9 +408,19 @@ bool Effect::VerifyObject(std::stringstream * ss) const
         case Effect_WeaponBaseDamageBonus:
         case Effect_WeaponDamageBonus:
         case Effect_WeaponEnchantment:
-        case Effect_WeaponProficiency:
         case Effect_WeaponOtherDamageBonus:
         case Effect_WeaponOtherCriticalDamageBonus:
+                if (!HasAmountVector()
+                        && !HasAmount()
+                        && !HasDiceRoll()
+                        && !HasAbility())
+                {
+                    (*ss) << "Weapon effect missing required element\n";
+                    ok = false;
+                }
+                // fall through
+        case Effect_CenteredWeapon:
+        case Effect_WeaponProficiency:
             {
                 if (m_Weapon.size() == 0
                         && !HasWeaponClass()

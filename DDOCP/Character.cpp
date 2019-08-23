@@ -310,7 +310,7 @@ size_t Character::SkillTomeValue(SkillType skill) const
     return value;
 }
 
-bool Character::IsFeatTrained(const std::string & featName) const
+bool Character::IsFeatTrained(const std::string & featName, bool includeGrantedFeats) const
 {
     // return true if the given feat is trained
     bool bTrained = false;
@@ -325,6 +325,19 @@ bool Character::IsFeatTrained(const std::string & featName) const
             break;
         }
         ++it;
+    }
+    if (includeGrantedFeats)
+    {
+        std::list<TrainedFeat>::const_iterator it = m_grantedFeats.begin();
+        while (it != m_grantedFeats.end())
+        {
+            if ((*it).FeatName() == featName)
+            {
+                bTrained = true;
+                break;
+            }
+            ++it;
+        }
     }
     return bTrained;
 }
@@ -5099,7 +5112,6 @@ void Character::UpdateWeaponStances()
         DeactivateStance(thf);
         DeactivateStance(swf);
         ActivateStance(unarmed);
-        DeactivateStance(sab);
         DeactivateStance(staff);
         DeactivateStance(orb);
         DeactivateStance(ra);

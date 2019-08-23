@@ -143,7 +143,7 @@ class Character :
         void SkillsUpdated();
 
         // feats
-        bool IsFeatTrained(const std::string & featName) const;
+        bool IsFeatTrained(const std::string & featName, bool includeGrantedFeats = false) const;
         size_t GetSpecialFeatTrainedCount(const std::string & featName) const;
         TrainedFeat GetTrainedFeat(size_t level, TrainableFeatTypes type) const;
         void TrainSpecialFeat(const std::string & featName, TrainableFeatTypes type);

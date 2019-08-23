@@ -59,8 +59,8 @@ void BreakdownItemPRR::CreateOtherEffects()
         // of the stances, so we only need to check them
 
         if (m_pCharacter->IsStanceActive("Light Armor")
-                && (m_pCharacter->IsFeatTrained("Light Armor Proficiency")
-                    || m_pCharacter->IsFeatTrained("Mithral Body")))
+                && (m_pCharacter->IsFeatTrained("Light Armor Proficiency", true)
+                    || m_pCharacter->IsFeatTrained("Mithral Body", true)))
         {
             ActiveEffect prr(
                     Bonus_armor,
@@ -71,7 +71,7 @@ void BreakdownItemPRR::CreateOtherEffects()
             AddOtherEffect(prr);
         }
         if (m_pCharacter->IsStanceActive("Medium Armor")
-                && m_pCharacter->IsFeatTrained("Medium Armor Proficiency"))
+                && m_pCharacter->IsFeatTrained("Medium Armor Proficiency", true))
         {
             ActiveEffect prr(
                     Bonus_armor,
@@ -82,8 +82,8 @@ void BreakdownItemPRR::CreateOtherEffects()
             AddOtherEffect(prr);
         }
         if (m_pCharacter->IsStanceActive("Heavy Armor")
-                && (m_pCharacter->IsFeatTrained("Heavy Armor Proficiency")
-                    || m_pCharacter->IsFeatTrained("Adamantine Body")))
+                && (m_pCharacter->IsFeatTrained("Heavy Armor Proficiency", true)
+                    || m_pCharacter->IsFeatTrained("Adamantine Body", true)))
         {
             ActiveEffect prr(
                     Bonus_armor,

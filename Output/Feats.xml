@@ -8341,6 +8341,7 @@ damage rolls before enhancements.)</Description>
       <Effect>
          <Type>SkillBonus</Type>
          <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
          <Ability>Charisma</Ability>
       </Effect>
       <Effect>
@@ -15737,9 +15738,9 @@ This feat can be acquired multiple times and is granted every epic level.</Descr
    </Feat>
    <Feat>
       <Name>Epic Defensive Fighting</Name>
-      <Description>Lamannia Preview: Your hero has learned to enter a reactive state,
-protecting themselves in the chaos of battle by rolling with the punches, but
-this hampers their ability to engage ranged threats.
+      <Description>Your hero has learned to enter a reactive state, protecting themselves in the
+chaos of battle by rolling with the punches, but this hampers their ability to
+engage ranged threats.
 
 While Toggle is active:
 1: 5% Competence Bonus to max hit points, with an additional 5% for every
@@ -15779,6 +15780,8 @@ ranged reduced to touch range.
          <IncompatibleStance>Enlarge</IncompatibleStance>
          <IncompatibleStance>Improved Precise Shot</IncompatibleStance>
          <IncompatibleStance>Archer's Focus</IncompatibleStance>
+         <IncompatibleStance>Nature's Defense</IncompatibleStance>
+         <IncompatibleStance>Eldritch Aura</IncompatibleStance>
       </Stance>
       <Effect>
          <DisplayName>Epic Defensive Fighting</DisplayName>
@@ -22659,52 +22662,7 @@ Ranged Power, Physical Resistance Rating and Magical Resistance Rating.</Descrip
          <Class>Cleric</Class>
          <Save>Will</Save>
       </Effect>
-      <Effect>
-         <Type>SpellPower</Type>
-         <Bonus>Feat</Bonus>
-         <Dice>
-            <Sides size="1">1</Sides>
-            <Number size="1">20</Number>
-         </Dice>
-         <SpellPower>All</SpellPower>
-         <Stance>Turn Undead</Stance>
-      </Effect>
-      <Effect>
-         <Type>MeleePower</Type>
-         <Bonus>Feat</Bonus>
-         <Dice>
-            <Sides size="1">1</Sides>
-            <Number size="1">10</Number>
-         </Dice>
-         <Stance>Turn Undead</Stance>
-      </Effect>
-      <Effect>
-         <Type>RangedPower</Type>
-         <Bonus>Feat</Bonus>
-         <Dice>
-            <Sides size="1">1</Sides>
-            <Number size="1">10</Number>
-         </Dice>
-         <Stance>Turn Undead</Stance>
-      </Effect>
-      <Effect>
-         <Type>PRR</Type>
-         <Bonus>Feat</Bonus>
-         <Dice>
-            <Sides size="1">1</Sides>
-            <Number size="1">10</Number>
-         </Dice>
-         <Stance>Turn Undead</Stance>
-      </Effect>
-      <Effect>
-         <Type>MRR</Type>
-         <Bonus>Feat</Bonus>
-         <Dice>
-            <Sides size="1">1</Sides>
-            <Number size="1">10</Number>
-         </Dice>
-         <Stance>Turn Undead</Stance>
-      </Effect>
+       <!--d20/d10 rolls to bonuses not modelled-->
    </Feat>
    <Feat>
       <Name>Death Domain Tier I</Name>
@@ -25120,7 +25078,7 @@ Quarterstaves, Kamas and Sickles you wield gain a +1 Morale bonus to Critical Th
       <Acquire>Train</Acquire>
       <Icon>SwordsToPlowshares</Icon>
       <Effect>
-         <Type>CriticalMultiplier</Type>
+         <Type>CriticalRange</Type>
          <Bonus>Morale</Bonus>
          <Amount>1</Amount>
          <Weapon>Quarterstaff</Weapon>

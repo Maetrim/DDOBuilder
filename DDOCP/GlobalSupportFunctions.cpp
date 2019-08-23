@@ -1137,7 +1137,8 @@ bool CanTrainClass(
         // any non-lawful
         canTrain = (alignment == Alignment_TrueNeutral)
                 || (alignment == Alignment_ChaoticNeutral)
-                || (alignment == Alignment_ChaoticGood);
+                || (alignment == Alignment_ChaoticGood)
+                || (alignment == Alignment_NeutralGood);
         break;
 
     case Class_Druid:
