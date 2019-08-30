@@ -48,6 +48,7 @@ void CEpicDestiniesView::DoDataExchange(CDataExchange* pDX)
     CFormView::DoDataExchange(pDX);
     DDX_Control(pDX, IDC_COMBO_DESTINY_SELECT, m_comboEpicDestinySelect);
     DDX_Control(pDX, IDC_CHECK_MAKE_ACTIVE_DESTINY, m_buttonMakeActive);
+    DDX_Control(pDX, IDC_BUTTON_CLAIM_DESTINIES, m_buttonClaimDestinies);
     DDX_Control(pDX, IDC_TWISTS_OF_FATE_LABEL, m_labelTwistsOfFate);
     DDX_Control(pDX, IDC_FATE_POINTS, m_fatePointsSpent);
 }
@@ -60,6 +61,7 @@ BEGIN_MESSAGE_MAP(CEpicDestiniesView, CFormView)
     ON_REGISTERED_MESSAGE(UWM_NEW_DOCUMENT, OnNewDocument)
     ON_CBN_SELENDOK(IDC_COMBO_DESTINY_SELECT, OnDestinySelect)
     ON_BN_CLICKED(IDC_CHECK_MAKE_ACTIVE_DESTINY, OnButtonMakeActiveDestiny)
+    ON_BN_CLICKED(IDC_BUTTON_CLAIM_DESTINIES, OnButtonClaimDestinies)
     ON_WM_CTLCOLOR()
     ON_MESSAGE(WM_MOUSEENTER, OnMouseEnter)
     ON_MESSAGE(WM_MOUSELEAVE, OnMouseLeave)
@@ -114,6 +116,7 @@ void CEpicDestiniesView::OnInitialUpdate()
         // move rectangle down for next twist of fate
         itemRect += CPoint(0, itemRect.Height() + c_controlSpacing);
     }
+    m_buttonClaimDestinies.SetImage(IDB_CLAIM_DESTINIES);
     MoveFatePointControls();
     PopulateCombobox();
 }
@@ -136,16 +139,21 @@ void CEpicDestiniesView::OnSize(UINT nType, int cx, int cy)
         rctCombo -= CPoint(scrollX, scrollY);
 
         CRect rctMakeActive;
+        CRect rctClaimDestinies;
         CRect rctLabel;
         m_buttonMakeActive.GetWindowRect(&rctMakeActive);
+        m_buttonClaimDestinies.GetWindowRect(&rctClaimDestinies);
         m_labelTwistsOfFate.GetWindowRect(&rctLabel);
         ScreenToClient(&rctMakeActive);
         ScreenToClient(&rctLabel);
         rctMakeActive -= rctMakeActive.TopLeft();
         rctMakeActive += CPoint(rctCombo.right + c_controlSpacing, rctCombo.top);
+        rctClaimDestinies -= rctClaimDestinies.TopLeft();
+        rctClaimDestinies += CPoint(rctMakeActive.right + c_controlSpacing, rctCombo.top);
         rctLabel -= rctLabel.TopLeft();
         rctLabel += CPoint(rctCombo.right + c_controlSpacing, rctMakeActive.bottom + c_controlSpacing);
         m_buttonMakeActive.MoveWindow(rctMakeActive, TRUE);
+        m_buttonClaimDestinies.MoveWindow(rctClaimDestinies, TRUE);
         m_labelTwistsOfFate.MoveWindow(rctLabel, TRUE);
 
         // we only show the selected destiny tree
@@ -427,6 +435,7 @@ void CEpicDestiniesView::EnableControls()
         m_buttonMakeActive.SetCheck((m_pCharacter->ActiveEpicDestiny() == destinyName)
                 ? BST_CHECKED
                 : BST_UNCHECKED);
+        m_buttonClaimDestinies.EnableWindow(TRUE);
         // show available twists of fate
         for (size_t vi = 0; vi < m_twistsOfFate.size(); ++vi)
         {
@@ -459,6 +468,7 @@ void CEpicDestiniesView::EnableControls()
         // UI controls disabled if no document
         m_comboEpicDestinySelect.EnableWindow(FALSE);
         m_buttonMakeActive.EnableWindow(FALSE);
+        m_buttonClaimDestinies.EnableWindow(FALSE);
         for (size_t vi = 0; vi < m_twistsOfFate.size(); ++vi)
         {
             m_twistsOfFate[vi]->ShowWindow(SW_HIDE);
@@ -502,6 +512,47 @@ void CEpicDestiniesView::OnButtonMakeActiveDestiny()
         m_pCharacter->EpicDestiny_SetActiveDestiny("");
     }
     EnableControls();
+}
+
+void CEpicDestiniesView::OnButtonClaimDestinies()
+{
+    // for all destiny trees, we train every Core enhancement
+    const std::list<EnhancementTree> & allTrees = EnhancementTrees();
+    std::list<EnhancementTree>::const_iterator it = allTrees.begin();
+    while (it != allTrees.end())
+    {
+        // only do for destiny trees
+        if ((*it).HasIsEpicDestiny())
+        {
+            // try and train all "Core" enhancements in this destiny tree
+            // which are all items where YPosition == 0
+            const std::list<EnhancementTreeItem> & items = (*it).Items();
+            std::list<EnhancementTreeItem>::const_iterator tii = items.begin();
+            while (tii != items.end())
+            {
+                if ((*tii).YPosition() == 0)
+                {
+                    // this is a core item, train if not already done so
+                    if (!m_pCharacter->IsEnhancementTrained((*tii).InternalName(), ""))
+                    {
+                        m_pCharacter->EpicDestiny_TrainEnhancement(
+                                (*it).Name(),
+                                (*tii).InternalName(),
+                                "",
+                                0);         // core items are always free
+                    }
+                }
+                ++tii;
+            }
+        }
+        ++it;
+    }
+    // ensure the visible destiny redraws also
+    int sel = m_comboEpicDestinySelect.GetCurSel();
+    if (sel >= 0)
+    {
+        m_treeViews[sel]->Invalidate();
+    }
 }
 
 // CharacterObserver overrides

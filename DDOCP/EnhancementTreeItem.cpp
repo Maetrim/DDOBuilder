@@ -206,7 +206,25 @@ bool EnhancementTreeItem::CanTrain(
     canTrain &= m_RequirementsToTrain.CanTrainEnhancement(charData, trainedRanks);
     // must have enough action points to buy it
     int availableAP = charData.AvailableActionPoints(treeName, type);
-    canTrain &= (availableAP >= (int)Cost());
+    // Cost can be variable compared to base item if item is trained
+    int cost = Cost();
+    if (te != NULL
+            && te->HasSelection())
+    {
+        // selected item may have different cost
+        std::list<EnhancementSelection>::const_iterator it =
+                m_Selections.Selections().begin();
+        while (it != m_Selections.Selections().end())
+        {
+            if ((*it).Name() == te->Selection())
+            {
+                cost = (*it).Cost();
+                break;      // were done
+            }
+            ++it;
+        }
+    }
+    canTrain &= (availableAP >= cost);
     return canTrain;
 }
 

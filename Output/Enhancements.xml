@@ -5994,6 +5994,11 @@ While under this effect you do not automatically fail Saving Throws on a roll of
             </Requirement>
          </Requirements>
          <Selector>
+            <SelectorExclusions>
+               <SelectorExclusion>
+                  <InternalName>HumanCore2</InternalName>
+               </SelectorExclusion>
+            </SelectorExclusions>
             <EnhancementSelection>
                <Name>+1 Strength</Name>
                <Description>+1 Strength</Description>
@@ -31753,7 +31758,7 @@ Cooldown: 6 seconds.</Description>
             <Description>Defensive Combat Stance: +8 PRR and MRR.
 Cannot be used with other defensive stances, but can be used while raging.
 Cooldown: 6 seconds.</Description>
-            <IncompatibleStance>Epic Defensive Fighting</IncompatibleStance>
+             <IncompatibleStance>Epic Defensive Fighting</IncompatibleStance>
          </Stance>
          <Effect>
             <Type>Hitpoints</Type>
@@ -31973,7 +31978,7 @@ This effect does not stack with Nature's Warrior.</Description>
          <Description>Grants you the ability to rage like a barbarian.
 Activiate to rage, gaining +4 Strength and Constitution, +2 Will Saves and
 -2 Armor Class. Lasts 30 + (6 x Con Modifier) seconds.
-You are fatigued when this effect ends. You cannot cast seplls while raging.
+You are fatigued when this effect ends. You cannot cast spells while raging.
 1/2 Charges per rest. Effects that modify Barbarian rage apply to this enhancement.
 Also grants the Dismiss Rage Feat.</Description>
          <Icon>NPRageOfTheBeast</Icon>
@@ -31996,7 +32001,7 @@ Also grants the Dismiss Rage Feat.</Description>
             <Description>Grants you the ability to rage like a barbarian.
 Activiate to rage, gaining +4 Strength and Constitution, +2 Will Saves and
 -2 Armor Class. Lasts 30 + (6 x Con Modifier) seconds.
-You are fatigued when this effect ends. You cannot cast seplls while raging.
+You are fatigued when this effect ends. You cannot cast spells while raging.
 1/2 Charges per rest. Effects that modify Barbarian rage apply to this enhancement.
 Also grants the Dismiss Rage Feat.</Description>
          </Stance>
@@ -32007,30 +32012,34 @@ Also grants the Dismiss Rage Feat.</Description>
          </Effect>
          <Effect>
             <Type>AbilityBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>4</Amount>
+            <Bonus>Rage</Bonus>
+            <AmountVector size="2">4 4</AmountVector>
             <Ability>Strength</Ability>
             <Stance>Rage</Stance>
+            <ApplyAsItemEffect/>
          </Effect>
          <Effect>
             <Type>AbilityBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>4</Amount>
+            <Bonus>Rage</Bonus>
+            <AmountVector size="2">4 4</AmountVector>
             <Ability>Constitution</Ability>
             <Stance>Rage</Stance>
+            <ApplyAsItemEffect/>
          </Effect>
          <Effect>
             <Type>SaveBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>2</Amount>
+            <Bonus>Rage</Bonus>
+            <AmountVector size="2">2 2</AmountVector>
             <Save>Will</Save>
             <Stance>Rage</Stance>
+            <ApplyAsItemEffect/>
          </Effect>
          <Effect>
             <Type>ACBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>-2</Amount>
+            <Bonus>Rage</Bonus>
+            <AmountVector size="2">-2 -2</AmountVector>
             <Stance>Rage</Stance>
+            <ApplyAsItemEffect/>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -41634,7 +41643,7 @@ Note: Does not stack with Tempest: Improved Dodge.</Description>
             <EnhancementSelection>
                <Name>Contemplation</Name>
                <Description>+1/+2/+3 Concentration and Will Saves.
-Rank 3: Your passive ki regeneration is increased by 1.</Description>
+Rank 3: Your passive Ki regeneration is increased by 1.</Description>
                <Icon>KenseiContemplation</Icon>
                <Cost>1</Cost>
                <Requirements/>
@@ -43268,6 +43277,7 @@ Sacred Defense and Stalwart Defense can't be active at the same time</Descriptio
 +150% bonus to threat generation</Description>
             <IncompatibleStance>Rage</IncompatibleStance>
             <IncompatibleStance>Sacred Defense</IncompatibleStance>
+            <IncompatibleStance>Epic Defensive Fighting</IncompatibleStance>
          </Stance>
          <Requirements>
             <Requirement>
@@ -47396,7 +47406,7 @@ Passive: +1 to Hit and Damage while Centered, does not apply to Handwraps or Qua
          <InternalName>NSStealthy</InternalName>
          <Description>+1/+2/+3 Hide and Move Silently.
 +20%/+35%/+50% movement speed while sneaking.
-Rank 3: While centered and Sneaking, your passive ki regeneration is increased by 1.</Description>
+Rank 3: While centered and Sneaking, your passive Ki regeneration is increased by 1.</Description>
          <Icon>NSStealthy</Icon>
          <XPosition>1</XPosition>
          <YPosition>1</YPosition>
@@ -48885,7 +48895,7 @@ damage reduction.</Description>
       <EnhancementTreeItem>
          <Name>Shintao: Touch the Void Dragon</Name>
          <InternalName>ShintaoCore5</InternalName>
-         <Description>Ki Activate: Spend 30 ki to gain a 1d4+1 bonus to all ability scores
+         <Description>Ki Activate: Spend 30 Ki to gain a 1d4+1 bonus to all ability scores
 for one minute (Cooldown: 3 minute).
 Passive: +5 Melee Power, +1[W] with handwraps or while unarmed</Description>
          <Icon>ShintaoTouchOfTheVoidDragon</Icon>
@@ -51137,6 +51147,7 @@ Cannot become raged while Sacred Defence is active</Description>
 +150% bonus to threat generation</Description>
             <IncompatibleStance>Rage</IncompatibleStance>
             <IncompatibleStance>Stalwart Defender</IncompatibleStance>
+            <IncompatibleStance>Epic Defensive Fighting</IncompatibleStance>
          </Stance>
          <Effect>
             <Type>Fortification</Type>
@@ -81866,7 +81877,7 @@ but you attack 20% slower than normal. You gain +3 PRR, +3 MRR.</Description>
           <Cost>1</Cost>
           <Clickie/>
           <Stance>
-            <Name>Shround of the Zombie</Name>
+            <Name>Shroud of the Zombie</Name>
             <Icon>PMShroudOfTheZombie</Icon>
             <Description>While in this form, +4 Constitution, +20% damage with attacks but you attack
 20% slower than normal. You gain +3 PRR, +3 MRR.</Description>
@@ -83628,7 +83639,7 @@ Only works while in a Shroud form.</Description>
           <Cost>1</Cost>
           <Clickie/>
           <Stance>
-            <Name>Shround of the Zombie</Name>
+            <Name>Shroud of the Zombie</Name>
             <Icon>PMShroudOfTheZombie</Icon>
             <Description>While in this form, +4 Constitution, +20% damage with attacks but you attack
 20% slower than normal. You gain +3 PRR, +3 MRR.</Description>
@@ -91141,7 +91152,7 @@ Passively, you benefit from an additional +[1/2/3] to all Skills.
          <InternalName>BoundFate</InternalName>
          <Description>Bardic Curse: Your target must make a Will save or be bound in place briefly.
 In addition, your target will become [6/10/12]% more vulnerable to magical damage,
-and also suffers -[5/10/15] Sepll Resistance and -[4/6/8] damage.
+and also suffers -[5/10/15] Spell Resistance and -[4/6/8] damage.
 Duration: 45 seconds
 'The chains of Fate have you, demon, and you are too dumb to know you are already
 dead.'
