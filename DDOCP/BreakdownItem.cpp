@@ -36,14 +36,17 @@ void BreakdownItem::PopulateBreakdownControl(CListCtrl * pControl)
     std::list<ActiveEffect> itemEffects = m_itemEffects;
     std::list<ActiveEffect> inactiveEffects;
     std::list<ActiveEffect> nonStackingEffects;
+    std::list<ActiveEffect> temporaryEffects;
     RemoveInactive(&itemEffects, &inactiveEffects);
     RemoveNonStacking(&itemEffects, &nonStackingEffects);
+    RemoveTemporary(&itemEffects, &temporaryEffects);
     AddActiveItems(itemEffects, pControl, true);
 
     // finally add the active percentage items
     AddActivePercentageItems(m_otherEffects, pControl);
     AddActivePercentageItems(m_effects, pControl);
     AddActivePercentageItems(itemEffects, pControl);
+    AddActiveItems(temporaryEffects, pControl, false);
 
     size_t inactiveStart = pControl->GetItemCount();
     // also show inactive and non stack effects if we have any so user
@@ -131,8 +134,10 @@ double BreakdownItem::Total() const
     std::list<ActiveEffect> itemEffects = m_itemEffects;
     std::list<ActiveEffect> inactiveEffects;
     std::list<ActiveEffect> nonStackingEffects;
+    std::list<ActiveEffect> temporaryEffects;
     RemoveInactive(&itemEffects, &inactiveEffects);
     RemoveNonStacking(&itemEffects, &nonStackingEffects);
+    RemoveTemporary(&itemEffects, &temporaryEffects);
     total += SumItems(itemEffects, true);
     double baseTotal = total;
 
@@ -147,6 +152,7 @@ double BreakdownItem::Total() const
     // make sure we update listed items
     DoPercentageEffects(m_itemEffects, baseTotal);
     total += DoPercentageEffects(itemEffects, baseTotal);
+    total += SumItems(temporaryEffects, false);
 
     return total;
 }
@@ -592,6 +598,29 @@ void BreakdownItem::RemoveNonStacking(
     }
 }
 
+void BreakdownItem::RemoveTemporary(
+        std::list<ActiveEffect> * effects,
+        std::list<ActiveEffect> * temporaryEffects) const
+{
+    // any bonus type of "Temporary" is added after percentage multipliers
+    temporaryEffects->clear();        // ensure empty
+    std::list<ActiveEffect>::iterator sit = effects->begin();
+    while (sit != effects->end())
+    {
+        if ((*sit).Bonus() == Bonus_temporary)
+        {
+            // move it to the other list
+            temporaryEffects->push_back((*sit));
+            sit = effects->erase(sit);      // remove from source list
+        }
+        else
+        {
+            // not removed
+            ++sit;
+        }
+    }
+}
+
 void BreakdownItem::AddEffect(
         std::list<ActiveEffect> * effectList,
         const ActiveEffect & effect)
@@ -633,11 +662,6 @@ void BreakdownItem::RevokeEffect(
             // it an existing effect, clear a stack
             found = true;
             bool deleteIt = (*it).RevokeStack();        // true if no stacks left
-            if (!deleteIt && (*it).TotalAmount(false) == 0)
-            {
-                // if it resolves to no bonus, time to delete it also
-                deleteIt = true;
-            }
             if (deleteIt)
             {
                 it = effectList->erase(it);

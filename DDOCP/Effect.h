@@ -114,6 +114,7 @@ enum EffectType
     Effect_RepairAmplification,
     Effect_RustSusceptability,
     Effect_SaveBonus,
+    Effect_SaveNoFailOn1,
     Effect_SecondaryShieldBash,
     Effect_Seeker,
     Effect_ShieldEnchantment,
@@ -246,6 +247,7 @@ const XmlLib::enumMapEntry<EffectType> effectTypeMap[] =
     {Effect_RepairAmplification, L"RepairAmplification"},
     {Effect_RustSusceptability, L"RustSusceptability"},
     {Effect_SaveBonus, L"SaveBonus"},
+    {Effect_SaveNoFailOn1, L"SaveNoFailOn1"},
     {Effect_SecondaryShieldBash, L"SecondaryShieldBash"},
     {Effect_Seeker, L"Seeker"},
     {Effect_ShieldEnchantment, L"ShieldEnchantment"},
@@ -329,7 +331,6 @@ class Effect :
                 DL_OPTIONAL_OBJECT(_, Dice, DiceRoll) \
                 DL_OPTIONAL_SIMPLE(_, int, Divider, 0) \
                 DL_OPTIONAL_STRING(_, Feat) \
-                DL_OPTIONAL_VECTOR(_, size_t, NoFailOn1) \
                 DL_OPTIONAL_STRING(_, Spell) \
                 DL_OPTIONAL_SIMPLE(_, int, SpellLevel, 0) \
                 DL_STRING_VECTOR(_, Stance) \

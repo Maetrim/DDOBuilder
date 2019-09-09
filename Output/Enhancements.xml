@@ -8561,11 +8561,10 @@ roll of a natural 1.</Description>
                   <Immunity>Natural Diseases</Immunity>
                </Effect>
                <Effect>
-                  <Type>SaveBonus</Type>
+                  <Type>SaveNoFailOn1</Type>
                   <Bonus>Enhancement</Bonus>
-                  <Amount>4</Amount>
+                  <Amount>1</Amount>
                   <Save>Disease</Save>
-                  <NoFailOn1 size="1">1</NoFailOn1>
                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
@@ -9285,11 +9284,10 @@ fail saving throws against fear on a roll of a natural 1.</Description>
                   </Requirement>
                </Requirements>
                <Effect>
-                  <Type>SaveBonus</Type>
+                  <Type>SaveNoFailOn1</Type>
                   <Bonus>Enhancement</Bonus>
-                  <Amount>4</Amount>
+                  <Amount>1</Amount>
                   <Save>Fear</Save>
-                  <NoFailOn1 size="1">1</NoFailOn1>
                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
@@ -22248,14 +22246,24 @@ Rank 3: You don't fail disease or poison saving throws on a roll of 1.</Descript
             <Bonus>Enhancement</Bonus>
             <Save>Disease</Save>
             <AmountVector size="3">2 4 6</AmountVector>
-            <NoFailOn1 size="3">0 0 1</NoFailOn1>
          </Effect>
          <Effect>
             <Type>SaveBonus</Type>
             <Bonus>Enhancement</Bonus>
             <Save>Poison</Save>
             <AmountVector size="3">2 4 6</AmountVector>
-            <NoFailOn1 size="3">0 0 1</NoFailOn1>
+         </Effect>
+         <Effect>
+            <Type>SaveNoFailOn1</Type>
+            <Bonus>Enhancement</Bonus>
+            <Save>Disease</Save>
+            <AmountVector size="3">0 0 1</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SaveNoFailOn1</Type>
+            <Bonus>Enhancement</Bonus>
+            <Save>Poison</Save>
+            <AmountVector size="3">0 0 1</AmountVector>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -33031,7 +33039,9 @@ Nature's Defense now grants you a +3/6/9 sacred bonus to MRR.</Description>
       <EnhancementTreeItem>
          <Name>Nature's Protector: Force of Nature</Name>
          <InternalName>NPForceOfNature</InternalName>
-         <Description>You gain 10%/15%/20% resistance against Force damage and +1/2/3 Constitution.</Description>
+         <Description>You gain 10%/15%/20% resistance against Force damage and +1/2/3 Constitution.
+Your attunement to Nature is emboldened - Your Druidic Oath is no longer broken
+by wearing metal armor or shields.</Description>
          <Icon>NPForceOfNature</Icon>
          <XPosition>4</XPosition>
          <YPosition>5</YPosition>
@@ -54769,25 +54779,22 @@ In addition, you gain +2 Damage dice with Law on you Side.</Description>
             <Amount>3</Amount>
          </Effect>
          <Effect>
-            <Type>SaveBonus</Type>
+            <Type>SaveNoFailOn1</Type>
             <Bonus>Enhancement</Bonus>
             <Save>Fear</Save>
-            <Amount>0</Amount>
-            <NoFailOn1 size="1">1</NoFailOn1>
+            <Amount>1</Amount>
          </Effect>
          <Effect>
-            <Type>SaveBonus</Type>
+            <Type>SaveNoFailOn1</Type>
             <Bonus>Enhancement</Bonus>
             <Save>Enchantment</Save>
-            <Amount>0</Amount>
-            <NoFailOn1 size="1">1</NoFailOn1>
+            <Amount>1</Amount>
          </Effect>
          <Effect>
-            <Type>SaveBonus</Type>
+            <Type>SaveNoFailOn1</Type>
             <Bonus>Enhancement</Bonus>
             <Save>Illusion</Save>
-            <Amount>0</Amount>
-            <NoFailOn1 size="1">1</NoFailOn1>
+            <Amount>1</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -75401,7 +75408,7 @@ In addition, you and nearby allies get a +10 Determination bonus to Healing Ampl
       <EnhancementTreeItem>
          <Name>Enlightened Spirit: Shining Through</Name>
          <InternalName>WESShiningThrough</InternalName>
-         <Description> Gain a Sacred bonus to Temporary Hitpoints equal to 12x your Constitution Score that lasts for up to 10 minutes.
+         <Description>Gain a Sacred bonus to Temporary Hitpoints equal to 12x your Constitution Score that lasts for up to 10 minutes.
 For 20 seconds, you gain +25 Sacred bonus to Healing Amplification.
 (Cooldown: 30 sec. SP Cost: 8).</Description>
          <Icon>WESShiningThrough</Icon>
@@ -75421,6 +75428,90 @@ For 20 seconds, you gain +25 Sacred bonus to Healing Amplification.
                <Level>5</Level>
             </Requirement>
          </Requirements>
+         <Stance>
+            <Name>Shining Through</Name>
+            <Icon>WESShiningThrough</Icon>
+            <Description>Gain a Sacred bonus to Temporary Hitpoints equal to 12x your Constitution Score that lasts for up to 10 minutes.
+For 20 seconds, you gain +25 Sacred bonus to Healing Amplification.</Description>
+         </Stance>
+          <Effect>
+              <Type>HealingAmplification</Type>
+              <Bonus>Sacred</Bonus>
+              <Amount>25</Amount>
+              <Stance>Shining Through</Stance>
+          </Effect>
+          <Effect>
+              <Type>Hitpoints</Type>
+              <Bonus>Temporary</Bonus>
+              <FullAbility>Constitution</FullAbility>
+              <Stance>Shining Through</Stance>
+          </Effect>
+          <Effect>
+              <Type>Hitpoints</Type>
+              <Bonus>Temporary</Bonus>
+              <FullAbility>Constitution</FullAbility>
+              <Stance>Shining Through</Stance>
+          </Effect>
+          <Effect>
+              <Type>Hitpoints</Type>
+              <Bonus>Temporary</Bonus>
+              <FullAbility>Constitution</FullAbility>
+              <Stance>Shining Through</Stance>
+          </Effect>
+          <Effect>
+              <Type>Hitpoints</Type>
+              <Bonus>Temporary</Bonus>
+              <FullAbility>Constitution</FullAbility>
+              <Stance>Shining Through</Stance>
+          </Effect>
+          <Effect>
+              <Type>Hitpoints</Type>
+              <Bonus>Temporary</Bonus>
+              <FullAbility>Constitution</FullAbility>
+              <Stance>Shining Through</Stance>
+          </Effect>
+          <Effect>
+              <Type>Hitpoints</Type>
+              <Bonus>Temporary</Bonus>
+              <FullAbility>Constitution</FullAbility>
+              <Stance>Shining Through</Stance>
+          </Effect>
+          <Effect>
+              <Type>Hitpoints</Type>
+              <Bonus>Temporary</Bonus>
+              <FullAbility>Constitution</FullAbility>
+              <Stance>Shining Through</Stance>
+          </Effect>
+          <Effect>
+              <Type>Hitpoints</Type>
+              <Bonus>Temporary</Bonus>
+              <FullAbility>Constitution</FullAbility>
+              <Stance>Shining Through</Stance>
+          </Effect>
+          <Effect>
+              <Type>Hitpoints</Type>
+              <Bonus>Temporary</Bonus>
+              <FullAbility>Constitution</FullAbility>
+              <Stance>Shining Through</Stance>
+          </Effect>
+          <Effect>
+              <Type>Hitpoints</Type>
+              <Bonus>Temporary</Bonus>
+              <FullAbility>Constitution</FullAbility>
+              <Stance>Shining Through</Stance>
+          </Effect>
+          <Effect>
+              <Type>Hitpoints</Type>
+              <Bonus>Temporary</Bonus>
+              <FullAbility>Constitution</FullAbility>
+              <Stance>Shining Through</Stance>
+          </Effect>
+          <Effect>
+              <Type>Hitpoints</Type>
+              <Bonus>Temporary</Bonus>
+              <FullAbility>Constitution</FullAbility>
+              <Stance>Shining Through</Stance>
+          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Enlightened Spirit: Displace Summons</Name>
@@ -88699,7 +88790,12 @@ Rank 3: You also no longer automatically fail Fortitude saves on a 1.</Descripti
             <Bonus>Destiny</Bonus>
             <Save>Fortitude</Save>
             <AmountVector size="3">2 4 6</AmountVector>
-            <NoFailOn1 size="3">0 0 1</NoFailOn1>
+         </Effect>
+         <Effect>
+            <Type>SaveNoFailOn1</Type>
+            <Bonus>Destiny</Bonus>
+            <Save>Fortitude</Save>
+            <AmountVector size="3">0 0 1</AmountVector>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -93973,24 +94069,24 @@ Rank 3: All Fortitude saves</Description>
          </Effect>
          <Effect>
             <DisplayName>Grandmaster of Flowers: Perfection of Body: Disease</DisplayName>
-            <Type>SaveBonus</Type>
+            <Type>SaveNoFailOn1</Type>
             <Bonus>Destiny</Bonus>
             <Save>Disease</Save>
-            <NoFailOn1 size="3">1 1 1</NoFailOn1>
+            <AmountVector size="3">1 1 1</AmountVector>
          </Effect>
          <Effect>
             <DisplayName>Grandmaster of Flowers: Perfection of Body: Poison</DisplayName>
-            <Type>SaveBonus</Type>
+            <Type>SaveNoFailOn1</Type>
             <Bonus>Destiny</Bonus>
             <Save>Poison</Save>
-            <NoFailOn1 size="3">0 1 1</NoFailOn1>
+            <AmountVector size="3">0 1 1</AmountVector>
          </Effect>
          <Effect>
             <DisplayName>Grandmaster of Flowers: Perfection of Body: Fortitude</DisplayName>
-            <Type>SaveBonus</Type>
+            <Type>SaveNoFailOn1</Type>
             <Bonus>Destiny</Bonus>
             <Save>Fortitude</Save>
-            <NoFailOn1 size="3">0 0 1</NoFailOn1>
+            <AmountVector size="3">0 0 1</AmountVector>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -94100,7 +94196,12 @@ total saving throw result is equal or higher than the DC of the effect.</Descrip
             <Bonus>Destiny</Bonus>
             <Save>Will</Save>
             <AmountVector size="3">2 4 6</AmountVector>
-            <NoFailOn1 size="3">0 0 1</NoFailOn1>
+         </Effect>
+         <Effect>
+            <Type>SaveNoFailOn1</Type>
+            <Bonus>Destiny</Bonus>
+            <Save>Will</Save>
+            <AmountVector size="3">0 0 1</AmountVector>
          </Effect>
          <Effect>
             <Type>SaveBonus</Type>
@@ -94280,7 +94381,12 @@ total saving throw result is equal or higher than the DC effect.</Description>
             <Bonus>Destiny</Bonus>
             <Save>Reflex</Save>
             <AmountVector size="3">2 4 6</AmountVector>
-            <NoFailOn1 size="3">0 0 1</NoFailOn1>
+         </Effect>
+         <Effect>
+            <Type>SaveNoFailOn1</Type>
+            <Bonus>Destiny</Bonus>
+            <Save>Reflex</Save>
+            <AmountVector size="3">0 0 1</AmountVector>
          </Effect>
          <Effect>
             <Type>SkillBonus</Type>
@@ -95839,7 +95945,12 @@ Rank 3: You will also no longer automatically fail Will saves on a 1.</Descripti
             <Bonus>Destiny</Bonus>
             <Save>Will</Save>
             <AmountVector size="3">2 4 6</AmountVector>
-            <NoFailOn1 size="3">0 0 1</NoFailOn1>
+         </Effect>
+         <Effect>
+            <Type>SaveNoFailOn1</Type>
+            <Bonus>Destiny</Bonus>
+            <Save>Will</Save>
+            <AmountVector size="3">0 0 1</AmountVector>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>

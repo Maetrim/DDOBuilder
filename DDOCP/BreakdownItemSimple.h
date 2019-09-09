@@ -23,4 +23,6 @@ class BreakdownItemSimple :
     private:
         CString m_title;
         EffectType m_effect;
+
+        friend class BreakdownItemSave;
 };

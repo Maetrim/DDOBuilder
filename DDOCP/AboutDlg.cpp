@@ -58,6 +58,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
             "fognozzle, "
             "Frinkky, "
             "Gemini-Dragon357, "
+            "Gerkenstein, "
             "hallowedone, "
             "Havader, "
             "Jokersir2, "

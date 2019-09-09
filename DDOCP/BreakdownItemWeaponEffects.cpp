@@ -113,7 +113,10 @@ void BreakdownItemWeaponEffects::AddToAffectedWeapons(
         bool affectsWeapon = AffectsThisWeapon(wt, effect.m_effect);
         if (affectsWeapon)
         {
-            (*list)[i].push_back(effect);
+            // these effects are always single tier
+            EffectTier copy = effect;
+            copy.m_tier = 1;
+            (*list)[i].push_back(copy);
         }
     }
 }
@@ -159,10 +162,13 @@ void BreakdownItemWeaponEffects::RemoveFromAffectedWeapons(
         // find in the list and remove
         if (affectsWeapon)
         {
+            // these effects are always single tier
+            EffectTier copy = effect;
+            copy.m_tier = 1;
             std::list<EffectTier>::iterator it = (*list)[i].begin();
             while (it != (*list)[i].end())
             {
-                if ((*it) == effect)
+                if ((*it) == copy)
                 {
                     // this is it
                     it = (*list)[i].erase(it);

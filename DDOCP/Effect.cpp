@@ -221,9 +221,10 @@ bool Effect::VerifyObject(std::stringstream * ss) const
             }
             break;
         case Effect_SaveBonus:
+        case Effect_SaveNoFailOn1:
             if (!HasSave())
             {
-                (*ss) << "SaveBonus effect missing save field\n";
+                (*ss) << "Save effect missing save field\n";
                 ok = false;
             }
             else if (Save() == Save_Unknown)
@@ -234,8 +235,7 @@ bool Effect::VerifyObject(std::stringstream * ss) const
             if (!HasAmountVector()
                     && !HasAmount()
                     && !HasAbility()
-                    && !HasAmountPerLevel()
-                    && !HasNoFailOn1())
+                    && !HasAmountPerLevel())
             {
                 (*ss) << "Save effect missing required element\n";
                 ok = false;
@@ -511,8 +511,6 @@ bool Effect::operator==(const Effect & other) const
             && (m_Divider == other.m_Divider)
             && (m_hasFeat == other.m_hasFeat)
             && (m_Feat == other.m_Feat)
-            && (m_hasNoFailOn1 == other.m_hasNoFailOn1)
-            && (m_NoFailOn1 == other.m_NoFailOn1)
             && (m_hasSpell == other.m_hasSpell)
             && (m_Spell == other.m_Spell)
             && (m_hasSpellLevel == other.m_hasSpellLevel)

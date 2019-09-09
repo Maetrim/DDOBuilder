@@ -132,6 +132,7 @@ class BreakdownItem :
         double DoPercentageEffects(const std::list<ActiveEffect> & effects, double total) const;
         void RemoveInactive(std::list<ActiveEffect> * effects, std::list<ActiveEffect> * inactiveEffects) const;
         void RemoveNonStacking(std::list<ActiveEffect> * effects, std::list<ActiveEffect> * nonStackingEffects) const;
+        void RemoveTemporary(std::list<ActiveEffect> * effects, std::list<ActiveEffect> * temporaryEffects) const;
         struct AbilityStance
         {
             AbilityType ability;

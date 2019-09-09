@@ -265,7 +265,7 @@ void CBreakdownsView::CreateSavesBreakdowns()
                 "Fortitude",
                 hParent,
                 TVI_LAST);
-        BreakdownItem * pFS = new BreakdownItemSave(
+        BreakdownItemSave * pFS = new BreakdownItemSave(
                 Breakdown_SaveFortitude,
                 Save_Fortitude,
                 &m_itemBreakdownTree,
@@ -286,7 +286,7 @@ void CBreakdownsView::CreateSavesBreakdowns()
                     &m_itemBreakdownTree,
                     hSubItem,
                     Ability_Unknown,
-                    FindBreakdown(Breakdown_SaveFortitude));
+                    pFS);
             m_itemBreakdownTree.SetItemData(hSubItem, (DWORD)(void*)pPS);
             m_items.push_back(pPS);
         }
@@ -301,7 +301,7 @@ void CBreakdownsView::CreateSavesBreakdowns()
                     &m_itemBreakdownTree,
                     hSubItem,
                     Ability_Unknown,
-                    FindBreakdown(Breakdown_SaveFortitude));
+                    pFS);
             m_itemBreakdownTree.SetItemData(hSubItem, (DWORD)(void*)pPS);
             m_items.push_back(pPS);
         }
@@ -312,7 +312,7 @@ void CBreakdownsView::CreateSavesBreakdowns()
                 "Reflex",
                 hParent,
                 TVI_LAST);
-        BreakdownItem * pRS = new BreakdownItemSave(
+        BreakdownItemSave * pRS = new BreakdownItemSave(
                 Breakdown_SaveReflex,
                 Save_Reflex,
                 &m_itemBreakdownTree,
@@ -333,7 +333,7 @@ void CBreakdownsView::CreateSavesBreakdowns()
                     &m_itemBreakdownTree,
                     hSubItem,
                     Ability_Unknown,
-                    FindBreakdown(Breakdown_SaveReflex));
+                    pRS);
             m_itemBreakdownTree.SetItemData(hSubItem, (DWORD)(void*)pTS);
             m_items.push_back(pTS);
         }
@@ -348,7 +348,7 @@ void CBreakdownsView::CreateSavesBreakdowns()
                     &m_itemBreakdownTree,
                     hSubItem,
                     Ability_Unknown,
-                    FindBreakdown(Breakdown_SaveReflex));
+                    pRS);
             m_itemBreakdownTree.SetItemData(hSubItem, (DWORD)(void*)pSS);
             m_items.push_back(pSS);
         }
@@ -363,7 +363,7 @@ void CBreakdownsView::CreateSavesBreakdowns()
                     &m_itemBreakdownTree,
                     hSubItem,
                     Ability_Unknown,
-                    FindBreakdown(Breakdown_SaveReflex));
+                    pRS);
             m_itemBreakdownTree.SetItemData(hSubItem, (DWORD)(void*)pSM);
             m_items.push_back(pSM);
         }
@@ -374,7 +374,7 @@ void CBreakdownsView::CreateSavesBreakdowns()
                 "Will",
                 hParent,
                 TVI_LAST);
-        BreakdownItem * pWS = new BreakdownItemSave(
+        BreakdownItemSave * pWS = new BreakdownItemSave(
                 Breakdown_SaveWill,
                 Save_Will,
                 &m_itemBreakdownTree,
@@ -395,7 +395,7 @@ void CBreakdownsView::CreateSavesBreakdowns()
                     &m_itemBreakdownTree,
                     hSubItem,
                     Ability_Unknown,
-                FindBreakdown(Breakdown_SaveWill));
+                    pWS);
             m_itemBreakdownTree.SetItemData(hSubItem, (DWORD)(void*)pES);
             m_items.push_back(pES);
         }
@@ -410,7 +410,7 @@ void CBreakdownsView::CreateSavesBreakdowns()
                     &m_itemBreakdownTree,
                     hSubItem,
                     Ability_Unknown,
-                    FindBreakdown(Breakdown_SaveWill));
+                    pWS);
             m_itemBreakdownTree.SetItemData(hSubItem, (DWORD)(void*)pIS);
             m_items.push_back(pIS);
         }
@@ -425,7 +425,7 @@ void CBreakdownsView::CreateSavesBreakdowns()
                     &m_itemBreakdownTree,
                     hSubItem,
                     Ability_Unknown,
-                    FindBreakdown(Breakdown_SaveWill));
+                    pWS);
             m_itemBreakdownTree.SetItemData(hSubItem, (DWORD)(void*)pFS);
             m_items.push_back(pFS);
         }
@@ -440,7 +440,7 @@ void CBreakdownsView::CreateSavesBreakdowns()
                     &m_itemBreakdownTree,
                     hSubItem,
                     Ability_Unknown,
-                    FindBreakdown(Breakdown_SaveWill));
+                    pWS);
             m_itemBreakdownTree.SetItemData(hSubItem, (DWORD)(void*)pSC);
             m_items.push_back(pSC);
         }

@@ -2,6 +2,7 @@
 //
 #pragma once
 #include "BreakdownItem.h"
+#include "BreakdownItemSimple.h"
 
 class BreakdownItemSave:
         public BreakdownItem
@@ -13,7 +14,7 @@ class BreakdownItemSave:
                 MfcControls::CTreeListCtrl * treeList,
                 HTREEITEM hItem,
                 AbilityType ability,
-                BreakdownItem * pBaseItem);
+                BreakdownItemSave * pBaseItem);
         virtual ~BreakdownItemSave();
 
         // required overrides
@@ -39,8 +40,9 @@ class BreakdownItemSave:
         virtual void UpdateTotalChanged(BreakdownItem * item, BreakdownType type) override;
     private:
         bool IsUs(const Effect & effect) const;
+        bool IsOurSaveType(SaveType st) const;
         SaveType m_saveType;
         AbilityType m_ability;
-        BreakdownItem * m_pBaseBreakdown;
-        size_t m_noFailOn1Count;
+        BreakdownItemSave * m_pBaseBreakdown;
+        BreakdownItemSimple m_noFailOnOne;
 };

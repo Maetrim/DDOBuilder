@@ -12,12 +12,12 @@ BreakdownItemSave::BreakdownItemSave(
         MfcControls::CTreeListCtrl * treeList,
         HTREEITEM hItem,
         AbilityType ability,
-        BreakdownItem * pBaseItem) :
+        BreakdownItemSave * pBaseItem) :
     BreakdownItem(type, treeList, hItem),
     m_saveType(st),
     m_ability(ability),
     m_pBaseBreakdown(pBaseItem),
-    m_noFailOn1Count(0)
+    m_noFailOnOne(type, Effect_SaveNoFailOn1, "", NULL, hItem)
 {
     // need to know when base total value changes
     if (ability != Ability_Unknown)
@@ -28,7 +28,9 @@ BreakdownItemSave::BreakdownItemSave(
     {
         // need to know changes in our base save type
         m_pBaseBreakdown->AttachObserver(this);
+        m_pBaseBreakdown->m_noFailOnOne.AttachObserver(this);
     }
+    m_noFailOnOne.AttachObserver(this);
 }
 
 BreakdownItemSave::~BreakdownItemSave()
@@ -211,18 +213,25 @@ bool BreakdownItemSave::AffectsUs(const Effect & effect) const
     bool isUs = false;
     if (effect.Type() == Effect_SaveBonus)
     {
-        if (m_saveType == Save_Fortitude
-                || m_saveType == Save_Reflex
-                || m_saveType == Save_Will)
-        {
-            isUs = (effect.Save() == Save_All
-                    || effect.Save() == m_saveType);
-        }
-        else
-        {
-            // for a sub-type, it must be the specific save type only
-            isUs = (effect.Save() == m_saveType);
-        }
+        isUs = IsOurSaveType(effect.Save());
+    }
+    return isUs;
+}
+
+bool BreakdownItemSave::IsOurSaveType(SaveType st) const
+{
+    bool isUs = false;
+    if (m_saveType == Save_Fortitude
+            || m_saveType == Save_Reflex
+            || m_saveType == Save_Will)
+    {
+        isUs = (st == Save_All
+                || st == m_saveType);
+    }
+    else
+    {
+        // for a sub-type, it must be the specific save type only
+        isUs = (st == m_saveType);
     }
     return isUs;
 }
@@ -281,6 +290,8 @@ void BreakdownItemSave::UpdateTotalChanged(
     CreateOtherEffects();
     // do base class stuff also
     BreakdownItem::UpdateTotalChanged(item, type);
+    // a no fail on a 1 may have changed, ensure updates
+    Populate();
 }
 
 void BreakdownItemSave::UpdateFeatEffect(
@@ -288,19 +299,17 @@ void BreakdownItemSave::UpdateFeatEffect(
         const std::string & featName,
         const Effect & effect)
 {
+    if (effect.Type() == Effect_SaveNoFailOn1
+            && IsOurSaveType(effect.Save()))
+    {
+        m_noFailOnOne.UpdateFeatEffect(pCharacter, featName, effect);
+    }
     // handle special affects that change our list of available stats
     if (AffectsUs(effect))
     {
-        if (effect.HasNoFailOn1())
-        {
-            if (effect.NoFailOn1()[0] != 0)
-            {
-                ++m_noFailOn1Count;
-            }
-        }
         if (effect.HasAbility())
         {
-            // add to the list of available stats for this weapon
+            // add to the list of available stats for this save
             ASSERT(effect.HasAbility());
             AddAbility(effect.Ability());  // duplicates are fine
             CreateOtherEffects();
@@ -318,16 +327,14 @@ void BreakdownItemSave::UpdateFeatEffectRevoked(
         const std::string & featName,
         const Effect & effect)
 {
+    if (effect.Type() == Effect_SaveNoFailOn1
+            && IsOurSaveType(effect.Save()))
+    {
+        m_noFailOnOne.UpdateFeatEffectRevoked(pCharacter, featName, effect);
+    }
     // handle special affects that change our list of available stats
     if (AffectsUs(effect))
     {
-        if (effect.HasNoFailOn1())
-        {
-            if (effect.NoFailOn1()[0] != 0)
-            {
-                --m_noFailOn1Count;
-            }
-        }
         if (effect.HasAbility())
         {
             ASSERT(effect.HasAbility());
@@ -347,19 +354,17 @@ void BreakdownItemSave::UpdateItemEffect(
         const std::string & itemName,
         const Effect & effect)
 {
+    if (effect.Type() == Effect_SaveNoFailOn1
+            && IsOurSaveType(effect.Save()))
+    {
+        m_noFailOnOne.UpdateItemEffect(pCharacter, itemName, effect);
+    }
     // handle special affects that change our list of available stats
     if (AffectsUs(effect))
     {
-        if (effect.HasNoFailOn1())
-        {
-            if (effect.NoFailOn1()[0] != 0)
-            {
-                ++m_noFailOn1Count;
-            }
-        }
         if (effect.HasAbility())
         {
-            // add to the list of available stats for this weapon
+            // add to the list of available stats for this save
             ASSERT(effect.HasAbility());
             AddAbility(effect.Ability());  // duplicates are fine
             CreateOtherEffects();
@@ -377,16 +382,14 @@ void BreakdownItemSave::UpdateItemEffectRevoked(
         const std::string & itemName,
         const Effect & effect)
 {
+    if (effect.Type() == Effect_SaveNoFailOn1
+            && IsOurSaveType(effect.Save()))
+    {
+        m_noFailOnOne.UpdateItemEffectRevoked(pCharacter, itemName, effect);
+    }
     // handle special affects that change our list of available stats
     if (AffectsUs(effect))
     {
-        if (effect.HasNoFailOn1())
-        {
-            if (effect.NoFailOn1()[0] != 0)
-            {
-                --m_noFailOn1Count;
-            }
-        }
         if (effect.HasAbility())
         {
             ASSERT(effect.HasAbility());
@@ -406,19 +409,17 @@ void BreakdownItemSave::UpdateEnhancementEffect(
         const std::string & enhancementName,
         const EffectTier & effect)
 {
+    if (effect.m_effect.Type() == Effect_SaveNoFailOn1
+            && IsOurSaveType(effect.m_effect.Save()))
+    {
+        m_noFailOnOne.UpdateEnhancementEffect(pCharacter, enhancementName, effect);
+    }
     // handle special affects that change our list of available stats
     if (AffectsUs(effect.m_effect))
     {
-        if (effect.m_effect.HasNoFailOn1())
-        {
-            if (effect.m_effect.NoFailOn1()[effect.m_tier-1] != 0)
-            {
-                ++m_noFailOn1Count;
-            }
-        }
         if (effect.m_effect.HasAbility())
         {
-            // add to the list of available stats for this weapon
+            // add to the list of available stats for this save
             ASSERT(effect.m_effect.HasAbility());
             AddAbility(effect.m_effect.Ability());  // duplicates are fine
             CreateOtherEffects();
@@ -436,16 +437,14 @@ void BreakdownItemSave::UpdateEnhancementEffectRevoked(
         const std::string & enhancementName,
         const EffectTier & effect)
 {
+    if (effect.m_effect.Type() == Effect_SaveNoFailOn1
+            && IsOurSaveType(effect.m_effect.Save()))
+    {
+        m_noFailOnOne.UpdateEnhancementEffectRevoked(pCharacter, enhancementName, effect);
+    }
     // handle special affects that change our list of available stats
     if (AffectsUs(effect.m_effect))
     {
-        if (effect.m_effect.HasNoFailOn1())
-        {
-            if (effect.m_effect.NoFailOn1()[effect.m_tier-1] != 0)
-            {
-                --m_noFailOn1Count;
-            }
-        }
         if (effect.m_effect.HasAbility())
         {
             ASSERT(effect.m_effect.HasAbility());
@@ -465,13 +464,13 @@ bool BreakdownItemSave::HasNoFailOn1() const
     if (m_pBaseBreakdown != NULL)
     {
         // saves which are based on a main save type (Will, Reflex and Fortitude)
-        // will have a no fail on a 1 if their base save also has a no fail on a 1
+        // will have a no fail on a 1 in their base save also has a no fail on a 1
         BreakdownItemSave * pBB = dynamic_cast<BreakdownItemSave*>(m_pBaseBreakdown);
         if (pBB->HasNoFailOn1())
         {
             return true;
         }
     }
-    return (m_noFailOn1Count > 0);
+    return (m_noFailOnOne.Total() > 0);
 }
 

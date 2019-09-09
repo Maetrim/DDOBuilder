@@ -2460,7 +2460,6 @@ const Item & FindItem(const std::string & itemName)
         }
         ++it;
     }
-    ASSERT(FALSE);   // required item not found
     return badItem;
 }
 

@@ -4147,7 +4147,7 @@ void Character::ApplyAllEffects(
                 treename,
                 (*eit).EnhancementName(),
                 (*eit).HasSelection() ? (*eit).Selection() : "",
-                pTreeItem->Ranks());
+                (*eit).Ranks());
         // enhancements may give multiple stances
         std::list<Stance> stances = pTreeItem->Stances((*eit).HasSelection() ? (*eit).Selection() : "");
         std::list<Stance>::const_iterator sit = stances.begin();
@@ -4173,7 +4173,7 @@ void Character::RevokeAllEffects(
                 treename,
                 (*eit).EnhancementName(),
                 (*eit).HasSelection() ? (*eit).Selection() : "",
-                pTreeItem->Ranks());
+                (*eit).Ranks());
         // enhancements may give multiple stances
         std::list<Stance> stances = pTreeItem->Stances((*eit).HasSelection() ? (*eit).Selection() : "");
         std::list<Stance>::const_iterator sit = stances.begin();
