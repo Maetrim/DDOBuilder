@@ -30,6 +30,13 @@ void BreakdownItem::PopulateBreakdownControl(CListCtrl * pControl)
 {
     pControl->LockWindowUpdate();
     pControl->DeleteAllItems();
+    AddItems(pControl);
+    AppendItems(pControl);      // virtual, standard does nothing
+    pControl->UnlockWindowUpdate();
+}
+
+void BreakdownItem::AddItems(CListCtrl * pControl)
+{
     // add all the items
     AddActiveItems(m_otherEffects, pControl, false);
     AddActiveItems(m_effects, pControl, false);
@@ -74,8 +81,6 @@ void BreakdownItem::PopulateBreakdownControl(CListCtrl * pControl)
         AddActiveItems(nonStackingEffects, pControl, true);
         AddActivePercentageItems(nonStackingEffects, pControl);
     }
-
-    pControl->UnlockWindowUpdate();
 }
 
 void BreakdownItem::SetCharacter(Character * pCharacter, bool observe)

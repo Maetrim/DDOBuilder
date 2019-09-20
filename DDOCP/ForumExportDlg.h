@@ -8,6 +8,7 @@
 
 class Character;
 class EquippedGear;
+class TrainedSpell;
 
 enum ForumExportSections
 {
@@ -132,6 +133,7 @@ class CForumExportDlg : public CDialogEx
                 BreakdownType btCrit,
                 BreakdownType btMult);
         void AddSpells(std::stringstream & forumExport);
+        void AddSpellList(std::stringstream & forumExport, ClassType ct, const std::list<TrainedSpell> & spellList, size_t spellLevel, size_t maxSpellLevel) const;
         void AddSLAs(std::stringstream & forumExport);
         void AddWeaponDamage(std::stringstream & forumExport);
         void AddTacticalDCs(std::stringstream & forumExport);

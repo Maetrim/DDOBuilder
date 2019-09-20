@@ -12,6 +12,7 @@
 enum EnergyType
 {
     Energy_Unknown = 0,
+    Energy_Admixture,
     Energy_Acid,
     Energy_All,
     Energy_Bleeding,
@@ -46,6 +47,7 @@ enum EnergyType
 const XmlLib::enumMapEntry<EnergyType> energyTypeMap[] =
 {
     {Energy_Unknown, L"Unknown"},
+    {Energy_Admixture, L"Admixture"},
     {Energy_Acid, L"Acid"},
     {Energy_All, L"All"},
     {Energy_Bleeding, L"Bleeding"},

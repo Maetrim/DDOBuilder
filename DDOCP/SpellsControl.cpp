@@ -744,6 +744,23 @@ void CSpellsControl::RevokeFixedSpell(const std::string & spellName, size_t leve
     }
 }
 
+std::list<TrainedSpell> CSpellsControl::FixedSpells(size_t level) const
+{
+    std::list<TrainedSpell> fixedSpells;
+    // create the list of TrainedSpell from the fixed spell list
+    std::list<FixedSpell>::const_iterator fsit = m_fixedSpells[level].begin();
+    while (fsit != m_fixedSpells[level].end())
+    {
+        TrainedSpell ts;
+        ts.Set_SpellName((*fsit).Name());
+        ts.Set_Level((*fsit).Level());
+        ts.Set_Class(m_class);
+        fixedSpells.push_back(ts);
+        ++fsit;
+    }
+    return fixedSpells;
+}
+
 void CSpellsControl::ApplySpellEffects(const std::list<TrainedSpell> & spells)
 {
     // first determine the caster level for this class

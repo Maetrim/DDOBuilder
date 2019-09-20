@@ -6,6 +6,8 @@
 #include "GlobalSupportFunctions.h"
 #include "BreakdownItemAbility.h"
 #include "BreakdownItemSpellSchool.h"
+#include "BreakdownItemEnergyCasterLevel.h"
+#include "BreakdownItemSchoolCasterLevel.h"
 
 #define DL_ELEMENT Spell
 
@@ -259,3 +261,67 @@ std::vector<Effect> Spell::UpdatedEffects(size_t castingLevel) const
     }
     return effects;
 }
+
+int Spell::DynamicCasterLevel(const Character & charData, ClassType ct) const
+{
+    // caster level is:
+    //  actual class level
+    //  + any bonus class caster levels
+    //  + any energy spell type caster levels
+    //  + any school type caster levels
+    int casterLevel = 0;
+    BreakdownItem * pCLB = FindBreakdown(ClassToCasterLevelsBreakdown(ct)); // includes class levels
+    if (pCLB != NULL)
+    {
+        casterLevel += (int)pCLB->Total();
+    }
+    if (HasEnergy())
+    {
+        BreakdownItem * pCLE = FindBreakdown(EnergyToCasterLevelsBreakdown(Energy()));
+        if (pCLE != NULL)
+        {
+            casterLevel += (int)pCLE->Total();
+        }
+    }
+    if (HasSchool())
+    {
+        BreakdownItem * pCLS = FindBreakdown(SchoolToCasterLevelsBreakdown(School()));
+        if (pCLS != NULL)
+        {
+            casterLevel += (int)pCLS->Total();
+        }
+    }
+    return casterLevel;
+}
+
+int Spell::DynamicMaxCasterLevel(const Character & charData, ClassType ct) const
+{
+    // Max caster level is defined by the spell plus:
+    //   + any energy spell max caster types
+    //   + any school type max caster levels
+    int maxCasterLevel = 0;
+    if (HasMaxCasterLevel())
+    {
+        maxCasterLevel = MaxCasterLevel();
+    }
+    if (HasEnergy())
+    {
+        BreakdownItem * pCLE = FindBreakdown(EnergyToCasterLevelsBreakdown(Energy()));
+        BreakdownItemEnergyCasterLevel * pCLEB = dynamic_cast<BreakdownItemEnergyCasterLevel*>(pCLE);
+        if (pCLEB != NULL)
+        {
+            maxCasterLevel += (int)pCLEB->MaxTotal();
+        }
+    }
+    if (HasSchool())
+    {
+        BreakdownItem * pCLS = FindBreakdown(SchoolToCasterLevelsBreakdown(School()));
+        BreakdownItemSchoolCasterLevel * pCLSB = dynamic_cast<BreakdownItemSchoolCasterLevel*>(pCLS);
+        if (pCLSB != NULL)
+        {
+            maxCasterLevel += (int)pCLSB->MaxTotal();
+        }
+    }
+    return maxCasterLevel;
+}
+

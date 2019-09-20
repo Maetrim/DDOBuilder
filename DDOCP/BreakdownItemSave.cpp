@@ -37,6 +37,14 @@ BreakdownItemSave::~BreakdownItemSave()
 {
 }
 
+void BreakdownItemSave::SetCharacter(Character * charData, bool observe)
+{
+    // pass through to the base class
+    BreakdownItem::SetCharacter(charData, observe);
+    // and set on our owned element
+    m_noFailOnOne.SetCharacter(charData, false);
+}
+
 // required overrides
 CString BreakdownItemSave::Title() const
 {
@@ -474,3 +482,14 @@ bool BreakdownItemSave::HasNoFailOn1() const
     return (m_noFailOnOne.Total() > 0);
 }
 
+void BreakdownItemSave::AppendItems(CListCtrl * pControl)
+{
+    if (m_noFailOnOne.Total() != 0)
+    {
+        // add the stuff for max caster level below the caster level stuff
+        size_t start = pControl->GetItemCount();
+        pControl->InsertItem(start, "");
+        pControl->InsertItem(start + 1, "No Fail on a 1");
+        m_noFailOnOne.AddItems(pControl);
+    }
+}

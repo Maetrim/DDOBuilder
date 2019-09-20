@@ -30,4 +30,5 @@ class TrainedSpell :
         DL_DECLARE_VARIABLES(TrainedSpell_PROPERTIES)
 
         friend class Character;
+        friend class CSpellsControl;
 };

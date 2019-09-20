@@ -90,6 +90,8 @@ class BreakdownItem :
         virtual void CreateOtherEffects() = 0;
         virtual bool AffectsUs(const Effect & effect) const = 0;
 
+        virtual void AppendItems(CListCtrl * pControl) {};  // base does nothing
+
         Character * m_pCharacter;
         std::list<ActiveEffect> m_otherEffects;       // these always stack
         std::list<ActiveEffect> m_effects;       // these always stack
@@ -116,6 +118,7 @@ class BreakdownItem :
         void SetHTreeItem(HTREEITEM hItem);
 
         std::list<ActiveEffect> AllActiveEffects() const;
+        void AddItems(CListCtrl * pControl);
     private:
         void AddActiveItems(const std::list<ActiveEffect> & effects, CListCtrl * pControl, bool bShowMultiplier);
         void AddActivePercentageItems(const std::list<ActiveEffect> & effects, CListCtrl * pControl);
@@ -153,4 +156,6 @@ class BreakdownItem :
 
         friend class BreakdownItemWeapon;
         friend class CBreakdownsView;
+        friend class BreakdownItemEnergyCasterLevel;
+        friend class BreakdownItemSchoolCasterLevel;
 };

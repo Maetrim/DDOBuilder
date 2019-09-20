@@ -182,6 +182,22 @@ bool Effect::VerifyObject(std::stringstream * ss) const
                 ok = false;
             }
             break;
+        case Effect_MaxCasterLevel:
+        case Effect_CasterLevel:
+            if (!HasClass()
+                    && !HasSchool()
+                    && m_Energy.size() == 0)
+            {
+                (*ss) << "Caster level effect missing required element\n";
+                ok = false;
+            }
+            if (!HasAmountVector()
+                    && !HasAmount())
+            {
+                (*ss) << "Caster level effect missing required element\n";
+                ok = false;
+            }
+            break;
         case Effect_EnergyAbsorbance:
         case Effect_EnergyResistance:
             if (m_Energy.size() == 0)

@@ -101,6 +101,11 @@ void CSpellsPage::UpdateSpellTrained(
     }
 }
 
+const CSpellsControl * CSpellsPage::SpellsControl()
+{
+    return &m_spells;
+}
+
 void CSpellsPage::UpdateSpellRevoked(
         Character * charData,
         const TrainedSpell & spell)

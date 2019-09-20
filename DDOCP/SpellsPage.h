@@ -18,6 +18,8 @@ class CSpellsPage :
         void SetCharacter(Character * pCharacter);
         void SetTrainableSpells(const std::vector<size_t> & spellsPerLevel);
 
+        const CSpellsControl * SpellsControl();
+
     protected:
         virtual void UpdateSpellTrained(Character * charData, const TrainedSpell & spell) override;
         virtual void UpdateSpellRevoked(Character * charData, const TrainedSpell & spell) override;

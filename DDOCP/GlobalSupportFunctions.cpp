@@ -3003,3 +3003,56 @@ void FormatExportData(CString * exportData)
     FormatExportData(&copy);
     *exportData = copy.c_str();
 }
+
+BreakdownType ClassToCasterLevelsBreakdown(ClassType ct)
+{
+    BreakdownType bt = Breakdown_Unknown;
+    switch (ct)
+    {
+    case Class_Artificer: bt = Breakdown_CasterLevel_Artificer; break;
+    case Class_Cleric: bt = Breakdown_CasterLevel_Cleric; break;
+    case Class_Druid: bt = Breakdown_CasterLevel_Druid; break;
+    case Class_FavoredSoul: bt = Breakdown_CasterLevel_FavoredSoul; break;
+    case Class_Paladin: bt = Breakdown_CasterLevel_Paladin; break;
+    case Class_Sorcerer: bt = Breakdown_CasterLevel_Sorcerer; break;
+    case Class_Ranger: bt = Breakdown_CasterLevel_Ranger; break;
+    case Class_Warlock: bt = Breakdown_CasterLevel_Warlock; break;
+    case Class_Wizard: bt = Breakdown_CasterLevel_Wizard; break;
+    }
+    return bt;
+}
+
+BreakdownType EnergyToCasterLevelsBreakdown(EnergyType energy)
+{
+    BreakdownType bt = Breakdown_Unknown;
+    switch (energy)
+    {
+    case Energy_Acid: bt = Breakdown_CasterLevel_Spell_Acid; break;
+    case Energy_Cold: bt = Breakdown_CasterLevel_Spell_Cold; break;
+    case Energy_Electric: bt = Breakdown_CasterLevel_Spell_Electric; break;
+    case Energy_Fire: bt = Breakdown_CasterLevel_Spell_Fire; break;
+    case Energy_Force: bt = Breakdown_CasterLevel_Spell_Force; break;
+    case Energy_Negative: bt = Breakdown_CasterLevel_Spell_Negative; break;
+    case Energy_Positive: bt = Breakdown_CasterLevel_Spell_Positive; break;
+    case Energy_Sonic: bt = Breakdown_CasterLevel_Spell_Sonic; break;
+    }
+    return bt;
+}
+
+BreakdownType SchoolToCasterLevelsBreakdown(SpellSchoolType school)
+{
+    BreakdownType bt = Breakdown_Unknown;
+    switch (school)
+    {
+    case SpellSchool_Abjuration: bt = Breakdown_CasterLevel_School_Abjuration; break;
+    case SpellSchool_Conjuration: bt = Breakdown_CasterLevel_School_Conjuration; break;
+    case SpellSchool_Divination: bt = Breakdown_CasterLevel_School_Divination; break;
+    case SpellSchool_Enchantment: bt = Breakdown_CasterLevel_School_Enchantment; break;
+    case SpellSchool_Evocation: bt = Breakdown_CasterLevel_School_Evocation; break;
+    case SpellSchool_Illusion: bt = Breakdown_CasterLevel_School_Illusion; break;
+    case SpellSchool_Necromancy: bt = Breakdown_CasterLevel_School_Necromancy; break;
+    case SpellSchool_Transmutation: bt = Breakdown_CasterLevel_School_Transmutation; break;
+    }
+    return bt;
+}
+

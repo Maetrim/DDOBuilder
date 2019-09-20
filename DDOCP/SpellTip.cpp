@@ -226,6 +226,14 @@ void CSpellTip::OnPaint()
                 top + standardLine.cy + c_controlSpacing,
                 text);
     }
+    // include caster level line
+    CString txtCasterLevel;
+    txtCasterLevel.Format(
+            "Caster Level %2d  Max Caster Level %2d",
+            m_spell.DynamicCasterLevel(*m_pCharacter, m_class),
+            m_spell.DynamicMaxCasterLevel(*m_pCharacter, m_class));
+    dc.TextOut(left, 32 + c_controlSpacing, txtCasterLevel);
+
     // draw the metamagics available
     // work out the max width off all metamagics
     std::vector<std::string> metas = m_spell.Metamagics();
@@ -267,9 +275,10 @@ BOOL CSpellTip::GetWindowSize(CDC* pDC, CSize * size)
     // | +----+                        SP Cost xx |Metamagics|
     // | |icon| Spell Name         <School> DC nn |<type1>   |
     // | +----+                                   |<type2>   |
-    // | +---------------------------------------+|<type3>   |
-    // | |Description                            ||<type4>   |
-    // | +---------------------------------------+|<type5>   |
+    // | Caster Level xx      Max caster level xx |<type3>...|
+    // | +---------------------------------------+|<type4>   |
+    // | |Description                            ||<type5>   |
+    // | +---------------------------------------+|<type6>   |
     // +------------------------------------------+----------+
     CRect rcWnd(0, 0, 0, 0);
     // border space first
@@ -289,8 +298,13 @@ BOOL CSpellTip::GetWindowSize(CDC* pDC, CSize * size)
             EnumEntryText(m_spell.School(), spellSchoolTypeMap),
             m_DC);
     CSize csDC = pDC->GetTextExtent(text);
-    size_t topWidth = 32 + c_controlSpacing + csSpellName.cx
+    int topWidth = 32 + c_controlSpacing + csSpellName.cx
             + c_controlSpacing + max(csSPCost.cx, csDC.cx);
+
+    // include caster level line
+    CSize csCL = pDC->GetTextExtent("Caster Level XX  Max Caster Level XX");
+    topWidth = max(topWidth, csCL.cx);
+    rcWnd.bottom += csCL.cy;        // include line height
 
     m_rcDescription = CRect(0, 0, 0, 0);
     pDC->DrawText(
@@ -319,7 +333,7 @@ BOOL CSpellTip::GetWindowSize(CDC* pDC, CSize * size)
         m_csMetas.cx += (c_controlSpacing * 2); // border between text and metamagics
     }
     // now work out the total window size
-    size_t bottomWidth = m_rcDescription.Width();
+    int bottomWidth = m_rcDescription.Width();
     rcWnd.InflateRect(
             0,
             0,

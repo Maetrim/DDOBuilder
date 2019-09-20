@@ -1435,30 +1435,24 @@ void CForumExportDlg::AddSpells(std::stringstream & forumExport)
                 forumExport << EnumEntryText((ClassType)ci, classTypeMap) << " Spells\r\n";
                 for (size_t spellLevel = 0; spellLevel < spellSlots.size(); ++spellLevel)
                 {
-                    std::list<TrainedSpell> trainedSpells = m_pCharacter->TrainedSpells((ClassType)ci, spellLevel + 1); // 1 based
-                    // now output each spell
-                    std::list<TrainedSpell>::const_iterator it = trainedSpells.begin();
-                    while (it != trainedSpells.end())
-                    {
-                        forumExport.width(1);
-                        forumExport << "L" << (spellLevel + 1) << ": ";
-                        forumExport.width(40);
-                        forumExport << std::left << (*it).SpellName();
-                        // spell school
-                        Spell spell = FindSpellByName((*it).SpellName());
-                        forumExport.width(15);
-                        forumExport << std::left << EnumEntryText(spell.School(), spellSchoolTypeMap);
-                        // show the spell DC also
-                        size_t spellDC = spell.SpellDC(
-                                *m_pCharacter,
-                                (ClassType)ci,
-                                spellLevel,
-                                spellSlots.size());
-                        forumExport.width(3);
-                        forumExport << std::right << spellDC;
-                        forumExport << "\r\n";
-                        ++it;
-                    }
+                    // now output each fixed spell
+                    std::list<TrainedSpell> fixedSpells = m_pCharacter->FixedSpells(
+                            (ClassType)ci, spellLevel); // 0 based
+                    AddSpellList(
+                            forumExport,
+                            (ClassType)ci,
+                            fixedSpells,
+                            spellLevel,
+                            spellSlots.size());
+                    // now output each selected spell
+                    std::list<TrainedSpell> trainedSpells = m_pCharacter->TrainedSpells(
+                            (ClassType)ci, spellLevel + 1); // 1 based
+                    AddSpellList(
+                            forumExport,
+                            (ClassType)ci,
+                            trainedSpells,
+                            spellLevel,
+                            spellSlots.size());
                 }
             }
         }
@@ -1467,6 +1461,37 @@ void CForumExportDlg::AddSpells(std::stringstream & forumExport)
     {
         forumExport << "------------------------------------------------------------------------------------------\r\n";
         forumExport << "\r\n";
+    }
+}
+
+void CForumExportDlg::AddSpellList(
+        std::stringstream & forumExport,
+        ClassType ct,
+        const std::list<TrainedSpell> & spellList,
+        size_t spellLevel,
+        size_t maxSpellLevel) const
+{
+    std::list<TrainedSpell>::const_iterator it = spellList.begin();
+    while (it != spellList.end())
+    {
+        forumExport.width(1);
+        forumExport << "L" << (spellLevel + 1) << ": ";
+        forumExport.width(40);
+        forumExport << std::left << (*it).SpellName();
+        // spell school
+        Spell spell = FindSpellByName((*it).SpellName());
+        forumExport.width(15);
+        forumExport << std::left << EnumEntryText(spell.School(), spellSchoolTypeMap);
+        // show the spell DC also
+        size_t spellDC = spell.SpellDC(
+                *m_pCharacter,
+                ct,
+                spellLevel,
+                maxSpellLevel);
+        forumExport.width(3);
+        forumExport << std::right << spellDC;
+        forumExport << "\r\n";
+        ++it;
     }
 }
 

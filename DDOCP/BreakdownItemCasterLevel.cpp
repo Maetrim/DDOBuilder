@@ -5,7 +5,7 @@
 
 #include "GlobalSupportFunctions.h"
 
-BreakdownItemCasterLevel::BreakdownItemCasterLevel(
+BreakdownItemClassCasterLevel::BreakdownItemClassCasterLevel(
         ClassType classType,
         BreakdownType type,
         MfcControls::CTreeListCtrl * treeList,
@@ -15,18 +15,18 @@ BreakdownItemCasterLevel::BreakdownItemCasterLevel(
 {
 }
 
-BreakdownItemCasterLevel::~BreakdownItemCasterLevel()
+BreakdownItemClassCasterLevel::~BreakdownItemClassCasterLevel()
 {
 }
 
 // required overrides
-CString BreakdownItemCasterLevel::Title() const
+CString BreakdownItemClassCasterLevel::Title() const
 {
     CString text = EnumEntryText(m_class, classTypeMap);
     return text;
 }
 
-CString BreakdownItemCasterLevel::Value() const
+CString BreakdownItemClassCasterLevel::Value() const
 {
     CString value;
     value.Format(
@@ -35,7 +35,7 @@ CString BreakdownItemCasterLevel::Value() const
     return value;
 }
 
-void BreakdownItemCasterLevel::CreateOtherEffects()
+void BreakdownItemClassCasterLevel::CreateOtherEffects()
 {
     if (m_pCharacter != NULL)
     {
@@ -59,20 +59,21 @@ void BreakdownItemCasterLevel::CreateOtherEffects()
     }
 }
 
-bool BreakdownItemCasterLevel::AffectsUs(const Effect & effect) const
+bool BreakdownItemClassCasterLevel::AffectsUs(const Effect & effect) const
 {
     bool isUs = false;
     // see if this effect applies to us
     if (effect.Type() == Effect_CasterLevel
+            && effect.HasClass()
             && effect.Class() == m_class)
     {
-        // it is a caster level bonus
+        // it is a caster level class bonus
         isUs = true;
     }
     return isUs;
 }
 
-void BreakdownItemCasterLevel::UpdateClassChanged(
+void BreakdownItemClassCasterLevel::UpdateClassChanged(
         Character * charData,
         ClassType classFrom,
         ClassType classTo,

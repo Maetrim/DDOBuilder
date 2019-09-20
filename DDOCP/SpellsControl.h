@@ -78,6 +78,7 @@ class CSpellsControl :
         void UpdateSpells();
         void AddFixedSpell(const std::string & spellName, size_t level);
         void RevokeFixedSpell(const std::string & spellName, size_t level);
+        std::list<TrainedSpell> FixedSpells(size_t level) const;
 
         CSize RequiredSize();
 

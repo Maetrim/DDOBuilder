@@ -818,3 +818,18 @@ const CStancesView * CMainFrame::GetStancesView()
     return pStancesView;
 }
 
+const CSpellsControl * CMainFrame::GetSpellsControl(ClassType classType)
+{
+    const CSpellsControl * pSC = NULL;
+    CSpellsView * pSpellsView = NULL;
+    for (size_t i = 0; pSpellsView == NULL && i < m_dockablePanes.size(); ++i)
+    {
+        pSpellsView = dynamic_cast<CSpellsView *>(m_dockablePanes[i]->GetView());
+    }
+    if (pSpellsView != NULL)
+    {
+        pSC = pSpellsView->GetSpellsControl(classType);
+    }
+    return pSC;
+}
+

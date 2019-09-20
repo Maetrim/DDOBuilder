@@ -9,6 +9,7 @@
 #include "BreakdownItemWeaponEffects.h"
 #include "MainFrm.h"
 #include "StancesView.h"
+#include "SpellsControl.h"
 
 #define DL_ELEMENT Character
 
@@ -3615,6 +3616,21 @@ std::list<TrainedSpell> Character::TrainedSpells(
             spells.push_back((*it));
         }
         ++it;
+    }
+    return spells;
+}
+
+std::list<TrainedSpell> Character::FixedSpells(
+        ClassType classType,
+        size_t level) const
+{
+     std::list<TrainedSpell> spells;
+   // this list is maintained dynamically by the SpellsControl object for this class
+    // we need to go to that window to get the list of fixed spells
+    const CSpellsControl * pSC = GetMainFrame()->GetSpellsControl(classType);
+    if (pSC != NULL)
+    {
+        spells = pSC->FixedSpells(level);
     }
     return spells;
 }

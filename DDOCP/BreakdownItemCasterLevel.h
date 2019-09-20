@@ -1,4 +1,4 @@
-// BreakdownItemCasterLevel.h
+// BreakdownItemClassCasterLevel.h
 //
 // A standard base class that all items that can have breakdowns calculated
 // for them inherit from to allow a common interface to the CBreakdownsView
@@ -6,12 +6,12 @@
 
 #include "BreakdownItem.h"
 
-class BreakdownItemCasterLevel :
+class BreakdownItemClassCasterLevel :
         public BreakdownItem
 {
     public:
-        BreakdownItemCasterLevel(ClassType classType, BreakdownType type, MfcControls::CTreeListCtrl * treeList, HTREEITEM hItem);
-        virtual ~BreakdownItemCasterLevel();
+        BreakdownItemClassCasterLevel(ClassType classType, BreakdownType type, MfcControls::CTreeListCtrl * treeList, HTREEITEM hItem);
+        virtual ~BreakdownItemClassCasterLevel();
 
         // required overrides
         virtual CString Title() const override;

@@ -17,6 +17,10 @@ class BreakdownItemSave:
                 BreakdownItemSave * pBaseItem);
         virtual ~BreakdownItemSave();
 
+        virtual void SetCharacter(Character * charData, bool observe) override;
+
+        virtual void AppendItems(CListCtrl * pControl) override;
+
         // required overrides
         virtual CString Title() const override;
         virtual CString Value() const override;

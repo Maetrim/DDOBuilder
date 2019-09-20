@@ -175,6 +175,7 @@ class Character :
         bool IsSpellTrained(const std::string & spellName) const;
         void ApplySpellEffects(const std::string & spellName, size_t castingLevel);
         void RevokeSpellEffects(const std::string & spellName, size_t castingLevel);
+        std::list<TrainedSpell> FixedSpells(ClassType classType, size_t level) const;
 
         // stances
         void ActivateStance(const Stance & stance);

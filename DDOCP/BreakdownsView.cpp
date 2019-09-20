@@ -8,6 +8,8 @@
 #include "BreakdownItemAC.h"
 #include "BreakdownItemBAB.h"
 #include "BreakdownItemCasterLevel.h"
+#include "BreakdownItemEnergyCasterLevel.h"
+#include "BreakdownItemSchoolCasterLevel.h"
 #include "BreakdownItemDice.h"
 #include "BreakdownItemDodge.h"
 #include "BreakdownItemDuration.h"
@@ -1261,12 +1263,27 @@ void CBreakdownsView::CreateMagicalBreakdowns()
         m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pSR);
         m_items.push_back(pSR);
     }
-    HTREEITEM hCasterLevels = m_itemBreakdownTree.InsertItem(
-            "Caster Levels", 
+    HTREEITEM hClassCasterLevels = m_itemBreakdownTree.InsertItem(
+            "Class Caster Levels", 
             hParent,
             TVI_LAST);
-    m_itemBreakdownTree.SetItemData(hCasterLevels, 0);
-    AddCasterLevels(hCasterLevels);
+    m_itemBreakdownTree.SetItemData(hClassCasterLevels, 0);
+    AddClassCasterLevels(hClassCasterLevels);
+
+    HTREEITEM hEnergyCasterLevels = m_itemBreakdownTree.InsertItem(
+            "Energy Caster Levels", 
+            hParent,
+            TVI_LAST);
+    m_itemBreakdownTree.SetItemData(hEnergyCasterLevels, 0);
+    AddEnergyCasterLevels(hEnergyCasterLevels);
+
+    HTREEITEM hSchoolCasterLevels = m_itemBreakdownTree.InsertItem(
+            "School Caster Levels", 
+            hParent,
+            TVI_LAST);
+    m_itemBreakdownTree.SetItemData(hSchoolCasterLevels, 0);
+    AddSchoolCasterLevels(hSchoolCasterLevels);
+
     {
         HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
                 "Spell Penetration",
@@ -1437,14 +1454,14 @@ void CBreakdownsView::CreateTurnUndeadBreakdowns()
 
 }
 
-void CBreakdownsView::AddCasterLevels(HTREEITEM hParent)
+void CBreakdownsView::AddClassCasterLevels(HTREEITEM hParent)
 {
     {
         HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
                 "Artificer Caster Level",
                 hParent,
                 TVI_LAST);
-        BreakdownItem * pArty = new BreakdownItemCasterLevel(
+        BreakdownItem * pArty = new BreakdownItemClassCasterLevel(
                 Class_Artificer,
                 Breakdown_CasterLevel_Artificer,
                 &m_itemBreakdownTree,
@@ -1457,7 +1474,7 @@ void CBreakdownsView::AddCasterLevels(HTREEITEM hParent)
                 "Cleric Caster Level",
                 hParent,
                 TVI_LAST);
-        BreakdownItem * pCleric = new BreakdownItemCasterLevel(
+        BreakdownItem * pCleric = new BreakdownItemClassCasterLevel(
                 Class_Cleric,
                 Breakdown_CasterLevel_Cleric,
                 &m_itemBreakdownTree,
@@ -1470,7 +1487,7 @@ void CBreakdownsView::AddCasterLevels(HTREEITEM hParent)
                 "Druid Caster Level",
                 hParent,
                 TVI_LAST);
-        BreakdownItem * pDruid = new BreakdownItemCasterLevel(
+        BreakdownItem * pDruid = new BreakdownItemClassCasterLevel(
                 Class_Druid,
                 Breakdown_CasterLevel_Druid,
                 &m_itemBreakdownTree,
@@ -1483,7 +1500,7 @@ void CBreakdownsView::AddCasterLevels(HTREEITEM hParent)
                 "Favored Soul Caster Level",
                 hParent,
                 TVI_LAST);
-        BreakdownItem * pFS = new BreakdownItemCasterLevel(
+        BreakdownItem * pFS = new BreakdownItemClassCasterLevel(
                 Class_FavoredSoul,
                 Breakdown_CasterLevel_FavoredSoul,
                 &m_itemBreakdownTree,
@@ -1496,7 +1513,7 @@ void CBreakdownsView::AddCasterLevels(HTREEITEM hParent)
                 "Paladin Caster Level",
                 hParent,
                 TVI_LAST);
-        BreakdownItem * pPally = new BreakdownItemCasterLevel(
+        BreakdownItem * pPally = new BreakdownItemClassCasterLevel(
                 Class_Paladin,
                 Breakdown_CasterLevel_Paladin,
                 &m_itemBreakdownTree,
@@ -1509,7 +1526,7 @@ void CBreakdownsView::AddCasterLevels(HTREEITEM hParent)
                 "Sorcerer Caster Level",
                 hParent,
                 TVI_LAST);
-        BreakdownItem * pSorc = new BreakdownItemCasterLevel(
+        BreakdownItem * pSorc = new BreakdownItemClassCasterLevel(
                 Class_Sorcerer,
                 Breakdown_CasterLevel_Sorcerer,
                 &m_itemBreakdownTree,
@@ -1522,7 +1539,7 @@ void CBreakdownsView::AddCasterLevels(HTREEITEM hParent)
                 "Ranger Caster Level",
                 hParent,
                 TVI_LAST);
-        BreakdownItem * pRanger = new BreakdownItemCasterLevel(
+        BreakdownItem * pRanger = new BreakdownItemClassCasterLevel(
                 Class_Ranger,
                 Breakdown_CasterLevel_Ranger,
                 &m_itemBreakdownTree,
@@ -1535,7 +1552,7 @@ void CBreakdownsView::AddCasterLevels(HTREEITEM hParent)
                 "Warlock Caster Level",
                 hParent,
                 TVI_LAST);
-        BreakdownItem * pWarlock = new BreakdownItemCasterLevel(
+        BreakdownItem * pWarlock = new BreakdownItemClassCasterLevel(
                 Class_Warlock,
                 Breakdown_CasterLevel_Warlock,
                 &m_itemBreakdownTree,
@@ -1548,7 +1565,7 @@ void CBreakdownsView::AddCasterLevels(HTREEITEM hParent)
                 "Wizard Caster Level",
                 hParent,
                 TVI_LAST);
-        BreakdownItem * pWizard = new BreakdownItemCasterLevel(
+        BreakdownItem * pWizard = new BreakdownItemClassCasterLevel(
                 Class_Wizard,
                 Breakdown_CasterLevel_Wizard,
                 &m_itemBreakdownTree,
@@ -1557,6 +1574,223 @@ void CBreakdownsView::AddCasterLevels(HTREEITEM hParent)
         m_items.push_back(pWizard);
     }
 
+}
+
+void CBreakdownsView::AddEnergyCasterLevels(HTREEITEM hParent)
+{
+    // only interested in standard spell energy types
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Acid Spell Caster Level",
+                hParent,
+                TVI_LAST);
+        BreakdownItem * pAcid = new BreakdownItemEnergyCasterLevel(
+                Energy_Acid,
+                Breakdown_CasterLevel_Spell_Acid,
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pAcid);
+        m_items.push_back(pAcid);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Cold Spell Caster Level",
+                hParent,
+                TVI_LAST);
+        BreakdownItem * pCold = new BreakdownItemEnergyCasterLevel(
+                Energy_Cold,
+                Breakdown_CasterLevel_Spell_Cold,
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pCold);
+        m_items.push_back(pCold);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Electric Spell Caster Level",
+                hParent,
+                TVI_LAST);
+        BreakdownItem * pElectric = new BreakdownItemEnergyCasterLevel(
+                Energy_Electric,
+                Breakdown_CasterLevel_Spell_Electric,
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pElectric);
+        m_items.push_back(pElectric);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Fire Spell Caster Level",
+                hParent,
+                TVI_LAST);
+        BreakdownItem * pFire = new BreakdownItemEnergyCasterLevel(
+                Energy_Fire,
+                Breakdown_CasterLevel_Spell_Fire,
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pFire);
+        m_items.push_back(pFire);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Force Spell Caster Level",
+                hParent,
+                TVI_LAST);
+        BreakdownItem * pForce = new BreakdownItemEnergyCasterLevel(
+                Energy_Force,
+                Breakdown_CasterLevel_Spell_Force,
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pForce);
+        m_items.push_back(pForce);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Negative Spell Caster Level",
+                hParent,
+                TVI_LAST);
+        BreakdownItem * pNegative = new BreakdownItemEnergyCasterLevel(
+                Energy_Negative,
+                Breakdown_CasterLevel_Spell_Negative,
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pNegative);
+        m_items.push_back(pNegative);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Positive Spell Caster Level",
+                hParent,
+                TVI_LAST);
+        BreakdownItem * pPositive = new BreakdownItemEnergyCasterLevel(
+                Energy_Positive,
+                Breakdown_CasterLevel_Spell_Positive,
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pPositive);
+        m_items.push_back(pPositive);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Sonic Spell Caster Level",
+                hParent,
+                TVI_LAST);
+        BreakdownItem * pSonic = new BreakdownItemEnergyCasterLevel(
+                Energy_Sonic,
+                Breakdown_CasterLevel_Spell_Sonic,
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pSonic);
+        m_items.push_back(pSonic);
+    }
+}
+
+void CBreakdownsView::AddSchoolCasterLevels(HTREEITEM hParent)
+{
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Abjuration Caster Level",
+                hParent,
+                TVI_LAST);
+        BreakdownItem * pAbjuration = new BreakdownItemSchoolCasterLevel(
+                SpellSchool_Abjuration,
+                Breakdown_CasterLevel_School_Abjuration,
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pAbjuration);
+        m_items.push_back(pAbjuration);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Conjuration Caster Level",
+                hParent,
+                TVI_LAST);
+        BreakdownItem * pConjuration = new BreakdownItemSchoolCasterLevel(
+                SpellSchool_Conjuration,
+                Breakdown_CasterLevel_School_Conjuration,
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pConjuration);
+        m_items.push_back(pConjuration);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Divination Caster Level",
+                hParent,
+                TVI_LAST);
+        BreakdownItem * pDivination = new BreakdownItemSchoolCasterLevel(
+                SpellSchool_Divination,
+                Breakdown_CasterLevel_School_Divination,
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pDivination);
+        m_items.push_back(pDivination);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Enchantment Caster Level",
+                hParent,
+                TVI_LAST);
+        BreakdownItem * pEnchantment = new BreakdownItemSchoolCasterLevel(
+                SpellSchool_Enchantment,
+                Breakdown_CasterLevel_School_Enchantment,
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pEnchantment);
+        m_items.push_back(pEnchantment);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Evocation Caster Level",
+                hParent,
+                TVI_LAST);
+        BreakdownItem * pEvocation = new BreakdownItemSchoolCasterLevel(
+                SpellSchool_Evocation,
+                Breakdown_CasterLevel_School_Evocation,
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pEvocation);
+        m_items.push_back(pEvocation);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Illusion Caster Level",
+                hParent,
+                TVI_LAST);
+        BreakdownItem * pIllusion = new BreakdownItemSchoolCasterLevel(
+                SpellSchool_Illusion,
+                Breakdown_CasterLevel_School_Illusion,
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pIllusion);
+        m_items.push_back(pIllusion);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Necromancy Caster Level",
+                hParent,
+                TVI_LAST);
+        BreakdownItem * pNecromancy = new BreakdownItemSchoolCasterLevel(
+                SpellSchool_Necromancy,
+                Breakdown_CasterLevel_School_Necromancy,
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pNecromancy);
+        m_items.push_back(pNecromancy);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Transmutation Caster Level",
+                hParent,
+                TVI_LAST);
+        BreakdownItem * pTransmutation = new BreakdownItemSchoolCasterLevel(
+                SpellSchool_Transmutation,
+                Breakdown_CasterLevel_School_Transmutation,
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pTransmutation);
+        m_items.push_back(pTransmutation);
+    }
 }
 
 void CBreakdownsView::CreateEnergyResistancesBreakdowns()

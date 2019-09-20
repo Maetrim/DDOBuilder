@@ -27,6 +27,10 @@ class Spell :
 
         size_t SpellDC(const Character & charData, ClassType ct, size_t spellLevel, size_t maxSpellLevel) const;
         std::vector<Effect> UpdatedEffects(size_t castingLevel) const;
+
+        int DynamicCasterLevel(const Character & charData, ClassType ct) const;
+        int DynamicMaxCasterLevel(const Character & charData, ClassType ct) const;
+
     protected:
         XmlLib::SaxContentElementInterface * StartElement(
                 const XmlLib::SaxString & name,

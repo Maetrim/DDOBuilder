@@ -4,12 +4,14 @@
 #include "BreakdownTypes.h"
 #include "MouseHook.h"
 #include <vector>
+#include "ClassTypes.h"
 
 class BreakdownItem;
 class CCustomDockablePane;
 class CDCView;
 class Character;
 class CSLAControl;
+class CSpellsControl;
 class CStancesView;
 
 class CMainFrame :
@@ -43,6 +45,7 @@ class CMainFrame :
         const CDCView * GetDCView();
         const CSLAControl * GetSLAControl();
         const CStancesView * GetStancesView();
+        const CSpellsControl * GetSpellsControl(ClassType classType);
 
     protected:
         afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
