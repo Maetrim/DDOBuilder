@@ -774,10 +774,10 @@ bool BreakdownItem::UpdateEffectAmounts(std::list<ActiveEffect> * list, ClassTyp
     std::list<ActiveEffect>::iterator it = list->begin();
     while (it != list->end())
     {
-        if ((*it).HasClass(type))
+        if ((*it).BasedOnClassLevel(type))
         {
             std::vector<size_t> classLevels = m_pCharacter->ClassLevels(MAX_LEVEL);
-            (*it).SetStacks(classLevels[type]);
+            (*it).SetClassLevel(classLevels[type]);
             itemChanged = true;
         }
         ++it;
@@ -868,7 +868,7 @@ bool BreakdownItem::GetActiveEffect(
                     effect.Class(),
                     effect.AmountVector());
             size_t count = m_pCharacter->ClassLevels(effect.Class());
-            activeEffect->SetStacks(count);
+            activeEffect->SetClassLevel(count);
         }
         else
         {

@@ -1585,7 +1585,6 @@ HRESULT LoadImageFile(
             ::OutputDebugString(ss.str().c_str());
             std::string alternate = path;
             alternate += "UIImages\\NoImage.png";
-            CImage image;
             result = pImage->Load(alternate.c_str());
         }
     }

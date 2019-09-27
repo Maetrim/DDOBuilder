@@ -938,8 +938,7 @@ void CItemSelectDialog::SetupFilterCombobox()
                 if ((IsOneHandedWeapon((WeaponType)i)
                         || IsShield((WeaponType)i)
                         || i == Weapon_Orb
-                        || (i == Weapon_RuneArm && m_pCharacter->IsFeatTrained("Artificer Rune Arm Use")))
-                        && i != Weapon_BastardSword)
+                        || (i == Weapon_RuneArm && m_pCharacter->IsFeatTrained("Artificer Rune Arm Use"))))
                 {
                     // we can add this one
                     int index = m_comboFilter.AddString(EnumEntryText((WeaponType)i, weaponTypeMap));

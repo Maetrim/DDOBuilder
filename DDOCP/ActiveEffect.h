@@ -113,12 +113,13 @@ class ActiveEffect
         bool RevokeStack();
         void SetStacks(size_t count);
         size_t NumStacks() const;
+        void SetClassLevel(size_t count);
         // optional
         void SetAmount(double amount);
         void SetEnergy(EnergyType type);
         void SetBreakdownDependency(BreakdownType bt);
         bool HasBreakdownDependency(BreakdownType bt) const;
-        bool HasClass(ClassType type) const;
+        bool BasedOnClassLevel(ClassType type) const;
         void SetWholeNumbersOnly();
         void SetWeapon(WeaponType wt);  // used when an effect has WeaponClass_FocusGroup
         void SetStacksControl(const std::string & control, Character * pCharacter);
@@ -142,6 +143,7 @@ class ActiveEffect
         std::list<DamageReductionType> m_drTypes;
         // amount per trained level
         double m_amountPerLevel;
+        size_t m_levelStacks;
         ClassType m_class;
         bool m_bIsPercentage;
         mutable double m_percentageAmount;

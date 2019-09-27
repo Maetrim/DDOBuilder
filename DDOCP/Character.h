@@ -167,6 +167,10 @@ class Character :
                 bool alreadyTrained = false) const;
         bool HasGrantedFeats() const;
         const std::list<TrainedFeat> & GrantedFeats() const;
+        bool ShowUnavailable() const;
+        bool ShowEpicOnly() const;
+        void ToggleShowEpicOnly();
+        void ToggleShowUnavailable();
 
         // spells
         std::list<TrainedSpell> TrainedSpells(ClassType classType, size_t level) const;
@@ -457,6 +461,9 @@ class Character :
         // be used as a requirement met for a feat you want to train.
         std::list<TrainedFeat> m_grantedFeats;
         std::list<bool> m_grantedNotifyState;
+
+        bool m_bShowEpicOnly;
+        bool m_bShowUnavailableFeats;
 
         friend class CForumExportDlg;
         friend class CEnhancementTreeDialog;

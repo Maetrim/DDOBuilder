@@ -94,7 +94,9 @@ Character::Character(CDDOCPDoc * pDoc) :
     m_racialTreeSpend(0),
     m_universalTreeSpend(0),
     m_classTreeSpend(0),
-    m_previousGuildLevel(0)
+    m_previousGuildLevel(0),
+    m_bShowEpicOnly(false),
+    m_bShowUnavailableFeats(false)
 {
     DL_INIT(Character_PROPERTIES)
     // make sure we have MAX_LEVEL default LevelTraining objects in the list
@@ -2407,8 +2409,8 @@ std::vector<Feat> Character::TrainableFeats(
         std::list<Feat>::const_iterator it = allFeats.begin();
         while (it != allFeats.end())
         {
-            if (IsFeatTrainable(level, type, (*it), true)
-                    ||  (*it).Name() == includeThisFeat)
+            if (IsFeatTrainable(level, type, (*it), true, false)
+                    || (*it).Name() == includeThisFeat)
             {
                 // they can select this one, add it to the available list
                 trainable.push_back((*it));
@@ -3496,8 +3498,19 @@ bool Character::IsFeatTrainable(
                     || (type == TFT_PDKBonus)   // equivalent to a standard feat
                     || (type == TFT_EpicFeat);  // equivalent to a standard feat
         }
+        if (!m_bShowUnavailableFeats)
+        {
+            if (type == TFT_EpicFeat
+                    && m_bShowEpicOnly
+                    && ((feat.HasGroup() && !feat.Group().HasIsEpicFeat())
+                            || !feat.HasGroup()))
+            {
+                // user only wants to show epic feats
+                canTrain = false;
+            }
+        }
     }
-    if (canTrain)
+    if (canTrain && !m_bShowUnavailableFeats)
     {
         // do we meet the requirements to train this feat?
         canTrain = feat.RequirementsToTrain().Met(
@@ -6193,4 +6206,24 @@ void Character::ResetBuild()
     // now assign to ourselves
     (*this) = blankCharacter;
     JustLoaded();
+}
+
+bool Character::ShowUnavailable() const
+{
+    return m_bShowUnavailableFeats;
+}
+
+bool Character::ShowEpicOnly() const
+{
+    return m_bShowEpicOnly;
+}
+
+void Character::ToggleShowEpicOnly()
+{
+    m_bShowEpicOnly = !m_bShowEpicOnly;
+}
+
+void Character::ToggleShowUnavailable()
+{
+    m_bShowUnavailableFeats = !m_bShowUnavailableFeats;
 }

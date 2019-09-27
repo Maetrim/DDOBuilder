@@ -68,6 +68,10 @@ BEGIN_MESSAGE_MAP(CDDOCPView, CFormView)
     ON_BN_CLICKED(IDC_RADIO_28PT, &CDDOCPView::OnBnClickedRadio28pt)
     ON_BN_CLICKED(IDC_RADIO_32PT, &CDDOCPView::OnBnClickedRadio32pt)
     ON_COMMAND(ID_EDIT_RESETBUILD, &CDDOCPView::OnEditResetbuild)
+    ON_UPDATE_COMMAND_UI(ID_EDIT_FEATS_EPICONLY, &CDDOCPView::OnEditFeatsUpdateEpicOnly)
+    ON_UPDATE_COMMAND_UI(ID_EDIT_FEATS_SHOWUNAVAILABLE, &CDDOCPView::OnEditFeatsUpdateShowUnavailable)
+    ON_COMMAND(ID_EDIT_FEATS_EPICONLY, &CDDOCPView::OnEditFeatsEpicOnly)
+    ON_COMMAND(ID_EDIT_FEATS_SHOWUNAVAILABLE, &CDDOCPView::OnEditFeatsShowUnavailable)
 END_MESSAGE_MAP()
 #pragma warning(pop)
 
@@ -968,4 +972,25 @@ void CDDOCPView::OnEditResetbuild()
         EnableButtons();
         UpdateBuildDescription();
     }
+}
+
+void CDDOCPView::OnEditFeatsUpdateEpicOnly(CCmdUI * pCmdUi)
+{
+    pCmdUi->Enable(!m_pCharacter->ShowUnavailable());
+    pCmdUi->SetCheck(m_pCharacter->ShowEpicOnly());
+}
+
+void CDDOCPView::OnEditFeatsUpdateShowUnavailable(CCmdUI * pCmdUi)
+{
+    pCmdUi->SetCheck(m_pCharacter->ShowUnavailable());
+}
+
+void CDDOCPView::OnEditFeatsEpicOnly()
+{
+    m_pCharacter->ToggleShowEpicOnly();
+}
+
+void CDDOCPView::OnEditFeatsShowUnavailable()
+{
+    m_pCharacter->ToggleShowUnavailable();
 }

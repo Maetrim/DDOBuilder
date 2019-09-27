@@ -70,6 +70,10 @@ class CDDOCPView :
         afx_msg void OnBnClickedRadio32pt();
         afx_msg BOOL OnEraseBkgnd(CDC* pDC);
         afx_msg void OnEditResetbuild();
+        afx_msg void OnEditFeatsUpdateEpicOnly(CCmdUI * pCmdUi);
+        afx_msg void OnEditFeatsUpdateShowUnavailable(CCmdUI * pCmdUi);
+        afx_msg void OnEditFeatsEpicOnly();
+        afx_msg void OnEditFeatsShowUnavailable();
         DECLARE_MESSAGE_MAP()
 
         // Character overrides

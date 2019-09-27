@@ -21,6 +21,7 @@ ActiveEffect::ActiveEffect() :
     m_tree(""),
     m_bt(Breakdown_Unknown),
     m_amountPerLevel(0),
+    m_levelStacks(0),
     m_class(Class_Unknown),
     m_bIsPercentage(false),
     m_percentageAmount(0),
@@ -52,6 +53,7 @@ ActiveEffect::ActiveEffect(
     m_tree(tree),
     m_bt(Breakdown_Unknown),
     m_amountPerLevel(0),
+    m_levelStacks(0),
     m_class(Class_Unknown),
     m_bIsPercentage(false),
     m_percentageAmount(0),
@@ -82,6 +84,7 @@ ActiveEffect::ActiveEffect(
     m_tree(tree),
     m_bt(Breakdown_Unknown),
     m_amountPerLevel(0),
+    m_levelStacks(0),
     m_class(Class_Unknown),
     m_bIsPercentage(false),
     m_percentageAmount(0),
@@ -115,6 +118,7 @@ ActiveEffect::ActiveEffect(
     m_tree(tree),
     m_bt(Breakdown_Unknown),
     m_amountPerLevel(0),
+    m_levelStacks(0),
     m_class(Class_Unknown),
     m_bIsPercentage(false),
     m_percentageAmount(0),
@@ -145,6 +149,7 @@ ActiveEffect::ActiveEffect(
     m_energy(Energy_Unknown),
     m_bt(Breakdown_Unknown),
     m_amountPerLevel(0),
+    m_levelStacks(0),
     m_class(Class_Unknown),
     m_bIsPercentage(false),
     m_percentageAmount(0),
@@ -168,13 +173,14 @@ ActiveEffect::ActiveEffect(
     m_bonusType(bonusType),
     m_type(ET_amountVectorPerClassLevel),
     m_effectName(name),
-    m_numStacks(0),
+    m_numStacks(1),
     m_amount(0),                // not used
     m_amounts(amounts),
     m_bHasEnergy(false),
     m_energy(Energy_Unknown),
     m_bt(Breakdown_Unknown),
     m_amountPerLevel(0),
+    m_levelStacks(0),
     m_class(classType),
     m_bIsPercentage(false),
     m_percentageAmount(0),
@@ -199,12 +205,13 @@ ActiveEffect::ActiveEffect(
     m_bonusType(bonusType),
     m_type(ET_amountPerLevel),
     m_effectName(name),
-    m_numStacks(stacks),
+    m_numStacks(1),
     m_amount(0),                // not used
     m_bHasEnergy(false),
     m_energy(Energy_Unknown),
     m_bt(Breakdown_Unknown),
     m_amountPerLevel(amountPerLevel),
+    m_levelStacks(stacks),
     m_class(classType),
     m_bIsPercentage(false),
     m_percentageAmount(0),
@@ -235,6 +242,7 @@ ActiveEffect::ActiveEffect(
     m_energy(Energy_Unknown),
     m_bt(Breakdown_Unknown),
     m_amountPerLevel(0),
+    m_levelStacks(0),
     m_class(Class_Unknown),
     m_bIsPercentage(false),
     m_percentageAmount(0),
@@ -266,6 +274,7 @@ ActiveEffect::ActiveEffect(
     m_energy(Energy_Unknown),
     m_bt(Breakdown_Unknown),
     m_amountPerLevel(0),
+    m_levelStacks(0),
     m_class(Class_Unknown),
     m_bIsPercentage(false),
     m_percentageAmount(0),
@@ -381,9 +390,35 @@ CString ActiveEffect::AmountAsText(double multiplier) const
         }
         break;
     case ET_amountVector:
-    case ET_amountVectorPerClassLevel: // handled the same
         {
             int index = NumStacks()-1;
+            if (index >= 0)
+            {
+                if (index >= (int)m_amounts.size())
+                {
+                    index = m_amounts.size()-1;
+                    ::OutputDebugString("ActiveEffect ");
+                    ::OutputDebugString((LPCTSTR)Name());
+                    ::OutputDebugString(" has more stacks than amount vector\n");
+                }
+                if (multiplier != 1.0)
+                {
+                    text.Format("%.2f (* %.2f)", m_amounts[index] * multiplier, multiplier);
+                }
+                else
+                {
+                    text.Format("%.2f", m_amounts[index] * multiplier);
+                }
+            }
+            else
+            {
+                text = "0.00";
+            }
+        }
+        break;
+    case ET_amountVectorPerClassLevel:
+        {
+            int index = m_levelStacks-1;
             if (index >= 0)
             {
                 if (index >= (int)m_amounts.size())
@@ -411,11 +446,11 @@ CString ActiveEffect::AmountAsText(double multiplier) const
     case ET_amountPerLevel:
         if (multiplier != 1.0)
         {
-            text.Format("%.2f (* %.2f)", m_amountPerLevel * NumStacks() * multiplier, multiplier);
+            text.Format("%.2f (* %.2f)", m_amountPerLevel * m_levelStacks * multiplier, multiplier);
         }
         else
         {
-            text.Format("%.2f", m_amountPerLevel * NumStacks() * multiplier);
+            text.Format("%.2f", m_amountPerLevel * m_levelStacks * multiplier);
         }
         break;
     case ET_amountPerAp:
@@ -496,7 +531,6 @@ CString ActiveEffect::AmountAsPercent() const
         text.Format("%.0f (%.0f%%)", m_percentageAmount, m_amount * NumStacks());
         break;
     case ET_amountVector:
-    case ET_amountVectorPerClassLevel: // handled the same
         {
             int index = NumStacks()-1;
             if (index >= 0)
@@ -516,8 +550,28 @@ CString ActiveEffect::AmountAsPercent() const
             }
         }
         break;
+    case ET_amountVectorPerClassLevel:
+        {
+            int index = m_levelStacks-1;
+            if (index >= 0)
+            {
+                if (index >= (int)m_amounts.size())
+                {
+                    index = m_amounts.size()-1;
+                    ::OutputDebugString("ActiveEffect ");
+                    ::OutputDebugString((LPCTSTR)Name());
+                    ::OutputDebugString(" has more stacks than amount vector\n");
+                }
+                text.Format("%.0f (%.0f%%)", m_percentageAmount, m_amounts[index]);
+            }
+            else
+            {
+                text.Format("%.0f (0%%)", m_percentageAmount);
+            }
+        }
+        break;
     case ET_amountPerLevel:
-        text.Format("%.0f (%.0f%%)", m_percentageAmount, m_amountPerLevel * NumStacks());
+        text.Format("%.0f (%.0f%%)", m_percentageAmount, m_amountPerLevel * m_levelStacks);
         break;
     case ET_amountPerAp:
         text.Format("%.0f (%.0f%%)", m_percentageAmount, m_amount * NumStacks());
@@ -589,7 +643,7 @@ bool ActiveEffect::HasBreakdownDependency(BreakdownType bt) const
     return (bt == m_bt);
 }
 
-bool ActiveEffect::HasClass(ClassType type) const
+bool ActiveEffect::BasedOnClassLevel(ClassType type) const
 {
     if (m_type == ET_amountPerLevel
             || m_type == ET_amountVectorPerClassLevel)
@@ -602,16 +656,6 @@ bool ActiveEffect::HasClass(ClassType type) const
 void ActiveEffect::AddStack()
 {
     ++m_numStacks;
-    if (m_type == ET_amountVector
-            || m_type == ET_amountVectorPerClassLevel)
-    {
-        if (m_numStacks > m_amounts.size())
-        {
-            ::OutputDebugString("ActiveEffect ");
-            ::OutputDebugString((LPCTSTR)Name());
-            ::OutputDebugString(" has more stacks than amount vector\n");
-        }
-    }
     if (m_type == ET_immunity)
     {
         if (m_numStacks > m_immunities.size())
@@ -632,16 +676,6 @@ bool ActiveEffect::RevokeStack()
 void ActiveEffect::SetStacks(size_t count)
 {
     m_numStacks = count;
-    if (m_type == ET_amountVector
-            || m_type == ET_amountVectorPerClassLevel)
-    {
-        if (m_numStacks > m_amounts.size())
-        {
-            ::OutputDebugString("ActiveEffect ");
-            ::OutputDebugString((LPCTSTR)Name());
-            ::OutputDebugString(" has more stacks than amount vector\n");
-        }
-    }
     if (m_type == ET_immunity)
     {
         if (m_numStacks > m_immunities.size())
@@ -699,7 +733,6 @@ double ActiveEffect::TotalAmount(bool allowTruncate) const
         }
         break;
     case ET_amountVector:
-    case ET_amountVectorPerClassLevel:
         {
             int index = NumStacks()-1;
             if (index >= 0)
@@ -715,8 +748,24 @@ double ActiveEffect::TotalAmount(bool allowTruncate) const
             }
         }
         break;
+    case ET_amountVectorPerClassLevel:
+        {
+            int index = m_levelStacks-1;
+            if (index >= 0)
+            {
+                if (index >= (int)m_amounts.size())
+                {
+                    index = m_amounts.size()-1;
+                    ::OutputDebugString("ActiveEffect ");
+                    ::OutputDebugString((LPCTSTR)Name());
+                    ::OutputDebugString(" has more stacks than amount vector\n");
+                }
+                value = m_amounts[index];
+            }
+        }
+        break;
     case ET_amountPerLevel:
-        value = m_amountPerLevel * NumStacks();
+        value = m_amountPerLevel * m_levelStacks;
         break;
     case ET_amountPerAp:
         value = m_amount * NumStacks();
@@ -983,3 +1032,9 @@ void ActiveEffect::SetStacksControl(
     m_stacksControl = control;  // thing that controls the number of stacks
     m_pCharacter = pCharacter;
 }
+
+void ActiveEffect::SetClassLevel(size_t count)
+{
+    m_levelStacks = count;
+}
+

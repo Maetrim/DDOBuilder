@@ -1664,10 +1664,34 @@ void CLevelUpView::OnFeatSelection(UINT nID)
         // user has selected a feat, train it!
         CString featName;
         m_comboFeatSelect[typeIndex].GetLBText(sel, featName);
-        m_pCharacter->TrainFeat(
-                (LPCTSTR)featName,
-                m_trainable[typeIndex],
-                m_level);
+        Feat feat = FindFeat((LPCTSTR)featName);
+        if (m_pCharacter->ShowUnavailable())
+        {
+            // need to evaluate the feat properly
+            m_pCharacter->ToggleShowUnavailable();
+            if (m_pCharacter->IsFeatTrainable(m_level, m_trainable[typeIndex], feat, true))
+            {
+                m_pCharacter->TrainFeat(
+                        (LPCTSTR)featName,
+                        m_trainable[typeIndex],
+                        m_level);
+            }
+            else
+            {
+                // tried to select an untrainable feat
+                ::MessageBeep(MB_OK);
+            }
+            // restore
+            m_pCharacter->ToggleShowUnavailable();
+        }
+        else
+        {
+            // just train it
+            m_pCharacter->TrainFeat(
+                    (LPCTSTR)featName,
+                    m_trainable[typeIndex],
+                    m_level);
+        }
     }
 }
 
