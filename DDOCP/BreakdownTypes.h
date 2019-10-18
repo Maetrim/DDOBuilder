@@ -110,6 +110,7 @@ enum BreakdownType
     Breakdown_ArcaneSpellfailureShields,
     Breakdown_SpellResistance,
     Breakdown_CasterLevel_Artificer,
+    Breakdown_CasterLevel_Bard,
     Breakdown_CasterLevel_Cleric,
     Breakdown_CasterLevel_Druid,
     Breakdown_CasterLevel_FavoredSoul,

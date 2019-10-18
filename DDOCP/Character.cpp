@@ -6203,6 +6203,7 @@ void Character::ResetBuild()
     blankCharacter.m_GearSetups = m_GearSetups;
     blankCharacter.m_ActiveGear = m_ActiveGear;
     blankCharacter.m_SelfAndPartyBuffs = m_SelfAndPartyBuffs;
+    blankCharacter.m_hasEpicCompletionist = m_hasEpicCompletionist;
     // now assign to ourselves
     (*this) = blankCharacter;
     JustLoaded();

@@ -1228,7 +1228,7 @@ an additional -1/-2/-3 to your attack bonus.</Description>
          <Icon>WarforgedImprovedPowerAttack</Icon>
          <XPosition>2</XPosition>
          <YPosition>3</YPosition>
-         <Cost>2</Cost>
+         <Cost>1</Cost>
          <Ranks>3</Ranks>
          <MinSpent>10</MinSpent>
          <Clickie/>
@@ -15946,7 +15946,7 @@ an additional -1/-2/-3 to your attack bonus.</Description>
          <Icon>WarforgedImprovedPowerAttack</Icon>
          <XPosition>2</XPosition>
          <YPosition>3</YPosition>
-         <Cost>2</Cost>
+         <Cost>1</Cost>
          <Ranks>3</Ranks>
          <MinSpent>10</MinSpent>
          <Clickie/>
@@ -31901,7 +31901,6 @@ Cooldown: 6 seconds.</Description>
             <Description>Defensive Combat Stance: +8 PRR and MRR.
 Cannot be used with other defensive stances, but can be used while raging.
 Cooldown: 6 seconds.</Description>
-             <IncompatibleStance>Epic Defensive Fighting</IncompatibleStance>
          </Stance>
          <Effect>
             <Type>Hitpoints</Type>
@@ -33815,7 +33814,17 @@ You also gain +1/2/3 to hit and damage.</Description>
             </Requirement>
          </Requirements>
          <Effect>
-            <Type>AttackBonus</Type>
+            <Type>DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Weapon>All</Weapon>
+            <AnyOfStance>Wolf</AnyOfStance>
+            <AnyOfStance>Winter Wolf</AnyOfStance>
+            <AnyOfStance>Bear</AnyOfStance>
+            <AnyOfStance>Dire Bear</AnyOfStance>
+         </Effect>
+         <Effect>
+            <Type>Seeker</Type>
             <Bonus>Enhancement</Bonus>
             <AmountVector size="3">1 2 3</AmountVector>
             <Weapon>All</Weapon>
@@ -43530,7 +43539,6 @@ Sacred Defense and Stalwart Defense can't be active at the same time</Descriptio
 +150% bonus to threat generation</Description>
             <IncompatibleStance>Rage</IncompatibleStance>
             <IncompatibleStance>Sacred Defense</IncompatibleStance>
-            <IncompatibleStance>Epic Defensive Fighting</IncompatibleStance>
          </Stance>
          <Requirements>
             <Requirement>
@@ -51400,7 +51408,6 @@ Cannot become raged while Sacred Defence is active</Description>
 +150% bonus to threat generation</Description>
             <IncompatibleStance>Rage</IncompatibleStance>
             <IncompatibleStance>Stalwart Defender</IncompatibleStance>
-            <IncompatibleStance>Epic Defensive Fighting</IncompatibleStance>
          </Stance>
          <Effect>
             <Type>Fortification</Type>
@@ -67155,6 +67162,13 @@ You gain +5 to it with Melee Weapons and 3% Doublestrike.</Description>
                <Description>On Hit: +5/10/15% chance to proc an immediate Shield Bash attack with an equipped shield.</Description>
                <Icon>EKOffhandDefenses</Icon>
                <Cost>1</Cost>
+               <Effect>
+                  <Type>SecondaryShieldBash</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AmountVector size="3">5 10 15</AmountVector>
+                  <Stance>Shield</Stance>
+                  <SpellPower>All</SpellPower>
+               </Effect>
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
@@ -82276,6 +82290,13 @@ You gain +5 to it with Melee Weapons and 3% Doublestrike.</Description>
                <Description>On Hit: +5/10/15% chance to proc an immediate Shield Bash attack with an equipped shield.</Description>
                <Icon>EKOffhandDefenses</Icon>
                <Cost>1</Cost>
+               <Effect>
+                  <Type>SecondaryShieldBash</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AmountVector size="3">5 10 15</AmountVector>
+                  <Stance>Shield</Stance>
+                  <SpellPower>All</SpellPower>
+               </Effect>
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
@@ -83766,7 +83787,7 @@ Attack Speed, Movement Speed, and Fortification.</Description>
       <Icon>PMSkeletalKnight</Icon>
       <XPosition>3</XPosition>
       <YPosition>1</YPosition>
-      <Cost>2</Cost>
+      <Cost>1</Cost>
       <Ranks>3</Ranks>
       <MinSpent>1</MinSpent>
       <Clickie/>
@@ -91495,6 +91516,11 @@ for a total of 5.</Description>
             <Amount>2</Amount>
          </Effect>
          <Effect>
+            <Type>SongDuration</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>60</Amount>
+         </Effect>
+          <Effect>
             <Type>SpellPoints</Type>
             <Bonus>Destiny</Bonus>
             <Amount>25</Amount>
@@ -91541,6 +91567,11 @@ for a total of 5.</Description>
             <Type>SongCount</Type>
             <Bonus>Destiny</Bonus>
             <Amount>2</Amount>
+         </Effect>
+         <Effect>
+            <Type>SongDuration</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>60</Amount>
          </Effect>
          <Effect>
             <Type>SpellPoints</Type>
@@ -91620,6 +91651,11 @@ lasts up to 20 seconds.</Description>
             <Amount>2</Amount>
          </Effect>
          <Effect>
+            <Type>SongDuration</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>60</Amount>
+         </Effect>
+         <Effect>
             <Type>SpellPoints</Type>
             <Bonus>Destiny</Bonus>
             <Amount>25</Amount>
@@ -91680,6 +91716,11 @@ for 12 seconds, with no saving throw.</Description>
             <Type>SongCount</Type>
             <Bonus>Destiny</Bonus>
             <Amount>2</Amount>
+         </Effect>
+         <Effect>
+            <Type>SongDuration</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>60</Amount>
          </Effect>
          <Effect>
             <Type>SpellPoints</Type>
@@ -91749,6 +91790,11 @@ lasts up to 20 seconds.</Description>
             <Amount>2</Amount>
          </Effect>
          <Effect>
+            <Type>SongDuration</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>60</Amount>
+         </Effect>
+         <Effect>
             <Type>SpellPoints</Type>
             <Bonus>Destiny</Bonus>
             <Amount>25</Amount>
@@ -91813,6 +91859,11 @@ Charisma Damage, and have +25 Universal Spell Power.</Description>
             <Type>SongCount</Type>
             <Bonus>Destiny</Bonus>
             <Amount>2</Amount>
+         </Effect>
+         <Effect>
+            <Type>SongDuration</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>60</Amount>
          </Effect>
          <Effect>
             <Type>ArcaneSpellFailure</Type>
@@ -92157,6 +92208,58 @@ Duration: 60 seconds
          </Requirements>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
+         <Name>Fatesinger: Aria</Name>
+         <InternalName>Aria</InternalName>
+         <Description>Passive: You sing your Bardic Inspiration as if you had [1/2/3] additional Bard levels.
+Spontaneous Song: Generate [15/25/35]% less threat when you cast spells for the
+duration of this song. In addition, you gain +[20/40/40] Sonic Spell Power, and
++[5/10/15] Force, Positive, and Negative Spell Power.
+
+Your voice carries like a gale over the skein of Fate.</Description>
+         <Icon>Aria</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>8</MinSpent>
+         <Clickie/>
+         <Requirements/>
+         <Effect>
+            <Type>SongDuration</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">30 60 90</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>ThreatBonusMelee</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">-15 -25 -35</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>ThreatBonusRanged</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">-15 -25 -35</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>ThreatBonusSpell</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">-15 -25 -35</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">20 40 40</AmountVector>
+            <SpellPower>Sonic</SpellPower>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">5 10 15</AmountVector>
+            <SpellPower>Force/Untyped</SpellPower>
+            <SpellPower>Positive</SpellPower>
+            <SpellPower>Negative</SpellPower>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
          <Name>Fatesinger: Arcane Hymn</Name>
          <InternalName>ArcaneHymn</InternalName>
          <Description>You sing a magical Hymn that resonates within the Arcane Sphere. When you
@@ -92172,7 +92275,7 @@ Arcane Resonance: +1 to Intelligence, Wisdom and Charisma, +20 Universal Spell P
 +2 Spell Penetration, +4 Use Magic Device, +10% to your Fire, Cold, Acid and Electric
 Absorption.</Description>
          <Icon>ArcaneHymn</Icon>
-         <XPosition>1</XPosition>
+         <XPosition>3</XPosition>
          <YPosition>3</YPosition>
          <Cost>2</Cost>
          <Ranks>1</Ranks>
@@ -92240,58 +92343,6 @@ Absorption.</Description>
             <Energy>Fire</Energy>
             <Stance>Arcane Hymn</Stance>
         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Fatesinger: Aria</Name>
-         <InternalName>Aria</InternalName>
-         <Description>Passive: You sing your Bardic Inspiration as if you had [1/2/3] additional Bard levels.
-Spontaneous Song: Generate [15/25/35]% less threat when you cast spells for the
-duration of this song. In addition, you gain +[20/40/40] Sonic Spell Power, and
-+[5/10/15] Force, Positive, and Negative Spell Power.
-
-Your voice carries like a gale over the skein of Fate.</Description>
-         <Icon>Aria</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>3</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>8</MinSpent>
-         <Clickie/>
-         <Requirements/>
-         <Effect>
-            <Type>SongDuration</Type>
-            <Bonus>Destiny</Bonus>
-            <AmountVector size="3">30 60 90</AmountVector>
-         </Effect>
-         <Effect>
-            <Type>ThreatBonusMelee</Type>
-            <Bonus>Destiny</Bonus>
-            <AmountVector size="3">-15 -25 -35</AmountVector>
-         </Effect>
-         <Effect>
-            <Type>ThreatBonusRanged</Type>
-            <Bonus>Destiny</Bonus>
-            <AmountVector size="3">-15 -25 -35</AmountVector>
-         </Effect>
-         <Effect>
-            <Type>ThreatBonusSpell</Type>
-            <Bonus>Destiny</Bonus>
-            <AmountVector size="3">-15 -25 -35</AmountVector>
-         </Effect>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Destiny</Bonus>
-            <AmountVector size="3">20 40 40</AmountVector>
-            <SpellPower>Sonic</SpellPower>
-         </Effect>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Destiny</Bonus>
-            <AmountVector size="3">5 10 15</AmountVector>
-            <SpellPower>Force/Untyped</SpellPower>
-            <SpellPower>Positive</SpellPower>
-            <SpellPower>Negative</SpellPower>
-         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Fatesinger: Ability III</Name>
@@ -95573,7 +95624,11 @@ Cooldown: 1 min</Description>
          <Ranks>3</Ranks>
          <MinSpent>0</MinSpent>
          <Clickie/>
-         <Requirements/>
+         <Requirements>
+            <Requirement>
+               <Feat>Improved Sunder</Feat>
+            </Requirement>
+         </Requirements>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Legendary Dreadnought: Legendary Tactics</Name>

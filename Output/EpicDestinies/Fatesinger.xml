@@ -37,6 +37,11 @@ for a total of 5.</Description>
             <Amount>2</Amount>
          </Effect>
          <Effect>
+            <Type>SongDuration</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>60</Amount>
+         </Effect>
+          <Effect>
             <Type>SpellPoints</Type>
             <Bonus>Destiny</Bonus>
             <Amount>25</Amount>
@@ -83,6 +88,11 @@ for a total of 5.</Description>
             <Type>SongCount</Type>
             <Bonus>Destiny</Bonus>
             <Amount>2</Amount>
+         </Effect>
+         <Effect>
+            <Type>SongDuration</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>60</Amount>
          </Effect>
          <Effect>
             <Type>SpellPoints</Type>
@@ -162,6 +172,11 @@ lasts up to 20 seconds.</Description>
             <Amount>2</Amount>
          </Effect>
          <Effect>
+            <Type>SongDuration</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>60</Amount>
+         </Effect>
+         <Effect>
             <Type>SpellPoints</Type>
             <Bonus>Destiny</Bonus>
             <Amount>25</Amount>
@@ -222,6 +237,11 @@ for 12 seconds, with no saving throw.</Description>
             <Type>SongCount</Type>
             <Bonus>Destiny</Bonus>
             <Amount>2</Amount>
+         </Effect>
+         <Effect>
+            <Type>SongDuration</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>60</Amount>
          </Effect>
          <Effect>
             <Type>SpellPoints</Type>
@@ -291,6 +311,11 @@ lasts up to 20 seconds.</Description>
             <Amount>2</Amount>
          </Effect>
          <Effect>
+            <Type>SongDuration</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>60</Amount>
+         </Effect>
+         <Effect>
             <Type>SpellPoints</Type>
             <Bonus>Destiny</Bonus>
             <Amount>25</Amount>
@@ -355,6 +380,11 @@ Charisma Damage, and have +25 Universal Spell Power.</Description>
             <Type>SongCount</Type>
             <Bonus>Destiny</Bonus>
             <Amount>2</Amount>
+         </Effect>
+         <Effect>
+            <Type>SongDuration</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>60</Amount>
          </Effect>
          <Effect>
             <Type>ArcaneSpellFailure</Type>
@@ -699,6 +729,58 @@ Duration: 60 seconds
          </Requirements>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
+         <Name>Fatesinger: Aria</Name>
+         <InternalName>Aria</InternalName>
+         <Description>Passive: You sing your Bardic Inspiration as if you had [1/2/3] additional Bard levels.
+Spontaneous Song: Generate [15/25/35]% less threat when you cast spells for the
+duration of this song. In addition, you gain +[20/40/40] Sonic Spell Power, and
++[5/10/15] Force, Positive, and Negative Spell Power.
+
+Your voice carries like a gale over the skein of Fate.</Description>
+         <Icon>Aria</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>8</MinSpent>
+         <Clickie/>
+         <Requirements/>
+         <Effect>
+            <Type>SongDuration</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">30 60 90</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>ThreatBonusMelee</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">-15 -25 -35</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>ThreatBonusRanged</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">-15 -25 -35</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>ThreatBonusSpell</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">-15 -25 -35</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">20 40 40</AmountVector>
+            <SpellPower>Sonic</SpellPower>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">5 10 15</AmountVector>
+            <SpellPower>Force/Untyped</SpellPower>
+            <SpellPower>Positive</SpellPower>
+            <SpellPower>Negative</SpellPower>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
          <Name>Fatesinger: Arcane Hymn</Name>
          <InternalName>ArcaneHymn</InternalName>
          <Description>You sing a magical Hymn that resonates within the Arcane Sphere. When you
@@ -714,7 +796,7 @@ Arcane Resonance: +1 to Intelligence, Wisdom and Charisma, +20 Universal Spell P
 +2 Spell Penetration, +4 Use Magic Device, +10% to your Fire, Cold, Acid and Electric
 Absorption.</Description>
          <Icon>ArcaneHymn</Icon>
-         <XPosition>1</XPosition>
+         <XPosition>3</XPosition>
          <YPosition>3</YPosition>
          <Cost>2</Cost>
          <Ranks>1</Ranks>
@@ -782,58 +864,6 @@ Absorption.</Description>
             <Energy>Fire</Energy>
             <Stance>Arcane Hymn</Stance>
         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Fatesinger: Aria</Name>
-         <InternalName>Aria</InternalName>
-         <Description>Passive: You sing your Bardic Inspiration as if you had [1/2/3] additional Bard levels.
-Spontaneous Song: Generate [15/25/35]% less threat when you cast spells for the
-duration of this song. In addition, you gain +[20/40/40] Sonic Spell Power, and
-+[5/10/15] Force, Positive, and Negative Spell Power.
-
-Your voice carries like a gale over the skein of Fate.</Description>
-         <Icon>Aria</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>3</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>8</MinSpent>
-         <Clickie/>
-         <Requirements/>
-         <Effect>
-            <Type>SongDuration</Type>
-            <Bonus>Destiny</Bonus>
-            <AmountVector size="3">30 60 90</AmountVector>
-         </Effect>
-         <Effect>
-            <Type>ThreatBonusMelee</Type>
-            <Bonus>Destiny</Bonus>
-            <AmountVector size="3">-15 -25 -35</AmountVector>
-         </Effect>
-         <Effect>
-            <Type>ThreatBonusRanged</Type>
-            <Bonus>Destiny</Bonus>
-            <AmountVector size="3">-15 -25 -35</AmountVector>
-         </Effect>
-         <Effect>
-            <Type>ThreatBonusSpell</Type>
-            <Bonus>Destiny</Bonus>
-            <AmountVector size="3">-15 -25 -35</AmountVector>
-         </Effect>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Destiny</Bonus>
-            <AmountVector size="3">20 40 40</AmountVector>
-            <SpellPower>Sonic</SpellPower>
-         </Effect>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Destiny</Bonus>
-            <AmountVector size="3">5 10 15</AmountVector>
-            <SpellPower>Force/Untyped</SpellPower>
-            <SpellPower>Positive</SpellPower>
-            <SpellPower>Negative</SpellPower>
-         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Fatesinger: Ability III</Name>

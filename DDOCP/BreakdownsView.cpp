@@ -1471,6 +1471,19 @@ void CBreakdownsView::AddClassCasterLevels(HTREEITEM hParent)
     }
     {
         HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Bard Caster Level",
+                hParent,
+                TVI_LAST);
+        BreakdownItem * pBard = new BreakdownItemClassCasterLevel(
+                Class_Bard,
+                Breakdown_CasterLevel_Bard,
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pBard);
+        m_items.push_back(pBard);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
                 "Cleric Caster Level",
                 hParent,
                 TVI_LAST);
