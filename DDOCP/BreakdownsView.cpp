@@ -1314,10 +1314,12 @@ void CBreakdownsView::CreateMagicalBreakdowns()
         AddSpellPower(Breakdown_SpellPowerForceUntyped, SpellPower_ForceUntyped, "Force/Untyped Spell power", hItem);
         AddSpellPower(Breakdown_SpellPowerNegative, SpellPower_Negative, "Negative Spell power", hItem);
         AddSpellPower(Breakdown_SpellPowerPhysical, SpellPower_Physical, "Physical Spell power", hItem);
+        AddSpellPower(Breakdown_SpellPowerPoison, SpellPower_Poison, "Poison Spell power", hItem);
         AddSpellPower(Breakdown_SpellPowerPositive, SpellPower_Positive, "Positive Spell power", hItem);
         AddSpellPower(Breakdown_SpellPowerRepair, SpellPower_Repair, "Repair Spell power", hItem);
         AddSpellPower(Breakdown_SpellPowerRust, SpellPower_Rust, "Rust Spell power", hItem);
         AddSpellPower(Breakdown_SpellPowerSonic, SpellPower_Sonic, "Sonic Spell power", hItem);
+        AddSpellPower(Breakdown_SpellPowerUniversal, SpellPower_All, "Universal Spell power", hItem);
     }
 
     {
@@ -1334,11 +1336,13 @@ void CBreakdownsView::CreateMagicalBreakdowns()
         AddSpellCriticalChance(Breakdown_SpellCriticalChanceFire, SpellPower_Fire, "Fire Critical Chance", hItem);
         AddSpellCriticalChance(Breakdown_SpellCriticalChanceForceUntyped, SpellPower_ForceUntyped, "Force/Untyped Critical Chance", hItem);
         AddSpellCriticalChance(Breakdown_SpellCriticalChanceNegative, SpellPower_Negative, "Negative Critical Chance", hItem);
+        AddSpellCriticalChance(Breakdown_SpellCriticalChancePoison, SpellPower_Poison, "Poison Critical Chance", hItem);
         AddSpellCriticalChance(Breakdown_SpellCriticalChancePhysical, SpellPower_Physical, "Physical Critical Chance", hItem);
         AddSpellCriticalChance(Breakdown_SpellCriticalChancePositive, SpellPower_Positive, "Positive Critical Chance", hItem);
         AddSpellCriticalChance(Breakdown_SpellCriticalChanceRepair, SpellPower_Repair, "Repair Critical Chance", hItem);
         AddSpellCriticalChance(Breakdown_SpellCriticalChanceRust, SpellPower_Rust, "Rust Critical Chance", hItem);
         AddSpellCriticalChance(Breakdown_SpellCriticalChanceSonic, SpellPower_Sonic, "Sonic Critical Chance", hItem);
+        AddSpellCriticalChance(Breakdown_SpellCriticalChanceUniversal, SpellPower_All, "Universal Critical Chance", hItem);
     }
 
     {
@@ -1356,10 +1360,12 @@ void CBreakdownsView::CreateMagicalBreakdowns()
         AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierForceUntyped, SpellPower_ForceUntyped, "Force/Untyped Critical Multiplier", hItem);
         AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierNegative, SpellPower_Negative, "Negative Critical Multiplier", hItem);
         AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierPhysical, SpellPower_Physical, "Physical Critical Multiplier", hItem);
+        AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierPoison, SpellPower_Poison, "Poison Critical Multiplier", hItem);
         AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierPositive, SpellPower_Positive, "Positive Critical Multiplier", hItem);
         AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierRepair, SpellPower_Repair, "Repair Critical Multiplier", hItem);
         AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierRust, SpellPower_Rust, "Rust Critical Multiplier", hItem);
         AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierSonic, SpellPower_Sonic, "Sonic Critical Multiplier", hItem);
+        AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierUniversal, SpellPower_All, "Universal Critical Multiplier", hItem);
     }
 
     {
@@ -1822,16 +1828,20 @@ void CBreakdownsView::CreateEnergyResistancesBreakdowns()
                 TVI_LAST);
         m_itemBreakdownTree.SetItemData(hItem, 0);
         AddEnergyResistance(Breakdown_EnergyResistanceAcid, Energy_Acid, "Acid Resistance", hItem);
+        AddEnergyResistance(Breakdown_EnergyResistanceChaos, Energy_Chaos, "Chaos Resistance", hItem);
         AddEnergyResistance(Breakdown_EnergyResistanceCold, Energy_Cold, "Cold Resistance", hItem);
         AddEnergyResistance(Breakdown_EnergyResistanceElectric, Energy_Electric, "Electric Resistance", hItem);
+        AddEnergyResistance(Breakdown_EnergyResistanceEvil, Energy_Evil, "Evil Resistance", hItem);
         AddEnergyResistance(Breakdown_EnergyResistanceFire, Energy_Fire, "Fire Resistance", hItem);
         AddEnergyResistance(Breakdown_EnergyResistanceForce, Energy_Force, "Force Resistance", hItem);
+        AddEnergyResistance(Breakdown_EnergyResistanceGood, Energy_Good, "Good Resistance", hItem);
+        AddEnergyResistance(Breakdown_EnergyResistanceLawful, Energy_Lawful, "Lawful Resistance", hItem);
         AddEnergyResistance(Breakdown_EnergyResistanceLight, Energy_Light, "Light Resistance", hItem);
         AddEnergyResistance(Breakdown_EnergyResistanceNegative, Energy_Negative, "Negative Resistance", hItem);
         AddEnergyResistance(Breakdown_EnergyResistancePoison, Energy_Poison, "Poison Resistance", hItem);
-        AddEnergyResistance(Breakdown_EnergyResistancePositive, Energy_Positive, "Positive Resistance", hItem);
-        AddEnergyResistance(Breakdown_EnergyResistanceRepair, Energy_Repair, "Repair Resistance", hItem);
-        AddEnergyResistance(Breakdown_EnergyResistanceRust, Energy_Rust, "Rust Resistance", hItem);
+        //AddEnergyResistance(Breakdown_EnergyResistancePositive, Energy_Positive, "Positive Resistance", hItem);
+        //AddEnergyResistance(Breakdown_EnergyResistanceRepair, Energy_Repair, "Repair Resistance", hItem);
+        //AddEnergyResistance(Breakdown_EnergyResistanceRust, Energy_Rust, "Rust Resistance", hItem);
         AddEnergyResistance(Breakdown_EnergyResistanceSonic, Energy_Sonic, "Sonic Resistance", hItem);
     }
     {
@@ -1842,16 +1852,20 @@ void CBreakdownsView::CreateEnergyResistancesBreakdowns()
                 TVI_LAST);
         m_itemBreakdownTree.SetItemData(hItem, 0);
         AddEnergyAbsorption(Breakdown_EnergyAbsorptionAcid, Energy_Acid, "Acid Absorption", hItem);
+        AddEnergyAbsorption(Breakdown_EnergyAbsorptionChaos, Energy_Chaos, "Chaos Absorption", hItem);
         AddEnergyAbsorption(Breakdown_EnergyAbsorptionCold, Energy_Cold, "Cold Absorption", hItem);
         AddEnergyAbsorption(Breakdown_EnergyAbsorptionElectric, Energy_Electric, "Electric Absorption", hItem);
+        AddEnergyAbsorption(Breakdown_EnergyAbsorptionEvil, Energy_Evil, "Evil Absorption", hItem);
         AddEnergyAbsorption(Breakdown_EnergyAbsorptionFire, Energy_Fire, "Fire Absorption", hItem);
         AddEnergyAbsorption(Breakdown_EnergyAbsorptionForce, Energy_Force, "Force Absorption", hItem);
+        AddEnergyAbsorption(Breakdown_EnergyAbsorptionGood, Energy_Good, "Good Absorption", hItem);
+        AddEnergyAbsorption(Breakdown_EnergyAbsorptionLawful, Energy_Lawful, "Lawful Absorption", hItem);
         AddEnergyAbsorption(Breakdown_EnergyAbsorptionLight, Energy_Light, "Light Absorption", hItem);
         AddEnergyAbsorption(Breakdown_EnergyAbsorptionNegative, Energy_Negative, "Negative Absorption", hItem);
         AddEnergyAbsorption(Breakdown_EnergyAbsorptionPoison, Energy_Poison, "Poison Absorption", hItem);
-        AddEnergyAbsorption(Breakdown_EnergyAbsorptionPositive, Energy_Positive, "Positive Absorption", hItem);
-        AddEnergyAbsorption(Breakdown_EnergyAbsorptionRepair, Energy_Repair, "Repair Absorption", hItem);
-        AddEnergyAbsorption(Breakdown_EnergyAbsorptionRust, Energy_Rust, "Rust Absorption", hItem);
+        //AddEnergyAbsorption(Breakdown_EnergyAbsorptionPositive, Energy_Positive, "Positive Absorption", hItem);
+        //AddEnergyAbsorption(Breakdown_EnergyAbsorptionRepair, Energy_Repair, "Repair Absorption", hItem);
+        //AddEnergyAbsorption(Breakdown_EnergyAbsorptionRust, Energy_Rust, "Rust Absorption", hItem);
         AddEnergyAbsorption(Breakdown_EnergyAbsorptionSonic, Energy_Sonic, "Sonic Absorption", hItem);
     }
 }

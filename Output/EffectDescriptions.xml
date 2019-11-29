@@ -108,7 +108,13 @@
             <Amount>4</Amount>
             <Ability>Intelligence</Ability>
         </Effect>
-    <EffectDescription>Quality Wisdom +1: Passive: +1 Quality Bonus to Wisdom.</EffectDescription>
+        <EffectDescription>Quality Wisdom +2: Passive: +2 Quality Bonus to Wisdom.</EffectDescription>
+        <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Quality</Bonus>
+            <Amount>2</Amount>
+            <Ability>Wisdom</Ability>
+        </Effect>
         <EffectDescription>Quality Charisma +4: Passive: +4 Quality Bonus to Charisma.</EffectDescription>
         <Effect>
             <Type>AbilityBonus</Type>
@@ -225,6 +231,15 @@
     <EffectDescription>Battle Arcanist: this is one of the three parts of the Battle Arcanist set. When all three items are equipped, you gain a 10% Enhancement discount to the Spell Point cost of all your spells.</EffectDescription>
     <EffectDescription>Blurry: Equipping this item causes you to become slightly blurry. Enemies have a 20% chance to miss due to concealment.</EffectDescription>
     <EffectDescription>Combat Mastery +1: +1 Enhancement bonus to the DC to resist Trip, Improved Trip, Sunder, Improved Sunder, Stunning Blow and Stunning Fist attempts.</EffectDescription>
+        <Effect>
+            <Type>TacticalDC</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>8</Amount>
+            <Tactical>Trip</Tactical>
+            <Tactical>Sunder</Tactical>
+            <Tactical>Stun</Tactical>
+            <Tactical>General</Tactical>
+        </Effect>
         <EffectDescription>Insightful Combat Mastery +7: +7 Insight bonus to the DC to resist Trip, Improved Trip, Sunder, Improved Sunder, Stunning Blow and Stunning Fist attempts.</EffectDescription>
         <Effect>
             <Type>TacticalDC</Type>
@@ -353,6 +368,12 @@
             <Type>DodgeBonus</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>20</Amount>
+         </Effect>
+        <EffectDescription>Insightful Dodge +4%: +4% Insight bonus to Dodge.</EffectDescription>
+         <Effect>
+            <Type>DodgeBonus</Type>
+            <Bonus>Insightful</Bonus>
+            <Amount>4</Amount>
          </Effect>
         <EffectDescription>Doubleshot +12%: +12% Enhancement bonus to Doubleshot chance.</EffectDescription>
         <Effect>
@@ -955,7 +976,7 @@
             <Bonus>Equipment</Bonus>
             <Immunity>Stunning, dazing and disorientation from sound based spells</Immunity>
         </Effect>
-    <EffectDescription>Speed XV: +30% Enhancement bonus to Movement Speed and a +15% bonus to Attack Speed.</EffectDescription>
+        <EffectDescription>Speed XV: +30% Enhancement bonus to Movement Speed and a +15% bonus to Attack Speed.</EffectDescription>
         <Effect>
             <Type>MovementSpeed</Type>
             <Bonus>Enhancement</Bonus>
@@ -1118,6 +1139,12 @@
     <EffectDescription>Woodsman's Guile: This item is one of the three parts of the Woodsman's Guile set. When all three items are equipped you will gain a +4 bonus To-Hit and a +6 bonus to your damage for any attack considered a Sneak Attack.</EffectDescription>
     <EffectDescription>Elemental Spell Power: Harnessing a small amount of the power and potential of the raw elements, this item gives you a +50 bonus to your maximum spell points. this stacks with all other bonuses except Elemental Spell Power.</EffectDescription>
     <EffectDescription>Greater Elemental Energy: Harnessing a small amount of the power and potential of the raw elements, this item gives you a +50 bonus to your maximum spell points. this stacks with all other bonuses except Greater Elemental Energy.</EffectDescription>
+        <EffectDescription>Profane Lifeforce +33: +33 Profane bonus to Hit Points.</EffectDescription>
+        <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Profane</Bonus>
+            <Amount>33</Amount>
+        </Effect>
         <EffectDescription>Superior False Life: This item grants the wearer +40 maximum health.</EffectDescription>
         <Effect>
             <Type>Hitpoints</Type>
@@ -1445,19 +1472,21 @@
     <EffectDescription>Draconic Ferocity: While this helm is equipped at the same time as a Flawless Black Dragonscale item, you will gain a +3% Artifact bonus to melee Doublestrike chance and a +2 Artifact bonus to damage with ranged and thrown weapons.</EffectDescription>
     <EffectDescription>Draconic Mind: While this helm is equipped at the same time as a Flawless Blue Dragonscale item, you will gain a +15 Artifact bonus to Universal Spell Power.</EffectDescription>
     <EffectDescription>Draconic Resilience: While this helm is equipped at the same time as a Flawless White Dragonscale item, you will gain a +50 Artifact bonus to your maximum Hit Points.</EffectDescription>
-        <EffectDescription>Enhanced Nullification +202: Passive: +202 Enhancement Bonus to Negative Spell Power.</EffectDescription>
+        <EffectDescription>Enhanced Nullification +202: Passive: +202 Enhancement Bonus to Negative/Poison Spell Power.</EffectDescription>
         <Effect>
             <Type>SpellPower</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>202</Amount>
             <SpellPower>Negative</SpellPower>
+            <SpellPower>Poison</SpellPower>
         </Effect>
-        <EffectDescription>Insightful Nullification +101: Passive: +101 Insight Bonus to Negative Spell Power.</EffectDescription>
+        <EffectDescription>Insightful Nullification +101: Passive: +101 Insight Bonus to Negative/Poison Spell Power.</EffectDescription>
         <Effect>
             <Type>SpellPower</Type>
             <Bonus>Insightful</Bonus>
             <Amount>101</Amount>
             <SpellPower>Negative</SpellPower>
+            <SpellPower>Poison</SpellPower>
         </Effect>
         <EffectDescription>Magnetism +185: Passive: +185 Equipment Bonus to Electric Spell Power.</EffectDescription>
         <Effect>
@@ -1466,12 +1495,13 @@
             <Amount>185</Amount>
             <SpellPower>Electric</SpellPower>
         </Effect>
-        <EffectDescription>Void Lore +29%: Passive: Your Negative energy spells gain a +29% Equipment Bonus to their chance to Critical Hit.</EffectDescription>
+        <EffectDescription>Void Lore +29%: Passive: Your Negative/Poison energy spells gain a +29% Equipment Bonus to their chance to Critical Hit.</EffectDescription>
         <Effect>
             <Type>SpellLore</Type>
             <Bonus>Equipment</Bonus>
             <Amount>29</Amount>
             <SpellPower>Negative</SpellPower>
+            <SpellPower>Poison</SpellPower>
         </Effect>
         <EffectDescription>Repair Lore +31%: Passive: Your Repair and Rust spells gain a +31% Equipment Bonus to their chance to Critical Hit.</EffectDescription>
         <Effect>
@@ -1557,6 +1587,20 @@
     <EffectDescription>Insightful Enchantment Resistance +5: +5 Insight bonus to saves versus enchantments.</EffectDescription>
     <EffectDescription>Insightful poison Ward: Grants its wearer immunity to natural poisons. This item grants a +5 Insight bonus to saving throws against magical poisons.</EffectDescription>
     <EffectDescription>Quality Disease Ward: Grants its wearer immunity to natural diseases. This item grants a +2 Quality bonus versus magical disease.</EffectDescription>
+        <EffectDescription>Enchantment Resistance +8: This item gives a +8 Resistance bonus to saves versus enchantments.</EffectDescription>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Resistance</Bonus>
+            <Amount>8</Amount>
+            <Save>Enchantment</Save>
+         </Effect>
+        <EffectDescription>Transmutation Focus +4: +4 Equipment bonus to the DC of Transmutation spells.</EffectDescription>
+        <Effect>
+            <Type>SpellDC</Type>
+            <Bonus>Equipment</Bonus>
+            <Amount>4</Amount>
+            <School>Transmutation</School>
+        </Effect>
         <EffectDescription>Enchantment Focus III: +3 Equipment bonus to the DC of Enchantment spells.</EffectDescription>
         <Effect>
             <Type>SpellDC</Type>
@@ -1907,6 +1951,12 @@
         </Effect>
         <EffectDescription>Stunning +22: +22 Enhancement bonus to the DC of your Stunning Blow/Fist abilities.</EffectDescription>
         <EffectDescription>Curse Resistance +16: This item gives a +16 Resistance bonus to saves versus curses.</EffectDescription>
+        <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Resistance</Bonus>
+            <Amount>8</Amount>
+            <Save>Curse</Save>
+        </Effect>
         <EffectDescription>Crypt Raider Set (Legendary):
 3 Pieces Equipped: +5 Artifact bonus to hit and damage versus Evil creatures.
                    +2 Artifact bonus to Saves versus Evil creatures
@@ -4771,7 +4821,7 @@ from the The Devil's Handiwork, you gain:
             <Amount>76</Amount>
             <Energy>Light</Energy>
         </Effect>
-    <EffectDescription>Necromancy Focus 8: +8 Equipment bonus to the DC of Necromancy spells.</EffectDescription>
+        <EffectDescription>Necromancy Focus 8: +8 Equipment bonus to the DC of Necromancy spells.</EffectDescription>
         <Effect>
             <Type>SpellDC</Type>
             <Bonus>Equipment</Bonus>
@@ -5555,12 +5605,29 @@ When 3 pieces are equipped: +1 Artifact Bonus to Critical Multiplier on a 19-20.
                 </Dice>
                 <Weapon>All</Weapon>
             </Effect>
-        <EffectDescription>Nullification +90: Passive: +90 Equipment bonus to Negative (Necrotic) Spell Power.</EffectDescription>
+        <EffectDescription>Nullification +90: Passive: +90 Equipment bonus to Negative/Poison (Necrotic) Spell Power.</EffectDescription>
         <Effect>
             <Type>SpellPower</Type>
             <Bonus>Equipment</Bonus>
             <Amount>90</Amount>
             <SpellPower>Negative</SpellPower>
+            <SpellPower>Poison</SpellPower>
+        </Effect>
+        <EffectDescription>Quality Nullification +28: Passive: +28 Quality bonus to Negative/Poison (Necrotic) Spell Power.</EffectDescription>
+        <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Quality</Bonus>
+            <Amount>28</Amount>
+            <SpellPower>Negative</SpellPower>
+            <SpellPower>Poison</SpellPower>
+        </Effect>
+        <EffectDescription>Insightful Nullification +57: Passive: +57 Insight bonus to Negative/Poison (Necrotic) Spell Power.</EffectDescription>
+        <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Insightful</Bonus>
+            <Amount>57</Amount>
+            <SpellPower>Negative</SpellPower>
+            <SpellPower>Poison</SpellPower>
         </Effect>
         <EffectDescription>Poison Burst: This weapon is dripping with poison, and deals 1 to 6 poison damage each hit. Critical hits deal an additional 1 to 10 poison damage for weapons with a x2 critical multiplier, 2 to 20 for a x3 multiplier and 3 to 30 for a x4 multiplier.</EffectDescription>
          <Effect>
@@ -5908,6 +5975,7 @@ When 3 pieces are equipped: +1 Artifact Bonus to Critical Multiplier on a 19-20.
               </Dice>
          </Effect>
         <EffectDescription>Crippling: When a target is critically hit their movement is slowed by half.</EffectDescription>
+        <EffectDescription>Crippling: While weraing this item, your ranged weapons are infused with binding power so that when targets are critically hit their movement is slowed by half.</EffectDescription>
         <EffectDescription>DR 5/Evil: Reduces all physical damage by 5/Evil</EffectDescription>
         <Effect>
             <DisplayName>DR 5/Evil</DisplayName>
@@ -7386,8 +7454,8 @@ When struck you will occasionally have the Stoneskin spell cast on you.</EffectD
             <School>All</School>
         </Effect>
         <EffectDescription>Legendary Dreadkeeper:
-3 Pieces Equipped: +50 Artifact bonus to Negative and Force Spell Power
-                   +10% Artifact bonus to Negative and Force Spell Critical Chance
+3 Pieces Equipped: +50 Artifact bonus to Negative/Poison and Force Spell Power
+                   +10% Artifact bonus to Negative/Poison and Force Spell Critical Chance
                    +4 Artifact bonus to Intelligence
                    +20 Artifact bonus PRR
                    You are attuned to Evil energies, and when struck in combat, will have
@@ -7399,6 +7467,7 @@ When struck you will occasionally have the Stoneskin spell cast on you.</EffectD
             <Bonus>Artifact</Bonus>
             <AmountVector size="3">0 0 50</AmountVector>
             <SpellPower>Negative</SpellPower>
+            <SpellPower>Poison</SpellPower>
             <SpellPower>Force/Untyped</SpellPower>
         </Effect>
         <Effect>
@@ -7407,6 +7476,7 @@ When struck you will occasionally have the Stoneskin spell cast on you.</EffectD
             <Bonus>Artifact</Bonus>
             <AmountVector size="3">0 0 10</AmountVector>
             <SpellPower>Negative</SpellPower>
+            <SpellPower>Poison</SpellPower>
             <SpellPower>Force/Untyped</SpellPower>
         </Effect>
         <Effect>
@@ -7474,4 +7544,44 @@ When struck you will occasionally have the Stoneskin spell cast on you.</EffectD
         </Effect>
         <EffectDescription>Heroic Inspiration: This item inspires you to acts of great heroism, granting a +5% bonus to experience points from all sources while it is equipped. This stacks with experience boosting elixirs but does not stack with experience boosting effects from other equipable items.</EffectDescription>
         <EffectDescription>Boon of Undeath: Undead take solace in the hate of others. Every time a character wearing a Boon on Undeath item is struck in combat, an Inflict Light Wounds spell will be cast on the character.</EffectDescription>
+        <EffectDescription>Protection from Evil +4: You have a +4 Deflection bonus to AC, and a +4 Resistance bonus to Saves ves Evil Monsters.</EffectDescription>
+        <Effect>
+            <Type>ACBonus</Type>
+            <Bonus>Deflection</Bonus>
+            <Amount>4</Amount>
+        </Effect>
+        <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Resistance</Bonus>
+            <Amount>4</Amount>
+            <Save>All</Save>
+            <Stance>Evil Monsters</Stance>
+        </Effect>
+        <EffectDescription>Markmanship: This item is enchanted to enhance your skill with ranged weapons. When using ranged weapons you gain +2 to your attack rolls and +1 to your damage.</EffectDescription>
+        <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Morale</Bonus>
+            <Amount>2</Amount>
+            <WeaponClass>Ranged</WeaponClass>
+        </Effect>
+        <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Morale</Bonus>
+            <Amount>2</Amount>
+            <WeaponClass>Ranged</WeaponClass>
+        </Effect>
+        <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Morale</Bonus>
+            <Amount>1</Amount>
+            <WeaponClass>Ranged</WeaponClass>
+        </Effect>
+        <Effect>
+            <Type>Seeker</Type>
+            <Bonus>Morale</Bonus>
+            <Amount>1</Amount>
+            <WeaponClass>Ranged</WeaponClass>
+        </Effect>
+        <EffectDescription>Shrieking Bolt: This item resonates with sonic energy. On ranged attacks, on an attack roll of 20 which is confirmed as a critical hit it will punish the target with a blast of sound (10 to 60 sonic damage). A successful Fortitude save (DC 22) reduces this damage by half.</EffectDescription>
+        <EffectDescription>Anger: this will increase the total number of Rages you can use. However, these additional Rages will only take effect after the wielder rests.</EffectDescription>
 </EffectDescriptions>

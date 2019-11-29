@@ -23,6 +23,7 @@ enum SpellPowerType
     SpellPower_Repair,
     SpellPower_Rust,
     SpellPower_Sonic,
+    SpellPower_Poison,
 };
 const XmlLib::enumMapEntry<SpellPowerType> spellPowerTypeMap[] =
 {
@@ -40,5 +41,6 @@ const XmlLib::enumMapEntry<SpellPowerType> spellPowerTypeMap[] =
     {SpellPower_Repair, L"Repair"},
     {SpellPower_Rust, L"Rust"},
     {SpellPower_Sonic, L"Sonic"},
+    {SpellPower_Poison, L"Poison"},
     {SpellPowerType(0), NULL}
 };

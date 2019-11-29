@@ -14680,15 +14680,19 @@ per stack of this Past Life.</Description>
       <Sphere>Divine</Sphere>
       <Icon>EpicPastLifeAncientBlessings</Icon>
       <Effect>
-         <Type>SpellPower</Type>
+         <Type>RepairAmplification</Type>
          <Bonus>Feat</Bonus>
-         <SpellPower>Negative</SpellPower>
-         <SpellPower>Positive</SpellPower>
          <Amount>5</Amount>
          <Stance>Ancient Blessings</Stance>
       </Effect>
       <Effect>
-         <Type>RepairAmplification</Type>
+         <Type>HealingAmplification</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>5</Amount>
+         <Stance>Ancient Blessings</Stance>
+      </Effect>
+      <Effect>
+         <Type>NegativeHealingAmplification</Type>
          <Bonus>Feat</Bonus>
          <Amount>5</Amount>
          <Stance>Ancient Blessings</Stance>
@@ -14707,7 +14711,7 @@ Passive Bonus: +3 PRR per stack of this Past Life.</Description>
       <Stance>
          <Name>Power Over Life and Death</Name>
          <Icon>EpicPastLifePowerOverLifeAndDeath</Icon>
-         <Description>Divine Past Life Stance: +10 Positive and +10 Negative Energy Spell Power
+         <Description>Divine Past Life Stance: +10 Positive and +10 Negative/Poison Energy Spell Power
 per stack of this Past Life.</Description>
          <IncompatibleStance>Ancient Blessings</IncompatibleStance>
          <IncompatibleStance>Brace</IncompatibleStance>
@@ -14722,6 +14726,7 @@ per stack of this Past Life.</Description>
          <Type>SpellPower</Type>
          <Bonus>Feat</Bonus>
          <SpellPower>Negative</SpellPower>
+         <SpellPower>Poison</SpellPower>
          <Amount>10</Amount>
          <Stance>Power Over Life and Death</Stance>
       </Effect>
@@ -15370,13 +15375,13 @@ and +6 to Spell Penetration for 300 seconds. Duration 30 seconds, 3 minute coold
          <Bonus>Feat</Bonus>
          <School>All</School>
          <Amount>6</Amount>
-         <Stance>ArcaneInsight</Stance>
+         <Stance>Arcane Insight</Stance>
       </Effect>
       <Effect>
          <Type>SpellPenetrationBonus</Type>
          <Bonus>Feat</Bonus>
          <Amount>6</Amount>
-         <Stance>ArcaneInsight</Stance>
+         <Stance>Arcane Insight</Stance>
       </Effect>
       <Effect>
          <Type>SpellPoints</Type>
@@ -17696,7 +17701,7 @@ Number of Destinies: 1</Description>
    </Feat>
    <Feat>
       <Name>Epic Spell Power: Negative</Name>
-      <Description>+20 Negative Spell Power.
+      <Description>+20 Negative/Poison Spell Power.
 Sphere: Divine
 Number of Destinies: 1</Description>
       <FeatGroup>
@@ -17713,6 +17718,7 @@ Number of Destinies: 1</Description>
          <Type>SpellPower</Type>
          <Bonus>Feat</Bonus>
          <SpellPower>Negative</SpellPower>
+         <SpellPower>Poison</SpellPower>
          <Amount>20</Amount>
       </Effect>
    </Feat>
@@ -19369,7 +19375,7 @@ Add 2d20 Cold damage to weapon and unarmed attacks (Scales with Spell Power).</D
       <Name>Scion of the Shadowfell</Name>
       <Description>+4 to the DCs of Necromancy spells,
 +2 to DCs of other spells,
-+40 Negative Spell Power,
++40 Negative/Poison Spell Power,
 +20 Negative Amp (assuming you take healing from Negative),
 Weapons and Unarmed attacks gain Superior Vampirism.</Description>
       <FeatGroup>
@@ -19398,6 +19404,7 @@ Weapons and Unarmed attacks gain Superior Vampirism.</Description>
          <Type>SpellPower</Type>
          <Bonus>Feat</Bonus>
          <SpellPower>Negative</SpellPower>
+         <SpellPower>Poison</SpellPower>
          <Amount>40</Amount>
       </Effect>
       <Effect>
@@ -25409,5 +25416,31 @@ or you have previously unlocked this tree for this character.</Description>
          <Skill>Intimidate</Skill>
          <Amount>2</Amount>
       </Effect>
+   </Feat>
+   <Feat>
+      <Name>Multitude of Missiles</Name>
+      <Description>THIS FEAT IS NOT CURRENTLY AVAILABLE ON LIVE SERVERS
+For the next 20 seconds, while wielding a Simple Thrown Weapon add 120 to your
+Doubleshot and 4x your Base Attack Bonus to Ranged Power.</Description>
+      <FeatGroup>
+         <IsStandardFeat/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <Feat>Point Blank Shot</Feat>
+         </Requirement>
+         <Requirement>
+            <BAB>6</BAB>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>MultitudeOfMissiles</Icon>
+   </Feat>
+   <Feat>
+      <Name>Inspire Courage</Name>
+      <Description>You have the ability to sing songs due to Fatesinger being your active destiny.</Description>
+      <Requirements/>
+      <Acquire>Automatic</Acquire>
+      <Icon>InspireCourage</Icon>
    </Feat>
 </Feats>

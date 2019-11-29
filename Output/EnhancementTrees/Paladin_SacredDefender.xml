@@ -788,6 +788,7 @@ you gain a +[2/4/6] Sacred bonus to Constitution. </Description>
                   <Ability>Constitution</Ability>
                   <AmountVector size="3">2 4 6</AmountVector>
                   <Stance>Sacred Defense</Stance>
+                  <AnyOfStance>Shield</AnyOfStance>
                   <AnyOfStance>Medium Armor</AnyOfStance>
                   <AnyOfStance>Heavy Armor</AnyOfStance>
                </Effect>
@@ -804,6 +805,7 @@ you gain a +[2/4/6] Sacred bonus to Strength. </Description>
                   <Ability>Strength</Ability>
                   <AmountVector size="3">2 4 6</AmountVector>
                   <Stance>Sacred Defense</Stance>
+                  <AnyOfStance>Shield</AnyOfStance>
                   <AnyOfStance>Medium Armor</AnyOfStance>
                   <AnyOfStance>Heavy Armor</AnyOfStance>
                </Effect>
@@ -821,7 +823,6 @@ you gain a +10%/+15%/+20% Competence bonus to maximum hit points.</Description>
                   <Percent/>
                   <ApplyAsItemEffect/>
                   <Stance>Sacred Defense</Stance>
-                  <AnyOfStance>Sword and Board</AnyOfStance>
                   <AnyOfStance>Shield</AnyOfStance>
                   <AnyOfStance>Medium Armor</AnyOfStance>
                   <AnyOfStance>Heavy Armor</AnyOfStance>
@@ -990,26 +991,24 @@ Choose one of the options you did not pick at tier 3.</Description>
             </Requirement>
          </Requirements>
          <Selector>
+            <SelectorExclusions>
+               <SelectorExclusion>
+                  <InternalName>SacredGreaterSacredDefenseI</InternalName>
+               </SelectorExclusion>
+            </SelectorExclusions>
             <EnhancementSelection>
                <Name>Hardy Defense</Name>
                <Description>Sacred Defence: While wearing medium or heavy armor or wielding a shield
 you gain a +[2/4/6] Sacred bonus to Constitution. </Description>
                <Icon>SDHardyDefense</Icon>
                <Cost>1</Cost>
-               <Requirements>
-                  <RequiresNoneOf>
-                     <Requirement>
-                        <Enhancement>SacredGreaterSacredDefenseI</Enhancement>
-                        <Selection>Hardy Defense</Selection>
-                     </Requirement>
-                  </RequiresNoneOf>
-               </Requirements>
                <Effect>
                   <Type>AbilityBonus</Type>
                   <Bonus>Enhancement</Bonus>
                   <Ability>Constitution</Ability>
                   <AmountVector size="3">2 4 6</AmountVector>
                   <Stance>Sacred Defense</Stance>
+                  <AnyOfStance>Shield</AnyOfStance>
                   <AnyOfStance>Medium Armor</AnyOfStance>
                   <AnyOfStance>Heavy Armor</AnyOfStance>
                </Effect>
@@ -1020,20 +1019,13 @@ you gain a +[2/4/6] Sacred bonus to Constitution. </Description>
 you gain a +[2/4/6] Sacred bonus to Strength. </Description>
                <Icon>SDStrongDefense</Icon>
                <Cost>1</Cost>
-               <Requirements>
-                  <RequiresNoneOf>
-                     <Requirement>
-                        <Enhancement>SacredGreaterSacredDefenseI</Enhancement>
-                        <Selection>Strong Defense</Selection>
-                     </Requirement>
-                  </RequiresNoneOf>
-               </Requirements>
                <Effect>
                   <Type>AbilityBonus</Type>
                   <Bonus>Enhancement</Bonus>
                   <Ability>Strength</Ability>
                   <AmountVector size="3">2 4 6</AmountVector>
                   <Stance>Sacred Defense</Stance>
+                  <AnyOfStance>Shield</AnyOfStance>
                   <AnyOfStance>Medium Armor</AnyOfStance>
                   <AnyOfStance>Heavy Armor</AnyOfStance>
                </Effect>
@@ -1044,14 +1036,6 @@ you gain a +[2/4/6] Sacred bonus to Strength. </Description>
 you gain a +10%/+15%/+20% Competence bonus to maximum hit points.</Description>
                <Icon>SDTenaciousDefense</Icon>
                <Cost>1</Cost>
-               <Requirements>
-                  <RequiresNoneOf>
-                     <Requirement>
-                        <Enhancement>SacredGreaterSacredDefenseI</Enhancement>
-                        <Selection>Tenacious Defense</Selection>
-                     </Requirement>
-                  </RequiresNoneOf>
-               </Requirements>
                <Effect>
                   <Type>Hitpoints</Type>
                   <Bonus>Competence</Bonus>
@@ -1059,7 +1043,6 @@ you gain a +10%/+15%/+20% Competence bonus to maximum hit points.</Description>
                   <Percent/>
                   <ApplyAsItemEffect/>
                   <Stance>Sacred Defense</Stance>
-                  <AnyOfStance>Sword and Board</AnyOfStance>
                   <AnyOfStance>Shield</AnyOfStance>
                   <AnyOfStance>Medium Armor</AnyOfStance>
                   <AnyOfStance>Heavy Armor</AnyOfStance>
@@ -1266,30 +1249,27 @@ Pick the third option left.</Description>
             </Requirement>
          </Requirements>
          <Selector>
+            <SelectorExclusions>
+               <SelectorExclusion>
+                  <InternalName>SacredGreaterSacredDefenseI</InternalName>
+               </SelectorExclusion>
+               <SelectorExclusion>
+                  <InternalName>SacredGreaterSacredDefenseII</InternalName>
+               </SelectorExclusion>
+            </SelectorExclusions>
             <EnhancementSelection>
                <Name>Hardy Defense</Name>
                <Description>Sacred Defence: While wearing medium or heavy armor or wielding a shield
 you gain a +[2/4/6] Sacred bonus to Constitution. </Description>
                <Icon>SDHardyDefense</Icon>
                <Cost>1</Cost>
-               <Requirements>
-                  <RequiresNoneOf>
-                     <Requirement>
-                        <Enhancement>SacredGreaterSacredDefenseI</Enhancement>
-                        <Selection>Hardy Defense</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>SacredGreaterSacredDefenseII</Enhancement>
-                        <Selection>Hardy Defense</Selection>
-                     </Requirement>
-                  </RequiresNoneOf>
-               </Requirements>
                <Effect>
                   <Type>AbilityBonus</Type>
                   <Bonus>Enhancement</Bonus>
                   <Ability>Constitution</Ability>
                   <AmountVector size="3">2 4 6</AmountVector>
                   <Stance>Sacred Defense</Stance>
+                  <AnyOfStance>Shield</AnyOfStance>
                   <AnyOfStance>Medium Armor</AnyOfStance>
                   <AnyOfStance>Heavy Armor</AnyOfStance>
                </Effect>
@@ -1300,24 +1280,13 @@ you gain a +[2/4/6] Sacred bonus to Constitution. </Description>
 you gain a +[2/4/6] Sacred bonus to Strength. </Description>
                <Icon>SDStrongDefense</Icon>
                <Cost>1</Cost>
-               <Requirements>
-                  <RequiresNoneOf>
-                     <Requirement>
-                        <Enhancement>SacredGreaterSacredDefenseI</Enhancement>
-                        <Selection>Strong Defense</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>SacredGreaterSacredDefenseII</Enhancement>
-                        <Selection>Strong Defense</Selection>
-                     </Requirement>
-                  </RequiresNoneOf>
-               </Requirements>
                <Effect>
                   <Type>AbilityBonus</Type>
                   <Bonus>Enhancement</Bonus>
                   <Ability>Strength</Ability>
                   <AmountVector size="3">2 4 6</AmountVector>
                   <Stance>Sacred Defense</Stance>
+                  <AnyOfStance>Shield</AnyOfStance>
                   <AnyOfStance>Medium Armor</AnyOfStance>
                   <AnyOfStance>Heavy Armor</AnyOfStance>
                </Effect>
@@ -1328,18 +1297,6 @@ you gain a +[2/4/6] Sacred bonus to Strength. </Description>
 you gain a +10%/+15%/+20% Competence bonus to maximum hit points.</Description>
                <Icon>SDTenaciousDefense</Icon>
                <Cost>1</Cost>
-               <Requirements>
-                  <RequiresNoneOf>
-                     <Requirement>
-                        <Enhancement>SacredGreaterSacredDefenseI</Enhancement>
-                        <Selection>Tenacious Defense</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>SacredGreaterSacredDefenseII</Enhancement>
-                        <Selection>Tenacious Defense</Selection>
-                     </Requirement>
-                  </RequiresNoneOf>
-               </Requirements>
                <Effect>
                   <Type>Hitpoints</Type>
                   <Bonus>Competence</Bonus>
@@ -1347,7 +1304,6 @@ you gain a +10%/+15%/+20% Competence bonus to maximum hit points.</Description>
                   <Percent/>
                   <ApplyAsItemEffect/>
                   <Stance>Sacred Defense</Stance>
-                  <AnyOfStance>Sword and Board</AnyOfStance>
                   <AnyOfStance>Shield</AnyOfStance>
                   <AnyOfStance>Medium Armor</AnyOfStance>
                   <AnyOfStance>Heavy Armor</AnyOfStance>

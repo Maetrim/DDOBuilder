@@ -991,16 +991,20 @@ void CForumExportDlg::AddEnergyResistances(std::stringstream & forumExport)
     forumExport << "Energy       Resistance and Absorbance\r\n";
     forumExport << "------------------------------------------------------------------------------------------\r\n";
     AddEnergyResistances(forumExport, "Acid:", Breakdown_EnergyResistanceAcid, Breakdown_EnergyAbsorptionAcid);
+    AddEnergyResistances(forumExport, "Chaos:", Breakdown_EnergyResistanceChaos, Breakdown_EnergyAbsorptionChaos);
     AddEnergyResistances(forumExport, "Cold:", Breakdown_EnergyResistanceCold, Breakdown_EnergyAbsorptionCold);
     AddEnergyResistances(forumExport, "Electric:", Breakdown_EnergyResistanceElectric, Breakdown_EnergyAbsorptionElectric);
+    AddEnergyResistances(forumExport, "Evil:", Breakdown_EnergyResistanceEvil, Breakdown_EnergyAbsorptionEvil);
     AddEnergyResistances(forumExport, "Fire:", Breakdown_EnergyResistanceFire, Breakdown_EnergyAbsorptionFire);
     AddEnergyResistances(forumExport, "Force:", Breakdown_EnergyResistanceForce, Breakdown_EnergyAbsorptionForce);
+    AddEnergyResistances(forumExport, "Good:", Breakdown_EnergyResistanceGood, Breakdown_EnergyAbsorptionGood);
+    AddEnergyResistances(forumExport, "Lawful:", Breakdown_EnergyResistanceLawful, Breakdown_EnergyAbsorptionLawful);
     AddEnergyResistances(forumExport, "Light:", Breakdown_EnergyResistanceLight, Breakdown_EnergyAbsorptionLight);
     AddEnergyResistances(forumExport, "Negative:", Breakdown_EnergyResistanceNegative, Breakdown_EnergyAbsorptionNegative);
     AddEnergyResistances(forumExport, "Poison:", Breakdown_EnergyResistancePoison, Breakdown_EnergyAbsorptionPoison);
-    AddEnergyResistances(forumExport, "Positive:", Breakdown_EnergyResistancePositive, Breakdown_EnergyAbsorptionPositive);
-    AddEnergyResistances(forumExport, "Repair:", Breakdown_EnergyResistanceRepair, Breakdown_EnergyAbsorptionRepair);
-    AddEnergyResistances(forumExport, "Rust:", Breakdown_EnergyResistanceRust, Breakdown_EnergyAbsorptionRust);
+    //AddEnergyResistances(forumExport, "Positive:", Breakdown_EnergyResistancePositive, Breakdown_EnergyAbsorptionPositive);
+    //AddEnergyResistances(forumExport, "Repair:", Breakdown_EnergyResistanceRepair, Breakdown_EnergyAbsorptionRepair);
+    //AddEnergyResistances(forumExport, "Rust:", Breakdown_EnergyResistanceRust, Breakdown_EnergyAbsorptionRust);
     AddEnergyResistances(forumExport, "Sonic:", Breakdown_EnergyResistanceSonic, Breakdown_EnergyAbsorptionSonic);
     forumExport << "\r\n";
 }
@@ -1376,10 +1380,12 @@ void CForumExportDlg::AddSpellPowers(std::stringstream & forumExport)
     AddSpellPower(forumExport, "Force/Untyped  ", Breakdown_SpellPowerForceUntyped, Breakdown_SpellCriticalChanceForceUntyped, Breakdown_SpellCriticalMultiplierForceUntyped);
     AddSpellPower(forumExport, "Negative       ", Breakdown_SpellPowerNegative, Breakdown_SpellCriticalChanceNegative, Breakdown_SpellCriticalMultiplierNegative);
     AddSpellPower(forumExport, "Physical       ", Breakdown_SpellPowerPhysical, Breakdown_SpellCriticalChancePhysical, Breakdown_SpellCriticalMultiplierPhysical);
+    AddSpellPower(forumExport, "Poison         ", Breakdown_SpellPowerPoison, Breakdown_SpellCriticalChancePoison, Breakdown_SpellCriticalMultiplierPoison);
     AddSpellPower(forumExport, "Positive       ", Breakdown_SpellPowerPositive, Breakdown_SpellCriticalChancePositive, Breakdown_SpellCriticalMultiplierPositive);
     AddSpellPower(forumExport, "Repair         ", Breakdown_SpellPowerRepair, Breakdown_SpellCriticalChanceRepair, Breakdown_SpellCriticalMultiplierRepair);
     AddSpellPower(forumExport, "Rust           ", Breakdown_SpellPowerRust, Breakdown_SpellCriticalChanceRust, Breakdown_SpellCriticalMultiplierRust);
     AddSpellPower(forumExport, "Sonic          ", Breakdown_SpellPowerSonic, Breakdown_SpellCriticalChanceSonic, Breakdown_SpellCriticalMultiplierSonic);
+    AddSpellPower(forumExport, "Universal      ", Breakdown_SpellPowerUniversal, Breakdown_SpellCriticalChanceUniversal, Breakdown_SpellCriticalMultiplierUniversal);
     forumExport << "------------------------------------------------------------------------------------------\r\n";
     forumExport << "\r\n";
 }
