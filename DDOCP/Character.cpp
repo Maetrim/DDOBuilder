@@ -2437,6 +2437,13 @@ size_t Character::BaseAttackBonus(
            bab += (size_t)(classBab * classLevels[ci]); // fractions dropped
         }
     }
+    // epic levels award 1 BAB for each odd epic level
+    int epicLevels = (int)classLevels[Class_Epic];
+    while (epicLevels > 0) // level is 0 based
+    {
+        bab += 1;
+        epicLevels -= 2;
+    }
     return bab;
 }
 

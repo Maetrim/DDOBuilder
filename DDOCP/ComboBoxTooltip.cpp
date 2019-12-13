@@ -12,7 +12,8 @@ IMPLEMENT_DYNAMIC(CComboBoxTooltip, CComboBox)
 
 CComboBoxTooltip::CComboBoxTooltip() :
     m_bHasImageList(false),
-    m_selection(CB_ERR)
+    m_selection(CB_ERR),
+    m_bSubclassedListbox(false)
 {
 }
 
@@ -21,6 +22,7 @@ CComboBoxTooltip::~CComboBoxTooltip()
 }
 
 BEGIN_MESSAGE_MAP(CComboBoxTooltip, CComboBox)
+    ON_WM_SETFOCUS()
 END_MESSAGE_MAP()
 
 void CComboBoxTooltip::SetImageList(CImageList * il)
@@ -43,6 +45,16 @@ void CComboBoxTooltip::SetImageList(CImageList * il)
 void CComboBoxTooltip::DrawItem(LPDRAWITEMSTRUCT lpDis)
 {
     bool isDropped = (GetDroppedState() != 0);
+    if (!m_bSubclassedListbox)
+    {
+        COMBOBOXINFO cbInfo;
+        memset(&cbInfo, 0, sizeof(COMBOBOXINFO));
+        cbInfo.cbSize = sizeof(COMBOBOXINFO);
+        GetComboBoxInfo(&cbInfo);
+        m_delayedListBox.SetOwner(this);
+        m_delayedListBox.SubclassWindow(cbInfo.hwndList);
+        m_bSubclassedListbox = true;
+    }
     if (lpDis->itemID != CB_ERR)
     {
         CDC *pDC = CDC::FromHandle(lpDis->hDC);
@@ -138,5 +150,12 @@ int CComboBoxTooltip::CompareItem(LPCOMPAREITEMSTRUCT lpCis)
 
 void CComboBoxTooltip::DeleteItem(LPDELETEITEMSTRUCT lpDis)
 {
-    ASSERT(lpDis->CtlType == ODT_COMBOBOX);
 }
+
+void CComboBoxTooltip::OnSetFocus(CWnd * pWnd)
+{
+    m_delayedListBox.ResetTimer();
+    CComboBox::OnSetFocus(pWnd);
+}
+
+

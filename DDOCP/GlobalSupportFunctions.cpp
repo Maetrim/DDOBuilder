@@ -2488,12 +2488,14 @@ double BAB(ClassType ct)
         bab = 0.75;
         break;
 
-    case Class_Epic:
-        // epic levels are 0.5 BAB also
     case Class_Sorcerer:
     case Class_Wizard:
         // 0.5 BAB class
         bab = 0.5;
+        break;
+    case Class_Epic:
+        // epic levels award 1 BAB for each odd epic level
+        bab = 0.0;  // handled as a special case
         break;
     }
     return bab;

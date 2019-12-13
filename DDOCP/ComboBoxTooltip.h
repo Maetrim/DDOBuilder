@@ -1,5 +1,7 @@
 #pragma once
 
+#include "DelayedListBox.h"
+
 // CComboBoxTooltip
 class CComboBoxTooltip : public CComboBox
 {
@@ -17,10 +19,13 @@ public:
     virtual int CompareItem(LPCOMPAREITEMSTRUCT lpCis) override;
     virtual void DeleteItem(LPDELETEITEMSTRUCT lpDis) override;
 protected:
+    afx_msg void OnSetFocus(CWnd * pWnd);
     DECLARE_MESSAGE_MAP()
 
     bool m_bHasImageList;
     CImageList m_imageList;
     int m_selection;
+    bool m_bSubclassedListbox;
+    CDelayedListBox m_delayedListBox;
 };
 
