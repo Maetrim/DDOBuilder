@@ -59,6 +59,7 @@ class BreakdownItem :
         void Populate();            // updates the HTREEITEM
         void PopulateBreakdownControl(CListCtrl * pControl);
         virtual double Total() const;
+        virtual double CappedTotal() const;
 
         void AddAbility(AbilityType ability);
         void RemoveFirstAbility(AbilityType ability);

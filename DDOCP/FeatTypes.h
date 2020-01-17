@@ -48,6 +48,7 @@ enum TrainableFeatTypes
     TFT_Special,                // BACKWARDS COMPATABILITY, GETS TRANSLATED ON LOAD
 
     TFT_AasimarBond,
+    TFT_AlchemistBonus,
     TFT_ArtificerBonus,
     TFT_BelovedOf,
     TFT_ChildOf,
@@ -95,6 +96,7 @@ const XmlLib::enumMapEntry<TrainableFeatTypes> trainableFeatTypesMap[] =
     {TFT_Special, L"Special"},
 
     {TFT_AasimarBond, L"AasimarBond"},
+    {TFT_AlchemistBonus, L"AlchemistBonus"},
     {TFT_ArtificerBonus, L"ArtificerBonus"},
     {TFT_BelovedOf, L"BelovedOf"},
     {TFT_ChildOf, L"ChildOf"},

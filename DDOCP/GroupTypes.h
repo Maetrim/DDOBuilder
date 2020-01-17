@@ -12,6 +12,7 @@
 enum GroupType
 {
     Group_Unknown = 0,
+    Group_AlchemistBonus,
     Group_ArtificerBonus,
     Group_Divine,
     Group_DruidShape,
@@ -28,6 +29,7 @@ enum GroupType
 const XmlLib::enumMapEntry<GroupType> groupTypeMap[] =
 {
     {Group_Unknown, L"Unknown"},
+    {Group_AlchemistBonus, L"AlchemistBonus"},
     {Group_ArtificerBonus, L"ArtificerBonus"},
     {Group_Divine, L"Divine"},
     {Group_DruidShape, L"DruidShape"},

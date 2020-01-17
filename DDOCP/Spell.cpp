@@ -79,6 +79,9 @@ size_t Spell::SpellLevel(ClassType ct) const
     size_t level = 0;
     switch (ct)
     {
+    case Class_Alchemist:
+        level = Alchemist();
+        break;
     case Class_Artificer:
         level = Artificer();
         break;

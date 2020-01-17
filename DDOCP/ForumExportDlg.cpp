@@ -323,7 +323,14 @@ void CForumExportDlg::AddCharacterHeader(std::stringstream & forumExport)
 
     AddAbilityValues(forumExport, Ability_Intelligence);
     AddBreakdown(forumExport, "      Dodge: ", 4, Breakdown_Dodge);
-    AddBreakdown(forumExport, "/", 1, Breakdown_DodgeCap);
+    if (m_pCharacter->IsStanceActive("Tower Shield"))
+    {
+        AddBreakdown(forumExport, "/", 1, Breakdown_DodgeCapTowerShield);
+    }
+    else
+    {
+        AddBreakdown(forumExport, "/", 1, Breakdown_DodgeCap);
+    }
     AddBreakdown(forumExport, "      -Healing Amp: ", 5, Breakdown_NegativeHealingAmplification);
     forumExport << "\r\n";
 
@@ -512,7 +519,7 @@ void CForumExportDlg::AddBreakdown(
         BreakdownType bt)
 {
     BreakdownItem * pBI = FindBreakdown(bt);
-    size_t value = (size_t)pBI->Total();      // whole numbers only
+    size_t value = (size_t)pBI->CappedTotal();      // whole numbers only
     if (bt == Breakdown_MRR)
     {
         BreakdownItem * pBIMRRCap = FindBreakdown(Breakdown_MRRCap);

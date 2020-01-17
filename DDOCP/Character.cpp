@@ -2143,6 +2143,14 @@ std::vector<TrainableFeatTypes> Character::TrainableFeatTypeAtLevel(
     ClassType type = (*it).HasClass() ? (*it).Class() : Class_Unknown;
     switch (type)
     {
+    case Class_Alchemist:
+        // Alchemists get bonus feats at levels 4, 8, 12, 16 and 20
+        if (classLevels[Class_Alchemist] % 4 == 0)
+        {
+            trainable.push_back(TFT_AlchemistBonus);
+        }
+        break;
+
     case Class_Artificer:
         // artificers get bonus feats at levels 4, 8, 12, 16 and 20
         if (classLevels[Class_Artificer] % 4 == 0)
@@ -4941,6 +4949,7 @@ void Character::UpdateWeaponStances()
     Stance orb("Orb", "", "");
     Stance ra("Rune Arm", "", "");
     Stance swashbuckling("Swashbuckling", "", "");
+    Stance thrown("Thrown Weapon", "", "");
     if (gear.HasItemInSlot(Inventory_Weapon1)
             && gear.HasItemInSlot(Inventory_Weapon2))
     {
@@ -5038,6 +5047,14 @@ void Character::UpdateWeaponStances()
         {
             DeactivateStance(axe);
         }
+        if (IsThrownWeapon(item1.Weapon()))
+        {
+            ActivateStance(thrown);
+        }
+        else
+        {
+            DeactivateStance(thrown);
+        }
     }
     else if (gear.HasItemInSlot(Inventory_Weapon1))
     {
@@ -5094,6 +5111,14 @@ void Character::UpdateWeaponStances()
         {
             DeactivateStance(unarmed);
         }
+        if (IsThrownWeapon(item1.Weapon()))
+        {
+            ActivateStance(thrown);
+        }
+        else
+        {
+            DeactivateStance(thrown);
+        }
     }
     else if (gear.HasItemInSlot(Inventory_Weapon2))
     {
@@ -5121,6 +5146,7 @@ void Character::UpdateWeaponStances()
         {
             DeactivateStance(ra);
         }
+        DeactivateStance(thrown);
     }
     else
     {
@@ -5134,6 +5160,7 @@ void Character::UpdateWeaponStances()
         DeactivateStance(orb);
         DeactivateStance(ra);
         DeactivateStance(swashbuckling);
+        DeactivateStance(thrown);
     }
     if (IsStanceActive("Wolf")
             || IsStanceActive("Bear")

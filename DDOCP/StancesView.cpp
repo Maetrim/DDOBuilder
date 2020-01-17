@@ -262,6 +262,9 @@ void CStancesView::CreateStanceWindows()
     Stance Swashbuckling("Swashbuckling", "SBEvasiveManeuvers", "You are Swashbuckling");
     Swashbuckling.Set_AutoControlled();
     AddStance(Swashbuckling);
+    Stance thrown("Thrown Weapon", "AMEvocationIMagicMissile", "You are wielding a thrown weapon");
+    thrown.Set_AutoControlled();
+    AddStance(thrown);
 }
 
 void CStancesView::AddStance(const Stance & stance)

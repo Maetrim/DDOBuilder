@@ -22,7 +22,7 @@ CComboBoxTooltip::~CComboBoxTooltip()
 }
 
 BEGIN_MESSAGE_MAP(CComboBoxTooltip, CComboBox)
-    ON_WM_SETFOCUS()
+    //ON_WM_SETFOCUS()
 END_MESSAGE_MAP()
 
 void CComboBoxTooltip::SetImageList(CImageList * il)

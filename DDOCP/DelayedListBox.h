@@ -20,10 +20,13 @@ protected:
     virtual void MeasureItem(LPMEASUREITEMSTRUCT);
     virtual int CompareItem(LPCOMPAREITEMSTRUCT);
     virtual void DeleteItem(LPDELETEITEMSTRUCT);
+    afx_msg void OnShowWindow(BOOL bShow, UINT nStatus);
     afx_msg void OnLButtonUp(UINT uFlags, CPoint point);
     DECLARE_MESSAGE_MAP()
     ElapsedTimer m_elapsedTime;
     CComboBoxTooltip * m_pOwner;
+
+    bool m_bDoReset;
 };
 
 

@@ -10,6 +10,7 @@
 enum ClassType
 {
     Class_Unknown = 0,
+    Class_Alchemist,
     Class_Artificer,
     Class_Barbarian,
     Class_Bard,
@@ -32,6 +33,7 @@ enum ClassType
 const XmlLib::enumMapEntry<ClassType> classTypeMap[] =
 {
     {Class_Unknown, L"Unknown"},
+    {Class_Alchemist, L"Alchemist"},
     {Class_Artificer, L"Artificer"},
     {Class_Barbarian, L"Barbarian"},
     {Class_Bard, L"Bard"},

@@ -729,6 +729,14 @@ void CSkillSpendDialog::OnButtonAutoSpendSkillPoints()
             // we have levels trained in this class
             switch (ct)
             {
+                case Class_Alchemist:
+                    skills[Skill_Balance].AddWeighting(100);
+                    skills[Skill_Concentration].AddWeighting(100);
+                    skills[Skill_Heal].AddWeighting(100);
+                    skills[Skill_SpellCraft].AddWeighting(100);
+                    skills[Skill_Spot].AddWeighting(100);
+                    skills[Skill_UMD].AddWeighting(100);
+                    break;
                 case Class_Artificer:
                     skills[Skill_DisableDevice].AddWeighting(100);
                     skills[Skill_Search].AddWeighting(100);

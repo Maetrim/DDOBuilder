@@ -14,6 +14,7 @@ class BreakdownItemDodge :
                 HTREEITEM hItem);
         virtual ~BreakdownItemDodge();
 
+        virtual double CappedTotal() const override;
         // required overrides
         virtual CString Title() const override;
         virtual CString Value() const override;

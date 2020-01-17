@@ -179,7 +179,7 @@ void CSpellsView::DetermineSpellViews()
         m_spellsSheet.AddPage(page);
     }
 
-    // now determine the the pages to add to the view
+    // now determine the class pages to add to the view
     std::vector<size_t> classLevels;
     if (m_pCharacter != NULL)
     {
@@ -207,6 +207,9 @@ void CSpellsView::DetermineSpellViews()
                 CSpellsPage * page = NULL;
                 switch (ci)
                 {
+                case Class_Alchemist:
+                    page = new CSpellsPage(Class_Alchemist, Ability_Intelligence, IDS_ALCHEMIST_SPELLS);
+                    break;
                 case Class_Artificer:
                     page = new CSpellsPage(Class_Artificer, Ability_Intelligence, IDS_ARTIFICER_SPELLS);
                     break;

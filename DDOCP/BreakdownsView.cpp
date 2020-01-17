@@ -746,17 +746,31 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
         m_items.push_back(pDodge);
         {
             HTREEITEM hItemCap = m_itemBreakdownTree.InsertItem(
-                    "Dodge Cap",
+                    "Dodge Cap (Armor)",
                     hItem,
                     TVI_LAST);
             BreakdownItem * pDC = new BreakdownItemSimple(
                     Breakdown_DodgeCap,
                     Effect_DodgeCapBonus,
-                    "Dodge Cap",
+                    "Dodge Cap (Armor)",
                     &m_itemBreakdownTree,
                     hItemCap);
             m_itemBreakdownTree.SetItemData(hItemCap, (DWORD)(void*)pDC);
             m_items.push_back(pDC);
+        }
+        {
+            HTREEITEM hItemCap2 = m_itemBreakdownTree.InsertItem(
+                    "Dodge Cap (Tower Shield)",
+                    hItem,
+                    TVI_LAST);
+            BreakdownItem * pDC2 = new BreakdownItemSimple(
+                    Breakdown_DodgeCapTowerShield,
+                    Effect_MaxDexBonusTowerShield,
+                    "Dodge Cap (Tower Shield)",
+                    &m_itemBreakdownTree,
+                    hItemCap2);
+            m_itemBreakdownTree.SetItemData(hItemCap2, (DWORD)(void*)pDC2);
+            m_items.push_back(pDC2);
         }
     }
 
@@ -860,6 +874,7 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
     // Fortification Bypass
     // Missile Deflection Bypass
     // Glancing Blows
+    // Strikethrough
     // Helpless Damage
     HTREEITEM hOffensiveParent = m_itemBreakdownTree.InsertItem(
             "Offensive Breakdowns", 
@@ -1148,6 +1163,20 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
                 hGBEC);
         m_itemBreakdownTree.SetItemData(hGBEC, (DWORD)(void*)pGBEC);
         m_items.push_back(pGBEC);
+    }
+    {
+        HTREEITEM hStrike = m_itemBreakdownTree.InsertItem(
+                "Strikethrough",
+                hOffensiveParent,
+                TVI_LAST);
+        BreakdownItem * pStrike = new BreakdownItemSimple(
+                Breakdown_Strikethrough,
+                Effect_Strikethrough,
+                "Strikethrough",
+                &m_itemBreakdownTree,
+                hStrike);
+        m_itemBreakdownTree.SetItemData(hStrike, (DWORD)(void*)pStrike);
+        m_items.push_back(pStrike);
     }
     {
         HTREEITEM hHelpless = m_itemBreakdownTree.InsertItem(
@@ -1464,6 +1493,19 @@ void CBreakdownsView::AddClassCasterLevels(HTREEITEM hParent)
 {
     {
         HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Alchemist Caster Level",
+                hParent,
+                TVI_LAST);
+        BreakdownItem * pAlchem = new BreakdownItemClassCasterLevel(
+                Class_Alchemist,
+                Breakdown_CasterLevel_Alchemist,
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pAlchem);
+        m_items.push_back(pAlchem);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
                 "Artificer Caster Level",
                 hParent,
                 TVI_LAST);
@@ -1701,6 +1743,45 @@ void CBreakdownsView::AddEnergyCasterLevels(HTREEITEM hParent)
                 hItem);
         m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pSonic);
         m_items.push_back(pSonic);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Ceruleite Spell Caster Level",
+                hParent,
+                TVI_LAST);
+        BreakdownItem * pCeruleite = new BreakdownItemEnergyCasterLevel(
+                Energy_Ceruleite,
+                Breakdown_CasterLevel_Ceruleite,
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pCeruleite);
+        m_items.push_back(pCeruleite);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Crimsonite Spell Caster Level",
+                hParent,
+                TVI_LAST);
+        BreakdownItem * pCrimsonite = new BreakdownItemEnergyCasterLevel(
+                Energy_Crimsonite,
+                Breakdown_CasterLevel_Crimsonite,
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pCrimsonite);
+        m_items.push_back(pCrimsonite);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Gildleaf Spell Caster Level",
+                hParent,
+                TVI_LAST);
+        BreakdownItem * pGildleaf = new BreakdownItemEnergyCasterLevel(
+                Energy_Gildleaf,
+                Breakdown_CasterLevel_Gildleaf,
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pGildleaf);
+        m_items.push_back(pGildleaf);
     }
 }
 

@@ -617,6 +617,12 @@ attack repeatedly until your target is defeated, or activated once by right-clic
          <Amount>20</Amount>
       </Effect>
       <Effect>
+         <DisplayName>Standard Strikethrough chance</DisplayName>
+         <Type>Strikethrough</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>20</Amount>
+      </Effect>
+      <Effect>
          <DisplayName>Base AC</DisplayName>
          <Type>ACBonus</Type>
          <Bonus>Base</Bonus>
@@ -789,6 +795,7 @@ ability scores, increased health and increased fortification.</Description>
       <FeatGroup>
          <IsStandardFeat/>
          <IsArtificerBonus/>
+         <IsAlchemistBonus/>
          <IsMetamagic/>
       </FeatGroup>
       <Requirements/>
@@ -1105,6 +1112,10 @@ This attack deals +1[W] damage.</Description>
       <Description>Provides a +4 bonus to the character's Concentration while casting spells in combat.</Description>
       <Requirements>
          <RequiresOneOf>
+            <Requirement>
+               <Class>Alchemist</Class>
+               <Level>1</Level>
+            </Requirement>
             <Requirement>
                <Class>Artificer</Class>
                <Level>1</Level>
@@ -1789,6 +1800,10 @@ the controlling effect.</Description>
       <Requirements/>
       <Acquire>Automatic</Acquire>
       <AutomaticAcquisition>
+         <Class>Alchemist</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
          <Class>Bard</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
@@ -1876,6 +1891,7 @@ the controlling effect.</Description>
          <IsStandardFeat/>
          <IsFighterBonus/>
          <IsMonkBonus/>
+         <IsAlchemistBonus/>
       </FeatGroup>
       <Requirements>
          <Requirement>
@@ -2066,6 +2082,7 @@ casting spells affected by Empower Spell, but they consume 15 additional spell p
          <IsArtificerBonus/>
          <IsStandardFeat/>
          <IsMetamagic/>
+         <IsAlchemistBonus/>
       </FeatGroup>
       <Stance>
          <Name>Empower</Name>
@@ -2075,6 +2092,10 @@ casting spells affected by Empower Spell, but they consume 15 additional spell p
       </Stance>
       <Requirements>
          <RequiresOneOf>
+            <Requirement>
+               <Class>Alchemist</Class>
+               <Level>1</Level>
+            </Requirement>
             <Requirement>
                <Class>Artificer</Class>
                <Level>1</Level>
@@ -2289,6 +2310,7 @@ but they consume 10 additional spell points.</Description>
          <IsArtificerBonus/>
          <IsStandardFeat/>
          <IsMetamagic/>
+         <IsAlchemistBonus/>
       </FeatGroup>
       <Stance>
          <Name>Enlarge</Name>
@@ -2299,6 +2321,10 @@ but they consume 10 additional spell points.</Description>
       </Stance>
       <Requirements>
          <RequiresOneOf>
+            <Requirement>
+               <Class>Alchemist</Class>
+               <Level>1</Level>
+            </Requirement>
             <Requirement>
                <Class>Artificer</Class>
                <Level>1</Level>
@@ -2358,6 +2384,7 @@ required, but spells consume 2 additional spell points.</Description>
          <IsStandardFeat/>
          <IsArtificerBonus/>
          <IsMetamagic/>
+         <IsAlchemistBonus/>
       </FeatGroup>
       <Stance>
          <Name>Eschew Materials</Name>
@@ -2367,6 +2394,10 @@ required, but spells consume 2 additional spell points.</Description>
       </Stance>
       <Requirements>
          <RequiresOneOf>
+            <Requirement>
+               <Class>Alchemist</Class>
+               <Level>1</Level>
+            </Requirement>
             <Requirement>
                <Class>Artificer</Class>
                <Level>1</Level>
@@ -2710,6 +2741,7 @@ but they consume 10 additional spell points.</Description>
          <IsArtificerBonus/>
          <IsStandardFeat/>
          <IsMetamagic/>
+         <IsAlchemistBonus/>
       </FeatGroup>
       <Stance>
          <Name>Extend</Name>
@@ -2719,6 +2751,10 @@ but they consume 10 additional spell points.</Description>
       </Stance>
       <Requirements>
          <RequiresOneOf>
+            <Requirement>
+               <Class>Alchemist</Class>
+               <Level>1</Level>
+            </Requirement>
             <Requirement>
                <Class>Artificer</Class>
                <Level>1</Level>
@@ -3776,7 +3812,14 @@ receiving an additional +1 bonus on save DCs.</Description>
       <Description>Increases the damage of glancing blow attacks when wielding a two-handed weapon
 by an additional 10% for a total of 50%. Also increases the chance for weapon
 effects to trigger on glancing blows by an additional 3% (9%) and an
-additional +2 to Melee Power (total of +6).</Description>
+additional +2 to Melee Power (total of +6).
+
+Lamannia:
+While Two-Handed Fighting: +20% additional Strikethrough Chance. You also gain
+a +6 Combat Style bonus to Melee Power while Two-Handed Fighting. While using
+a Two Handed Weapon (not including Bastard Sword or Dwarven Waraxe), your
+Ability Score bonus to damage improves to 2x the Ability Score you use for
+damage.</Description>
       <FeatGroup>
          <IsStandardFeat/>
          <IsFighterBonus/>
@@ -3799,6 +3842,11 @@ additional +2 to Melee Power (total of +6).</Description>
          <Type>GlancingBlows</Type>
          <Bonus>Feat</Bonus>
          <Amount>3</Amount>
+      </Effect>
+      <Effect>
+         <Type>Strikethrough</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>20</Amount>
       </Effect>
       <Effect>
          <Type>MeleePower</Type>
@@ -4940,6 +4988,7 @@ resist, but increasing their spell point cost.</Description>
          <IsStandardFeat/>
          <IsMetamagic/>
          <IsArtificerBonus/>
+         <IsAlchemistBonus/>
       </FeatGroup>
       <Stance>
          <Name>Heighten</Name>
@@ -4950,6 +4999,10 @@ resist, but increasing their spell point cost.</Description>
       </Stance>
       <Requirements>
          <RequiresOneOf>
+            <Requirement>
+               <Class>Alchemist</Class>
+               <Level>3</Level>
+            </Requirement>
             <Requirement>
                <Class>Artificer</Class>
                <Level>3</Level>
@@ -5365,9 +5418,14 @@ chance by 1%. Stacks with Mental Toughness.</Description>
       <FeatGroup>
          <IsStandardFeat/>
          <IsMetamagic/>
+         <IsAlchemistBonus/>
       </FeatGroup>
       <Requirements>
          <RequiresOneOf>
+            <Requirement>
+               <Class>Alchemist</Class>
+               <Level>5</Level>
+            </Requirement>
             <Requirement>
                <Class>Artificer</Class>
                <Level>7</Level>
@@ -5693,7 +5751,11 @@ You Turn Undead as if you were 1 level higher.</Description>
       <Description>Increases the damage of glancing blow attacks when wielding a two-handed
 weapon by an additional 10%. Also increases the chance for weapon effects to
 trigger on glancing blows by an additional 3% and an additional +2 Combat Style
-bonus to Melee Power (total of +4).</Description>
+bonus to Melee Power (total of +4).
+
+Lamannia:
+While Two-Handed Fighting: +20% additional Strikethrough Chance. You also gain
+a +4 Combat Style bonus to Melee Power while Two-Handed Fighting.</Description>
       <FeatGroup>
          <IsStandardFeat/>
          <IsFighterBonus/>
@@ -5716,6 +5778,17 @@ bonus to Melee Power (total of +4).</Description>
          <Type>GlancingBlows</Type>
          <Bonus>Feat</Bonus>
          <Amount>3</Amount>
+      </Effect>
+      <Effect>
+         <Type>Strikethrough</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>20</Amount>
+      </Effect>
+      <Effect>
+         <Type>MeleePower</Type>
+         <Bonus>Feat</Bonus>
+         <Stance>Two Handed Fighting</Stance>
+         <Amount>2</Amount>
       </Effect>
       <Effect>
          <Type>MeleePower</Type>
@@ -5930,6 +6003,32 @@ resist enchantment spells. This bonus stacks with all modifiers.</Description>
       </Effect>
    </Feat>
    <Feat>
+      <Name>Insightful Fortitude</Name>
+      <Description>Adds your Intelligence modifier to Fortitude saves instead of your Constitution modifier.</Description>
+      <FeatGroup>
+         <IsAlchemistBonus/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <Class>Alchemist</Class>
+            <Level>8</Level>
+         </Requirement>
+          <RequiresNoneOf>
+              <Requirement>
+                  <Feat>Insightful Courage</Feat>
+              </Requirement>
+          </RequiresNoneOf>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>InsightfulForitude</Icon>
+      <Effect>
+         <Type>SaveBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Ability>Intelligence</Ability>
+         <Save>Fortitude</Save>
+      </Effect>
+   </Feat>
+   <Feat>
       <Name>Insightful Reflexes</Name>
       <Description>Adds your Intelligence modifier to Reflex saves instead of your Dexterity modifier.</Description>
       <Requirements>
@@ -5940,11 +6039,42 @@ resist enchantment spells. This bonus stacks with all modifiers.</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>InsightfulReflexes</Icon>
+      <AutomaticAcquisition>
+         <IgnoreRequirements/>
+         <Class>Alchemist</Class>
+         <Level>2</Level>
+      </AutomaticAcquisition>
       <Effect>
          <Type>SaveBonus</Type>
          <Bonus>Feat</Bonus>
          <Ability>Intelligence</Ability>
          <Save>Reflex</Save>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Insightful Courage</Name>
+      <Description>Adds your Intelligence modifier to Will saves instead of your Wisdom modifier.</Description>
+      <FeatGroup>
+         <IsAlchemistBonus/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <Class>Alchemist</Class>
+            <Level>8</Level>
+         </Requirement>
+          <RequiresNoneOf>
+              <Requirement>
+                  <Feat>Insightful Fortitude</Feat>
+              </Requirement>
+          </RequiresNoneOf>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>InsightfulCourage</Icon>
+      <Effect>
+         <Type>SaveBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Ability>Intelligence</Ability>
+         <Save>Will</Save>
       </Effect>
    </Feat>
    <Feat>
@@ -6731,6 +6861,10 @@ drops below 12.</Description>
       <Requirements/>
       <Acquire>Train</Acquire>
       <Icon>MagicalTraining</Icon>
+      <AutomaticAcquisition>
+         <Class>Alchemist</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
       <AutomaticAcquisition>
          <Class>Artificer</Class>
          <Level>1</Level>
@@ -7645,6 +7779,7 @@ casting spells affected by Maximize Spell, but they consume 25 additional spell 
          <IsStandardFeat/>
          <IsMetamagic/>
          <IsArtificerBonus/>
+         <IsAlchemistBonus/>
       </FeatGroup>
       <Stance>
          <Name>Maximize</Name>
@@ -7654,6 +7789,10 @@ casting spells affected by Maximize Spell, but they consume 25 additional spell 
       </Stance>
       <Requirements>
          <RequiresOneOf>
+            <Requirement>
+               <Class>Alchemist</Class>
+               <Level>1</Level>
+            </Requirement>
             <Requirement>
                <Class>Artificer</Class>
                <Level>1</Level>
@@ -7779,9 +7918,14 @@ Also increases your spell critical chance by 1%.</Description>
       <FeatGroup>
          <IsStandardFeat/>
          <IsMetamagic/>
+         <IsAlchemistBonus/>
       </FeatGroup>
       <Requirements>
          <RequiresOneOf>
+            <Requirement>
+               <Class>Alchemist</Class>
+               <Level>1</Level>
+            </Requirement>
             <Requirement>
                <Class>Artificer</Class>
                <Level>1</Level>
@@ -8025,6 +8169,7 @@ by 2 and adds a +4 bonus to Armor Class while tumbling. You will also gain a
          <IsStandardFeat/>
          <IsFighterBonus/>
          <IsMonkBonus/>
+         <IsAlchemistBonus/>
       </FeatGroup>
       <Requirements>
          <Requirement>
@@ -8068,7 +8213,8 @@ This ability functions only in private instances.</Description>
       <Description>Natural Fighting grants you +4 Melee Power, Physical Resistance
 and Doublestrike chance while in a druid animal form.
 In bear form, your glancing blow damage is increased by 10% of base weapon damage.
-This feat can be taken up to three times, and gives no benefit to druids in elemental forms.</Description>
+This feat can be taken up to three times, and gives no benefit to druids in elemental forms.
++15% Strikethrough.</Description>
       <MaxTimesAcquire>3</MaxTimesAcquire>
       <Requirements>
          <Requirement>
@@ -8078,6 +8224,11 @@ This feat can be taken up to three times, and gives no benefit to druids in elem
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>NaturalFighting</Icon>
+      <Effect>
+         <Type>Strikethrough</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>15</Amount>
+      </Effect>
       <Effect>
          <Type>MeleePower</Type>
          <Bonus>Feat</Bonus>
@@ -8536,6 +8687,27 @@ D&amp;D Dice: Deals 1d4 damage plus 1d4 additional damage per two caster levels.
       </Effect>
    </Feat>
    <Feat>
+      <Name>Past Life: Mixer of Magics</Name>
+      <Description>You recall more about your past life as an Alchemist.
+You gain +1 to the Use Magic Device skill, and once pre Rest you can restore Spell Points to yourself. (Once per Rest, activate this alchemist ability to gain 5SP + 3 SP per Character Level (Max 65 at level 20). In Epic, this increases to 10SP +5 SP per Character Level (max 160 at level 30). 3 minute cooldown.</Description>
+      <Requirements>
+         <Requirement>
+            <MinLevel>3</MinLevel>
+         </Requirement>
+         <Requirement>
+            <Feat>Past Life: Alchemist</Feat>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>MixerOfMagics</Icon>
+      <Effect>
+         <Type>SkillBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Skill>Use Magic Device</Skill>
+         <Amount>1</Amount>
+      </Effect>
+   </Feat>
+   <Feat>
       <Name>Past Life: Sneak of Shadows</Name>
       <Description>You recall more about your past life as a rogue.
 You have +1 to all skills and three times per rest you can skulk with the skill
@@ -8989,6 +9161,7 @@ or 25 wih Deepwood Stalker enhancement</Description>
          <IsStandardFeat/>
          <IsArtificerBonus/>
          <IsFighterBonus/>
+         <IsAlchemistBonus/>
       </FeatGroup>
       <Requirements>
          <Requirement>
@@ -9011,6 +9184,7 @@ fortification against your attacks by 25%.</Description>
          <IsStandardFeat/>
          <IsFighterBonus/>
          <IsMonkBonus/>
+         <IsAlchemistBonus/>
       </FeatGroup>
       <Requirements>
          <Requirement>
@@ -9073,6 +9247,7 @@ but not of other ranged weapons.</Description>
       <FeatGroup>
          <IsStandardFeat/>
          <IsFighterBonus/>
+         <IsAlchemistBonus/>
       </FeatGroup>
       <Requirements>
          <Requirement>
@@ -9097,6 +9272,7 @@ be interrupted by enemy attacks, but they consume 10 additional spell points.</D
          <IsArtificerBonus/>
          <IsStandardFeat/>
          <IsMetamagic/>
+         <IsAlchemistBonus/>
       </FeatGroup>
       <Stance>
          <Name>Quicken</Name>
@@ -9106,6 +9282,10 @@ be interrupted by enemy attacks, but they consume 10 additional spell points.</D
       </Stance>
       <Requirements>
          <RequiresOneOf>
+            <Requirement>
+               <Class>Alchemist</Class>
+               <Level>1</Level>
+            </Requirement>
             <Requirement>
                <Class>Artificer</Class>
                <Level>1</Level>
@@ -9298,6 +9478,7 @@ Constitution, a +2 Morale bonus to Will saves and a -2 penalty to AC.</Descripti
          <IsStandardFeat/>
          <IsArtificerBonus/>
          <IsFighterBonus/>
+         <IsAlchemistBonus/>
       </FeatGroup>
       <Requirements>
          <Requirement>
@@ -9604,6 +9785,7 @@ Also gives +3 ranged power.</Description>
          <IsStandardFeat/>
          <IsArtificerBonus/>
          <IsFighterBonus/>
+         <IsAlchemistBonus/>
       </FeatGroup>
       <Requirements>
          <Requirement>
@@ -9710,6 +9892,10 @@ equal to your Dexterity.)</Description>
       <Acquire>Train</Acquire>
       <Icon>SimpleWeaponProficiency</Icon>
       <AutomaticAcquisition>
+         <Class>Alchemist</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
          <Class>Artificer</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
@@ -9777,6 +9963,10 @@ equal to your Dexterity.)</Description>
       <Requirements/>
       <Acquire>Train</Acquire>
       <Icon>SimpleWeaponProficiency</Icon>
+      <AutomaticAcquisition>
+         <Class>Alchemist</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
       <AutomaticAcquisition>
          <Class>Artificer</Class>
          <Level>1</Level>
@@ -9846,6 +10036,10 @@ equal to your Dexterity.)</Description>
       <Acquire>Train</Acquire>
       <Icon>SimpleWeaponProficiency</Icon>
       <AutomaticAcquisition>
+         <Class>Alchemist</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
          <Class>Artificer</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
@@ -9905,6 +10099,10 @@ equal to your Dexterity.)</Description>
       <Requirements/>
       <Acquire>Train</Acquire>
       <Icon>SimpleWeaponProficiency</Icon>
+      <AutomaticAcquisition>
+         <Class>Alchemist</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
       <AutomaticAcquisition>
          <Class>Artificer</Class>
          <Level>1</Level>
@@ -9970,6 +10168,10 @@ equal to your Dexterity.)</Description>
       <Acquire>Train</Acquire>
       <Icon>SimpleWeaponProficiency</Icon>
       <AutomaticAcquisition>
+         <Class>Alchemist</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
          <Class>Artificer</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
@@ -10025,6 +10227,10 @@ equal to your Dexterity.)</Description>
       <Requirements/>
       <Acquire>Train</Acquire>
       <Icon>SimpleWeaponProficiency</Icon>
+      <AutomaticAcquisition>
+         <Class>Alchemist</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
       <AutomaticAcquisition>
          <Class>Artificer</Class>
          <Level>1</Level>
@@ -10090,6 +10296,10 @@ equal to your Dexterity.)</Description>
       <Acquire>Train</Acquire>
       <Icon>SimpleWeaponProficiency</Icon>
       <AutomaticAcquisition>
+         <Class>Alchemist</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
          <Class>Artificer</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
@@ -10146,6 +10356,10 @@ equal to your Dexterity.)</Description>
       <Acquire>Train</Acquire>
       <Icon>SimpleWeaponProficiency</Icon>
       <AutomaticAcquisition>
+         <Class>Alchemist</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
          <Class>Artificer</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
@@ -10201,6 +10415,10 @@ equal to your Dexterity.)</Description>
       <Requirements/>
       <Acquire>Train</Acquire>
       <Icon>SimpleWeaponProficiency</Icon>
+      <AutomaticAcquisition>
+         <Class>Alchemist</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
       <AutomaticAcquisition>
          <Class>Artificer</Class>
          <Level>1</Level>
@@ -10270,6 +10488,10 @@ equal to your Dexterity.)</Description>
       <Acquire>Train</Acquire>
       <Icon>SimpleWeaponProficiency</Icon>
       <AutomaticAcquisition>
+         <Class>Alchemist</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
          <Class>Artificer</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
@@ -10329,6 +10551,10 @@ equal to your Dexterity.)</Description>
       <Requirements/>
       <Acquire>Train</Acquire>
       <Icon>SimpleWeaponProficiency</Icon>
+      <AutomaticAcquisition>
+         <Class>Alchemist</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
       <AutomaticAcquisition>
          <Class>Artificer</Class>
          <Level>1</Level>
@@ -10390,6 +10616,10 @@ or when attacking from an animal form.</Description>
       <Requirements/>
       <Acquire>Train</Acquire>
       <Icon>SimpleWeaponProficiency</Icon>
+      <AutomaticAcquisition>
+         <Class>Alchemist</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
       <AutomaticAcquisition>
          <Class>Artificer</Class>
          <Level>1</Level>
@@ -11102,9 +11332,14 @@ receiving an additional +1 bonus on save DCs.</Description>
          <IsStandardFeat/>
          <IsArtificerBonus/>
          <IsMetamagic/>
+         <IsAlchemistBonus/>
       </FeatGroup>
       <Requirements>
          <RequiresOneOf>
+            <Requirement>
+               <Class>Alchemist</Class>
+               <Level>1</Level>
+            </Requirement>
             <Requirement>
                <Class>Artificer</Class>
                <Level>1</Level>
@@ -11164,9 +11399,14 @@ receiving an additional +1 bonus on save DCs.</Description>
          <IsStandardFeat/>
          <IsArtificerBonus/>
          <IsMetamagic/>
+         <IsAlchemistBonus/>
       </FeatGroup>
       <Requirements>
          <RequiresOneOf>
+            <Requirement>
+               <Class>Alchemist</Class>
+               <Level>1</Level>
+            </Requirement>
             <Requirement>
                <Class>Artificer</Class>
                <Level>1</Level>
@@ -11226,9 +11466,14 @@ receiving an additional +1 bonus on save DCs.</Description>
          <IsStandardFeat/>
          <IsArtificerBonus/>
          <IsMetamagic/>
+         <IsAlchemistBonus/>
       </FeatGroup>
       <Requirements>
          <RequiresOneOf>
+            <Requirement>
+               <Class>Alchemist</Class>
+               <Level>1</Level>
+            </Requirement>
             <Requirement>
                <Class>Artificer</Class>
                <Level>1</Level>
@@ -11288,9 +11533,14 @@ receiving an additional +1 bonus on save DCs.</Description>
          <IsStandardFeat/>
          <IsArtificerBonus/>
          <IsMetamagic/>
+         <IsAlchemistBonus/>
       </FeatGroup>
       <Requirements>
          <RequiresOneOf>
+            <Requirement>
+               <Class>Alchemist</Class>
+               <Level>1</Level>
+            </Requirement>
             <Requirement>
                <Class>Artificer</Class>
                <Level>1</Level>
@@ -11350,9 +11600,14 @@ receiving an additional +1 bonus on save DCs.</Description>
          <IsStandardFeat/>
          <IsArtificerBonus/>
          <IsMetamagic/>
+         <IsAlchemistBonus/>
       </FeatGroup>
       <Requirements>
          <RequiresOneOf>
+            <Requirement>
+               <Class>Alchemist</Class>
+               <Level>1</Level>
+            </Requirement>
             <Requirement>
                <Class>Artificer</Class>
                <Level>1</Level>
@@ -11412,9 +11667,14 @@ receiving an additional +1 bonus on save DCs.</Description>
          <IsStandardFeat/>
          <IsArtificerBonus/>
          <IsMetamagic/>
+         <IsAlchemistBonus/>
       </FeatGroup>
       <Requirements>
          <RequiresOneOf>
+            <Requirement>
+               <Class>Alchemist</Class>
+               <Level>1</Level>
+            </Requirement>
             <Requirement>
                <Class>Artificer</Class>
                <Level>1</Level>
@@ -11474,9 +11734,14 @@ receiving an additional +1 bonus on save DCs.</Description>
          <IsStandardFeat/>
          <IsArtificerBonus/>
          <IsMetamagic/>
+         <IsAlchemistBonus/>
       </FeatGroup>
       <Requirements>
          <RequiresOneOf>
+            <Requirement>
+               <Class>Alchemist</Class>
+               <Level>1</Level>
+            </Requirement>
             <Requirement>
                <Class>Artificer</Class>
                <Level>1</Level>
@@ -11533,6 +11798,10 @@ receiving an additional +1 bonus on save DCs.</Description>
       <Description>Adds +2 to your caster level check for defeating spell resistance.</Description>
       <Requirements>
          <RequiresOneOf>
+            <Requirement>
+               <Class>Alchemist</Class>
+               <Level>1</Level>
+            </Requirement>
             <Requirement>
                <Class>Artificer</Class>
                <Level>1</Level>
@@ -12378,7 +12647,16 @@ A successful Balance check negates this effect.</Description>
       <Description>Increases the damage of glancing blow attacks when wielding a two-handed
 weapon by 10% (from a base of 20% normal weapon damage). Also grants a 3%
 chance for weapon effects to trigger on glancing blows and a +2 Combat Style
-bonus to Melee Power.</Description>
+bonus to Melee Power.
+
+Lamannia:
+While Two-Handed Fighting: +20% Strikethrough Chance. You can now Strikethrough
+while moving. You also gain a +2 Combat Style bonus to Melee Power while
+Two-Handed Fighting. For the purpose of this feat, you are considered to be
+Two-Handed Fighting while using a Two-Handed Melee Weapon (not including Handwraps).
+You are also considered to be Two-Handed Fighting while wielding a Bastard Sword
+or Dwarven Waraxe in your main hand and a Shield, Orb, Rune Arm, or Nothing in
+your off-hand. You are not considered to be Two-Handed Fighting while in Wild Shape.</Description>
       <FeatGroup>
          <IsStandardFeat/>
          <IsFighterBonus/>
@@ -12402,6 +12680,11 @@ bonus to Melee Power.</Description>
          <Type>GlancingBlows</Type>
          <Bonus>Feat</Bonus>
          <Amount>10</Amount>
+      </Effect>
+      <Effect>
+         <Type>Strikethrough</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>20</Amount>
       </Effect>
       <Effect>
          <Type>MeleePower</Type>
@@ -13659,7 +13942,9 @@ effectively mesmerizing them.</Description>
    </Feat>
    <Feat>
       <Name>Wild Shape: Bear</Name>
-      <Description>You can transform into Bear form.</Description>
+      <Description>You can transform into Bear form.
+Bear now allows you to Strikethrough as long as you are not in the Defensive
+Fighting stance. You can Strikethrough while moving in Bear Form.</Description>
       <FeatGroup>
          <IsDruidWildShape/>
       </FeatGroup>
@@ -13744,7 +14029,10 @@ effectively mesmerizing them.</Description>
    </Feat>
    <Feat>
       <Name>Wild Shape: Dire Bear</Name>
-      <Description>You can transform into Dire Bear form.</Description>
+      <Description>You can transform into Dire Bear form.
+Dire Bear now allows you to Strikethrough as long as you are not in the
+Defensive Fighting stance. It also gains +20% Strikethrough Chance.
+You can Strikethrough while moving in Dire Bear Form.</Description>
       <FeatGroup>
          <IsDruidWildShape/>
       </FeatGroup>
@@ -13766,6 +14054,11 @@ effectively mesmerizing them.</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>WildShapeDireBear</Icon>
+       <Effect>
+           <Type>Strikethrough</Type>
+           <Bonus>Enhancement</Bonus>
+           <Amount>20</Amount>
+       </Effect>
        <Effect>
            <Type>AbilityBonus</Type>
            <Bonus>Penalty</Bonus>
@@ -13979,6 +14272,28 @@ You treat shortbows and longbows as if they were Ki weapons.</Description>
       </Effect>
    </Feat>
    <!--Heroic past lives-->
+   <Feat>
+      <Name>Past Life: Alchemist</Name>
+      <Description>You were an Alchemist in a past life. You occasionally find yourself
+drinking things without knowing what they do. Each time you acquire this feat
+you gain +1 Transmutation DC and 20 Maximum Spell Points. This feat can be
+stacked up to three times.</Description>
+      <Requirements/>
+      <MaxTimesAcquire>3</MaxTimesAcquire>
+      <Acquire>HeroicPastLife</Acquire>
+      <Icon>PastLifeAlchemist</Icon>
+      <Effect>
+         <Type>SpellDC</Type>
+         <Bonus>Feat</Bonus>
+         <School>Transmutation</School>
+         <Amount>1</Amount>
+      </Effect>
+      <Effect>
+         <Type>SpellPoints</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>20</Amount>
+      </Effect>
+   </Feat>
    <Feat>
       <Name>Past Life: Artificer</Name>
       <Description>You were an Artificer in a past life.
@@ -15278,6 +15593,9 @@ in the form of a free Feat.</Description>
       <Requirements/>
       <Acquire>Automatic</Acquire>
       <AutomaticAcquisition>
+         <Class>Alchemist</Class>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
          <Class>Artificer</Class>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
@@ -16372,7 +16690,6 @@ receiving an additional +1 bonus on save DCs.</Description>
 (in addition to the +4 from the Spell Penetration and Greater Spell Penetration feats).</Description>
       <FeatGroup>
          <IsEpicFeat/>
-         <IsMetamagic/>
       </FeatGroup>
       <Requirements>
          <Requirement>
@@ -16970,6 +17287,50 @@ Passive: +140 Maximum Spell Points</Description>
       <Acquire>Train</Acquire>
       <Icon>MasterOfMusic</Icon>
       <!--Bonus spell level effects here-->
+      <Effect>
+         <Type>SpellPoints</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>140</Amount>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Master of Poisons</Name>
+      <Description>Your Wave of Poison and Greater Wave of Poison spells gain +10 to
+their maximum caster level.
+
+Passive: +140 Maximum Spell Points</Description>
+      <FeatGroup>
+         <IsEpicFeat/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <MinLevel>24</MinLevel>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>MasterOfPoisons</Icon>
+      <Effect>
+         <Type>SpellPoints</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>140</Amount>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Master of Spellvials</Name>
+      <Description>Your Spellvial, Multivial, and Elemental Obliteration sppells gain
++10 to their maximum caster level.
+
+Passive: +140 Maximum Spell Points</Description>
+      <FeatGroup>
+         <IsEpicFeat/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <MinLevel>24</MinLevel>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>MasterOfSpellvials</Icon>
       <Effect>
          <Type>SpellPoints</Type>
          <Bonus>Feat</Bonus>
@@ -17701,7 +18062,7 @@ Number of Destinies: 1</Description>
    </Feat>
    <Feat>
       <Name>Epic Spell Power: Negative</Name>
-      <Description>+20 Negative/Poison Spell Power.
+      <Description>+20 Negative Spell Power.
 Sphere: Divine
 Number of Destinies: 1</Description>
       <FeatGroup>
@@ -17718,6 +18079,27 @@ Number of Destinies: 1</Description>
          <Type>SpellPower</Type>
          <Bonus>Feat</Bonus>
          <SpellPower>Negative</SpellPower>
+         <Amount>20</Amount>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Epic Spell Power: Poison</Name>
+      <Description>+20 Poison Spell Power.
+Sphere: Primal
+Number of Destinies: 1</Description>
+      <FeatGroup>
+         <IsEpicDestinyFeat/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <MinLevel>26</MinLevel>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>EpicSpellPowerPoison</Icon>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Feat</Bonus>
          <SpellPower>Poison</SpellPower>
          <Amount>20</Amount>
       </Effect>
@@ -18444,7 +18826,11 @@ a successful Fortitude saving throw. Base DC is officially 20, but currently 30 
 weapon by an additional 10%. Also increases the chance for weapon effects to
 trigger on glancing blows by an additional 10%.
 Sphere: Primal
-Number of Destinies: 1</Description>
+Number of Destinies: 1
+
+Lamannia:
+While Two-Handed Fighting: You gain +20% Strikethrough Chance. You also gain
+a +10 Combat Style bonus to Melee Power while Two-Handed Fighting. </Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -18473,6 +18859,17 @@ Number of Destinies: 1</Description>
          <Stance>Epic Defensive Fighting</Stance>
          <AmountVector size="5">5 10 15 20 25</AmountVector>
          <ApplyAsItemEffect/>
+      </Effect>
+      <Effect>
+         <Type>Strikethrough</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>20</Amount>
+      </Effect>
+      <Effect>
+         <Type>MeleePower</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>10</Amount>
+          <Stance>Two Handed Fighting</Stance>
       </Effect>
    </Feat>
    <Feat>
@@ -23509,7 +23906,8 @@ a +3[W] bonus and enemies must make a Reflex saving throw.</Description>
    </Feat>
    <Feat>
       <Name>Destruction Domain Tier III</Name>
-      <Description>+3% Doublestrike and +3 to Glancing Blow to-hit and damage.</Description>
+      <Description>+3% Doublestrike and +3 to Glancing Blow to-hit and damage.
++5% Strikethrough</Description>
       <FeatGroup>
          <IsDomainFeat/>
       </FeatGroup>
@@ -23526,6 +23924,11 @@ a +3[W] bonus and enemies must make a Reflex saving throw.</Description>
          <Amount>3</Amount>
       </Effect>
       <!--glancing blow to hit and damage-->
+        <Effect>
+            <Type>Strikethrough</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>5</Amount>
+        </Effect>
    </Feat>
    <Feat>
       <Name>Destruction Domain Tier IV</Name>
@@ -25421,7 +25824,8 @@ or you have previously unlocked this tree for this character.</Description>
       <Name>Multitude of Missiles</Name>
       <Description>THIS FEAT IS NOT CURRENTLY AVAILABLE ON LIVE SERVERS
 For the next 20 seconds, while wielding a Simple Thrown Weapon add 120 to your
-Doubleshot and 4x your Base Attack Bonus to Ranged Power.</Description>
+Doubleshot and 4x your Base Attack Bonus to Ranged Power.
+Shares a cooldown with Manyshot.</Description>
       <FeatGroup>
          <IsStandardFeat/>
       </FeatGroup>
@@ -25435,6 +25839,34 @@ Doubleshot and 4x your Base Attack Bonus to Ranged Power.</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>MultitudeOfMissiles</Icon>
+      <AutomaticAcquisition>
+         <IgnoreRequirements/>
+         <Class>Alchemist</Class>
+         <Level>6</Level>
+      </AutomaticAcquisition>
+   </Feat>
+   <Feat>
+      <Name>Simple Thrown Weapon Expertise</Name>
+      <Description>THIS FEAT IS NOT CURRENTLY AVAILABLE ON LIVE SERVERS
+You are skilled with the use of Simple Thrown Weapons (Throwing Daggers and Darts)
+and while using one, you gain Doubleshot equal to your Dexterity.</Description>
+      <FeatGroup>
+         <IsStandardFeat/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <Ability>Dexterity</Ability>
+            <Amount>13</Amount>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>SimpleThrownWeaponExpertise</Icon>
+      <Effect>
+         <Type>Doubleshot</Type>
+         <Bonus>Feat</Bonus>
+         <FullAbility>Dexterity</FullAbility>
+         <Stance>Thrown Weapon</Stance>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Inspire Courage</Name>
@@ -25442,5 +25874,476 @@ Doubleshot and 4x your Base Attack Bonus to Ranged Power.</Description>
       <Requirements/>
       <Acquire>Automatic</Acquire>
       <Icon>InspireCourage</Icon>
+   </Feat>
+    <!--Alchemist feats-->
+   <Feat>
+      <Name>Alchemical Spellcasting</Name>
+      <Description>Alchmists have a unique way of combining their spells as they cast them.
+As an alchemist, your spells are each associated with a different Primer:
+Crimsonite, Gildleaf, or Ceruleite. Casting a spell from a single Primer and then
+casting a spell from a different Primer will activate a Reaction depending on the
+Primer of the spells cast. Reactions come in three variants: Pyrite, Verudite, or
+Orchidium. You can only have be in one Reaction ata time, and casting an Alchemist
+spell from a Primer not associated with that Reaction will cancel the Reaction.
+
+Casting a Crimsonite spell and then a Gildleaf, or a Gildleaf spell and then a
+Crimsonite spell will active a Pyrite Reaction.
+
+Casting a Gildleaf spell and then a Ceruleite spell, or a Ceruleite spell and then a
+Gildleaf spells will activate a Verdanite Reaction.
+
+Casting a Crimsonite spell and then a Ceruleite spell, or a Ceruleite spell and then a
+Crimsonite spells will activate a Orchisium Reaction.
+
+Each Reaction does does something unique for 12 seconds upon switching into that
+Reaction.
+
+Pyrite Reaction: Fire, Cold, Electric, Acid, and Poison Spell Power equal to
+(10 + 6x your Alchemist level) and a -50% Enhancement Bonus to Spell Point Cost.
+
+Verdanite Reaction: Positive and Negative Spell Power equal to (10 + 6x you
+Alchemist level) and Transmutation and Conjuration DCs equal to (1 + 1 for every
+10 Alchemist Levels).
+
+Orchidium Reaction: Physical Resistance rating and Elemental Resistance equal to
+(10 + 3x your Alchemist Level).
+
+Each Reaction does something unique that lasts for as long as you maintain that Reaction:
+
+Pyrite Reaction: +1 Fire, Cold, Electric, Acid, and Poison Spell Power per 2 Alchemist Levels.
+Verdanite Reaction: +1 Positive and Negative Spell Power per 2 Alchemist Levels.
+Orchidium Reaction: +1 Physical Resistance Rating per Alchemist Level.</Description>
+      <Requirements/>
+      <Acquire>Automatic</Acquire>
+      <Icon>AlchemicalSpellcasting</Icon>
+      <AutomaticAcquisition>
+         <Class>Alchemist</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <Stance>
+         <Name>Pyrite</Name>
+         <Icon>Pyrite</Icon>
+         <Description>You are in Pyrite Reaction.</Description>
+         <IncompatibleStance>Verdanite</IncompatibleStance>
+         <IncompatibleStance>Orchidium</IncompatibleStance>
+      </Stance>
+      <Stance>
+         <Name>Verdanite</Name>
+         <Icon>Verdanite</Icon>
+         <Description>You are in Verdanite Reaction.</Description>
+         <IncompatibleStance>Pyrite</IncompatibleStance>
+         <IncompatibleStance>Orchidium</IncompatibleStance>
+      </Stance>
+      <Stance>
+         <Name>Orchidium</Name>
+         <Icon>Orchidium</Icon>
+         <Description>You are in Orchidium Reaction.</Description>
+         <IncompatibleStance>Pyrite</IncompatibleStance>
+         <IncompatibleStance>Verdanite</IncompatibleStance>
+      </Stance>
+      <Effect>
+         <DisplayName>Pyrite 12 second buff</DisplayName>
+         <Type>SpellPower</Type>
+         <Bonus>Feat</Bonus>
+         <SpellPower>Fire</SpellPower>
+         <SpellPower>Cold</SpellPower>
+         <SpellPower>Electric</SpellPower>
+         <SpellPower>Acid</SpellPower>
+         <SpellPower>Poison</SpellPower>
+         <Class>Alchemist</Class>
+         <AmountPerLevel size="20">16 22 28 34 40 46 52 58 64 70 76 82 88 94 100 106 112 118 124 130</AmountPerLevel>
+         <Stance>Pyrite</Stance>
+      </Effect>
+      <Effect>
+         <DisplayName>Pyrite Reaction</DisplayName>
+         <Type>SpellPower</Type>
+         <Bonus>Feat</Bonus>
+         <SpellPower>Fire</SpellPower>
+         <SpellPower>Cold</SpellPower>
+         <SpellPower>Electric</SpellPower>
+         <SpellPower>Acid</SpellPower>
+         <SpellPower>Poison</SpellPower>
+         <Class>Alchemist</Class>
+         <AmountPerLevel size="20">1 2 2 3 3 4 4 5 5 6 6 7 7 8 8 9 9 10 10 11</AmountPerLevel>
+         <Stance>Pyrite</Stance>
+      </Effect>
+      <Effect>
+         <DisplayName>Verdanite 12 second buff</DisplayName>
+         <Type>SpellPower</Type>
+         <Bonus>Feat</Bonus>
+         <SpellPower>Positive</SpellPower>
+         <SpellPower>Negative</SpellPower>
+         <Class>Alchemist</Class>
+         <AmountPerLevel size="20">16 22 28 34 40 46 52 58 64 70 76 82 88 94 100 106 112 118 124 130</AmountPerLevel>
+         <Stance>Verdanite</Stance>
+      </Effect>
+      <Effect>
+         <DisplayName>Verdanite Reaction</DisplayName>
+         <Type>SpellDC</Type>
+         <Bonus>Feat</Bonus>
+         <School>Conjuration</School>
+         <Class>Alchemist</Class>
+         <AmountPerLevel size="20">1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 3</AmountPerLevel>
+         <Stance>Verdanite</Stance>
+      </Effect>
+      <Effect>
+         <DisplayName>Verdanite Reaction</DisplayName>
+         <Type>SpellDC</Type>
+         <Bonus>Feat</Bonus>
+         <School>Transmutation</School>
+         <Class>Alchemist</Class>
+         <AmountPerLevel size="20">1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 3</AmountPerLevel>
+         <Stance>Verdanite</Stance>
+      </Effect>
+      <Effect>
+         <DisplayName>Orchidium 12 second buff</DisplayName>
+         <Type>PRR</Type>
+         <Bonus>Feat</Bonus>
+         <Class>Alchemist</Class>
+         <AmountPerLevel size="20">19 28 37 46 55 64 73 82 91 100 109 118 127 136 145 154 163 172 181 190</AmountPerLevel>
+         <Stance>Orchidium</Stance>
+      </Effect>
+      <Effect>
+         <DisplayName>Orchidium Reaction</DisplayName>
+         <Type>PRR</Type>
+         <Bonus>Feat</Bonus>
+         <Class>Alchemist</Class>
+         <AmountPerLevel size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</AmountPerLevel>
+         <Stance>Orchidium</Stance>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Inscribe Alchemy Recipe</Name>
+      <Description>You are able to copy alchemical formulae from Recipes into your spellbook.
+This action will destroy the Recipe.
+
+To do this, you will need a Recipe for an Alchemist spell you do not yet know,
+and Spell Inscription Materials for the Spell Level of the Spell you are trying
+to inscribe. (Spell Inscription Materials may be purchased for Gold in the Harbor,
+the Marketplace, or Feather's Fall Apothecary in House Jorasco, among other places).
+
+When you have materials, you can inscribe the scroll by dragging this feat to a
+shortcut bar, clicking on the scroll in your Inventory, then clicking on this
+feat on your shortcut bar.</Description>
+      <Requirements/>
+      <Acquire>Automatic</Acquire>
+      <Icon>InscribeAlchemyRecipe</Icon>
+      <AutomaticAcquisition>
+         <Class>Alchemist</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+   </Feat>
+   <Feat>
+      <Name>Alchemy on the Run</Name>
+      <Description>You can now drink potions while moving without being interrupted.</Description>
+      <Requirements/>
+      <Acquire>Automatic</Acquire>
+      <Icon>AlchemyOnTheRun</Icon>
+      <AutomaticAcquisition>
+         <Class>Alchemist</Class>
+         <Level>3</Level>
+      </AutomaticAcquisition>
+   </Feat>
+   <Feat>
+      <Name>Alchemical Studies: Orchidium</Name>
+      <Description>+1 Caster Level with Crimsonite and Ceruleite spells.</Description>
+      <FeatGroup>
+         <IsAlchemistBonus/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <Class>Alchemist</Class>
+            <Level>4</Level>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>AlchemicalStudiesOrchidium</Icon>
+      <Effect>
+        <Type>CasterLevel</Type>
+        <Bonus>Feat</Bonus>
+        <Amount>1</Amount>
+        <Energy>Crimsonite</Energy>
+        <Energy>Ceruleite</Energy>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Alchemical Studies: Pyrite</Name>
+      <Description>+1 Caster Level with Crimsonite and Gildleaf spells.</Description>
+      <FeatGroup>
+         <IsAlchemistBonus/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <Class>Alchemist</Class>
+            <Level>4</Level>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>AlchemicalStudiesPyrite</Icon>
+      <Effect>
+        <Type>CasterLevel</Type>
+        <Bonus>Feat</Bonus>
+        <Amount>1</Amount>
+        <Energy>Crimsonite</Energy>
+        <Energy>Gildleaf</Energy>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Alchemical Studies: Verudite</Name>
+      <Description>+1 Caster Level with Gildleaf and Ceruleite spells.</Description>
+      <FeatGroup>
+         <IsAlchemistBonus/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <Class>Alchemist</Class>
+            <Level>4</Level>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>AlchemicalStudiesVerudite</Icon>
+      <Effect>
+        <Type>CasterLevel</Type>
+        <Bonus>Feat</Bonus>
+        <Amount>1</Amount>
+        <Energy>Gildleaf</Energy>
+        <Energy>Ceruleite</Energy>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Battalion Brew</Name>
+      <Description>You can use your Intelligence bonus instead of Strength or Dexterity bonus to determine bonus to attack and damage with Simple Weapons it if is higher.</Description>
+      <FeatGroup>
+         <IsAlchemistBonus/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <Class>Alchemist</Class>
+            <Level>4</Level>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>BattalionBrew</Icon>
+      <Effect>
+        <Type>CasterLevel</Type>
+        <Bonus>Feat</Bonus>
+        <Amount>1</Amount>
+        <Energy>Crimsonite</Energy>
+        <Energy>Ceruleite</Energy>
+      </Effect>
+      <Effect>
+         <Type>WeaponAttackAbility</Type>
+         <Bonus>Enhancement</Bonus>
+         <Ability>Intelligence</Ability>
+         <WeaponClass>Simple</WeaponClass>
+      </Effect>
+      <Effect>
+         <Type>WeaponDamageAbility</Type>
+         <Bonus>Enhancement</Bonus>
+         <Ability>Intelligence</Ability>
+         <WeaponClass>Simple</WeaponClass>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Alchemist Knowledge: Potions</Name>
+      <Description>You have an instinctive understanding of magic items due to your extensive
+study of them. You gain a +2 bonus to Use Magic Device checks when using potions,
+and their Caster Level is increased by one. This caster level bonus increases by
+one at levels 5, 8, 11 and 14 and is capped by your Intelligence Bonus. In addition,
+you gain +1 to the Caster Level and Max caster Level of Potion-Based spells you
+cast, like Curative Admixtures and Vial spells</Description>
+      <MaxTimesAcquire>5</MaxTimesAcquire>
+      <Requirements/>
+      <Acquire>Automatic</Acquire>
+      <Icon>ArtificerKnowledge</Icon>
+      <AutomaticAcquisition>
+         <Class>Alchemist</Class>
+         <Level>2</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Alchemist</Class>
+         <Level>5</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Alchemist</Class>
+         <Level>8</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Alchemist</Class>
+         <Level>11</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Alchemist</Class>
+         <Level>14</Level>
+      </AutomaticAcquisition>
+   </Feat>
+   <Feat>
+      <Name>Poisonblood</Name>
+      <Description>You are immune to Natural Poisons.</Description>
+      <Requirements/>
+      <Acquire>Automatic</Acquire>
+      <Icon>Poisonblood</Icon>
+      <AutomaticAcquisition>
+         <Class>Alchemist</Class>
+         <Level>7</Level>
+      </AutomaticAcquisition>
+      <Effect>
+         <Type>Immunity</Type>
+         <Bonus>Feat</Bonus>
+         <Immunity>Natural Poison</Immunity>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Tonic of Toxins</Name>
+      <Description>You absorb 50% of all Poison damage, and are immune to Natural and Supernatural poisons.</Description>
+      <FeatGroup>
+         <IsAlchemistBonus/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <Class>Alchemist</Class>
+            <Level>8</Level>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>TonicOfToxins</Icon>
+      <Effect>
+         <Type>Immunity</Type>
+         <Bonus>Feat</Bonus>
+         <Immunity>Natural Poison</Immunity>
+      </Effect>
+      <Effect>
+         <Type>Immunity</Type>
+         <Bonus>Feat</Bonus>
+         <Immunity>Supernatural Poison</Immunity>
+      </Effect>
+      <Effect>
+         <Type>EnergyAbsorbance</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>50</Amount>
+         <Energy>Poison</Energy>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Liquid Luck</Name>
+      <Description>You gain Evasion. When you make a successful Reflex save to avoid damage, you suffer no damage instead of half damage.</Description>
+      <FeatGroup>
+         <IsAlchemistBonus/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <Class>Alchemist</Class>
+            <Level>12</Level>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>LiquidLuck</Icon>
+         <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Enhancement</Bonus>
+            <Feat>Evasion</Feat>
+         </Effect>
+   </Feat>
+   <Feat>
+      <Name>Accelerate Spell</Name>
+      <Description>While this Metamagic feat is active, the projectiles of spells affected by Accelerate Spell fly faster and with less of an arc, but consume 5 additional spell points.</Description>
+      <FeatGroup>
+         <IsArtificerBonus/>
+         <IsAlchemistBonus/>
+      </FeatGroup>
+      <Requirements>
+          <RequiresOneOf>
+             <Requirement>
+                <Class>Alchemist</Class>
+                <Level>12</Level>
+             </Requirement>
+             <Requirement>
+                <Class>Artificer</Class>
+                <Level>12</Level>
+             </Requirement>
+          </RequiresOneOf>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>AccelerateSpell</Icon>
+      <Stance>
+         <Name>Accelerate Spell</Name>
+         <Icon>AccelerateSpell</Icon>
+         <Description>While this Metamagic feat is active, the projectiles of spells affected by Accelerate Spell fly faster and with less of an arc, but consume 5 additional spell points.</Description>
+      </Stance>
+   </Feat>
+   <Feat>
+      <Name>Advanced Alchemical Studies: Orchidium</Name>
+      <Description>+1 Caster Level with Crimsonite and Ceruleite spells.</Description>
+      <FeatGroup>
+         <IsAlchemistBonus/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <Class>Alchemist</Class>
+            <Level>16</Level>
+         </Requirement>
+         <Requirement>
+             <Feat>Alchemical Studies: Orchidium</Feat>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>AdvancedAlchemicalStudiesOrchidium</Icon>
+      <Effect>
+        <Type>MaxCasterLevel</Type>
+        <Bonus>Feat</Bonus>
+        <Amount>1</Amount>
+        <Energy>Crimsonite</Energy>
+        <Energy>Ceruleite</Energy>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Advanced Alchemical Studies: Pyrite</Name>
+      <Description>+1 Caster Level with Crimsonite and Gildleaf spells.</Description>
+      <FeatGroup>
+         <IsAlchemistBonus/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <Class>Alchemist</Class>
+            <Level>16</Level>
+         </Requirement>
+         <Requirement>
+             <Feat>Alchemical Studies: Pyrite</Feat>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>AdvancedAlchemicalStudiesPyrite</Icon>
+      <Effect>
+        <Type>MaxCasterLevel</Type>
+        <Bonus>Feat</Bonus>
+        <Amount>1</Amount>
+        <Energy>Crimsonite</Energy>
+        <Energy>Gildleaf</Energy>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Advanced Alchemical Studies: Verudite</Name>
+      <Description>+1 Caster Level with Gildleaf and Ceruleite spells.</Description>
+      <FeatGroup>
+         <IsAlchemistBonus/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <Class>Alchemist</Class>
+            <Level>16</Level>
+         </Requirement>
+         <Requirement>
+             <Feat>Alchemical Studies: Verudite</Feat>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>AdvancedAlchemicalStudiesVerudite</Icon>
+      <Effect>
+        <Type>MaxCasterLevel</Type>
+        <Bonus>Feat</Bonus>
+        <Amount>1</Amount>
+        <Energy>Gildleaf</Energy>
+        <Energy>Ceruleite</Energy>
+      </Effect>
    </Feat>
 </Feats>

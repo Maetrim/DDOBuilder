@@ -349,6 +349,13 @@ std::vector<Spell> FilterSpells(ClassType ct, int level)
         bool isClassLevelSpell = false;
         switch (ct)
         {
+        case Class_Alchemist:
+            if ((*si).HasAlchemist()
+                    && (*si).Alchemist() == level)
+            {
+                isClassLevelSpell = true;
+            }
+            break;
         case Class_Artificer:
             if ((*si).HasArtificer()
                     && (*si).Artificer() == level)
@@ -500,6 +507,9 @@ std::vector<TrainableFeatTypes> ClassSpecificFeatTypes(ClassType type)
     std::vector<TrainableFeatTypes> types;
     switch (type)
     {
+        case Class_Alchemist:
+            types.push_back(TFT_AlchemistBonus);
+            break;
         case Class_Artificer:
             types.push_back(TFT_ArtificerBonus);
             break;
@@ -713,11 +723,13 @@ int FindItemIndexByItemData(
 
 bool IsClassSkill(ClassType type, SkillType skill)
 {
+    // Class_Alchemist class skills
     bool isClassSkill = false;
     switch (skill)
     {
     case Skill_Balance:
-        if (type == Class_Bard
+        if (type == Class_Alchemist
+                || type == Class_Bard
                 || type == Class_Monk
                 || type == Class_Rogue)
         {
@@ -725,7 +737,8 @@ bool IsClassSkill(ClassType type, SkillType skill)
         }
         break;
     case Skill_Bluff:
-        if (type == Class_Bard
+        if (type == Class_Alchemist
+                || type == Class_Bard
                 || type == Class_Rogue
                 || type == Class_Sorcerer
                 || type == Class_Warlock)
@@ -734,7 +747,8 @@ bool IsClassSkill(ClassType type, SkillType skill)
         }
         break;
     case Skill_Concentration:
-        if (type == Class_Artificer
+        if (type == Class_Alchemist
+                || type == Class_Artificer
                 || type == Class_Bard
                 || type == Class_Cleric
                 || type == Class_Druid
@@ -750,7 +764,8 @@ bool IsClassSkill(ClassType type, SkillType skill)
         }
         break;
     case Skill_Diplomacy:
-        if (type == Class_Bard
+        if (type == Class_Alchemist
+                || type == Class_Bard
                 || type == Class_Cleric
                 || type == Class_Druid
                 || type == Class_FavoredSoul
@@ -769,7 +784,8 @@ bool IsClassSkill(ClassType type, SkillType skill)
         }
         break;
     case Skill_Haggle:
-        if (type == Class_Artificer
+        if (type == Class_Alchemist
+                || type == Class_Artificer
                 || type == Class_Bard
                 || type == Class_Rogue)
         {
@@ -777,7 +793,8 @@ bool IsClassSkill(ClassType type, SkillType skill)
         }
         break;
     case Skill_Heal:
-        if (type == Class_Cleric
+        if (type == Class_Alchemist
+                || type == Class_Cleric
                 || type == Class_Druid
                 || type == Class_FavoredSoul
                 || type == Class_Paladin
@@ -862,7 +879,8 @@ bool IsClassSkill(ClassType type, SkillType skill)
         }
         break;
     case Skill_Search:
-        if (type == Class_Artificer
+        if (type == Class_Alchemist
+                || type == Class_Artificer
                 || type == Class_Ranger
                 || type == Class_Rogue)
         {
@@ -870,7 +888,8 @@ bool IsClassSkill(ClassType type, SkillType skill)
         }
         break;
     case Skill_SpellCraft:
-        if (type == Class_Artificer
+        if (type == Class_Alchemist
+                || type == Class_Artificer
                 || type == Class_Bard
                 || type == Class_Cleric
                 || type == Class_Druid
@@ -883,7 +902,8 @@ bool IsClassSkill(ClassType type, SkillType skill)
         }
         break;
     case Skill_Spot:
-        if (type == Class_Artificer
+        if (type == Class_Alchemist
+                || type == Class_Artificer
                 || type == Class_Druid
                 || type == Class_Monk
                 || type == Class_Ranger
@@ -913,7 +933,8 @@ bool IsClassSkill(ClassType type, SkillType skill)
         }
         break;
     case Skill_UMD:
-        if (type == Class_Artificer
+        if (type == Class_Alchemist
+                || type == Class_Artificer
                 || type == Class_Bard
                 || type == Class_Rogue
                 || type == Class_Warlock)
@@ -950,6 +971,7 @@ size_t SkillPoints(
         skillPoints = 2;
         break;
 
+    case Class_Alchemist:
     case Class_Artificer:
     case Class_Barbarian:
     case Class_Druid:
@@ -1155,6 +1177,7 @@ bool CanTrainClass(
                 || (alignment == Alignment_LawfulNeutral);
         break;
 
+    case Class_Alchemist:
     case Class_Artificer:
     case Class_Cleric:
     case Class_FavoredSoul:
@@ -1186,6 +1209,10 @@ bool IsInGroup(TrainableFeatTypes type, const FeatGroup & group)
         // we may need some special code here to check against some standard feat
         // types such as dragon marks which should not be available to PDKs
         inGroup = group.HasIsStandardFeat();
+        break;
+
+    case TFT_AlchemistBonus:
+        inGroup = group.HasIsAlchemistBonus();
         break;
 
     case TFT_AasimarBond:
@@ -1375,6 +1402,7 @@ size_t ClassHitpoints(ClassType type)
     switch (type)
     {
         // d4 classes
+        case Class_Alchemist:
         case Class_Sorcerer:
         case Class_Wizard:
             hp = 4;
@@ -1438,6 +1466,7 @@ size_t ClassSave(SaveType st, ClassType ct, size_t level)
             case Class_Wizard:
                 type1 = true;
                 break;
+            case Class_Alchemist:
             case Class_Barbarian:
             case Class_Cleric:
             case Class_Druid:
@@ -1464,6 +1493,7 @@ size_t ClassSave(SaveType st, ClassType ct, size_t level)
             case Class_Wizard:
                 type1 = true;
                 break;
+            case Class_Alchemist:
             case Class_Bard:
             case Class_FavoredSoul:
             case Class_Monk:
@@ -1476,6 +1506,7 @@ size_t ClassSave(SaveType st, ClassType ct, size_t level)
         case Save_Will:
             switch (ct)
             {
+            case Class_Alchemist:
             case Class_Barbarian:
             case Class_Fighter:
             case Class_Paladin:
@@ -1682,6 +1713,33 @@ std::vector<size_t> SpellSlotsForClass(ClassType ct, size_t level)
     ASSERT(level <= MAX_CLASS_LEVEL);
     switch (ct)
     {
+    case Class_Alchemist:
+        switch (level)
+        {
+            case  0: break; // no spells, as no class levels in alchemist
+            case  1: spellsSlotsPerSpellLevel += 3, 0, 0, 0, 0, 0; break;
+            case  2: spellsSlotsPerSpellLevel += 3, 0, 0, 0, 0, 0; break;
+            case  3: spellsSlotsPerSpellLevel += 3, 1, 0, 0, 0, 0; break;
+            case  4: spellsSlotsPerSpellLevel += 3, 2, 0, 0, 0, 0; break;
+            case  5: spellsSlotsPerSpellLevel += 3, 2, 0, 0, 0, 0; break;
+            case  6: spellsSlotsPerSpellLevel += 3, 2, 1, 0, 0, 0; break;
+            case  7: spellsSlotsPerSpellLevel += 4, 2, 2, 0, 0, 0; break;
+            case  8: spellsSlotsPerSpellLevel += 4, 3, 2, 0, 0, 0; break;
+            case  9: spellsSlotsPerSpellLevel += 4, 3, 3, 1, 0, 0; break;
+            case 10: spellsSlotsPerSpellLevel += 4, 3, 3, 2, 0, 0; break;
+            case 11: spellsSlotsPerSpellLevel += 5, 4, 3, 3, 0, 0; break;
+            case 12: spellsSlotsPerSpellLevel += 5, 4, 3, 3, 1, 0; break;
+            case 13: spellsSlotsPerSpellLevel += 5, 4, 4, 3, 2, 0; break;
+            case 14: spellsSlotsPerSpellLevel += 5, 5, 4, 4, 3, 0; break;
+            case 15: spellsSlotsPerSpellLevel += 5, 5, 4, 4, 3, 1; break;
+            case 16: spellsSlotsPerSpellLevel += 5, 5, 5, 4, 4, 2; break;
+            case 17: spellsSlotsPerSpellLevel += 5, 5, 5, 5, 4, 3; break;
+            case 18: spellsSlotsPerSpellLevel += 5, 5, 5, 5, 5, 4; break;
+            case 19: spellsSlotsPerSpellLevel += 5, 5, 5, 5, 5, 4; break;
+            case 20: spellsSlotsPerSpellLevel += 5, 5, 5, 5, 5, 5; break;
+            default: ASSERT(FALSE); break;
+        }
+        break;
     case Class_Artificer:
         switch (level)
         {
@@ -1975,6 +2033,7 @@ size_t ClassSpellPoints(ClassType ct, size_t level)
     ASSERT(level <= MAX_CLASS_LEVEL);
     switch (ct)
     {
+    case Class_Alchemist:
     case Class_Artificer:
         // Level        1    2    3    4    5    6    7    8    9   10   11   12   13   14    15    16    17    18    19    20
         spPerLevel +=  50,  75, 100, 125, 150, 180, 210, 245, 280, 320, 360, 405, 450, 500,  550,  600,  660,  720,  780,  845;
@@ -2016,6 +2075,7 @@ AbilityType ClassCastingStat(ClassType ct)
     AbilityType at = Ability_Unknown;
     switch (ct)
     {
+    case Class_Alchemist:
     case Class_Artificer:
     case Class_Wizard:
         at = Ability_Intelligence;
@@ -2145,6 +2205,9 @@ CString TrainableFeatTypeLabel(TrainableFeatTypes type)
         break;
     case TFT_AasimarBond:
         text = "Aasimar Bond";
+        break;
+    case TFT_AlchemistBonus:
+        text = "Alchemist Bonus";
         break;
     case TFT_ArtificerBonus:
         text = "Artificer Bonus";
@@ -2476,6 +2539,7 @@ double BAB(ClassType ct)
         bab = 1;
         break;
 
+    case Class_Alchemist:
     case Class_Artificer:
     case Class_Bard:
     case Class_Cleric:
@@ -3010,6 +3074,7 @@ BreakdownType ClassToCasterLevelsBreakdown(ClassType ct)
     BreakdownType bt = Breakdown_Unknown;
     switch (ct)
     {
+    case Class_Alchemist: bt = Breakdown_CasterLevel_Alchemist; break;
     case Class_Artificer: bt = Breakdown_CasterLevel_Artificer; break;
     case Class_Cleric: bt = Breakdown_CasterLevel_Cleric; break;
     case Class_Druid: bt = Breakdown_CasterLevel_Druid; break;

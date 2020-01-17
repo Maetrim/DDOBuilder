@@ -43,6 +43,9 @@ enum EnergyType
     Energy_Dexterity,
     Energy_Constitution,
     Energy_Charisma,
+    Energy_Ceruleite,
+    Energy_Crimsonite,
+    Energy_Gildleaf,
 };
 const XmlLib::enumMapEntry<EnergyType> energyTypeMap[] =
 {
@@ -78,5 +81,8 @@ const XmlLib::enumMapEntry<EnergyType> energyTypeMap[] =
     {Energy_Dexterity, L"Dexterity"},
     {Energy_Constitution, L"Constitution"},
     {Energy_Charisma, L"Charisma"},
+    {Energy_Ceruleite, L"Ceruleite"},
+    {Energy_Crimsonite, L"Crimsonite"},
+    {Energy_Gildleaf, L"Gildleaf"},
     {EnergyType(0), NULL}
 };

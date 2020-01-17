@@ -11,7 +11,7 @@
 namespace
 {
     const size_t c_controlSpacing = 3;
-    // enhancement window size
+    // destiny window size
     const size_t c_sizeX = 300;
     const size_t c_sizeY = 526;
     enum ImageBackgroundEnum
@@ -55,7 +55,7 @@ namespace
     const int c_iconLeft = 10;
     const int c_iconTop = 484;
 }
-// global image data used for drawing all enhancements trees.
+// global image data used for drawing all destiny trees.
 // this is only initialised once (declared in EnhancementTreeDialog.cpp)
 extern bool s_imagesInitiliased;
 extern CImage s_imageBorders[IBE_count];
@@ -65,7 +65,7 @@ void CDestinyTreeDialog::InitialiseStaticImages()
     if (!s_imagesInitiliased)
     {
         // load all the standard static background images used when rendering
-        // an enhancement tree
+        // a destiny tree
         LoadImageFile(IT_ui, "CoreEnhancementOverlay", &s_imageBorders[IBE_CoreEnhancementOverlay]);
         LoadImageFile(IT_ui, "CoreInnateAbilityOverlay", &s_imageBorders[IBE_CoreInnateAbilityOverlay]);
         LoadImageFile(IT_ui, "CoreClickie", &s_imageBorders[IBE_CoreClickie]);
@@ -481,7 +481,6 @@ void CDestinyTreeDialog::RenderItemPassive(
         CRect itemRect)
 {
     // it has a passive hexagonal border
-    // it has a square active border
     s_imageBorders[IBE_ItemPassive].TransparentBlt(
             pDC->GetSafeHdc(),
             itemRect.left,

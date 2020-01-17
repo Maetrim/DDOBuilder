@@ -162,6 +162,13 @@ double BreakdownItem::Total() const
     return total;
 }
 
+double BreakdownItem::CappedTotal() const
+{
+    // default implemented as Total()
+    // override in inheriting classes to handle special capped totals
+    return Total();
+}
+
 void BreakdownItem::AddActiveItems(
         const std::list<ActiveEffect> & effects,
         CListCtrl * pControl,

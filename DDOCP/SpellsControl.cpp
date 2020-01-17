@@ -792,6 +792,9 @@ size_t CSpellsControl::CasterLevel() const
     size_t casterLevel = m_pCharacter->ClassLevels(m_class);
     switch (m_class)
     {
+    case Class_Alchemist:
+        casterLevel = (size_t)FindBreakdown(Breakdown_CasterLevel_Alchemist)->Total();
+        break;
     case Class_Artificer:
         casterLevel = (size_t)FindBreakdown(Breakdown_CasterLevel_Artificer)->Total();
         break;

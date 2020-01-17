@@ -55,6 +55,7 @@ class Spell :
                 DL_FLAG(_, Intensify) \
                 DL_FLAG(_, Maximize) \
                 DL_FLAG(_, Quicken) \
+                DL_OPTIONAL_SIMPLE(_, int, Alchemist, 0) \
                 DL_OPTIONAL_SIMPLE(_, int, Artificer, 0) \
                 DL_OPTIONAL_SIMPLE(_, int, Bard, 0) \
                 DL_OPTIONAL_SIMPLE(_, int, Cleric, 0) \

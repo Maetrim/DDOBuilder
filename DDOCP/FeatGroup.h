@@ -21,6 +21,7 @@ class FeatGroup :
 
         #define FeatGroup_PROPERTIES(_) \
                 DL_FLAG(_, IsAasimarBond) \
+                DL_FLAG(_, IsAlchemistBonus) \
                 DL_FLAG(_, IsArtificerBonus) \
                 DL_FLAG(_, IsBattle) \
                 DL_FLAG(_, IsBelovedOf) \

@@ -101,7 +101,8 @@ void BreakdownItemSpellPower::CreateOtherEffects()
             // providing a +3 Implement bonus to Universal Spell Power for every +1
             // Enhancement bonus on the weapon.
             // find the main hand weapon breakdown
-            if (m_pCharacter->IsEnhancementTrained("BECore6", ""))
+            if (m_pCharacter->IsEnhancementTrained("BECore6", "")
+                    || m_pCharacter->IsEnhancementTrained("BomCore2", ""))
             {
                 // get the main hand weapon breakdown
                 BreakdownItem * pBI = FindBreakdown(Breakdown_WeaponEffectHolder);
