@@ -3433,6 +3433,8 @@ void Character::VerifyTrainedFeats()
     CString message("The following feats were revoked as requirements no longer met:\n\n");
     std::list<LevelTraining>::iterator it = m_Levels.begin();
     size_t level = 0;
+    bool bOldState = m_bShowEpicOnly;
+    m_bShowEpicOnly = false;    // stop heroic feats in epic slots being revoked
     // we have to repeat a levels revokes as we cannot guarantee the order that
     // the feats will be checked in. e.g. we check Mobility and Dodge in that order
     // The prerequisite for mobility is met as dodge is trained at the time its checked
@@ -3473,6 +3475,7 @@ void Character::VerifyTrainedFeats()
             ++level;
         }
     }
+    m_bShowEpicOnly = bOldState;
     if (displayMessage)
     {
         AfxMessageBox(message, MB_ICONWARNING);
@@ -5050,6 +5053,7 @@ void Character::UpdateWeaponStances()
         if (IsThrownWeapon(item1.Weapon()))
         {
             ActivateStance(thrown);
+            DeactivateStance(twf);
         }
         else
         {
@@ -5114,6 +5118,7 @@ void Character::UpdateWeaponStances()
         if (IsThrownWeapon(item1.Weapon()))
         {
             ActivateStance(thrown);
+            DeactivateStance(twf);
         }
         else
         {

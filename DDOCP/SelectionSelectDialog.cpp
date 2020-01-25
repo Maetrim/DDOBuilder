@@ -87,26 +87,23 @@ BOOL CSelectionSelectDialog::OnInitDialog()
         m_costs[index] = (*it).Cost();
         m_selections[index] = (*it).Name();
         bool excluded = false;
-        if (selector.HasExclusions())
+        const std::list<std::string> & exclusions = selector.Exclude();
+        // check all the exclusions
+        std::list<std::string>::const_iterator eit = exclusions.begin();
+        while (eit != exclusions.end())
         {
-            const std::list<SelectorExclusion> & exclusions = selector.Exclusions().Exclude();
-            // check all the exclusions
-            std::list<SelectorExclusion>::const_iterator eit = exclusions.begin();
-            while (eit != exclusions.end())
+            const TrainedEnhancement * te = m_charData.IsTrained((*eit), "");
+            if (te != NULL)
             {
-                const TrainedEnhancement * te = m_charData.IsTrained((*eit).InternalName(), "");
-                if (te != NULL)
+                // this previous enhancement is trained, see what was selected
+                if (te->HasSelection()
+                        && te->Selection() == (*it).Name())
                 {
-                    // this previous enhancement is trained, see what was selected
-                    if (te->HasSelection()
-                            && te->Selection() == (*it).Name())
-                    {
-                        // previously trained
-                        excluded = true;
-                    }
+                    // previously trained
+                    excluded = true;
                 }
-                ++eit;
             }
+            ++eit;
         }
         bool canTrain = true;
         if ((*it).HasRequirementsToTrain())

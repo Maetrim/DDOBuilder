@@ -3,7 +3,6 @@
 #pragma once
 #include "XmlLib\DLMacros.h"
 #include "EnhancementSelection.h"
-#include "SelectorExclusions.h"
 
 class EnhancementTree;
 class Feat;
@@ -35,7 +34,7 @@ class Selector :
         virtual void EndElement();
 
         #define Selector_PROPERTIES(_) \
-                DL_OPTIONAL_OBJECT(_, SelectorExclusions, Exclusions) \
+                DL_STRING_LIST(_, Exclude) \
                 DL_OBJECT_LIST(_, EnhancementSelection, Selections)
 
         DL_DECLARE_ACCESS(Selector_PROPERTIES)

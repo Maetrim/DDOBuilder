@@ -89,10 +89,6 @@ bool Selector::VerifyObject(
         const std::list<Feat> & feats) const
 {
     bool ok = true;
-    if (HasExclusions())
-    {
-        ok &= m_Exclusions.VerifyObject(ss, trees, feats);
-    }
     std::list<EnhancementSelection>::const_iterator it = m_Selections.begin();
     while (it != m_Selections.end())
     {

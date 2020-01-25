@@ -46,6 +46,7 @@ class Spell :
                 DL_OPTIONAL_STRING(_, SPCost) \
                 DL_OPTIONAL_ENUM(_, EnergyType, Energy, Energy_Unknown, energyTypeMap) \
                 DL_OBJECT_VECTOR(_, Effect, Effects) \
+                DL_FLAG(_, Accelerate) \
                 DL_FLAG(_, Embolden) \
                 DL_FLAG(_, Empower) \
                 DL_FLAG(_, EmpowerHealing) \
