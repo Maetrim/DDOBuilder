@@ -38,7 +38,7 @@ CFeatsClassControl::CFeatsClassControl() :
     m_classImagesLarge.Add(&classImagesLarge, (CBitmap*)NULL);
 
     // create the image list for the feats
-    const std::list<Feat> & allFeats = AllFeats();
+    const std::list<Feat> & allFeats = StandardFeats();
     m_imagesFeats.Create(
             32,
             32,
@@ -1065,7 +1065,7 @@ void CFeatsClassControl::SetClassLevel(ClassType ct, size_t level)
 size_t CFeatsClassControl::FeatImageIndex(const std::string & name) const
 {
     size_t featImageIndex = 0;
-    const std::list<Feat> & allFeats = AllFeats();
+    const std::list<Feat> & allFeats = StandardFeats();
     std::list<Feat>::const_iterator it = allFeats.begin();
     while (it != allFeats.end())
     {
@@ -1125,7 +1125,7 @@ void CFeatsClassControl::OnFeatSelectOk()
 
 void CFeatsClassControl::OnFeatSelectCancel()
 {
-    // spell selection aborted, just hide the control
+    // feat selection aborted, just hide the control
     m_featSelector.ShowWindow(SW_HIDE);
     HideTip();
 }

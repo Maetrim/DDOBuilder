@@ -79,10 +79,65 @@ void BreakdownItemWeaponDamageBonus::CreateOtherEffects()
                         }
                     }
                 }
-                // two handed weapons get 1.5 times the damage bonus
+                // two handed weapons get 1.5 to 3.0 times the damage bonus
+                // depending on trained feats
                 if (IsTwoHandedWeapon(Weapon()))
                 {
-                    multiplier = 1.5;
+                    // Wolf/Bear form does not affect multiplier unless Natural Fighting is trained (Bears only)
+                    if (m_pCharacter->IsStanceActive("Wolf")
+                            || m_pCharacter->IsStanceActive("Bear")
+                            || m_pCharacter->IsStanceActive("Dire Wolf")
+                            || m_pCharacter->IsStanceActive("Dire Bear"))
+                    {
+                        if (m_pCharacter->IsStanceActive("Bear")
+                            || m_pCharacter->IsStanceActive("Dire Bear"))
+                        {
+                            // bears get a multiplier based on number of Natural Fighting feats trained
+                            size_t count = TrainedCount(m_pCharacter->CurrentFeats(MAX_LEVEL), "Natural Fighting");
+                            switch (count)
+                            {
+                            case 0: multiplier = 1.0; break;
+                            case 1: multiplier = 2.0; break;
+                            case 2: multiplier = 2.5; break;
+                            default:
+                            case 3: multiplier = 3.0; break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        multiplier = 1.5;       // no THF feats
+                        //if (m_pCharacter->IsFeatTrained("Two Handed Fighting"))
+                        //{
+                        //    multiplier = 2.0;
+                        //    if (m_pCharacter->IsFeatTrained("Improved Two Handed Fighting"))
+                        //    {
+                        //        multiplier = 3.0;
+                        //        if (m_pCharacter->IsFeatTrained("Greater Two Handed Fighting"))
+                        //        {
+                        //            multiplier = 3.0;
+                        //        }
+                        //    }
+                        //}
+                    }
+                }
+            }
+
+            // Bastard Sword and Dwarven Waraxe now apply 1.1x your relevant Ability Score Modifier to damage.
+            // This stacks with the bonuses from Improved and Greater Single Weapon Fighting.
+            // Improved Two Handed Fighting now also improves Bastard Sword and Dwarven Waraxe to 1.35x your relevant Ability Score Modifier to damage
+            // Greater Two Handed Fighting now also improves Bastard Sword and Dwarven Waraxe to 1.6x your relevant Ability Score Modifier to damage
+            if (Weapon() == Weapon_BastardSword
+                    || Weapon() == Weapon_DwarvenAxe)
+            {
+                multiplier += 0.1; // basic 1.1
+                if (m_pCharacter->IsFeatTrained("Improved Two Handed Fighting"))
+                {
+                    multiplier += 0.25;      // 1.35 overall
+                    if (m_pCharacter->IsFeatTrained("Greater Two Handed Fighting"))
+                    {
+                        multiplier += 0.25; // 1.6 overall
+                    }
                 }
             }
             if (bonus != 0) // only add to list if non zero

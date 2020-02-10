@@ -332,6 +332,7 @@ bool Effect::VerifyObject(std::stringstream * ss) const
                 ok = false;
             }
             if (!HasAmountVector()
+                    && !HasAmountPerLevel()
                     && !HasAmount())
             {
                 (*ss) << "SpellDC effect missing required element\n";

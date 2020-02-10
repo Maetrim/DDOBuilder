@@ -99,13 +99,15 @@ These bolts dissolve into nothingness after logout.</Description>
    </Spell>
    <Spell>
       <Name>Curative Admixture: Cure Light Wounds</Name>
-      <Description>Infusing a Cure Light Wounds potion with magical energy,
+      <Description>Primer Element: Gildleaf
+Infusing a Cure Light Wounds potion with magical energy,
 hurling it towards your target in an arc. The potion explodes in a small AOE
 that deals 1d8+1 positive energy damage to nearby living allies and enemy undead.
 Special material component: Potion of Cure Light Wounds.
 This infusion is affected by Artificer Knowledge: Potions.</Description>
       <Icon>CurativeAdmixtureCureLightWounds</Icon>
       <School>Conjuration</School>
+      <Accelerate/>
       <EmpowerHealing/>
       <Empower/>
       <Maximize/>
@@ -5481,6 +5483,28 @@ The target must be Lawful Good.</Description>
       <Quicken/>
       <Paladin>2</Paladin>
    </Spell>
+   <Spell>
+      <Name>Righteous Command</Name>
+      <Description>U45: +1 Morale bonus to Melee and Ranged Power per caster level, max caster level 15.</Description>
+      <Icon>RighteousCommand</Icon>
+      <School>Enchantment</School>
+      <Extend/>
+      <Quicken/>
+      <Paladin>2</Paladin>
+      <MaxCasterLevel>15</MaxCasterLevel>
+      <Effect>
+         <Type>MeleePower</Type>
+         <Bonus>Morale</Bonus>
+         <AmountVector size="15">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15</AmountVector>
+         <Class>Paladin</Class>
+      </Effect>
+      <Effect>
+         <Type>RangedPower</Type>
+         <Bonus>Morale</Bonus>
+         <AmountVector size="15">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15</AmountVector>
+         <Class>Paladin</Class>
+      </Effect>
+   </Spell>
    <!--Paladin level 3's-->
    <!--Paladin level 4's-->
    <Spell>
@@ -8196,183 +8220,300 @@ against Fire, Cold, Acid, and Electric damage, increasing to 10 at caster level
     </Spell>
     <Spell>
         <Name>Gills Extract</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Ceruleite
+This potion will mutate you, granting you gills and incresed ability to swim underwater.
+This grants the effects of the Water Breathing and Merfolk's Blessing spells:
+You gain the ability to breathe underwater and a +10 Enhancement bonus to Swim,
+plus 1 for every 2 caster levels beyond the first. These effects last for 30
+seconds +6 seconds per Caster Level</Description>
+        <Icon>AlchemistGillsExtract</Icon>
+        <School>Transmutation</School>
+        <SPCost>25</SPCost>
         <Alchemist>1</Alchemist>
+      <Effect>
+         <Type>SkillBonus</Type>
+         <Bonus>Enhancement</Bonus>
+         <AmountVector size="42">10 10 11 11 12 12 13 13 14 14 15 15 16 16 17 17 18 18 19 19 20 20 21 21 22 22 23 23 24 24 25 25 26 26 27 27 28 28 29 29 30 30</AmountVector>
+         <Class>Alchemist</Class>
+         <Skill>Swim</Skill>
+      </Effect>
+      <Effect>
+         <Type>Immunity</Type>
+         <Bonus>Luck</Bonus>
+         <Immunity>Drowning</Immunity>
+      </Effect>
     </Spell>
     <Spell>
         <Name>Feathers Extract</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Ceruleite
+This potion will mutate you, making your bones slightly less dense causing small
+feathers to grow from your skin. Grants the effects of the Feather Fall and Jump
+spells: You gain Feather Falling and a +10 Enhancement bonus to Jump. This bonus
+increasees to +20 as 5th level, and +30 at 9th level. These effects last for 30
+seconds +6 seconds per Caster Level.</Description>
+        <Icon>AlchemistFeathersExtract</Icon>
+        <School>Transmutation</School>
+        <SPCost>15</SPCost>
         <Alchemist>1</Alchemist>
+      <Effect>
+         <Type>SkillBonus</Type>
+         <Bonus>Enhancement</Bonus>
+         <AmountVector size="9">10 10 10 10 20 20 20 20 30</AmountVector>
+         <Class>Alchemist</Class>
+         <Skill>Jump</Skill>
+      </Effect>
+      <Effect>
+         <Type>Immunity</Type>
+         <Bonus>Enhancement</Bonus>
+         <Immunity>Feather Fall</Immunity>
+      </Effect>
     </Spell>
     <Spell>
         <Name>Lesser Restorative Draught</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Ceruleite
+Throw a small vial of magical liquid at a single target that provides the effects
+of the Lesser Restoration spell: Dispells magical effects reducing your Ability
+scores, eliminates fatigue, and improves exhaustion to fatigue.</Description>
+        <Icon>AlchemistLesserRestorativeDraught</Icon>
+        <School>Conjuration</School>
+        <SPCost>8</SPCost>
         <Alchemist>1</Alchemist>
+        <Accelerate/>
     </Spell>
     <Spell>
         <Name>Lesser Evolution</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Ceruleite
+Choose something to mutate into: You may only have one Alchemical Mutation active
+at a time. Duration: 1 Minute</Description>
+        <Icon>AlchemistLesserEvolution</Icon>
+        <School>Transmutation</School>
+        <SPCost>25</SPCost>
         <Alchemist>1</Alchemist>
     </Spell>
     <Spell>
         <Name>Curative Admixture: Inflict Light Wounds</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Gildleaf
+Infuses an Inflect Light Wounds potion with magical energy, hurling it towards
+your target in an arc. The potion explodes in a small AOE that deals 1d6+2 plus
+1 per caster level (maximum caster level 5) negative energy damage to nearby
+living allies and enemy undead.</Description>
+        <Icon>CurativeAdmixtureInflictLightWounds</Icon>
+        <School>Conjuration</School>
+        <SPCost>6</SPCost>
         <Alchemist>1</Alchemist>
+        <Accelerate/>
+        <MaxCasterLevel>5</MaxCasterLevel>
     </Spell>
     <Spell>
         <Name>Curative Admixture: Remove Disease</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Gildleaf
+Infuses a Remove Disease potion with magical energy, hurling it towards
+your target in an arc. The potion explodes in a small AOE that removes diseases
+from nearby allies.</Description>
+        <Icon>CurativeAdmixtureRemoveDisease</Icon>
+        <School>Conjuration</School>
+        <SPCost>10</SPCost>
         <Alchemist>1</Alchemist>
+        <Accelerate/>
     </Spell>
     <Spell>
         <Name>Curative Admixture: Remove Poison</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Gildleaf
+Infuses a potion of Poison Neutralization with magical energy, hurling it towards
+your target in an arc. The potion explodes in a small AOE that removes poisons
+from nearby allies. (It does not confer immunity to poisons.)</Description>
+        <Icon>CurativeAdmixtureRemovePoison</Icon>
+        <School>Conjuration</School>
+        <SPCost>20</SPCost>
         <Alchemist>1</Alchemist>
+        <Accelerate/>
     </Spell>
     <Spell>
         <Name>Vial Smash: Fire</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Crimsonite
+Conjuring a bottle of burning liquid, you throw it at your feer dealing 2 to 7
+Fire damage per caster level to nearby enemies, max caster level 5.
+
+DND Dice: Deals 1d6+1 Fire damage per caster level, max 10d6+10. A successful
+Reflex saves reduces the damage by half.</Description>
+        <Icon>VialSmashFire</Icon>
+        <School>Transmutation</School>
+        <Energy>Fire</Energy>
+        <SPCost>4</SPCost>
         <Alchemist>1</Alchemist>
     </Spell>
     <Spell>
         <Name>Vial Smash: Cold</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Crimsonite
+Conjuring a bottle of freezing liquid, you throw it at your feer dealing 2 to 7
+Cold damage per caster level to nearby enemies, max caster level 5.
+
+DND Dice: Deals 1d6+1 Cold damage per caster level, max 10d6+10. A successful
+Reflex saves reduces the damage by half.</Description>
+        <Icon>VialSmashCold</Icon>
+        <School>Transmutation</School>
+        <Energy>Cold</Energy>
+        <SPCost>4</SPCost>
         <Alchemist>1</Alchemist>
     </Spell>
     <Spell>
         <Name>Vial Smash: Electric</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Crimsonite
+Conjuring a bottle of shocking liquid, you throw it at your feer dealing 2 to 7
+Electric damage per caster level to nearby enemies, max caster level 5.
+
+DND Dice: Deals 1d6+1 Electric damage per caster level, max 10d6+10. A successful
+Reflex saves reduces the damage by half.</Description>
+        <Icon>VialSmashElectric</Icon>
+        <School>Transmutation</School>
+        <Energy>Electric</Energy>
+        <SPCost>4</SPCost>
         <Alchemist>1</Alchemist>
     </Spell>
     <Spell>
         <Name>Vial Smash: Acid</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
+        <Description>Primer Element: Crimsonite
+Conjuring a bottle of caustic liquid, you throw it at your feer dealing 2 to 7
+Acid damage per caster level to nearby enemies, max caster level 5.
+
+DND Dice: Deals 1d6+1 Acid damage per caster level, max 10d6+10. A successful
+Reflex saves reduces the damage by half.</Description>
+        <Icon>VialSmashAcid</Icon>
+        <School>Transmutation</School>
         <Energy>Acid</Energy>
-        <SPCost/>
+        <SPCost>4</SPCost>
         <Alchemist>1</Alchemist>
     </Spell>
     <Spell>
         <Name>Vial Smash: Poison</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Crimsonite
+Conjuring a bottle of toxic liquid, you throw it at your feer dealing 2 to 7
+Poison damage per caster level to nearby enemies, max caster level 5.
+
+DND Dice: Deals 1d6+1 Poison damage per caster level, max 10d6+10. A successful
+Reflex saves reduces the damage by half.</Description>
+        <Icon>VialSmashPoison</Icon>
+        <School>Transmutation</School>
+        <Energy>Poison</Energy>
+        <SPCost>4</SPCost>
         <Alchemist>1</Alchemist>
     </Spell>
     <Spell>
         <Name>Bottled Boost: Attack</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Ceruleite
+Drink a potion with the effects of Action Boost: Attack.
+You gain a +8 Action Boost Bonus to Attack for 20 seconds. In addition to this
+spell's normal cooldown, this spell puts all Action Boosts and Bottled Boost
+spells on a 30 second cooldown.</Description>
+        <Icon>BottledBoostAttack</Icon>
+        <School>Transmutation</School>
+        <SPCost>5</SPCost>
         <Alchemist>1</Alchemist>
     </Spell>
     <Spell>
         <Name>Bottled Boost: Defense</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Ceruleite
+Drink a potion with the effects of Action Boost: Defense.
+You gain +15 Action Boost Bonus to Armor Class and Physical Resistance Rating
+for 20 seconds. In addition to this spell's normal cooldown, this spell puts
+all Action Boosts and Bottled Boost spells on a 30 second cooldown.</Description>
+        <Icon>BottledBoostDefense</Icon>
+        <School>Transmutation</School>
+        <SPCost>5</SPCost>
         <Alchemist>1</Alchemist>
     </Spell>
     <Spell>
         <Name>Flash Powder</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Ceruleite
+You crush components in your hand, creating a load boom and sharp flash.
+An enemy at touch range must make a Fortitude save or be Stunned for 3 seconds.</Description>
+        <Icon>FlashPowder</Icon>
+        <School>Transmutation</School>
+        <SPCost>2</SPCost>
         <Alchemist>1</Alchemist>
     </Spell>
     <!---Alchemist Spells Level 2-->
     <Spell>
         <Name>Alluring Elixer</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Ceruleite
+This small vial of golden liquid will increase you confidence and your allure,
+granting you a +4 Insight bonus to your social skills for 1 minute + 1 minute
+per Caster Level.</Description>
+        <Icon>AlluringElixer</Icon>
+        <School>Transmutation</School>
+        <SPCost>15</SPCost>
         <Alchemist>2</Alchemist>
+        <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Insightful</Bonus>
+            <Amount>4</Amount>
+            <Ability>Charisma</Ability>
+        </Effect>
     </Spell>
     <Spell>
         <Name>Augment Armor</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Ceruleite
+Coat yourself in liquid armor, granting it greater defenses. Grants a +2 Deflection
+bonus to Armor Class, and a +3 Deflection bonus to Physical Resistance rating for
+30 seconds per Caster Level. Every 5 Alchemist levels, these bonuses increase by 1.</Description>
+        <Icon>AugmentArmor</Icon>
+        <School>Transmutation</School>
+        <SPCost>10</SPCost>
         <Alchemist>2</Alchemist>
+        <Effect>
+            <Type>ACBonus</Type>
+            <Bonus>Deflection</Bonus>
+            <AmountVector size="20">2 2 2 2 2 2 2 3 3 3 3 3 4 4 4 4 4 5 5 5</AmountVector>
+            <Class>Alchemist</Class>
+        </Effect>
+        <Effect>
+            <Type>PRR</Type>
+            <Bonus>Deflection</Bonus>
+            <AmountVector size="20">2 2 2 2 2 2 2 3 3 3 3 3 4 4 4 4 4 5 5 5</AmountVector>
+            <Class>Alchemist</Class>
+        </Effect>
     </Spell>
     <Spell>
         <Name>Bottled Boost: Spell</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Ceruleite
+Drink a potion with the effects of Action Boost: Spell Power.
+You gain a +30 Action Boost Bonus to Universal Spell Power for 20 seconds.
+In addition to this spell's normal cooldown, this spell puts all Action Boosts
+and Bottled Boost spells on a 30 second cooldown.</Description>
+        <Icon>BottledBoostSpell</Icon>
+        <School>Transmutation</School>
+        <SPCost>5</SPCost>
         <Alchemist>2</Alchemist>
     </Spell>
     <Spell>
         <Name>Cold Spike</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Gildleaf
+Lob a vial of freezing liquid at a single foe that deals heavy damage and slows
+movement of whatever it strikes. Deals 4 to 8 Cold damage per Caster Level, max
+Caster Level 10, to a single foe, and reduces their movement speed by 30% and
+damage by 4 for 15 seconds +2 seconds per Caster Level.
+
+DND Dice: Deals 1d4+4 Cold damage per caster level, max 10d4+40. A successful
+Reflex save reduces the damage by half.</Description>
+        <Icon>ColdSpike</Icon>
+        <School>Conjuration</School>
+        <Energy>Cold</Energy>
+        <SPCost>8</SPCost>
         <Alchemist>2</Alchemist>
     </Spell>
     <Spell>
         <Name>Corrode Weapons</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Gildleaf
+Lob a vial of caustic liquid at a single foe that deals heavy damage and corrodes
+the weapons of whatever it strikes. Deals 4 to 8 Acid damage per Caster Level, max
+Caster Level 10, to a single foe, and reduces their accuracy and Melee and Ranged
+Power by by 4 for 15 seconds +2 seconds per Caster Level.
+
+DND Dice: Deals 1d4+4 Acid damage per caster level, max 10d4+40. A successful
+Reflex save reduces the damage by half.</Description>
+        <Icon>CorrodeWeapons</Icon>
+        <School>Conjuration</School>
+        <SPCost>8</SPCost>
         <Alchemist>2</Alchemist>
     </Spell>
     <Spell>
@@ -9010,21 +9151,21 @@ against Fire, Cold, Acid, and Electric damage, increasing to 10 at caster level
         <Alchemist>6</Alchemist>
     </Spell>
     <!---Alchemist SLAs-->
-   <Spell>
+    <Spell>
       <Name>Spill the Bad Stuff</Name>
       <Description></Description>
       <Icon/>
       <SPCost/>
       <Quicken/>
    </Spell>
-   <Spell>
+    <Spell>
       <Name>Wave of Poison</Name>
       <Description></Description>
       <Icon/>
       <SPCost/>
       <Quicken/>
    </Spell>
-   <Spell>
+    <Spell>
       <Name>Greater Wave of Poison</Name>
       <Description></Description>
       <Icon/>

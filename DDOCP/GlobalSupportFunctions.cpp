@@ -1717,7 +1717,7 @@ std::vector<size_t> SpellSlotsForClass(ClassType ct, size_t level)
         switch (level)
         {
             case  0: break; // no spells, as no class levels in alchemist
-            case  1: spellsSlotsPerSpellLevel += 3, 0, 0, 0, 0, 0; break;
+            case  1: spellsSlotsPerSpellLevel += 2, 0, 0, 0, 0, 0; break;
             case  2: spellsSlotsPerSpellLevel += 3, 0, 0, 0, 0, 0; break;
             case  3: spellsSlotsPerSpellLevel += 3, 1, 0, 0, 0, 0; break;
             case  4: spellsSlotsPerSpellLevel += 3, 2, 0, 0, 0, 0; break;

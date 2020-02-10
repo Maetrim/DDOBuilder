@@ -76,7 +76,6 @@ Passive: While your Reaction is Orchidium, +5 Physical Resistance Rating.</Descr
       <Name>Vile Chemist: Hidden Blades</Name>
       <InternalName>VileCore3</InternalName>
       <Description>+3% Doublestrike and Doubleshot.
-Darts and Throwing Daggers you equip gain +1[W].
 
 Passive: While your Reaction in Orchidium, +5 Physical Resistance Rating.</Description>
       <Icon>VileHiddenBlades</Icon>
@@ -109,13 +108,6 @@ Passive: While your Reaction in Orchidium, +5 Physical Resistance Rating.</Descr
             <Bonus>Enhancement</Bonus>
             <Amount>5</Amount>
             <Stance>Orchidium</Stance>
-        </Effect>
-        <Effect>
-            <Type>WeaponBaseDamageBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>2</Amount>
-            <Weapon>Dart</Weapon>
-            <Weapon>Throwing Dagger</Weapon>
         </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -233,7 +225,6 @@ Passive: While your Reaction is Orchidium, +5 Physicial Resistance rating and +5
       <Name>Vile Chemist: Venom's Grip</Name>
       <InternalName>VileCore6</InternalName>
       <Description>Passive: +4 Intelligence. Your Poisoned Coating die size is now d12.
-You gain +2 Poisoned Coating dice.
 
 Passive: While your Reaction is Orchidium, +10 Physicial Resistance rating and +5% Dodge Cap.</Description>
       <Icon>VileVenomsGrip</Icon>
@@ -522,14 +513,18 @@ Main Hand and a Simple Weapon, Orb, Rune Arm, or nothing in your off hand.</Desc
       <Selector>
         <EnhancementSelection>
           <Name>Poisoned Shot</Name>
-          <Description>Ranged Attack: +[1/?/?][W]: On successful damage, your opponent is Contaminated. Using this attack acts as if you cast a Crimsonite spell.</Description>
+          <Description>Ranged Attack: +[1/?/?][W]: On successful damage, your opponent is Contaminated.
+Using this attack acts as if you cast a Crimsonite spell.
+Rank 3: Cause Poison-immune enemies to become vulnerable to Poison for 12 seconds.</Description>
           <Icon>VilePoisonedShot</Icon>
           <Cost>1</Cost>
           <Clickie/>
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Poisoned Strike</Name>
-          <Description>Melee Attack: +[1/?/?][W]: On successful damage, your opponent is Contaminated. Using this attack acts as if you cast a Crimsonite spell.</Description>
+          <Description>Melee Attack: +[1/?/?][W]: On successful damage, your opponent is Contaminated.
+Using this attack acts as if you cast a Crimsonite spell.
+Rank 3: Cause Poison-immune enemies to become vulnerable to Poison for 12 seconds.</Description>
           <Icon>VilePoisonedStrike</Icon>
           <Cost>1</Cost>
           <Clickie/>
@@ -621,7 +616,8 @@ Primer Element: Ceruleite
 You infect enemies in a short cone with a deadly poison that eats away at them.
 Affected enemies take 2d4 Poison damage plus 1 Poison damage per 2 Caster
 Levels every 2 seconds for 12 seconds. This poison will leave enemies
-Contaminated. (Max Caster Level: 10)</Description>
+Contaminated. (Max Caster Level: 10)
+Poison-immune enemies to become vulnerable to Poison for 12 seconds.</Description>
       <Icon>VileWaveOfPoison</Icon>
       <XPosition>0</XPosition>
       <YPosition>3</YPosition>
@@ -700,11 +696,12 @@ Main Hand and a Simple Weapon, Orb, Rune Arm, or nothing in your off hand.</Desc
         </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <Name>Vile Chemist: Toxic Augmentation</Name>
-      <InternalName>VileToxicAugmentation</InternalName>
-      <Description>Your strikes against Contaminated enemies reduce their Fortitude saves
-by -1 for 6 seconds. This effect stacks up to 4 times.</Description>
-      <Icon>VileToxicAugmentation</Icon>
+      <Name>Vile Chemist: Envenom the Heart</Name>
+      <InternalName>VileEnvenomTheHeart</InternalName>
+      <Description>Enemies hit by your melee or ranged strikes have a chance to be Silenced, Quelled,
+or have their attack speed reduced by 20% for 12 seconds with no save.
+(This does work on Bosses, but at a lower proc rate)</Description>
+      <Icon>VileEnvenomTheHeart</Icon>
       <XPosition>2</XPosition>
       <YPosition>3</YPosition>
       <Cost>2</Cost>
@@ -737,7 +734,7 @@ by -1 for 6 seconds. This effect stacks up to 4 times.</Description>
         <Effect>
             <Type>SaveBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountPerLevel size="20">1 1 1 1 2 2 2 2 2 3 3 3 3 3 4 4 4 4 4 5</AmountPerLevel>
+            <AmountVector size="20">1 1 1 1 2 2 2 2 2 3 3 3 3 3 4 4 4 4 4 5</AmountVector>
             <Class>Alchemist</Class>
             <Save>Fortitude</Save>
             <Stance>Orchidium</Stance>
@@ -847,12 +844,9 @@ Main Hand and a Simple Weapon, Orb, Rune Arm, or nothing in your off hand.</Desc
         </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <Name>Vile Chemist: Envenom the Heart</Name>
-      <InternalName>VileEnvenomTheHeart</InternalName>
-      <Description>+[5/10/15] Poison Spell Power.
-Rank 3: Striking enemies that are immune to Poisons or Poison Damage makes
-them vulnerable to Poisons and Poison Damage for 12 seconds. Creatures you
-hit that are not immune to Poisons take 15% more Poison damage for a while.</Description>
+      <Name>Vile Chemist: Venom Affinity II</Name>
+      <InternalName>VileVenomAffinityII</InternalName>
+      <Description>+[3/6/10] Poison Spell Power.</Description>
       <Icon>VileEnvenomTheHeart</Icon>
       <XPosition>2</XPosition>
       <YPosition>4</YPosition>
@@ -868,7 +862,7 @@ hit that are not immune to Poisons take 15% more Poison damage for a while.</Des
         <Effect>
             <Type>SpellPower</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">5 10 15</AmountVector>
+            <AmountVector size="3">3 6 10</AmountVector>
             <SpellPower>Poison</SpellPower>
         </Effect>
     </EnhancementTreeItem>
@@ -954,7 +948,8 @@ Primer Element: Ceruleite
 You infect enemies in a short cone with a deadly poison that eats away at them.
 Affected enemies take 2d6 Poison damage plus 1 Poison damage per Caster Level
 every 2 seconds for 16 seconds. This poison will leave enemies Contaminated.
-(Max Caster Level: 20)</Description>
+(Max Caster Level: 20)
+Poison-immune enemies to become vulnerable to Poison for 12 seconds.</Description>
       <Icon>VileGreaterWaveOfPoison</Icon>
       <XPosition>0</XPosition>
       <YPosition>5</YPosition>
@@ -1044,6 +1039,7 @@ Range bonus is +2 instead.</Description>
             <Type>CriticalRange</Type>
             <Bonus>Competence</Bonus>
             <Amount>1</Amount>
+            <ApplyAsItemEffect/>
             <WeaponClass>Simple</WeaponClass>
             <AnyOfStance>Orb</AnyOfStance>
             <AnyOfStance>Rune Arm</AnyOfStance>
@@ -1053,6 +1049,7 @@ Range bonus is +2 instead.</Description>
             <Type>CriticalRange</Type>
             <Bonus>Competence</Bonus>
             <Amount>1</Amount>
+            <ApplyAsItemEffect/>
             <Weapon>Dart</Weapon>
             <AnyOfStance>Orb</AnyOfStance>
             <AnyOfStance>Rune Arm</AnyOfStance>

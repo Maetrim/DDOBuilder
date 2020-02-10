@@ -3815,11 +3815,12 @@ effects to trigger on glancing blows by an additional 3% (9%) and an
 additional +2 to Melee Power (total of +6).
 
 Lamannia:
-While Two-Handed Fighting: +20% additional Strikethrough Chance. You also gain
-a +6 Combat Style bonus to Melee Power while Two-Handed Fighting. While using
-a Two Handed Weapon (not including Bastard Sword or Dwarven Waraxe), your
-Ability Score bonus to damage improves to 2x the Ability Score you use for
-damage.</Description>
+While Two-Handed Fighting: +30% additional Strikethrough Chance. You also gain
+a +6 Combat Style bonus to Melee Power while Two-Handed Fighting.
+
+In addition, While using a Two Handed Weapon (not including Bastard Sword or
+Dwarven Waraxe), your Ability Score bonus to damage improves to 3x the Ability
+Score Modifier you use for damage.</Description>
       <FeatGroup>
          <IsStandardFeat/>
          <IsFighterBonus/>
@@ -3846,7 +3847,7 @@ damage.</Description>
       <Effect>
          <Type>Strikethrough</Type>
          <Bonus>Feat</Bonus>
-         <Amount>20</Amount>
+         <Amount>30</Amount>
       </Effect>
       <Effect>
          <Type>MeleePower</Type>
@@ -4410,6 +4411,33 @@ As a result, halflings get a +1 bonus to attack rolls when using any thrown weap
       </Effect>
    </Feat>
    <Feat>
+      <Name>Half-Elf Dilettante: Alchemist</Name>
+      <Description>You have a knack for experimentation with potions and poisons.
+You have +10 Universal Spell Power. For item use purposes, you count as a level
+one Alchemist in addition to any other classes you possess.
+This feat is not recommended for characters with actual Alchemist levels.</Description>
+      <FeatGroup>
+         <IsDilettante/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <Race>Half-Elf</Race>
+         </Requirement>
+         <Requirement>
+            <Ability>Charisma</Ability>
+            <Amount>13</Amount>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>AlchemicalSpellcasting</Icon>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>10</Amount>
+         <SpellPower>All</SpellPower>
+      </Effect>
+   </Feat>
+   <Feat>
       <Name>Half-Elf Dilettante: Artificer</Name>
       <Description>You have watched the artificers of House Cannith work their trade.
 You gain proficiency with all crossbows and Artificer Knowledge:
@@ -4450,7 +4478,7 @@ with actual Artificer levels.</Description>
 You gain Damage Reduction 1/- as if you were a barbarian. This feat does not
 stack with Barbarian Damage Reduction. For item use purposes, you count as a
 level one Barbarian in addition to any other classes you possess.
-This feat is not recommended for characters with actual barbarian levels.</Description>
+This feat is not recommended for characters with actual Barbarian levels.</Description>
       <FeatGroup>
          <IsDilettante/>
       </FeatGroup>
@@ -5754,8 +5782,12 @@ trigger on glancing blows by an additional 3% and an additional +2 Combat Style
 bonus to Melee Power (total of +4).
 
 Lamannia:
-While Two-Handed Fighting: +20% additional Strikethrough Chance. You also gain
-a +4 Combat Style bonus to Melee Power while Two-Handed Fighting.</Description>
+While Two-Handed Fighting: +30% additional Strikethrough Chance. You also gain
+a +4 Combat Style bonus to Melee Power while Two-Handed Fighting.
+
+In addition, While using a Two Handed Weapon (not including Bastard Sword or
+Dwarven Waraxe), your Ability Score bonus to damage improves to 3x the Ability
+Score Modifier you use for damage.</Description>
       <FeatGroup>
          <IsStandardFeat/>
          <IsFighterBonus/>
@@ -5782,7 +5814,7 @@ a +4 Combat Style bonus to Melee Power while Two-Handed Fighting.</Description>
       <Effect>
          <Type>Strikethrough</Type>
          <Bonus>Feat</Bonus>
-         <Amount>20</Amount>
+         <Amount>30</Amount>
       </Effect>
       <Effect>
          <Type>MeleePower</Type>
@@ -8214,7 +8246,7 @@ This ability functions only in private instances.</Description>
 and Doublestrike chance while in a druid animal form.
 In bear form, your glancing blow damage is increased by 10% of base weapon damage.
 This feat can be taken up to three times, and gives no benefit to druids in elemental forms.
-+15% Strikethrough.</Description>
+Lamannia: Bear Forms Gain: +60/30/30% Strikethrough per time acquiring this feat.</Description>
       <MaxTimesAcquire>3</MaxTimesAcquire>
       <Requirements>
          <Requirement>
@@ -8260,6 +8292,13 @@ This feat can be taken up to three times, and gives no benefit to druids in elem
          <Type>GlancingBlowsDamage</Type>
          <Bonus>Feat</Bonus>
          <Amount>10</Amount>
+         <AnyOfStance>Bear</AnyOfStance>
+         <AnyOfStance>Dire Bear</AnyOfStance>
+      </Effect>
+      <Effect>
+         <Type>Strikethrough</Type>
+         <Bonus>Feat</Bonus>
+         <AmountVector size="3">60 90 120</AmountVector>
          <AnyOfStance>Bear</AnyOfStance>
          <AnyOfStance>Dire Bear</AnyOfStance>
       </Effect>
@@ -8689,7 +8728,11 @@ D&amp;D Dice: Deals 1d4 damage plus 1d4 additional damage per two caster levels.
    <Feat>
       <Name>Past Life: Mixer of Magics</Name>
       <Description>You recall more about your past life as an Alchemist.
-You gain +1 to the Use Magic Device skill, and once pre Rest you can restore Spell Points to yourself. (Once per Rest, activate this alchemist ability to gain 5SP + 3 SP per Character Level (Max 65 at level 20). In Epic, this increases to 10SP +5 SP per Character Level (max 160 at level 30). 3 minute cooldown.</Description>
+You gain +1 to the Use Magic Device skill, and once pre Rest you can restore
+Spell Points to yourself. (Once per Rest, activate this alchemist ability to
+gain 5SP +3 SP per Character Level (Max 65 at level 20). In Epic, this
+increases to 10SP +5 SP per Character Level (max 160 at level 30).
+3 minute cooldown.</Description>
       <Requirements>
          <Requirement>
             <MinLevel>3</MinLevel>
@@ -11879,7 +11922,10 @@ saves against spell effects.</Description>
    <Feat>
       <Name>Spring Attack</Name>
       <Description>You suffer no penalty to your attack roll when moving and attacking.
-You will also gain a 2% Dodge bonus.</Description>
+You will also gain a 2% Dodge bonus.
+
+Lamannia: You leap forward striking a target enemy and all those around them.
+Requires a visible target and that you are holding a melee weapon.</Description>
       <FeatGroup>
          <IsStandardFeat/>
          <IsMonkBonus6/>
@@ -12654,13 +12700,23 @@ chance for weapon effects to trigger on glancing blows and a +2 Combat Style
 bonus to Melee Power.
 
 Lamannia:
-While Two-Handed Fighting: +20% Strikethrough Chance. You can now Strikethrough
+While Two-Handed Fighting: +60% Strikethrough Chance. You can now Strikethrough
 while moving. You also gain a +2 Combat Style bonus to Melee Power while
-Two-Handed Fighting. For the purpose of this feat, you are considered to be
-Two-Handed Fighting while using a Two-Handed Melee Weapon (not including Handwraps).
-You are also considered to be Two-Handed Fighting while wielding a Bastard Sword
-or Dwarven Waraxe in your main hand and a Shield, Orb, Rune Arm, or Nothing in
-your off-hand. You are not considered to be Two-Handed Fighting while in Wild Shape.</Description>
+Two-Handed Fighting.
+
+For the purpose of this feat, you are considered to be Two-Handed Fighting while
+using a Two-Handed Melee Weapon (not including Handwraps). You are also considered
+to be Two-Handed Fighting while wielding a Bastard Sword or Dwarven Waraxe in
+your main hand and a Shield, Orb, Rune Arm, or Nothing in your off-hand.
+You are not considered to be Two-Handed Fighting while in Wild Shape.
+
+Strikethrough grants a chance for your melee attacks to hit a second target.
+Strikethrough begins at 20% while Two-Handed Fighting, and if Strikethrough is
+over 100%, you will always hit a second target with a chance to hit a third.
+
+In addition, While using a Two Handed Weapon (not including Bastard Sword or
+Dwarven Waraxe), your Ability Score bonus to damage improves to 2x the Ability
+Score Modifier you use for damage.</Description>
       <FeatGroup>
          <IsStandardFeat/>
          <IsFighterBonus/>
@@ -12688,7 +12744,7 @@ your off-hand. You are not considered to be Two-Handed Fighting while in Wild Sh
       <Effect>
          <Type>Strikethrough</Type>
          <Bonus>Feat</Bonus>
-         <Amount>20</Amount>
+         <Amount>60</Amount>
       </Effect>
       <Effect>
          <Type>MeleePower</Type>
@@ -14035,8 +14091,7 @@ Fighting stance. You can Strikethrough while moving in Bear Form.</Description>
       <Name>Wild Shape: Dire Bear</Name>
       <Description>You can transform into Dire Bear form.
 Dire Bear now allows you to Strikethrough as long as you are not in the
-Defensive Fighting stance. It also gains +20% Strikethrough Chance.
-You can Strikethrough while moving in Dire Bear Form.</Description>
+Defensive Fighting stance.</Description>
       <FeatGroup>
          <IsDruidWildShape/>
       </FeatGroup>
@@ -14058,11 +14113,6 @@ You can Strikethrough while moving in Dire Bear Form.</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>WildShapeDireBear</Icon>
-       <Effect>
-           <Type>Strikethrough</Type>
-           <Bonus>Enhancement</Bonus>
-           <Amount>20</Amount>
-       </Effect>
        <Effect>
            <Type>AbilityBonus</Type>
            <Bonus>Penalty</Bonus>
@@ -18833,8 +18883,8 @@ Sphere: Primal
 Number of Destinies: 1
 
 Lamannia:
-While Two-Handed Fighting: You gain +20% Strikethrough Chance. You also gain
-a +10 Combat Style bonus to Melee Power while Two-Handed Fighting. </Description>
+While Two-Handed Fighting: You gain +20% Strikethrough Chance.
+Passive: +10 Melee Power</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -20767,6 +20817,12 @@ You are proficient with Quarterstaves and gain +1 to hit with them.</Description
          <Amount>1</Amount>
          <Weapon>Quarterstaff</Weapon>
       </Effect>
+      <Effect>
+         <Type>CriticalAttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
+         <Weapon>Quarterstaff</Weapon>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Follower of the Blood of Vol</Name>
@@ -20810,6 +20866,12 @@ You are proficient with Daggers and gain +1 to hit with them.</Description>
          <Amount>1</Amount>
          <Weapon>Dagger</Weapon>
       </Effect>
+      <Effect>
+         <Type>CriticalAttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
+         <Weapon>Dagger</Weapon>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Follower of the Lord of Blades</Name>
@@ -20837,6 +20899,12 @@ You are proficient with Great Swords and gain +1 to hit with them.</Description>
       </Effect>
       <Effect>
          <Type>AttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
+         <Weapon>Great Sword</Weapon>
+      </Effect>
+      <Effect>
+         <Type>CriticalAttackBonus</Type>
          <Bonus>Feat</Bonus>
          <Amount>1</Amount>
          <Weapon>Great Sword</Weapon>
@@ -20884,6 +20952,12 @@ You are proficient with Sickles and gain +1 to hit with them.</Description>
          <Amount>1</Amount>
          <Weapon>Sickle</Weapon>
       </Effect>
+      <Effect>
+         <Type>CriticalAttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
+         <Weapon>Sickle</Weapon>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Follower of Onatar</Name>
@@ -20923,6 +20997,12 @@ You are proficient with Warhammers and gain +1 to hit with them.</Description>
       </Effect>
       <Effect>
          <Type>AttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
+         <Weapon>Warhammer</Weapon>
+      </Effect>
+      <Effect>
+         <Type>CriticalAttackBonus</Type>
          <Bonus>Feat</Bonus>
          <Amount>1</Amount>
          <Weapon>Warhammer</Weapon>
@@ -20970,6 +21050,12 @@ You are proficient with Longbows and gain +1 to hit with them</Description>
          <Amount>1</Amount>
          <Weapon>Longbow</Weapon>
       </Effect>
+      <Effect>
+         <Type>CriticalAttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
+         <Weapon>Longbow</Weapon>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Follower of the Sovereign Host</Name>
@@ -21013,6 +21099,12 @@ You are proficient with Longswords and gain +1 to hit with them.</Description>
          <Amount>1</Amount>
          <Weapon>Longsword</Weapon>
       </Effect>
+      <Effect>
+         <Type>CriticalAttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
+         <Weapon>Longsword</Weapon>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Follower of the Undying Court</Name>
@@ -21047,6 +21139,12 @@ You are proficient with Scimitars and gain +1 to hit with them.</Description>
          <Amount>1</Amount>
          <Weapon>Scimitar</Weapon>
       </Effect>
+      <Effect>
+         <Type>CriticalAttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
+         <Weapon>Scimitar</Weapon>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Follower of Vulkoor</Name>
@@ -21069,6 +21167,12 @@ You are proficient with Shortswords and gain +1 to hit with them.</Description>
       </Effect>
       <Effect>
          <Type>AttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
+         <Weapon>Shortsword</Weapon>
+      </Effect>
+      <Effect>
+         <Type>CriticalAttackBonus</Type>
          <Bonus>Feat</Bonus>
          <Amount>1</Amount>
          <Weapon>Shortsword</Weapon>
@@ -21113,6 +21217,12 @@ You are proficient with heavy maces and gain +1 to hit with them.</Description>
          <Amount>1</Amount>
          <Weapon>Heavy Mace</Weapon>
       </Effect>
+      <Effect>
+         <Type>CriticalAttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
+         <Weapon>Heavy Mace</Weapon>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Favored by Helm</Name>
@@ -21150,6 +21260,12 @@ You are proficient with bastard swords and gain +1 to hit with them.</Descriptio
          <Amount>1</Amount>
          <Weapon>Bastard Sword</Weapon>
       </Effect>
+      <Effect>
+         <Type>CriticalAttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
+         <Weapon>Bastard Sword</Weapon>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Favored by Silvanus</Name>
@@ -21183,6 +21299,12 @@ You are proficient with mauls and gain +1 to hit with them.</Description>
       </Effect>
       <Effect>
          <Type>AttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
+         <Weapon>Maul</Weapon>
+      </Effect>
+      <Effect>
+         <Type>CriticalAttackBonus</Type>
          <Bonus>Feat</Bonus>
          <Amount>1</Amount>
          <Weapon>Maul</Weapon>
@@ -21225,7 +21347,19 @@ You gain +2 to attack and damage rolls with Quarterstaves.</Description>
          <Weapon>Quarterstaff</Weapon>
       </Effect>
       <Effect>
+         <Type>CriticalAttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>2</Amount>
+         <Weapon>Quarterstaff</Weapon>
+      </Effect>
+      <Effect>
          <Type>DamageBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>2</Amount>
+         <Weapon>Quarterstaff</Weapon>
+      </Effect>
+      <Effect>
+         <Type>Seeker</Type>
          <Bonus>Feat</Bonus>
          <Amount>2</Amount>
          <Weapon>Quarterstaff</Weapon>
@@ -21267,7 +21401,19 @@ You gain +2 to attack and damage rolls with Daggers.</Description>
          <Weapon>Dagger</Weapon>
       </Effect>
       <Effect>
+         <Type>CriticalAttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>2</Amount>
+         <Weapon>Dagger</Weapon>
+      </Effect>
+      <Effect>
          <Type>DamageBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>2</Amount>
+         <Weapon>Dagger</Weapon>
+      </Effect>
+      <Effect>
+         <Type>Seeker</Type>
          <Bonus>Feat</Bonus>
          <Amount>2</Amount>
          <Weapon>Dagger</Weapon>
@@ -21309,7 +21455,19 @@ You have +2 to attack and damage rolls with Great Swords.</Description>
          <Weapon>Great Sword</Weapon>
       </Effect>
       <Effect>
+         <Type>CriticalAttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>2</Amount>
+         <Weapon>Great Sword</Weapon>
+      </Effect>
+      <Effect>
          <Type>DamageBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>2</Amount>
+         <Weapon>Great Sword</Weapon>
+      </Effect>
+      <Effect>
+         <Type>Seeker</Type>
          <Bonus>Feat</Bonus>
          <Amount>2</Amount>
          <Weapon>Great Sword</Weapon>
@@ -21351,7 +21509,19 @@ You have +2 to attack and damage rolls with sickles.</Description>
          <Weapon>Sickle</Weapon>
       </Effect>
       <Effect>
+         <Type>CriticalAttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>2</Amount>
+         <Weapon>Sickle</Weapon>
+      </Effect>
+      <Effect>
          <Type>DamageBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>2</Amount>
+         <Weapon>Sickle</Weapon>
+      </Effect>
+      <Effect>
+         <Type>Seeker</Type>
          <Bonus>Feat</Bonus>
          <Amount>2</Amount>
          <Weapon>Sickle</Weapon>
@@ -21393,7 +21563,19 @@ You have +2 to attack and damage rolls with warhammers.</Description>
          <Weapon>Warhammer</Weapon>
       </Effect>
       <Effect>
+         <Type>CriticalAttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>2</Amount>
+         <Weapon>Warhammer</Weapon>
+      </Effect>
+      <Effect>
          <Type>DamageBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>2</Amount>
+         <Weapon>Warhammer</Weapon>
+      </Effect>
+      <Effect>
+         <Type>Seeker</Type>
          <Bonus>Feat</Bonus>
          <Amount>2</Amount>
          <Weapon>Warhammer</Weapon>
@@ -21435,7 +21617,19 @@ You have +2 to attack and damage rolls with longbows.</Description>
          <Weapon>Longbow</Weapon>
       </Effect>
       <Effect>
+         <Type>CriticalAttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>2</Amount>
+         <Weapon>Longbow</Weapon>
+      </Effect>
+      <Effect>
          <Type>DamageBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>2</Amount>
+         <Weapon>Longbow</Weapon>
+      </Effect>
+      <Effect>
+         <Type>Seeker</Type>
          <Bonus>Feat</Bonus>
          <Amount>2</Amount>
          <Weapon>Longbow</Weapon>
@@ -21477,7 +21671,19 @@ You have +2 to attack and damage rolls with longswords</Description>
          <Weapon>Longsword</Weapon>
       </Effect>
       <Effect>
+         <Type>CriticalAttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>2</Amount>
+         <Weapon>Longsword</Weapon>
+      </Effect>
+      <Effect>
          <Type>DamageBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>2</Amount>
+         <Weapon>Longsword</Weapon>
+      </Effect>
+      <Effect>
+         <Type>Seeker</Type>
          <Bonus>Feat</Bonus>
          <Amount>2</Amount>
          <Weapon>Longsword</Weapon>
@@ -21519,7 +21725,19 @@ You have +2 to attack and damage rolls with scimitars.</Description>
          <Weapon>Scimitar</Weapon>
       </Effect>
       <Effect>
+         <Type>CriticalAttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>2</Amount>
+         <Weapon>Scimitar</Weapon>
+      </Effect>
+      <Effect>
          <Type>DamageBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>2</Amount>
+         <Weapon>Scimitar</Weapon>
+      </Effect>
+      <Effect>
+         <Type>Seeker</Type>
          <Bonus>Feat</Bonus>
          <Amount>2</Amount>
          <Weapon>Scimitar</Weapon>
@@ -21561,7 +21779,19 @@ You have +2 to attack and damage rolls with shortswords.</Description>
          <Weapon>Shortsword</Weapon>
       </Effect>
       <Effect>
+         <Type>CriticalAttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>2</Amount>
+         <Weapon>Shortsword</Weapon>
+      </Effect>
+      <Effect>
          <Type>DamageBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>2</Amount>
+         <Weapon>Shortsword</Weapon>
+      </Effect>
+      <Effect>
+         <Type>Seeker</Type>
          <Bonus>Feat</Bonus>
          <Amount>2</Amount>
          <Weapon>Shortsword</Weapon>
@@ -21603,7 +21833,19 @@ You have +2 to attack and damage rolls with heavy maces.</Description>
          <Weapon>Heavy Mace</Weapon>
       </Effect>
       <Effect>
+         <Type>CriticalAttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>2</Amount>
+         <Weapon>Heavy Mace</Weapon>
+      </Effect>
+      <Effect>
          <Type>DamageBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>2</Amount>
+         <Weapon>Heavy Mace</Weapon>
+      </Effect>
+      <Effect>
+         <Type>Seeker</Type>
          <Bonus>Feat</Bonus>
          <Amount>2</Amount>
          <Weapon>Heavy Mace</Weapon>
@@ -21645,7 +21887,19 @@ You gain +1 to attack and damage rolls with bastard swords.</Description>
          <Weapon>Bastard Sword</Weapon>
       </Effect>
       <Effect>
+         <Type>CriticalAttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
+         <Weapon>Bastard Sword</Weapon>
+      </Effect>
+      <Effect>
          <Type>DamageBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
+         <Weapon>Bastard Sword</Weapon>
+      </Effect>
+      <Effect>
+         <Type>Seeker</Type>
          <Bonus>Feat</Bonus>
          <Amount>1</Amount>
          <Weapon>Bastard Sword</Weapon>
@@ -21687,7 +21941,19 @@ You gain +2 to attack and damage rolls with mauls.</Description>
          <Weapon>Maul</Weapon>
       </Effect>
       <Effect>
+         <Type>CriticalAttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>2</Amount>
+         <Weapon>Maul</Weapon>
+      </Effect>
+      <Effect>
          <Type>DamageBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>2</Amount>
+         <Weapon>Maul</Weapon>
+      </Effect>
+      <Effect>
+         <Type>Seeker</Type>
          <Bonus>Feat</Bonus>
          <Amount>2</Amount>
          <Weapon>Maul</Weapon>
@@ -22370,8 +22636,9 @@ Toggling this on gives you Blessing of Silvanus: You permanently gain a
    <Feat>
       <Name>Beloved of Amaunator</Name>
       <Description>You follow Amaunator.
-You have +1 to attack and damage rolls with heavy maces.</Description>
+You have +3 to attack and damage rolls with heavy maces.</Description>
       <FeatGroup>
+         <IsStandardFeat/>
          <IsBelovedOf/>
       </FeatGroup>
       <Requirements>
@@ -22399,28 +22666,50 @@ You have +1 to attack and damage rolls with heavy maces.</Description>
          <Type>AttackBonus</Type>
          <Bonus>Feat</Bonus>
          <Weapon>Heavy Mace</Weapon>
-         <Amount>1</Amount>
+         <Amount>3</Amount>
+      </Effect>
+      <Effect>
+         <Type>CriticalAttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Weapon>Heavy Mace</Weapon>
+         <Amount>3</Amount>
+      </Effect>
+      <Effect>
+         <Type>DamageBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Weapon>Heavy Mace</Weapon>
+         <Amount>3</Amount>
+      </Effect>
+      <Effect>
+         <Type>Seeker</Type>
+         <Bonus>Feat</Bonus>
+         <Weapon>Heavy Mace</Weapon>
+         <Amount>3</Amount>
       </Effect>
    </Feat>
    <Feat>
       <Name>Beloved of the Lord of Blades</Name>
-      <Description>You are a favored soul of the Lord of Blades.
-You deal 2 extra damage with Great Swords.</Description>
+      <Description>You follow the Lord of Blades.
+You have +2 to attack and damage rolls with greatswords.</Description>
       <FeatGroup>
+         <IsStandardFeat/>
          <IsBelovedOf/>
       </FeatGroup>
       <Requirements>
          <RequiresOneOf>
             <Requirement>
-               <Race>Bladeforged</Race>
+               <Class>Cleric</Class>
+               <Level>12</Level>
             </Requirement>
             <Requirement>
-               <Race>Warforged</Race>
+               <Class>Favored Soul</Class>
+               <Level>12</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Paladin</Class>
+               <Level>12</Level>
             </Requirement>
          </RequiresOneOf>
-         <Requirement>
-            <Class>Favored Soul</Class>
-         </Requirement>
          <Requirement>
             <Feat>Child of the Lord of Blades</Feat>
          </Requirement>
@@ -22428,7 +22717,25 @@ You deal 2 extra damage with Great Swords.</Description>
       <Acquire>Train</Acquire>
       <Icon>LordOfBlades</Icon>
       <Effect>
+         <Type>AttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Weapon>Great Sword</Weapon>
+         <Amount>2</Amount>
+      </Effect>
+      <Effect>
+         <Type>CriticalAttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Weapon>Great Sword</Weapon>
+         <Amount>2</Amount>
+      </Effect>
+      <Effect>
          <Type>DamageBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Weapon>Great Sword</Weapon>
+         <Amount>2</Amount>
+      </Effect>
+      <Effect>
+         <Type>Seeker</Type>
          <Bonus>Feat</Bonus>
          <Weapon>Great Sword</Weapon>
          <Amount>2</Amount>
@@ -22436,15 +22743,27 @@ You deal 2 extra damage with Great Swords.</Description>
    </Feat>
    <Feat>
       <Name>Beloved of the Silver Flame</Name>
-      <Description>You are a favored soul of the Silver Flame.
-You deal 2 extra damage with longbows.</Description>
+      <Description>You follow the Silver Flame.
+You have +2 to attack and damage rolls with longbows.</Description>
       <FeatGroup>
+         <IsStandardFeat/>
          <IsBelovedOf/>
       </FeatGroup>
       <Requirements>
-         <Requirement>
-            <Class>Favored Soul</Class>
-         </Requirement>
+         <RequiresOneOf>
+            <Requirement>
+               <Class>Cleric</Class>
+               <Level>12</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Favored Soul</Class>
+               <Level>12</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Paladin</Class>
+               <Level>12</Level>
+            </Requirement>
+         </RequiresOneOf>
          <Requirement>
             <Feat>Child of the Silver Flame</Feat>
          </Requirement>
@@ -22452,7 +22771,25 @@ You deal 2 extra damage with longbows.</Description>
       <Acquire>Train</Acquire>
       <Icon>SilverFlame</Icon>
       <Effect>
+         <Type>AttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Weapon>Longbow</Weapon>
+         <Amount>2</Amount>
+      </Effect>
+      <Effect>
+         <Type>CriticalAttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Weapon>Longbow</Weapon>
+         <Amount>2</Amount>
+      </Effect>
+      <Effect>
          <Type>DamageBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Weapon>Longbow</Weapon>
+         <Amount>2</Amount>
+      </Effect>
+      <Effect>
+         <Type>Seeker</Type>
          <Bonus>Feat</Bonus>
          <Weapon>Longbow</Weapon>
          <Amount>2</Amount>
@@ -22460,15 +22797,27 @@ You deal 2 extra damage with longbows.</Description>
    </Feat>
    <Feat>
       <Name>Beloved of the Sovereign Host</Name>
-      <Description>You are a favored soul of the Sovereign Host.
-You deal 2 extra damage with longswords.</Description>
+      <Description>You follow the Sovereign Host.
+You have +2 to attack and damage rolls with longswords. </Description>
       <FeatGroup>
+         <IsStandardFeat/>
          <IsBelovedOf/>
       </FeatGroup>
       <Requirements>
-         <Requirement>
-            <Class>Favored Soul</Class>
-         </Requirement>
+         <RequiresOneOf>
+            <Requirement>
+               <Class>Cleric</Class>
+               <Level>12</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Favored Soul</Class>
+               <Level>12</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Paladin</Class>
+               <Level>12</Level>
+            </Requirement>
+         </RequiresOneOf>
          <Requirement>
             <Feat>Child of the Sovereign Host</Feat>
          </Requirement>
@@ -22476,7 +22825,25 @@ You deal 2 extra damage with longswords.</Description>
       <Acquire>Train</Acquire>
       <Icon>SovereignHost</Icon>
       <Effect>
+         <Type>AttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Weapon>Longsword</Weapon>
+         <Amount>2</Amount>
+      </Effect>
+      <Effect>
+         <Type>CriticalAttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Weapon>Longsword</Weapon>
+         <Amount>2</Amount>
+      </Effect>
+      <Effect>
          <Type>DamageBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Weapon>Longsword</Weapon>
+         <Amount>2</Amount>
+      </Effect>
+      <Effect>
+         <Type>Seeker</Type>
          <Bonus>Feat</Bonus>
          <Weapon>Longsword</Weapon>
          <Amount>2</Amount>
@@ -22484,15 +22851,27 @@ You deal 2 extra damage with longswords.</Description>
    </Feat>
    <Feat>
       <Name>Beloved of the Undying Court</Name>
-      <Description>You are a favored soul of the Undying Court.
-You deal 2 extra damage with scimitars.</Description>
+      <Description>You follow the Undying Court.
+You have +2 to attack and damage rolls with scimitars.</Description>
       <FeatGroup>
+         <IsStandardFeat/>
          <IsBelovedOf/>
       </FeatGroup>
       <Requirements>
-         <Requirement>
-            <Class>Favored Soul</Class>
-         </Requirement>
+         <RequiresOneOf>
+            <Requirement>
+               <Class>Cleric</Class>
+               <Level>12</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Favored Soul</Class>
+               <Level>12</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Paladin</Class>
+               <Level>12</Level>
+            </Requirement>
+         </RequiresOneOf>
          <Requirement>
             <Feat>Child of the Undying Court</Feat>
          </Requirement>
@@ -22500,7 +22879,25 @@ You deal 2 extra damage with scimitars.</Description>
       <Acquire>Train</Acquire>
       <Icon>Undying</Icon>
       <Effect>
+         <Type>AttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Weapon>Scimitar</Weapon>
+         <Amount>2</Amount>
+      </Effect>
+      <Effect>
+         <Type>CriticalAttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Weapon>Scimitar</Weapon>
+         <Amount>2</Amount>
+      </Effect>
+      <Effect>
          <Type>DamageBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Weapon>Scimitar</Weapon>
+         <Amount>2</Amount>
+      </Effect>
+      <Effect>
+         <Type>Seeker</Type>
          <Bonus>Feat</Bonus>
          <Weapon>Scimitar</Weapon>
          <Amount>2</Amount>
@@ -22508,18 +22905,27 @@ You deal 2 extra damage with scimitars.</Description>
    </Feat>
    <Feat>
       <Name>Beloved of Vulkoor</Name>
-      <Description>You are a favored soul of Vulkoor.
-You deal 2 extra damage with shortswords.</Description>
+      <Description>You follow Vulkoor.
+You have +2 to attack and damage rolls with shortswords.</Description>
       <FeatGroup>
+         <IsStandardFeat/>
          <IsBelovedOf/>
       </FeatGroup>
       <Requirements>
-         <Requirement>
-            <Class>Favored Soul</Class>
-         </Requirement>
-         <Requirement>
-            <Race>Drow</Race>
-         </Requirement>
+         <RequiresOneOf>
+            <Requirement>
+               <Class>Cleric</Class>
+               <Level>12</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Favored Soul</Class>
+               <Level>12</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Paladin</Class>
+               <Level>12</Level>
+            </Requirement>
+         </RequiresOneOf>
          <Requirement>
             <Feat>Child of Vulkoor</Feat>
          </Requirement>
@@ -22527,7 +22933,25 @@ You deal 2 extra damage with shortswords.</Description>
       <Acquire>Train</Acquire>
       <Icon>Vulkoor</Icon>
       <Effect>
+         <Type>AttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Weapon>Shortsword</Weapon>
+         <Amount>2</Amount>
+      </Effect>
+      <Effect>
+         <Type>CriticalAttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Weapon>Shortsword</Weapon>
+         <Amount>2</Amount>
+      </Effect>
+      <Effect>
          <Type>DamageBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Weapon>Shortsword</Weapon>
+         <Amount>2</Amount>
+      </Effect>
+      <Effect>
+         <Type>Seeker</Type>
          <Bonus>Feat</Bonus>
          <Weapon>Shortsword</Weapon>
          <Amount>2</Amount>
@@ -22535,15 +22959,27 @@ You deal 2 extra damage with shortswords.</Description>
    </Feat>
    <Feat>
       <Name>Beloved of Aureon</Name>
-      <Description>You are a favored soul of Aureon.
-You deal 2 extra damage with Quarterstaffs.</Description>
+      <Description>You are a Beloved of Aureon.
+You have +3 to attack and damage rolls with quarterstaff.</Description>
       <FeatGroup>
+         <IsStandardFeat/>
          <IsBelovedOf/>
       </FeatGroup>
       <Requirements>
-         <Requirement>
-            <Class>Favored Soul</Class>
-         </Requirement>
+         <RequiresOneOf>
+            <Requirement>
+               <Class>Cleric</Class>
+               <Level>12</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Favored Soul</Class>
+               <Level>12</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Paladin</Class>
+               <Level>12</Level>
+            </Requirement>
+         </RequiresOneOf>
          <Requirement>
             <Feat>Child of Aureon</Feat>
          </Requirement>
@@ -22551,22 +22987,53 @@ You deal 2 extra damage with Quarterstaffs.</Description>
       <Acquire>Train</Acquire>
       <Icon>Aureon</Icon>
       <Effect>
+         <Type>AttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Weapon>Quarterstaff</Weapon>
+         <Amount>3</Amount>
+      </Effect>
+      <Effect>
+         <Type>CriticalAttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Weapon>Quarterstaff</Weapon>
+         <Amount>3</Amount>
+      </Effect>
+      <Effect>
          <Type>DamageBonus</Type>
          <Bonus>Feat</Bonus>
          <Weapon>Quarterstaff</Weapon>
-         <Amount>2</Amount>
+         <Amount>3</Amount>
+      </Effect>
+      <Effect>
+         <Type>Seeker</Type>
+         <Bonus>Feat</Bonus>
+         <Weapon>Quarterstaff</Weapon>
+         <Amount>3</Amount>
       </Effect>
    </Feat>
    <Feat>
       <Name>Beloved of the Blood of Vol</Name>
-      <Description>You follow the Blood of Vol. You have +3 to attack and damage rolls with daggers.</Description>
+      <Description>You follow the Blood of Vol.
+You have +3 to attack and damage rolls with daggers.</Description>
       <FeatGroup>
+         <IsStandardFeat/>
          <IsBelovedOf/>
       </FeatGroup>
       <Requirements>
-         <Requirement>
-            <Class>Favored Soul</Class>
-         </Requirement>
+         <RequiresOneOf>
+            <Requirement>
+               <Class>Cleric</Class>
+               <Level>12</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Favored Soul</Class>
+               <Level>12</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Paladin</Class>
+               <Level>12</Level>
+            </Requirement>
+         </RequiresOneOf>
          <Requirement>
             <Feat>Child of the Blood of Vol</Feat>
          </Requirement>
@@ -22580,7 +23047,19 @@ You deal 2 extra damage with Quarterstaffs.</Description>
          <Amount>3</Amount>
       </Effect>
       <Effect>
+         <Type>CriticalAttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Weapon>Dagger</Weapon>
+         <Amount>3</Amount>
+      </Effect>
+      <Effect>
          <Type>DamageBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Weapon>Dagger</Weapon>
+         <Amount>3</Amount>
+      </Effect>
+      <Effect>
+         <Type>Seeker</Type>
          <Bonus>Feat</Bonus>
          <Weapon>Dagger</Weapon>
          <Amount>3</Amount>
@@ -22588,14 +23067,27 @@ You deal 2 extra damage with Quarterstaffs.</Description>
    </Feat>
    <Feat>
       <Name>Beloved of Olladra</Name>
-      <Description>You follow Olladra. You have +3 to attack and damage rolls with sickles.</Description>
+      <Description>You follow Olladra.
+You have +3 to attack and damage rolls with sickles.</Description>
       <FeatGroup>
+         <IsStandardFeat/>
          <IsBelovedOf/>
       </FeatGroup>
       <Requirements>
-         <Requirement>
-            <Class>Favored Soul</Class>
-         </Requirement>
+         <RequiresOneOf>
+            <Requirement>
+               <Class>Cleric</Class>
+               <Level>12</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Favored Soul</Class>
+               <Level>12</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Paladin</Class>
+               <Level>12</Level>
+            </Requirement>
+         </RequiresOneOf>
          <Requirement>
             <Feat>Luck of Olladra</Feat>
          </Requirement>
@@ -22609,7 +23101,19 @@ You deal 2 extra damage with Quarterstaffs.</Description>
          <Amount>3</Amount>
       </Effect>
       <Effect>
+         <Type>CriticalAttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Weapon>Sickle</Weapon>
+         <Amount>3</Amount>
+      </Effect>
+      <Effect>
          <Type>DamageBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Weapon>Sickle</Weapon>
+         <Amount>3</Amount>
+      </Effect>
+      <Effect>
+         <Type>Seeker</Type>
          <Bonus>Feat</Bonus>
          <Weapon>Sickle</Weapon>
          <Amount>3</Amount>
@@ -22617,14 +23121,27 @@ You deal 2 extra damage with Quarterstaffs.</Description>
    </Feat>
    <Feat>
       <Name>Beloved of Onatar</Name>
-      <Description>You follow Onatar. You have +3 to attack and damage rolls with warhammers.</Description>
+      <Description>You follow Onatar.
+You have +2 to attack and damage rolls with warhammers.</Description>
       <FeatGroup>
+         <IsStandardFeat/>
          <IsBelovedOf/>
       </FeatGroup>
       <Requirements>
-         <Requirement>
-            <Class>Favored Soul</Class>
-         </Requirement>
+         <RequiresOneOf>
+            <Requirement>
+               <Class>Cleric</Class>
+               <Level>12</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Favored Soul</Class>
+               <Level>12</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Paladin</Class>
+               <Level>12</Level>
+            </Requirement>
+         </RequiresOneOf>
          <Requirement>
             <Feat>Child of Onatar</Feat>
          </Requirement>
@@ -22638,7 +23155,19 @@ You deal 2 extra damage with Quarterstaffs.</Description>
          <Amount>3</Amount>
       </Effect>
       <Effect>
+         <Type>CriticalAttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Weapon>Warhammer</Weapon>
+         <Amount>3</Amount>
+      </Effect>
+      <Effect>
          <Type>DamageBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Weapon>Warhammer</Weapon>
+         <Amount>3</Amount>
+      </Effect>
+      <Effect>
+         <Type>Seeker</Type>
          <Bonus>Feat</Bonus>
          <Weapon>Warhammer</Weapon>
          <Amount>3</Amount>
@@ -22646,14 +23175,27 @@ You deal 2 extra damage with Quarterstaffs.</Description>
    </Feat>
    <Feat>
       <Name>Beloved of Helm</Name>
-      <Description>You follow Helm. You gain +1 to attack and damage rolls with bastard swords.</Description>
+      <Description>You follow Helm.
+You gain +1 to attack and damage rolls with bastard swords.</Description>
       <FeatGroup>
+         <IsStandardFeat/>
          <IsBelovedOf/>
       </FeatGroup>
       <Requirements>
-         <Requirement>
-            <Class>Favored Soul</Class>
-         </Requirement>
+         <RequiresOneOf>
+            <Requirement>
+               <Class>Cleric</Class>
+               <Level>12</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Favored Soul</Class>
+               <Level>12</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Paladin</Class>
+               <Level>12</Level>
+            </Requirement>
+         </RequiresOneOf>
          <Requirement>
             <Feat>Child of Helm</Feat>
          </Requirement>
@@ -22667,7 +23209,19 @@ You deal 2 extra damage with Quarterstaffs.</Description>
          <Amount>1</Amount>
       </Effect>
       <Effect>
+         <Type>CriticalAttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Weapon>Bastard Sword</Weapon>
+         <Amount>1</Amount>
+      </Effect>
+      <Effect>
          <Type>DamageBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Weapon>Bastard Sword</Weapon>
+         <Amount>1</Amount>
+      </Effect>
+      <Effect>
+         <Type>Seeker</Type>
          <Bonus>Feat</Bonus>
          <Weapon>Bastard Sword</Weapon>
          <Amount>1</Amount>
@@ -22675,14 +23229,27 @@ You deal 2 extra damage with Quarterstaffs.</Description>
    </Feat>
    <Feat>
       <Name>Beloved of Silvanus</Name>
-      <Description>You follow Silvanus. You gain +2 to attack and damage rolls with mauls.</Description>
+      <Description>You follow Silvanus.
+You gain +2 to attack and damage rolls with mauls.</Description>
       <FeatGroup>
+         <IsStandardFeat/>
          <IsBelovedOf/>
       </FeatGroup>
       <Requirements>
-         <Requirement>
-            <Class>Favored Soul</Class>
-         </Requirement>
+         <RequiresOneOf>
+            <Requirement>
+               <Class>Cleric</Class>
+               <Level>12</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Favored Soul</Class>
+               <Level>12</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Paladin</Class>
+               <Level>12</Level>
+            </Requirement>
+         </RequiresOneOf>
          <Requirement>
             <Feat>Child of Silvanus</Feat>
          </Requirement>
@@ -22696,7 +23263,19 @@ You deal 2 extra damage with Quarterstaffs.</Description>
          <Amount>2</Amount>
       </Effect>
       <Effect>
+         <Type>CriticalAttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Weapon>Maul</Weapon>
+         <Amount>2</Amount>
+      </Effect>
+      <Effect>
          <Type>DamageBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Weapon>Maul</Weapon>
+         <Amount>2</Amount>
+      </Effect>
+      <Effect>
+         <Type>Seeker</Type>
          <Bonus>Feat</Bonus>
          <Weapon>Maul</Weapon>
          <Amount>2</Amount>
@@ -25827,8 +26406,8 @@ or you have previously unlocked this tree for this character.</Description>
    <Feat>
       <Name>Multitude of Missiles</Name>
       <Description>THIS FEAT IS NOT CURRENTLY AVAILABLE ON LIVE SERVERS
-For the next 20 seconds, while wielding a Simple Thrown Weapon add 120 to your
-Doubleshot and 4x your Base Attack Bonus to Ranged Power.
+For the next 20 seconds, while wielding a Simple Thrown Weapon add 100 to your
+Doubleshot and 2x your Base Attack Bonus to Ranged Power.
 Shares a cooldown with Manyshot.</Description>
       <FeatGroup>
          <IsStandardFeat/>
@@ -25955,7 +26534,7 @@ Orchidium Reaction: +1 Physical Resistance Rating per Alchemist Level.</Descript
          <SpellPower>Acid</SpellPower>
          <SpellPower>Poison</SpellPower>
          <Class>Alchemist</Class>
-         <AmountPerLevel size="20">16 22 28 34 40 46 52 58 64 70 76 82 88 94 100 106 112 118 124 130</AmountPerLevel>
+         <AmountVector size="20">16 22 28 34 40 46 52 58 64 70 76 82 88 94 100 106 112 118 124 130</AmountVector>
          <Stance>Pyrite</Stance>
       </Effect>
       <Effect>
@@ -25968,7 +26547,7 @@ Orchidium Reaction: +1 Physical Resistance Rating per Alchemist Level.</Descript
          <SpellPower>Acid</SpellPower>
          <SpellPower>Poison</SpellPower>
          <Class>Alchemist</Class>
-         <AmountPerLevel size="20">1 2 2 3 3 4 4 5 5 6 6 7 7 8 8 9 9 10 10 11</AmountPerLevel>
+         <AmountVector size="20">1 2 2 3 3 4 4 5 5 6 6 7 7 8 8 9 9 10 10 11</AmountVector>
          <Stance>Pyrite</Stance>
       </Effect>
       <Effect>
@@ -25978,7 +26557,7 @@ Orchidium Reaction: +1 Physical Resistance Rating per Alchemist Level.</Descript
          <SpellPower>Positive</SpellPower>
          <SpellPower>Negative</SpellPower>
          <Class>Alchemist</Class>
-         <AmountPerLevel size="20">16 22 28 34 40 46 52 58 64 70 76 82 88 94 100 106 112 118 124 130</AmountPerLevel>
+         <AmountVector size="20">16 22 28 34 40 46 52 58 64 70 76 82 88 94 100 106 112 118 124 130</AmountVector>
          <Stance>Verdanite</Stance>
       </Effect>
       <Effect>
@@ -25987,7 +26566,7 @@ Orchidium Reaction: +1 Physical Resistance Rating per Alchemist Level.</Descript
          <Bonus>Feat</Bonus>
          <School>Conjuration</School>
          <Class>Alchemist</Class>
-         <AmountPerLevel size="20">1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 3</AmountPerLevel>
+         <AmountVector size="20">1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 3</AmountVector>
          <Stance>Verdanite</Stance>
       </Effect>
       <Effect>
@@ -25996,7 +26575,7 @@ Orchidium Reaction: +1 Physical Resistance Rating per Alchemist Level.</Descript
          <Bonus>Feat</Bonus>
          <School>Transmutation</School>
          <Class>Alchemist</Class>
-         <AmountPerLevel size="20">1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 3</AmountPerLevel>
+         <AmountVector size="20">1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 3</AmountVector>
          <Stance>Verdanite</Stance>
       </Effect>
       <Effect>
@@ -26004,7 +26583,7 @@ Orchidium Reaction: +1 Physical Resistance Rating per Alchemist Level.</Descript
          <Type>PRR</Type>
          <Bonus>Feat</Bonus>
          <Class>Alchemist</Class>
-         <AmountPerLevel size="20">19 28 37 46 55 64 73 82 91 100 109 118 127 136 145 154 163 172 181 190</AmountPerLevel>
+         <AmountVector size="20">19 28 37 46 55 64 73 82 91 100 109 118 127 136 145 154 163 172 181 190</AmountVector>
          <Stance>Orchidium</Stance>
       </Effect>
       <Effect>
@@ -26012,7 +26591,7 @@ Orchidium Reaction: +1 Physical Resistance Rating per Alchemist Level.</Descript
          <Type>PRR</Type>
          <Bonus>Feat</Bonus>
          <Class>Alchemist</Class>
-         <AmountPerLevel size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</AmountPerLevel>
+         <AmountVector size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</AmountVector>
          <Stance>Orchidium</Stance>
       </Effect>
    </Feat>
@@ -26250,7 +26829,9 @@ cast, like Curative Admixtures and Vial spells</Description>
    </Feat>
    <Feat>
       <Name>Accelerate Spell</Name>
-      <Description>While this Metamagic feat is active, the projectiles of spells affected by Accelerate Spell fly faster and with less of an arc, but consume 5 additional spell points.</Description>
+      <Description>While this Metamagic feat is active, the projectiles of spells affected by
+Accelerate Spell fly faster and with less of an arc, but consume 5 additional
+spell points.</Description>
       <FeatGroup>
          <IsArtificerBonus/>
          <IsAlchemistBonus/>

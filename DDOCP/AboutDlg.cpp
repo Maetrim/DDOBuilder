@@ -95,6 +95,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
             "Swimms, "
             "ValariusK, "
             "Vilhena, "
+            "Vychos, "
             "warioman91, "
             "wolvemd, "
             "Xycona, "

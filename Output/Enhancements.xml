@@ -1124,7 +1124,7 @@ and your melee weapon attacks add a stack of Vulnerability once per second.</Des
          <Name>Bladeforged: Great Weapon Aptitude</Name>
          <InternalName>BladeforgedGreatWeaponAptitude</InternalName>
          <Description>Glancing blows produced by your two-handed weapon attacks have a 2%/4%/6% increased
-chance of producing magical effects such as flaming. +[1/3/5]% Strikethrough</Description>
+chance of producing magical effects such as flaming. +[5/10/20]% Strikethrough</Description>
          <Icon>WarforgedGreatWeaponAptitude</Icon>
          <XPosition>2</XPosition>
          <YPosition>2</YPosition>
@@ -1139,7 +1139,7 @@ chance of producing magical effects such as flaming. +[1/3/5]% Strikethrough</De
         <Effect>
             <Type>Strikethrough</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">1 3 5</AmountVector>
+            <AmountVector size="3">5 10 20</AmountVector>
         </Effect>
          <Effect>
             <Type>GlancingBlowEffects</Type>
@@ -6983,13 +6983,13 @@ Rank 3: Also gains +1 damage.</Description>
             <EnhancementSelection>
                <Name>Great Weapon Aptitude</Name>
                <Description>Glancing blows produced by your two-handed weapon attacks have a +2%/+4%/+6%
-increased chance of producing magical weapon effects such as flaming. +[1/3/5]% Strikethrough</Description>
+increased chance of producing magical weapon effects such as flaming. +[5/10/20]% Strikethrough</Description>
                <Icon>FightingStyleTwoHanded</Icon>
                <Cost>1</Cost>
         <Effect>
             <Type>Strikethrough</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">1 3 5</AmountVector>
+            <AmountVector size="3">5 10 20</AmountVector>
         </Effect>
                <Effect>
                   <Type>GlancingBlowEffects</Type>
@@ -7475,6 +7475,7 @@ of this ability.</Description>
       <IsRacialTree/>
       <Icon>Half-Elf</Icon>
       <Background>Half-ElfBackground</Background>
+      <!--tree core items-->
       <EnhancementTreeItem>
          <Name>Half-Elf: Half Elven Versatile Nature</Name>
          <InternalName>HalfElfCore1</InternalName>
@@ -8014,6 +8015,7 @@ of a Natural 1.</Description>
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
+      <!--Tier 1 Enhancements-->
       <EnhancementTreeItem>
          <Name>Half-Elf: Lyrandar Dragonmark Focus</Name>
          <InternalName>HalfElfLyrandarDragonmarkFocus</InternalName>
@@ -8181,6 +8183,23 @@ score must be positive to use this ability. (Cooldown: 1 minute).</Description>
          <ArrowUp/>
          <Requirements/>
          <Selector>
+            <EnhancementSelection>
+               <Name>Improved Dilettante: Alchemist</Name>
+               <Description>+30 Maximum Spell Points. For item use purposes you are now treated as
+a third level Alchemist (or your total character level, whichever is lower.)</Description>
+               <Icon>HalfElfImprovedDilettanteAlchemist</Icon>
+               <Cost>1</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Feat>Half-Elf Dilettante: Alchemist</Feat>
+                  </Requirement>
+               </Requirements>
+               <Effect>
+                  <Type>SpellPoints</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Amount>30</Amount>
+               </Effect>
+            </EnhancementSelection>
             <EnhancementSelection>
                <Name>Improved Dilettante: Artificer</Name>
                <Description>Your knowledge of magical items has improved, and now extends to potions.
@@ -8423,6 +8442,7 @@ For item use purposes you are now treated as a second level Ranger
             <AmountVector size="3">-5 -10 -15</AmountVector>
          </Effect>
       </EnhancementTreeItem>
+      <!--Tier 2 Enhancements-->
       <EnhancementTreeItem>
          <Name>Half-Elf: Lesser Dragonmark of Storm</Name>
          <InternalName>HalfElfLesserDragonmarkOfStorm</InternalName>
@@ -8577,6 +8597,9 @@ enhancement from the Shintao Monk tree.</Description>
                <Requirements>
                   <RequiresOneOf>
                      <Requirement>
+                        <Feat>Half-Elf Dilettante: Alchemist</Feat>
+                     </Requirement>
+                     <Requirement>
                         <Feat>Half-Elf Dilettante: Cleric</Feat>
                      </Requirement>
                      <Requirement>
@@ -8613,6 +8636,12 @@ roll of a natural 1.</Description>
                   <Type>Immunity</Type>
                   <Bonus>Enhancement</Bonus>
                   <Immunity>Natural Diseases</Immunity>
+               </Effect>
+               <Effect>
+                  <Type>SaveBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Amount>4</Amount>
+                  <Save>Disease</Save>
                </Effect>
                <Effect>
                   <Type>SaveNoFailOn1</Type>
@@ -8663,8 +8692,25 @@ from the Thief-Acrobat tree. (Cooldown: 12 seconds) </Description>
          </Requirements>
          <Selector>
             <EnhancementSelection>
+               <Name>Improved Dilettante: Alchemist</Name>
+               <Description>+30 Maximum Spell Points. For item use purposes you are now treated as
+a sixth level Alchemist (or your total character level, whichever is lower.)</Description>
+               <Icon>HalfElfImprovedDilettanteAlchemist</Icon>
+               <Cost>1</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Feat>Half-Elf Dilettante: Alchemist</Feat>
+                  </Requirement>
+               </Requirements>
+               <Effect>
+                  <Type>SpellPoints</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Amount>30</Amount>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
                <Name>Improved Dilettante: Artificer</Name>
-               <Description>knowledge of magical items has improved, and now extends to wands.
+               <Description>Knowledge of magical items has improved, and now extends to wands.
 For item purposes you are now treated as a third level Artificer
 (or your total character level, whichever is lower.)</Description>
                <Icon>HalfElfImprovedDilettanteArtificer</Icon>
@@ -8856,6 +8902,7 @@ For item use purposes you are now treated as a third level Ranger
             <AmountVector size="3">1 2 3</AmountVector>
          </Effect>
       </EnhancementTreeItem>
+      <!--Tier 3 Enhancements-->
       <EnhancementTreeItem>
          <Name>Half-Elf: Greater Dragonmark of Storm</Name>
          <InternalName>HalfElfGreaterDragonmarkOfStorm</InternalName>
@@ -9074,6 +9121,9 @@ For item use purposes you are now treated as a third level Ranger
                <Requirements>
                   <RequiresOneOf>
                      <Requirement>
+                        <Feat>Half-Elf Dilettante: Alchemist</Feat>
+                     </Requirement>
+                     <Requirement>
                         <Feat>Half-Elf Dilettante: Artificer</Feat>
                      </Requirement>
                      <Requirement>
@@ -9174,6 +9224,7 @@ points in both the Ranger: Arcane Archer and Elf: Arcane Archer trees.)</Descrip
             <Bonus>Enhancement</Bonus>
          </Effect>
       </EnhancementTreeItem>
+      <!--Tier 4 Enhancements-->
       <EnhancementTreeItem>
          <Name>Half-Elf: Power of the Storm</Name>
          <InternalName>HalfElfPowerOfTheStorm</InternalName>
@@ -9294,6 +9345,9 @@ enhancement from the Shintao Monk tree.</Description>
                <Requirements>
                   <RequiresOneOf>
                      <Requirement>
+                        <Feat>Half-Elf Dilettante: Alchemist</Feat>
+                     </Requirement>
+                     <Requirement>
                         <Feat>Half-Elf Dilettante: Artificer</Feat>
                      </Requirement>
                      <Requirement>
@@ -9337,6 +9391,12 @@ fail saving throws against fear on a roll of a natural 1.</Description>
                      <Feat>Half-Elf Dilettante: Paladin</Feat>
                   </Requirement>
                </Requirements>
+               <Effect>
+                  <Type>SaveBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Amount>4</Amount>
+                  <Save>Fear</Save>
+               </Effect>
                <Effect>
                   <Type>SaveNoFailOn1</Type>
                   <Bonus>Enhancement</Bonus>
@@ -9445,6 +9505,23 @@ the Tempest tree. </Description>
             </Requirement>
          </Requirements>
          <Selector>
+            <EnhancementSelection>
+               <Name>Improved Dilettante: Alchemist</Name>
+               <Description>+30 Maximum Spell Points. For item use purposes you are now treated as
+a tenth level Alchemist (or your total character level, whichever is lower.)</Description>
+               <Icon>HalfElfImprovedDilettanteAlchemist</Icon>
+               <Cost>1</Cost>
+               <Requirements>
+                  <Requirement>
+                     <Feat>Half-Elf Dilettante: Alchemist</Feat>
+                  </Requirement>
+               </Requirements>
+               <Effect>
+                  <Type>SpellPoints</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Amount>30</Amount>
+               </Effect>
+            </EnhancementSelection>
             <EnhancementSelection>
                <Name>Improved Dilettante: Artificer</Name>
                <Description>Your knowledge of magical items has improved, and now extends to magical arms and armor. For item purposes you are now treated as a fourth level Artificer (or your total character level, whichever is lower.)</Description>
@@ -10621,7 +10698,7 @@ is a chance of failure based on your Charisma.
          <Name>Half-Orc: Great Weapon Aptitude</Name>
          <InternalName>HalfOrcGreatWeaponAptitude</InternalName>
          <Description>Glancing blows produced by your two-handed weapon attacks have a [2/4/6]%
-increased chance of producing magical weapon effects such as flaming. +[1/3/5]% Strikethrough</Description>
+increased chance of producing magical weapon effects such as flaming. +[5/10/20]% Strikethrough</Description>
          <Icon>HalfOrcGreatWeaponAptitude</Icon>
          <XPosition>1</XPosition>
          <YPosition>3</YPosition>
@@ -10636,7 +10713,7 @@ increased chance of producing magical weapon effects such as flaming. +[1/3/5]% 
         <Effect>
             <Type>Strikethrough</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">1 3 5</AmountVector>
+            <AmountVector size="3">5 10 20</AmountVector>
         </Effect>
          <Effect>
             <Type>GlancingBlowEffects</Type>
@@ -12502,13 +12579,13 @@ Rank 3: Also gains +1 damage.</Description>
             <EnhancementSelection>
                <Name>Great Weapon Aptitude</Name>
                <Description>Glancing blows produced by your two-handed weapon attacks have a +2%/+4%/+6%
-increased chance of producing magical weapon effects such as flaming. +[1/3/5]% Strikethrough</Description>
+increased chance of producing magical weapon effects such as flaming. +[5/10/20]% Strikethrough</Description>
                <Icon>FightingStyleTwoHanded</Icon>
                <Cost>2</Cost>
         <Effect>
             <Type>Strikethrough</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">1 3 5</AmountVector>
+            <AmountVector size="3">5 10 20</AmountVector>
         </Effect>
                <Effect>
                   <Type>GlancingBlowEffects</Type>
@@ -15770,7 +15847,7 @@ Duration: 20 seconds</Description>
          <Name>Warforged: Great Weapon Aptitude</Name>
          <InternalName>WarforgedGreateWeaponAptitude</InternalName>
          <Description>Glancing blows produced by your two-handed weapon attacks have a [2/4/6]% increased
-chance of producing magical effects such as flaming. +[1/3/5]% Strikethrough</Description>
+chance of producing magical effects such as flaming. +[5/10/20]% Strikethrough</Description>
          <Icon>WarforgedGreatWeaponAptitude</Icon>
          <XPosition>2</XPosition>
          <YPosition>2</YPosition>
@@ -15785,7 +15862,7 @@ chance of producing magical effects such as flaming. +[1/3/5]% Strikethrough</De
         <Effect>
             <Type>Strikethrough</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">1 3 5</AmountVector>
+            <AmountVector size="3">5 10 20</AmountVector>
         </Effect>
          <Effect>
             <Type>GlancingBlowEffects</Type>
@@ -17348,17 +17425,7 @@ Passive: While your Reaction is Verdanite, +2 Transmutation DC.</Description>
     <EnhancementTreeItem>
       <Name>Apothecary: Curative Admixture: Cure Light Wounds</Name>
       <InternalName>ApothCurativeAdmixtureCLW</InternalName>
-      <Description>Curative Admixture: Cure Light Wounds
-Metamagic: Empower, Empower Heal, Maximize, Intensify
-Spell Point Cost: 4/3/2
-Cooldown 12/8/4 seconds
-Primer Element: Gildleaf
-
-Infuses a Cure Light Wounds potion with magical energy, hurling it towards
-your target in an arc. The potion explodes in a small AOE that deals 1d6+2
-plus 1 per caster level (maximum caster level 5) positive energy damage to
-nearby living allies and enemy undead. This infusion is affected by
-Artificer/Alchemist Knowledge: Potions.</Description>
+      <Description>Choose between Curative Admixture: Inflict/Cure Light Wounds</Description>
       <Icon>ApothCurativeAdmixtureCLW</Icon>
       <XPosition>0</XPosition>
       <YPosition>1</YPosition>
@@ -17372,11 +17439,52 @@ Artificer/Alchemist Knowledge: Potions.</Description>
           <Level>1</Level>
         </Requirement>
       </Requirements>
-        <Effect>
-            <Type>SpellLikeAbility</Type>
-            <Bonus>Enhancement</Bonus>
-            <SpellLikeAbility>Curative Admixture: Cure Light Wounds</SpellLikeAbility>
-        </Effect>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Curative Admixture: Cure Light Wounds</Name>
+               <Description>Curative Admixture: Cure Light Wounds
+Metamagic: Empower, Empower Heal, Maximize, Intensify
+Spell Point Cost: 4/3/2
+Cooldown 12/8/4 seconds
+Primer Element: Gildleaf
+
+Infuses a Cure Light Wounds potion with magical energy, hurling it towards
+your target in an arc. The potion explodes in a small AOE that deals 1d6+2
+plus 1 per caster level (maximum caster level 5) positive energy damage to
+nearby living allies and enemy undead. This infusion is affected by
+Artificer/Alchemist Knowledge: Potions.</Description>
+               <Icon>ApothCurativeAdmixtureCLW</Icon>
+               <Cost>1</Cost>
+                <Effect>
+                    <Type>SpellLikeAbility</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <SpellLikeAbility>Curative Admixture: Cure Light Wounds</SpellLikeAbility>
+                </Effect>
+                <Clickie/>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Curative Admixture: Inflict Light Wounds</Name>
+               <Description>Curative Admixture: Inflict Light Wounds
+Metamagic: Empower, Empower Heal, Maximize, Intensify
+Spell Point Cost: 4/3/2
+Cooldown 12/8/4 seconds
+Primer Element: Gildleaf
+
+Infuses an InflictLight Wounds potion with magical energy, hurling it towards
+your target in an arc. The potion explodes in a small AOE that deals 1d6+2
+plus 1 per caster level (maximum caster level 5) negative energy damage to
+nearby undead allies and living enemies. This infusion is affected by
+Artificer/Alchemist Knowledge: Potions.</Description>
+               <Icon>ApothCurativeAdmixtureILW</Icon>
+               <Cost>1</Cost>
+                <Effect>
+                    <Type>SpellLikeAbility</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <SpellLikeAbility>Curative Admixture: Inflict Light Wounds</SpellLikeAbility>
+                </Effect>
+                <Clickie/>
+            </EnhancementSelection>
+         </Selector>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Apothecary: Apothecary Skills</Name>
@@ -17477,29 +17585,6 @@ for three minutes.</Description>
       </Requirements>
     </EnhancementTreeItem>
     <!--Tier 2 Enhancements-->
-    <EnhancementTreeItem>
-      <Name>Apothecary: Conjure Component</Name>
-      <InternalName>ApothConjureComponent</InternalName>
-      <Description>Conjure Component
-Spell Point Cost: 450/25/10
-Cooldown 12 seconds
-
-You conjure a large number of components that stand in for the Potion
-requirements in all of your Admixture spells. These expire on logout.</Description>
-      <Icon>ApothConjureComponent</Icon>
-      <XPosition>0</XPosition>
-      <YPosition>2</YPosition>
-      <Cost>1</Cost>
-      <Ranks>3</Ranks>
-      <MinSpent>5</MinSpent>
-      <Clickie/>
-      <Requirements>
-        <Requirement>
-          <Class>Alchemist</Class>
-          <Level>2</Level>
-        </Requirement>
-      </Requirements>
-    </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Apothecary: Hale &amp; Hearty</Name>
       <InternalName>ApothHaleAndHearty</InternalName>
@@ -17625,6 +17710,38 @@ with Death Salve and Converter.</Description>
     </EnhancementTreeItem>
     <!--Tier 3 Enhancements-->
     <EnhancementTreeItem>
+      <Name>Apothecary: Panacea Poultice</Name>
+      <InternalName>ApothPanaceaPoultice</InternalName>
+      <Description>Panacea Poultice
+Spell Point Cost: 6/3/1
+Cooldown: 12/8/6 seconds
+Primer Element: Gildleaf
+
+Channels powerful positive energy into a target at touch range to wipe away
+afflictions, restores 3 to 8 hit points plus an additional 1 per caster level
+(max +20), and removed temporary ability damage and the conditions blinded,
+confused, dazed, dazzled, deafened, diseased, exhausted, fatigued, feebleminded,
+insanity, nauseated, and poisoned. Against undead this spell will damage 3 to 8
+hit points +1 per caster level (max +20). Undead who make a successful Will save
+reduce the damage by half.
+
+D&amp;D Dice: Heals 1d6+2 hp +1 pointer per caster level (max +20) and removes
+temp ability damage and many afflictions.</Description>
+      <Icon>ApothPanaceaPoultice</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+      <Clickie/>
+      <Requirements>
+        <Requirement>
+          <Class>Alchemist</Class>
+          <Level>3</Level>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
       <Name>Apothecary: Safety Goggles</Name>
       <InternalName>ApothSafetyGoggles</InternalName>
       <Description>+[1/2/3] Armor Class and +[2/4/6] Resistance to Fire, Cold, Acid and Electric damage.
@@ -17705,7 +17822,7 @@ Safety First!</Description>
         <Effect>
             <Type>SaveBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountPerLevel size="20">1 1 1 1 2 2 2 2 2 3 3 3 3 3 4 4 4 4 4 5</AmountPerLevel>
+            <AmountVector size="20">1 1 1 1 2 2 2 2 2 3 3 3 3 3 4 4 4 4 4 5</AmountVector>
             <Class>Alchemist</Class>
             <Save>Will</Save>
         </Effect>
@@ -17838,7 +17955,7 @@ Not quite fashionable, but they'll keep you standing!</Description>
         <Effect>
             <Type>MovementSpeed</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountPerLevel size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</AmountPerLevel>
+            <AmountVector size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</AmountVector>
             <Class>Alchemist</Class>
             <Stance>Verdanite</Stance>
         </Effect>
@@ -17893,17 +18010,7 @@ Not quite fashionable, but they'll keep you standing!</Description>
     <EnhancementTreeItem>
       <Name>Apothecary: Curative Admixture: Cure Critical Wounds</Name>
       <InternalName>ApothCurativeAdmixtureCCW</InternalName>
-      <Description>Curative Admixture: Cure Critical Wounds
-Metamagic: Empower, Empower Heal, Maximize, Intensify
-Spell Point Cost: 45
-Cooldown 12 seconds
-Primer Element: Gildleaf
-
-Infuses a Cure Critical Wounds potion with magical energy, hurling it towards
-your target in an arc. The potion explodes in a small AOE that deals 4d6+8
-plus 1 per caster level (maximum caster level 20) positive energy damage to
-nearby living allies and enemy undead. This infusion is affected by
-Artificer/Alchemist Knowledge: Potions.</Description>
+      <Description>Choose between Cure and Inflict Critical Wounds.</Description>
       <Icon>ApothCurativeAdmixtureCCW</Icon>
       <XPosition>0</XPosition>
       <YPosition>5</YPosition>
@@ -17921,11 +18028,52 @@ Artificer/Alchemist Knowledge: Potions.</Description>
           <Level>5</Level>
         </Requirement>
       </Requirements>
-        <Effect>
-            <Type>SpellLikeAbility</Type>
-            <Bonus>Enhancement</Bonus>
-            <SpellLikeAbility>Curative Admixture: Cure Critical Wounds</SpellLikeAbility>
-        </Effect>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Curative Admixture: Cure Critical Wounds</Name>
+                <Description>Curative Admixture: Cure Critical Wounds
+Metamagic: Empower, Empower Heal, Maximize, Intensify
+Spell Point Cost: 45
+Cooldown 12 seconds
+Primer Element: Gildleaf
+
+Infuses a Cure Critical Wounds potion with magical energy, hurling it towards
+your target in an arc. The potion explodes in a small AOE that deals 4d6+8
+plus 1 per caster level (maximum caster level 20) positive energy damage to
+nearby living allies and enemy undead. This infusion is affected by
+Artificer/Alchemist Knowledge: Potions.</Description>
+               <Icon>ApothCurativeAdmixtureCCW</Icon>
+               <Cost>1</Cost>
+                <Effect>
+                    <Type>SpellLikeAbility</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <SpellLikeAbility>Curative Admixture: Cure Critical Wounds</SpellLikeAbility>
+                </Effect>
+                <Clickie/>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Curative Admixture: Inflict Critical Wounds</Name>
+                <Description>Curative Admixture: Inflict Critical Wounds
+Metamagic: Empower, Empower Heal, Maximize, Intensify
+Spell Point Cost: 45
+Cooldown 12 seconds
+Primer Element: Gildleaf
+
+Infuses an Inflict Critical Wounds potion with magical energy, hurling it towards
+your target in an arc. The potion explodes in a small AOE that deals 4d6+8
+plus 1 per caster level (maximum caster level 20) negative energy damage to
+nearby undead allies and living enemies. This infusion is affected by
+Artificer/Alchemist Knowledge: Potions.</Description>
+               <Icon>ApothCurativeAdmixtureICW</Icon>
+               <Cost>1</Cost>
+                <Effect>
+                    <Type>SpellLikeAbility</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <SpellLikeAbility>Curative Admixture: Inflict Critical Wounds</SpellLikeAbility>
+                </Effect>
+                <Clickie/>
+            </EnhancementSelection>
+         </Selector>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Apothecary: Gloves of the Master Apothecary</Name>
@@ -17994,7 +18142,7 @@ The mark of a true Apothecary, and helpful when handling volatile materials.</De
     <EnhancementTreeItem>
       <Name>Apothecary: Dissolve</Name>
       <InternalName>ApothDissolve</InternalName>
-      <Description>Target enemy at touch range that is Facinated, Sleeping, Dancing, Dazed, Tripped,
+      <Description>Target enemy at touch range that is Fascinated, Sleeping, Dancing, Dazed, Tripped,
 Mesmerized, Paralyzed, Petrified, or Stunned must make a Fortitude save
 (d20 + your Heal skill) or die instantly.</Description>
       <Icon>ApothDissolve</Icon>
@@ -18026,7 +18174,7 @@ Mesmerized, Paralyzed, Petrified, or Stunned must make a Fortitude save
       </DC>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <Name>Apothecary: Deadly Neurotoxin</Name>
+      <Name>Apothecary: Sleep or Death</Name>
       <InternalName>ApothDeadlyNeurotoxin</InternalName>
       <Description>Offensive Gildleaf or Ceruleite Spells will reduce your targets Armor Class
 and Magical Resistance rating by -1 per stack, max 5.</Description>
@@ -18046,6 +18194,25 @@ and Magical Resistance rating by -1 per stack, max 5.</Description>
           <Level>5</Level>
         </Requirement>
       </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Deadly Neurotoxin</Name>
+                <Description>Offensive Gildleaf or Ceruleite Spells will reduce your targets Magical Resistance
+rating by -1 per stack, max 5.</Description>
+               <Icon>ApothDeadlyNeurotoxin</Icon>
+               <Cost>1</Cost>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Nightshade</Name>
+                <Description>SLA: Nightshade
+Spell Point Cost: 10
+Cooldown: 30 seconds
+Primer Element: Gildleaf
+Target enemy falls asleep for 6 seconds with no save.</Description>
+               <Icon/>
+               <Cost>1</Cost>
+            </EnhancementSelection>
+         </Selector>
     </EnhancementTreeItem>
   </EnhancementTree>
   <EnhancementTree>
@@ -18895,23 +19062,6 @@ Fire spells will burn this chemical reaction out of the air, dispelling it.</Des
           </Effect>
         </EnhancementSelection>
         <EnhancementSelection>
-          <Name>Efficient Enlarge</Name>
-          <Description>Using the Enlarge Spell Metamagic costs you 1/2/4 fewer Spell Points</Description>
-          <Icon>EfficientEnlarge</Icon>
-          <Cost>1</Cost>
-          <Requirements>
-            <Requirement>
-              <Feat>Enlarge Spell</Feat>
-            </Requirement>
-          </Requirements>
-          <Effect>
-            <Type>AdditionalSpellPointCost</Type>
-            <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">-1 -2 -4</AmountVector>
-            <Stance>Enlarge</Stance>
-          </Effect>
-        </EnhancementSelection>
-        <EnhancementSelection>
           <Name>Efficient Maximize</Name>
           <Description>Using the Maximize Spell Metamagic costs you 3/6/9 fewer Spell Points. </Description>
           <Icon>EfficientMaximize</Icon>
@@ -19106,23 +19256,6 @@ This can trigger up to once every 12 seconds.
           </Effect>
         </EnhancementSelection>
         <EnhancementSelection>
-          <Name>Efficient Enlarge</Name>
-          <Description>Using the Enlarge Spell Metamagic costs you 1/2/4 fewer Spell Points</Description>
-          <Icon>EfficientEnlarge</Icon>
-          <Cost>1</Cost>
-          <Requirements>
-            <Requirement>
-              <Feat>Enlarge Spell</Feat>
-            </Requirement>
-          </Requirements>
-          <Effect>
-            <Type>AdditionalSpellPointCost</Type>
-            <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">-1 -2 -4</AmountVector>
-            <Stance>Enlarge</Stance>
-          </Effect>
-        </EnhancementSelection>
-        <EnhancementSelection>
           <Name>Efficient Maximize</Name>
           <Description>Using the Maximize Spell Metamagic costs you 3/6/9 fewer Spell Points. </Description>
           <Icon>EfficientMaximize</Icon>
@@ -19177,7 +19310,7 @@ This can trigger up to once every 12 seconds.
         <Effect>
             <Type>SaveBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountPerLevel size="20">1 1 1 1 2 2 2 2 2 3 3 3 3 3 4 4 4 4 4 5</AmountPerLevel>
+            <AmountVector size="20">1 1 1 1 2 2 2 2 2 3 3 3 3 3 4 4 4 4 4 5</AmountVector>
             <Class>Alchemist</Class>
             <Save>Reflex</Save>
             <Stance>Pyrite</Stance>
@@ -19768,7 +19901,6 @@ Passive: While your Reaction is Orchidium, +5 Physical Resistance Rating.</Descr
       <Name>Vile Chemist: Hidden Blades</Name>
       <InternalName>VileCore3</InternalName>
       <Description>+3% Doublestrike and Doubleshot.
-Darts and Throwing Daggers you equip gain +1[W].
 
 Passive: While your Reaction in Orchidium, +5 Physical Resistance Rating.</Description>
       <Icon>VileHiddenBlades</Icon>
@@ -19801,13 +19933,6 @@ Passive: While your Reaction in Orchidium, +5 Physical Resistance Rating.</Descr
             <Bonus>Enhancement</Bonus>
             <Amount>5</Amount>
             <Stance>Orchidium</Stance>
-        </Effect>
-        <Effect>
-            <Type>WeaponBaseDamageBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>2</Amount>
-            <Weapon>Dart</Weapon>
-            <Weapon>Throwing Dagger</Weapon>
         </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -19925,7 +20050,6 @@ Passive: While your Reaction is Orchidium, +5 Physicial Resistance rating and +5
       <Name>Vile Chemist: Venom's Grip</Name>
       <InternalName>VileCore6</InternalName>
       <Description>Passive: +4 Intelligence. Your Poisoned Coating die size is now d12.
-You gain +2 Poisoned Coating dice.
 
 Passive: While your Reaction is Orchidium, +10 Physicial Resistance rating and +5% Dodge Cap.</Description>
       <Icon>VileVenomsGrip</Icon>
@@ -20214,14 +20338,18 @@ Main Hand and a Simple Weapon, Orb, Rune Arm, or nothing in your off hand.</Desc
       <Selector>
         <EnhancementSelection>
           <Name>Poisoned Shot</Name>
-          <Description>Ranged Attack: +[1/?/?][W]: On successful damage, your opponent is Contaminated. Using this attack acts as if you cast a Crimsonite spell.</Description>
+          <Description>Ranged Attack: +[1/?/?][W]: On successful damage, your opponent is Contaminated.
+Using this attack acts as if you cast a Crimsonite spell.
+Rank 3: Cause Poison-immune enemies to become vulnerable to Poison for 12 seconds.</Description>
           <Icon>VilePoisonedShot</Icon>
           <Cost>1</Cost>
           <Clickie/>
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Poisoned Strike</Name>
-          <Description>Melee Attack: +[1/?/?][W]: On successful damage, your opponent is Contaminated. Using this attack acts as if you cast a Crimsonite spell.</Description>
+          <Description>Melee Attack: +[1/?/?][W]: On successful damage, your opponent is Contaminated.
+Using this attack acts as if you cast a Crimsonite spell.
+Rank 3: Cause Poison-immune enemies to become vulnerable to Poison for 12 seconds.</Description>
           <Icon>VilePoisonedStrike</Icon>
           <Cost>1</Cost>
           <Clickie/>
@@ -20313,7 +20441,8 @@ Primer Element: Ceruleite
 You infect enemies in a short cone with a deadly poison that eats away at them.
 Affected enemies take 2d4 Poison damage plus 1 Poison damage per 2 Caster
 Levels every 2 seconds for 12 seconds. This poison will leave enemies
-Contaminated. (Max Caster Level: 10)</Description>
+Contaminated. (Max Caster Level: 10)
+Poison-immune enemies to become vulnerable to Poison for 12 seconds.</Description>
       <Icon>VileWaveOfPoison</Icon>
       <XPosition>0</XPosition>
       <YPosition>3</YPosition>
@@ -20392,11 +20521,12 @@ Main Hand and a Simple Weapon, Orb, Rune Arm, or nothing in your off hand.</Desc
         </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <Name>Vile Chemist: Toxic Augmentation</Name>
-      <InternalName>VileToxicAugmentation</InternalName>
-      <Description>Your strikes against Contaminated enemies reduce their Fortitude saves
-by -1 for 6 seconds. This effect stacks up to 4 times.</Description>
-      <Icon>VileToxicAugmentation</Icon>
+      <Name>Vile Chemist: Envenom the Heart</Name>
+      <InternalName>VileEnvenomTheHeart</InternalName>
+      <Description>Enemies hit by your melee or ranged strikes have a chance to be Silenced, Quelled,
+or have their attack speed reduced by 20% for 12 seconds with no save.
+(This does work on Bosses, but at a lower proc rate)</Description>
+      <Icon>VileEnvenomTheHeart</Icon>
       <XPosition>2</XPosition>
       <YPosition>3</YPosition>
       <Cost>2</Cost>
@@ -20429,7 +20559,7 @@ by -1 for 6 seconds. This effect stacks up to 4 times.</Description>
         <Effect>
             <Type>SaveBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountPerLevel size="20">1 1 1 1 2 2 2 2 2 3 3 3 3 3 4 4 4 4 4 5</AmountPerLevel>
+            <AmountVector size="20">1 1 1 1 2 2 2 2 2 3 3 3 3 3 4 4 4 4 4 5</AmountVector>
             <Class>Alchemist</Class>
             <Save>Fortitude</Save>
             <Stance>Orchidium</Stance>
@@ -20539,12 +20669,9 @@ Main Hand and a Simple Weapon, Orb, Rune Arm, or nothing in your off hand.</Desc
         </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <Name>Vile Chemist: Envenom the Heart</Name>
-      <InternalName>VileEnvenomTheHeart</InternalName>
-      <Description>+[5/10/15] Poison Spell Power.
-Rank 3: Striking enemies that are immune to Poisons or Poison Damage makes
-them vulnerable to Poisons and Poison Damage for 12 seconds. Creatures you
-hit that are not immune to Poisons take 15% more Poison damage for a while.</Description>
+      <Name>Vile Chemist: Venom Affinity II</Name>
+      <InternalName>VileVenomAffinityII</InternalName>
+      <Description>+[3/6/10] Poison Spell Power.</Description>
       <Icon>VileEnvenomTheHeart</Icon>
       <XPosition>2</XPosition>
       <YPosition>4</YPosition>
@@ -20560,7 +20687,7 @@ hit that are not immune to Poisons take 15% more Poison damage for a while.</Des
         <Effect>
             <Type>SpellPower</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">5 10 15</AmountVector>
+            <AmountVector size="3">3 6 10</AmountVector>
             <SpellPower>Poison</SpellPower>
         </Effect>
     </EnhancementTreeItem>
@@ -20646,7 +20773,8 @@ Primer Element: Ceruleite
 You infect enemies in a short cone with a deadly poison that eats away at them.
 Affected enemies take 2d6 Poison damage plus 1 Poison damage per Caster Level
 every 2 seconds for 16 seconds. This poison will leave enemies Contaminated.
-(Max Caster Level: 20)</Description>
+(Max Caster Level: 20)
+Poison-immune enemies to become vulnerable to Poison for 12 seconds.</Description>
       <Icon>VileGreaterWaveOfPoison</Icon>
       <XPosition>0</XPosition>
       <YPosition>5</YPosition>
@@ -20736,8 +20864,8 @@ Range bonus is +2 instead.</Description>
             <Type>CriticalRange</Type>
             <Bonus>Competence</Bonus>
             <Amount>1</Amount>
-            <WeaponClass>Simple</WeaponClass>
             <ApplyAsItemEffect/>
+            <WeaponClass>Simple</WeaponClass>
             <AnyOfStance>Orb</AnyOfStance>
             <AnyOfStance>Rune Arm</AnyOfStance>
             <AnyOfStance>Unarmed</AnyOfStance>
@@ -20746,8 +20874,8 @@ Range bonus is +2 instead.</Description>
             <Type>CriticalRange</Type>
             <Bonus>Competence</Bonus>
             <Amount>1</Amount>
-            <Weapon>Dart</Weapon>
             <ApplyAsItemEffect/>
+            <Weapon>Dart</Weapon>
             <AnyOfStance>Orb</AnyOfStance>
             <AnyOfStance>Rune Arm</AnyOfStance>
             <AnyOfStance>Unarmed</AnyOfStance>
@@ -22216,13 +22344,13 @@ Gain bonuses to Attack and Damage Rolls with the selected weapon types.</Descrip
                <Description>+1 to attack and damage rolls with Bastard Swords and Dwarven Waraxes.
 Your Glancing Blows with these weapons also have a +2% chance of producing
 magical weapon effects such as Flaming.
-+2% Strikethrough</Description>
++5% Strikethrough</Description>
                <Icon>BEHandAndAHalfTraining</Icon>
                <Cost>2</Cost>
                <Effect>
                   <Type>Strikethrough</Type>
                   <Bonus>Enhancement</Bonus>
-                  <Amount>2</Amount>
+                  <Amount>5</Amount>
                </Effect>
                <Effect>
                   <Type>AttackBonus</Type>
@@ -22404,13 +22532,13 @@ Gain bonuses to Attack and Damage Rolls with the selected weapon types. </Descri
                <Description>+1 to attack and damage rolls with Bastard Swords and Dwarven Waraxes.
 Your Glancing Blows with these weapons also have a +4% chance of producing
 magical weapon effects such as Flaming.
-+2% Strikethrough</Description>
++5% Strikethrough</Description>
                <Icon>BEHandAndAHalfTraining</Icon>
                <Cost>2</Cost>
                <Effect>
                   <Type>Strikethrough</Type>
                   <Bonus>Enhancement</Bonus>
-                  <Amount>2</Amount>
+                  <Amount>5</Amount>
                </Effect>
                <Effect>
                   <Type>AttackBonus</Type>
@@ -22634,13 +22762,13 @@ Gain bonuses to Attack and Damage Rolls with the selected weapon types</Descript
                <Description>+1 to attack and damage rolls with Bastard Swords and Dwarven Waraxes.
 Your Glancing Blows with these weapons also have a +6% chance of producing
 magical weapon effects such as Flaming.
-+2% Strikethrough</Description>
++5% Strikethrough</Description>
                <Icon>BEHandAndAHalfTraining</Icon>
                <Cost>2</Cost>
                <Effect>
                   <Type>Strikethrough</Type>
                   <Bonus>Enhancement</Bonus>
-                  <Amount>2</Amount>
+                  <Amount>5</Amount>
                </Effect>
                <Effect>
                   <Type>AttackBonus</Type>
@@ -24808,7 +24936,7 @@ speed for 20 seconds.</Description>
          <Name>Frenzied Berserker: Angry Arms</Name>
          <InternalName>FBAngryArms</InternalName>
          <Description>+1/2/3% chance of triggering weapon effects on glancing blows and
-+3/4/5% glancing blow damage. +[1/3/5]% Strikethrough</Description>
++3/4/5% glancing blow damage. +[5/10/20]% Strikethrough</Description>
          <Icon>FBAngryArms</Icon>
          <XPosition>0</XPosition>
          <YPosition>2</YPosition>
@@ -24825,7 +24953,7 @@ speed for 20 seconds.</Description>
         <Effect>
             <Type>Strikethrough</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">1 3 5</AmountVector>
+            <AmountVector size="3">5 10 20</AmountVector>
         </Effect>
          <Effect>
             <Type>GlancingBlowEffects</Type>
@@ -24911,7 +25039,7 @@ Cooldown: 30 seconds.</Description>
          <Name>Frenzied Berserker: Mad Munitions</Name>
          <InternalName>FBMadMunitions</InternalName>
          <Description>+1/2/3% chance of triggering weapon effects on glancing blows and
-+3/4/5% glancing blow damage. +[1/3/5]% Strikethrough</Description>
++3/4/5% glancing blow damage. +[5/10/20]% Strikethrough</Description>
          <Icon>FBMadMunitions</Icon>
          <XPosition>0</XPosition>
          <YPosition>3</YPosition>
@@ -24931,7 +25059,7 @@ Cooldown: 30 seconds.</Description>
         <Effect>
             <Type>Strikethrough</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">1 3 5</AmountVector>
+            <AmountVector size="3">5 10 20</AmountVector>
         </Effect>
          <Effect>
             <Type>GlancingBlowEffects</Type>
@@ -25087,7 +25215,7 @@ per enemy damaged, up to 3/6/10 maximum. Lasts for 4 seconds.</Description>
          <Name>Frenzied Berserker: Focus Wide</Name>
          <InternalName>FBFocusWide</InternalName>
          <Description>When you score a vorpal hit, you increase your chance of triggering weapon effects
-with glancing blows by +10% and gain +10% glancing blow damage for 12 seconds.</Description>
+with glancing blows by +10% and gain +50% glancing blow damage for 12 seconds.</Description>
          <Icon>FBFocusWide</Icon>
          <XPosition>0</XPosition>
          <YPosition>5</YPosition>
@@ -65553,8 +65681,8 @@ Passively provides: +2 to maximum dodge, and +20% Doublestrike.</Description>
          <Description>You gain +2 Strength and Dexterity, +1 to hit and +2 damage with quarterstaves,
 +5% attack speed with quarterstaves, +2 critical hit damage with all weapons,
 +2 Balance, Jump, and Tumble, +2 Sneak Attack dice and +2 to hit when performing Sneak Attacks.
-After tumbling, for 6 seconds your basic attacks with two handed weapons strike
-two targets per swing instead of one and gain On Vorpal: Your target is knocked down.</Description>
+After tumbling, for 6 seconds your basic attacks with two handed weapons gain a +50%
+strikethrough chance and gain On Vorpal: Your target is knocked down.</Description>
          <Icon>TAFollowthrough</Icon>
          <XPosition>5</XPosition>
          <YPosition>0</YPosition>
@@ -65928,7 +66056,7 @@ You gain a 5%/15%/25% Morale bonus to melee doublestrike for 10 seconds.
          <Name>Thief-Acrobat: Improved Glancing Blows</Name>
          <InternalName>TAImprovedGlancingBlows</InternalName>
          <Description>Glancing blows produced by your two-handed weapon attacks get an additional
-4%/8%/12% chance of producing secondary weapon effects. +[3/6/10]% Strikethrough</Description>
+4%/8%/12% chance of producing secondary weapon effects. +[5/10/20]% Strikethrough</Description>
          <Icon>TAImprovedGlancingBlows</Icon>
          <XPosition>1</XPosition>
          <YPosition>3</YPosition>
@@ -65944,7 +66072,7 @@ You gain a 5%/15%/25% Morale bonus to melee doublestrike for 10 seconds.
         <Effect>
             <Type>Strikethrough</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">3 6 10</AmountVector>
+            <AmountVector size="3">5 10 20</AmountVector>
         </Effect>
          <Effect>
             <Type>GlancingBlowEffects</Type>

@@ -261,17 +261,7 @@ Passive: While your Reaction is Verdanite, +2 Transmutation DC.</Description>
     <EnhancementTreeItem>
       <Name>Apothecary: Curative Admixture: Cure Light Wounds</Name>
       <InternalName>ApothCurativeAdmixtureCLW</InternalName>
-      <Description>Curative Admixture: Cure Light Wounds
-Metamagic: Empower, Empower Heal, Maximize, Intensify
-Spell Point Cost: 4/3/2
-Cooldown 12/8/4 seconds
-Primer Element: Gildleaf
-
-Infuses a Cure Light Wounds potion with magical energy, hurling it towards
-your target in an arc. The potion explodes in a small AOE that deals 1d6+2
-plus 1 per caster level (maximum caster level 5) positive energy damage to
-nearby living allies and enemy undead. This infusion is affected by
-Artificer/Alchemist Knowledge: Potions.</Description>
+      <Description>Choose between Curative Admixture: Inflict/Cure Light Wounds</Description>
       <Icon>ApothCurativeAdmixtureCLW</Icon>
       <XPosition>0</XPosition>
       <YPosition>1</YPosition>
@@ -285,11 +275,52 @@ Artificer/Alchemist Knowledge: Potions.</Description>
           <Level>1</Level>
         </Requirement>
       </Requirements>
-        <Effect>
-            <Type>SpellLikeAbility</Type>
-            <Bonus>Enhancement</Bonus>
-            <SpellLikeAbility>Curative Admixture: Cure Light Wounds</SpellLikeAbility>
-        </Effect>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Curative Admixture: Cure Light Wounds</Name>
+               <Description>Curative Admixture: Cure Light Wounds
+Metamagic: Empower, Empower Heal, Maximize, Intensify
+Spell Point Cost: 4/3/2
+Cooldown 12/8/4 seconds
+Primer Element: Gildleaf
+
+Infuses a Cure Light Wounds potion with magical energy, hurling it towards
+your target in an arc. The potion explodes in a small AOE that deals 1d6+2
+plus 1 per caster level (maximum caster level 5) positive energy damage to
+nearby living allies and enemy undead. This infusion is affected by
+Artificer/Alchemist Knowledge: Potions.</Description>
+               <Icon>ApothCurativeAdmixtureCLW</Icon>
+               <Cost>1</Cost>
+                <Effect>
+                    <Type>SpellLikeAbility</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <SpellLikeAbility>Curative Admixture: Cure Light Wounds</SpellLikeAbility>
+                </Effect>
+                <Clickie/>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Curative Admixture: Inflict Light Wounds</Name>
+               <Description>Curative Admixture: Inflict Light Wounds
+Metamagic: Empower, Empower Heal, Maximize, Intensify
+Spell Point Cost: 4/3/2
+Cooldown 12/8/4 seconds
+Primer Element: Gildleaf
+
+Infuses an InflictLight Wounds potion with magical energy, hurling it towards
+your target in an arc. The potion explodes in a small AOE that deals 1d6+2
+plus 1 per caster level (maximum caster level 5) negative energy damage to
+nearby undead allies and living enemies. This infusion is affected by
+Artificer/Alchemist Knowledge: Potions.</Description>
+               <Icon>ApothCurativeAdmixtureILW</Icon>
+               <Cost>1</Cost>
+                <Effect>
+                    <Type>SpellLikeAbility</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <SpellLikeAbility>Curative Admixture: Inflict Light Wounds</SpellLikeAbility>
+                </Effect>
+                <Clickie/>
+            </EnhancementSelection>
+         </Selector>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Apothecary: Apothecary Skills</Name>
@@ -390,29 +421,6 @@ for three minutes.</Description>
       </Requirements>
     </EnhancementTreeItem>
     <!--Tier 2 Enhancements-->
-    <EnhancementTreeItem>
-      <Name>Apothecary: Conjure Component</Name>
-      <InternalName>ApothConjureComponent</InternalName>
-      <Description>Conjure Component
-Spell Point Cost: 450/25/10
-Cooldown 12 seconds
-
-You conjure a large number of components that stand in for the Potion
-requirements in all of your Admixture spells. These expire on logout.</Description>
-      <Icon>ApothConjureComponent</Icon>
-      <XPosition>0</XPosition>
-      <YPosition>2</YPosition>
-      <Cost>1</Cost>
-      <Ranks>3</Ranks>
-      <MinSpent>5</MinSpent>
-      <Clickie/>
-      <Requirements>
-        <Requirement>
-          <Class>Alchemist</Class>
-          <Level>2</Level>
-        </Requirement>
-      </Requirements>
-    </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Apothecary: Hale &amp; Hearty</Name>
       <InternalName>ApothHaleAndHearty</InternalName>
@@ -538,6 +546,38 @@ with Death Salve and Converter.</Description>
     </EnhancementTreeItem>
     <!--Tier 3 Enhancements-->
     <EnhancementTreeItem>
+      <Name>Apothecary: Panacea Poultice</Name>
+      <InternalName>ApothPanaceaPoultice</InternalName>
+      <Description>Panacea Poultice
+Spell Point Cost: 6/3/1
+Cooldown: 12/8/6 seconds
+Primer Element: Gildleaf
+
+Channels powerful positive energy into a target at touch range to wipe away
+afflictions, restores 3 to 8 hit points plus an additional 1 per caster level
+(max +20), and removed temporary ability damage and the conditions blinded,
+confused, dazed, dazzled, deafened, diseased, exhausted, fatigued, feebleminded,
+insanity, nauseated, and poisoned. Against undead this spell will damage 3 to 8
+hit points +1 per caster level (max +20). Undead who make a successful Will save
+reduce the damage by half.
+
+D&amp;D Dice: Heals 1d6+2 hp +1 pointer per caster level (max +20) and removes
+temp ability damage and many afflictions.</Description>
+      <Icon>ApothPanaceaPoultice</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+      <Clickie/>
+      <Requirements>
+        <Requirement>
+          <Class>Alchemist</Class>
+          <Level>3</Level>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
       <Name>Apothecary: Safety Goggles</Name>
       <InternalName>ApothSafetyGoggles</InternalName>
       <Description>+[1/2/3] Armor Class and +[2/4/6] Resistance to Fire, Cold, Acid and Electric damage.
@@ -618,7 +658,7 @@ Safety First!</Description>
         <Effect>
             <Type>SaveBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountPerLevel size="20">1 1 1 1 2 2 2 2 2 3 3 3 3 3 4 4 4 4 4 5</AmountPerLevel>
+            <AmountVector size="20">1 1 1 1 2 2 2 2 2 3 3 3 3 3 4 4 4 4 4 5</AmountVector>
             <Class>Alchemist</Class>
             <Save>Will</Save>
         </Effect>
@@ -751,7 +791,7 @@ Not quite fashionable, but they'll keep you standing!</Description>
         <Effect>
             <Type>MovementSpeed</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountPerLevel size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</AmountPerLevel>
+            <AmountVector size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</AmountVector>
             <Class>Alchemist</Class>
             <Stance>Verdanite</Stance>
         </Effect>
@@ -806,17 +846,7 @@ Not quite fashionable, but they'll keep you standing!</Description>
     <EnhancementTreeItem>
       <Name>Apothecary: Curative Admixture: Cure Critical Wounds</Name>
       <InternalName>ApothCurativeAdmixtureCCW</InternalName>
-      <Description>Curative Admixture: Cure Critical Wounds
-Metamagic: Empower, Empower Heal, Maximize, Intensify
-Spell Point Cost: 45
-Cooldown 12 seconds
-Primer Element: Gildleaf
-
-Infuses a Cure Critical Wounds potion with magical energy, hurling it towards
-your target in an arc. The potion explodes in a small AOE that deals 4d6+8
-plus 1 per caster level (maximum caster level 20) positive energy damage to
-nearby living allies and enemy undead. This infusion is affected by
-Artificer/Alchemist Knowledge: Potions.</Description>
+      <Description>Choose between Cure and Inflict Critical Wounds.</Description>
       <Icon>ApothCurativeAdmixtureCCW</Icon>
       <XPosition>0</XPosition>
       <YPosition>5</YPosition>
@@ -834,11 +864,52 @@ Artificer/Alchemist Knowledge: Potions.</Description>
           <Level>5</Level>
         </Requirement>
       </Requirements>
-        <Effect>
-            <Type>SpellLikeAbility</Type>
-            <Bonus>Enhancement</Bonus>
-            <SpellLikeAbility>Curative Admixture: Cure Critical Wounds</SpellLikeAbility>
-        </Effect>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Curative Admixture: Cure Critical Wounds</Name>
+                <Description>Curative Admixture: Cure Critical Wounds
+Metamagic: Empower, Empower Heal, Maximize, Intensify
+Spell Point Cost: 45
+Cooldown 12 seconds
+Primer Element: Gildleaf
+
+Infuses a Cure Critical Wounds potion with magical energy, hurling it towards
+your target in an arc. The potion explodes in a small AOE that deals 4d6+8
+plus 1 per caster level (maximum caster level 20) positive energy damage to
+nearby living allies and enemy undead. This infusion is affected by
+Artificer/Alchemist Knowledge: Potions.</Description>
+               <Icon>ApothCurativeAdmixtureCCW</Icon>
+               <Cost>1</Cost>
+                <Effect>
+                    <Type>SpellLikeAbility</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <SpellLikeAbility>Curative Admixture: Cure Critical Wounds</SpellLikeAbility>
+                </Effect>
+                <Clickie/>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Curative Admixture: Inflict Critical Wounds</Name>
+                <Description>Curative Admixture: Inflict Critical Wounds
+Metamagic: Empower, Empower Heal, Maximize, Intensify
+Spell Point Cost: 45
+Cooldown 12 seconds
+Primer Element: Gildleaf
+
+Infuses an Inflict Critical Wounds potion with magical energy, hurling it towards
+your target in an arc. The potion explodes in a small AOE that deals 4d6+8
+plus 1 per caster level (maximum caster level 20) negative energy damage to
+nearby undead allies and living enemies. This infusion is affected by
+Artificer/Alchemist Knowledge: Potions.</Description>
+               <Icon>ApothCurativeAdmixtureICW</Icon>
+               <Cost>1</Cost>
+                <Effect>
+                    <Type>SpellLikeAbility</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <SpellLikeAbility>Curative Admixture: Inflict Critical Wounds</SpellLikeAbility>
+                </Effect>
+                <Clickie/>
+            </EnhancementSelection>
+         </Selector>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Apothecary: Gloves of the Master Apothecary</Name>
@@ -939,7 +1010,7 @@ Mesmerized, Paralyzed, Petrified, or Stunned must make a Fortitude save
       </DC>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <Name>Apothecary: Deadly Neurotoxin</Name>
+      <Name>Apothecary: Sleep or Death</Name>
       <InternalName>ApothDeadlyNeurotoxin</InternalName>
       <Description>Offensive Gildleaf or Ceruleite Spells will reduce your targets Armor Class
 and Magical Resistance rating by -1 per stack, max 5.</Description>
@@ -959,6 +1030,25 @@ and Magical Resistance rating by -1 per stack, max 5.</Description>
           <Level>5</Level>
         </Requirement>
       </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Deadly Neurotoxin</Name>
+                <Description>Offensive Gildleaf or Ceruleite Spells will reduce your targets Magical Resistance
+rating by -1 per stack, max 5.</Description>
+               <Icon>ApothDeadlyNeurotoxin</Icon>
+               <Cost>1</Cost>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Nightshade</Name>
+                <Description>SLA: Nightshade
+Spell Point Cost: 10
+Cooldown: 30 seconds
+Primer Element: Gildleaf
+Target enemy falls asleep for 6 seconds with no save.</Description>
+               <Icon/>
+               <Cost>1</Cost>
+            </EnhancementSelection>
+         </Selector>
     </EnhancementTreeItem>
   </EnhancementTree>
 </Enhancements>

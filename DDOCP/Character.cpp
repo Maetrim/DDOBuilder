@@ -147,6 +147,22 @@ void Character::EndElement()
     {
         m_Levels.erase(m_Levels.begin());
     }
+    // also clear any epic levels if the number of total levels has been increased
+    // these epic levels will be at the start of m_Levels
+    while (m_Levels.size() > 0
+            && m_Levels.begin()->HasClass()
+            && m_Levels.begin()->Class() == Class_Epic)
+    {
+        m_Levels.erase(m_Levels.begin());
+    }
+    // old files may need to have levels padded by adding Epic class levels
+    while (m_Levels.size() < MAX_LEVEL)
+    {
+        LevelTraining lt;
+        lt.Set_Class(Class_Epic);
+        m_Levels.push_back(lt);
+    }
+
     // same for twists of fate
     // ensure we have MAX_TWISTS twist of fate objects
     while (m_Twists.size() > MAX_TWISTS)
