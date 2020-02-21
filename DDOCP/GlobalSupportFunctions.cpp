@@ -2619,6 +2619,27 @@ bool IsSimpleWeapon(WeaponType wt)
     return isSimple;
 }
 
+bool IsExoticWeapon(WeaponType wt)
+{
+    bool isExotic = false;
+    switch (wt)
+    {
+    case Weapon_BastardSword:
+    case Weapon_DwarvenAxe:
+    case Weapon_GreatCrossbow:
+    case Weapon_Handwraps:
+    case Weapon_Kama:
+    case Weapon_Khopesh:
+    case Weapon_RepeatingHeavyCrossbow:
+    case Weapon_RepeatingLightCrossbow:
+    case Weapon_Shuriken:
+        isExotic = true;
+        break;
+        // all other weapon types are not a match
+    }
+    return isExotic;
+}
+
 bool IsOneHandedWeapon(WeaponType wt)
 {
     bool IsOneHanded = false;
@@ -2939,6 +2960,9 @@ bool IsInWeaponClass(WeaponClassType wc, WeaponType wt)
         break;
     case WeaponClass_Simple:
         isWeaponClass = IsSimpleWeapon(wt);
+        break;
+    case WeaponClass_Exotic:
+        isWeaponClass = IsExoticWeapon(wt);
         break;
     case WeaponClass_Thrown:
         isWeaponClass = IsThrownWeapon(wt);

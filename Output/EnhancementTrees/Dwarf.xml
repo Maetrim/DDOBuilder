@@ -133,7 +133,7 @@
       <EnhancementTreeItem>
          <Name>Dwarf: Kundarak Dragonmark Focus</Name>
          <InternalName>DwarfKundarakDragonmarkFocus</InternalName>
-         <Description>+1/+2/+3 dragonmark use per day, +1/+2/+3 Search</Description>
+         <Description>+[1/2/3] dragonmark use per day, +[1/2/3] Search</Description>
          <Icon>DwarfKundarakDragonmarkFocus</Icon>
          <XPosition>0</XPosition>
          <YPosition>1</YPosition>
@@ -169,7 +169,7 @@
       <EnhancementTreeItem>
          <Name>Dwarf: Stout</Name>
          <InternalName>DwarfStout</InternalName>
-         <Description>+1/+2/+3 Balance and Saves against Poison.</Description>
+         <Description>+[1/2/3] Balance and Saves against Poison.</Description>
          <Icon>DwarfStout</Icon>
          <XPosition>2</XPosition>
          <YPosition>1</YPosition>
@@ -193,7 +193,7 @@
       <EnhancementTreeItem>
          <Name>Dwarf: Weapon Training I</Name>
          <InternalName>DwarfDwarvenWeaponTrainingI</InternalName>
-         <Description>Choose one</Description>
+         <Description>Grants bonuses to hit and damage with a chosen set of weapons.</Description>
          <Icon>DwarfAxeTraining</Icon>
          <XPosition>3</XPosition>
          <YPosition>1</YPosition>
@@ -205,8 +205,8 @@
          <Selector>
             <EnhancementSelection>
                <Name>Axe Training</Name>
-               <Description>+1 to hit and damage with battle axes, dwarven waraxes, hand axes, greataxes, and throwing axes.
-+5% Strikethrough</Description>
+               <Description>+1 to hit and damage with battle axes, dwarven waraxes, hand axes, throwing axes,
+and greataxes. While using dwarven waraxe, +5% Strikethrough</Description>
                <Icon>DwarfAxeTraining</Icon>
                <Cost>2</Cost>
         <Effect>
@@ -310,7 +310,7 @@
       <EnhancementTreeItem>
          <Name>Dwarf: Armor Mastery</Name>
          <InternalName>DwarfDwarvenArmorMastery</InternalName>
-         <Description>+1/+2/+3 Armor Class and Armor Maximum Dexterity Bonus.</Description>
+         <Description>+[1/2/3] Armor Class and Armor Maximum Dexterity Bonus.</Description>
          <Icon>DwarfDwarvenArmorMastery</Icon>
          <XPosition>4</XPosition>
          <YPosition>1</YPosition>
@@ -334,6 +334,7 @@
          <Name>Dwarf: Lesser Dragonmark of Warding</Name>
          <InternalName>DwarfLesserDragonmarkOfWarding</InternalName>
          <Description>Lesser Dragonmark Spell: Spell Resistance.
+(Wards an ally with a Spell Resistance of 12 plus 1 per caster level.)
 No spell point cost. (Cooldown: 10 seconds.)</Description>
          <Icon>DwarfLesserDragonmarkOfWarding</Icon>
          <XPosition>0</XPosition>
@@ -357,7 +358,7 @@ No spell point cost. (Cooldown: 10 seconds.)</Description>
       <EnhancementTreeItem>
          <Name>Dwarf: Tactics</Name>
          <InternalName>DwarfDwarvenTactics</InternalName>
-         <Description>Grants a +1/+2/+3 bonus on the DC of your combat feats.</Description>
+         <Description>Grants a +[1/2/3] bonus on the DC of your combat feats.</Description>
          <Icon>DwarfDwarvenTactics</Icon>
          <XPosition>1</XPosition>
          <YPosition>2</YPosition>
@@ -379,7 +380,8 @@ No spell point cost. (Cooldown: 10 seconds.)</Description>
       <EnhancementTreeItem>
          <Name>Dwarf: Child of the Mountain</Name>
          <InternalName>DwarfChildOfTheMountain</InternalName>
-         <Description>You gain 2%/3%/4% Maximum Health and +1/+2/+3 Fortitude saves.</Description>
+         <Description>+[1/2/3] Fortitude saves
+Rank 3: +5% Quality Bonus to Maximum Hitpoints.</Description>
          <Icon>DwarfChildOfTheMountain</Icon>
          <XPosition>2</XPosition>
          <YPosition>2</YPosition>
@@ -390,9 +392,9 @@ No spell point cost. (Cooldown: 10 seconds.)</Description>
          <Requirements/>
          <Effect>
             <Type>Hitpoints</Type>
-            <Bonus>Enhancement</Bonus>
+            <Bonus>Quality</Bonus>
             <Percent/>
-            <AmountVector size="3">2 3 4</AmountVector>
+            <AmountVector size="3">0 0 5</AmountVector>
          </Effect>
          <Effect>
             <Type>SaveBonus</Type>
@@ -420,8 +422,8 @@ No spell point cost. (Cooldown: 10 seconds.)</Description>
          <Selector>
             <EnhancementSelection>
                <Name>Axe Training</Name>
-               <Description>+1 to hit and damage with battle axes, dwarven waraxes, hand axes, and throwing axes. +1 to hit and +2 damage with greataxes.
-+5% Strikethrough</Description>
+               <Description>+1 to hit and damage with battle axes, dwarven waraxes, hand axes, throwing axes,
+and greataxes. While using dwarven waraxe, +5% Strikethrough</Description>
                <Icon>DwarfAxeTraining</Icon>
                <Cost>2</Cost>
                <Requirements>
@@ -537,7 +539,7 @@ No spell point cost. (Cooldown: 10 seconds.)</Description>
       <EnhancementTreeItem>
          <Name>Dwarf: Shield Mastery</Name>
          <InternalName>DwarfDwarvenShieldMastery</InternalName>
-         <Description>+5%/+10%/+15% Shield Armor Class and +1/+2/+3 Tower Shield Maximum Dexterity Bonus.</Description>
+         <Description>+[5/10/15]% Shield Armor Class and +[1/2/3] Tower Shield Maximum Dexterity Bonus.</Description>
          <Icon>DwarfDwarvenShieldMastery</Icon>
          <XPosition>4</XPosition>
          <YPosition>2</YPosition>
@@ -564,6 +566,8 @@ No spell point cost. (Cooldown: 10 seconds.)</Description>
          <Name>Dwarf: Greater Dragonmark of Warding</Name>
          <InternalName>DwarfGreaterDragonmarkOfWarding</InternalName>
          <Description>Greater Dragonmark Spell: Radiant Forcefield.
+(Your target is surrounded in a sphere of magical force that reduces all damage
+(Except for untyped damage) they take by 25% for a short period of time.)
 No spell point cost. (Cooldown: 1 minute.)</Description>
          <Icon>DwarfGreaterDragonmarkOfWarding</Icon>
          <XPosition>0</XPosition>
@@ -587,7 +591,7 @@ No spell point cost. (Cooldown: 1 minute.)</Description>
       <EnhancementTreeItem>
          <Name>Dwarf: Dwarven Runes</Name>
          <InternalName>DwarfDwarvenRunes</InternalName>
-         <Description>Gain +1/+2/+3 to saves against spell effects.</Description>
+         <Description>Gain +[1/2/3] to saves against spell effects.</Description>
          <Icon>DwarfDwarvenRunes</Icon>
          <XPosition>1</XPosition>
          <YPosition>3</YPosition>
@@ -605,7 +609,7 @@ No spell point cost. (Cooldown: 1 minute.)</Description>
       <EnhancementTreeItem>
          <Name>Dwarf: Stand Like Stone</Name>
          <InternalName>DwarfStandLikeStone</InternalName>
-         <Description>Action Boost: For 12/15/20 seconds you gain +10/+20/+30 Balance,
+         <Description>Action Boost: For 12/15/20 seconds you gain +[10/20/30] Balance,
 Physical Resistance Rating, and stacking Energy Resistance, but have a 50% penalty
 to movement speed, sink in water, and cannot fly. (Cooldown: 3 minutes.)</Description>
          <Icon>DwarfStandLikeStone</Icon>
@@ -641,8 +645,9 @@ to movement speed, sink in water, and cannot fly. (Cooldown: 3 minutes.)</Descri
          <Selector>
             <EnhancementSelection>
                <Name>Axe Training</Name>
-               <Description>+1 to hit and damage with battle axes, dwarven waraxes, hand axes, greataxes, and throwing axes.
-+5% Strikethrough</Description>
+               <Description>+1 to hit and damage with battle axes, dwarven waraxes, hand axes, throwing axes,
+and greataxes. While using dwarven waraxe, +5% Strikethrough. You gain dwarven waraxe
+as a Favored Weapon.</Description>
                <Icon>DwarfAxeTraining</Icon>
                <Cost>2</Cost>
                <Requirements>
@@ -760,7 +765,7 @@ to movement speed, sink in water, and cannot fly. (Cooldown: 3 minutes.)</Descri
          <InternalName>DwarfHandsOfStone</InternalName>
          <Description>Greater Dragonmark Spell: Earthgrab
 Target corporeal creature is grabbed by earthen hands and rendered helpless.
-(Reflex DC 10 + Level + Constitution Modifier Negates.)</Description>
+(Reflex DC 10 + Level + Constitution Modifier Negates + Transmutation Bonuses Negates)</Description>
          <Icon>DwarfHandsOfStone</Icon>
          <XPosition>0</XPosition>
          <YPosition>4</YPosition>
@@ -793,8 +798,8 @@ Target corporeal creature is grabbed by earthen hands and rendered helpless.</De
       <EnhancementTreeItem>
          <Name>Dwarf Fortress</Name>
          <InternalName>DwarfFortress</InternalName>
-         <Description>While wearing full plate and using a shield, you gain +1/+2/+3 Armor Class,
-Intimidate, and Will saving throws vs. Fear, and you deal +3%/+5%/+7% additional weapon damage. </Description>
+         <Description>While wearing full plate and using a shield, you gain +[1/2/3] Armor Class,
+Intimidate, and Will saving throws vs. Fear, and you deal +[3/5/7] Melee and Ranged Power.</Description>
          <Icon>DwarfFortress</Icon>
          <XPosition>2</XPosition>
          <YPosition>4</YPosition>
@@ -830,11 +835,16 @@ Intimidate, and Will saving throws vs. Fear, and you deal +3%/+5%/+7% additional
             <Stance>Shield</Stance>
          </Effect>
          <Effect>
-            <Type>WeaponDamageBonus</Type>
+            <Type>MeleePower</Type>
             <Bonus>Enhancement</Bonus>
-            <Percent/>
             <AmountVector size="3">3 5 7</AmountVector>
-            <Weapon>All</Weapon>
+            <Stance>Heavy Armor</Stance>
+            <Stance>Shield</Stance>
+         </Effect>
+         <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">3 5 7</AmountVector>
             <Stance>Heavy Armor</Stance>
             <Stance>Shield</Stance>
          </Effect>
@@ -858,8 +868,8 @@ Intimidate, and Will saving throws vs. Fear, and you deal +3%/+5%/+7% additional
          <Selector>
             <EnhancementSelection>
                <Name>Axe Training</Name>
-               <Description>1 to hit and damage with battle axes, dwarven waraxes, hand axes, and throwing axes. +1 to hit and +2 damage with greataxes.
-+10% Strikethrough</Description>
+               <Description>+1 to hit and damage with battle axes, dwarven waraxes, hand axes, throwing axes,
+and greataxes. While using dwarven waraxe, +10% Strikethrough</Description>
                <Icon>DwarfAxeTraining</Icon>
                <Cost>2</Cost>
                <Requirements>

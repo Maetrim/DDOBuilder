@@ -143,6 +143,7 @@ double BAB(ClassType ct);
 bool IsInWeaponClass(WeaponClassType wc, WeaponType wt);
 bool IsMartialWeapon(WeaponType wt);
 bool IsSimpleWeapon(WeaponType wt);
+bool IsExoticWeapon(WeaponType wt);
 bool IsRangedWeapon(WeaponType wt);
 bool IsLightWeapon(WeaponType wt);
 bool IsThrownWeapon(WeaponType wt);

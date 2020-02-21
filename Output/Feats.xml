@@ -1228,6 +1228,9 @@ Note: Although this feat is selectable at level 1, it can only be trained at lev
             <MinLevel>1</MinLevel>
          </Requirement>
          <Requirement>
+            <Feat>Past Life: Alchemist</Feat>
+         </Requirement>
+         <Requirement>
             <Feat>Past Life: Artificer</Feat>
          </Requirement>
          <Requirement>
@@ -3809,18 +3812,11 @@ receiving an additional +1 bonus on save DCs.</Description>
    </Feat>
    <Feat>
       <Name>Greater Two Handed Fighting</Name>
-      <Description>Increases the damage of glancing blow attacks when wielding a two-handed weapon
-by an additional 10% for a total of 50%. Also increases the chance for weapon
-effects to trigger on glancing blows by an additional 3% (9%) and an
-additional +2 to Melee Power (total of +6).
-
-Lamannia:
-While Two-Handed Fighting: +30% additional Strikethrough Chance. You also gain
-a +6 Combat Style bonus to Melee Power while Two-Handed Fighting.
-
-In addition, While using a Two Handed Weapon (not including Bastard Sword or
-Dwarven Waraxe), your Ability Score bonus to damage improves to 3x the Ability
-Score Modifier you use for damage.</Description>
+      <Description>+30% additional Strikethrough Chance.
+You also gain a +6 Combat Style bonus to Melee Power while Two-Handed Fighting.
+While using a Two Handed Weapon (not including Bastard Sword or Dwarven axe),
+your Ability Score bonus to damage improves to 3x the Ability Score you use for
+damage.</Description>
       <FeatGroup>
          <IsStandardFeat/>
          <IsFighterBonus/>
@@ -3840,11 +3836,6 @@ Score Modifier you use for damage.</Description>
       <Acquire>Train</Acquire>
       <Icon>GreaterTwoHandedFighting</Icon>
       <Effect>
-         <Type>GlancingBlows</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>3</Amount>
-      </Effect>
-      <Effect>
          <Type>Strikethrough</Type>
          <Bonus>Feat</Bonus>
          <Amount>30</Amount>
@@ -3853,7 +3844,7 @@ Score Modifier you use for damage.</Description>
          <Type>MeleePower</Type>
          <Bonus>Feat</Bonus>
          <Stance>Two Handed Fighting</Stance>
-         <Amount>2</Amount>
+         <Amount>6</Amount>
       </Effect>
       <Effect>
          <DisplayName>Epic Defensive Fighting</DisplayName>
@@ -5516,12 +5507,14 @@ chance by 1%. Stacks with Mental Toughness.</Description>
    <Feat>
       <Name>Improved Precise Shot</Name>
       <Description>Your ranged attacks will now pass through friends and foes to damage
-all foes in your path, until they strike your intended target.</Description>
+all foes in your path, until they strike your intended target.
+Also reduces Ranged Damage by 20% while active.</Description>
       <Stance>
          <Name>Improved Precise Shot</Name>
          <Icon>ImprovedPreciseShot</Icon>
          <Description>Your ranged attacks will now pass through friends and foes to damage
-all foes in your path, until they strike your intended target.</Description>
+all foes in your path, until they strike your intended target.
+Also reduces Ranged Damage by 20% while active.</Description>
          <IncompatibleStance>Archer's Focus</IncompatibleStance>
          <IncompatibleStance>Epic Defensive Fighting</IncompatibleStance>
       </Stance>
@@ -5685,11 +5678,13 @@ of just your ability score (for instance, you add 1.25 times your Strength as da
    </Feat>
    <Feat>
       <Name>Improved Sunder</Name>
-      <Description>This melee special attack results in a -5 AC penalty and -10% fortification
-to the target for 24 seconds, if the target fails a Fortitude save
-(DC 14 + Str mod + Sunder modifiers). Whether successful or unsuccessful,
-this attack will also reduce an enemy's Fortitude save by 3, stacking up to
-5 times. Some creatures may be immune to the sunder effect</Description>
+      <Description>Tactical Melee Attack: Using this attack, you may reduce the target's Armor Class
+by 10% and Fortification by 25% for 12 seconds. Some creatures may be immune
+to the sunder effect. (DC 10 + STR Mod + Sunder Bonuses).
+Regardless of saving throw result, enemies will suffer the Trauma effect,
+which is a -3 penalty to Fortitude saving throws.
+Stacks 5 times. Lasts 24 seconds. Cooldown: 10 seconds.
+This feat replaces your Sunder feat.</Description>
       <FeatGroup>
          <IsStandardFeat/>
          <IsFighterBonus/>
@@ -5707,12 +5702,13 @@ this attack will also reduce an enemy's Fortitude save by 3, stacking up to
       <Icon>ImprovedSunder</Icon>
       <DC>
          <Name>Improved Sunder</Name>
-         <Description>This melee special attack results in a -5 AC penalty and
--10% fortification to the target for 24 seconds, if the target
-fails a Fortitude save.</Description>
+         <Description>Tactical Melee Attack: Using this attack, you may reduce the target's Armor Class
+by 10% and Fortification by 25% for 12 seconds. Regardless of saving throw
+result, enemies will suffer the Trauma effect, which is a -3 penalty to Fortitude
+saving throws.</Description>
          <Icon>ImprovedSunder</Icon>
          <DCVersus>Fortitude</DCVersus>
-         <AmountVector size="1">14</AmountVector>
+         <AmountVector size="1">10</AmountVector>
          <ModAbility>Strength</ModAbility>
          <Tactical>Sunder</Tactical>
       </DC>
@@ -5776,18 +5772,11 @@ You Turn Undead as if you were 1 level higher.</Description>
    </Feat>
    <Feat>
       <Name>Improved Two Handed Fighting</Name>
-      <Description>Increases the damage of glancing blow attacks when wielding a two-handed
-weapon by an additional 10%. Also increases the chance for weapon effects to
-trigger on glancing blows by an additional 3% and an additional +2 Combat Style
-bonus to Melee Power (total of +4).
-
-Lamannia:
-While Two-Handed Fighting: +30% additional Strikethrough Chance. You also gain
-a +4 Combat Style bonus to Melee Power while Two-Handed Fighting.
-
-In addition, While using a Two Handed Weapon (not including Bastard Sword or
-Dwarven Waraxe), your Ability Score bonus to damage improves to 3x the Ability
-Score Modifier you use for damage.</Description>
+      <Description>While Two-Handed Fighting: +30% additional Strikethrough Chance.
+You also gain a +4 Combat Style bonus to Melee Power while Two-Handed Fighting.
+While using a Two Handed Weapon (not including Bastard Sword or Dwarven axe),
+your Ability Score bonus to damage improves to 2.5x the Ability Score you use for
+damage.</Description>
       <FeatGroup>
          <IsStandardFeat/>
          <IsFighterBonus/>
@@ -5807,11 +5796,6 @@ Score Modifier you use for damage.</Description>
       <Acquire>Train</Acquire>
       <Icon>ImprovedTwoHandedFighting</Icon>
       <Effect>
-         <Type>GlancingBlows</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>3</Amount>
-      </Effect>
-      <Effect>
          <Type>Strikethrough</Type>
          <Bonus>Feat</Bonus>
          <Amount>30</Amount>
@@ -5820,13 +5804,7 @@ Score Modifier you use for damage.</Description>
          <Type>MeleePower</Type>
          <Bonus>Feat</Bonus>
          <Stance>Two Handed Fighting</Stance>
-         <Amount>2</Amount>
-      </Effect>
-      <Effect>
-         <Type>MeleePower</Type>
-         <Bonus>Feat</Bonus>
-         <Stance>Two Handed Fighting</Stance>
-         <Amount>2</Amount>
+         <Amount>4</Amount>
       </Effect>
       <Effect>
          <DisplayName>Epic Defensive Fighting</DisplayName>
@@ -8244,9 +8222,8 @@ This ability functions only in private instances.</Description>
       <Name>Natural Fighting</Name>
       <Description>Natural Fighting grants you +4 Melee Power, Physical Resistance
 and Doublestrike chance while in a druid animal form.
-In bear form, your glancing blow damage is increased by 10% of base weapon damage.
-This feat can be taken up to three times, and gives no benefit to druids in elemental forms.
-Lamannia: Bear Forms Gain: +60/30/30% Strikethrough per time acquiring this feat.</Description>
+Bear Forms Gain: +60/30/30% Strikethrough per time acquiring this feat.
+This feat can be taken up to three times, and gives no benefit to druids in elemental forms.</Description>
       <MaxTimesAcquire>3</MaxTimesAcquire>
       <Requirements>
          <Requirement>
@@ -8286,13 +8263,6 @@ Lamannia: Bear Forms Gain: +60/30/30% Strikethrough per time acquiring this feat
          <AnyOfStance>Wolf</AnyOfStance>
          <AnyOfStance>Bear</AnyOfStance>
          <AnyOfStance>Winter Wolf</AnyOfStance>
-         <AnyOfStance>Dire Bear</AnyOfStance>
-      </Effect>
-      <Effect>
-         <Type>GlancingBlowsDamage</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>10</Amount>
-         <AnyOfStance>Bear</AnyOfStance>
          <AnyOfStance>Dire Bear</AnyOfStance>
       </Effect>
       <Effect>
@@ -9175,7 +9145,7 @@ hit damage (before multipliers are applied).</Description>
       <Description>Your missile attacks may pass through other characters and monsters
 to strike their target. This feat also grants you the Offensive Ranged Stance
 'Archer's Focus', which lets you deal progressively more damage with ranged
-attacks while standing still. +3 Ranged Power per stack, Max stacks: 15
+attacks while standing still. +5 Ranged Power per stack, Max stacks: 15
 or 25 wih Deepwood Stalker enhancement</Description>
       <Effect>
         <Type>CreateSlider</Type>
@@ -9189,7 +9159,7 @@ or 25 wih Deepwood Stalker enhancement</Description>
          <Name>Archer's Focus</Name>
          <Icon>ArchersFocus</Icon>
          <Description>Archer's Focus lets you deal progressively more damage with ranged
-attacks while standing still. +3 Ranged Power per stack, Max stacks: 15
+attacks while standing still. +5 Ranged Power per stack, Max stacks: 15
 or 25 wih Deepwood Stalker enhancement</Description>
          <IncompatibleStance>Improved Precise Shot</IncompatibleStance>
          <IncompatibleStance>Epic Defensive Fighting</IncompatibleStance>
@@ -9197,7 +9167,7 @@ or 25 wih Deepwood Stalker enhancement</Description>
          <Effect>
             <Type>RangedPower</Type>
             <Bonus>Destiny</Bonus>
-            <Amount>3</Amount>
+            <Amount>5</Amount>
             <Stacks>Archer's Focus </Stacks>
          </Effect>
       <FeatGroup>
@@ -9827,7 +9797,7 @@ negates this effect.</Description>
    <Feat>
       <Name>Shot on the Run</Name>
       <Description>Negates the penalty to your attack roll for firing ranged weapon while moving.
-Also gives +3 ranged power.</Description>
+Also gives +3 ranged power and 10% Alacrity bonus to Shortbows and Longbows</Description>
       <FeatGroup>
          <IsStandardFeat/>
          <IsArtificerBonus/>
@@ -9855,6 +9825,13 @@ Also gives +3 ranged power.</Description>
          <Type>RangedPower</Type>
          <Bonus>Feat</Bonus>
          <Amount>3</Amount>
+      </Effect>
+      <Effect>
+         <Type>Alacrity</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>10</Amount>
+         <Weapon>Longbow</Weapon>
+         <Weapon>Shortbow</Weapon>
       </Effect>
    </Feat>
    <Feat>
@@ -11288,6 +11265,36 @@ bonus based on your Paladin level. Smites return at a rate of one every 90 secon
       </AutomaticAcquisition>
    </Feat>
    <Feat>
+      <Name>Smite Evil (Ranged)</Name>
+      <Description>Using this attack, you call on the paladin's ability to strike down evil
+creatures, gaining twice your Charisma bonus to your attack roll and a damage
+bonus based on your Paladin level. Smites return at a rate of one every 90 seconds.</Description>
+      <MaxTimesAcquire>5</MaxTimesAcquire>
+      <Requirements/>
+      <Acquire>Automatic</Acquire>
+      <Icon>SmiteEvilRanged</Icon>
+      <AutomaticAcquisition>
+         <Class>Paladin</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Paladin</Class>
+         <Level>5</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Paladin</Class>
+         <Level>10</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Paladin</Class>
+         <Level>15</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Paladin</Class>
+         <Level>20</Level>
+      </AutomaticAcquisition>
+   </Feat>
+   <Feat>
       <Name>Snake Blood</Name>
       <Description>Grants a +1 bonus on Reflex saves and +2 bonus to saving throws versus Poison.</Description>
       <Requirements/>
@@ -11921,12 +11928,12 @@ saves against spell effects.</Description>
    </Feat>
    <Feat>
       <Name>Spring Attack</Name>
-      <Description>You suffer no penalty to your attack roll when moving and attacking.
-You will also gain a 2% Dodge bonus.
-
-Lamannia: You leap forward striking a target enemy and all those around them.
-Requires a visible target and that you are holding a melee weapon.</Description>
+      <Description>You leap forward striking a target enemy and all those around them.
+Requires a visible target and that you are holding a melee weapon.
+You suffer no penalty to your attack roll when moving and attacking.
+You will also gain a 2% Dodge bonus.</Description>
       <FeatGroup>
+         <IsFighterBonus/>
          <IsStandardFeat/>
          <IsMonkBonus6/>
       </FeatGroup>
@@ -12058,10 +12065,10 @@ for 6 seconds if it fails a Fortitude save.</Description>
    </Feat>
    <Feat>
       <Name>Sunder</Name>
-      <Description>This melee special attack, when successful, results in a -4 AC penalty
-to the target for 12 seconds if it fails a Fortitude save.
-DC 10 + Str mod + sunder modifiers.
-Some creatures may be immune to the sunder effect</Description>
+      <Description>Tactical Melee Attack: Using this attack, you may reduce the target's Armor Class
+by 10% and Fortification by 25% for six seconds. Some creatures may be immune
+to the Sunder effect. A successful Fortitude saving throw negates this effect.
+(DC 10 + STR mod + Sunder bonuses). Cooldown: 10 seconds.</Description>
       <Requirements/>
       <Acquire>Automatic</Acquire>
       <AutomaticAcquisition>
@@ -12071,15 +12078,17 @@ Some creatures may be immune to the sunder effect</Description>
       <Icon>Sunder</Icon>
       <DC>
          <Name>Sunder</Name>
-         <Description>This melee special attack, when successful, results in a -4 AC penalty
-to the target for 12 seconds if it fails a Fortitude save.</Description>
+         <Description>Tactical Melee Attack: Using this attack, you may reduce the target's Armor Class
+by 10% and Fortification by 25% for six seconds. A successful Fortitude saving
+throw negates this effect.</Description>
          <Icon>Sunder</Icon>
          <DCVersus>Fortitude</DCVersus>
          <AmountVector size="1">10</AmountVector>
          <ModAbility>Strength</ModAbility>
          <Tactical>Sunder</Tactical>
       </DC>
-   </Feat>   <Feat>
+   </Feat>
+   <Feat>
       <Name>Superior Weapon Focus: Bludgeoning Weapons</Name>
       <Description>Provides a +1 bonus to attack rolls when using a bludgeoning weapon,
 including attacks from a druid in animal form and an additional +2 stacking
@@ -12694,29 +12703,15 @@ A successful Balance check negates this effect.</Description>
    </Feat>
    <Feat>
       <Name>Two Handed Fighting</Name>
-      <Description>Increases the damage of glancing blow attacks when wielding a two-handed
-weapon by 10% (from a base of 20% normal weapon damage). Also grants a 3%
-chance for weapon effects to trigger on glancing blows and a +2 Combat Style
-bonus to Melee Power.
-
-Lamannia:
-While Two-Handed Fighting: +60% Strikethrough Chance. You can now Strikethrough
-while moving. You also gain a +2 Combat Style bonus to Melee Power while
-Two-Handed Fighting.
-
+      <Description>While Two-Handed Fighting: +60% Strikethrough Chance.
+You also gain a +2 Combat Style bonus to Melee Power while Two-Handed Fighting.
 For the purpose of this feat, you are considered to be Two-Handed Fighting while
-using a Two-Handed Melee Weapon (not including Handwraps). You are also considered
-to be Two-Handed Fighting while wielding a Bastard Sword or Dwarven Waraxe in
-your main hand and a Shield, Orb, Rune Arm, or Nothing in your off-hand.
+using a Two-Handed Melee Weapon (not including Handwraps). You are also
+considered to be Two-Handed Fighting while wielding a Bastard Sword or Dwarven
+axe in your main hand and a Shield, Orb, Rune Arm, or Nothing in your off-hand.
 You are not considered to be Two-Handed Fighting while in Wild Shape.
-
-Strikethrough grants a chance for your melee attacks to hit a second target.
-Strikethrough begins at 20% while Two-Handed Fighting, and if Strikethrough is
-over 100%, you will always hit a second target with a chance to hit a third.
-
-In addition, While using a Two Handed Weapon (not including Bastard Sword or
-Dwarven Waraxe), your Ability Score bonus to damage improves to 2x the Ability
-Score Modifier you use for damage.</Description>
+While using a Two Handed Weapon (not including Bastard Sword or Dwarven axe),
+your Ability Score bonus to damage improves to 2x the Ability Score you use for damage.</Description>
       <FeatGroup>
          <IsStandardFeat/>
          <IsFighterBonus/>
@@ -12736,11 +12731,6 @@ Score Modifier you use for damage.</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>TwoHandedFighting</Icon>
-      <Effect>
-         <Type>GlancingBlows</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>10</Amount>
-      </Effect>
       <Effect>
          <Type>Strikethrough</Type>
          <Bonus>Feat</Bonus>
@@ -18876,15 +18866,10 @@ a successful Fortitude saving throw. Base DC is officially 20, but currently 30 
    </Feat>
    <Feat>
       <Name>Perfect Two Handed Fighting</Name>
-      <Description>Increases the damage of glancing blow attack when wielding a two-handed
-weapon by an additional 10%. Also increases the chance for weapon effects to
-trigger on glancing blows by an additional 10%.
+      <Description>You gain +30% Strikethrough Chance.
+You also gain a +10 Combat Style bonus to Melee Power while Two-Handed Fighting.
 Sphere: Primal
-Number of Destinies: 1
-
-Lamannia:
-While Two-Handed Fighting: You gain +20% Strikethrough Chance.
-Passive: +10 Melee Power</Description>
+Number of Destinies: 1</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -18895,16 +18880,6 @@ Passive: +10 Melee Power</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>PerfectTwoHandedFighting</Icon>
-      <Effect>
-         <Type>GlancingBlows</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>10</Amount>
-      </Effect>
-      <Effect>
-         <Type>GlancingBlowEffects</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>10</Amount>
-      </Effect>
       <Effect>
          <DisplayName>Epic Defensive Fighting</DisplayName>
          <Type>Hitpoints</Type>
@@ -18917,7 +18892,7 @@ Passive: +10 Melee Power</Description>
       <Effect>
          <Type>Strikethrough</Type>
          <Bonus>Feat</Bonus>
-         <Amount>20</Amount>
+         <Amount>30</Amount>
       </Effect>
       <Effect>
          <Type>MeleePower</Type>
@@ -19449,8 +19424,9 @@ An additional +4 if you are centered.
    </Feat>
    <Feat>
       <Name>Scion of the Ethereal Plane</Name>
-      <Description>Permanent Blur, +1 point of Sneak Attack damage for every 3 points of Hide
-you have, +4 to all Skills, Permanent Invisibility Guard, as per the item effect.</Description>
+      <Description>You have Lesser Displacement and Ghost Touch, along with +6d6 Sneak Attack Dice,
++5 Melee and Ranged Power, +4 to all Skills, and a permanent Invisible Guard
+as per the effect.</Description>
       <FeatGroup>
          <IsLegendaryFeat/>
       </FeatGroup>
@@ -19468,11 +19444,19 @@ you have, +4 to all Skills, Permanent Invisibility Guard, as per the item effect
          <Amount>4</Amount>
       </Effect>
       <Effect>
-         <DisplayName>Scion of the Ethereal Plane: Hide/3 bonus</DisplayName>
-         <Type>SneakAttackDamage</Type>
+         <Type>SneakAttackDice</Type>
          <Bonus>Feat</Bonus>
-         <Skill>Hide</Skill>
-         <Divider>3</Divider>
+         <Amount>6</Amount>
+      </Effect>
+      <Effect>
+         <Type>MeleePower</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>5</Amount>
+      </Effect>
+      <Effect>
+         <Type>RangedPower</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>6</Amount>
       </Effect>
       <!--blur here-->
    </Feat>
@@ -20778,7 +20762,8 @@ saving throw allowed. Cooldown timer of 210 seconds.</Description>
    <Feat>
       <Name>Follower of Aureon</Name>
       <Description>You follow Aureon, member of the Sovereign Host and use his favored weapon.
-You are proficient with Quarterstaves and gain +1 to hit with them.</Description>
+You are proficient with Quarterstaves and gain +1 to hit with them.
+Quarterstaves are considered as a favored weapon.</Description>
       <FeatGroup>
          <IsFollowerOf/>
       </FeatGroup>
@@ -20823,11 +20808,18 @@ You are proficient with Quarterstaves and gain +1 to hit with them.</Description
          <Amount>1</Amount>
          <Weapon>Quarterstaff</Weapon>
       </Effect>
+      <Effect>
+         <Type>AddGroupWeapon</Type>
+         <Bonus>Enhancement</Bonus>
+         <WeaponGroup>Favored Weapon</WeaponGroup>
+         <Weapon>Quarterstaff</Weapon>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Follower of the Blood of Vol</Name>
       <Description>You follow the Blood of Vol.
-You are proficient with Daggers and gain +1 to hit with them.</Description>
+You are proficient with Daggers and gain +1 to hit with them.
+Daggers are considered as a favored weapon.</Description>
       <FeatGroup>
          <IsFollowerOf/>
       </FeatGroup>
@@ -20872,11 +20864,18 @@ You are proficient with Daggers and gain +1 to hit with them.</Description>
          <Amount>1</Amount>
          <Weapon>Dagger</Weapon>
       </Effect>
+      <Effect>
+         <Type>AddGroupWeapon</Type>
+         <Bonus>Enhancement</Bonus>
+         <WeaponGroup>Favored Weapon</WeaponGroup>
+         <Weapon>Dagger</Weapon>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Follower of the Lord of Blades</Name>
       <Description>You follow the Lord of Blades.
-You are proficient with Great Swords and gain +1 to hit with them.</Description>
+You are proficient with Great Swords and gain +1 to hit with them.
+Great Swords are considered as a favored weapon.</Description>
       <FeatGroup>
          <IsFollowerOf/>
       </FeatGroup>
@@ -20909,11 +20908,18 @@ You are proficient with Great Swords and gain +1 to hit with them.</Description>
          <Amount>1</Amount>
          <Weapon>Great Sword</Weapon>
       </Effect>
+      <Effect>
+         <Type>AddGroupWeapon</Type>
+         <Bonus>Enhancement</Bonus>
+         <WeaponGroup>Favored Weapon</WeaponGroup>
+         <Weapon>Great Sword</Weapon>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Follower of Olladra</Name>
       <Description>You follow Olladra, member of the Sovereign Host and use his favorite weapon.
-You are proficient with Sickles and gain +1 to hit with them.</Description>
+You are proficient with Sickles and gain +1 to hit with them.
+Sickles are considered as a favored weapon.</Description>
       <FeatGroup>
          <IsFollowerOf/>
       </FeatGroup>
@@ -20958,11 +20964,18 @@ You are proficient with Sickles and gain +1 to hit with them.</Description>
          <Amount>1</Amount>
          <Weapon>Sickle</Weapon>
       </Effect>
+      <Effect>
+         <Type>AddGroupWeapon</Type>
+         <Bonus>Enhancement</Bonus>
+         <WeaponGroup>Favored Weapon</WeaponGroup>
+         <Weapon>Sickle</Weapon>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Follower of Onatar</Name>
       <Description>You follow Onatar, member of the Sovereign Host and use his favorite weapon.
-You are proficient with Warhammers and gain +1 to hit with them.</Description>
+You are proficient with Warhammers and gain +1 to hit with them.
+Warhammers considered as a favored weapon.</Description>
       <FeatGroup>
          <IsFollowerOf/>
       </FeatGroup>
@@ -21007,11 +21020,18 @@ You are proficient with Warhammers and gain +1 to hit with them.</Description>
          <Amount>1</Amount>
          <Weapon>Warhammer</Weapon>
       </Effect>
+      <Effect>
+         <Type>AddGroupWeapon</Type>
+         <Bonus>Enhancement</Bonus>
+         <WeaponGroup>Favored Weapon</WeaponGroup>
+         <Weapon>Warhammer</Weapon>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Follower of the Silver Flame</Name>
       <Description>You follow the Silver Flame.
-You are proficient with Longbows and gain +1 to hit with them</Description>
+You are proficient with Longbows and gain +1 to hit with them.
+Longbows are considered as a favored weapon.</Description>
       <FeatGroup>
          <IsFollowerOf/>
       </FeatGroup>
@@ -21056,11 +21076,18 @@ You are proficient with Longbows and gain +1 to hit with them</Description>
          <Amount>1</Amount>
          <Weapon>Longbow</Weapon>
       </Effect>
+      <Effect>
+         <Type>AddGroupWeapon</Type>
+         <Bonus>Enhancement</Bonus>
+         <WeaponGroup>Favored Weapon</WeaponGroup>
+         <Weapon>Longbow</Weapon>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Follower of the Sovereign Host</Name>
       <Description>You follow the Sovereign Host.
-You are proficient with Longswords and gain +1 to hit with them.</Description>
+You are proficient with Longswords and gain +1 to hit with them.
+Longbows are considered as a favored weapon.</Description>
       <FeatGroup>
          <IsFollowerOf/>
       </FeatGroup>
@@ -21105,11 +21132,18 @@ You are proficient with Longswords and gain +1 to hit with them.</Description>
          <Amount>1</Amount>
          <Weapon>Longsword</Weapon>
       </Effect>
+      <Effect>
+         <Type>AddGroupWeapon</Type>
+         <Bonus>Enhancement</Bonus>
+         <WeaponGroup>Favored Weapon</WeaponGroup>
+         <Weapon>Longsword</Weapon>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Follower of the Undying Court</Name>
       <Description>You follow the Undying Court.
-You are proficient with Scimitars and gain +1 to hit with them.</Description>
+You are proficient with Scimitars and gain +1 to hit with them.
+Scimitars are considered as a favored weapon.</Description>
       <FeatGroup>
          <IsFollowerOf/>
       </FeatGroup>
@@ -21145,11 +21179,18 @@ You are proficient with Scimitars and gain +1 to hit with them.</Description>
          <Amount>1</Amount>
          <Weapon>Scimitar</Weapon>
       </Effect>
+      <Effect>
+         <Type>AddGroupWeapon</Type>
+         <Bonus>Enhancement</Bonus>
+         <WeaponGroup>Favored Weapon</WeaponGroup>
+         <Weapon>Scimitar</Weapon>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Follower of Vulkoor</Name>
       <Description>You follow Vulkoor.
-You are proficient with Shortswords and gain +1 to hit with them.</Description>
+You are proficient with Shortswords and gain +1 to hit with them.
+Shortswords are considered as a favored weapon.</Description>
       <FeatGroup>
          <IsFollowerOf/>
       </FeatGroup>
@@ -21177,11 +21218,18 @@ You are proficient with Shortswords and gain +1 to hit with them.</Description>
          <Amount>1</Amount>
          <Weapon>Shortsword</Weapon>
       </Effect>
+      <Effect>
+         <Type>AddGroupWeapon</Type>
+         <Bonus>Enhancement</Bonus>
+         <WeaponGroup>Favored Weapon</WeaponGroup>
+         <Weapon>Shortsword</Weapon>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Favored by Amaunator</Name>
       <Description>You follow Amaunator.
-You are proficient with heavy maces and gain +1 to hit with them.</Description>
+You are proficient with heavy maces and gain +1 to hit with them.
+Heavy maces are considered as a favored weapon.</Description>
       <FeatGroup>
          <IsFollowerOf/>
       </FeatGroup>
@@ -21223,11 +21271,18 @@ You are proficient with heavy maces and gain +1 to hit with them.</Description>
          <Amount>1</Amount>
          <Weapon>Heavy Mace</Weapon>
       </Effect>
+      <Effect>
+         <Type>AddGroupWeapon</Type>
+         <Bonus>Enhancement</Bonus>
+         <WeaponGroup>Favored Weapon</WeaponGroup>
+         <Weapon>Heavy Mace</Weapon>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Favored by Helm</Name>
       <Description>You follow Helm.
-You are proficient with bastard swords and gain +1 to hit with them.</Description>
+You are proficient with bastard swords and gain +1 to hit with them.
+Bastard swords are considered as a favored weapon.</Description>
       <FeatGroup>
          <IsFollowerOf/>
       </FeatGroup>
@@ -21264,13 +21319,20 @@ You are proficient with bastard swords and gain +1 to hit with them.</Descriptio
          <Type>CriticalAttackBonus</Type>
          <Bonus>Feat</Bonus>
          <Amount>1</Amount>
+         <Weapon>Bastard Sword</Weapon>
+      </Effect>
+      <Effect>
+         <Type>AddGroupWeapon</Type>
+         <Bonus>Enhancement</Bonus>
+         <WeaponGroup>Favored Weapon</WeaponGroup>
          <Weapon>Bastard Sword</Weapon>
       </Effect>
    </Feat>
    <Feat>
       <Name>Favored by Silvanus</Name>
       <Description>You follow Silvanus.
-You are proficient with mauls and gain +1 to hit with them.</Description>
+You are proficient with mauls and gain +1 to hit with them.
+Mauls are considered as a favored weapon.</Description>
       <FeatGroup>
          <IsFollowerOf/>
       </FeatGroup>
@@ -21309,657 +21371,161 @@ You are proficient with mauls and gain +1 to hit with them.</Description>
          <Amount>1</Amount>
          <Weapon>Maul</Weapon>
       </Effect>
+      <Effect>
+         <Type>AddGroupWeapon</Type>
+         <Bonus>Enhancement</Bonus>
+         <WeaponGroup>Favored Weapon</WeaponGroup>
+         <Weapon>Maul</Weapon>
+      </Effect>
    </Feat>
    <!--Child of feats-->
    <Feat>
-      <Name>Child of Aureon</Name>
-      <Description>You follow Aureon.
-You gain +2 to attack and damage rolls with Quarterstaves.</Description>
+      <Name>Child of Faith</Name>
+      <Description>Your connection to your Deity strengthens.
+You gain bonuses to Attack and Damage rolls with all Favored Weapons you wield.
+Simple and Martial Favored Weapons gain +2 to Attack and Damage.
+Exotic Favored Weapons gain +1 to Attack and Damage.</Description>
       <FeatGroup>
          <IsStandardFeat/>
          <IsChildOf/>
       </FeatGroup>
       <Requirements>
-         <Requirement>
-            <Feat>Follower of Aureon</Feat>
-         </Requirement>
          <RequiresOneOf>
+             <DisplayDescription>Any Follower/Favored of "Deity" feat</DisplayDescription>
             <Requirement>
-               <Class>Cleric</Class>
-               <Level>3</Level>
+               <Feat>Follower of Aureon</Feat>
             </Requirement>
             <Requirement>
-               <Class>Favored Soul</Class>
-               <Level>3</Level>
+               <Feat>Follower of the Blood of Vol</Feat>
             </Requirement>
-            <Requirement>
-               <Class>Paladin</Class>
-               <Level>3</Level>
-            </Requirement>
+             <Requirement>
+                <Feat>Follower of the Lord of Blades</Feat>
+             </Requirement>
+             <Requirement>
+                <Feat>Follower of Olladra</Feat>
+             </Requirement>
+             <Requirement>
+                <Feat>Follower of Onatar</Feat>
+             </Requirement>
+             <Requirement>
+                <Feat>Follower of the Silver Flame</Feat>
+             </Requirement>
+             <Requirement>
+                <Feat>Follower of the Sovereign Host</Feat>
+             </Requirement>
+             <Requirement>
+                <Feat>Follower of the Undying Court</Feat>
+             </Requirement>
+             <Requirement>
+                <Feat>Follower of Vulkoor</Feat>
+             </Requirement>
+             <Requirement>
+                <Feat>Favored by Amaunator</Feat>
+             </Requirement>
+             <Requirement>
+                <Feat>Favored by Helm</Feat>
+             </Requirement>
+             <Requirement>
+                <Feat>Favored by Silvanus</Feat>
+             </Requirement>
          </RequiresOneOf>
       </Requirements>
       <Acquire>Train</Acquire>
-      <Icon>Aureon</Icon>
+      <Icon>ChildOfFaith</Icon>
       <Effect>
          <Type>AttackBonus</Type>
          <Bonus>Feat</Bonus>
          <Amount>2</Amount>
-         <Weapon>Quarterstaff</Weapon>
+         <WeaponClass>Simple</WeaponClass>
+         <Stance>Favored Weapon</Stance>
       </Effect>
       <Effect>
          <Type>CriticalAttackBonus</Type>
          <Bonus>Feat</Bonus>
          <Amount>2</Amount>
-         <Weapon>Quarterstaff</Weapon>
+         <WeaponClass>Simple</WeaponClass>
+         <Stance>Favored Weapon</Stance>
       </Effect>
       <Effect>
          <Type>DamageBonus</Type>
          <Bonus>Feat</Bonus>
          <Amount>2</Amount>
-         <Weapon>Quarterstaff</Weapon>
+         <WeaponClass>Simple</WeaponClass>
+         <Stance>Favored Weapon</Stance>
       </Effect>
       <Effect>
          <Type>Seeker</Type>
          <Bonus>Feat</Bonus>
          <Amount>2</Amount>
-         <Weapon>Quarterstaff</Weapon>
+         <WeaponClass>Simple</WeaponClass>
+         <Stance>Favored Weapon</Stance>
       </Effect>
-   </Feat>
-   <Feat>
-      <Name>Child of the Blood of Vol</Name>
-      <Description>You follow the Blood of Vol.
-You gain +2 to attack and damage rolls with Daggers.</Description>
-      <FeatGroup>
-         <IsStandardFeat/>
-         <IsChildOf/>
-      </FeatGroup>
-      <Requirements>
-         <Requirement>
-            <Feat>Follower of the Blood of Vol</Feat>
-         </Requirement>
-         <RequiresOneOf>
-            <Requirement>
-               <Class>Cleric</Class>
-               <Level>3</Level>
-            </Requirement>
-            <Requirement>
-               <Class>Favored Soul</Class>
-               <Level>3</Level>
-            </Requirement>
-            <Requirement>
-               <Class>Paladin</Class>
-               <Level>3</Level>
-            </Requirement>
-         </RequiresOneOf>
-      </Requirements>
-      <Acquire>Train</Acquire>
-      <Icon>BloodOfVol</Icon>
       <Effect>
          <Type>AttackBonus</Type>
          <Bonus>Feat</Bonus>
          <Amount>2</Amount>
-         <Weapon>Dagger</Weapon>
+         <WeaponClass>Martial</WeaponClass>
+         <Stance>Favored Weapon</Stance>
       </Effect>
       <Effect>
          <Type>CriticalAttackBonus</Type>
          <Bonus>Feat</Bonus>
          <Amount>2</Amount>
-         <Weapon>Dagger</Weapon>
+         <WeaponClass>Martial</WeaponClass>
+         <Stance>Favored Weapon</Stance>
       </Effect>
       <Effect>
          <Type>DamageBonus</Type>
          <Bonus>Feat</Bonus>
          <Amount>2</Amount>
-         <Weapon>Dagger</Weapon>
+         <WeaponClass>Martial</WeaponClass>
+         <Stance>Favored Weapon</Stance>
       </Effect>
       <Effect>
          <Type>Seeker</Type>
          <Bonus>Feat</Bonus>
          <Amount>2</Amount>
-         <Weapon>Dagger</Weapon>
-      </Effect>
-   </Feat>
-   <Feat>
-      <Name>Child of the Lord of Blades</Name>
-      <Description>You follow the Lord of Blades.
-You have +2 to attack and damage rolls with Great Swords.</Description>
-      <FeatGroup>
-         <IsStandardFeat/>
-         <IsChildOf/>
-      </FeatGroup>
-      <Requirements>
-         <Requirement>
-            <Feat>Follower of the Lord of Blades</Feat>
-         </Requirement>
-         <RequiresOneOf>
-            <Requirement>
-               <Class>Cleric</Class>
-               <Level>3</Level>
-            </Requirement>
-            <Requirement>
-               <Class>Favored Soul</Class>
-               <Level>3</Level>
-            </Requirement>
-            <Requirement>
-               <Class>Paladin</Class>
-               <Level>3</Level>
-            </Requirement>
-         </RequiresOneOf>
-      </Requirements>
-      <Acquire>Train</Acquire>
-      <Icon>LordOfBlades</Icon>
-      <Effect>
-         <Type>AttackBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>2</Amount>
-         <Weapon>Great Sword</Weapon>
-      </Effect>
-      <Effect>
-         <Type>CriticalAttackBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>2</Amount>
-         <Weapon>Great Sword</Weapon>
-      </Effect>
-      <Effect>
-         <Type>DamageBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>2</Amount>
-         <Weapon>Great Sword</Weapon>
-      </Effect>
-      <Effect>
-         <Type>Seeker</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>2</Amount>
-         <Weapon>Great Sword</Weapon>
-      </Effect>
-   </Feat>
-   <Feat>
-      <Name>Child of Olladra</Name>
-      <Description>You follow Olladra.
-You have +2 to attack and damage rolls with sickles.</Description>
-      <FeatGroup>
-         <IsStandardFeat/>
-         <IsChildOf/>
-      </FeatGroup>
-      <Requirements>
-         <Requirement>
-            <Feat>Follower of Olladra</Feat>
-         </Requirement>
-         <RequiresOneOf>
-            <Requirement>
-               <Class>Cleric</Class>
-               <Level>3</Level>
-            </Requirement>
-            <Requirement>
-               <Class>Favored Soul</Class>
-               <Level>3</Level>
-            </Requirement>
-            <Requirement>
-               <Class>Paladin</Class>
-               <Level>3</Level>
-            </Requirement>
-         </RequiresOneOf>
-      </Requirements>
-      <Acquire>Train</Acquire>
-      <Icon>Aureon</Icon>
-      <Effect>
-         <Type>AttackBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>2</Amount>
-         <Weapon>Sickle</Weapon>
-      </Effect>
-      <Effect>
-         <Type>CriticalAttackBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>2</Amount>
-         <Weapon>Sickle</Weapon>
-      </Effect>
-      <Effect>
-         <Type>DamageBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>2</Amount>
-         <Weapon>Sickle</Weapon>
-      </Effect>
-      <Effect>
-         <Type>Seeker</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>2</Amount>
-         <Weapon>Sickle</Weapon>
-      </Effect>
-   </Feat>
-   <Feat>
-      <Name>Child of Onatar</Name>
-      <Description>You follow Onatar.
-You have +2 to attack and damage rolls with warhammers.</Description>
-      <FeatGroup>
-         <IsStandardFeat/>
-         <IsChildOf/>
-      </FeatGroup>
-      <Requirements>
-         <Requirement>
-            <Feat>Follower of Onatar</Feat>
-         </Requirement>
-         <RequiresOneOf>
-            <Requirement>
-               <Class>Cleric</Class>
-               <Level>3</Level>
-            </Requirement>
-            <Requirement>
-               <Class>Favored Soul</Class>
-               <Level>3</Level>
-            </Requirement>
-            <Requirement>
-               <Class>Paladin</Class>
-               <Level>3</Level>
-            </Requirement>
-         </RequiresOneOf>
-      </Requirements>
-      <Acquire>Train</Acquire>
-      <Icon>Aureon</Icon>
-      <Effect>
-         <Type>AttackBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>2</Amount>
-         <Weapon>Warhammer</Weapon>
-      </Effect>
-      <Effect>
-         <Type>CriticalAttackBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>2</Amount>
-         <Weapon>Warhammer</Weapon>
-      </Effect>
-      <Effect>
-         <Type>DamageBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>2</Amount>
-         <Weapon>Warhammer</Weapon>
-      </Effect>
-      <Effect>
-         <Type>Seeker</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>2</Amount>
-         <Weapon>Warhammer</Weapon>
-      </Effect>
-   </Feat>
-   <Feat>
-      <Name>Child of the Silver Flame</Name>
-      <Description>You follow the Silver Flame.
-You have +2 to attack and damage rolls with longbows.</Description>
-      <FeatGroup>
-         <IsStandardFeat/>
-         <IsChildOf/>
-      </FeatGroup>
-      <Requirements>
-         <Requirement>
-            <Feat>Follower of the Silver Flame</Feat>
-         </Requirement>
-         <RequiresOneOf>
-            <Requirement>
-               <Class>Cleric</Class>
-               <Level>3</Level>
-            </Requirement>
-            <Requirement>
-               <Class>Favored Soul</Class>
-               <Level>3</Level>
-            </Requirement>
-            <Requirement>
-               <Class>Paladin</Class>
-               <Level>3</Level>
-            </Requirement>
-         </RequiresOneOf>
-      </Requirements>
-      <Acquire>Train</Acquire>
-      <Icon>SilverFlame</Icon>
-      <Effect>
-         <Type>AttackBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>2</Amount>
-         <Weapon>Longbow</Weapon>
-      </Effect>
-      <Effect>
-         <Type>CriticalAttackBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>2</Amount>
-         <Weapon>Longbow</Weapon>
-      </Effect>
-      <Effect>
-         <Type>DamageBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>2</Amount>
-         <Weapon>Longbow</Weapon>
-      </Effect>
-      <Effect>
-         <Type>Seeker</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>2</Amount>
-         <Weapon>Longbow</Weapon>
-      </Effect>
-   </Feat>
-   <Feat>
-      <Name>Child of the Sovereign Host</Name>
-      <Description>You follow the Sovereign Host.
-You have +2 to attack and damage rolls with longswords</Description>
-      <FeatGroup>
-         <IsStandardFeat/>
-         <IsChildOf/>
-      </FeatGroup>
-      <Requirements>
-         <Requirement>
-            <Feat>Follower of the Sovereign Host</Feat>
-         </Requirement>
-         <RequiresOneOf>
-            <Requirement>
-               <Class>Cleric</Class>
-               <Level>3</Level>
-            </Requirement>
-            <Requirement>
-               <Class>Favored Soul</Class>
-               <Level>3</Level>
-            </Requirement>
-            <Requirement>
-               <Class>Paladin</Class>
-               <Level>3</Level>
-            </Requirement>
-         </RequiresOneOf>
-      </Requirements>
-      <Acquire>Train</Acquire>
-      <Icon>SovereignHost</Icon>
-      <Effect>
-         <Type>AttackBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>2</Amount>
-         <Weapon>Longsword</Weapon>
-      </Effect>
-      <Effect>
-         <Type>CriticalAttackBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>2</Amount>
-         <Weapon>Longsword</Weapon>
-      </Effect>
-      <Effect>
-         <Type>DamageBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>2</Amount>
-         <Weapon>Longsword</Weapon>
-      </Effect>
-      <Effect>
-         <Type>Seeker</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>2</Amount>
-         <Weapon>Longsword</Weapon>
-      </Effect>
-   </Feat>
-   <Feat>
-      <Name>Child of the Undying Court</Name>
-      <Description>You follow the Undying Court.
-You have +2 to attack and damage rolls with scimitars.</Description>
-      <FeatGroup>
-         <IsStandardFeat/>
-         <IsChildOf/>
-      </FeatGroup>
-      <Requirements>
-         <Requirement>
-            <Feat>Follower of the Undying Court</Feat>
-         </Requirement>
-         <RequiresOneOf>
-            <Requirement>
-               <Class>Cleric</Class>
-               <Level>3</Level>
-            </Requirement>
-            <Requirement>
-               <Class>Favored Soul</Class>
-               <Level>3</Level>
-            </Requirement>
-            <Requirement>
-               <Class>Paladin</Class>
-               <Level>3</Level>
-            </Requirement>
-         </RequiresOneOf>
-      </Requirements>
-      <Acquire>Train</Acquire>
-      <Icon>Undying</Icon>
-      <Effect>
-         <Type>AttackBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>2</Amount>
-         <Weapon>Scimitar</Weapon>
-      </Effect>
-      <Effect>
-         <Type>CriticalAttackBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>2</Amount>
-         <Weapon>Scimitar</Weapon>
-      </Effect>
-      <Effect>
-         <Type>DamageBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>2</Amount>
-         <Weapon>Scimitar</Weapon>
-      </Effect>
-      <Effect>
-         <Type>Seeker</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>2</Amount>
-         <Weapon>Scimitar</Weapon>
-      </Effect>
-   </Feat>
-   <Feat>
-      <Name>Child of Vulkoor</Name>
-      <Description>You follow Vulkoor.
-You have +2 to attack and damage rolls with shortswords.</Description>
-      <FeatGroup>
-         <IsStandardFeat/>
-         <IsChildOf/>
-      </FeatGroup>
-      <Requirements>
-         <Requirement>
-            <Feat>Follower of Vulkoor</Feat>
-         </Requirement>
-         <RequiresOneOf>
-            <Requirement>
-               <Class>Cleric</Class>
-               <Level>3</Level>
-            </Requirement>
-            <Requirement>
-               <Class>Favored Soul</Class>
-               <Level>3</Level>
-            </Requirement>
-            <Requirement>
-               <Class>Paladin</Class>
-               <Level>3</Level>
-            </Requirement>
-         </RequiresOneOf>
-      </Requirements>
-      <Acquire>Train</Acquire>
-      <Icon>Vulkoor</Icon>
-      <Effect>
-         <Type>AttackBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>2</Amount>
-         <Weapon>Shortsword</Weapon>
-      </Effect>
-      <Effect>
-         <Type>CriticalAttackBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>2</Amount>
-         <Weapon>Shortsword</Weapon>
-      </Effect>
-      <Effect>
-         <Type>DamageBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>2</Amount>
-         <Weapon>Shortsword</Weapon>
-      </Effect>
-      <Effect>
-         <Type>Seeker</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>2</Amount>
-         <Weapon>Shortsword</Weapon>
-      </Effect>
-   </Feat>
-   <Feat>
-      <Name>Child of Amaunator</Name>
-      <Description>You follow Amaunator.
-You have +2 to attack and damage rolls with heavy maces.</Description>
-      <FeatGroup>
-         <IsStandardFeat/>
-         <IsChildOf/>
-      </FeatGroup>
-      <Requirements>
-         <Requirement>
-            <Feat>Favored by Amaunator</Feat>
-         </Requirement>
-         <RequiresOneOf>
-            <Requirement>
-               <Class>Cleric</Class>
-               <Level>3</Level>
-            </Requirement>
-            <Requirement>
-               <Class>Favored Soul</Class>
-               <Level>3</Level>
-            </Requirement>
-            <Requirement>
-               <Class>Paladin</Class>
-               <Level>3</Level>
-            </Requirement>
-         </RequiresOneOf>
-      </Requirements>
-      <Acquire>Train</Acquire>
-      <Icon>Amaunator</Icon>
-      <Effect>
-         <Type>AttackBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>2</Amount>
-         <Weapon>Heavy Mace</Weapon>
-      </Effect>
-      <Effect>
-         <Type>CriticalAttackBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>2</Amount>
-         <Weapon>Heavy Mace</Weapon>
-      </Effect>
-      <Effect>
-         <Type>DamageBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>2</Amount>
-         <Weapon>Heavy Mace</Weapon>
-      </Effect>
-      <Effect>
-         <Type>Seeker</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>2</Amount>
-         <Weapon>Heavy Mace</Weapon>
-      </Effect>
-   </Feat>
-   <Feat>
-      <Name>Child of Helm</Name>
-      <Description>You follow Helm.
-You gain +1 to attack and damage rolls with bastard swords.</Description>
-      <FeatGroup>
-         <IsStandardFeat/>
-         <IsChildOf/>
-      </FeatGroup>
-      <Requirements>
-         <Requirement>
-            <Feat>Favored by Helm</Feat>
-         </Requirement>
-         <RequiresOneOf>
-            <Requirement>
-               <Class>Cleric</Class>
-               <Level>3</Level>
-            </Requirement>
-            <Requirement>
-               <Class>Favored Soul</Class>
-               <Level>3</Level>
-            </Requirement>
-            <Requirement>
-               <Class>Paladin</Class>
-               <Level>3</Level>
-            </Requirement>
-         </RequiresOneOf>
-      </Requirements>
-      <Acquire>Train</Acquire>
-      <Icon>Helm</Icon>
-      <Effect>
-         <Type>AttackBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>1</Amount>
-         <Weapon>Bastard Sword</Weapon>
-      </Effect>
-      <Effect>
-         <Type>CriticalAttackBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>1</Amount>
-         <Weapon>Bastard Sword</Weapon>
-      </Effect>
-      <Effect>
-         <Type>DamageBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>1</Amount>
-         <Weapon>Bastard Sword</Weapon>
-      </Effect>
-      <Effect>
-         <Type>Seeker</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>1</Amount>
-         <Weapon>Bastard Sword</Weapon>
-      </Effect>
-   </Feat>
-   <Feat>
-      <Name>Child of Silvanus</Name>
-      <Description>You follow Silvanus.
-You gain +2 to attack and damage rolls with mauls.</Description>
-      <FeatGroup>
-         <IsStandardFeat/>
-         <IsChildOf/>
-      </FeatGroup>
-      <Requirements>
-         <Requirement>
-            <Feat>Favored by Silvanus</Feat>
-         </Requirement>
-         <RequiresOneOf>
-            <Requirement>
-               <Class>Cleric</Class>
-               <Level>3</Level>
-            </Requirement>
-            <Requirement>
-               <Class>Favored Soul</Class>
-               <Level>3</Level>
-            </Requirement>
-            <Requirement>
-               <Class>Paladin</Class>
-               <Level>3</Level>
-            </Requirement>
-         </RequiresOneOf>
-      </Requirements>
-      <Acquire>Train</Acquire>
-      <Icon>Silvanus</Icon>
-      <Effect>
-         <Type>AttackBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>2</Amount>
-         <Weapon>Maul</Weapon>
-      </Effect>
-      <Effect>
-         <Type>CriticalAttackBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>2</Amount>
-         <Weapon>Maul</Weapon>
-      </Effect>
-      <Effect>
-         <Type>DamageBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>2</Amount>
-         <Weapon>Maul</Weapon>
-      </Effect>
-      <Effect>
-         <Type>Seeker</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>2</Amount>
-         <Weapon>Maul</Weapon>
+         <WeaponClass>Martial</WeaponClass>
+         <Stance>Favored Weapon</Stance>
       </Effect>
    </Feat>
    <!--Deity feats-->
+   <Feat>
+      <Name>Search the Soul</Name>
+      <Description>You are seeking guidance to new paths of Faith.
+Passive: You gain +3 to the Concentration skill. As this Feat has no particular
+required Deity, while you have this feat (and assuming you meet all other
+requirements), you can exchange your Deity with a Feat Exchange (using normal
+Feat Exchange rules and costs).</Description>
+      <FeatGroup>
+         <IsDeity/>
+         <IsStandardFeat/>
+      </FeatGroup>
+      <Requirements>
+         <RequiresOneOf>
+            <Requirement>
+               <Class>Cleric</Class>
+               <Level>6</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Favored Soul</Class>
+               <Level>6</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Paladin</Class>
+               <Level>6</Level>
+            </Requirement>
+         </RequiresOneOf>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>SearchTheSoul</Icon>
+       <Effect>
+           <Type>SkillBonus</Type>
+           <Bonus>Feat</Bonus>
+           <Amount>3</Amount>
+           <Skill>Concentration</Skill>
+       </Effect>
+   </Feat>
    <Feat>
       <Name>Aureon's Instruction</Name>
       <Description>You are a devoted follower of Aureon and your faith has been rewarded.
@@ -22634,9 +22200,12 @@ Toggling this on gives you Blessing of Silvanus: You permanently gain a
    </Feat>
    <!--Beloved of feats-->
    <Feat>
-      <Name>Beloved of Amaunator</Name>
-      <Description>You follow Amaunator.
-You have +3 to attack and damage rolls with heavy maces.</Description>
+      <Name>Beloved of the Divine</Name>
+      <Description>Your connection to your Deity strengthens.
+You gain bonuses to Attack and Damage rolls with all Favored Weapons you wield:
+Simple Favored Weapons gain +3 to Attack and Damage.
+Martial Favored Weapons gain +2 to Attack and Damage.
+Exotic Favored Weapons gain +1 to Attack and Damage.</Description>
       <FeatGroup>
          <IsStandardFeat/>
          <IsBelovedOf/>
@@ -22657,628 +22226,94 @@ You have +3 to attack and damage rolls with heavy maces.</Description>
             </Requirement>
          </RequiresOneOf>
          <Requirement>
-            <Feat>Child of Amaunator</Feat>
+            <Feat>Child of Faith</Feat>
          </Requirement>
       </Requirements>
       <Acquire>Train</Acquire>
-      <Icon>AmaunatorsBrilliance</Icon>
+      <Icon>BelovedOfTheDivine</Icon>
       <Effect>
          <Type>AttackBonus</Type>
          <Bonus>Feat</Bonus>
-         <Weapon>Heavy Mace</Weapon>
          <Amount>3</Amount>
+         <WeaponClass>Simple</WeaponClass>
+         <Stance>Favored Weapon</Stance>
       </Effect>
       <Effect>
          <Type>CriticalAttackBonus</Type>
          <Bonus>Feat</Bonus>
-         <Weapon>Heavy Mace</Weapon>
          <Amount>3</Amount>
+         <WeaponClass>Simple</WeaponClass>
+         <Stance>Favored Weapon</Stance>
       </Effect>
       <Effect>
          <Type>DamageBonus</Type>
          <Bonus>Feat</Bonus>
-         <Weapon>Heavy Mace</Weapon>
          <Amount>3</Amount>
+         <WeaponClass>Simple</WeaponClass>
+         <Stance>Favored Weapon</Stance>
       </Effect>
       <Effect>
          <Type>Seeker</Type>
          <Bonus>Feat</Bonus>
-         <Weapon>Heavy Mace</Weapon>
          <Amount>3</Amount>
+         <WeaponClass>Simple</WeaponClass>
+         <Stance>Favored Weapon</Stance>
       </Effect>
-   </Feat>
-   <Feat>
-      <Name>Beloved of the Lord of Blades</Name>
-      <Description>You follow the Lord of Blades.
-You have +2 to attack and damage rolls with greatswords.</Description>
-      <FeatGroup>
-         <IsStandardFeat/>
-         <IsBelovedOf/>
-      </FeatGroup>
-      <Requirements>
-         <RequiresOneOf>
-            <Requirement>
-               <Class>Cleric</Class>
-               <Level>12</Level>
-            </Requirement>
-            <Requirement>
-               <Class>Favored Soul</Class>
-               <Level>12</Level>
-            </Requirement>
-            <Requirement>
-               <Class>Paladin</Class>
-               <Level>12</Level>
-            </Requirement>
-         </RequiresOneOf>
-         <Requirement>
-            <Feat>Child of the Lord of Blades</Feat>
-         </Requirement>
-      </Requirements>
-      <Acquire>Train</Acquire>
-      <Icon>LordOfBlades</Icon>
       <Effect>
          <Type>AttackBonus</Type>
          <Bonus>Feat</Bonus>
-         <Weapon>Great Sword</Weapon>
-         <Amount>2</Amount>
+         <Amount>3</Amount>
+         <WeaponClass>Martial</WeaponClass>
+         <Stance>Favored Weapon</Stance>
       </Effect>
       <Effect>
          <Type>CriticalAttackBonus</Type>
          <Bonus>Feat</Bonus>
-         <Weapon>Great Sword</Weapon>
-         <Amount>2</Amount>
+         <Amount>3</Amount>
+         <WeaponClass>Martial</WeaponClass>
+         <Stance>Favored Weapon</Stance>
       </Effect>
       <Effect>
          <Type>DamageBonus</Type>
          <Bonus>Feat</Bonus>
-         <Weapon>Great Sword</Weapon>
-         <Amount>2</Amount>
+         <Amount>3</Amount>
+         <WeaponClass>Martial</WeaponClass>
+         <Stance>Favored Weapon</Stance>
       </Effect>
       <Effect>
          <Type>Seeker</Type>
          <Bonus>Feat</Bonus>
-         <Weapon>Great Sword</Weapon>
-         <Amount>2</Amount>
+         <Amount>3</Amount>
+         <WeaponClass>Martial</WeaponClass>
+         <Stance>Favored Weapon</Stance>
       </Effect>
-   </Feat>
-   <Feat>
-      <Name>Beloved of the Silver Flame</Name>
-      <Description>You follow the Silver Flame.
-You have +2 to attack and damage rolls with longbows.</Description>
-      <FeatGroup>
-         <IsStandardFeat/>
-         <IsBelovedOf/>
-      </FeatGroup>
-      <Requirements>
-         <RequiresOneOf>
-            <Requirement>
-               <Class>Cleric</Class>
-               <Level>12</Level>
-            </Requirement>
-            <Requirement>
-               <Class>Favored Soul</Class>
-               <Level>12</Level>
-            </Requirement>
-            <Requirement>
-               <Class>Paladin</Class>
-               <Level>12</Level>
-            </Requirement>
-         </RequiresOneOf>
-         <Requirement>
-            <Feat>Child of the Silver Flame</Feat>
-         </Requirement>
-      </Requirements>
-      <Acquire>Train</Acquire>
-      <Icon>SilverFlame</Icon>
       <Effect>
          <Type>AttackBonus</Type>
          <Bonus>Feat</Bonus>
-         <Weapon>Longbow</Weapon>
-         <Amount>2</Amount>
+         <Amount>3</Amount>
+         <WeaponClass>Exotic</WeaponClass>
+         <Stance>Favored Weapon</Stance>
       </Effect>
       <Effect>
          <Type>CriticalAttackBonus</Type>
          <Bonus>Feat</Bonus>
-         <Weapon>Longbow</Weapon>
-         <Amount>2</Amount>
+         <Amount>3</Amount>
+         <WeaponClass>Exotic</WeaponClass>
+         <Stance>Favored Weapon</Stance>
       </Effect>
       <Effect>
          <Type>DamageBonus</Type>
          <Bonus>Feat</Bonus>
-         <Weapon>Longbow</Weapon>
-         <Amount>2</Amount>
+         <Amount>3</Amount>
+         <WeaponClass>Exotic</WeaponClass>
+         <Stance>Favored Weapon</Stance>
       </Effect>
       <Effect>
          <Type>Seeker</Type>
          <Bonus>Feat</Bonus>
-         <Weapon>Longbow</Weapon>
-         <Amount>2</Amount>
-      </Effect>
-   </Feat>
-   <Feat>
-      <Name>Beloved of the Sovereign Host</Name>
-      <Description>You follow the Sovereign Host.
-You have +2 to attack and damage rolls with longswords. </Description>
-      <FeatGroup>
-         <IsStandardFeat/>
-         <IsBelovedOf/>
-      </FeatGroup>
-      <Requirements>
-         <RequiresOneOf>
-            <Requirement>
-               <Class>Cleric</Class>
-               <Level>12</Level>
-            </Requirement>
-            <Requirement>
-               <Class>Favored Soul</Class>
-               <Level>12</Level>
-            </Requirement>
-            <Requirement>
-               <Class>Paladin</Class>
-               <Level>12</Level>
-            </Requirement>
-         </RequiresOneOf>
-         <Requirement>
-            <Feat>Child of the Sovereign Host</Feat>
-         </Requirement>
-      </Requirements>
-      <Acquire>Train</Acquire>
-      <Icon>SovereignHost</Icon>
-      <Effect>
-         <Type>AttackBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Weapon>Longsword</Weapon>
-         <Amount>2</Amount>
-      </Effect>
-      <Effect>
-         <Type>CriticalAttackBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Weapon>Longsword</Weapon>
-         <Amount>2</Amount>
-      </Effect>
-      <Effect>
-         <Type>DamageBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Weapon>Longsword</Weapon>
-         <Amount>2</Amount>
-      </Effect>
-      <Effect>
-         <Type>Seeker</Type>
-         <Bonus>Feat</Bonus>
-         <Weapon>Longsword</Weapon>
-         <Amount>2</Amount>
-      </Effect>
-   </Feat>
-   <Feat>
-      <Name>Beloved of the Undying Court</Name>
-      <Description>You follow the Undying Court.
-You have +2 to attack and damage rolls with scimitars.</Description>
-      <FeatGroup>
-         <IsStandardFeat/>
-         <IsBelovedOf/>
-      </FeatGroup>
-      <Requirements>
-         <RequiresOneOf>
-            <Requirement>
-               <Class>Cleric</Class>
-               <Level>12</Level>
-            </Requirement>
-            <Requirement>
-               <Class>Favored Soul</Class>
-               <Level>12</Level>
-            </Requirement>
-            <Requirement>
-               <Class>Paladin</Class>
-               <Level>12</Level>
-            </Requirement>
-         </RequiresOneOf>
-         <Requirement>
-            <Feat>Child of the Undying Court</Feat>
-         </Requirement>
-      </Requirements>
-      <Acquire>Train</Acquire>
-      <Icon>Undying</Icon>
-      <Effect>
-         <Type>AttackBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Weapon>Scimitar</Weapon>
-         <Amount>2</Amount>
-      </Effect>
-      <Effect>
-         <Type>CriticalAttackBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Weapon>Scimitar</Weapon>
-         <Amount>2</Amount>
-      </Effect>
-      <Effect>
-         <Type>DamageBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Weapon>Scimitar</Weapon>
-         <Amount>2</Amount>
-      </Effect>
-      <Effect>
-         <Type>Seeker</Type>
-         <Bonus>Feat</Bonus>
-         <Weapon>Scimitar</Weapon>
-         <Amount>2</Amount>
-      </Effect>
-   </Feat>
-   <Feat>
-      <Name>Beloved of Vulkoor</Name>
-      <Description>You follow Vulkoor.
-You have +2 to attack and damage rolls with shortswords.</Description>
-      <FeatGroup>
-         <IsStandardFeat/>
-         <IsBelovedOf/>
-      </FeatGroup>
-      <Requirements>
-         <RequiresOneOf>
-            <Requirement>
-               <Class>Cleric</Class>
-               <Level>12</Level>
-            </Requirement>
-            <Requirement>
-               <Class>Favored Soul</Class>
-               <Level>12</Level>
-            </Requirement>
-            <Requirement>
-               <Class>Paladin</Class>
-               <Level>12</Level>
-            </Requirement>
-         </RequiresOneOf>
-         <Requirement>
-            <Feat>Child of Vulkoor</Feat>
-         </Requirement>
-      </Requirements>
-      <Acquire>Train</Acquire>
-      <Icon>Vulkoor</Icon>
-      <Effect>
-         <Type>AttackBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Weapon>Shortsword</Weapon>
-         <Amount>2</Amount>
-      </Effect>
-      <Effect>
-         <Type>CriticalAttackBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Weapon>Shortsword</Weapon>
-         <Amount>2</Amount>
-      </Effect>
-      <Effect>
-         <Type>DamageBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Weapon>Shortsword</Weapon>
-         <Amount>2</Amount>
-      </Effect>
-      <Effect>
-         <Type>Seeker</Type>
-         <Bonus>Feat</Bonus>
-         <Weapon>Shortsword</Weapon>
-         <Amount>2</Amount>
-      </Effect>
-   </Feat>
-   <Feat>
-      <Name>Beloved of Aureon</Name>
-      <Description>You are a Beloved of Aureon.
-You have +3 to attack and damage rolls with quarterstaff.</Description>
-      <FeatGroup>
-         <IsStandardFeat/>
-         <IsBelovedOf/>
-      </FeatGroup>
-      <Requirements>
-         <RequiresOneOf>
-            <Requirement>
-               <Class>Cleric</Class>
-               <Level>12</Level>
-            </Requirement>
-            <Requirement>
-               <Class>Favored Soul</Class>
-               <Level>12</Level>
-            </Requirement>
-            <Requirement>
-               <Class>Paladin</Class>
-               <Level>12</Level>
-            </Requirement>
-         </RequiresOneOf>
-         <Requirement>
-            <Feat>Child of Aureon</Feat>
-         </Requirement>
-      </Requirements>
-      <Acquire>Train</Acquire>
-      <Icon>Aureon</Icon>
-      <Effect>
-         <Type>AttackBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Weapon>Quarterstaff</Weapon>
          <Amount>3</Amount>
-      </Effect>
-      <Effect>
-         <Type>CriticalAttackBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Weapon>Quarterstaff</Weapon>
-         <Amount>3</Amount>
-      </Effect>
-      <Effect>
-         <Type>DamageBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Weapon>Quarterstaff</Weapon>
-         <Amount>3</Amount>
-      </Effect>
-      <Effect>
-         <Type>Seeker</Type>
-         <Bonus>Feat</Bonus>
-         <Weapon>Quarterstaff</Weapon>
-         <Amount>3</Amount>
-      </Effect>
-   </Feat>
-   <Feat>
-      <Name>Beloved of the Blood of Vol</Name>
-      <Description>You follow the Blood of Vol.
-You have +3 to attack and damage rolls with daggers.</Description>
-      <FeatGroup>
-         <IsStandardFeat/>
-         <IsBelovedOf/>
-      </FeatGroup>
-      <Requirements>
-         <RequiresOneOf>
-            <Requirement>
-               <Class>Cleric</Class>
-               <Level>12</Level>
-            </Requirement>
-            <Requirement>
-               <Class>Favored Soul</Class>
-               <Level>12</Level>
-            </Requirement>
-            <Requirement>
-               <Class>Paladin</Class>
-               <Level>12</Level>
-            </Requirement>
-         </RequiresOneOf>
-         <Requirement>
-            <Feat>Child of the Blood of Vol</Feat>
-         </Requirement>
-      </Requirements>
-      <Acquire>Train</Acquire>
-      <Icon>BloodOfVol</Icon>
-      <Effect>
-         <Type>AttackBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Weapon>Dagger</Weapon>
-         <Amount>3</Amount>
-      </Effect>
-      <Effect>
-         <Type>CriticalAttackBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Weapon>Dagger</Weapon>
-         <Amount>3</Amount>
-      </Effect>
-      <Effect>
-         <Type>DamageBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Weapon>Dagger</Weapon>
-         <Amount>3</Amount>
-      </Effect>
-      <Effect>
-         <Type>Seeker</Type>
-         <Bonus>Feat</Bonus>
-         <Weapon>Dagger</Weapon>
-         <Amount>3</Amount>
-      </Effect>
-   </Feat>
-   <Feat>
-      <Name>Beloved of Olladra</Name>
-      <Description>You follow Olladra.
-You have +3 to attack and damage rolls with sickles.</Description>
-      <FeatGroup>
-         <IsStandardFeat/>
-         <IsBelovedOf/>
-      </FeatGroup>
-      <Requirements>
-         <RequiresOneOf>
-            <Requirement>
-               <Class>Cleric</Class>
-               <Level>12</Level>
-            </Requirement>
-            <Requirement>
-               <Class>Favored Soul</Class>
-               <Level>12</Level>
-            </Requirement>
-            <Requirement>
-               <Class>Paladin</Class>
-               <Level>12</Level>
-            </Requirement>
-         </RequiresOneOf>
-         <Requirement>
-            <Feat>Luck of Olladra</Feat>
-         </Requirement>
-      </Requirements>
-      <Acquire>Train</Acquire>
-      <Icon>Olladra</Icon>
-      <Effect>
-         <Type>AttackBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Weapon>Sickle</Weapon>
-         <Amount>3</Amount>
-      </Effect>
-      <Effect>
-         <Type>CriticalAttackBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Weapon>Sickle</Weapon>
-         <Amount>3</Amount>
-      </Effect>
-      <Effect>
-         <Type>DamageBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Weapon>Sickle</Weapon>
-         <Amount>3</Amount>
-      </Effect>
-      <Effect>
-         <Type>Seeker</Type>
-         <Bonus>Feat</Bonus>
-         <Weapon>Sickle</Weapon>
-         <Amount>3</Amount>
-      </Effect>
-   </Feat>
-   <Feat>
-      <Name>Beloved of Onatar</Name>
-      <Description>You follow Onatar.
-You have +2 to attack and damage rolls with warhammers.</Description>
-      <FeatGroup>
-         <IsStandardFeat/>
-         <IsBelovedOf/>
-      </FeatGroup>
-      <Requirements>
-         <RequiresOneOf>
-            <Requirement>
-               <Class>Cleric</Class>
-               <Level>12</Level>
-            </Requirement>
-            <Requirement>
-               <Class>Favored Soul</Class>
-               <Level>12</Level>
-            </Requirement>
-            <Requirement>
-               <Class>Paladin</Class>
-               <Level>12</Level>
-            </Requirement>
-         </RequiresOneOf>
-         <Requirement>
-            <Feat>Child of Onatar</Feat>
-         </Requirement>
-      </Requirements>
-      <Acquire>Train</Acquire>
-      <Icon>Onatar</Icon>
-      <Effect>
-         <Type>AttackBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Weapon>Warhammer</Weapon>
-         <Amount>3</Amount>
-      </Effect>
-      <Effect>
-         <Type>CriticalAttackBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Weapon>Warhammer</Weapon>
-         <Amount>3</Amount>
-      </Effect>
-      <Effect>
-         <Type>DamageBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Weapon>Warhammer</Weapon>
-         <Amount>3</Amount>
-      </Effect>
-      <Effect>
-         <Type>Seeker</Type>
-         <Bonus>Feat</Bonus>
-         <Weapon>Warhammer</Weapon>
-         <Amount>3</Amount>
-      </Effect>
-   </Feat>
-   <Feat>
-      <Name>Beloved of Helm</Name>
-      <Description>You follow Helm.
-You gain +1 to attack and damage rolls with bastard swords.</Description>
-      <FeatGroup>
-         <IsStandardFeat/>
-         <IsBelovedOf/>
-      </FeatGroup>
-      <Requirements>
-         <RequiresOneOf>
-            <Requirement>
-               <Class>Cleric</Class>
-               <Level>12</Level>
-            </Requirement>
-            <Requirement>
-               <Class>Favored Soul</Class>
-               <Level>12</Level>
-            </Requirement>
-            <Requirement>
-               <Class>Paladin</Class>
-               <Level>12</Level>
-            </Requirement>
-         </RequiresOneOf>
-         <Requirement>
-            <Feat>Child of Helm</Feat>
-         </Requirement>
-      </Requirements>
-      <Acquire>Train</Acquire>
-      <Icon>Helm</Icon>
-      <Effect>
-         <Type>AttackBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Weapon>Bastard Sword</Weapon>
-         <Amount>1</Amount>
-      </Effect>
-      <Effect>
-         <Type>CriticalAttackBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Weapon>Bastard Sword</Weapon>
-         <Amount>1</Amount>
-      </Effect>
-      <Effect>
-         <Type>DamageBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Weapon>Bastard Sword</Weapon>
-         <Amount>1</Amount>
-      </Effect>
-      <Effect>
-         <Type>Seeker</Type>
-         <Bonus>Feat</Bonus>
-         <Weapon>Bastard Sword</Weapon>
-         <Amount>1</Amount>
-      </Effect>
-   </Feat>
-   <Feat>
-      <Name>Beloved of Silvanus</Name>
-      <Description>You follow Silvanus.
-You gain +2 to attack and damage rolls with mauls.</Description>
-      <FeatGroup>
-         <IsStandardFeat/>
-         <IsBelovedOf/>
-      </FeatGroup>
-      <Requirements>
-         <RequiresOneOf>
-            <Requirement>
-               <Class>Cleric</Class>
-               <Level>12</Level>
-            </Requirement>
-            <Requirement>
-               <Class>Favored Soul</Class>
-               <Level>12</Level>
-            </Requirement>
-            <Requirement>
-               <Class>Paladin</Class>
-               <Level>12</Level>
-            </Requirement>
-         </RequiresOneOf>
-         <Requirement>
-            <Feat>Child of Silvanus</Feat>
-         </Requirement>
-      </Requirements>
-      <Acquire>Train</Acquire>
-      <Icon>Silvanus</Icon>
-      <Effect>
-         <Type>AttackBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Weapon>Maul</Weapon>
-         <Amount>2</Amount>
-      </Effect>
-      <Effect>
-         <Type>CriticalAttackBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Weapon>Maul</Weapon>
-         <Amount>2</Amount>
-      </Effect>
-      <Effect>
-         <Type>DamageBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Weapon>Maul</Weapon>
-         <Amount>2</Amount>
-      </Effect>
-      <Effect>
-         <Type>Seeker</Type>
-         <Bonus>Feat</Bonus>
-         <Weapon>Maul</Weapon>
-         <Amount>2</Amount>
+         <WeaponClass>Exotic</WeaponClass>
+         <Stance>Favored Weapon</Stance>
       </Effect>
    </Feat>
    <!--Damage reduction feats-->
@@ -23296,7 +22331,7 @@ by 10/adamantine.</Description>
             <Level>20</Level>
          </Requirement>
          <Requirement>
-            <Feat>Beloved of the Lord of Blades</Feat>
+            <Feat>Follower of the Lord of Blades</Feat>
          </Requirement>
          <!--Race requirement not needed as you can only select the feat if you are the right race already-->
       </Requirements>
@@ -23322,7 +22357,7 @@ You gain damage reduction 10/Cold Iron.</Description>
             <Level>20</Level>
          </Requirement>
          <Requirement>
-            <Feat>Beloved of the Undying Court</Feat>
+            <Feat>Follower of the Undying Court</Feat>
          </Requirement>
       </Requirements>
       <Acquire>Train</Acquire>
@@ -23350,7 +22385,7 @@ You gain damage reduction 10/Good.</Description>
             <Race>Drow</Race>
          </Requirement>
          <Requirement>
-            <Feat>Beloved of Vulkoor</Feat>
+            <Feat>Follower of Vulkoor</Feat>
          </Requirement>
       </Requirements>
       <Acquire>Train</Acquire>
@@ -23375,7 +22410,7 @@ You gain damage reduction 10/Silver.</Description>
             <Level>20</Level>
          </Requirement>
          <Requirement>
-            <Feat>Beloved of the Silver Flame</Feat>
+            <Feat>Follower of the Silver Flame</Feat>
          </Requirement>
       </Requirements>
       <Acquire>Train</Acquire>
@@ -23400,7 +22435,7 @@ You gain damage reduction 10/Cold Iron, Silver.</Description>
             <Level>20</Level>
          </Requirement>
          <Requirement>
-            <Feat>Beloved of the Sovereign Host</Feat>
+            <Feat>Follower of the Sovereign Host</Feat>
          </Requirement>
       </Requirements>
       <Acquire>Train</Acquire>
@@ -23414,7 +22449,7 @@ You gain damage reduction 10/Cold Iron, Silver.</Description>
       </Effect>
    </Feat>
    <Feat>
-      <Name>Favored Soulof Amaunator Damage Reduction: Silver</Name>
+      <Name>Favored Soul of Amaunator Damage Reduction: Silver</Name>
       <Description>Favored Souls of the Amaunator fear not the weapons of most opponents.
 You gain damage reduction 10/Silver, or improve your existing damage reduction
 by 10/Silver.</Description>
@@ -23427,7 +22462,7 @@ by 10/Silver.</Description>
             <Level>20</Level>
          </Requirement>
          <Requirement>
-            <Feat>Beloved of Amaunator</Feat>
+            <Feat>Favored by Amaunator</Feat>
          </Requirement>
          <!--Race requirement not needed as you can only select the feat if you are the right race already-->
       </Requirements>
@@ -23441,7 +22476,7 @@ by 10/Silver.</Description>
       </Effect>
    </Feat>
    <Feat>
-      <Name>Favored Soul of Aurein Damage Reduction: Cold Iron</Name>
+      <Name>Favored Soul of Aureon Damage Reduction: Cold Iron</Name>
       <Description>Favored Souls of Aureon can turn aside most weapons.
 You gain damage reduction 10/Cold Iron.</Description>
       <FeatGroup>
@@ -23453,7 +22488,7 @@ You gain damage reduction 10/Cold Iron.</Description>
             <Level>20</Level>
          </Requirement>
          <Requirement>
-            <Feat>Beloved of Aureon</Feat>
+            <Feat>Follower of Aureon</Feat>
          </Requirement>
       </Requirements>
       <Acquire>Train</Acquire>
@@ -23478,7 +22513,7 @@ You gain damage reduction 10/Good.</Description>
             <Level>20</Level>
          </Requirement>
          <Requirement>
-            <Feat>Beloved of the Blood of Vol</Feat>
+            <Feat>Follower of the Blood of Vol</Feat>
          </Requirement>
       </Requirements>
       <Acquire>Train</Acquire>
@@ -23503,7 +22538,7 @@ You gain damage reduction 10/Adamantine.</Description>
             <Level>20</Level>
          </Requirement>
          <Requirement>
-            <Feat>Beloved of Helm</Feat>
+            <Feat>Favored by Helm</Feat>
          </Requirement>
       </Requirements>
       <Acquire>Train</Acquire>
@@ -23528,7 +22563,7 @@ You gain damage reduction 10/Cold Iron.</Description>
             <Level>20</Level>
          </Requirement>
          <Requirement>
-            <Feat>Beloved of Olladra</Feat>
+            <Feat>Follower of Olladra</Feat>
          </Requirement>
       </Requirements>
       <Acquire>Train</Acquire>
@@ -23553,7 +22588,7 @@ You gain damage reduction 10/Cold Iron.</Description>
             <Level>20</Level>
          </Requirement>
          <Requirement>
-            <Feat>Beloved of Onatar</Feat>
+            <Feat>Follower of Onatar</Feat>
          </Requirement>
       </Requirements>
       <Acquire>Train</Acquire>
@@ -23578,7 +22613,7 @@ You gain damage reduction 10/Silver.</Description>
             <Level>20</Level>
          </Requirement>
          <Requirement>
-            <Feat>Beloved of Silvanus</Feat>
+            <Feat>Favored by Silvanus</Feat>
          </Requirement>
       </Requirements>
       <Acquire>Train</Acquire>
@@ -24489,8 +23524,7 @@ a +3[W] bonus and enemies must make a Reflex saving throw.</Description>
    </Feat>
    <Feat>
       <Name>Destruction Domain Tier III</Name>
-      <Description>+3% Doublestrike and +3 to Glancing Blow to-hit and damage.
-+5% Strikethrough</Description>
+      <Description>+3% Doublestrike and +5% Strikethrough</Description>
       <FeatGroup>
          <IsDomainFeat/>
       </FeatGroup>
@@ -24506,7 +23540,6 @@ a +3[W] bonus and enemies must make a Reflex saving throw.</Description>
          <Bonus>Feat</Bonus>
          <Amount>3</Amount>
       </Effect>
-      <!--glancing blow to hit and damage-->
         <Effect>
             <Type>Strikethrough</Type>
             <Bonus>Enhancement</Bonus>
@@ -24531,7 +23564,6 @@ a +3[W] bonus and enemies must make a Reflex saving throw.</Description>
          <Bonus>Feat</Bonus>
          <Amount>3</Amount>
       </Effect>
-      <!--glancing blow to hit and damage-->
    </Feat>
    <Feat>
       <Name>Earth Domain Tier II</Name>
@@ -26405,8 +25437,7 @@ or you have previously unlocked this tree for this character.</Description>
    </Feat>
    <Feat>
       <Name>Multitude of Missiles</Name>
-      <Description>THIS FEAT IS NOT CURRENTLY AVAILABLE ON LIVE SERVERS
-For the next 20 seconds, while wielding a Simple Thrown Weapon add 100 to your
+      <Description>For the next 20 seconds, while wielding a Simple Thrown Weapon add 100 to your
 Doubleshot and 2x your Base Attack Bonus to Ranged Power.
 Shares a cooldown with Manyshot.</Description>
       <FeatGroup>
@@ -26430,9 +25461,9 @@ Shares a cooldown with Manyshot.</Description>
    </Feat>
    <Feat>
       <Name>Simple Thrown Weapon Expertise</Name>
-      <Description>THIS FEAT IS NOT CURRENTLY AVAILABLE ON LIVE SERVERS
-You are skilled with the use of Simple Thrown Weapons (Throwing Daggers and Darts)
-and while using one, you gain Doubleshot equal to your Dexterity.</Description>
+      <Description>You are skilled with the use of Simple Thrown Weapons
+(Throwing Daggers and Darts) and while using one, you gain Doubleshot equal
+to your Dexterity.</Description>
       <FeatGroup>
          <IsStandardFeat/>
       </FeatGroup>
@@ -26840,11 +25871,11 @@ spell points.</Description>
           <RequiresOneOf>
              <Requirement>
                 <Class>Alchemist</Class>
-                <Level>12</Level>
+                <Level>8</Level>
              </Requirement>
              <Requirement>
                 <Class>Artificer</Class>
-                <Level>12</Level>
+                <Level>8</Level>
              </Requirement>
           </RequiresOneOf>
       </Requirements>

@@ -1,86 +1,919 @@
-<?xml version="1.0" encoding="utf-8"?>
 <Enhancements>
-   <EnhancementTree>
-      <Name>Knight of the Chalice</Name>
-      <Version>1</Version>
+  <EnhancementTree>
+    <Name>Knight of the Chalice</Name>
+    <Version>2</Version>
+    <Requirements>
+      <Requirement>
+        <Class>Paladin</Class>
+      </Requirement>
+    </Requirements>
+    <Icon>Paladin</Icon>
+    <Background>PaladinBackground</Background>
+    <!--tree core items-->
+    <EnhancementTreeItem>
+      <Name>Knight of the Chalice: Slayer of Evil I</Name>
+      <InternalName>KotCCore1</InternalName>
+      <Description>You gain +1 to attack evil creatures and deal 1d4 additional light damage
+that scales with 200% Melee oe Ranged Power (whichever is higher). You resist
+evil influences particularly well, gaining a +2 bonus to saves against spells
+and effects produced by evil creatures.</Description>
+      <Icon>KotCSlayerOfEvil</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>0</MinSpent>
+      <ArrowRight/>
       <Requirements>
-         <Requirement>
-            <Class>Paladin</Class>
-         </Requirement>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>1</Level>
+        </Requirement>
       </Requirements>
-      <Background>PaladinBackground</Background>
-      <Icon>Paladin</Icon>
-      <EnhancementTreeItem>
-         <Name>Knight of the Chalice: Slayer of Evil I</Name>
-         <InternalName>KotCCore1</InternalName>
-         <Description>You gain +1 to hit evil and undead creatures.
-Your attacks deal 1d4 additional Light damage. You resist evil influences
-particularly well, gaining a +2 bonus to saves against spells and effects
-produced by evil creatures. All Light damage from core abilities scale with
-100% Melee Power.
-Note: The light damage procs on both weapons when two weapon fighting and all glancing blows.</Description>
-         <Icon>KotCSlayerOfEvil</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>0</YPosition>
-         <Cost>1</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>0</MinSpent>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <Class>Paladin</Class>
-               <Level>1</Level>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>WeaponOtherDamageBonus</Type>
+      <Effect>
+        <Type>WeaponOtherDamageBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Dice>
+          <Number size="1">1</Number>
+          <Sides size="1">4</Sides>
+          <Energy>Light</Energy>
+          <ScalesWithMeleePower/>
+        </Dice>
+        <Weapon>All</Weapon>
+      </Effect>
+        <Effect>
+            <Type>SaveBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <Dice>
-               <Number size="1">1</Number>
-               <Sides size="1">4</Sides>
-               <Energy>Light</Energy>
-               <ScalesWithMeleePower/>
-            </Dice>
+            <Amount>2</Amount>
+            <Save>Spell</Save>
+            <Stance>Evil Creatures</Stance>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Knight of the Chalice: Courage of Heaven</Name>
+      <InternalName>KotCCore2</InternalName>
+      <Description>Your Aura of Courage grants an additional +2 Sacred bonus to saves against Fear
+and now also grants a +2 Sacred bonus to saves against Enchantment. You gain +1
+to hit for all attacks. Your Slayer of Evil now now deals 1d8 Light damage
+that scales with 200% Melee or Ranged Power (whichever is higher).</Description>
+      <Icon>KotCCourageOfHeaven</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <ArrowRight/>
+      <Requirements>
+        <Requirement>
+          <Enhancement>KotCCore1</Enhancement>
+        </Requirement>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>3</Level>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>2</Amount>
+        <Stance>Aura of Courage</Stance>
+        <Save>Fear</Save>
+      </Effect>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>2</Amount>
+        <Stance>Aura of Courage</Stance>
+        <Save>Enchantment</Save>
+      </Effect>
+      <Effect>
+        <Type>AttackBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>1</Amount>
+        <Weapon>All</Weapon>
+      </Effect>
+      <Effect>
+        <Type>CriticalAttackBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>1</Amount>
+        <Weapon>All</Weapon>
+      </Effect>
+      <Effect>
+        <Type>WeaponOtherDamageBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Dice>
+          <Number size="1">1</Number>
+          <Sides size="1">8</Sides>
+          <Energy>Light</Energy>
+        </Dice>
+        <Weapon>All</Weapon>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Knight of the Chalice: Slayer of Evil II</Name>
+      <InternalName>KotCCore3</InternalName>
+      <Description>Your Slayer of Evil now grants +2 to attack evil creatures and deals
+2d6 Light Damage that scales with 200% Melee or ranged Power (whichever is higher).
+You now resist evil influences particularly well, gaining a +2 bonus to saves
+against spells and effects produced by evil creatures.
+Your weapons gain the Ghost Touch effect.
+
+In addition, you gain +4 Remove Disease charges and your Remove Disease also
+applies a Greater Restoration effect on your target.</Description>
+      <Icon>KotCSlayerOfEvil</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowRight/>
+      <Requirements>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>6</Level>
+        </Requirement>
+        <Requirement>
+          <Enhancement>KotCCore2</Enhancement>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>WeaponOtherDamageBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Dice>
+          <Number size="1">2</Number>
+          <Sides size="1">6</Sides>
+          <Energy>Light</Energy>
+        </Dice>
+        <Weapon>All</Weapon>
+      </Effect>
+        <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Save>Spell</Save>
+            <Stance>Evil Creatures</Stance>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Knight of the Chalice: Improved Courage of Heaven</Name>
+      <InternalName>KotCCore4</InternalName>
+      <Description>Your Aura of Courage grants an additional +2 Sacred bonus to saves against
+Fear and now also grants a +2 Sacred bonus to saves against Enchantment. You now
+gain +2 to hit for all attacks. Your Slayer of Evil now deals 3d6 Light damage
+that scales with 200% Melee or Ranged Power (whichever is higher).
+
+You are now immune to Energy Drain.</Description>
+      <Icon>KotCImprovedCourageOfHeaven</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <ArrowRight/>
+      <Requirements>
+        <Requirement>
+          <Enhancement>KotCCore3</Enhancement>
+        </Requirement>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>12</Level>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>2</Amount>
+        <Stance>Aura of Courage</Stance>
+        <Save>Fear</Save>
+      </Effect>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>2</Amount>
+        <Stance>Aura of Courage</Stance>
+        <Save>Enchantment</Save>
+      </Effect>
+      <Effect>
+        <Type>AttackBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>2</Amount>
+        <Weapon>All</Weapon>
+      </Effect>
+      <Effect>
+        <Type>CriticalAttackBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>2</Amount>
+        <Weapon>All</Weapon>
+      </Effect>
+      <Effect>
+        <Type>WeaponOtherDamageBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Dice>
+          <Number size="1">3</Number>
+          <Sides size="1">6</Sides>
+          <Energy>Light</Energy>
+        </Dice>
+        <Weapon>All</Weapon>
+      </Effect>
+      <Effect>
+        <Type>Immunity</Type>
+        <Bonus>Enhancement</Bonus>
+          <Immunity>Energy Drain</Immunity>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Knight of the Chalice: Slayer of Evil III</Name>
+      <InternalName>KotCCore5</InternalName>
+      <Description>Your Slayer of Evil now grants +4 to attack evil creatures and deals 5d6
+Light damage that scales with 200% Melee or Ranged Power (whichever is higher).
+You now resist evil influences particulary well, gaining a +4 bonus to saves
+against spells and effects produced by evil creatures. Your Vorpal hits against
+undead do an additional 500 damage.</Description>
+      <Icon>KotCSlayerOfEvil</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <ArrowRight/>
+      <Requirements>
+        <Requirement>
+          <Enhancement>KotCCore4</Enhancement>
+        </Requirement>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>18</Level>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>WeaponOtherDamageBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Dice>
+          <Number size="1">5</Number>
+          <Sides size="1">6</Sides>
+          <Energy>Light</Energy>
+        </Dice>
+        <Weapon>All</Weapon>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Knight of the Chalice: Champion of Good</Name>
+      <InternalName>KotCCore6</InternalName>
+      <Description>You gain +4 Charisma and 10 Melee and Ranged Power.
+The save bonuses vs. Fear and Enchantment granted by Courage of Heaven are
+increased by an additional +2, Any weapon you wield is considered Good Aligned
+for purposes of bypassing damage reduction. Your Slayer of Evil now deals 7d6
+Light damage that scales with 200% Melee or Ranged Power (whichever is higher).
+
+In addition, your Aura of Courage now grants allies a +3% Sacred bonus to Melee
+and Ranged damage, and if you have Ascendancy your Blessed Purpose now stacks
+up to 25 times.</Description>
+      <Icon>KotCChampionOfGood</Icon>
+      <XPosition>5</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>40</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Enhancement>KotCCore5</Enhancement>
+        </Requirement>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>20</Level>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>4</Amount>
+        <Ability>Charisma</Ability>
+      </Effect>
+      <Effect>
+        <Type>MeleePower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>10</Amount>
+      </Effect>
+      <Effect>
+        <Type>RangedPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>10</Amount>
+      </Effect>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>2</Amount>
+        <Stance>Aura of Courage</Stance>
+        <Save>Fear</Save>
+      </Effect>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>2</Amount>
+        <Stance>Aura of Courage</Stance>
+        <Save>Enchantment</Save>
+      </Effect>
+      <Effect>
+        <Type>WeaponOtherDamageBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Dice>
+          <Number size="1">7</Number>
+          <Sides size="1">6</Sides>
+          <Energy>Light</Energy>
+        </Dice>
+        <Weapon>All</Weapon>
+      </Effect>
+      <Effect>
+        <Type>DRBypass</Type>
+        <Bonus>Enhancement</Bonus>
+        <DR>Good</DR>
+        <Weapon>All</Weapon>
+      </Effect>
+    </EnhancementTreeItem>
+    <!--Tier 1 Enhancements-->
+    <EnhancementTreeItem>
+      <Name>Knight of the Chalice: Holy Combatant I</Name>
+      <InternalName>KotCHolyCombatantI</InternalName>
+      <Description>+1 to Attack and Damage with Favored Weapons.</Description>
+      <Icon>KotCHolyCombatantI</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>1</Level>
+        </Requirement>
+      </Requirements>
+         <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
             <Weapon>All</Weapon>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Knight of the Chalice: Courage of Heaven</Name>
-         <InternalName>KotCCore2</InternalName>
-         <Description>Your Aura of Courage grants an additional +2 Sacred bonus to saves against Fear
-and now also grants a +2 Sacred bonus to saves against Enchantment.
-You gain +1 to hit for all attacks.
-Your attacks now deal 1d8 additional Light damage.</Description>
-         <Icon>KotCCourageOfHeaven</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>0</YPosition>
-         <Cost>1</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>5</MinSpent>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <Enhancement>KotCCore1</Enhancement>
-            </Requirement>
-            <Requirement>
-               <Class>Paladin</Class>
-               <Level>3</Level>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SaveBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Save>Fear</Save>
-            <Amount>2</Amount>
-            <Stance>Aura of Courage</Stance>
+            <Stance>Favored Weapon</Stance>
          </Effect>
          <Effect>
-            <Type>SaveBonus</Type>
+            <Type>CriticalAttackBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <Save>Enchantment</Save>
-            <Amount>2</Amount>
-            <Stance>Aura of Courage</Stance>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
          </Effect>
+         <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+         </Effect>
+         <Effect>
+            <Type>Seeker</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+         </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Knight of the Chalice: Extra Smite</Name>
+      <InternalName>KotCExtraSmite</InternalName>
+      <Description>You gain +[2/4/6] additional uses of Smite Evil per rest.</Description>
+      <Icon>KotCExtraSmite</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>1</Level>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>ExtraSmite</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">2 4 6</AmountVector>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Knight of the Chalice: Improved Second Strikes</Name>
+      <InternalName>KotCImprovedSecondStrikes</InternalName>
+      <Description>+[5/10/20]% Strikethrough</Description>
+      <Icon>KotCImprovedSecondStrikes</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>1</Level>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>Strikethrough</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">5 10 20</AmountVector>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Knight of the Chalice: Shieldbeaker</Name>
+      <InternalName>KotCShieldbeaker</InternalName>
+      <Description>+[1/2/3] to Sunder DCs.</Description>
+      <Icon>KotCShieldbeaker</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>1</Level>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>TacticalDC</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">1 2 3</AmountVector>
+        <Tactical>Sunder</Tactical>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Knight of the Chalice: Knight's Authority</Name>
+      <InternalName>KotCKnightsAuthority</InternalName>
+      <Description>+[1/2/3] to Intimidate, Diplomacy and Concentration.
+Rankk 3: +1 Fortitude Save.</Description>
+      <Icon>KotCKnightsAuthority</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>1</Level>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SkillBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">1 2 3</AmountVector>
+        <Skill>Intimidate</Skill>
+        <Skill>Diplomacy</Skill>
+        <Skill>Concentration</Skill>
+      </Effect>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">0 0 1</AmountVector>
+        <Save>Fortitude</Save>
+      </Effect>
+    </EnhancementTreeItem>
+    <!--Tier 2 Enhancements-->
+    <EnhancementTreeItem>
+      <Name>Knight of the Chalice: Adept Combatant</Name>
+      <InternalName>KotCAdeptCombatant</InternalName>
+      <Description>+1 to Attack and Damage with all weapons. You gain Long Sword, Battle Axe,
+Heavy Mace, Morningstar and War Hammer as Favored Weapons.</Description>
+      <Icon>KotCAdeptCombatant</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>2</Level>
+        </Requirement>
+      </Requirements>
+         <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+         </Effect>
+         <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+         </Effect>
+         <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+         </Effect>
+         <Effect>
+            <Type>Seeker</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+         </Effect>
+        <Effect>
+            <Type>AddGroupWeapon</Type>
+            <Bonus>Enhancement</Bonus>
+            <WeaponGroup>Favored Weapon</WeaponGroup>
+            <Weapon>Longsword</Weapon>
+            <Weapon>Battle Axe</Weapon>
+            <Weapon>Heavy Mace</Weapon>
+            <Weapon>Morningstar</Weapon>
+            <Weapon>Warhammer</Weapon>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Knight of the Chalice: Divine Might</Name>
+      <InternalName>KotCDivineMight</InternalName>
+      <Description>Battle Trance: You gain an Insight bonus to Attack, Damage, and the DC
+of tactical feats equal to 1/2 of your Charisma modifier for [30/60/120] seconds.
+Antirequisite: This ability can not be trained if you have any other Battle Trance
+abilities.
+Spell Point Cost: 21/18/15
+Cooldown: 20 seconds</Description>
+      <Icon>KotCDivineMight</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>2</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Clickie/>
+      <Stance>
+        <Name>Divine Might</Name>
+        <Icon>WPDivineMight</Icon>
+        <Description>You gain an Insight bonus to Strength equal to 1/2 your Charisma Modifier for
+30/60/120 seconds. (Activation Cost: 21/18/15 spell points. Cooldown: 20 seconds)</Description>
+      </Stance>
+      <Requirements>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>2</Level>
+        </Requirement>
+        <RequiresNoneOf>
+          <Requirement>
+            <Enhancement>HarperKnowTheAngles</Enhancement>
+          </Requirement>
+          <Requirement>
+            <Enhancement>WSDivineMight</Enhancement>
+            <Selection>Divine Might</Selection>
+          </Requirement>
+          <Requirement>
+            <Enhancement>WPDivineMight</Enhancement>
+          </Requirement>
+        </RequiresNoneOf>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Knight of the Chalice: Critical Mastery</Name>
+      <InternalName>KotCCriticalMastery</InternalName>
+      <Description>+[1/2/3] to confirm critical hits and critical hit damage (before weapon multipliers).</Description>
+      <Icon>KotCCriticalMastery</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>2</Level>
+        </Requirement>
+      </Requirements>
+         <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+         </Effect>
+         <Effect>
+            <Type>Seeker</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+         </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Knight of the Chalice: Exalted Attack</Name>
+      <InternalName>KotCExaltedCleave</InternalName>
+      <Description>Choose a Melee Cleave or Ranged Attack.</Description>
+      <Icon>KotCExaltedCleave</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <Clickie/>
+      <Requirements>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>2</Level>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Avenging Shot</Name>
+          <Description>Take a powerful shot for +3[W] damage.
+Shares a cooldown with the Cleave feat. Cooldown: 5 seconds</Description>
+          <Icon>KotCAvengingShot</Icon>
+          <Cost>2</Cost>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Exalted Cleave</Name>
+          <Description>Make a sweeping attack against all nearby enemies for +3[W] damage.
+Shares a cooldown with the Cleave feat. Cooldown: 5 seconds</Description>
+          <Icon>KotCExaltedCleave</Icon>
+          <Cost>2</Cost>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Knight of the Chalice: Action Boost</Name>
+      <InternalName>KotCMeleeRangedPowerBoost</InternalName>
+      <Description>Choose between Action Boost: Attack and Damage</Description>
+      <Icon>KotCMeleeRangedPowerBoost</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Clickie/>
+      <Requirements>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>2</Level>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Melee/Ranged Power</Name>
+          <Description>Activate to gain a +10/+20/+30 Action Boost bonus to
+Melee and Ranged Power for 20 Seconds</Description>
+          <Icon>KotCMeleeRangedPowerBoost</Icon>
+          <Cost>1</Cost>
+          <Clickie/>
+          <Stance>
+            <Name>Melee/Ranged Power</Name>
+            <Icon>KotCMeleeRangedPowerBoost</Icon>
+            <Description>Activate to gain a +10/+20/+30 Action Boost bonus to
+Melee and Ranged Power for 20 Seconds</Description>
+          </Stance>
+          <Effect>
+            <Type>MeleePower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">10 20 30</AmountVector>
+            <Stance>Power Boost</Stance>
+          </Effect>
+          <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">10 20 30</AmountVector>
+            <Stance>Power Boost</Stance>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Attack Boost</Name>
+          <Description>Activate to gain a +4/?/? Action Boost bonus to hit for 20 seconds</Description>
+          <Icon>KotCAttackBoost</Icon>
+          <Cost>1</Cost>
+          <Clickie/>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <!--Tier 3 Enhancements-->
+    <EnhancementTreeItem>
+      <Name>Knight of the Chalice: Holy Combatant II</Name>
+      <InternalName>KotCHolyCombatantII</InternalName>
+      <Description>+2 to Attack and Damage with Favored Weapons. You gain Greatsword as a Favored Weapon.</Description>
+      <Icon>KotCHolyCombatantII</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>3</Level>
+        </Requirement>
+      </Requirements>
+         <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+         </Effect>
+         <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+         </Effect>
+         <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+         </Effect>
+         <Effect>
+            <Type>Seeker</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+         </Effect>
+        <Effect>
+            <Type>AddGroupWeapon</Type>
+            <Bonus>Enhancement</Bonus>
+            <WeaponGroup>Favored Weapon</WeaponGroup>
+            <Weapon>Great Sword</Weapon>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Knight of the Chalice: Divine Sacrifice</Name>
+      <InternalName>KotCDivineSacrifice</InternalName>
+      <Description>Select a Melee or Ranged Attack.</Description>
+      <Icon>KotCDivineSacrifice</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+      <Clickie/>
+      <Requirements>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>3</Level>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Divine Sacrifice</Name>
+          <Description>Giving up some of your life force to win the battle, you empwer your next blow
+against your foe. This attack increases the critical multiplier of your weapon
+by 1 and deals an additional 5d6 Light damage, but costs you 5 HP and 1 SP,
+whether or not the attack is successful.</Description>
+          <Icon>KotCDivineSacrifice</Icon>
+          <Cost>1</Cost>
+          <Clickie/>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Divine Sacrifice (Ranged)</Name>
+          <Description>Giving up some of your life force to win the battle, you empwer your next blow
+against your foe. This attack increases the critical multiplier of your weapon
+by 1 and deals an additional 5d6 Light damage, but costs you 5 HP and 1 SP,
+whether or not the attack is successful.</Description>
+          <Icon>KotCDivineSacrificeRanged</Icon>
+          <Cost>1</Cost>
+          <Clickie/>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Knight of the Chalice: Lead the Charge</Name>
+      <InternalName>KotCLeadTheCharge</InternalName>
+      <Description>Melee Rush Attack: Rush forward up to 30 feet to your selected opponent
+and deliver a +[2/3/5][W] strike. 12 second cooldown. Shares a cooldown with
+Shield Charge,</Description>
+      <Icon>KotCLeadTheCharge</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+      <Clickie/>
+      <Requirements>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>3</Level>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Knight of the Chalice: Exalted Smite</Name>
+      <InternalName>KotCExaltedSmite</InternalName>
+      <Description>Slect a Melee or Ranged Smite.</Description>
+      <Icon>KotCExaltedSmite</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>2</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+      <Clickie/>
+      <Requirements>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>3</Level>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Exalted Smite</Name>
+          <Description>Active: An improved smite that adds +1/+1/+2 to your weapon's critical
+damage multiplier. Smite Evil: Using this attack, you call on the paladin's ability
+to strike down evil creatures, gaining twice your Charisma bonus to your attack roll,
+and a damage bonus based on your paladin level. Smites return at a rate of one every
+90 seconds.</Description>
+          <Icon>KotCExaltedSmite</Icon>
+          <Cost>2</Cost>
+          <Clickie/>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Exalted Smite (Ranged)</Name>
+          <Description>Active: An improved smite that adds +1/+1/+2 to your weapon's critical
+damage multiplier. Smite Evil: Using this attack, you call on the paladin's ability
+to strike down evil creatures, gaining twice your Charisma bonus to your attack roll,
+and a damage bonus based on your paladin level. Smites return at a rate of one every
+90 seconds.</Description>
+          <Icon>KotCExaltedSmiteRanged</Icon>
+          <Cost>2</Cost>
+          <Clickie/>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Knight of the Chalice: Ability I</Name>
+      <InternalName>KotCAbilityScoreI</InternalName>
+      <Description>Choose either Charisma or Strength</Description>
+      <Icon>ChaStr</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>3</Level>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>+1 Charisma</Name>
+          <Description>+1 Charisma</Description>
+          <Icon>Charisma</Icon>
+          <Cost>2</Cost>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Ability>Charisma</Ability>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Strength</Name>
+          <Description>+1 Strength</Description>
+          <Icon>Strength</Icon>
+          <Cost>2</Cost>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Ability>Strength</Ability>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <!--Tier 4 Enhancements-->
+    <EnhancementTreeItem>
+      <Name>Knight of the Chalice: Knight's Training</Name>
+      <InternalName>KotCKnightsTraining</InternalName>
+      <Description>+1 to Attack and Damage with all weapons and +1 to Attack and Damage with
+Favored Weapons. You also gain the Knight's Training feat:
+When wielding one of the following weapons, you are granted the following:
+Longswords you wield have a +1 Morale bonus to Critical Multiplier
+Battle Axes you wield have a +1 Morale bonus to Critical Threat Range, increasing
+to +2 Morale bonus if you have Improved Critical: Slashing
+Heavy Maces, Warhammers, and Morningstars you wield have a +1 Morale bonus to
+Critical Threat Range</Description>
+      <Icon>KotCKnightsTraining</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>4</Level>
+        </Requirement>
+      </Requirements>
          <Effect>
             <Type>AttackBonus</Type>
             <Bonus>Enhancement</Bonus>
@@ -88,86 +921,218 @@ Your attacks now deal 1d8 additional Light damage.</Description>
             <Weapon>All</Weapon>
          </Effect>
          <Effect>
-            <Type>WeaponOtherDamageBonus</Type>
+            <Type>CriticalAttackBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <Dice>
-               <Number size="1">1</Number>
-               <Sides size="1">8</Sides>
-               <Energy>Light</Energy>
-            </Dice>
+            <Amount>1</Amount>
             <Weapon>All</Weapon>
          </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Knight of the Chalice: Slayer of Evil II</Name>
-         <InternalName>KotCCore3</InternalName>
-         <Description>You now gain +2 to hit evil and undead creatures.
-Your attacks now deal 2d6 additional Light damage. All your attacks are
-considered to be Ghost Touch. You resist evil influences particularly well,
-gaining a +3 bonus to saves against spells and effects produced by evil creatures.</Description>
-         <Icon>KotCSlayerOfEvil</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>0</YPosition>
-         <Cost>1</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <Class>Paladin</Class>
-               <Level>6</Level>
-            </Requirement>
-            <Requirement>
-               <Enhancement>KotCCore2</Enhancement>
-            </Requirement>
-         </Requirements>
          <Effect>
-            <Type>WeaponOtherDamageBonus</Type>
+            <Type>DamageBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <Dice>
-               <Number size="1">2</Number>
-               <Sides size="1">6</Sides>
-               <Energy>Light</Energy>
-            </Dice>
+            <Amount>1</Amount>
             <Weapon>All</Weapon>
          </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Knight of the Chalice: Improved Courage of Heaven</Name>
-         <InternalName>KotCCore4</InternalName>
-         <Description>Increases the Aura bonuses granted by Courage of Heaven by an additional +2.
-You now gain +2 to hit for all attacks.
-Your attacks now deal 3d6 additional Light damage.</Description>
-         <Icon>KotCImprovedCourageOfHeaven</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>0</YPosition>
-         <Cost>1</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <Enhancement>KotCCore3</Enhancement>
-            </Requirement>
-            <Requirement>
-               <Class>Paladin</Class>
-               <Level>12</Level>
-            </Requirement>
-         </Requirements>
          <Effect>
-            <Type>SaveBonus</Type>
+            <Type>Seeker</Type>
             <Bonus>Enhancement</Bonus>
-            <Save>Fear</Save>
-            <Amount>2</Amount>
-            <Stance>Aura of Courage</Stance>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
          </Effect>
          <Effect>
-            <Type>SaveBonus</Type>
+            <DisplayName>Knight of the Chalice: Knight's Training : Favored Weapon</DisplayName>
+            <Type>AttackBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <Save>Enchantment</Save>
-            <Amount>2</Amount>
-            <Stance>Aura of Courage</Stance>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
          </Effect>
+         <Effect>
+            <DisplayName>Knight of the Chalice: Knight's Training : Favored Weapon</DisplayName>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+         </Effect>
+         <Effect>
+            <DisplayName>Knight of the Chalice: Knight's Training : Favored Weapon</DisplayName>
+            <Type>DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+         </Effect>
+         <Effect>
+            <DisplayName>Knight of the Chalice: Knight's Training : Favored Weapon</DisplayName>
+            <Type>Seeker</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+         </Effect>
+        <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Enhancement</Bonus>
+            <Feat>Knight's Training</Feat>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Knight of the Chalice: Censure Demons</Name>
+      <InternalName>KotCCensureDemons</InternalName>
+      <Description>You gain On Vorpal: Stun Chaotic Evil outsiders for 3 seconds.</Description>
+      <Icon>KotCCensureDemons</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>4</Level>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Knight of the Chalice: Vigor of Life I</Name>
+      <InternalName>KotCVigorOfLifeI</InternalName>
+      <Description>+30 Positive Healing Amplification
+-30 Negative Healing Amplification</Description>
+      <Icon>KotCVigorOfLife</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>4</Level>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>HealingAmplification</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>30</Amount>
+      </Effect>
+      <Effect>
+        <Type>NegativeHealingAmplification</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>-30</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Knight of the Chalice: Improved Turning</Name>
+      <InternalName>KotCImprovedTurning</InternalName>
+      <Description>You count as [1/2/3] level higher when turning undead and add [2/4/6] to the
+number of hit dice turned and gain +[1/2/3] uses of Turn Undead per rest.</Description>
+      <Icon>KotCImprovedTurning</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>4</Level>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>TurnLevelBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">1 2 3</AmountVector>
+      </Effect>
+      <Effect>
+        <Type>TurnBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">2 4 6</AmountVector>
+      </Effect>
+      <Effect>
+        <Type>ExtraTurns</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">1 2 3</AmountVector>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Knight of the Chalice: Ability II</Name>
+      <InternalName>KotCAbilityScoreII</InternalName>
+      <Description>Choose either Charisma or Strength</Description>
+      <Icon>ChaStr</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>4</Level>
+        </Requirement>
+        <Requirement>
+          <Enhancement>KotCAbilityScoreI</Enhancement>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>+1 Charisma</Name>
+          <Description>+1 Charisma</Description>
+          <Icon>Charisma</Icon>
+          <Cost>2</Cost>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Ability>Charisma</Ability>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Strength</Name>
+          <Description>+1 Strength</Description>
+          <Icon>Strength</Icon>
+          <Cost>2</Cost>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Ability>Strength</Ability>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <!--Tier 5 Enhancements-->
+    <EnhancementTreeItem>
+      <Name>Knight of the Chalice: Ascendancy</Name>
+      <InternalName>KotCAscendancy</InternalName>
+      <Description>+2 to Attack and Damage with all weapons. An additional +2 to Attack and
+Damage with Favored Weapons. You gain 15% Fotification Bypass.
+
+Whenever you attack an Undead or Evil Outsider with a Favored Weapon, you gain a
+stack of Blessed Purpose: +3 Sacred Bonus to Melee and Ranged Power that lasts
+for 6 seconds. You can acquire up to 15 stacks of this by continuing to attack
+Undead or Evil Outsiders. Switching to a non-Favored Weapon will reset your
+stacks of Blessed Purpose.</Description>
+      <Icon>KotCAscendancy</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>5</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5/>
+      <Requirements>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>5</Level>
+        </Requirement>
+        <Requirement>
+          <MinLevel>12</MinLevel>
+        </Requirement>
+        <Requirement>
+          <Enhancement>KotCKnightsTraining</Enhancement>
+        </Requirement>
+      </Requirements>
          <Effect>
             <Type>AttackBonus</Type>
             <Bonus>Enhancement</Bonus>
@@ -175,789 +1140,234 @@ Your attacks now deal 3d6 additional Light damage.</Description>
             <Weapon>All</Weapon>
          </Effect>
          <Effect>
-            <Type>WeaponOtherDamageBonus</Type>
+            <Type>CriticalAttackBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <Dice>
-               <Number size="1">3</Number>
-               <Sides size="1">6</Sides>
-               <Energy>Light</Energy>
-            </Dice>
-            <Weapon>All</Weapon>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Knight of the Chalice: Slayer of Evil III</Name>
-         <InternalName>KotCCore5</InternalName>
-         <Description>You now gain +3 to hit evil and undead creatures.
-Your attacks now deal 5d6 additional Light damage. You resist evil influences
-particularly well, gaining a +4 bonus to saves against spells and effects
-produced by evil creatures. Your vorpal hits against undead do an additional 500 damage.</Description>
-         <Icon>KotCSlayerOfEvil</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>0</YPosition>
-         <Cost>1</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <Enhancement>KotCCore4</Enhancement>
-            </Requirement>
-            <Requirement>
-               <Class>Paladin</Class>
-               <Level>18</Level>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>WeaponOtherDamageBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Dice>
-               <Number size="1">5</Number>
-               <Sides size="1">6</Sides>
-               <Energy>Light</Energy>
-            </Dice>
-            <Weapon>All</Weapon>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Knight of the Chalice: Champion of Good</Name>
-         <InternalName>KotCCore6</InternalName>
-         <Description>You gain +4 Charisma and 10 Melee Power.
-The bonuses granted by Courage of Heaven are increased by an additional +2.
-Your attacks now deal 7d6 additional Light damage. Any weapon you wield is
-considered Good aligned for purposes of bypassing damage reduction.</Description>
-         <Icon>KotCChampionOfGood</Icon>
-         <XPosition>5</XPosition>
-         <YPosition>0</YPosition>
-         <Cost>1</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>40</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Enhancement>KotCCore5</Enhancement>
-            </Requirement>
-            <Requirement>
-               <Class>Paladin</Class>
-               <Level>20</Level>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>AbilityBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Ability>Charisma</Ability>
-            <Amount>4</Amount>
-         </Effect>
-         <Effect>
-            <Type>MeleePower</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>10</Amount>
-         </Effect>
-         <Effect>
-            <Type>SaveBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Save>Fear</Save>
             <Amount>2</Amount>
-            <Stance>Aura of Courage</Stance>
+            <Weapon>All</Weapon>
          </Effect>
          <Effect>
-            <Type>SaveBonus</Type>
+            <Type>DamageBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <Save>Enchantment</Save>
             <Amount>2</Amount>
-            <Stance>Aura of Courage</Stance>
-         </Effect>
-         <Effect>
-            <Type>WeaponOtherDamageBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Dice>
-               <Number size="1">7</Number>
-               <Sides size="1">6</Sides>
-               <Energy>Light</Energy>
-            </Dice>
             <Weapon>All</Weapon>
          </Effect>
          <Effect>
-            <Type>DRBypass</Type>
+            <Type>Seeker</Type>
             <Bonus>Enhancement</Bonus>
-            <DR>Good</DR>
+            <Amount>2</Amount>
             <Weapon>All</Weapon>
          </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Knight of the Chalice: Extra Turning</Name>
-         <InternalName>KotCExtraTurning</InternalName>
-         <Description>You gain +1/2/3 use of Turn Undead per rest.</Description>
-         <Icon>KotCExtraTurning</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>1</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>1</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Class>Paladin</Class>
-               <Level>1</Level>
-            </Requirement>
-         </Requirements>
          <Effect>
-            <Type>ExtraTurns</Type>
+            <DisplayName>Knight of the Chalice: Ascendancy : Favored Weapon</DisplayName>
+            <Type>AttackBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">1 2 3</AmountVector>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Knight of the Chalice: Divine Light</Name>
-         <InternalName>KotCDivineLight</InternalName>
-         <Description>Your Turn Undead ability now also deals 6d6/12d6/18d6 light damage to nearby undead.
-Scales with 200% Melee Power.</Description>
-         <Icon>KotCDivineLight</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>1</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>1</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Class>Paladin</Class>
-               <Level>1</Level>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Knight of the Chalice: Extra Remove Disease</Name>
-         <InternalName>KotCExtraRemoveDisease</InternalName>
-         <Description>You gain +2/4/6 Remove Disease uses per rest.</Description>
-         <Icon>KotCExtraRemoveDisease</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>1</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>1</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Class>Paladin</Class>
-               <Level>1</Level>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>ExtraRemoveDisease</Type>
-            <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">2 4 6</AmountVector>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Knight of the Chalice: Extra Smite</Name>
-         <InternalName>KotCExtraSmite</InternalName>
-         <Description>You gain 2/4 additional use of Smite Evil per rest.</Description>
-         <Icon>KotCExtraSmite</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>1</YPosition>
-         <Cost>1</Cost>
-         <Ranks>2</Ranks>
-         <MinSpent>1</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Class>Paladin</Class>
-               <Level>1</Level>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>ExtraSmite</Type>
-            <Bonus>Enhancement</Bonus>
-            <AmountVector size="2">2 4</AmountVector>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Knight of the Chalice: Attack Boost</Name>
-         <InternalName>KotCAttackBoost</InternalName>
-         <Description>Activate to gain a +4/6/+8 Action Boost to hit for 20 seconds</Description>
-         <Icon>KotCAttackBoost</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>1</YPosition>
-         <Cost>2</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>1</MinSpent>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Class>Paladin</Class>
-               <Level>1</Level>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Knight of the Chalice: Improved Turning</Name>
-         <InternalName>KotCImprovedTurning</InternalName>
-         <Description>You count as 1/2/3 level higher when turning undead and add 2/4/6 to the number of hit dice turned.</Description>
-         <Icon>KotCImprovedTurning</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>2</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>5</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Class>Paladin</Class>
-               <Level>2</Level>
-            </Requirement>
-            <Requirement>
-               <Enhancement>KotCExtraTurning</Enhancement>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>TurnLevelBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">1 2 3</AmountVector>
+            <Amount>2</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
          </Effect>
          <Effect>
-            <Type>TurnBonus</Type>
+            <DisplayName>Knight of the Chalice: Ascendancy : Favored Weapon</DisplayName>
+            <Type>CriticalAttackBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">2 4 6</AmountVector>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Knight of the Chalice: Divine Might</Name>
-         <InternalName>KotCDivineMight</InternalName>
-         <Description>Channel Divinity: You gain an Insight bonus to Strength equal to your Charisma modifier for 30/60/120 seconds.
-(Activation Cost: 1 use of Turn Undead. Cooldown: 20 seconds)</Description>
-         <Icon>KotCDivineMight</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>2</YPosition>
-         <Cost>2</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>5</MinSpent>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Class>Paladin</Class>
-               <Level>2</Level>
-            </Requirement>
-            <RequiresNoneOf>
-               <Requirement>
-                  <Enhancement>HarperKnowTheAngles</Enhancement>
-               </Requirement>
-               <Requirement>
-                  <Enhancement>WSDivineMight</Enhancement>
-                  <Selection>Divine Might</Selection>
-               </Requirement>
-               <Requirement>
-                  <Enhancement>WPDivineMight</Enhancement>
-               </Requirement>
-            </RequiresNoneOf>
-         </Requirements>
-         <Stance>
-            <Name>Divine Might</Name>
-            <Icon>WPDivineMight</Icon>
-            <Description>You gain an Insight bonus to Strength equal to your Charisma Modifier for
-30/60/120 seconds. (Activation Cost: 21/18/15 spell points. Cooldown: 20 seconds)</Description>
-         </Stance>
-         <!--Note that the effects for divine Might are handled in the C++ code-->
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Knight of the Chalice: Rally</Name>
-         <InternalName>KotCRally</InternalName>
-         <Description>Channel Divinity: Remove fear from nearby allies.
-You and the affected allies gain a +2/+4/+6 Morale Bonus to Will Saves vs. Fear
-effects and a +1/+2/+3 Morale Bonus to Attack and Damage for 60 seconds.
-(Coodown: 3 miniutes)</Description>
-         <Icon>KotCRally</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>2</YPosition>
-         <Cost>2</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>5</MinSpent>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Class>Paladin</Class>
-               <Level>2</Level>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Knight of the Chalice: Exalted Cleave</Name>
-         <InternalName>KotCExaltedCleave</InternalName>
-         <Description>Make a sweeping weapon attack against all nearby enemies for +1/+2/+3[W] damage.
-Shares its cooldown with the Cleave feat. </Description>
-         <Icon>KotCExaltedCleave</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>2</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>5</MinSpent>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Class>Paladin</Class>
-               <Level>2</Level>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Knight of the Chalice: Melee/Ranged Power Boost</Name>
-         <InternalName>KotCMeleeRangedPowerBoost</InternalName>
-         <Description>Activate to gain a +10/+20/+30 Action Boost bonus to Melee and Ranged Power for 20 Seconds.
-(Cooldown: 30 Seconds)</Description>
-         <Icon>KotCMeleeRangedPowerBoost</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>2</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>5</MinSpent>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Class>Paladin</Class>
-               <Level>2</Level>
-            </Requirement>
-         </Requirements>
-         <Stance>
-            <Name>Power Boost</Name>
-            <Icon>KotCMeleeRangedPowerBoost</Icon>
-            <Description>Activate to gain a +10/+20/+30 Action Boost bonus to
-Melee and Ranged Power for 20 Seconds</Description>
-         </Stance>
-         <Effect>
-            <Type>MeleePower</Type>
-            <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">10 20 30</AmountVector>
-            <Stance>Power Boost</Stance>
+            <Amount>2</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
          </Effect>
          <Effect>
-            <Type>RangedPower</Type>
+            <DisplayName>Knight of the Chalice: Ascendancy : Favored Weapon</DisplayName>
+            <Type>DamageBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">10 20 30</AmountVector>
-            <Stance>Power Boost</Stance>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Knight of the Chalice: Improved Restoration</Name>
-         <InternalName>KotCImprovedRestoration</InternalName>
-         <Description>Your Paladin Remove Disease ability now also appiles a Lesser
-Restoration/Restoration/Greater Restoration effect to your target.</Description>
-         <Icon>KotCImprovedRestoration</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>3</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>10</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Class>Paladin</Class>
-               <Level>3</Level>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Knight of the Chalice: Divine Sacrifice</Name>
-         <InternalName>KotCDivineSacrifice</InternalName>
-         <Description>Giving up some of your life force to win the battle, you empower your next
-blow against your foe. This attack deals an additional (5/7/9)d6 Light damage
-and increases the critical multiplier of your weapon by 1 against evil opponents,
-but costs you 5 hp and 1 sp, whether or not the attack is successful.
-Light damage scales with 100% Melee Power.</Description>
-         <Icon>KotCDivineSacrifice</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>3</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>10</MinSpent>
-         <Clickie/>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Class>Paladin</Class>
-               <Level>3</Level>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Knight of the Chalice: Vigor of Life I</Name>
-         <InternalName>KotCVigorOfLifeI</InternalName>
-         <Description>Your Positive Healing Amplification is increased by 20%, and you take
-10% less damage from Negative Energy.</Description>
-         <Icon>KotCVigorOfLife</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>3</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Class>Paladin</Class>
-               <Level>3</Level>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>HealingAmplification</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>20</Amount>
+            <Amount>2</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
          </Effect>
          <Effect>
-            <Type>EnergyAbsorbance</Type>
+            <DisplayName>Knight of the Chalice: Ascendancy : Favored Weapon</DisplayName>
+            <Type>Seeker</Type>
             <Bonus>Enhancement</Bonus>
-            <Energy>Negative</Energy>
-            <Amount>-10</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Knight of the Chalice: Exalted Smite</Name>
-         <InternalName>KotCExaltedSmite</InternalName>
-         <Description>Active: An improved smite that adds +1/+1/+2 to your weapon's critical
-damage multiplier and 0/+1/+2 to your weapon's critical threat range.</Description>
-         <Icon>KotCExaltedSmite</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>3</YPosition>
-         <Cost>2</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>10</MinSpent>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Class>Paladin</Class>
-               <Level>3</Level>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Knight of the Chalice: Ability I</Name>
-         <InternalName>KotCAbilityScoreI</InternalName>
-         <Description>Choose either Charisma or Strength</Description>
-         <Icon>ChaStr</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>3</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Class>Paladin</Class>
-               <Level>3</Level>
-            </Requirement>
-         </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>+1 Charisma</Name>
-               <Description>+1 Charisma</Description>
-               <Icon>Charisma</Icon>
-               <Cost>2</Cost>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Ability>Charisma</Ability>
-                  <Amount>1</Amount>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>+1 Strength</Name>
-               <Description>+1 Strength</Description>
-               <Icon>Strength</Icon>
-               <Cost>2</Cost>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Ability>Strength</Ability>
-                  <Amount>1</Amount>
-               </Effect>
-            </EnhancementSelection>
-         </Selector>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Knight of the Chalice: Censure Demons</Name>
-         <InternalName>KotCCensureDemons</InternalName>
-         <Description>You gain On Vorpal: Stun Chaotic Evil outsiders for 3 seconds.</Description>
-         <Icon>KotCCensureDemons</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>4</YPosition>
-         <Cost>1</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Class>Paladin</Class>
-               <Level>4</Level>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Knight of the Chalice: Passion</Name>
-         <InternalName>KotCPassion</InternalName>
-         <Description>Your Divine Sacrifice ability gains:
-On Damage: Gain 5/10/15 temporary spell points if you strike an undead or
-evil outsider with this attack.</Description>
-         <Icon>KotCPassion</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>4</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>20</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Class>Paladin</Class>
-               <Level>4</Level>
-            </Requirement>
-            <Requirement>
-               <Enhancement>KotCDivineSacrifice</Enhancement>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Knight of the Chalice: Vigor of Life II</Name>
-         <InternalName>KotCVigorOfLifeII</InternalName>
-         <Description>+20 Positive Healing Amplification
--10% less damage from Negative Energy.</Description>
-         <Icon>KotCVigorOfLife</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>4</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <Class>Paladin</Class>
-               <Level>4</Level>
-            </Requirement>
-            <Requirement>
-               <Enhancement>KotCVigorOfLifeI</Enhancement>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>HealingAmplification</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>20</Amount>
+            <Amount>2</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
          </Effect>
          <Effect>
-            <Type>EnergyAbsorbance</Type>
+            <Type>FortificationBypass</Type>
             <Bonus>Enhancement</Bonus>
-            <Energy>Negative</Energy>
-            <Amount>-10</Amount>
+            <Amount>15</Amount>
          </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Knight of the Chalice: Empowered Smite</Name>
-         <InternalName>KotCEmpoweredSmite</InternalName>
-         <Description>Active: Your Smite Evil and Exalted Smite abilities increases Melee Power by 5 for 10 seconds.</Description>
-         <Icon>KotCEmpoweredSmite</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>4</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Class>Paladin</Class>
-               <Level>4</Level>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Knight of the Chalice: Ability II</Name>
-         <InternalName>KotCAbilityScoreII</InternalName>
-         <Description>Choose either Charisma or Strength</Description>
-         <Icon>ChaStr</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>4</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Class>Paladin</Class>
-               <Level>4</Level>
-            </Requirement>
-            <Requirement>
-               <Enhancement>KotCAbilityScoreI</Enhancement>
-            </Requirement>
-         </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>+1 Charisma</Name>
-               <Description>+1 Charisma</Description>
-               <Icon>Charisma</Icon>
-               <Cost>2</Cost>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Ability>Charisma</Ability>
-                  <Amount>1</Amount>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>+1 Strength</Name>
-               <Description>+1 Strength</Description>
-               <Icon>Strength</Icon>
-               <Cost>2</Cost>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Ability>Strength</Ability>
-                  <Amount>1</Amount>
-               </Effect>
-            </EnhancementSelection>
-         </Selector>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Knight of the Chalice: Censure Outsiders</Name>
-         <InternalName>KotCCensureOutsiders</InternalName>
-         <Description>Your Censure Demons ability now applies to all Chaotic or Evil outsiders.
-You also gain 5 Melee Power.</Description>
-         <Icon>KotCCensureOutsiders</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>5</YPosition>
-         <Cost>1</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <Tier5/>
-         <Requirements>
-            <Requirement>
-               <Class>Paladin</Class>
-               <Level>5</Level>
-            </Requirement>
-            <Requirement>
-               <Enhancement>KotCCensureDemons</Enhancement>
-            </Requirement>
-            <Requirement>
-               <MinLevel>12</MinLevel>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>MeleePower</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>5</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Knight of the Chalice: Holy Retribution</Name>
-         <InternalName>KotCHolyRetribution</InternalName>
-         <Description>Melee Channel Divinity: Executes 3 powerful holy strikes against all targets
-around you (same AoE as Cleave) that deals +1/+3/+5[W] damage.
-On Damage: Evil creatures with less than 1,000 HP have a 50%/75%/100% chance to
-be forced to make a Will save (DC 10 + Paladin Level + Charisma Mod) or be
-destroyed. On a successful save, the affected creatures take 100 holy damage
-from this attack as well as -6 to all ability scores for ten seconds.
-(Cooldown: 6 seconds) This ability also recharges one Smite Evil.</Description>
-         <Icon>KotCHolyRetribution</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>5</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>30</MinSpent>
-         <Tier5/>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Class>Paladin</Class>
-               <Level>5</Level>
-            </Requirement>
-            <Requirement>
-               <MinLevel>12</MinLevel>
-            </Requirement>
-         </Requirements>
-         <DC>
-            <Name>Knight of the Chalice: Holy Retribution</Name>
-            <Description>Melee Channel Divinity: Executes 3 powerful holy strikes against all targets
-around you (same AoE as Cleave) that deals +1/+3/+5[W] damage.
-On Damage: Evil creatures with less than 1,000 HP have a 50%/75%/100% chance to
-be forced to make a Will save or be destroyed.</Description>
-            <Icon>KotCHolyRetribution</Icon>
-            <DCVersus>Will</DCVersus>
-            <AmountVector size="1">10</AmountVector>
-            <ClassLevel>Paladin</ClassLevel>
-            <ModAbility>Charisma</ModAbility>
-         </DC>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Knight of the Chalice: Vigor of Life III</Name>
-         <InternalName>KotCVigorOfLifeIII</InternalName>
-         <Description>+20 Positive Healing Amplification
--10% less damage from Negative Energy.</Description>
-         <Icon>KotCVigorOfLife</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>5</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <Tier5/>
-         <Requirements>
-            <Requirement>
-               <Class>Paladin</Class>
-               <Level>5</Level>
-            </Requirement>
-            <Requirement>
-               <Enhancement>KotCVigorOfLifeII</Enhancement>
-            </Requirement>
-            <Requirement>
-               <MinLevel>12</MinLevel>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>HealingAmplification</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>20</Amount>
-         </Effect>
-         <Effect>
-            <Type>EnergyAbsorbance</Type>
-            <Bonus>Enhancement</Bonus>
-            <Energy>Negative</Energy>
-            <Amount>-10</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Knight of the Chalice: Avenging Cleave</Name>
-         <InternalName>KotCAvengingCleave</InternalName>
-         <Description>Make a sweeping weapon attack against all nearby enemies for +1/+3/+5[W] damage.
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Knight of the Chalice: Censure Outsiders</Name>
+      <InternalName>KotCCensureOutsiders</InternalName>
+      <Description>Your Censure Demons ability now applies to all Chaotic or Evil outsiders.
+You also gain 10 Melee and Ranged Power.</Description>
+      <Icon>KotCCensureOutsiders</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>5</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5/>
+      <Requirements>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>5</Level>
+        </Requirement>
+        <Requirement>
+          <Enhancement>KotCCensureDemons</Enhancement>
+        </Requirement>
+        <Requirement>
+          <MinLevel>12</MinLevel>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>MeleePower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>10</Amount>
+      </Effect>
+      <Effect>
+        <Type>RangedPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>10</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Knight of the Chalice: Vigor of Life II</Name>
+      <InternalName>KotCVigorOfLifeII</InternalName>
+      <Description>+30 Positive Healing Amplification
+-30 Negative Healing Amplification</Description>
+      <Icon>KotCVigorOfLife</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>5</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5/>
+      <Requirements>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>5</Level>
+        </Requirement>
+        <Requirement>
+          <Enhancement>KotCVigorOfLifeI</Enhancement>
+        </Requirement>
+        <Requirement>
+          <MinLevel>12</MinLevel>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>HealingAmplification</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>30</Amount>
+      </Effect>
+      <Effect>
+        <Type>NegativeHealingAmplification</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>-30</Amount>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Knight of the Chalice: Avenging Attack</Name>
+      <InternalName>KotCAvengingCleave</InternalName>
+      <Description>Choose a Melee Cleave or Ranged Attack</Description>
+      <Icon>KotCAvengingCleave</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>5</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Clickie/>
+      <Tier5/>
+      <Requirements>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>5</Level>
+        </Requirement>
+        <Requirement>
+          <MinLevel>12</MinLevel>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Avenging Cleave</Name>
+          <Description>Make a sweeping weapon attack against all nearby enemies for +5[W] damage.
 Damaged enemies gains one stack of Vulnerability.
 Shares its cooldown with the Great Cleave feat.
 Vulnerability: You take 1% more damage for 3 seconds. This effect stacks up to
 20 times, and loses one stack on expiration.</Description>
-         <Icon>KotCAvengingCleave</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>5</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>30</MinSpent>
-         <Tier5/>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Class>Paladin</Class>
-               <Level>5</Level>
-            </Requirement>
-            <Requirement>
-               <MinLevel>12</MinLevel>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Knight of the Chalice: Sealed Life</Name>
-         <InternalName>KotCSealedLife</InternalName>
-         <Description>You are immune to Energy Drain.</Description>
-         <Icon>KotCSealedLife</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>5</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <Tier5/>
-         <Requirements>
-            <Requirement>
-               <Class>Paladin</Class>
-               <Level>5</Level>
-            </Requirement>
-            <Requirement>
-               <MinLevel>12</MinLevel>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>Immunity</Type>
-            <Bonus>Enhancement</Bonus>
-            <Immunity>Energy Drain</Immunity>
-         </Effect>
-      </EnhancementTreeItem>
-   </EnhancementTree>
+          <Icon>KotCAvengingCleave</Icon>
+          <Cost>2</Cost>
+          <Clickie/>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Avenging Shot</Name>
+          <Description>Take a sweeping weapon attack against all nearby enemies for +5[W] damage.
+Damaged enemies gains one stack of Vulnerability.
+Shares its cooldown with the Great Cleave feat.
+Vulnerability: You take 1% more damage for 3 seconds. This effect stacks up to
+20 times, and loses one stack on expiration.</Description>
+          <Icon>KotCAvengingCleaveRanged</Icon>
+          <Cost>2</Cost>
+          <Clickie/>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Knight of the Chalice: Holy Retribution</Name>
+      <InternalName>KotCHolyRetribution</InternalName>
+      <Description>Choose a Melee or Ranged Attack</Description>
+      <Icon>KotCHolyRetribution</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>5</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Clickie/>
+      <Tier5/>
+      <Requirements>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>5</Level>
+        </Requirement>
+        <Requirement>
+          <MinLevel>12</MinLevel>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Holy Retribution</Name>
+          <Description>Melee Channel Divinity: Executes a powerful holy cleave against nearby targets
+that deals +5[W] damage, 100 extra holy damage that scales with 200% Melee or
+Ranged Power, -6 to all ability scores for 10 seconds, and recharges one Smite
+Evil charge to you. On Damage: Evil creatures may be forced to make a Will save
+(DC 10 + Paladin Level + Charisma Mod + Sunder Bonuses) or be destroyed.
+
+Evil creatures with under 1000 HP must always make this save or die.
+Evil creatures with between 5000 and 1000 HP have a 50% chance to be forced to
+make this save or die.
+Evil creatures with more than 5000 have a 33% chance to be forced to make this
+save or die.</Description>
+          <Icon>KotCHolyRetribution</Icon>
+          <Cost>1</Cost>
+          <Clickie/>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Holy Retribution Shot</Name>
+          <Description>Ranged Channel Divinity: Executes a powerful holy cleave agaiinst nearby targets
+that deals +5[W] damage, 100 extra holy damage that scales with 200% Melee or
+Ranged Power, -6 to all ability scores for 10 seconds, and recharges one Smite
+Evil charge to you. On Damage: Evil creatures may be forced to make a Will save
+(DC 10 + Paladin Level + Charisma Mod + Sunder Bonuses) or be destroyed.
+
+Evil creatures with under 1000 HP must always make this save or die.
+Evil creatures with between 5000 and 1000 HP have a 50% chance to be forced to
+make this save or die.
+Evil creatures with more than 5000 have a 33% chance to be forced to make this
+save or die.</Description>
+          <Icon>KotCHolyRetributionShot</Icon>
+          <Cost>1</Cost>
+          <Clickie/>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+  </EnhancementTree>
 </Enhancements>

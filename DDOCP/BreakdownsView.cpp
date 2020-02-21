@@ -873,7 +873,6 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
     // Dodge Bypass
     // Fortification Bypass
     // Missile Deflection Bypass
-    // Glancing Blows
     // Strikethrough
     // Helpless Damage
     HTREEITEM hOffensiveParent = m_itemBreakdownTree.InsertItem(
@@ -1121,48 +1120,6 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
                 hMDB);
         m_itemBreakdownTree.SetItemData(hMDB, (DWORD)(void*)pMDB);
         m_items.push_back(pMDB);
-    }
-    {
-        HTREEITEM hGB = m_itemBreakdownTree.InsertItem(
-                "Glancing Blows Chance",
-                hOffensiveParent,
-                TVI_LAST);
-        BreakdownItem * pGBC = new BreakdownItemSimple(
-                Breakdown_GlancingBlowsChance,
-                Effect_GlancingBlows,
-                "Glancing Blows Chance",
-                &m_itemBreakdownTree,
-                hGB);
-        m_itemBreakdownTree.SetItemData(hGB, (DWORD)(void*)pGBC);
-        m_items.push_back(pGBC);
-    }
-    {
-        HTREEITEM hGBD = m_itemBreakdownTree.InsertItem(
-                "Glancing Blows Damage",
-                hOffensiveParent,
-                TVI_LAST);
-        BreakdownItem * pGBD = new BreakdownItemSimple(
-                Breakdown_GlancingBlowsDamage,
-                Effect_GlancingBlowsDamage,
-                "Glancing Blows Damage",
-                &m_itemBreakdownTree,
-                hGBD);
-        m_itemBreakdownTree.SetItemData(hGBD, (DWORD)(void*)pGBD);
-        m_items.push_back(pGBD);
-    }
-    {
-        HTREEITEM hGBEC = m_itemBreakdownTree.InsertItem(
-                "Glancing Blow Effect Chance",
-                hOffensiveParent,
-                TVI_LAST);
-        BreakdownItem * pGBEC = new BreakdownItemSimple(
-                Breakdown_GlancingBlowEffects,
-                Effect_GlancingBlows,
-                "Glancing Blow Effect Chance",
-                &m_itemBreakdownTree,
-                hGBEC);
-        m_itemBreakdownTree.SetItemData(hGBEC, (DWORD)(void*)pGBEC);
-        m_items.push_back(pGBEC);
     }
     {
         HTREEITEM hStrike = m_itemBreakdownTree.InsertItem(

@@ -17,10 +17,6 @@ class BreakdownItemWeapon :
         public BreakdownItem
 {
     public:
-        enum
-        {
-            subItemCount = 5    // increase as more added
-        };
         BreakdownItemWeapon(
                 BreakdownType type,
                 WeaponType weaponType,

@@ -13,9 +13,7 @@
     <EnhancementTreeItem>
       <Name>Vile Chemist: Poisoner</Name>
       <InternalName>VileCore1</InternalName>
-      <Description>+2 to saves vs. Poisons, +2 to saves vs. Diseases.
-Poison Spells you cast leave enemies Contaminated.
-(This effect doesn't do anything on its own, but sets up other skills in this tree.)</Description>
+      <Description>+2 to saves vs. Poisons, +2 to saves vs. Diseases.</Description>
       <Icon>VilePoisoner</Icon>
       <XPosition>0</XPosition>
       <YPosition>0</YPosition>
@@ -351,7 +349,7 @@ Main Hand and a Simple Weapon, Orb, Rune Arm, or nothing in your off hand.</Desc
     <EnhancementTreeItem>
       <Name>Vile Chemist: Alchemical Accuracy</Name>
       <InternalName>VileAlchemicalAccuracy</InternalName>
-      <Description>+[1/2/3] to hit when attacking with weapons or while unarmed.</Description>
+      <Description>+[1/2/3] to attack.</Description>
       <Icon>VileAlchemicalAccuracy</Icon>
       <XPosition>2</XPosition>
       <YPosition>1</YPosition>
@@ -696,11 +694,10 @@ Main Hand and a Simple Weapon, Orb, Rune Arm, or nothing in your off hand.</Desc
         </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <Name>Vile Chemist: Envenom the Heart</Name>
+      <Name>Vile Chemist: Toxic Augmentation</Name>
       <InternalName>VileEnvenomTheHeart</InternalName>
-      <Description>Enemies hit by your melee or ranged strikes have a chance to be Silenced, Quelled,
-or have their attack speed reduced by 20% for 12 seconds with no save.
-(This does work on Bosses, but at a lower proc rate)</Description>
+      <Description>Your strikes against Contaminated enemies reduce their Fortitude saves by -1
+for 6 seconds. This effect stacks up to 4 times.</Description>
       <Icon>VileEnvenomTheHeart</Icon>
       <XPosition>2</XPosition>
       <YPosition>3</YPosition>
@@ -715,7 +712,7 @@ or have their attack speed reduced by 20% for 12 seconds with no save.
       </Requirements>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <Name>Vile Chemist: Willful Ambition</Name>
+      <Name>Vile Chemist: Firm Ambition</Name>
       <InternalName>VileWillfulAmbition</InternalName>
       <Description>When your Reaction is Orchidium, you gain +1 Fortitude Save,
 +1 for every 5 Alchemist Levels you have.</Description>
@@ -846,7 +843,8 @@ Main Hand and a Simple Weapon, Orb, Rune Arm, or nothing in your off hand.</Desc
     <EnhancementTreeItem>
       <Name>Vile Chemist: Venom Affinity II</Name>
       <InternalName>VileVenomAffinityII</InternalName>
-      <Description>+[3/6/10] Poison Spell Power.</Description>
+      <Description>+[3/6/10] Poison Spell Power.
+Rank 3: +1 Reflex Saving throws</Description>
       <Icon>VileEnvenomTheHeart</Icon>
       <XPosition>2</XPosition>
       <YPosition>4</YPosition>
@@ -864,6 +862,12 @@ Main Hand and a Simple Weapon, Orb, Rune Arm, or nothing in your off hand.</Desc
             <Bonus>Enhancement</Bonus>
             <AmountVector size="3">3 6 10</AmountVector>
             <SpellPower>Poison</SpellPower>
+        </Effect>
+        <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">0 0 1</AmountVector>
+            <Save>Reflex</Save>
         </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
@@ -977,9 +981,8 @@ Poison-immune enemies to become vulnerable to Poison for 12 seconds.</Descriptio
       <Name>Vile Chemist: Fatal Poison</Name>
       <InternalName>VileFatalPoison</InternalName>
       <Description>While holding a Simple Weapon in your Main Hand and a Simple Weapon, Orb,
-Rune Arm, or nothing in your off hand, you gain +2 to hit, +1 damage,
-and +1 Competence Bonus to Critical Range and Multiplier. For Darts, this
-Range bonus is +2 instead.</Description>
+Rune Arm, or nothing in your off hand, you gain +2 to hit, +1 damage, and +1
+Competence Bonus to Critical Range. For Darts, this Range bonus is +2 instead.</Description>
       <Icon>VileFatalPoison</Icon>
       <XPosition>1</XPosition>
       <YPosition>5</YPosition>
@@ -1051,15 +1054,6 @@ Range bonus is +2 instead.</Description>
             <Amount>1</Amount>
             <ApplyAsItemEffect/>
             <Weapon>Dart</Weapon>
-            <AnyOfStance>Orb</AnyOfStance>
-            <AnyOfStance>Rune Arm</AnyOfStance>
-            <AnyOfStance>Unarmed</AnyOfStance>
-        </Effect>
-        <Effect>
-            <Type>CriticalMultiplier</Type>
-            <Bonus>Competence</Bonus>
-            <Amount>1</Amount>
-            <WeaponClass>Simple</WeaponClass>
             <AnyOfStance>Orb</AnyOfStance>
             <AnyOfStance>Rune Arm</AnyOfStance>
             <AnyOfStance>Unarmed</AnyOfStance>

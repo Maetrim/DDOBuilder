@@ -154,6 +154,18 @@ bool Effect::VerifyObject(std::stringstream * ss) const
             (*ss) << "Has unknown effect type\n";
             ok = false;
             break;
+        case Effect_AddGroupWeapon:
+            if (Weapon().size() == 0)
+            {
+                (*ss) << "AddGroupWeapon effect missing weapon element(s)\n";
+                ok = false;
+            }
+            if (!HasWeaponGroup())
+            {
+                (*ss) << "AddGroupWeapon effect missing WeaponGroup element\n";
+                ok = false;
+            }
+            break;
         case Effect_CreateSlider:
             if (!HasSlider()
                     || !HasAmountVector()

@@ -196,17 +196,13 @@ Passive: You gain +5 to Physical and Magical Resistance Rating.</Description>
       <EnhancementTreeItem>
          <Name>Sacred Defender: Glorious Stand</Name>
          <InternalName>SacredCore5</InternalName>
-         <Description>Channel Divinity: For a short duration you gain DR 20/Epic, take reduced damage
-from elemental and negative energy, receive double healing from positive energy,
-and are immune to secondary effects of attacks such as 'wounding' or 'vorpal'.
-Passive: You gain +5 to Physical and Magical Resistance Rating.</Description>
+         <Description>Passive: Adds +10% Sacred Bonus to Max HP, +25 Healing Amp, +3 Lay on Hands charges.</Description>
          <Icon>SDGloriousStand</Icon>
          <XPosition>4</XPosition>
          <YPosition>0</YPosition>
          <Cost>1</Cost>
          <Ranks>1</Ranks>
          <MinSpent>30</MinSpent>
-         <Clickie/>
          <Requirements>
             <Requirement>
                <Enhancement>SacredCore4</Enhancement>
@@ -222,21 +218,24 @@ Passive: You gain +5 to Physical and Magical Resistance Rating.</Description>
             <Amount>2</Amount>
          </Effect>
          <Effect>
-            <Type>PRR</Type>
+            <Type>HealingAmplification</Type>
             <Bonus>Enhancement</Bonus>
-            <Amount>5</Amount>
+            <Amount>25</Amount>
          </Effect>
          <Effect>
-            <Type>MRR</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>5</Amount>
+            <Type>Hitpoints</Type>
+            <Bonus>Sacred</Bonus>
+            <Amount>10</Amount>
+            <Percent/>
+            <ApplyAsItemEffect/>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Sacred Defender: Eternal Defender</Name>
          <InternalName>SacredCore6</InternalName>
          <Description>Passive: You gain +2 Charisma, +2 Constitution, + 10 to Physical and Magical
-Resistance Rating and your range of unconsciousness extends by 40 hitpoints.
+Resistance Rating and your range of unconsciousness extends by 250 hitpoints.
++100% Threat generation.
 Toggle: While Eternal Defender is active, if you drop below 0 hit points but are
 not killed, two uses of Turn Undead are immediately expended and you receive a
 reactive heal for 250 points of Positive Energy healing.</Description>
@@ -269,7 +268,17 @@ reactive heal for 250 points of Positive Energy healing.</Description>
          <Effect>
             <Type>UnconsciousRange</Type>
             <Bonus>Enhancement</Bonus>
-            <Amount>-40</Amount>
+            <Amount>-250</Amount>
+         </Effect>
+         <Effect>
+            <Type>ThreatBonusMelee</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>100</Amount>
+         </Effect>
+         <Effect>
+            <Type>ThreatBonusRanged</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>100</Amount>
          </Effect>
          <Effect>
             <Type>AbilityBonus</Type>
@@ -420,24 +429,31 @@ reactive heal for 250 points of Positive Energy healing.</Description>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Sacred Defender: Saves Boost</Name>
-         <InternalName>SacredSavesBoost</InternalName>
-         <Description>Activate to gain a +[2/4/6] Action Boost bonus to all saving throws for 20 seconds.
-While under this effect you do not automatically fail saving throws on a roll of a natural 1.
-(Cooldown: 30 seconds.)</Description>
-         <Icon>SDSavesBoost</Icon>
+         <Name>Sacred Defender: Commanding Presence</Name>
+         <InternalName>SDCommandingPresence</InternalName>
+         <Description>+[2/4/6] PRR and +[50/100/150]% Melee Threat.</Description>
+         <Icon>SDCommandingPresence</Icon>
          <XPosition>4</XPosition>
          <YPosition>1</YPosition>
          <Cost>1</Cost>
          <Ranks>3</Ranks>
          <MinSpent>1</MinSpent>
-         <Clickie/>
          <Requirements>
             <Requirement>
                <Class>Paladin</Class>
                <Level>1</Level>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>PRR</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">2 4 6</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>ThreatBonusMelee</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">50 100 150</AmountVector>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Sacred Defender: Instinctive Defense</Name>
@@ -1199,15 +1215,16 @@ Light Damage.</Description>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Sacred Defender: Reprisal</Name>
-         <InternalName>SacredReprisal</InternalName>
-         <Description>On attacked: Your next attack gains +1 damage.
-This affect stacks up to 3/6/10 times.</Description>
-         <Icon>SDReprisal</Icon>
+         <Name>Sacred Defender: Divine Revelation</Name>
+         <InternalName>SSDDivineRevelation</InternalName>
+         <Description>Improves your Aura of Courage. Your Aura of Courage now grants +1 additional
+Armor Class, +1 additional Saving Throws, and +1 additional Spell Resistance.
+In addition, you personally also gain 100 HP.</Description>
+         <Icon>SSDDivineRevelation</Icon>
          <XPosition>2</XPosition>
          <YPosition>5</YPosition>
          <Cost>1</Cost>
-         <Ranks>3</Ranks>
+         <Ranks>1</Ranks>
          <MinSpent>30</MinSpent>
          <Tier5/>
          <Requirements>
@@ -1219,6 +1236,11 @@ This affect stacks up to 3/6/10 times.</Description>
                <MinLevel>12</MinLevel>
             </Requirement>
          </Requirements>
+          <Effect>
+              <Type>Hitpoints</Type>
+              <Bonus>Enhancement</Bonus>
+              <Amount>100</Amount>
+          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Sacred Defender: Greater Sacred Defense III</Name>
@@ -1300,6 +1322,45 @@ you gain a +10%/+15%/+20% Competence bonus to maximum hit points.</Description>
                </Effect>
             </EnhancementSelection>
          </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Sacred Defender: Sacred Shield</Name>
+         <InternalName>SDSacredShield</InternalName>
+         <Description>You have a +10% Exceptional bonus to Armor Class, as well as +12 Spell
+Resistance and are protected from Magic Missiles.</Description>
+         <Icon>SDSacredShield</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <Class>Paladin</Class>
+               <Level>5</Level>
+            </Requirement>
+            <Requirement>
+               <MinLevel>12</MinLevel>
+            </Requirement>
+         </Requirements>
+          <Effect>
+              <Type>ACBonus</Type>
+              <Bonus>Exceptional</Bonus>
+              <Amount>10</Amount>
+              <Percent/>
+              <ApplyAsItemEffect/>
+          </Effect>
+          <Effect>
+              <Type>Immunity</Type>
+              <Bonus>Enhancement</Bonus>
+              <Immunity>Magic Missiles</Immunity>
+          </Effect>
+          <Effect>
+              <Type>SpellResistance</Type>
+              <Bonus>Enhancement</Bonus>
+              <Amount>12</Amount>
+          </Effect>
       </EnhancementTreeItem>
    </EnhancementTree>
 </Enhancements>

@@ -1548,6 +1548,8 @@ void CForumExportDlg::AddWeaponDamage(std::stringstream & forumExport)
     forumExport << "Melee Power:  " << pBI->Total() << "\r\n";
     AddBreakdown(forumExport, "Doublestrike: ", 1, Breakdown_DoubleStrike);
     forumExport << "%\r\n";
+    AddBreakdown(forumExport, "Strikethrough: ", 1, Breakdown_Strikethrough);
+    forumExport << "%\r\n";
     AddBreakdown(forumExport, "Off-Hand attack Chance: ", 1, Breakdown_OffHandAttackBonus);
     forumExport << "%\r\n";
     AddBreakdown(forumExport, "Off-Hand Doublestrike: ", 1, Breakdown_OffHandDoubleStrike);

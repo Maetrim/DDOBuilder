@@ -125,17 +125,13 @@ Sacred Defense and Stalwart Defense can't be active at the same time</Descriptio
       <EnhancementTreeItem>
          <Name>Stalwart Defender: Stand Fast</Name>
          <InternalName>SDCore4</InternalName>
-         <Description>Shield Action Boost: You gain a +20 bonus to saves vs. Fear and a +20
-bonus to Balance and +4 bonus to all saves for 20 seconds. This ability
-can be used while feared or knocked down to end those effects.
-(Cooldown: 30 seconds.)</Description>
+         <Description>While in Stalwart Defense, you are immune to Fear and most forms of being Knocked down.</Description>
          <Icon>SDStandFast</Icon>
          <XPosition>3</XPosition>
          <YPosition>0</YPosition>
          <Cost>1</Cost>
          <Ranks>1</Ranks>
          <MinSpent>20</MinSpent>
-         <Clickie/>
          <ArrowRight/>
          <Requirements>
             <Requirement>
@@ -151,20 +147,28 @@ can be used while feared or knocked down to end those effects.
             <Bonus>Enhancement</Bonus>
             <Amount>3</Amount>
          </Effect>
+         <Effect>
+            <Type>Immunity</Type>
+            <Bonus>Enhancement</Bonus>
+            <Immunity>Fear</Immunity>
+         </Effect>
+         <Effect>
+            <Type>Immunity</Type>
+            <Bonus>Enhancement</Bonus>
+            <Immunity>Knockdown</Immunity>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Stalwart Defender: Defensive Sweep</Name>
+         <Name>Stalwart Defender: Defensive Footwork</Name>
          <InternalName>SDCore5</InternalName>
-         <Description>Shield Action Boost: You generate +50% threat and your basic attacks
-strike two targets per swing instead of one for 20 seconds.
-(Cooldown: 30 seconds.)</Description>
+         <Description>You gain a +15% Exceptional bonus to Armor Class, as well as
+20 Physical Resistance Rating and +50% Melee Threat.</Description>
          <Icon>SDDefensiveSweep</Icon>
          <XPosition>4</XPosition>
          <YPosition>0</YPosition>
          <Cost>1</Cost>
          <Ranks>1</Ranks>
          <MinSpent>30</MinSpent>
-         <Clickie/>
          <ArrowRight/>
          <Requirements>
             <Requirement>
@@ -179,6 +183,23 @@ strike two targets per swing instead of one for 20 seconds.
             <Type>Fortification</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>3</Amount>
+         </Effect>
+         <Effect>
+            <Type>ACBonus</Type>
+            <Bonus>Exceptional</Bonus>
+            <Amount>15</Amount>
+            <Percent/>
+            <ApplyAsItemEffect/>
+         </Effect>
+         <Effect>
+            <Type>ThreatBonusMelee</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>50</Amount>
+         </Effect>
+         <Effect>
+            <Type>PRR</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>20</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -775,7 +796,6 @@ gains +1[W] that stacks 1/2/3 times. (Cooldown: 30 seconds.)</Description>
          <Ranks>3</Ranks>
          <MinSpent>20</MinSpent>
          <Clickie/>
-         <ArrowUp/>
          <Requirements>
             <Requirement>
                <Class>Fighter</Class>
@@ -976,15 +996,15 @@ Note: This stacks with Reinforced Defense from Sacred Defender.</Description>
          </Selector>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Stalwart Defender: Reprisal</Name>
-         <InternalName>SDReprisal</InternalName>
-         <Description>You gain On Attacked: Your next attack gains +1 damage.
-This effect can stack up to 3/6/10 times (timer 30 sec).</Description>
-         <Icon>SDReprisal</Icon>
+         <Name>Stalwart Defender: The Thick of Battle</Name>
+         <InternalName>SDThickOfBattle</InternalName>
+         <Description>Striking enemies increases you Melee Threat by 10% for 10 seconds,
+stacks 10 times. After 10 seconds, all stacks fade.</Description>
+         <Icon>SDThickOfBattle</Icon>
          <XPosition>0</XPosition>
          <YPosition>5</YPosition>
          <Cost>1</Cost>
-         <Ranks>3</Ranks>
+         <Ranks>1</Ranks>
          <MinSpent>30</MinSpent>
          <Tier5/>
          <Requirements>
@@ -995,10 +1015,20 @@ This effect can stack up to 3/6/10 times (timer 30 sec).</Description>
                <Class>Fighter</Class>
                <Level>5</Level>
             </Requirement>
-            <Requirement>
-               <Enhancement>SDCounterAttack</Enhancement>
-            </Requirement>
          </Requirements>
+         <Effect>
+            <Type>CreateSlider</Type>
+            <Bonus>Enhancement</Bonus>
+            <Slider>Thick of Battle</Slider>
+            <AmountVector size="2">0 10</AmountVector>
+            <Amount>0</Amount>
+         </Effect>
+         <Effect>
+            <Type>ThreatBonusMelee</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>10</Amount>
+            <Stacks>Thick of Battle</Stacks>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Stalwart Defender: Block and Cut</Name>
@@ -1158,6 +1188,46 @@ Note: This stacks with Reinforced Defense from Sacred Defender.
                </Effect>
             </EnhancementSelection>
          </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Stalwart Defender: Against All Odds</Name>
+         <InternalName>SDAgainstAllOdds</InternalName>
+         <Description>+5 Armor Class. When you take damage, you gain +2 Armor Class for
+1 minute - stacks 10 times for a total of +20 additional Armor Class.</Description>
+         <Icon>SDAgainstAllOdds</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>12</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Class>Fighter</Class>
+               <Level>5</Level>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>ACBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>5</Amount>
+         </Effect>
+         <Effect>
+            <Type>CreateSlider</Type>
+            <Bonus>Enhancement</Bonus>
+            <Slider>Against All Odds</Slider>
+            <AmountVector size="2">0 10</AmountVector>
+            <Amount>0</Amount>
+         </Effect>
+         <Effect>
+            <Type>ACBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Stacks>Against All Odds</Stacks>
+         </Effect>
       </EnhancementTreeItem>
    </EnhancementTree>
 </Enhancements>

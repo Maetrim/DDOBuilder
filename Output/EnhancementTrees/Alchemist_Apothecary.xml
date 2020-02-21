@@ -38,7 +38,7 @@
       <InternalName>ApothCore2</InternalName>
       <Description>While in Cloth armor or Composite Body, your equipped armor or docent grants
 you a +4 Alchemical bonus to Armor Class and immunity to Magic Missiles.
-Passive: While your Reaction is Verdanite, +5 Positive and Negative Spell Power</Description>
+While your Reaction is Verdanite, +5 Positive and Negative Spell Power</Description>
       <Icon>ApothAlchemicalShield</Icon>
       <XPosition>1</XPosition>
       <YPosition>0</YPosition>
@@ -89,7 +89,8 @@ plus 1 per caster level (maximum caster level 15) positive energy damage to
 nearby living allies and enemy undead. This infusion is affected by
 Artificer/Alchemist Knowledge: Potions.
 
-Passive: While your Reaction is Verdanite, +5 Positive and Negative Spell Power</Description>
+Passive: +1 Spell Penetration
+While your Reaction is Verdanite, +5 Positive and Negative Spell Power</Description>
       <Icon>ApothCurativeAdmixtureCureSeriousWounds</Icon>
       <XPosition>2</XPosition>
       <YPosition>0</YPosition>
@@ -110,6 +111,11 @@ Passive: While your Reaction is Verdanite, +5 Positive and Negative Spell Power<
             <Type>SpellLikeAbility</Type>
             <Bonus>Enhancement</Bonus>
             <SpellLikeAbility>Curative Admixture: Cure Serious Wounds</SpellLikeAbility>
+        </Effect>
+        <Effect>
+            <Type>SpellPenetrationBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
         </Effect>
         <Effect>
             <Type>SpellPower</Type>
@@ -134,8 +140,8 @@ The damage all scales with Positive Spell Power. Affected enemies have a chance
 to be Blinded, Dazed, Silenced, Tripped, Stunned, or Paralyzed.
 (Fortitude save negates).
 
-Passive: While your Reaction is Verdanite, +2% Positive and Negative Spell
-Critical Damage and 5% Magical Efficienct (reduced spell point cost).</Description>
+Passive: While your Reaction is Verdanite, you get +2% Positive and Negative Spell
+Critical Damage and 5% Magical Efficiency (reduced spell point cost).</Description>
       <Icon>ApothSpillTheBadStuff</Icon>
       <XPosition>3</XPosition>
       <YPosition>0</YPosition>
@@ -177,10 +183,10 @@ Primer Element: Gildleaf
 
 Infuses a Heal potion with magical energy, hurling it towards your target in an arc.
 The potion explodes in a small AOE that deals 3d6+6 plus 1 per caster level
-(maximum caster level 15) Positive evenrgy damage to nearby living allies and
-enemy undead. This infusion is affected by Artificer/Alchemist Knowledge: Potions.
+(maximum caster level 15) of positive energy damage to nearby living allies and
+enemy undead. This also grants you the Spell-Like Ability: Curative Admixture: Harm.
 
-Passive: While your Reaction is Verdanite, +1 Transmutation DC.</Description>
+Passive: While your Reaction is Verdanite, +1 Transmutation DCs.</Description>
       <Icon>ApothCuractiveAdmixtureHeal</Icon>
       <XPosition>4</XPosition>
       <YPosition>0</YPosition>
@@ -203,6 +209,11 @@ Passive: While your Reaction is Verdanite, +1 Transmutation DC.</Description>
             <SpellLikeAbility>Curative Admixture: Heal</SpellLikeAbility>
         </Effect>
         <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellLikeAbility>Curative Admixture: Harm</SpellLikeAbility>
+        </Effect>
+        <Effect>
             <Type>SpellDC</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>1</Amount>
@@ -214,9 +225,9 @@ Passive: While your Reaction is Verdanite, +1 Transmutation DC.</Description>
       <Name>Apothecary: Genius Never Dies</Name>
       <InternalName>ApothCore6</InternalName>
       <Description>+4 Intelligence. +20 Concentration. +1000 Unconscious Range.
-You gain the Diehard feat.
+You gain the Diehard feat. +1 Spell Penetration.
 
-Passive: While your Reaction is Verdanite, +2 Transmutation DC.</Description>
+Passive: While your Reaction is Verdanite, +2 Transmutation DCs.</Description>
       <Icon>ApothGeniusNeverDies</Icon>
       <XPosition>5</XPosition>
       <YPosition>0</YPosition>
@@ -250,6 +261,11 @@ Passive: While your Reaction is Verdanite, +2 Transmutation DC.</Description>
             <Amount>1000</Amount>
         </Effect>
         <Effect>
+            <Type>SpellPenetrationBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+        </Effect>
+        <Effect>
             <Type>SpellDC</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>2</Amount>
@@ -259,7 +275,7 @@ Passive: While your Reaction is Verdanite, +2 Transmutation DC.</Description>
     </EnhancementTreeItem>
     <!--Tier 1 Enhancements-->
     <EnhancementTreeItem>
-      <Name>Apothecary: Curative Admixture: Cure Light Wounds</Name>
+      <Name>Apothecary: Curative Admixture: Cure or Inflict Light Wounds</Name>
       <InternalName>ApothCurativeAdmixtureCLW</InternalName>
       <Description>Choose between Curative Admixture: Inflict/Cure Light Wounds</Description>
       <Icon>ApothCurativeAdmixtureCLW</Icon>
@@ -405,7 +421,7 @@ Rank 3: +1 Will Saves</Description>
       <Name>Apothecary: Soothing Poultices</Name>
       <InternalName>ApothSoothingPoultices</InternalName>
       <Description>While your Reaction is Verdanite, when you cast spells on yourself of allies you
-grant temporary hitpoints equal to third/half/full Intelligence. These last
+grant temporary hitpoints equal to [33/66/100]% of your Intelligence. These last
 for three minutes.</Description>
       <Icon>ApothSoothingPoultices</Icon>
       <XPosition>4</XPosition>
@@ -581,6 +597,7 @@ temp ability damage and many afflictions.</Description>
       <Name>Apothecary: Safety Goggles</Name>
       <InternalName>ApothSafetyGoggles</InternalName>
       <Description>+[1/2/3] Armor Class and +[2/4/6] Resistance to Fire, Cold, Acid and Electric damage.
+Rank 3: You are immune to Blindness.
 
 Safety First!</Description>
       <Icon>ApothSafetyGoggles</Icon>
@@ -610,6 +627,13 @@ Safety First!</Description>
             <Energy>Acid</Energy>
             <Energy>Electric</Energy>
         </Effect>
+      <Effect>
+         <Type>Immunity</Type>
+         <Bonus>Enhancement</Bonus>
+         <Immunity/>
+         <Immunity/>
+         <Immunity>Blindness</Immunity>
+      </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Apothecary: Spell Critical Chance: Positive &amp; Negative III</Name>
@@ -640,7 +664,7 @@ Safety First!</Description>
         </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <Name>Apothecary: Unbreakable Ambition</Name>
+      <Name>Apothecary: Vital Ambition</Name>
       <InternalName>ApothUnbreakableAmbition</InternalName>
       <Description>When your Reaction is Verdanite, you gain +1 Will Save, +1 for every 5 Alchemist Levels you have.</Description>
       <Icon>ApothUnbreakableAmbition</Icon>
@@ -844,7 +868,7 @@ Not quite fashionable, but they'll keep you standing!</Description>
     </EnhancementTreeItem>
     <!--Tier 5 Enhancements-->
     <EnhancementTreeItem>
-      <Name>Apothecary: Curative Admixture: Cure Critical Wounds</Name>
+      <Name>Apothecary: Curative Admixture: Cure or Inflict Critical Wounds</Name>
       <InternalName>ApothCurativeAdmixtureCCW</InternalName>
       <Description>Choose between Cure and Inflict Critical Wounds.</Description>
       <Icon>ApothCurativeAdmixtureCCW</Icon>
@@ -954,7 +978,8 @@ The mark of a true Apothecary, and helpful when handling volatile materials.</De
     <EnhancementTreeItem>
       <Name>Apothecary: Master Apothecary</Name>
       <InternalName>ApothMasterApothecary</InternalName>
-      <Description>You have no Max Caster Level with Curative Admixtures and any Gildleaf Alchemist Spells.</Description>
+      <Description>You have no Max Caster Level with Curative Admixtures and any Gildleaf Alchemist Spells.
++2 Transmutation DCs, and +1 Spell Penetration.</Description>
       <Icon>ApothMasterApothecary</Icon>
       <XPosition>2</XPosition>
       <YPosition>5</YPosition>
@@ -974,6 +999,17 @@ The mark of a true Apothecary, and helpful when handling volatile materials.</De
           <Enhancement>ApothSpellCriticalIV</Enhancement>
         </Requirement>
       </Requirements>
+        <Effect>
+            <Type>SpellDC</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <School>Transmutation</School>
+        </Effect>
+        <Effect>
+            <Type>SpellPenetrationBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+        </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Apothecary: Dissolve</Name>
@@ -1012,8 +1048,7 @@ Mesmerized, Paralyzed, Petrified, or Stunned must make a Fortitude save
     <EnhancementTreeItem>
       <Name>Apothecary: Sleep or Death</Name>
       <InternalName>ApothDeadlyNeurotoxin</InternalName>
-      <Description>Offensive Gildleaf or Ceruleite Spells will reduce your targets Armor Class
-and Magical Resistance rating by -1 per stack, max 5.</Description>
+      <Description>Choose between Deadly Neurotoxin and Nightshade.</Description>
       <Icon>ApothDeadlyNeurotoxin</Icon>
       <XPosition>4</XPosition>
       <YPosition>5</YPosition>
@@ -1033,8 +1068,7 @@ and Magical Resistance rating by -1 per stack, max 5.</Description>
          <Selector>
             <EnhancementSelection>
                <Name>Deadly Neurotoxin</Name>
-                <Description>Offensive Gildleaf or Ceruleite Spells will reduce your targets Magical Resistance
-rating by -1 per stack, max 5.</Description>
+               <Description>Offensive Gildleaf or Ceruleite Spells will reduce your targets Armor Class and Magical Resistance rating by -1 per stack, max 5.</Description>
                <Icon>ApothDeadlyNeurotoxin</Icon>
                <Cost>1</Cost>
             </EnhancementSelection>
@@ -1045,7 +1079,7 @@ Spell Point Cost: 10
 Cooldown: 30 seconds
 Primer Element: Gildleaf
 Target enemy falls asleep for 6 seconds with no save.</Description>
-               <Icon/>
+               <Icon>ApothNightshade</Icon>
                <Cost>1</Cost>
             </EnhancementSelection>
          </Selector>

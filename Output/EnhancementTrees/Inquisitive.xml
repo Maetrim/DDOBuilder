@@ -97,8 +97,7 @@ You no longer automatically fail Saving Throws for Fear, Enchantment or
 Illusion effects on a Natutal 1.
 You will automatically perform a Search check to locate traps and secret
 doors when you are in range to Spot them, although this Search check
-operates at a -4 penalty.
-In addition, you gain +2 Damage dice with Law on you Side.</Description>
+operates at a -4 penalty.</Description>
          <Icon>MindLikeIron</Icon>
          <XPosition>2</XPosition>
          <YPosition>0</YPosition>
@@ -185,7 +184,7 @@ In addition, you gain +2 Damage dice with Law on your Side.</Description>
 You gain the Slippery Mind feat (you can wriggle free from magical effects
 that would otherwise control or compel you. You gain a second saving throw
 versus enchantments).
-In addition, you gain +2 Damage dice with Law on your Side.</Description>
+In addition, you gain +3 Damage dice with Law on your Side.</Description>
          <Icon>Undaunted</Icon>
          <XPosition>4</XPosition>
          <YPosition>0</YPosition>
@@ -230,7 +229,7 @@ In addition, you gain +2 Damage dice with Law on your Side.</Description>
 While wielding a Light or Heavy (non-repeating) Crossbow, your Vorpal hits
 will knock down targets hit on a natural 20 + confirmation for 6 seconds
 without a saving throw, as a Great Crossbow.
-In addition, you gain +3 Damage dice with Law on your Side.</Description>
+In addition, you gain +4 Damage dice with Law on your Side.</Description>
          <Icon>MasterInquisitive</Icon>
          <XPosition>5</XPosition>
          <YPosition>0</YPosition>
@@ -263,8 +262,9 @@ In addition, you gain +3 Damage dice with Law on your Side.</Description>
          <InternalName>InquisitiveDualShooter</InternalName>
          <Description>While you have a Light or Heavy (non-repeating) Crossbow equipped,
 you instead fight with a Hand Crossbow in each hand, with each mimicking
-the damage and effects of your equipped Crossbow.
-+1 to Attack and Damage with Light and Heavy (non-repeating) crossbows.</Description>
+the damage and effects of your equipped Crossbow. While fighting in Dual Crossbow
+style, you only benefit from 2/3 of your Doubleshot. +1 to Attack and Damage with
+Light and Heavy (non-repeating) crossbows.</Description>
          <Icon>DualShooter</Icon>
          <XPosition>0</XPosition>
          <YPosition>1</YPosition>
@@ -304,7 +304,7 @@ the damage and effects of your equipped Crossbow.
       <EnhancementTreeItem>
          <Name>Inquisitive: Eye for Accuracy</Name>
          <InternalName>InquisitiveEyeForAccuracy</InternalName>
-         <Description>+1/2/3 to Attack with weapons.</Description>
+         <Description>+[1/2/3] to Attack with weapons.</Description>
          <Icon>EyeForAccuracy</Icon>
          <XPosition>1</XPosition>
          <YPosition>1</YPosition>
@@ -345,8 +345,8 @@ Spell Point Cost: 30/20/10</Description>
          <Name>Inquisitive: Law on your side</Name>
          <InternalName>InquisitiveLawOnYourSide</InternalName>
          <Description>Toggle: Your Light and Heavy (non-repeating) Crossbow attacks
-deal 1d8 Law damage on hit to non-Lawful creatures, scaling with 200% Ranged
-Power. Lawful creatures take 1d4 Law damage, scaling with 200% Ranged Power.</Description>
+deal 1d8 Law damage on hit to non-Lawful creatures, scaling with 150% Ranged
+Power. Lawful creatures take 1d4 Law damage, scaling with 150% Ranged Power.</Description>
          <Icon>LawOnYourSide</Icon>
          <XPosition>3</XPosition>
          <YPosition>1</YPosition>
@@ -529,7 +529,7 @@ being removed. This stacks up to 5 times.</Description>
       <EnhancementTreeItem>
          <Name>Inquisitive: Improved Law</Name>
          <InternalName>InquisitiveImprovedLaw</InternalName>
-         <Description>+2 Damage dice with Law on your Side.</Description>
+         <Description>+1 Damage dice with Law on your Side.</Description>
          <Icon>ImprovedLaw</Icon>
          <XPosition>3</XPosition>
          <YPosition>2</YPosition>
@@ -548,7 +548,7 @@ being removed. This stacks up to 5 times.</Description>
       <EnhancementTreeItem>
          <Name>Inquisitive: Action Boost: Skills</Name>
          <InternalName>InquisitiveActionBoostSkills</InternalName>
-         <Description>Active to gain a +2/4/6 Action Boost bonus to all skills for 20 seconds.
+         <Description>Active to gain a +[2/4/6] Action Boost bonus to all skills for 20 seconds.
 Cooldown: 30 seconds.</Description>
          <Icon>ActionBoostSkills</Icon>
          <XPosition>4</XPosition>
@@ -833,7 +833,7 @@ Cooldown: 18 seconds</Description>
       <EnhancementTreeItem>
          <Name>Inquisitive: What Later?</Name>
          <InternalName>InquisitiveWhatLater</InternalName>
-         <Description>Take a followup skill to handle the situation.</Description>
+         <Description>Take the followup skill to handle the situation.</Description>
          <Icon>WhatLater</Icon>
          <XPosition>1</XPosition>
          <YPosition>4</YPosition>
@@ -916,6 +916,13 @@ Cooldown: 15 seconds.</Description>
                <Description>You count Light and Heavy (non-repeating) Crossbows as Favored Weapons, regardless of your Deity.</Description>
                <Icon>DivineInquisition</Icon>
                <Cost>2</Cost>
+              <Effect>
+                 <Type>AddGroupWeapon</Type>
+                 <Bonus>Enhancement</Bonus>
+                 <WeaponGroup>Favored Weapon</WeaponGroup>
+                 <Weapon>Light Crossbow</Weapon>
+                 <Weapon>Heavy Crossbow</Weapon>
+              </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Martial Inquisition</Name>
@@ -933,7 +940,7 @@ Cooldown: 15 seconds.</Description>
       <EnhancementTreeItem>
          <Name>Inquisitive: Greater Law</Name>
          <InternalName>InquisitiveGreaterLaw</InternalName>
-         <Description>+2 Damage dice with Law on your Side.</Description>
+         <Description>+1 Damage die with Law on your Side.</Description>
          <Icon>GreaterLaw</Icon>
          <XPosition>3</XPosition>
          <YPosition>4</YPosition>
@@ -1045,10 +1052,10 @@ Cooldown: 15 seconds.</Description>
          <Name>Inquisitive: No Holds Barred</Name>
          <InternalName>InquisitiveNoHoldsBarred</InternalName>
          <Description>Action Boost: You may activate this ability to enchant your Light of Heavy
-(non-repeating) crossbow to instantly reload itself for 18 seconds.
-This shares charges and a cooldown with Endless Fusilade.
-If you also have Endless Fusilade, you gain +10 Ranged Power while No Holds
-Barred is active.
+(non-repeating) crossbow to instantly reload itself for 18 seconds. You must
+have a crossbow equipped to use this skill. This shares charges and a cooldown
+with Endless Fusilade. If you also have Endless Fusilade, you gain +10 Ranged
+Power while No Holds Barred is active.
 Passive: +5 Ranged Power, +10% Doubleshot.
 Cooldown: 30 seconds</Description>
          <Icon>NoHoldsBarred</Icon>
@@ -1101,7 +1108,9 @@ Cooldown: 1 minute</Description>
       <EnhancementTreeItem>
          <Name>Inquisitive: Improved Uncanny Dodge</Name>
          <InternalName>InquisitiveImprovedUncannyDodge</InternalName>
-         <Description>Grants the Improved Uncanny Dodge feat. Activate this ability to gain a temporary 50% Dodge bonus and a +6 reflex save bonus. This feat also grants you a 1% passive bonus to Dodge at levels 4, 6, 8, 12, 16 and 20.</Description>
+         <Description>Activate this ability to gain a temporary 50% Dodge bonus and a +6 reflex save bonus.
+This feat also grants you a 1% passive bonus to Dodge at levels 4, 6, 8, 12, 16 and 20.
+This shares a cooldown with the Improved Uncanny Dodge feat.</Description>
          <Icon>UncannyDodge</Icon>
          <XPosition>2</XPosition>
          <YPosition>5</YPosition>

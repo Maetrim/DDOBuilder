@@ -30,6 +30,7 @@ enum EffectType
     Effect_ACBonusShield,
     Effect_ActivateStance,
     Effect_AdditionalSpellPointCost,
+    Effect_AddGroupWeapon,
     Effect_ArcaneSpellFailure,
     Effect_ArcaneSpellFailureShields,
     Effect_ArmorACBonus,
@@ -71,9 +72,6 @@ enum EffectType
     Effect_FatePoint,
     Effect_Fortification,
     Effect_FortificationBypass,
-    Effect_GlancingBlows,
-    Effect_GlancingBlowsDamage,
-    Effect_GlancingBlowEffects,
     Effect_GrantFeat,
     Effect_GrantSpell,
     Effect_Guard,
@@ -165,6 +163,7 @@ const XmlLib::enumMapEntry<EffectType> effectTypeMap[] =
     {Effect_ACBonusShield, L"ACBonusShield"},
     {Effect_ActivateStance, L"ActivateStance"},
     {Effect_AdditionalSpellPointCost, L"AdditionalSpellPointCost"},
+    {Effect_AddGroupWeapon, L"AddGroupWeapon"},
     {Effect_ArcaneSpellFailure, L"ArcaneSpellFailure"},
     {Effect_ArcaneSpellFailureShields, L"ArcaneSpellFailureShields"},
     {Effect_ArmorACBonus, L"ArmorACBonus"},
@@ -206,9 +205,6 @@ const XmlLib::enumMapEntry<EffectType> effectTypeMap[] =
     {Effect_FatePoint, L"FatePoint"},
     {Effect_Fortification, L"Fortification"},
     {Effect_FortificationBypass, L"FortificationBypass"},
-    {Effect_GlancingBlows, L"GlancingBlows"},
-    {Effect_GlancingBlowsDamage, L"GlancingBlowsDamage"},
-    {Effect_GlancingBlowEffects, L"GlancingBlowEffects"},
     {Effect_GrantFeat, L"GrantFeat"},
     {Effect_GrantSpell, L"GrantSpell"},
     {Effect_Guard, L"Guard"},
@@ -335,6 +331,7 @@ class Effect :
                 DL_OPTIONAL_OBJECT(_, Dice, DiceRoll) \
                 DL_OPTIONAL_SIMPLE(_, int, Divider, 0) \
                 DL_OPTIONAL_STRING(_, Feat) \
+                DL_OPTIONAL_STRING(_, WeaponGroup) \
                 DL_OPTIONAL_STRING(_, Spell) \
                 DL_OPTIONAL_SIMPLE(_, int, SpellLevel, 0) \
                 DL_STRING_VECTOR(_, Stance) \

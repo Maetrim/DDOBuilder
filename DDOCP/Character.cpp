@@ -1717,7 +1717,20 @@ bool Character::IsStanceActive(const std::string & name, WeaponType wt) const
             ret |= (wt == Weapon_LightCrossbow)
                     || (wt == Weapon_HeavyCrossbow);
         }
-        // divine crusader can award favored weapons also
+        // Knight of the Chalice
+        if (IsEnhancementTrained("KotCAdeptCombatant", ""))
+        {
+            ret |= (wt == Weapon_Longsword)
+                    || (wt == Weapon_BattleAxe)
+                    || (wt == Weapon_HeavyMace)
+                    || (wt == Weapon_Morningstar)
+                    || (wt == Weapon_Warhammer);
+        }
+         if (IsEnhancementTrained("KotCHolyCombatantII", ""))
+        {
+            ret |= (wt == Weapon_GreatSword);
+        }
+       // divine crusader can award favored weapons also
         if (IsEnhancementTrained("BookOfWar", "Longsword"))
         {
             ret |= (wt == Weapon_Longsword);

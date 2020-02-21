@@ -2613,7 +2613,8 @@ Will save negates this effect. Bane counters and dispels Bless.</Description>
    <Spell>
       <Name>Bless</Name>
       <Description>Multiple targets are filled with courage, granting a +1 morale
-bonus on to-hit rolls and saves versus fear. Bless counters and dispels Bane.</Description>
+bonus on to-hit rolls and saves versus fear. This bonus increase every 5 caster
+levels. Bless counters and dispels Bane.</Description>
       <Icon>Bless</Icon>
       <School>Enchantment</School>
       <Enlarge/>
@@ -2953,7 +2954,7 @@ Aid, Mass will not stack with Bless.</Description>
       <Description>Gives special favor to multiple Party targets and disfavor to
 enemy targets, giving a +1 luck bonus to allies' Attack rolls, weapon
 Damage rolls, saves, and Skill checks, and a -1 penalty to enemies for
-the same rolls.</Description>
+the same rolls. This bonuses increase every 5 caster levels.</Description>
       <Icon>Prayer</Icon>
       <School>Enchantment</School>
       <Enlarge/>
@@ -3451,9 +3452,9 @@ by half.</Description>
    </Spell>
    <Spell>
       <Name>Stalwart Pact</Name>
-      <Description>Grants the target 5 Hit Points for every 2 caster levels,
-a +2 luck bonus to Saving Throws, and Damage Reduction 5/Magic,
-all for 1 minute, if the target of the spell falls below 50% Hit
+      <Description>Grants the target 5 Hit Points per caster level,
+a +2 luck bonus to Saving Throws all for 1 minute, if the target of the
+spell falls below 50% Hit
 Points.</Description>
       <Icon>StalwartPact</Icon>
       <School>Evocation</School>
@@ -5475,13 +5476,25 @@ for 1 minute per caster level.</Description>
    <!--Paladin level 2's-->
    <Spell>
       <Name>Angelskin</Name>
-      <Description>The target gains damage reduction 5/Evil.
-The target must be Lawful Good.</Description>
+      <Description>Grants a +1 Sacred Bonus to Armor Class and a +1 Racial Bonus to Physical
+Resistance Rating per Caster Level</Description>
       <Icon>Angelskin</Icon>
       <School>Abjuration</School>
       <Extend/>
       <Quicken/>
       <Paladin>2</Paladin>
+       <Effect>
+           <Type>ACBonus</Type>
+           <Bonus>Sacred</Bonus>
+           <Amount>1</Amount>
+           <Class>Paladin</Class>
+       </Effect>
+       <Effect>
+           <Type>PRR</Type>
+           <Bonus>Racial</Bonus>
+           <Amount>1</Amount>
+           <Class>Paladin</Class>
+       </Effect>
    </Spell>
    <Spell>
       <Name>Righteous Command</Name>
@@ -5532,7 +5545,7 @@ shields, orbs or Rune Arms.</Description>
    </Spell>
    <Spell>
       <Name>Zeal</Name>
-      <Description>Grants the caster a +10% sacred bonus to doublestrike.</Description>
+      <Description>Grants the caster a +10% sacred bonus to doublestrike and doubleshot.</Description>
       <Icon>Zeal</Icon>
       <School>Transmutation</School>
       <Extend/>
@@ -5540,6 +5553,11 @@ shields, orbs or Rune Arms.</Description>
       <Paladin>4</Paladin>
       <Effect>
          <Type>Doublestrike</Type>
+         <Bonus>Sacred</Bonus>
+         <Amount>10</Amount>
+      </Effect>
+      <Effect>
+         <Type>Doubleshot</Type>
          <Bonus>Sacred</Bonus>
          <Amount>10</Amount>
       </Effect>
@@ -7136,7 +7154,7 @@ Levels of Earth spells and -2 to your Fortitude Saves. This effect lasts for
       <Name>Healing Hands</Name>
       <Description>Start with one charge per rest, gain more in enhancement tree.
 Can only be used while your Bond Feat is active.
-10 + Character Level * WIS Mod = HP gained. </Description>
+10 + Character Level (max 20) * WIS Mod = HP gained. </Description>
       <Icon>HealingHands</Icon>
       <SPCost/>
    </Spell>
@@ -8293,7 +8311,7 @@ at a time. Duration: 1 Minute</Description>
     <Spell>
         <Name>Curative Admixture: Inflict Light Wounds</Name>
         <Description>Primer Element: Gildleaf
-Infuses an Inflect Light Wounds potion with magical energy, hurling it towards
+Infuses an Inflict Light Wounds potion with magical energy, hurling it towards
 your target in an arc. The potion explodes in a small AOE that deals 1d6+2 plus
 1 per caster level (maximum caster level 5) negative energy damage to nearby
 living allies and enemy undead.</Description>
@@ -8518,273 +8536,413 @@ Reflex save reduces the damage by half.</Description>
     </Spell>
     <Spell>
         <Name>Curative Admixture: Inflict Moderate Wounds</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Gildleaf
+Infuses a Inflict Moderate Wounds potion with magical energy, hurling it towards
+your target in an arc. The potion explodes in a small AOE that deals 2d6+4 plus 1
+per Caster Level (Max 10) negative energy damage to nearby living allies and enemy
+undead.</Description>
+        <Icon>CurativeAdmixtureIMW</Icon>
+        <School>Conjuration</School>
+        <Energy>Negative</Energy>
+        <SPCost>8</SPCost>
         <Alchemist>2</Alchemist>
     </Spell>
     <Spell>
         <Name>Curative Admixture: Remove Curse</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Gildleaf
+Infuses a Remove Curse potion with magical energy, hurling it towards your target
+in an arc. The potion explodes in a small AOE that removes curse from nearby allies.</Description>
+        <Icon>CurativeAdmixtureRemoveCurse</Icon>
+        <School>Conjuration</School>
+        <SPCost>30</SPCost>
         <Alchemist>2</Alchemist>
     </Spell>
     <Spell>
         <Name>Curative Admixture: Remove Paralysis</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Gildleaf
+Infuses a Remove Paralysis potion with magical energy, hurling it towards your target
+in an arc. The potion explodes in a small AOE that removes magical Paralysis from
+everyone hit. This infusion is affected by Artificer and Alchemist Knowledge: Potions.</Description>
+        <Icon>CurativeAdmixtureRemoveParalysis</Icon>
+        <School>Conjuration</School>
+        <SPCost>20</SPCost>
         <Alchemist>2</Alchemist>
     </Spell>
     <Spell>
         <Name>Glue Bomb</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Ceruleite
+Log a glass vial full of sticky, organic glue, trapping enemies within its embrace.
+Enemies that fail a Reflex save become stuck in place. Victims of the glue may
+attempt to free themselves every 4 seconds with a successful strength check.
+Lasts for 15 seconds + 1 per level</Description>
+        <Icon>GlueBomb</Icon>
+        <School>Transmutation</School>
+        <SPCost>10</SPCost>
         <Alchemist>2</Alchemist>
     </Spell>
     <Spell>
         <Name>Greater Venom Vial</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Crimsonite
+Conjuring a bottle of magical poison, you throw a projectile that explodes on impact,
+dealing 3 to 8 Poison damage per caster level, max caster level 10, to all foes
+caugt within the area. The poison will leave enemies struck Contaminated.
+
+DND Dice: Deals 1d6+2 Poison damage per caster level in an AOE, max 10d6+20.
+A successful Fortitude save reduces the damage by half.</Description>
+        <Icon>GreaterVenomVial</Icon>
+        <School>Conjuration</School>
+        <Energy>Poison</Energy>
+        <SPCost>6</SPCost>
         <Alchemist>2</Alchemist>
     </Spell>
     <Spell>
         <Name>Lesser Heartseeker Poison Imbue</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Crimsonite
+Coat your weapon in a magical poison that saps the fortitude from your enemies
+on contact. On Hit: -1 Fort Save. On Crit: 1d6 Constitution Damage.
+An item can have only one temporary item enhancement at a time.</Description>
+        <Icon>LesserHeartseekerPoisonImbue</Icon>
+        <School>Transmutation</School>
+        <SPCost>5</SPCost>
         <Alchemist>2</Alchemist>
     </Spell>
     <Spell>
         <Name>Lesser Ice Chill Poison Imbue</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Crimsonite
+Coat your weapon in a magical poison that saps the speed from your enemies
+on contact. On Hit: -1 Reflex Save. On Crit: 1d6 Dexterity Damage.
+An item can have only one temporary item enhancement at a time.</Description>
+        <Icon>LesserIceChillPoisonImbue</Icon>
+        <School>Transmutation</School>
+        <SPCost>5</SPCost>
         <Alchemist>2</Alchemist>
     </Spell>
     <Spell>
         <Name>Lesser Soulshatter Poison Imbue</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Crimsonite
+Coat your weapon in a magical poison that saps the willpower from your enemies
+on contact. On Hit: -1 Will Save. On Crit: 1d6 Wisdom Damage.
+An item can have only one temporary item enhancement at a time.</Description>
+        <Icon>LesserSoulshatterPoisonImbue</Icon>
+        <School>Transmutation</School>
+        <SPCost>5</SPCost>
         <Alchemist>2</Alchemist>
     </Spell>
     <Spell>
         <Name>Lesser Voidmind Poison Imbue</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Crimsonite
+Coat your weapon in a magical poison that saps the defenses from your enemies
+on contact. On Hit: -1 Spell Resistance. On Crit: 1d6 Intelligence Damage.
+An item can have only one temporary item enhancement at a time.</Description>
+        <Icon>LesserVoidmindPoisonImbue</Icon>
+        <School>Transmutation</School>
+        <SPCost>5</SPCost>
         <Alchemist>2</Alchemist>
     </Spell>
     <Spell>
         <Name>Liquid Courage</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Ceruleite
+Drink a personal vial of glowing golden liquid that grants incredible courage.
+This potion grants the effects of the Heroism spell: A +2 Morale bonus to attack
+rolls, saving throws, amd skill chekcs. This lasts for 1 minute er Caster Level.</Description>
+        <Icon>LiquidCourage</Icon>
+        <School>Transmutation</School>
+        <SPCost>20</SPCost>
         <Alchemist>2</Alchemist>
+      <Effect>
+         <Type>AttackBonus</Type>
+         <Bonus>Morale</Bonus>
+         <Amount>2</Amount>
+         <Weapon>All</Weapon>
+      </Effect>
+      <Effect>
+         <Type>SaveBonus</Type>
+         <Bonus>Morale</Bonus>
+         <Amount>2</Amount>
+         <Save>All</Save>
+      </Effect>
+      <Effect>
+         <Type>SkillBonus</Type>
+         <Bonus>Morale</Bonus>
+         <Amount>2</Amount>
+         <Skill>All</Skill>
+      </Effect>
     </Spell>
     <Spell>
         <Name>Melt Armor</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
+        <Description>Primer Element: Gildleaf
+Lob a vial of burning liquid at a single foe that deals heavy damage and melts
+the armor of whatever it strikes. Deals 4 to 8 Fire damage per caster level,
+max caster level 10, to a single target, and reduces their Armor Class and
+Physical Resistance rating by 4 for 15 seconds + 2 seconds per Caster Level.
+
+DND Dice: Deals 1d4+4 Fire damage per caster level, max 10d6+40.
+A successful Reflex save reduces the damage by half.</Description>
+        <Icon>MeltArmor</Icon>
+        <School>Conjuration</School>
         <Energy>Acid</Energy>
-        <SPCost/>
+        <SPCost>8</SPCost>
         <Alchemist>2</Alchemist>
     </Spell>
     <Spell>
         <Name>Restorative Draught</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Ceruleite
+Throw a small vial of magical liquid at a single target that grants the effect
+of the Restoration spell: Cures all temporary ability damage, restores a single
+negative level suffered from energy drain, and eliminates fatigue and exhaustion.</Description>
+        <Icon>RestorativeDraught</Icon>
+        <School>Conjuration</School>
+        <SPCost>20</SPCost>
         <Alchemist>2</Alchemist>
     </Spell>
     <Spell>
         <Name>Salt Crystals</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Ceruleite
+Smash a bottle beneath your feet that rapidly crystalizes, trapping nearby enemies
+that fail a Fortitude save in brittle salt. They are considered Dazed for 6 seconds,
+and any damage will remove the salt.</Description>
+        <Icon>SaltCrystals</Icon>
+        <School>Transmutation</School>
+        <SPCost>10</SPCost>
         <Alchemist>2</Alchemist>
     </Spell>
     <Spell>
         <Name>Voltaic Backlash</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Gildleaf
+Lob a vial of volatile liquid at a single foe that deals heavy damage and disrupts
+the offensive spellcasting capacity of whatever it strikes. Deals 4 to 8 Electric
+damage per Caster Level, max Caster Level 10, to a single foe, and reduces
+Universal Spell Power by 10 for 15 seconds +2 seconds per Caster Level.
+
+DND Dice: Deals 1d4+4 Electric damage per caster level, max 10d4+40.
+A successful Reflex save reduces the damage by half.</Description>
+        <Icon>VoltaicBacklash</Icon>
+        <School>Conjuration</School>
+        <Energy>Electric</Energy>
+        <SPCost>8</SPCost>
         <Alchemist>2</Alchemist>
     </Spell>
     <!---Alchemist Spells Level 3-->
     <Spell>
         <Name>Bitter Frost Burst</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Crimsonite
+Throw a bottle at a single foe, causing a huge spike of cold damage. Deals 7 to 12
+Cold damage per caster level, max caster level 15, to a single target.
+
+DND Dice: Delas 1d6+6 Cold damage, max 15d6+90.
+A successful Reflex save reduces the damage by half.</Description>
+        <Icon>BitterFrostBurst</Icon>
+        <School>Conjuration</School>
+        <Energy>Cold</Energy>
+        <SPCost>15</SPCost>
         <Alchemist>3</Alchemist>
     </Spell>
     <Spell>
         <Name>Bottled Boost: Double</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Ceruleite
+Drink a potion with the effects of Action Boost: Doublestrike and Doubleshot.
+You gain a +30% Action Boost Bonus to Doubelstrike and Doubleshot for 20 seconds.
+In addition to this spell's normal cooldown, this spell puts all Action Boosts
+and Bottled Boost spells on a 30 second cooldown.</Description>
+        <Icon>BottledBoostDouble</Icon>
+        <School>Transmutation</School>
+        <SPCost>5</SPCost>
         <Alchemist>3</Alchemist>
     </Spell>
     <Spell>
         <Name>Caustic Solvent</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
+<Description>Primer Element: Crimsonite
+Smash a bottle on a single foe, causing caustic acid to eat away at their flesh for
+significant Acid damage over time. This Acid damage stacks, and will become
+increasingly deadly over time. Deals 4 to 9 Acid damage per Caster Level, Max
+Caster Level 15, every 3 seconds, stacking up to 3 times and lasting for 9 seconds.
+
+DND Dice: Deals: 1d6+3 Acid damage, max 15d6+45.
+A successful Reflex save reduces damage by half.</Description>
+        <Icon>CausticSolvent</Icon>
+        <School>Conjuration</School>
         <Energy>Acid</Energy>
-        <SPCost/>
+        <SPCost>15</SPCost>
         <Alchemist>3</Alchemist>
     </Spell>
     <Spell>
         <Name>Chocking Smog</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Gildleaf
+Smash a bottle full of nxious chemical smog that silences and slows enemies caught
+within unless they make a Fortitude saving throw. This effect lasts for 6 seconds
++1 second per Caster Level. Foes that do not breathe or are wearing protective gear
+are immune to this effect.</Description>
+        <Icon>ChockingSmog</Icon>
+        <School>Transmutation</School>
+        <SPCost>30</SPCost>
         <Alchemist>3</Alchemist>
     </Spell>
     <Spell>
         <Name>Curative Admixture: Inflict Serious Wounds</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Gildleaf
+Infuses an Inflict Serious Wounds potion with magical energy, hurling it towards
+your target in an arc. The potion explodes in a small AOE that deals 3d6+6 plus
+1 per caster level (maximum caster level 15) negative energy damage to nearby
+living allies and enemy undead.</Description>
+        <Icon>CurativeAdmixtureISW</Icon>
+        <School>Conjuration</School>
+        <Energy>Negative</Energy>
+        <SPCost>12</SPCost>
         <Alchemist>3</Alchemist>
     </Spell>
     <Spell>
         <Name>Displacement Draught</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Ceruleite
+Drink a potion with the ffects of the Displacement spell. Your appearance becomes
+extremely blurred, giving enemies a 50% miss chance when attacking for 6 seconds
+per Caster Level.</Description>
+        <Icon>DisplacementDraught</Icon>
+        <School>Transmutation</School>
+        <SPCost>20</SPCost>
         <Alchemist>3</Alchemist>
     </Spell>
     <Spell>
         <Name>Evolution</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Ceruleite
+Choose something to mutate into. You may only have one Mutation active at a time.
+This lasts for 5 minutes. At Caster Level 6 and higher, this add +1 minute per
+Caster Level.</Description>
+        <Icon>Evolution</Icon>
+        <School>Transmutation</School>
+        <SPCost>35</SPCost>
         <Alchemist>3</Alchemist>
     </Spell>
     <Spell>
         <Name>Flash Freeze</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Gildleaf
+Smash a bottle beneath your feet containing a volatile chemical reaction that
+creates an explosion of intense cold, locking enemies in solid ice. Enemies who
+fail a Fortitude save are stunned and helpless for 6 seconds per Caster Level.</Description>
+        <Icon>FlashFreeze</Icon>
+        <School>Transmutation</School>
+        <SPCost>40</SPCost>
         <Alchemist>3</Alchemist>
     </Spell>
     <Spell>
         <Name>Greater Liquid Courage</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Ceruleite
+Drink a personal vial of glowing golden liquid that grants incredible courage
+and protections against Fear, granting the effects of the Greater Heroism spell.
+This potion grants a +4 Morale bonus to attack rolls, saving throws, amd skill
+checks. The target also receives temporary hitpoints equal to the caster level
+and immunity to Fear.
+This lasts for 7 minutes.</Description>
+        <Icon>GreaterLiquidCourage</Icon>
+        <School>Transmutation</School>
+        <SPCost>25</SPCost>
         <Alchemist>3</Alchemist>
+      <Effect>
+         <Type>AttackBonus</Type>
+         <Bonus>Morale</Bonus>
+         <Amount>4</Amount>
+         <Weapon>All</Weapon>
+      </Effect>
+      <Effect>
+         <Type>SaveBonus</Type>
+         <Bonus>Morale</Bonus>
+         <Amount>4</Amount>
+         <Save>All</Save>
+      </Effect>
+      <Effect>
+         <Type>SkillBonus</Type>
+         <Bonus>Morale</Bonus>
+         <Amount>4</Amount>
+         <Skill>All</Skill>
+      </Effect>
     </Spell>
     <Spell>
         <Name>Greater Restorative Draught</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Ceruleite
+Throw a small vial of magical liquid at a single target that grants the effect
+of the Greater Restoration spell: Cures all temporary ability damage, restores all
+negative levels suffered from energy drain, and eliminates fatigue, exhaustion,
+confusion and insanity effects on you.</Description>
+        <Icon>GreaterRestorativeDraught</Icon>
+        <School>Conjuration</School>
+        <SPCost>35</SPCost>
         <Alchemist>3</Alchemist>
     </Spell>
     <Spell>
         <Name>Invisibility Potion</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Ceruleite
+This shodowy liquid will turn you invisible for a time, granting the effect of the
+Invisibility spell. If you attack a target, this invisibility will end. This lasts
+for 1 minute per Caster Level.</Description>
+        <Icon>InvisibilityPotion</Icon>
+        <School>Transmutation</School>
+        <SPCost>15</SPCost>
         <Alchemist>3</Alchemist>
     </Spell>
     <Spell>
         <Name>Iron Shavings</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Gildleaf
+Smash a bottle at your feet to spread Flametouched Iron shavings into the air
+around you, causing nearby Incorporeal foes that fail a Fortitude save to become
+Corporeal for 6 seconds, plus 1 second per Caster Level</Description>
+        <Icon>IronShavings</Icon>
+        <School>Transmutation</School>
+        <SPCost>30</SPCost>
         <Alchemist>3</Alchemist>
     </Spell>
     <Spell>
         <Name>Melt Lock</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Ceruleite
+Throws a caustic liquid at a lock, attempting to dissolve it.
+You make a d20 + Spellcraft skill check against the DC of the lock, and if
+successful, th elock will behave as if it has been affected by a Knock spell
+of equivalent effectiveness.</Description>
+        <Icon>MeltLock</Icon>
+        <School>Transmutation</School>
+        <SPCost>15</SPCost>
         <Alchemist>3</Alchemist>
     </Spell>
     <Spell>
         <Name>Molotov Cocktail</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Crimsonite
+Lob a glass bottle full of reactive chemicals that shatters and then ignites
+in a large area, dealing damage to all enemies struck. Enemies are ignited,
+dealing 4 to 9 Fire damage per caster level, max caster level 15.
+
+DND Dice: Deals 1d6+3 Fire damage per caster level, max 15d6+45</Description>
+        <Icon>MolotovCocktail</Icon>
+        <School>Conjuration</School>
+        <Energy>Fire</Energy>
+        <SPCost>15</SPCost>
         <Alchemist>3</Alchemist>
     </Spell>
     <Spell>
         <Name>Quicksilver Potion</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Ceruleite
+Drink a potion of shiny silver liquid that bestowes incredible speed for a short
+time, the effect of the Haste spell. You are quickened, causing you to attack
+15% faster than normal. In addition, you gain a +1 enhancement bonus to attack
+rolls, a +1 bonus to Reflex Saving Throws, and a +1% Dodge.</Description>
+        <Icon>QuicksilverPotion</Icon>
+        <School>Transmutation</School>
+        <SPCost>25</SPCost>
         <Alchemist>3</Alchemist>
     </Spell>
     <Spell>
         <Name>Voltaic Induction</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Crimsonite
+Shatter a small bottle of volatile mixtures on the first target hit, causing
+lightning to arc between them. This has an initial jolt of 4 to 9 Electric damage
+per caster level, max caster level 15, to all targets hit, and then periodically
+shocks affected enemies for 4 to 6 Electric damage every 2 seconds for 16 seconds.
+This damage over time does not stack.
+
+DND Dice: Deals 1d6+3 Electric damage, and an additional 1d3+3 damage per caster
+level over time, max 15d6+45 and 15d3+45. A successful Reflex save reduces the
+damage by half.</Description>
+        <Icon>VoltaicInduction</Icon>
+        <School>Conjuration</School>
+        <Energy>Electric</Energy>
+        <SPCost>15</SPCost>
         <Alchemist>3</Alchemist>
     </Spell>
     <!---Alchemist Spells Level 4-->

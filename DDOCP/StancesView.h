@@ -6,6 +6,7 @@
 #include "Character.h"
 #include "StanceButton.h"
 #include "InfoTip.h"
+#include "WeaponGroup.h"
 
 struct SliderItem
 {
@@ -99,6 +100,8 @@ class CStancesView :
         void UpdateSliders(const Effect & effect, bool bApply);
         std::list<SliderItem>::iterator GetSlider(const Effect & effect, bool bCreateIfMissing);
         std::list<SliderItem>::iterator GetSlider(UINT controlId);
+        void AddToWeaponGroup(const Effect & effect);
+        void RemoveFromWeaponGroup(const Effect & effect);
 
         CDocument * m_pDocument;
         Character * m_pCharacter;
@@ -114,4 +117,5 @@ class CStancesView :
         const CStanceButton * m_pTooltipItem;
         int m_nextStanceId;
         int m_nextSliderId;
+        std::list<WeaponGroup> m_weaponGroups;
 };

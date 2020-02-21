@@ -208,6 +208,7 @@ LRESULT CStancesView::OnNewDocument(WPARAM wParam, LPARAM lParam)
     m_pCharacter = pCharacter;
     if (m_pCharacter != NULL)
     {
+        m_weaponGroups.clear();
         m_pCharacter->AttachObserver(this);
         CreateStanceWindows();
     }
@@ -477,6 +478,7 @@ void CStancesView::UpdateFeatEffectRevoked(
         const Effect & effect)
 {
     UpdateSliders(effect, false);
+    RemoveFromWeaponGroup(effect);
 }
 
 void CStancesView::UpdateEnhancementEffect(
@@ -494,6 +496,7 @@ void CStancesView::UpdateEnhancementEffectRevoked(
         const EffectTier & effect)
 {
     UpdateSliders(effect.m_effect, false);
+    RemoveFromWeaponGroup(effect.m_effect);
 }
 
 void CStancesView::UpdateItemEffect(
@@ -530,6 +533,7 @@ void CStancesView::UpdateItemEffect(
         }
     }
     UpdateSliders(effect, true);
+    AddToWeaponGroup(effect);
 }
 
 void CStancesView::UpdateItemEffectRevoked(
@@ -538,6 +542,7 @@ void CStancesView::UpdateItemEffectRevoked(
         const Effect & effect)
 {
     UpdateSliders(effect, false);
+    RemoveFromWeaponGroup(effect);
 }
 
 void CStancesView::OnLButtonDown(UINT nFlags, CPoint point)
@@ -901,4 +906,71 @@ bool CStancesView::IsStanceActive(const std::string & name) const
         }
     }
     return bEnabled;
+}
+
+void CStancesView::AddToWeaponGroup(const Effect & effect)
+{
+    if (effect.Type() == Effect_AddGroupWeapon)
+    {
+        // see if the weapon group already exists. If so, add the list of weapons to it
+        // else create the weapon group and add the weapons to it
+        std::list<WeaponGroup>::iterator wgit = m_weaponGroups.begin();
+        while (wgit != m_weaponGroups.end()
+                && (*wgit).Name() != effect.WeaponGroup())
+        {
+            ++wgit;
+        }
+        std::list<WeaponType> weaponsToAdd = effect.Weapon();
+        if (wgit != m_weaponGroups.end())
+        {
+            // already exists, add weapons to it
+            std::list<WeaponType>::iterator wit = weaponsToAdd.begin();
+            while (wit != weaponsToAdd.end())
+            {
+                (*wgit).AddWeapon((*wit));
+                ++wit;
+            }
+        }
+        else
+        {
+            // need to create new weapon group
+            WeaponGroup wg(effect.WeaponGroup());
+            std::list<WeaponType>::iterator wit = weaponsToAdd.begin();
+            while (wit != weaponsToAdd.end())
+            {
+                wg.AddWeapon((*wit));
+                ++wit;
+            }
+            m_weaponGroups.push_back(wg);
+        }
+    }
+}
+
+void CStancesView::RemoveFromWeaponGroup(const Effect & effect)
+{
+    if (effect.Type() == Effect_AddGroupWeapon)
+    {
+        std::list<WeaponGroup>::iterator wgit = m_weaponGroups.begin();
+        while (wgit != m_weaponGroups.end()
+                && (*wgit).Name() != effect.WeaponGroup())
+        {
+            ++wgit;
+        }
+        std::list<WeaponType> weaponsToRemove = effect.Weapon();
+        if (wgit != m_weaponGroups.end())
+        {
+            // already exists, remove weapons from it
+            std::list<WeaponType>::iterator wit = weaponsToRemove.begin();
+            while (wit != weaponsToRemove.end())
+            {
+                (*wgit).RemoveWeapon((*wit));
+                ++wit;
+            }
+            // its ok if the group is now empty
+        }
+        else
+        {
+            // can't remove from a weapon group that does not exist
+        }
+    }
 }

@@ -1216,11 +1216,11 @@ Human, Magical Beast, Monstrous Humanoid, Orc, Plant, Reptilian, or Vermin.</Des
       <EnhancementTreeItem>
          <Name>Deepwood Stalker: Heavy Draw</Name>
          <InternalName>DSHeavyDraw</InternalName>
-         <Description>Toggle: While Heavy Draw is active, you deal +5 damage but have -5 to
-attack rolls with archery and thrown attacks. Effects that modify the
-attack penalty and bonus of the Power Attack feat also modify this ability
+         <Description>Toggle: While Heavy Draw is active, you deal +5 damage with archery and thrown attacks.
+Effects that modify the damage bonus of the Power Attack feat also modify this ability
 (but other effects related to Power Attack do not). This ability has no
-effect when using a crossbow.
+effect when using a crossbow. Also grants a +1 Competence Bonus to Critical
+Multiplier to Longbows and Shortbows wehn toggled on.
 Can be used simultaneously with precision and (improved) precise shot stances.</Description>
          <Icon>DSHeavyDraw</Icon>
          <XPosition>1</XPosition>
@@ -1242,8 +1242,8 @@ Can be used simultaneously with precision and (improved) precise shot stances.</
          <Stance>
             <Name>Heavy Draw</Name>
             <Icon>DSHeavyDraw</Icon>
-            <Description>While Heavy Draw is active, you deal +5 damage but have -5 to
-attack rolls with archery and thrown attacks.</Description>
+            <Description>While Heavy Draw is active, you deal +5 damagearchery and thrown attacks.
+Also grants a +1 Competence Bonus to Critical Multiplier to Longbows and Shortbows wehn toggled on</Description>
          </Stance>
          <Effect>
             <Type>DamageBonus</Type>
@@ -1253,13 +1253,6 @@ attack rolls with archery and thrown attacks.</Description>
             <Stance>Heavy Draw</Stance>
          </Effect>
          <Effect>
-            <Type>AttackBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <WeaponClass>Thrown</WeaponClass>
-            <Amount>-5</Amount>
-            <Stance>Heavy Draw</Stance>
-         </Effect>
-         <Effect>
             <Type>DamageBonus</Type>
             <Bonus>Enhancement</Bonus>
             <WeaponClass>Bows</WeaponClass>
@@ -1267,10 +1260,11 @@ attack rolls with archery and thrown attacks.</Description>
             <Stance>Heavy Draw</Stance>
          </Effect>
          <Effect>
-            <Type>AttackBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <WeaponClass>Bows</WeaponClass>
-            <Amount>-5</Amount>
+            <Type>CriticalMultiplier</Type>
+            <Bonus>Competence</Bonus>
+            <Weapon>Shortbow</Weapon>
+            <Weapon>Longbow</Weapon>
+            <Amount>1</Amount>
             <Stance>Heavy Draw</Stance>
          </Effect>
       </EnhancementTreeItem>
@@ -1335,7 +1329,9 @@ Taking this ability also grants Head Strike, a Melee version of the exact same a
       <EnhancementTreeItem>
          <Name>Deepwood Stalker: Improved Archer's Focus</Name>
          <InternalName>DSImprovedArchersFocus</InternalName>
-         <Description>Your Archer's Focus Stance can now stack up to 25 times instead of 15.
+         <Description>Your Archer's Focus Stance can now stack up to 25 times instead of 15
+and also adds 10% Insight Bonus to Ranged Alacrity with Longbows and Shortbows
+when you have Archer's Focus active.
 Passive: +5 Melee Power and +5 Ranged Power</Description>
          <Icon>DSImprovedArchersFocus</Icon>
          <XPosition>4</XPosition>
@@ -1362,6 +1358,14 @@ Passive: +5 Melee Power and +5 Ranged Power</Description>
             <Type>RangedPower</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>5</Amount>
+         </Effect>
+         <Effect>
+            <Type>Alacrity</Type>
+            <Bonus>Insightful</Bonus>
+            <Amount>10</Amount>
+            <Weapon>Longbow</Weapon>
+            <Weapon>Shortbow</Weapon>
+            <Stance>Archer's Focus</Stance>
          </Effect>
       </EnhancementTreeItem>
    </EnhancementTree>
