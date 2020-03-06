@@ -266,6 +266,19 @@ void CStancesView::CreateStanceWindows()
     Stance thrown("Thrown Weapon", "AMEvocationIMagicMissile", "You are wielding a thrown weapon");
     thrown.Set_AutoControlled();
     AddStance(thrown);
+    // add the auto controlled stances for each weapon type
+    for (size_t wt = Weapon_Unknown; wt < Weapon_Count; ++wt)
+    {
+        CString name = (LPCTSTR)EnumEntryText((WeaponType)wt, weaponTypeMap);
+        CString prompt;
+        prompt.Format("You are wielding a %s", name);
+        Stance weapon(
+                (LPCTSTR)name,
+                (LPCTSTR)name,
+                (LPCTSTR)prompt);
+        weapon.Set_AutoControlled();
+        AddStance(weapon);
+    }
 }
 
 void CStancesView::AddStance(const Stance & stance)

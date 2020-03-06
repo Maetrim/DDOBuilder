@@ -2869,6 +2869,7 @@ bool IsCrossbow(WeaponType wt)
     {
     case Weapon_LightCrossbow:
     case Weapon_HeavyCrossbow:
+    case Weapon_GreatCrossbow:
         isCrossbow = true;
         break;
         // all other weapon types are not a match
@@ -2986,7 +2987,8 @@ bool IsInWeaponClass(WeaponClassType wc, WeaponType wt)
         isWeaponClass = IsBow(wt);
         break;
     case WeaponClass_Crossbows:
-        isWeaponClass = IsCrossbow(wt);
+        isWeaponClass = IsCrossbow(wt)
+                || IsRepeatingCrossbow(wt);
         break;
     case WeaponClass_ReapeatingCrossbows:
         isWeaponClass = IsRepeatingCrossbow(wt);

@@ -5502,7 +5502,6 @@ Resistance Rating per Caster Level</Description>
       <Icon>RighteousCommand</Icon>
       <School>Enchantment</School>
       <Extend/>
-      <Quicken/>
       <Paladin>2</Paladin>
       <MaxCasterLevel>15</MaxCasterLevel>
       <Effect>
@@ -8355,7 +8354,7 @@ Fire damage per caster level to nearby enemies, max caster level 5.
 DND Dice: Deals 1d6+1 Fire damage per caster level, max 10d6+10. A successful
 Reflex saves reduces the damage by half.</Description>
         <Icon>VialSmashFire</Icon>
-        <School>Transmutation</School>
+        <School>Conjuration</School>
         <Energy>Fire</Energy>
         <SPCost>4</SPCost>
         <Alchemist>1</Alchemist>
@@ -8369,7 +8368,7 @@ Cold damage per caster level to nearby enemies, max caster level 5.
 DND Dice: Deals 1d6+1 Cold damage per caster level, max 10d6+10. A successful
 Reflex saves reduces the damage by half.</Description>
         <Icon>VialSmashCold</Icon>
-        <School>Transmutation</School>
+        <School>Conjuration</School>
         <Energy>Cold</Energy>
         <SPCost>4</SPCost>
         <Alchemist>1</Alchemist>
@@ -8383,7 +8382,7 @@ Electric damage per caster level to nearby enemies, max caster level 5.
 DND Dice: Deals 1d6+1 Electric damage per caster level, max 10d6+10. A successful
 Reflex saves reduces the damage by half.</Description>
         <Icon>VialSmashElectric</Icon>
-        <School>Transmutation</School>
+        <School>Conjuration</School>
         <Energy>Electric</Energy>
         <SPCost>4</SPCost>
         <Alchemist>1</Alchemist>
@@ -8397,7 +8396,7 @@ Acid damage per caster level to nearby enemies, max caster level 5.
 DND Dice: Deals 1d6+1 Acid damage per caster level, max 10d6+10. A successful
 Reflex saves reduces the damage by half.</Description>
         <Icon>VialSmashAcid</Icon>
-        <School>Transmutation</School>
+        <School>Conjuration</School>
         <Energy>Acid</Energy>
         <SPCost>4</SPCost>
         <Alchemist>1</Alchemist>
@@ -8411,7 +8410,7 @@ Poison damage per caster level to nearby enemies, max caster level 5.
 DND Dice: Deals 1d6+1 Poison damage per caster level, max 10d6+10. A successful
 Reflex saves reduces the damage by half.</Description>
         <Icon>VialSmashPoison</Icon>
-        <School>Transmutation</School>
+        <School>Conjuration</School>
         <Energy>Poison</Energy>
         <SPCost>4</SPCost>
         <Alchemist>1</Alchemist>
@@ -8680,8 +8679,7 @@ DND Dice: Deals 1d4+4 Fire damage per caster level, max 10d6+40.
 A successful Reflex save reduces the damage by half.</Description>
         <Icon>MeltArmor</Icon>
         <School>Conjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost>8</SPCost>
+        <SPCost>12</SPCost>
         <Alchemist>2</Alchemist>
     </Spell>
     <Spell>
@@ -8948,428 +8946,653 @@ damage by half.</Description>
     <!---Alchemist Spells Level 4-->
     <Spell>
         <Name>Bottled Boost: Power</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Ceruleite
+Drink a potion with the effects of Action Boost: Power.
+You gain a +30 Action Boost Bonus to Melee and Ranged Power for 20 seconds.
+In addition to this spell's normal cooldown, this spell puts all Action Boosts
+and Bottled Boost spells on a 30 second cooldown.</Description>
+        <Icon>BottledBoostPower</Icon>
+        <School>Transmutation</School>
+        <SPCost>5</SPCost>
         <Alchemist>4</Alchemist>
     </Spell>
     <Spell>
-        <Name>Bottled Boost: Spirit</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Name>Bottled Boost: Sprint</Name>
+        <Description>Primer Element: Ceruleite
+Drink a potion with the effects of Action Boost: Sprint.
+You gain a +50% Action Boost Bonus to Movement Speed for 20 seconds.
+In addition to this spell's normal cooldown, this spell puts all Action Boosts
+and Bottled Boost spells on a 30 second cooldown.</Description>
+        <Icon>BottledBoostSprint</Icon>
+        <School>Transmutation</School>
+        <SPCost>5</SPCost>
         <Alchemist>4</Alchemist>
     </Spell>
     <Spell>
         <Name>Caustic Overload</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
+        <Description>Primer Element: Gildleaf
+Throw a bottle at a targetted foe that explodes into caustic acid dealing 5 to 10
+Acid damage per caster level to enemies struck. In addition, enemies must make
+a Fortitude saving throw or have their Physical Resistance Rating reduced by 5
+for 12 seconds.
+DND Dice: Deals 1d6+4 Acid damage per caster level, max 20d6+80.
+A successful Reflex save reduces the the damage by half and negates the debuff</Description>
+        <Icon>CausticOverload</Icon>
+        <School>Conjuration</School>
         <Energy>Acid</Energy>
-        <SPCost/>
+        <SPCost>20</SPCost>
         <Alchemist>4</Alchemist>
+        <MaxCasterLevel>20</MaxCasterLevel>
     </Spell>
     <Spell>
         <Name>Cindersmoke</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Gildleaf
+Throw a bottle at a targetted foe that explodes into fiery cloud dealing 5 to 10
+Fire damage per caster level to enemies struck. In addition, enemies must make
+a Reflex save or be blinded for 12 seconds.
+DND Dice: Deals 1d6+4 Fire damage per caster level, max 20d6+80.
+A successful Reflex save reduces the the damage by half and negates the blind</Description>
+        <Icon>Cindersmoke</Icon>
+        <School>Conjuration</School>
+        <Energy>Fire</Energy>
+        <SPCost>20</SPCost>
         <Alchemist>4</Alchemist>
+        <MaxCasterLevel>20</MaxCasterLevel>
     </Spell>
     <Spell>
         <Name>Corrosive Dust</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Crimsonite
+Scatter a corrosive dust in fron tof you, causing significant Rust damage on contact.
+Deals 9 to 14 Rust damage per caster level, max caster level 20. Note that Rust damage
+only affects Constructs and some inanimate objects.
+DND Dice: Deals 1d6+8 Rust damage per caster level, max 20d6+160.
+A successful Reflex save reduces the the damage by half</Description>
+        <Icon>CorrosiveDust</Icon>
+        <School>Conjuration</School>
+        <SPCost>15</SPCost>
         <Alchemist>4</Alchemist>
     </Spell>
     <Spell>
         <Name>Curative Admixture: Inflict Critical Wounds</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
+        <Description>Primer Element: Gildleaf
+Infuses an Inflict Critical Wounds potion with magical energy, hurling it towards
+your target in an arc. The potion explodes in a small AOE that deals 4d6+8 plus
+1 per caster level (maximum caster level 20) negative energy damage to nearby
+living allies and enemy undead.</Description>
+        <Icon>CurativeAdmixtureICW</Icon>
+        <School>Conjuration</School>
         <Energy>Acid</Energy>
-        <SPCost/>
+        <SPCost>25</SPCost>
         <Alchemist>4</Alchemist>
     </Spell>
     <Spell>
         <Name>Flesh to Gold</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Ceruleite
+Turn an enemy to Gold with a single touch. Creatures made of flesh that fail a
+Fortitude save are turned to a metallic, helpess statue with minor resistance
+to piercing damage. This lasts 60 seconds plus 10 seconds per caster level,
+but the target has a chance to remake its Fortitude save every 24 seconds.</Description>
+        <Icon>FleshToGold</Icon>
+        <School>Transmutation</School>
+        <SPCost>30</SPCost>
         <Alchemist>4</Alchemist>
     </Spell>
     <Spell>
         <Name>Heartseeker Poison Imbue</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Crimsonite
+Coat your weapon in a magical poison that saps the fortitude from your enemies
+on contact. On Hit: -1 Fort Save per stack, stacks 3 times.
+On Crit: 1d6 Constitution Damage.
+An item can have only one temporary item enhancement at a time.</Description>
+        <Icon>HeartseekerPoisonImbue</Icon>
+        <School>Transmutation</School>
+        <SPCost>10</SPCost>
         <Alchemist>4</Alchemist>
     </Spell>
     <Spell>
         <Name>Hypnotic Combination</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Ceruleite
+Throw a bottle at a single target full of hallucingenic material. On a failed Will
+save, the target is Confused, attacking and able to be attacked by friend and foe
+alike. Targets can re-attempt the Will save every 24 seconds. This effect lasts
+for 15 seconds +2 per Caster Level.</Description>
+        <Icon>HypnoticCombination</Icon>
+        <School>Transmutation</School>
+        <SPCost>25</SPCost>
         <Alchemist>4</Alchemist>
     </Spell>
     <Spell>
         <Name>Ice Chill Poison Imbue</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Crimsonite
+Coat your weapon in a magical poison that saps the speed from your enemies
+on contact. On Hit: -1 Reflex Save per stack, stacks 3 times.
+On Crit: 1d6 Dexterity Damage.
+An item can have only one temporary item enhancement at a time.</Description>
+        <Icon>IceChillPoisonImbue</Icon>
+        <School>Transmutation</School>
+        <SPCost>10</SPCost>
         <Alchemist>4</Alchemist>
     </Spell>
     <Spell>
         <Name>Sanctified Vial</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Ceruleite
+Casting this spell requires levels in Cleric, Paladin, or Favored Soul, or for
+you to be in a Devine Epic Destiny. Throw a bottle that splashes Holy Water
+when it breaks, dealing 1d4+4 Bane Damage per Caster Level to Undead and
+Extraplanar creatures nearby. (This damage scales with Force Spell Power).
+The Holy Water will attempt to force all extraplanar creatures in the bottle's
+splash back to their home plane with the effect of the Banishment spell. A
+successful Will save negates this effect. (DC = spell's save DC - creature's
+Hit Dice oe Level + your caster level).</Description>
+        <Icon>SanctifiedVial</Icon>
+        <School>Conjuration</School>
+        <SPCost>25</SPCost>
         <Alchemist>4</Alchemist>
     </Spell>
     <Spell>
         <Name>Smoke Bomb</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Gildleaf
+Throw a bottle beneath you that explodes into a clod of smoke and leaves you
+Invisible and Displaced for 12 seconds.</Description>
+        <Icon>SmokeBomb</Icon>
+        <School>Transmutation</School>
+        <SPCost>20</SPCost>
         <Alchemist>4</Alchemist>
     </Spell>
     <Spell>
         <Name>Soulshatter Poison Imbue</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Crimsonite
+Coat your weapon in a magical poison that saps the willpower from your enemies
+on contact. On Hit: -1 Will Save per stack, stacks 3 times.
+On Crit: 1d6 Wisdom Damage.
+An item can have only one temporary item enhancement at a time.</Description>
+        <Icon>SoulshatterPoisonImbue</Icon>
+        <School>Transmutation</School>
+        <SPCost>10</SPCost>
         <Alchemist>4</Alchemist>
     </Spell>
     <Spell>
         <Name>Stoneskin Potion</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Ceruleite
+Turn your skin to durable stone. Gain a resistance to physical damage of 10/Adamantine
+for the duration. Once this potion has prevented 10 points of damage per caster level,
+it is discharged</Description>
+        <Icon>StoneskinPotion</Icon>
+        <School>Transmutation</School>
+        <SPCost>25</SPCost>
         <Alchemist>4</Alchemist>
     </Spell>
     <Spell>
         <Name>Vein Freeze</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Gildleaf
+Throw a bottle at a targetted foe that explodes, dealing 5 to 10 Cold damage per
+Caster Level, and slowes enemies caught within. Some enemies may be required to
+make a Fortitude save to be Frozen for 12 seconds.
+DND Dice: Deals 1d6+4 Cold damage per caster level, max 20d6+80.
+A successful Reflex save reduces the damage by half and negates the debuff.</Description>
+        <Icon>VeinFreeze</Icon>
+        <School>Conjuration</School>
+        <Energy>Cold</Energy>
+        <SPCost>20</SPCost>
         <Alchemist>4</Alchemist>
+        <MaxCasterLevel>20</MaxCasterLevel>
     </Spell>
     <Spell>
         <Name>Voidmind Poison Imbue</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Crimsonite
+Coat your weapon in a magical poison that saps the defenses from your enemies
+on contact. On Hit: -1 Spell Resistance per stack, stacks 3 times.
+On Crit: 1d6 Intelligence Damage.
+An item can have only one temporary item enhancement at a time.</Description>
+        <Icon>VoidmindPoisonImbue</Icon>
+        <School>Transmutation</School>
+        <SPCost>10</SPCost>
         <Alchemist>4</Alchemist>
     </Spell>
     <Spell>
         <Name>Voltaic Burst</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Gildleaf
+Throw a bottle at a targetted foe that explodes, dealing 5 to 10 Electric damage per
+Caster Level to enemies caught in the blast. In addition, enemies must make a
+Fortitude saving throw or take -5 Magical Resistance Rating for 12 seconds.
+DND Dice: Deals 1d6+4 Electric damage per caster level, max 20d6+80.
+A successful Reflex save reduces the damage by half and negates the debuff.</Description>
+        <Icon>VoltaicFreeze</Icon>
+        <School>Conjuration</School>
+        <Energy>Cold</Energy>
+        <SPCost>20</SPCost>
         <Alchemist>4</Alchemist>
+        <MaxCasterLevel>20</MaxCasterLevel>
     </Spell>
     <!---Alchemist Spells Level 5-->
     <Spell>
         <Name>Bottled Boost: Haste</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Ceruleite
+Drink a potion with the effects of Action Boost: Haste.
+You gain a +30% Action Boost Bonus to Attack speed for 20 seconds. In addition
+to this spell's normal cooldown, this spell puts all Action Boosts and Bottled
+Boost spells on a 30 second cooldown.</Description>
+        <Icon>BottledBoostHaste</Icon>
+        <School>Transmutation</School>
+        <SPCost>5</SPCost>
         <Alchemist>5</Alchemist>
     </Spell>
     <Spell>
         <Name>Flashbang</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Gildleaf
+Lob a vial that explodes on impact. Nearby enemies must make a Fortitude save
+or be blinded. If they fail this save and are already blinded, they instead will be stunned.</Description>
+        <Icon>Alchemist_Flashbang</Icon>
+        <School>Transmutation</School>
+        <SPCost>25</SPCost>
         <Alchemist>5</Alchemist>
     </Spell>
     <Spell>
         <Name>Flesh to Gold, Mass</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Gildleaf
+Enemies around you must make a Fortitude saving throw or be turned to gold. Creatures
+made of flesh that fail a Fortitude save are turned to metallic, helpless statues
+with minor resistance to piercing damage. This lasts 30 seconds plus 12 seconds
+per caster level, but the target has a chance to remake its fortitude save every
+12 seconds.</Description>
+        <Icon>FleshToGoldMass</Icon>
+        <School>Transmutation</School>
+        <SPCost>30</SPCost>
         <Alchemist>5</Alchemist>
     </Spell>
     <Spell>
         <Name>Greater Elemental Weapons</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Crimsonite
+Your target's currently equipped weapons gain Hit Effect: 3 to 18 elemental damage
+of your choice. An item can only have one temporary item enchantment at a time.</Description>
+        <Icon>GreaterElementalWeapons</Icon>
+        <School>Evocation</School>
+        <SPCost>15</SPCost>
         <Alchemist>5</Alchemist>
     </Spell>
     <Spell>
         <Name>Greater Evolution</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Ceruleite
+Choose something to mutate into. You may only have one Mutation active at a time.
+This lasts for 1 minute per caster level.</Description>
+        <Icon>GreaterEvolution</Icon>
+        <School>Transmutation</School>
+        <SPCost>50</SPCost>
         <Alchemist>5</Alchemist>
     </Spell>
     <Spell>
         <Name>Greater Stoneskin</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Ceruleite
+Turn your skin to durable and magical stone. Gain a resistance to physical damage
+of 20/Adamantine for the duration. Once this potion has prevented 20 points of
+damage per caster level, it is discharged</Description>
+        <Icon>GreaterStoneskin</Icon>
+        <School>Conjuration</School>
+        <SPCost>25</SPCost>
         <Alchemist>5</Alchemist>
     </Spell>
     <Spell>
         <Name>Multivial of Acid</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
+        <Description>Primer Element: Crimsonite
+Conjuring many bottles of caustic liquid, you throw 5 projectiles that explode on
+impact, with each dealing 3 to 8 Acid damage per caster level to all nearby foes,
+max caster level 10.
+DND Dice: Deals 1d6+2 Acid damage per caster level per projectile, max 10d6+20.
+A successful Reflex save reduces this damage by half. Shares a cooldown with all
+other Multivial spells.</Description>
+        <Icon>MultivialOfAcid</Icon>
+        <School>Conjuration</School>
         <Energy>Acid</Energy>
-        <SPCost/>
+        <SPCost>20</SPCost>
         <Alchemist>5</Alchemist>
+        <MaxCasterLevel>10</MaxCasterLevel>
     </Spell>
     <Spell>
         <Name>Multivial of Flame</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Crimsonite
+Conjuring many bottles of burning liquid, you throw 5 projectiles that explode on
+impact, with each dealing 3 to 8 Fire damage per caster level to all nearby foes,
+max caster level 10.
+DND Dice: Deals 1d6+2 Fire damage per caster level per projectile, max 10d6+20.
+A successful Reflex save reduces this damage by half. Shares a cooldown with all
+other Multivial spells.</Description>
+        <Icon>MultivialOfFlame</Icon>
+        <School>Conjuration</School>
+        <Energy>Fire</Energy>
+        <SPCost>20</SPCost>
         <Alchemist>5</Alchemist>
+        <MaxCasterLevel>10</MaxCasterLevel>
     </Spell>
     <Spell>
         <Name>Multivial of Frost</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Crimsonite
+Conjuring many bottles of freezing liquid, you throw 5 projectiles that explode on
+impact, with each dealing 3 to 8 Cold damage per caster level to all nearby foes,
+max caster level 10.
+DND Dice: Deals 1d6+2 Cold damage per caster level per projectile, max 10d6+20.
+A successful Reflex save reduces this damage by half. Shares a cooldown with all
+other Multivial spells.</Description>
+        <Icon>MultivialOfFrost</Icon>
+        <School>Conjuration</School>
+        <Energy>Cold</Energy>
+        <SPCost>20</SPCost>
         <Alchemist>5</Alchemist>
+        <MaxCasterLevel>10</MaxCasterLevel>
     </Spell>
     <Spell>
         <Name>Multivial of Poison</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Crimsonite
+Conjuring many bottles of poisonous material, you throw 5 projectiles that explode on
+impact, with each dealing 3 to 8 Poison damage per caster level to all nearby foes,
+max caster level 10.
+DND Dice: Deals 1d6+2 Poison damage per caster level per projectile, max 10d6+20.
+A successful Reflex save reduces this damage by half. Shares a cooldown with all
+other Multivial spells.</Description>
+        <Icon>MultivialOfPoison</Icon>
+        <School>Conjuration</School>
+        <Energy>Poison</Energy>
+        <SPCost>20</SPCost>
         <Alchemist>5</Alchemist>
+        <MaxCasterLevel>10</MaxCasterLevel>
     </Spell>
     <Spell>
         <Name>Multivial of Sparks</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Crimsonite
+Conjuring many bottles of reactive material, you throw 5 projectiles that explode on
+impact, with each dealing 3 to 8 Electric damage per caster level to all nearby foes,
+max caster level 10.
+DND Dice: Deals 1d6+2 Electric damage per caster level per projectile, max 10d6+20.
+A successful Reflex save reduces this damage by half. Shares a cooldown with all
+other Multivial spells.</Description>
+        <Icon>MultivialOfSparks</Icon>
+        <School>Conjuration</School>
+        <Energy>Electric</Energy>
+        <SPCost>20</SPCost>
         <Alchemist>5</Alchemist>
+        <MaxCasterLevel>10</MaxCasterLevel>
     </Spell>
     <Spell>
         <Name>Poison Breath</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Crimsonite
+You exhale poison through your mouth in a large cone, causing enemies caught within
+the area to take 6 to 11 Poison damage per caster level, max caster level 20.
+This is a breathe attack. This poison will leave enemies Contaminated.
+DND Dice: Deals 1d6+5 Poison damage per caster level, max 20d6+100 Poison damage.
+A successful Fortitude save reduces the damage by half.</Description>
+        <Icon>PoisonBreath</Icon>
+        <School>Conjuration</School>
+        <Energy>Poison</Energy>
+        <SPCost>20</SPCost>
         <Alchemist>5</Alchemist>
     </Spell>
     <Spell>
         <Name>Turn to Frog</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Crimsonite
+Throw a vial at a single enemy, who must succeed a Fortitude saving throw or be
+turned into a frog.</Description>
+        <Icon>TurnToFrog</Icon>
+        <School>Transmutation</School>
+        <SPCost>25</SPCost>
         <Alchemist>5</Alchemist>
     </Spell>
     <!---Alchemist Spells Level 6-->
     <Spell>
         <Name>Curative Admixture: Harm</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Gildleaf
+Infuses a Harm potion with magical energy, hurling it towards your target in an arc.
+This channels powerful negaive energy into targets to wipe away injury and afflictions,
+restore 10 hit points per caster level (up to a max of 150 hit points at caster
+level 15), and remove ability damage and conditions blinded, confused, dazed,
+dazzled, deafened, diseased, exhausted, fatigued, feebleminded, insanity,
+nauseated and poisoned. Against undead this spell acts as Heal. Undead who make a
+successful Will save reduce the damage by half.
+DND Dice: Harms 10 hp per caster level (max 150).
+This spell receives reduced benefit from spell power.</Description>
+        <Icon>CurativeAdmixtureHarm</Icon>
+        <School>Conjuration</School>
+        <SPCost>50</SPCost>
+        <Accelerate/>
         <Alchemist>6</Alchemist>
     </Spell>
     <Spell>
         <Name>Curative Admixture: Heal</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Gildleaf
+Infuses a Heal potion with magical energy, hurling it towards your target in an arc.
+This channels powerful positive energy into targets to wipe away injury and afflictions,
+restore 10 hit points per caster level (up to a max of 150 hit points at caster
+level 15), and remove ability damage and conditions blinded, confused, dazed,
+dazzled, deafened, diseased, exhausted, fatigued, feebleminded, insanity,
+nauseated and poisoned. Against undead this spell acts as Harm. Undead who make a
+successful Will save reduce the damage by half.
+DND Dice: Heals 10 hp per caster level (max 150).
+This spell receives reduced benefit from spell power.</Description>
+        <Icon>CurativeAdmixtureHeal</Icon>
+        <School>Conjuration</School>
+        <SPCost>50</SPCost>
+        <Accelerate/>
         <Alchemist>6</Alchemist>
     </Spell>
     <Spell>
         <Name>Dust of Confusion</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Ceruleite
+Scatter dust around you that causes enemies around you to begin to vividly
+hallucinate. On a failed Will save, they become Confused, attacking and able to
+be attacked by friend and foe alike. This effect lasts for 15 seconds +2 per
+Caster Level, and enemies make a recurring save once every 24 seconds.</Description>
+        <Icon>DustOfConfusion</Icon>
+        <School>Transmutation</School>
+        <SPCost>35</SPCost>
         <Alchemist>6</Alchemist>
     </Spell>
     <Spell>
         <Name>Elemental Combination</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Crimsonite
+Throw a single bottle of a volatile magical concoction that deals an intense
+combination of Poison, Fire, Cold, Acid, and Electric damage, chosen randomly
+each time.
+DND DIce: Deals: 1d6+3 damage of a random 3 selections among Poison, Fire, Cold,
+Acid and Electric damage per caster level, max 20d6+60 per element.
+A successful Reflex save reduces the damage by half.</Description>
+        <Icon>ElementalCombination</Icon>
+        <School>Conjuration</School>
+        <SPCost>30</SPCost>
         <Alchemist>6</Alchemist>
     </Spell>
     <Spell>
         <Name>Gold Breath</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Crimsonite
+You exhale gold through your mouth in a large cone, causing enemies caught within
+the area to take 4 to 9 Fire and 4 to 9 Bludgeon damage per caster level, max
+caster level 20. This is a Breath attack.
+DND Dice: Deals 1d6+3 Fire and 1d6+3 Bludgeon, max 20d6+60 and 20d6+60.
+A successful Fortitude save reduces the damage by half.</Description>
+        <Icon>GoldBreath</Icon>
+        <School>Conjuration</School>
+        <SPCost>30</SPCost>
         <Alchemist>6</Alchemist>
     </Spell>
     <Spell>
         <Name>Goldskin Potion</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Ceruleite
+Turn your skin to metallic, magical gold. Gain a resistance to physical damage
+of 30/Adamantine for the duration. Once this potion has prevented 30 points of
+damage per caster level, it is discharged</Description>
+        <Icon>GoldskinPotion</Icon>
+        <School>Conjuration</School>
+        <SPCost>50</SPCost>
         <Alchemist>6</Alchemist>
     </Spell>
     <Spell>
         <Name>Greater Heartseeker Poison Imbue</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Crimsonite
+Coat your weapon in a magical poison that saps the fortitude from your enemies
+on contact. On Hit: -1 Fort Save per stack, stacks 3 times.
+On Crit: 1d6 Constitution Damage.
+On Vorpal: 1 stack of Vulnerability
+An item can have only one temporary item enhancement at a time.</Description>
+        <Icon>GreaterHeartseekerPoisonImbue</Icon>
+        <School>Transmutation</School>
+        <SPCost>5</SPCost>
         <Alchemist>6</Alchemist>
     </Spell>
     <Spell>
         <Name>Greater Ice Chill Poison Imbue</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Crimsonite
+Coat your weapon in a magical poison that saps the speed from your enemies
+on contact. On Hit: -1 Reflex Save per stack, stacks 3 times.
+On Crit: 1d6 Dexterity Damage.
+On Vorpal: 1 stack of Vulnerability
+An item can have only one temporary item enhancement at a time.</Description>
+        <Icon>GreaterIceChillPoisonImbue</Icon>
+        <School>Transmutation</School>
+        <SPCost>5</SPCost>
         <Alchemist>6</Alchemist>
     </Spell>
     <Spell>
         <Name>Greater Soulshatter Poison Imbue</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Crimsonite
+Coat your weapon in a magical poison that saps the willpower from your enemies
+on contact. On Hit: -1 Will Save per stack, stacks 3 times.
+On Crit: 1d6 Wisdom Damage.
+On Vorpal: 1 stack of Vulnerability
+An item can have only one temporary item enhancement at a time.</Description>
+        <Icon>GreaterSoulshatterPoisonImbue</Icon>
+        <School>Transmutation</School>
+        <SPCost>5</SPCost>
         <Alchemist>6</Alchemist>
     </Spell>
     <Spell>
         <Name>Greater Voidmind Poison Imbue</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <School>Abjuration</School>
-        <Energy>Acid</Energy>
-        <SPCost/>
+        <Description>Primer Element: Crimsonite
+Coat your weapon in a magical poison that saps the defenses from your enemies
+on contact. On Hit: -1 Spell Resistance per stack, stacks 3 times.
+On Crit: 1d6 Intelligence Damage.
+On Vorpal: 1 stack of Vulnerability
+An item can have only one temporary item enhancement at a time.</Description>
+        <Icon>GreaterVoidmindPoisonImbue</Icon>
+        <School>Transmutation</School>
+        <SPCost>5</SPCost>
         <Alchemist>6</Alchemist>
     </Spell>
     <!---Alchemist SLAs-->
     <Spell>
       <Name>Spill the Bad Stuff</Name>
-      <Description></Description>
-      <Icon/>
-      <SPCost/>
+      <Description>Primer Element: Gildleaf
+Deals 1d6+4 per Caster Level of a random type of damage to enemies in a short cone.
+The damage all scales with Positive Spell Power. Affected enemies have a chance
+to be Blinded, Dazed, Silenced, Tripped, Stunned, or Paralyzed.
+(Fortitude save negates).</Description>
+      <Icon>ApothSpillTheBadStuff</Icon>
+      <SPCost>15</SPCost>
+      <Empower/>
+      <Heighten/>
+      <Intensify/>
+      <Maximize/>
       <Quicken/>
    </Spell>
     <Spell>
       <Name>Wave of Poison</Name>
-      <Description></Description>
-      <Icon/>
-      <SPCost/>
+      <Description>Primer Element: Ceruleite
+You infect enemies in a short cone with a deadly poison that eats away at them.
+Affected enemies take 2d4 Poison damage plus 1 Poison damage per 2 Caster
+Levels every 2 seconds for 12 seconds. This poison will leave enemies
+Contaminated. (Max Caster Level: 10)
+Poison-immune enemies to become vulnerable to Poison for 12 seconds.</Description>
+      <Icon>VileWaveOfPoison</Icon>
+      <SPCost>8</SPCost>
+      <Empower/>
+      <Intensify/>
+      <Maximize/>
       <Quicken/>
    </Spell>
     <Spell>
       <Name>Greater Wave of Poison</Name>
-      <Description></Description>
-      <Icon/>
-      <SPCost/>
+      <Description>Primer Element: Ceruleite
+You infect enemies in a short cone with a deadly poison that eats away at them.
+Affected enemies take 2d6 Poison damage plus 1 Poison damage per Caster Level
+every 2 seconds for 16 seconds. This poison will leave enemies Contaminated.
+(Max Caster Level: 20)
+Poison-immune enemies to become vulnerable to Poison for 12 seconds.</Description>
+      <Icon>VileGreaterWaveOfPoison</Icon>
+      <SPCost>8</SPCost>
+      <Empower/>
+      <Intensify/>
+      <Maximize/>
       <Quicken/>
    </Spell>
     <Spell>
         <Name>Venom Vial</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <SPCost/>
+        <Description>Primer Element: Crimsonite
+Conjuring a bottle of magical poison, you throw a projectile at a single foe
+that deals 3 to 8 Poison damage per caster level, max caster level 10.
+This poison will leave the enemy Contaminated.
+DND Dice: Deals 1d6+2 Poison damage per caster level, max 10d6+20</Description>
+        <Icon>BomVenomVial</Icon>
+        <SPCost>4</SPCost>
+        <Empower/>
+        <Maximize/>
         <Quicken/>
+        <Heighten/>
+        <Enlarge/>
     </Spell>
     <Spell>
         <Name>Caustic Obliteration</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <SPCost/>
+        <Description>Primer Element: Crimsonite
+Throw a vial that explodes with acid on impact, dealing 1d6+3 Acid damage
+per Caster Level to all enemies nearby. (Max Caster Level 10)</Description>
+        <Icon>BomCausticObliteration</Icon>
+        <SPCost>12</SPCost>
+        <Empower/>
         <Quicken/>
+        <Maximize/>
+        <Heighten/>
     </Spell>
     <Spell>
         <Name>Fiery Obliteration</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <SPCost/>
+        <Description>Primer Element: Crimsonite
+Throw a vial that explodes with fire on impact, dealing 1d6+3 Fire damage
+per Caster Level to all enemies nearby. (Max Caster Level 10)</Description>
+        <Icon>BomFieryObliteration</Icon>
+        <SPCost>12</SPCost>
+        <Empower/>
         <Quicken/>
+        <Maximize/>
+        <Heighten/>
     </Spell>
     <Spell>
         <Name>Frost Obliteration</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <SPCost/>
+        <Description>Primer Element: Crimsonite
+Throw a vial that explodes with frost on impact, dealing 1d6+3 Cold damage
+per Caster Level to all enemies nearby. (Max Caster Level 10)</Description>
+        <Icon>BomFrostObliteration</Icon>
+        <SPCost>12</SPCost>
+        <Empower/>
         <Quicken/>
+        <Maximize/>
+        <Heighten/>
     </Spell>
     <Spell>
         <Name>Poison Obliteration</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <SPCost/>
+        <Description>Primer Element: Crimsonite
+Throw a vial that explodes with poison on impact, dealing 1d6+3 Poison damage
+per Caster Level to all enemies nearby. (Max Caster Level 10)</Description>
+        <Icon>BomPoisonObliteration</Icon>
+        <SPCost>12</SPCost>
+        <Empower/>
         <Quicken/>
+        <Maximize/>
+        <Heighten/>
     </Spell>
     <Spell>
         <Name>Voltaic Obliteration</Name>
-        <Description></Description>
-        <Icon></Icon>
-        <SPCost/>
+        <Description>Primer Element: Crimsonite
+Throw a vial that explodes with electricity on impact, dealing 1d6+3 Electric
+damage per Caster Level to all enemies nearby. (Max Caster Level 10)</Description>
+        <Icon>BomVoltaicObliteration</Icon>
+        <SPCost>12</SPCost>
+        <Empower/>
         <Quicken/>
+        <Maximize/>
+        <Heighten/>
     </Spell>
 </Spells>

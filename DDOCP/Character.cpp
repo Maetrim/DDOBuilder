@@ -5214,6 +5214,37 @@ void Character::UpdateWeaponStances()
         DeactivateStance(ra);
         DeactivateStance(swashbuckling);
     }
+    // finally activate the specific weapon type stances
+    // add the auto controlled stances for each weapon type
+    WeaponType wt1 = Weapon_Count;
+    WeaponType wt2 = Weapon_Count;
+    if (gear.HasItemInSlot(Inventory_Weapon1))
+    {
+        wt1 = gear.ItemInSlot(Inventory_Weapon1).Weapon();
+    }
+    if (gear.HasItemInSlot(Inventory_Weapon2))
+    {
+        wt2 = gear.ItemInSlot(Inventory_Weapon2).Weapon();
+    }
+    for (size_t wt = Weapon_Unknown; wt < Weapon_Count; ++wt)
+    {
+        CString name = (LPCTSTR)EnumEntryText((WeaponType)wt, weaponTypeMap);
+        CString prompt;
+        prompt.Format("You are wielding a %s", name);
+        Stance weapon(
+                (LPCTSTR)name,
+                (LPCTSTR)name,
+                (LPCTSTR)prompt);
+        if (wt == wt1
+                || wt == wt2)
+        {
+            ActivateStance(weapon);
+        }
+        else
+        {
+            DeactivateStance(weapon);
+        }
+    }
 }
 
 void Character::UpdateArmorStances()

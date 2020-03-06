@@ -1851,7 +1851,9 @@ the controlling effect.</Description>
    </Feat>
    <Feat>
       <Name>Divine Grace</Name>
-      <Description>A paladin receives bonus to saves, equal to his or her Charisma bonus.</Description>
+      <Description>A paladin receives bonus to saves, equal to his or her Charisma bonus.
+Divine Grace is capped at 2 + (3 x Paladin level). For multiclassing, this means
+2 levels of Paladin would at best grant a max of +8 to saves.</Description>
       <Requirements/>
       <Acquire>Automatic</Acquire>
       <AutomaticAcquisition>
@@ -2027,10 +2029,15 @@ casting spells affected by Empower Healing, but they consume 10 additional spell
       </Stance>
       <FeatGroup>
          <IsArtificerBonus/>
+         <IsAlchemistBonus/>
          <IsStandardFeat/>
       </FeatGroup>
       <Requirements>
          <RequiresOneOf>
+            <Requirement>
+               <Class>Alchemist</Class>
+               <Level>4</Level>
+            </Requirement>
             <Requirement>
                <Class>Artificer</Class>
                <Level>1</Level>
@@ -3961,6 +3968,14 @@ This bonus stacks with the Weapon Focus feat.</Description>
          <Bonus>Feat</Bonus>
          <Amount>2</Amount>
       </Effect>
+         <Effect>
+            <DisplayName>Assassin: Knife Specialization</DisplayName>
+            <Type>CriticalRange</Type>
+            <Bonus>Competence</Bonus>
+            <ApplyAsItemEffect/>
+            <AmountVector size="3">0 1 2</AmountVector>
+            <Weapon>Dagger</Weapon>
+         </Effect>
    </Feat>
    <Feat>
       <Name>Greater Weapon Focus: Ranged Weapons</Name>
@@ -5218,6 +5233,15 @@ with item effects that double threat range like keen and impact.</Description>
          <Bonus>Feat</Bonus>
          <DamageType>Bludgeoning</DamageType>
       </Effect>
+         <Effect>
+            <DisplayName>Swashbuckler: Swashbuckling</DisplayName>
+            <Type>CriticalRange</Type>
+            <Bonus>Competence</Bonus>
+            <AmountVector size="3">0 2 4</AmountVector>
+            <ApplyAsItemEffect/>
+            <Weapon>Light Mace</Weapon>
+            <Weapon>Light Hammer</Weapon>
+         </Effect>
    </Feat>
    <Feat>
       <Name>Improved Critical: Piercing Weapons</Name>
@@ -5240,6 +5264,17 @@ and impact.</Description>
          <Bonus>Feat</Bonus>
          <DamageType>Piercing</DamageType>
       </Effect>
+         <Effect>
+            <DisplayName>Swashbuckler: Swashbuckling</DisplayName>
+            <Type>CriticalRange</Type>
+            <Bonus>Competence</Bonus>
+            <AmountVector size="3">0 1 2</AmountVector>
+            <ApplyAsItemEffect/>
+            <Weapon>Dagger</Weapon>
+            <Weapon>Shortsword</Weapon>
+            <Weapon>Rapier</Weapon>
+            <Weapon>Light Pick</Weapon>
+         </Effect>
    </Feat>
    <Feat>
       <Name>Improved Critical: Ranged Weapons</Name>
@@ -5292,6 +5327,24 @@ This feat does not stack with item effects that double threat range like keen an
          <AmountVector size="3">0 1 2</AmountVector>
          <Weapon>Battle Axe</Weapon>
       </Effect>
+         <Effect>
+            <DisplayName>Swashbuckler: Swashbuckling</DisplayName>
+            <Type>CriticalRange</Type>
+            <Bonus>Competence</Bonus>
+            <AmountVector size="3">0 1 2</AmountVector>
+            <ApplyAsItemEffect/>
+            <Weapon>Kukri</Weapon>
+         </Effect>
+         <Effect>
+            <DisplayName>Swashbuckler: Swashbuckling</DisplayName>
+            <Type>CriticalRange</Type>
+            <Bonus>Competence</Bonus>
+            <AmountVector size="3">0 2 4</AmountVector>
+            <ApplyAsItemEffect/>
+            <Weapon>Kama</Weapon>
+            <Weapon>Sickle</Weapon>
+            <Weapon>Hand Axe</Weapon>
+         </Effect>
    </Feat>
    <Feat>
       <Name>Improved Critical: Thrown Weapons</Name>
@@ -5313,6 +5366,25 @@ This feat does not stack with item effects that double threat range like keen an
          <Bonus>Feat</Bonus>
          <DamageType>Thrown</DamageType>
       </Effect>
+         <Effect>
+            <DisplayName>Swashbuckler: Swashbuckling</DisplayName>
+            <Type>CriticalRange</Type>
+            <Bonus>Competence</Bonus>
+            <AmountVector size="3">0 1 2</AmountVector>
+            <ApplyAsItemEffect/>
+            <Weapon>Throwing Dagger</Weapon>
+         </Effect>
+         <Effect>
+            <DisplayName>Swashbuckler: Swashbuckling</DisplayName>
+            <Type>CriticalRange</Type>
+            <Bonus>Competence</Bonus>
+            <AmountVector size="3">0 2 4</AmountVector>
+            <ApplyAsItemEffect/>
+            <Weapon>Dart</Weapon>
+            <Weapon>Shuriken</Weapon>
+            <Weapon>Throwing Axe</Weapon>
+            <Weapon>Throwing Hammer</Weapon>
+         </Effect>
    </Feat>
    <Feat>
       <Name>Improved Damage Reduction</Name>
@@ -8333,7 +8405,7 @@ melee weapons and bypasses 10% fortification.</Description>
       <Effect>
          <Type>Doublestrike</Type>
          <Bonus>Feat</Bonus>
-         <Amount>2</Amount>
+         <Amount>3</Amount>
       </Effect>
       <Effect>
          <Type>FortificationBypass</Type>
@@ -8371,7 +8443,7 @@ for fighting with two weapons as if you were wielding a light weapon in your off
       <Acquire>Train</Acquire>
       <Icon>OversizedTwoWeaponFighting</Icon>
       <Effect>
-         <DisplayName>Fake effect to cause updated, never displayed</DisplayName>
+         <DisplayName>Fake effect to cause update, never displayed</DisplayName>
          <Type>AttackBonus</Type>
          <Bonus>Feat</Bonus>
          <Amount>0</Amount>
@@ -8966,7 +9038,7 @@ the target shaken.(A successful Will save negate the shaken effect.</Description
    <Feat>
       <Name>Perfect Self</Name>
       <Description>You have transcended your former race and are now considered a Lawful
-Outsider. You have gained damage reduction 10 / epic.
+Outsider. You have gained damage reduction 10/Epic.
 Warforged retain most living construct traits.</Description>
       <Requirements/>
       <Acquire>Automatic</Acquire>
@@ -17091,7 +17163,7 @@ You gain +3d6 sneak attack damage.</Description>
    <Feat>
       <Name>Inspire Excellence</Name>
       <Description>You can improve the abilities of your comrades through your performance.
-This song grants a +2 comptetence bonus to all ability scores to yourself and
+This song grants a +2 competence bonus to all ability scores to yourself and
 all allies near you. Requires 20 trained ranks (not total mod) of the Perform
 skill to use.</Description>
       <FeatGroup>
@@ -17099,10 +17171,8 @@ skill to use.</Description>
       </FeatGroup>
       <Requirements>
          <Requirement>
-            <Feat>Inspire Heroics</Feat>
-         </Requirement>
-         <Requirement>
-            <MinLevel>21</MinLevel>
+            <Class>Bard</Class>
+            <Level>12</Level>
          </Requirement>
          <Requirement>
             <Skill>Perform</Skill>

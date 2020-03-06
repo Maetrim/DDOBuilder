@@ -13,8 +13,8 @@
       <EnhancementTreeItem>
          <Name>Mechanic: Arbalester</Name>
          <InternalName>MechCore1</InternalName>
-         <Description>Increases your ranged sneak attack and Point Blank Shot range by 5 meters
-for every trained Mechanic Core enhancement.
+         <Description>Your ranged sneak attack and point blank shot range increases by 5 meters
+per trained Mechanic Core enhancement.
 You also gain proficiency with great crossbows.</Description>
          <Icon>MechArbalester</Icon>
          <XPosition>0</XPosition>
@@ -49,10 +49,12 @@ You also gain proficiency with great crossbows.</Description>
          <Name>Mechanic: Tanglefoot</Name>
          <InternalName>MechCore2</InternalName>
          <Description>Alchemical Trap Activate: Throws a flask of caustic liquid at your enemy,
-which explodes into a sticky mess. Enemies caught within by the goo puddle take
-4d6 acid damage every 2 seconds, Reflex DC (10 + Rogue Level + Intelligence Modifier)
-halves, and are slowed, Reflex (DC 10 + Rogue Level + Intelligence Modifier) negates.
-This damage scales with 200% Ranged Power.
+which explodes into a sticky mess. Enemies caught within by the goo puddle take:
+4d6 Acid damage every 2 seconds (Damage scales with 200% Ranged Power, Reflex DC
+10 + Rogue Level + Intelligence Modifier for half damage)
+Slow (Reflex DC 10 + Rogue Level + Intelligence Modifier negates).
+Antirequisite: This enhancement cannot be taken at the same time as Tanglefoot
+in the Half-Elf tree.
 Cooldown: 30 seconds. Spell Resistance: No</Description>
          <Icon>MechTanglefoot</Icon>
          <XPosition>1</XPosition>
@@ -70,6 +72,12 @@ Cooldown: 30 seconds. Spell Resistance: No</Description>
                <Class>Rogue</Class>
                <Level>3</Level>
             </Requirement>
+             <RequiresNoneOf>
+                <Requirement>
+                   <Enhancement>HalfElfDilettanteSpecialAbility</Enhancement>
+                   <Selection>Tanglefoot</Selection>
+                </Requirement>
+             </RequiresNoneOf>
          </Requirements>
          <Effect>
             <Type>SneakAttackRange</Type>
@@ -96,8 +104,8 @@ which explodes into a sticky mess. Enemies caught within by the goo puddle take
       <EnhancementTreeItem>
          <Name>Mechanic: Targeting Sights</Name>
          <InternalName>MechCore3</InternalName>
-         <Description>You can now use your Intelligence modifier for damage modifier with all
-crossbows and thrown weapons. You also gain proficiency with light repeating crossbows.</Description>
+         <Description>You can now use your Intelligence modifier for damage with all
+crossbows and thrown weapons. You also gain proficiency with Light Repeating Crossbows.</Description>
          <Icon>MechTargetingSights</Icon>
          <XPosition>2</XPosition>
          <YPosition>0</YPosition>
@@ -122,7 +130,11 @@ crossbows and thrown weapons. You also gain proficiency with light repeating cro
          <Effect>
             <Type>WeaponDamageAbility</Type>
             <Bonus>Enhancement</Bonus>
-            <WeaponClass>Crossbows</WeaponClass>
+            <Weapon>Repeating Light Crossbow</Weapon>
+            <Weapon>Repeating Heavy Crossbow</Weapon>
+            <Weapon>Great Crossbow</Weapon>
+            <Weapon>Heavy Crossbow</Weapon>
+            <Weapon>Light Crossbow</Weapon>
             <Ability>Intelligence</Ability>
          </Effect>
          <Effect>
@@ -146,7 +158,7 @@ crossbows and thrown weapons. You also gain proficiency with light repeating cro
          <Name>Mechanic: Improved Detection</Name>
          <InternalName>MechCore4</InternalName>
          <Description>You can detect traps and search from 50% further away.
-You also gain proficiency with heavy repeating crossbows. +1 to-hit, +1 damage,
+You gain proficiency with Heavy Repeating Crossbows. You gain +1 to hit and damage
 and 1 extra Sneak Attack die with bows, crossbows, and thrown weapons.</Description>
          <Icon>MechImprovedDetection</Icon>
          <XPosition>3</XPosition>
@@ -207,14 +219,14 @@ and 1 extra Sneak Attack die with bows, crossbows, and thrown weapons.</Descript
             <Type>SneakAttackDice</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>1</Amount>
-            <Stance>Ranged</Stance>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Mechanic: Expert Builder</Name>
          <InternalName>MechCore5</InternalName>
-         <Description>You gain a +1 Critical Multiplier for bows, crossbows, and thrown weapons.
-Great Crossbows instead gain +2 Competence Bonus to Critical Multiplier.
+         <Description>You gain a +1 Competence Bonus to Critical Multiplier with bows,
+crossbows, and thrown weapons. Great Crossbows instead gain +2 Competence Bonus
+to Critical Multiplier.
 Cooldowns of Alchemical Trap attacks are reduced by 20%.</Description>
          <Icon>MechExpertBuilder</Icon>
          <XPosition>4</XPosition>
@@ -265,15 +277,22 @@ Cooldowns of Alchemical Trap attacks are reduced by 20%.</Description>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Mechanic: HipFlask</Name>
+         <Name>Mechanic: Hip Flask</Name>
          <InternalName>MechCore6</InternalName>
-         <Description>Passive: +2 Dexterity and Intelligence, +1 to hit with all crossbows,
-+1 damage with all repeating crossbows, +2 damage with non-repeating crossbows,
-+2 Sneak Attack dice and +2 to hit when performing Sneak Attacks
-Action Boost: You drink a potion that you've been saving for a special occasion.
-Heals you for 10d3+30 (scales with 200% Ranged Power) and adds +10 to Dodge and Maximum Dodge for 10 seconds.
-For the next 60 seconds, you gain +1d6 to all ability scores, and +2d6 to attack and damage. (Cooldown: 3 minutes)
-"A little something of your own creation. Potent stuff, drink sparingly."</Description>
+         <Description>Action Boost: You drink a potion that you've been saving for a special occasion.
+This heals 10d3+30 positive energy, scaling with 200% Ranged Power. For the next
+60 seconds, you gain +1d6 to all ability scores, +2d6 to attack and damage.
+For 10 seconds you gain +10 Dodge (this ignores Dodge caps).
+(Cooldown: 3 minutes)
+"A little something of your own creation. Potent stuff, drink sparingly."
+
+As a Master Mechanic, you also gain these passive benefits:
++2 Dexterity
++2 Intelligence
++1 to hit with all crossbows
++1 damage with repeating crossbows
++2 damage with non-repeating crossbows
++2 Sneak Attack dice and +2 to hit when performing Sneak Attacks</Description>
          <Icon>MechHipFlask</Icon>
          <XPosition>5</XPosition>
          <YPosition>0</YPosition>
@@ -348,7 +367,8 @@ For the next 60 seconds, you gain +1d6 to all ability scores, and +2d6 to attack
          <Name>Mechanic: Sharpshooter I</Name>
          <InternalName>MechSharpshooterI</InternalName>
          <Description>+1 to hit and damage with all bows, crossbows, and thrown weapons.
-Non-repeating crossbows increase the damage to +2 and +1 SA dice.</Description>
++1 additional damage and one Sneak Attack die with all non-repeating crossbows
+if you are not dual shooting.</Description>
          <Icon>MechSharpshooter</Icon>
          <XPosition>0</XPosition>
          <YPosition>1</YPosition>
@@ -373,6 +393,7 @@ Non-repeating crossbows increase the damage to +2 and +1 SA dice.</Description>
             <Bonus>Enhancement</Bonus>
             <WeaponClass>Crossbows</WeaponClass>
             <Amount>1</Amount>
+            <NoneOfStance>Dual Shooter</NoneOfStance>
          </Effect>
          <Effect>
             <Type>AttackBonus</Type>
@@ -391,27 +412,37 @@ Non-repeating crossbows increase the damage to +2 and +1 SA dice.</Description>
             <Bonus>Enhancement</Bonus>
             <WeaponClass>Crossbows</WeaponClass>
             <Amount>1</Amount>
+            <NoneOfStance>Dual Shooter</NoneOfStance>
+         </Effect>
+         <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Weapon>Great Crossbow</Weapon>
+            <Weapon>Heavy Crossbow</Weapon>
+            <Weapon>Light Crossbow</Weapon>
+            <Amount>1</Amount>
+            <NoneOfStance>Dual Shooter</NoneOfStance>
          </Effect>
          <Effect>
             <Type>DamageBonus</Type>
             <Bonus>Enhancement</Bonus>
             <WeaponClass>Thrown</WeaponClass>
             <Amount>1</Amount>
+            <NoneOfStance>Dual Shooter</NoneOfStance>
          </Effect>
          <Effect>
             <Type>SneakAttackDice</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>1</Amount>
+            <NoneOfStance>Dual Shooter</NoneOfStance>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Mechanic: Lacerating Shots</Name>
          <InternalName>MechLaceratingShots</InternalName>
-         <Description>You have upgraded your Great Crossbow to shoot more forcefully that its
-construction would normally allow. Your Great Crossbow attacks have a 33%/66%/100%
-chance of putting a stack of Bleed on enemies. The bleed effect can stack up to 5 times.
-Note: Bleed deals 1d6 damage every 2 seconds for 14 seconds.
-This damage scales with 200% Melee Power.</Description>
+         <Description>You have upgraded your Great Crossbow to shoot more forcefully than its
+construction would normally allow. Your Great Crossbow attacks have a [33/66/100]%
+chance of putting a stack of Bleed on enemies.</Description>
          <Icon>MechLaceratingShots</Icon>
          <XPosition>1</XPosition>
          <YPosition>1</YPosition>
@@ -429,8 +460,8 @@ This damage scales with 200% Melee Power.</Description>
          <Name>Mechanic: Thunderstone</Name>
          <InternalName>MechThunderstone</InternalName>
          <Description>Alchemical Trap Attack: Throws an alchemical charge at your enemy.
-Deals 4d6/6d6/8d6 damage and dazes in area.
-Fort DC (12/16/20 + Rogue Level + Intelligence Modifier) Negates daze.
+Deals [4/6/8]d6 sonic damage and dazes in area.
+Fort DC (12/14/16 + Rogue Level + Intelligence Modifier) Negates daze.
 The damage scales with 200% Ranged Power
 Cooldown: 12 seconds. Spell Resistance: No </Description>
          <Icon>MechThunderstone</Icon>
@@ -450,11 +481,11 @@ Cooldown: 12 seconds. Spell Resistance: No </Description>
          <DC>
             <Name>Mechanic: Thunderstone</Name>
             <Description>Alchemical Trap Attack: Throws an alchemical charge at your enemy.
-Deals 4d6/6d6/8d6 damage and dazes in area.
+Deals 4d6/6d6/8d6 sonic damage and dazes in area.
 The damage scales with 200% Ranged Power</Description>
             <Icon>MechThunderstone</Icon>
             <DCVersus>Fortitude</DCVersus>
-            <AmountVector size="3">12 16 20</AmountVector>
+            <AmountVector size="3">12 14 16</AmountVector>
             <ClassLevel>Rogue</ClassLevel>
             <ModAbility>Intelligence</ModAbility>
          </DC>
@@ -462,8 +493,8 @@ The damage scales with 200% Ranged Power</Description>
       <EnhancementTreeItem>
          <Name>Mechanic: Mechanics</Name>
          <InternalName>MechMechanics</InternalName>
-         <Description>+1/+2/+3 Disable Device, Open Lock, and Repair.
-+1/+2/+3 to Saving Throws you make against traps.</Description>
+         <Description>+[1/2/3] Disable Device, Open Lock, and Repair.
++[1/2/3] to Saving Throws you make against traps.</Description>
          <Icon>MechMechanics</Icon>
          <XPosition>3</XPosition>
          <YPosition>1</YPosition>
@@ -494,7 +525,7 @@ The damage scales with 200% Ranged Power</Description>
       <EnhancementTreeItem>
          <Name>Mechanic: Awareness</Name>
          <InternalName>MechAwareness</InternalName>
-         <Description>+1/+2/+3 Listen, Search, and Spot</Description>
+         <Description>+[1/2/3] Listen, Search, and Spot</Description>
          <Icon>Awareness</Icon>
          <XPosition>4</XPosition>
          <YPosition>1</YPosition>
@@ -520,7 +551,8 @@ The damage scales with 200% Ranged Power</Description>
          <Name>Mechanic: Sharpshooter II</Name>
          <InternalName>MechSharpshooterII</InternalName>
          <Description>+1 to hit and damage with all bows, crossbows, and thrown weapons.
-Non-repeating crossbows increase the damage to +2 and +1 SA dice.</Description>
++1 additional damage and one Sneak Attack die with all non-repeating crossbows
+if you are not dual shooting.</Description>
          <Icon>MechSharpshooter</Icon>
          <XPosition>0</XPosition>
          <YPosition>2</YPosition>
@@ -548,6 +580,7 @@ Non-repeating crossbows increase the damage to +2 and +1 SA dice.</Description>
             <Bonus>Enhancement</Bonus>
             <WeaponClass>Crossbows</WeaponClass>
             <Amount>1</Amount>
+            <NoneOfStance>Dual Shooter</NoneOfStance>
          </Effect>
          <Effect>
             <Type>AttackBonus</Type>
@@ -566,6 +599,16 @@ Non-repeating crossbows increase the damage to +2 and +1 SA dice.</Description>
             <Bonus>Enhancement</Bonus>
             <WeaponClass>Crossbows</WeaponClass>
             <Amount>1</Amount>
+            <NoneOfStance>Dual Shooter</NoneOfStance>
+         </Effect>
+         <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Weapon>Great Crossbow</Weapon>
+            <Weapon>Heavy Crossbow</Weapon>
+            <Weapon>Light Crossbow</Weapon>
+            <Amount>1</Amount>
+            <NoneOfStance>Dual Shooter</NoneOfStance>
          </Effect>
          <Effect>
             <Type>DamageBonus</Type>
@@ -577,13 +620,14 @@ Non-repeating crossbows increase the damage to +2 and +1 SA dice.</Description>
             <Type>SneakAttackDice</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>1</Amount>
+            <NoneOfStance>Dual Shooter</NoneOfStance>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Mechanic: Improved Traps</Name>
          <InternalName>MechImprovedTraps</InternalName>
-         <Description>+1/+2/+3 to the save DC's of Alchemical Trap Attacks and Magical Traps.
-Elemental Traps that you place now have a DC equal to 65%/80%/100% of your
+         <Description>+[1/2/3] to the save DC's of Alchemical Trap Attacks and Magical Traps.
+Elemental Traps that you place now have a DC equal to [65/80/100]% of your
 Disable Device Skill instead of 50%. </Description>
          <Icon>MechImprovedTraps</Icon>
          <XPosition>1</XPosition>
@@ -601,8 +645,8 @@ Disable Device Skill instead of 50%. </Description>
       <EnhancementTreeItem>
          <Name>Mechanic: Wand and Scroll Mastery</Name>
          <InternalName>MechWandAndScrollMastery</InternalName>
-         <Description>+25%/+50%/+75% damage and healing of your wands, scrolls, and other
-items that cast spells. Adds +1/+2/+3 to the save DC's of your offensive wands.</Description>
+         <Description>+[25/50/75]% damage and healing of your wands, scrolls, and other
+items that cast spells. Adds +[1/3/6] to the save DC's of your offensive wands.</Description>
          <Icon>MechWandAndScrollMastery</Icon>
          <XPosition>3</XPosition>
          <YPosition>2</YPosition>
@@ -655,7 +699,7 @@ items that cast spells. Adds +1/+2/+3 to the save DC's of your offensive wands.<
       <EnhancementTreeItem>
          <Name>Mechanic: Skill Boost</Name>
          <InternalName>MechSkillBoost</InternalName>
-         <Description>Activate to gain a +2/+4/+6 Action Boost bonus to all skills for 20 seconds.
+         <Description>Activate to gain a +[2/4/6] Action Boost bonus to all skills for 20 seconds.
 (Cooldown: 30 seconds)</Description>
          <Icon>MechSkillBoost</Icon>
          <XPosition>4</XPosition>
@@ -674,8 +718,9 @@ items that cast spells. Adds +1/+2/+3 to the save DC's of your offensive wands.<
       <EnhancementTreeItem>
          <Name>Mechanic: Sharpshooter III</Name>
          <InternalName>MechSharpshooterIII</InternalName>
-         <Description>+1 to-hit and damage with all bows, crossbows, and thrown weapons.
-Non-repeating crossbows increase the damage to +2 and +1 SA dice.</Description>
+         <Description>+1 to hit and damage with all bows, crossbows, and thrown weapons.
++1 additional damage and one Sneak Attack die with all non-repeating crossbows
+if you are not dual shooting.</Description>
          <Icon>MechSharpshooter</Icon>
          <XPosition>0</XPosition>
          <YPosition>3</YPosition>
@@ -703,6 +748,7 @@ Non-repeating crossbows increase the damage to +2 and +1 SA dice.</Description>
             <Bonus>Enhancement</Bonus>
             <WeaponClass>Crossbows</WeaponClass>
             <Amount>1</Amount>
+            <NoneOfStance>Dual Shooter</NoneOfStance>
          </Effect>
          <Effect>
             <Type>AttackBonus</Type>
@@ -721,6 +767,16 @@ Non-repeating crossbows increase the damage to +2 and +1 SA dice.</Description>
             <Bonus>Enhancement</Bonus>
             <WeaponClass>Crossbows</WeaponClass>
             <Amount>1</Amount>
+            <NoneOfStance>Dual Shooter</NoneOfStance>
+         </Effect>
+         <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Weapon>Great Crossbow</Weapon>
+            <Weapon>Heavy Crossbow</Weapon>
+            <Weapon>Light Crossbow</Weapon>
+            <Amount>1</Amount>
+            <NoneOfStance>Dual Shooter</NoneOfStance>
          </Effect>
          <Effect>
             <Type>DamageBonus</Type>
@@ -732,12 +788,14 @@ Non-repeating crossbows increase the damage to +2 and +1 SA dice.</Description>
             <Type>SneakAttackDice</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>1</Amount>
+            <NoneOfStance>Dual Shooter</NoneOfStance>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Mechanic: Wrack Construct</Name>
          <InternalName>MechWrackConstruct</InternalName>
-         <Description>Choose one (Cooldown: 12/8/4 seconds):</Description>
+         <Description>Perform melee or ranged attacks that hinder constructs and living constructs.
+Choose one (Cooldown: 12/8/4 seconds):</Description>
          <Icon>MechWrackConstruct</Icon>
          <XPosition>1</XPosition>
          <YPosition>3</YPosition>
@@ -756,7 +814,7 @@ Non-repeating crossbows increase the damage to +2 and +1 SA dice.</Description>
             <EnhancementSelection>
                <Name>Wracking Strike</Name>
                <Description>Melee Attack: +1[W].
-On Damage: Deals 3d6/6d6/9d6 extra damage to constructs and living constructs,
+On Damage: Deals [3/6/9]d6 extra damage to constructs and living constructs,
 and applies Wracked: This construct or living construct's fortification is
 reduced by -10% and loses its inherent immunity to sneak attack. This effect
 stacks up to five times.
@@ -769,7 +827,7 @@ Damage scales with 200% melee power. Duration: 20 seconds.</Description>
             <EnhancementSelection>
                <Name>Wracking Shot</Name>
                <Description>Ranged Attack: +1[W].
-On Damage: Deals 3d6/6d6/9d6 extra damage to constructs and living constructs,
+On Damage: Deals [3/6/9]d6 extra damage to constructs and living constructs,
 and applies Wracked: This construct or living construct's fortification is
 reduced by -10% and loses its inherent immunity to sneak attack. This effect
 stacks up to five times.
@@ -786,9 +844,9 @@ Damage scales with 200% ranged power. Duration: 20 seconds.</Description>
          <InternalName>MechOozeFlask</InternalName>
          <Description>Alchemical Trap Attack: You throw a flask at your enemy that contains
 concentrated grey ooze secretions.
-Deals 4d8/8d8/12d8 acid damage (scales with 200% Melee Power), no save, and reduces
-the Armor Class and PRR of your opponent by 2/4/8 for 30 seconds,
-Fort DC 10 + Rogue Level + Intelligence Modifier) negates. 
+Deals [4/8/12]d8 Acid damage (scales with 200% Melee Power), no save, and reduces
+the Armor Class and PRR of your opponent by [2/4/8] for 30 seconds,
+Fort DC 10 + Rogue Level + Intelligence Modifier negates. 
 Cooldown: 12 seconds. Spell Resistance: No </Description>
          <Icon>MechOozeFlask</Icon>
          <XPosition>2</XPosition>
@@ -810,8 +868,8 @@ Cooldown: 12 seconds. Spell Resistance: No </Description>
             <Name>Mechanic: Ooze Flask</Name>
             <Description>Alchemical Trap Attack: You throw a flask at your enemy that contains
 concentrated grey ooze secretions.
-Deals 4d8/8d8/12d8 acid damage (scales with 200% Melee Power), no save, and reduces
-the Armor Class and PRR of your opponent by 2/4/8 for 30 seconds</Description>
+Deals [4/8/12]d8 acid damage (scales with 200% Melee Power), no save, and reduces
+the Armor Class and PRR of your opponent by [2/4/8] for 30 seconds</Description>
             <Icon>MechOozeFlask</Icon>
             <DCVersus>Fortitude</DCVersus>
             <AmountVector size="1">10</AmountVector>
@@ -822,7 +880,7 @@ the Armor Class and PRR of your opponent by 2/4/8 for 30 seconds</Description>
       <EnhancementTreeItem>
          <Name>Mechanic: Use Magical Device</Name>
          <InternalName>MechUseMagicalDevice</InternalName>
-         <Description>+1/+2/+3 Use Magic Device</Description>
+         <Description>+[1/2/3] Use Magic Device</Description>
          <Icon>MechUseMagicalDevice</Icon>
          <XPosition>3</XPosition>
          <YPosition>3</YPosition>
@@ -889,8 +947,9 @@ the Armor Class and PRR of your opponent by 2/4/8 for 30 seconds</Description>
       <EnhancementTreeItem>
          <Name>Mechanic: Sharpshooter IV</Name>
          <InternalName>MechSharpshooterIV</InternalName>
-         <Description>+1 to-hit and damage with all bows, crossbows, and thrown weapons.
-Non-repeating crossbows increase the damage to +2 and +1 SA dice.</Description>
+         <Description>+1 to hit and damage with all bows, crossbows, and thrown weapons.
++1 additional damage and one Sneak Attack die with all non-repeating crossbows
+if you are not dual shooting.</Description>
          <Icon>MechSharpshooter</Icon>
          <XPosition>0</XPosition>
          <YPosition>4</YPosition>
@@ -918,6 +977,7 @@ Non-repeating crossbows increase the damage to +2 and +1 SA dice.</Description>
             <Bonus>Enhancement</Bonus>
             <WeaponClass>Crossbows</WeaponClass>
             <Amount>1</Amount>
+            <NoneOfStance>Dual Shooter</NoneOfStance>
          </Effect>
          <Effect>
             <Type>AttackBonus</Type>
@@ -936,6 +996,16 @@ Non-repeating crossbows increase the damage to +2 and +1 SA dice.</Description>
             <Bonus>Enhancement</Bonus>
             <WeaponClass>Crossbows</WeaponClass>
             <Amount>1</Amount>
+            <NoneOfStance>Dual Shooter</NoneOfStance>
+         </Effect>
+         <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Weapon>Great Crossbow</Weapon>
+            <Weapon>Heavy Crossbow</Weapon>
+            <Weapon>Light Crossbow</Weapon>
+            <Amount>1</Amount>
+            <NoneOfStance>Dual Shooter</NoneOfStance>
          </Effect>
          <Effect>
             <Type>DamageBonus</Type>
@@ -947,12 +1017,13 @@ Non-repeating crossbows increase the damage to +2 and +1 SA dice.</Description>
             <Type>SneakAttackDice</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>1</Amount>
+            <NoneOfStance>Dual Shooter</NoneOfStance>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Mechanic: Disable Construct</Name>
          <InternalName>MechDisableConstruct</InternalName>
-         <Description>Activate: Target construct or living construct is dazed for 10/20/30 seconds.
+         <Description>Activate: Target construct or living construct is dazed for [10/20/30] seconds.
 This effect is removed on damage.
 Using this ability on a target already affected by it will extend the duration.
 (Cooldown: 25 seconds)</Description>
@@ -977,8 +1048,8 @@ Using this ability on a target already affected by it will extend the duration.
          <Name>Mechanic: Fletching</Name>
          <InternalName>MechFletching</InternalName>
          <Description>You are skilled at enhancing, salvaging, and re-purposing your arrows,
-bolts, and throwing weapons. +3/6/10 Ranged Power and your ammunition gains a
-50/65/80% chance of returning.</Description>
+bolts, and throwng weapons. +[3/6/10] Ranged Power and your ammunition gains a
+[50/65/80]% chance of returning.</Description>
          <Icon>MechFletching</Icon>
          <XPosition>2</XPosition>
          <YPosition>4</YPosition>
@@ -1066,7 +1137,8 @@ bolts, and throwing weapons. +3/6/10 Ranged Power and your ammunition gains a
          <Name>Mechanic: Sharpshooter V</Name>
          <InternalName>MechSharpshooterV</InternalName>
          <Description>+3 to-hit and damage with all bows, crossbows, and thrown weapons.
-+3 additional damage with all non-repeating crossbows and +1 SA dice.</Description>
++3 additional damage and one Sneak Attack die with all non-repeating crossbows
+if you are not dual shooting.</Description>
          <Icon>MechSharpshooter</Icon>
          <XPosition>0</XPosition>
          <YPosition>5</YPosition>
@@ -1097,6 +1169,7 @@ bolts, and throwing weapons. +3/6/10 Ranged Power and your ammunition gains a
             <Bonus>Enhancement</Bonus>
             <WeaponClass>Crossbows</WeaponClass>
             <Amount>3</Amount>
+            <NoneOfStance>Dual Shooter</NoneOfStance>
          </Effect>
          <Effect>
             <Type>AttackBonus</Type>
@@ -1113,8 +1186,11 @@ bolts, and throwing weapons. +3/6/10 Ranged Power and your ammunition gains a
          <Effect>
             <Type>DamageBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <WeaponClass>Crossbows</WeaponClass>
+            <Weapon>Great Crossbow</Weapon>
+            <Weapon>Heavy Crossbow</Weapon>
+            <Weapon>Light Crossbow</Weapon>
             <Amount>3</Amount>
+            <NoneOfStance>Dual Shooter</NoneOfStance>
          </Effect>
          <Effect>
             <Type>DamageBonus</Type>
@@ -1126,12 +1202,16 @@ bolts, and throwing weapons. +3/6/10 Ranged Power and your ammunition gains a
             <Type>SneakAttackDice</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>1</Amount>
+            <NoneOfStance>Dual Shooter</NoneOfStance>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Mechanic: Rapid Fire</Name>
          <InternalName>MechRapidFire</InternalName>
-         <Description>+3%/6%/10% Doubleshot</Description>
+         <Description>+[3/6/10]% Doubleshot
+Doubleshot: Your ranged attacks, including thrown attacks, gain a percent chance
+to attack with an extra projectile. Repeating Crossbows have a reduced chance to
+produce extra shots.</Description>
          <Icon>MechRapidFire</Icon>
          <XPosition>1</XPosition>
          <YPosition>5</YPosition>
@@ -1157,12 +1237,11 @@ bolts, and throwing weapons. +3/6/10 Ranged Power and your ammunition gains a
       <EnhancementTreeItem>
          <Name>Mechanic: Time Bomb</Name>
          <InternalName>MechTimeBomb</InternalName>
-         <Description>Alchemical Trap Attack: Quickly creates an alchemical charge at your feet.
-Deals 10/25/50 sonic and 10/25/50 fire damage per rogue level to all nearby
+         <Description>Alchemical Trap Attack: Creates an alchemical charge at your feet.
+Deals [10/25/50] Sonic and [10/25/50] Fire damage per Rogue level to all nearby
 enemies after 2 seconds, and knocks them to the ground.
-Reflex (DC [10/14/18] + Rogue Level + Intelligence Modifier + Trap Bonus) for half damage.
-Balance DC (Disable Device check)
-(Listed Balance DC (10 + Half Rogue Level + Intelligence Modifier + Trap Bonus) to Negate knockdown. 
+Reflex (DC [10/14/18] + Rogue Level + Intelligence Modifier) for half damage.
+Balance DC 10 + Rogue Level + Intelligence Modifier to Negate knockdown. 
 Cooldown: 20 seconds. Spell Resistance: No </Description>
          <Icon>MechTimeBomb</Icon>
          <XPosition>2</XPosition>
@@ -1184,7 +1263,7 @@ Cooldown: 20 seconds. Spell Resistance: No </Description>
          <DC>
             <Name>Mechanic: Time Bomb</Name>
             <Description>Alchemical Trap Attack: Quickly creates an alchemical charge at your feet.
-Deals 10/25/50 sonic and 10/25/50 fire damage per rogue level to all nearby
+Deals [10/25/50] Sonic and [10/25/50]Ffire damage per rogue level to all nearby
 enemies after 2 seconds, and knocks them to the ground.</Description>
             <Icon>MechTimeBomb</Icon>
             <DCVersus>Balance</DCVersus>
@@ -1197,8 +1276,8 @@ enemies after 2 seconds, and knocks them to the ground.</Description>
       <EnhancementTreeItem>
          <Name>Mechanic: Sniper</Name>
          <InternalName>MechSniper</InternalName>
-         <Description>You gain 1 extra Sneak Attack die with bows, crossbows, and thrown weapons.
-Non-repeating crossbows increase this to 3 Sneak Attack dice and also gain +2[W].
+         <Description>+1d6 Sneak Attack die with bows, repeating crossbows, and thrown weapons.
+Non-repeating crossbows instead gain +3d6 extra sneak attack damage and +2[W].
 Great Crossbows now vorpal on a 19-20.</Description>
          <Icon>MechSniper</Icon>
          <XPosition>3</XPosition>
@@ -1225,7 +1304,21 @@ Great Crossbows now vorpal on a 19-20.</Description>
          <Effect>
             <Type>SneakAttackDice</Type>
             <Bonus>Enhancement</Bonus>
+            <Amount>3</Amount>
+            <AnyOfStance>Light Crossbow</AnyOfStance>
+            <AnyOfStance>Heavy Crossbow</AnyOfStance>
+            <AnyOfStance>Great Crossbow</AnyOfStance>
+            <AnyOfStance>Thrown</AnyOfStance>
+            <AnyOfStance>Shortbow</AnyOfStance>
+            <AnyOfStance>Longbow</AnyOfStance>
+         </Effect>
+         <Effect>
+            <DisplayName>Mechanic: Sniper (Repeating Crossbows)</DisplayName>
+            <Type>SneakAttackDice</Type>
+            <Bonus>Enhancement</Bonus>
             <Amount>1</Amount>
+            <AnyOfStance>Repeating Light Crossbow</AnyOfStance>
+            <AnyOfStance>Repeating Heavy Crossbow</AnyOfStance>
          </Effect>
          <Effect>
             <Type>WeaponBaseDamageBonus</Type>
@@ -1239,8 +1332,9 @@ Great Crossbows now vorpal on a 19-20.</Description>
       <EnhancementTreeItem>
          <Name>Mechanic: Mechanical Reloader</Name>
          <InternalName>MechMechanicalReloader</InternalName>
-         <Description>+10 Ranged Power, +10% Ranged Alacrity with repeating crossbows and thrown weapons.
-+30% Ranged Alacrity with non-repeating crossbows.</Description>
+         <Description>+10 Ranged Power, +10% Ranged Alacrity with repeating crossbows, dual shooters
+and thrown weapons.
++30% to Ranged Alacrity with non-repeating crossbows when not dual shooting.</Description>
          <Icon>MechMechanicalReloader</Icon>
          <XPosition>4</XPosition>
          <YPosition>5</YPosition>
@@ -1271,14 +1365,18 @@ Great Crossbows now vorpal on a 19-20.</Description>
          <Effect>
             <Type>Alacrity</Type>
             <Bonus>Enhancement</Bonus>
-            <WeaponClass>RepeatingCrossbows</WeaponClass>
+            <Weapon>Repeating Light Crossbow</Weapon>
+            <Weapon>Repeating Heavy Crossbow</Weapon>
             <Amount>10</Amount>
          </Effect>
          <Effect>
             <Type>Alacrity</Type>
             <Bonus>Enhancement</Bonus>
-            <WeaponClass>Crossbows</WeaponClass>
+            <Weapon>Light Crossbow</Weapon>
+            <Weapon>Heavy Crossbow</Weapon>
+            <Weapon>Great Crossbow</Weapon>
             <Amount>30</Amount>
+            <NoneOfStance>Dual Shooter</NoneOfStance>
          </Effect>
       </EnhancementTreeItem>
    </EnhancementTree>

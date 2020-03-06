@@ -260,6 +260,7 @@ void BreakdownItemWeaponDamageBonus::UpdateFeatEffect(
             ASSERT(effect.HasAbility());
             AddAbility(effect.Ability());  // duplicates are fine
             CreateOtherEffects();
+            Populate();
         }
         else
         {
@@ -277,11 +278,12 @@ void BreakdownItemWeaponDamageBonus::UpdateFeatEffectRevoked(
     // handle special affects that change our list of available stats
     if (AffectsUs(effect))
     {
-        if (effect.HasAbility())
+        if (effect.Type() == Effect_WeaponDamageAbility)
         {
             ASSERT(effect.HasAbility());
             RemoveFirstAbility(effect.Ability());
             CreateOtherEffects();
+            Populate();
         }
         else
         {
@@ -305,6 +307,7 @@ void BreakdownItemWeaponDamageBonus::UpdateItemEffect(
             ASSERT(effect.HasAbility());
             AddAbility(effect.Ability());  // duplicates are fine
             CreateOtherEffects();
+            Populate();
         }
         else
         {
@@ -322,11 +325,12 @@ void BreakdownItemWeaponDamageBonus::UpdateItemEffectRevoked(
     // handle special affects that change our list of available stats
     if (AffectsUs(effect))
     {
-        if (effect.HasAbility())
+        if (effect.Type() == Effect_WeaponDamageAbility)
         {
             ASSERT(effect.HasAbility());
             RemoveFirstAbility(effect.Ability());
             CreateOtherEffects();
+            Populate();
         }
         else
         {
@@ -350,6 +354,7 @@ void BreakdownItemWeaponDamageBonus::UpdateEnhancementEffect(
             ASSERT(effect.m_effect.HasAbility());
             AddAbility(effect.m_effect.Ability());  // duplicates are fine
             CreateOtherEffects();
+            Populate();
         }
         else
         {
@@ -367,11 +372,12 @@ void BreakdownItemWeaponDamageBonus::UpdateEnhancementEffectRevoked(
     // handle special affects that change our list of available stats
     if (AffectsUs(effect.m_effect))
     {
-        if (effect.m_effect.HasAbility())
+        if (effect.m_effect.Type() == Effect_WeaponDamageAbility)
         {
             ASSERT(effect.m_effect.HasAbility());
             RemoveFirstAbility(effect.m_effect.Ability());
             CreateOtherEffects();
+            Populate();
         }
         else
         {

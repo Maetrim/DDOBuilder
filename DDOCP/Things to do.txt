@@ -17,11 +17,6 @@ Missing Icons:
 Dagger_EpicEnergisedDagger
 GreatClub_EpicEnergisedGreatClub
 GreatSword_EpicEtchedGreatSword
-ClanGnashtoothShamen
-DarguunHobgoblinWarrior
-HouseDeneithDefender
-HouseKunderakBattlemaster
-HousePhiarlanEntertainer
 
 
 Support higher resolutions by providing bigger screen bitmaps in enhancement/reaper/destiny views.
@@ -40,9 +35,65 @@ elemental form buff) and elemental based caster level bonuses (Sorcerer enhancem
 trees, Draconic Incarnation Dragon Spell Knowledge) currently don't show up anywhere
 else, if there are even calculated.
 
-All instances of Divine Might (Cleric, Faored Soul, and Paladin) are now: Battle Trance: You gain an Insight bonus to Attack, Damage, and the DC of tactical feats equal to 1/2 of your Charisma modifier for 30/60/120 seconds.
-War Soul's Divine Will is now: Battle Trance: You gain an Insight bonus to Attack, Damage, and the DC of tactical feats equal to 1/2 of your Wisdom modifier for 30/60/120 seconds.
-Divine Might, Divine Will, Harper's Know the Angles, and Falconry's Deadly Instinct's Damage components now provide an actual Insight bonus to Damage (as their tooltips claim they do), meaning:
+All instances of Divine Might (Cleric, Faored Soul, and Paladin) are now:
+Battle Trance: You gain an Insight bonus to Attack, Damage, and the DC of
+tactical feats equal to 1/2 of your Charisma modifier for 30/60/120 seconds.
+War Soul's Divine Will is now: Battle Trance: You gain an Insight bonus to Attack,
+Damage, and the DC of tactical feats equal to 1/2 of your Wisdom modifier for 30/60/120 seconds.
+Divine Might, Divine Will, Harper's Know the Angles, and Falconry's Deadly
+Instinct's Damage components now provide an actual Insight bonus to Damage
+(as their tooltips claim they do), meaning:
 They all provide Damage to both Melee and Ranged attacks.
 They do not stack with other Insight bonuses to Damage.
 The ones that provide Attack do not stack with other Insight bonuses to Attack.
+
+
+ 1097 (and earlier) Incorect BAB calc for BAB=Character Level
+This one is pretty minor. The various abilities and spells that set
+BAB=Character Level will take the effective BAB all the way to 30;
+eg. Bard WC Core 4, Tensors, Divine Power, Cleric/FVS Warpriest T5,
+and EK T4. They don't unlock feats, but the 30=BAB will effect attack
+bonus (to-hit), attack rate (25 cap for melee, 30 for ranged), and PRR
+bonus from armor.
+
+
+Default Re: v.79 Skullsmasher Crash (Bjond)
+The T1->T5 Rogue Mechanic Sharpshooter and T5 Sniper bonuses don't include
+the extra damage for non-repeating crossbows and don't restrict the extra
+sneak attack dice to only non-repeating/non-dual crossbows. Tried hacking
+the Enhancements.xml and got all the stuff in it except the sneak dice
+-- looks like sneak dice don't accept restrictions or at least not in the
+same way as regular damage bonus (so, I could either make it correct for
+non-xbow or make it correct for xbow, chose the latter).
+
+
+Few things I've noticed in playing with it. *Prayer* and *bless* spells have had
+their description updated (to denote scaling) but the bonus they grant has *not*
+increased over in the breakdowns pane, staying at +1. *Angelskin,* likewise, is
+only granting a +1 bonus to PRR, no matter the caster level (*righteous command*
+appears to have the opposite problem, granting the full +15 melee/ranged power no
+matter your caster level.)
+
+
+
+
+
+
+Feats
+The Accelerate Spell metamagic feat can now be taken as a Class Feat choice starting at Artificer Level 8.
+
+
+
+So, I added an "export gear set to text" button with v0.5.2. It spits out the following (a tank setup I use to test) :
+
+Eye:Legendary Collective Sight{insight Charisma 10}{enhancement Wisdom 21}
+Head:Legendary Standard Issue Faceplate
+Neck:Legendary Standard Issue Sigil
+Body:Legendary Watch Captain's Platemail
+Back:Legendary Cloak of the City's Champion
+Waist:Legendary Bronze Dragonscale Belt
+Finger1:Legendary Celestial Emerald Ring{enhancement Strength 21}
+Finger2:Stolen Signet of ir'Wynarn
+Offhand:Legendary Rising Sun
+
+The text between curly braces are optional parameters set for the item. Not sure if DDOBuilder does something similar.

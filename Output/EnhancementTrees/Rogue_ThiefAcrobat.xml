@@ -39,7 +39,9 @@
          <Name>Thief-Acrobat: Stick Fighting</Name>
          <InternalName>TACore2</InternalName>
          <Description>You can now use your Dexterity modifier for damage with Quarterstaves.
-You are grante dthe feat 'Swords to Plowshares'</Description>
+You have the 'Swords to Plowshares' feat without needing to meet the prerequisites,
+which grants a +1 Morale bonus to the Critical Threat Range to Quarterstaves, Sickles,
+and Kama.</Description>
          <Icon>TAStickFighting</Icon>
          <XPosition>1</XPosition>
          <YPosition>0</YPosition>
@@ -71,7 +73,8 @@ You are grante dthe feat 'Swords to Plowshares'</Description>
       <EnhancementTreeItem>
          <Name>Thief-Acrobat: Tumbler</Name>
          <InternalName>TACore3</InternalName>
-         <Description>You can pass through enemies when you tumble. +2 maximum dodge.</Description>
+         <Description>+2% Maximum Dodge, and +2 Maximum Dexterity Bonus for light armor.
+You can pass through enemies when you tumble. </Description>
          <Icon>TATumbler</Icon>
          <XPosition>2</XPosition>
          <YPosition>0</YPosition>
@@ -93,11 +96,18 @@ You are grante dthe feat 'Swords to Plowshares'</Description>
             <Bonus>Enhancement</Bonus>
             <Amount>2</Amount>
          </Effect>
+         <Effect>
+            <Type>MaxDexBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Stance>Light Armor</Stance>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Thief-Acrobat: Kip Up</Name>
          <InternalName>TACore4</InternalName>
-         <Description>You are immune to most knockdown effects and slippery surfaces. +2 to maximum dodge.</Description>
+         <Description>+2% Maximum Dodge, and +2 Maximum Dexterity Bonus for light armor.
+You are immune to most knockdown effects and slippery surfaces.</Description>
          <Icon>TAKipUp</Icon>
          <XPosition>3</XPosition>
          <YPosition>0</YPosition>
@@ -120,6 +130,12 @@ You are grante dthe feat 'Swords to Plowshares'</Description>
             <Amount>2</Amount>
          </Effect>
          <Effect>
+            <Type>MaxDexBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+             <Stance>Light Armor</Stance>
+         </Effect>
+         <Effect>
             <Type>Immunity</Type>
             <Bonus>Enhancement</Bonus>
             <Immunity>Most Knockdown Effects</Immunity>
@@ -133,8 +149,9 @@ You are grante dthe feat 'Swords to Plowshares'</Description>
       <EnhancementTreeItem>
          <Name>Thief-Acrobat: Cartwheel Charge</Name>
          <InternalName>TACore5</InternalName>
-         <Description>After tumbling, you gain a +2 Morale bonus to Strength and Dexterity for 12 seconds.
-Passively provides: +2 to maximum dodge, and +20% Doublestrike.</Description>
+         <Description>+2% Maximum Dodge, and +2 Maximum Dexterity Bonus for light armor.
++20% Double Strike while using staves. After tumbling, you gain a +2 Morale bonus
+to Strength and Dexterity for 12 seconds.</Description>
          <Icon>TACartwheelCharge</Icon>
          <XPosition>4</XPosition>
          <YPosition>0</YPosition>
@@ -157,19 +174,30 @@ Passively provides: +2 to maximum dodge, and +20% Doublestrike.</Description>
             <Amount>2</Amount>
          </Effect>
          <Effect>
+            <Type>MaxDexBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+             <Stance>Light Armor</Stance>
+         </Effect>
+         <Effect>
             <Type>Doublestrike</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>20</Amount>
+            <Stance>Quarterstaff</Stance>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Thief-Acrobat: Followthrough</Name>
          <InternalName>TACore6</InternalName>
-         <Description>You gain +2 Strength and Dexterity, +1 to hit and +2 damage with quarterstaves,
-+5% attack speed with quarterstaves, +2 critical hit damage with all weapons,
-+2 Balance, Jump, and Tumble, +2 Sneak Attack dice and +2 to hit when performing Sneak Attacks.
-After tumbling, for 6 seconds your basic attacks with two handed weapons gain a +50%
-strikethrough chance and gain On Vorpal: Your target is knocked down.</Description>
+         <Description>For 12 seconds after tumbling, you gain +50% Strikethrough Chance and
+gain On Vorpal: Your target is knocked down.
+As a master thief-acrobat, you also gain the following passive benefits:
++2 Strength and Dexterity
++1 to hit and +2 damage with quarterstaves
++5% attack speed with quarterstaves
++2 critical hit damage with all weapons
++2 Balance, Jump, and Tumble
++2 Sneak Attack dice and +2 to hit when performing Sneak Attacks.</Description>
          <Icon>TAFollowthrough</Icon>
          <XPosition>5</XPosition>
          <YPosition>0</YPosition>
@@ -245,7 +273,7 @@ strikethrough chance and gain On Vorpal: Your target is knocked down.</Descripti
       <EnhancementTreeItem>
          <Name>Thief-Acrobat: Acrobat Staff Training I</Name>
          <InternalName>TAAcrobatStaffTrainingI</InternalName>
-         <Description>+1 to hit and damage with quarterstaves.</Description>
+         <Description>+1 to hit and +2 damage with quarterstaves.</Description>
          <Icon>TAAcrobatStaffTraining</Icon>
          <XPosition>0</XPosition>
          <YPosition>1</YPosition>
@@ -269,13 +297,13 @@ strikethrough chance and gain On Vorpal: Your target is knocked down.</Descripti
             <Type>DamageBonus</Type>
             <Bonus>Enhancement</Bonus>
             <Weapon>Quarterstaff</Weapon>
-            <Amount>1</Amount>
+            <Amount>2</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Thief-Acrobat: Thief Acrobatics</Name>
          <InternalName>TAThiefAcrobatics</InternalName>
-         <Description>+1/+2/+3 Balance, Jump, and Tumble, +5%/+10%/+15% attack speed with quarterstaves.</Description>
+         <Description>+[1/2/3] Balance, Jump, and Tumble, +[5/10/15]% attack speed with quarterstaves.</Description>
          <Icon>TAThiefAcrobatics</Icon>
          <XPosition>1</XPosition>
          <YPosition>1</YPosition>
@@ -306,7 +334,7 @@ strikethrough chance and gain On Vorpal: Your target is knocked down.</Descripti
       <EnhancementTreeItem>
          <Name>Thief-Acrobat: Charming</Name>
          <InternalName>TACharming</InternalName>
-         <Description>+1/+2/+3 Bluff, Diplomacy, Haggle, and Intimidate.</Description>
+         <Description>+[1/2/3] Bluff, Diplomacy, Haggle, and Intimidate.</Description>
          <Icon>TACharming</Icon>
          <XPosition>2</XPosition>
          <YPosition>1</YPosition>
@@ -332,10 +360,11 @@ strikethrough chance and gain On Vorpal: Your target is knocked down.</Descripti
       <EnhancementTreeItem>
          <Name>Thief-Acrobat: Sly Flourish</Name>
          <InternalName>TASlyFlourish</InternalName>
-         <Description> Melee Attack: +1/2/3[W] with +1/2/3 critical threat range.
-On Sneak Attack: Intelligent targets also gains a -1 penalty to Balance, Reflex,
-and Will saves for 20 seconds. (Stacks 5 times.) (Cooldown: 8 seconds)
-Passively provides: Reduces the threat of all attacks by 5/10/15%.</Description>
+         <Description>Melee Attack: Deals +[1/2/3][W] with +[1/2/3] critical threat range,
+and reduces your threat with nearby enemies by [100/200/300] whether or not you
+deal damage. On Sneak Attack: Intelligent target also gains a -1 penalty to Balance,
+Reflex, and Will saves for 20 seconds. (Stacks 5 times.) (Cooldown: 8 seconds)
+Passive: Reduces the threat of all attacks by [5/10/15]%.</Description>
          <Icon>TASlyFlourish</Icon>
          <XPosition>3</XPosition>
          <YPosition>1</YPosition>
@@ -363,8 +392,7 @@ Passively provides: Reduces the threat of all attacks by 5/10/15%.</Description>
       <EnhancementTreeItem>
          <Name>Thief-Acrobat: Fast Movement</Name>
          <InternalName>TAFastMovement</InternalName>
-         <Description>You run 1% faster for each of your Rogue levels if you are wearing cloth
-or light armor.</Description>
+         <Description>While wearing light or cloth armor you run 1% faster for each of your Rogue levels.</Description>
          <Icon>TAFastMovement</Icon>
          <XPosition>4</XPosition>
          <YPosition>1</YPosition>
@@ -423,7 +451,7 @@ or light armor.</Description>
       <EnhancementTreeItem>
          <Name>Thief-Acrobat: Trip Focus</Name>
          <InternalName>TATripFocus</InternalName>
-         <Description>+1/+2/+3 to the save DC's of Trip Attacks</Description>
+         <Description>+[1/2/3] to the save DC's of Trip Attacks</Description>
          <Icon>TATripFocus</Icon>
          <XPosition>1</XPosition>
          <YPosition>2</YPosition>
@@ -446,7 +474,7 @@ or light armor.</Description>
       <EnhancementTreeItem>
          <Name>Thief-Acrobat: Subtlety</Name>
          <InternalName>TASubtlety</InternalName>
-         <Description>-20%/-30%/-40% threat generation with melee attacks.
+         <Description>-[20/30/40]% threat generation with melee attacks.
 (This enhancement cannot be combined with other Subtlety enhancements.)</Description>
          <Icon>TASubtlety</Icon>
          <XPosition>2</XPosition>
@@ -469,8 +497,8 @@ or light armor.</Description>
       <EnhancementTreeItem>
          <Name>Thief-Acrobat: Quick Strike</Name>
          <InternalName>TAQuickStrike</InternalName>
-         <Description>Melee Quarterstaff Attack: Deals +1/+2/+3[W] damage.
-You gain a 5%/15%/25% Morale bonus to melee doublestrike for 10 seconds.
+         <Description>Melee Quarterstaff Attack: Deals +[1/2/3][W] damage.
+You gain a [5/15/25]% Morale bonus to melee doublestrike for 10 seconds.
 (Cooldown: 18/15/12 seconds)</Description>
          <Icon>TAQuickStrike</Icon>
          <XPosition>3</XPosition>
@@ -490,7 +518,7 @@ You gain a 5%/15%/25% Morale bonus to melee doublestrike for 10 seconds.
       <EnhancementTreeItem>
          <Name>Thief-Acrobat: Haste Boost</Name>
          <InternalName>TAHasteBoost</InternalName>
-         <Description>Activate to gain a 10%/20%/30% Action Boost bonus to attack speed for 20 seconds.
+         <Description>Activate to gain a [10/20/30]% Action Boost bonus to attack speed for 20 seconds.
 (Cooldown: 30 seconds)</Description>
          <Icon>TAHasteBoost</Icon>
          <XPosition>4</XPosition>
@@ -509,7 +537,7 @@ You gain a 5%/15%/25% Morale bonus to melee doublestrike for 10 seconds.
       <EnhancementTreeItem>
          <Name>Thief-Acrobat: Acrobat Staff Training III</Name>
          <InternalName>TAAcrobatStaffTrainingIII</InternalName>
-         <Description>+1 to hit and damage with quarterstaves.</Description>
+         <Description>+1 to hit and +2 damage with quarterstaves.</Description>
          <Icon>TAAcrobatStaffTrainingIII</Icon>
          <XPosition>0</XPosition>
          <YPosition>3</YPosition>
@@ -536,7 +564,7 @@ You gain a 5%/15%/25% Morale bonus to melee doublestrike for 10 seconds.
             <Type>DamageBonus</Type>
             <Bonus>Enhancement</Bonus>
             <Weapon>Quarterstaff</Weapon>
-            <Amount>1</Amount>
+            <Amount>2</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -564,7 +592,7 @@ You gain a 5%/15%/25% Morale bonus to melee doublestrike for 10 seconds.
       <EnhancementTreeItem>
          <Name>Thief-Acrobat: Shadow Dodge</Name>
          <InternalName>TAShadowDodge</InternalName>
-         <Description>+1/2/3 to Dodge, and Dexterity. +1/2/3 Maximum Dexterity while wearing light armor.</Description>
+         <Description>+[1/2/3] Dodge, Dexterity. +[1/2/3] Maximum Dexterity while wearing light armor.</Description>
          <Icon>TAShadowDodge</Icon>
          <XPosition>2</XPosition>
          <YPosition>3</YPosition>
@@ -598,9 +626,9 @@ You gain a 5%/15%/25% Morale bonus to melee doublestrike for 10 seconds.
       <EnhancementTreeItem>
          <Name>Thief-Acrobat: Sweeping Strikes</Name>
          <InternalName>TASweepingStrikes</InternalName>
-         <Description>Melee Quarterstaff Trip Cleave Attack: +1/2/3[W] to all nearby enemies and trips them.
-(Listed DC: Balance DC 10 + Rogue Level + Dexterity Modifier Negates trip).
-Cooldown: 30/25/20 seconds.</Description>
+         <Description>Melee Quarterstaff Trip Attack: +[1/2/3][W] to all nearby enemies and trips them.
+Balance DC 10 + Rogue Level + Dexterity Modifier Negates trip.
+Cooldown: [30/25/20] seconds.</Description>
          <Icon>TASweepingStrikes</Icon>
          <XPosition>3</XPosition>
          <YPosition>3</YPosition>
@@ -620,7 +648,7 @@ Cooldown: 30/25/20 seconds.</Description>
          </Requirements>
          <DC>
             <Name>Thief-Acrobat: Sweeping Strikes</Name>
-            <Description>Melee Quarterstaff Trip Cleave Attack: +1/2/3[W] to all nearby enemies and trips them.</Description>
+            <Description>Melee Quarterstaff Trip Attack: +[1/2/3][W] to all nearby enemies and trips them.</Description>
             <Icon>TASweepingStrikes</Icon>
             <DCVersus>Balance</DCVersus>
             <AmountVector size="1">10</AmountVector>
@@ -708,7 +736,7 @@ Cooldown: 30/25/20 seconds.</Description>
       <EnhancementTreeItem>
          <Name>Thief-Acrobat: Improved Defensive Roll</Name>
          <InternalName>TAImprovedDefensiveRoll</InternalName>
-         <Description>Defensive Roll now triggers at 30%/40%/50% or below health.</Description>
+         <Description>Defensive Roll now triggers at [30/40/50]% health or below.</Description>
          <Icon>TAImprovedDefensiveRoll</Icon>
          <XPosition>1</XPosition>
          <YPosition>4</YPosition>
@@ -728,7 +756,7 @@ Cooldown: 30/25/20 seconds.</Description>
       <EnhancementTreeItem>
          <Name>Thief-Acrobat: No Mercy</Name>
          <InternalName>TANoMercy</InternalName>
-         <Description>You deal 10%/20%/30% additional damage to helpless opponents.</Description>
+         <Description>You deal [10/20/30]% additional damage to helpless opponents.</Description>
          <Icon>TANoMercy</Icon>
          <XPosition>2</XPosition>
          <YPosition>4</YPosition>
@@ -750,8 +778,8 @@ Cooldown: 30/25/20 seconds.</Description>
       <EnhancementTreeItem>
          <Name>Thief-Acrobat: Staff Lunge</Name>
          <InternalName>TAStaffLunge</InternalName>
-         <Description>Melee Quarterstaff Attack: Deals +2/4/6[W] damage as you dive through enemies
-in a line and to nearby enemies when you finish. (Cooldown: 30/25/20 seconds)</Description>
+         <Description>Melee Quarterstaff Attack: Deals +[2/4/6][W] damage as you whirl through enemies
+in a line. Cooldown: [30/25/20] seconds</Description>
          <Icon>TAStaffLunge</Icon>
          <XPosition>3</XPosition>
          <YPosition>4</YPosition>
@@ -819,7 +847,7 @@ in a line and to nearby enemies when you finish. (Cooldown: 30/25/20 seconds)</D
       <EnhancementTreeItem>
          <Name>Thief-Acrobat: Acrobat Staff Training V</Name>
          <InternalName>TAAcrobatStaffTrainingV</InternalName>
-         <Description>+3 to hit and +3 damage with quarterstaves.</Description>
+         <Description>+10 Melee Power, +3 to hit and +3 damage with quarterstaves.</Description>
          <Icon>TAAcrobatStaffTrainingV</Icon>
          <XPosition>0</XPosition>
          <YPosition>5</YPosition>
@@ -839,6 +867,11 @@ in a line and to nearby enemies when you finish. (Cooldown: 30/25/20 seconds)</D
                <Enhancement>TAAcrobatStaffTrainingIV</Enhancement>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>MeleePower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>10</Amount>
+         </Effect>
          <Effect>
             <Type>AttackBonus</Type>
             <Bonus>Enhancement</Bonus>
@@ -892,7 +925,7 @@ Threat Range with Quarterstaves.</Description>
          <Name>Thief-Acrobat: Spinning Staff Wall</Name>
          <InternalName>TASpinningStaffWall</InternalName>
          <Description>Activate to gain 50 PRR for 20 seconds. Cooldown: 90 seconds.
-Passively provides: While wearing cloth or light armor, gain 5% Dodge, 5% maximum dodge,
+Passive: While wearing cloth or light armor, gain 5% Dodge, 5% Maximum Dodge,
 and 5 Maximum Dexterity Bonus with Light Armor.</Description>
          <Icon>TASpinningStaffWall</Icon>
          <XPosition>2</XPosition>

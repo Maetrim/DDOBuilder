@@ -818,6 +818,16 @@ const std::vector<std::string> & ActiveEffect::AnyOfStances() const
     return m_anyOfStances;
 }
 
+void ActiveEffect::AddNoneOfStance(const std::string & stance)
+{
+    m_noneOfStances.push_back(stance);
+}
+
+const std::vector<std::string> & ActiveEffect::NoneOfStances() const
+{
+    return m_noneOfStances;
+}
+
 const std::string & ActiveEffect::Tree() const
 {
     return m_tree;
@@ -846,6 +856,22 @@ bool ActiveEffect::IsActive(const Character * pCharacter, WeaponType wt) const
             }
         }
         if (!requiredStanceActive)
+        {
+            active = false;
+        }
+    }
+    if (m_noneOfStances.size() > 0)
+    {
+        bool badStanceActive = false;
+        for (size_t i = 0; i < m_noneOfStances.size(); ++i)
+        {
+            if (pCharacter->IsStanceActive(m_noneOfStances[i]))
+            {
+                badStanceActive = true;
+                break;  // we have one, don't bother with the rest (if any)
+            }
+        }
+        if (badStanceActive)
         {
             active = false;
         }

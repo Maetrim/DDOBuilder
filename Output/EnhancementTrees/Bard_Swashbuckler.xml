@@ -48,25 +48,22 @@ Armor per Swashbuckler Core Ability you have.</Description>
       <EnhancementTreeItem>
          <Name>Swashbuckler: Swashbuckling</Name>
          <InternalName>SBCore2</InternalName>
-         <Description>Stance: You gain 1% Doublestrike and Doubleshot as well as +1 to the
-Enhancement Bonus of the weapon in your main hand. Swashbuckling requires
-wielding a Finesseable or Thrown weapon in your main hand, wielding a Buckler
-or nothing in your off hand, and wearing Light Armor or no armor.
-(Druids cannot Swashbuckle while in animal forms.)
-(For Warforged and Bladeforged, you must be using either the Composite Plating
-or Mithral Body feats).
+         <Description>Swashbuckling: Stance: You gain 1% Doublestrike and Doubleshot as well as
++1 to the Enhancement Bonus of the weapon in your main hand. Swashbuckling
+requires wielding a Finesseable or Thrown weapon in your main hand, wielding
+a Buckler or nothing in your off hand, and wearing Light Armor or no armor.
+(Druids cannot Swashbuckle while in animal forms.) (For Warforged and Bladeforged,
+you must be using either the Composite Plating or Mithral Body feats).
 
-In addition, while Swashbuckling, the following weapons receive a Competence bonus
-to their critical profiles:
-Dagger, Shortsword, Throwing Dagger: +1 Threat, +1 Multiplier
+Passive: While Swashbuckling, the following weapons receive Competence bonuses
+to their critical profiles (critical threat range bonuses doubled with the
+appropriate Improved Critical feat, but not with keen or impact): 
 
-Light Mace, Light Hammer, Kama, Sickle, Dart, Shuriken, Throwing Axe and
-Throwing Hammer: +2 Threat Range, +1 Multiplier
-
-Kukri, Rapier: +1 Muliplier
-
+Dagger, Shortsword, Throwing Dagger: +1 Threat Range, +1 Multiplier
+Light Mace, Light Hammer, Kama, Sickle, Dart, Shuriken, Throwing Axe,
+    Throwing Hammer: +2 Threat Range, +1 Multiplier
+Kukri, Rapier: +1 Multiplier
 Handaxe: +2 Range
-
 Light Pick: +1 Range</Description>
          <Icon>SBSwashbuckling</Icon>
          <XPosition>1</XPosition>
@@ -121,9 +118,10 @@ Light Pick: +1 Range</Description>
             <Stance>Swashbuckling</Stance>
          </Effect>
          <Effect>
+            <DisplayName>Swashbuckler: Swashbuckling</DisplayName>
             <Type>CriticalRange</Type>
             <Bonus>Competence</Bonus>
-            <Amount>1</Amount>
+            <Amount>0 1 2</Amount>
             <ApplyAsItemEffect/>
             <Weapon>Dagger</Weapon>
             <Weapon>Shortsword</Weapon>
@@ -133,9 +131,39 @@ Light Pick: +1 Range</Description>
             <Weapon>Light Pick</Weapon>
          </Effect>
          <Effect>
+            <DisplayName>Swashbuckler: Swashbuckling</DisplayName>
             <Type>CriticalRange</Type>
             <Bonus>Competence</Bonus>
-            <Amount>2</Amount>
+            <AmountVector size="3">0 2 4</AmountVector>
+            <ApplyAsItemEffect/>
+            <Weapon>Light Mace</Weapon>
+            <Weapon>Light Hammer</Weapon>
+            <Weapon>Kama</Weapon>
+            <Weapon>Sickle</Weapon>
+            <Weapon>Dart</Weapon>
+            <Weapon>Shuriken</Weapon>
+            <Weapon>Throwing Axe</Weapon>
+            <Weapon>Throwing Hammer</Weapon>
+            <Weapon>Hand Axe</Weapon>
+         </Effect>
+         <Effect>
+            <DisplayName>Swashbuckler: Swashbuckling</DisplayName>
+            <Type>CriticalRange</Type>
+            <Bonus>Competence</Bonus>
+            <AmountVector size="3">0 1 2</AmountVector>
+            <ApplyAsItemEffect/>
+            <Weapon>Dagger</Weapon>
+            <Weapon>Shortsword</Weapon>
+            <Weapon>Throwing Dagger</Weapon>
+            <Weapon>Kukri</Weapon>
+            <Weapon>Rapier</Weapon>
+            <Weapon>Light Pick</Weapon>
+         </Effect>
+         <Effect>
+            <DisplayName>Swashbuckler: Swashbuckling</DisplayName>
+            <Type>CriticalRange</Type>
+            <Bonus>Competence</Bonus>
+            <AmountVector size="3">0 2 4</AmountVector>
             <ApplyAsItemEffect/>
             <Weapon>Light Mace</Weapon>
             <Weapon>Light Hammer</Weapon>

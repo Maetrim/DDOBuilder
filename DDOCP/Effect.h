@@ -336,6 +336,7 @@ class Effect :
                 DL_OPTIONAL_SIMPLE(_, int, SpellLevel, 0) \
                 DL_STRING_VECTOR(_, Stance) \
                 DL_STRING_VECTOR(_, AnyOfStance) \
+                DL_STRING_VECTOR(_, NoneOfStance) \
                 DL_OPTIONAL_STRING(_, EnhancementTree) \
                 DL_OPTIONAL_STRING(_, SpellLikeAbility) \
                 DL_OPTIONAL_STRING(_, Slider) \
