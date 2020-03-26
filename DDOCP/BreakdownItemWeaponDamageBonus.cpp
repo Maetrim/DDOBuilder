@@ -169,41 +169,6 @@ void BreakdownItemWeaponDamageBonus::CreateOtherEffects()
                 AddOtherEffect(feat);
             }
         }
-        if (IsMeleeWeapon(Weapon()))
-        {
-            // handle divine presence which cannot be handled with effects
-            if (m_pCharacter->IsEnhancementTrained("WSDivineMight", "Divine Presence"))
-            {
-                // divine presence is trained
-                BreakdownItem * pBI = FindBreakdown(StatToBreakdown(Ability_Charisma));
-                ASSERT(pBI != NULL);
-                pBI->AttachObserver(this); // watch for any changes
-                int bonus = BaseStatToBonus(pBI->Total()) / 2;
-                ActiveEffect feat(
-                        Bonus_insightful,
-                        "Divine Presence (Cha Mod / 2)",
-                        1,
-                        bonus,
-                        "");        // no tree
-                AddOtherEffect(feat);
-            }
-            // handle divine will which cannot be handled with effects
-            if (m_pCharacter->IsEnhancementTrained("WSDivineMight", "Divine Will"))
-            {
-                // divine will is trained
-                BreakdownItem * pBI = FindBreakdown(StatToBreakdown(Ability_Wisdom));
-                ASSERT(pBI != NULL);
-                pBI->AttachObserver(this); // watch for any changes
-                int bonus = BaseStatToBonus(pBI->Total()) / 2;
-                ActiveEffect feat(
-                        Bonus_insightful,
-                        "Divine Will (Wis Mod / 2)",
-                        1,
-                        bonus,
-                        "");        // no tree
-                AddOtherEffect(feat);
-            }
-        }
     }
 }
 
@@ -408,14 +373,6 @@ void BreakdownItemWeaponDamageBonus::UpdateEnhancementTrained(
             enhancementName,
             selection,
             isTier5);
-    // check for "Divine Might" in War Soul tree only being trained specifically
-    if (IsMeleeWeapon(Weapon())
-            && enhancementName == "WSDivineMight")
-    {
-        // need to re-create other effects list
-        CreateOtherEffects();
-        Populate();
-    }
 }
 
 void BreakdownItemWeaponDamageBonus::UpdateEnhancementRevoked(
@@ -429,14 +386,6 @@ void BreakdownItemWeaponDamageBonus::UpdateEnhancementRevoked(
             enhancementName,
             selection,
             isTier5);
-    // check for "Divine Might" War Soul tree only being revoked specifically
-    if (IsMeleeWeapon(Weapon())
-            && enhancementName == "WSDivineMight")
-    {
-        // need to re-create other effects list
-        CreateOtherEffects();
-        Populate();
-    }
 }
 
 void BreakdownItemWeaponDamageBonus::SetIsOffHand(bool offHand)

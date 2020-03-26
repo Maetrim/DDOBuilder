@@ -63,7 +63,8 @@ class Requirement :
                 DL_OPTIONAL_SIMPLE(_, size_t, Amount, 0) \
                 DL_OPTIONAL_STRING(_, Enhancement) \
                 DL_OPTIONAL_STRING(_, Selection) \
-                DL_OPTIONAL_STRING(_, Feat)
+                DL_OPTIONAL_STRING(_, Feat) \
+                DL_FLAG(_, ListAtSameFeatLevel)
 
         DL_DECLARE_ACCESS(Requirement_PROPERTIES)
         DL_DECLARE_VARIABLES(Requirement_PROPERTIES)

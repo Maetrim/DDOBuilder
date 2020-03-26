@@ -137,6 +137,29 @@ bool Requirement::Met(
             numNeeded = Amount();
         }
         met = (count >= numNeeded);
+        // this feature is only used when a feat needs to be listed when it is
+        // excluded by another feat trained at the same level
+        if (met && HasListAtSameFeatLevel())
+        {
+            // this can override if the feat is trained at the current level
+            // find it in the trained feat list and check its level against the current
+            std::list<TrainedFeat>::const_iterator tfit = currentFeats.begin();
+            while (tfit != currentFeats.end())
+            {
+                if ((*tfit).FeatName() == Feat())
+                {
+                    break;
+                }
+                ++tfit;
+            }
+            if (tfit != currentFeats.end())
+            {
+                if ((*tfit).LevelTrainedAt() == totalLevel)
+                {
+                    met = false;
+                }
+            }
+        }
     }
     if (HasAbility())
     {

@@ -90,35 +90,6 @@ void BreakdownItemAbility::CreateOtherEffects()
                     "");        // no tree
             AddOtherEffect(tome);
         }
-        // handle divine might which cannot be handled with effects
-        // as you can not have an ability bonus to an ability
-        if (m_ability == Ability_Strength)
-        {
-            // 3 possible sources for divine might
-            if (m_pCharacter->IsEnhancementTrained("WPDivineMight", "")
-                    || m_pCharacter->IsEnhancementTrained("WSDivineMight", "Divine Might")
-                    || m_pCharacter->IsEnhancementTrained("KotCDivineMight", ""))
-            {
-                // divine might is trained
-                BreakdownItem * pBI = FindBreakdown(StatToBreakdown(Ability_Charisma));
-                ASSERT(pBI != NULL);
-                pBI->AttachObserver(this); // watch for any changes
-                int bonus = BaseStatToBonus(pBI->Total());
-                // always add, not displayed if its 0
-                ActiveEffect feat(
-                        Bonus_insightful,
-                        "Divine Might (Charisma)",
-                        1,
-                        bonus,
-                        "");        // no tree
-                feat.AddStance("Divine Might");
-                // ensure its updated on a change
-                feat.SetBreakdownDependency(StatToBreakdown(Ability_Charisma));
-                feat.SetDivider(1, DT_statBonus);
-                feat.SetIsItemEffect(); // treat this as an item effect
-                AddOtherEffect(feat);
-            }
-        }
     }
 }
 

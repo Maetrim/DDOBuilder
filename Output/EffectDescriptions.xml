@@ -568,6 +568,31 @@
             <Amount>4</Amount>
             <Weapon>All</Weapon>
         </Effect>
+        <EffectDescription>Improved Heroism: Passive: +3 Morale bonus to Attack Rolls, Saving Throws and Skill Checks.</EffectDescription>
+        <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Morale</Bonus>
+            <Amount>3</Amount>
+            <Skill>All</Skill>
+        </Effect>
+        <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Morale</Bonus>
+            <Amount>3</Amount>
+            <Save>All</Save>
+        </Effect>
+        <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Morale</Bonus>
+            <Amount>3</Amount>
+            <Weapon>All</Weapon>
+        </Effect>
+        <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Morale</Bonus>
+            <Amount>3</Amount>
+            <Weapon>All</Weapon>
+        </Effect>
     <EffectDescription>Greater Marshwalker: This is one of the two pieces of the Greater Marshwalker set. When both items are equipped you receive +30% striding and a +15 competence bonus to your Jump skill.</EffectDescription>
     <EffectDescription>Greater Might of the Abishai: This is one of the five pieces of the Greater Might of the Abishai set. When any three are equipped you gain a +3 profane bonus to Natural Armor, Strength and a +3 bonus to your caster levels for evocation spells. When all five are equipped you also gain a +3 profane bonus to Constitution and Conjuration spells.</EffectDescription>
     <EffectDescription>Greater Regeneration: This item is imbued with an undeniable goodness that freely flows outward in a pleasant palpable current, constantly healing the wearer over time.</EffectDescription>
@@ -846,6 +871,13 @@
             <Amount>3</Amount>
             <Save>Reflex</Save>
          </Effect>
+        <EffectDescription>Insightful Reflex Save +4: This item gives a +4 Insight bonus to your Reflex save.</EffectDescription>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Insightful</Bonus>
+            <Amount>4</Amount>
+            <Save>Reflex</Save>
+         </Effect>
         <EffectDescription>Will Save +16: This item gives a +16 Resistance bonus to your Will save.</EffectDescription>
         <Effect>
             <Type>SaveBonus</Type>
@@ -1089,6 +1121,11 @@
             <Amount>-15</Amount>
         </Effect>
     <EffectDescription>Striding +30%: Makes the wearer more fleet of foot, giving a +30% bonus to run speed.</EffectDescription>
+        <Effect>
+            <Type>MovementSpeed</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>30</Amount>
+        </Effect>
     <EffectDescription>Stone Prison Guard: This item has a chance to turn those who hit you to stone. A successful Fortitude DC17 save will negate this effect.</EffectDescription>
         <EffectDescription>Stunning +22: If this effect is on a weapon, each attack that deals damage has a 3% chance to stun the target if it fails a DC 35 Fortitude Save. In addition this effect gives a +12 Enhancement bonus to the DC of your Stunning Blow/Fist abilities.</EffectDescription>
          <Effect>
@@ -7681,4 +7718,25 @@ When struck you will occasionally have the Stoneskin spell cast on you.</EffectD
             <Amount>-6</Amount>
             <Skill>Hide</Skill>
         </Effect>
+        <EffectDescription>Blinding: This item can generate a flash of light that has a chance to blind opponents.</EffectDescription>
+        <EffectDescription>Curse of Clumsiness: Passave: -1 Penalty to Dexterity. (The minimum level required to equip this item is lower than normal due to this curse.)</EffectDescription>
+        <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Penalty</Bonus>
+            <Amount>-1</Amount>
+            <Ability>Dexterity</Ability>
+        </Effect>
+        <EffectDescription>Control Undead: 3 Charges</EffectDescription>
+        <EffectDescription>Toxic 12: This effect causes the edges of this weapon to drop with a vilevenom, dealing 12d6 poison damage on each critical hit.</EffectDescription>
+         <Effect>
+            <DisplayName>Toxic 12</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+              <Dice>
+                 <Number size="1">12</Number>
+                 <Sides size="1">6</Sides>
+                 <Energy>Poison</Energy>
+              </Dice>
+         </Effect>
 </EffectDescriptions>

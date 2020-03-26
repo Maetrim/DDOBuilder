@@ -44,42 +44,6 @@ void BreakdownItemTactical::CreateOtherEffects()
     if (m_pCharacter != NULL)
     {
         m_otherEffects.clear();
-        // handle divine presence which cannot be handled with effects
-        if (m_pCharacter->IsEnhancementTrained("WSDivineMight", "Divine Presence"))
-        {
-            // divine presence is trained
-            BreakdownItem * pBI = FindBreakdown(StatToBreakdown(Ability_Charisma));
-            ASSERT(pBI != NULL);
-            pBI->AttachObserver(this); // watch for any changes
-            int bonus = BaseStatToBonus(pBI->Total()) / 2;
-            ActiveEffect feat(
-                    Bonus_insightful,
-                    "Divine Presence (Cha Mod / 2)",
-                    1,
-                    bonus,
-                    "");        // no tree
-            feat.AddStance("Divine Presence");
-            feat.SetDivider(2, DT_statBonus);
-            AddOtherEffect(feat);
-        }
-        // handle divine will which cannot be handled with effects
-        if (m_pCharacter->IsEnhancementTrained("WSDivineMight", "Divine Will"))
-        {
-            // divine will is trained
-            BreakdownItem * pBI = FindBreakdown(StatToBreakdown(Ability_Wisdom));
-            ASSERT(pBI != NULL);
-            pBI->AttachObserver(this); // watch for any changes
-            int bonus = BaseStatToBonus(pBI->Total()) / 2;
-            ActiveEffect feat(
-                    Bonus_insightful,
-                    "Divine Will (Wis Mod / 2)",
-                    1,
-                    bonus,
-                    "");        // no tree
-            feat.AddStance("Divine Will");
-            feat.SetDivider(2, DT_statBonus);
-            AddOtherEffect(feat);
-        }
     }
 }
 
@@ -114,13 +78,6 @@ void BreakdownItemTactical::UpdateEnhancementTrained(
             enhancementName,
             selection,
             isTier5);
-    // check for "Divine Might" in Favored Soul War Soul only being trained specifically
-    if (enhancementName == "WSDivineMight")
-    {
-        // need to re-create other effects list
-        CreateOtherEffects();
-        Populate();
-    }
 }
 
 void BreakdownItemTactical::UpdateEnhancementRevoked(
@@ -134,11 +91,4 @@ void BreakdownItemTactical::UpdateEnhancementRevoked(
             enhancementName,
             selection,
             isTier5);
-    // check for "Divine Might" in Favored Soul War Soul only being revoked specifically
-    if (enhancementName == "WSDivineMight")
-    {
-        // need to re-create other effects list
-        CreateOtherEffects();
-        Populate();
-    }
 }

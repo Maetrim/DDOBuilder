@@ -323,7 +323,7 @@ void CInfoTip::SetEnhancementTreeItem(
             charData,
             &m_requirements,
             &m_bRequirementMet,
-            MAX_CLASS_LEVEL);
+            MAX_LEVEL);
     m_cost.Format("Cost %d", pItem->Cost(selection));
     m_ranks.Format("Ranks %d", pItem->Ranks());
 }
@@ -353,7 +353,7 @@ void CInfoTip::SetEnhancementSelectionItem(
             charData,
             &m_requirements,
             &m_bRequirementMet,
-            MAX_CLASS_LEVEL);
+            MAX_LEVEL);
     m_cost.Format("Cost %d", pSelection->Cost());
     m_ranks.Format("Ranks %d", ranks);
 }

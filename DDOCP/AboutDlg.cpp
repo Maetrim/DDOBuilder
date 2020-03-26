@@ -50,6 +50,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
             "Aganthor, "
             "Amberlink, "
             "awsome-dudes, "
+            "Aymerick55, "
             "Bjond, "
             "Brakkart, "
             "Civet, "
