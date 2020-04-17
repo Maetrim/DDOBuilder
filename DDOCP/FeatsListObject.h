@@ -12,6 +12,8 @@ class FeatsListObject :
         FeatsListObject(const XmlLib::SaxString & objectName);
         void Write(XmlLib::SaxWriter * writer) const;
 
+        void Add(const TrainedFeat & feat);
+
         void TrainFeat(
                 const std::string & featName,
                 TrainableFeatTypes type,

@@ -130,6 +130,7 @@ class Character :
         void SetClass2(size_t level, ClassType type);
         void SetClass3(size_t level, ClassType type);
         void SetClass(size_t level, ClassType type);
+        void SwapClasses(size_t level1, size_t level2);
         bool RevokeClass(ClassType type);
         ClassType Class(size_t index) const;
 
@@ -149,7 +150,7 @@ class Character :
         void TrainSpecialFeat(const std::string & featName, TrainableFeatTypes type);
         void RevokeSpecialFeat(const std::string & featName, TrainableFeatTypes type);
         void SetAbilityLevelUp(size_t level, AbilityType ability);
-        void TrainFeat(const std::string & featName, TrainableFeatTypes type, size_t level, bool autoTrained = false);
+        void TrainFeat(const std::string & featName, TrainableFeatTypes type, size_t level, bool autoTrained = false, bool suppressVerify = false);
         std::list<TrainedFeat> AutomaticFeats(
                 size_t level,
                 const std::list<TrainedFeat> & currentFeats) const;

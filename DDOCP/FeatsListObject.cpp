@@ -46,6 +46,11 @@ void FeatsListObject::Write(XmlLib::SaxWriter * writer) const
     writer->EndElement();
 }
 
+void FeatsListObject::Add(const TrainedFeat & feat)
+{
+    m_Feats.push_back(feat);
+}
+
 void FeatsListObject::TrainFeat(
         const std::string & featName,
         TrainableFeatTypes type,

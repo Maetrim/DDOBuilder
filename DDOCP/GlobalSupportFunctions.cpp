@@ -1150,6 +1150,9 @@ bool CanTrainClass(
     bool canTrain = false;
     switch (type)
     {
+    case Class_Unknown:
+        canTrain = true;
+        break;
     case Class_Paladin:
         canTrain = (alignment == Alignment_LawfulGood);
         break;

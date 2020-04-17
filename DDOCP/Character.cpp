@@ -1195,6 +1195,32 @@ void Character::SetClass(size_t level, ClassType type)
     VerifyGear();
 }
 
+void Character::SwapClasses(size_t level1, size_t level2)
+{
+    ClassType c1 = LevelData(level1).HasClass()
+            ? LevelData(level1).Class()
+            : Class_Unknown;
+    ClassType c2 = LevelData(level2).HasClass()
+            ? LevelData(level2).Class()
+            : Class_Unknown;
+    std::list<LevelTraining>::iterator it = m_Levels.begin();
+    std::advance(it, level1);
+    (*it).Set_Class(c2);
+    UpdateSkillPoints(level1);
+
+    it = m_Levels.begin();
+    std::advance(it, level2);
+    (*it).Set_Class(c1);
+    UpdateSkillPoints(level2);
+
+    m_pDocument->SetModifiedFlag(TRUE);
+    UpdateSpells();
+    UpdateFeats();
+    VerifyTrainedFeats();
+    AutoTrainSingleSelectionFeats();
+    VerifyGear();
+}
+
 void Character::SpendSkillPoint(
         size_t level,
         SkillType skill,
@@ -1404,6 +1430,11 @@ void Character::SetAbilityLevelUp(
     }
     NotifyAbilityValueChanged(old);
     NotifyAbilityValueChanged(ability);
+    if (old == Ability_Intelligence
+            || ability == Ability_Intelligence)
+    {
+        UpdateSkillPoints();    // ensure skill points are correct
+    }
     m_pDocument->SetModifiedFlag(TRUE);
 }
 
@@ -1411,7 +1442,8 @@ void Character::TrainFeat(
         const std::string & featName,
         TrainableFeatTypes type,
         size_t level,
-        bool autoTrained)
+        bool autoTrained,
+        bool suppressVerify)
 {
     const Feat & feat = FindFeat(featName);
 
@@ -1456,9 +1488,12 @@ void Character::TrainFeat(
         // some automatic feats may have changed due to the trained feat
         UpdateFeats();
         // a feat change can invalidate a feat selection at at later level
-        VerifyTrainedFeats();
+        if (!suppressVerify)
+        {
+            VerifyTrainedFeats();
+        }
         m_pDocument->SetModifiedFlag(TRUE);
-        if (!autoTrained)
+        if (!autoTrained && !suppressVerify)
         {
             AutoTrainSingleSelectionFeats();
         }
@@ -3456,6 +3491,9 @@ void Character::VerifyTrainedFeats()
 {
     // user has taken an action that could have invalidated a current feat selection
     // check them all to see if they are still valid, revoke those which are not
+    // but also keep a list of them. This allows us to try and re-place them in other
+    // feats slots if we can
+    FeatsListObject revokedFeats(L"Revoked Feats");
  
     // keep a message that will inform the user about changes made
     bool displayMessage = false;
@@ -3483,12 +3521,7 @@ void Character::VerifyTrainedFeats()
             if (!IsFeatTrainable(level, (*fit).Type(), feat, true, true))
             {
                 // no longer trainable, remove it from the list
-                displayMessage = true;
-                CString text;
-                text.Format("Level %d: %s\n",
-                        level + 1,     // 0 based, 1 based for display
-                        (*fit).FeatName().c_str());
-                message += text;
+                revokedFeats.Add(*fit);
                 // revoke from level training in this slot at level
                 (*it).RevokeFeat((*fit).Type());
                 RevokeFeatEffects(feat);
@@ -3503,6 +3536,62 @@ void Character::VerifyTrainedFeats()
             ++it;
             ++level;
         }
+    }
+    // if we have any revoked feats, try and re-train them in matching empty
+    // feat slots which qualify to hold those feats
+    std::list<TrainedFeat> feats = revokedFeats.Feats();
+    if (feats.size() > 0)
+    {
+        std::list<LevelTraining>::iterator it = m_Levels.begin();
+        size_t level = 0;
+        while (it != m_Levels.end())
+        {
+            // check each revoked feat to see if its trainable at this level in
+            // an empty feat slot. If it is, train it and remove from the list
+            std::list<TrainedFeat>::const_iterator fit = feats.begin();
+            while (fit != feats.end())
+            {
+                // is this feat trainable at this level?
+                const Feat & feat = FindFeat((*fit).FeatName());
+                if (IsFeatTrainable(level, (*fit).Type(), feat, true, false))
+                {
+                    // slot must be empty
+                    TrainedFeat tf = GetTrainedFeat(
+                            level,
+                            (*fit).Type());
+                    // name is blank if no feat currently trained
+                    if (tf.FeatName() == "")
+                    {
+                        // it is, train it
+                        TrainFeat((*fit).FeatName(), (*fit).Type(), level, false, true);
+                        fit = feats.erase(fit); // remove and go to next
+                    }
+                    else
+                    {
+                        ++fit;  // check the next
+                    }
+                }
+                else
+                {
+                    ++fit;      // check the next
+                }
+            }
+            ++it;
+            ++level;
+        }
+    }
+    // now generate the revoked message with those feats that could not be re-trained
+    // in slots elsewhere
+    std::list<TrainedFeat>::const_iterator fit = feats.begin();
+    while (fit != feats.end())
+    {
+        displayMessage = true;
+        CString text;
+        text.Format("Level %d: %s\n",
+                (*fit).LevelTrainedAt() + 1,     // 0 based, 1 based for display
+                (*fit).FeatName().c_str());
+        message += text;
+        ++fit;
     }
     m_bShowEpicOnly = bOldState;
     if (displayMessage)
@@ -5058,8 +5147,8 @@ void Character::UpdateWeaponStances()
             enableSwashbuckling = false;
         }
         // swashbuckling also requires a finessable or thrown weapon
-        if (!IsThrownWeapon(item1.Weapon())
-                && !IsFinesseableWeapon(item1.Weapon()))
+        if (!(IsThrownWeapon(item1.Weapon())
+                || IsFinesseableWeapon(item1.Weapon())))
         {
             enableSwashbuckling = false;
         }
@@ -5110,10 +5199,17 @@ void Character::UpdateWeaponStances()
             DeactivateStance(swashbuckling);
             DeactivateStance(swf);
             break;
+        case Weapon_Dart:
+        case Weapon_Shuriken:
+        case Weapon_ThrowingAxe:
+        case Weapon_ThrowingDagger:
+        case Weapon_ThrowingHammer:
+            ActivateStance(swashbuckling);
+            ActivateStance(swf);
+            break;
         default:
             if (item1.Weapon() != Weapon_Handwraps
-                    && !IsRangedWeapon(item1.Weapon())
-                    && !IsThrownWeapon(item1.Weapon()))
+                    && !IsRangedWeapon(item1.Weapon()))
             {
                 ActivateStance(swashbuckling);
                 ActivateStance(swf);
