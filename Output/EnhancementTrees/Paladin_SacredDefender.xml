@@ -596,7 +596,7 @@ and Magical Resistance Rating. </Description>
       <EnhancementTreeItem>
          <Name>Sacred Defender: Sacred Shield Mastery</Name>
          <InternalName>SacredSacredShieldMastery</InternalName>
-         <Description>+5%/+10%/+15% Shield Armor Class and +[1/2/3] Tower Shield Maximum Dexterity Bonus.</Description>
+         <Description>+[5/10/15]% Shield Armor Class and +[1/2/3] Tower Shield Maximum Dexterity Bonus.</Description>
          <Icon>SDSacredShieldMastery</Icon>
          <XPosition>3</XPosition>
          <YPosition>2</YPosition>
@@ -1224,7 +1224,7 @@ In addition, you personally also gain 100 HP.</Description>
          <XPosition>2</XPosition>
          <YPosition>5</YPosition>
          <Cost>1</Cost>
-         <Ranks>1</Ranks>
+         <Ranks>3</Ranks>
          <MinSpent>30</MinSpent>
          <Tier5/>
          <Requirements>
@@ -1237,9 +1237,28 @@ In addition, you personally also gain 100 HP.</Description>
             </Requirement>
          </Requirements>
           <Effect>
+              <Type>ACBonus</Type>
+              <Bonus>Enhancement</Bonus>
+              <AmountVector size="3">1 2 3</AmountVector>
+              <Stance>Aura of Courage</Stance>
+          </Effect>
+          <Effect>
+              <Type>SaveBonus</Type>
+              <Bonus>Enhancement</Bonus>
+              <AmountVector size="3">1 2 3</AmountVector>
+              <Save>All</Save>
+              <Stance>Aura of Courage</Stance>
+          </Effect>
+          <Effect>
+              <Type>SpellResistance</Type>
+              <Bonus>Enhancement</Bonus>
+              <AmountVector size="3">1 2 3</AmountVector>
+              <Stance>Aura of Courage</Stance>
+          </Effect>
+          <Effect>
               <Type>Hitpoints</Type>
               <Bonus>Enhancement</Bonus>
-              <Amount>100</Amount>
+              <AmountVector size="3">100 100 100</AmountVector>
           </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -1331,7 +1350,7 @@ Resistance and are protected from Magic Missiles.</Description>
          <Icon>SDSacredShield</Icon>
          <XPosition>4</XPosition>
          <YPosition>5</YPosition>
-         <Cost>1</Cost>
+         <Cost>2</Cost>
          <Ranks>1</Ranks>
          <MinSpent>30</MinSpent>
          <Tier5/>
