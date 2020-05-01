@@ -849,7 +849,7 @@ bool ActiveEffect::IsActive(const Character * pCharacter, WeaponType wt) const
         bool requiredStanceActive = false;
         for (size_t i = 0; i < m_anyOfStances.size(); ++i)
         {
-            if (pCharacter->IsStanceActive(m_anyOfStances[i]))
+            if (pCharacter->IsStanceActive(m_anyOfStances[i], wt))
             {
                 requiredStanceActive = true;
                 break;  // we have one, don't bother with the rest (if any)
@@ -865,7 +865,7 @@ bool ActiveEffect::IsActive(const Character * pCharacter, WeaponType wt) const
         bool badStanceActive = false;
         for (size_t i = 0; i < m_noneOfStances.size(); ++i)
         {
-            if (pCharacter->IsStanceActive(m_noneOfStances[i]))
+            if (pCharacter->IsStanceActive(m_noneOfStances[i], wt))
             {
                 badStanceActive = true;
                 break;  // we have one, don't bother with the rest (if any)

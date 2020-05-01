@@ -889,7 +889,7 @@ const SliderItem * CStancesView::GetSlider(
     return pSlider;
 }
 
-bool CStancesView::IsStanceActive(const std::string & name) const
+bool CStancesView::IsStanceActive(const std::string & name, WeaponType wt) const
 {
     bool bEnabled = false;
     // some special stances are based on a slider position
@@ -917,6 +917,21 @@ bool CStancesView::IsStanceActive(const std::string & name) const
                 bEnabled = (pSlider->m_position >= value);
             }
         }
+    }
+    // see if a weapon group exists for this stance
+    std::list<WeaponGroup>::const_iterator wgit = m_weaponGroups.begin();
+    while (wgit != m_weaponGroups.end())
+    {
+        if ((*wgit).Name() == name)
+        {
+            // yes, this weapon group exists, see if the weapon
+            // is part of it.
+            if ((*wgit).HasWeapon(wt))
+            {
+                bEnabled = true;
+            }
+        }
+        ++wgit;
     }
     return bEnabled;
 }
@@ -956,6 +971,7 @@ void CStancesView::AddToWeaponGroup(const Effect & effect)
             }
             m_weaponGroups.push_back(wg);
         }
+        m_pCharacter->NotifyStanceActivated(effect.WeaponGroup());
     }
 }
 

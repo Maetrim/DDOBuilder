@@ -1718,96 +1718,30 @@ void Character::DeactivateStance(const Stance & stance)
 bool Character::IsStanceActive(const std::string & name, WeaponType wt) const
 {
     bool ret = false;
-    // favored weapons are a special stance for feats and class enhancements:
-    if (name == "FavoredWeapon"     // feats
-            || name == "Favored Weapon")   // enhancements
+    // some special stances are based on a slider position
+    // all these stances start with a numeric with the format of
+    // "<number>% <stance name>"
+    CWnd * pWnd = AfxGetMainWnd();
+    CMainFrame * pMainWnd = dynamic_cast<CMainFrame*>(pWnd);
+    const CStancesView * pStancesView = pMainWnd->GetStancesView();
+    if (name.find("%") != std::string::npos)
     {
-        // look through the trained feats to determine whether
-        // wt is the favored weapon type (Deities)
-        ret = (IsFeatTrained("Follower of Aureon") && wt == Weapon_Quarterstaff)
-                || (IsFeatTrained("Follower of the Blood of Vol") && wt == Weapon_Dagger)
-                || (IsFeatTrained("Follower of the Lord of Blades") && wt == Weapon_GreatSword)
-                || (IsFeatTrained("Follower of Olladra") && wt == Weapon_Sickle)
-                || (IsFeatTrained("Follower of Onatar") && wt == Weapon_Warhammer)
-                || (IsFeatTrained("Follower of the Silver Flame") && wt == Weapon_Longbow)
-                || (IsFeatTrained("Follower of the Sovereign Host") && wt == Weapon_Longsword)
-                || (IsFeatTrained("Follower of the Undying Court") && wt == Weapon_Scimitar)
-                || (IsFeatTrained("Follower of Vulkoor") && wt == Weapon_Shortsword)
-                || (IsFeatTrained("Favored by Amaunator") && wt == Weapon_HeavyMace)
-                || (IsFeatTrained("Favored by Helm") && wt == Weapon_BastardSword)
-                || (IsFeatTrained("Favored by Silvanus") && wt == Weapon_Maul);
-        // it can also become a favored weapon due to enhancements in the Wood Elf tree
-        if (IsEnhancementTrained("WoodElfForestOrigins", "Faith of the Forest"))
-        {
-            // wood elves with this enhancement count Rapiers, Falchions and Shortbows
-            // as their favored weapon also.
-            ret |= (wt == Weapon_Rapier)
-                    || (wt == Weapon_Falchion)
-                    || (wt == Weapon_Shortbow);
-        }
-        if (IsEnhancementTrained("InquisitiveInquisitionStyle", "Divine Inquisition"))
-        {
-            // Inquisition grants light/heavy crossbows
-            // as their favored weapon also.
-            ret |= (wt == Weapon_LightCrossbow)
-                    || (wt == Weapon_HeavyCrossbow);
-        }
-        // Knight of the Chalice
-        if (IsEnhancementTrained("KotCAdeptCombatant", ""))
-        {
-            ret |= (wt == Weapon_Longsword)
-                    || (wt == Weapon_BattleAxe)
-                    || (wt == Weapon_HeavyMace)
-                    || (wt == Weapon_Morningstar)
-                    || (wt == Weapon_Warhammer);
-        }
-         if (IsEnhancementTrained("KotCHolyCombatantII", ""))
-        {
-            ret |= (wt == Weapon_GreatSword);
-        }
-       // divine crusader can award favored weapons also
-        if (IsEnhancementTrained("BookOfWar", "Longsword"))
-        {
-            ret |= (wt == Weapon_Longsword);
-        }
-        if (IsEnhancementTrained("BookOfWar", "Longbow"))
-        {
-            ret |= (wt == Weapon_Longbow);
-        }
-        if (IsEnhancementTrained("BookOfWar", "Morningstar"))
-        {
-            ret |= (wt == Weapon_Morningstar);
-        }
-        if (IsEnhancementTrained("BookOfWar", "Greatsword"))
-        {
-            ret |= (wt == Weapon_GreatSword);
-        }
-        if (name == "FavoredWeapon")
-        {
-            // must also have at least 10 favored soul levels for this to apply
-            // for Grace/Knowledge of battle
-            if (ClassLevels(Class_FavoredSoul) < 10)
-            {
-                // not enough heroic levels for this to apply
-                ret = false;
-            }
-        }
+        ret = pStancesView->IsStanceActive(name, wt);
     }
     else
     {
-        // some special stances are based on a slider position
-        // all these stances start with a numeric with the format of
-        // "<number>% <stance name>"
-        if (name.find("%") != std::string::npos)
+        ret = m_Stances.IsStanceActive(name);
+        ret |= pStancesView->IsStanceActive(name, wt);
+    }
+    if (name == "FavoredWeapon")
+    {
+        ret = m_Stances.IsStanceActive("Favored Weapon");   // check the weapon group
+        // must also have at least 10 favored soul levels for this to apply
+        // for Grace/Knowledge of battle
+        if (ClassLevels(Class_FavoredSoul) < 10)
         {
-            CWnd * pWnd = AfxGetMainWnd();
-            CMainFrame * pMainWnd = dynamic_cast<CMainFrame*>(pWnd);
-            const CStancesView * pStancesView = pMainWnd->GetStancesView();
-            ret = pStancesView->IsStanceActive(name);
-        }
-        else
-        {
-            ret = m_Stances.IsStanceActive(name);
+            // not enough heroic levels for this to apply
+            ret = false;
         }
     }
     return ret;

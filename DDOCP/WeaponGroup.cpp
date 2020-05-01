@@ -23,7 +23,7 @@ bool WeaponGroup::HasWeapon(WeaponType wt) const
     // return true if this weapon type is in the list
     bool bPresent = false;
     std::list<WeaponType>::const_iterator it = m_weaponsInGroup.begin();
-    while (bPresent && it != m_weaponsInGroup.end())
+    while (!bPresent && it != m_weaponsInGroup.end())
     {
         bPresent = ((*it) == wt);
         ++it;

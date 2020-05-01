@@ -74,6 +74,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
             "Hawkwier, "
             "Hobgoblin, "
             "iAntiquary, "
+            "Jalak21, "
             "Jokersir2, "
             "Kamdragon, "
             "Kentpb, "

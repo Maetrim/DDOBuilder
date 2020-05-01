@@ -669,28 +669,36 @@ void CInventoryDialog::EditFiligree(int filigreeIndex, CRect itemRect)
         // populate with the list of available filigree minus any selections
         // made in other filigree slots
         std::vector<Augment> augments = CompatibleAugments("Filigree");
-        for (size_t fi = 0; fi < MAX_FILIGREE; ++fi)
-        {
-            // do not remove any selection from current slot
-            if (fi != filigreeIndex)
-            {
-                // get current selection (if any)
-                std::string filigree = jewel.GetFiligree(fi);
-                if (filigree != "")
-                {
-                    // remove it from the augments list
-                    std::vector<Augment>::iterator it = augments.begin();
-                    while (it != augments.end())
-                    {
-                        if ((*it).Name() == filigree)
-                        {
-                            it = augments.erase(it);
-                        }
-                        ++it;
-                    }
-                }
-            }
-        }
+
+        // DDO BUG - It is possible to slot the same filigree multiple times
+        // while this is possible in game, it will be allowed here in the planner
+        // when the bug is fixed, uncomment the following code.
+
+        //for (size_t fi = 0; fi < MAX_FILIGREE; ++fi)
+        //{
+        //    // do not remove any selection from current slot
+        //    if (fi != filigreeIndex)
+        //    {
+        //        // get current selection (if any)
+        //        std::string filigree = jewel.GetFiligree(fi);
+        //        if (filigree != "")
+        //        {
+        //            // remove it from the augments list
+        //            std::vector<Augment>::iterator it = augments.begin();
+        //            while (it != augments.end())
+        //            {
+        //                if ((*it).Name() == filigree)
+        //                {
+        //                    it = augments.erase(it);
+        //                }
+        //                else
+        //                {
+        //                    ++it;
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
         BuildImageList(augments);
         m_comboFiligreeSelect.SetImageList(&m_filigreeImagesList);
 

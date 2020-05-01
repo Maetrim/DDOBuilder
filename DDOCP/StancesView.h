@@ -59,7 +59,7 @@ class CStancesView :
         const std::vector<CStanceButton *> & UserStances() const;
         const std::vector<CStanceButton *> & AutoStances() const;
         const CStanceButton * GetStance(const std::string & stanceName) const;
-        bool IsStanceActive(const std::string & name) const;
+        bool IsStanceActive(const std::string & name, WeaponType wt) const;
         const SliderItem * GetSlider(const std::string & name) const;
     protected:
         CStancesView();           // protected constructor used by dynamic creation

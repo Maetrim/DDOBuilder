@@ -210,7 +210,17 @@ bool Requirement::CanTrainEnhancement(
         met &= (te != NULL);
         if (te != NULL)
         {
-            met &= (trainedRanks < te->Ranks());
+            const EnhancementTreeItem * pItem = FindEnhancement(Enhancement());
+            if (pItem->Ranks() == 1)
+            {
+                // if the source enhancement only has a single rank, then
+                // allow this one to be trained to its max ranks
+            }
+            else
+            {
+                // we must have the same of less ranks than the item in question
+                met &= (trainedRanks < te->Ranks());
+            }
         }
     }
 

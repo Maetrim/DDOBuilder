@@ -469,4 +469,5 @@ class Character :
         friend class CForumExportDlg;
         friend class CEnhancementTreeDialog;
         friend class CDestinyTreeDialog;
+        friend class CStancesView;
 };
