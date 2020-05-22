@@ -79,6 +79,7 @@ bool FeatGroup::VerifyObject(std::stringstream * ss) const
             || HasIsMetamagic()
             || HasIsWarlockPact()
             || HasIsWarlockPactAbility()
+            || HasIsWarlockResistance()
             || HasIsWarlockSaveBonus()
             || HasIsWarlockPactSpell();
     if (!ok)

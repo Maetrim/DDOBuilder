@@ -84,29 +84,6 @@ BreakdownItemWeapon::BreakdownItemWeapon(
     AddTreeItem("Critical Multiplier (19-20)", "", &m_criticalMultiplier19To20);
     AddTreeItem("Attack Speed", "", &m_attackSpeed);
     AddTreeItem("DR Bypass", "", &m_drBypass);
-
-    // by default all melee weapons use strength as their base for attack bonus
-    // additional abilities can be added for specific weapons by enhancements
-    if (IsThrownWeapon(weaponType))
-    {
-        // thrown weapons use dexterity
-        m_attackBonus.AddAbility(Ability_Dexterity);
-        m_criticalAttackBonus.AddAbility(Ability_Dexterity);
-    }
-    else
-    {
-        m_attackBonus.AddAbility(Ability_Strength);
-        m_criticalAttackBonus.AddAbility(Ability_Strength);
-    }
-
-    // by default all weapons except ranged/thrown weapons use strength as their base for bonus damage
-    // additional abilities can be added for specific weapons by enhancements/feats
-    // such as Bow Strength gives strength for ranged weapons
-    if (!IsRangedWeapon(weaponType) && !IsThrownWeapon(weaponType))
-    {
-        m_damageBonus.AddAbility(Ability_Strength);
-        m_criticalDamageBonus.AddAbility(Ability_Strength);
-    }
 }
 
 BreakdownItemWeapon::~BreakdownItemWeapon()

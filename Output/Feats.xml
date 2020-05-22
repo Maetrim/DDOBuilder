@@ -13224,6 +13224,87 @@ chance they break free. Does not affect bosses. There is no saving throw.</Descr
       </Effect>
    </Feat>
    <Feat>
+      <Name>Warlock: Celestial Attunement</Name>
+      <Description>+5 Physical Resistance Rating, +1 to all Saving Throws</Description>
+      <FeatGroup>
+         <IsWarlockPactAbility/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <Feat>Warlock: Pact: Celestial</Feat>
+         </Requirement>
+         <Requirement>
+            <Class>Warlock</Class>
+            <Level>6</Level>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>CelestialAttunement</Icon>
+      <Effect>
+         <Type>PRR</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>5</Amount>
+      </Effect>
+      <Effect>
+         <Type>SaveBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Save>All</Save>
+         <Amount>1</Amount>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Warlock: Unhallowed Flesh</Name>
+      <Description>+5 Physical and Magical Resistance Rating</Description>
+      <FeatGroup>
+         <IsWarlockPactAbility/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <Feat>Warlock: Pact: The Abyss</Feat>
+         </Requirement>
+         <Requirement>
+            <Class>Warlock</Class>
+            <Level>6</Level>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>UnhallowedFlesh</Icon>
+      <Effect>
+         <Type>PRR</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>5</Amount>
+      </Effect>
+      <Effect>
+         <Type>MRR</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>5</Amount>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Warlock: Frozen Footsteps</Name>
+      <Description>+10% Cold Absorption</Description>
+      <FeatGroup>
+         <IsWarlockPactAbility/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <Feat>Warlock: Pact: The Carceri Storm</Feat>
+         </Requirement>
+         <Requirement>
+            <Class>Warlock</Class>
+            <Level>6</Level>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>FrozenFootsteps</Icon>
+      <Effect>
+         <Type>EnergyAbsorbance</Type>
+         <Bonus>Feat</Bonus>
+         <Energy>Cold</Energy>
+         <Amount>10</Amount>
+      </Effect>
+   </Feat>
+   <Feat>
       <Name>Warlock: Deceive Item</Name>
       <Description>+5 Use Magic Device</Description>
       <MaxTimesAcquire>2</MaxTimesAcquire>
@@ -13329,7 +13410,7 @@ Eldritch Blast to suffer Arcane Spell Failure.</Description>
    <Feat>
       <Name>Warlock: Hurl Through Hell</Name>
       <Description>Cooldown: 25 seconds. Exile one target enemy from this existence.
-An enemy succeeding on a Will save vs DC(10 + Warlock level + Charisma Modifier)
+An enemy succeeding on a Will save vs DC(15 + Warlock level + Charisma Modifier)
 is instead paralyzed and helpless with fear for 6 seconds.</Description>
       <FeatGroup>
          <IsWarlockPactAbility/>
@@ -13356,7 +13437,7 @@ is instead paralyzed and helpless with fear for 6 seconds.</Description>
 An enemy succeeding on a Will save is instead paralyzed and helpless with fear for 6 seconds.</Description>
          <Icon>HurlThroughHell</Icon>
          <DCVersus>Will</DCVersus>
-         <AmountVector size="1">10</AmountVector>
+         <AmountVector size="1">15</AmountVector>
          <ClassLevel>Warlock</ClassLevel>
          <ModAbility>Charisma</ModAbility>
       </DC>
@@ -13385,6 +13466,75 @@ These effects last for six seconds</Description>
          <Bonus>Feat</Bonus>
          <SpellLikeAbility>Misty escape</SpellLikeAbility>
       </Effect>
+   </Feat>
+   <Feat>
+      <Name>Warlock: Ameliorate</Name>
+      <Description>Attempt to obliterate an Undead, or severly weaken any non-Undead foe.
+Undead must succeed on a Will save vs DC(15 + Warlock level + Charisma Mod)
+or be destroyed. Undead who fail this save, or enemieswho are not undead,
+instead are terrorized and have their Magical resistance Rating reduced by
+10 for 6 seconds.</Description>
+      <FeatGroup>
+         <IsWarlockPactAbility/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <Feat>Warlock: Pact: Celestial</Feat>
+         </Requirement>
+         <Requirement>
+            <Class>Warlock</Class>
+            <Level>15</Level>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>Ameliorate</Icon>
+      <Effect>
+         <Type>SpellLikeAbility</Type>
+         <Bonus>Feat</Bonus>
+         <SpellLikeAbility>Ameliorate</SpellLikeAbility>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Warlock: Channel the Abyss</Name>
+      <Description>Shroud yourself in the Abyss, which will grant you unholy power - at a cost.
+You have +100% criticla hit resistance, are healed by Negative Energy, take 50%
+healing from Positive Energy, and take double damage from Light. You are considered
+Undead rather than your original type for the purpose of most effects.</Description>
+      <FeatGroup>
+         <IsWarlockPactAbility/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <Feat>Warlock: Pact: The Abyss</Feat>
+         </Requirement>
+         <Requirement>
+            <Class>Warlock</Class>
+            <Level>15</Level>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>ChannelTheAbyss</Icon>
+   </Feat>
+   <Feat>
+      <Name>Warlock: Absolute Zero</Name>
+      <Description>Attempt to lock a single enemy in ice - permanently.
+Enemies must succees on a Will save vs DC(15 + Warlock level + Charisma Mod)
+or be forever trapped in solid ice. Enemies made of fire will instead be destroyed
+with no save. Does not affecct bosses.</Description>
+      <FeatGroup>
+         <IsWarlockPactAbility/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <Feat>Warlock: Pact: The Carceri Storm</Feat>
+         </Requirement>
+         <Requirement>
+            <Class>Warlock</Class>
+            <Level>15</Level>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>AbsoluteZero</Icon>
    </Feat>
    <Feat>
       <Name>Warlock: Pact Damage</Name>
@@ -13595,6 +13745,174 @@ DC(19 + Charisma Mod + Evocation Bonuses)</Description>
          <Name>Warlock: Pact: Great Old One</Name>
          <Description>Toggle on: Your eldritch Blast deals +1 Acid damage, plus 1d4 per two
 Warlock levels. This damage is halved on a successful Will saving throw.</Description>
+         <Icon>EpicEldritchBlast</Icon>
+         <DCVersus>Will</DCVersus>
+         <AmountVector size="1">19</AmountVector>
+         <ModAbility>Charisma</ModAbility>
+         <School>Evocation</School>
+      </DC>
+   </Feat>
+   <Feat>
+      <Name>Warlock: Pact: Celestial</Name>
+      <Description>Your patron is a divine Celestial, patron of those who wish to devote
+themselves to an unconcentional method of worship. You will learn to channel
+the light and air around you into a rightous weapon, and utilize holy abilities
+to help your friends and pass judegment upon your enemies.
+
+Toggle on: Your eldritch Blast deals +1 Electric damage, plus 1d4 per two Warlock levels.
+This damage is halved on a successful Reflex saving throw vs
+DC(19 + Charisma Mod + Evocation Bonuses)
+Adds Spells to your spell book at level
+1 - Bless
+5 - Soundburst
+9 - Magic Circle Against Evil
+14 - Prayer
+17 - Holy Aura
+19 - Freedom of Movement</Description>
+      <Stance>
+         <Name>Eldritch Blasting</Name>
+         <Icon>EpicEldritchBlast</Icon>
+         <Description>Your eldritch Blast deals +1 Sonic damage, plus 1d4 per two Warlock levels.
+This damage is halved on a successful Reflex saving throw vs
+DC(19 + Charisma Mod + Evocation Bonuses)</Description>
+         <IncompatibleStance>Eldritch Aura</IncompatibleStance>
+      </Stance>
+      <FeatGroup>
+         <IsWarlockPact/>
+      </FeatGroup>
+      <Requirements>
+         <RequiresOneOf>
+            <Requirement>
+               <Alignment>Lawful Good</Alignment>
+            </Requirement>
+            <Requirement>
+               <Alignment>Neutral Good</Alignment>
+            </Requirement>
+            <Requirement>
+               <Alignment>Chaotic Good</Alignment>
+            </Requirement>
+         </RequiresOneOf>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>PactCelestial</Icon>
+      <Effect>
+         <Type>GrantSpell</Type>
+         <Bonus>Feat</Bonus>
+         <Spell>Bless</Spell>
+         <SpellLevel>1</SpellLevel>
+         <Class>Warlock</Class>
+      </Effect>
+      <DC>
+         <Name>Warlock: Pact: Celestial</Name>
+         <Description>Toggle on: Your eldritch Blast deals +1 Electric damage, plus 1d4 per two Warlock levels.
+This damage is halved on a successful Reflex saving throw.</Description>
+         <Icon>EpicEldritchBlast</Icon>
+         <DCVersus>Reflex</DCVersus>
+         <AmountVector size="1">19</AmountVector>
+         <ModAbility>Charisma</ModAbility>
+         <School>Evocation</School>
+      </DC>
+   </Feat>
+   <Feat>
+      <Name>Warlock: Pact: The Abyss</Name>
+      <Description>Your patron is of the Abyss - a pit of darkness beyond comprehension, a desire and a
+hunger beyond meaning itself. Tread carefully.
+
+Toggle on: Your eldritch Blast deals +1 Negative damage, plus 1d4 per two Warlock levels.
+This damage is halved on a successful Fortitude saving throw vs
+DC(19 + Charisma Mod + Evocation Bonuses)
+Adds Spells to your spell book at level
+1 - Mage Armor
+5 - Spawn Screen
+9 - Halt Undead
+14 - Death Aura
+17 - Symbol of Pain
+19 - Energy Drain</Description>
+      <Stance>
+         <Name>Eldritch Blasting</Name>
+         <Icon>EpicEldritchBlast</Icon>
+         <Description>Your eldritch Blast deals +1 Negative damage, plus 1d4 per two Warlock levels.
+This damage is halved on a successful Fortitude saving throw vs
+DC(19 + Charisma Mod + Evocation Bonuses)</Description>
+         <IncompatibleStance>Eldritch Aura</IncompatibleStance>
+      </Stance>
+      <FeatGroup>
+         <IsWarlockPact/>
+      </FeatGroup>
+      <Requirements>
+         <RequiresNoneOf>
+            <Requirement>
+               <Alignment>Lawful Good</Alignment>
+            </Requirement>
+            <Requirement>
+               <Alignment>Neutral Good</Alignment>
+            </Requirement>
+            <Requirement>
+               <Alignment>Chaotic Good</Alignment>
+            </Requirement>
+         </RequiresNoneOf>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>PactTheAbyss</Icon>
+      <Effect>
+         <Type>GrantSpell</Type>
+         <Bonus>Feat</Bonus>
+         <Spell>Mage Armor</Spell>
+         <SpellLevel>1</SpellLevel>
+         <Class>Warlock</Class>
+      </Effect>
+      <DC>
+         <Name>Warlock: Pact: The Abyss</Name>
+         <Description>Toggle on: Your eldritch Blast deals +1 Negative damage, plus 1d4 per two Warlock levels.
+This damage is halved on a successful Fortitude saving throw.</Description>
+         <Icon>EpicEldritchBlast</Icon>
+         <DCVersus>Fortitude</DCVersus>
+         <AmountVector size="1">19</AmountVector>
+         <ModAbility>Charisma</ModAbility>
+         <School>Evocation</School>
+      </DC>
+   </Feat>
+   <Feat>
+      <Name>Warlock: Pact: The Carceri Storm</Name>
+      <Description>Your patron is a demonic entity from the realm of Carceri, otherwise known as Tarterus.
+      The bitter cold and frreezing winds will chill you to your bones, but if you can
+master the power granted to you, great things will surely come your way...
+
+Toggle on: Your eldritch Blast deals +1 Cold damage, plus 1d4 per two Warlock levels.
+This damage is halved on a successful Will saving throw vs
+DC(19 + Charisma Mod + Evocation Bonuses)
+Adds Spells to your spell book at level
+1 - Merfolk's Blessing
+5 - Gust of Wind
+9 - Sleet Storm
+14 - Ice Storm
+17 - Niac's Biting Cold
+19 - Greater Creeping Cold</Description>
+      <Stance>
+         <Name>Eldritch Blasting</Name>
+         <Icon>EpicEldritchBlast</Icon>
+         <Description>Your eldritch Blast deals +1 Cold damage, plus 1d4 per two Warlock levels.
+This damage is halved on a successful Will saving throw vs
+DC(19 + Charisma Mod + Evocation Bonuses)</Description>
+         <IncompatibleStance>Eldritch Aura</IncompatibleStance>
+      </Stance>
+      <FeatGroup>
+         <IsWarlockPact/>
+      </FeatGroup>
+      <Requirements/>
+      <Acquire>Train</Acquire>
+      <Icon>PactTheCarceriStorm</Icon>
+      <Effect>
+         <Type>GrantSpell</Type>
+         <Bonus>Feat</Bonus>
+         <Spell>Merfolk's Blessing</Spell>
+         <SpellLevel>1</SpellLevel>
+         <Class>Warlock</Class>
+      </Effect>
+      <DC>
+         <Name>Warlock: Pact: The Carceri Storm</Name>
+         <Description>Toggle on: Your eldritch Blast deals +1 Cold damage, plus 1d4 per two Warlock levels.
+This damage is halved on a successful Fortitude saving throw.</Description>
          <Icon>EpicEldritchBlast</Icon>
          <DCVersus>Will</DCVersus>
          <AmountVector size="1">19</AmountVector>
@@ -20432,6 +20750,81 @@ pick the lock.</Description>
       </Effect>
    </Feat>
    <Feat>
+      <Name>Pact Spell Celestial: Soundburst</Name>
+      <Description>This spell is added to your Warlock spellbook.</Description>
+      <FeatGroup>
+         <IsWarlockPactSpell/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <Feat>Warlock: Pact: Celestial</Feat>
+         </Requirement>
+         <Requirement>
+            <Class>Warlock</Class>
+            <Level>5</Level>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>Soundburst</Icon>
+      <Effect>
+         <Type>GrantSpell</Type>
+         <Bonus>Feat</Bonus>
+         <Spell>Soundburst</Spell>
+         <SpellLevel>2</SpellLevel>
+         <Class>Warlock</Class>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Pact Spell The Abyss: Spawn Screen</Name>
+      <Description>This spell is added to your Warlock spellbook.</Description>
+      <FeatGroup>
+         <IsWarlockPactSpell/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <Feat>Warlock: Pact: The Abyss</Feat>
+         </Requirement>
+         <Requirement>
+            <Class>Warlock</Class>
+            <Level>5</Level>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>SpawnScreen</Icon>
+      <Effect>
+         <Type>GrantSpell</Type>
+         <Bonus>Feat</Bonus>
+         <Spell>Spawn Screen</Spell>
+         <SpellLevel>2</SpellLevel>
+         <Class>Warlock</Class>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Pact Spell The Carceri Storm: Gust of Wind</Name>
+      <Description>This spell is added to your Warlock spellbook.</Description>
+      <FeatGroup>
+         <IsWarlockPactSpell/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <Feat>Warlock: Pact: The Carceri Storm</Feat>
+         </Requirement>
+         <Requirement>
+            <Class>Warlock</Class>
+            <Level>5</Level>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>GustOfWind</Icon>
+      <Effect>
+         <Type>GrantSpell</Type>
+         <Bonus>Feat</Bonus>
+         <Spell>Gust of Wind</Spell>
+         <SpellLevel>2</SpellLevel>
+         <Class>Warlock</Class>
+      </Effect>
+   </Feat>
+   <Feat>
       <Name>Pact Spell Fey: Slow</Name>
       <Description>One target moves at 50% run speed, attacks at a 30% slowed
 rate, -1 on Attack rolls, Armor Class and Reflex saves. A successful Will save
@@ -20514,6 +20907,81 @@ save disbelieves the spell and negates ill effects.</Description>
          <Type>GrantSpell</Type>
          <Bonus>Feat</Bonus>
          <Spell>Phantasmal Killer</Spell>
+         <SpellLevel>3</SpellLevel>
+         <Class>Warlock</Class>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Pact Spell Celestial: Magic Circle against Evil</Name>
+      <Description></Description>
+      <FeatGroup>
+         <IsWarlockPactSpell/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <Feat>Warlock: Pact: Celestial</Feat>
+         </Requirement>
+         <Requirement>
+            <Class>Warlock</Class>
+            <Level>9</Level>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>MagicCircleAgainstEvil</Icon>
+      <Effect>
+         <Type>GrantSpell</Type>
+         <Bonus>Feat</Bonus>
+         <Spell>Magic Circle Against Evil</Spell>
+         <SpellLevel>3</SpellLevel>
+         <Class>Warlock</Class>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Pact Spell The Abyss: Halt Undead</Name>
+      <Description></Description>
+      <FeatGroup>
+         <IsWarlockPactSpell/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <Feat>Warlock: Pact: The Abyss</Feat>
+         </Requirement>
+         <Requirement>
+            <Class>Warlock</Class>
+            <Level>9</Level>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>HaltUndead</Icon>
+      <Effect>
+         <Type>GrantSpell</Type>
+         <Bonus>Feat</Bonus>
+         <Spell>Halt Undead</Spell>
+         <SpellLevel>3</SpellLevel>
+         <Class>Warlock</Class>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Pact Spell The Carceri Storm: Sleet Storm</Name>
+      <Description></Description>
+      <FeatGroup>
+         <IsWarlockPactSpell/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <Feat>Warlock: Pact: The Carceri Storm</Feat>
+         </Requirement>
+         <Requirement>
+            <Class>Warlock</Class>
+            <Level>9</Level>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>SleetStorm</Icon>
+      <Effect>
+         <Type>GrantSpell</Type>
+         <Bonus>Feat</Bonus>
+         <Spell>Sleet Storm</Spell>
          <SpellLevel>3</SpellLevel>
          <Class>Warlock</Class>
       </Effect>
@@ -20604,6 +21072,81 @@ mind. Dominate acts like Charm Person, with additional Will saves every 15 to
       </Effect>
    </Feat>
    <Feat>
+      <Name>Pact Spell Celestial: Prayer</Name>
+      <Description>This spell is added to your Warlock spellbook.</Description>
+      <FeatGroup>
+         <IsWarlockPactSpell/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <Feat>Warlock: Pact: Celestial</Feat>
+         </Requirement>
+         <Requirement>
+            <Class>Warlock</Class>
+            <Level>14</Level>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>Prayer</Icon>
+      <Effect>
+         <Type>GrantSpell</Type>
+         <Bonus>Feat</Bonus>
+         <Spell>Prayer</Spell>
+         <SpellLevel>4</SpellLevel>
+         <Class>Warlock</Class>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Pact Spell The Abyss: Death Aura</Name>
+      <Description>This spell is added to your Warlock spellbook.</Description>
+      <FeatGroup>
+         <IsWarlockPactSpell/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <Feat>Warlock: Pact: The Abyss</Feat>
+         </Requirement>
+         <Requirement>
+            <Class>Warlock</Class>
+            <Level>14</Level>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>DeathAura</Icon>
+      <Effect>
+         <Type>GrantSpell</Type>
+         <Bonus>Feat</Bonus>
+         <Spell>Death Aura</Spell>
+         <SpellLevel>4</SpellLevel>
+         <Class>Warlock</Class>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Pact Spell The Carceri Storm: Ice Storm</Name>
+      <Description>This spell is added to your Warlock spellbook.</Description>
+      <FeatGroup>
+         <IsWarlockPactSpell/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <Feat>Warlock: Pact: The Carceri Storm</Feat>
+         </Requirement>
+         <Requirement>
+            <Class>Warlock</Class>
+            <Level>14</Level>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>IceStorm</Icon>
+      <Effect>
+         <Type>GrantSpell</Type>
+         <Bonus>Feat</Bonus>
+         <Spell>Ice Storm</Spell>
+         <SpellLevel>4</SpellLevel>
+         <Class>Warlock</Class>
+      </Effect>
+   </Feat>
+   <Feat>
       <Name>Pact Spell Fey: Otto's Sphere of Dancing</Name>
       <Description>A magical sphere that compels all enemies who enter it to dance.
 A successful Will save negates this effect.</Description>
@@ -20686,6 +21229,81 @@ this effect.</Description>
       </Effect>
    </Feat>
    <Feat>
+      <Name>Pact Spell Celestial: Holy Aura</Name>
+      <Description>This spell is added to your Warlock spellbook.</Description>
+      <FeatGroup>
+         <IsWarlockPactSpell/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <Feat>Warlock: Pact: Celestial</Feat>
+         </Requirement>
+         <Requirement>
+            <Class>Warlock</Class>
+            <Level>17</Level>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>HolyAura</Icon>
+      <Effect>
+         <Type>GrantSpell</Type>
+         <Bonus>Feat</Bonus>
+         <Spell>Holy Aura</Spell>
+         <SpellLevel>5</SpellLevel>
+         <Class>Warlock</Class>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Pact Spell The Abyss: Symbol of Pain</Name>
+      <Description>This spell is added to your Warlock spellbook.</Description>
+      <FeatGroup>
+         <IsWarlockPactSpell/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <Feat>Warlock: Pact: The Abyss</Feat>
+         </Requirement>
+         <Requirement>
+            <Class>Warlock</Class>
+            <Level>17</Level>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>SymbolOfPain</Icon>
+      <Effect>
+         <Type>GrantSpell</Type>
+         <Bonus>Feat</Bonus>
+         <Spell>Symbol of Pain</Spell>
+         <SpellLevel>5</SpellLevel>
+         <Class>Warlock</Class>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Pact Spell The Carceri Storm: Niac's Biting Cold</Name>
+      <Description>This spell is added to your Warlock spellbook.</Description>
+      <FeatGroup>
+         <IsWarlockPactSpell/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <Feat>Warlock: Pact: The Carceri Storm</Feat>
+         </Requirement>
+         <Requirement>
+            <Class>Warlock</Class>
+            <Level>17</Level>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>NiacsBitingCold</Icon>
+      <Effect>
+         <Type>GrantSpell</Type>
+         <Bonus>Feat</Bonus>
+         <Spell>Niac's Biting Cold</Spell>
+         <SpellLevel>5</SpellLevel>
+         <Class>Warlock</Class>
+      </Effect>
+   </Feat>
+   <Feat>
       <Name>Pact Spell Fey: Otto's Irresistible Dance</Name>
       <Description>This spell makes it impossible for the enemy to do anything
 other than caper and prance in place.</Description>
@@ -20763,6 +21381,81 @@ saving throw allowed. Cooldown timer of 210 seconds.</Description>
          <Class>Warlock</Class>
       </Effect>
    </Feat>
+   <Feat>
+      <Name>Pact Spell Celestial: Freedom of Movement</Name>
+      <Description>This spell is added to your Warlock spellbook.</Description>
+      <FeatGroup>
+         <IsWarlockPactSpell/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <Feat>Warlock: Pact: Celestial</Feat>
+         </Requirement>
+         <Requirement>
+            <Class>Warlock</Class>
+            <Level>19</Level>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>FreedomOfMovement</Icon>
+      <Effect>
+         <Type>GrantSpell</Type>
+         <Bonus>Feat</Bonus>
+         <Spell>Freedom of Movement</Spell>
+         <SpellLevel>6</SpellLevel>
+         <Class>Warlock</Class>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Pact Spell The Abyss: Energy Drain</Name>
+      <Description>This spell is added to your Warlock spellbook.</Description>
+      <FeatGroup>
+         <IsWarlockPactSpell/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <Feat>Warlock: Pact: The Abyss</Feat>
+         </Requirement>
+         <Requirement>
+            <Class>Warlock</Class>
+            <Level>19</Level>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>EnergyDrain</Icon>
+      <Effect>
+         <Type>GrantSpell</Type>
+         <Bonus>Feat</Bonus>
+         <Spell>Energy Drain</Spell>
+         <SpellLevel>6</SpellLevel>
+         <Class>Warlock</Class>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Pact Spell The Carceri Storm: Greater Creeping Cold</Name>
+      <Description>This spell is added to your Warlock spellbook.</Description>
+      <FeatGroup>
+         <IsWarlockPactSpell/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <Feat>Warlock: Pact: The Carceri Storm</Feat>
+         </Requirement>
+         <Requirement>
+            <Class>Warlock</Class>
+            <Level>19</Level>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>GreaterCreepingCold</Icon>
+      <Effect>
+         <Type>GrantSpell</Type>
+         <Bonus>Feat</Bonus>
+         <Spell>Greater Creeping Cold</Spell>
+         <SpellLevel>6</SpellLevel>
+         <Class>Warlock</Class>
+      </Effect>
+   </Feat>
    <!--Warlock save bonus's-->
    <Feat>
       <Name>Beguiling Defenses</Name>
@@ -20828,6 +21521,217 @@ saving throw allowed. Cooldown timer of 210 seconds.</Description>
          <Bonus>Feat</Bonus>
          <Save>Will</Save>
          <Amount>1</Amount>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Celestial Awareness</Name>
+      <Description>+1 Reflex saving throws</Description>
+      <FeatGroup>
+         <IsWarlockSaveBonus/>
+      </FeatGroup>
+      <MaxTimesAcquire>5</MaxTimesAcquire>
+      <Requirements>
+         <Requirement>
+            <Feat>Warlock: Pact: Celestial</Feat>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>CelestialAwareness</Icon>
+      <Effect>
+         <Type>SaveBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Save>Reflex</Save>
+         <Amount>1</Amount>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Abyssal Resillience</Name>
+      <Description>+1 Fortitude saving throws</Description>
+      <FeatGroup>
+         <IsWarlockSaveBonus/>
+      </FeatGroup>
+      <MaxTimesAcquire>5</MaxTimesAcquire>
+      <Requirements>
+         <Requirement>
+            <Feat>Warlock: Pact: The Abyss</Feat>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>AbyssalResillience</Icon>
+      <Effect>
+         <Type>SaveBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Save>Fortitude</Save>
+         <Amount>1</Amount>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Bulwark of the Storm</Name>
+      <Description>+1 Will saving throws</Description>
+      <FeatGroup>
+         <IsWarlockSaveBonus/>
+      </FeatGroup>
+      <MaxTimesAcquire>5</MaxTimesAcquire>
+      <Requirements>
+         <Requirement>
+            <Feat>Warlock: Pact: The Carceri Storm</Feat>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>BulwarkOfTheStorm</Icon>
+      <Effect>
+         <Type>SaveBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Save>Will</Save>
+         <Amount>1</Amount>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Fey Resistance</Name>
+      <Description>+5 Sonic Resistance</Description>
+      <FeatGroup>
+         <IsWarlockResistance/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <Feat>Warlock: Pact: Fey</Feat>
+         </Requirement>
+         <Requirement>
+            <Class>Warlock</Class>
+            <Level>10</Level>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>FeyResistance</Icon>
+      <Effect>
+         <Type>EnergyResistance</Type>
+         <Bonus>Feat</Bonus>
+         <Energy>Sonic</Energy>
+         <Amount>5</Amount>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Fiendish Resistance</Name>
+      <Description>+5 Fire Resistance</Description>
+      <FeatGroup>
+         <IsWarlockResistance/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <Feat>Warlock: Pact: Fiend</Feat>
+         </Requirement>
+         <Requirement>
+            <Class>Warlock</Class>
+            <Level>10</Level>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>FiendishResistance</Icon>
+      <Effect>
+         <Type>EnergyResistance</Type>
+         <Bonus>Feat</Bonus>
+         <Energy>Fire</Energy>
+         <Amount>5</Amount>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Resistance of the Great Old One</Name>
+      <Description>+5 Acid Resistance</Description>
+      <FeatGroup>
+         <IsWarlockResistance/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <Feat>Warlock: Pact: Great Old One</Feat>
+         </Requirement>
+         <Requirement>
+            <Class>Warlock</Class>
+            <Level>10</Level>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>ResistanceOfTheGreatOldOne</Icon>
+      <Effect>
+         <Type>EnergyResistance</Type>
+         <Bonus>Feat</Bonus>
+         <Energy>Acid</Energy>
+         <Amount>5</Amount>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Celestial Resistance</Name>
+      <Description>+5 Electric Resistance</Description>
+      <FeatGroup>
+         <IsWarlockResistance/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <Feat>Warlock: Pact: Celestial</Feat>
+         </Requirement>
+         <Requirement>
+            <Class>Warlock</Class>
+            <Level>10</Level>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>CelestialResistance</Icon>
+      <Effect>
+         <Type>EnergyResistance</Type>
+         <Bonus>Feat</Bonus>
+         <Energy>Electric</Energy>
+         <Amount>5</Amount>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Abyssal Resistance</Name>
+      <Description>+1 to Fire, Cold, Acid, Electric and Sonic Resistance</Description>
+      <FeatGroup>
+         <IsWarlockResistance/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <Feat>Warlock: Pact: The Abyss</Feat>
+         </Requirement>
+         <Requirement>
+            <Class>Warlock</Class>
+            <Level>10</Level>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>AbyssalResistance</Icon>
+      <Effect>
+         <Type>EnergyResistance</Type>
+         <Bonus>Feat</Bonus>
+         <Energy>Fire</Energy>
+         <Energy>Cold</Energy>
+         <Energy>Acid</Energy>
+         <Energy>Electric</Energy>
+         <Energy>Sonic</Energy>
+         <Amount>1</Amount>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Carceri Resistance</Name>
+      <Description>+5 Cold Resistance</Description>
+      <FeatGroup>
+         <IsWarlockResistance/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <Feat>Warlock: Pact: The Carceri Storm</Feat>
+         </Requirement>
+         <Requirement>
+            <Class>Warlock</Class>
+            <Level>10</Level>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>CarceriResistance</Icon>
+      <Effect>
+         <Type>EnergyResistance</Type>
+         <Bonus>Feat</Bonus>
+         <Energy>Cold</Energy>
+         <Amount>5</Amount>
       </Effect>
    </Feat>
    <!--Follower of feats-->

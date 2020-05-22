@@ -2378,6 +2378,11 @@ std::vector<TrainableFeatTypes> Character::TrainableFeatTypeAtLevel(
         {
             trainable.push_back(TFT_WarlockPactSaveBonus);
         }
+        // warlocks can train a resistance feat at level 10
+        if (classLevels[Class_Warlock] == 10)
+        {
+            trainable.push_back(TFT_WarlockResistance);
+        }
         break;
 
     case Class_Wizard:
@@ -5769,8 +5774,10 @@ void Character::AutoTrainSingleSelectionFeats()
             case TFT_DamageReduction:
             case TFT_Deity:
             case TFT_DomainFeat:
+            case TFT_WarlockPactAbility:
             case TFT_WarlockPactSaveBonus:
             case TFT_WarlockPactSpell:
+            case TFT_WarlockResistance:
                 check = true;
                 break;
             default:

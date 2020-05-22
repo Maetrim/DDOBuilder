@@ -100,22 +100,25 @@ void BreakdownItemWeaponAttackBonus::CreateOtherEffects()
         // but other stats may also be allowed for this particular weapon. look through
         // the list of those available and get the one with the largest value
         AbilityType ability = LargestStatBonus();
-        BreakdownItem * pBI = FindBreakdown(StatToBreakdown(ability));
-        ASSERT(pBI != NULL);
-        int bonus = BaseStatToBonus(pBI->Total());
-        if (bonus != 0) // only add to list if non zero
+        if (ability != Ability_Unknown)
         {
-            // should now have the best option
-            std::string bonusName = "Ability bonus (" + EnumEntryText(ability, abilityTypeMap) + ")";
-            ActiveEffect feat(
-                    Bonus_ability,
-                    bonusName,
-                    1,
-                    bonus,
-                    "");        // no tree
-            feat.SetBreakdownDependency(StatToBreakdown(ability)); // so we know which effect to update
-            feat.SetDivider(1, DT_statBonus);
-            AddOtherEffect(feat);
+            BreakdownItem * pBI = FindBreakdown(StatToBreakdown(ability));
+            ASSERT(pBI != NULL);
+            int bonus = BaseStatToBonus(pBI->Total());
+            if (bonus != 0) // only add to list if non zero
+            {
+                // should now have the best option
+                std::string bonusName = "Ability bonus (" + EnumEntryText(ability, abilityTypeMap) + ")";
+                ActiveEffect feat(
+                        Bonus_ability,
+                        bonusName,
+                        1,
+                        bonus,
+                        "");        // no tree
+                feat.SetBreakdownDependency(StatToBreakdown(ability)); // so we know which effect to update
+                feat.SetDivider(1, DT_statBonus);
+                AddOtherEffect(feat);
+            }
         }
 
         if (m_pCharacter->IsStanceActive("Two Weapon Fighting"))

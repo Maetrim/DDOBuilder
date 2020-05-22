@@ -49,6 +49,7 @@ class FeatGroup :
                 DL_FLAG(_, IsMetamagic) \
                 DL_FLAG(_, IsWarlockPact) \
                 DL_FLAG(_, IsWarlockPactAbility) \
+                DL_FLAG(_, IsWarlockResistance) \
                 DL_FLAG(_, IsWarlockSaveBonus) \
                 DL_FLAG(_, IsWarlockPactSpell)
 

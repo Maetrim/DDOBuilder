@@ -53,8 +53,8 @@ class Item :
                 DL_OPTIONAL_SIMPLE(_, size_t, CriticalMultiplier, 0) \
                 DL_OPTIONAL_ENUM(_, WeaponType, Weapon, Weapon_Unknown, weaponTypeMap) \
                 DL_OPTIONAL_ENUM(_, WeaponDamageType, DamageType, WeaponDamage_Unknown, weaponDamageTypeMap) \
-                DL_OPTIONAL_ENUM(_, AbilityType, AttackModifier, Ability_Unknown, abilityTypeMap) \
-                DL_OPTIONAL_ENUM(_, AbilityType, DamageModifier, Ability_Unknown, abilityTypeMap) \
+                DL_ENUM_LIST(_, AbilityType, AttackModifier, Ability_Unknown, abilityTypeMap) \
+                DL_ENUM_LIST(_, AbilityType, DamageModifier, Ability_Unknown, abilityTypeMap) \
                 DL_OPTIONAL_ENUM(_, ArmorType, Armor, Armor_Unknown, armorTypeMap) \
                 DL_OBJECT(_, EquipmentSlot, Slots) \
                 DL_OBJECT_VECTOR(_, Effect, Effects) \

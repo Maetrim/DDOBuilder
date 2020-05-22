@@ -100,6 +100,7 @@ int DC::CalculateDC(const Character * pCharacter) const
         }
     }
     // use the largest of any FullAbility values
+    bool first = true;
     int fullAbilityBonus = 0;
     std::list<AbilityType>::const_iterator fait = m_FullAbility.begin();
     while (fait != m_FullAbility.end())
@@ -107,14 +108,16 @@ int DC::CalculateDC(const Character * pCharacter) const
         BreakdownType bt = StatToBreakdown(*fait);
         BreakdownItem * pBI = FindBreakdown(bt);
         int abilityBonus = (int)pBI->Total();
-        if (abilityBonus > fullAbilityBonus)
+        if (abilityBonus > fullAbilityBonus || first)
         {
             fullAbilityBonus = abilityBonus;
+            first = false;
         }
         ++fait;
     }
     value += fullAbilityBonus;
     // use the largest of any ModAbility values
+    first = true;
     int modAbilityBonus = 0;
     std::list<AbilityType>::const_iterator mait = m_ModAbility.begin();
     while (mait != m_ModAbility.end())
@@ -122,9 +125,10 @@ int DC::CalculateDC(const Character * pCharacter) const
         BreakdownType bt = StatToBreakdown(*mait);
         BreakdownItem * pBI = FindBreakdown(bt);
         int abilityBonus = BaseStatToBonus(pBI->Total());
-        if (abilityBonus > modAbilityBonus)
+        if (abilityBonus > modAbilityBonus || first)
         {
             modAbilityBonus = abilityBonus;
+            first = false;
         }
         ++mait;
     }

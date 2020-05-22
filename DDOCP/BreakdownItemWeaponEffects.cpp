@@ -684,6 +684,42 @@ BreakdownItemWeapon * BreakdownItemWeaponEffects::CreateWeaponBreakdown(
     m_pTreeList->SetItemData(hItem, (DWORD)(void*)pWeaponBreakdown);
     pWeaponBreakdown->SetCharacter(m_pCharacter, true);
 
+    // apply the items stat attack modifiers (if any)
+    const std::list<AbilityType> & attackAbilities = item.AttackModifier();
+    std::list<AbilityType>::const_iterator amit = attackAbilities.begin();
+    while (amit != attackAbilities.end())
+    {
+        Effect e;
+        e.Set_Type(Effect_WeaponAttackAbility);
+        e.Set_Ability((*amit));
+        e.Set_Bonus(Bonus_weaponEnchantment);
+        std::list<WeaponType> types;
+        types.push_back(item.Weapon());
+        e.Set_Weapon(types);
+        pWeaponBreakdown->UpdateItemEffect(
+                m_pCharacter,
+                item.Name(),
+                e);
+        ++amit;
+    }
+    // apply the items stat damage modifiers (if any)
+    const std::list<AbilityType> & damageAbilities = item.DamageModifier();
+    std::list<AbilityType>::const_iterator dmit = damageAbilities.begin();
+    while (dmit != damageAbilities.end())
+    {
+        Effect e;
+        e.Set_Type(Effect_WeaponDamageAbility);
+        e.Set_Ability((*dmit));
+        e.Set_Bonus(Bonus_weaponEnchantment);
+        std::list<WeaponType> types;
+        types.push_back(item.Weapon());
+        e.Set_Weapon(types);
+        pWeaponBreakdown->UpdateItemEffect(
+                m_pCharacter,
+                item.Name(),
+                e);
+        ++dmit;
+    }
     // first apply the Item specific effects only
     if (item.HasItemEffects())
     {

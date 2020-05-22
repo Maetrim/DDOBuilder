@@ -107,18 +107,18 @@ void BreakdownItemWeaponDamageBonus::CreateOtherEffects()
                     else
                     {
                         multiplier = 1.5;       // no THF feats
-                        //if (m_pCharacter->IsFeatTrained("Two Handed Fighting"))
-                        //{
-                        //    multiplier = 2.0;
-                        //    if (m_pCharacter->IsFeatTrained("Improved Two Handed Fighting"))
-                        //    {
-                        //        multiplier = 3.0;
-                        //        if (m_pCharacter->IsFeatTrained("Greater Two Handed Fighting"))
-                        //        {
-                        //            multiplier = 3.0;
-                        //        }
-                        //    }
-                        //}
+                        if (m_pCharacter->IsFeatTrained("Two Handed Fighting"))
+                        {
+                            multiplier = 2.0;
+                            if (m_pCharacter->IsFeatTrained("Improved Two Handed Fighting"))
+                            {
+                                multiplier = 2.5;
+                                if (m_pCharacter->IsFeatTrained("Greater Two Handed Fighting"))
+                                {
+                                    multiplier = 3.0;
+                                }
+                            }
+                        }
                     }
                 }
             }

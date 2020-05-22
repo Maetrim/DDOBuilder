@@ -554,6 +554,7 @@ std::vector<TrainableFeatTypes> ClassSpecificFeatTypes(ClassType type)
             types.push_back(TFT_WarlockPact);
             types.push_back(TFT_WarlockPactAbility);
             types.push_back(TFT_WarlockPactSaveBonus);
+            types.push_back(TFT_WarlockResistance);
             types.push_back(TFT_WarlockPactSpell);
             break;
         case Class_Wizard:
@@ -1326,6 +1327,10 @@ bool IsInGroup(TrainableFeatTypes type, const FeatGroup & group)
 
     case TFT_WarlockPactSaveBonus:
         inGroup = group.HasIsWarlockSaveBonus();
+        break;
+
+    case TFT_WarlockResistance:
+        inGroup = group.HasIsWarlockResistance();
         break;
 
     case TFT_WarlockPactSpell:
@@ -2293,6 +2298,9 @@ CString TrainableFeatTypeLabel(TrainableFeatTypes type)
         break;
     case TFT_WarlockPactSaveBonus:
         text = "Warlock Save Bonus";
+        break;
+    case TFT_WarlockResistance:
+        text = "Warlock Resistance";
         break;
     case TFT_WarlockPactSpell:
         text = "Warlock Pact Spell";
