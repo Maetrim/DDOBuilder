@@ -11191,13 +11191,11 @@ or when attacking from an animal form.</Description>
    </Feat>
    <Feat>
       <Name>Slicing Blow</Name>
-      <Description>Tactical Melee Attack: Using this attack, you deal 1 point of Constitution
-damage to your target and deal 1 to 4 additional damage 2 seconds later as the
-target bleeds. The target suffers an additional round of bleeding for every 3
-characters levels, up to a max of 6 at level 15. Unlike Trip and Stunning Blow,
-no save is made against this effect.
-Cooldown 15 seconds.
-Some creatures may be immune to the bleeding or wounding effect.</Description>
+      <Description>Tactical Melee Attack: Using this attack, you deal one point of Constitution damage to your target,
+and deal 1 to 6 additional damage every 2 seconds for 18 seconds. The target suffers an
+additional 1 to 6 damage per tick for every three Character Levels. This damage scales
+with 100% Melee Power, and can stack up to three times. Some creatures may be immune to
+the bleeding or wounding effect.</Description>
       <FeatGroup>
          <IsStandardFeat/>
          <IsFighterBonus/>
@@ -13473,7 +13471,7 @@ These effects last for six seconds</Description>
 Undead must succeed on a Will save vs DC(15 + Warlock level + Charisma Mod)
 or be destroyed. Undead who fail this save, or enemieswho are not undead,
 instead are terrorized and have their Magical resistance Rating reduced by
-10 for 6 seconds.</Description>
+10 for 15 seconds.</Description>
       <FeatGroup>
          <IsWarlockPactAbility/>
       </FeatGroup>
@@ -13496,10 +13494,11 @@ instead are terrorized and have their Magical resistance Rating reduced by
    </Feat>
    <Feat>
       <Name>Warlock: Channel the Abyss</Name>
-      <Description>Shroud yourself in the Abyss, which will grant you unholy power - at a cost.
-You have +100% criticla hit resistance, are healed by Negative Energy, take 50%
-healing from Positive Energy, and take double damage from Light. You are considered
-Undead rather than your original type for the purpose of most effects.</Description>
+      <Description>Shroud yourself in the Abyss, which will grant you unholy power at a cost.
+You gain +2 Charisma, +10 Negative Healing Amplification, and +10 Negative Spell Power.
+You have +100% critical hit resistance, are healed by Negative Energy, take 50% healing from
+Positive Energy, and take double damage from Light. You are considered Undead rather than
+your original type for the purposes of most effects.</Description>
       <FeatGroup>
          <IsWarlockPactAbility/>
       </FeatGroup>
@@ -13514,6 +13513,47 @@ Undead rather than your original type for the purpose of most effects.</Descript
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>ChannelTheAbyss</Icon>
+      <Stance>
+         <Name>Channel the Abyss</Name>
+         <Icon>ChannelTheAbyss</Icon>
+         <Description>Shroud yourself in the Abyss, which will grant you unholy power at a cost.
+You gain +2 Charisma, +10 Negative Healing Amplification, and +10 Negative Spell Power.
+You have +100% critical hit resistance, are healed by Negative Energy, take 50% healing from
+Positive Energy, and take double damage from Light. You are considered Undead rather than
+your original type for the purposes of most effects.</Description>
+      </Stance>
+       <Effect>
+           <Type>AbilityBonus</Type>
+           <Bonus>Feat</Bonus>
+           <Amount>2</Amount>
+           <Ability>Charisma</Ability>
+           <Stance>Channel the Abyss</Stance>
+       </Effect>
+       <Effect>
+           <Type>NegativeHealingAmplification</Type>
+           <Bonus>Feat</Bonus>
+           <Amount>10</Amount>
+           <Stance>Channel the Abyss</Stance>
+       </Effect>
+       <Effect>
+           <Type>SpellPower</Type>
+           <Bonus>Feat</Bonus>
+           <Amount>10</Amount>
+           <SpellPower>Negative</SpellPower>
+           <Stance>Channel the Abyss</Stance>
+       </Effect>
+       <Effect>
+           <Type>Fortification</Type>
+           <Bonus>Feat</Bonus>
+           <Amount>100</Amount>
+           <Stance>Channel the Abyss</Stance>
+       </Effect>
+       <Effect>
+           <Type>HealingAmplification</Type>
+           <Bonus>Feat</Bonus>
+           <Amount>-50</Amount>
+           <Stance>Channel the Abyss</Stance>
+       </Effect>
    </Feat>
    <Feat>
       <Name>Warlock: Absolute Zero</Name>
@@ -13535,6 +13575,18 @@ with no save. Does not affecct bosses.</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>AbsoluteZero</Icon>
+      <DC>
+         <Name>Warlock: Absolute Zero</Name>
+         <Description>Attempt to lock a single enemy in ice - permanently.
+Enemies must succees on a Will save vs DC(15 + Warlock level + Charisma Mod)
+or be forever trapped in solid ice. Enemies made of fire will instead be destroyed
+with no save. Does not affecct bosses.</Description>
+         <Icon>AbsoluteZero</Icon>
+         <DCVersus>Will</DCVersus>
+         <AmountVector size="1">15</AmountVector>
+         <ClassLevel>Warlock</ClassLevel>
+         <ModAbility>Charisma</ModAbility>
+      </DC>
    </Feat>
    <Feat>
       <Name>Warlock: Pact Damage</Name>
@@ -13827,7 +13879,7 @@ Adds Spells to your spell book at level
 9 - Halt Undead
 14 - Death Aura
 17 - Symbol of Pain
-19 - Energy Drain</Description>
+19 - Rend the Soul</Description>
       <Stance>
          <Name>Eldritch Blasting</Name>
          <Icon>EpicEldritchBlast</Icon>
@@ -13884,7 +13936,7 @@ DC(19 + Charisma Mod + Evocation Bonuses)
 Adds Spells to your spell book at level
 1 - Merfolk's Blessing
 5 - Gust of Wind
-9 - Sleet Storm
+9 - Creeping Cold
 14 - Ice Storm
 17 - Niac's Biting Cold
 19 - Greater Creeping Cold</Description>
@@ -20962,7 +21014,7 @@ save disbelieves the spell and negates ill effects.</Description>
       </Effect>
    </Feat>
    <Feat>
-      <Name>Pact Spell The Carceri Storm: Sleet Storm</Name>
+      <Name>Pact Spell The Carceri Storm: Creeping Cold</Name>
       <Description></Description>
       <FeatGroup>
          <IsWarlockPactSpell/>
@@ -20981,7 +21033,7 @@ save disbelieves the spell and negates ill effects.</Description>
       <Effect>
          <Type>GrantSpell</Type>
          <Bonus>Feat</Bonus>
-         <Spell>Sleet Storm</Spell>
+         <Spell>Creeping Cold</Spell>
          <SpellLevel>3</SpellLevel>
          <Class>Warlock</Class>
       </Effect>
@@ -21407,7 +21459,7 @@ saving throw allowed. Cooldown timer of 210 seconds.</Description>
       </Effect>
    </Feat>
    <Feat>
-      <Name>Pact Spell The Abyss: Energy Drain</Name>
+      <Name>Pact Spell The Abyss: Rend the Soul</Name>
       <Description>This spell is added to your Warlock spellbook.</Description>
       <FeatGroup>
          <IsWarlockPactSpell/>
@@ -21422,11 +21474,11 @@ saving throw allowed. Cooldown timer of 210 seconds.</Description>
          </Requirement>
       </Requirements>
       <Acquire>Train</Acquire>
-      <Icon>EnergyDrain</Icon>
+      <Icon>RendTheSoul</Icon>
       <Effect>
          <Type>GrantSpell</Type>
          <Bonus>Feat</Bonus>
-         <Spell>Energy Drain</Spell>
+         <Spell>Rend the Soul</Spell>
          <SpellLevel>6</SpellLevel>
          <Class>Warlock</Class>
       </Effect>
@@ -26590,7 +26642,7 @@ Orchidium Reaction: +1 Physical Resistance Rating per Alchemist Level.</Descript
          <Type>PRR</Type>
          <Bonus>Feat</Bonus>
          <Class>Alchemist</Class>
-         <AmountVector size="20">19 28 37 46 55 64 73 82 91 100 109 118 127 136 145 154 163 172 181 190</AmountVector>
+         <AmountVector size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</AmountVector>
          <Stance>Orchidium</Stance>
       </Effect>
       <Effect>
@@ -26598,8 +26650,20 @@ Orchidium Reaction: +1 Physical Resistance Rating per Alchemist Level.</Descript
          <Type>PRR</Type>
          <Bonus>Feat</Bonus>
          <Class>Alchemist</Class>
-         <AmountVector size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</AmountVector>
+         <AmountVector size="20">13 16 19 22 25 28 31 34 37 40 43 46 49 52 55 58 61 64 67 70</AmountVector>
          <Stance>Orchidium</Stance>
+      </Effect>
+      <Effect>
+         <DisplayName>Orchidium Reaction</DisplayName>
+         <Type>EnergyResistance</Type>
+         <Bonus>Feat</Bonus>
+         <Class>Alchemist</Class>
+         <AmountVector size="20">13 16 19 22 25 28 31 34 37 40 43 46 49 52 55 58 61 64 67 70</AmountVector>
+         <Stance>Orchidium</Stance>
+         <Energy>Acid</Energy>
+         <Energy>Cold</Energy>
+         <Energy>Electric</Energy>
+         <Energy>Fire</Energy>
       </Effect>
    </Feat>
    <Feat>

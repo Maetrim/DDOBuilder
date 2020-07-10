@@ -65,6 +65,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
             "Fanaval, "
             "fognozzle, "
             "Frinkky, "
+            "FullPlayer20, "
             "Gemini-Dragon357, "
             "Gerkenstein, "
             "Gizmo0815, "

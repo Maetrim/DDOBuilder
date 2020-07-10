@@ -69,6 +69,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWndEx)
     ON_COMMAND(ID_DOCK_DC, OnDockPane)
     ON_COMMAND(ID_DOCK_SKILLS, OnDockPane)
     ON_COMMAND(ID_DOCK_CLASSFEATS, OnDockPane)
+    ON_COMMAND(ID_VIEW_RESETSCREENLAYOUT, OnResetScreenLayout)
 END_MESSAGE_MAP()
 
 static UINT indicators[] =
@@ -831,5 +832,22 @@ const CSpellsControl * CMainFrame::GetSpellsControl(ClassType classType)
         pSC = pSpellsView->GetSpellsControl(classType);
     }
     return pSC;
+}
+
+void CMainFrame::OnResetScreenLayout()
+{
+    // if the user has messed up their screen layout and lost windows of the
+    // sides then to be able to recover these we need to do a layout reset
+    // of all window locations. This is done by loading the layout profile
+    // from "DefaultWorkspace" in the DDOBuilder.ini file
+    CWinApp * pApp = AfxGetApp();
+    CWinAppEx * pAppEx = dynamic_cast<CWinAppEx*>(pApp);
+    if (pApp != NULL)
+    {
+        ShowWindow(SW_HIDE);    // hide windows while update occurs
+        pAppEx->LoadState(this, "DefaultWorkspace");
+        ShowWindow(SW_SHOW);
+        pAppEx->SaveState(this, "Workspace");
+    }
 }
 

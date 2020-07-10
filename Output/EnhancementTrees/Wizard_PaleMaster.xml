@@ -76,16 +76,23 @@ You take 50% healing from Positive, and double damage from Light. You are consid
         <Exclude>PaleDeathlyVersatile</Exclude>
         <EnhancementSelection>
           <Name>Shroud of the Zombie</Name>
-          <Description>While in this form, +4 Constitution, +2 Strength, +20% damage with attacks
-but you attack 20% slower than normal. You gain +3 PRR, +3 MRR.</Description>
+          <Description>Shroud Toggle: You shroud yourself with Negative Energy and assume many of the
+traits of a Zombie. While in this form, you hunger for brains and gain +4 Constitution,
++10 Melee Power, 3 Physical and Magical Resistance Rating, and attack 10% slower. You have
++100% critical hit resistance, are healed by Negative Energy, take 50% healing from Positive
+Energy, and take double damage from Light. You are considered Undead rather than your original
+type for the purposes of most effects.</Description>
           <Icon>PMShroudOfTheZombie</Icon>
           <Cost>1</Cost>
           <Clickie/>
           <Stance>
             <Name>Shroud of the Zombie</Name>
             <Icon>PMShroudOfTheZombie</Icon>
-            <Description>While in this form, +4 Constitution, +20% damage with attacks but you attack
-20% slower than normal. You gain +3 PRR, +3 MRR.</Description>
+            <Description>While in this form, you hunger for brains and gain +4 Constitution,
++10 Melee Power, 3 Physical and Magical Resistance Rating, and attack 10% slower. You have
++100% critical hit resistance, are healed by Negative Energy, take 50% healing from Positive
+Energy, and take double damage from Light. You are considered Undead rather than your original
+type for the purposes of most effects.</Description>
           </Stance>
           <Effect>
             <Type>AbilityBonus</Type>
@@ -95,11 +102,10 @@ but you attack 20% slower than normal. You gain +3 PRR, +3 MRR.</Description>
             <Ability>Constitution</Ability>
           </Effect>
           <Effect>
-            <Type>AbilityBonus</Type>
+            <Type>MeleePower</Type>
             <Bonus>Enhancement</Bonus>
-            <Amount>2</Amount>
+            <Amount>10</Amount>
             <Stance>Shroud of the Zombie</Stance>
-            <Ability>Strength</Ability>
           </Effect>
           <Effect>
             <Type>PRR</Type>
@@ -1543,16 +1549,23 @@ Only works while in a Shroud form.</Description>
         <Exclude>PaleCore2</Exclude>
         <EnhancementSelection>
           <Name>Shroud of the Zombie</Name>
-          <Description>While in this form, +4 Constitution, +20% damage with attacks but you attack
-20% slower than normal. You gain +3 PRR, +3 MRR.</Description>
+          <Description>Shroud Toggle: You shroud yourself with Negative Energy and assume many of the
+traits of a Zombie. While in this form, you hunger for brains and gain +4 Constitution,
++10 Melee Power, 3 Physical and Magical Resistance Rating, and attack 10% slower. You have
++100% critical hit resistance, are healed by Negative Energy, take 50% healing from Positive
+Energy, and take double damage from Light. You are considered Undead rather than your original
+type for the purposes of most effects.</Description>
           <Icon>PMShroudOfTheZombie</Icon>
           <Cost>1</Cost>
           <Clickie/>
           <Stance>
             <Name>Shroud of the Zombie</Name>
             <Icon>PMShroudOfTheZombie</Icon>
-            <Description>While in this form, +4 Constitution, +20% damage with attacks but you attack
-20% slower than normal. You gain +3 PRR, +3 MRR.</Description>
+            <Description>While in this form, you hunger for brains and gain +4 Constitution,
++10 Melee Power, 3 Physical and Magical Resistance Rating, and attack 10% slower. You have
++100% critical hit resistance, are healed by Negative Energy, take 50% healing from Positive
+Energy, and take double damage from Light. You are considered Undead rather than your original
+type for the purposes of most effects.</Description>
           </Stance>
           <Effect>
             <Type>AbilityBonus</Type>
@@ -1560,6 +1573,12 @@ Only works while in a Shroud form.</Description>
             <Amount>4</Amount>
             <Stance>Shroud of the Zombie</Stance>
             <Ability>Constitution</Ability>
+          </Effect>
+          <Effect>
+            <Type>MeleePower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>10</Amount>
+            <Stance>Shroud of the Zombie</Stance>
           </Effect>
           <Effect>
             <Type>PRR</Type>
@@ -1877,7 +1896,8 @@ This may only trigger once every 60 seconds.</Description>
       <InternalName>PaleAscendantShroud</InternalName>
       <Description>Your Undead Shrouds gain the following additional benefits:
 While in Zombie Form:
-    +20 Melee Power
+    +30 Melee Power
+    Attacks deal 10% more damage
     +10 PRR
     +10% Profane Bonus to maximum Hit Points.
 While in Vampire Form:
@@ -1914,13 +1934,27 @@ While in Lich Form:
       <Effect>
         <Type>MeleePower</Type>
         <Bonus>Enhancement</Bonus>
-        <Amount>20</Amount>
+        <Amount>30</Amount>
         <Stance>Shroud of the Zombie</Stance>
       </Effect>
       <Effect>
         <Type>PRR</Type>
         <Bonus>Enhancement</Bonus>
         <Amount>10</Amount>
+        <Stance>Shroud of the Zombie</Stance>
+      </Effect>
+      <Effect>
+        <Type>DamageBonus</Type>
+        <Bonus>Profane</Bonus>
+        <Amount>10</Amount>
+        <Percent/>
+        <Stance>Shroud of the Zombie</Stance>
+      </Effect>
+      <Effect>
+        <Type>Seeker</Type>
+        <Bonus>Profane</Bonus>
+        <Amount>10</Amount>
+        <Percent/>
         <Stance>Shroud of the Zombie</Stance>
       </Effect>
       <Effect>
