@@ -139,15 +139,24 @@ void BreakdownItemSave::CreateOtherEffects()
                     // yes, they have it. Work out what the max capped charisma bonus to saves is
                     // its 2 + any enhancement upgrades
                     int maxBonus = 2; // default max bonus is 2
-                    if (m_pCharacter->IsEnhancementTrained("HalfElfImprovedDilettanteI", "Improved Dilettante: Paladin"))
+                    if (m_pCharacter->IsEnhancementTrained(
+                            "HalfElfImprovedDilettanteI",
+                            "Improved Dilettante: Paladin",
+                            TT_enhancement))
                     {
                         maxBonus++;
                     }
-                    if (m_pCharacter->IsEnhancementTrained("HalfElfImprovedDilettanteII", "Improved Dilettante: Paladin"))
+                    if (m_pCharacter->IsEnhancementTrained(
+                            "HalfElfImprovedDilettanteII",
+                            "Improved Dilettante: Paladin",
+                            TT_enhancement))
                     {
                         maxBonus++;
                     }
-                    if (m_pCharacter->IsEnhancementTrained("HalfElfImprovedDilettanteIII", "Improved Dilettante: Paladin"))
+                    if (m_pCharacter->IsEnhancementTrained(
+                            "HalfElfImprovedDilettanteIII",
+                            "Improved Dilettante: Paladin",
+                            TT_enhancement))
                     {
                         maxBonus++;
                     }

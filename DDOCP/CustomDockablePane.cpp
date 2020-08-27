@@ -191,3 +191,4 @@ void CCustomDockablePane::OnWindowPosChanging(WINDOWPOS * pos)
     CDockablePane::OnWindowPosChanging(pos);
     PostMessage(WM_SIZE, SIZE_RESTORED, MAKELONG(pos->cx, pos->cy));
 }
+

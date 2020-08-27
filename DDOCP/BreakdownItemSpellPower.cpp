@@ -101,8 +101,8 @@ void BreakdownItemSpellPower::CreateOtherEffects()
             // providing a +3 Implement bonus to Universal Spell Power for every +1
             // Enhancement bonus on the weapon.
             // find the main hand weapon breakdown
-            if (m_pCharacter->IsEnhancementTrained("BECore6", "")
-                    || m_pCharacter->IsEnhancementTrained("BomCore2", ""))
+            if (m_pCharacter->IsEnhancementTrained("BECore6", "", TT_enhancement)
+                    || m_pCharacter->IsEnhancementTrained("BomCore2", "", TT_enhancement))
             {
                 // get the main hand weapon breakdown
                 BreakdownItem * pBI = FindBreakdown(Breakdown_WeaponEffectHolder);
@@ -179,7 +179,8 @@ void BreakdownItemSpellPower::UpdateEnhancementRevoked(
             selection,
             isTier5);
     // check for "Battle Engineer: Master Engineer"  being revoked specifically
-    if (enhancementName == "BECore6")
+    if (enhancementName == "BECore6"
+            || enhancementName == "BomCore2")
     {
         // need to re-create other effects list
         CreateOtherEffects();
@@ -195,7 +196,8 @@ void BreakdownItemSpellPower::UpdateGearChanged(Character * charData, InventoryS
     if (slot == Inventory_Weapon1)
     {
         // if "Battle Engineer: Master Engineer" is trained, the implement bonus may have changed
-        if (m_pCharacter->IsEnhancementTrained("BECore6", ""))
+        if (m_pCharacter->IsEnhancementTrained("BECore6", "", TT_enhancement)
+                || m_pCharacter->IsEnhancementTrained("BomCore2", "", TT_enhancement))
         {
             // need to re-create other effects list
             CreateOtherEffects();

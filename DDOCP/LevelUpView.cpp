@@ -2114,6 +2114,7 @@ void CLevelUpView::SetLevelTooltipText(
         case Race_DeepGnome: expectedClass = Class_Wizard; break;
         case Race_Morninglord: expectedClass = Class_Cleric; break;
         case Race_PurpleDragonKnight: expectedClass = Class_Fighter; break;
+        case Race_RazorclawShifter: expectedClass = Class_Barbarian; break;
         case Race_ShadarKai: expectedClass = Class_Rogue; break;
         case Race_TieflingScoundrel: expectedClass = Class_Bard; break;
         }

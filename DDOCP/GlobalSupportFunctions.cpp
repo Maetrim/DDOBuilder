@@ -587,6 +587,9 @@ std::vector<TrainableFeatTypes> RaceSpecificFeatTypes(RaceType type)
     case Race_PurpleDragonKnight:
         types.push_back(TFT_PDKBonus);
         break;
+    case Race_Shifter:
+        types.push_back(TFT_AnimalisticAspect);
+        break;
     case Race_Dragonborn:
         types.push_back(TFT_DragonbornRacial);
         break;
@@ -1057,7 +1060,8 @@ int RacialModifier(
     case Ability_Strength:
         if (race == Race_Halfling
                 || race == Race_Gnome
-                || race == Race_DeepGnome)
+                || race == Race_DeepGnome
+                || race == Race_RazorclawShifter)
         {
             mod = -2;
         }
@@ -1077,7 +1081,8 @@ int RacialModifier(
                 || race == Race_Halfling
                 || race == Race_Elf
                 || race == Race_WoodElf
-                || race == Race_ShadarKai)
+                || race == Race_ShadarKai
+                || race == Race_Shifter)
         {
             mod = +2;
         }
@@ -1098,7 +1103,9 @@ int RacialModifier(
         break;
     case Ability_Intelligence:
         if (race == Race_HalfOrc
-                || race == Race_WoodElf)
+                || race == Race_WoodElf
+                || race == Race_Shifter
+                || race == Race_RazorclawShifter)
         {
             mod = -2;
         }
@@ -1221,6 +1228,10 @@ bool IsInGroup(TrainableFeatTypes type, const FeatGroup & group)
 
     case TFT_AasimarBond:
         inGroup = group.HasIsAasimarBond();
+        break;
+
+    case TFT_AnimalisticAspect:
+        inGroup = group.HasIsAnimalisticAspect();
         break;
 
     case TFT_ArtificerBonus:
@@ -2216,6 +2227,9 @@ CString TrainableFeatTypeLabel(TrainableFeatTypes type)
         break;
     case TFT_AlchemistBonus:
         text = "Alchemist Bonus";
+        break;
+    case TFT_AnimalisticAspect:
+        text = "Animalistic Aspect";
         break;
     case TFT_ArtificerBonus:
         text = "Artificer Bonus";

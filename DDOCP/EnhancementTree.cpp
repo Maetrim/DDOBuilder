@@ -90,6 +90,33 @@ void EnhancementTree::EndElement()
             ++it;
         }
     }
+    std::list<EnhancementTreeItem>::iterator it = m_Items.begin();
+    while (it != m_Items.end())
+    {
+        // make sure enhancement options know what type of tree their from
+        if (HasIsEpicDestiny())
+        {
+            (*it).m_type = TT_epicDestiny;
+        }
+        else if (HasIsUniversalTree())
+        {
+            (*it).m_type = TT_universal;
+        }
+        else if (HasIsRacialTree())
+        {
+            (*it).m_type = TT_racial;
+        }
+        else if (HasIsReaperTree())
+        {
+            (*it).m_type = TT_reaper;
+        }
+        else
+        {
+            // must be a standard enhancement tree
+            (*it).m_type = TT_enhancement;
+        }
+        ++it;
+    }
 }
 
 void EnhancementTree::Write(XmlLib::SaxWriter * writer) const

@@ -19,7 +19,8 @@ namespace
 EnhancementTreeItem::EnhancementTreeItem() :
     XmlLib::SaxContentElement(f_saxElementName, f_verCurrent),
     m_bImageLoaded(false),
-    m_bDisabledImageLoaded(false)
+    m_bDisabledImageLoaded(false),
+    m_type(TT_unknown)
 {
     DL_INIT(EnhancementTreeItem_PROPERTIES)
 }
@@ -108,7 +109,7 @@ bool EnhancementTreeItem::MeetRequirements(
     // must also meet the requirements of the item
     if (met)
     {
-        const TrainedEnhancement * pTE = charData.IsTrained(Name(), "");
+        const TrainedEnhancement * pTE = charData.IsTrained(Name(), "", m_type);
         met = m_RequirementsToTrain.CanTrainEnhancement(
                 charData,
                 (pTE == NULL) ? 0 : pTE->Ranks());
@@ -154,7 +155,7 @@ bool EnhancementTreeItem::IsAllowed(
     // must also meet a subset of the requirements of the item
     if (met)
     {
-        const TrainedEnhancement * pTE = charData.IsTrained(Name(), "");
+        const TrainedEnhancement * pTE = charData.IsTrained(Name(), "", m_type);
         met = m_RequirementsToTrain.IsAllowed(
                 charData,
                 (pTE == NULL) ? 0 : pTE->Ranks());
@@ -198,7 +199,7 @@ bool EnhancementTreeItem::CanTrain(
         TreeType type) const
 {
     // must not be trained to max ranks
-    const TrainedEnhancement * te = charData.IsTrained(InternalName(), "");
+    const TrainedEnhancement * te = charData.IsTrained(InternalName(), "", m_type);
     size_t trainedRanks = (te != NULL) ? te->Ranks() : 0;
     bool canTrain = (trainedRanks < Ranks());
     canTrain &= (spentInTree >= MinSpent());
@@ -237,7 +238,7 @@ void EnhancementTreeItem::RenderIcon(
     // assume its the items root icon
     icon = Icon();
     // check to see if the enhancement is already trained
-    const TrainedEnhancement * te = charData.IsTrained(InternalName(), "");
+    const TrainedEnhancement * te = charData.IsTrained(InternalName(), "", m_type);
     if (te != NULL)
     {
         if (te->HasSelection())
@@ -302,7 +303,7 @@ std::string EnhancementTreeItem::ActiveIcon(
     // assume its the items root icon
     icon = Icon();
     // check to see if the enhancement is already trained
-    const TrainedEnhancement * te = charData.IsTrained(InternalName(), "");
+    const TrainedEnhancement * te = charData.IsTrained(InternalName(), "", m_type);
     if (te != NULL)
     {
         if (te->HasSelection())

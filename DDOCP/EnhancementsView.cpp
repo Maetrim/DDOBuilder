@@ -6,6 +6,7 @@
 #include "DDOCP.h"
 #include "EnhancementTreeDialog.h"
 #include "GlobalSupportFunctions.h"
+#include "CustomDockablePane.h"
 
 namespace
 {
@@ -23,7 +24,10 @@ IMPLEMENT_DYNCREATE(CEnhancementsView, CFormView)
 CEnhancementsView::CEnhancementsView() :
     CFormView(CEnhancementsView::IDD),
     m_pDocument(NULL),
-    m_pCharacter(NULL)
+    m_pCharacter(NULL),
+    m_numUniversalButtons(0),
+    m_tipCreated(false),
+    m_pTooltipItem(NULL)
 {
 }
 
@@ -45,6 +49,14 @@ void CEnhancementsView::DoDataExchange(CDataExchange* pDX)
     DDX_Control(pDX, IDC_TREE_SELECT5, m_comboTreeSelect[3]);
     DDX_Control(pDX, IDC_TREE_SELECT6, m_comboTreeSelect[4]);
     DDX_Control(pDX, IDC_TREE_SELECT7, m_comboTreeSelect[5]);
+    DDX_Control(pDX, IDC_BUTTON_UNIVERSAL_TREE1, m_universalTrees[0]);
+    DDX_Control(pDX, IDC_BUTTON_UNIVERSAL_TREE2, m_universalTrees[1]);
+    DDX_Control(pDX, IDC_BUTTON_UNIVERSAL_TREE3, m_universalTrees[2]);
+    DDX_Control(pDX, IDC_BUTTON_UNIVERSAL_TREE4, m_universalTrees[3]);
+    DDX_Control(pDX, IDC_BUTTON_UNIVERSAL_TREE5, m_universalTrees[4]);
+    DDX_Control(pDX, IDC_BUTTON_UNIVERSAL_TREE6, m_universalTrees[5]);
+    DDX_Control(pDX, IDC_BUTTON_UNIVERSAL_TREE7, m_universalTrees[6]);
+    DDX_Control(pDX, IDC_BUTTON_UNIVERSAL_TREE8, m_universalTrees[7]);
 }
 
 #pragma warning(push)
@@ -55,6 +67,8 @@ BEGIN_MESSAGE_MAP(CEnhancementsView, CFormView)
     ON_REGISTERED_MESSAGE(UWM_NEW_DOCUMENT, OnNewDocument)
     ON_REGISTERED_MESSAGE(UWM_UPDATE_TREES, OnUpdateTrees)
     ON_CONTROL_RANGE(CBN_SELENDOK, IDC_TREE_SELECT2, IDC_TREE_SELECT7, OnTreeSelect)
+    ON_CONTROL_RANGE(BN_CLICKED, IDC_BUTTON_UNIVERSAL_TREE1, IDC_BUTTON_UNIVERSAL_TREE8, OnUniversalTree)
+    ON_WM_MOUSEMOVE()
 END_MESSAGE_MAP()
 #pragma warning(pop)
 
@@ -76,6 +90,9 @@ void CEnhancementsView::OnInitialUpdate()
 {
     CFormView::OnInitialUpdate();
     UpdateWindowTitle();
+    AddCustomButtons();
+    m_tooltip.Create(this);
+    m_tipCreated = true;
 }
 
 void CEnhancementsView::OnSize(UINT nType, int cx, int cy)
@@ -114,11 +131,23 @@ void CEnhancementsView::OnSize(UINT nType, int cx, int cy)
             // now move the rectangle to the next tree location
             itemRect += CPoint(itemRect.Width() + c_controlSpacing, 0);
         }
+        // position the universal tree buttons under the racial tree
+        for (size_t i = 0; i < m_numUniversalButtons; ++i)
+        {
+            CRect rect;
+            m_universalTrees[i].GetWindowRect(&rect);
+            rect -= rect.TopLeft();
+            rect.right = rect.left + 36;
+            rect.bottom = rect.top + 36;
+            rect += CPoint((rect.Width() + c_controlSpacing) * i + c_controlSpacing, itemRect.bottom + c_controlSpacing);
+            m_universalTrees[i].MoveWindow(rect, true);
+            m_universalTrees[i].ShowWindow(SW_SHOW);
+        }
         SetScrollSizes(
                 MM_TEXT,
                 CSize(
                         itemRect.left + scrollX,
-                        itemRect.bottom + scrollY + c_controlSpacing * 2 + ::GetSystemMetrics(SM_CYHSCROLL)));
+                        itemRect.bottom + 36 + scrollY + c_controlSpacing * 2));
     }
 }
 
@@ -146,8 +175,8 @@ LRESULT CEnhancementsView::OnNewDocument(WPARAM wParam, LPARAM lParam)
     else
     {
         DestroyEnhancementWindows();
-        EnableDisableComboboxes();
     }
+    EnableDisableComboboxes();
     UpdateWindowTitle();
     return 0L;
 }
@@ -583,6 +612,17 @@ void CEnhancementsView::EnableDisableComboboxes()
             bool enable = (m_pCharacter->APSpentInTree(treeName) == 0);
             m_comboTreeSelect[i-1].EnableWindow(enable);
         }
+        // also set the states of the universal tree buttons
+        for (size_t i = 0; i < m_numUniversalButtons; ++i)
+        {
+            m_universalTrees[i].EnableWindow(true);
+            m_universalTrees[i].ShowWindow(SW_SHOW);
+            // show the correct checked state
+            CString name;
+            m_universalTrees[i].GetWindowText(name);
+            bool trained = (m_pCharacter->GetSpecialFeatTrainedCount((LPCTSTR)name) > 0);
+            m_universalTrees[i].SetSelected(trained);
+        }
     }
     else
     {
@@ -592,5 +632,136 @@ void CEnhancementsView::EnableDisableComboboxes()
             m_comboTreeSelect[i-1].EnableWindow(false);
             m_comboTreeSelect[i-1].ShowWindow(SW_HIDE);
         }
+        // also set the states of the universal tree buttons
+        for (size_t i = 0; i < m_numUniversalButtons; ++i)
+        {
+            m_universalTrees[i].EnableWindow(false);
+            m_universalTrees[i].ShowWindow(SW_HIDE);
+        }
     }
+
+}
+
+void CEnhancementsView::AddCustomButtons()
+{
+    // add buttons under the Racial tree to allow quick access to the
+    // universal enhancement trees
+    CWinApp * pApp = AfxGetApp();
+    CDDOCPApp * pDDOApp = dynamic_cast<CDDOCPApp*>(pApp);
+    if (pDDOApp != NULL)
+    {
+        const std::list<Feat> & universalTreeFeats = pDDOApp->UniversalTreeFeats();
+        std::list<Feat>::const_iterator it = universalTreeFeats.begin();
+        size_t buttonIndex = 0;
+        while (it != universalTreeFeats.end())
+        {
+            m_universalTrees[buttonIndex].SetWindowText((*it).Name().c_str());
+            CImage image;
+            HRESULT result = LoadImageFile(
+                    IT_feat,
+                    (*it).Icon(),
+                    &m_universalTrees[buttonIndex].m_image,
+                    false);
+            m_universalTrees[buttonIndex].m_image.SetTransparentColor(c_transparentColour);
+            ++buttonIndex;
+            ++m_numUniversalButtons;
+            ++it;
+        }
+    }
+}
+
+void CEnhancementsView::OnUniversalTree(UINT nID)
+{
+    UINT id = nID - IDC_BUTTON_UNIVERSAL_TREE1;
+    CString name;
+    m_universalTrees[id].GetWindowText(name);
+    bool trained = (m_pCharacter->GetSpecialFeatTrainedCount((LPCTSTR)name) > 0);
+    if (trained)
+    {
+        m_pCharacter->RevokeSpecialFeat((LPCTSTR)name, TFT_SpecialFeat);
+    }
+    else
+    {
+        m_pCharacter->TrainSpecialFeat((LPCTSTR)name, TFT_SpecialFeat);
+    }
+    m_universalTrees[id].SetSelected(!trained);
+    // ensure displayed trees are shown
+    std::list<EnhancementTree> trees = DetermineTrees();
+    if (trees != m_availableTrees)
+    {
+        // yup, they have changed
+        m_availableTrees = trees;
+        DestroyEnhancementWindows();
+        CreateEnhancementWindows();
+    }
+}
+
+void CEnhancementsView::OnMouseMove(UINT nFlags, CPoint point)
+{
+    // determine which universal tree selector the mouse may be over
+    CWnd * pWnd = ChildWindowFromPoint(point);
+    CIconButton * pIconButton = dynamic_cast<CIconButton*>(pWnd);
+    if (pIconButton != NULL
+            && pIconButton != m_pTooltipItem)
+    {
+        CRect itemRect;
+        pIconButton->GetWindowRect(&itemRect);
+        ScreenToClient(itemRect);
+        // over a new item or a different item
+        m_pTooltipItem = pIconButton;
+        ShowTip(*pIconButton, itemRect);
+    }
+    else
+    {
+        if (m_showingTip
+                && pIconButton != m_pTooltipItem)
+        {
+            // no longer over the same item
+            HideTip();
+        }
+    }
+}
+
+void CEnhancementsView::ShowTip(const CIconButton & item, CRect itemRect)
+{
+    if (m_showingTip)
+    {
+        m_tooltip.Hide();
+    }
+    ClientToScreen(&itemRect);
+    CPoint tipTopLeft(itemRect.left, itemRect.bottom + 2);
+    CPoint tipAlternate(itemRect.left, itemRect.top - 2);
+    SetTooltipText(item, tipTopLeft, tipAlternate);
+    m_showingTip = true;
+    // track the mouse so we know when it leaves our window
+    TRACKMOUSEEVENT tme;
+    tme.cbSize = sizeof(tme);
+    tme.hwndTrack = m_hWnd;
+    tme.dwFlags = TME_LEAVE;
+    tme.dwHoverTime = 1;
+    _TrackMouseEvent(&tme);
+}
+
+void CEnhancementsView::HideTip()
+{
+    // tip not shown if not over an assay
+    if (m_tipCreated && m_showingTip)
+    {
+        m_tooltip.Hide();
+        m_showingTip = false;
+        m_pTooltipItem = NULL;
+    }
+}
+
+void CEnhancementsView::SetTooltipText(
+        const CIconButton & item,
+        CPoint tipTopLeft,
+        CPoint tipAlternate)
+{
+    CString text;
+    item.GetWindowText(text);
+    const Feat & feat = FindFeat((LPCTSTR)text);
+    m_tooltip.SetOrigin(tipTopLeft, tipAlternate, false);
+    m_tooltip.SetFeatItem(*m_pCharacter, &feat, false, MAX_LEVEL, false);
+    m_tooltip.Show();
 }

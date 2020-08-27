@@ -419,6 +419,10 @@ void CDDOCPApp::SeparateFeats()
         {
             m_specialFeats.push_back((*it));
         }
+        else if ((*it).Acquire() == FeatAcquisition_UniversalTree)
+        {
+            m_universalTreeFeats.push_back((*it));
+        }
         else if ((*it).Acquire() == FeatAcquisition_Favor)
         {
             m_favorFeats.push_back((*it));
@@ -473,6 +477,11 @@ const std::list<Feat> & CDDOCPApp::EpicPastLifeFeats() const
 const std::list<Feat> & CDDOCPApp::SpecialFeats() const
 {
     return m_specialFeats;
+}
+
+const std::list<Feat> & CDDOCPApp::UniversalTreeFeats() const
+{
+    return m_universalTreeFeats;
 }
 
 const std::list<Feat> & CDDOCPApp::FavorFeats() const

@@ -52,6 +52,7 @@ bool FeatGroup::VerifyObject(std::stringstream * ss) const
     // if a feat has a grouping object, at least one of the flags must be set for it
     bool ok = HasIsAasimarBond()
             || HasIsAlchemistBonus()
+            || HasIsAnimalisticAspect()
             || HasIsArtificerBonus()
             || HasIsBattle()
             || HasIsBelovedOf()

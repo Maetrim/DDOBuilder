@@ -58,7 +58,7 @@ void BreakdownItemWeaponDamageBonus::CreateOtherEffects()
             {
                 // off hand only gets 50% of ability bonus to damage unless
                 // TempestDualPerfection is trained
-                if (!m_pCharacter->IsEnhancementTrained("TempestDualPerfection", ""))
+                if (!m_pCharacter->IsEnhancementTrained("TempestDualPerfection", "", TT_enhancement))
                 {
                     multiplier = 0.5;
                 }

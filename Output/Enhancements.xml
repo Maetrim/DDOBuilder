@@ -3154,7 +3154,7 @@ at a -12/-8/-4 penalty.</Description>
          <XPosition>3</XPosition>
          <YPosition>2</YPosition>
          <Cost>2</Cost>
-         <Ranks>3</Ranks>
+         <Ranks>1</Ranks>
          <MinSpent>5</MinSpent>
          <ArrowUp/>
          <Requirements>
@@ -10986,13 +10986,18 @@ has an additional -1/-2/-3 to your attack bonus.</Description>
             <Bonus>Enhancement</Bonus>
             <Ability>Strength</Ability>
             <AmountVector size="3">1 2 3</AmountVector>
-            <Stance>Rage</Stance>
+            <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Rage</AnyOfStance>
+            <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
          </Effect>
          <Effect>
             <Type>ACBonus</Type>
             <Bonus>Enhancement</Bonus>
             <AmountVector size="3">-1 -2 -3</AmountVector>
-            <Stance>Rage</Stance>
+            <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Wildhunt Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Rage</AnyOfStance>
+            <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
          </Effect>
       </EnhancementTreeItem>
    </EnhancementTree>
@@ -11755,7 +11760,7 @@ but are not linked with class action boost cooldowns.</Description>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Damage Boost</Name>
-               <Description>Activate to gain a +20% Action Boost to weapon damage for 20 seconds.</Description>
+               <Description>Activate to gain a +20 Action Boost bonus to Melee and Ranged Power for 20 seconds.</Description>
                <Icon>DamageBoost</Icon>
                <Cost>1</Cost>
                <Clickie/>
@@ -11918,7 +11923,7 @@ Note: Choose another Action Boost that is not the same as the previous one.</Des
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Damage Boost</Name>
-               <Description>Activate to gain a +20% Action Boost to weapon damage for 20 seconds.</Description>
+               <Description>Activate to gain a +20 Action Boost bonus to Melee and Ranged Power for 20 seconds.</Description>
                <Icon>DamageBoost</Icon>
                <Cost>1</Cost>
                <Clickie/>
@@ -12083,7 +12088,7 @@ Note: Choose another Action Boost that is not the same as either of the previous
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Damage Boost</Name>
-               <Description>Activate to gain a +20% Action Boost to weapon damage for 20 seconds.</Description>
+               <Description>Activate to gain a +20 Action Boost bonus to Melee and Ranged Power for 20 seconds.</Description>
                <Icon>DamageBoost</Icon>
                <Cost>1</Cost>
                <Clickie/>
@@ -13048,6 +13053,565 @@ Effects that grant extra Action Boost uses give you additional uses per rest of 
          </Effect>
       </EnhancementTreeItem>
    </EnhancementTree>
+  <EnhancementTree>
+    <Name>Razerclaw Shifter</Name>
+    <Version>1</Version>
+    <Requirements>
+      <Requirement>
+        <Race>Razorclaw Shifter</Race>
+      </Requirement>
+    </Requirements>
+    <IsRacialTree/>
+    <Icon>RazerclawShifter</Icon>
+    <Background>Half-OrcBackground</Background>
+    <EnhancementTreeItem>
+      <Name>Razorclaw Shifter: Extra Shifting</Name>
+      <InternalName>RazorclawCore1</InternalName>
+      <Description>+1 Rage uses per rest. (You expend Rage uses to activate your Shifting).</Description>
+      <Icon>RazorclawExtraShifting</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>0</MinSpent>
+      <ArrowRight/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>1</MinLevel>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Razorclaw Shifter: Ability I</Name>
+      <InternalName>RazorclawCore2</InternalName>
+      <Description>Choose between +1 Constitution, Dexterity, Strength or Wisdom</Description>
+      <Icon>Constitution</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>1</MinSpent>
+      <ArrowRight/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>4</MinLevel>
+        </Requirement>
+        <Requirement>
+          <Enhancement>RazorclawCore1</Enhancement>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Constitution</Name>
+          <Description>+1 Constitution</Description>
+          <Icon>Constitution</Icon>
+          <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Ability>Constitution</Ability>
+                  <Amount>1</Amount>
+               </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Dexterity</Name>
+          <Description>+1 Dexterity</Description>
+          <Icon>Dexterity</Icon>
+          <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Ability>Dexterity</Ability>
+                  <Amount>1</Amount>
+               </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Strength</Name>
+          <Description>+1 Strength</Description>
+          <Icon>Strength</Icon>
+          <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Ability>Strength</Ability>
+                  <Amount>1</Amount>
+               </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Wisdom</Name>
+          <Description>+1 Wisdom</Description>
+          <Icon>Wisdom</Icon>
+          <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Ability>Wisdom</Ability>
+                  <Amount>1</Amount>
+               </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Razorclaw Shifter: Extra Shifting</Name>
+      <InternalName>RazorclawCore3</InternalName>
+      <Description>+2 Rage uses per rest.</Description>
+      <Icon>RazorclawExtraShifting2</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>2</MinSpent>
+      <Requirements>
+        <Requirement>
+          <MinLevel>7</MinLevel>
+        </Requirement>
+        <Requirement>
+          <Enhancement>RazorclawCore2</Enhancement>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Razorclaw Shifter: Ability II</Name>
+      <InternalName>RazorclawCore4</InternalName>
+      <Description>Choose between +1 Constitution, Dexterity, Strength or Wisdom</Description>
+      <Icon>Constitution</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>1</MinSpent>
+      <ArrowRight/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>11</MinLevel>
+        </Requirement>
+        <Requirement>
+          <Enhancement>RazorclawCore3</Enhancement>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Constitution</Name>
+          <Description>+1 Constitution</Description>
+          <Icon>Constitution</Icon>
+          <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Ability>Constitution</Ability>
+                  <Amount>1</Amount>
+               </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Dexterity</Name>
+          <Description>+1 Dexterity</Description>
+          <Icon>Dexterity</Icon>
+          <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Ability>Dexterity</Ability>
+                  <Amount>1</Amount>
+               </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Strength</Name>
+          <Description>+1 Strength</Description>
+          <Icon>Strength</Icon>
+          <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Ability>Strength</Ability>
+                  <Amount>1</Amount>
+               </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Wisdom</Name>
+          <Description>+1 Wisdom</Description>
+          <Icon>Wisdom</Icon>
+          <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Ability>Wisdom</Ability>
+                  <Amount>1</Amount>
+               </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Razorclaw Shifter: Regenerating Shift</Name>
+      <InternalName>RazorclawCore5</InternalName>
+      <Description>You regenerate 1 Rage use every 90 seconds.</Description>
+      <Icon>RazorclawRegeratingShift</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>4</MinSpent>
+      <Requirements>
+        <Requirement>
+          <MinLevel>16</MinLevel>
+        </Requirement>
+        <Requirement>
+          <Enhancement>RazorclawCore4</Enhancement>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Razorclaw Shifter: Hone Claws</Name>
+      <InternalName>RazorclawHoneClaws</InternalName>
+      <Description>+[1/2/3] to Attack with Handwraps</Description>
+      <Icon>RazorclawHoneClaws</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements/>
+        <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Weapon>Handwraps</Weapon>
+        </Effect>
+        <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Weapon>Handwraps</Weapon>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Razorclaw Shifter: Hunt &amp; Track</Name>
+      <InternalName>RazorclawHuntAndTrack</InternalName>
+      <Description>+[1/2/3] Spot, Listen and Intimidate</Description>
+      <Icon>RazorclawHuntAndTrack</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements/>
+        <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Skill>Spot</Skill>
+            <Skill>Listen</Skill>
+            <Skill>Intimidate</Skill>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Razorclaw Shifter: Extend Shifting</Name>
+      <InternalName>RazorclawExtendShifting</InternalName>
+      <Description>Your Shifting and Barbarian rages last [25/50/75]% longer.</Description>
+      <Icon>RazorclawExtendShifting</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements/>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Razorclaw Shifter: Hardy Shifting</Name>
+      <InternalName>RazorclawHardyShifting</InternalName>
+      <Description>+[1/2/3] Constitution while Shifting or Raging.</Description>
+      <Icon>RazorclawHardyShifting</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements/>
+        <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Ability>Constitution</Ability>
+            <AnyOfStance>Rage</AnyOfStance>
+            <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Razorclaw Shifter: Piercing Claws</Name>
+      <InternalName>RazorclawPiercingClaws</InternalName>
+      <Description>While Raging with Handwraps, you bypass Piercing DR.</Description>
+      <Icon>RazorclawPiercingClaws</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements/>
+         <Effect>
+            <Type>DRBypass</Type>
+            <Bonus>Enhancement</Bonus>
+            <DR>Pierce</DR>
+            <Weapon>Handwraps</Weapon>
+            <AnyOfStance>Rage</AnyOfStance>
+            <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
+         </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Razorclaw Shifter: Natural Armor</Name>
+      <InternalName>RazorclawNaturalArmor</InternalName>
+      <Description>+[2/4/6] Natural Armor</Description>
+      <Icon>RazorclawNaturalArmor</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements/>
+         <Effect>
+            <Type>NaturalArmor</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">2 4 6</AmountVector>
+         </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Razorclaw Shifter: Howl</Name>
+      <InternalName>RazorclawHowl</InternalName>
+      <Description>Nearby Allies gain +2 to Attack per 5 Character Levels you have for 20 seconds. You can use this once per Rest.</Description>
+      <Icon>RazorclawHowl</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <Clickie/>
+      <Requirements/>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Razorclaw Shifter: Extra Howling</Name>
+      <InternalName>RazorclawExtraHowling</InternalName>
+      <Description>+[1/2/3] uses of Howl per rest.</Description>
+      <Icon>RazorclawExtraHowling</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements/>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Razorclaw Shifter: Magic Fang</Name>
+      <InternalName>RazorclawMagicFang</InternalName>
+      <Description>Increases the Enhancement Bonus of the target's natural weapon by 1, plus 1 per
+five caster levels. An item can have only one temporary item enhancement at a time.
+Only works on players, hirelings, or pets, and only if they are Animals, Vermin,
+Magical Beats, Dragons, or Fey. Equipping a new weapon cancels the effect.
+Cost: 10/8/5 SP
+Cooldown: 20/15/10 seconds</Description>
+      <Icon>RazorclawMagicFang</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Clickie/>
+      <Requirements/>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Razorclaw Shifter: Pounce</Name>
+      <InternalName>RazorclawPounce</InternalName>
+      <Description>Rush forward, dealing +[2/4/6]W to targets near you when you land.
++[0/1/1] Critical Threat Range and +[0/0/1] Multiplier with this attack.</Description>
+      <Icon>RazorclawPounce</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+      <Clickie/>
+      <Requirements/>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Razorclaw Shifter: Augment Summoning</Name>
+      <InternalName>RazorclawAugmentSummoning</InternalName>
+      <Description>Grants the Augment Summoning feat: Your summoned creatures, charmed minions, pets,
+and hirelings have +4 to all ability scores, increased health, and increased
+fortification.</Description>
+      <Icon>RazorclawAugmentSummoning</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements/>
+        <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Enhancement</Bonus>
+            <Feat>Augment Summoning</Feat>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Razorclaw Shifter: Stronger Howl</Name>
+      <InternalName>RazorclawStrongerHowl</InternalName>
+      <Description>When you Howl, nearby enemies take -2 to Attack per 5 Character Levels you have for 20 seconds.</Description>
+      <Icon>RazorclawStrongerHowl</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Feat>Razorclaw Shifter</Feat>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Razorclaw Shifter: Favored Enemy</Name>
+      <InternalName>RazorclawFavoredEnemy</InternalName>
+      <Description>Choose a Favored Enemy</Description>
+      <Icon>RazorclawFavoredEnemy</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements/>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Favored Enemy: Animal</Name>
+          <Description>You receive the Favored Enemy: Animal feat: You receive a damage bonus when attacking animals.</Description>
+          <Icon>RazorclawFavoredEnemy</Icon>
+          <Cost>2</Cost>
+        <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Enhancement</Bonus>
+            <Feat>Favored enemy: Animal</Feat>
+        </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Favored Enemy: Fey</Name>
+          <Description>You receive the Favored Enemy: Fey feat: You receive a damage bonus when attacking fey creatures.</Description>
+          <Icon>RazorclawFavoredEnemyFey</Icon>
+          <Cost>2</Cost>
+        <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Enhancement</Bonus>
+            <Feat>Favored enemy: Fey</Feat>
+        </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Favored Enemy: Magical Beast</Name>
+          <Description>You receive the Favored Enemy: Magical Beast feat: You receive a damage bonus when attacking magical beats.</Description>
+          <Icon>RazorclawFavoredEnemyMagicalBeast</Icon>
+          <Cost>2</Cost>
+        <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Enhancement</Bonus>
+            <Feat>Favored enemy: Magical Beast</Feat>
+        </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Favored Enemy: Plant</Name>
+          <Description>You receive the Favored Enemy: Plant feat: You receive a damage bonus when attacking plants.</Description>
+          <Icon>RazorclawFavoredEnemyPlant</Icon>
+          <Cost>2</Cost>
+        <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Enhancement</Bonus>
+            <Feat>Favored enemy: Plant</Feat>
+        </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Favored Enemy: Reptilian</Name>
+          <Description>You receive the Favored Enemy: Reptilian feat: You receive a damage bonus when attacking reptilian creatures.</Description>
+          <Icon>RazorclawFavoredEnemyReptilian</Icon>
+          <Cost>2</Cost>
+        <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Enhancement</Bonus>
+            <Feat>Favored enemy: Reptilian</Feat>
+        </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Favored Enemy: Vermin</Name>
+          <Description>You receive the Favored Enemy: Vermin feat: You receive a damage bonus when attacking vermin.</Description>
+          <Icon>RazorclawFavoredEnemyVermin</Icon>
+          <Cost>2</Cost>
+        <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Enhancement</Bonus>
+            <Feat>Favored enemy: Vermin</Feat>
+        </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Razorclaw Shifter: Destructive Shifting</Name>
+      <InternalName>RazorclawDestructiveShifting</InternalName>
+      <Description>While under your Iconic Rage, you gain Improved Destruction and trip enemies for 2 seconds on a Vorpal hit. Your Iconic Rage now Uncenters you.</Description>
+      <Icon>RazorclawDestructiveShifting</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>15</MinSpent>
+      <Requirements/>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Razorclaw Shifter: True Hunter</Name>
+      <InternalName>RazorclawTrueHunter</InternalName>
+      <Description>You gain Freedom of Movement, +2 to Saves vs. Enchantments and Illusions, immunity to Petrification and +10 to Spot.</Description>
+      <Icon>RazorclawTrueHunter</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>15</MinSpent>
+      <Requirements/>
+         <Effect>
+            <Type>Immunity</Type>
+            <Bonus>Destiny</Bonus>
+            <Immunity>Holds and slippery surfaces</Immunity>
+         </Effect>
+        <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Save>Enchantment</Save>
+        </Effect>
+        <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Save>Illusion</Save>
+        </Effect>
+         <Effect>
+            <Type>Immunity</Type>
+            <Bonus>Destiny</Bonus>
+            <Immunity>Petrification</Immunity>
+         </Effect>
+        <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>10</Amount>
+            <Skill>Spot</Skill>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Razorclaw Shifter: Howl of Terror</Name>
+      <InternalName>RazorclawHowlOfTerror</InternalName>
+      <Description>You utter a terrifying howl, filling your foes with a paralyzing fear. Foes around you are paralyzed for 6 to 24 seconds. Will save negates.
+Cost: 45/40/30 SP
+Cooldown: 20/15/10 seconds</Description>
+      <Icon>RazorclawHowlOfTerror</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>15</MinSpent>
+      <Clickie/>
+      <Requirements/>
+    </EnhancementTreeItem>
+  </EnhancementTree>
    <EnhancementTree>
       <Name>Aasimar: Scourge of the Undead</Name>
       <Version>1</Version>
@@ -14117,6 +14681,680 @@ Your weapons also have a chance to blind their targets for a short time.</Descri
          <Requirements/>
       </EnhancementTreeItem>
    </EnhancementTree>
+  <EnhancementTree>
+    <Name>Shifter</Name>
+    <Version>1</Version>
+    <Requirements>
+      <Requirement>
+        <Race>Shifter</Race>
+      </Requirement>
+    </Requirements>
+    <IsRacialTree/>
+    <Icon>Shifter</Icon>
+    <Background>Half-OrcBackground</Background>
+    <EnhancementTreeItem>
+      <Name>Shifter: Extra Shifting</Name>
+      <InternalName>ShifterCore1</InternalName>
+      <Description>+1 Rage uses per rest. (You expend Rage uses to activate your Shifting).</Description>
+      <Icon>RazorclawExtraShifting</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>0</MinSpent>
+      <ArrowRight/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>1</MinLevel>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Shifter: Ability I</Name>
+      <InternalName>ShifterCore2</InternalName>
+      <Description>Choose between +1 Constitution, Dexterity, Strength or Wisdom</Description>
+      <Icon>Constitution</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>1</MinSpent>
+      <ArrowRight/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>4</MinLevel>
+        </Requirement>
+        <Requirement>
+          <Enhancement>ShifterCore1</Enhancement>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Constitution</Name>
+          <Description>+1 Constitution</Description>
+          <Icon>Constitution</Icon>
+          <Cost>2</Cost>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Ability>Constitution</Ability>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Dexterity</Name>
+          <Description>+1 Dexterity</Description>
+          <Icon>Dexterity</Icon>
+          <Cost>2</Cost>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Ability>Dexterity</Ability>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Strength</Name>
+          <Description>+1 Strength</Description>
+          <Icon>Strength</Icon>
+          <Cost>2</Cost>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Ability>Strength</Ability>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Wisdom</Name>
+          <Description>+1 Wisdom</Description>
+          <Icon>Wisdom</Icon>
+          <Cost>2</Cost>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Ability>Wisdom</Ability>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Shifter: Extra Shifting</Name>
+      <InternalName>ShifterCore3</InternalName>
+      <Description>+2 Rage uses per rest.</Description>
+      <Icon>RazorclawExtraShifting2</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>2</MinSpent>
+      <Requirements>
+        <Requirement>
+          <MinLevel>7</MinLevel>
+        </Requirement>
+        <Requirement>
+          <Enhancement>ShifterCore2</Enhancement>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Shifter: Ability II</Name>
+      <InternalName>ShifterCore4</InternalName>
+      <Description>Choose between +1 Constitution, Dexterity, Strength or Wisdom</Description>
+      <Icon>Constitution</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>1</MinSpent>
+      <ArrowRight/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>11</MinLevel>
+        </Requirement>
+        <Requirement>
+          <Enhancement>ShifterCore3</Enhancement>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Constitution</Name>
+          <Description>+1 Constitution</Description>
+          <Icon>Constitution</Icon>
+          <Cost>2</Cost>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Ability>Constitution</Ability>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Dexterity</Name>
+          <Description>+1 Dexterity</Description>
+          <Icon>Dexterity</Icon>
+          <Cost>2</Cost>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Ability>Dexterity</Ability>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Strength</Name>
+          <Description>+1 Strength</Description>
+          <Icon>Strength</Icon>
+          <Cost>2</Cost>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Ability>Strength</Ability>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Wisdom</Name>
+          <Description>+1 Wisdom</Description>
+          <Icon>Wisdom</Icon>
+          <Cost>2</Cost>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Ability>Wisdom</Ability>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Shifter: Regenerating Shift</Name>
+      <InternalName>ShifterCore5</InternalName>
+      <Description>You regenerate 1 Rage use every 90 seconds.</Description>
+      <Icon>RazorclawRegeratingShift</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>4</MinSpent>
+      <Requirements>
+        <Requirement>
+          <MinLevel>16</MinLevel>
+        </Requirement>
+        <Requirement>
+          <Enhancement>ShifterCore4</Enhancement>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Shifter: Brute Fighting</Name>
+      <InternalName>ShifterBruteFighting</InternalName>
+      <Description>Select an option</Description>
+      <Icon>ShifterBruteFighting</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Clickie/>
+      <Requirements/>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Brutal Spellcasting</Name>
+          <Description>Your damaging spells generate [25/50/75]% more hate than they normally would,
+making enemies more likely to attack you. Cooldown: 2 seconds</Description>
+          <Icon>ShifterBrutalSpellcasting</Icon>
+          <Cost>1</Cost>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Brutal Fighting</Name>
+          <Description>Activate this ability to cause your melee attacks to generate [25/50/75]% more
+hate, making enemies more likely to attack you. Cooldown: 2 seconds</Description>
+          <Icon>ShifterBruteFighting</Icon>
+          <Cost>1</Cost>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Shifter: Hunt &amp; Track</Name>
+      <InternalName>ShifterHuntAndTrack</InternalName>
+      <Description>+[1/2/3] Spot, Listen and Intimidate</Description>
+      <Icon>RazorclawHuntAndTrack</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements/>
+      <Effect>
+        <Type>SkillBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">1 2 3</AmountVector>
+        <Skill>Spot</Skill>
+        <Skill>Listen</Skill>
+        <Skill>Intimidate</Skill>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Shifter: Extend Shifting</Name>
+      <InternalName>ShifterExtendShifting</InternalName>
+      <Description>Your Shifting and Barbarian rages last [25/50/75]% longer.</Description>
+      <Icon>RazorclawExtendShifting</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements/>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Shifter: Hardy Shifting</Name>
+      <InternalName>ShifterHardyShifting</InternalName>
+      <Description>+[1/2/3] Constitution while Shifting or Raging.</Description>
+      <Icon>RazorclawHardyShifting</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements/>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">1 2 3</AmountVector>
+        <AnyOfStance>Rage</AnyOfStance>
+        <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
+        <AnyOfStance>Wildhunt Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
+        <Ability>Constitution</Ability>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Shifter: Shifted Defenses</Name>
+      <InternalName>ShifterShiftedDefenses</InternalName>
+      <Description>Choose an effect</Description>
+      <Icon>ShifterShiftedDefenses</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements/>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Shifted Defenses</Name>
+          <Description>+[4/?/?] Physical Resistance Rating while Raging</Description>
+          <Icon>ShifterShiftedDefenses</Icon>
+          <Cost>1</Cost>
+          <Requirements>
+            <Requirement>
+              <Feat>Beasthide Shifter</Feat>
+            </Requirement>
+          </Requirements>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Shifted Senses</Name>
+          <Description>+[3/?/?] Spot and +[2/?/?]% Dodge while Raging</Description>
+          <Icon>ShifterShiftedSenses</Icon>
+          <Cost>1</Cost>
+          <Requirements>
+            <Requirement>
+              <Feat>Wildhunt Shifter</Feat>
+            </Requirement>
+          </Requirements>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Shifter: Natural Armor</Name>
+      <InternalName>ShifterNaturalArmor</InternalName>
+      <Description>+[2/4/6] Natural Armor</Description>
+      <Icon>RazorclawNaturalArmor</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements/>
+      <Effect>
+        <Type>NaturalArmor</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">2 4 6</AmountVector>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Shifter: Howl</Name>
+      <InternalName>ShifterHowl</InternalName>
+      <Description>Choose an effect.</Description>
+      <Icon>ShifterHowl</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <Clickie/>
+      <Requirements/>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Beasthide Howl</Name>
+          <Description>Release a mighty howl, granting nearby allies +2 Action Boost Bonus to PRR and MRR per 5 Character Levels you have for 20 seconds. You can use this once per rest.</Description>
+          <Icon>ShifterHowl</Icon>
+          <Cost>2</Cost>
+          <Clickie/>
+          <Requirements>
+            <Requirement>
+              <Feat>Beasthide Shifter</Feat>
+            </Requirement>
+          </Requirements>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Wildhunt Howl</Name>
+          <Description>Release a mighty howl, granting nearby allies +1 Action Boost Bonus to Saving Throws per 10 Character Levels you have for 20 seconds. You can use this once per rest.</Description>
+          <Icon>ShifterWildhuntHowl</Icon>
+          <Cost>1</Cost>
+          <Clickie/>
+          <Requirements>
+            <Requirement>
+              <Feat>Wildhunt Shifter</Feat>
+            </Requirement>
+          </Requirements>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Shifter: Extra Howling</Name>
+      <InternalName>ShifterExtraHowling</InternalName>
+      <Description>+[1/2/3] uses of Howl per rest.</Description>
+      <Icon>RazorclawExtraHowling</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements/>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Shifter: Magic Fang</Name>
+      <InternalName>ShifterMagicFang</InternalName>
+      <Description>Increases the Enhancement Bonus of the target's natural weapon by 1, plus 1 per
+five caster levels. An item can have only one temporary item enhancement at a time.
+Only works on players, hirelings, or pets, and only if they are Animals, Vermin,
+Magical Beats, Dragons, or Fey. Equipping a new weapon cancels the effect.
+Cost: 10/8/5 SP
+Cooldown: 20/15/10 seconds</Description>
+      <Icon>RazorclawMagicFang</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Clickie/>
+      <Requirements/>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Shifter: Empowered by Nature</Name>
+      <InternalName>ShifterEmpoweredByNature</InternalName>
+      <Description>Choose an effect</Description>
+      <Icon>ShifterEmpoweredByNature</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements/>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Empowered by Nature: Beasthide</Name>
+          <Description>+10 Positive Healing Amplification</Description>
+          <Icon>ShifterEmpoweredByNature</Icon>
+          <Cost>2</Cost>
+          <Requirements>
+            <Requirement>
+              <Feat>Beasthide Shifter</Feat>
+            </Requirement>
+          </Requirements>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Empowered by Nature: Wildhide</Name>
+          <Description>+25 Maximum Spell Points. You can now cast while Raging.</Description>
+          <Icon>ShifterEmpoweredByNatureWildhunt</Icon>
+          <Cost>2</Cost>
+          <Requirements>
+            <Requirement>
+              <Feat>Wildhunt Shifter</Feat>
+            </Requirement>
+          </Requirements>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Shifter: Augment Summoning</Name>
+      <InternalName>ShifterAugmentSummoning</InternalName>
+      <Description>Grants the Augment Summoning feat: Your summoned creatures, charmed minions, pets,
+and hirelings have +4 to all ability scores, increased health, and increased
+fortification.</Description>
+      <Icon>RazorclawAugmentSummoning</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements/>
+      <Effect>
+        <Type>GrantFeat</Type>
+        <Bonus>Enhancement</Bonus>
+        <Feat>Augment Summoning</Feat>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Shifter: Stronger Howl</Name>
+      <InternalName>ShifterStrongerHowl</InternalName>
+      <Description>Choose an effect.</Description>
+      <Icon>ShifterStrongerHowl</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements/>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Stronger Howl: Beasthide</Name>
+          <Description>When you Howl, nearby enemies take -2 to Attack per 5 Character Levels you have for 20 seconds.</Description>
+          <Icon>ShifterStrongerHowl</Icon>
+          <Cost>2</Cost>
+          <Requirements>
+            <Requirement>
+              <Feat>Beasthide Shifter</Feat>
+            </Requirement>
+          </Requirements>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Stronger Howl: Wildhunt</Name>
+          <Description>When you Howl, nearby enemies take -1 to Saving Throws per 5 Character Levels you have for 20 seconds.</Description>
+          <Icon>ShifterStrongerHowlWildhunt</Icon>
+          <Cost>2</Cost>
+          <Requirements>
+            <Requirement>
+              <Feat>Wildhunt Shifter</Feat>
+            </Requirement>
+          </Requirements>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Shifter: Favored Enemy</Name>
+      <InternalName>ShifterFavoredEnemy</InternalName>
+      <Description>Choose a Favored Enemy</Description>
+      <Icon>RazorclawFavoredEnemy</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements/>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Favored Enemy: Animal</Name>
+          <Description>You receive the Favored Enemy: Animal feat: You receive a damage bonus when attacking animals.</Description>
+          <Icon>RazorclawFavoredEnemy</Icon>
+          <Cost>2</Cost>
+          <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Enhancement</Bonus>
+            <Feat>Favored enemy: Animal</Feat>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Favored Enemy: Fey</Name>
+          <Description>You receive the Favored Enemy: Fey feat: You receive a damage bonus when attacking fey creatures.</Description>
+          <Icon>RazorclawFavoredEnemyFey</Icon>
+          <Cost>2</Cost>
+          <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Enhancement</Bonus>
+            <Feat>Favored enemy: Fey</Feat>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Favored Enemy: Magical Beast</Name>
+          <Description>You receive the Favored Enemy: Magical Beast feat: You receive a damage bonus when attacking magical beats.</Description>
+          <Icon>RazorclawFavoredEnemyMagicalBeast</Icon>
+          <Cost>2</Cost>
+          <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Enhancement</Bonus>
+            <Feat>Favored enemy: Magical Beast</Feat>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Favored Enemy: Plant</Name>
+          <Description>You receive the Favored Enemy: Plant feat: You receive a damage bonus when attacking plants.</Description>
+          <Icon>RazorclawFavoredEnemyPlant</Icon>
+          <Cost>2</Cost>
+          <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Enhancement</Bonus>
+            <Feat>Favored enemy: Plant</Feat>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Favored Enemy: Reptilian</Name>
+          <Description>You receive the Favored Enemy: Reptilian feat: You receive a damage bonus when attacking reptilian creatures.</Description>
+          <Icon>RazorclawFavoredEnemyReptilian</Icon>
+          <Cost>2</Cost>
+          <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Enhancement</Bonus>
+            <Feat>Favored enemy: Reptilian</Feat>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Favored Enemy: Vermin</Name>
+          <Description>You receive the Favored Enemy: Vermin feat: You receive a damage bonus when attacking vermin.</Description>
+          <Icon>RazorclawFavoredEnemyVermin</Icon>
+          <Cost>2</Cost>
+          <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Enhancement</Bonus>
+            <Feat>Favored enemy: Vermin</Feat>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Shifter: Threatening Shift</Name>
+      <InternalName>ShifterThreateningShift</InternalName>
+      <Description>Choose an effect</Description>
+      <Icon>ShifterThreateningShift</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>15</MinSpent>
+      <Requirements/>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Threatening Shift</Name>
+          <Description>While raging, +20% to Threat Generation and +5% Quality Bonus to Maximum Hit Points.</Description>
+          <Icon>ShifterThreateningShift</Icon>
+          <Cost>2</Cost>
+          <Requirements>
+            <Requirement>
+              <Feat>Beasthide Shifter</Feat>
+            </Requirement>
+          </Requirements>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Camouflaged Shift</Name>
+          <Description>While raging, gain Lesser Dispacement and +3% Dodge Cap.</Description>
+          <Icon>ShifterCamouflagedShift</Icon>
+          <Cost>2</Cost>
+          <Requirements>
+            <Requirement>
+              <Feat>Wildhunt Shifter</Feat>
+            </Requirement>
+          </Requirements>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Shifter: True Hunter</Name>
+      <InternalName>ShifterTrueHunter</InternalName>
+      <Description>You gain Freedom of Movement, +2 to Saves vs. Enchantments and Illusions, immunity to Petrification and +10 to Spot.</Description>
+      <Icon>RazorclawTrueHunter</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>15</MinSpent>
+      <Requirements/>
+      <Effect>
+        <Type>Immunity</Type>
+        <Bonus>Destiny</Bonus>
+        <Immunity>Holds and slippery surfaces</Immunity>
+      </Effect>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>2</Amount>
+        <Save>Enchantment</Save>
+      </Effect>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>2</Amount>
+        <Save>Illusion</Save>
+      </Effect>
+      <Effect>
+        <Type>Immunity</Type>
+        <Bonus>Destiny</Bonus>
+        <Immunity>Petrification</Immunity>
+      </Effect>
+      <Effect>
+        <Type>SkillBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>10</Amount>
+        <Skill>Spot</Skill>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Shifter: Howl of Terror</Name>
+      <InternalName>ShifterHowlOfTerror</InternalName>
+      <Description>You utter a terrifying howl, filling your foes with a paralyzing fear. Foes around you are paralyzed for 6 to 24 seconds. Will save negates.
+Cost: 45/40/30 SP
+Cooldown: 20/15/10 seconds</Description>
+      <Icon>RazorclawHowlOfTerror</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>15</MinSpent>
+      <Clickie/>
+      <Requirements/>
+    </EnhancementTreeItem>
+  </EnhancementTree>
   <EnhancementTree>
     <Name>Tiefling</Name>
     <Version>0</Version>
@@ -16865,7 +18103,10 @@ As long as you do not have these equipped, you gain +10 PRR.</Description>
                   <Type>Doublestrike</Type>
                   <Bonus>Enhancement</Bonus>
                   <Amount>5</Amount>
-                  <Stance>Rage</Stance>
+            <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Wildhunt Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Rage</AnyOfStance>
+            <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
                </Effect>
             </EnhancementSelection>
          </Selector>
@@ -24932,7 +26173,9 @@ This can only trigger once every five minutes</Description>
             <Bonus>Enhancement</Bonus>
             <Ability>Strength</Ability>
             <AmountVector size="3">1 2 3</AmountVector>
-            <Stance>Rage</Stance>
+            <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Rage</AnyOfStance>
+            <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -25325,7 +26568,10 @@ points every 4 seconds. This healing scales with 100% Melee Power.</Description>
                   <Type>HealingAmplification</Type>
                   <Bonus>Enhancement</Bonus>
                   <Amount>20</Amount>
-                  <Stance>Rage</Stance>
+            <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Wildhunt Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Rage</AnyOfStance>
+            <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
@@ -25337,13 +26583,19 @@ points every 4 seconds. This healing scales with 100% Melee Power.</Description>
                   <Type>MeleePower</Type>
                   <Bonus>Enhancement</Bonus>
                   <Amount>5</Amount>
-                  <Stance>Rage</Stance>
+            <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Wildhunt Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Rage</AnyOfStance>
+            <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
                </Effect>
                <Effect>
                   <Type>WeaponBaseDamageBonus</Type>
                   <Bonus>Enhancement</Bonus>
                   <Amount>1</Amount>
-                  <Stance>Rage</Stance>
+            <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Wildhunt Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Rage</AnyOfStance>
+            <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
                   <WeaponClass>Melee</WeaponClass>
                </Effect>
             </EnhancementSelection>
@@ -25814,7 +27066,10 @@ Rank 3: +1 Reflex Saving Throw</Description>
             <Bonus>Enhancement</Bonus>
             <Save>Will</Save>
             <AmountVector size="3">1 2 3</AmountVector>
-            <Stance>Rage</Stance>
+            <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Wildhunt Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Rage</AnyOfStance>
+            <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -26715,7 +27970,10 @@ Damage is doubled when Two Handed Fighting.</Description>
             <Bonus>Enhancement</Bonus>
             <Ability>Constitution</Ability>
             <AmountVector size="3">1 2 3</AmountVector>
-            <Stance>Rage</Stance>
+            <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Wildhunt Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Rage</AnyOfStance>
+            <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -34542,9 +35800,8 @@ Positive Spell Power)</Description>
       <EnhancementTreeItem>
          <Name>War Priest: Divine Power</Name>
          <InternalName>WPDivinePower</InternalName>
-         <Description>Passive: Your god has imbued you with power and skill in combat, granting a
-+1 Competence Bonus to Critical Multiplier with weapons, a +6 Sacred bonus to Strength,
-and a base attack bonus equal to a fighter of the same level.</Description>
+         <Description>Passive: Your god has imbued you with power and skill in combat, granting a +6 Sacred
+bonus to Strength, and a base attack bonus equal to a fighter of the same level.</Description>
          <Icon>WPDivinePower</Icon>
          <XPosition>0</XPosition>
          <YPosition>5</YPosition>
@@ -34561,13 +35818,6 @@ and a base attack bonus equal to a fighter of the same level.</Description>
                <MinLevel>12</MinLevel>
             </Requirement>
          </Requirements>
-         <Effect>
-            <Type>CriticalMultiplier</Type>
-            <Bonus>Competence</Bonus>
-            <Amount>1</Amount>
-            <ApplyAsItemEffect/>
-            <Weapon>All</Weapon>
-         </Effect>
          <Effect>
             <Type>AbilityBonus</Type>
             <Bonus>Sacred</Bonus>
@@ -35041,7 +36291,9 @@ Also grants the Dismiss Rage Feat.</Description>
             <Bonus>Rage</Bonus>
             <AmountVector size="2">4 4</AmountVector>
             <Ability>Strength</Ability>
-            <Stance>Rage</Stance>
+            <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Rage</AnyOfStance>
+            <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
             <ApplyAsItemEffect/>
          </Effect>
          <Effect>
@@ -35049,7 +36301,10 @@ Also grants the Dismiss Rage Feat.</Description>
             <Bonus>Rage</Bonus>
             <AmountVector size="2">4 4</AmountVector>
             <Ability>Constitution</Ability>
-            <Stance>Rage</Stance>
+            <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Wildhunt Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Rage</AnyOfStance>
+            <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
             <ApplyAsItemEffect/>
          </Effect>
          <Effect>
@@ -35057,14 +36312,20 @@ Also grants the Dismiss Rage Feat.</Description>
             <Bonus>Rage</Bonus>
             <AmountVector size="2">2 2</AmountVector>
             <Save>Will</Save>
-            <Stance>Rage</Stance>
+            <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Wildhunt Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Rage</AnyOfStance>
+            <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
             <ApplyAsItemEffect/>
          </Effect>
          <Effect>
             <Type>ACBonus</Type>
             <Bonus>Rage</Bonus>
             <AmountVector size="2">-2 -2</AmountVector>
-            <Stance>Rage</Stance>
+            <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Wildhunt Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Rage</AnyOfStance>
+            <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
             <ApplyAsItemEffect/>
          </Effect>
       </EnhancementTreeItem>
@@ -35249,7 +36510,10 @@ Rank 3 grants +1 to hit and damage.</Description>
             <Type>MeleePower</Type>
             <Bonus>Enhancement</Bonus>
             <AmountVector size="2">5 10</AmountVector>
-            <Stance>Rage</Stance>
+            <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Wildhunt Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Rage</AnyOfStance>
+            <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
             <AnyOfStance>Wolf</AnyOfStance>
             <AnyOfStance>Winter Wolf</AnyOfStance>
             <AnyOfStance>Bear</AnyOfStance>
@@ -35416,7 +36680,10 @@ Grants 1/2 additional uses of Rage per rest.</Description>
             <Type>HealingAmplification</Type>
             <Bonus>Enhancement</Bonus>
             <AmountVector size="2">10 20</AmountVector>
-            <Stance>Rage</Stance>
+            <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Wildhunt Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Rage</AnyOfStance>
+            <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
             <AnyOfStance>Wolf</AnyOfStance>
             <AnyOfStance>Winter Wolf</AnyOfStance>
             <AnyOfStance>Bear</AnyOfStance>
@@ -35427,7 +36694,10 @@ Grants 1/2 additional uses of Rage per rest.</Description>
             <Bonus>Enhancement</Bonus>
             <AmountVector size="2">1 2</AmountVector>
             <Ability>Strength</Ability>
-            <Stance>Rage</Stance>
+            <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Wildhunt Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Rage</AnyOfStance>
+            <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
             <AnyOfStance>Wolf</AnyOfStance>
             <AnyOfStance>Winter Wolf</AnyOfStance>
             <AnyOfStance>Bear</AnyOfStance>
@@ -35574,6 +36844,7 @@ Nature's Defense now grants you a +15%/20%/25% competence bonus to max hit point
                   <Stance>Shield</Stance>
                   <AnyOfStance>Bear</AnyOfStance>
                   <AnyOfStance>Dire Bear</AnyOfStance>
+                  <ApplyAsItemEffect/>
                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
@@ -35681,7 +36952,10 @@ energy drain and death effects.</Description>
             <Type>Immunity</Type>
             <Bonus>Enhancement</Bonus>
             <Immunity>Energy Drain</Immunity>
-            <Stance>Rage</Stance>
+            <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Wildhunt Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Rage</AnyOfStance>
+            <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
             <AnyOfStance>Wolf</AnyOfStance>
             <AnyOfStance>Winter Wolf</AnyOfStance>
             <AnyOfStance>Bear</AnyOfStance>
@@ -35691,7 +36965,10 @@ energy drain and death effects.</Description>
             <Type>Immunity</Type>
             <Bonus>Enhancement</Bonus>
             <Immunity>Death Effects</Immunity>
-            <Stance>Rage</Stance>
+            <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Wildhunt Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Rage</AnyOfStance>
+            <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
             <AnyOfStance>Wolf</AnyOfStance>
             <AnyOfStance>Winter Wolf</AnyOfStance>
             <AnyOfStance>Bear</AnyOfStance>
@@ -35756,6 +37033,7 @@ Nature's Defense now grants you a +15%/20%/25% competence bonus to max hit point
                   <Stance>Shield</Stance>
                   <AnyOfStance>Bear</AnyOfStance>
                   <AnyOfStance>Dire Bear</AnyOfStance>
+                  <ApplyAsItemEffect/>
                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
@@ -35868,7 +37146,10 @@ and 50% increase to melee threat.</Description>
             <Type>MeleePower</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>25</Amount>
-            <Stance>Rage</Stance>
+            <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Wildhunt Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Rage</AnyOfStance>
+            <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
             <AnyOfStance>Wolf</AnyOfStance>
             <AnyOfStance>Winter Wolf</AnyOfStance>
             <AnyOfStance>Bear</AnyOfStance>
@@ -35879,7 +37160,10 @@ and 50% increase to melee threat.</Description>
             <Bonus>Enhancement</Bonus>
             <Percent/>
             <Amount>15</Amount>
-            <Stance>Rage</Stance>
+            <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Wildhunt Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Rage</AnyOfStance>
+            <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
             <AnyOfStance>Bear</AnyOfStance>
             <AnyOfStance>Dire Bear</AnyOfStance>
          </Effect>
@@ -35887,7 +37171,10 @@ and 50% increase to melee threat.</Description>
             <Type>ThreatBonusMelee</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>50</Amount>
-            <Stance>Rage</Stance>
+            <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Wildhunt Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Rage</AnyOfStance>
+            <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
             <AnyOfStance>Bear</AnyOfStance>
             <AnyOfStance>Dire Bear</AnyOfStance>
          </Effect>
@@ -35997,6 +37284,7 @@ Nature's Defense now grants you a +15%/20%/25% competence bonus to max hit point
                   <Stance>Shield</Stance>
                   <AnyOfStance>Bear</AnyOfStance>
                   <AnyOfStance>Dire Bear</AnyOfStance>
+                  <ApplyAsItemEffect/>
                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
@@ -58428,7 +59716,7 @@ Cooldown: 15 seconds.</Description>
       <EnhancementTreeItem>
          <Name>Inquisitive: No Holds Barred</Name>
          <InternalName>InquisitiveNoHoldsBarred</InternalName>
-         <Description>Action Boost: You may activate this ability to enchant your Light of Heavy
+         <Description>Action Boost: You may activate this ability to enchant your Light or Heavy
 (non-repeating) crossbow to instantly reload itself for 18 seconds. You must
 have a crossbow equipped to use this skill. This shares charges and a cooldown
 with Endless Fusilade. If you also have Endless Fusilade, you gain +10 Ranged
@@ -58452,6 +59740,12 @@ Cooldown: 30 seconds</Description>
             <Type>RangedPower</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>5</Amount>
+         </Effect>
+         <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>10</Amount>
+            <Stance>Endless Fusilate</Stance>
          </Effect>
          <Effect>
             <Type>Doubleshot</Type>
@@ -58574,7 +59868,7 @@ Crossbows have a chance to automatically trigger Diplomacy around you.</Descript
          <Icon>DiplomaticImmunity</Icon>
          <XPosition>4</XPosition>
          <YPosition>5</YPosition>
-         <Cost>1</Cost>
+         <Cost>2</Cost>
          <Ranks>1</Ranks>
          <MinSpent>30</MinSpent>
          <Clickie/>
@@ -59775,6 +61069,952 @@ multiplier to your equipped daggers or throwing knife for 15 seconds. 60 second 
          </Effect>
       </EnhancementTreeItem>
    </EnhancementTree>
+  <EnhancementTree>
+    <Name>Feydark Illusionist</Name>
+    <Version>1</Version>
+    <Requirements>
+      <RequiresOneOf>
+        <Requirement>
+          <Feat>Feydark Illusionist Tree</Feat>
+        </Requirement>
+      </RequiresOneOf>
+    </Requirements>
+    <IsUniversalTree/>
+    <Icon>FeydarkIllusionist</Icon>
+    <Background>HarperBackground</Background>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Find Familiar</Name>
+      <InternalName>FeydarkCore1</InternalName>
+      <Description>Select a Familiar to accompany you on your advenures.</Description>
+      <Icon>FeydarkFindFamiliar</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>0</MinSpent>
+      <Clickie/>
+      <ArrowRight/>
+      <Requirements/>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Fox</Name>
+          <Description>Familiar Toggle: Summons your chosen familiar, a fox, to your side. Familiars will follow you and can assist in your magical endeavors</Description>
+          <Icon>FamiliarFox</Icon>
+          <Cost>1</Cost>
+          <Clickie/>
+          <Requirements>
+            <Requirement>
+              <Feat>Magical Training</Feat>
+            </Requirement>
+          </Requirements>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Illusory Sprite</Name>
+          <Description>Familiar Toggle: Summons your chosen familiar, an Illusory Sprite, to your side. Familiars will follow you and can assist in your magical endeavors</Description>
+          <Icon>FamiliarIllusorySprite</Icon>
+          <Cost>1</Cost>
+          <Clickie/>
+          <Requirements>
+            <Requirement>
+              <Feat>Magical Training</Feat>
+            </Requirement>
+          </Requirements>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Pseudodragon</Name>
+          <Description>Familiar Toggle: Summons your chosen familiar, a fPseudodragonox, to your side. Familiars will follow you and can assist in your magical endeavors</Description>
+          <Icon>FamiliarPseudodragon</Icon>
+          <Cost>1</Cost>
+          <Clickie/>
+          <Requirements>
+            <Requirement>
+              <Feat>Magical Training</Feat>
+            </Requirement>
+          </Requirements>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>White Cat</Name>
+          <Description>Familiar Toggle: Summons your chosen familiar, a white cat, to your side. Familiars will follow you and can assist in your magical endeavors</Description>
+          <Icon>FamiliarWhiteCat</Icon>
+          <Cost>1</Cost>
+          <Clickie/>
+          <Requirements>
+            <Requirement>
+              <Feat>Magical Training</Feat>
+            </Requirement>
+          </Requirements>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>White Tressym</Name>
+          <Description>Familiar Toggle: Summons your chosen familiar, a white tressym, to your side. Familiars will follow you and can assist in your magical endeavors</Description>
+          <Icon>FamiliarWhiteTressym</Icon>
+          <Cost>1</Cost>
+          <Clickie/>
+          <Requirements>
+            <Requirement>
+              <Feat>Magical Training</Feat>
+            </Requirement>
+          </Requirements>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Ability I</Name>
+      <InternalName>FeydarkCore2</InternalName>
+      <Description>Choose between Intelligence, Wisdom or Charisma</Description>
+      <Icon>IntWisCha</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <ArrowRight/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>3</MinLevel>
+        </Requirement>
+        <Requirement>
+          <Enhancement>FeydarkCore1</Enhancement>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Intelligence</Name>
+          <Description>+1 Intelligence</Description>
+          <Icon>Intelligence</Icon>
+          <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Ability>Intelligence</Ability>
+                  <Amount>1</Amount>
+               </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Wisdom</Name>
+          <Description>+1 Wisdom</Description>
+          <Icon>Wisdom</Icon>
+          <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Ability>Wisdom</Ability>
+                  <Amount>1</Amount>
+               </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Charisma</Name>
+          <Description>+1 Charisma</Description>
+          <Icon>Charisma</Icon>
+          <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Ability>Charisma</Ability>
+                  <Amount>1</Amount>
+               </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Illusory Weaponry</Name>
+      <InternalName>FeydarkCore3</InternalName>
+      <Description>You have studied Illusion to the point where you can craft more permanent manifestations
+of Shadow. This grants both the ability to conjure physical Shadowblades to wield as
+weapons as well as the ability to enchant your current weapons to be more powerful.
+
+Shadowblades are Shorswords made of Force and may use your Charisma modifier for their
+attack and damage. As you level up, they will become more powerful. If you unequip your
+Shadowblades, they will dissapate into nothingness and must be summoned again.
+
+Enchanting your weapons to become Shadowblades will change their material type to Force
+and grant them additional bonuses. This is considered an item enchantment.</Description>
+      <Icon>FeydarkIllusoryWeaponry</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowRight/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>6</MinLevel>
+        </Requirement>
+        <Requirement>
+          <Enhancement>FeydarkCore2</Enhancement>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Ability II</Name>
+      <InternalName>FeydarkCore4</InternalName>
+      <Description>Choose between Intelligence, Wisdom or Charisma</Description>
+      <Icon>IntWisCha</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <ArrowRight/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>3</MinLevel>
+        </Requirement>
+        <Requirement>
+          <Enhancement>FeydarkCore3</Enhancement>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Intelligence</Name>
+          <Description>+1 Intelligence</Description>
+          <Icon>Intelligence</Icon>
+          <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Ability>Intelligence</Ability>
+                  <Amount>1</Amount>
+               </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Wisdom</Name>
+          <Description>+1 Wisdom</Description>
+          <Icon>Wisdom</Icon>
+          <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Ability>Wisdom</Ability>
+                  <Amount>1</Amount>
+               </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Charisma</Name>
+          <Description>+1 Charisma</Description>
+          <Icon>Charisma</Icon>
+          <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Ability>Charisma</Ability>
+                  <Amount>1</Amount>
+               </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Familiar's Force</Name>
+      <InternalName>FeydarkCore5</InternalName>
+      <Description>+1 Illusion DCs. Your familiar now grants you +10 Force and Universal Spellpower.</Description>
+      <Icon>FeydarkFamiliarsForce</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <ArrowRight/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>18</MinLevel>
+        </Requirement>
+        <Requirement>
+          <Enhancement>FeydarkCore4</Enhancement>
+        </Requirement>
+      </Requirements>
+         <Effect>
+            <Type>SpellDC</Type>
+            <Bonus>Enhancement</Bonus>
+            <School>Illusion</School>
+            <Amount>1</Amount>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>Force/Untyped</SpellPower>
+            <Amount>10</Amount>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>All</SpellPower>
+            <Amount>10</Amount>
+         </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Master Illusionist</Name>
+      <InternalName>FeydarkCore6</InternalName>
+      <Description>+2 Intelligence, Wisdom and Charisma. +2 Illusion DCs.
+Your familiar now grants an additional +20 Force and Universal Spellpower.</Description>
+      <Icon>FeydarkMasterIllusionist</Icon>
+      <XPosition>5</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>40</MinSpent>
+      <Requirements>
+        <Requirement>
+          <MinLevel>20</MinLevel>
+        </Requirement>
+        <Requirement>
+          <Enhancement>FeydarkCore5</Enhancement>
+        </Requirement>
+      </Requirements>
+         <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Ability>Intelligence</Ability>
+            <Amount>2</Amount>
+         </Effect>
+         <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Ability>Wisdom</Ability>
+            <Amount>2</Amount>
+         </Effect>
+         <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Ability>Charisma</Ability>
+            <Amount>2</Amount>
+         </Effect>
+         <Effect>
+            <Type>SpellDC</Type>
+            <Bonus>Enhancement</Bonus>
+            <School>Illusion</School>
+            <Amount>2</Amount>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>Force/Untyped</SpellPower>
+            <Amount>20</Amount>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>Force/Untyped</SpellPower>
+            <Amount>20</Amount>
+         </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Feydark Explorer</Name>
+      <InternalName>FeydarkExplorer</InternalName>
+      <Description>+[1/2/3] Spellcraft, Diplomacy and Concentration.</Description>
+      <Icon>FeydarkExplorer</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements/>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Skill>Spell Craft</Skill>
+            <Skill>Diplomacy</Skill>
+            <Skill>Concentration</Skill>
+         </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Familiar's Flourish I</Name>
+      <InternalName>FeydarkFamiliarsFlourishI</InternalName>
+      <Description>While your Familiar is by your side, you may use Charisma as your weapon's to-hit modifier.</Description>
+      <Icon>FeydarkFamiliarsFlourish</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>1</MinSpent>
+      <ArrowUp/>
+      <Requirements/>
+         <Effect>
+            <Type>WeaponAttackAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Ability>Charisma</Ability>
+            <Weapon>All</Weapon>
+         </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Twist Reality</Name>
+      <InternalName>FeydarkTwistReality</InternalName>
+      <Description>Offensive Illusion spells reduce enemies' Will saves by 1 for 10 seconds. This stacks 3 times.</Description>
+      <Icon>FeydarkTwistReality</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements/>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Study the Arcane</Name>
+      <InternalName>FeydarkStudyTheArcane</InternalName>
+      <Description>+[30/60/100] Maximum Spellpoints</Description>
+      <Icon>FeydarkStudyTheArcane</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements/>
+         <Effect>
+            <Type>SpellPoints</Type>
+            <Bonus>Enhancement</Bonus>
+             <AmountVector size="3">30 60 100</AmountVector>
+         </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Illusory Armor</Name>
+      <InternalName>FeydarkIllusoryArmor</InternalName>
+      <Description>You may cast the spell Mage Armor as a Spell-Like Ability. In addition, while under the benefits of any Mage Armor, you gain +[2/4/6] Magical Resistance rating.
+Cost: 30/20/10 SP
+Cooldown: 5 seconds.</Description>
+      <Icon>FeydarkIllusoryArmor</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Clickie/>
+      <Requirements/>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Enhanced Invisibility</Name>
+      <InternalName>FeydarkEnhancedInvisibility</InternalName>
+      <Description>You may cast the spell Invisibility as a Spell-Like ability. In addition, while under the effects of any source of Invisibility, you gain +3 Saves vs Traps.
+Cost: 30/20/10 sp
+Cooldown: 5 seconds</Description>
+      <Icon>FeydarkEnhancedInvisibility</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Clickie/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>2</MinLevel>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Familiar's Flourish II</Name>
+      <InternalName>FeydarkFamiliarsFlourishII</InternalName>
+      <Description>While your Familiar is by your side, you may use Charisma as your weapon's damage modifier.</Description>
+      <Icon>FeydarkFamiliarsFlourishII</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <MinLevel>2</MinLevel>
+        </Requirement>
+        <Requirement>
+          <Enhancement>FeydarkFamiliarsFlourishI</Enhancement>
+        </Requirement>
+      </Requirements>
+         <Effect>
+            <Type>WeaponDamageAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Ability>Charisma</Ability>
+            <Weapon>All</Weapon>
+         </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Bend Light</Name>
+      <InternalName>FeydarkBendLight</InternalName>
+      <Description>Your studies of the Illusion school have manifested to protect you, making you slightly harder to see. You gain the benfits of the Blur spell.</Description>
+      <Icon>FeydarkBendLight</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <MinLevel>2</MinLevel>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: You've Got My Back</Name>
+      <InternalName>FeydarkYouveGotMyBack</InternalName>
+      <Description>Your familiar draws ambient and offensive maicks to it, protecting you from Magic Missiles as if you had the benefits of the Shield spell.</Description>
+      <Icon>FeydarkYouveGotMyBack</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <MinLevel>2</MinLevel>
+        </Requirement>
+      </Requirements>
+         <Effect>
+            <Type>Immunity</Type>
+            <Bonus>Enhancement</Bonus>
+            <Immunity>Magic Missiles</Immunity>
+         </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Shadowblade</Name>
+      <InternalName>FeydarkShadowblade</InternalName>
+      <Description>Conjure an illusory blade of shadow that flies forward at a single target. The enmy struct takes 1d6+2 Force damage per caster level, with a Will save vs (DC17 + Illusion bonuses + Highest of Int/Wis/Cha) for half damage.
+Cost: 10/8/6 sp
+Cooldown: 8/6/6 seconds</Description>
+      <Icon>FeydarkShadowblade</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Clickie/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>2</MinLevel>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Spell Penetration</Name>
+      <InternalName>FeydarkSpellPenetration</InternalName>
+      <Description>+[1/2/3] Spell Penetration</Description>
+      <Icon>FeydarkSpellPenetration</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements>
+        <Requirement>
+          <MinLevel>3</MinLevel>
+        </Requirement>
+      </Requirements>
+         <Effect>
+            <Type>SpellPenetrationBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+         </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark illusionist: Distract</Name>
+      <InternalName>FeydarkDistract</InternalName>
+      <Description>Your familiar appears at a targeted location, acting as a distraction and attacting attention of monsters who may be searching for you in the area. This will only successfully distract monsters who are not actively attacking. This ability may b eused without breaking Stealth or Invisibility.</Description>
+      <Icon>FeydarkDistract</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Clickie/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>3</MinLevel>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Magical Attunement I</Name>
+      <InternalName>FeydarkMagicalAttunementI</InternalName>
+      <Description>+2% Force Spell Critical Chance, +1% Universal Spell Critical Chance.</Description>
+      <Icon>FeydarkMagicalAttunement</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>3</MinLevel>
+        </Requirement>
+      </Requirements>
+        <Effect>
+            <Type>SpellLore</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <SpellPower>Force/Untyped</SpellPower>
+        </Effect>
+        <Effect>
+            <Type>SpellLore</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <SpellPower>All</SpellPower>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Refraction</Name>
+      <InternalName>FeydarkRefraction</InternalName>
+      <Description>When hit or missed in combat, there is a small chance you will reactively turn invisible for a short duration.</Description>
+      <Icon>FeydarkRefraction</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements>
+        <Requirement>
+          <MinLevel>3</MinLevel>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Ability I</Name>
+      <InternalName>FeydarkAbilityI</InternalName>
+      <Description>Choose between Intelligence, Wisdom or Charisma</Description>
+      <Icon>IntWisCha</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>3</MinLevel>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Intelligence</Name>
+          <Description>+1 Intelligence</Description>
+          <Icon>Intelligence</Icon>
+          <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Ability>Intelligence</Ability>
+                  <Amount>1</Amount>
+               </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Wisdom</Name>
+          <Description>+1 Wisdom</Description>
+          <Icon>Wisdom</Icon>
+          <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Ability>Wisdom</Ability>
+                  <Amount>1</Amount>
+               </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Charisma</Name>
+          <Description>+1 Charisma</Description>
+          <Icon>Charisma</Icon>
+          <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Ability>Charisma</Ability>
+                  <Amount>1</Amount>
+               </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Be My Eyes</Name>
+      <InternalName>FeydarkBeMyEyes</InternalName>
+      <Description>Your familiar grants you the benefits of the True Seeing spell, and will automatically find Spell Wards for you.</Description>
+      <Icon>FeydarkBeMyEyes</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <MinLevel>4</MinLevel>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Fan of Shadowblades</Name>
+      <InternalName>FeydarkFanOfShadowblades</InternalName>
+      <Description>Fan a series of Shadowblades outwards into a wide cone. The enemies struct take 1d6+2 Force damage per caster level, with a Will save vs (DC17 + Illusion bonuses + Hoighest of Int/Wis/Cha) for half damage.
+Cost: 18/15/12 sp
+Cooldown@ 14/12/10 seconds</Description>
+      <Icon>FeydarkFanOfShadowblades</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>20</MinSpent>
+      <Clickie/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>4</MinLevel>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Magical Attunement II</Name>
+      <InternalName>FeydarkMagicalAttunementII</InternalName>
+      <Description>+2% Force Spell Critical Chance, +1% Universal Spell Critical Chance.</Description>
+      <Icon>FeydarkMagicalAttunementII</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>4</MinLevel>
+        </Requirement>
+        <Requirement>
+          <Enhancement>FeydarkMagicalAttunementI</Enhancement>
+        </Requirement>
+      </Requirements>
+        <Effect>
+            <Type>SpellLore</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <SpellPower>Force/Untyped</SpellPower>
+        </Effect>
+        <Effect>
+            <Type>SpellLore</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <SpellPower>All</SpellPower>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Improved Shadowblades</Name>
+      <InternalName>FeydarkImprovedShadowblades</InternalName>
+      <Description>All of your Shadwblade spells, attacks with weapons that have been imbued with Shadow, and attacks with conjured Shadowblades apply [1/2/3] stacks of Shattermantle when they damage an enemy.</Description>
+      <Icon>FeydarkImprovedShadowblades</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <MinLevel>4</MinLevel>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Ability II</Name>
+      <InternalName>FeydarkAbilityII</InternalName>
+      <Description>Choose between Intelligence, Wisdom or Charisma</Description>
+      <Icon>IntWisCha</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <MinLevel>4</MinLevel>
+        </Requirement>
+        <Requirement>
+          <Enhancement>FeydarkAbilityI</Enhancement>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Intelligence</Name>
+          <Description>+1 Intelligence</Description>
+          <Icon>Intelligence</Icon>
+          <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Ability>Intelligence</Ability>
+                  <Amount>1</Amount>
+               </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Wisdom</Name>
+          <Description>+1 Wisdom</Description>
+          <Icon>Wisdom</Icon>
+          <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Ability>Wisdom</Ability>
+                  <Amount>1</Amount>
+               </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Charisma</Name>
+          <Description>+1 Charisma</Description>
+          <Icon>Charisma</Icon>
+          <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Ability>Charisma</Ability>
+                  <Amount>1</Amount>
+               </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Illusory Augmentation</Name>
+      <InternalName>FeydarkIllusoryAugmentation</InternalName>
+      <Description>+1 Illusion DCs. The feats Augment Summoning and Improved Augment Summoning now each grant +5 Force Spell Power and an additional +1 Illusion DCs.</Description>
+      <Icon>FeydarkIllusoryAugmentation</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>5</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>12</MinLevel>
+        </Requirement>
+      </Requirements>
+         <Effect>
+            <Type>SpellDC</Type>
+            <Bonus>Enhancement</Bonus>
+            <School>Illusion</School>
+            <Amount>1</Amount>
+         </Effect>
+         <Effect>
+            <DisplayName>Illusory Augmentation: Augment Summoning</DisplayName>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>Force/Untyped</SpellPower>
+            <AmountVector size="2">0 5</AmountVector>
+         </Effect>
+         <Effect>
+            <DisplayName>Illusory Augmentation: Improved Augment Summoning</DisplayName>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>Force/Untyped</SpellPower>
+            <AmountVector size="2">0 5</AmountVector>
+         </Effect>
+         <Effect>
+            <DisplayName>Illusory Augmentation: Augment Summoning</DisplayName>
+            <Type>SpellDC</Type>
+            <Bonus>Enhancement</Bonus>
+             <School>Illusion</School>
+            <AmountVector size="2">0 1</AmountVector>
+         </Effect>
+         <Effect>
+            <DisplayName>Illusory Augmentation: Improved Augment Summoning</DisplayName>
+            <Type>SpellDC</Type>
+            <Bonus>Enhancement</Bonus>
+             <School>Illusion</School>
+            <AmountVector size="2">0 1</AmountVector>
+         </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark illusionist: Familiar's Reach</Name>
+      <InternalName>FeydarkFamiliarsReach</InternalName>
+      <Description>Your familiar carries spells further than you would normally be able to cast them. Your spells benefit from the Enlarge Metamagic at no additional cost.</Description>
+      <Icon>FeydarkFamiliarsReach</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>5</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>12</MinLevel>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Magical Attunement III</Name>
+      <InternalName>FeydarkMagicalAttunementIII</InternalName>
+      <Description>+2% Force Spell Critical Chance, +2% Universal Spell Critical Chance.</Description>
+      <Icon>FeydarkMagicalAttunementIII</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>5</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>12</MinLevel>
+        </Requirement>
+        <Requirement>
+          <Enhancement>FeydarkMagicalAttunementII</Enhancement>
+        </Requirement>
+      </Requirements>
+        <Effect>
+            <Type>SpellLore</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <SpellPower>Force/Untyped</SpellPower>
+        </Effect>
+        <Effect>
+            <Type>SpellLore</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <SpellPower>All</SpellPower>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Ring of Shadowblades</Name>
+      <InternalName>FeydarkRingOfShadowblades</InternalName>
+      <Description>Conjure a ring of interlocking illusory Shadowblades that damage enemies passing through them. Enemies take 1d6+2 Force damage per caster level, with a Will save vs (DC17 + Illusory bonuses + Highest of Int/Wis/Cha) for half damage.
+Cost: 50/40/25 sp
+Cooldown: 40/35/30 seconds</Description>
+      <Icon>FeydarkRingOfShadowblades</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>5</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>30</MinSpent>
+      <Clickie/>
+      <Tier5/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>12</MinLevel>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark illusionist: Force in Tandem</Name>
+      <InternalName>FeydarkForceInTandem</InternalName>
+      <Description>Your familiar grants you +10 Force spellpower, 10 Universal spellpower, and 5% Force absorption.
+These bonuses are temporarily double if you cross the barrier of a ring of Shadowblades.</Description>
+      <Icon>FeydarkForceInTandem</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>5</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>12</MinLevel>
+        </Requirement>
+      </Requirements>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>Force/Untyped</SpellPower>
+            <Amount>10</Amount>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>All</SpellPower>
+            <Amount>10</Amount>
+         </Effect>
+         <Effect>
+            <Type>EnergyAbsorbance</Type>
+            <Bonus>Enhancement</Bonus>
+            <Energy>Force</Energy>
+            <Amount>10</Amount>
+         </Effect>
+    </EnhancementTreeItem>
+  </EnhancementTree>
    <!--Ranger trees-->
    <EnhancementTree>
       <!--Ranger version of this tree-->
@@ -83787,7 +86027,7 @@ Cost: 20/15/10 SP, 18/12/6 seconds. Accepts Metamagics. Scales with full Spell P
       <YPosition>5</YPosition>
       <Cost>1</Cost>
       <Ranks>3</Ranks>
-      <MinSpent>10</MinSpent>
+      <MinSpent>30</MinSpent>
       <Clickie/>
       <Tier5/>
       <Requirements>
@@ -83962,6 +86202,7 @@ While in Lich Form:
         <Bonus>Profane</Bonus>
         <Amount>10</Amount>
         <Percent/>
+        <Weapon>All</Weapon>
         <Stance>Shroud of the Zombie</Stance>
       </Effect>
       <Effect>
@@ -83969,6 +86210,7 @@ While in Lich Form:
         <Bonus>Profane</Bonus>
         <Amount>10</Amount>
         <Percent/>
+        <Weapon>All</Weapon>
         <Stance>Shroud of the Zombie</Stance>
       </Effect>
       <Effect>
@@ -92825,7 +95067,10 @@ gain +[1/2/3] Intimidate, +[1/2/3] Will Saves and you lose -5 AC, -10% Fortifica
                <Number size="3">1 1 1</Number>
                <Sides size="3">8 10 12</Sides>
             </Dice>
-            <Stance>Rage</Stance>
+            <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Wildhunt Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Rage</AnyOfStance>
+            <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
             <Weapon>All</Weapon>
          </Effect>
          <Effect>
@@ -93021,7 +95266,10 @@ Spot, Search, Concentration and +[1/2/3] insight bonus to saves vs traps.</Descr
             <Bonus>Destiny</Bonus>
             <Ability>Wisdom</Ability>
             <AmountVector size="3">0 1 2</AmountVector>
-            <Stance>Rage</Stance>
+            <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Wildhunt Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Rage</AnyOfStance>
+            <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
          </Effect>
          <Effect>
             <Type>SkillBonus</Type>
@@ -93033,14 +95281,20 @@ Spot, Search, Concentration and +[1/2/3] insight bonus to saves vs traps.</Descr
             <Skill>Search</Skill>
             <Skill>Concentration</Skill>
             <AmountVector size="3">2 4 6</AmountVector>
-            <Stance>Rage</Stance>
+            <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Wildhunt Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Rage</AnyOfStance>
+            <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
          </Effect>
          <Effect>
             <Type>SaveBonus</Type>
             <Bonus>Insightful</Bonus>
             <Save>Traps</Save>
             <AmountVector size="3">1 2 3</AmountVector>
-            <Stance>Rage</Stance>
+            <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Wildhunt Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Rage</AnyOfStance>
+            <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>

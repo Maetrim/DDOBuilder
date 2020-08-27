@@ -207,7 +207,6 @@ size_t CSpecialFeatsView::PositionWindows(
     CRect rctGroup;
     groupWindow->GetWindowRect(&rctGroup);
     rctGroup -= rctGroup.TopLeft();
-    rctGroup.right = rctGroup.left + c_windowSizeX;
     rctGroup.bottom = rctGroup.top + c_windowSizeY;
     rctGroup += CPoint(c_controlSpacing, *yPos);
     // position the group control
@@ -215,7 +214,7 @@ size_t CSpecialFeatsView::PositionWindows(
 
     // now position the group windows immediately to the right
     CRect itemRect(c_controlSpacing, *yPos, c_windowSizeX, c_windowSizeY + *yPos);
-    itemRect += CPoint(itemRect.Width() + c_controlSpacing, 0);
+    itemRect += CPoint(rctGroup.Width() + c_controlSpacing, 0);
     for (size_t fi = 0; fi < dialogs.size(); ++fi)
     {
         dialogs[fi]->MoveWindow(itemRect);

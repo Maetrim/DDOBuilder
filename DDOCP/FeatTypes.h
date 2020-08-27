@@ -16,6 +16,7 @@ enum FeatAcquisitionType
     FeatAcquisition_IconicPastLife,
     FeatAcquisition_EpicPastLife,
     FeatAcquisition_Special,
+    FeatAcquisition_UniversalTree,
     FeatAcquisition_Favor,
     FeatAcquisition_Train,
 };
@@ -29,6 +30,7 @@ const XmlLib::enumMapEntry<FeatAcquisitionType> featAcquisitionMap[] =
     {FeatAcquisition_EpicPastLife, L"EpicPastLife"},
     {FeatAcquisition_Train, L"Train"},
     {FeatAcquisition_Special, L"Special"},
+    {FeatAcquisition_UniversalTree, L"UniversalTree"},
     {FeatAcquisition_Favor, L"Favor"},
     {FeatAcquisitionType(0), NULL}
 };
@@ -49,6 +51,7 @@ enum TrainableFeatTypes
 
     TFT_AasimarBond,
     TFT_AlchemistBonus,
+    TFT_AnimalisticAspect,
     TFT_ArtificerBonus,
     TFT_BelovedOf,
     TFT_ChildOf,
@@ -98,6 +101,7 @@ const XmlLib::enumMapEntry<TrainableFeatTypes> trainableFeatTypesMap[] =
 
     {TFT_AasimarBond, L"AasimarBond"},
     {TFT_AlchemistBonus, L"AlchemistBonus"},
+    {TFT_AnimalisticAspect, L"AnimalisticAspect"},
     {TFT_ArtificerBonus, L"ArtificerBonus"},
     {TFT_BelovedOf, L"BelovedOf"},
     {TFT_ChildOf, L"ChildOf"},

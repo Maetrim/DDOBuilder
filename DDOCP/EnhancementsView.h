@@ -4,6 +4,8 @@
 #include "Resource.h"
 #include <list>
 #include "Character.h"
+#include "IconButton.h"
+#include "InfoTip.h"
 
 class EnhancementTree;
 
@@ -32,6 +34,8 @@ class CEnhancementsView :
         afx_msg LRESULT OnNewDocument(WPARAM wParam, LPARAM lParam);
         afx_msg void OnTreeSelect(UINT nID);
         afx_msg LRESULT OnUpdateTrees(WPARAM wParam, LPARAM lParam);
+        afx_msg void OnUniversalTree(UINT nID);
+        afx_msg void OnMouseMove(UINT nFlags, CPoint point);
         DECLARE_MESSAGE_MAP()
 
         // CharacterObserver overrides
@@ -53,6 +57,10 @@ class CEnhancementsView :
         void PopulateTreeCombo(CComboBox * combo, const std::string & selectedTree);
         void EnableDisableComboboxes();
         void UpdateTrees();
+        void AddCustomButtons();
+        void ShowTip(const CIconButton & item, CRect itemRect);
+        void HideTip();
+        void SetTooltipText(const CIconButton & item, CPoint tipTopLeft, CPoint tipAlternate);
         enum MaxSupportTrees
         {
             MST_Number = MAX_ENHANCEMENT_TREES
@@ -61,6 +69,12 @@ class CEnhancementsView :
         Character * m_pCharacter;
         std::list<EnhancementTree> m_availableTrees;
         CComboBox m_comboTreeSelect[MST_Number-1];  // 1st tree type is always fixed
+        CIconButton m_universalTrees[8];
         std::vector<CDialog *> m_treeViews;
         std::vector<size_t> m_visibleTrees; // only some trees will be visible (indexes into m_treeViews)
+        size_t m_numUniversalButtons;
+        CInfoTip m_tooltip;
+        bool m_showingTip;
+        bool m_tipCreated;
+        const CIconButton * m_pTooltipItem;
 };

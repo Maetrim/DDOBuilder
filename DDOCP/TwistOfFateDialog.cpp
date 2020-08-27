@@ -352,7 +352,7 @@ void CTwistOfFateDialog::SetTooltipText(
         CPoint tipTopLeft,
         CPoint tipAlternate)
 {
-    const TrainedEnhancement * te = m_pCharacter->IsTrained(item.InternalName(), "");
+    const TrainedEnhancement * te = m_pCharacter->IsTrained(item.InternalName(), "", TT_epicDestiny);
     const EnhancementSelection * es = NULL;
     std::string selection;
     m_tooltip.SetOrigin(tipTopLeft, tipAlternate, false);

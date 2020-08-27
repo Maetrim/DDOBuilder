@@ -37,6 +37,7 @@ class CDDOCPApp :
         const std::list<Feat> & IconicPastLifeFeats() const;
         const std::list<Feat> & EpicPastLifeFeats() const;
         const std::list<Feat> & SpecialFeats() const;
+        const std::list<Feat> & UniversalTreeFeats() const;
         const std::list<Feat> & FavorFeats() const;
 
         const std::list<EnhancementTree> & EnhancementTrees() const;
@@ -80,6 +81,7 @@ class CDDOCPApp :
         std::list<Feat> m_iconicPastLifeFeats;
         std::list<Feat> m_epicPastLifeFeats;
         std::list<Feat> m_specialFeats;
+        std::list<Feat> m_universalTreeFeats;
         std::list<Feat> m_favorFeats;
         std::list<EnhancementTree> m_enhancementTrees;
         std::list<Spell> m_spells;

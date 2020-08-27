@@ -533,7 +533,7 @@ void CEpicDestiniesView::OnButtonClaimDestinies()
                 if ((*tii).YPosition() == 0)
                 {
                     // this is a core item, train if not already done so
-                    if (!m_pCharacter->IsEnhancementTrained((*tii).InternalName(), ""))
+                    if (!m_pCharacter->IsEnhancementTrained((*tii).InternalName(), "", TT_epicDestiny))
                     {
                         m_pCharacter->EpicDestiny_TrainEnhancement(
                                 (*it).Name(),
@@ -677,7 +677,7 @@ void CEpicDestiniesView::SetTooltipText(
         CPoint tipTopLeft,
         CPoint tipAlternate)
 {
-    const TrainedEnhancement * te = m_pCharacter->IsTrained(item.InternalName(), "");
+    const TrainedEnhancement * te = m_pCharacter->IsTrained(item.InternalName(), "", TT_epicDestiny);
     const EnhancementSelection * es = NULL;
     std::string selection;
     m_tooltip.SetOrigin(tipTopLeft, tipAlternate, false);

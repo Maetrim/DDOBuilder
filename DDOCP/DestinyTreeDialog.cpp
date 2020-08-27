@@ -321,7 +321,7 @@ void CDestinyTreeDialog::RenderTreeItem(
         if (isAllowed)
         {
             // only show trained x/y if item is allowed
-            const TrainedEnhancement * te = m_pCharacter->IsTrained(item.InternalName(), "");
+            const TrainedEnhancement * te = m_pCharacter->IsTrained(item.InternalName(), "", TT_epicDestiny);
             CString text;
             text.Format(
                     "%d/%d",
@@ -555,7 +555,7 @@ void CDestinyTreeDialog::OnLButtonDown(UINT nFlags, CPoint point)
         {
             // an item has been clicked, see if we can train a rank in it
             size_t spentInTree = m_pCharacter->APSpentInTree(m_tree.Name());
-            const TrainedEnhancement * te = m_pCharacter->IsTrained(item->InternalName(), "");
+            const TrainedEnhancement * te = m_pCharacter->IsTrained(item->InternalName(), "", TT_epicDestiny);
             bool isAllowed = item->MeetRequirements(*m_pCharacter, "", m_tree.Name());
             bool isTrainable = item->CanTrain(*m_pCharacter, m_tree.Name(), spentInTree, m_type);
             ASSERT(m_type == TT_epicDestiny);
@@ -754,7 +754,7 @@ void CDestinyTreeDialog::SetTooltipText(
 {
     // different tooltip if the item is trained or not
     // if its trained, we need to show the selected sub-item tooltip
-    const TrainedEnhancement * te = m_pCharacter->IsTrained(item.InternalName(), "");
+    const TrainedEnhancement * te = m_pCharacter->IsTrained(item.InternalName(), "", TT_epicDestiny);
     const EnhancementSelection * es = NULL;
     std::string selection;
     m_tooltip.SetOrigin(tipTopLeft, tipAlternate, false);

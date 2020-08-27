@@ -888,6 +888,7 @@ void Character::SetAlignment(AlignmentType alignment)
     }
     NotifyAlignmentChanged(alignment);
     m_pDocument->SetModifiedFlag(TRUE);
+    VerifyTrainedFeats();
     SetAlignmentStances();
     VerifyGear();
 }
@@ -2130,6 +2131,12 @@ std::vector<TrainableFeatTypes> Character::TrainableFeatTypeAtLevel(
         // dragon born get a bonus feat at level 1
         trainable.push_back(TFT_DragonbornRacial);
     }
+    if ((Race() == Race_Shifter)
+            && level == 0)
+    {
+        // shifters get a animalistic aspect at level 1
+        trainable.push_back(TFT_AnimalisticAspect);
+    }
 
     // all other bonus feat types depend on class and level
     // determine how many class levels we have in each class
@@ -2550,10 +2557,11 @@ void Character::RevokeFeatEffects(const Feat & feat)
 // enhancement support
 bool Character::IsEnhancementTrained(
         const std::string & enhancementName,
-        const std::string & selection) const
+        const std::string & selection,
+        TreeType type) const
 {
     // return true if this enhancement and selection is trained
-    bool isTrained = (IsTrained(enhancementName, selection) != NULL);
+    bool isTrained = (IsTrained(enhancementName, selection, type) != NULL);
     return isTrained;
 }
 
@@ -2667,35 +2675,45 @@ int Character::APSpentInTree(const std::string & treeName)
 
 const TrainedEnhancement * Character::IsTrained(
         const std::string & enhancementName,
-        const std::string & selection) const
+        const std::string & selection,
+        TreeType type) const
 {
     // return NULL if item is not in the list
     const TrainedEnhancement * pItem = NULL;
-    // iterate the list to see if its present
-    std::list<EnhancementSpendInTree>::const_iterator it = m_EnhancementTreeSpend.begin();
-    while (pItem == NULL
-            && it != m_EnhancementTreeSpend.end())
+
+    if (type == TT_enhancement
+            || type == TT_universal
+            || type == TT_racial
+            || type == TT_unknown)
     {
-        const std::list<TrainedEnhancement> & te = (*it).Enhancements();
-        std::list<TrainedEnhancement>::const_iterator teit = te.begin();
+        // iterate the list to see if its present
+        std::list<EnhancementSpendInTree>::const_iterator it = m_EnhancementTreeSpend.begin();
         while (pItem == NULL
-                && teit != te.end())
+                && it != m_EnhancementTreeSpend.end())
         {
-            if ((*teit).EnhancementName() == enhancementName)
+            const std::list<TrainedEnhancement> & te = (*it).Enhancements();
+            std::list<TrainedEnhancement>::const_iterator teit = te.begin();
+            while (pItem == NULL
+                    && teit != te.end())
             {
-                // may have a required sub-selection for the enhancement
-                if (selection.empty()
-                        || selection == (*teit).Selection())
+                if ((*teit).EnhancementName() == enhancementName)
                 {
-                    pItem = &(*teit);
-                    break;
+                    // may have a required sub-selection for the enhancement
+                    if (selection.empty()
+                            || selection == (*teit).Selection())
+                    {
+                        pItem = &(*teit);
+                        break;
+                    }
                 }
+                ++teit;
             }
-            ++teit;
+            ++it;
         }
-        ++it;
     }
-    if (pItem == NULL)
+
+    if (type == TT_reaper
+            || (type == TT_unknown && pItem == NULL))
     {
         // iterate the reaper list to see if its present
         std::list<ReaperSpendInTree>::const_iterator it = m_ReaperTreeSpend.begin();
@@ -2722,7 +2740,9 @@ const TrainedEnhancement * Character::IsTrained(
             ++it;
         }
     }
-    if (pItem == NULL)
+
+    if (type == TT_epicDestiny
+            || (type == TT_unknown && pItem == NULL))
     {
         // iterate the epic destiny list to see if its present
         std::list<EpicDestinySpendInTree>::const_iterator it = m_EpicDestinyTreeSpend.begin();
@@ -5022,7 +5042,7 @@ void Character::UpdateWeaponStances()
         switch (item2.Weapon())
         {
         case Weapon_ShieldBuckler:
-            if (IsEnhancementTrained("SBSwashbucklingStyle", "Skirmisher"))
+            if (IsEnhancementTrained("SBSwashbucklingStyle", "Skirmisher", TT_enhancement))
             {
                 enableSwashbuckling = true;
                 enableSwf = true;
@@ -5058,7 +5078,7 @@ void Character::UpdateWeaponStances()
         if (item2.Weapon() == Weapon_Orb)
         {
             ActivateStance(orb);
-            if (IsEnhancementTrained("SBSwashbucklingStyle", "Arcane Marauder"))
+            if (IsEnhancementTrained("SBSwashbucklingStyle", "Arcane Marauder", TT_enhancement))
             {
                 enableSwashbuckling = true;
             }
@@ -5070,7 +5090,7 @@ void Character::UpdateWeaponStances()
         if (item2.Weapon() == Weapon_RuneArm)
         {
             ActivateStance(ra);
-            if (IsEnhancementTrained("SBSwashbucklingStyle", "Cannoneer"))
+            if (IsEnhancementTrained("SBSwashbucklingStyle", "Cannoneer", TT_enhancement))
             {
                 enableSwashbuckling = true;
             }
@@ -5494,7 +5514,7 @@ bool Character::LightWeaponInOffHand() const
                 break;
             case Weapon_Scimitar:
                 // this is a light weapon if Tempest enhancement trained
-                isLightWeapon = IsEnhancementTrained("TempestCore2", "");
+                isLightWeapon = IsEnhancementTrained("TempestCore2", "", TT_enhancement);
                 break;
             default:
                 // all other weapon types are not a match
@@ -5509,13 +5529,13 @@ bool Character::IsFocusWeapon(WeaponType wt) const
 {
     // first determine which focus group in the Kensei tree is selected
     bool isFocusWeapon = false;
-    bool bExoticWeaponMastery = IsEnhancementTrained("KenseiExoticWeaponMastery", "");
-    if (IsEnhancementTrained("KenseiCore1", "Kensei Focus: Archery"))
+    bool bExoticWeaponMastery = IsEnhancementTrained("KenseiExoticWeaponMastery", "", TT_enhancement);
+    if (IsEnhancementTrained("KenseiCore1", "Kensei Focus: Archery", TT_enhancement))
     {
         isFocusWeapon = (wt == Weapon_Longbow
                 || wt == Weapon_Shortbow);
     }
-    else if (IsEnhancementTrained("KenseiCore1", "Kensei Focus: Axes"))
+    else if (IsEnhancementTrained("KenseiCore1", "Kensei Focus: Axes", TT_enhancement))
     {
         isFocusWeapon = (wt == Weapon_BattleAxe
                 || wt == Weapon_GreatAxe
@@ -5528,7 +5548,7 @@ bool Character::IsFocusWeapon(WeaponType wt) const
             isFocusWeapon = true;
         }
     }
-    else if (IsEnhancementTrained("KenseiCore1", "Kensei Focus: Crossbows"))
+    else if (IsEnhancementTrained("KenseiCore1", "Kensei Focus: Crossbows", TT_enhancement))
     {
         isFocusWeapon = (wt == Weapon_HeavyCrossbow
                 || wt == Weapon_LightCrossbow);
@@ -5543,7 +5563,7 @@ bool Character::IsFocusWeapon(WeaponType wt) const
             }
         }
     }
-    else if (IsEnhancementTrained("KenseiCore1", "Kensei Focus: Druidic Weapons"))
+    else if (IsEnhancementTrained("KenseiCore1", "Kensei Focus: Druidic Weapons", TT_enhancement))
     {
         isFocusWeapon = (wt == Weapon_Club
                 || wt == Weapon_Dagger
@@ -5553,7 +5573,7 @@ bool Character::IsFocusWeapon(WeaponType wt) const
                 || wt == Weapon_Sickle
                 || wt == Weapon_Unarmed);
     }
-    else if (IsEnhancementTrained("KenseiCore1", "Kensei Focus: Heavy Blades"))
+    else if (IsEnhancementTrained("KenseiCore1", "Kensei Focus: Heavy Blades", TT_enhancement))
     {
         isFocusWeapon = (wt == Weapon_Falchion
                 || wt == Weapon_GreatSword
@@ -5569,7 +5589,7 @@ bool Character::IsFocusWeapon(WeaponType wt) const
             }
         }
     }
-    else if (IsEnhancementTrained("KenseiCore1", "Kensei Focus: Light Blades"))
+    else if (IsEnhancementTrained("KenseiCore1", "Kensei Focus: Light Blades", TT_enhancement))
     {
         isFocusWeapon = (wt == Weapon_Dagger
                 || wt == Weapon_Kukri
@@ -5577,7 +5597,7 @@ bool Character::IsFocusWeapon(WeaponType wt) const
                 || wt == Weapon_Shortsword
                 || wt == Weapon_ThrowingDagger);
     }
-    else if (IsEnhancementTrained("KenseiCore1", "Kensei Focus: Maces and Clubs"))
+    else if (IsEnhancementTrained("KenseiCore1", "Kensei Focus: Maces and Clubs", TT_enhancement))
     {
         isFocusWeapon = (wt == Weapon_Club
                 || wt == Weapon_LightMace
@@ -5586,7 +5606,7 @@ bool Character::IsFocusWeapon(WeaponType wt) const
                 || wt == Weapon_Morningstar
                 || wt == Weapon_Quarterstaff);
     }
-    else if (IsEnhancementTrained("KenseiCore1", "Kensei Focus: Martial Arts"))
+    else if (IsEnhancementTrained("KenseiCore1", "Kensei Focus: Martial Arts", TT_enhancement))
     {
         isFocusWeapon = (wt == Weapon_Kama
                 || wt == Weapon_Quarterstaff
@@ -5594,7 +5614,7 @@ bool Character::IsFocusWeapon(WeaponType wt) const
                 || wt == Weapon_Unarmed
                 || wt == Weapon_Handwraps);
     }
-    else if (IsEnhancementTrained("KenseiCore1", "Kensei Focus: Picks and Hammers"))
+    else if (IsEnhancementTrained("KenseiCore1", "Kensei Focus: Picks and Hammers", TT_enhancement))
     {
         isFocusWeapon = (wt == Weapon_LightPick
                 || wt == Weapon_HeavyPick

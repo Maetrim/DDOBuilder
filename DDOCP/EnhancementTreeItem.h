@@ -83,6 +83,8 @@ class EnhancementTreeItem :
         DL_DECLARE_ACCESS(EnhancementTreeItem_PROPERTIES)
         DL_DECLARE_VARIABLES(EnhancementTreeItem_PROPERTIES)
 
+        TreeType m_type;
+
         mutable bool m_bImageLoaded;
         mutable CImage m_image;
         mutable bool m_bDisabledImageLoaded;

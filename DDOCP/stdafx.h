@@ -57,6 +57,7 @@ enum TreeType
     TT_racial,
     TT_universal,
     TT_epicDestiny,
-    TT_reaper
+    TT_reaper,
+    TT_unknown
 };
 const COLORREF c_transparentColour = RGB(255, 128, 255);

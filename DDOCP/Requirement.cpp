@@ -113,7 +113,8 @@ bool Requirement::Met(
         // this enhancement must be trained
         const TrainedEnhancement * te = charData.IsTrained(
                 Enhancement(),
-                HasSelection() ? Selection() : "");
+                HasSelection() ? Selection() : "",
+                TT_unknown);    // just check them all
         met &= (te != NULL);
     }
 
@@ -206,7 +207,8 @@ bool Requirement::CanTrainEnhancement(
         // this enhancement must be trained
         const TrainedEnhancement * te = charData.IsTrained(
                 Enhancement(),
-                HasSelection() ? Selection() : "");
+                HasSelection() ? Selection() : "",
+                TT_unknown);
         met &= (te != NULL);
         if (te != NULL)
         {
@@ -337,7 +339,8 @@ bool Requirement::CanTrainTree(
         // this enhancement must be trained to gain access to this tree
         const TrainedEnhancement * te = charData.IsTrained(
                 Enhancement(),
-                HasSelection() ? Selection() : "");
+                HasSelection() ? Selection() : "",
+                TT_unknown);
         met &= (te != NULL);
     }
     if (HasFeat())
@@ -425,7 +428,8 @@ void Requirement::CreateRequirementStrings(
         // this enhancement must be trained
         const TrainedEnhancement * te = charData.IsTrained(
                 Enhancement(),
-                HasSelection() ? Selection() : "");
+                HasSelection() ? Selection() : "",
+                TT_unknown);
         std::string name = "Unknown enhancement";
         const EnhancementTreeItem * item = FindEnhancement(Enhancement());
         if (item != NULL)

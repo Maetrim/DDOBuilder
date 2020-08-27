@@ -819,6 +819,20 @@ ability scores, increased health and increased fortification.</Description>
          <Bonus>Feat</Bonus>
          <Amount>50</Amount>
       </Effect>
+         <Effect>
+            <DisplayName>Illusory Augmentation: Augment Summoning</DisplayName>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>Force/Untyped</SpellPower>
+            <AmountVector size="2">0 5</AmountVector>
+         </Effect>
+         <Effect>
+            <DisplayName>Illusory Augmentation: Augment Summoning</DisplayName>
+            <Type>SpellDC</Type>
+            <Bonus>Enhancement</Bonus>
+             <School>Illusion</School>
+            <AmountVector size="2">0 1</AmountVector>
+         </Effect>
    </Feat>
    <Feat>
       <Name>Aura of Courage</Name>
@@ -3032,6 +3046,16 @@ You can make an attack that has a chance of blinding your opponent.</Description
       <Icon>FavoredEnemyEvilOutsider</Icon>
    </Feat>
    <Feat>
+      <Name>Favored enemy: Fey</Name>
+      <Description>You receive a damage bonus when attacking Fey creatures.</Description>
+      <FeatGroup>
+         <IsFavoredEnemy/>
+      </FeatGroup>
+      <Requirements/>
+      <Acquire>Train</Acquire>
+      <Icon>FavoredEnemyFey</Icon>
+   </Feat>
+   <Feat>
       <Name>Favored enemy: Giant</Name>
       <Description>You receive a damage bonus when attacking giants.</Description>
       <FeatGroup>
@@ -3606,7 +3630,9 @@ You have an additional +2 Strength and Constitution and +1 Will save while raged
          <Bonus>Rage</Bonus>
          <Ability>Strength</Ability>
          <AmountVector size="3">4 6 8</AmountVector>
-         <Stance>Rage</Stance>
+            <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Rage</AnyOfStance>
+            <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
          <ApplyAsItemEffect/>
       </Effect>
       <Effect>
@@ -3615,7 +3641,10 @@ You have an additional +2 Strength and Constitution and +1 Will save while raged
          <Bonus>Rage</Bonus>
          <Ability>Constitution</Ability>
          <AmountVector size="3">4 6 8</AmountVector>
-         <Stance>Rage</Stance>
+            <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Wildhunt Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Rage</AnyOfStance>
+            <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
          <ApplyAsItemEffect/>
       </Effect>
       <Effect>
@@ -3624,7 +3653,10 @@ You have an additional +2 Strength and Constitution and +1 Will save while raged
          <Bonus>Rage</Bonus>
          <Save>Will</Save>
          <AmountVector size="3">2 3 4</AmountVector>
-         <Stance>Rage</Stance>
+            <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Wildhunt Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Rage</AnyOfStance>
+            <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
          <ApplyAsItemEffect/>
       </Effect>
    </Feat>
@@ -6081,7 +6113,10 @@ resist enchantment spells. This bonus stacks with all modifiers.</Description>
          <Bonus>Feat</Bonus>
          <Save>Enchantment</Save>
          <Amount>4</Amount>
-         <Stance>Rage</Stance>
+            <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Wildhunt Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Rage</AnyOfStance>
+            <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
       </Effect>
    </Feat>
    <Feat>
@@ -8084,7 +8119,9 @@ and your morale bonus to Will saves is increased to +4.</Description>
          <Bonus>Rage</Bonus>
          <Ability>Strength</Ability>
          <AmountVector size="3">4 6 8</AmountVector>
-         <Stance>Rage</Stance>
+            <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Rage</AnyOfStance>
+            <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
          <ApplyAsItemEffect/>
       </Effect>
       <Effect>
@@ -8093,7 +8130,10 @@ and your morale bonus to Will saves is increased to +4.</Description>
          <Bonus>Rage</Bonus>
          <Ability>Constitution</Ability>
          <AmountVector size="3">4 6 8</AmountVector>
-         <Stance>Rage</Stance>
+            <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Wildhunt Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Rage</AnyOfStance>
+            <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
          <ApplyAsItemEffect/>
       </Effect>
       <Effect>
@@ -8102,7 +8142,10 @@ and your morale bonus to Will saves is increased to +4.</Description>
          <Bonus>Rage</Bonus>
          <Save>Will</Save>
          <AmountVector size="3">2 3 4</AmountVector>
-         <Stance>Rage</Stance>
+            <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Wildhunt Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Rage</AnyOfStance>
+            <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
          <ApplyAsItemEffect/>
       </Effect>
    </Feat>
@@ -9508,7 +9551,9 @@ Constitution, a +2 Morale bonus to Will saves and a -2 penalty to AC.</Descripti
          <Bonus>Rage</Bonus>
          <Ability>Strength</Ability>
          <AmountVector size="3">4 6 8</AmountVector>
-         <Stance>Rage</Stance>
+            <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Rage</AnyOfStance>
+            <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
          <ApplyAsItemEffect/>
       </Effect>
       <Effect>
@@ -9517,7 +9562,10 @@ Constitution, a +2 Morale bonus to Will saves and a -2 penalty to AC.</Descripti
          <Bonus>Rage</Bonus>
          <Ability>Constitution</Ability>
          <AmountVector size="3">4 6 8</AmountVector>
-         <Stance>Rage</Stance>
+            <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Wildhunt Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Rage</AnyOfStance>
+            <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
          <ApplyAsItemEffect/>
       </Effect>
       <Effect>
@@ -9526,7 +9574,10 @@ Constitution, a +2 Morale bonus to Will saves and a -2 penalty to AC.</Descripti
          <Bonus>Rage</Bonus>
          <Save>Will</Save>
          <AmountVector size="3">2 3 4</AmountVector>
-         <Stance>Rage</Stance>
+            <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Wildhunt Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Rage</AnyOfStance>
+            <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
          <ApplyAsItemEffect/>
       </Effect>
       <Effect>
@@ -9534,7 +9585,10 @@ Constitution, a +2 Morale bonus to Will saves and a -2 penalty to AC.</Descripti
          <Type>ACBonus</Type>
          <Bonus>Rage</Bonus>
          <Amount>-2</Amount>
-         <Stance>Rage</Stance>
+            <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Wildhunt Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Rage</AnyOfStance>
+            <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
          <ApplyAsItemEffect/>
      </Effect>
    </Feat>
@@ -13838,10 +13892,13 @@ DC(19 + Charisma Mod + Evocation Bonuses)</Description>
                <Alignment>Lawful Good</Alignment>
             </Requirement>
             <Requirement>
+               <Alignment>Lawful Neutral</Alignment>
+            </Requirement>
+            <Requirement>
                <Alignment>Neutral Good</Alignment>
             </Requirement>
             <Requirement>
-               <Alignment>Chaotic Good</Alignment>
+               <Alignment>Neutral</Alignment>
             </Requirement>
          </RequiresOneOf>
       </Requirements>
@@ -15101,6 +15158,7 @@ Passive Bonus: +1 Fortitude Save per stack of this Past Life.</Description>
          <IncompatibleStance>Bladeforged</IncompatibleStance>
          <IncompatibleStance>Deep Gnome</IncompatibleStance>
          <IncompatibleStance>Morninglord</IncompatibleStance>
+         <IncompatibleStance>Razerclaw Shifter</IncompatibleStance>
          <IncompatibleStance>Shadar-Kai</IncompatibleStance>
          <IncompatibleStance>Tiefling Scoundrel</IncompatibleStance>
       </Stance>
@@ -15138,6 +15196,7 @@ Passive Bonus: +5% Fortification per stack of this Past Life.</Description>
          <IncompatibleStance>Aasimar</IncompatibleStance>
          <IncompatibleStance>Deep Gnome</IncompatibleStance>
          <IncompatibleStance>Morninglord</IncompatibleStance>
+         <IncompatibleStance>Razerclaw Shifter</IncompatibleStance>
          <IncompatibleStance>Shadar-Kai</IncompatibleStance>
          <IncompatibleStance>Tiefling Scoundrel</IncompatibleStance>
       </Stance>
@@ -15170,6 +15229,7 @@ Passive Bonus: +3 Positive Spell Power per stack of this Past Life.</Description
          <IncompatibleStance>Aasimar</IncompatibleStance>
          <IncompatibleStance>Bladeforged</IncompatibleStance>
          <IncompatibleStance>Deep Gnome</IncompatibleStance>
+         <IncompatibleStance>Razerclaw Shifter</IncompatibleStance>
          <IncompatibleStance>Shadar-Kai</IncompatibleStance>
          <IncompatibleStance>Tiefling Scoundrel</IncompatibleStance>
       </Stance>
@@ -15222,6 +15282,7 @@ This can occur once every two minutes.</Description>
          <IncompatibleStance>Aasimar</IncompatibleStance>
          <IncompatibleStance>Bladeforged</IncompatibleStance>
          <IncompatibleStance>Morninglord</IncompatibleStance>
+         <IncompatibleStance>Razerclaw Shifter</IncompatibleStance>
          <IncompatibleStance>Deep Gnome</IncompatibleStance>
          <IncompatibleStance>Tiefling Scoundrel</IncompatibleStance>
       </Stance>
@@ -15257,6 +15318,7 @@ Passive Bonus: +1 Reflex Saving throws per stack of this Past Life Feat.</Descri
          <IncompatibleStance>Bladeforged</IncompatibleStance>
          <IncompatibleStance>Deep Gnome</IncompatibleStance>
          <IncompatibleStance>Morninglord</IncompatibleStance>
+         <IncompatibleStance>Razerclaw Shifter</IncompatibleStance>
          <IncompatibleStance>ShadarKai</IncompatibleStance>
       </Stance>
    </Feat>
@@ -15272,6 +15334,7 @@ Passive Bonus: +3 Magical Resistance per stack of this Past Life.</Description>
          <IncompatibleStance>Aasimar</IncompatibleStance>
          <IncompatibleStance>Bladeforged</IncompatibleStance>
          <IncompatibleStance>Morninglord</IncompatibleStance>
+         <IncompatibleStance>Razerclaw Shifter</IncompatibleStance>
          <IncompatibleStance>ShadarKai</IncompatibleStance>
          <IncompatibleStance>Tiefling Scoundrel</IncompatibleStance>
       </Stance>
@@ -15298,6 +15361,26 @@ Passive Bonus: +3 Magical Resistance per stack of this Past Life.</Description>
          <Amount>5</Amount>
          <Stance>Deep Gnome</Stance>
       </Effect>
+   </Feat>
+   <Feat>
+      <Name>Past Life: Razerclaw Shifter</Name>
+      <Description>Iconic Past Life Stance: ????
+Passive Bonus: ???</Description>
+      <Stance>
+         <Name>Razerclaw Shifter</Name>
+         <Icon>IconicPastLifeRazerclawShifter</Icon>
+         <Description>???</Description>
+         <IncompatibleStance>Aasimar</IncompatibleStance>
+         <IncompatibleStance>Bladeforged</IncompatibleStance>
+         <IncompatibleStance>Deep Gnome</IncompatibleStance>
+         <IncompatibleStance>Morninglord</IncompatibleStance>
+         <IncompatibleStance>ShadarKai</IncompatibleStance>
+         <IncompatibleStance>Tiefling Scoundrel</IncompatibleStance>
+      </Stance>
+      <Requirements/>
+      <MaxTimesAcquire>3</MaxTimesAcquire>
+      <Acquire>IconicPastLife</Acquire>
+      <Icon>IconicPastLifeRazerclawShifter</Icon>
    </Feat>
    <!--Epic Past Lives-->
    <Feat>
@@ -17471,6 +17554,20 @@ Passive: +140 Maximum Spell Points</Description>
          <Bonus>Feat</Bonus>
          <Amount>140</Amount>
       </Effect>
+         <Effect>
+            <DisplayName>Illusory Augmentation: Improved Augment Summoning</DisplayName>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>Force/Untyped</SpellPower>
+            <AmountVector size="2">0 5</AmountVector>
+         </Effect>
+         <Effect>
+            <DisplayName>Illusory Augmentation: Improved Augment Summoning</DisplayName>
+            <Type>SpellDC</Type>
+            <Bonus>Enhancement</Bonus>
+             <School>Illusion</School>
+            <AmountVector size="2">0 1</AmountVector>
+         </Effect>
    </Feat>
    <Feat>
       <Name>Improved Martial Arts</Name>
@@ -20573,6 +20670,34 @@ Tier3: +1 Racial Tree Action point</Description>
       </Effect>
    </Feat>
    <Feat>
+      <Name>Past Life: Shifter</Name>
+      <Description>You were Shifter in a previous life
+Tier1: +1 Unknown
+Tier2: +1 Unknown
+Tier3: +1 Racial Tree Action point</Description>
+      <Requirements/>
+      <MaxTimesAcquire>3</MaxTimesAcquire>
+      <Acquire>RacialPastLife</Acquire>
+      <Icon>PastLifeShifter</Icon>
+      <Effect>
+         <Type>SkillBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Skill>Unknown</Skill>
+         <AmountVector size="3">1 1 1</AmountVector>
+      </Effect>
+      <Effect>
+         <Type>AbilityBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Ability>Unknown</Ability>
+         <AmountVector size="3">0 1 1</AmountVector>
+      </Effect>
+      <Effect>
+         <Type>APBonus</Type>
+         <Bonus>Feat</Bonus>
+         <AmountVector size="3">0 0 1</AmountVector>
+      </Effect>
+   </Feat>
+   <Feat>
       <Name>Past Life: Tiefling</Name>
       <Description>You were a Tiefling in a previous life
 Tier1: +1 Spell Craft
@@ -20719,6 +20844,143 @@ Racial Enhancement Tree.</Description>
          <Bonus>Feat</Bonus>
          <Energy>Cold</Energy>
          <Amount>30</Amount>
+      </Effect>
+   </Feat>
+   <!--Shifter Animalistic Aspect feats-->
+   <Feat>
+      <Name>Beasthide Shifter</Name>
+      <Description>Passive: +1 Constitution
+Active: Activate this Shifter ability to shift your form, granting you a +4 Rage bonus to
+Armor Class and Constitution, a +2 Morale bonus to Fortitude saves, and a -2 penalty to Wisdom.
+When the form ends, however, you will lose the hit points granted by increased Constitution
+and become fatigued. Your form will last for 30 seconds plus an additional amount of time
+based on your Constitution. You can prematurely end your form by using the Dismiss Rage
+feat. This shares charges with Barbarian's Rage feat, and anything that grants bonuses while
+Raging will grant bonuses with this. Shifting your form in this way prevents Spellcasting</Description>
+      <FeatGroup>
+         <IsAnimalisticAspect/>
+      </FeatGroup>
+      <Requirements>
+        <Requirement>
+            <Race>Shifter</Race>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>BeasthideShifter</Icon>
+      <Stance>
+         <Name>Beasthide Shifter: Shifted Form</Name>
+         <Icon>BeasthideShifter</Icon>
+         <Description>Activate this Shifter ability to shift your form, granting you a +4 Rage bonus to
+Armor Class and Constitution, a +2 Morale bonus to Fortitude saves, and a -2 penalty to Wisdom.
+When the form ends, however, you will lose the hit points granted by increased Constitution
+and become fatigued.</Description>
+         <IncompatibleStance>Rage</IncompatibleStance>
+      </Stance>
+      <Effect>
+         <Type>AbilityBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
+         <Ability>Constitution</Ability>
+      </Effect>
+      <Effect>
+         <DisplayName>Beasthide Shifter: Shifted Form</DisplayName>
+         <Type>ACBonus</Type>
+         <Bonus>Rage</Bonus>
+         <Amount>4</Amount>
+         <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
+         <AnyOfStance>Rage</AnyOfStance>
+            <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
+      </Effect>
+      <Effect>
+         <DisplayName>Beasthide Shifter: Shifted Form</DisplayName>
+         <Type>AbilityBonus</Type>
+         <Bonus>Rage</Bonus>
+         <Amount>4</Amount>
+         <Ability>Constitution</Ability>
+         <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
+      </Effect>
+      <Effect>
+         <DisplayName>Beasthide Shifter: Shifted Form</DisplayName>
+         <Type>SaveBonus</Type>
+         <Bonus>Morale</Bonus>
+         <Amount>2</Amount>
+         <Save>Fortitude</Save>
+         <Stance>Beasthide Shifter: Shifted Form</Stance>
+      </Effect>
+      <Effect>
+         <DisplayName>Beasthide Shifter: Shifted Form</DisplayName>
+         <Type>AbilityBonus</Type>
+         <Bonus>Penalty</Bonus>
+         <Amount>-2</Amount>
+         <Ability>Wisdom</Ability>
+         <Stance>Beasthide Shifter: Shifted Form</Stance>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Wildhunt Shifter</Name>
+      <Description>Passive: +1 Wisdom
+Active: Activate this Shifter ability to shift your form, granting you a +4 Rage bonus to
+Wisdom and Dexterity, a +2 Morale bonus to Fortitude saves, and a -2 penalty to Strength.
+When the form ends, however, you will become fatigued. Your form will last for 30 seconds
+plus an additional amount of time based on your Wisdom. You can prematurely end your form by
+using the Dismiss Rage feat. This shares charges with Barbarian's Rage feat, and anything
+that grants bonuses while Raging will grant bonuses with this, with the exception of abilities
+that add Strength while Raging. Shifting your form in this way prevents Spellcasting</Description>
+      <FeatGroup>
+         <IsAnimalisticAspect/>
+      </FeatGroup>
+      <Requirements>
+        <Requirement>
+            <Race>Shifter</Race>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>WildhuntShifter</Icon>
+      <Stance>
+         <Name>Wildhunt Shifter: Shifted Form</Name>
+         <Icon>WildhuntShifter</Icon>
+         <Description>Active: Activate this Shifter ability to shift your form, granting you a +4 Rage bonus to
+Wisdom and Dexterity, a +2 Morale bonus to Fortitude saves, and a -2 penalty to Strength.
+When the form ends, however, you will become fatigued.</Description>
+         <IncompatibleStance>Rage</IncompatibleStance>
+      </Stance>
+      <Effect>
+         <Type>AbilityBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
+         <Ability>Wisdom</Ability>
+      </Effect>
+      <Effect>
+         <DisplayName>Wildhunt Shifter: Shifted Form</DisplayName>
+         <Type>AbilityBonus</Type>
+         <Bonus>Rage</Bonus>
+         <Amount>4</Amount>
+         <Ability>Wisdom</Ability>
+         <AnyOfStance>Wildhunt Shifter: Shifted Form</AnyOfStance>
+      </Effect>
+      <Effect>
+         <DisplayName>Wildhunt Shifter: Shifted Form</DisplayName>
+         <Type>AbilityBonus</Type>
+         <Bonus>Rage</Bonus>
+         <Amount>4</Amount>
+         <Ability>Dexterity</Ability>
+         <AnyOfStance>Wildhunt Shifter: Shifted Form</AnyOfStance>
+      </Effect>
+      <Effect>
+         <DisplayName>Wildhunt Shifter: Shifted Form</DisplayName>
+         <Type>SaveBonus</Type>
+         <Bonus>Morale</Bonus>
+         <Amount>2</Amount>
+         <Save>Fortitude</Save>
+         <Stance>Wildhunt Shifter: Shifted Form</Stance>
+      </Effect>
+      <Effect>
+         <DisplayName>Wildhunt Shifter: Shifted Form</DisplayName>
+         <Type>AbilityBonus</Type>
+         <Bonus>Penalty</Bonus>
+         <Amount>-2</Amount>
+         <Ability>Strength</Ability>
+         <Stance>Wildhunt Shifter: Shifted Form</Stance>
       </Effect>
    </Feat>
    <!--Warlock pact spells-->
@@ -22418,44 +22680,20 @@ Exotic Favored Weapons gain +1 to Attack and Damage.</Description>
          <IsChildOf/>
       </FeatGroup>
       <Requirements>
+         <!--Note that no need for Follower Of feat here as any of the 3 required classes gain Follower Of at level 1-->
          <RequiresOneOf>
-             <DisplayDescription>Any Follower/Favored of "Deity" feat</DisplayDescription>
             <Requirement>
-               <Feat>Follower of Aureon</Feat>
+               <Class>Cleric</Class>
+               <Level>3</Level>
             </Requirement>
             <Requirement>
-               <Feat>Follower of the Blood of Vol</Feat>
+               <Class>Favored Soul</Class>
+               <Level>3</Level>
             </Requirement>
-             <Requirement>
-                <Feat>Follower of the Lord of Blades</Feat>
-             </Requirement>
-             <Requirement>
-                <Feat>Follower of Olladra</Feat>
-             </Requirement>
-             <Requirement>
-                <Feat>Follower of Onatar</Feat>
-             </Requirement>
-             <Requirement>
-                <Feat>Follower of the Silver Flame</Feat>
-             </Requirement>
-             <Requirement>
-                <Feat>Follower of the Sovereign Host</Feat>
-             </Requirement>
-             <Requirement>
-                <Feat>Follower of the Undying Court</Feat>
-             </Requirement>
-             <Requirement>
-                <Feat>Follower of Vulkoor</Feat>
-             </Requirement>
-             <Requirement>
-                <Feat>Favored by Amaunator</Feat>
-             </Requirement>
-             <Requirement>
-                <Feat>Favored by Helm</Feat>
-             </Requirement>
-             <Requirement>
-                <Feat>Favored by Silvanus</Feat>
-             </Requirement>
+            <Requirement>
+               <Class>Paladin</Class>
+               <Level>3</Level>
+            </Requirement>
          </RequiresOneOf>
       </Requirements>
       <Acquire>Train</Acquire>
@@ -25757,6 +25995,73 @@ enhancements trained dependant on this stance being active</Description>
          <Energy>Electric</Energy>
       </Effect>
    </Feat>
+    <!--Shifter Feats-->
+   <Feat>
+      <Name>Razorclaw Shifter</Name>
+      <Description>Passive: +1 Strength
+Active: Activate this Shifter ability to shift your form, granting you a +4 Rage bonus to
+Strength and Dexterity, a +2 Morale bonus to Fortitude saves, and a -2 penalty to Wisdom.
+When the form ends, however, you will become fatigued. Your form will last for 30 seconds
+plus an additional amount of time based on your Strength.
+You can prematurely end your form by using the Dismiss Rage feat. This shares charges with
+Barbarian's Rage feat, and anything that grants bonuses while Raging will grant bonuses
+with this. Shifting your form in this way prevents Spellcasting</Description>
+      <Requirements>
+         <Requirement>
+            <Race>Razorclaw Shifter</Race>
+         </Requirement>
+      </Requirements>
+      <Acquire>Automatic</Acquire>
+      <Icon>RazorclawShifter</Icon>
+      <AutomaticAcquisition>
+         <Race>Razorclaw Shifter</Race>
+      </AutomaticAcquisition>
+      <Stance>
+         <Name>Razorclaw Shifter: Shifted Form</Name>
+         <Icon>RazorclawShifter</Icon>
+         <Description>Activate this Shifter ability to shift your form, granting you a +4 Rage bonus to
+Strength and Dexterity, a +2 Morale bonus to Fortitude saves, and a -2 penalty to Wisdom.
+When the form ends, however, you will become fatigued. Your form will last for 30 seconds
+plus an additional amount of time based on your Strength.</Description>
+         <IncompatibleStance>Combat Expertise</IncompatibleStance>
+         <IncompatibleStance>Defensive Fighting</IncompatibleStance>
+         <IncompatibleStance>Precision</IncompatibleStance>
+      </Stance>
+      <Effect>
+         <Type>AbilityBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
+         <Ability>Strength</Ability>
+      </Effect>
+      <Effect>
+         <DisplayName>Razorclaw Shifter: Shifted Form</DisplayName>
+         <Type>AbilityBonus</Type>
+         <Bonus>Rage</Bonus>
+         <Amount>4</Amount>
+         <Ability>Strength</Ability>
+         <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
+         <AnyOfStance>Rage</AnyOfStance>
+            <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
+      </Effect>
+      <Effect>
+         <DisplayName>Razorclaw Shifter: Shifted Form</DisplayName>
+         <Type>AbilityBonus</Type>
+         <Bonus>Rage</Bonus>
+         <Amount>4</Amount>
+         <Ability>Dexterity</Ability>
+         <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
+         <AnyOfStance>Rage</AnyOfStance>
+            <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
+      </Effect>
+      <Effect>
+         <DisplayName>Razorclaw Shifter: Shifted Form</DisplayName>
+         <Type>AbilityBonus</Type>
+         <Bonus>Penalty</Bonus>
+         <Amount>-2</Amount>
+         <Ability>Wisdom</Ability>
+         <Stance>Razorclaw Shifter: Shifted Form</Stance>
+      </Effect>
+   </Feat>
    <!--Bard Feats-->
    <Feat>
       <Name>Bardic Ballad</Name>
@@ -26406,7 +26711,7 @@ Rank 4: Access to the Falconry Enhancement Tree.</Description>
       <Description>You have access to the Falconry enhancement tree through a DDO store purchase
 or you have previously unlocked this tree for this character.</Description>
       <Requirements/>
-      <Acquire>Special</Acquire>
+      <Acquire>UniversalTree</Acquire>
       <Icon>Falconry</Icon>
       <Effect>
          <Type>EnhancementTree</Type>
@@ -26418,7 +26723,7 @@ or you have previously unlocked this tree for this character.</Description>
       <Description>You have access to the Harper Agent enhancement tree through a DDO store purchase
 or you have previously unlocked this tree for this character.</Description>
       <Requirements/>
-      <Acquire>Special</Acquire>
+      <Acquire>UniversalTree</Acquire>
       <Icon>Harper</Icon>
       <Effect>
          <Type>EnhancementTree</Type>
@@ -26430,7 +26735,7 @@ or you have previously unlocked this tree for this character.</Description>
       <Description>You have access to the Inquisitive enhancement tree through a DDO store purchase
 or you have previously unlocked this tree for this character.</Description>
       <Requirements/>
-      <Acquire>Special</Acquire>
+      <Acquire>UniversalTree</Acquire>
       <Icon>Inquisitive</Icon>
       <Effect>
          <Type>EnhancementTree</Type>
@@ -26442,8 +26747,20 @@ or you have previously unlocked this tree for this character.</Description>
       <Description>You have access to the Vistani Knife Fighter enhancement tree through a DDO store purchase
 or you have previously unlocked this tree for this character.</Description>
       <Requirements/>
-      <Acquire>Special</Acquire>
+      <Acquire>UniversalTree</Acquire>
       <Icon>Vistani</Icon>
+      <Effect>
+         <Type>EnhancementTree</Type>
+         <Bonus>Enhancement</Bonus>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Feydark Illusionist Tree</Name>
+      <Description>You have access to the Feydark Illusionist enhancement tree through a DDO store purchase
+or you have previously unlocked this tree for this character.</Description>
+      <Requirements/>
+      <Acquire>UniversalTree</Acquire>
+      <Icon>FeydarkIllusionist</Icon>
       <Effect>
          <Type>EnhancementTree</Type>
          <Bonus>Enhancement</Bonus>

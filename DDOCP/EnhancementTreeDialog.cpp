@@ -312,7 +312,7 @@ void CEnhancementTreeDialog::RenderTreeItem(
                 c_topItem1 - c_yItemSpacing * item.YPosition());
 
         // clickie item state may be overridden by item selection
-        const TrainedEnhancement * te = m_pCharacter->IsTrained(item.InternalName(), "");
+        const TrainedEnhancement * te = m_pCharacter->IsTrained(item.InternalName(), "", m_type);
         bool clickie = item.HasClickie();
         if (te != NULL)
         {
@@ -335,7 +335,7 @@ void CEnhancementTreeDialog::RenderTreeItem(
         if (isAllowed)
         {
             // only show trained x/y if item is allowed
-            const TrainedEnhancement * te = m_pCharacter->IsTrained(item.InternalName(), "");
+            const TrainedEnhancement * te = m_pCharacter->IsTrained(item.InternalName(), "", m_type);
             CString text;
             text.Format(
                     "%d/%d",
@@ -407,7 +407,7 @@ void CEnhancementTreeDialog::RenderItemCore(
     // now apply the item position to the rectangle
     itemRect += CPoint(c_leftOffsetCore + c_xItemSpacingCore * item.XPosition(), c_topCore);
     // clickie item state may be overridden by item selection
-    const TrainedEnhancement * te = m_pCharacter->IsTrained(item.InternalName(), "");
+    const TrainedEnhancement * te = m_pCharacter->IsTrained(item.InternalName(), "", m_type);
     bool clickie = item.HasClickie();
     if (te != NULL)
     {
@@ -446,7 +446,7 @@ void CEnhancementTreeDialog::RenderItemCore(
     if (isAllowed)
     {
         // only show trained x/y if item is allowed
-        const TrainedEnhancement * te = m_pCharacter->IsTrained(item.InternalName(), "");
+        const TrainedEnhancement * te = m_pCharacter->IsTrained(item.InternalName(), "", m_type);
         CString text;
         text.Format(
                 "%d/%d",
@@ -589,7 +589,7 @@ void CEnhancementTreeDialog::OnLButtonDown(UINT nFlags, CPoint point)
         {
             // an item has been clicked, see if we can train a rank in it
             size_t spentInTree = m_pCharacter->APSpentInTree(m_tree.Name());
-            const TrainedEnhancement * te = m_pCharacter->IsTrained(item->InternalName(), "");
+            const TrainedEnhancement * te = m_pCharacter->IsTrained(item->InternalName(), "", m_type);
             bool isAllowed = item->MeetRequirements(*m_pCharacter, "", m_tree.Name());
             bool isTrainable = item->CanTrain(*m_pCharacter, m_tree.Name(), spentInTree, m_type);
             if (isAllowed && isTrainable)
@@ -910,7 +910,7 @@ void CEnhancementTreeDialog::SetTooltipText(
 {
     // different tooltip if the item is trained or not
     // if its trained, we need to show the selected sub-item tooltip
-    const TrainedEnhancement * te = m_pCharacter->IsTrained(item.InternalName(), "");
+    const TrainedEnhancement * te = m_pCharacter->IsTrained(item.InternalName(), "", m_type);
     const EnhancementSelection * es = NULL;
     std::string selection;
     m_tooltip.SetOrigin(tipTopLeft, tipAlternate, false);

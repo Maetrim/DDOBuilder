@@ -92,7 +92,7 @@ BOOL CSelectionSelectDialog::OnInitDialog()
         std::list<std::string>::const_iterator eit = exclusions.begin();
         while (eit != exclusions.end())
         {
-            const TrainedEnhancement * te = m_charData.IsTrained((*eit), "");
+            const TrainedEnhancement * te = m_charData.IsTrained((*eit), "", m_type);
             if (te != NULL)
             {
                 // this previous enhancement is trained, see what was selected

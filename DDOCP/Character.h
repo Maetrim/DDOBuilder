@@ -194,12 +194,14 @@ class Character :
         int APSpentInTree(const std::string & treeName);
         const TrainedEnhancement * IsTrained(
                 const std::string & enhancementName,
-                const std::string & selection) const;
+                const std::string & selection,
+                TreeType type) const;
 
         // enhancement support
         bool IsEnhancementTrained(
                 const std::string & enhancementName,
-                const std::string & selection) const;
+                const std::string & selection,
+                TreeType type) const;
         std::list<TrainedEnhancement> CurrentEnhancements() const;
         void Enhancement_TrainEnhancement(
                 const std::string & treeName,

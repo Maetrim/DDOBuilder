@@ -114,7 +114,7 @@ bool BreakdownItemWeapon::IsCentering() const
     {
         isCentering = (m_centeredCount > 0)
             || (m_pCharacter->IsFocusWeapon(m_weaponType)
-                && m_pCharacter->IsEnhancementTrained("KenseiOneWithTheBlade", ""));
+                && m_pCharacter->IsEnhancementTrained("KenseiOneWithTheBlade", "", TT_enhancement));
     }
     return isCentering;
 }
