@@ -115,7 +115,14 @@ bool Requirement::Met(
                 Enhancement(),
                 HasSelection() ? Selection() : "",
                 TT_unknown);    // just check them all
-        met &= (te != NULL);
+        if (HasAmount())
+        {
+            met &= (te != NULL && te->Ranks() >= Amount());
+        }
+        else
+        {
+            met &= (te != NULL);
+        }
     }
 
     if (HasSkill())
@@ -221,7 +228,15 @@ bool Requirement::CanTrainEnhancement(
             else
             {
                 // we must have the same of less ranks than the item in question
-                met &= (trainedRanks < te->Ranks());
+                if (HasAmount())
+                {
+                    // or have the specified number of ranks
+                    met &= (te->Ranks() >= Amount());
+                }
+                else
+                {
+                    met &= (trainedRanks < te->Ranks());
+                }
             }
         }
     }

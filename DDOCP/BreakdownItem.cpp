@@ -994,7 +994,7 @@ bool BreakdownItem::GetActiveEffect(
                 effect.Immunity(),
                 1);
     }
-    if (effect.HasFeat())
+    if (effect.Feat().size() > 0)
     {
         activeEffect->AddFeat(effect.Feat());
     }

@@ -440,6 +440,7 @@ void CDDOCPApp::SeparateFeats()
     m_racialPastLifeFeats.sort();
     m_iconicPastLifeFeats.sort();
     m_specialFeats.sort();
+    m_universalTreeFeats.sort();
     m_favorFeats.sort();
     m_standardFeats.sort();
 }
