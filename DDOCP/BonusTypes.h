@@ -70,6 +70,7 @@ enum BonusType
     Bonus_stacking,
     Bonus_temporary,
     Bonus_unique,
+    Bonus_universal,
     Bonus_vitality,
     Bonus_weaponEnchantment,
 };
@@ -135,6 +136,7 @@ const XmlLib::enumMapEntry<BonusType> bonusTypeMap[] =
     {Bonus_spooky, L"Spooky"},
     {Bonus_stacking, L"Stacking"},
     {Bonus_unique, L"Unique"},
+    {Bonus_universal, L"Universal"},
     {Bonus_temporary, L"Temporary"},
     {Bonus_vitality, L"Vitality"},
     {Bonus_weaponEnchantment, L"WeaponEnchantment"},

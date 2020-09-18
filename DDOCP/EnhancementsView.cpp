@@ -701,6 +701,11 @@ void CEnhancementsView::OnMouseMove(UINT nFlags, CPoint point)
     // determine which universal tree selector the mouse may be over
     CWnd * pWnd = ChildWindowFromPoint(point);
     CIconButton * pIconButton = dynamic_cast<CIconButton*>(pWnd);
+    if (m_pCharacter == NULL)
+    {
+        // ensure buttons do not produce tooltips while no character active
+        pIconButton = NULL;
+    }
     if (pIconButton != NULL
             && pIconButton != m_pTooltipItem)
     {

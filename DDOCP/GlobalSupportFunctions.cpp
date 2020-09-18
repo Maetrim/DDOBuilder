@@ -1060,13 +1060,13 @@ int RacialModifier(
     case Ability_Strength:
         if (race == Race_Halfling
                 || race == Race_Gnome
-                || race == Race_DeepGnome
-                || race == Race_RazorclawShifter)
+                || race == Race_DeepGnome)
         {
             mod = -2;
         }
         if (race == Race_HalfOrc
-                || race == Race_Dragonborn)
+                || race == Race_Dragonborn
+                || race == Race_RazorclawShifter)
         {
             mod = +2;
         }

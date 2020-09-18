@@ -1352,6 +1352,10 @@ you will need to gain those past lives before this benefit reactivates.
             <Amount>3</Amount>
          </Requirement>
          <Requirement>
+            <Feat>Past Life: Shifter</Feat>
+            <Amount>3</Amount>
+         </Requirement>
+         <Requirement>
             <Feat>Past Life: Tiefling</Feat>
             <Amount>3</Amount>
          </Requirement>
@@ -15168,7 +15172,7 @@ Passive Bonus: +1 Fortitude Save per stack of this Past Life.</Description>
          <IncompatibleStance>Bladeforged</IncompatibleStance>
          <IncompatibleStance>Deep Gnome</IncompatibleStance>
          <IncompatibleStance>Morninglord</IncompatibleStance>
-         <IncompatibleStance>Razerclaw Shifter</IncompatibleStance>
+         <IncompatibleStance>Razorclaw Shifter</IncompatibleStance>
          <IncompatibleStance>Shadar-Kai</IncompatibleStance>
          <IncompatibleStance>Tiefling Scoundrel</IncompatibleStance>
       </Stance>
@@ -15206,7 +15210,7 @@ Passive Bonus: +5% Fortification per stack of this Past Life.</Description>
          <IncompatibleStance>Aasimar</IncompatibleStance>
          <IncompatibleStance>Deep Gnome</IncompatibleStance>
          <IncompatibleStance>Morninglord</IncompatibleStance>
-         <IncompatibleStance>Razerclaw Shifter</IncompatibleStance>
+         <IncompatibleStance>Razorclaw Shifter</IncompatibleStance>
          <IncompatibleStance>Shadar-Kai</IncompatibleStance>
          <IncompatibleStance>Tiefling Scoundrel</IncompatibleStance>
       </Stance>
@@ -15239,7 +15243,7 @@ Passive Bonus: +3 Positive Spell Power per stack of this Past Life.</Description
          <IncompatibleStance>Aasimar</IncompatibleStance>
          <IncompatibleStance>Bladeforged</IncompatibleStance>
          <IncompatibleStance>Deep Gnome</IncompatibleStance>
-         <IncompatibleStance>Razerclaw Shifter</IncompatibleStance>
+         <IncompatibleStance>Razorclaw Shifter</IncompatibleStance>
          <IncompatibleStance>Shadar-Kai</IncompatibleStance>
          <IncompatibleStance>Tiefling Scoundrel</IncompatibleStance>
       </Stance>
@@ -15292,7 +15296,7 @@ This can occur once every two minutes.</Description>
          <IncompatibleStance>Aasimar</IncompatibleStance>
          <IncompatibleStance>Bladeforged</IncompatibleStance>
          <IncompatibleStance>Morninglord</IncompatibleStance>
-         <IncompatibleStance>Razerclaw Shifter</IncompatibleStance>
+         <IncompatibleStance>Razorclaw Shifter</IncompatibleStance>
          <IncompatibleStance>Deep Gnome</IncompatibleStance>
          <IncompatibleStance>Tiefling Scoundrel</IncompatibleStance>
       </Stance>
@@ -15328,7 +15332,7 @@ Passive Bonus: +1 Reflex Saving throws per stack of this Past Life Feat.</Descri
          <IncompatibleStance>Bladeforged</IncompatibleStance>
          <IncompatibleStance>Deep Gnome</IncompatibleStance>
          <IncompatibleStance>Morninglord</IncompatibleStance>
-         <IncompatibleStance>Razerclaw Shifter</IncompatibleStance>
+         <IncompatibleStance>Razorclaw Shifter</IncompatibleStance>
          <IncompatibleStance>ShadarKai</IncompatibleStance>
       </Stance>
    </Feat>
@@ -15344,7 +15348,7 @@ Passive Bonus: +3 Magical Resistance per stack of this Past Life.</Description>
          <IncompatibleStance>Aasimar</IncompatibleStance>
          <IncompatibleStance>Bladeforged</IncompatibleStance>
          <IncompatibleStance>Morninglord</IncompatibleStance>
-         <IncompatibleStance>Razerclaw Shifter</IncompatibleStance>
+         <IncompatibleStance>Razorclaw Shifter</IncompatibleStance>
          <IncompatibleStance>ShadarKai</IncompatibleStance>
          <IncompatibleStance>Tiefling Scoundrel</IncompatibleStance>
       </Stance>
@@ -15373,13 +15377,14 @@ Passive Bonus: +3 Magical Resistance per stack of this Past Life.</Description>
       </Effect>
    </Feat>
    <Feat>
-      <Name>Past Life: Razerclaw Shifter</Name>
-      <Description>Iconic Past Life Stance: ????
-Passive Bonus: ???</Description>
+      <Name>Past Life: Razorclaw Shifter</Name>
+      <Description>Iconic Past Life Stance: +1 to Attack and Damage with Melee Weapons per stack of this past life.
+Passive Bonus: +1 Will Saving Throw per stack of this past life.
+This feat can be stacked up to three times.</Description>
       <Stance>
-         <Name>Razerclaw Shifter</Name>
+         <Name>Razorclaw Shifter</Name>
          <Icon>IconicPastLifeRazerclawShifter</Icon>
-         <Description>???</Description>
+         <Description>+1 to Attack and Damage with Melee Weapons per stack of this past life.</Description>
          <IncompatibleStance>Aasimar</IncompatibleStance>
          <IncompatibleStance>Bladeforged</IncompatibleStance>
          <IncompatibleStance>Deep Gnome</IncompatibleStance>
@@ -15391,6 +15396,40 @@ Passive Bonus: ???</Description>
       <MaxTimesAcquire>3</MaxTimesAcquire>
       <Acquire>IconicPastLife</Acquire>
       <Icon>IconicPastLifeRazerclawShifter</Icon>
+      <Effect>
+         <Type>SaveBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
+          <Save>Will</Save>
+      </Effect>
+      <Effect>
+         <Type>AttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
+         <Stance>Razorclaw Shifter</Stance>
+         <WeaponClass>Melee</WeaponClass>
+      </Effect>
+      <Effect>
+         <Type>DamageBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
+         <Stance>Razorclaw Shifter</Stance>
+         <WeaponClass>Melee</WeaponClass>
+      </Effect>
+      <Effect>
+         <Type>CriticalAttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
+         <Stance>Razorclaw Shifter</Stance>
+         <WeaponClass>Melee</WeaponClass>
+      </Effect>
+      <Effect>
+         <Type>Seeker</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
+         <Stance>Razorclaw Shifter</Stance>
+         <WeaponClass>Melee</WeaponClass>
+      </Effect>
    </Feat>
    <!--Epic Past Lives-->
    <Feat>
@@ -16875,6 +16914,10 @@ receiving an additional +1 bonus on save DCs.</Description>
          </Requirement>
          <RequiresOneOf>
             <Requirement>
+               <Class>Alchemist</Class>
+               <Level>15</Level>
+            </Requirement>
+            <Requirement>
                <Class>Artificer</Class>
                <Level>15</Level>
             </Requirement>
@@ -16932,6 +16975,10 @@ receiving an additional +1 bonus on save DCs.</Description>
             <Feat>Greater Spell Focus: Conjuration</Feat>
          </Requirement>
          <RequiresOneOf>
+            <Requirement>
+               <Class>Alchemist</Class>
+               <Level>15</Level>
+            </Requirement>
             <Requirement>
                <Class>Artificer</Class>
                <Level>15</Level>
@@ -16991,6 +17038,10 @@ receiving an additional +1 bonus on save DCs.</Description>
          </Requirement>
          <RequiresOneOf>
             <Requirement>
+               <Class>Alchemist</Class>
+               <Level>15</Level>
+            </Requirement>
+            <Requirement>
                <Class>Artificer</Class>
                <Level>15</Level>
             </Requirement>
@@ -17048,6 +17099,10 @@ receiving an additional +1 bonus on save DCs.</Description>
             <Feat>Greater Spell Focus: Evocation</Feat>
          </Requirement>
          <RequiresOneOf>
+            <Requirement>
+               <Class>Alchemist</Class>
+               <Level>15</Level>
+            </Requirement>
             <Requirement>
                <Class>Artificer</Class>
                <Level>15</Level>
@@ -17107,6 +17162,10 @@ receiving an additional +1 bonus on save DCs.</Description>
          </Requirement>
          <RequiresOneOf>
             <Requirement>
+               <Class>Alchemist</Class>
+               <Level>15</Level>
+            </Requirement>
+            <Requirement>
                <Class>Artificer</Class>
                <Level>15</Level>
             </Requirement>
@@ -17165,6 +17224,10 @@ receiving an additional +1 bonus on save DCs.</Description>
          </Requirement>
          <RequiresOneOf>
             <Requirement>
+               <Class>Alchemist</Class>
+               <Level>15</Level>
+            </Requirement>
+            <Requirement>
                <Class>Artificer</Class>
                <Level>15</Level>
             </Requirement>
@@ -17222,6 +17285,10 @@ receiving an additional +1 bonus on save DCs.</Description>
             <Feat>Greater Spell Focus: Transmutation</Feat>
          </Requirement>
          <RequiresOneOf>
+            <Requirement>
+               <Class>Alchemist</Class>
+               <Level>15</Level>
+            </Requirement>
             <Requirement>
                <Class>Artificer</Class>
                <Level>15</Level>
@@ -20682,8 +20749,8 @@ Tier3: +1 Racial Tree Action point</Description>
    <Feat>
       <Name>Past Life: Shifter</Name>
       <Description>You were Shifter in a previous life
-Tier1: +1 Unknown
-Tier2: +1 Unknown
+Tier1: +1 Spot
+Tier2: +1 Dexterity
 Tier3: +1 Racial Tree Action point</Description>
       <Requirements/>
       <MaxTimesAcquire>3</MaxTimesAcquire>
@@ -20692,13 +20759,13 @@ Tier3: +1 Racial Tree Action point</Description>
       <Effect>
          <Type>SkillBonus</Type>
          <Bonus>Feat</Bonus>
-         <Skill>Unknown</Skill>
+         <Skill>Spot</Skill>
          <AmountVector size="3">1 1 1</AmountVector>
       </Effect>
       <Effect>
          <Type>AbilityBonus</Type>
          <Bonus>Feat</Bonus>
-         <Ability>Unknown</Ability>
+         <Ability>Dexterity</Ability>
          <AmountVector size="3">0 1 1</AmountVector>
       </Effect>
       <Effect>
@@ -24902,7 +24969,7 @@ a +3[W] bonus and enemies must make a Reflex saving throw.</Description>
       </Effect>
    </Feat>
    <Feat>
-      <Name>Fire Domain Tier II</Name>
+      <Name>Improved Domain of Fire</Name>
       <Description>You gain Scorching Ray as an SLA. 4 SP, 6 second cooldown.</Description>
       <FeatGroup>
          <IsDomainFeat/>
@@ -24913,7 +24980,7 @@ a +3[W] bonus and enemies must make a Reflex saving throw.</Description>
          </Requirement>
       </Requirements>
       <Acquire>Train</Acquire>
-      <Icon>FireDomain</Icon>
+      <Icon>FireDomainTierII</Icon>
       <Effect>
          <Type>SpellLikeAbility</Type>
          <Bonus>Feat</Bonus>
@@ -24922,18 +24989,18 @@ a +3[W] bonus and enemies must make a Reflex saving throw.</Description>
       </Effect>
    </Feat>
    <Feat>
-      <Name>Fire Domain Tier III</Name>
+      <Name>Greater Domain of Fire</Name>
       <Description>You gain Wall of Fire as an SLA. 15 SP, 30 second cooldown.</Description>
       <FeatGroup>
          <IsDomainFeat/>
       </FeatGroup>
       <Requirements>
          <Requirement>
-            <Feat>Fire Domain Tier II</Feat>
+            <Feat>Improved Domain of Fire</Feat>
          </Requirement>
       </Requirements>
       <Acquire>Train</Acquire>
-      <Icon>FireDomain</Icon>
+      <Icon>FireDomainTier3</Icon>
       <Effect>
          <Type>SpellLikeAbility</Type>
          <Bonus>Feat</Bonus>
@@ -24949,7 +25016,7 @@ a +3[W] bonus and enemies must make a Reflex saving throw.</Description>
       </FeatGroup>
       <Requirements>
          <Requirement>
-            <Feat>Fire Domain Tier III</Feat>
+            <Feat>Greater Domain of Fire</Feat>
          </Requirement>
       </Requirements>
       <Acquire>Train</Acquire>
@@ -26012,7 +26079,7 @@ enhancements trained dependant on this stance being active</Description>
 Active: Activate this Shifter ability to shift your form, granting you a +4 Rage bonus to
 Strength and Dexterity, a +2 Morale bonus to Fortitude saves, and a -2 penalty to Wisdom.
 When the form ends, however, you will become fatigued. Your form will last for 30 seconds
-plus an additional amount of time based on your Strength.
+plus an additional amount of time based on your Constitution.
 You can prematurely end your form by using the Dismiss Rage feat. This shares charges with
 Barbarian's Rage feat, and anything that grants bonuses while Raging will grant bonuses
 with this. Shifting your form in this way prevents Spellcasting</Description>
@@ -26032,7 +26099,7 @@ with this. Shifting your form in this way prevents Spellcasting</Description>
          <Description>Activate this Shifter ability to shift your form, granting you a +4 Rage bonus to
 Strength and Dexterity, a +2 Morale bonus to Fortitude saves, and a -2 penalty to Wisdom.
 When the form ends, however, you will become fatigued. Your form will last for 30 seconds
-plus an additional amount of time based on your Strength.</Description>
+plus an additional amount of time based on your Constitution.</Description>
          <IncompatibleStance>Combat Expertise</IncompatibleStance>
          <IncompatibleStance>Defensive Fighting</IncompatibleStance>
          <IncompatibleStance>Precision</IncompatibleStance>
@@ -26071,6 +26138,19 @@ plus an additional amount of time based on your Strength.</Description>
          <Ability>Wisdom</Ability>
          <Stance>Razorclaw Shifter: Shifted Form</Stance>
       </Effect>
+   </Feat>
+   <Feat>
+      <Name>Shifter Traits</Name>
+      <Description>You are considered both a Humanoid and an Animal for the purpose of most spells and effects, such as the Magic Fang spell.</Description>
+      <Requirements/>
+      <Acquire>Automatic</Acquire>
+      <Icon>ShifterTraits</Icon>
+      <AutomaticAcquisition>
+         <Race>Razorclaw Shifter</Race>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Race>Shifter</Race>
+      </AutomaticAcquisition>
    </Feat>
    <!--Bard Feats-->
    <Feat>
