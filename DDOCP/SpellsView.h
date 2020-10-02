@@ -25,7 +25,7 @@ class CSpellsView :
 #endif
         virtual void OnInitialUpdate();
         const CSLAControl * GetSLAControl();
-        const CSpellsControl * GetSpellsControl(ClassType classType);
+        CSpellsControl * GetSpellsControl(ClassType classType);
     protected:
         CSpellsView();           // protected constructor used by dynamic creation
         virtual ~CSpellsView();

@@ -630,6 +630,18 @@ void BreakdownItemWeaponEffects::WeaponsChanged(const EquippedGear & gear)
                 Breakdown_MainHand,
                 gear.ItemInSlot(Inventory_Weapon1));
     }
+    else
+    {
+        // all non weapon breakdowns
+        for (size_t i = Breakdown_Unknown + 1; i < Breakdown_EndOfNormalBreakdowns; ++i)
+        {
+            BreakdownItem * pBreakdown = FindBreakdown((BreakdownType)i);
+            if (pBreakdown != NULL)
+            {
+                pBreakdown->SetWeapon(Weapon_Unknown, 0); // crit multiplier does not matter here
+            }
+        }
+    }
     if (gear.HasItemInSlot(Inventory_Weapon2))
     {
         m_pOffHandWeapon = CreateWeaponBreakdown(
@@ -663,6 +675,19 @@ BreakdownItemWeapon * BreakdownItemWeaponEffects::CreateWeaponBreakdown(
     BreakdownItemWeapon * pWeaponBreakdown = NULL;
     std::string name = item.Name();
     WeaponType wt = item.Weapon();
+    // some breakdowns can be dependent on the weapon type
+    if (bt == Breakdown_MainHand)
+    {
+        // all non weapon breakdowns
+        for (size_t i = Breakdown_Unknown + 1; i < Breakdown_EndOfNormalBreakdowns; ++i)
+        {
+            BreakdownItem * pBreakdown = FindBreakdown((BreakdownType)i);
+            if (pBreakdown != NULL)
+            {
+                pBreakdown->SetWeapon(wt, 0); // crit multiplier does not matter here
+            }
+        }
+    }
     HTREEITEM hItem = m_pTreeList->InsertItem(
             name.c_str(),
             m_hItem,

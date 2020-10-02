@@ -162,3 +162,4 @@ bool LimitToRuneArm(Character * pCharacter);
 OptionalBuff FindOptionalBuff(const std::string & name);
 void FormatExportData(std::string * exportData);
 void FormatExportData(CString * exportData);
+size_t CasterLevel(Character * pCharacter, ClassType c);

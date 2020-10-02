@@ -54383,6 +54383,7 @@ Cooldown: 20 seconds</Description>
 Shares a cooldown with the Cleave feat. Cooldown: 5 seconds</Description>
           <Icon>KotCAvengingShot</Icon>
           <Cost>2</Cost>
+          <Clickie/>
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Exalted Cleave</Name>
@@ -54390,6 +54391,7 @@ Shares a cooldown with the Cleave feat. Cooldown: 5 seconds</Description>
 Shares a cooldown with the Cleave feat. Cooldown: 5 seconds</Description>
           <Icon>KotCExaltedCleave</Icon>
           <Cost>2</Cost>
+          <Clickie/>
         </EnhancementSelection>
       </Selector>
     </EnhancementTreeItem>
@@ -54889,6 +54891,29 @@ stacks of Blessed Purpose.</Description>
         </Requirement>
       </Requirements>
          <Effect>
+            <Type>CreateSlider</Type>
+            <Bonus>Enhancement</Bonus>
+            <Slider>Ascendancy</Slider>
+            <AmountVector size="2">0 25</AmountVector>
+            <Amount>0</Amount>
+         </Effect>
+         <Effect>
+            <Type>MeleePower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>3</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+            <Stacks>Ascendancy</Stacks>
+         </Effect>
+         <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>3</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+            <Stacks>Ascendancy</Stacks>
+         </Effect>
+         <Effect>
             <Type>AttackBonus</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>2</Amount>
@@ -55107,7 +55132,7 @@ save or die.</Description>
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Holy Retribution Shot</Name>
-          <Description>Ranged Channel Divinity: Executes a powerful holy cleave agaiinst nearby targets
+          <Description>Ranged Channel Divinity: Executes a powerful holy cleave against nearby targets
 that deals +5[W] damage, 100 extra holy damage that scales with 200% Melee or
 Ranged Power, -6 to all ability scores for 10 seconds, and recharges one Smite
 Evil charge to you. On Damage: Evil creatures may be forced to make a Will save
@@ -55138,7 +55163,7 @@ save or die.</Description>
       <EnhancementTreeItem>
          <Name>Sacred Defender: Holy Bastion</Name>
          <InternalName>SacredCore1</InternalName>
-         <Description>You gain +1 Hit Point and 1 Positive Energy Spell Power for each action point you spend in this tree.
+         <Description>You gain +1 Hit Point and 1 Positive Energy Spell Spell Power for each action point you spend in this tree.
 Each Sacred Defender Core Ability you possess grants +2% Fortification.</Description>
          <Icon>SDHolyBastion</Icon>
          <XPosition>0</XPosition>
@@ -55177,9 +55202,9 @@ Each Sacred Defender Core Ability you possess grants +2% Fortification.</Descrip
       <EnhancementTreeItem>
          <Name>Sacred Defender: Sacred Defence</Name>
          <InternalName>SacredCore2</InternalName>
-         <Description>Defensive Combat Stance: +10 Physical and Magical Resistance
+         <Description>Defensive Combat Stance: +10 Physical and Magical Resistance Rating
 +150% bonus to threat generation
-Cannot become raged while Sacred Defence is active</Description>
+Cannot become Raged while Sacred Defence is active.</Description>
          <Icon>SDSacredDefense</Icon>
          <XPosition>1</XPosition>
          <YPosition>0</YPosition>
@@ -55232,7 +55257,7 @@ Cannot become raged while Sacred Defence is active</Description>
       <EnhancementTreeItem>
          <Name>Sacred Defender: Divine Righteousness</Name>
          <InternalName>SacredCore3</InternalName>
-         <Description>Channel Divinity: You gain temporary hit points equal your Charisma score
+         <Description>Channel Divinity: You gain temporary hit points equal to your Charisma score
 and a 200% Sacred bonus to threat generation for 60 seconds.</Description>
          <Icon>SDDivineRighteousness</Icon>
          <XPosition>2</XPosition>
@@ -55321,7 +55346,10 @@ Passive: You gain +5 to Physical and Magical Resistance Rating.</Description>
       <EnhancementTreeItem>
          <Name>Sacred Defender: Glorious Stand</Name>
          <InternalName>SacredCore5</InternalName>
-         <Description>Passive: Adds +10% Sacred Bonus to Max HP, +25 Healing Amp, +3 Lay on Hands charges.</Description>
+         <Description>+25 Positive Healing Amplification
++3 Lay on Hands charges
++10% Sacred Bonus to Maximum Hit Points
++5 to Physical and Magical Resistance rating</Description>
          <Icon>SDGloriousStand</Icon>
          <XPosition>4</XPosition>
          <YPosition>0</YPosition>
@@ -55354,16 +55382,25 @@ Passive: You gain +5 to Physical and Magical Resistance Rating.</Description>
             <Percent/>
             <ApplyAsItemEffect/>
          </Effect>
+         <Effect>
+            <Type>PRR</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>5</Amount>
+         </Effect>
+         <Effect>
+            <Type>MRR</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>5</Amount>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Sacred Defender: Eternal Defender</Name>
          <InternalName>SacredCore6</InternalName>
          <Description>Passive: You gain +2 Charisma, +2 Constitution, + 10 to Physical and Magical
-Resistance Rating and your range of unconsciousness extends by 250 hitpoints.
-+100% Threat generation.
-Toggle: While Eternal Defender is active, if you drop below 0 hit points but are
-not killed, two uses of Turn Undead are immediately expended and you receive a
-reactive heal for 250 points of Positive Energy healing.</Description>
+Resistance Rating , +100% Melee Threat, and your range of unconsciousness extends
+by 250 hitpoints. Toggle: While Eternal Defender is active, if you drop below 0 hit
+points but are not killed, two uses of Turn Undead are immediately expended and you
+receive a reactive heal for 250 points of Positive Energy healing.</Description>
          <Icon>SDEternalDefender</Icon>
          <XPosition>5</XPosition>
          <YPosition>0</YPosition>
@@ -55487,13 +55524,13 @@ reactive heal for 250 points of Positive Energy healing.</Description>
                <Cost>1</Cost>
                <Effect>
                   <Type>PRR</Type>
-                  <Bonus>Enhancement</Bonus>
+                  <Bonus>Sacred</Bonus>
                   <AmountVector size="3">5 10 15</AmountVector>
                   <Stance>Sacred Defense</Stance>
                </Effect>
                <Effect>
                   <Type>MRR</Type>
-                  <Bonus>Enhancement</Bonus>
+                  <Bonus>Sacred</Bonus>
                   <AmountVector size="3">5 10 15</AmountVector>
                   <Stance>Sacred Defense</Stance>
                </Effect>
@@ -55583,8 +55620,7 @@ reactive heal for 250 points of Positive Energy healing.</Description>
       <EnhancementTreeItem>
          <Name>Sacred Defender: Instinctive Defense</Name>
          <InternalName>SacredInstinctiveDefense</InternalName>
-         <Description>You take [5/10/15]% less damage when struck while helpless.
-(Additional damage while helpless varies by difficulty setting from 5% to 25%.)</Description>
+         <Description>You take [5/10/15]% less damage when struck while helpless.</Description>
          <Icon>SDInstinctiveDefense</Icon>
          <XPosition>0</XPosition>
          <YPosition>2</YPosition>
@@ -55664,13 +55700,13 @@ and Magical Resistance Rating. </Description>
                </Requirements>
                <Effect>
                   <Type>PRR</Type>
-                  <Bonus>Enhancement</Bonus>
+                  <Bonus>Sacred</Bonus>
                   <AmountVector size="3">5 10 15</AmountVector>
                   <Stance>Sacred Defense</Stance>
                </Effect>
                <Effect>
                   <Type>MRR</Type>
-                  <Bonus>Enhancement</Bonus>
+                  <Bonus>Sacred</Bonus>
                   <AmountVector size="3">5 10 15</AmountVector>
                   <Stance>Sacred Defense</Stance>
                </Effect>
@@ -55836,13 +55872,13 @@ Magical Resistance Rating. </Description>
                </Requirements>
                <Effect>
                   <Type>PRR</Type>
-                  <Bonus>Enhancement</Bonus>
+                  <Bonus>Sacred</Bonus>
                   <AmountVector size="3">5 10 15</AmountVector>
                   <Stance>Sacred Defense</Stance>
                </Effect>
                <Effect>
                   <Type>MRR</Type>
-                  <Bonus>Enhancement</Bonus>
+                  <Bonus>Sacred</Bonus>
                   <AmountVector size="3">5 10 15</AmountVector>
                   <Stance>Sacred Defense</Stance>
                </Effect>
@@ -55919,7 +55955,7 @@ threat generation. </Description>
          <Selector>
             <EnhancementSelection>
                <Name>Hardy Defense</Name>
-               <Description>Sacred Defence: While wearing medium or heavy armor or wielding a shield
+               <Description>Sacred Defense: While wearing medium or heavy armor or wielding a shield
 you gain a +[2/4/6] Sacred bonus to Constitution. </Description>
                <Icon>SDHardyDefense</Icon>
                <Cost>1</Cost>
@@ -55936,7 +55972,7 @@ you gain a +[2/4/6] Sacred bonus to Constitution. </Description>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Strong Defense</Name>
-               <Description>Sacred Defence: While wearing medium or heavy armor or wielding a shield
+               <Description>Sacred Defense: While wearing medium or heavy armor or wielding a shield
 you gain a +[2/4/6] Sacred bonus to Strength. </Description>
                <Icon>SDStrongDefense</Icon>
                <Cost>1</Cost>
@@ -55953,8 +55989,8 @@ you gain a +[2/4/6] Sacred bonus to Strength. </Description>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Tenacious Defense</Name>
-               <Description>Sacred Defence: While wearing medium or heavy armor or wielding a shield
-you gain a +10%/+15%/+20% Competence bonus to maximum hit points.</Description>
+               <Description>Sacred Defense: While wearing medium or heavy armor or wielding a shield
+you gain a +[10/15%/20]% Competence bonus to maximum hit points.</Description>
                <Icon>SDTenaciousDefense</Icon>
                <Cost>1</Cost>
                <Effect>
@@ -56018,8 +56054,7 @@ you gain a +10%/+15%/+20% Competence bonus to maximum hit points.</Description>
       <EnhancementTreeItem>
          <Name>Sacred Defender: Reinforced Defense I</Name>
          <InternalName>SacredReinforcedDefenseI</InternalName>
-         <Description>Improves the Armor Class bonuses you receive from shields or armor.
-Choose one:</Description>
+         <Description>Improves the Armor Class bonuses you receive from shields or armor.</Description>
          <Icon>SDReinforcedDefense</Icon>
          <XPosition>0</XPosition>
          <YPosition>4</YPosition>
@@ -56089,7 +56124,7 @@ Note: This stacks with Reinforced Defense from Stalwart Defender.</Description>
       <EnhancementTreeItem>
          <Name>Sacred Defender: Swift Defense</Name>
          <InternalName>SacredSwiftDefense</InternalName>
-         <Description>Sacred Defence increases your movement speed by 10%.</Description>
+         <Description>Sacred Defense grants a 10% Action Boost bonus to Movement Speed.</Description>
          <Icon>SDSwiftDefense</Icon>
          <XPosition>2</XPosition>
          <YPosition>4</YPosition>
@@ -56135,7 +56170,7 @@ Choose one of the options you did not pick at tier 3.</Description>
             <Exclude>SacredGreaterSacredDefenseI</Exclude>
             <EnhancementSelection>
                <Name>Hardy Defense</Name>
-               <Description>Sacred Defence: While wearing medium or heavy armor or wielding a shield
+               <Description>Sacred Defense: While wearing medium or heavy armor or wielding a shield
 you gain a +[2/4/6] Sacred bonus to Constitution. </Description>
                <Icon>SDHardyDefense</Icon>
                <Cost>1</Cost>
@@ -56152,7 +56187,7 @@ you gain a +[2/4/6] Sacred bonus to Constitution. </Description>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Strong Defense</Name>
-               <Description>Sacred Defence: While wearing medium or heavy armor or wielding a shield
+               <Description>Sacred Defense: While wearing medium or heavy armor or wielding a shield
 you gain a +[2/4/6] Sacred bonus to Strength. </Description>
                <Icon>SDStrongDefense</Icon>
                <Cost>1</Cost>
@@ -56169,8 +56204,8 @@ you gain a +[2/4/6] Sacred bonus to Strength. </Description>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Tenacious Defense</Name>
-               <Description>Sacred Defence: While wearing medium or heavy armor or wielding a shield
-you gain a +10%/+15%/+20% Competence bonus to maximum hit points.</Description>
+               <Description>Sacred Defense: While wearing medium or heavy armor or wielding a shield
+you gain a +[10/15%/20]% Competence bonus to maximum hit points.</Description>
                <Icon>SDTenaciousDefense</Icon>
                <Cost>1</Cost>
                <Effect>
@@ -56303,10 +56338,10 @@ Note: This stacks with Reinforced Defense from Stalwart Defender.</Description>
       <EnhancementTreeItem>
          <Name>Sacred Defender: Harbored by Light</Name>
          <InternalName>SacredHarboredByLight</InternalName>
-         <Description>You gain +10/15/25 Physical and Magical Resistance Rating.
-You gain 1/2/3 additional uses of Lay on Hands. In addition, while you are
-actively blocking with a shield, enemies that attack you will take 3d4/4d4/5d4
-Light Damage.</Description>
+         <Description>You gain +[10/15/25] Physical and Magical Resistance Rating.
+You gain [1/2/3] additional uses of Lay on Hands.
+In addition, while you are actively blocking with a shield, enemies that attack you
+will take [3/4/5]d4 Light Damage.</Description>
          <Icon>SDHarboredByLight</Icon>
          <XPosition>1</XPosition>
          <YPosition>5</YPosition>
@@ -56342,8 +56377,8 @@ Light Damage.</Description>
       <EnhancementTreeItem>
          <Name>Sacred Defender: Divine Revelation</Name>
          <InternalName>SSDDivineRevelation</InternalName>
-         <Description>Improves your Aura of Courage. Your Aura of Courage now grants +1 additional
-Armor Class, +1 additional Saving Throws, and +1 additional Spell Resistance.
+         <Description>Improves your Aura of Courage. Your Aura of Courage now grants +[1/2/3] additional
+Armor Class, +[1/2/3] additional Saving Throws, and +[1/2/3] additional Spell Resistance.
 In addition, you personally also gain 100 HP.</Description>
          <Icon>SSDDivineRevelation</Icon>
          <XPosition>2</XPosition>
@@ -56415,7 +56450,7 @@ Pick the third option left.</Description>
             <Exclude>SacredGreaterSacredDefenseII</Exclude>
             <EnhancementSelection>
                <Name>Hardy Defense</Name>
-               <Description>Sacred Defence: While wearing medium or heavy armor or wielding a shield
+               <Description>Sacred Defense: While wearing medium or heavy armor or wielding a shield
 you gain a +[2/4/6] Sacred bonus to Constitution. </Description>
                <Icon>SDHardyDefense</Icon>
                <Cost>1</Cost>
@@ -56432,7 +56467,7 @@ you gain a +[2/4/6] Sacred bonus to Constitution. </Description>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Strong Defense</Name>
-               <Description>Sacred Defence: While wearing medium or heavy armor or wielding a shield
+               <Description>Sacred Defense: While wearing medium or heavy armor or wielding a shield
 you gain a +[2/4/6] Sacred bonus to Strength. </Description>
                <Icon>SDStrongDefense</Icon>
                <Cost>1</Cost>
@@ -56449,8 +56484,8 @@ you gain a +[2/4/6] Sacred bonus to Strength. </Description>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Tenacious Defense</Name>
-               <Description>Sacred Defence: While wearing medium or heavy armor or wielding a shield
-you gain a +10%/+15%/+20% Competence bonus to maximum hit points.</Description>
+               <Description>Sacred Defense: While wearing medium or heavy armor or wielding a shield
+you gain a +[10/15%/20]% Competence bonus to maximum hit points.</Description>
                <Icon>SDTenaciousDefense</Icon>
                <Cost>1</Cost>
                <Effect>
@@ -90944,6 +90979,7 @@ Alchemist and Artificer caster levels if have any levels in the class.
          <InternalName>DraconicCore6</InternalName>
          <Description>Your draconic lineage allows you to periodically enter a fuious spell rage.
 Activate Arcane Draconic Fury to add 50 to your Spell Power for 20 seconds.
+Cooldown: 90 seconds
 
 Passive: You gain 50 Spell Points and +1 to your Warlock, Wizard, Sorcerer, Bard,
 Alchemist and Artificer caster levels if have any levels in the class.
@@ -91370,6 +91406,11 @@ Cost: 20 SP</Description>
                <Description>+1/+2 Conjuration DC</Description>
                <Icon>PreciseCasting</Icon>
                <Cost>1</Cost>
+                <Requirements>
+                    <Requirement>
+                        <Feat>Spell Focus: Conjuration</Feat>
+                    </Requirement>
+                </Requirements>
                <Effect>
                   <Type>SpellDC</Type>
                   <Bonus>Destiny</Bonus>
@@ -91382,6 +91423,11 @@ Cost: 20 SP</Description>
                <Description>+1/+2 Evocation DC</Description>
                <Icon>PreciseCasting</Icon>
                <Cost>1</Cost>
+                <Requirements>
+                    <Requirement>
+                        <Feat>Spell Focus: Evocation</Feat>
+                    </Requirement>
+                </Requirements>
                <Effect>
                   <Type>SpellDC</Type>
                   <Bonus>Destiny</Bonus>
@@ -91542,7 +91588,11 @@ granting you a +[1/2/3] bonus to spell penetration.</Description>
          <Cost>1</Cost>
          <Ranks>3</Ranks>
          <MinSpent>8</MinSpent>
-         <Requirements/>
+         <Requirements>
+             <Requirement>
+                 <Feat>Spell Penetration</Feat>
+             </Requirement>
+         </Requirements>
          <Effect>
             <Type>SpellPenetrationBonus</Type>
             <Bonus>Destiny</Bonus>
@@ -98974,7 +99024,11 @@ such defenses. You gain +[1/2/3] bonus to spell penetration.</Description>
          <Cost>1</Cost>
          <Ranks>3</Ranks>
          <MinSpent>8</MinSpent>
-         <Requirements/>
+         <Requirements>
+             <Requirement>
+                 <Feat>Spell Penetration</Feat>
+             </Requirement>
+         </Requirements>
          <Effect>
             <Type>SpellPenetrationBonus</Type>
             <Bonus>Destiny</Bonus>

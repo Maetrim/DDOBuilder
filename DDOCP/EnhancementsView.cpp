@@ -132,16 +132,14 @@ void CEnhancementsView::OnSize(UINT nType, int cx, int cy)
             itemRect += CPoint(itemRect.Width() + c_controlSpacing, 0);
         }
         // position the universal tree buttons under the racial tree
+        CRect rect(0, 0, 36, 36);
+        rect -= CPoint(scrollX, 0);   // take scroll location into account (scrollY from itemRect)
+        rect += CPoint(c_controlSpacing, itemRect.bottom + c_controlSpacing);
         for (size_t i = 0; i < m_numUniversalButtons; ++i)
         {
-            CRect rect;
-            m_universalTrees[i].GetWindowRect(&rect);
-            rect -= rect.TopLeft();
-            rect.right = rect.left + 36;
-            rect.bottom = rect.top + 36;
-            rect += CPoint((rect.Width() + c_controlSpacing) * i + c_controlSpacing, itemRect.bottom + c_controlSpacing);
             m_universalTrees[i].MoveWindow(rect, true);
             m_universalTrees[i].ShowWindow(SW_SHOW);
+            rect += CPoint(rect.Width() + c_controlSpacing, 0);
         }
         SetScrollSizes(
                 MM_TEXT,

@@ -45,7 +45,7 @@ class CMainFrame :
         const CDCView * GetDCView();
         const CSLAControl * GetSLAControl();
         const CStancesView * GetStancesView();
-        const CSpellsControl * GetSpellsControl(ClassType classType);
+        CSpellsControl * GetSpellsControl(ClassType classType);
 
     protected:
         afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);

@@ -249,6 +249,11 @@ size_t Spell::SpellDC(
 
 std::vector<Effect> Spell::UpdatedEffects(size_t castingLevel) const
 {
+    // castingLevel is 1 based, needs to be 0 based
+    if (castingLevel > 0)
+    {
+        castingLevel--;
+    }
     // create a copy of the spell effects with the amount field dependent on the
     // the caster level in use.
     std::vector<Effect> effects = m_Effects;

@@ -3173,3 +3173,44 @@ BreakdownType SchoolToCasterLevelsBreakdown(SpellSchoolType school)
     return bt;
 }
 
+size_t CasterLevel(Character * pCharacter, ClassType c)
+{
+    size_t casterLevel = pCharacter->ClassLevels(c);
+    switch (c)
+    {
+    case Class_Alchemist:
+        casterLevel = (size_t)FindBreakdown(Breakdown_CasterLevel_Alchemist)->Total();
+        break;
+    case Class_Artificer:
+        casterLevel = (size_t)FindBreakdown(Breakdown_CasterLevel_Artificer)->Total();
+        break;
+    case Class_Cleric:
+        casterLevel = (size_t)FindBreakdown(Breakdown_CasterLevel_Cleric)->Total();
+        break;
+    case Class_Druid:
+        casterLevel = (size_t)FindBreakdown(Breakdown_CasterLevel_Druid)->Total();
+        break;
+    case Class_FavoredSoul:
+        casterLevel = (size_t)FindBreakdown(Breakdown_CasterLevel_FavoredSoul)->Total();
+        break;
+    case Class_Paladin:
+        casterLevel = (size_t)FindBreakdown(Breakdown_CasterLevel_Paladin)->Total();
+        break;
+    case Class_Sorcerer:
+        casterLevel = (size_t)FindBreakdown(Breakdown_CasterLevel_Sorcerer)->Total();
+        break;
+    case Class_Ranger:
+        casterLevel = (size_t)FindBreakdown(Breakdown_CasterLevel_Ranger)->Total();
+        break;
+    case Class_Warlock:
+        casterLevel = (size_t)FindBreakdown(Breakdown_CasterLevel_Warlock)->Total();
+        break;
+    case Class_Wizard:
+        casterLevel = (size_t)FindBreakdown(Breakdown_CasterLevel_Wizard)->Total();
+        break;
+    default:
+        break;
+    }
+    return casterLevel;
+}
+

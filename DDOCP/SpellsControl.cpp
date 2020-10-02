@@ -65,6 +65,7 @@ BEGIN_MESSAGE_MAP(CSpellsControl, CStatic)
     ON_WM_MOUSEMOVE()
     ON_MESSAGE(WM_MOUSELEAVE, OnMouseLeave)
     ON_WM_LBUTTONDOWN()
+    ON_WM_RBUTTONDOWN()
     ON_CBN_SELENDOK(IDC_COMBO_SPELLSELECT, OnSpellSelectOk)
     ON_CBN_SELENDCANCEL(IDC_COMBO_SPELLSELECT, OnSpellSelectCancel)
     ON_MESSAGE(WM_MOUSEHOVER, OnHoverComboBox)
@@ -380,30 +381,33 @@ LRESULT CSpellsControl::OnMouseLeave(WPARAM wParam, LPARAM lParam)
 
 void CSpellsControl::SetCharacter(Character * pCharacter, ClassType ct)
 {
-    m_pCharacter = pCharacter;
-    m_class = ct;
-    // fixed spells change if character changes
-    // we get updated with list for new character
-    for (size_t i = 0; i < MAX_SPELL_LEVEL; ++i)
+    if (m_pCharacter != pCharacter)
     {
-        m_fixedSpells[i].clear();
-        // negative spell levels for auto-assigned spells
-        int autoSpellLevel = -((int)i + 1);
-        std::vector<Spell> autoSpells = FilterSpells(ct, autoSpellLevel);
-        for (size_t si = 0; si < autoSpells.size(); ++si)
+        m_pCharacter = pCharacter;
+        m_class = ct;
+        // fixed spells change if character changes
+        // we get updated with list for new character
+        for (size_t i = 0; i < MAX_SPELL_LEVEL; ++i)
         {
-            FixedSpell spell(autoSpells[si].Name(), i + 1);
-            m_fixedSpells[i].push_back(spell);
+            m_fixedSpells[i].clear();
+            // negative spell levels for auto-assigned spells
+            int autoSpellLevel = -((int)i + 1);
+            std::vector<Spell> autoSpells = FilterSpells(ct, autoSpellLevel);
+            for (size_t si = 0; si < autoSpells.size(); ++si)
+            {
+                FixedSpell spell(autoSpells[si].Name(), i + 1);
+                m_fixedSpells[i].push_back(spell);
+            }
         }
-    }
-    UpdateSpells();
-    if (m_pCharacter == NULL)
-    {
-        // no character == no spells to display
-        m_spellsPerLevel.clear();
-        if (IsWindow(GetSafeHwnd()))
+        UpdateSpells(0);
+        if (m_pCharacter == NULL)
         {
-            Invalidate(TRUE);
+            // no character == no spells to display
+            m_spellsPerLevel.clear();
+            if (IsWindow(GetSafeHwnd()))
+            {
+                Invalidate(TRUE);
+            }
         }
     }
 }
@@ -538,13 +542,13 @@ void CSpellsControl::SetTooltipText(
     m_tooltip.Show();
 }
 
-void CSpellsControl::UpdateSpells()
+void CSpellsControl::UpdateSpells(size_t oldCasterLevel)
 {
     // update our cached lists
     for (size_t i = 0; i < MAX_SPELL_LEVEL; ++i)
     {
         // first revoke the spell effects
-        RevokeSpellEffects(m_trainedSpells[i]);
+        RevokeSpellEffects(m_trainedSpells[i], oldCasterLevel);
         m_trainedSpells[i].clear();
         // now query the character for all the spells trained at each level
         // for this class
@@ -632,6 +636,39 @@ void CSpellsControl::OnLButtonDown(UINT nFlags, CPoint point)
                 m_comboSpellSelect.ShowWindow(SW_SHOW);
                 m_comboSpellSelect.SetFocus();
                 m_comboSpellSelect.ShowDropDown();
+            }
+        }
+    }
+}
+
+void CSpellsControl::OnRButtonDown(UINT nFlags, CPoint point)
+{
+    CStatic::OnRButtonDown(nFlags, point);
+    if (m_hitBoxes.size() > 0)
+    {
+        // determine which spell slot has been clicked on
+        const SpellHitBox * item = FindByPoint();
+        if (item != NULL)
+        {
+            // only allow spell revocation if this is not a fixed spell (spellIndex < 0)
+            if (item->SpellIndex() >= 0)
+            {
+                m_editSpellLevel = item->SpellLevel();
+                m_editSpellIndex = item->SpellIndex();
+                // if a spell if trained in this slot query the revocation
+                std::string currentSelection;
+                std::vector<Spell> spells = FilterSpells(m_class, item->SpellLevel());
+                RemoveTrained(&spells, &currentSelection);
+                if (currentSelection != "")
+                {
+                    CString msg;
+                    msg.Format("Are you sure you want the spell \"%s\"?", currentSelection.c_str());
+                    UINT sel = AfxMessageBox(msg, MB_ICONQUESTION | MB_YESNO);
+                    if (sel == IDYES)
+                    {
+                        m_pCharacter->RevokeSpell(m_class, m_editSpellLevel, currentSelection);
+                    }
+                }
             }
         }
     }
@@ -764,7 +801,7 @@ std::list<TrainedSpell> CSpellsControl::FixedSpells(size_t level) const
 void CSpellsControl::ApplySpellEffects(const std::list<TrainedSpell> & spells)
 {
     // first determine the caster level for this class
-    size_t casterLevel = CasterLevel();
+    size_t casterLevel = CasterLevel(m_pCharacter, m_class);
     // now apply the effects for each spell known
     std::list<TrainedSpell>::const_iterator it = spells.begin();
     while (it != spells.end())
@@ -774,10 +811,10 @@ void CSpellsControl::ApplySpellEffects(const std::list<TrainedSpell> & spells)
     }
 }
 
-void CSpellsControl::RevokeSpellEffects(const std::list<TrainedSpell> & spells)
+void CSpellsControl::RevokeSpellEffects(
+        const std::list<TrainedSpell> & spells,
+        size_t casterLevel)
 {
-    // first determine the caster level for this class
-    size_t casterLevel = CasterLevel();
     // now revoke the effects for each spell known
     std::list<TrainedSpell>::const_iterator it = spells.begin();
     while (it != spells.end())
@@ -785,47 +822,6 @@ void CSpellsControl::RevokeSpellEffects(const std::list<TrainedSpell> & spells)
         m_pCharacter->RevokeSpellEffects((*it).SpellName(), casterLevel);
         ++it;
     }
-}
-
-size_t CSpellsControl::CasterLevel() const
-{
-    size_t casterLevel = m_pCharacter->ClassLevels(m_class);
-    switch (m_class)
-    {
-    case Class_Alchemist:
-        casterLevel = (size_t)FindBreakdown(Breakdown_CasterLevel_Alchemist)->Total();
-        break;
-    case Class_Artificer:
-        casterLevel = (size_t)FindBreakdown(Breakdown_CasterLevel_Artificer)->Total();
-        break;
-    case Class_Cleric:
-        casterLevel = (size_t)FindBreakdown(Breakdown_CasterLevel_Cleric)->Total();
-        break;
-    case Class_Druid:
-        casterLevel = (size_t)FindBreakdown(Breakdown_CasterLevel_Druid)->Total();
-        break;
-    case Class_FavoredSoul:
-        casterLevel = (size_t)FindBreakdown(Breakdown_CasterLevel_FavoredSoul)->Total();
-        break;
-    case Class_Paladin:
-        casterLevel = (size_t)FindBreakdown(Breakdown_CasterLevel_Paladin)->Total();
-        break;
-    case Class_Sorcerer:
-        casterLevel = (size_t)FindBreakdown(Breakdown_CasterLevel_Sorcerer)->Total();
-        break;
-    case Class_Ranger:
-        casterLevel = (size_t)FindBreakdown(Breakdown_CasterLevel_Ranger)->Total();
-        break;
-    case Class_Warlock:
-        casterLevel = (size_t)FindBreakdown(Breakdown_CasterLevel_Warlock)->Total();
-        break;
-    case Class_Wizard:
-        casterLevel = (size_t)FindBreakdown(Breakdown_CasterLevel_Wizard)->Total();
-        break;
-    default:
-        break;
-    }
-    return casterLevel;
 }
 
 CSize CSpellsControl::RequiredSize()

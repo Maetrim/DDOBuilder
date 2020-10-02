@@ -75,7 +75,7 @@ class CSpellsControl :
 
         void SetCharacter(Character * pCharacter, ClassType ct);
         void SetTrainableSpells(const std::vector<size_t> & spellsPerLevel);
-        void UpdateSpells();
+        void UpdateSpells(size_t oldCasterLevel);
         void AddFixedSpell(const std::string & spellName, size_t level);
         void RevokeFixedSpell(const std::string & spellName, size_t level);
         std::list<TrainedSpell> FixedSpells(size_t level) const;
@@ -95,6 +95,7 @@ class CSpellsControl :
         afx_msg void OnMouseMove(UINT nFlags, CPoint point);
         afx_msg LRESULT OnMouseLeave(WPARAM wParam, LPARAM lParam) ;
         afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
+        afx_msg void OnRButtonDown(UINT nFlags, CPoint point);
         afx_msg void OnSpellSelectOk();
         afx_msg void OnSpellSelectCancel();
         afx_msg LRESULT OnHoverComboBox(WPARAM wParam, LPARAM lParam);
@@ -111,8 +112,7 @@ class CSpellsControl :
                 std::vector<Spell> * spells,
                 std::string * currentSelection);
         void ApplySpellEffects(const std::list<TrainedSpell> & spells);
-        void RevokeSpellEffects(const std::list<TrainedSpell> & spells);
-        size_t CasterLevel() const;
+        void RevokeSpellEffects(const std::list<TrainedSpell> & spells, size_t casterLevel);
         void ProcessScrollBars(int cx, int cy);
 
         Character * m_pCharacter;

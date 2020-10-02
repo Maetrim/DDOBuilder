@@ -122,7 +122,7 @@ Sometimes it deals 2d6 fire damage per 2 caster levels to all enemies of the
 caster in the grease every few seconds, as well as the caster of the Grease spell.
 A successful Reflex save will reduce this damage by half.</Description>
       <Icon>Grease</Icon>
-      <School>Abjuration</School>
+      <School>Conjuration</School>
       <Enlarge/>
       <Quicken/>
       <Artificer>1</Artificer>
@@ -2613,9 +2613,9 @@ Will save negates this effect. Bane counters and dispels Bless.</Description>
    </Spell>
    <Spell>
       <Name>Bless</Name>
-      <Description>Multiple targets are filled with courage, granting a +1 morale
-bonus on to-hit rolls and saves versus fear. This bonus increase every 5 caster
-levels. Bless counters and dispels Bane.</Description>
+      <Description>You and any allies near you are filled with courage and gain +1 morale bonuses to attack
+rolls and saving throws against fear, with an additional +1 per 5 caster levels,
+max 5 at caster level 20. Bless counters and dispels Bane.</Description>
       <Icon>Bless</Icon>
       <School>Enchantment</School>
       <Enlarge/>
@@ -2623,16 +2623,17 @@ levels. Bless counters and dispels Bane.</Description>
       <Quicken/>
       <Cleric>1</Cleric>
       <FavoredSoul>1</FavoredSoul>
+      <MaxCasterLevel>20</MaxCasterLevel>
       <Effect>
          <Type>AttackBonus</Type>
          <Bonus>Morale</Bonus>
-         <Amount>1</Amount>
+         <AmountVector size="20">1 1 1 1 2 2 2 2 2 3 3 3 3 3 4 4 4 4 4 5</AmountVector>
          <Weapon>All</Weapon>
       </Effect>
       <Effect>
          <Type>SaveBonus</Type>
          <Bonus>Morale</Bonus>
-         <Amount>1</Amount>
+         <AmountVector size="20">1 1 1 1 2 2 2 2 2 3 3 3 3 3 4 4 4 4 4 5</AmountVector>
          <Save>Fear</Save>
       </Effect>
    </Spell>
@@ -2955,7 +2956,8 @@ Aid, Mass will not stack with Bless.</Description>
       <Description>Gives special favor to multiple Party targets and disfavor to
 enemy targets, giving a +1 luck bonus to allies' Attack rolls, weapon
 Damage rolls, saves, and Skill checks, and a -1 penalty to enemies for
-the same rolls. This bonuses increase every 5 caster levels.</Description>
+the same rolls. This bonuses increase every 5 caster levels - max total of 5 at
+caster level 20..</Description>
       <Icon>Prayer</Icon>
       <School>Enchantment</School>
       <Enlarge/>
@@ -2967,25 +2969,25 @@ the same rolls. This bonuses increase every 5 caster levels.</Description>
       <Effect>
          <Type>AttackBonus</Type>
          <Bonus>Luck</Bonus>
-         <Amount>1</Amount>
+         <AmountVector size="20">1 1 1 1 2 2 2 2 2 3 3 3 3 3 4 4 4 4 4 5</AmountVector>
          <Weapon>All</Weapon>
       </Effect>
       <Effect>
          <Type>DamageBonus</Type>
          <Bonus>Luck</Bonus>
-         <Amount>1</Amount>
+         <AmountVector size="20">1 1 1 1 2 2 2 2 2 3 3 3 3 3 4 4 4 4 4 5</AmountVector>
          <Weapon>All</Weapon>
       </Effect>
       <Effect>
          <Type>SaveBonus</Type>
          <Bonus>Luck</Bonus>
-         <Amount>1</Amount>
+         <AmountVector size="20">1 1 1 1 2 2 2 2 2 3 3 3 3 3 4 4 4 4 4 5</AmountVector>
          <Save>All</Save>
       </Effect>
       <Effect>
          <Type>SkillBonus</Type>
          <Bonus>Luck</Bonus>
-         <Amount>1</Amount>
+         <AmountVector size="20">1 1 1 1 2 2 2 2 2 3 3 3 3 3 4 4 4 4 4 5</AmountVector>
          <Skill>All</Skill>
       </Effect>
    </Spell>
@@ -5483,17 +5485,16 @@ Resistance Rating per Caster Level</Description>
       <Extend/>
       <Quicken/>
       <Paladin>2</Paladin>
+      <MaxCasterLevel>20</MaxCasterLevel>
        <Effect>
            <Type>ACBonus</Type>
            <Bonus>Sacred</Bonus>
-           <Amount>1</Amount>
-           <Class>Paladin</Class>
+           <AmountVector size ="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</AmountVector>
        </Effect>
        <Effect>
            <Type>PRR</Type>
            <Bonus>Racial</Bonus>
-           <Amount>1</Amount>
-           <Class>Paladin</Class>
+           <AmountVector size ="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</AmountVector>
        </Effect>
    </Spell>
    <Spell>
@@ -7008,7 +7009,7 @@ every caster level up to 20. A successful fortitude save reduces damage by half.
 D&amp;D Dice: Deals 1d6+4 negative damage per caster level, max 20d6+80, every
 2 seconds for 10 seconds.</Description>
       <Icon>RendTheSoul</Icon>
-      <School>Conjuration</School>
+      <School>Necromancy</School>
       <Empower/>
       <Maximize/>
       <Enlarge/>

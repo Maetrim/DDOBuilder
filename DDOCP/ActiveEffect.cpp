@@ -1063,4 +1063,3 @@ void ActiveEffect::SetClassLevel(size_t count)
 {
     m_levelStacks = count;
 }
-

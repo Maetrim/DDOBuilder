@@ -1178,12 +1178,15 @@ void Character::SetClass3(size_t level, ClassType type)
 void Character::SetClass(size_t level, ClassType type)
 {
     ClassType classFrom = Class_Unknown;
+    size_t oldCasterLevelTo = CasterLevel(this, type);
+    size_t oldCasterLevelFrom = 0;
     if (level < MAX_CLASS_LEVEL)    // 0 based
     {
         ASSERT(m_Levels.size() == MAX_LEVEL);
         std::list<LevelTraining>::iterator it = m_Levels.begin();
         std::advance(it, level);
         classFrom = (*it).HasClass() ? (*it).Class() : Class_Unknown;
+        oldCasterLevelFrom = CasterLevel(this, classFrom);
         (*it).Set_Class(type);
         UpdateSkillPoints(level);
         m_pDocument->SetModifiedFlag(TRUE);
@@ -1194,6 +1197,16 @@ void Character::SetClass(size_t level, ClassType type)
     VerifyTrainedFeats();
     AutoTrainSingleSelectionFeats();
     VerifyGear();
+    CSpellsControl * pSC = GetMainFrame()->GetSpellsControl(type);
+    if (pSC != NULL)
+    {
+        pSC->UpdateSpells(oldCasterLevelTo);
+    }
+    pSC = GetMainFrame()->GetSpellsControl(classFrom);
+    if (pSC != NULL)
+    {
+        pSC->UpdateSpells(oldCasterLevelFrom);
+    }
 }
 
 void Character::SwapClasses(size_t level1, size_t level2)

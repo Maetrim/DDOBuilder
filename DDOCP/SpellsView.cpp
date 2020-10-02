@@ -307,14 +307,17 @@ const CSLAControl * CSpellsView::GetSLAControl()
     return slaControl;
 }
 
-const CSpellsControl * CSpellsView::GetSpellsControl(ClassType classType)
+CSpellsControl * CSpellsView::GetSpellsControl(ClassType classType)
 {
     // look through the page pointers to find the one for this class
-    const CSpellsControl * pSC = NULL;
+    CSpellsControl * pSC = NULL;
     if (m_pagePointers[classType] != NULL)
     {
         CSpellsPage * page = dynamic_cast<CSpellsPage *>(m_pagePointers[classType]);
-        pSC = page->SpellsControl();
+        if (page != NULL)
+        {
+            pSC = page->SpellsControl();
+        }
     }
     return pSC;
 }

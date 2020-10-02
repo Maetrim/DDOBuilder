@@ -97,11 +97,11 @@ void CSpellsPage::UpdateSpellTrained(
     if (spell.Class() == m_classType)
     {
         // this spell is for us, update our control
-        m_spells.UpdateSpells();
+        m_spells.UpdateSpells(CasterLevel(charData, m_classType));
     }
 }
 
-const CSpellsControl * CSpellsPage::SpellsControl()
+CSpellsControl * CSpellsPage::SpellsControl()
 {
     return &m_spells;
 }
@@ -113,7 +113,7 @@ void CSpellsPage::UpdateSpellRevoked(
     if (spell.Class() == m_classType)
     {
         // this spell is for us, update our control
-        m_spells.UpdateSpells();
+        m_spells.UpdateSpells(CasterLevel(charData, m_classType));
     }
 }
 

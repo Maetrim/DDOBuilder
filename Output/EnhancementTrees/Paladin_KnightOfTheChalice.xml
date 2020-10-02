@@ -702,6 +702,7 @@ Cooldown: 20 seconds</Description>
 Shares a cooldown with the Cleave feat. Cooldown: 5 seconds</Description>
           <Icon>KotCAvengingShot</Icon>
           <Cost>2</Cost>
+          <Clickie/>
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Exalted Cleave</Name>
@@ -709,6 +710,7 @@ Shares a cooldown with the Cleave feat. Cooldown: 5 seconds</Description>
 Shares a cooldown with the Cleave feat. Cooldown: 5 seconds</Description>
           <Icon>KotCExaltedCleave</Icon>
           <Cost>2</Cost>
+          <Clickie/>
         </EnhancementSelection>
       </Selector>
     </EnhancementTreeItem>
@@ -1208,6 +1210,29 @@ stacks of Blessed Purpose.</Description>
         </Requirement>
       </Requirements>
          <Effect>
+            <Type>CreateSlider</Type>
+            <Bonus>Enhancement</Bonus>
+            <Slider>Ascendancy</Slider>
+            <AmountVector size="2">0 25</AmountVector>
+            <Amount>0</Amount>
+         </Effect>
+         <Effect>
+            <Type>MeleePower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>3</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+            <Stacks>Ascendancy</Stacks>
+         </Effect>
+         <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>3</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+            <Stacks>Ascendancy</Stacks>
+         </Effect>
+         <Effect>
             <Type>AttackBonus</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>2</Amount>
@@ -1426,7 +1451,7 @@ save or die.</Description>
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Holy Retribution Shot</Name>
-          <Description>Ranged Channel Divinity: Executes a powerful holy cleave agaiinst nearby targets
+          <Description>Ranged Channel Divinity: Executes a powerful holy cleave against nearby targets
 that deals +5[W] damage, 100 extra holy damage that scales with 200% Melee or
 Ranged Power, -6 to all ability scores for 10 seconds, and recharges one Smite
 Evil charge to you. On Damage: Evil creatures may be forced to make a Will save
