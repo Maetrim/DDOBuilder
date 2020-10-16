@@ -45,6 +45,7 @@ void CEquipmentView::DoDataExchange(CDataExchange* pDX)
     DDX_Control(pDX, IDC_BUTTON_DELETE, m_buttonDelete);
     DDX_Control(pDX, IDC_STATIC_NUM_FILIGREES, m_staticNumFiligrees);
     DDX_Control(pDX, IDC_COMBO_NUM_FILLIGREES, m_comboNumFiligrees);
+    DDX_Control(pDX, IDC_CHECK_FILIGREE_MENU, m_filigreeMenu);
 }
 
 #pragma warning(push)
@@ -67,6 +68,7 @@ BEGIN_MESSAGE_MAP(CEquipmentView, CFormView)
     ON_BN_CLICKED(IDC_BUTTON_DELETE, OnGearDelete)
     ON_CBN_SELENDOK(IDC_COMBO_GEAR_NAME, OnGearSelectionSelEndOk)
     ON_CBN_SELENDOK(IDC_COMBO_NUM_FILLIGREES, OnGearNumFiligreesSelEndOk)
+    ON_BN_CLICKED(IDC_CHECK_FILIGREE_MENU, OnToggleFiligreeMenu)
 END_MESSAGE_MAP()
 #pragma warning(pop)
 
@@ -108,6 +110,9 @@ void CEquipmentView::OnInitialUpdate()
     m_buttonPaste.SetImage(IDB_BITMAP_PASTE);
     m_buttonDelete.SetImage(IDB_BITMAP_DELETE);
 
+    bool bChecked = (AfxGetApp()->GetProfileInt("Inventory", "FiligreeMenu", 0) != 0);
+    m_filigreeMenu.SetCheck(bChecked ? BST_CHECKED : BST_UNCHECKED);
+    OnToggleFiligreeMenu(); // ensure inventry view knows state
     EnableControls();
 }
 
@@ -118,7 +123,7 @@ void CEquipmentView::OnSize(UINT nType, int cx, int cy)
     {
         // position all the windows
         // +---------------------------------------------------------+
-        // | [Drop List Combo] [N][C][P][D] [Num Filigrees] [FopList]|
+        // | [Drop List Combo] [N][C][P][D] [Num Filigrees][List][Menu]|
         // | +----------------------------+ +-----------------------+|
         // | |                            | |                       ||
         // | | Inventory Bitmap           | | Filigrees Bitmap      ||
@@ -134,6 +139,7 @@ void CEquipmentView::OnSize(UINT nType, int cx, int cy)
         CRect rctDelete;
         CRect rctNumFiligrees;
         CRect rctNumFiligreesCombo;
+        CRect rctFiligreeMenu;
         m_buttonNew.GetWindowRect(&rctNew);
         m_buttonCopy.GetWindowRect(&rctCopy);
         m_buttonPaste.GetWindowRect(&rctPaste);
@@ -155,6 +161,9 @@ void CEquipmentView::OnSize(UINT nType, int cx, int cy)
         rctNumFiligreesCombo -= rctNumFiligreesCombo.TopLeft();
         rctNumFiligreesCombo += CPoint(rctNumFiligrees.right + c_controlSpacing, c_controlSpacing);
         rctNumFiligreesCombo.bottom = cy;   // drop list to bottom of view
+        m_filigreeMenu.GetWindowRect(&rctFiligreeMenu);
+        rctFiligreeMenu -= rctFiligreeMenu.TopLeft();
+        rctFiligreeMenu += CPoint(rctNumFiligreesCombo.right + c_controlSpacing, c_controlSpacing);
 
         CRect rctInventory(
                 c_controlSpacing,
@@ -169,6 +178,7 @@ void CEquipmentView::OnSize(UINT nType, int cx, int cy)
         m_inventoryView->MoveWindow(rctInventory);
         m_staticNumFiligrees.MoveWindow(rctNumFiligrees);
         m_comboNumFiligrees.MoveWindow(rctNumFiligreesCombo);
+        m_filigreeMenu.MoveWindow(rctFiligreeMenu);
         SetScrollSizes(
                 MM_TEXT,
                 CSize(
@@ -304,6 +314,7 @@ void CEquipmentView::EnableControls()
         m_buttonDelete.EnableWindow(FALSE);
         m_staticNumFiligrees.EnableWindow(FALSE);
         m_comboNumFiligrees.EnableWindow(FALSE);
+        m_filigreeMenu.EnableWindow(FALSE);
     }
     else
     {
@@ -316,6 +327,7 @@ void CEquipmentView::EnableControls()
         m_buttonDelete.EnableWindow(setups.size() > 0);
         m_staticNumFiligrees.EnableWindow(TRUE);
         m_comboNumFiligrees.EnableWindow(TRUE);
+        m_filigreeMenu.EnableWindow(TRUE);
     }
 }
 
@@ -640,4 +652,11 @@ void CEquipmentView::OnGearNumFiligreesSelEndOk()
         m_pCharacter->SetNumFiligrees(sel);
         PopulateGear();
     }
+}
+
+void CEquipmentView::OnToggleFiligreeMenu()
+{
+    bool bChecked = (m_filigreeMenu.GetCheck() == BST_CHECKED);
+    m_inventoryView->SetUseFiligreeMenu(bChecked);
+    AfxGetApp()->WriteProfileInt("Inventory", "FiligreeMenu", bChecked ? 1 : 0);
 }

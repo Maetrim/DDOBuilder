@@ -766,10 +766,8 @@ Tier 2: Evil Outsider Bane, gaining +2 bonus and dealing 2d6 extra damage agains
       <EnhancementTreeItem>
          <Name>Fury of the Wild: Sense Weakness</Name>
          <InternalName>SenseWeakness</InternalName>
-         <Description>You deal [10/20/30]% extra damage to the helpless.
-Your melee attacks deal [1d8/1d8/1d8] extra untyped damage to enemies below
-75% HP, [0/1d12/1d12] extra damage to enemies below 50% HP, and [0/0/1d20]
-extra damage to enemies below 25% HP. These are cumulative.</Description>
+         <Description>You deal [10/20/30]% extra damage to the helpless and +[1/2/3]
+damage per hit.</Description>
          <Icon>SenseWeakness</Icon>
          <XPosition>2</XPosition>
          <YPosition>4</YPosition>
@@ -782,37 +780,16 @@ extra damage to enemies below 25% HP. These are cumulative.</Description>
             </Requirement>
          </Requirements>
          <Effect>
-            <DisplayName>Fury of the Wild: Sense Weakness: Below 75%</DisplayName>
-            <Type>WeaponOtherDamageBonus</Type>
+            <Type>DamageBonus</Type>
             <Bonus>Destiny</Bonus>
             <Weapon>All</Weapon>
-            <Dice>
-               <Number size="3">1 1 1</Number>
-               <Sides size="3">8 8 8</Sides>
-            </Dice>
-            <Stance>Enemy 75%</Stance>
+             <AmountVector size="3">1 2 3</AmountVector>
          </Effect>
          <Effect>
-            <DisplayName>Fury of the Wild: Sense Weakness: Below 50%</DisplayName>
-            <Type>WeaponOtherDamageBonus</Type>
+            <Type>Seeker</Type>
             <Bonus>Destiny</Bonus>
             <Weapon>All</Weapon>
-            <Dice>
-               <Number size="3">0 1 1</Number>
-               <Sides size="3">0 12 12</Sides>
-            </Dice>
-            <Stance>Enemy 50%</Stance>
-         </Effect>
-         <Effect>
-            <DisplayName>Fury of the Wild: Sense Weakness: Below 25%</DisplayName>
-            <Type>WeaponOtherDamageBonus</Type>
-            <Bonus>Destiny</Bonus>
-            <Weapon>All</Weapon>
-            <Dice>
-               <Number size="3">0 0 1</Number>
-               <Sides size="3">0 0 20</Sides>
-            </Dice>
-            <Stance>Enemy 25%</Stance>
+             <AmountVector size="3">1 2 3</AmountVector>
          </Effect>
          <Effect>
             <Type>HelplessDamage</Type>

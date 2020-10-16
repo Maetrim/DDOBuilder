@@ -96,7 +96,7 @@ void BreakdownItemWeaponCriticalThreatRange::CreateOtherEffects()
                 // we have an effect that doubles this weapons base critical range
                 ActiveEffect keenEffect(
                         Bonus_keen,
-                        "Keen weapon",
+                        "Keen/Impact weapon",
                         1,
                         baseRange,
                         "");        // no tree

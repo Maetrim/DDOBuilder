@@ -85,27 +85,31 @@ void BreakdownItem::AddItems(CListCtrl * pControl)
 
 void BreakdownItem::SetCharacter(Character * pCharacter, bool observe)
 {
-    if (m_pCharacter != NULL)
+    if (m_pCharacter != pCharacter)
     {
-        m_pCharacter->DetachObserver(this);
-    }
-    m_pCharacter = pCharacter;
-    // if the document has changed, we will
-    // need to regenerate all the items that are used to
-    // calculate the total for this breakdown
-    m_otherEffects.clear();
-    m_effects.clear();
-    m_itemEffects.clear();
-    if (m_pCharacter != NULL)
-    {
-        if (observe)
+        if (m_pCharacter != NULL)
         {
-            m_pCharacter->AttachObserver(this);
+            m_pCharacter->DetachObserver(this);
         }
-        CreateOtherEffects();
+        m_pCharacter = pCharacter;
+        m_mainAbility = m_baseAbility;
+        // if the document has changed, we will
+        // need to regenerate all the items that are used to
+        // calculate the total for this breakdown
+        m_otherEffects.clear();
+        m_effects.clear();
+        m_itemEffects.clear();
+        if (m_pCharacter != NULL)
+        {
+            if (observe)
+            {
+                m_pCharacter->AttachObserver(this);
+            }
+            CreateOtherEffects();
+        }
+        // now add the standard items
+        Populate();
     }
-    // now add the standard items
-    Populate();
 }
 
 BreakdownType BreakdownItem::Type() const

@@ -154,6 +154,7 @@ enum EffectType
     Effect_WeaponPlus,
     Effect_WeaponEnchantment,
     Effect_WeaponProficiency,
+    Effect_DestinyAPBonus,
 };
 const XmlLib::enumMapEntry<EffectType> effectTypeMap[] =
 {
@@ -287,6 +288,7 @@ const XmlLib::enumMapEntry<EffectType> effectTypeMap[] =
     {Effect_WeaponPlus, L"WeaponPlus"},
     {Effect_WeaponEnchantment, L"WeaponEnchantment"},
     {Effect_WeaponProficiency, L"WeaponProficiency"},
+    {Effect_DestinyAPBonus, L"DestinyAPBonus"},
     {EffectType(0), NULL}
 };
 

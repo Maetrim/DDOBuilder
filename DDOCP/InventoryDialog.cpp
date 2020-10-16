@@ -7,6 +7,7 @@
 #include "GlobalSupportFunctions.h"
 #include "SelectionSelectDialog.h"
 #include "MainFrm.h"
+#include <algorithm>
 
 namespace
 {
@@ -49,7 +50,8 @@ CInventoryDialog::CInventoryDialog(CWnd* pParent) :
     m_tooltipItem(Inventory_Unknown),
     m_tooltipFiligree(-2),
     m_bIgnoreNextMessage(false),
-    m_filigreeIndex(0)
+    m_filigreeIndex(0),
+    m_bUseFiligreeMenu(false)
 {
     //{{AFX_DATA_INIT(CInventoryDialog)
     //}}AFX_DATA_INIT
@@ -116,6 +118,11 @@ void CInventoryDialog::SetGearSet(
     Invalidate();
 }
 
+void CInventoryDialog::SetUseFiligreeMenu(bool bChecked)
+{
+    m_bUseFiligreeMenu = bChecked;
+}
+
 BOOL CInventoryDialog::OnInitDialog()
 {
     CDialog::OnInitDialog();
@@ -133,6 +140,19 @@ BOOL CInventoryDialog::OnInitDialog()
                 IDC_COMBO_FILIGREESELECT);
         CFont* pDefaultGUIFont = CFont::FromHandle((HFONT) GetStockObject(DEFAULT_GUI_FONT));
         m_comboFiligreeSelect.SetFont(pDefaultGUIFont, TRUE);
+    }
+    // create the menu used for Filigree selection
+    m_filigrees = CompatibleAugments("Filigree");
+    std::sort(m_filigrees.begin(), m_filigrees.end());
+    m_filigreeMenu.CreatePopupMenu();
+    // create a new sub menu for each filigree group
+    int iItemIndex = 1;
+    std::vector<Augment>::const_iterator cit = m_filigrees.begin();
+    while (cit != m_filigrees.end())
+    {
+        std::string fullName = (*cit).Name();
+        AddMenuItem(m_filigreeMenu.GetSafeHmenu(), fullName.c_str(), iItemIndex++);
+        ++cit;
     }
 
     return TRUE;  // return TRUE unless you set the focus to a control
@@ -328,31 +348,83 @@ void CInventoryDialog::OnLButtonDown(UINT nFlags, CPoint point)
         if (IsWindowEnabled())
         {
             SentientJewel jewel = m_gearSet.SentientIntelligence();
-            int filigree = 0;
+            int filigreeIndex = 0;
             bool isRareSection = false;
             CRect itemRect;
-            bool bFiligree = FindFiligreeByPoint(&filigree, &isRareSection, &itemRect);
+            bool bFiligree = FindFiligreeByPoint(&filigreeIndex, &isRareSection, &itemRect);
             if (bFiligree)
             {
-                // if we have a filigree in this location allow it to be changed or
-                // toggle the rare state of this filigree
-                std::string clickedFiligree = jewel.GetFiligree(filigree);
-                if (clickedFiligree.empty())
+                if (m_bUseFiligreeMenu)
                 {
-                    // just allow the user to select a filigree for this position
-                    EditFiligree(filigree, itemRect);
-                }
-                else
-                {
-                    // if they clicked the rare section, toggle its rare state
-                    if (isRareSection)
+                    if (filigreeIndex < 0)
                     {
-                        ToggleRareState(filigree);
+                        EditFiligree(filigreeIndex, itemRect);   // jewel personality
                     }
                     else
                     {
-                        // allow the user to change this filigree selection
-                        EditFiligree(filigree, itemRect);
+                        // if we have a filigree in this location allow it to be changed or
+                        // toggle the rare state of this filigree
+                        std::string clickedFiligree = jewel.GetFiligree(filigreeIndex);
+                        if (clickedFiligree.empty()
+                                || !isRareSection)
+                        {
+                            ClientToScreen(&itemRect);
+                            CWinAppEx * pApp = dynamic_cast<CWinAppEx*>(AfxGetApp());
+                            UINT sel = pApp->GetContextMenuManager()->TrackPopupMenu(
+                                    m_filigreeMenu.GetSafeHmenu(),
+                                    itemRect.left,
+                                    itemRect.top,
+                                    this);
+                            if (sel > 0)
+                            {
+                                std::vector<Augment>::const_iterator cit = m_filigrees.begin();
+                                std::advance(cit, sel - 1);
+                                if (cit != m_filigrees.end())
+                                {
+                                    std::string selectedItem = (*cit).Name();
+                                    SentientJewel jewel = m_gearSet.SentientIntelligence();
+                                    // if they selected "No Augment" then clear the selection
+                                    if (selectedItem == " No Augment")
+                                    {
+                                        jewel.SetFiligreeRare(filigreeIndex, false);
+                                        jewel.SetFiligree(filigreeIndex, "");
+                                    }
+                                    else
+                                    {
+                                        jewel.SetFiligree(filigreeIndex, selectedItem);
+                                    }
+                                    m_gearSet.Set_SentientIntelligence(jewel);
+                                    m_pCharacter->UpdateActiveGearSet(m_gearSet);
+                                    Invalidate();
+                                }
+                            }
+                        }
+                        else
+                        {
+                            ToggleRareState(filigreeIndex);
+                        }
+                    }
+                }
+                else
+                {
+                    std::string clickedFiligree = jewel.GetFiligree(filigreeIndex);
+                    if (clickedFiligree.empty())
+                    {
+                        // just allow the user to select a filigree for this position
+                        EditFiligree(filigreeIndex, itemRect);
+                    }
+                    else
+                    {
+                        // if they clicked the rare section, toggle its rare state
+                        if (isRareSection)
+                        {
+                            ToggleRareState(filigreeIndex);
+                        }
+                        else
+                        {
+                            // allow the user to change this filigree selection
+                            EditFiligree(filigreeIndex, itemRect);
+                        }
                     }
                 }
             }

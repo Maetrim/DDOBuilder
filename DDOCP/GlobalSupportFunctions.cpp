@@ -3214,3 +3214,141 @@ size_t CasterLevel(Character * pCharacter, ClassType c)
     return casterLevel;
 }
 
+bool AddMenuItem(
+        HMENU hTargetMenu, 
+        const CString& itemText, 
+        UINT itemID)
+{
+    bool bSuccess = false;
+
+    ASSERT(itemText.GetLength() > 0);
+    ASSERT(hTargetMenu != NULL);
+
+    // first, does the menu item have
+    // any required submenus to be found/created?
+    if (itemText.Find(':') >= 0)
+    {
+        // yes, we need to do a recursive call
+        // on a submenu handle and with that sub
+        // menu name removed from itemText
+
+        // 1:get the popup menu name
+        CString popupMenuName = itemText.Left(itemText.Find(':'));
+
+        // 2:get the rest of the menu item name
+        // minus the delimiting '\' character
+        CString remainingText = 
+            itemText.Right(itemText.GetLength() 
+                   - popupMenuName.GetLength() - 1);
+
+        // 3:See whether the popup menu already exists
+        int itemCount = ::GetMenuItemCount(hTargetMenu);
+        bool bFoundSubMenu = false;
+        MENUITEMINFO menuItemInfo;
+
+        memset(&menuItemInfo, 0, sizeof(MENUITEMINFO));
+        menuItemInfo.cbSize = sizeof(MENUITEMINFO);
+        menuItemInfo.fMask = 
+          MIIM_TYPE | MIIM_STATE | MIIM_ID | MIIM_SUBMENU;
+        for (int itemIndex = 0 ; 
+           itemIndex < itemCount && !bFoundSubMenu ; itemIndex++)
+        {
+            ::GetMenuItemInfo(
+                    hTargetMenu, 
+                    itemIndex, 
+                    TRUE, 
+                    &menuItemInfo);
+            if (menuItemInfo.hSubMenu != 0)
+            {
+                // this menu item is a popup menu (non popups give 0)
+                TCHAR    buffer[MAX_PATH];
+                ::GetMenuString(
+                        hTargetMenu, 
+                        itemIndex, 
+                        buffer, 
+                        MAX_PATH, 
+                        MF_BYPOSITION);
+                if (popupMenuName == buffer)
+                {
+                    // this is the popup menu we have to add to
+                    bFoundSubMenu = true;
+                }
+            }
+        }
+        // 4: If exists, do recursive call,
+        // else create do recursive call
+        // and then insert it
+        if (bFoundSubMenu)
+        {
+            bSuccess = AddMenuItem(
+                    menuItemInfo.hSubMenu, 
+                    remainingText, 
+                    itemID);
+        }
+        else
+        {
+            // we need to create a new sub menu and insert it
+            HMENU hPopupMenu = ::CreatePopupMenu();
+            if (hPopupMenu != NULL)
+            {
+                bSuccess = AddMenuItem(
+                        hPopupMenu, 
+                        remainingText, 
+                        itemID);
+                if (bSuccess)
+                {
+                    if (::AppendMenu(
+                            hTargetMenu, 
+                            MF_POPUP, 
+                            (UINT)hPopupMenu, 
+                            popupMenuName) > 0)
+                    {
+                        bSuccess = true;
+                        // hPopupMenu now owned by hTargetMenu,
+                        // we do not need to destroy it
+                    }
+                    else
+                    {
+                        // failed to insert the popup menu
+                        bSuccess = false;
+                        // stop a resource leak
+                        ::DestroyMenu(hPopupMenu);
+                    }
+                }
+            }
+        }        
+    }
+    else
+    {
+        // no sub menus required, add this item to this HMENU
+        // item ID of 0 means we are adding a separator
+        if (itemID != 0)
+        {
+            // its a normal menu command
+            if (::AppendMenu(
+                    hTargetMenu, 
+                    MF_BYCOMMAND, 
+                    itemID, 
+                    itemText) > 0)
+            {
+                // we successfully added the item to the menu
+                bSuccess = true;
+            }
+        }
+        else
+        {
+            // we are inserting a separator
+            if (::AppendMenu(
+                    hTargetMenu, 
+                    MF_SEPARATOR, 
+                    itemID, 
+                    itemText) > 0)
+            {
+                // we successfully added the separator to the menu
+                bSuccess = true;
+            }
+        }
+    }
+
+    return bSuccess;
+}

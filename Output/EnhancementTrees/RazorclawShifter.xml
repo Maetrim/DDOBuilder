@@ -1,6 +1,6 @@
 <Enhancements>
   <EnhancementTree>
-    <Name>Razerclaw Shifter</Name>
+    <Name>Razorclaw Shifter</Name>
     <Version>1</Version>
     <Requirements>
       <Requirement>
@@ -31,7 +31,7 @@
       <Name>Razorclaw Shifter: Ability I</Name>
       <InternalName>RazorclawCore2</InternalName>
       <Description>Choose between +1 Constitution, Dexterity or Strength</Description>
-      <Icon>ConDexStr</Icon>
+      <Icon>Constitution</Icon>
       <XPosition>1</XPosition>
       <YPosition>0</YPosition>
       <Cost>2</Cost>
@@ -108,7 +108,7 @@
       <Name>Razorclaw Shifter: Ability II</Name>
       <InternalName>RazorclawCore4</InternalName>
       <Description>Choose between +1 Constitution, Dexterity or Strength</Description>
-      <Icon>ConDexStr</Icon>
+      <Icon>Constitution</Icon>
       <XPosition>3</XPosition>
       <YPosition>0</YPosition>
       <Cost>2</Cost>
@@ -278,7 +278,7 @@
     <EnhancementTreeItem>
       <Name>Razorclaw Shifter: Piercing Claws</Name>
       <InternalName>RazorclawPiercingClaws</InternalName>
-      <Description>While Raging with Handwraps, you bypass Piercing DR.</Description>
+      <Description>While Raging with Handwraps, you bypass Piercing and Slashing DR.</Description>
       <Icon>RazorclawPiercingClaws</Icon>
       <XPosition>0</XPosition>
       <YPosition>2</YPosition>
@@ -292,6 +292,14 @@
         <AnyOfStance>Rage</AnyOfStance>
         <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
         <DR>Pierce</DR>
+        <Weapon>Handwraps</Weapon>
+      </Effect>
+      <Effect>
+        <Type>DRBypass</Type>
+        <Bonus>Enhancement</Bonus>
+        <AnyOfStance>Rage</AnyOfStance>
+        <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
+        <DR>Slash</DR>
         <Weapon>Handwraps</Weapon>
       </Effect>
     </EnhancementTreeItem>
@@ -371,7 +379,7 @@ Your Iconic Rage now uncenters you.</Description>
       <Icon>RazorclawDestructiveShifting</Icon>
       <XPosition>0</XPosition>
       <YPosition>3</YPosition>
-      <Cost>2</Cost>
+      <Cost>1</Cost>
       <Ranks>1</Ranks>
       <MinSpent>10</MinSpent>
       <ArrowUp/>
@@ -563,7 +571,7 @@ Your Iconic Rage now uncenters you.</Description>
     <EnhancementTreeItem>
       <Name>Razorclaw Shifter: True Hunter</Name>
       <InternalName>RazorclawTrueHunter</InternalName>
-      <Description>You gain Freedom of Movement, +2 to Saves vs. Enchantments and Illusions, immunity to Petrification and +10 to Spot.</Description>
+      <Description>You gain +2 to Saves vs. Enchantments and Illusions, immunity to Petrification and +10 to Spot.</Description>
       <Icon>RazorclawTrueHunter</Icon>
       <XPosition>1</XPosition>
       <YPosition>4</YPosition>
@@ -571,11 +579,6 @@ Your Iconic Rage now uncenters you.</Description>
       <Ranks>1</Ranks>
       <MinSpent>15</MinSpent>
       <Requirements/>
-      <Effect>
-        <Type>Immunity</Type>
-        <Bonus>Destiny</Bonus>
-        <Immunity>Holds and slippery surfaces</Immunity>
-      </Effect>
       <Effect>
         <Type>SaveBonus</Type>
         <Bonus>Enhancement</Bonus>

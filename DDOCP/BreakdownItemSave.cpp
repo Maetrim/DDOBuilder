@@ -31,6 +31,7 @@ BreakdownItemSave::BreakdownItemSave(
         m_pBaseBreakdown->m_noFailOnOne.AttachObserver(this);
     }
     m_noFailOnOne.AttachObserver(this);
+    m_baseAbility = m_mainAbility;
 }
 
 BreakdownItemSave::~BreakdownItemSave()

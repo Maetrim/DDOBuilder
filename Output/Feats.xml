@@ -16108,6 +16108,22 @@ Action Points, in the form of a free Feat.</Description>
       </Effect>
    </Feat>
    <Feat>
+      <Name>Tome of Destiny</Name>
+      <Description>Entwined with the words of this think book is a powerful magical effect that
+grants a permanent +1 Point to spend in your active Epic Destiny.
+This effect will not stack with other (Feywild) Tomes of Destiny, but will with
+Tomes of Destiny from other sources.</Description>
+      <Requirements/>
+      <MaxTimesAcquire>1</MaxTimesAcquire>
+      <Acquire>Special</Acquire>
+      <Icon>InherentDestinyActionPoint</Icon>
+      <Effect>
+         <Type>DestinyAPBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
+      </Effect>
+   </Feat>
+   <Feat>
       <Name>Inherent Spell Power</Name>
       <Description>Chrism Of Spell Power - Entwined with the words of this thick book is a
 powerful magical effect that grants a permanent +1 inherent bonus to Spell Power,
@@ -20080,7 +20096,7 @@ as per the effect.</Description>
       <Name>Scion of the Feywild</Name>
       <Description>+10 Sonic Spell Power,
 +30 Universal Spell Power,
-+4 to the DCs of Enchantment spells,
++4 to the DCs of Enchantment and Illusion spells,
 +2 to DCs of other spells,
 Add 2d20 Sonic damage to weapon and unarmed attacks (Scales with Spell Power),
 +20 Healing Amp</Description>
@@ -20110,6 +20126,12 @@ Add 2d20 Sonic damage to weapon and unarmed attacks (Scales with Spell Power),
          <Type>SpellDC</Type>
          <Bonus>Feat</Bonus>
          <School>Enchantment</School>
+         <Amount>2</Amount>
+      </Effect>
+      <Effect>
+         <Type>SpellDC</Type>
+         <Bonus>Feat</Bonus>
+         <School>Illusion</School>
          <Amount>2</Amount>
       </Effect>
       <Effect>
@@ -21062,7 +21084,7 @@ When the form ends, however, you will become fatigued.</Description>
    </Feat>
    <!--Warlock pact spells-->
    <Feat>
-      <Name>Pact Spell Fey: Blindness</Name>
+      <Name>Pact Magic: Blindness</Name>
       <Description>Renders an enemy blinded. A successful Fortitude save negates this effect.</Description>
       <FeatGroup>
          <IsWarlockPactSpell/>
@@ -21087,7 +21109,7 @@ When the form ends, however, you will become fatigued.</Description>
       </Effect>
    </Feat>
    <Feat>
-      <Name>Pact Spell Fiend: Rage</Name>
+      <Name>Pact Magic: Rage</Name>
       <Description>This area of effect spell grants to targets +2 morale bonus to
 Strength and to Constitution, +1 morale bonus on will saves and a -2 penalty to
 Armor Class. The spell's duration is 60 + 6 seconds per caster level.</Description>
@@ -21114,7 +21136,7 @@ Armor Class. The spell's duration is 60 + 6 seconds per caster level.</Descripti
       </Effect>
    </Feat>
    <Feat>
-      <Name>Pact Spell Fiend: Knock</Name>
+      <Name>Pact Magic: Knock</Name>
       <Description>Unlocks locked doors and chests as if a Rogue with a Open Lock
 skill of caster level+casting ability modifier (Charisma for Warlocks) was attempting to
 pick the lock.</Description>
@@ -21141,7 +21163,7 @@ pick the lock.</Description>
       </Effect>
    </Feat>
    <Feat>
-      <Name>Pact Spell Celestial: Soundburst</Name>
+      <Name>Pact Magic: Soundburst</Name>
       <Description>This spell is added to your Warlock spellbook.</Description>
       <FeatGroup>
          <IsWarlockPactSpell/>
@@ -21166,7 +21188,7 @@ pick the lock.</Description>
       </Effect>
    </Feat>
    <Feat>
-      <Name>Pact Spell The Abyss: Spawn Screen</Name>
+      <Name>Pact Magic: Spawn Screen</Name>
       <Description>This spell is added to your Warlock spellbook.</Description>
       <FeatGroup>
          <IsWarlockPactSpell/>
@@ -21191,7 +21213,7 @@ pick the lock.</Description>
       </Effect>
    </Feat>
    <Feat>
-      <Name>Pact Spell The Carceri Storm: Gust of Wind</Name>
+      <Name>Pact Magic: Gust of Wind</Name>
       <Description>This spell is added to your Warlock spellbook.</Description>
       <FeatGroup>
          <IsWarlockPactSpell/>
@@ -21216,7 +21238,7 @@ pick the lock.</Description>
       </Effect>
    </Feat>
    <Feat>
-      <Name>Pact Spell Fey: Slow</Name>
+      <Name>Pact Magic: Slow</Name>
       <Description>One target moves at 50% run speed, attacks at a 30% slowed
 rate, -1 on Attack rolls, Armor Class and Reflex saves. A successful Will save
 negates this effect.</Description>
@@ -21243,7 +21265,7 @@ negates this effect.</Description>
       </Effect>
    </Feat>
    <Feat>
-      <Name>Pact Spell Fiend: Fire Shield</Name>
+      <Name>Pact Magic: Fire Shield</Name>
       <Description>Wreaths the caster in hot or cold flames. Any creature striking
 you in melee takes 1d3+3 plus 1 per caster level (Maximum caster
 level 15.) damage. The Fire version of this spell deals fire
@@ -21275,7 +21297,7 @@ you.</Description>
       </Effect>
    </Feat>
    <Feat>
-      <Name>Pact Spell Fiend: Phantasmal Killer</Name>
+      <Name>Pact Magic: Phantasmal Killer</Name>
       <Description>A target who fails a Will saving throw followed by a failed
 Fortitude saving throw dies from fear. A successful Fortitude
 save still results in 1d3 + 1 damage per caster level. A Will
@@ -21303,7 +21325,7 @@ save disbelieves the spell and negates ill effects.</Description>
       </Effect>
    </Feat>
    <Feat>
-      <Name>Pact Spell Celestial: Magic Circle against Evil</Name>
+      <Name>Pact Magic: Magic Circle against Evil</Name>
       <Description></Description>
       <FeatGroup>
          <IsWarlockPactSpell/>
@@ -21328,7 +21350,7 @@ save disbelieves the spell and negates ill effects.</Description>
       </Effect>
    </Feat>
    <Feat>
-      <Name>Pact Spell The Abyss: Halt Undead</Name>
+      <Name>Pact Magic: Halt Undead</Name>
       <Description></Description>
       <FeatGroup>
          <IsWarlockPactSpell/>
@@ -21353,7 +21375,7 @@ save disbelieves the spell and negates ill effects.</Description>
       </Effect>
    </Feat>
    <Feat>
-      <Name>Pact Spell The Carceri Storm: Creeping Cold</Name>
+      <Name>Pact Magic: Creeping Cold</Name>
       <Description></Description>
       <FeatGroup>
          <IsWarlockPactSpell/>
@@ -21378,7 +21400,7 @@ save disbelieves the spell and negates ill effects.</Description>
       </Effect>
    </Feat>
    <Feat>
-      <Name>Pact Spell Fey: Greater Dispel Magic</Name>
+      <Name>Pact Magic: Greater Dispel Magic</Name>
       <Description>Removes ongoing spells that have been cast on a target. You must
 make a caster level check of 1d20+your caster level (Maximum caster level 20.)
 of DC 11+spell's caster level to remove an effect. In addition, this spell can
@@ -21410,7 +21432,7 @@ If the level of the trap is reduced to 0, the trap is disabled.</Description>
       </Effect>
    </Feat>
    <Feat>
-      <Name>Pact Spell Fiend: Binding Chain</Name>
+      <Name>Pact Magic: Binding Chain</Name>
       <Description>Spell info here</Description>
       <FeatGroup>
          <IsWarlockPactSpell/>
@@ -21435,7 +21457,7 @@ If the level of the trap is reduced to 0, the trap is disabled.</Description>
       </Effect>
    </Feat>
    <Feat>
-      <Name>Pact Spell Fiend: Dominate Person</Name>
+      <Name>Pact Magic: Dominate Person</Name>
       <Description>You can control the actions of any humanoid creature that fails
 its Will save through a telepathic link that you establish with the subjects
 mind. Dominate acts like Charm Person, with additional Will saves every 15 to
@@ -21463,7 +21485,7 @@ mind. Dominate acts like Charm Person, with additional Will saves every 15 to
       </Effect>
    </Feat>
    <Feat>
-      <Name>Pact Spell Celestial: Prayer</Name>
+      <Name>Pact Magic: Prayer</Name>
       <Description>This spell is added to your Warlock spellbook.</Description>
       <FeatGroup>
          <IsWarlockPactSpell/>
@@ -21488,7 +21510,7 @@ mind. Dominate acts like Charm Person, with additional Will saves every 15 to
       </Effect>
    </Feat>
    <Feat>
-      <Name>Pact Spell The Abyss: Death Aura</Name>
+      <Name>Pact Magic: Death Aura</Name>
       <Description>This spell is added to your Warlock spellbook.</Description>
       <FeatGroup>
          <IsWarlockPactSpell/>
@@ -21513,7 +21535,7 @@ mind. Dominate acts like Charm Person, with additional Will saves every 15 to
       </Effect>
    </Feat>
    <Feat>
-      <Name>Pact Spell The Carceri Storm: Ice Storm</Name>
+      <Name>Pact Magic: Ice Storm</Name>
       <Description>This spell is added to your Warlock spellbook.</Description>
       <FeatGroup>
          <IsWarlockPactSpell/>
@@ -21538,7 +21560,7 @@ mind. Dominate acts like Charm Person, with additional Will saves every 15 to
       </Effect>
    </Feat>
    <Feat>
-      <Name>Pact Spell Fey: Otto's Sphere of Dancing</Name>
+      <Name>Pact Magic: Otto's Sphere of Dancing</Name>
       <Description>A magical sphere that compels all enemies who enter it to dance.
 A successful Will save negates this effect.</Description>
       <FeatGroup>
@@ -21564,7 +21586,7 @@ A successful Will save negates this effect.</Description>
       </Effect>
    </Feat>
    <Feat>
-      <Name>Pact Spell Fiend: Power Word: Blind</Name>
+      <Name>Pact Magic: Power Word: Blind</Name>
       <Description>A single word of power is uttered, causing your target to become
 Blinded. Creatures are Blinded for at least 6+6d4 seconds and
 players are Blinded for at least 4+1d6 seconds. Creatures with
@@ -21592,7 +21614,7 @@ more than 100,000 Hit Points are unaffected by Power Word: Blind.</Description>
       </Effect>
    </Feat>
    <Feat>
-      <Name>Pact Spell Fiend: Mass Suggestion</Name>
+      <Name>Pact Magic: Mass Suggestion</Name>
       <Description>Casts Suggestion on multiple enemies. The actions of affected
 enemies are influenced by you, allowing you to suggest that they fight as
 your allies for 6 seconds per caster level. A successful Will save negates
@@ -21620,7 +21642,7 @@ this effect.</Description>
       </Effect>
    </Feat>
    <Feat>
-      <Name>Pact Spell Celestial: Holy Aura</Name>
+      <Name>Pact Magic: Holy Aura</Name>
       <Description>This spell is added to your Warlock spellbook.</Description>
       <FeatGroup>
          <IsWarlockPactSpell/>
@@ -21645,7 +21667,7 @@ this effect.</Description>
       </Effect>
    </Feat>
    <Feat>
-      <Name>Pact Spell The Abyss: Symbol of Pain</Name>
+      <Name>Pact Magic: Symbol of Pain</Name>
       <Description>This spell is added to your Warlock spellbook.</Description>
       <FeatGroup>
          <IsWarlockPactSpell/>
@@ -21670,7 +21692,7 @@ this effect.</Description>
       </Effect>
    </Feat>
    <Feat>
-      <Name>Pact Spell The Carceri Storm: Niac's Biting Cold</Name>
+      <Name>Pact Magic: Niac's Biting Cold</Name>
       <Description>This spell is added to your Warlock spellbook.</Description>
       <FeatGroup>
          <IsWarlockPactSpell/>
@@ -21695,7 +21717,7 @@ this effect.</Description>
       </Effect>
    </Feat>
    <Feat>
-      <Name>Pact Spell Fey: Otto's Irresistible Dance</Name>
+      <Name>Pact Magic: Otto's Irresistible Dance</Name>
       <Description>This spell makes it impossible for the enemy to do anything
 other than caper and prance in place.</Description>
       <FeatGroup>
@@ -21721,7 +21743,7 @@ other than caper and prance in place.</Description>
       </Effect>
    </Feat>
    <Feat>
-      <Name>Pact Spell Fiend: Howl of Terror</Name>
+      <Name>Pact Magic: Howl of Terror</Name>
       <Description>You utter a terrifying howl, filling your foes with a paralyzing fear.
 Foes around you are paralyzed for 6 to 24 seconds. Will save negates.</Description>
       <FeatGroup>
@@ -21747,7 +21769,7 @@ Foes around you are paralyzed for 6 to 24 seconds. Will save negates.</Descripti
       </Effect>
    </Feat>
    <Feat>
-      <Name>Pact Spell Fiend: Power Word: Kill</Name>
+      <Name>Pact Magic: Power Word: Kill</Name>
       <Description>A single word causes the death of a single enemy with no
 saving throw allowed. Cooldown timer of 210 seconds.</Description>
       <FeatGroup>
@@ -21773,7 +21795,7 @@ saving throw allowed. Cooldown timer of 210 seconds.</Description>
       </Effect>
    </Feat>
    <Feat>
-      <Name>Pact Spell Celestial: Freedom of Movement</Name>
+      <Name>Pact Magic: Freedom of Movement</Name>
       <Description>This spell is added to your Warlock spellbook.</Description>
       <FeatGroup>
          <IsWarlockPactSpell/>
@@ -21798,7 +21820,7 @@ saving throw allowed. Cooldown timer of 210 seconds.</Description>
       </Effect>
    </Feat>
    <Feat>
-      <Name>Pact Spell The Abyss: Rend the Soul</Name>
+      <Name>Pact Magic: Rend the Soul</Name>
       <Description>This spell is added to your Warlock spellbook.</Description>
       <FeatGroup>
          <IsWarlockPactSpell/>
@@ -21823,7 +21845,7 @@ saving throw allowed. Cooldown timer of 210 seconds.</Description>
       </Effect>
    </Feat>
    <Feat>
-      <Name>Pact Spell The Carceri Storm: Greater Creeping Cold</Name>
+      <Name>Pact Magic: Greater Creeping Cold</Name>
       <Description>This spell is added to your Warlock spellbook.</Description>
       <FeatGroup>
          <IsWarlockPactSpell/>

@@ -13054,7 +13054,7 @@ Effects that grant extra Action Boost uses give you additional uses per rest of 
       </EnhancementTreeItem>
    </EnhancementTree>
   <EnhancementTree>
-    <Name>Razerclaw Shifter</Name>
+    <Name>Razorclaw Shifter</Name>
     <Version>1</Version>
     <Requirements>
       <Requirement>
@@ -13085,7 +13085,7 @@ Effects that grant extra Action Boost uses give you additional uses per rest of 
       <Name>Razorclaw Shifter: Ability I</Name>
       <InternalName>RazorclawCore2</InternalName>
       <Description>Choose between +1 Constitution, Dexterity or Strength</Description>
-      <Icon>ConDexStr</Icon>
+      <Icon>Constitution</Icon>
       <XPosition>1</XPosition>
       <YPosition>0</YPosition>
       <Cost>2</Cost>
@@ -13162,7 +13162,7 @@ Effects that grant extra Action Boost uses give you additional uses per rest of 
       <Name>Razorclaw Shifter: Ability II</Name>
       <InternalName>RazorclawCore4</InternalName>
       <Description>Choose between +1 Constitution, Dexterity or Strength</Description>
-      <Icon>ConDexStr</Icon>
+      <Icon>Constitution</Icon>
       <XPosition>3</XPosition>
       <YPosition>0</YPosition>
       <Cost>2</Cost>
@@ -13332,7 +13332,7 @@ Effects that grant extra Action Boost uses give you additional uses per rest of 
     <EnhancementTreeItem>
       <Name>Razorclaw Shifter: Piercing Claws</Name>
       <InternalName>RazorclawPiercingClaws</InternalName>
-      <Description>While Raging with Handwraps, you bypass Piercing DR.</Description>
+      <Description>While Raging with Handwraps, you bypass Piercing and Slashing DR.</Description>
       <Icon>RazorclawPiercingClaws</Icon>
       <XPosition>0</XPosition>
       <YPosition>2</YPosition>
@@ -13346,6 +13346,14 @@ Effects that grant extra Action Boost uses give you additional uses per rest of 
         <AnyOfStance>Rage</AnyOfStance>
         <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
         <DR>Pierce</DR>
+        <Weapon>Handwraps</Weapon>
+      </Effect>
+      <Effect>
+        <Type>DRBypass</Type>
+        <Bonus>Enhancement</Bonus>
+        <AnyOfStance>Rage</AnyOfStance>
+        <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
+        <DR>Slash</DR>
         <Weapon>Handwraps</Weapon>
       </Effect>
     </EnhancementTreeItem>
@@ -13425,7 +13433,7 @@ Your Iconic Rage now uncenters you.</Description>
       <Icon>RazorclawDestructiveShifting</Icon>
       <XPosition>0</XPosition>
       <YPosition>3</YPosition>
-      <Cost>2</Cost>
+      <Cost>1</Cost>
       <Ranks>1</Ranks>
       <MinSpent>10</MinSpent>
       <ArrowUp/>
@@ -13617,7 +13625,7 @@ Your Iconic Rage now uncenters you.</Description>
     <EnhancementTreeItem>
       <Name>Razorclaw Shifter: True Hunter</Name>
       <InternalName>RazorclawTrueHunter</InternalName>
-      <Description>You gain Freedom of Movement, +2 to Saves vs. Enchantments and Illusions, immunity to Petrification and +10 to Spot.</Description>
+      <Description>You gain +2 to Saves vs. Enchantments and Illusions, immunity to Petrification and +10 to Spot.</Description>
       <Icon>RazorclawTrueHunter</Icon>
       <XPosition>1</XPosition>
       <YPosition>4</YPosition>
@@ -13625,11 +13633,6 @@ Your Iconic Rage now uncenters you.</Description>
       <Ranks>1</Ranks>
       <MinSpent>15</MinSpent>
       <Requirements/>
-      <Effect>
-        <Type>Immunity</Type>
-        <Bonus>Destiny</Bonus>
-        <Immunity>Holds and slippery surfaces</Immunity>
-      </Effect>
       <Effect>
         <Type>SaveBonus</Type>
         <Bonus>Enhancement</Bonus>
@@ -14746,7 +14749,7 @@ Your weapons also have a chance to blind their targets for a short time.</Descri
    </EnhancementTree>
   <EnhancementTree>
     <Name>Shifter</Name>
-    <Version>1</Version>
+    <Version>2</Version>
     <Requirements>
       <Requirement>
         <Race>Shifter</Race>
@@ -14969,6 +14972,7 @@ Your weapons also have a chance to blind their targets for a short time.</Descri
 making enemies more likely to attack you. Cooldown: 2 seconds</Description>
           <Icon>ShifterBrutalSpellcasting</Icon>
           <Cost>1</Cost>
+          <Clickie/>
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Brutal Fighting</Name>
@@ -14976,6 +14980,7 @@ making enemies more likely to attack you. Cooldown: 2 seconds</Description>
 hate, making enemies more likely to attack you. Cooldown: 2 seconds</Description>
           <Icon>ShifterBruteFighting</Icon>
           <Cost>1</Cost>
+          <Clickie/>
         </EnhancementSelection>
       </Selector>
     </EnhancementTreeItem>
@@ -15053,7 +15058,7 @@ hate, making enemies more likely to attack you. Cooldown: 2 seconds</Description
     <EnhancementTreeItem>
       <Name>Shifter: Shifted Defenses</Name>
       <InternalName>ShifterShiftedDefenses</InternalName>
-      <Description>Choose an effect</Description>
+      <Description>Choose an upgrade based on your subrace</Description>
       <Icon>ShifterShiftedDefenses</Icon>
       <XPosition>0</XPosition>
       <YPosition>2</YPosition>
@@ -15064,7 +15069,7 @@ hate, making enemies more likely to attack you. Cooldown: 2 seconds</Description
       <Selector>
         <EnhancementSelection>
           <Name>Shifted Defenses</Name>
-          <Description>+[4/?/?] Physical Resistance Rating while Raging</Description>
+          <Description>+[4/8/12] Physical Resistance Rating while Raging</Description>
           <Icon>ShifterShiftedDefenses</Icon>
           <Cost>1</Cost>
           <Requirements>
@@ -15072,6 +15077,15 @@ hate, making enemies more likely to attack you. Cooldown: 2 seconds</Description
               <Feat>Beasthide Shifter</Feat>
             </Requirement>
           </Requirements>
+      <Effect>
+        <Type>PRR</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">4 8 12</AmountVector>
+        <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
+        <AnyOfStance>Wildhunt Shifter: Shifted Form</AnyOfStance>
+        <AnyOfStance>Rage</AnyOfStance>
+        <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
+      </Effect>
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Shifted Senses</Name>
@@ -15083,6 +15097,25 @@ hate, making enemies more likely to attack you. Cooldown: 2 seconds</Description
               <Feat>Wildhunt Shifter</Feat>
             </Requirement>
           </Requirements>
+      <Effect>
+        <Type>SkillBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">3 3 3</AmountVector>
+          <Skill>Spot</Skill>
+        <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
+        <AnyOfStance>Wildhunt Shifter: Shifted Form</AnyOfStance>
+        <AnyOfStance>Rage</AnyOfStance>
+        <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
+      </Effect>
+      <Effect>
+        <Type>DodgeBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">2 2 2</AmountVector>
+        <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
+        <AnyOfStance>Wildhunt Shifter: Shifted Form</AnyOfStance>
+        <AnyOfStance>Rage</AnyOfStance>
+        <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
+      </Effect>
         </EnhancementSelection>
       </Selector>
     </EnhancementTreeItem>
@@ -15181,36 +15214,46 @@ may also intimidate the target based on the player's intinidate skill.</Descript
     <EnhancementTreeItem>
       <Name>Shifter: Empowered by Nature</Name>
       <InternalName>ShifterEmpoweredByNature</InternalName>
-      <Description>Choose an effect</Description>
+      <Description>Choose an upgrade based on your subrace</Description>
       <Icon>ShifterEmpoweredByNature</Icon>
       <XPosition>0</XPosition>
       <YPosition>3</YPosition>
-      <Cost>2</Cost>
-      <Ranks>1</Ranks>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
       <MinSpent>10</MinSpent>
       <Requirements/>
       <Selector>
         <EnhancementSelection>
           <Name>Empowered by Nature: Beasthide</Name>
-          <Description>+10 Positive Healing Amplification</Description>
+          <Description>+[10/20/30] Positive Healing Amplification</Description>
           <Icon>ShifterEmpoweredByNature</Icon>
-          <Cost>2</Cost>
+          <Cost>1</Cost>
           <Requirements>
             <Requirement>
               <Feat>Beasthide Shifter</Feat>
             </Requirement>
           </Requirements>
+      <Effect>
+        <Type>HealingAmplification</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">10 20 30</AmountVector>
+      </Effect>
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Empowered by Nature: Wildhide</Name>
-          <Description>+25 Maximum Spell Points. You can now cast while Raging.</Description>
+          <Description>+[25/?/?] Maximum Spell Points. You can now cast while Raging.</Description>
           <Icon>ShifterEmpoweredByNatureWildhunt</Icon>
-          <Cost>2</Cost>
+          <Cost>1</Cost>
           <Requirements>
             <Requirement>
               <Feat>Wildhunt Shifter</Feat>
             </Requirement>
           </Requirements>
+      <Effect>
+        <Type>SpellPoints</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">25 25 25</AmountVector>
+      </Effect>
         </EnhancementSelection>
       </Selector>
     </EnhancementTreeItem>
@@ -15354,9 +15397,9 @@ fortification.</Description>
       </Selector>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <Name>Shifter: Threatening Shift</Name>
+      <Name>Shifter: Exceptional Shifting</Name>
       <InternalName>ShifterThreateningShift</InternalName>
-      <Description>Choose an effect</Description>
+      <Description>Choose an effect based on your subrace</Description>
       <Icon>ShifterThreateningShift</Icon>
       <XPosition>0</XPosition>
       <YPosition>4</YPosition>
@@ -15366,8 +15409,10 @@ fortification.</Description>
       <Requirements/>
       <Selector>
         <EnhancementSelection>
-          <Name>Camouflaged Shift</Name>
-          <Description>While raging, gain Lesser Dispacement and +3% Dodge Cap.</Description>
+          <Name>Wild Magic</Name>
+          <Description>While raging, gain Lesser Dispacement. When you activate a Rage, you gain Temporary
+Spell Points equal to 5 + double your Character Level. These last for 5 minutes,
+until you dismiss or activate another rage, or until used.</Description>
           <Icon>ShifterCamouflagedShift</Icon>
           <Cost>2</Cost>
           <Requirements>
@@ -15392,7 +15437,7 @@ fortification.</Description>
     <EnhancementTreeItem>
       <Name>Shifter: True Hunter</Name>
       <InternalName>ShifterTrueHunter</InternalName>
-      <Description>You gain Freedom of Movement, +2 to Saves vs. Enchantments and Illusions, immunity to Petrification and +10 to Spot.</Description>
+      <Description>You gain +2 to Saves vs. Enchantments and Illusions, immunity to Petrification and +10 to Spot.</Description>
       <Icon>RazorclawTrueHunter</Icon>
       <XPosition>1</XPosition>
       <YPosition>4</YPosition>
@@ -15400,11 +15445,6 @@ fortification.</Description>
       <Ranks>1</Ranks>
       <MinSpent>15</MinSpent>
       <Requirements/>
-      <Effect>
-        <Type>Immunity</Type>
-        <Bonus>Destiny</Bonus>
-        <Immunity>Holds and slippery surfaces</Immunity>
-      </Effect>
       <Effect>
         <Type>SaveBonus</Type>
         <Bonus>Enhancement</Bonus>
@@ -30656,7 +30696,7 @@ This Sonic damage scales with spell power.</Description>
       <EnhancementTreeItem>
          <Name>Swashbuckler: Different Tack</Name>
          <InternalName>SBDifferentTack</InternalName>
-         <Description>Choose to use either Charisma, Dexterity or Intelligence modifier for damage when single weapon fighting:</Description>
+         <Description>Choose to use either Charisma, Dexterity or Intelligence modifier for damage when Swashbuckling.</Description>
          <Icon>SBDifferentTack</Icon>
          <XPosition>3</XPosition>
          <YPosition>3</YPosition>
@@ -30672,39 +30712,39 @@ This Sonic damage scales with spell power.</Description>
          <Selector>
             <EnhancementSelection>
                <Name>Smooth Flourishes</Name>
-               <Description>You get Charisma to Damage with weapon attacks while Single Weapon Fighting</Description>
+               <Description>You get Charisma to Damage with weapon attacks while Swashbuckling.</Description>
                <Icon>SBSmoothFlourishes</Icon>
                <Cost>2</Cost>
                <Effect>
                   <Type>WeaponDamageAbility</Type>
                   <Bonus>Enhancement</Bonus>
-                  <Stance>Single Weapon Fighting</Stance>
+                  <Stance>Swashbuckling</Stance>
                   <Ability>Charisma</Ability>
                   <Weapon>All</Weapon>
                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Swift Strikes</Name>
-               <Description>You get Dexterity to Damage with weapon attacks while Single Weapon Fighting.</Description>
+               <Description>You get Dexterity to Damage with weapon attacks while Swashbuckling.</Description>
                <Icon>SBSwiftStrikes</Icon>
                <Cost>2</Cost>
                <Effect>
                   <Type>WeaponDamageAbility</Type>
                   <Bonus>Enhancement</Bonus>
-                  <Stance>Single Weapon Fighting</Stance>
+                  <Stance>Swashbuckling</Stance>
                   <Ability>Dexterity</Ability>
                   <Weapon>All</Weapon>
                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Two Steps Ahead</Name>
-               <Description>You get Intelligence to Damage with weapon attacks Single Weapon Fighting</Description>
+               <Description>You get Intelligence to Damage with weapon attacks while Swashbuckling.</Description>
                <Icon>SBTwoStepsAhead</Icon>
                <Cost>2</Cost>
                <Effect>
                   <Type>WeaponDamageAbility</Type>
                   <Bonus>Enhancement</Bonus>
-                  <Stance>Single Weapon Fighting</Stance>
+                  <Stance>Swashbuckling</Stance>
                   <Ability>Intelligence</Ability>
                   <Weapon>All</Weapon>
                </Effect>
@@ -61195,486 +61235,474 @@ multiplier to your equipped daggers or throwing knife for 15 seconds. 60 second 
          </Effect>
       </EnhancementTreeItem>
    </EnhancementTree>
-   <EnhancementTree>
-      <Name>Feydark Illusionist</Name>
-      <Version>1</Version>
+  <EnhancementTree>
+    <Name>Feydark Illusionist</Name>
+    <Version>2</Version>
+    <Requirements>
+      <RequiresOneOf>
+        <Requirement>
+          <Feat>Feydark Illusionist Tree</Feat>
+        </Requirement>
+      </RequiresOneOf>
+    </Requirements>
+    <IsUniversalTree/>
+    <Icon>FeydarkIllusionist</Icon>
+    <Background>HarperBackground</Background>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Find Familiar</Name>
+      <InternalName>FeydarkCore1</InternalName>
+      <Description>Select a Familiar to accompany you on your adventures.</Description>
+      <Icon>FeydarkFindFamiliar</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>0</MinSpent>
+      <Clickie/>
+      <ArrowRight/>
       <Requirements>
-         <RequiresOneOf>
-            <Requirement>
-               <Feat>Feydark Illusionist Tree</Feat>
-            </Requirement>
-         </RequiresOneOf>
+        <RequiresOneOf>
+          <DisplayDescription>Magical Training (From any source)</DisplayDescription>
+          <Requirement>
+            <Feat>Magical Training</Feat>
+          </Requirement>
+          <Requirement>
+            <Amount>3</Amount>
+            <Enhancement>AAElfEnergyOfTheWild</Enhancement>
+          </Requirement>
+          <Requirement>
+            <Amount>3</Amount>
+            <Enhancement>AAEnergyOfTheWild</Enhancement>
+          </Requirement>
+          <Requirement>
+            <Enhancement>SSStudies</Enhancement>
+            <Selection>Magical Studies</Selection>
+          </Requirement>
+          <Requirement>
+            <Enhancement>CelestialTutelage</Enhancement>
+            <Selection>Magical Training</Selection>
+          </Requirement>
+        </RequiresOneOf>
       </Requirements>
-      <IsUniversalTree/>
-      <Icon>FeydarkIllusionist</Icon>
-      <Background>HarperBackground</Background>
-      <!--tree core items-->
-      <EnhancementTreeItem>
-         <Name>Feydark Illusionist: Find Familiar</Name>
-         <InternalName>FeydarkCore1</InternalName>
-         <Description>Select a Familiar to accompany you on your adventures.</Description>
-         <Icon>FeydarkFindFamiliar</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>0</YPosition>
-         <Cost>1</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>0</MinSpent>
-         <Clickie/>
-         <ArrowRight/>
-        <Requirements>
-            <RequiresOneOf>
-                <DisplayDescription>Magical Training (From any source)</DisplayDescription>
-                <Requirement>
-                <Feat>Magical Training</Feat>
-                </Requirement>
-                <Requirement>
-                    <Enhancement>AAElfEnergyOfTheWild</Enhancement>
-                    <Amount>3</Amount>
-                </Requirement>
-                <Requirement>
-                    <Enhancement>AAEnergyOfTheWild</Enhancement>
-                    <Amount>3</Amount>
-                </Requirement>
-                <Requirement>
-                    <Enhancement>SSStudies</Enhancement>
-                    <Selection>Magical Studies</Selection>
-                </Requirement>
-                <Requirement>
-                    <Enhancement>CelestialTutelage</Enhancement>
-                    <Selection>Magical Training</Selection>
-                </Requirement>
-            </RequiresOneOf>
-        </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>Fox</Name>
-               <Description>Familiar Toggle: Summons your chosen familiar, a fox, to your side. Familiars will follow
+      <Selector>
+        <EnhancementSelection>
+          <Name>Fox</Name>
+          <Description>Familiar Toggle: Summons your chosen familiar, a fox, to your side. Familiars will follow
 you and can assist in your magical endeavors. For each Core ability spent in this
 tree, including this one, your Familiar grants you +5 Force and +5 Universal Spellpower.</Description>
-               <Icon>FamiliarFox</Icon>
-               <Cost>1</Cost>
-               <Clickie/>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Illusory Sprite</Name>
-               <Description>Familiar Toggle: Summons your chosen familiar, an Illusory Sprite, to your side. Familiars
-will follow you and can assist in your magical endeavors. For each Core ability spent
-in this tree, including this one, your Familiar grants you +5 Force and +5 Universal
-Spellpower.</Description>
-               <Icon>FamiliarIllusorySprite</Icon>
-               <Cost>1</Cost>
-               <Clickie/>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Pseudodragon</Name>
-               <Description>Familiar Toggle: Summons your chosen familiar, a Pseudodragon, to your side. Familiars will
+          <Icon>FamiliarFox</Icon>
+          <Cost>1</Cost>
+          <Clickie/>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Pseudodragon</Name>
+          <Description>Familiar Toggle: Summons your chosen familiar, a Pseudodragon, to your side. Familiars will
 follow you and can assist in your magical endeavors. For each Core ability spent in this
 tree, including this one, your Familiar grants you +5 Force and +5 Universal Spellpower.</Description>
-               <Icon>FamiliarPseudodragon</Icon>
-               <Cost>1</Cost>
-               <Clickie/>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>White Cat</Name>
-               <Description>Familiar Toggle: Summons your chosen familiar, a white cat, to your side. Familiars will
+          <Icon>FamiliarPseudodragon</Icon>
+          <Cost>1</Cost>
+          <Clickie/>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>White Cat</Name>
+          <Description>Familiar Toggle: Summons your chosen familiar, a white cat, to your side. Familiars will
 follow you and can assist in your magical endeavors. For each Core ability spent in this
 tree, including this one, your Familiar grants you +5 Force and +5 Universal Spellpower.</Description>
-               <Icon>FamiliarWhiteCat</Icon>
-               <Cost>1</Cost>
-               <Clickie/>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>White Tressym</Name>
-               <Description>Familiar Toggle: Summons your chosen familiar, a white tressym, to your side. Familiars will
+          <Icon>FamiliarWhiteCat</Icon>
+          <Cost>1</Cost>
+          <Clickie/>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>White Tressym</Name>
+          <Description>Familiar Toggle: Summons your chosen familiar, a white tressym, to your side. Familiars will
 follow you and can assist in your magical endeavors. For each Core ability spent in this
 tree, including this one, your Familiar grants you +5 Force and +5 Universal Spellpower.</Description>
-               <Icon>FamiliarWhiteTressym</Icon>
-               <Cost>1</Cost>
-               <Clickie/>
-            </EnhancementSelection>
-         </Selector>
-        <Effect>
-            <Type>SpellPower</Type>
+          <Icon>FamiliarWhiteTressym</Icon>
+          <Cost>1</Cost>
+          <Clickie/>
+        </EnhancementSelection>
+      </Selector>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>5</Amount>
+        <SpellPower>Force/Untyped</SpellPower>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Universal</Bonus>
+        <Amount>5</Amount>
+        <SpellPower>All</SpellPower>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Ability I</Name>
+      <InternalName>FeydarkCore2</InternalName>
+      <Description>Choose between Intelligence, Wisdom or Charisma</Description>
+      <Icon>IntWisCha</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <ArrowRight/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>3</MinLevel>
+        </Requirement>
+        <Requirement>
+          <Enhancement>FeydarkCore1</Enhancement>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Intelligence</Name>
+          <Description>+1 Intelligence</Description>
+          <Icon>Intelligence</Icon>
+          <Cost>2</Cost>
+          <Effect>
+            <Type>AbilityBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <SpellPower>Force/Untyped</SpellPower>
-            <Amount>5</Amount>
-        </Effect>
-        <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Universal</Bonus>
-            <SpellPower>All</SpellPower>
-            <Amount>5</Amount>
-        </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Feydark Illusionist: Ability I</Name>
-         <InternalName>FeydarkCore2</InternalName>
-         <Description>Choose between Intelligence, Wisdom or Charisma</Description>
-         <Icon>IntWisCha</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>0</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>5</MinSpent>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <MinLevel>3</MinLevel>
-            </Requirement>
-            <Requirement>
-               <Enhancement>FeydarkCore1</Enhancement>
-            </Requirement>
-         </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>Intelligence</Name>
-               <Description>+1 Intelligence</Description>
-               <Icon>Intelligence</Icon>
-               <Cost>2</Cost>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Ability>Intelligence</Ability>
-                  <Amount>1</Amount>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Wisdom</Name>
-               <Description>+1 Wisdom</Description>
-               <Icon>Wisdom</Icon>
-               <Cost>2</Cost>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Ability>Wisdom</Ability>
-                  <Amount>1</Amount>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Charisma</Name>
-               <Description>+1 Charisma</Description>
-               <Icon>Charisma</Icon>
-               <Cost>2</Cost>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Ability>Charisma</Ability>
-                  <Amount>1</Amount>
-               </Effect>
-            </EnhancementSelection>
-         </Selector>
-        <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <SpellPower>Force/Untyped</SpellPower>
-            <Amount>5</Amount>
-        </Effect>
-        <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Universal</Bonus>
-            <SpellPower>All</SpellPower>
-            <Amount>5</Amount>
-        </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Feydark Illusionist: Greater Color Spray</Name>
-         <InternalName>FeydarkCore3</InternalName>
-         <Description>You may cast the spell Greater Colow Spray as a Spell-Like Ability.
-Cost: 10sp
-Cooldown: 8 seconds</Description>
-         <Icon>FeydarkGreaterColorSpray</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>0</YPosition>
-         <Cost>1</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
-         <ArrowRight/>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <MinLevel>6</MinLevel>
-            </Requirement>
-            <Requirement>
-               <Enhancement>FeydarkCore2</Enhancement>
-            </Requirement>
-         </Requirements>
-        <Effect>
-            <Type>SpellLikeAbility</Type>
-            <Bonus>Enhancement</Bonus>
-            <SpellLikeAbility>Greater Color Spray</SpellLikeAbility>
-        </Effect>
-        <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <SpellPower>Force/Untyped</SpellPower>
-            <Amount>5</Amount>
-        </Effect>
-        <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Universal</Bonus>
-            <SpellPower>All</SpellPower>
-            <Amount>5</Amount>
-        </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Feydark Illusionist: Ability II</Name>
-         <InternalName>FeydarkCore4</InternalName>
-         <Description>Choose between Intelligence, Wisdom or Charisma</Description>
-         <Icon>IntWisCha</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>0</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <MinLevel>3</MinLevel>
-            </Requirement>
-            <Requirement>
-               <Enhancement>FeydarkCore3</Enhancement>
-            </Requirement>
-         </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>Intelligence</Name>
-               <Description>+1 Intelligence</Description>
-               <Icon>Intelligence</Icon>
-               <Cost>2</Cost>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Ability>Intelligence</Ability>
-                  <Amount>1</Amount>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Wisdom</Name>
-               <Description>+1 Wisdom</Description>
-               <Icon>Wisdom</Icon>
-               <Cost>2</Cost>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Ability>Wisdom</Ability>
-                  <Amount>1</Amount>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Charisma</Name>
-               <Description>+1 Charisma</Description>
-               <Icon>Charisma</Icon>
-               <Cost>2</Cost>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Ability>Charisma</Ability>
-                  <Amount>1</Amount>
-               </Effect>
-            </EnhancementSelection>
-         </Selector>
-        <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <SpellPower>Force/Untyped</SpellPower>
-            <Amount>5</Amount>
-        </Effect>
-        <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Universal</Bonus>
-            <SpellPower>All</SpellPower>
-            <Amount>5</Amount>
-        </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Feydark Illusionist: Familiar's Reach</Name>
-         <InternalName>FeydarkCore5</InternalName>
-         <Description>+1 Illusion DCs. Your familiar carries spells further than you would normally
-be able to cast them. Your spells benefit from the Enlarge Metamagic at no additional cost.</Description>
-         <Icon>FeydarkFamiliarsReach</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>0</YPosition>
-         <Cost>1</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <ArrowRight/>
-         <Requirements>
-            <Requirement>
-               <MinLevel>18</MinLevel>
-            </Requirement>
-            <Requirement>
-               <Enhancement>FeydarkCore4</Enhancement>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellDC</Type>
-            <Bonus>Enhancement</Bonus>
-            <School>Illusion</School>
             <Amount>1</Amount>
-         </Effect>
-         <Effect>
-            <Type>SpellPower</Type>
+            <Ability>Intelligence</Ability>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Wisdom</Name>
+          <Description>+1 Wisdom</Description>
+          <Icon>Wisdom</Icon>
+          <Cost>2</Cost>
+          <Effect>
+            <Type>AbilityBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <SpellPower>Force/Untyped</SpellPower>
-            <Amount>10</Amount>
-         </Effect>
-         <Effect>
-            <Type>SpellPower</Type>
+            <Amount>1</Amount>
+            <Ability>Wisdom</Ability>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Charisma</Name>
+          <Description>+1 Charisma</Description>
+          <Icon>Charisma</Icon>
+          <Cost>2</Cost>
+          <Effect>
+            <Type>AbilityBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <SpellPower>All</SpellPower>
-            <Amount>10</Amount>
-         </Effect>
-        <Effect>
-            <Type>SpellPower</Type>
+            <Amount>1</Amount>
+            <Ability>Charisma</Ability>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>5</Amount>
+        <SpellPower>Force/Untyped</SpellPower>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Universal</Bonus>
+        <Amount>5</Amount>
+        <SpellPower>All</SpellPower>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Greater Color Spray</Name>
+      <InternalName>FeydarkCore3</InternalName>
+      <Description>You may cast the spell Greater Color Spray as a Spell-Like Ability.
+Cost: 4sp
+Cooldown: 8 seconds</Description>
+      <Icon>FeydarkGreaterColorSpray</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Clickie/>
+      <ArrowRight/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>6</MinLevel>
+        </Requirement>
+        <Requirement>
+          <Enhancement>FeydarkCore2</Enhancement>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellLikeAbility</Type>
+        <Bonus>Enhancement</Bonus>
+        <SpellLikeAbility>Greater Color Spray</SpellLikeAbility>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>5</Amount>
+        <SpellPower>Force/Untyped</SpellPower>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Universal</Bonus>
+        <Amount>5</Amount>
+        <SpellPower>All</SpellPower>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Ability II</Name>
+      <InternalName>FeydarkCore4</InternalName>
+      <Description>Choose between Intelligence, Wisdom or Charisma</Description>
+      <Icon>IntWisCha</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <ArrowRight/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>3</MinLevel>
+        </Requirement>
+        <Requirement>
+          <Enhancement>FeydarkCore3</Enhancement>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Intelligence</Name>
+          <Description>+1 Intelligence</Description>
+          <Icon>Intelligence</Icon>
+          <Cost>2</Cost>
+          <Effect>
+            <Type>AbilityBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <SpellPower>Force/Untyped</SpellPower>
-            <Amount>5</Amount>
-        </Effect>
-        <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Universal</Bonus>
-            <SpellPower>All</SpellPower>
-            <Amount>5</Amount>
-        </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Feydark Illusionist: Master Illusionist</Name>
-         <InternalName>FeydarkCore6</InternalName>
-         <Description>Active: Shroud you and your party members, regardless of location, in
-illusory magic that disguises their location. They gain 95% Concealment for 10
+            <Amount>1</Amount>
+            <Ability>Intelligence</Ability>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Wisdom</Name>
+          <Description>+1 Wisdom</Description>
+          <Icon>Wisdom</Icon>
+          <Cost>2</Cost>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Ability>Wisdom</Ability>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Charisma</Name>
+          <Description>+1 Charisma</Description>
+          <Icon>Charisma</Icon>
+          <Cost>2</Cost>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Ability>Charisma</Ability>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>5</Amount>
+        <SpellPower>Force/Untyped</SpellPower>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Universal</Bonus>
+        <Amount>5</Amount>
+        <SpellPower>All</SpellPower>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Familiar's Reach</Name>
+      <InternalName>FeydarkCore5</InternalName>
+      <Description>+1 Illusion DCs. Your familiar carries spells further than you would normally
+be able to cast them. Your spells benefit from the Enlarge Metamagic at no additional cost.</Description>
+      <Icon>FeydarkFamiliarsReach</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <ArrowRight/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>18</MinLevel>
+        </Requirement>
+        <Requirement>
+          <Enhancement>FeydarkCore4</Enhancement>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>1</Amount>
+        <School>Illusion</School>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>10</Amount>
+        <SpellPower>Force/Untyped</SpellPower>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>10</Amount>
+        <SpellPower>All</SpellPower>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>5</Amount>
+        <SpellPower>Force/Untyped</SpellPower>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Universal</Bonus>
+        <Amount>5</Amount>
+        <SpellPower>All</SpellPower>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Master Illusionist</Name>
+      <InternalName>FeydarkCore6</InternalName>
+      <Description>Active: Shroud you and your party members, regardless of location, in
+illusory magic that disguises their location. They gain 95% Concealment for 15
 seconds. Cooldown: 3 minutes
 Passive: +2 Intelligence, Wisdom and Charisma. +2 Illusion DCs.</Description>
-         <Icon>FeydarkMasterIllusionist</Icon>
-         <XPosition>5</XPosition>
-         <YPosition>0</YPosition>
-         <Cost>1</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>40</MinSpent>
-         <Requirements>
-            <Requirement>
-               <MinLevel>20</MinLevel>
-            </Requirement>
-            <Requirement>
-               <Enhancement>FeydarkCore5</Enhancement>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>AbilityBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Ability>Intelligence</Ability>
-            <Amount>2</Amount>
-         </Effect>
-         <Effect>
-            <Type>AbilityBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Ability>Wisdom</Ability>
-            <Amount>2</Amount>
-         </Effect>
-         <Effect>
-            <Type>AbilityBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Ability>Charisma</Ability>
-            <Amount>2</Amount>
-         </Effect>
-         <Effect>
-            <Type>SpellDC</Type>
-            <Bonus>Enhancement</Bonus>
-            <School>Illusion</School>
-            <Amount>2</Amount>
-         </Effect>
-        <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <SpellPower>Force/Untyped</SpellPower>
-            <Amount>5</Amount>
-        </Effect>
-        <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Universal</Bonus>
-            <SpellPower>All</SpellPower>
-            <Amount>5</Amount>
-        </Effect>
-      </EnhancementTreeItem>
-      <!--Tier 1 Enhancements-->
-      <EnhancementTreeItem>
-         <Name>Feydark Illusionist: Feydark Explorer</Name>
-         <InternalName>FeydarkExplorer</InternalName>
-         <Description>+[1/2/3] Spellcraft, Diplomacy and Concentration.
+      <Icon>FeydarkMasterIllusionist</Icon>
+      <XPosition>5</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>40</MinSpent>
+      <Requirements>
+        <Requirement>
+          <MinLevel>20</MinLevel>
+        </Requirement>
+        <Requirement>
+          <Enhancement>FeydarkCore5</Enhancement>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>2</Amount>
+        <Ability>Intelligence</Ability>
+      </Effect>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>2</Amount>
+        <Ability>Wisdom</Ability>
+      </Effect>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>2</Amount>
+        <Ability>Charisma</Ability>
+      </Effect>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>2</Amount>
+        <School>Illusion</School>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>5</Amount>
+        <SpellPower>Force/Untyped</SpellPower>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Universal</Bonus>
+        <Amount>5</Amount>
+        <SpellPower>All</SpellPower>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Feydark Explorer</Name>
+      <InternalName>FeydarkExplorer</InternalName>
+      <Description>+[1/2/3] Spellcraft, Move Silently and Concentration.
 Rank 3: +1 Use Magic Device</Description>
-         <Icon>FeydarkExplorer</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>1</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>1</MinSpent>
-         <Requirements/>
-         <Effect>
-            <Type>SkillBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">1 2 3</AmountVector>
-            <Skill>Spell Craft</Skill>
-            <Skill>Diplomacy</Skill>
-            <Skill>Concentration</Skill>
-         </Effect>
-         <Effect>
-            <Type>SkillBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">0 0 1</AmountVector>
-            <Skill>Use Magic Device</Skill>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Feydark Illusionist: Familiar's Flourish I</Name>
-         <InternalName>FeydarkFamiliarsFlourishI</InternalName>
-         <Description>While your Familiar is by your side, you may use Charisma as your weapon's to-hit modifier.</Description>
-         <Icon>FeydarkFamiliarsFlourish</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>1</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>1</MinSpent>
-         <ArrowUp/>
-         <Requirements/>
-         <Effect>
-            <Type>WeaponAttackAbility</Type>
-            <Bonus>Enhancement</Bonus>
-            <Ability>Charisma</Ability>
-            <Weapon>All</Weapon>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Feydark Illusionist: Twist Reality</Name>
-         <InternalName>FeydarkTwistReality</InternalName>
-         <Description>Offensive Illusion spells reduce enemies' Will saves by 1 for 10 seconds. This stacks 3 times.</Description>
-         <Icon>FeydarkTwistReality</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>1</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>1</MinSpent>
-         <Requirements/>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Feydark Illusionist: Study the Arcane</Name>
-         <InternalName>FeydarkStudyTheArcane</InternalName>
-         <Description>+[30/60/100] Maximum Spellpoints</Description>
-         <Icon>FeydarkStudyTheArcane</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>1</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>1</MinSpent>
-         <Requirements/>
-         <Effect>
-            <Type>SpellPoints</Type>
-            <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">30 60 100</AmountVector>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Feydark Illusionist: Illusory Weaponry</Name>
-         <InternalName>FeydarkIllusoryWeaponry</InternalName>
-         <Description>You have studied Illusion to the point where you can craft more permanent manifestations
+      <Icon>FeydarkExplorer</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements/>
+      <Effect>
+        <Type>SkillBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">1 2 3</AmountVector>
+        <Skill>Spell Craft</Skill>
+        <Skill>Move Silently</Skill>
+        <Skill>Concentration</Skill>
+      </Effect>
+      <Effect>
+        <Type>SkillBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">0 0 1</AmountVector>
+        <Skill>Use Magic Device</Skill>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Familiar's Flourish I</Name>
+      <InternalName>FeydarkFamiliarsFlourishI</InternalName>
+      <Description>While your Familiar is by your side, you may use Charisma as your weapon's to-hit modifier.</Description>
+      <Icon>FeydarkFamiliarsFlourish</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>1</MinSpent>
+      <ArrowUp/>
+      <Requirements/>
+      <Effect>
+        <Type>WeaponAttackAbility</Type>
+        <Bonus>Enhancement</Bonus>
+        <Ability>Charisma</Ability>
+        <Weapon>All</Weapon>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Twist Reality</Name>
+      <InternalName>FeydarkTwistReality</InternalName>
+      <Description>Offensive Illusion spells reduce enemies' Will saves by 1 for 10 seconds. This stacks 3 times.</Description>
+      <Icon>FeydarkTwistReality</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements/>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Study the Arcane</Name>
+      <InternalName>FeydarkStudyTheArcane</InternalName>
+      <Description>+[30/60/100] Maximum Spellpoints</Description>
+      <Icon>FeydarkStudyTheArcane</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements/>
+      <Effect>
+        <Type>SpellPoints</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">30 60 100</AmountVector>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Illusory Weaponry</Name>
+      <InternalName>FeydarkIllusoryWeaponry</InternalName>
+      <Description>You have studied Illusion to the point where you can craft more permanent manifestations
 of Shadow. This grants both the ability to conjure physical Shadowblades to wield as
 weapons as well as the ability to enchant your current weapons to be more powerful.
 
@@ -61684,589 +61712,605 @@ Shadowblades, they will dissapate into nothingness and must be summoned again.
 
 Enchanting your weapons to become Shadowblades will change their material type to Force
 and grant them additional bonuses. This is considered an item enchantment.</Description>
-         <Icon>FeydarkIllusoryWeaponryI</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>1</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>1</MinSpent>
-         <Requirements/>
-      </EnhancementTreeItem>
-      <!--Tier 2 Enhancements-->
-      <EnhancementTreeItem>
-         <Name>Feydark Illusionist: Enhanced Invisibility</Name>
-         <InternalName>FeydarkEnhancedInvisibility</InternalName>
-         <Description>You may cast the spell Invisibility as a Spell-Like ability. In addition, while
-under the effects of any source of Invisibility, you gain +15% Missile Deflection.
-Cost: 30/20/10 sp
-Cooldown: 5 seconds</Description>
-         <Icon>FeydarkEnhancedInvisibility</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>2</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>5</MinSpent>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <MinLevel>2</MinLevel>
-            </Requirement>
-         </Requirements>
-        <Effect>
-            <Type>MissileDeflection</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>15</Amount>
-            <Stance>Invisibility</Stance>
-        </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Feydark Illusionist: Familiar's Flourish II</Name>
-         <InternalName>FeydarkFamiliarsFlourishII</InternalName>
-         <Description>While your Familiar is by your side, you may use Charisma as your weapon's damage modifier.</Description>
-         <Icon>FeydarkFamiliarsFlourishII</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>2</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>5</MinSpent>
-         <Requirements>
-            <Requirement>
-               <MinLevel>2</MinLevel>
-            </Requirement>
-            <Requirement>
-               <Enhancement>FeydarkFamiliarsFlourishI</Enhancement>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>WeaponDamageAbility</Type>
-            <Bonus>Enhancement</Bonus>
-            <Ability>Charisma</Ability>
-            <Weapon>All</Weapon>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Feydark Illusionist: Bend Light</Name>
-         <InternalName>FeydarkBendLight</InternalName>
-         <Description>Your studies of the Illusion school have manifested to protect you, making
-you slightly harder to see. You gain the benfits of the Blur spell.</Description>
-         <Icon>FeydarkBendLight</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>2</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>5</MinSpent>
-         <Requirements>
-            <Requirement>
-               <MinLevel>2</MinLevel>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Feydark Illusionist: You've Got My Back</Name>
-         <InternalName>FeydarkYouveGotMyBack</InternalName>
-         <Description>Your familiar draws ambient and offensive magics to it, protecting you from
-Magic Missiles as if you had the benefits of the Shield spell.</Description>
-         <Icon>FeydarkYouveGotMyBack</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>2</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>5</MinSpent>
-         <Requirements>
-            <Requirement>
-               <MinLevel>2</MinLevel>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>Immunity</Type>
-            <Bonus>Enhancement</Bonus>
-            <Immunity>Magic Missiles</Immunity>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Feydark Illusionist: Shadowblade</Name>
-         <InternalName>FeydarkShadowblade</InternalName>
-         <Description>Conjure an illusory blade of shadow that flies forward at a single target.
+      <Icon>FeydarkIllusoryWeaponryI</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements/>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Reality Bulwark</Name>
+      <InternalName>FeydarkRealityBulwark</InternalName>
+      <Description>+[1/2/3] to all Saving Throws
+Rank 3: You are immune to Fear</Description>
+      <Icon>FeydarkRealityBulwark</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <MinLevel>2</MinLevel>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SaveBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">1 2 3</AmountVector>
+        <Save>All</Save>
+      </Effect>
+      <Effect>
+        <Type>Immunity</Type>
+        <Bonus>Enhancement</Bonus>
+        <Immunity/>
+        <Immunity/>
+        <Immunity>Fear</Immunity>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Familiar's Flourish II</Name>
+      <InternalName>FeydarkFamiliarsFlourishII</InternalName>
+      <Description>While your Familiar is by your side, you may use Charisma as your weapon's damage modifier.</Description>
+      <Icon>FeydarkFamiliarsFlourishII</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <MinLevel>2</MinLevel>
+        </Requirement>
+        <Requirement>
+          <Enhancement>FeydarkFamiliarsFlourishI</Enhancement>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>WeaponDamageAbility</Type>
+        <Bonus>Enhancement</Bonus>
+        <Ability>Charisma</Ability>
+        <Weapon>All</Weapon>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Bend Light</Name>
+      <InternalName>FeydarkBendLight</InternalName>
+      <Description>Your studies of the Illusion school have manifested to protect you, making
+you slightly harder to see. You gain the benfits of the Blur spell.
+When you cast the Blur spell on yourself or an ally, it now also briefly grants
+Invisibility and a +3 bonus to Armor Class. The AC bonus will linger as long as
+the Invisibility does.</Description>
+      <Icon>FeydarkBendLight</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <MinLevel>2</MinLevel>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: You've Got My Back</Name>
+      <InternalName>FeydarkYouveGotMyBack</InternalName>
+      <Description>Your familiar draws ambient and offensive magics to it, protecting you from
+Magic Missiles as if you had the benefits of the Shield spell. In addition the
+Shield spell now provides +10 Physical Resistance Rating, and the Nightshield
+spell now provides +10 Magical Resistance Rating.</Description>
+      <Icon>FeydarkYouveGotMyBack</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <MinLevel>2</MinLevel>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>Immunity</Type>
+        <Bonus>Enhancement</Bonus>
+        <Immunity>Magic Missiles</Immunity>
+      </Effect>
+      <Effect>
+        <Type>PRR</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="2">0 10</AmountVector>
+      </Effect>
+      <Effect>
+        <Type>MRR</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="2">0 10</AmountVector>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Shadowblade</Name>
+      <InternalName>FeydarkShadowblade</InternalName>
+      <Description>Conjure an illusory blade of shadow that flies forward at a single target.
 The enemy struct takes 1d6+2 Force damage per caster level, with a Will save
 vs (DC17 + Illusion bonuses + Highest of Int/Wis/Cha) for half damage.
 Cost: 10/8/6 sp
 Cooldown: 8/6/5 seconds</Description>
-         <Icon>FeydarkShadowblade</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>2</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>5</MinSpent>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <MinLevel>2</MinLevel>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <!--Tier 3 Enhancements-->
-      <EnhancementTreeItem>
-         <Name>Feydark Illusionist: Spell Penetration</Name>
-         <InternalName>FeydarkSpellPenetration</InternalName>
-         <Description>+[1/2/3] Spell Penetration</Description>
-         <Icon>FeydarkSpellPenetration</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>3</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>10</MinSpent>
-         <Requirements>
-            <Requirement>
-               <MinLevel>3</MinLevel>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellPenetrationBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">1 2 3</AmountVector>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Feydark Illusionist: Distract</Name>
-         <InternalName>FeydarkDistract</InternalName>
-         <Description>Your familiar appears at a targeted location, acting as a distraction and attacting
+      <Icon>FeydarkShadowblade</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Clickie/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>2</MinLevel>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Spell Penetration</Name>
+      <InternalName>FeydarkSpellPenetration</InternalName>
+      <Description>+[1/2/3] Spell Penetration</Description>
+      <Icon>FeydarkSpellPenetration</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements>
+        <Requirement>
+          <MinLevel>3</MinLevel>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellPenetrationBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">1 2 3</AmountVector>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Distract</Name>
+      <InternalName>FeydarkDistract</InternalName>
+      <Description>Your familiar appears at a targeted location, acting as a distraction and attacting
 the attention of monsters who may be searching for you in the area. This will only
 successfully distract monsters who are not actively attacking. This ability may
 be used without breaking Stealth or Invisibility.
 Cooldown: 30 seconds</Description>
-         <Icon>FeydarkDistract</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>3</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <MinLevel>3</MinLevel>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Feydark Illusionist: Magical Attunement I</Name>
-         <InternalName>FeydarkMagicalAttunementI</InternalName>
-         <Description>+2% Force Spell Critical Chance, +1% Universal Spell Critical Chance.</Description>
-         <Icon>FeydarkMagicalAttunement</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>3</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <MinLevel>3</MinLevel>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <DisplayName>Feydark Illusionist: Magical Attunement I: Force</DisplayName>
-            <Type>SpellLore</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>2</Amount>
-            <SpellPower>Force/Untyped</SpellPower>
-         </Effect>
-         <Effect>
-            <DisplayName>Feydark Illusionist: Magical Attunement I: Universal</DisplayName>
-            <Type>SpellLore</Type>
+      <Icon>FeydarkDistract</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Clickie/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>3</MinLevel>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Magical Attunement I</Name>
+      <InternalName>FeydarkMagicalAttunementI</InternalName>
+      <Description>+2% Force Spell Critical Chance, +1% Universal Spell Critical Chance.</Description>
+      <Icon>FeydarkMagicalAttunement</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>3</MinLevel>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <DisplayName>Feydark Illusionist: Magical Attunement I: Force</DisplayName>
+        <Type>SpellLore</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>2</Amount>
+        <SpellPower>Force/Untyped</SpellPower>
+      </Effect>
+      <Effect>
+        <DisplayName>Feydark Illusionist: Magical Attunement I: Universal</DisplayName>
+        <Type>SpellLore</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>1</Amount>
+        <SpellPower>All</SpellPower>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Refraction</Name>
+      <InternalName>FeydarkRefraction</InternalName>
+      <Description>When hit or missed in combat, there is a small chance you will reactively turn
+invisible for a short duration. In addition, while under the effects of any source
+of Invisibility, you gain +15% Missile Deflection</Description>
+      <Icon>FeydarkRefraction</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements>
+        <Requirement>
+          <MinLevel>3</MinLevel>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>MissileDeflection</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>15</Amount>
+        <Stance>Invisibility</Stance>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Ability I</Name>
+      <InternalName>FeydarkAbilityI</InternalName>
+      <Description>Choose between Intelligence, Wisdom or Charisma</Description>
+      <Icon>IntWisCha</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>3</MinLevel>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Intelligence</Name>
+          <Description>+1 Intelligence</Description>
+          <Icon>Intelligence</Icon>
+          <Cost>2</Cost>
+          <Effect>
+            <Type>AbilityBonus</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>1</Amount>
-            <SpellPower>All</SpellPower>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Feydark Illusionist: Refraction</Name>
-         <InternalName>FeydarkRefraction</InternalName>
-         <Description>When hit or missed in combat, there is a small chance you will reactively turn invisible for a short duration.</Description>
-         <Icon>FeydarkRefraction</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>3</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
-         <Requirements>
-            <Requirement>
-               <MinLevel>3</MinLevel>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Feydark Illusionist: Ability I</Name>
-         <InternalName>FeydarkAbilityI</InternalName>
-         <Description>Choose between Intelligence, Wisdom or Charisma</Description>
-         <Icon>IntWisCha</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>3</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <MinLevel>3</MinLevel>
-            </Requirement>
-         </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>Intelligence</Name>
-               <Description>+1 Intelligence</Description>
-               <Icon>Intelligence</Icon>
-               <Cost>2</Cost>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Ability>Intelligence</Ability>
-                  <Amount>1</Amount>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Wisdom</Name>
-               <Description>+1 Wisdom</Description>
-               <Icon>Wisdom</Icon>
-               <Cost>2</Cost>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Ability>Wisdom</Ability>
-                  <Amount>1</Amount>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Charisma</Name>
-               <Description>+1 Charisma</Description>
-               <Icon>Charisma</Icon>
-               <Cost>2</Cost>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Ability>Charisma</Ability>
-                  <Amount>1</Amount>
-               </Effect>
-            </EnhancementSelection>
-         </Selector>
-      </EnhancementTreeItem>
-      <!--Tier 4 Enhancements-->
-      <EnhancementTreeItem>
-         <Name>Feydark Illusionist: Be My Eyes</Name>
-         <InternalName>FeydarkBeMyEyes</InternalName>
-         <Description>Your familiar grants you the benefits of the True Seeing spell, and will automatically find Spell Wards for you.</Description>
-         <Icon>FeydarkBeMyEyes</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>4</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
-         <Requirements>
-            <Requirement>
-               <MinLevel>4</MinLevel>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Feydark Illusionist: Fan of Shadowblades</Name>
-         <InternalName>FeydarkFanOfShadowblades</InternalName>
-         <Description>Fan a series of Shadowblades outwards into a wide cone. The enemies struct take
+            <Ability>Intelligence</Ability>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Wisdom</Name>
+          <Description>+1 Wisdom</Description>
+          <Icon>Wisdom</Icon>
+          <Cost>2</Cost>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Ability>Wisdom</Ability>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Charisma</Name>
+          <Description>+1 Charisma</Description>
+          <Icon>Charisma</Icon>
+          <Cost>2</Cost>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Ability>Charisma</Ability>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Be My Eyes</Name>
+      <InternalName>FeydarkBeMyEyes</InternalName>
+      <Description>Your familiar grants you the benefits of the True Seeing spell, and will automatically find Spell Wards for you.</Description>
+      <Icon>FeydarkBeMyEyes</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <MinLevel>4</MinLevel>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Fan of Shadowblades</Name>
+      <InternalName>FeydarkFanOfShadowblades</InternalName>
+      <Description>Fan a series of Shadowblades outwards into a wide cone. The enemies struct take
 1d6+2 Force damage per caster level, with a Will save vs (DC17 + Illusion bonuses
 + Highest of Int/Wis/Cha) for half damage.
 Cost: 18/15/12 sp
 Cooldown: 14/12/10 seconds</Description>
-         <Icon>FeydarkFanOfShadowblades</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>4</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>20</MinSpent>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <MinLevel>4</MinLevel>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Feydark Illusionist: Magical Attunement II</Name>
-         <InternalName>FeydarkMagicalAttunementII</InternalName>
-         <Description>+2% Force Spell Critical Chance, +1% Universal Spell Critical Chance.</Description>
-         <Icon>FeydarkMagicalAttunementII</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>4</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
-         <ArrowUp/>
-         <Requirements>
-            <Requirement>
-               <MinLevel>4</MinLevel>
-            </Requirement>
-            <Requirement>
-               <Enhancement>FeydarkMagicalAttunementI</Enhancement>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <DisplayName>Feydark Illusionist: Magical Attunement II: Force</DisplayName>
-            <Type>SpellLore</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>2</Amount>
-            <SpellPower>Force/Untyped</SpellPower>
-         </Effect>
-         <Effect>
-            <DisplayName>Feydark Illusionist: Magical Attunement II: Universal</DisplayName>
-            <Type>SpellLore</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>1</Amount>
-            <SpellPower>All</SpellPower>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Feydark Illusionist: Improved Shadowblades</Name>
-         <InternalName>FeydarkImprovedShadowblades</InternalName>
-         <Description>All of your Shadwblade spells, attacks with weapons that have been imbued with Shadow,
+      <Icon>FeydarkFanOfShadowblades</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>20</MinSpent>
+      <Clickie/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>4</MinLevel>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Magical Attunement II</Name>
+      <InternalName>FeydarkMagicalAttunementII</InternalName>
+      <Description>+2% Force Spell Critical Chance, +1% Universal Spell Critical Chance.</Description>
+      <Icon>FeydarkMagicalAttunementII</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>4</MinLevel>
+        </Requirement>
+        <Requirement>
+          <Enhancement>FeydarkMagicalAttunementI</Enhancement>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <DisplayName>Feydark Illusionist: Magical Attunement II: Force</DisplayName>
+        <Type>SpellLore</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>2</Amount>
+        <SpellPower>Force/Untyped</SpellPower>
+      </Effect>
+      <Effect>
+        <DisplayName>Feydark Illusionist: Magical Attunement II: Universal</DisplayName>
+        <Type>SpellLore</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>1</Amount>
+        <SpellPower>All</SpellPower>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Improved Shadowblades</Name>
+      <InternalName>FeydarkImprovedShadowblades</InternalName>
+      <Description>All of your Shadwblade spells, attacks with weapons that have been imbued with Shadow,
 and attacks with conjured Shadowblades apply [1/2/3] stacks of Shattermantle
 when they damage an enemy.</Description>
-         <Icon>FeydarkImprovedShadowblades</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>4</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>20</MinSpent>
-         <Requirements>
-            <Requirement>
-               <MinLevel>4</MinLevel>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Feydark Illusionist: Ability II</Name>
-         <InternalName>FeydarkAbilityII</InternalName>
-         <Description>Choose between Intelligence, Wisdom or Charisma</Description>
-         <Icon>IntWisCha</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>4</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>20</MinSpent>
-         <Requirements>
-            <Requirement>
-               <MinLevel>4</MinLevel>
-            </Requirement>
-            <Requirement>
-               <Enhancement>FeydarkAbilityI</Enhancement>
-            </Requirement>
-         </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>Intelligence</Name>
-               <Description>+1 Intelligence</Description>
-               <Icon>Intelligence</Icon>
-               <Cost>2</Cost>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Ability>Intelligence</Ability>
-                  <Amount>1</Amount>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Wisdom</Name>
-               <Description>+1 Wisdom</Description>
-               <Icon>Wisdom</Icon>
-               <Cost>2</Cost>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Ability>Wisdom</Ability>
-                  <Amount>1</Amount>
-               </Effect>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Charisma</Name>
-               <Description>+1 Charisma</Description>
-               <Icon>Charisma</Icon>
-               <Cost>2</Cost>
-               <Effect>
-                  <Type>AbilityBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Ability>Charisma</Ability>
-                  <Amount>1</Amount>
-               </Effect>
-            </EnhancementSelection>
-         </Selector>
-      </EnhancementTreeItem>
-      <!--Tier 5 Enhancements-->
-      <EnhancementTreeItem>
-         <Name>Feydark Illusionist: Illusory Augmentation</Name>
-         <InternalName>FeydarkIllusoryAugmentation</InternalName>
-         <Description>+1 Illusion DCs. The feats Augment Summoning and Improved Augment Summoning now
-each grant +5 Force Spell Power and an additional +1 Illusion DCs.</Description>
-         <Icon>FeydarkIllusoryAugmentation</Icon>
-         <XPosition>0</XPosition>
-         <YPosition>5</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <Tier5/>
-         <Requirements>
-            <Requirement>
-               <MinLevel>12</MinLevel>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellDC</Type>
-            <Bonus>Enhancement</Bonus>
-            <School>Illusion</School>
-            <Amount>1</Amount>
-         </Effect>
-         <Effect>
-            <DisplayName>Illusory Augmentation: Augment Summoning</DisplayName>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <SpellPower>Force/Untyped</SpellPower>
-            <AmountVector size="2">0 5</AmountVector>
-         </Effect>
-         <Effect>
-            <DisplayName>Illusory Augmentation: Improved Augment Summoning</DisplayName>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <SpellPower>Force/Untyped</SpellPower>
-            <AmountVector size="2">0 5</AmountVector>
-         </Effect>
-         <Effect>
-            <DisplayName>Illusory Augmentation: Augment Summoning</DisplayName>
-            <Type>SpellDC</Type>
-            <Bonus>Enhancement</Bonus>
-            <School>Illusion</School>
-            <AmountVector size="2">0 1</AmountVector>
-         </Effect>
-         <Effect>
-            <DisplayName>Illusory Augmentation: Improved Augment Summoning</DisplayName>
-            <Type>SpellDC</Type>
-            <Bonus>Enhancement</Bonus>
-            <School>Illusion</School>
-            <AmountVector size="2">0 1</AmountVector>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Feydark Illusionist: Dispacement</Name>
-         <InternalName>FeydarkDispacement</InternalName>
-         <Description>You may cast the spell Displacement as a Spell-Like Ability.
-Spell Point Cost: 6
-Cooldown: 5 seconds</Description>
-         <Icon>FeydarkDispacement</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>5</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <Tier5/>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <MinLevel>12</MinLevel>
-            </Requirement>
-         </Requirements>
+      <Icon>FeydarkImprovedShadowblades</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <MinLevel>4</MinLevel>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Ability II</Name>
+      <InternalName>FeydarkAbilityII</InternalName>
+      <Description>Choose between Intelligence, Wisdom or Charisma</Description>
+      <Icon>IntWisCha</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <MinLevel>4</MinLevel>
+        </Requirement>
+        <Requirement>
+          <Enhancement>FeydarkAbilityI</Enhancement>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Intelligence</Name>
+          <Description>+1 Intelligence</Description>
+          <Icon>Intelligence</Icon>
+          <Cost>2</Cost>
           <Effect>
-              <Type>SpellLikeAbility</Type>
-              <Bonus>Enhancement</Bonus>
-              <SpellLikeAbility>Displacement</SpellLikeAbility>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Ability>Intelligence</Ability>
           </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Feydark Illusionist: Magical Attunement III</Name>
-         <InternalName>FeydarkMagicalAttunementIII</InternalName>
-         <Description>+2% Force Spell Critical Chance, +2% Universal Spell Critical Chance.</Description>
-         <Icon>FeydarkMagicalAttunementIII</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>5</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <Tier5/>
-         <Requirements>
-            <Requirement>
-               <MinLevel>12</MinLevel>
-            </Requirement>
-            <Requirement>
-               <Enhancement>FeydarkMagicalAttunementII</Enhancement>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <DisplayName>Feydark Illusionist: Magical Attunement III: Force</DisplayName>
-            <Type>SpellLore</Type>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Wisdom</Name>
+          <Description>+1 Wisdom</Description>
+          <Icon>Wisdom</Icon>
+          <Cost>2</Cost>
+          <Effect>
+            <Type>AbilityBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <Amount>2</Amount>
-            <SpellPower>Force/Untyped</SpellPower>
-         </Effect>
-         <Effect>
-            <DisplayName>Feydark Illusionist: Magical Attunement III: Universal</DisplayName>
-            <Type>SpellLore</Type>
+            <Amount>1</Amount>
+            <Ability>Wisdom</Ability>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Charisma</Name>
+          <Description>+1 Charisma</Description>
+          <Icon>Charisma</Icon>
+          <Cost>2</Cost>
+          <Effect>
+            <Type>AbilityBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <Amount>2</Amount>
-            <SpellPower>All</SpellPower>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Feydark Illusionist: Ring of Shadowblades</Name>
-         <InternalName>FeydarkRingOfShadowblades</InternalName>
-         <Description>Conjure a ring of interlocking illusory Shadowblades that damage enemies passing
+            <Amount>1</Amount>
+            <Ability>Charisma</Ability>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Illusory Augmentation</Name>
+      <InternalName>FeydarkIllusoryAugmentation</InternalName>
+      <Description>+1 Illusion DCs. The feats Augment Summoning and Improved Augment Summoning now
+each empower your familiar as well, and will each grant you +5 Force Spell Power
+and an additional +1 Illusion DCs.</Description>
+      <Icon>FeydarkIllusoryAugmentation</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>5</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>12</MinLevel>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellDC</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>1</Amount>
+        <School>Illusion</School>
+      </Effect>
+      <Effect>
+        <DisplayName>Illusory Augmentation: Augment Summoning</DisplayName>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="2">0 5</AmountVector>
+        <SpellPower>Force/Untyped</SpellPower>
+      </Effect>
+      <Effect>
+        <DisplayName>Illusory Augmentation: Improved Augment Summoning</DisplayName>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="2">0 5</AmountVector>
+        <SpellPower>Force/Untyped</SpellPower>
+      </Effect>
+      <Effect>
+        <DisplayName>Illusory Augmentation: Augment Summoning</DisplayName>
+        <Type>SpellDC</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="2">0 1</AmountVector>
+        <School>Illusion</School>
+      </Effect>
+      <Effect>
+        <DisplayName>Illusory Augmentation: Improved Augment Summoning</DisplayName>
+        <Type>SpellDC</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="2">0 1</AmountVector>
+        <School>Illusion</School>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Permanent Dispacement</Name>
+      <InternalName>FeydarkDispacement</InternalName>
+      <Description>You are Displaced, as if you had cast the spell Displacement</Description>
+      <Icon>FeydarkDispacement</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>5</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>12</MinLevel>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Magical Attunement III</Name>
+      <InternalName>FeydarkMagicalAttunementIII</InternalName>
+      <Description>+2% Force Spell Critical Chance, +2% Universal Spell Critical Chance.</Description>
+      <Icon>FeydarkMagicalAttunementIII</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>5</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>12</MinLevel>
+        </Requirement>
+        <Requirement>
+          <Enhancement>FeydarkMagicalAttunementII</Enhancement>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <DisplayName>Feydark Illusionist: Magical Attunement III: Force</DisplayName>
+        <Type>SpellLore</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>2</Amount>
+        <SpellPower>Force/Untyped</SpellPower>
+      </Effect>
+      <Effect>
+        <DisplayName>Feydark Illusionist: Magical Attunement III: Universal</DisplayName>
+        <Type>SpellLore</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>2</Amount>
+        <SpellPower>All</SpellPower>
+      </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Ring of Shadowblades</Name>
+      <InternalName>FeydarkRingOfShadowblades</InternalName>
+      <Description>Conjure a ring of interlocking illusory Shadowblades that damage enemies passing
 through them. Enemies take 1d6+2 Force damage per caster level, with a Will save
 vs (DC17 + Illusory bonuses + Highest of Int/Wis/Cha) for half damage.
 Cost: 50/40/25 sp
-Cooldown: 40/35/30 seconds</Description>
-         <Icon>FeydarkRingOfShadowblades</Icon>
-         <XPosition>3</XPosition>
-         <YPosition>5</YPosition>
-         <Cost>1</Cost>
-         <Ranks>3</Ranks>
-         <MinSpent>30</MinSpent>
-         <Clickie/>
-         <Tier5/>
-         <Requirements>
-            <Requirement>
-               <MinLevel>12</MinLevel>
-            </Requirement>
-         </Requirements>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Feydark Illusionist: Force in Tandem</Name>
-         <InternalName>FeydarkForceInTandem</InternalName>
-         <Description>Your familiar grants you +10 Force spellpower, 10 Universal spellpower, and 5% Force absorption.
+Cooldown: 35/30/25 seconds</Description>
+      <Icon>FeydarkRingOfShadowblades</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>5</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>30</MinSpent>
+      <Clickie/>
+      <Tier5/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>12</MinLevel>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Feydark Illusionist: Force in Tandem</Name>
+      <InternalName>FeydarkForceInTandem</InternalName>
+      <Description>Your familiar grants you +10 Force spellpower, 10 Universal spellpower, and 5% Force absorption.
 These bonuses are temporarily double if you cross the barrier of a ring of Shadowblades.</Description>
-         <Icon>FeydarkForceInTandem</Icon>
-         <XPosition>4</XPosition>
-         <YPosition>5</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>30</MinSpent>
-         <Tier5/>
-         <Requirements>
-            <Requirement>
-               <MinLevel>12</MinLevel>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <SpellPower>Force/Untyped</SpellPower>
-            <Amount>10</Amount>
-         </Effect>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <SpellPower>All</SpellPower>
-            <Amount>10</Amount>
-         </Effect>
-         <Effect>
-            <Type>EnergyAbsorbance</Type>
-            <Bonus>Enhancement</Bonus>
-            <Energy>Force</Energy>
-            <Amount>10</Amount>
-         </Effect>
-      </EnhancementTreeItem>
-   </EnhancementTree>
+      <Icon>FeydarkForceInTandem</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>5</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>12</MinLevel>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>10</Amount>
+        <SpellPower>Force/Untyped</SpellPower>
+      </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>10</Amount>
+        <SpellPower>All</SpellPower>
+      </Effect>
+      <Effect>
+        <Type>EnergyAbsorbance</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>10</Amount>
+        <Energy>Force</Energy>
+      </Effect>
+    </EnhancementTreeItem>
+  </EnhancementTree>
    <!--Ranger trees-->
    <EnhancementTree>
       <!--Ranger version of this tree-->
@@ -92240,7 +92284,7 @@ your Epic level) for 10 seconds.
 
 If Draconic Fury is active, you also gain a 10% chance that you will gain a Racial
 Bonus to Temporaray HP equal to (10 + Double your Epic level) for 10 seconds, and a
-10% chance that you will gain a Racial Bnus to Temporary SP equal to (10 + Double
+10% chance that you will gain a Racial Bonus to Temporary SP equal to (10 + Double
 your Epic level) for 10 seconds.</Description>
          <Icon>DraconicHunger</Icon>
          <XPosition>1</XPosition>
@@ -95788,10 +95832,8 @@ Tier 2: Evil Outsider Bane, gaining +2 bonus and dealing 2d6 extra damage agains
       <EnhancementTreeItem>
          <Name>Fury of the Wild: Sense Weakness</Name>
          <InternalName>SenseWeakness</InternalName>
-         <Description>You deal [10/20/30]% extra damage to the helpless.
-Your melee attacks deal [1d8/1d8/1d8] extra untyped damage to enemies below
-75% HP, [0/1d12/1d12] extra damage to enemies below 50% HP, and [0/0/1d20]
-extra damage to enemies below 25% HP. These are cumulative.</Description>
+         <Description>You deal [10/20/30]% extra damage to the helpless and +[1/2/3]
+damage per hit.</Description>
          <Icon>SenseWeakness</Icon>
          <XPosition>2</XPosition>
          <YPosition>4</YPosition>
@@ -95804,37 +95846,16 @@ extra damage to enemies below 25% HP. These are cumulative.</Description>
             </Requirement>
          </Requirements>
          <Effect>
-            <DisplayName>Fury of the Wild: Sense Weakness: Below 75%</DisplayName>
-            <Type>WeaponOtherDamageBonus</Type>
+            <Type>DamageBonus</Type>
             <Bonus>Destiny</Bonus>
             <Weapon>All</Weapon>
-            <Dice>
-               <Number size="3">1 1 1</Number>
-               <Sides size="3">8 8 8</Sides>
-            </Dice>
-            <Stance>Enemy 75%</Stance>
+             <AmountVector size="3">1 2 3</AmountVector>
          </Effect>
          <Effect>
-            <DisplayName>Fury of the Wild: Sense Weakness: Below 50%</DisplayName>
-            <Type>WeaponOtherDamageBonus</Type>
+            <Type>Seeker</Type>
             <Bonus>Destiny</Bonus>
             <Weapon>All</Weapon>
-            <Dice>
-               <Number size="3">0 1 1</Number>
-               <Sides size="3">0 12 12</Sides>
-            </Dice>
-            <Stance>Enemy 50%</Stance>
-         </Effect>
-         <Effect>
-            <DisplayName>Fury of the Wild: Sense Weakness: Below 25%</DisplayName>
-            <Type>WeaponOtherDamageBonus</Type>
-            <Bonus>Destiny</Bonus>
-            <Weapon>All</Weapon>
-            <Dice>
-               <Number size="3">0 0 1</Number>
-               <Sides size="3">0 0 20</Sides>
-            </Dice>
-            <Stance>Enemy 25%</Stance>
+             <AmountVector size="3">1 2 3</AmountVector>
          </Effect>
          <Effect>
             <Type>HelplessDamage</Type>
@@ -97042,7 +97063,7 @@ weapon attacks.</Description>
       <EnhancementTreeItem>
          <Name>Grandmaster of Flowers: Devastating Critical</Name>
          <InternalName>GoFDevastatingCritical</InternalName>
-         <Description>Passive Bnus: +1 Critical Damage Mulitplier on rolls of 19-20.</Description>
+         <Description>Passive Bonus: +1 Critical Damage Mulitplier on rolls of 19-20.</Description>
          <Icon>GoFDevastatingCritical</Icon>
          <XPosition>2</XPosition>
          <YPosition>5</YPosition>

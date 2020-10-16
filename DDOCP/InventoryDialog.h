@@ -78,6 +78,7 @@ class CInventoryDialog :
         CInventoryDialog(CWnd* pParent);
 
         void SetGearSet(Character * pCharacter, const EquippedGear & gear);
+        void SetUseFiligreeMenu(bool bChecked);
 
     ///////////////////////////////////////////////////////////////////
     // MFC
@@ -147,6 +148,9 @@ class CInventoryDialog :
         CImageList m_filigreeImagesList;
         bool m_bIgnoreNextMessage;
         int m_filigreeIndex;        // index of filigree being edited
+        std::vector<Augment> m_filigrees;
+        CMenu m_filigreeMenu;
+        bool m_bUseFiligreeMenu;
 };
 
 //{{AFX_INSERT_LOCATION}}

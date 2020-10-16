@@ -46,6 +46,7 @@ class CEpicDestiniesView :
         void UpdateEnhancementTreeReset(Character * charData) override;
         void UpdateFatePointsChanged(Character * charData) override;
         void UpdateEpicCompletionistChanged(Character * charData) override;
+        void UpdateActionPointsChanged(Character * charData) override;
     private:
         std::vector<EnhancementTree> DetermineTrees();
         void CreateEnhancementWindows();

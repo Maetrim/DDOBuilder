@@ -279,6 +279,19 @@ void CStancesView::CreateStanceWindows()
         weapon.Set_AutoControlled();
         AddStance(weapon);
     }
+    // add the auto controlled stances for each race type
+    for (size_t rt = Race_Unknown; rt < Race_Count; ++rt)
+    {
+        CString name = (LPCTSTR)EnumEntryText((RaceType)rt, raceTypeMap);
+        CString prompt;
+        prompt.Format("You are %s", name);
+        Stance race(
+                (LPCTSTR)name,
+                (LPCTSTR)name,
+                (LPCTSTR)prompt);
+        race.Set_AutoControlled();
+        AddStance(race);
+    }
 }
 
 void CStancesView::AddStance(const Stance & stance)

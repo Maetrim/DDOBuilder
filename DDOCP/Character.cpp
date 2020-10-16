@@ -91,6 +91,7 @@ Character::Character(CDDOCPDoc * pDoc) :
     m_SpecialFeats(L"SpecialFeats"),
     m_bonusRacialActionPoints(0),
     m_bonusUniversalActionPoints(0),
+    m_bonusDestinyActionPoints(0),
     m_racialTreeSpend(0),
     m_universalTreeSpend(0),
     m_classTreeSpend(0),
@@ -846,6 +847,7 @@ void Character::SetRace(RaceType race)
     // revoking a racial feat can invalidate a feat selection in other levels (e.g. loss of Dodge)
     VerifyTrainedFeats();
     VerifyGear();               // changing too/from forged can affect equipped gear
+    UpdateWeaponStances();
 }
 
 void Character::SetAlignment(AlignmentType alignment)
@@ -2615,6 +2617,7 @@ int Character::TotalPointsAvailable(const std::string & treeName, TreeType type)
         if (DestinyClaimed(treeName))
         {
             aps = DestinyLevel(treeName) * 4; // destiny level is 0..6, i.e. 0 to 24 APs
+            aps += m_bonusDestinyActionPoints;  // count destiny AP tomes also
         }
         break;
     }
@@ -2657,6 +2660,7 @@ int Character::AvailableActionPoints(const std::string & treeName, TreeType type
         if (DestinyClaimed(treeName))
         {
             aps = DestinyLevel(treeName) * 4; // destiny level is 0..6, i.e. 0 to 24 APs
+            aps += m_bonusDestinyActionPoints;
             Character * pThis = const_cast<Character*>(this); // its used in a const way
             aps -= pThis->APSpentInTree(treeName);
         }
@@ -3230,7 +3234,8 @@ void Character::CountBonusUniversalAP()
     CDDOCPApp * pDDOApp = dynamic_cast<CDDOCPApp*>(pApp);
     if (pDDOApp != NULL)
     {
-        size_t APcount = 0;
+        size_t UAPcount = 0;
+        size_t DAPcount = 0;
         const std::list<Feat> & specialFeats = pDDOApp->SpecialFeats();
         std::list<Feat>::const_iterator fi = specialFeats.begin();
         while (fi != specialFeats.end())
@@ -3248,11 +3253,23 @@ void Character::CountBonusUniversalAP()
                         // APs are always whole numbers
                         if (ei->HasAmount())
                         {
-                            APcount += (size_t)ei->Amount() * count;
+                            UAPcount += (size_t)ei->Amount() * count;
                         }
                         else if (ei->HasAmountVector())
                         {
-                            APcount += (size_t)ei->AmountVector()[count-1];
+                            UAPcount += (size_t)ei->AmountVector()[count-1];
+                        }
+                    }
+                    if (ei->Type() == Effect_DestinyAPBonus)
+                    {
+                        // APs are always whole numbers
+                        if (ei->HasAmount())
+                        {
+                            DAPcount += (size_t)ei->Amount() * count;
+                        }
+                        else if (ei->HasAmountVector())
+                        {
+                            DAPcount += (size_t)ei->AmountVector()[count-1];
                         }
                     }
                     ei++;
@@ -3260,9 +3277,11 @@ void Character::CountBonusUniversalAP()
             }
             fi++;
         }
-        if (APcount != m_bonusUniversalActionPoints)
+        if (UAPcount != m_bonusUniversalActionPoints
+                || DAPcount != m_bonusDestinyActionPoints)
         {
-            m_bonusUniversalActionPoints = APcount;
+            m_bonusUniversalActionPoints = UAPcount;
+            m_bonusDestinyActionPoints = DAPcount;
             NotifyActionPointsChanged();
         }
     }
@@ -5311,6 +5330,24 @@ void Character::UpdateWeaponStances()
         else
         {
             DeactivateStance(weapon);
+        }
+    }
+    for (size_t rt = Race_Unknown; rt < Race_Count; ++rt)
+    {
+        CString name = (LPCTSTR)EnumEntryText((RaceType)rt, raceTypeMap);
+        CString prompt;
+        prompt.Format("You are %s", name);
+        Stance race(
+                (LPCTSTR)name,
+                (LPCTSTR)name,
+                (LPCTSTR)prompt);
+        if (rt == Race())
+        {
+            ActivateStance(race);
+        }
+        else
+        {
+            DeactivateStance(race);
         }
     }
 }

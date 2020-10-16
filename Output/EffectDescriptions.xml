@@ -635,6 +635,12 @@
             <Bonus>Enhancement</Bonus>
             <Amount>59</Amount>
         </Effect>
+        <EffectDescription>Quality Incite +44%: +44% Quality bonus to increased threat generated from melee damage.</EffectDescription>
+        <Effect>
+            <Type>ThreatBonusMelee</Type>
+            <Bonus>Quality</Bonus>
+            <Amount>44</Amount>
+        </Effect>
         <EffectDescription>Insightful Incite +27%: +27% Insight bonus to increased threat generated from melee damage.</EffectDescription>
         <Effect>
             <Type>ThreatBonusMelee</Type>
@@ -1295,6 +1301,7 @@
         </Effect>
     <EffectDescription>Permanent Nihil: Passive: +30 Alchemical bonus to Negative Energy spell power.</EffectDescription>
     <EffectDescription>Fire Shield(Cold): When you are successfully attacked, there is a 10% chance that a Fire Shield(Cold) will be cast on you. If this effect activates while you have an active Fire Shield(Hot) from another source, they will nullify each other.</EffectDescription>
+    <EffectDescription>Fire Shield (Cold): You permanently benefit from Fire Shield(Cold) which proects you from Fire Damage and harms those who attack you. You are permanently warded against Fire Shield(Hot)</EffectDescription>
     <EffectDescription>Fire Shield(Hot): When you are successfully attacked, there is a 10% chance that a Fire Shield(Hot) will be cast on you. If this effect activates while you have an active Fire Shield(Cold) from another source, they will nullify each other.</EffectDescription>
     <EffectDescription>Freezing Ice: While you are wearing this item, your melee, ranged and unarmed attacks gain the Freezing Ice ability. (When the weapon is used, an icy power occasionally comes to the surface, attempting to freeze an enemy solid and encase them in ice)</EffectDescription>
         <EffectDescription>Epic Freezing Ice: While you are wearing this item, your melee, ranged and unarmed attacks gain the Freezing Ice ability. (When the weapon is used, an icy power occasionally comes to the surface, attempting to freeze an enemy solid and encase them in ice)</EffectDescription>
@@ -1810,6 +1817,13 @@
             <Type>SpellPower</Type>
             <Bonus>Insightful</Bonus>
             <Amount>101</Amount>
+            <SpellPower>Cold</SpellPower>
+        </Effect>
+        <EffectDescription>Quality Glaciation +54: Passive: +54 Quality Bonus to Cold Spell Power.</EffectDescription>
+        <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Quality</Bonus>
+            <Amount>54</Amount>
             <SpellPower>Cold</SpellPower>
         </Effect>
         <EffectDescription>Quality Corrosion +53: Passive: +53 Quality Bonus to Acid Spell Power.</EffectDescription>
@@ -3384,8 +3398,9 @@
             </Dice>
             <Weapon>All</Weapon>
         </Effect>
-        <EffectDescription>Cold Vulnerability: On Hit: Applies a stack of Cold Vulnerable (1% more damage for 3 seconds. This effect stacks up to 20 times, and loses one stack on expiration). This effect may occur on-hit once a second.</EffectDescription>
-        <EffectDescription>Fire Vulnerability: On Hit: Applies a stack of Fire Vulnerable (1% more damage for 3 seconds. This effect stacks up to 20 times, and loses one stack on expiration). This effect may occur on-hit once a second.</EffectDescription>
+        <EffectDescription>Acid Vulnerability: On Hit: Applies a stack of Acid Vulnerability (1% more damage for 3 seconds. This effect stacks up to 20 times, and loses one stack on expiration). This effect may occur on-hit once a second.</EffectDescription>
+        <EffectDescription>Cold Vulnerability: On Hit: Applies a stack of Cold Vulnerability (1% more damage for 3 seconds. This effect stacks up to 20 times, and loses one stack on expiration). This effect may occur on-hit once a second.</EffectDescription>
+        <EffectDescription>Fire Vulnerability: On Hit: Applies a stack of Fire Vulnerability (1% more damage for 3 seconds. This effect stacks up to 20 times, and loses one stack on expiration). This effect may occur on-hit once a second.</EffectDescription>
         <EffectDescription>Weaken Undead: While wearing this item, your attacks cause undead creatures to lose 20% of their Fortification for the next 20 seconds. This effect does not stack with itself.</EffectDescription>
         <EffectDescription>Weaken Undead: Undead creatures struck by this weapon find themselves more vulnerable. Each time this weapon deals damage to an undead creature, the target loses 20% of its Fortification for the next 20 seconds. This effect does not stack with itself.</EffectDescription>
         <EffectDescription>Crushing Wave: This weapon stores the unstoppable force of the ocean's fury deep within. When this weapon is used, this power occasionally comes to the surface, crushing enemies beneath a torrent of frigid water.</EffectDescription>
@@ -5978,6 +5993,7 @@ When 3 pieces are equipped: +1 Artifact Bonus to Critical Multiplier on a 19-20.
         </Effect>
         <Effect>
             <DisplayName>Fracturing</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
             <Bonus>Equipment</Bonus>
             <Dice>
                 <Number size="1">2</Number>
@@ -6022,6 +6038,7 @@ When 3 pieces are equipped: +1 Artifact Bonus to Critical Multiplier on a 19-20.
         <EffectDescription>Deadly Spider Venom: This item is steeped in deadly spider venom. On an attack roll of 20 which is confirmed as a critical hit it will inflict the target with a poison that deals 10d6 poison damage every 2 seconds for 6 seconds. When the poison wears off, it also deals 3d6 Constitution damage to the target. A successful Fortitude save (DC 34) negates the Constitution damage.</EffectDescription>
         <EffectDescription>Enervation: On Hit: Chance of draining the life force of the enemy and giving negative levels.</EffectDescription>
        <EffectDescription>Mithral: Mithral armor is one type lighter then normal. Arcane Spell Failure decreased by 10%. Maximum dexterity bonus increased by 2. Armor check penalty reduced by 3.</EffectDescription>
+       <EffectDescription>Mithral: Mithral is a very rare, silvery, glistening metal that is lighter then iron but just as hard. When worked like steel, it becomes a wonderful material from which to create armor and is occasionally used for other items as well. Most Mithral armors are one category lighter than normal for purposes of movement and other limitations. Spell failure chances for armors and shields made from mithral are decreased by 10%, maximum Dextierity bonus is increased by 2, and armor check penalties are lessened by 3.</EffectDescription>
         <EffectDescription>Holy Burst: A holy weapon is imbued with holy power. This power makes the weapon good-aligned and thus bypasses the corresponding damage reduction. It deals an extra 2 to 12 points of damage against all of evil alignment and an extra 3 to 18 on a critical for weapons with a x2 critical multiplier, 4 to 24 for a x3 multiplier, and 5 to 30 for x4 multiplier.</EffectDescription>
          <Effect>
             <DisplayName>Holy Burst</DisplayName>
@@ -6638,6 +6655,17 @@ When 3 pieces are equipped: +1 Artifact Bonus to Critical Multiplier on a 19-20.
         <Effect>
             <Type>SkillBonus</Type>
             <Bonus>Insightful</Bonus>
+            <Amount>11</Amount>
+            <Skill>Balance</Skill>
+            <Skill>Hide</Skill>
+            <Skill>Move Silently</Skill>
+            <Skill>Open Lock</Skill>
+            <Skill>Tumble</Skill>
+        </Effect>
+        <EffectDescription>Exceptional Nimble Skills Bonus +11: +11 Exceptional bonus to Balance, Hide, Move Silently, Open Lock and Tumble.</EffectDescription>
+        <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Exceptional</Bonus>
             <Amount>11</Amount>
             <Skill>Balance</Skill>
             <Skill>Hide</Skill>
@@ -7850,5 +7878,335 @@ When struck you will occasionally have the Stoneskin spell cast on you.</EffectD
             <Bonus>Enhancement</Bonus>
             <WeaponGroup>Favored Weapon</WeaponGroup>
             <Weapon>Longsword</Weapon>
+        </Effect>
+        <EffectDescription>Blighted Lore +32%: Passive: Your Acid, Negative, Poison, and Evil spells gain a +32% Equipment bonus to their chance to Critical Hit.</EffectDescription>
+        <Effect>
+            <Type>SpellLore</Type>
+            <Bonus>Equipment</Bonus>
+            <Amount>32</Amount>
+            <SpellPower>Acid</SpellPower>
+            <SpellPower>Negative</SpellPower>
+            <SpellPower>Poison</SpellPower>
+            <SpellPower>Evil</SpellPower>
+        </Effect>
+        <EffectDescription>Power of the Blight +219: Passive: +219 Equipment bonus to Acid, Negative, Poison, and Evil Spell Power.</EffectDescription>
+        <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Equipment</Bonus>
+            <Amount>219</Amount>
+            <SpellPower>Acid</SpellPower>
+            <SpellPower>Negative</SpellPower>
+            <SpellPower>Poison</SpellPower>
+            <SpellPower>Evil</SpellPower>
+        </Effect>
+        <EffectDescription>Legendary Earthgrab Guard: This items stores the implacable strength of the earth deep within. When the wearer is hit in melee, this power will occasionally come to the surface calling on earth to erupt from the ground and hold an enemy in place.</EffectDescription>
+        <EffectDescription>Sovereign Nightmares: On Vorpal Hit: If your target has below 5,000 Hit Points, a burst of pure terror enemates from this weapon, snuffing out its life as if it were the subject of a Phantasmal Killer spell. If your target have above 5,000 Hit Points, they instead take significant Force damage.</EffectDescription>
+        <EffectDescription>Acid Blast 10: This weapon is covered in a string and deadly acid, dealing an extra 10d6 Acid damage on a successful hit, and an additional 10d6 Acid damage on a critical hit.</EffectDescription>
+         <Effect>
+            <DisplayName>Acid Blast 10</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+              <Dice>
+                 <Number size="1">10</Number>
+                 <Sides size="1">6</Sides>
+                 <Energy>Acid</Energy>
+              </Dice>
+         </Effect>
+         <Effect>
+            <DisplayName>Acid Blast 10</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+            <CriticalMultiplier/>
+              <Dice>
+                 <Number size="4">20 20 20 20</Number>
+                 <Sides size="4">6 6 6 6</Sides>
+                 <Energy>Acid</Energy>
+              </Dice>
+         </Effect>
+        <EffectDescription>Legendary Acid Torrent: On an attack roll of 20 which is confirmed as a critical hit this power will be released, dealing damage to the target and all enemies near it for 30d6 + 90 acid damage.</EffectDescription>
+        <EffectDescription>One with the Swarm:
+2 Pieces Equipped: You are protected by a swarm of hostile bees that lash out when you are struck in melee range. On vorpal melee strikes, they will also swarm your enemies, dealing Piercing damage over time.</EffectDescription>
+        <EffectDescription>Harnessed Lightning: The fearsome magical prowess of Suulomades still surrounds this weapon. It contains a near-limitless amount of deadly electricity, dealing 10d6 Electric damage on a successful hit, and an additional 10d6 Electric damage on a critical hit.</EffectDescription>
+         <Effect>
+            <DisplayName>Harnessed Lightning</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+              <Dice>
+                 <Number size="1">10</Number>
+                 <Sides size="1">6</Sides>
+                 <Energy>Electric</Energy>
+              </Dice>
+         </Effect>
+         <Effect>
+            <DisplayName>Harnessed Lightning</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+            <CriticalMultiplier/>
+              <Dice>
+                 <Number size="4">20 20 20 20</Number>
+                 <Sides size="4">6 6 6 6</Sides>
+                 <Energy>Electric</Energy>
+              </Dice>
+         </Effect>
+        <EffectDescription>Legacy of Lorik:
+2 Pieces Equipped: +10% Artifact bonus to Positive and Light/Alignment Spell Critical Chance
+                   +50 Artifact bonus to Positive and Light/Alignment Spell Power</EffectDescription>
+        <Effect>
+            <DisplayName>Legacy of Lorik: Spell Critical Chance</DisplayName>
+            <Type>SpellLore</Type>
+            <Bonus>Artifact</Bonus>
+            <AmountVector size="2">0 10</AmountVector>
+            <SpellPower>Positive</SpellPower>
+            <SpellPower>Light/Alignment</SpellPower>
+        </Effect>
+        <Effect>
+            <DisplayName>Legacy of Lorik: Spell Power</DisplayName>
+            <Type>SpellPower</Type>
+            <Bonus>Artifact</Bonus>
+            <AmountVector size="2">0 50</AmountVector>
+            <SpellPower>Positive</SpellPower>
+            <SpellPower>Light/Alignment</SpellPower>
+        </Effect>
+        <EffectDescription>Legacy of Levik:
+2 Pieces Equipped: +10 Artifact bonus to Armor Class
+                   +25 Artifact bonus to Physical Resistance Rating
+                   +75% Artifact bonus to Melee Threat Generation</EffectDescription>
+        <Effect>
+            <DisplayName>Legacy of Levik: Armor Class</DisplayName>
+            <Type>ACBonus</Type>
+            <Bonus>Artifact</Bonus>
+            <AmountVector size="2">0 10</AmountVector>
+            <Percent/>
+        </Effect>
+        <Effect>
+            <DisplayName>Legacy of Levik: PRR</DisplayName>
+            <Type>PRR</Type>
+            <Bonus>Artifact</Bonus>
+            <AmountVector size="2">0 25</AmountVector>
+        </Effect>
+        <Effect>
+            <DisplayName>Legacy of Levik: Melee Threat</DisplayName>
+            <Type>ThreatBonusMelee</Type>
+            <Bonus>Artifact</Bonus>
+            <AmountVector size="2">0 75</AmountVector>
+        </Effect>
+        <EffectDescription>Hound's Blood: This artifact, while equipped, grants you some of the innate protections of a Thaarak Hound. You are warded against Charm, Poison, and Petrification.</EffectDescription>
+        <Effect>
+            <Type>Immunity</Type>
+            <Bonus>Equipment</Bonus>
+            <Immunity>Charm</Immunity>
+        </Effect>
+        <Effect>
+            <Type>Immunity</Type>
+            <Bonus>Equipment</Bonus>
+            <Immunity>Poison</Immunity>
+        </Effect>
+        <Effect>
+            <Type>Immunity</Type>
+            <Bonus>Equipment</Bonus>
+            <Immunity>Petrification</Immunity>
+        </Effect>
+        <EffectDescription>Hound's Bones +31%: You are strengthened by the bones of a powerful Thaarak Hound. +31% Enhancement bonus to Acid and Evil absorption.</EffectDescription>
+        <Effect>
+            <Type>EnergyAbsorbance</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>31</Amount>
+            <Energy>Acid</Energy>
+        </Effect>
+        <Effect>
+            <Type>EnergyAbsorbance</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>31</Amount>
+            <Energy>Evil</Energy>
+        </Effect>
+        <EffectDescription>Devil's Blood: This artifact, while equipped, grants you some of the innate protections of a Horned Devil. You are warded against Charm, Poison, and Fear.</EffectDescription>
+        <Effect>
+            <Type>Immunity</Type>
+            <Bonus>Equipment</Bonus>
+            <Immunity>Charm</Immunity>
+        </Effect>
+        <Effect>
+            <Type>Immunity</Type>
+            <Bonus>Equipment</Bonus>
+            <Immunity>Poison</Immunity>
+        </Effect>
+        <Effect>
+            <Type>Immunity</Type>
+            <Bonus>Equipment</Bonus>
+            <Immunity>Fear</Immunity>
+        </Effect>
+        <EffectDescription>Devil's Bones +31%: You are strengthened by the bones of a powerful Devil. +31% Enhancement bonus to Fire and Evil absorption.</EffectDescription>
+        <Effect>
+            <Type>EnergyAbsorbance</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>31</Amount>
+            <Energy>Fire</Energy>
+        </Effect>
+        <Effect>
+            <Type>EnergyAbsorbance</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>31</Amount>
+            <Energy>Evil</Energy>
+        </Effect>
+        <EffectDescription>Mantle of Suulomades:
+2 Pieces Equipped: +20 Artifact bonus to Physical and Magical Resistance Rating
+                   +3 Sneak Attack Dice
+                   +10% Artifact bonus to Doublestrike and Doubleshot</EffectDescription>
+        <Effect>
+            <DisplayName>Mantle of Suulomades: PRR</DisplayName>
+            <Type>PRR</Type>
+            <Bonus>Artifact</Bonus>
+            <AmountVector size="2">0 20</AmountVector>
+        </Effect>
+        <Effect>
+            <DisplayName>Mantle of Suulomades: MRR</DisplayName>
+            <Type>MRR</Type>
+            <Bonus>Artifact</Bonus>
+            <AmountVector size="2">0 20</AmountVector>
+        </Effect>
+        <Effect>
+            <DisplayName>Mantle of Suulomades: Sneak Attack Dice</DisplayName>
+            <Type>SneakAttackDice</Type>
+            <Bonus>Artifact</Bonus>
+            <AmountVector size="2">0 3</AmountVector>
+        </Effect>
+        <Effect>
+            <DisplayName>Mantle of Suulomades: Doublestrike</DisplayName>
+            <Type>Doublestrike</Type>
+            <Bonus>Artifact</Bonus>
+            <AmountVector size="2">0 10</AmountVector>
+        </Effect>
+        <Effect>
+            <DisplayName>Mantle of Suulomades: Doubleshot</DisplayName>
+            <Type>Doubleshot</Type>
+            <Bonus>Artifact</Bonus>
+            <AmountVector size="2">0 10</AmountVector>
+        </Effect>
+        <EffectDescription>Legacy of Tharne:
+2 Pieces Equipped: +10% Artifact bonus to Doublestrike and Doubleshot
+                   +10% Artifact bonus damage to the Helpless
+                   +3 Sneak Attack Dice
+                   +5 Artifact bonus to Spot and Search</EffectDescription>
+        <Effect>
+            <DisplayName>Legacy of Tharne: Doublestrike</DisplayName>
+            <Type>Doublestrike</Type>
+            <Bonus>Artifact</Bonus>
+            <AmountVector size="2">0 10</AmountVector>
+        </Effect>
+        <Effect>
+            <DisplayName>Legacy of Tharne: Doubleshot</DisplayName>
+            <Type>Doubleshot</Type>
+            <Bonus>Artifact</Bonus>
+            <AmountVector size="2">0 10</AmountVector>
+        </Effect>
+          <Effect>
+              <DisplayName>Legacy of Tharne: Helpless Damage</DisplayName>
+              <Type>HelplessDamage</Type>
+              <Bonus>Artifact</Bonus>
+              <AmountVector size="2">0 10</AmountVector>
+          </Effect>
+        <Effect>
+            <DisplayName>Legacy of Tharne: Sneak Attack Dice</DisplayName>
+            <Type>SneakAttackDice</Type>
+            <Bonus>Artifact</Bonus>
+            <AmountVector size="2">0 3</AmountVector>
+        </Effect>
+        <Effect>
+            <DisplayName>Legacy of Tharne: Spot and Search</DisplayName>
+            <Type>SkillBonus</Type>
+            <Bonus>Artifact</Bonus>
+            <AmountVector size="2">0 5</AmountVector>
+            <Skill>Search</Skill>
+            <Skill>Spot</Skill>
+        </Effect>
+        <EffectDescription>Anger of the Avalanche:
+2 Pieces Equipped: +10% Artifact bonus to Cold, Sonic, and Electric Spell Critical Chance
+                   +50 Artifact bonus to Cold, Sonic, and Electric Spell Power</EffectDescription>
+        <Effect>
+            <DisplayName>Anger of the Avalanche: Spell Critical</DisplayName>
+            <Type>SpellLore</Type>
+            <Bonus>Artifact</Bonus>
+            <AmountVector size="2">0 10</AmountVector>
+            <SpellPower>Cold</SpellPower>
+            <SpellPower>Sonic</SpellPower>
+            <SpellPower>Electric</SpellPower>
+        </Effect>
+        <Effect>
+            <DisplayName>Anger of the Avalanche: Spell Power</DisplayName>
+            <Type>SpellPower</Type>
+            <Bonus>Artifact</Bonus>
+            <AmountVector size="2">0 50</AmountVector>
+            <SpellPower>Cold</SpellPower>
+            <SpellPower>Sonic</SpellPower>
+            <SpellPower>Electric</SpellPower>
+        </Effect>
+        <EffectDescription>Flaming Blast: This weapon burns with deadly magical fire, dealing 10d6 Fire damage on a successful hit, and in additional 10d6 Fire damage on a critical hit.</EffectDescription>
+         <Effect>
+            <DisplayName>Flaming Blast</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+              <Dice>
+                 <Number size="1">10</Number>
+                 <Sides size="1">6</Sides>
+                 <Energy>Fire</Energy>
+              </Dice>
+         </Effect>
+         <Effect>
+            <DisplayName>Flaming Blast</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+            <CriticalMultiplier/>
+              <Dice>
+                 <Number size="4">20 20 20 20</Number>
+                 <Sides size="4">6 6 6 6</Sides>
+                 <Energy>Fire</Energy>
+              </Dice>
+         </Effect>
+        <EffectDescription>Lights Out: This lantern does not light the way. On hit, this has a chance of blinding your enemies with ash.</EffectDescription>
+        <EffectDescription>Mind and Matter:
+2 Pieces Equipped: +10% Artifact bonus to Physical and Magical Resistance Rating
+                   +20 Artifact bonus to MRR Cap
+                   +10 Artifact bonus to Positive, Negative, and Repair Aplification</EffectDescription>
+        <Effect>
+            <DisplayName>Mind and Matter: PRR</DisplayName>
+            <Type>PRR</Type>
+            <Bonus>Artifact</Bonus>
+            <AmountVector size="2">0 10</AmountVector>
+        </Effect>
+        <Effect>
+            <DisplayName>Mind and Matter: MRR</DisplayName>
+            <Type>MRR</Type>
+            <Bonus>Artifact</Bonus>
+            <AmountVector size="2">0 10</AmountVector>
+        </Effect>
+        <Effect>
+            <DisplayName>Mind and Matter: MRR Cap</DisplayName>
+            <Type>MRRCap</Type>
+            <Bonus>Artifact</Bonus>
+            <AmountVector size="2">0 20</AmountVector>
+        </Effect>
+        <Effect>
+            <DisplayName>Mind and Matter: Positive Healing Amplification</DisplayName>
+            <Type>HealingAmplification</Type>
+            <Bonus>Artifact</Bonus>
+            <AmountVector size="2">0 10</AmountVector>
+        </Effect>
+        <Effect>
+            <DisplayName>Mind and Matter: Negative Healing Amplification</DisplayName>
+            <Type>NegativeHealingAmplification</Type>
+            <Bonus>Artifact</Bonus>
+            <AmountVector size="2">0 10</AmountVector>
+        </Effect>
+        <Effect>
+            <DisplayName>Mind and Matter: Repair Healing Amplification</DisplayName>
+            <Type>RepairAmplification</Type>
+            <Bonus>Artifact</Bonus>
+            <AmountVector size="2">0 10</AmountVector>
         </Effect>
 </EffectDescriptions>

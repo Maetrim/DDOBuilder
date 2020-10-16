@@ -455,6 +455,7 @@ class Character :
         CDDOCPDoc * m_pDocument;
         int m_bonusRacialActionPoints;
         int m_bonusUniversalActionPoints;
+        int m_bonusDestinyActionPoints;
         int m_racialTreeSpend;
         int m_universalTreeSpend;
         int m_classTreeSpend;

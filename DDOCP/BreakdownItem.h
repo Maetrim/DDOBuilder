@@ -150,6 +150,7 @@ class BreakdownItem :
             }
         };
         std::vector<AbilityStance> m_mainAbility; // ability types that are used for this breakdown (highest of those listed)
+        std::vector<AbilityStance> m_baseAbility; // restore list on change of character
         bool m_bHasWeapon;
         WeaponType m_weapon;
         size_t m_weaponCriticalMultiplier;

@@ -1,7 +1,7 @@
 <Enhancements>
   <EnhancementTree>
     <Name>Shifter</Name>
-    <Version>1</Version>
+    <Version>2</Version>
     <Requirements>
       <Requirement>
         <Race>Shifter</Race>
@@ -224,6 +224,7 @@
 making enemies more likely to attack you. Cooldown: 2 seconds</Description>
           <Icon>ShifterBrutalSpellcasting</Icon>
           <Cost>1</Cost>
+          <Clickie/>
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Brutal Fighting</Name>
@@ -231,6 +232,7 @@ making enemies more likely to attack you. Cooldown: 2 seconds</Description>
 hate, making enemies more likely to attack you. Cooldown: 2 seconds</Description>
           <Icon>ShifterBruteFighting</Icon>
           <Cost>1</Cost>
+          <Clickie/>
         </EnhancementSelection>
       </Selector>
     </EnhancementTreeItem>
@@ -308,7 +310,7 @@ hate, making enemies more likely to attack you. Cooldown: 2 seconds</Description
     <EnhancementTreeItem>
       <Name>Shifter: Shifted Defenses</Name>
       <InternalName>ShifterShiftedDefenses</InternalName>
-      <Description>Choose an effect</Description>
+      <Description>Choose an upgrade based on your subrace</Description>
       <Icon>ShifterShiftedDefenses</Icon>
       <XPosition>0</XPosition>
       <YPosition>2</YPosition>
@@ -319,7 +321,7 @@ hate, making enemies more likely to attack you. Cooldown: 2 seconds</Description
       <Selector>
         <EnhancementSelection>
           <Name>Shifted Defenses</Name>
-          <Description>+[4/?/?] Physical Resistance Rating while Raging</Description>
+          <Description>+[4/8/12] Physical Resistance Rating while Raging</Description>
           <Icon>ShifterShiftedDefenses</Icon>
           <Cost>1</Cost>
           <Requirements>
@@ -327,6 +329,15 @@ hate, making enemies more likely to attack you. Cooldown: 2 seconds</Description
               <Feat>Beasthide Shifter</Feat>
             </Requirement>
           </Requirements>
+      <Effect>
+        <Type>PRR</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">4 8 12</AmountVector>
+        <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
+        <AnyOfStance>Wildhunt Shifter: Shifted Form</AnyOfStance>
+        <AnyOfStance>Rage</AnyOfStance>
+        <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
+      </Effect>
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Shifted Senses</Name>
@@ -338,6 +349,25 @@ hate, making enemies more likely to attack you. Cooldown: 2 seconds</Description
               <Feat>Wildhunt Shifter</Feat>
             </Requirement>
           </Requirements>
+      <Effect>
+        <Type>SkillBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">3 3 3</AmountVector>
+          <Skill>Spot</Skill>
+        <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
+        <AnyOfStance>Wildhunt Shifter: Shifted Form</AnyOfStance>
+        <AnyOfStance>Rage</AnyOfStance>
+        <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
+      </Effect>
+      <Effect>
+        <Type>DodgeBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">2 2 2</AmountVector>
+        <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
+        <AnyOfStance>Wildhunt Shifter: Shifted Form</AnyOfStance>
+        <AnyOfStance>Rage</AnyOfStance>
+        <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
+      </Effect>
         </EnhancementSelection>
       </Selector>
     </EnhancementTreeItem>
@@ -436,36 +466,46 @@ may also intimidate the target based on the player's intinidate skill.</Descript
     <EnhancementTreeItem>
       <Name>Shifter: Empowered by Nature</Name>
       <InternalName>ShifterEmpoweredByNature</InternalName>
-      <Description>Choose an effect</Description>
+      <Description>Choose an upgrade based on your subrace</Description>
       <Icon>ShifterEmpoweredByNature</Icon>
       <XPosition>0</XPosition>
       <YPosition>3</YPosition>
-      <Cost>2</Cost>
-      <Ranks>1</Ranks>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
       <MinSpent>10</MinSpent>
       <Requirements/>
       <Selector>
         <EnhancementSelection>
           <Name>Empowered by Nature: Beasthide</Name>
-          <Description>+10 Positive Healing Amplification</Description>
+          <Description>+[10/20/30] Positive Healing Amplification</Description>
           <Icon>ShifterEmpoweredByNature</Icon>
-          <Cost>2</Cost>
+          <Cost>1</Cost>
           <Requirements>
             <Requirement>
               <Feat>Beasthide Shifter</Feat>
             </Requirement>
           </Requirements>
+      <Effect>
+        <Type>HealingAmplification</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">10 20 30</AmountVector>
+      </Effect>
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Empowered by Nature: Wildhide</Name>
-          <Description>+25 Maximum Spell Points. You can now cast while Raging.</Description>
+          <Description>+[25/?/?] Maximum Spell Points. You can now cast while Raging.</Description>
           <Icon>ShifterEmpoweredByNatureWildhunt</Icon>
-          <Cost>2</Cost>
+          <Cost>1</Cost>
           <Requirements>
             <Requirement>
               <Feat>Wildhunt Shifter</Feat>
             </Requirement>
           </Requirements>
+      <Effect>
+        <Type>SpellPoints</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">25 25 25</AmountVector>
+      </Effect>
         </EnhancementSelection>
       </Selector>
     </EnhancementTreeItem>
@@ -609,9 +649,9 @@ fortification.</Description>
       </Selector>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
-      <Name>Shifter: Threatening Shift</Name>
+      <Name>Shifter: Exceptional Shifting</Name>
       <InternalName>ShifterThreateningShift</InternalName>
-      <Description>Choose an effect</Description>
+      <Description>Choose an effect based on your subrace</Description>
       <Icon>ShifterThreateningShift</Icon>
       <XPosition>0</XPosition>
       <YPosition>4</YPosition>
@@ -621,8 +661,10 @@ fortification.</Description>
       <Requirements/>
       <Selector>
         <EnhancementSelection>
-          <Name>Camouflaged Shift</Name>
-          <Description>While raging, gain Lesser Dispacement and +3% Dodge Cap.</Description>
+          <Name>Wild Magic</Name>
+          <Description>While raging, gain Lesser Dispacement. When you activate a Rage, you gain Temporary
+Spell Points equal to 5 + double your Character Level. These last for 5 minutes,
+until you dismiss or activate another rage, or until used.</Description>
           <Icon>ShifterCamouflagedShift</Icon>
           <Cost>2</Cost>
           <Requirements>
@@ -647,7 +689,7 @@ fortification.</Description>
     <EnhancementTreeItem>
       <Name>Shifter: True Hunter</Name>
       <InternalName>ShifterTrueHunter</InternalName>
-      <Description>You gain Freedom of Movement, +2 to Saves vs. Enchantments and Illusions, immunity to Petrification and +10 to Spot.</Description>
+      <Description>You gain +2 to Saves vs. Enchantments and Illusions, immunity to Petrification and +10 to Spot.</Description>
       <Icon>RazorclawTrueHunter</Icon>
       <XPosition>1</XPosition>
       <YPosition>4</YPosition>
@@ -655,11 +697,6 @@ fortification.</Description>
       <Ranks>1</Ranks>
       <MinSpent>15</MinSpent>
       <Requirements/>
-      <Effect>
-        <Type>Immunity</Type>
-        <Bonus>Destiny</Bonus>
-        <Immunity>Holds and slippery surfaces</Immunity>
-      </Effect>
       <Effect>
         <Type>SaveBonus</Type>
         <Bonus>Enhancement</Bonus>

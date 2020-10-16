@@ -738,3 +738,11 @@ void CEpicDestiniesView::OnVScroll(UINT p1, UINT p2, CScrollBar* p3)
     UpdateMouseHooks();
 }
 
+void CEpicDestiniesView::UpdateActionPointsChanged(Character * charData)
+{
+    for (size_t i = 0; i < m_treeViews.size(); ++i)
+    {
+        // ensure the tree updates
+        m_treeViews[i]->Invalidate(TRUE);
+    }
+}
