@@ -198,6 +198,7 @@ class Character :
                 TreeType type) const;
 
         // enhancement support
+        const EnhancementTree & FindTree(const std::string & treeName) const;
         bool IsEnhancementTrained(
                 const std::string & enhancementName,
                 const std::string & selection,

@@ -2985,6 +2985,23 @@ void Character::Enhancement_SetSelectedTrees(const SelectedEnhancementTrees & tr
     Set_SelectedTrees(trees);
 }
 
+const EnhancementTree & Character::FindTree(const std::string & treeName) const
+{
+    const std::list<EnhancementTree> & trees = EnhancementTrees();
+    // first find the tree we want
+    std::list<EnhancementTree>::const_iterator tit = trees.begin();
+    while (tit != trees.end())
+    {
+        if ((*tit).Name() == treeName)
+        {
+            // this is the one we want
+            break;
+        }
+        ++tit;
+    }
+    return (*tit);
+}
+
 std::string Character::GetEnhancementName(
         const std::string & treeName,
         const std::string & enhancementName,
@@ -4248,6 +4265,8 @@ void Character::EpicDestiny_ResetEnhancementTree(std::string treeName)
     EpicDestinySpendInTree * pItem = EpicDestiny_FindTree(treeName);
     if (pItem != NULL)
     {
+        // determine how many cores they have so they get retained after reset
+        size_t level = DestinyLevel(treeName);
         // clear all the enhancements trained by revoking them until none left
         while (pItem->Enhancements().size() > 0)
         {
@@ -4265,6 +4284,22 @@ void Character::EpicDestiny_ResetEnhancementTree(std::string treeName)
                 break;
             }
             ++it;
+        }
+        // now re-buy the cores the user had
+        const EnhancementTree & tree = FindTree(treeName);
+        const std::list<EnhancementTreeItem> & items = tree.Items();
+        std::list<EnhancementTreeItem>::const_iterator tii = items.begin();
+        for (size_t index = 0; index < level; ++index)
+        {
+            if (!IsEnhancementTrained((*tii).InternalName(), "", TT_epicDestiny))
+            {
+                EpicDestiny_TrainEnhancement(
+                        treeName,
+                        (*tii).InternalName(),
+                        "",
+                        0);         // core items are always free
+            }
+            ++tii;
         }
         NotifyEnhancementTreeReset();
         NotifyAPSpentInTreeChanged(treeName);
