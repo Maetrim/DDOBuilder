@@ -219,6 +219,10 @@ bool Item::ContainsSearchText(const std::string & searchText) const
     // EffectDescription(s)
     bHasSearchText |= SearchForText(Name(), searchText);
     bHasSearchText |= SearchForText(Description(), searchText);
+    if (HasMinorArtifact())
+    {
+        bHasSearchText |= SearchForText("Minor Artifact", searchText);
+    }
     if (m_hasDropLocation)
     {
         bHasSearchText |= SearchForText(DropLocation(), searchText);

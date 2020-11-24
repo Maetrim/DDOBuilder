@@ -25,7 +25,8 @@ class ItemAugment :
         #define ItemAugment_PROPERTIES(_) \
                 DL_STRING(_, Type) \
                 DL_OPTIONAL_STRING(_, SelectedAugment) \
-                DL_OPTIONAL_SIMPLE(_, double, Value, 0.0)
+                DL_OPTIONAL_SIMPLE(_, double, Value, 0.0) \
+                DL_OPTIONAL_SIMPLE(_, double, Value2, 0.0)
 
         DL_DECLARE_ACCESS(ItemAugment_PROPERTIES)
         DL_DECLARE_VARIABLES(ItemAugment_PROPERTIES)

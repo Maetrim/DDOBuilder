@@ -4867,18 +4867,39 @@ void Character::RevokeGearEffects()
                     name = ss.str();
                     std::list<Effect> effects = augment.Effects();
                     std::list<Effect>::iterator it = effects.begin();
+                    size_t effectIndex = 0;
                     while (it != effects.end())
                     {
-                        if (augment.HasEnterValue()
-                                && augments[ai].HasValue())
+                        if (augment.HasEnterValue())
                         {
-                            (*it).Set_Amount(augments[ai].Value());
+                            if (augment.HasDualValues())
+                            {
+                                if (effectIndex == 0)
+                                {
+                                    if (augments[ai].HasValue())
+                                    {
+                                        (*it).Set_Amount(augments[ai].Value());
+                                    }
+                                }
+                                else
+                                {
+                                    if (augments[ai].HasValue2())
+                                    {
+                                        (*it).Set_Amount(augments[ai].Value2());
+                                    }
+                                }
+                            }
+                            else if (augments[ai].HasValue())
+                            {
+                                (*it).Set_Amount(augments[ai].Value());
+                            }
                         }
                         if (!(*it).HasIsItemSpecific())
                         {
                             NotifyItemEffectRevoked(name, (*it));
                         }
                         ++it;
+                        ++effectIndex;
                     }
                     // clear any augment stances
                     const std::list<Stance> & stances = augment.StanceData();
@@ -4997,18 +5018,39 @@ void Character::ApplyGearEffects()
                     name = ss.str();
                     std::list<Effect> effects = augment.Effects();
                     std::list<Effect>::iterator it = effects.begin();
+                    size_t effectIndex = 0;
                     while (it != effects.end())
                     {
-                        if (augment.HasEnterValue()
-                                && augments[ai].HasValue())
+                        if (augment.HasEnterValue())
                         {
-                            (*it).Set_Amount(augments[ai].Value());
+                            if (augment.HasDualValues())
+                            {
+                                if (effectIndex == 0)
+                                {
+                                    if (augments[ai].HasValue())
+                                    {
+                                        (*it).Set_Amount(augments[ai].Value());
+                                    }
+                                }
+                                else
+                                {
+                                    if (augments[ai].HasValue2())
+                                    {
+                                        (*it).Set_Amount(augments[ai].Value2());
+                                    }
+                                }
+                            }
+                            else if (augments[ai].HasValue())
+                            {
+                                (*it).Set_Amount(augments[ai].Value());
+                            }
                         }
                         if (!(*it).HasIsItemSpecific())
                         {
                             NotifyItemEffect(name, (*it));
                         }
                         ++it;
+                        ++effectIndex;
                     }
                     // clear any augment stances
                     const std::list<Stance> & stances = augment.StanceData();

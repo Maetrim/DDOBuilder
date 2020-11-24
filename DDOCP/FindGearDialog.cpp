@@ -55,6 +55,7 @@ void CFindGearDialog::DoDataExchange(CDataExchange* pDX)
         DDX_Control(pDX, IDC_STATIC_AUGMENT_TYPE1 + i, m_augmentType[i]);
         DDX_Control(pDX, IDC_COMBO_AUGMENT1 + i, m_comboAugmentDropList[i]);
         DDX_Control(pDX, IDC_EDIT_AUGMENT1 + i, m_augmentValues[i]);
+        DDX_Control(pDX, IDC_EDIT2_AUGMENT1 + i, m_augmentValues2[i]);
     }
     DDX_Control(pDX, IDC_STATIC_UPGRADES, m_staticUpgrades);
     for (size_t i = 0; i < MAX_Upgrades; ++i)
@@ -71,6 +72,7 @@ BEGIN_MESSAGE_MAP(CFindGearDialog, CDialog)
     ON_CONTROL_RANGE(CBN_SELENDOK, IDC_COMBO_UPGRADE1, IDC_COMBO_UPGRADE1 + MAX_Upgrades - 1, OnUpgradeSelect)
     ON_CONTROL_RANGE(CBN_SELENDCANCEL, IDC_COMBO_UPGRADE1, IDC_COMBO_UPGRADE1 + MAX_Upgrades - 1, OnUpgradeCancel)
     ON_CONTROL_RANGE(EN_KILLFOCUS, IDC_EDIT_AUGMENT1, IDC_EDIT_AUGMENT1 + MAX_Augments - 1, OnKillFocusAugmentEdit)
+    ON_CONTROL_RANGE(EN_KILLFOCUS, IDC_EDIT2_AUGMENT1, IDC_EDIT2_AUGMENT1 + MAX_Augments - 1, OnKillFocusAugmentEdit)
     ON_WM_SIZE()
     ON_WM_WINDOWPOSCHANGING()
     ON_NOTIFY(HDN_ENDTRACK, IDC_ITEM_LIST, OnEndtrackListItems)
@@ -241,6 +243,7 @@ void CFindGearDialog::EnableControls()
             PopulateAugmentList(
                     &m_comboAugmentDropList[i],
                     &m_augmentValues[i],
+                    &m_augmentValues2[i],
                     augments[i]);
             m_augmentType[i].ShowWindow(SW_SHOW);
             m_comboAugmentDropList[i].ShowWindow(SW_SHOW);
@@ -251,6 +254,7 @@ void CFindGearDialog::EnableControls()
             m_augmentType[i].ShowWindow(SW_HIDE);
             m_comboAugmentDropList[i].ShowWindow(SW_HIDE);
             m_augmentValues[i].ShowWindow(SW_HIDE);
+            m_augmentValues2[i].ShowWindow(SW_HIDE);
         }
     }
     // now show any upgrade slots
@@ -272,7 +276,8 @@ void CFindGearDialog::EnableControls()
 
 void CFindGearDialog::PopulateAugmentList(
         CComboBox * combo,
-        CEdit * edit,
+        CEdit * edit1,
+        CEdit * edit2,
         const ItemAugment & augment)
 {
     int sel = CB_ERR;
@@ -302,22 +307,35 @@ void CFindGearDialog::PopulateAugmentList(
         // this augment is configurable by the user
         if (selAugment.HasEnterValue())
         {
-            edit->ShowWindow(SW_SHOW);
+            edit1->ShowWindow(SW_SHOW);
             // show the value of this augment in the control
             CString text;
             text.Format("%.0f", augment.HasValue() ? augment.Value() : 0);
-            edit->SetWindowText(text);
+            edit1->SetWindowText(text);
+            if (selAugment.HasDualValues())
+            {
+                edit2->ShowWindow(SW_SHOW);
+                // show the value of this augment in the control
+                text.Format("%.0f", augment.HasValue2() ? augment.Value2() : 0);
+                edit2->SetWindowText(text);
+            }
+            else
+            {
+                edit2->ShowWindow(SW_HIDE);
+            }
         }
         else
         {
             // augment has a fixed bonus
-            edit->ShowWindow(SW_HIDE);
+            edit1->ShowWindow(SW_HIDE);
+            edit2->ShowWindow(SW_HIDE);
         }
     }
     else
     {
         // no augment selected
-        edit->ShowWindow(SW_HIDE);
+        edit1->ShowWindow(SW_HIDE);
+        edit2->ShowWindow(SW_HIDE);
     }
     combo->UnlockWindowUpdate();
 }
@@ -514,11 +532,26 @@ void CFindGearDialog::OnKillFocusAugmentEdit(UINT nID)
     // user may have completed editing an edit field for a selectable augment
     // read the value and update if its changed
     CString text;
-    size_t augmentIndex = nID - IDC_EDIT_AUGMENT1;
+
+    size_t augmentIndex;
+    if (nID >= IDC_EDIT_AUGMENT1 && nID <= IDC_EDIT_AUGMENT10)
+    {
+        augmentIndex = nID - IDC_EDIT_AUGMENT1;
+    }
+    if (nID >= IDC_EDIT2_AUGMENT1 && nID <= IDC_EDIT2_AUGMENT10)
+    {
+        augmentIndex = nID - IDC_EDIT2_AUGMENT1;
+    }
     m_augmentValues[augmentIndex].GetWindowText(text);
-    double value = atof(text);
+    double value1 = atof(text);
     std::vector<ItemAugment> augments = m_item.Augments();
-    augments[augmentIndex].Set_Value(value);
+    augments[augmentIndex].Set_Value(value1);
+    if (m_augmentValues2[augmentIndex].IsWindowVisible())
+    {
+        m_augmentValues2[augmentIndex].GetWindowText(text);
+        double value2 = atof(text);
+        augments[augmentIndex].Set_Value2(value2);
+    }
     m_item.Set_Augments(augments);
     EnableControls();
 }

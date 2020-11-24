@@ -1296,6 +1296,7 @@ void CBreakdownsView::CreateMagicalBreakdowns()
         AddSpellPower(Breakdown_SpellPowerLightAlignment, SpellPower_LightAlignment, "Light/Alignment Spell power", hItem);
         AddSpellPower(Breakdown_SpellPowerCold, SpellPower_Cold, "Cold Spell power", hItem);
         AddSpellPower(Breakdown_SpellPowerElectric, SpellPower_Electric, "Electric Spell power", hItem);
+        AddSpellPower(Breakdown_SpellPowerEvil, SpellPower_Evil, "Evil Spell power", hItem);
         AddSpellPower(Breakdown_SpellPowerFire, SpellPower_Fire, "Fire Spell power", hItem);
         AddSpellPower(Breakdown_SpellPowerForceUntyped, SpellPower_ForceUntyped, "Force/Untyped Spell power", hItem);
         AddSpellPower(Breakdown_SpellPowerNegative, SpellPower_Negative, "Negative Spell power", hItem);
@@ -1319,6 +1320,7 @@ void CBreakdownsView::CreateMagicalBreakdowns()
         AddSpellCriticalChance(Breakdown_SpellCriticalChanceLightAlignment, SpellPower_LightAlignment, "Light/Alignment Critical Chance", hItem);
         AddSpellCriticalChance(Breakdown_SpellCriticalChanceCold, SpellPower_Cold, "Cold Critical Chance", hItem);
         AddSpellCriticalChance(Breakdown_SpellCriticalChanceElectric, SpellPower_Electric, "Electric Critical Chance", hItem);
+        AddSpellCriticalChance(Breakdown_SpellCriticalChanceEvil, SpellPower_Evil, "Evil Critical Chance", hItem);
         AddSpellCriticalChance(Breakdown_SpellCriticalChanceFire, SpellPower_Fire, "Fire Critical Chance", hItem);
         AddSpellCriticalChance(Breakdown_SpellCriticalChanceForceUntyped, SpellPower_ForceUntyped, "Force/Untyped Critical Chance", hItem);
         AddSpellCriticalChance(Breakdown_SpellCriticalChanceNegative, SpellPower_Negative, "Negative Critical Chance", hItem);
@@ -1342,6 +1344,7 @@ void CBreakdownsView::CreateMagicalBreakdowns()
         AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierLightAlignment, SpellPower_LightAlignment, "Light/Alignment Critical Multiplier", hItem);
         AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierCold, SpellPower_Cold, "Cold Critical Multiplier", hItem);
         AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierElectric, SpellPower_Electric, "Electric Critical Multiplier", hItem);
+        AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierEvil, SpellPower_Evil, "Evil Critical Multiplier", hItem);
         AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierFire, SpellPower_Fire, "Fire Critical Multiplier", hItem);
         AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierForceUntyped, SpellPower_ForceUntyped, "Force/Untyped Critical Multiplier", hItem);
         AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierNegative, SpellPower_Negative, "Negative Critical Multiplier", hItem);

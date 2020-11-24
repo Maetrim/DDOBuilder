@@ -493,7 +493,11 @@ void CInfoTip::SetItem(
         location.Format("Drop Location: %s", pItem->DropLocation().c_str());
         m_requirements.push_back(location);
         m_bRequirementMet.push_back(false);     // in red as not met to stand out
-        std::vector<bool> m_bRequirementMet;
+    }
+    if (pItem->HasMinorArtifact())
+    {
+        m_requirements.push_back("---MINOR ARTIFACT---");
+        m_bRequirementMet.push_back(false);     // in red as important
     }
     m_cost = "";
 }

@@ -115,6 +115,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
             "Strambotica, "
             "Spodi, "
             "Swimms, "
+            "TeamscorpioRI, "
             "ValariusK, "
             "Vilhena, "
             "Vychos, "

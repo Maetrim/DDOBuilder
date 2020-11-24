@@ -1385,6 +1385,7 @@ void CForumExportDlg::AddSpellPowers(std::stringstream & forumExport)
     AddSpellPower(forumExport, "Light/Alignment", Breakdown_SpellPowerLightAlignment, Breakdown_SpellCriticalChanceLightAlignment, Breakdown_SpellCriticalMultiplierLightAlignment);
     AddSpellPower(forumExport, "Cold           ", Breakdown_SpellPowerCold, Breakdown_SpellCriticalChanceCold, Breakdown_SpellCriticalMultiplierCold);
     AddSpellPower(forumExport, "Electric       ", Breakdown_SpellPowerElectric, Breakdown_SpellCriticalChanceElectric, Breakdown_SpellCriticalMultiplierElectric);
+    AddSpellPower(forumExport, "Evil           ", Breakdown_SpellPowerEvil, Breakdown_SpellCriticalChanceEvil, Breakdown_SpellCriticalMultiplierEvil);
     AddSpellPower(forumExport, "Fire           ", Breakdown_SpellPowerFire, Breakdown_SpellCriticalChanceFire, Breakdown_SpellCriticalMultiplierFire);
     AddSpellPower(forumExport, "Force/Untyped  ", Breakdown_SpellPowerForceUntyped, Breakdown_SpellCriticalChanceForceUntyped, Breakdown_SpellCriticalMultiplierForceUntyped);
     AddSpellPower(forumExport, "Negative       ", Breakdown_SpellPowerNegative, Breakdown_SpellCriticalChanceNegative, Breakdown_SpellCriticalMultiplierNegative);

@@ -52,7 +52,8 @@ class CFindGearDialog : public CDialog
         void EnableControls();
         void PopulateAugmentList(
                 CComboBox * combo,
-                CEdit * edit,
+                CEdit * edit1,
+                CEdit * edit2,
                 const ItemAugment & augment);
         void PopulateSlotUpgradeList(size_t controlIndex, const SlotUpgrade & upgrade);
         void PopulateDropList(size_t controlIndex, const std::list<std::string> & types);
@@ -83,6 +84,7 @@ class CFindGearDialog : public CDialog
         CStatic m_augmentType[MAX_Augments];
         CComboBoxTooltip m_comboAugmentDropList[MAX_Augments];
         CEdit m_augmentValues[MAX_Augments];
+        CEdit m_augmentValues2[MAX_Augments];
         CStatic m_staticUpgrades;
         CStatic m_upgradeType[MAX_Upgrades];
         CComboBox m_comboUpgradeDropList[MAX_Upgrades];
