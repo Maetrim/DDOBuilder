@@ -30,6 +30,7 @@ class Item :
         bool ContainsSearchText(const std::string & searchText) const;
 
         void CopyUserSetValues(const Item & original);
+        std::string ItemType() const;
     protected:
         XmlLib::SaxContentElementInterface * StartElement(
                 const XmlLib::SaxString & name,

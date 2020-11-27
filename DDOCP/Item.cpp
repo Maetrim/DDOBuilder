@@ -211,27 +211,35 @@ void Item::CopyUserSetValues(const Item & original)
 
 bool Item::ContainsSearchText(const std::string & searchText) const
 {
-    bool bHasSearchText = false;
-    // we have to search all of the following text fields of this item:
-    // Name
-    // Description
-    // Drop Location
-    // EffectDescription(s)
-    bHasSearchText |= SearchForText(Name(), searchText);
-    bHasSearchText |= SearchForText(Description(), searchText);
-    if (HasMinorArtifact())
+    bool bHasSearchText = true;
+    // break up the search text into individual fields and search for each
+    std::string parsedItem;
+    std::stringstream ss(searchText);
+    while (bHasSearchText && std::getline(ss, parsedItem, ' '))
     {
-        bHasSearchText |= SearchForText("Minor Artifact", searchText);
-    }
-    if (m_hasDropLocation)
-    {
-        bHasSearchText |= SearchForText(DropLocation(), searchText);
-    }
-    std::list<std::string>::const_iterator it = m_EffectDescription.begin();
-    while (!bHasSearchText && it != m_EffectDescription.end())
-    {
-        bHasSearchText |= SearchForText((*it), searchText);
-        ++it;
+        bHasSearchText = false; // must have all terms
+        // we have to search all of the following text fields of this item:
+        // Name
+        // Description
+        // Drop Location
+        // EffectDescription(s)
+        bHasSearchText |= SearchForText(Name(), parsedItem);
+        bHasSearchText |= SearchForText(ItemType(), parsedItem);
+        bHasSearchText |= SearchForText(Description(), parsedItem);
+        if (HasMinorArtifact())
+        {
+            bHasSearchText |= SearchForText("Minor Artifact", parsedItem);
+        }
+        if (m_hasDropLocation)
+        {
+            bHasSearchText |= SearchForText(DropLocation(), parsedItem);
+        }
+        std::list<std::string>::const_iterator it = m_EffectDescription.begin();
+        while (!bHasSearchText && it != m_EffectDescription.end())
+        {
+            bHasSearchText |= SearchForText((*it), parsedItem);
+            ++it;
+        }
     }
     return bHasSearchText;
 }
@@ -244,3 +252,33 @@ bool Item::SearchForText(std::string source, const std::string & find) const
     return bTextPresent;
 }
 
+std::string Item::ItemType() const
+{
+    std::stringstream ss;
+    bool bFirst = true;
+    for (size_t i = Inventory_Unknown; i < Inventory_Count; ++i)
+    {
+        if (Slots().HasSlot(static_cast<InventorySlotType>(i)))
+        {
+            if (!bFirst)
+            {
+                ss << ", ";
+            }
+            if (i == Inventory_Armor && HasArmor())
+            {
+                ss << EnumEntryText(Armor(), armorTypeMap);
+                ss << " ";
+            }
+            if ((i == Inventory_Weapon1 || i == Inventory_Weapon2)
+                    && HasWeapon())
+            {
+                ss << EnumEntryText(Weapon(), weaponTypeMap);
+                ss << " ";
+            }
+            ss << EnumEntryText(static_cast<InventorySlotType>(i), InventorySlotTypeMap);
+            bFirst = false;
+        }
+    }
+
+    return ss.str();
+}

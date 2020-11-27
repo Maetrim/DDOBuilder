@@ -499,6 +499,11 @@ void CInfoTip::SetItem(
         m_requirements.push_back("---MINOR ARTIFACT---");
         m_bRequirementMet.push_back(false);     // in red as important
     }
+    // show the slots this item equips to
+    CString slots = "Equips to slots: ";
+    slots += pItem->ItemType().c_str();
+    m_requirements.push_back(slots);
+    m_bRequirementMet.push_back(true);     // in red as important
     m_cost = "";
 }
 
