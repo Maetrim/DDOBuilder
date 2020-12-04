@@ -30,6 +30,7 @@ enum BreakdownType
     Breakdown_BAB,
     Breakdown_MovementSpeed,
     Breakdown_Hitpoints,
+    Breakdown_FalseLife,
     Breakdown_UnconsciousRange,
     Breakdown_PRR,
     Breakdown_MRR,

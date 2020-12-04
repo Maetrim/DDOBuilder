@@ -924,7 +924,7 @@ bool ActiveEffect::operator<=(const ActiveEffect & other) const
     if (m_bonusType != Bonus_stacking           // stacking bonus's always stack
             && m_bonusType != Bonus_destiny     // epic destiny bonus's always stack
             && m_bonusType != Bonus_reaper      // reaper bonus's always stack
-            && m_bonusType != Bonus_mythic)     // mythic bonus's always stack
+            && m_bonusType != Bonus_mythic)    // combat style bonus's always stack
     {
         // must be the same type of bonus to allow a lessThan
         if (m_bonusType == other.m_bonusType)

@@ -534,6 +534,20 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
             m_itemBreakdownTree.SetItemData(hUnconsciousRange, (DWORD)(void*)pUR);
             m_items.push_back(pUR);
         }
+        {
+            HTREEITEM hFalseLife = m_itemBreakdownTree.InsertItem(
+                    "False Life",
+                    hItem,
+                    TVI_LAST);
+            BreakdownItem * pFL = new BreakdownItemSimple(
+                    Breakdown_FalseLife,
+                    Effect_FalseLife,
+                    "False Life",
+                    &m_itemBreakdownTree,
+                    hFalseLife);
+            m_itemBreakdownTree.SetItemData(hFalseLife, (DWORD)(void*)pFL);
+            m_items.push_back(pFL);
+        }
     }
     {
         HTREEITEM hItem = m_itemBreakdownTree.InsertItem(

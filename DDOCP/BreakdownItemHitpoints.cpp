@@ -64,7 +64,7 @@ void BreakdownItemHitpoints::CreateOtherEffects()
         // bonus HP due to constitution
         // this has to be based on the final constitution value from the breakdown
         double con = m_pConstitutionBreakdown->Total();
-        int bonus = BaseStatToBonus(con);
+        double bonus = BaseStatToBonus(con);
         if (bonus != 0)
         {
             ActiveEffect conBonus(
@@ -74,6 +74,21 @@ void BreakdownItemHitpoints::CreateOtherEffects()
                     bonus,
                     "");        // no tree
             AddOtherEffect(conBonus);
+        }
+
+        // add the false life bonus
+        BreakdownItem *pBreakdown = FindBreakdown(Breakdown_FalseLife);
+        pBreakdown->AttachObserver(this);
+        bonus = pBreakdown->Total();
+        if (bonus != 0)
+        {
+            ActiveEffect falseLifeBonus(
+                    Bonus_falseLife,
+                    "False Life",
+                    1,
+                    bonus,
+                    "");        // no tree
+            AddOtherEffect(falseLifeBonus);
         }
     }
 }

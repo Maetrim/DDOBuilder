@@ -4112,7 +4112,7 @@ void Character::EpicDestiny_SetActiveDestiny(const std::string & treeName)
             // selections, we first take a copy of the tree state and then re-insert the
             // copy back into the tree list after it becomes de-active
             EpicDestinySpendInTree copy = *pPrevious;
-            EpicDestiny_ResetEnhancementTree(ActiveEpicDestiny());
+            EpicDestiny_ResetEnhancementTree(ActiveEpicDestiny(), true);
             // now re-insert the copy back into the trained tree list
             ASSERT(EpicDestiny_FindTree(ActiveEpicDestiny()) == NULL);
             m_EpicDestinyTreeSpend.push_back(copy);
@@ -4259,7 +4259,7 @@ void Character::EpicDestiny_RevokeEnhancement(
     }
 }
 
-void Character::EpicDestiny_ResetEnhancementTree(std::string treeName)
+void Character::EpicDestiny_ResetEnhancementTree(std::string treeName, bool bFullRevoke)
 {
     // a whole tree is being reset
     EpicDestinySpendInTree * pItem = EpicDestiny_FindTree(treeName);
@@ -4285,21 +4285,24 @@ void Character::EpicDestiny_ResetEnhancementTree(std::string treeName)
             }
             ++it;
         }
-        // now re-buy the cores the user had
-        const EnhancementTree & tree = FindTree(treeName);
-        const std::list<EnhancementTreeItem> & items = tree.Items();
-        std::list<EnhancementTreeItem>::const_iterator tii = items.begin();
-        for (size_t index = 0; index < level; ++index)
+        if (!bFullRevoke)
         {
-            if (!IsEnhancementTrained((*tii).InternalName(), "", TT_epicDestiny))
+            // now re-buy the cores the user had
+            const EnhancementTree & tree = FindTree(treeName);
+            const std::list<EnhancementTreeItem> & items = tree.Items();
+            std::list<EnhancementTreeItem>::const_iterator tii = items.begin();
+            for (size_t index = 0; index < level; ++index)
             {
-                EpicDestiny_TrainEnhancement(
-                        treeName,
-                        (*tii).InternalName(),
-                        "",
-                        0);         // core items are always free
+                if (!IsEnhancementTrained((*tii).InternalName(), "", TT_epicDestiny))
+                {
+                    EpicDestiny_TrainEnhancement(
+                            treeName,
+                            (*tii).InternalName(),
+                            "",
+                            0);         // core items are always free
+                }
+                ++tii;
             }
-            ++tii;
         }
         NotifyEnhancementTreeReset();
         NotifyAPSpentInTreeChanged(treeName);

@@ -63,7 +63,9 @@ void Stance::Write(XmlLib::SaxWriter * writer) const
 bool Stance::VerifyObject(std::stringstream * ss) const
 {
     bool ok = true;
-    if (!ImageFileExists(IT_feat, Icon()))
+    if (!ImageFileExists(IT_enhancement, Icon())
+            && !ImageFileExists(IT_feat, Icon())
+            && !ImageFileExists(IT_ui, Icon()))
     {
         (*ss) << "Stance " << m_Name << " is missing image file \"" << Icon() << "\"\n";
         ok = false;

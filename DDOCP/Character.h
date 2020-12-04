@@ -243,7 +243,7 @@ class Character :
                 const std::string & treeName,
                 std::string * enhancementName = NULL,
                 std::string * enhancementSelection = NULL);
-        void EpicDestiny_ResetEnhancementTree(std::string treeName);
+        void EpicDestiny_ResetEnhancementTree(std::string treeName, bool bFullRevoke);
 
         // twists of fate support
         size_t SpentFatePoints() const;

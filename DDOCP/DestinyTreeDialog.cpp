@@ -637,7 +637,7 @@ void CDestinyTreeDialog::OnLButtonDown(UINT nFlags, CPoint point)
                 if (ret == IDYES)
                 {
                     // lets go for a tree reset action
-                    m_pCharacter->EpicDestiny_ResetEnhancementTree(m_tree.Name());
+                    m_pCharacter->EpicDestiny_ResetEnhancementTree(m_tree.Name(), false);
                 }
             }
         }

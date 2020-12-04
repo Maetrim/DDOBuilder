@@ -90,6 +90,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
             "Laur, "
             "LittleTealeaf, "
             "Lupito, "
+            "outlawless, "
             "Madja, "
             "Maxxcore, "
             "MaxPaxy, "

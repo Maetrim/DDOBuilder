@@ -32,7 +32,11 @@ CStanceButton::CStanceButton(Character * charData, const Stance & stance) :
     if (S_OK != LoadImageFile(IT_enhancement, stance.Icon(), &m_image, false))
     {
         // see if its a feat icon we need to use
-        LoadImageFile(IT_feat, stance.Icon(), &m_image);
+        if (S_OK != LoadImageFile(IT_feat, stance.Icon(), &m_image, false))
+        {
+            // finally check if its a UI (racial) icon we need to use
+            LoadImageFile(IT_ui, stance.Icon(), &m_image);
+        }
     }
     m_image.SetTransparentColor(c_transparentColour);
     m_bSelected = m_pCharacter->IsStanceActive(stance.Name());
