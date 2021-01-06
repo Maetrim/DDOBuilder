@@ -11,11 +11,13 @@
 #include "FindGearDialog.h"
 #include "MouseHook.h"
 #include "XmlLib\SaxReader.h"
+#include "MainFrm.h"
 
 namespace
 {
     const int c_controlSpacing = 3;
     const UINT UWM_NEW_DOCUMENT = ::RegisterWindowMessage(_T("NewActiveDocument"));
+    const int c_windowSize = 38;
 }
 
 IMPLEMENT_DYNCREATE(CEquipmentView, CFormView)
@@ -24,15 +26,31 @@ CEquipmentView::CEquipmentView() :
     CFormView(CEquipmentView::IDD),
     m_pCharacter(NULL),
     m_pDocument(NULL),
-    m_inventoryView(NULL)
+    m_inventoryView(NULL),
+    m_tipCreated(false),
+    m_pTooltipItem(NULL),
+    m_showingTip(false),
+    m_nextSetId(IDC_SPECIALFEAT_0)
 {
-
 }
 
 CEquipmentView::~CEquipmentView()
 {
     delete m_inventoryView;
     m_inventoryView = NULL;
+    DestroyAllSets();
+}
+
+void CEquipmentView::DestroyAllSets()
+{
+    for (size_t i = 0; i < m_setsStancebuttons.size(); ++i)
+    {
+        m_setsStancebuttons[i]->DestroyWindow();
+        delete m_setsStancebuttons[i];
+        m_setsStancebuttons[i] = NULL;
+    }
+    m_setsStancebuttons.clear();
+    m_nextSetId = IDC_SPECIALFEAT_0;
 }
 
 void CEquipmentView::DoDataExchange(CDataExchange* pDX)
@@ -69,6 +87,8 @@ BEGIN_MESSAGE_MAP(CEquipmentView, CFormView)
     ON_CBN_SELENDOK(IDC_COMBO_GEAR_NAME, OnGearSelectionSelEndOk)
     ON_CBN_SELENDOK(IDC_COMBO_NUM_FILLIGREES, OnGearNumFiligreesSelEndOk)
     ON_BN_CLICKED(IDC_CHECK_FILIGREE_MENU, OnToggleFiligreeMenu)
+    ON_WM_MOUSEMOVE()
+    ON_MESSAGE(WM_MOUSELEAVE, OnMouseLeave)
 END_MESSAGE_MAP()
 #pragma warning(pop)
 
@@ -89,6 +109,8 @@ void CEquipmentView::Dump(CDumpContext& dc) const
 void CEquipmentView::OnInitialUpdate()
 {
     CFormView::OnInitialUpdate();
+    m_tooltip.Create(this);
+    m_tipCreated = true;
     CRect rctButton;
     CRect rctInventory(
             c_controlSpacing,
@@ -112,7 +134,7 @@ void CEquipmentView::OnInitialUpdate()
 
     bool bChecked = (AfxGetApp()->GetProfileInt("Inventory", "FiligreeMenu", 0) != 0);
     m_filigreeMenu.SetCheck(bChecked ? BST_CHECKED : BST_UNCHECKED);
-    OnToggleFiligreeMenu(); // ensure inventry view knows state
+    OnToggleFiligreeMenu(); // ensure inventory view knows state
     EnableControls();
 }
 
@@ -129,6 +151,9 @@ void CEquipmentView::OnSize(UINT nType, int cx, int cy)
         // | | Inventory Bitmap           | | Filigrees Bitmap      ||
         // | |                            | |                       ||
         // | +---------------------   ----+ +-----------------------+|
+        // | +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ |
+        // | +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ | (set icons)
+        // +---------------------------------------------------------+
         CRect rctCombo;
         m_comboGearSelections.GetWindowRect(&rctCombo);
         rctCombo -= rctCombo.TopLeft();
@@ -179,20 +204,50 @@ void CEquipmentView::OnSize(UINT nType, int cx, int cy)
         m_staticNumFiligrees.MoveWindow(rctNumFiligrees);
         m_comboNumFiligrees.MoveWindow(rctNumFiligreesCombo);
         m_filigreeMenu.MoveWindow(rctFiligreeMenu);
-        SetScrollSizes(
-                MM_TEXT,
-                CSize(
-                        rctInventory.right + c_controlSpacing,
-                        rctInventory.bottom + c_controlSpacing));
+
+        if (m_setsStancebuttons.size() > 0)
+        {
+            CRect itemRect(c_controlSpacing, rctInventory.bottom + c_controlSpacing, 
+                    c_controlSpacing + c_windowSize, rctInventory.bottom + c_controlSpacing + c_windowSize);
+            // Sets are always shown if they exist
+            for (size_t i = 0; i < m_setsStancebuttons.size(); ++i)
+            {
+                m_setsStancebuttons[i]->MoveWindow(itemRect, TRUE);
+                m_setsStancebuttons[i]->ShowWindow(SW_SHOW);
+                // move rectangle across for next control
+                itemRect += CPoint(itemRect.Width() + c_controlSpacing, 0);
+                if (itemRect.right > rctInventory.right)
+                {
+                    // oops, not enough space in client area here
+                    // move down and start the next row of controls
+                    itemRect -= CPoint(itemRect.left, 0);
+                    itemRect += CPoint(c_controlSpacing, itemRect.Height() + c_controlSpacing);
+                }
+            }
+            SetScrollSizes(
+                    MM_TEXT,
+                    CSize(
+                            rctInventory.right + c_controlSpacing,
+                            itemRect.bottom + c_controlSpacing));
+        }
+        else
+        {
+            SetScrollSizes(
+                    MM_TEXT,
+                    CSize(
+                            rctInventory.right + c_controlSpacing,
+                            rctInventory.bottom + c_controlSpacing));
+        }
     }
 }
 
 LRESULT CEquipmentView::OnNewDocument(WPARAM wParam, LPARAM lParam)
 {
-    //if (m_pCharacter != NULL)
-    //{
-    //    m_pCharacter->DetachObserver(this);
-    //}
+    if (m_pCharacter != NULL)
+    {
+        m_pCharacter->DetachObserver(this);
+        DestroyAllSets();
+    }
 
     // wParam is the document pointer
     CDocument * pDoc = (CDocument*)(wParam);
@@ -659,4 +714,178 @@ void CEquipmentView::OnToggleFiligreeMenu()
     bool bChecked = (m_filigreeMenu.GetCheck() == BST_CHECKED);
     m_inventoryView->SetUseFiligreeMenu(bChecked);
     AfxGetApp()->WriteProfileInt("Inventory", "FiligreeMenu", bChecked ? 1 : 0);
+}
+
+void CEquipmentView::AddStance(const Stance & stance)
+{
+    // only add the stance if it is not already present
+    bool found = false;
+    for (size_t i = 0; i < m_setsStancebuttons.size(); ++i)
+    {
+        if (m_setsStancebuttons[i]->IsYou(stance))
+        {
+            found = true;
+            m_setsStancebuttons[i]->AddStack();
+        }
+    }
+    if (!found)
+    {
+        // position the created windows left to right until
+        // they don't fit then move them down a row and start again
+        // each stance window is c_windowSize * c_windowSize pixels
+        CRect wndClient;
+        GetClientRect(&wndClient);
+        CRect itemRect(
+                c_controlSpacing,
+                c_controlSpacing,
+                c_windowSize + c_controlSpacing,
+                c_windowSize + c_controlSpacing);
+
+        if (stance.HasSetBonus())
+        {
+            // now create the new auto stance control
+            m_setsStancebuttons.push_back(new CStanceButton(m_pCharacter, stance));
+            // create a parent window that is c_windowSize by c_windowSize pixels in size
+            m_setsStancebuttons.back()->Create(
+                    "",
+                    WS_CHILD,       // default is not visible
+                    itemRect,
+                    this,
+                    m_nextSetId++);
+            m_setsStancebuttons.back()->AddStack();
+            m_setsStancebuttons.back()->ShowStacks(true);
+        }
+        if (IsWindow(GetSafeHwnd()))
+        {
+            // now force an on size event to position everything
+            CRect rctWnd;
+            GetClientRect(&rctWnd);
+            OnSize(SIZE_RESTORED, rctWnd.Width(), rctWnd.Height());
+        }
+    }
+}
+
+void CEquipmentView::RevokeStance(const Stance & stance)
+{
+    // only revoke the stance if it is not already present and its the last stack of it
+    bool found = false;
+    size_t i;
+    for (i = 0; i < m_setsStancebuttons.size(); ++i)
+    {
+        if (m_setsStancebuttons[i]->IsYou(stance))
+        {
+            found = true;
+            m_setsStancebuttons[i]->RevokeStack();
+            break;      // keep the index
+        }
+    }
+    if (found
+            && m_setsStancebuttons[i]->NumStacks() == 0)
+    {
+        // all instances of this stance are gone, remove the button
+        m_setsStancebuttons[i]->DestroyWindow();
+        delete m_setsStancebuttons[i];
+        m_setsStancebuttons[i] = NULL;
+        // clear entries from the array
+        std::vector<CStanceButton *>::iterator it = m_setsStancebuttons.begin() + i;
+        m_setsStancebuttons.erase(it);
+        // now force an on size event
+        CRect rctWnd;
+        GetClientRect(&rctWnd);
+        OnSize(SIZE_RESTORED, rctWnd.Width(), rctWnd.Height());
+    }
+}
+
+void CEquipmentView::UpdateNewStance(Character * charData, const Stance & stance)
+{
+    if (stance.HasSetBonus())
+    {
+        AddStance(stance);
+    }
+}
+
+void CEquipmentView::UpdateRevokeStance(Character * charData, const Stance & stance)
+{
+    if (stance.HasSetBonus())
+    {
+        RevokeStance(stance);
+    }
+}
+
+void CEquipmentView::OnMouseMove(UINT nFlags, CPoint point)
+{
+    // determine which stance the mouse may be over
+    CWnd * pWnd = ChildWindowFromPoint(point);
+    CStanceButton * pStance = dynamic_cast<CStanceButton*>(pWnd);
+    if (pStance != NULL
+            && pStance != m_pTooltipItem)
+    {
+        CRect itemRect;
+        pStance->GetWindowRect(&itemRect);
+        ScreenToClient(itemRect);
+        // over a new item or a different item
+        m_pTooltipItem = pStance;
+        ShowTip(*pStance, itemRect);
+        GetMainFrame()->SetStatusBarPromptText("The number of stacks of this set bonus you have.");
+    }
+    else
+    {
+        if (m_showingTip
+                && pStance != m_pTooltipItem)
+        {
+            // no longer over the same item
+            HideTip();
+        }
+        // as the mouse is over the enhancement tree, ensure the status bar message prompts available actions
+        GetMainFrame()->SetStatusBarPromptText("Ready.");
+    }
+}
+
+LRESULT CEquipmentView::OnMouseLeave(WPARAM wParam, LPARAM lParam)
+{
+    // hide any tooltip when the mouse leaves the area its being shown for
+    HideTip();
+    GetMainFrame()->SetStatusBarPromptText("Ready.");
+    return 0;
+}
+
+void CEquipmentView::ShowTip(const CStanceButton & item, CRect itemRect)
+{
+    if (m_showingTip)
+    {
+        m_tooltip.Hide();
+    }
+    ClientToScreen(&itemRect);
+    CPoint tipTopLeft(itemRect.left, itemRect.bottom + 2);
+    CPoint tipAlternate(itemRect.left, itemRect.top - 2);
+    SetTooltipText(item, tipTopLeft, tipAlternate);
+    m_showingTip = true;
+    // track the mouse so we know when it leaves our window
+    TRACKMOUSEEVENT tme;
+    tme.cbSize = sizeof(tme);
+    tme.hwndTrack = m_hWnd;
+    tme.dwFlags = TME_LEAVE;
+    tme.dwHoverTime = 1;
+    _TrackMouseEvent(&tme);
+}
+
+void CEquipmentView::HideTip()
+{
+    // tip not shown if not over an assay
+    if (m_tipCreated && m_showingTip)
+    {
+        m_tooltip.Hide();
+        m_showingTip = false;
+        m_pTooltipItem = NULL;
+    }
+}
+
+void CEquipmentView::SetTooltipText(
+        const CStanceButton & item,
+        CPoint tipTopLeft,
+        CPoint tipAlternate)
+{
+    m_tooltip.SetOrigin(tipTopLeft, tipAlternate, false);
+    m_tooltip.SetStanceItem(*m_pCharacter, &item.GetStance(), item.NumStacks());
+    m_tooltip.Show();
 }

@@ -20,6 +20,7 @@ CStancesView::CStancesView() :
     m_pDocument(NULL),
     m_tipCreated(false),
     m_pTooltipItem(NULL),
+    m_showingTip(false),
     m_nextStanceId(IDC_SPECIALFEAT_0),
     m_nextSliderId(50)
 {
@@ -27,6 +28,7 @@ CStancesView::CStancesView() :
 
 CStancesView::~CStancesView()
 {
+    DestroyAllStances();
 }
 
 void CStancesView::DoDataExchange(CDataExchange* pDX)
@@ -174,10 +176,11 @@ void CStancesView::OnSize(UINT nType, int cx, int cy)
                 m_autoStancebuttons[i]->MoveWindow(notVisibleRect, FALSE);
             }
         }
+
         // ensure stances redraw correctly
         m_userStances.Invalidate(TRUE);
         m_autoStances.Invalidate(TRUE);
-        // show srcoll bars if required
+        // show scroll bars if required
         SetScrollSizes(
                 MM_TEXT,
                 CSize(cx, itemRect.bottom + c_controlSpacing));
@@ -423,12 +426,18 @@ void CStancesView::RevokeStance(const Stance & stance)
 
 void CStancesView::UpdateNewStance(Character * charData, const Stance & stance)
 {
-    AddStance(stance);
+    if (!stance.HasSetBonus())
+    {
+        AddStance(stance);
+    }
 }
 
 void CStancesView::UpdateRevokeStance(Character * charData, const Stance & stance)
 {
-    RevokeStance(stance);
+    if (!stance.HasSetBonus())
+    {
+        RevokeStance(stance);
+    }
 }
 
 void CStancesView::UpdateStanceActivated(Character * charData, const std::string & stanceName)
@@ -582,7 +591,8 @@ void CStancesView::OnLButtonDown(UINT nFlags, CPoint point)
         CStanceButton * pStance = dynamic_cast<CStanceButton*>(pWnd);
         if (pStance != NULL)
         {
-            if (!pStance->GetStance().HasAutoControlled())
+            if (!pStance->GetStance().HasAutoControlled()
+                    && !pStance->GetStance().HasSetBonus())
             {
                 // yup, they clicked on a stance, now change its activation state
                 if (pStance->IsSelected())
@@ -621,6 +631,10 @@ void CStancesView::OnMouseMove(UINT nFlags, CPoint point)
         if (pStance->GetStance().HasAutoControlled())
         {
             GetMainFrame()->SetStatusBarPromptText("This stances state is controlled by the software. Cannot be manually changed.");
+        }
+        else if (pStance->GetStance().HasSetBonus())
+        {
+            GetMainFrame()->SetStatusBarPromptText("The number of stacks of this set bonus you have.");
         }
         else
         {
@@ -685,7 +699,7 @@ void CStancesView::SetTooltipText(
         CPoint tipAlternate)
 {
     m_tooltip.SetOrigin(tipTopLeft, tipAlternate, false);
-    m_tooltip.SetStanceItem(*m_pCharacter, &item.GetStance());
+    m_tooltip.SetStanceItem(*m_pCharacter, &item.GetStance(), item.NumStacks());
     m_tooltip.Show();
 }
 
@@ -705,6 +719,7 @@ void CStancesView::DestroyAllStances()
         m_autoStancebuttons[i] = NULL;
     }
     m_autoStancebuttons.clear();
+    m_nextStanceId = IDC_SPECIALFEAT_0;
 
     std::list<SliderItem>::iterator it = m_sliders.begin();
     while (it != m_sliders.end())

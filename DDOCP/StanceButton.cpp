@@ -25,7 +25,8 @@ CStanceButton::CStanceButton(Character * charData, const Stance & stance) :
     m_pCharacter(charData),
     m_stance(stance),
     m_bSelected(false),
-    m_stacks(0)         // stack count updated later
+    m_stacks(0),         // stack count updated later
+    m_bShowStacks(false)
 {
     //{{AFX_DATA_INIT(CStanceButton)
     //}}AFX_DATA_INIT
@@ -35,7 +36,10 @@ CStanceButton::CStanceButton(Character * charData, const Stance & stance) :
         if (S_OK != LoadImageFile(IT_feat, stance.Icon(), &m_image, false))
         {
             // finally check if its a UI (racial) icon we need to use
-            LoadImageFile(IT_ui, stance.Icon(), &m_image);
+            if (S_OK != LoadImageFile(IT_ui, stance.Icon(), &m_image, false))
+            {
+                LoadImageFile(IT_augment, stance.Icon(), &m_image);
+            }
         }
     }
     m_image.SetTransparentColor(c_transparentColour);
@@ -71,11 +75,23 @@ void CStanceButton::OnPaint()
             (rect.Height() - 32) / 2,
             32,
             32);
+    if (m_bShowStacks)
+    {
+        // shown in a small font
+        LOGFONT lf;
+        ZeroMemory((PVOID)&lf, sizeof(LOGFONT));
+        strcpy_s(lf.lfFaceName, "Consolas");
+        lf.lfHeight = 11;
+        CFont smallFont;
+        smallFont.CreateFontIndirect(&lf);
+        CFont * pFont = pdc.SelectObject(&smallFont);
+        CString stacks;
+        stacks.Format("%d", m_stacks);
+        CSize s = pdc.GetTextExtent(stacks);
+        pdc.TextOut(32 - s.cx, 1, stacks);
+        pdc.SelectObject(pFont);
+    }
     pdc.RestoreDC(-1);
-    //// stances debug
-    //CString stacks;
-    //stacks.Format("%d", m_stacks);
-    //pdc.TextOut(0, 0, stacks);
 }
 
 void CStanceButton::SetSelected(bool selected)
@@ -100,21 +116,19 @@ const Stance & CStanceButton::GetStance() const
 void CStanceButton::AddStack()
 {
     ++m_stacks;
-    //// stances debug
-    //if (IsWindow(GetSafeHwnd()))
-    //{
-    //    Invalidate();
-    //}
+    if (m_bShowStacks && IsWindow(GetSafeHwnd()))
+    {
+        Invalidate();
+    }
 }
 
 void CStanceButton::RevokeStack()
 {
     --m_stacks;
-    //// stances debug
-    //if (IsWindow(GetSafeHwnd()))
-    //{
-    //    Invalidate();
-    //}
+    if (m_bShowStacks && IsWindow(GetSafeHwnd()))
+    {
+        Invalidate();
+    }
 }
 
 size_t CStanceButton::NumStacks() const
@@ -125,5 +139,14 @@ size_t CStanceButton::NumStacks() const
 bool CStanceButton::IsYou(const Stance & stance)
 {
     return (stance == m_stance);
+}
+
+void CStanceButton::ShowStacks(bool state)
+{
+    m_bShowStacks = state;
+    if (m_bShowStacks && IsWindow(GetSafeHwnd()))
+    {
+        Invalidate();
+    }
 }
 

@@ -4851,6 +4851,13 @@ void Character::RevokeGearEffects()
                 NotifyRevokeDC(*dcit);
                 ++dcit;
             }
+            const std::list<Stance> & stances = item.Stances();
+            std::list<Stance>::const_iterator sit = stances.begin();
+            while (sit != stances.end())
+            {
+                NotifyRevokeStance((*sit));
+                ++sit;
+            }
             // do the same for any augment slots
             const std::vector<ItemAugment> & augments = item.Augments();
             for (size_t ai = 0; ai < augments.size(); ++ai)
@@ -4962,6 +4969,14 @@ void Character::RevokeGearEffects()
                     ++it;
                 }
             }
+            // revoke any filigree stances
+            const std::list<Stance> & stances = augment.StanceData();
+            std::list<Stance>::const_iterator sit = stances.begin();
+            while (sit != stances.end())
+            {
+                NotifyRevokeStance((*sit));
+                ++sit;
+            }
         }
     }
 }
@@ -5001,6 +5016,13 @@ void Character::ApplyGearEffects()
             {
                 NotifyNewDC(*dcit);
                 ++dcit;
+            }
+            const std::list<Stance> & stances = item.Stances();
+            std::list<Stance>::const_iterator sit = stances.begin();
+            while (sit != stances.end())
+            {
+                NotifyNewStance((*sit));
+                ++sit;
             }
             // do the same for any augment slots
             const std::vector<ItemAugment> & augments = item.Augments();
@@ -5055,7 +5077,7 @@ void Character::ApplyGearEffects()
                         ++it;
                         ++effectIndex;
                     }
-                    // clear any augment stances
+                    // apply any augment stances
                     const std::list<Stance> & stances = augment.StanceData();
                     std::list<Stance>::const_iterator sit = stances.begin();
                     while (sit != stances.end())
@@ -5115,6 +5137,14 @@ void Character::ApplyGearEffects()
                     NotifyItemEffect(name, (*it));
                     ++it;
                 }
+            }
+            // apply any filigree stances
+            const std::list<Stance> & stances = augment.StanceData();
+            std::list<Stance>::const_iterator sit = stances.begin();
+            while (sit != stances.end())
+            {
+                NotifyNewStance((*sit));
+                ++sit;
             }
         }
     }

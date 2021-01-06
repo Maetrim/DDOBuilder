@@ -403,13 +403,21 @@ void CInfoTip::SetFeatItem(
 
 void CInfoTip::SetStanceItem(
         const Character & charData,
-        const Stance * pItem)
+        const Stance * pItem,
+        size_t numStacks)
 {
     m_image.Destroy();
     if (S_OK != LoadImageFile(IT_enhancement, pItem->Icon(), &m_image, false))
     {
         // see if its a feat icon we need to use
-        LoadImageFile(IT_feat, pItem->Icon(), &m_image);
+        if (S_OK != LoadImageFile(IT_feat, pItem->Icon(), &m_image, false))
+        {
+            // finally check if its a UI (racial) icon we need to use
+            if (S_OK != LoadImageFile(IT_ui, pItem->Icon(), &m_image, false))
+            {
+                LoadImageFile(IT_augment, pItem->Icon(), &m_image);
+            }
+        }
     }
     m_image.SetTransparentColor(c_transparentColour);
     m_title = pItem->Name().c_str();
@@ -420,6 +428,14 @@ void CInfoTip::SetStanceItem(
     m_effectDescriptions.clear();
     m_requirements.clear();
     m_bRequirementMet.clear();
+    if (pItem->HasSetBonus())
+    {
+        m_ranks.Format("Stacks: %d", numStacks);
+    }
+    else
+    {
+        m_ranks = "";
+    }
     // list the stances which cannot be active if this one is
     std::list<std::string> incompatibleStances = pItem->IncompatibleStance();
     std::list<std::string>::const_iterator it = incompatibleStances.begin();

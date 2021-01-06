@@ -15,6 +15,7 @@
 #include "SentientJewel.h"
 #include "SlotUpgrade.h"
 #include "ItemSpecificEffects.h"
+#include "Stance.h"
 
 class Item :
     public XmlLib::SaxContentElement
@@ -63,6 +64,7 @@ class Item :
                 DL_OBJECT_VECTOR(_, SlotUpgrade, SlotUpgrades) \
                 DL_FLAG(_, IsGreensteel) \
                 DL_FLAG(_, MinorArtifact) \
+                DL_OBJECT_LIST(_, Stance, Stances) \
                 DL_OBJECT_LIST(_, DC, EffectDC) \
                 DL_OPTIONAL_OBJECT(_, SentientJewel, SentientIntelligence)
 

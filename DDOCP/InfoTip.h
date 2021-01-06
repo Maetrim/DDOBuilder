@@ -41,7 +41,8 @@ class CInfoTip :
                 bool grantedFeat);
         void SetStanceItem(
                 const Character & charData,
-                const Stance * pItem);
+                const Stance * pItem,
+                size_t numStacks);
         void SetItem(
                 const Item * pItem);
         void SetAugment(

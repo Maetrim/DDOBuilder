@@ -75,6 +75,14 @@ BOOL CDDOCPApp::InitInstance()
 
     CWinAppEx::InitInstance();
 
+    // initialise the COM library
+    HRESULT hr = CoInitialize(NULL);
+    if (FAILED(hr))
+    {
+        AfxMessageBox("Failed to initialise COM");
+        return FALSE;
+    }
+
     // Initialize OLE libraries
     if (!AfxOleInit())
     {
@@ -184,7 +192,7 @@ BOOL CDDOCPApp::LoadWindowPlacement(CRect& rectNormalPosition, int& nFflags, int
 }
 int CDDOCPApp::ExitInstance()
 {
-    //TODO: handle additional resources you may have added
+    CoUninitialize();
     AfxOleTerm(FALSE);
 
     return CWinAppEx::ExitInstance();

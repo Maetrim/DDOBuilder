@@ -4,6 +4,7 @@
 #include "Resource.h"
 #include "Character.h"
 #include "InventoryDialog.h"
+#include "StanceButton.h"
 
 class CEquipmentView :
     public CFormView,
@@ -40,6 +41,8 @@ class CEquipmentView :
         afx_msg void OnGearSelectionSelEndOk();
         afx_msg void OnGearNumFiligreesSelEndOk();
         afx_msg void OnToggleFiligreeMenu();
+        afx_msg void OnMouseMove(UINT nFlags, CPoint point);
+        afx_msg LRESULT OnMouseLeave(WPARAM wParam, LPARAM lParam);
         DECLARE_MESSAGE_MAP()
 
         // InventoryObserver overrides
@@ -48,12 +51,21 @@ class CEquipmentView :
 
         // character overrides
         virtual void UpdateGearChanged(Character * charData, InventorySlotType slot) override;
+        virtual void UpdateNewStance(Character * charData, const Stance & stance) override;
+        virtual void UpdateRevokeStance(Character * charData, const Stance & stance) override;
 
     private:
         void PopulateCombobox();
         void EnableControls();
         void PopulateGear();
         std::string SelectedGearSet() const;
+        void ShowTip(const CStanceButton & item, CRect itemRect);
+        void HideTip();
+        void SetTooltipText(const CStanceButton & item, CPoint tipTopLeft, CPoint tipAlternate);
+        void DestroyAllSets();
+        void AddStance(const Stance & stance);
+        void RevokeStance(const Stance & stance);
+
         CComboBox m_comboGearSelections;
         CMFCButton m_buttonNew;
         CMFCButton m_buttonCopy;
@@ -63,6 +75,12 @@ class CEquipmentView :
         CComboBox m_comboNumFiligrees;
         CButton m_filigreeMenu;
         CInventoryDialog * m_inventoryView;
+        std::vector<CStanceButton *> m_setsStancebuttons;
+        const CStanceButton * m_pTooltipItem;
+        CInfoTip m_tooltip;
+        bool m_showingTip;
+        bool m_tipCreated;
+        int m_nextSetId;
 
         CDocument * m_pDocument;
         Character * m_pCharacter;

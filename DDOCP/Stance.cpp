@@ -31,6 +31,7 @@ Stance::Stance(
     m_Description(description)
 {
     m_hasAutoControlled = false;
+    m_hasSetBonus = false;
 }
 
 DL_DEFINE_ACCESS(Stance_PROPERTIES)

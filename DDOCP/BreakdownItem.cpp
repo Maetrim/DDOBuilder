@@ -375,7 +375,10 @@ void BreakdownItem::AddAbility(
     m_mainAbility.push_back(as);  // duplicates are fine
     // auto observe this ability
     BreakdownItem * pBI = FindBreakdown(StatToBreakdown(ability));
-    pBI->AttachObserver(this);
+    if (pBI != NULL)
+    {
+        pBI->AttachObserver(this);
+    }
 }
 
 void BreakdownItem::RemoveFirstAbility(
@@ -405,7 +408,10 @@ void BreakdownItem::AddAbility(
     m_mainAbility.push_back(as);  // duplicates are fine
     // auto observe this ability
     BreakdownItem * pBI = FindBreakdown(StatToBreakdown(ability));
-    pBI->AttachObserver(this);
+    if (pBI != NULL)
+    {
+        pBI->AttachObserver(this);
+    }
 }
 
 void BreakdownItem::RemoveFirstAbility(
@@ -449,13 +455,15 @@ AbilityType BreakdownItem::LargestStatBonus()
         if (active)
         {
             BreakdownItem * pBI = FindBreakdown(StatToBreakdown(m_mainAbility[i].ability));
-            ASSERT(pBI != NULL);
-            pBI->AttachObserver(this);  // need to know about changes to this stat
-            int bonus = BaseStatToBonus(pBI->Total());
-            if (bonus > largest)
+            if (pBI != NULL)
             {
-                largest = bonus;
-                bestIndex = i;
+                pBI->AttachObserver(this);  // need to know about changes to this stat
+                int bonus = BaseStatToBonus(pBI->Total());
+                if (bonus > largest)
+                {
+                    largest = bonus;
+                    bestIndex = i;
+                }
             }
         }
     }

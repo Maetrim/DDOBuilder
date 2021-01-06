@@ -312,6 +312,9 @@ Activiate to rage, gaining +4 Strength and Constitution, +2 Will Saves and
 You are fatigued when this effect ends. You cannot cast spells while raging.
 1/2 Charges per rest. Effects that modify Barbarian rage apply to this enhancement.
 Also grants the Dismiss Rage Feat.</Description>
+         <IncompatibleStance>Combat Expertise</IncompatibleStance>
+         <IncompatibleStance>Defensive Fighting</IncompatibleStance>
+         <IncompatibleStance>Precision</IncompatibleStance>
          </Stance>
          <Effect>
             <Type>GrantFeat</Type>
@@ -1192,9 +1195,9 @@ and 50% increase to melee threat.</Description>
             <Bonus>Enhancement</Bonus>
             <Percent/>
             <Amount>15</Amount>
+            <Stance>Rage</Stance>
             <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
             <AnyOfStance>Wildhunt Shifter: Shifted Form</AnyOfStance>
-            <AnyOfStance>Rage</AnyOfStance>
             <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
             <AnyOfStance>Bear</AnyOfStance>
             <AnyOfStance>Dire Bear</AnyOfStance>
@@ -1273,6 +1276,40 @@ and 20 MRR for 15 seconds. Bonuses are doubled if Nature's Protector stance is a
                <Level>5</Level>
             </Requirement>
          </Requirements>
+         <Stance>
+            <Name>Lightning Strikes the Mountain</Name>
+            <Icon>NPLightningStrikesTheMountain</Icon>
+            <Description>You are also granted a 100% bonus to melee threat and 20 MRR for 15 seconds.
+Bonuses are doubled if Nature's Protector stance is active.</Description>
+         </Stance>
+        <Effect>
+            <Type>ThreatBonusMelee</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>100</Amount>
+            <Stance>Lightning Strikes the Mountain</Stance>
+        </Effect>
+        <Effect>
+            <Type>MRR</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>20</Amount>
+            <Stance>Lightning Strikes the Mountain</Stance>
+        </Effect>
+        <Effect>
+            <DisplayName>Nature's Protector: Lightning Strikes the Mountain (with Nature's Defense)</DisplayName>
+            <Type>ThreatBonusMelee</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>100</Amount>
+            <Stance>Lightning Strikes the Mountain</Stance>
+            <Stance>Nature's Defense</Stance>
+        </Effect>
+        <Effect>
+            <DisplayName>Nature's Protector: Lightning Strikes the Mountain (with Nature's Defense)</DisplayName>
+            <Type>MRR</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>20</Amount>
+            <Stance>Lightning Strikes the Mountain</Stance>
+            <Stance>Nature's Defense</Stance>
+        </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Nature's Protector: Greater Nature's Defense III</Name>

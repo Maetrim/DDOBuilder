@@ -24,6 +24,7 @@ class CStanceButton :
         void RevokeStack();
         size_t NumStacks() const;
         bool IsYou(const Stance & stance);
+        void ShowStacks(bool state);
 
     ///////////////////////////////////////////////////////////////////
     // MFC
@@ -48,6 +49,7 @@ class CStanceButton :
         bool m_bSelected;
         CImage m_image;
         size_t m_stacks;
+        bool m_bShowStacks;
 };
 
 //{{AFX_INSERT_LOCATION}}
