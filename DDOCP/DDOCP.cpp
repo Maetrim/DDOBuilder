@@ -19,6 +19,7 @@
 #include "OptionalBuffsFile.h"
 #include "SpellsFile.h"
 #include "LocalSettingsStore.h"
+#include "SetBonusFile.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -249,11 +250,13 @@ void CDDOCPApp::LoadData()
     LoadAugments(path);
     LoadGuildBuffs(path);
     LoadOptionalBuffs(path);
+    LoadSetBonuses(path);
     SeparateFeats();
 }
 
 void CDDOCPApp::VerifyLoadedData()
 {
+    VerifySetBonuses();
     VerifyFeats();
     VerifyEnhancements();
     VerifyAugments();
@@ -340,6 +343,18 @@ void CDDOCPApp::LoadOptionalBuffs(const std::string & path)
     m_optionalBuffs.sort();
 }
 
+void CDDOCPApp::LoadSetBonuses(const std::string & path)
+{
+    // create the filename to load from
+    std::string filename = path;
+    filename += "SetBonuses.xml";
+
+    SetBonusFile file(filename);
+    file.Read();
+    m_setBonuses = file.Sets();
+    m_setBonuses.sort();
+}
+
 void CDDOCPApp::VerifyFeats()
 {
     std::list<Feat>::iterator it = m_allFeats.begin();
@@ -395,6 +410,16 @@ void CDDOCPApp::VerifyOptionalBuffs()
 {
     std::list<OptionalBuff>::iterator it = m_optionalBuffs.begin();
     while (it != m_optionalBuffs.end())
+    {
+        (*it).VerifyObject();
+        ++it;
+    }
+}
+
+void CDDOCPApp::VerifySetBonuses()
+{
+    std::list<SetBonus>::iterator it = m_setBonuses.begin();
+    while (it != m_setBonuses.end())
     {
         (*it).VerifyObject();
         ++it;
@@ -526,6 +551,11 @@ const std::list<GuildBuff> & CDDOCPApp::GuildBuffs() const
 const std::list<OptionalBuff> & CDDOCPApp::OptionalBuffs() const
 {
     return m_optionalBuffs;
+}
+
+const std::list<SetBonus> & CDDOCPApp::SetBonuses() const
+{
+    return m_setBonuses;
 }
 
 // CDDOCPApp message handlers

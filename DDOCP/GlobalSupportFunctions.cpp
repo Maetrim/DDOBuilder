@@ -328,6 +328,12 @@ const std::list<OptionalBuff> & OptionalBuffs()
     return pApp->OptionalBuffs();
 }
 
+const std::list<SetBonus> & SetBonuses()
+{
+    CDDOCPApp * pApp = dynamic_cast<CDDOCPApp*>(AfxGetApp());
+    return pApp->SetBonuses();
+}
+
 MouseHook * GetMouseHook()
 {
     CWnd * pWnd = AfxGetMainWnd();
@@ -630,6 +636,22 @@ std::vector<Augment> CompatibleAugments(const std::string & name)
     }
     std::sort(compatibleAugments.begin(), compatibleAugments.end());
     return compatibleAugments;
+}
+
+const SetBonus& FindSetBonus(const std::string& name)
+{
+    static SetBonus badSetBonus;
+    const std::list<SetBonus> & sets = SetBonuses();
+    std::list<SetBonus>::const_iterator it = sets.begin();
+    while (it != sets.end())
+    {
+        if ((*it).Name() == name)
+        {
+            return (*it);
+        }
+        ++it;
+    }
+    return badSetBonus;
 }
 
 AbilityType StatFromSkill(SkillType skill)

@@ -59,6 +59,7 @@ class Item :
                 DL_ENUM_LIST(_, AbilityType, DamageModifier, Ability_Unknown, abilityTypeMap) \
                 DL_OPTIONAL_ENUM(_, ArmorType, Armor, Armor_Unknown, armorTypeMap) \
                 DL_OBJECT(_, EquipmentSlot, Slots) \
+                DL_STRING_LIST(_, SetBonus) \
                 DL_OBJECT_VECTOR(_, Effect, Effects) \
                 DL_OBJECT_VECTOR(_, ItemAugment, Augments) \
                 DL_OBJECT_VECTOR(_, SlotUpgrade, SlotUpgrades) \

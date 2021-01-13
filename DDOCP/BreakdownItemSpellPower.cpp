@@ -96,32 +96,19 @@ void BreakdownItemSpellPower::CreateOtherEffects()
                     "");        // no tree
             AddOtherEffect(levels);
 
-            // Battle engineer core 6: 
-            // Your equipped weapon in your main hand is now a Spellcasting Implement,
-            // providing a +3 Implement bonus to Universal Spell Power for every +1
-            // Enhancement bonus on the weapon.
-            // find the main hand weapon breakdown
-            if (m_pCharacter->IsEnhancementTrained("BECore6", "", TT_enhancement)
-                    || m_pCharacter->IsEnhancementTrained("BomCore2", "", TT_enhancement))
+            // universal spell power applies as a separate bonus
+            BreakdownItem * pUSP = FindBreakdown(Breakdown_SpellPowerUniversal);
+            if (pUSP != NULL)
             {
-                // get the main hand weapon breakdown
-                BreakdownItem * pBI = FindBreakdown(Breakdown_WeaponEffectHolder);
-                BreakdownItemWeaponEffects * pBIW = dynamic_cast<BreakdownItemWeaponEffects*>(pBI);
-                if (pBIW != NULL)
-                {
-                    pBI = pBIW->GetWeaponBreakdown(true, Breakdown_WeaponAttackBonus);
-                    if (pBI != NULL)
-                    {
-                        int weaponPlus = (int)pBI->GetEffectValue(Bonus_weaponEnchantment);
-                        ActiveEffect implementBonus(
-                                Bonus_implement,
-                                "Battle Engineer: Master Engineer",
-                                weaponPlus,
-                                3,          // +3 per weapon plus
-                                "");        // no tree
-                        AddOtherEffect(implementBonus);
-                    }
-                }
+                pUSP->AttachObserver(this);
+                double total = pUSP->Total();
+                ActiveEffect implementBonus(
+                        Bonus_universal,
+                        "Universal Spell Power",
+                        1,
+                        total,
+                        "");        // no tree
+                AddOtherEffect(implementBonus);
             }
         }
     }
@@ -146,63 +133,3 @@ void BreakdownItemSpellPower::UpdateTotalChanged(
     BreakdownItem::UpdateTotalChanged(item, type);
     CreateOtherEffects();
 }
-
-void BreakdownItemSpellPower::UpdateEnhancementTrained(
-        Character * charData,
-        const std::string & enhancementName,
-        const std::string & selection,
-        bool isTier5)
-{
-    BreakdownItem::UpdateEnhancementTrained(
-            charData,
-            enhancementName,
-            selection,
-            isTier5);
-    // check for "Battle Engineer: Master Engineer"  being trained specifically
-    if (enhancementName == "BECore6")
-    {
-        // need to re-create other effects list
-        CreateOtherEffects();
-        Populate();
-    }
-}
-
-void BreakdownItemSpellPower::UpdateEnhancementRevoked(
-        Character * charData,
-        const std::string & enhancementName,
-        const std::string & selection,
-        bool isTier5)
-{
-    BreakdownItem::UpdateEnhancementRevoked(
-            charData,
-            enhancementName,
-            selection,
-            isTier5);
-    // check for "Battle Engineer: Master Engineer"  being revoked specifically
-    if (enhancementName == "BECore6"
-            || enhancementName == "BomCore2")
-    {
-        // need to re-create other effects list
-        CreateOtherEffects();
-        Populate();
-    }
-}
-
-void BreakdownItemSpellPower::UpdateGearChanged(Character * charData, InventorySlotType slot)
-{
-    BreakdownItem::UpdateGearChanged(
-            charData,
-            slot);
-    if (slot == Inventory_Weapon1)
-    {
-        // if "Battle Engineer: Master Engineer" is trained, the implement bonus may have changed
-        if (m_pCharacter->IsEnhancementTrained("BECore6", "", TT_enhancement)
-                || m_pCharacter->IsEnhancementTrained("BomCore2", "", TT_enhancement))
-        {
-            // need to re-create other effects list
-            CreateOtherEffects();
-            Populate();
-        }
-    }
-}
-

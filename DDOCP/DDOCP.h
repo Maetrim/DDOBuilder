@@ -9,6 +9,7 @@
 #include "Item.h"
 #include "OptionalBuff.h"
 #include "Spell.h"
+#include "SetBonus.h"
 
 #ifndef __AFXWIN_H__
     #error "include 'stdafx.h' before including this file for PCH"
@@ -46,6 +47,7 @@ class CDDOCPApp :
         const std::list<Augment> & Augments() const;
         const std::list<GuildBuff> & GuildBuffs() const;
         const std::list<OptionalBuff> & OptionalBuffs() const;
+        const std::list<SetBonus> & SetBonuses() const;
 
         virtual void PreLoadState();
         virtual void LoadCustomState();
@@ -64,6 +66,7 @@ class CDDOCPApp :
         void LoadAugments(const std::string & path);
         void LoadGuildBuffs(const std::string & path);
         void LoadOptionalBuffs(const std::string & path);
+        void LoadSetBonuses(const std::string & path);
         void VerifyFeats();     // verify that all feats are consistent
         void SeparateFeats();   // breaks them out into groups based on type
         void VerifyLoadedData();
@@ -72,6 +75,7 @@ class CDDOCPApp :
         void VerifySpells();    // verify all spells are consistent
         void VerifyItems();    // verify all items are consistent
         void VerifyOptionalBuffs();    // verify all are consistent
+        void VerifySetBonuses();    // verify all are consistent
         CCustomContextMenuManager m_ourMenuManager; // construction of object replaces default implementation created in InitContextMenuManager
         // global data loaded at start up
         std::list<Feat> m_allFeats;
@@ -89,6 +93,7 @@ class CDDOCPApp :
         std::list<Augment> m_augments;
         std::list<GuildBuff> m_guildBuffs;
         std::list<OptionalBuff> m_optionalBuffs;
+        std::list<SetBonus> m_setBonuses;
 };
 
 extern CDDOCPApp theApp;

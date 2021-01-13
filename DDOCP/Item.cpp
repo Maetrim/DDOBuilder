@@ -5,7 +5,7 @@
 #include "XmlLib\SaxWriter.h"
 #include "GlobalSupportFunctions.h"
 #include <algorithm>
-#
+
 #define DL_ELEMENT Item
 
 namespace
@@ -191,6 +191,25 @@ void Item::VerifyObject() const
         ok &= (*iacit).VerifyObject(&ss);
         ++iacit;
     }
+    // check any set bonuses exist
+    const std::list<::SetBonus> & loadedSets = SetBonuses();
+    std::list<std::string>::const_iterator sbit = m_SetBonus.begin();
+    while (sbit != m_SetBonus.end())
+    {
+        bool bFound = false;
+        std::list<::SetBonus>::const_iterator sit = loadedSets.begin();
+        while (!bFound && sit != loadedSets.end())
+        {
+            bFound = ((*sit).Name() == (*sbit));
+            ++sit;
+        }
+        if (!bFound)
+        {
+            ok = false;
+            ss << "Has unknown set bonus \"" << (*sbit) << "\"\n";
+        }
+        ++sbit;
+    }
 
     if (!ok)
     {
@@ -223,6 +242,7 @@ bool Item::ContainsSearchText(const std::string & searchText) const
         // Description
         // Drop Location
         // EffectDescription(s)
+        // Set Bonuses
         bHasSearchText |= SearchForText(Name(), parsedItem);
         bHasSearchText |= SearchForText(ItemType(), parsedItem);
         bHasSearchText |= SearchForText(Description(), parsedItem);
@@ -238,6 +258,13 @@ bool Item::ContainsSearchText(const std::string & searchText) const
         while (!bHasSearchText && it != m_EffectDescription.end())
         {
             bHasSearchText |= SearchForText((*it), parsedItem);
+            ++it;
+        }
+        it = m_SetBonus.begin();
+        while (!bHasSearchText && it != m_SetBonus.end())
+        {
+            const ::SetBonus& set = FindSetBonus((*it));
+            bHasSearchText |= SearchForText(set.Description(), parsedItem);
             ++it;
         }
     }

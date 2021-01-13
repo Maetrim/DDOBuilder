@@ -24,18 +24,6 @@ class BreakdownItemSpellPower :
 
         // BreakdownObserver overrides
         virtual void UpdateTotalChanged(BreakdownItem * item, BreakdownType type) override;
-        // CharacterObserver overrides
-        virtual void UpdateEnhancementTrained(
-                Character * charData,
-                const std::string & enhancementName,
-                const std::string & selection,
-                bool isTier5) override;
-        virtual void UpdateEnhancementRevoked(
-                Character * charData,
-                const std::string & enhancementName,
-                const std::string & selection,
-                bool isTier5) override;
-        virtual void UpdateGearChanged(Character * charData, InventorySlotType slot);
     private:
         BreakdownType SpellPowerBreakdown() const;
 

@@ -84,6 +84,7 @@ const std::list<Item> & Items();
 const std::list<Augment> & Augments();
 const std::list<GuildBuff> & GuildBuffs();
 const std::list<OptionalBuff> & OptionalBuffs();
+const std::list<SetBonus> & SetBonuses();
 MouseHook * GetMouseHook();
 std::vector<Spell> FilterSpells(ClassType ct, int level);
 Spell FindSpellByName(const std::string & name);
@@ -93,6 +94,7 @@ std::vector<TrainableFeatTypes> ClassSpecificFeatTypes(ClassType type);
 std::vector<TrainableFeatTypes> RaceSpecificFeatTypes(RaceType type);
 const Augment & FindAugmentByName(const std::string & name);
 std::vector<Augment> CompatibleAugments(const std::string & name);
+const SetBonus& FindSetBonus(const std::string& name);
 
 AbilityType StatFromSkill(SkillType skill);
 int ArmorCheckPenalty_Multiplier(SkillType skill);

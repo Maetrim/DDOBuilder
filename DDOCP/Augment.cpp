@@ -128,6 +128,26 @@ void Augment::VerifyObject() const
         ok &= m_Rares.VerifyObject(&ss);
     }
 
+    // check any set bonuses exist
+    const std::list<::SetBonus> & loadedSets = SetBonuses();
+    std::list<std::string>::const_iterator sbit = m_SetBonus.begin();
+    while (sbit != m_SetBonus.end())
+    {
+        bool bFound = false;
+        std::list<::SetBonus>::const_iterator sit = loadedSets.begin();
+        while (!bFound && sit != loadedSets.end())
+        {
+            bFound = ((*sit).Name() == (*sbit));
+            ++sit;
+        }
+        if (!bFound)
+        {
+            ok = false;
+            ss << "Has unknown set bonus \"" << (*sbit) << "\"\n";
+        }
+        ++sbit;
+    }
+
     if (!ok)
     {
         ::OutputDebugString(ss.str().c_str());

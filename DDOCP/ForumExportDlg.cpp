@@ -1668,6 +1668,20 @@ void CForumExportDlg::ExportGear(const EquippedGear & gear, std::stringstream & 
                 forumExport << "\r\n";
                 ++it;
             }
+            // show any set bonuses
+            const std::list<std::string> & sets = item.SetBonus();
+            std::list<std::string>::const_iterator sit = sets.begin();
+            while (sit != sets.end())
+            {
+                const SetBonus& set = FindSetBonus((*sit));
+                std::string processedDescription = set.Description();
+                processedDescription = processedDescription.substr(0, processedDescription.find(':'));
+                forumExport << "              ";
+                forumExport << processedDescription;
+                forumExport << "\r\n";
+                ++sit;
+            }
+
             // show any augment slots also
             std::vector<ItemAugment> augments = item.Augments();
             for (size_t i = 0; i < augments.size(); ++i)

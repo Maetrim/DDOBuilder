@@ -4835,6 +4835,7 @@ void Character::RevokeGearEffects()
     {
         if (gear.HasItemInSlot((InventorySlotType)i))
         {
+            bool bSuppressSetBonuses = false;
             Item item = gear.ItemInSlot((InventorySlotType)i);
             // revoke the items effects
             const std::vector<Effect> & effects = item.Effects();
@@ -4866,6 +4867,7 @@ void Character::RevokeGearEffects()
                 {
                     // there is an augment in this position
                     const Augment & augment = FindAugmentByName(augments[ai].SelectedAugment());
+                    bSuppressSetBonuses |= augment.HasSuppressSetBonus();
                     // name is:
                     // <item>:<augment type>:<Augment name>
                     std::stringstream ss;
@@ -4919,6 +4921,25 @@ void Character::RevokeGearEffects()
                         NotifyRevokeStance((*sit));
                         ++sit;
                     }
+                    // revoke any augment set bonuses
+                    const std::list<std::string> & setBonuses = augment.SetBonus();
+                    std::list<std::string>::const_iterator sbit = setBonuses.begin();
+                    while (sbit != setBonuses.end())
+                    {
+                        RevokeSetBonus((*sbit), name);
+                        ++sbit;
+                    }
+                }
+            }
+            if (!bSuppressSetBonuses)
+            {
+                // revoke any item set bonuses
+                const std::list<std::string> & setBonuses = item.SetBonus();
+                std::list<std::string>::const_iterator sbit = setBonuses.begin();
+                while (sbit != setBonuses.end())
+                {
+                    RevokeSetBonus((*sbit), item.Name());
+                    ++sbit;
                 }
             }
         }
@@ -4977,6 +4998,14 @@ void Character::RevokeGearEffects()
                 NotifyRevokeStance((*sit));
                 ++sit;
             }
+            // revoke any filigree set bonuses
+            const std::list<std::string> & setBonuses = augment.SetBonus();
+            std::list<std::string>::const_iterator sbit = setBonuses.begin();
+            while (sbit != setBonuses.end())
+            {
+                RevokeSetBonus((*sbit), name);
+                ++sbit;
+            }
         }
     }
 }
@@ -4990,6 +5019,7 @@ void Character::ApplyGearEffects()
     {
         if (gear.HasItemInSlot((InventorySlotType)i))
         {
+            bool bSuppressSetBonuses = false;
             if (i == Inventory_Armor)
             {
                 // need to remove the no armor effects
@@ -5032,6 +5062,7 @@ void Character::ApplyGearEffects()
                 {
                     // there is an augment in this position
                     const Augment & augment = FindAugmentByName(augments[ai].SelectedAugment());
+                    bSuppressSetBonuses |= augment.HasSuppressSetBonus();
                     // name is:
                     // <item>:<augment type>:<Augment name>
                     std::stringstream ss;
@@ -5085,6 +5116,25 @@ void Character::ApplyGearEffects()
                         NotifyNewStance((*sit));
                         ++sit;
                     }
+                    // apply any augment set bonuses
+                    const std::list<std::string> & setBonuses = augment.SetBonus();
+                    std::list<std::string>::const_iterator sbit = setBonuses.begin();
+                    while (sbit != setBonuses.end())
+                    {
+                        ApplySetBonus((*sbit), name);
+                        ++sbit;
+                    }
+                }
+            }
+            // apply any item set bonuses
+            if (!bSuppressSetBonuses)
+            {
+                const std::list<std::string> & setBonuses = item.SetBonus();
+                std::list<std::string>::const_iterator sbit = setBonuses.begin();
+                while (sbit != setBonuses.end())
+                {
+                    ApplySetBonus((*sbit), item.Name());
+                    ++sbit;
                 }
             }
         }
@@ -5145,6 +5195,14 @@ void Character::ApplyGearEffects()
             {
                 NotifyNewStance((*sit));
                 ++sit;
+            }
+            // apply any filigree set bonuses
+            const std::list<std::string> & setBonuses = augment.SetBonus();
+            std::list<std::string>::const_iterator sbit = setBonuses.begin();
+            while (sbit != setBonuses.end())
+            {
+                ApplySetBonus((*sbit), name);
+                ++sbit;
             }
         }
     }
@@ -6544,3 +6602,50 @@ void Character::ToggleShowUnavailable()
 {
     m_bShowUnavailableFeats = !m_bShowUnavailableFeats;
 }
+
+void Character::ApplySetBonus(
+        const std::string & set,
+        const std::string & name)
+{
+    const SetBonus & setObject = FindSetBonus(set);
+    // sets effects
+    std::vector<Effect> effects = setObject.Effects();
+    std::vector<Effect>::iterator it = effects.begin();
+    while (it != effects.end())
+    {
+        NotifyItemEffect(name, (*it));
+        ++it;
+    }
+    // stances
+    const std::list<Stance> & stances = setObject.Stances();
+    std::list<Stance>::const_iterator sit = stances.begin();
+    while (sit != stances.end())
+    {
+        NotifyNewStance((*sit));
+        ++sit;
+    }
+}
+
+void Character::RevokeSetBonus(
+        const std::string & set,
+        const std::string & name)
+{
+    const SetBonus & setObject = FindSetBonus(set);
+    // sets effects
+    std::vector<Effect> effects = setObject.Effects();
+    std::vector<Effect>::iterator it = effects.begin();
+    while (it != effects.end())
+    {
+        NotifyItemEffectRevoked(name, (*it));
+        ++it;
+    }
+    // stances
+    const std::list<Stance> & stances = setObject.Stances();
+    std::list<Stance>::const_iterator sit = stances.begin();
+    while (sit != stances.end())
+    {
+        NotifyRevokeStance((*sit));
+        ++sit;
+    }
+}
+

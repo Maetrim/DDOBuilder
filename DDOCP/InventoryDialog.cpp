@@ -151,6 +151,14 @@ BOOL CInventoryDialog::OnInitDialog()
     while (cit != m_filigrees.end())
     {
         std::string fullName = (*cit).Name();
+        if (fullName.find("/") != std::string::npos)
+        {
+            if (fullName.find(":") != std::string::npos)
+            {
+                fullName.replace(fullName.find(":"), 1, "-");
+            }
+            fullName = "Raid: " + fullName;
+        }
         AddMenuItem(m_filigreeMenu.GetSafeHmenu(), fullName.c_str(), iItemIndex++);
         ++cit;
     }

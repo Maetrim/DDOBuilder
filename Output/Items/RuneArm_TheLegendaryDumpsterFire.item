@@ -17,13 +17,15 @@
         <EquipmentSlot>
             <Weapon2/>
         </EquipmentSlot>
-        <EffectDescription>Ghost Shot:
+        <EffectDescription>Trash Shot:
 Target: Foe, Directional, Breakable
 School: Evocation
 Spell Resistance: No
-Fires a Spectre that damages your enemies. At higher charge
-levels multiple ghosts are rapidly fired. Opponents struck by
-the ghosts receive a Fortitude save for half damage.
+Fires a slow moving pile of burning trash. Opponents in the blast
+radius take bludgeoning, fire poison, and rust damage. Opponents struck by
+this receive a Fortitude save for half damage.
+When fully charged, this fires two projectiles that fly much faster.
+Enemies hit take the following values in each damage type:
 
 Charge Tier 1: 4 to 10 + 1 to 2 per Artificer Level
 Charge Tier 2: 5 to 15 + 1 to 4 per Artificer Level
@@ -31,28 +33,67 @@ Charge Tier 3: 6 to 20 + 1 to 6 per Artificer Level
 Charge Tier 4: 7 to 25 + 1 to 8 per Artificer Level
 Charge Tier 5: 8 to 30 + 1 to 10 per Artificer Level</EffectDescription>
         <EffectDescription>Maximum Charge Tier 5: The maximum charge tier of this rune arm is tier 5.</EffectDescription>
-        <EffectDescription>Rune Arm Imbue Evil Shot IV: Wearing this Rune Arm will imbue any weapon you wield, dealing 2 to 12 points of evil damage per hit. This damage scales with 200% Melee or Ranged power (whichever is higher)</EffectDescription>
+        <EffectDescription>Combustion +214: Passive: +214 Equipment Bonus to Fire Spell Power.</EffectDescription>
         <Effect>
-            <DisplayName>Rune Arm Imbue Evil Shot IV</DisplayName>
+            <Type>SpellPower</Type>
+            <Bonus>Equipment</Bonus>
+            <Amount>214</Amount>
+            <SpellPower>Fire</SpellPower>
+        </Effect>
+        <EffectDescription>Fire Lore +31%: Passive: Your Fire spells gain a +31% Equipment Bonus to their chance to Critical Hit.</EffectDescription>
+        <Effect>
+            <Type>SpellLore</Type>
+            <Bonus>Equipment</Bonus>
+            <Amount>31</Amount>
+            <SpellPower>Fire</SpellPower>
+        </Effect>
+        <EffectDescription>Shield Bonus +21: This effect protects its wielder, providing a 21 Shield Bonus to Armor Class. This does not stack with an equipped shield.</EffectDescription>
+        <Effect>
+            <Type>ACBonus</Type>
+            <Bonus>Shield</Bonus>
+            <Amount>21</Amount>
+        </Effect>
+        <EffectDescription>Rune Arm Imbue Bludgeon V: Wearing this Rune Arm will imbue any weapon you wield, dealing 2 to 16 points of bludgeon damage per hit. </EffectDescription>
+        <Effect>
             <Type>WeaponOtherDamageBonus</Type>
             <Bonus>Equipment</Bonus>
             <Dice>
                 <Number size="1">2</Number>
-                <Sides size="1">6</Sides>
-                <Energy>Evil</Energy>
+                <Sides size="1">8</Sides>
+                <Energy>Bludgeon</Energy>
+            </Dice>
+            <Weapon>All</Weapon>
+        </Effect>
+        <Effect>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Equipment</Bonus>
+            <Dice>
+                <Number size="1">2</Number>
+                <Sides size="1">8</Sides>
+                <Energy>Bludgeon</Energy>
+            </Dice>
+            <Weapon>All</Weapon>
+        </Effect>
+        <EffectDescription>Rune Arm Imbue Fire V: Wearing this Rune Arm will imbue any weapon you wield, dealing 2 to 20 points of fire damage per hit. This damage scales with 200% Melee or Ranged power (whichever is higher)</EffectDescription>
+        <Effect>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Equipment</Bonus>
+            <Dice>
+                <Number size="1">2</Number>
+                <Sides size="1">10</Sides>
+                <Energy>Fire</Energy>
                 <ScalesWithMeleePower/>
                 <ScalesWithRangedPower/>
             </Dice>
             <Weapon>All</Weapon>
         </Effect>
         <Effect>
-            <DisplayName>Rune Arm Imbue Evil Shot IV</DisplayName>
             <Type>WeaponOtherCriticalDamageBonus</Type>
             <Bonus>Equipment</Bonus>
             <Dice>
                 <Number size="1">2</Number>
-                <Sides size="1">6</Sides>
-                <Energy>Evil</Energy>
+                <Sides size="1">10</Sides>
+                <Energy>Fire</Energy>
                 <ScalesWithMeleePower/>
                 <ScalesWithRangedPower/>
             </Dice>

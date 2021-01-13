@@ -43,6 +43,10 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
     text.Format("Self and Party Buff Count: %d", count);
     SetDlgItemText(IDC_STATIC_PARTYBUFF_COUNT, text);
 
+    count = SetBonuses().size();
+    text.Format("Set Bonus Count: %d", count);
+    SetDlgItemText(IDC_STATIC_SETBONUS_COUNT, text);
+
     m_bugReporters.SetWindowText(
             "In alphabetical order:\r\n"
             "\r\n"
@@ -59,6 +63,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
             "Cardo, "
             "Carpone, "
             "Civet, "
+            "Cleru, "
             "crcabanillas, "
             "cswob, "
             "Cybree, "
@@ -83,6 +88,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
             "Hobgoblin, "
             "iAntiquary, "
             "Jalak21, "
+            "jmonsky, "
             "Jokersir2, "
             "Kamdragon, "
             "Kaustics "
@@ -115,6 +121,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
             "Selvera, "
             "ShintaoMonk, "
             "Strambotica, "
+            "Strimtom, "
             "Spodi, "
             "Swimms, "
             "TeamscorpioRI, "

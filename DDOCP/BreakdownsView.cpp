@@ -34,6 +34,7 @@
 #include "BreakdownItemTurnUndeadHitDice.h"
 #include "BreakdownItemWeaponEffects.h"
 #include "BreakdownItemSneakAttackDice.h"
+#include "BreakdownItemUniversalSpellPower.h"
 
 namespace
 {
@@ -1306,6 +1307,19 @@ void CBreakdownsView::CreateMagicalBreakdowns()
                 hParent,
                 TVI_LAST);
         m_itemBreakdownTree.SetItemData(hItem, 0);
+        {
+            HTREEITEM hUSPItem = m_itemBreakdownTree.InsertItem(
+                    "Universal Spell power",
+                    hItem,
+                    TVI_LAST);
+            BreakdownItem * usp = new BreakdownItemUniversalSpellPower(
+                    Breakdown_SpellPowerUniversal,
+                    "Universal Spell power",
+                    &m_itemBreakdownTree,
+                    hUSPItem);
+            m_itemBreakdownTree.SetItemData(hUSPItem, (DWORD)(void*)usp);
+            m_items.push_back(usp);
+        }
         AddSpellPower(Breakdown_SpellPowerAcid, SpellPower_Acid, "Acid Spell power", hItem);
         AddSpellPower(Breakdown_SpellPowerLightAlignment, SpellPower_LightAlignment, "Light/Alignment Spell power", hItem);
         AddSpellPower(Breakdown_SpellPowerCold, SpellPower_Cold, "Cold Spell power", hItem);
@@ -1320,7 +1334,6 @@ void CBreakdownsView::CreateMagicalBreakdowns()
         AddSpellPower(Breakdown_SpellPowerRepair, SpellPower_Repair, "Repair Spell power", hItem);
         AddSpellPower(Breakdown_SpellPowerRust, SpellPower_Rust, "Rust Spell power", hItem);
         AddSpellPower(Breakdown_SpellPowerSonic, SpellPower_Sonic, "Sonic Spell power", hItem);
-        AddSpellPower(Breakdown_SpellPowerUniversal, SpellPower_All, "Universal Spell power", hItem);
     }
 
     {

@@ -140,7 +140,7 @@ BOOL CItemSelectDialog::OnInitDialog()
     }
     SetupFilterCombobox();
     // add list control columns
-    m_availableItemsCtrl.InsertColumn(0, "Item Name", LVCFMT_LEFT, 150);
+    m_availableItemsCtrl.InsertColumn(0, "Item Name", LVCFMT_LEFT, 226);
     m_availableItemsCtrl.InsertColumn(1, "Level", LVCFMT_LEFT, 50);
     m_sortHeader.SetSortArrow(1, FALSE);     // sort by level by default
 

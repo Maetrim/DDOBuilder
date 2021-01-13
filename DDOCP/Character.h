@@ -444,6 +444,9 @@ class Character :
         void UpdateGearToLatestVersions();
         Item GetLatestVersionOfItem(const Item & original);
 
+        void ApplySetBonus(const std::string & set, const std::string & name);
+        void RevokeSetBonus(const std::string & set, const std::string & name);
+
         // CharacterObserver
         // we need to track all sources from which a granted feat can come from
         virtual void UpdateFeatEffect(Character * charData, const std::string & featName, const Effect & effect) override;

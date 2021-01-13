@@ -431,23 +431,39 @@ void CInfoTip::SetStanceItem(
     if (pItem->HasSetBonus())
     {
         m_ranks.Format("Stacks: %d", numStacks);
+        // convert the descriptions to requirements to show which have been met
+        // by the number of stacks
+        std::istringstream ss((LPCTSTR)m_description);
+        std::string s;
+        size_t lastCount = 0;
+        while (std::getline(ss, s, '\n'))
+        {
+            m_requirements.push_back(s.c_str());
+            size_t count = static_cast<size_t>(atoi(m_requirements.back()));
+            if (count > 0)
+            {
+                lastCount = count;
+            }
+            m_bRequirementMet.push_back(lastCount == 0 || lastCount <= numStacks);
+        }
+        m_description = "";
     }
     else
     {
         m_ranks = "";
+        // list the stances which cannot be active if this one is
+        std::list<std::string> incompatibleStances = pItem->IncompatibleStance();
+        std::list<std::string>::const_iterator it = incompatibleStances.begin();
+        while (it != incompatibleStances.end())
+        {
+            CString name;
+            name = "Incompatible with: ";
+            name += (*it).c_str();
+            m_requirements.push_back(name);
+            ++it;
+        }
+        m_bRequirementMet.resize(m_requirements.size(), true);
     }
-    // list the stances which cannot be active if this one is
-    std::list<std::string> incompatibleStances = pItem->IncompatibleStance();
-    std::list<std::string>::const_iterator it = incompatibleStances.begin();
-    while (it != incompatibleStances.end())
-    {
-        CString name;
-        name = "Incompatible with: ";
-        name += (*it).c_str();
-        m_requirements.push_back(name);
-        ++it;
-    }
-    m_bRequirementMet.resize(m_requirements.size(), true);
     m_cost = "";
 }
 
@@ -477,6 +493,16 @@ void CInfoTip::SetItem(
         m_effectDescriptions.push_back(processedDescription);
         ++it;
     }
+    // add any set bonuses
+    const std::list<std::string> & sets = pItem->SetBonus();
+    std::list<std::string>::const_iterator sit = sets.begin();
+    while (sit != sets.end())
+    {
+        const SetBonus & set = FindSetBonus((*sit));
+        m_effectDescriptions.push_back(set.Description().c_str());
+        ++sit;
+    }
+
     // add the augments to the effect description list
     std::vector<ItemAugment> augments = pItem->Augments();
     for (size_t i = 0; i < augments.size(); ++i)
