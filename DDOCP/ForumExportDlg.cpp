@@ -277,7 +277,7 @@ void CForumExportDlg::AddCharacterHeader(std::stringstream & forumExport)
     // Classes: [x][class1], [y][class2], [z][class3] and [10]Epic
     // Race: [...............] Alignment: [..............]
     //
-    //      Start Tome Final
+    //      Start Tome Final     Incorp: xx%         Displacement: xx%
     // Str: [...] [..] [...]     HP:    [....]       AC: [...]
     // Dex: [...] [..] [...]     PRR:   [....]       DR: [........................]
     // Con: [...] [..] [...]     MRR:   [....]/[MAX] +Healing Amp: [...]
@@ -304,7 +304,10 @@ void CForumExportDlg::AddCharacterHeader(std::stringstream & forumExport)
     forumExport << std::left << alignment << "\r\n";
     // blank line
     forumExport << "\r\n";
-    forumExport << "     Start Tome Final\r\n";
+    forumExport << "     Start Tome Final";
+    AddBreakdown(forumExport, "      Incorp: ", 5, Breakdown_Incorpreality);
+    AddBreakdown(forumExport, "%      Displacement: ", 4, Breakdown_Displacement);
+    forumExport << "%\r\n";
 
     AddAbilityValues(forumExport, Ability_Strength);
     AddBreakdown(forumExport, "      HP: ", 10, Breakdown_Hitpoints);
@@ -1395,7 +1398,6 @@ void CForumExportDlg::AddSpellPowers(std::stringstream & forumExport)
     AddSpellPower(forumExport, "Repair         ", Breakdown_SpellPowerRepair, Breakdown_SpellCriticalChanceRepair, Breakdown_SpellCriticalMultiplierRepair);
     AddSpellPower(forumExport, "Rust           ", Breakdown_SpellPowerRust, Breakdown_SpellCriticalChanceRust, Breakdown_SpellCriticalMultiplierRust);
     AddSpellPower(forumExport, "Sonic          ", Breakdown_SpellPowerSonic, Breakdown_SpellCriticalChanceSonic, Breakdown_SpellCriticalMultiplierSonic);
-    AddSpellPower(forumExport, "Universal      ", Breakdown_SpellPowerUniversal, Breakdown_SpellCriticalChanceUniversal, Breakdown_SpellCriticalMultiplierUniversal);
     forumExport << "------------------------------------------------------------------------------------------\r\n";
     forumExport << "\r\n";
 }

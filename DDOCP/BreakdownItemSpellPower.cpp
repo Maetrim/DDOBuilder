@@ -111,6 +111,23 @@ void BreakdownItemSpellPower::CreateOtherEffects()
                 AddOtherEffect(implementBonus);
             }
         }
+        else    // its spell lore
+        {
+            // universal spell power applies as a separate bonus
+            BreakdownItem * pUSL = FindBreakdown(Breakdown_SpellCriticalChanceUniversal);
+            if (pUSL != NULL)
+            {
+                pUSL->AttachObserver(this);
+                double total = pUSL->Total();
+                ActiveEffect implementBonus(
+                        Bonus_universal,
+                        "Universal Spell Lore",
+                        1,
+                        total,
+                        "");        // no tree
+                AddOtherEffect(implementBonus);
+            }
+        }
     }
 }
 

@@ -6616,14 +6616,10 @@ void Character::ApplySetBonus(
         NotifyItemEffect(name, (*it));
         ++it;
     }
-    // stances
-    const std::list<Stance> & stances = setObject.Stances();
-    std::list<Stance>::const_iterator sit = stances.begin();
-    while (sit != stances.end())
-    {
-        NotifyNewStance((*sit));
-        ++sit;
-    }
+    // set bonuses always have a stance object, create it
+    Stance setStance(setObject.Name(), setObject.Icon(), setObject.Description());
+    setStance.Set_SetBonus();
+    NotifyNewStance(setStance);
 }
 
 void Character::RevokeSetBonus(
@@ -6639,13 +6635,9 @@ void Character::RevokeSetBonus(
         NotifyItemEffectRevoked(name, (*it));
         ++it;
     }
-    // stances
-    const std::list<Stance> & stances = setObject.Stances();
-    std::list<Stance>::const_iterator sit = stances.begin();
-    while (sit != stances.end())
-    {
-        NotifyRevokeStance((*sit));
-        ++sit;
-    }
+    // set bonuses always have a stance object, create it
+    Stance setStance(setObject.Name(), setObject.Icon(), setObject.Description());
+    setStance.Set_SetBonus();
+    NotifyRevokeStance(setStance);
 }
 

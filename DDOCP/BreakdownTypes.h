@@ -75,6 +75,8 @@ enum BreakdownType
     Breakdown_QuiveringPalm,
     Breakdown_MissileDeflection,
     Breakdown_MissileDeflectionBypass,
+    Breakdown_Incorpreality,
+    Breakdown_Displacement,
     Breakdown_Strikethrough,
     Breakdown_SneakAttackDice,
     Breakdown_SneakAttackDamage,

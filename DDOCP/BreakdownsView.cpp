@@ -805,6 +805,36 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
     }
 
     {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Incorpreality",
+                hDefensiveParent,
+                TVI_LAST);
+        BreakdownItem * pIncorp = new BreakdownItemSimple(
+                Breakdown_Incorpreality,
+                Effect_Incorpreality,
+                "Incorpreality",
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pIncorp);
+        m_items.push_back(pIncorp);
+    }
+
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Displacement",
+                hDefensiveParent,
+                TVI_LAST);
+        BreakdownItem * pDisp = new BreakdownItemSimple(
+                Breakdown_Displacement,
+                Effect_Displacement,
+                "Displacement",
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pDisp);
+        m_items.push_back(pDisp);
+    }
+
+    {
         HTREEITEM hHelpless = m_itemBreakdownTree.InsertItem(
                 "Helpless Damage Reduction",
                 hDefensiveParent,
@@ -1343,6 +1373,20 @@ void CBreakdownsView::CreateMagicalBreakdowns()
                 hParent,
                 TVI_LAST);
         m_itemBreakdownTree.SetItemData(hItem, 0);
+        {
+            HTREEITEM hUSPItem = m_itemBreakdownTree.InsertItem(
+                    "Universal Spell Lore",
+                    hItem,
+                    TVI_LAST);
+            BreakdownItem * usl = new BreakdownItemSimple(
+                    Breakdown_SpellCriticalChanceUniversal,
+                    Effect_UniversalSpellLore,
+                    "Universal Spell Lore",
+                    &m_itemBreakdownTree,
+                    hUSPItem);
+            m_itemBreakdownTree.SetItemData(hUSPItem, (DWORD)(void*)usl);
+            m_items.push_back(usl);
+        }
         AddSpellCriticalChance(Breakdown_SpellCriticalChanceAcid, SpellPower_Acid, "Acid Critical Chance", hItem);
         AddSpellCriticalChance(Breakdown_SpellCriticalChanceLightAlignment, SpellPower_LightAlignment, "Light/Alignment Critical Chance", hItem);
         AddSpellCriticalChance(Breakdown_SpellCriticalChanceCold, SpellPower_Cold, "Cold Critical Chance", hItem);
@@ -1357,7 +1401,6 @@ void CBreakdownsView::CreateMagicalBreakdowns()
         AddSpellCriticalChance(Breakdown_SpellCriticalChanceRepair, SpellPower_Repair, "Repair Critical Chance", hItem);
         AddSpellCriticalChance(Breakdown_SpellCriticalChanceRust, SpellPower_Rust, "Rust Critical Chance", hItem);
         AddSpellCriticalChance(Breakdown_SpellCriticalChanceSonic, SpellPower_Sonic, "Sonic Critical Chance", hItem);
-        AddSpellCriticalChance(Breakdown_SpellCriticalChanceUniversal, SpellPower_All, "Universal Critical Chance", hItem);
     }
 
     {

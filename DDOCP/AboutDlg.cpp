@@ -14,6 +14,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
     CDialogEx::DoDataExchange(pDX);
     DDX_Control(pDX, IDC_STATIC_VERSION, m_staticVersion);
     DDX_Control(pDX, IDC_BUG_REPORTERS, m_bugReporters);
+    DDX_Control(pDX, IDC_STATIC_INFO_REQUEST, m_staticInfoRequest);
 
     CString text;
     text.Format("DDOBuilder, Version %s", BUILDINFO_VERSION);
@@ -134,6 +135,64 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
             "Xycona, "
             "Zretch");
     m_bugReporters.SetSel(-1);    // nothing starts selected
+
+    m_staticInfoRequest.SetWindowText("The following listed Set Bonus icons are missing and I need your"
+        " help in acquiring them. If you can drop a screen shot or a section of one with the icon present"
+        " in the posted GitHub issue thread that will be of great help to me.\n"
+        "\n"
+        "Amaunator's Blessing, "
+        "Anger of the Avalanche, "
+        "Anthem Melody, "
+        "Astute Alchemist, "
+        "Battle Arcanist, "
+        "Beacon of Magic Set (Legendary), "
+        "Chained Elementals, "
+        "Crypt Raider Set (Legendary), "
+        "Curse Necromancer Set, "
+        "Draconic Resilience, "
+        "Eminence of Spring, "
+        "Epic Captain's Set, "
+        "Epic Double Helix Set, "
+        "Epic The Devil's Handiwork, "
+        "Erudition / Planar Conflux Set Bonus, "
+        "Fastidious Fabicator, "
+        "Greater Divine Blessing, "
+        "Greater Elder's Knowledge, "
+        "Greater Marshwalker, "
+        "Greater Might of the Abishai, "
+        "Greater Raven's Eye, "
+        "Greater Shaman's Fury, "
+        "Greater Siren's Ward, "
+        "Greater Vulkoor's Cunning, "
+        "Greater Vulkoor's Might, "
+        "Knight of the Shadows Set (Legendary), "
+        "Knight's Loyalty, "
+        "Legacy of Tharne, "
+        "Legendary Arcsteel Battlemage, "
+        "Legendary Dreadkeeper, "
+        "Legendary Esoteric Initiate, "
+        "Legendary Feywild Dreamer, "
+        "Legendary Flamecleansed Fury, "
+        "Legendary Guardian of the Gates, "
+        "Legendary Hruit's Influence, "
+        "Legendary Inevitable Balance, "
+        "Legendary Profane Experiment, "
+        "Legendary Slavelords Might, "
+        "Legendary Wallwatch, "
+        "Mantle of Suulomades, "
+        "Masterful Magewright, "
+        "Mind and Matter, "
+        "Mountainskin Set, "
+        "One with the Swarm, "
+        "Pain and Suffering, "
+        "Renegade Champion Set, "
+        "Seasons of Change Set, "
+        "Subterfuge / Planar Conflux Set Bonus, "
+        "Tyrannical Tinkerer, "
+        "Unbreakable Adamancy, "
+        "Way of the Sun Soul, "
+        "Wayward Warrior Set, "
+        "Woodsman's Guile");
 }
 
 BEGIN_MESSAGE_MAP(CAboutDlg, CDialogEx)

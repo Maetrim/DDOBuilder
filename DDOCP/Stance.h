@@ -36,4 +36,5 @@ class Stance :
         DL_DECLARE_VARIABLES(Stance_PROPERTIES)
 
         friend class CStancesView;
+        friend class Character;
 };

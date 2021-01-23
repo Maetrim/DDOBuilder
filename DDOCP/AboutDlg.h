@@ -19,5 +19,6 @@ protected:
     DECLARE_MESSAGE_MAP()
     CStatic m_staticVersion;
     CEdit m_bugReporters;
+    CStatic m_staticInfoRequest;
 };
 
