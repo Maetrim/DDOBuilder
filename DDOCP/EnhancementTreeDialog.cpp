@@ -146,6 +146,24 @@ CEnhancementTreeDialog::CEnhancementTreeDialog(
     m_pCharacter->AttachObserver(this);
 }
 
+const std::string & CEnhancementTreeDialog::CurrentTree() const
+{
+    return m_tree.Name();
+}
+
+void CEnhancementTreeDialog::ChangeTree(const EnhancementTree & tree)
+{
+    m_tree = tree;
+    m_imageBackground.Destroy();
+    LoadImageFile(IT_ui, m_tree.Background(), &m_imageBackground);
+    m_hitBoxes.clear();
+    m_bCreateHitBoxes = true;
+    if (IsWindow(GetSafeHwnd()))
+    {
+        Invalidate(TRUE);
+    }
+}
+
 void CEnhancementTreeDialog::DoDataExchange(CDataExchange* pDX)
 {
     CDialog::DoDataExchange(pDX);

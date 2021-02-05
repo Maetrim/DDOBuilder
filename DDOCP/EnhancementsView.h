@@ -8,6 +8,7 @@
 #include "InfoTip.h"
 
 class EnhancementTree;
+class CEnhancementTreeDialog;
 
 class CEnhancementsView :
     public CFormView,
@@ -53,6 +54,7 @@ class CEnhancementsView :
         std::list<EnhancementTree> DetermineTrees();
         void CreateEnhancementWindows();
         void DestroyEnhancementWindows();
+        void UpdateEnhancementWindows();
         void UpdateWindowTitle();
         void PopulateTreeCombo(CComboBox * combo, const std::string & selectedTree);
         void EnableDisableComboboxes();
@@ -70,7 +72,7 @@ class CEnhancementsView :
         std::list<EnhancementTree> m_availableTrees;
         CComboBox m_comboTreeSelect[MST_Number-1];  // 1st tree type is always fixed
         CIconButton m_universalTrees[8];
-        std::vector<CDialog *> m_treeViews;
+        std::vector<CEnhancementTreeDialog *> m_treeViews;
         std::vector<size_t> m_visibleTrees; // only some trees will be visible (indexes into m_treeViews)
         size_t m_numUniversalButtons;
         CInfoTip m_tooltip;

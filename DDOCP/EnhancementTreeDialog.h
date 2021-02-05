@@ -54,6 +54,9 @@ class CEnhancementTreeDialog :
         enum { IDD = IDD_ENHANCEMENT_SELECTION };
         //}}AFX_DATA
 
+        const std::string & CurrentTree() const;
+        void ChangeTree(const EnhancementTree & tree);
+
     protected:
         //{{AFX_VIRTUAL(CEnhancementTreeDialog)
         virtual void DoDataExchange(CDataExchange* pDX);

@@ -372,6 +372,37 @@ void CEnhancementsView::DestroyEnhancementWindows()
     UnlockWindowUpdate();
 }
 
+void CEnhancementsView::UpdateEnhancementWindows()
+{
+    LockWindowUpdate();
+    // show the trees selected by the user
+    const SelectedEnhancementTrees & selTrees = m_pCharacter->SelectedTrees(); // take a copy
+    for (size_t i = 0; i < MST_Number; ++i)
+    {
+        // if the tree name in this location is different update the window
+        std::string treeName = selTrees.Tree(i);
+        CEnhancementTreeDialog * pDlg = m_treeViews[i];
+        if (pDlg != NULL)
+        {
+            if (pDlg->CurrentTree() != treeName)
+            {
+                pDlg->ChangeTree(GetEnhancementTree(treeName));
+            }
+            // always update the list of available trees
+            if (i > 0)
+            {
+                // no combo box selector for racial tree
+                PopulateTreeCombo(&m_comboTreeSelect[i-1], treeName);
+            }
+        }
+    }
+    UnlockWindowUpdate();
+    // reposition and show the windows (handled in OnSize)
+    CRect rctWnd;
+    GetClientRect(&rctWnd);
+    OnSize(SIZE_RESTORED, rctWnd.Width(), rctWnd.Height());
+}
+
 void CEnhancementsView::PopulateTreeCombo(
         CComboBox * combo,
         const std::string & selectedTree)
@@ -427,8 +458,7 @@ void CEnhancementsView::UpdateAlignmentChanged(Character * charData, AlignmentTy
     {
         // yup, they have changed
         m_availableTrees = trees;
-        DestroyEnhancementWindows();
-        CreateEnhancementWindows();
+        UpdateEnhancementWindows();
     }
 }
 
@@ -445,8 +475,7 @@ void CEnhancementsView::UpdateClassChanged(
     {
         // yup, they have changed
         m_availableTrees = trees;
-        DestroyEnhancementWindows();
-        CreateEnhancementWindows();
+        UpdateEnhancementWindows();
     }
 }
 
@@ -457,8 +486,7 @@ void CEnhancementsView::UpdateRaceChanged(
     // if the race has changed, we definitely need to update the available
     // enhancement trees
     m_availableTrees = DetermineTrees();
-    DestroyEnhancementWindows();
-    CreateEnhancementWindows();
+    UpdateEnhancementWindows();
 }
 
 void CEnhancementsView::UpdateFeatEffect(Character * charData, const std::string & featName,  const Effect & effect)
@@ -507,8 +535,7 @@ void CEnhancementsView::UpdateEnhancementEffectRevoked(Character * charData, con
 
 void CEnhancementsView::UpdateEnhancementTreeOrderChanged(Character * charData)
 {
-    DestroyEnhancementWindows();
-    CreateEnhancementWindows();
+    UpdateEnhancementWindows();
 }
 
 LRESULT CEnhancementsView::OnUpdateTrees(WPARAM wParam, LPARAM lParam)
@@ -530,8 +557,7 @@ void CEnhancementsView::UpdateTrees()
     {
         // yup, they have changed
         m_availableTrees = trees;
-        DestroyEnhancementWindows();
-        CreateEnhancementWindows();
+        UpdateEnhancementWindows();
     }
 }
 
@@ -593,8 +619,7 @@ void CEnhancementsView::OnTreeSelect(UINT nID)
         selTrees.SetTree(treeIndex, treeName);      // modify
         m_pCharacter->Enhancement_SetSelectedTrees(selTrees);   // update
         // update our state
-        DestroyEnhancementWindows();
-        CreateEnhancementWindows();
+        UpdateEnhancementWindows();
     }
 }
 
@@ -689,8 +714,7 @@ void CEnhancementsView::OnUniversalTree(UINT nID)
     {
         // yup, they have changed
         m_availableTrees = trees;
-        DestroyEnhancementWindows();
-        CreateEnhancementWindows();
+        UpdateEnhancementWindows();
     }
 }
 

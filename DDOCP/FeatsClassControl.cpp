@@ -831,49 +831,51 @@ void CFeatsClassControl::OnRButtonUp(UINT nFlags, CPoint point)
         CMenu menu;
         menu.LoadMenu(IDR_POPUP_MOVECLASS);
         CMenu *pMenu = menu.GetSubMenu(0);
-        if (ht.Level() > 0)
+        // enable / disable move up/down for multiple steps
+        ClassType c1 = m_pCharacter->LevelData(ht.Level()).HasClass()
+                ? m_pCharacter->LevelData(ht.Level()).Class()
+                : Class_Unknown;
+        for (size_t i = ID_MOVECLASS_UP1; i <= ID_MOVECLASS_UP19; ++i)
         {
-            // class 1 level lower and this one must be different
-            ClassType c1 = m_pCharacter->LevelData(ht.Level()-1).HasClass()
-                    ? m_pCharacter->LevelData(ht.Level()-1).Class()
-                    : Class_Unknown;
-            ClassType c2 = m_pCharacter->LevelData(ht.Level()).HasClass()
-                    ? m_pCharacter->LevelData(ht.Level()).Class()
-                    : Class_Unknown;
-            if (c1 != c2)
+            bool enable = false;
+            int targetLevel = ht.Level() - (i - ID_MOVECLASS_UP1 + 1);
+            if (targetLevel >= 0
+                    && ht.Level() > (size_t)targetLevel)
             {
-                pMenu->EnableMenuItem(ID_MOVECLASS_UP, MF_BYCOMMAND | MF_ENABLED);
+                // this is a possible move
+                ClassType c2 = m_pCharacter->LevelData(targetLevel).HasClass()
+                        ? m_pCharacter->LevelData(targetLevel).Class()
+                        : Class_Unknown;
+                enable = (c1 != c2);
+            }
+            if (enable)
+            {
+                pMenu->EnableMenuItem(i, MF_BYCOMMAND | MF_ENABLED);
             }
             else
             {
-                pMenu->EnableMenuItem(ID_MOVECLASS_UP, MF_BYCOMMAND | MF_DISABLED);
+                pMenu->EnableMenuItem(i, MF_BYCOMMAND | MF_DISABLED);
             }
         }
-        else
+        for (size_t i = ID_MOVECLASS_DOWN1; i <= ID_MOVECLASS_DOWN19; ++i)
         {
-            pMenu->EnableMenuItem(ID_MOVECLASS_UP, MF_BYCOMMAND | MF_DISABLED);
-        }
-        if (ht.Level() < MAX_CLASS_LEVEL - 1)
-        {
-            // class 1 level later and this one must be different
-            ClassType c1 = m_pCharacter->LevelData(ht.Level()).HasClass()
-                    ? m_pCharacter->LevelData(ht.Level()).Class()
-                    : Class_Unknown;
-            ClassType c2 = m_pCharacter->LevelData(ht.Level()+1).HasClass()
-                    ? m_pCharacter->LevelData(ht.Level()+1).Class()
-                    : Class_Unknown;
-            if (c1 != c2)
+            bool enable = false;
+            size_t targetLevel = ht.Level() + (i - ID_MOVECLASS_DOWN1 + 1);
+            if (targetLevel < MAX_CLASS_LEVEL)
             {
-                pMenu->EnableMenuItem(ID_MOVECLASS_DOWN, MF_BYCOMMAND | MF_ENABLED);
+                ClassType c2 = m_pCharacter->LevelData(targetLevel).HasClass()
+                        ? m_pCharacter->LevelData(targetLevel).Class()
+                        : Class_Unknown;
+                enable = (c1 != c2);
+            }
+            if (enable)
+            {
+                pMenu->EnableMenuItem(i, MF_BYCOMMAND | MF_ENABLED);
             }
             else
             {
-                pMenu->EnableMenuItem(ID_MOVECLASS_DOWN, MF_BYCOMMAND | MF_DISABLED);
+                pMenu->EnableMenuItem(i, MF_BYCOMMAND | MF_DISABLED);
             }
-        }
-        else
-        {
-            pMenu->EnableMenuItem(ID_MOVECLASS_DOWN, MF_BYCOMMAND | MF_DISABLED);
         }
         CWinAppEx * pApp = dynamic_cast<CWinAppEx*>(AfxGetApp());
         UINT sel = pApp->GetContextMenuManager()->TrackPopupMenu(
@@ -883,14 +885,15 @@ void CFeatsClassControl::OnRButtonUp(UINT nFlags, CPoint point)
                 this);
         if (sel != 0)
         {
-            switch (sel)
+            if (sel >= ID_MOVECLASS_UP1 && sel <= ID_MOVECLASS_UP19)
             {
-                case ID_MOVECLASS_UP:
-                    SwapClasses(ht.Level()-1, ht.Level());
-                    break;
-                case ID_MOVECLASS_DOWN:
-                    SwapClasses(ht.Level(), ht.Level()+1);
-                    break;
+                int targetLevel = ht.Level() - (sel - ID_MOVECLASS_UP1 + 1);
+                SwapClasses(targetLevel, ht.Level());
+            }
+            else if (sel >= ID_MOVECLASS_DOWN1 && sel <= ID_MOVECLASS_DOWN19)
+            {
+                size_t targetLevel = ht.Level() + (sel - ID_MOVECLASS_DOWN1 + 1);
+                SwapClasses(targetLevel, ht.Level());
             }
         }
     }

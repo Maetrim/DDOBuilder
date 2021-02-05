@@ -1451,6 +1451,8 @@ void Character::SetAbilityLevelUp(
     {
         UpdateSkillPoints();    // ensure skill points are correct
     }
+    // revoking an ability point in theory can invalidate a feat selection
+    VerifyTrainedFeats();
     m_pDocument->SetModifiedFlag(TRUE);
 }
 
@@ -3107,7 +3109,7 @@ size_t Character::DetermineBuildPoints()
 {
     // determine how many build points the current past life count
     // allows this character to have
-    // note that we only consider heroic and racial part lives for
+    // note that we only consider heroic and racial past lives for
     // the past lives count to determine build points because:
     //   Epic past lives do not add to build points
     //   Iconic past lives indirectly do, as you also get a heroic past life
@@ -3532,8 +3534,7 @@ void Character::VerifyTrainedFeats()
                 revokedFeats.Add(*fit);
                 // revoke from level training in this slot at level
                 (*it).RevokeFeat((*fit).Type());
-                RevokeFeatEffects(feat);
-                NotifyFeatRevoked(feat.Name());
+                // effects and feat revoked if it cannot be moved elsewhere later
                 redoLevel = true;   // check the other feats at this level again
             }
             ++fit;
@@ -3593,6 +3594,9 @@ void Character::VerifyTrainedFeats()
     std::list<TrainedFeat>::const_iterator fit = feats.begin();
     while (fit != feats.end())
     {
+        const Feat & feat = FindFeat((*fit).FeatName());
+        RevokeFeatEffects(feat);
+        NotifyFeatRevoked(feat.Name());
         displayMessage = true;
         CString text;
         text.Format("Level %d: %s\n",
@@ -3781,8 +3785,8 @@ std::list<TrainedSpell> Character::FixedSpells(
         ClassType classType,
         size_t level) const
 {
-     std::list<TrainedSpell> spells;
-   // this list is maintained dynamically by the SpellsControl object for this class
+    std::list<TrainedSpell> spells;
+    // this list is maintained dynamically by the SpellsControl object for this class
     // we need to go to that window to get the list of fixed spells
     const CSpellsControl * pSC = GetMainFrame()->GetSpellsControl(classType);
     if (pSC != NULL)
@@ -3980,12 +3984,12 @@ void Character::DetermineFatePoints()
     // Maximum fate points as of Update 29
     // There are currently 12 Epic Destinies available with 5 levels each:
     //      a total of 20 Fate Points available from levels. 
-    // 12 Epic Past Life Feats each stack up to 3 times:
-    //      36 Epic Past Lives -> 9 Fate Points 
+    // 16 Epic Past Life Feats each stack up to 3 times:
+    //      48 Epic Past Lives -> 12 Fate Points 
     // 3 Fate Points from the Tome of Fate 
     // 5 Fate Points for level cap
     //
-    // Total maximum achievable Fate Points = 37 
+    // Total maximum achievable Fate Points = 40
 
     // as we only consider characters at cap, we always start with at least
     // the basic 5 fate points from levels 29/30
