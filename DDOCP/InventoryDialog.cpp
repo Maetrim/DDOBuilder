@@ -478,7 +478,6 @@ void CInventoryDialog::OnRButtonDown(UINT nFlags, CPoint point)
     }
 }
 
-
 InventorySlotType CInventoryDialog::FindItemByPoint(CRect * pRect) const
 {
     CPoint point;

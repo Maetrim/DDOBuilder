@@ -56,8 +56,8 @@ class CStancesView :
 #endif
 #endif
         virtual void OnInitialUpdate();
-        const std::vector<CStanceButton *> & UserStances() const;
-        const std::vector<CStanceButton *> & AutoStances() const;
+        const std::vector<CStanceButton *> & ActiveUserStances() const;
+        const std::vector<CStanceButton *> & ActiveAutoStances() const;
         const CStanceButton * GetStance(const std::string & stanceName) const;
         bool IsStanceActive(const std::string & name, WeaponType wt) const;
         const SliderItem * GetSlider(const std::string & name) const;
@@ -89,9 +89,19 @@ class CStancesView :
         virtual void UpdateItemEffect(Character * charData, const std::string & itemName,  const Effect & effect) override;
         virtual void UpdateItemEffectRevoked(Character * charData, const std::string & itemName, const Effect & effect) override;
 
+        void PositionWindow(CWnd * pWnd, CRect * itemRect, int maxX);
+
+        void GetStance(const std::string & stanceName, const std::vector<CStanceButton *> & items, const CStanceButton **) const;
         void CreateStanceWindows();
+        bool AddStance(
+                const Stance & stance,
+                std::vector<CStanceButton *> & items);
         void AddStance(const Stance & stance);
+        void RevokeStance(
+                const Stance & stance,
+                std::vector<CStanceButton *> & items);
         void RevokeStance(const Stance & stance);
+        void DestroyStances(std::vector<CStanceButton *> & items);
         void DestroyAllStances();
 
         void ShowTip(const CStanceButton & item, CRect itemRect);
@@ -102,14 +112,33 @@ class CStancesView :
         std::list<SliderItem>::iterator GetSlider(UINT controlId);
         void AddToWeaponGroup(const Effect & effect);
         void RemoveFromWeaponGroup(const Effect & effect);
+        void StanceActivated(
+                std::vector<CStanceButton *> & items,
+                const std::string & stanceName);
+        void StanceDeactivated(
+                std::vector<CStanceButton *> & items,
+                const std::string & stanceName);
+        void AddActiveStances(
+                const std::vector<CStanceButton *> & items,
+                std::vector<CStanceButton *> * stances) const;
 
         CDocument * m_pDocument;
         Character * m_pCharacter;
         std::list<SliderItem> m_sliders;
         CStatic m_staticHiddenSizer;
         CStatic m_userStances;
+        CStatic m_userStancesArcane;
+        CStatic m_userStancesDivine;
+        CStatic m_userStancesMartial;
+        CStatic m_userStancesPrimal;
+        CStatic m_userStancesIconic;
         CStatic m_autoStances;
         std::vector<CStanceButton *> m_userStancebuttons;
+        std::vector<CStanceButton *> m_userStancebuttonsArcane;
+        std::vector<CStanceButton *> m_userStancebuttonsDivine;
+        std::vector<CStanceButton *> m_userStancebuttonsMartial;
+        std::vector<CStanceButton *> m_userStancebuttonsPrimal;
+        std::vector<CStanceButton *> m_userStancebuttonsIconic;
         std::vector<CStanceButton *> m_autoStancebuttons;
         CInfoTip m_tooltip;
         bool m_showingTip;

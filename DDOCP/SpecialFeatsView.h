@@ -40,21 +40,29 @@ class CSpecialFeatsView :
                 TrainableFeatTypes type);
         size_t PositionWindows(
                 CStatic * groupWindow,
+                int startX,
                 size_t startIndex,
                 const std::vector<CDialog *> & dialogs,
                 int * maxX,
-                int * yPos);
+                int * yPos,
+                bool bMoveDownALine = true);
         std::vector<CDialog *> m_heroicSelectionViews;
         std::vector<CDialog *> m_racialSelectionViews;
         std::vector<CDialog *> m_iconicSelectionViews;
-        std::vector<CDialog *> m_epicSelectionViews;
+        std::vector<CDialog *> m_epicSelectionViewsArcane;
+        std::vector<CDialog *> m_epicSelectionViewsDivine;
+        std::vector<CDialog *> m_epicSelectionViewsMartial;
+        std::vector<CDialog *> m_epicSelectionViewsPrimal;
         std::vector<CDialog *> m_specialSelectionViews;
         std::vector<CDialog *> m_favorSelectionViews;
 
         CStatic m_staticHeroic;
         CStatic m_staticRacial;
         CStatic m_staticIconic;
-        CStatic m_staticEpic;
+        CStatic m_staticEpicArcane;
+        CStatic m_staticEpicDivine;
+        CStatic m_staticEpicMartial;
+        CStatic m_staticEpicPrimal;
         CStatic m_staticSpecial;
         CStatic m_staticFavor;
         CFont m_staticFont;

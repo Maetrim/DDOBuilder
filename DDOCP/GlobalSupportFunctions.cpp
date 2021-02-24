@@ -274,10 +274,10 @@ const std::list<Feat> & IconicPastLifeFeats()
     return pApp->IconicPastLifeFeats();
 }
 
-const std::list<Feat> & EpicPastLifeFeats()
+const std::list<Feat> & EpicPastLifeFeats(const std::string & sphere)
 {
     CDDOCPApp * pApp = dynamic_cast<CDDOCPApp*>(AfxGetApp());
-    return pApp->EpicPastLifeFeats();
+    return pApp->EpicPastLifeFeats(sphere);
 }
 
 const std::list<Feat> & SpecialFeats()

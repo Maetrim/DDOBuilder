@@ -29,6 +29,7 @@ class Stance :
                 DL_STRING(_, Icon) \
                 DL_STRING(_, Description) \
                 DL_STRING_LIST(_, IncompatibleStance) \
+                DL_OPTIONAL_STRING(_, Group) \
                 DL_FLAG(_, AutoControlled) \
                 DL_FLAG(_, SetBonus)
 

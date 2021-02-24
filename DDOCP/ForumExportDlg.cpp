@@ -620,6 +620,11 @@ void CForumExportDlg::AddFeatSelections(std::stringstream & forumExport)
                     {
                         label += " (Requires Feat Swap with Fred)";
                     }
+                    if (tf.HasAlternateFeatName())
+                    {
+                        label += " Alternate: ";
+                        label += tf.AlternateFeatName().c_str();
+                    }
                 }
                 if (tft > 0)
                 {
@@ -823,43 +828,37 @@ void CForumExportDlg::AddActiveStances(std::stringstream & forumExport)
     if (pStancesView != NULL)
     {
         const std::vector<CStanceButton *> & userStances =
-                pStancesView->UserStances();
+                pStancesView->ActiveUserStances();
         const std::vector<CStanceButton *> & autoStances =
-                pStancesView->AutoStances();
+                pStancesView->ActiveAutoStances();
         bool first = true;
         for (size_t i = 0; i < userStances.size(); ++i)
         {
-            if (userStances[i]->IsSelected())
+            if (first)
             {
-                if (first)
-                {
-                    forumExport << "Active User Controlled Stances\r\n";
-                    forumExport << "------------------------------------------------------------------------------------------\r\n";
-                }
-                // this is an active stance
-                const Stance & stance = userStances[i]->GetStance();
-                forumExport << stance.Name();
-                forumExport << "\r\n";
-                first = false;
+                forumExport << "Active User Controlled Stances\r\n";
+                forumExport << "------------------------------------------------------------------------------------------\r\n";
             }
+            // this is an active stance
+            const Stance & stance = userStances[i]->GetStance();
+            forumExport << stance.Name();
+            forumExport << "\r\n";
+            first = false;
         }
         first = true;
         for (size_t i = 0; i < autoStances.size(); ++i)
         {
-            if (autoStances[i]->IsSelected())
+            if (first)
             {
-                if (first)
-                {
-                    forumExport << "\r\n";
-                    forumExport << "Active Auto Controlled Stances\r\n";
-                    forumExport << "------------------------------------------------------------------------------------------\r\n";
-                }
-                // this is an active stance
-                const Stance & stance = autoStances[i]->GetStance();
-                forumExport << stance.Name();
                 forumExport << "\r\n";
-                first = false;
+                forumExport << "Active Auto Controlled Stances\r\n";
+                forumExport << "------------------------------------------------------------------------------------------\r\n";
             }
+            // this is an active stance
+            const Stance & stance = autoStances[i]->GetStance();
+            forumExport << stance.Name();
+            forumExport << "\r\n";
+            first = false;
         }
         if (!first)
         {
@@ -1555,6 +1554,10 @@ void CForumExportDlg::AddWeaponDamage(std::stringstream & forumExport)
     forumExport << "%\r\n";
     AddBreakdown(forumExport, "Strikethrough: ", 1, Breakdown_Strikethrough);
     forumExport << "%\r\n";
+    AddBreakdown(forumExport, "Mainhand damage ability multiplier: ", 1, Breakdown_DamageAbilityMultiplier);
+    forumExport << "\r\n";
+    AddBreakdown(forumExport, "Offhand damage ability multiplier: ", 1, Breakdown_DamageAbilityMultiplierOffhand);
+    forumExport << "\r\n";
     AddBreakdown(forumExport, "Off-Hand attack Chance: ", 1, Breakdown_OffHandAttackBonus);
     forumExport << "%\r\n";
     AddBreakdown(forumExport, "Off-Hand Doublestrike: ", 1, Breakdown_OffHandDoubleStrike);

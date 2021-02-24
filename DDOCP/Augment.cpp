@@ -39,6 +39,15 @@ void Augment::EndElement()
 {
     SaxContentElement::EndElement();
     DL_END(Augment_PROPERTIES)
+        // fix augments that changed name between Lamannia and Release
+    if (m_Name == "Visions of the Future")
+    {
+        m_Name = "Visions of the Beyond";
+    }
+    if (m_Name == "Tough Shield")
+    {
+        m_Name = "Tough Shields";
+    }
 }
 
 void Augment::Write(XmlLib::SaxWriter * writer) const

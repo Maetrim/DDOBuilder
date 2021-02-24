@@ -21,7 +21,7 @@ class CInfoTip :
         CInfoTip();
         virtual ~CInfoTip();
 
-        BOOL Create(CWnd * parent);
+        BOOL Create(CWnd * parent, bool bAlternate = false);
 
         void SetEnhancementTreeItem(
                 const Character & charData,
@@ -60,9 +60,9 @@ class CInfoTip :
         void SetOrigin(CPoint origin, CPoint alternate, bool rightAlign);
         void Show();
         void Hide();
+        BOOL GetWindowSize(CDC * pDC, CSize * size);
 
     protected:
-        BOOL GetWindowSize(CDC * pDC, CSize * size);
         //{{AFX_MSG(CInfoTip)
         afx_msg void OnPaint();
         //}}AFX_MSG
@@ -83,4 +83,5 @@ class CInfoTip :
         std::vector<CString> m_effectDescriptions;
         CString m_cost;
         CString m_ranks;
+        bool m_bAlternate;
 };

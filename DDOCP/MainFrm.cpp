@@ -569,6 +569,7 @@ void CMainFrame::CreateViews()
             RUNTIME_CLASS(CClassAndFeatView),
             ID_DOCK_CLASSFEATS);
     pClassAndLevel->SetDocumentAndCharacter(GetActiveDocument(), NULL);
+
     // next window id is 1014 if you add one
 }
 
@@ -837,7 +838,7 @@ CSpellsControl * CMainFrame::GetSpellsControl(ClassType classType)
 void CMainFrame::OnResetScreenLayout()
 {
     // if the user has messed up their screen layout and lost windows of the
-    // sides then to be able to recover these we need to do a layout reset
+    // sides they need to be able to recover these. We need to do a layout reset
     // of all window locations. This is done by loading the layout profile
     // from "DefaultWorkspace" in the DDOBuilder.ini file
     CWinApp * pApp = AfxGetApp();

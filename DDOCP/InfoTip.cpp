@@ -17,7 +17,8 @@ namespace
 
 CInfoTip::CInfoTip() :
     m_origin(CPoint(0, 0)),
-    m_bRightAlign(false)
+    m_bRightAlign(false),
+    m_bAlternate(false)
 {
     // create the fonts used
     LOGFONT lf;
@@ -41,8 +42,9 @@ BEGIN_MESSAGE_MAP(CInfoTip, CWnd)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
-BOOL CInfoTip::Create(CWnd* pParentWnd) 
+BOOL CInfoTip::Create(CWnd* pParentWnd, bool bAlternate) 
 {
+    m_bAlternate = bAlternate;
     // Must have a parent
     ASSERT(pParentWnd != NULL);
 
@@ -397,6 +399,11 @@ void CInfoTip::SetFeatItem(
     if (featSwapWarning)
     {
         m_requirements.push_back("Requires a feat swap with Fred");
+        m_bRequirementMet.push_back(false);
+    }
+    if (m_bAlternate)
+    {
+        m_requirements.push_back("This is an alternate feat selection.");
         m_bRequirementMet.push_back(false);
     }
 }

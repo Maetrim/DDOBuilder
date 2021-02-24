@@ -1181,6 +1181,34 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
         m_items.push_back(pStrike);
     }
     {
+        HTREEITEM hAbilityMultiplier = m_itemBreakdownTree.InsertItem(
+                "Main Hand Ability Multiplier",
+                hOffensiveParent,
+                TVI_LAST);
+        BreakdownItem * pMainHand = new BreakdownItemSimple(
+                Breakdown_DamageAbilityMultiplier,
+                Effect_DamageAbilityMultiplier,
+                "Main Hand Ability Multiplier",
+                &m_itemBreakdownTree,
+                hAbilityMultiplier);
+        m_itemBreakdownTree.SetItemData(hAbilityMultiplier, (DWORD)(void*)pMainHand);
+        m_items.push_back(pMainHand);
+    }
+    {
+        HTREEITEM hAbilityMultiplier = m_itemBreakdownTree.InsertItem(
+                "Off Hand Ability Multiplier",
+                hOffensiveParent,
+                TVI_LAST);
+        BreakdownItem * pOffHand = new BreakdownItemSimple(
+                Breakdown_DamageAbilityMultiplierOffhand,
+                Effect_DamageAbilityMultiplierOffhand,
+                "Off Hand Ability Multiplier",
+                &m_itemBreakdownTree,
+                hAbilityMultiplier);
+        m_itemBreakdownTree.SetItemData(hAbilityMultiplier, (DWORD)(void*)pOffHand);
+        m_items.push_back(pOffHand);
+    }
+    {
         HTREEITEM hHelpless = m_itemBreakdownTree.InsertItem(
                 "Helpless Damage Bonus",
                 hOffensiveParent,

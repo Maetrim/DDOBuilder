@@ -151,6 +151,7 @@ class Character :
         void RevokeSpecialFeat(const std::string & featName, TrainableFeatTypes type);
         void SetAbilityLevelUp(size_t level, AbilityType ability);
         void TrainFeat(const std::string & featName, TrainableFeatTypes type, size_t level, bool autoTrained = false, bool suppressVerify = false);
+        void TrainAlternateFeat(const std::string & featName, TrainableFeatTypes type, size_t level);
         std::list<TrainedFeat> AutomaticFeats(
                 size_t level,
                 const std::list<TrainedFeat> & currentFeats) const;

@@ -56,7 +56,6 @@ void CEnhancementEditorDialog::DoDataExchange(CDataExchange* pDX)
     DDX_Control(pDX, IDC_EDIT_CLASSLEVEL, m_editClassLevel);
 }
 
-
 BEGIN_MESSAGE_MAP(CEnhancementEditorDialog, CDialog)
     ON_BN_CLICKED(IDC_BUTTON_BROWSE, &CEnhancementEditorDialog::OnClickedButtonBrowse)
     ON_BN_CLICKED(IDC_BUTTON_SAVE, &CEnhancementEditorDialog::OnClickedButtonSave)
@@ -88,7 +87,6 @@ BEGIN_MESSAGE_MAP(CEnhancementEditorDialog, CDialog)
     ON_BN_CLICKED(IDC_BUTTONICON1_TRANSPARENT, &CEnhancementEditorDialog::OnClickedButtonicon1Transparent)
     ON_BN_CLICKED(IDC_BUTTONICON2_TRANSPARENT, &CEnhancementEditorDialog::OnClickedButtonicon2Transparent)
 END_MESSAGE_MAP()
-
 
 // CEnhancementEditorDialog message handlers
 void CEnhancementEditorDialog::OnClickedButtonBrowse()
@@ -171,7 +169,6 @@ void CEnhancementEditorDialog::OnClickedButtonSave()
     file.Save();
 }
 
-
 void CEnhancementEditorDialog::OnClickedButtonDelete()
 {
     int sel = m_comboList.GetCurSel();
@@ -186,7 +183,6 @@ void CEnhancementEditorDialog::OnClickedButtonDelete()
         UpdateTree();
     }
 }
-
 
 void CEnhancementEditorDialog::OnClickedCheckArrowleft()
 {
@@ -223,7 +219,6 @@ void CEnhancementEditorDialog::OnClickedCheckArrowleft()
     }
 }
 
-
 void CEnhancementEditorDialog::OnClickedCheckArrowright()
 {
     int sel = m_comboList.GetCurSel();
@@ -259,7 +254,6 @@ void CEnhancementEditorDialog::OnClickedCheckArrowright()
     }
 }
 
-
 void CEnhancementEditorDialog::OnClickedCheckArrowup()
 {
     int sel = m_comboList.GetCurSel();
@@ -294,7 +288,6 @@ void CEnhancementEditorDialog::OnClickedCheckArrowup()
         UpdateTree();
     }
 }
-
 
 void CEnhancementEditorDialog::OnClickedCheckLongarrowup()
 {
@@ -385,7 +378,6 @@ void CEnhancementEditorDialog::OnKillFocusEditTitle()
     }
 }
 
-
 void CEnhancementEditorDialog::OnKillFocusEditInternalName()
 {
     int sel = m_comboList.GetCurSel();
@@ -406,7 +398,6 @@ void CEnhancementEditorDialog::OnKillFocusEditInternalName()
     }
 }
 
-
 void CEnhancementEditorDialog::OnKillFocusEditDescription()
 {
     int sel = m_comboList.GetCurSel();
@@ -425,7 +416,6 @@ void CEnhancementEditorDialog::OnKillFocusEditDescription()
         }
     }
 }
-
 
 void CEnhancementEditorDialog::OnKillFocusEditCost()
 {
@@ -446,7 +436,6 @@ void CEnhancementEditorDialog::OnKillFocusEditCost()
     }
 }
 
-
 void CEnhancementEditorDialog::OnKillFocusEditRanks()
 {
     int sel = m_comboList.GetCurSel();
@@ -465,7 +454,6 @@ void CEnhancementEditorDialog::OnKillFocusEditRanks()
         }
     }
 }
-
 
 void CEnhancementEditorDialog::OnKillFocusEditMinSpent()
 {
@@ -486,7 +474,6 @@ void CEnhancementEditorDialog::OnKillFocusEditMinSpent()
     }
 }
 
-
 BOOL CEnhancementEditorDialog::OnInitDialog()
 {
     CDialog::OnInitDialog();
@@ -496,7 +483,6 @@ BOOL CEnhancementEditorDialog::OnInitDialog()
     return TRUE;  // return TRUE unless you set the focus to a control
     // EXCEPTION: OCX Property Pages should return FALSE
 }
-
 
 void CEnhancementEditorDialog::OnSelendokEnhancement()
 {
@@ -585,7 +571,6 @@ void CEnhancementEditorDialog::SetupSelections()
     }
 }
 
-
 void CEnhancementEditorDialog::OnClickedCheckClickie()
 {
     int sel = m_comboList.GetCurSel();
@@ -607,7 +592,6 @@ void CEnhancementEditorDialog::OnClickedCheckClickie()
         UpdateTree();
     }
 }
-
 
 void CEnhancementEditorDialog::OnKillfocusEditIcon()
 {
@@ -698,7 +682,6 @@ void CEnhancementEditorDialog::PopulateSelection()
     }
 }
 
-
 void CEnhancementEditorDialog::OnSelendokComboNumSelections()
 {
      // number of selections has changed
@@ -732,7 +715,6 @@ void CEnhancementEditorDialog::OnSelendokComboNumSelections()
         SetupSelections();
     }
 }
-
 
 void CEnhancementEditorDialog::OnSelendokComboEditSelection()
 {
@@ -922,7 +904,6 @@ void CEnhancementEditorDialog::OnClickedButtonAddFeatRequirementSelection()
     }
 }
 
-
 void CEnhancementEditorDialog::OnClickedButtonAddClassrequirement()
 {
     int sel = m_comboList.GetCurSel();
@@ -949,14 +930,12 @@ void CEnhancementEditorDialog::OnClickedButtonAddClassrequirement()
     }
 }
 
-
 void CEnhancementEditorDialog::OnClickedButtonicon1Transparent()
 {
     CString text;
     m_editIcon.GetWindowText(text);
     MakeIconTransparent(text);
 }
-
 
 void CEnhancementEditorDialog::OnClickedButtonicon2Transparent()
 {

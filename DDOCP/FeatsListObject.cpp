@@ -68,6 +68,26 @@ void FeatsListObject::TrainFeat(
     m_Feats.push_back(tf);
 }
 
+void FeatsListObject::TrainAlternateFeat(
+        const std::string & featName,
+        TrainableFeatTypes type,
+        size_t level)
+{
+    // you can only set an alternate feat for a feat that has already been trained
+    bool found = false;
+    std::list<TrainedFeat>::iterator it = m_Feats.begin();
+    while (!found && it != m_Feats.end())
+    {
+        if ((*it).Type() == type
+                && ((*it).LevelTrainedAt() == level))
+        {
+            (*it).Set_AlternateFeatName(featName);
+            found = true;
+        }
+        ++it;
+    }
+}
+
 std::string FeatsListObject::RevokeFeat(TrainableFeatTypes type)
 {
     std::string revokedFeat;

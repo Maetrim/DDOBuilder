@@ -316,7 +316,6 @@ void BreakdownItemWeapon::UpdateItemEffect(
         m_drBypass.UpdateItemEffect(pCharacter, itemName, effect);
 
         // we handle whether we are centered or not
-        // we handle whether we are centered or not
         if (effect.Type() == Effect_CenteredWeapon)
         {
             if (effect.HasWeaponClass())
@@ -359,7 +358,6 @@ void BreakdownItemWeapon::UpdateItemEffectRevoked(
         m_attackSpeed.UpdateItemEffectRevoked(pCharacter, itemName, effect);
         m_drBypass.UpdateItemEffectRevoked(pCharacter, itemName, effect);
 
-        // we handle whether we are centered or not
         // we handle whether we are centered or not
         if (effect.Type() == Effect_CenteredWeapon)
         {

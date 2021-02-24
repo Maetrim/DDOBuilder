@@ -404,7 +404,8 @@ hate, making enemies more likely to attack you. Cooldown: 2 seconds</Description
          <Selector>
             <EnhancementSelection>
                <Name>Beasthide Howl</Name>
-               <Description>Release a mighty howl, granting nearby allies +2 Action Boost Bonus to PRR and MRR, plus an additional 2 per 5 Character Levels you have for 20 seconds.</Description>
+               <Description>Release a mighty howl, granting nearby allies +2 Action Boost Bonus to PRR and MRR,
+plus an additional 2 per 5 Character Levels you have for 20 seconds.</Description>
                <Icon>ShifterHowl</Icon>
                <Cost>2</Cost>
                <Clickie/>
@@ -416,7 +417,8 @@ hate, making enemies more likely to attack you. Cooldown: 2 seconds</Description
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Wildhunt Howl</Name>
-               <Description>Release a mighty howl, granting nearby allies +1 Action Boost Bonus to Saving Throws, plus an additional 1 per 10 Character Levels you have for 20 seconds.</Description>
+               <Description>Release a mighty howl, granting nearby allies +1 Action Boost Bonus to Saving Throws,
+plus an additional 1 per 10 Character Levels you have for 20 seconds.</Description>
                <Icon>ShifterWildhuntHowl</Icon>
                <Cost>2</Cost>
                <Clickie/>
@@ -477,7 +479,8 @@ may also intimidate the target based on the player's intinidate skill.</Descript
          <Selector>
             <EnhancementSelection>
                <Name>Empowered by Nature: Beasthide</Name>
-               <Description>+[10/20/30] Positive Healing Amplification</Description>
+               <Description>+[10/20/30] Positive Healing Amplification.
+You are now immune to Fatigue, including Fatigue from Shifting.</Description>
                <Icon>ShifterEmpoweredByNature</Icon>
                <Cost>1</Cost>
                <Requirements>
@@ -493,7 +496,8 @@ may also intimidate the target based on the player's intinidate skill.</Descript
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Empowered by Nature: Wildhide</Name>
-               <Description>+[25/50/100] Maximum Spell Points. You can now cast while Raging.</Description>
+               <Description>+[25/50/100] Maximum Spell Points. You can now cast while Raging.
+You are now immune to Fatigue, including Fatigue from Shifting.</Description>
                <Icon>ShifterEmpoweredByNatureWildhunt</Icon>
                <Cost>1</Cost>
                <Requirements>
@@ -675,7 +679,7 @@ until you dismiss or activate another rage, or until used.</Description>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Threatening Shift</Name>
-               <Description>While raging, +20% to Threat Generation and +5% Quality Bonus to Maximum Hit Points.</Description>
+               <Description>While raging, +20% to Threat Generation, +10 Physical resistance rating and +5% Quality Bonus to Maximum Hit Points.</Description>
                <Icon>ShifterThreateningShift</Icon>
                <Cost>2</Cost>
                <Requirements>
@@ -683,13 +687,39 @@ until you dismiss or activate another rage, or until used.</Description>
                      <Feat>Beasthide Shifter</Feat>
                   </Requirement>
                </Requirements>
+             <Effect>
+                <Type>ThreatBonusMelee</Type>
+                <Bonus>Enhancement</Bonus>
+                <Amount>20</Amount>
+                <AnyOfStance>Rage</AnyOfStance>
+                <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
+                <AnyOfStance>Wildhunt Shifter: Shifted Form</AnyOfStance>
+             </Effect>
+             <Effect>
+                <Type>PRR</Type>
+                <Bonus>Enhancement</Bonus>
+                <Amount>10</Amount>
+                <AnyOfStance>Rage</AnyOfStance>
+                <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
+                <AnyOfStance>Wildhunt Shifter: Shifted Form</AnyOfStance>
+             </Effect>
+             <Effect>
+                <Type>Hitpoints</Type>
+                <Bonus>Quality</Bonus>
+                <Amount>5</Amount>
+                <ApplyAsItemEffect/>
+                <Percent/>
+                <AnyOfStance>Rage</AnyOfStance>
+                <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
+                <AnyOfStance>Wildhunt Shifter: Shifted Form</AnyOfStance>
+             </Effect>
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Shifter: True Hunter</Name>
          <InternalName>ShifterTrueHunter</InternalName>
-         <Description>You gain +2 to Saves vs. Enchantments and Illusions, immunity to Petrification and +10 to Spot.</Description>
+         <Description>You gain +2 to Saves vs. Enchantments and Illusions, Freedom of Movement and +10 to Spot.</Description>
          <Icon>RazorclawTrueHunter</Icon>
          <XPosition>1</XPosition>
          <YPosition>4</YPosition>
@@ -708,11 +738,6 @@ until you dismiss or activate another rage, or until used.</Description>
             <Bonus>Enhancement</Bonus>
             <Amount>2</Amount>
             <Save>Illusion</Save>
-         </Effect>
-         <Effect>
-            <Type>Immunity</Type>
-            <Bonus>Destiny</Bonus>
-            <Immunity>Petrification</Immunity>
          </Effect>
          <Effect>
             <Type>SkillBonus</Type>

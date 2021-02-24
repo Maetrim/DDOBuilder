@@ -83,6 +83,8 @@ enum BreakdownType
     Breakdown_SneakAttackAttack,
     Breakdown_HelplessDamage,
     Breakdown_HelplessDamageReduction,
+    Breakdown_DamageAbilityMultiplier,
+    Breakdown_DamageAbilityMultiplierOffhand,
     // skills
     Breakdown_SkillBalance,
     Breakdown_SkillBluff,

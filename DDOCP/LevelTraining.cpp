@@ -58,6 +58,14 @@ void LevelTraining::TrainFeat(
     m_TrainedFeats.TrainFeat(featName, type, level, featSwapWarning);
 }
 
+void LevelTraining::TrainAlternateFeat(
+        const std::string & featName,
+        TrainableFeatTypes type,
+        size_t level)
+{
+    m_TrainedFeats.TrainAlternateFeat(featName, type, level);
+}
+
 std::string LevelTraining::RevokeFeat(TrainableFeatTypes type)
 {
     return m_TrainedFeats.RevokeFeat(type);

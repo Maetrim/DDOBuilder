@@ -1520,6 +1520,18 @@ void Character::TrainFeat(
     }
 }
 
+void Character::TrainAlternateFeat(
+        const std::string & featName,
+        TrainableFeatTypes type,
+        size_t level)
+{
+    const Feat & feat = FindFeat(featName);
+
+    std::list<LevelTraining>::iterator it = m_Levels.begin();
+    std::advance(it, level);
+    (*it).TrainAlternateFeat(featName, type, level);
+}
+
 void Character::NowActive()
 {
     // keep all views up to date

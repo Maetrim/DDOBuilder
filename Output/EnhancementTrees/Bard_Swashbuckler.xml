@@ -482,7 +482,7 @@ hand gains an additional +1 to its Enhancement bonus.</Description>
       <EnhancementTreeItem>
          <Name>Swashbuckler: On Your Toes</Name>
          <InternalName>SBOnYourToes</InternalName>
-         <Description>+1/2/3% Dodge</Description>
+         <Description>+[1/2/3]% Dodge</Description>
          <Icon>SBOnYourToes</Icon>
          <XPosition>0</XPosition>
          <YPosition>1</YPosition>
@@ -522,7 +522,7 @@ hand gains an additional +1 to its Enhancement bonus.</Description>
             <EnhancementSelection>
                <Name>Blow By Blow</Name>
                <Description>Make a Melee attack with +(1/2/3) critical threat range that deals
-(+1/+2/+3)d6 extra Sonic damage, and reduces your threat with nearby enemies by
+(+[1/2/3])d6 extra Sonic damage, and reduces your threat with nearby enemies by
 (100/200/300). This Sonic damage scales with spell power. </Description>
                <Icon>SBBlowByBlow</Icon>
                <Cost>1</Cost>
@@ -531,7 +531,7 @@ hand gains an additional +1 to its Enhancement bonus.</Description>
             <EnhancementSelection>
                <Name>Blow By Blow (Ranged)</Name>
                <Description>Make a Ranged attack with +(1/2/3) critical threat range that deals
-(+1/+2/+3)d6 extra Sonic damage, and reduces your threat with nearby enemies by
+(+[1/2/3])d6 extra Sonic damage, and reduces your threat with nearby enemies by
 (100/200/300). This Sonic damage scales with spell power. </Description>
                <Icon>SBBlowByBlowRanged</Icon>
                <Cost>1</Cost>
@@ -589,7 +589,7 @@ Cooldown: 20/15/10 seconds</Description>
       <EnhancementTreeItem>
          <Name>Swashbuckler: Tavern Shanties</Name>
          <InternalName>SBTavernShanties</InternalName>
-         <Description>+1/2/3 Bard Songs</Description>
+         <Description>+[1/2/3] Bard Songs</Description>
          <Icon>SBTavernShanties</Icon>
          <XPosition>3</XPosition>
          <YPosition>1</YPosition>
@@ -611,7 +611,7 @@ Cooldown: 20/15/10 seconds</Description>
       <EnhancementTreeItem>
          <Name>Swashbuckler: Limber Up</Name>
          <InternalName>SBLimberUp</InternalName>
-         <Description>+1/2/3 to Balance, Swim, and Tumble.
+         <Description>+[1/2/3] to Balance, Swim, and Tumble.
 3rd Rank: When you Tumble, you gain +3 to saves against traps for 6 seconds.
 12 second cooldown.</Description>
          <Icon>SBLimberUp</Icon>
@@ -645,7 +645,7 @@ Cooldown: 20/15/10 seconds</Description>
       <EnhancementTreeItem>
          <Name>Swashbuckler: En Pointe</Name>
          <InternalName>SBEnPointe</InternalName>
-         <Description>Melee Attack: Make two attacks with + 1/1.5/2[W], +4/8/12 critical threat range,
+         <Description>Melee Attack: Make two attacks with +[1/1.5/2][W], +[4/8/12] critical threat range,
 but -1 Critical Multiplier. Costs 10 Spell Points to activate.</Description>
          <Icon>SBEnPointe</Icon>
          <XPosition>0</XPosition>
@@ -752,7 +752,7 @@ Sonic Damage. This Sonic damage scales with spell power.</Description>
          <Selector>
             <EnhancementSelection>
                <Name>Double Shot Boost</Name>
-               <Description>Activate to gain +10/20/30% Action Boost bonus to Doubleshot for 20 seconds.
+               <Description>Activate to gain +[10/20/30]% Action Boost bonus to Doubleshot for 20 seconds.
 Usable 5 times per rest. </Description>
                <Icon>SBDoubleshotboost</Icon>
                <Cost>2</Cost>
@@ -760,7 +760,7 @@ Usable 5 times per rest. </Description>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Double Strike Boost</Name>
-               <Description>Activate to gain +10/20/30% Action Boost bonus to Doublestrike for 20 seconds.
+               <Description>Activate to gain +[10/20/30]% Action Boost bonus to Doublestrike for 20 seconds.
 Usable 5 times per rest.</Description>
                <Icon>SBDoublestrikeBoost</Icon>
                <Cost>2</Cost>
@@ -866,7 +866,7 @@ Fighting line of feats.</Description>
          <Name>Swashbuckler: Resonant Arms</Name>
          <InternalName>SBResonantArms</InternalName>
          <Description>While Swashbuckling, the Finesseable or Thrown weapon in your main hand deals
-an additional 2d6/4d6/6d6 Sonic Damage on critical hits.
+an additional [2/4/6]d6 Sonic Damage on critical hits.
 This Sonic damage scales with spell power.</Description>
          <Icon>SBResonantArms</Icon>
          <XPosition>2</XPosition>
@@ -984,19 +984,31 @@ This Sonic damage scales with spell power.</Description>
                <Description>+1 Charisma</Description>
                <Icon>Charisma</Icon>
                <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Amount>1</Amount>
+                  <Ability>Charisma</Ability>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>+1 Dexterity</Name>
                <Description>+1 Dexterity</Description>
                <Icon>Dexterity</Icon>
                <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Amount>1</Amount>
+                  <Ability>Dexterity</Ability>
+               </Effect>
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Swashbuckler: On the Mark</Name>
          <InternalName>SBOnTheMark</InternalName>
-         <Description>Passive +1/2/3 to attack rolls to confirm critical hits and damage on
+         <Description>Passive +[1/2/3] to attack rolls to confirm critical hits and damage on
 critical hits (before weapon multipliers)</Description>
          <Icon>SBOnTheMark</Icon>
          <XPosition>0</XPosition>
@@ -1168,12 +1180,24 @@ additional +1 for every five Bard levels.</Description>
                <Description>+1 Charisma</Description>
                <Icon>Charisma</Icon>
                <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Amount>1</Amount>
+                  <Ability>Charisma</Ability>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>+1 Dexterity</Name>
                <Description>+1 Dexterity</Description>
                <Icon>Dexterity</Icon>
                <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Amount>1</Amount>
+                  <Ability>Dexterity</Ability>
+               </Effect>
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
@@ -1237,7 +1261,7 @@ Paralyzed, Petrified, or Stunned enemy, it must make a Fortitude save
       <EnhancementTreeItem>
          <Name>Swashbuckler: Second Skin</Name>
          <InternalName>SBSecondSkin</InternalName>
-         <Description>While Swashbuckling, +2/4/6 to your Reflex Saves and +2/4/6 to the Max Dex Bonus of your Armor.</Description>
+         <Description>While Swashbuckling, +[2/4/6] to your Reflex Saves and +[2/4/6] to the Max Dex Bonus of your Armor.</Description>
          <Icon>SBSecondSkin</Icon>
          <XPosition>2</XPosition>
          <YPosition>5</YPosition>

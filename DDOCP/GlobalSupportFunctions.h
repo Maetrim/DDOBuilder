@@ -75,7 +75,7 @@ const std::list<Feat> & StandardFeats();
 const std::list<Feat> & HeroicPastLifeFeats();
 const std::list<Feat> & RacialPastLifeFeats();
 const std::list<Feat> & IconicPastLifeFeats();
-const std::list<Feat> & EpicPastLifeFeats();
+const std::list<Feat> & EpicPastLifeFeats(const std::string & sphere);
 const std::list<Feat> & SpecialFeats();
 const std::list<Feat> & FavorFeats();
 const std::list<EnhancementTree> & EnhancementTrees();

@@ -53,6 +53,7 @@ protected:
     afx_msg void OnSize(UINT nType, int cx, int cy);
     afx_msg void OnMouseMove(UINT nFlags, CPoint point);
     afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
+    afx_msg void OnMButtonUp(UINT nFlags, CPoint point);
     afx_msg void OnRButtonUp(UINT nFlags, CPoint point);
     afx_msg LRESULT UpdateControl(WPARAM, LPARAM);
     afx_msg void OnFeatSelectOk();
@@ -99,11 +100,13 @@ private:
     CRect m_levelRects[MAX_LEVEL];
     // feat tooltip
     CInfoTip m_tooltip;
+    CInfoTip m_tooltip2;
     bool m_showingTip;
     bool m_tipCreated;
     HitCheckItem m_tooltipItem;
     HitCheckItem m_featSelectItem;
     CComboBoxTooltip m_featSelector;
+    bool m_bAlternateFeat;
 };
 
 

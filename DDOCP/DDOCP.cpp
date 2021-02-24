@@ -434,7 +434,29 @@ void CDDOCPApp::SeparateFeats()
     {
         if ((*it).Acquire() == FeatAcquisition_EpicPastLife)
         {
-            m_epicPastLifeFeats.push_back((*it));
+            if ((*it).HasSphere())
+            {
+                if ((*it).Sphere() == "Arcane")
+                {
+                    m_epicPastLifeFeatsArcane.push_back((*it));
+                }
+                else if ((*it).Sphere() == "Divine")
+                {
+                    m_epicPastLifeFeatsDivine.push_back((*it));
+                }
+                else if ((*it).Sphere() == "Martial")
+                {
+                    m_epicPastLifeFeatsMartial.push_back((*it));
+                }
+                else if ((*it).Sphere() == "Primal")
+                {
+                    m_epicPastLifeFeatsPrimal.push_back((*it));
+                }
+                else
+                {
+                    ASSERT(FALSE);
+                }
+            }
         }
         else if ((*it).Acquire() == FeatAcquisition_HeroicPastLife)
         {
@@ -468,7 +490,10 @@ void CDDOCPApp::SeparateFeats()
         ++it;
     }
     // now sort them in to order
-    m_epicPastLifeFeats.sort();
+    m_epicPastLifeFeatsArcane.sort();
+    m_epicPastLifeFeatsDivine.sort();
+    m_epicPastLifeFeatsMartial.sort();
+    m_epicPastLifeFeatsPrimal.sort();
     m_heroicPastLifeFeats.sort();
     m_racialPastLifeFeats.sort();
     m_iconicPastLifeFeats.sort();
@@ -503,9 +528,26 @@ const std::list<Feat> & CDDOCPApp::IconicPastLifeFeats() const
     return m_iconicPastLifeFeats;
 }
 
-const std::list<Feat> & CDDOCPApp::EpicPastLifeFeats() const
+const std::list<Feat> & CDDOCPApp::EpicPastLifeFeats(const std::string & sphere) const
 {
-    return m_epicPastLifeFeats;
+    static std::list<Feat> noFeats;
+    if (sphere == "Arcane")
+    {
+        return m_epicPastLifeFeatsArcane;
+    }
+    else if (sphere == "Divine")
+    {
+        return m_epicPastLifeFeatsDivine;
+    }
+    else if (sphere == "Martial")
+    {
+        return m_epicPastLifeFeatsMartial;
+    }
+    else if (sphere == "Primal")
+    {
+        return m_epicPastLifeFeatsPrimal;
+    }
+    return noFeats;
 }
 
 const std::list<Feat> & CDDOCPApp::SpecialFeats() const
