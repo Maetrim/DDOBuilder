@@ -3369,37 +3369,59 @@ void Character::JustLoaded()
                 else
                 {
                     // the tree is up to date, sum how many APs were spent in it
+                    bool bBadEnhancement = false;
                     size_t apsSpent = 0;
                     std::list<TrainedEnhancement> te = (*etsit).Enhancements();
                     std::list<TrainedEnhancement>::iterator teit = te.begin();
                     while (teit != te.end())
                     {
                         const EnhancementTreeItem * pTreeItem = FindEnhancement((*teit).EnhancementName());
-                        apsSpent += pTreeItem->Cost() * (*teit).Ranks();
-                        // cost also updated so revoke of items will work
-                        (*teit).SetCost(pTreeItem->Cost());
-                        ++teit;
-                    }
-                    // now set it on the tree so it knows how much has been spent in it
-                    (*etsit).Set_Enhancements(te);
-                    (*etsit).SetSpent(apsSpent);
-                    // done
-                    ++etsit;
-                    // we have to track action points spent in tree types
-                    if (tree.HasIsRacialTree())
-                    {
-                        m_racialTreeSpend += apsSpent;
-                    }
-                    else
-                    {
-                        if (tree.HasIsUniversalTree())
+                        if (pTreeItem != NULL)
                         {
-                            m_universalTreeSpend += apsSpent;
+                            apsSpent += pTreeItem->Cost() * (*teit).Ranks();
+                            // cost also updated so revoke of items will work
+                            (*teit).SetCost(pTreeItem->Cost());
                         }
                         else
                         {
-                            m_classTreeSpend += apsSpent;
+                            bBadEnhancement = true;
                         }
+                        ++teit;
+                    }
+                    if (!bBadEnhancement)
+                    {
+                        // now set it on the tree so it knows how much has been spent in it
+                        (*etsit).Set_Enhancements(te);
+                        (*etsit).SetSpent(apsSpent);
+                        // done
+                        ++etsit;
+                        // we have to track action points spent in tree types
+                        if (tree.HasIsRacialTree())
+                        {
+                            m_racialTreeSpend += apsSpent;
+                        }
+                        else
+                        {
+                            if (tree.HasIsUniversalTree())
+                            {
+                                m_universalTreeSpend += apsSpent;
+                            }
+                            else
+                            {
+                                m_classTreeSpend += apsSpent;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        // looks like this tree is now out of date, have to revoke all these
+                        // enhancements in this tree (i.e. just delete it)
+                        CString text;
+                        text.Format("All enhancements in tree \"%s\" were revoked as bad enhancement was encountered\n",
+                                (*etsit).TreeName().c_str());
+                        message += text;
+                        displayMessage = true;
+                        etsit = m_EnhancementTreeSpend.erase(etsit);
                     }
                 }
             }
@@ -3427,22 +3449,44 @@ void Character::JustLoaded()
             else
             {
                 // the tree is up to date, sum how many APs were spent in it
+                bool bBadEnhancement = false;
                 size_t apsSpent = 0;
                 std::list<TrainedEnhancement> te = (*rtsit).Enhancements();
                 std::list<TrainedEnhancement>::iterator teit = te.begin();
                 while (teit != te.end())
                 {
                     const EnhancementTreeItem * pTreeItem = FindEnhancement((*teit).EnhancementName());
-                    apsSpent += pTreeItem->Cost() * (*teit).Ranks();
-                    // cost also updated so revoke of items will work
-                    (*teit).SetCost(pTreeItem->Cost());
+                    if (pTreeItem != NULL)
+                    {
+                        apsSpent += pTreeItem->Cost() * (*teit).Ranks();
+                        // cost also updated so revoke of items will work
+                        (*teit).SetCost(pTreeItem->Cost());
+                    }
+                    else
+                    {
+                        bBadEnhancement = true;
+                    }
                     ++teit;
                 }
-                // now set it on the tree so it knows how much has been spent in it
-                (*rtsit).Set_Enhancements(te);
-                (*rtsit).SetSpent(apsSpent);
-                // done
-                ++rtsit;
+                if (!bBadEnhancement)
+                {
+                    // now set it on the tree so it knows how much has been spent in it
+                    (*rtsit).Set_Enhancements(te);
+                    (*rtsit).SetSpent(apsSpent);
+                    // done
+                    ++rtsit;
+                }
+                else
+                    {
+                    // looks like this tree is now out of date, have to revoke all these
+                    // enhancements in this tree (i.e. just delete it)
+                    CString text;
+                    text.Format("All enhancements in tree \"%s\" were revoked as bad enhancement was encountered\n",
+                            (*rtsit).TreeName().c_str());
+                    message += text;
+                    displayMessage = true;
+                    rtsit = m_ReaperTreeSpend.erase(rtsit);
+                }
             }
         }
     }
@@ -3468,22 +3512,44 @@ void Character::JustLoaded()
             else
             {
                 // the tree is up to date, sum how many APs were spent in it
+                bool bBadEnhancement = false;
                 size_t apsSpent = 0;
                 std::list<TrainedEnhancement> te = (*edtsit).Enhancements();
                 std::list<TrainedEnhancement>::iterator teit = te.begin();
                 while (teit != te.end())
                 {
                     const EnhancementTreeItem * pTreeItem = FindEnhancement((*teit).EnhancementName());
-                    apsSpent += pTreeItem->Cost() * (*teit).Ranks();
-                    // cost also updated so revoke of items will work
-                    (*teit).SetCost(pTreeItem->Cost());
+                    if (pTreeItem != NULL)
+                    {
+                        apsSpent += pTreeItem->Cost() * (*teit).Ranks();
+                        // cost also updated so revoke of items will work
+                        (*teit).SetCost(pTreeItem->Cost());
+                    }
+                    else
+                    {
+                        bBadEnhancement = true; 
+                    }
                     ++teit;
                 }
-                // now set it on the tree so it knows how much has been spent in it
-                (*edtsit).Set_Enhancements(te);
-                (*edtsit).SetSpent(apsSpent);
-                // done
-                ++edtsit;
+                if (!bBadEnhancement)
+                {
+                    // now set it on the tree so it knows how much has been spent in it
+                    (*edtsit).Set_Enhancements(te);
+                    (*edtsit).SetSpent(apsSpent);
+                    // done
+                    ++edtsit;
+                }
+                else
+                {
+                    // looks like this tree is now out of date, have to revoke all these
+                    // enhancements in this tree (i.e. just delete it)
+                    CString text;
+                    text.Format("All enhancements in tree \"%s\" were revoked as bad enhancement was encountered\n",
+                            (*edtsit).TreeName().c_str());
+                    message += text;
+                    displayMessage = true;
+                    edtsit = m_EpicDestinyTreeSpend.erase(edtsit);
+                }
             }
         }
     }
