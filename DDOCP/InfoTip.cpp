@@ -326,8 +326,8 @@ void CInfoTip::SetEnhancementTreeItem(
             &m_requirements,
             &m_bRequirementMet,
             MAX_LEVEL);
-    m_cost.Format("Cost %d", pItem->Cost(selection));
-    m_ranks.Format("Ranks %d", pItem->Ranks());
+    m_cost.Format("  Cost %d", pItem->Cost(selection));
+    m_ranks.Format("  Ranks %d", pItem->Ranks());
 }
 
 void CInfoTip::SetEnhancementSelectionItem(
@@ -356,8 +356,8 @@ void CInfoTip::SetEnhancementSelectionItem(
             &m_requirements,
             &m_bRequirementMet,
             MAX_LEVEL);
-    m_cost.Format("Cost %d", pSelection->Cost());
-    m_ranks.Format("Ranks %d", ranks);
+    m_cost.Format("  Cost %d", pSelection->Cost());
+    m_ranks.Format("  Ranks %d", ranks);
 }
 
 void CInfoTip::SetFeatItem(
@@ -437,7 +437,7 @@ void CInfoTip::SetStanceItem(
     m_bRequirementMet.clear();
     if (pItem->HasSetBonus())
     {
-        m_ranks.Format("Stacks: %d", numStacks);
+        m_ranks.Format("  Stacks: %d", numStacks);
         // convert the descriptions to requirements to show which have been met
         // by the number of stacks
         std::istringstream ss((LPCTSTR)m_description);
@@ -569,6 +569,7 @@ void CInfoTip::SetAugment(
     m_image.SetTransparentColor(c_transparentColour);
     m_title = pAugment->Name().c_str();
     m_description = pAugment->Description().c_str();
+    m_ranks.Format("  Min Level: %d", pAugment->MinLevel());
     // actual carriage return are actual \n in text, convert to correct character
     GenerateLineBreaks(&m_title);
     GenerateLineBreaks(&m_description);
