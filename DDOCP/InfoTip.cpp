@@ -548,6 +548,20 @@ void CInfoTip::SetItem(
         m_requirements.push_back("---MINOR ARTIFACT---");
         m_bRequirementMet.push_back(false);     // in red as important
     }
+    // optional slot restrictions
+    if (pItem->HasRestrictedSlots())
+    {
+        for (size_t i = Inventory_Unknown + 1; i < Inventory_Count; ++i)
+        {
+            if (pItem->RestrictedSlots().HasSlot((InventorySlotType)i))
+            {
+                CString text;
+                text.Format("Restricts items in the slot: %s", EnumEntryText((InventorySlotType)i, InventorySlotTypeMap));
+                m_requirements.push_back(text);
+                m_bRequirementMet.push_back(false);     // in red as important
+            }
+        }
+    }
     // show the slots this item equips to
     CString slots = "Equips to slots: ";
     slots += pItem->ItemType().c_str();

@@ -781,6 +781,11 @@ Weilding weapons that are centering such as a staff.</Description>
          <IncompatibleStance>Large Shield</IncompatibleStance>
          <AutoControlled/>
       </Stance>
+      <Stance>
+         <Name>Blocking</Name>
+         <Icon>Blocking</Icon>
+         <Description>You are blocking.</Description>
+      </Stance>
       <DC>
          <Name>Intimidate</Name>
          <Description>Allows you to intimidate certain NPCs and to draw the attention of monsters
@@ -3654,8 +3659,11 @@ front of you. This attack deals +2[W] damage.</Description>
    </Feat>
    <Feat>
       <Name>Greater Rage</Name>
-      <Description>A Barbarian's rage grows stronger after reaching 11th level.
-You have an additional +2 Strength and Constitution and +1 Will save while raged.</Description>
+      <Description>The bonuses of the barbarian's rage increase to a total of +6 strength,
++6 constitution and +3 to will saving throws but the barbarian still incurs a
+reduction of its Armor Class by 2. Fatigue penalties remain the same as regular
+Rage. Enhances the regular Barbarian Rage feat. +10 Physical Resistance Rating
+when wearing Medium armor. +10 Melee Power while the rage is active.</Description>
       <Requirements/>
       <Acquire>Automatic</Acquire>
       <Icon>GreaterRage</Icon>
@@ -3668,7 +3676,7 @@ You have an additional +2 Strength and Constitution and +1 Will save while raged
          <Type>AbilityBonus</Type>
          <Bonus>Rage</Bonus>
          <Ability>Strength</Ability>
-         <AmountVector size="3">4 6 8</AmountVector>
+         <AmountVector size="4">4 6 8 10</AmountVector>
          <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
          <AnyOfStance>Rage</AnyOfStance>
          <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
@@ -3679,7 +3687,7 @@ You have an additional +2 Strength and Constitution and +1 Will save while raged
          <Type>AbilityBonus</Type>
          <Bonus>Rage</Bonus>
          <Ability>Constitution</Ability>
-         <AmountVector size="3">4 6 8</AmountVector>
+         <AmountVector size="4">4 6 8 10</AmountVector>
          <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
          <AnyOfStance>Wildhunt Shifter: Shifted Form</AnyOfStance>
          <AnyOfStance>Rage</AnyOfStance>
@@ -3689,9 +3697,31 @@ You have an additional +2 Strength and Constitution and +1 Will save while raged
       <Effect>
          <DisplayName>Barbarian Rage</DisplayName>
          <Type>SaveBonus</Type>
-         <Bonus>Rage</Bonus>
+         <Bonus>Morale</Bonus>
          <Save>Will</Save>
-         <AmountVector size="3">2 3 4</AmountVector>
+         <AmountVector size="4">2 3 4 5</AmountVector>
+         <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
+         <AnyOfStance>Wildhunt Shifter: Shifted Form</AnyOfStance>
+         <AnyOfStance>Rage</AnyOfStance>
+         <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
+         <ApplyAsItemEffect/>
+      </Effect>
+      <Effect>
+         <Type>PRR</Type>
+         <Bonus>Rage</Bonus>
+         <Amount>10</Amount>
+         <Stance>Medium Armor</Stance>
+         <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
+         <AnyOfStance>Wildhunt Shifter: Shifted Form</AnyOfStance>
+         <AnyOfStance>Rage</AnyOfStance>
+         <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
+         <ApplyAsItemEffect/>
+      </Effect>
+      <Effect>
+         <Type>MeleePower</Type>
+         <Bonus>Rage</Bonus>
+         <Amount>10</Amount>
+         <Stance>Medium Armor</Stance>
          <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
          <AnyOfStance>Wildhunt Shifter: Shifted Form</AnyOfStance>
          <AnyOfStance>Rage</AnyOfStance>
@@ -6267,7 +6297,8 @@ This action will destroy the scroll.</Description>
    <Feat>
       <Name>Indomitable Will</Name>
       <Description>While in a rage, the Barbarian receives a +4 bonus on Will saves to
-resist enchantment spells. This bonus stacks with all modifiers.</Description>
+resist enchantment spells. This bonus stacks with all other modifiers, including
+the morale bonus on Will saves he also receives during his rage.</Description>
       <Requirements/>
       <Acquire>Automatic</Acquire>
       <Icon>IndomitableWill</Icon>
@@ -8291,7 +8322,7 @@ and your morale bonus to Will saves is increased to +4.</Description>
          <Type>AbilityBonus</Type>
          <Bonus>Rage</Bonus>
          <Ability>Strength</Ability>
-         <AmountVector size="3">4 6 8</AmountVector>
+         <AmountVector size="4">4 6 8 10</AmountVector>
          <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
          <AnyOfStance>Rage</AnyOfStance>
          <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
@@ -8302,7 +8333,7 @@ and your morale bonus to Will saves is increased to +4.</Description>
          <Type>AbilityBonus</Type>
          <Bonus>Rage</Bonus>
          <Ability>Constitution</Ability>
-         <AmountVector size="3">4 6 8</AmountVector>
+         <AmountVector size="4">4 6 8 10</AmountVector>
          <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
          <AnyOfStance>Wildhunt Shifter: Shifted Form</AnyOfStance>
          <AnyOfStance>Rage</AnyOfStance>
@@ -8312,9 +8343,9 @@ and your morale bonus to Will saves is increased to +4.</Description>
       <Effect>
          <DisplayName>Barbarian Rage</DisplayName>
          <Type>SaveBonus</Type>
-         <Bonus>Rage</Bonus>
+         <Bonus>Morale</Bonus>
          <Save>Will</Save>
-         <AmountVector size="3">2 3 4</AmountVector>
+         <AmountVector size="4">2 3 4 5</AmountVector>
          <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
          <AnyOfStance>Wildhunt Shifter: Shifted Form</AnyOfStance>
          <AnyOfStance>Rage</AnyOfStance>
@@ -9766,7 +9797,7 @@ Constitution, a +2 Morale bonus to Will saves and a -2 penalty to AC.</Descripti
          <Type>AbilityBonus</Type>
          <Bonus>Rage</Bonus>
          <Ability>Strength</Ability>
-         <AmountVector size="3">4 6 8</AmountVector>
+         <AmountVector size="4">4 6 8 10</AmountVector>
          <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
          <AnyOfStance>Rage</AnyOfStance>
          <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
@@ -9777,7 +9808,7 @@ Constitution, a +2 Morale bonus to Will saves and a -2 penalty to AC.</Descripti
          <Type>AbilityBonus</Type>
          <Bonus>Rage</Bonus>
          <Ability>Constitution</Ability>
-         <AmountVector size="3">4 6 8</AmountVector>
+         <AmountVector size="4">4 6 8 10</AmountVector>
          <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
          <AnyOfStance>Wildhunt Shifter: Shifted Form</AnyOfStance>
          <AnyOfStance>Rage</AnyOfStance>
@@ -9787,9 +9818,9 @@ Constitution, a +2 Morale bonus to Will saves and a -2 penalty to AC.</Descripti
       <Effect>
          <DisplayName>Barbarian Rage</DisplayName>
          <Type>SaveBonus</Type>
-         <Bonus>Rage</Bonus>
+         <Bonus>Morale</Bonus>
          <Save>Will</Save>
-         <AmountVector size="3">2 3 4</AmountVector>
+         <AmountVector size="4">2 3 4 5</AmountVector>
          <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
          <AnyOfStance>Wildhunt Shifter: Shifted Form</AnyOfStance>
          <AnyOfStance>Rage</AnyOfStance>
@@ -12864,7 +12895,9 @@ death - you are immune to the spawn effect of most undead.</Description>
    </Feat>
    <Feat>
       <Name>Tireless Rage</Name>
-      <Description>At level 17, a Barbarian no longer becomes fatigued after raging</Description>
+      <Description>Upon reaching level 17, a barbarian is no longer fatigued after raging.
+Also, gain a stacking +2 Strength and Constitution Bonus along with a +1 Morale
+Bonus to Will Saving Throws while raging.</Description>
       <Requirements/>
       <Acquire>Automatic</Acquire>
       <Icon>TirelessRage</Icon>
@@ -12872,6 +12905,41 @@ death - you are immune to the spawn effect of most undead.</Description>
          <Class>Barbarian</Class>
          <Level>17</Level>
       </AutomaticAcquisition>
+      <Effect>
+         <DisplayName>Barbarian Rage</DisplayName>
+         <Type>AbilityBonus</Type>
+         <Bonus>Rage</Bonus>
+         <Ability>Strength</Ability>
+         <AmountVector size="4">4 6 8 10</AmountVector>
+         <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
+         <AnyOfStance>Rage</AnyOfStance>
+         <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
+         <ApplyAsItemEffect/>
+      </Effect>
+      <Effect>
+         <DisplayName>Barbarian Rage</DisplayName>
+         <Type>AbilityBonus</Type>
+         <Bonus>Rage</Bonus>
+         <Ability>Constitution</Ability>
+         <AmountVector size="4">4 6 8 10</AmountVector>
+         <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
+         <AnyOfStance>Wildhunt Shifter: Shifted Form</AnyOfStance>
+         <AnyOfStance>Rage</AnyOfStance>
+         <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
+         <ApplyAsItemEffect/>
+      </Effect>
+      <Effect>
+         <DisplayName>Barbarian Rage</DisplayName>
+         <Type>SaveBonus</Type>
+         <Bonus>Morale</Bonus>
+         <Save>Will</Save>
+         <AmountVector size="4">2 3 4 5</AmountVector>
+         <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
+         <AnyOfStance>Wildhunt Shifter: Shifted Form</AnyOfStance>
+         <AnyOfStance>Rage</AnyOfStance>
+         <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
+         <ApplyAsItemEffect/>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Toughness</Name>
@@ -18920,18 +18988,25 @@ Number of Destinies: 3</Description>
          <Amount>10</Amount>
       </Effect>
       <Effect>
+         <Type>CreateSlider</Type>
+         <Bonus>Enhancement</Bonus>
+         <Slider>Deific Warding</Slider>
+         <AmountVector size="2">0 10</AmountVector>
+         <Amount>0</Amount>
+      </Effect>
+      <Effect>
          <DisplayName>Deific Warding: Stacks from being hit</DisplayName>
          <Type>PRR</Type>
          <Bonus>Destiny</Bonus>
          <Amount>20</Amount>
-         <Stance>Deific Warding</Stance>
+         <Stacks>Deific Warding</Stacks>
       </Effect>
       <Effect>
          <DisplayName>Deific Warding: Stacks from being hit</DisplayName>
          <Type>MRR</Type>
          <Bonus>Destiny</Bonus>
          <Amount>20</Amount>
-         <Stance>Deific Warding</Stance>
+         <Stacks>Deific Warding</Stacks>
       </Effect>
    </Feat>
    <Feat>
@@ -21513,7 +21588,7 @@ and become fatigued.</Description>
       <Name>Wildhunt Shifter</Name>
       <Description>Passive: +1 Wisdom
 Active: Activate this Shifter ability to shift your form, granting you a +4 Rage bonus to
-Wisdom and Dexterity, a +2 Morale bonus to Fortitude saves, and a -2 penalty to Strength.
+Wisdom and Dexterity, a +2 Morale bonus to Will saves, and a -2 penalty to Strength.
 When the form ends, however, you will become fatigued. Your form will last for 30 seconds
 plus an additional amount of time based on your Wisdom. You can prematurely end your form by
 using the Dismiss Rage feat. This shares charges with Barbarian's Rage feat, and anything
@@ -21565,7 +21640,7 @@ When the form ends, however, you will become fatigued.</Description>
          <Type>SaveBonus</Type>
          <Bonus>Morale</Bonus>
          <Amount>2</Amount>
-         <Save>Fortitude</Save>
+         <Save>Will</Save>
          <Stance>Wildhunt Shifter: Shifted Form</Stance>
       </Effect>
       <Effect>

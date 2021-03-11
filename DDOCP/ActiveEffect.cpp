@@ -927,7 +927,8 @@ bool ActiveEffect::operator<=(const ActiveEffect & other) const
             && m_bonusType != Bonus_mythic)    // combat style bonus's always stack
     {
         // must be the same type of bonus to allow a lessThan
-        if (m_bonusType == other.m_bonusType)
+        if (m_bonusType == other.m_bonusType
+                && IsPercentage() == other.IsPercentage())
         {
             // comes down to the amount field
             lessThanOrEqual = (TotalAmount(false) <= other.TotalAmount(false));

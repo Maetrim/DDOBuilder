@@ -6,6 +6,8 @@
 #include "Item.h"
 #include "InventorySlotTypes.h"
 
+class Character;
+
 class EquippedGear :
     public XmlLib::SaxContentElement
 {
@@ -15,6 +17,7 @@ class EquippedGear :
 
         bool HasItemInSlot(InventorySlotType slot) const;
         Item ItemInSlot(InventorySlotType slot) const;
+        bool IsSlotRestricted(InventorySlotType slot, Character * pChar) const;
         void SetItem(InventorySlotType slot,
                 Character * pCharacter,
                 const Item & item);

@@ -1653,6 +1653,12 @@ void CForumExportDlg::ExportGear(const EquippedGear & gear, std::stringstream & 
     forumExport << "------------------------------------------------------------------------------------------\r\n";
     for (size_t gi = Inventory_Unknown; gi < Inventory_Count; ++gi)
     {
+        if (gear.IsSlotRestricted((InventorySlotType)gi, m_pCharacter))
+        {
+            forumExport.width(10);
+            forumExport << std::left << EnumEntryText((InventorySlotType)gi, InventorySlotTypeMap);
+            forumExport << "    Restricted by another item in this gear set\r\n";
+        }
         if (gear.HasItemInSlot((InventorySlotType)gi))
         {
             Item item = gear.ItemInSlot((InventorySlotType)gi);
@@ -1673,21 +1679,8 @@ void CForumExportDlg::ExportGear(const EquippedGear & gear, std::stringstream & 
                 forumExport << "\r\n";
                 ++it;
             }
-            // show any set bonuses
-            const std::list<std::string> & sets = item.SetBonus();
-            std::list<std::string>::const_iterator sit = sets.begin();
-            while (sit != sets.end())
-            {
-                const SetBonus& set = FindSetBonus((*sit));
-                std::string processedDescription = set.Description();
-                processedDescription = processedDescription.substr(0, processedDescription.find(':'));
-                forumExport << "              ";
-                forumExport << processedDescription;
-                forumExport << "\r\n";
-                ++sit;
-            }
-
             // show any augment slots also
+            bool bSetBonusSuppressed = false;
             std::vector<ItemAugment> augments = item.Augments();
             for (size_t i = 0; i < augments.size(); ++i)
             {
@@ -1704,12 +1697,31 @@ void CForumExportDlg::ExportGear(const EquippedGear & gear, std::stringstream & 
                         forumExport << (LPCTSTR)text;
                     }
                     forumExport << augments[i].SelectedAugment();
+                    const Augment & augment = FindAugmentByName(augments[i].SelectedAugment());
+                    bSetBonusSuppressed |= augment.HasSuppressSetBonus();
                 }
                 else
                 {
                     forumExport << "Empty augment slot";
                 }
                 forumExport << "\r\n";
+            }
+            // show any set bonuses (update name if suppressed)
+            const std::list<std::string> & sets = item.SetBonus();
+            std::list<std::string>::const_iterator sit = sets.begin();
+            while (sit != sets.end())
+            {
+                const SetBonus& set = FindSetBonus((*sit));
+                std::string processedDescription = set.Description();
+                processedDescription = processedDescription.substr(0, processedDescription.find(':'));
+                forumExport << "              ";
+                forumExport << processedDescription;
+                if (bSetBonusSuppressed)
+                {
+                    forumExport << " (Suppressed by selected augment)";
+                }
+                forumExport << "\r\n";
+                ++sit;
             }
         }
     }

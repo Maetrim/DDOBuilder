@@ -422,11 +422,9 @@ void CEquipmentView::UpdateSlotLeftClicked(
         {
             item = gear.ItemInSlot(slot);
         }
-        if (slot == Inventory_Weapon2
-                && gear.HasItemInSlot(Inventory_Weapon1)
-                && !CanEquipTo2ndWeapon(m_pCharacter, gear.ItemInSlot(Inventory_Weapon1)))
+        if (gear.IsSlotRestricted(slot, m_pCharacter))
         {
-            // not allowed to equip in this due to item in weapon slot 1
+            // not allowed to equip in this due to item in weapon slot 1 or an item restricting this slot
             ::MessageBeep(MB_OK);
         }
         else

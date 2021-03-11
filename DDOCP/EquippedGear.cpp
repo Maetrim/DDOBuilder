@@ -210,6 +210,36 @@ Item EquippedGear::ItemInSlot(InventorySlotType slot) const
     return noItem;
 }
 
+bool EquippedGear::IsSlotRestricted(
+        InventorySlotType slot,
+        Character * pChar) const
+{
+    bool bRestricted = false;
+
+    if (slot == Inventory_Weapon2
+            && HasItemInSlot(Inventory_Weapon1)
+            && !CanEquipTo2ndWeapon(pChar, ItemInSlot(Inventory_Weapon1)))
+    {
+        // Weapon equipped in main hand that precludes weapon in off hand
+        // do not permit selection of an item in the off hand slot
+        bRestricted = true;
+    }
+    else
+    {
+        // check to see if this restricted by any item in any other slot
+        for (size_t i = Inventory_Unknown + 1; i < Inventory_Count; ++i)
+        {
+            if (HasItemInSlot((InventorySlotType)i)
+                    && ItemInSlot((InventorySlotType)i).HasRestrictedSlots()
+                    && ItemInSlot((InventorySlotType)i).RestrictedSlots().HasSlot(slot))
+            {
+                bRestricted = true;
+            }
+        }
+    }
+    return bRestricted;
+}
+
 void EquippedGear::SetItem(
         InventorySlotType slot,
         Character * pCharacter,

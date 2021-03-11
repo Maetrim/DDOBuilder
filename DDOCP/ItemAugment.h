@@ -31,6 +31,7 @@ class ItemAugment :
         DL_DECLARE_ACCESS(ItemAugment_PROPERTIES)
         DL_DECLARE_VARIABLES(ItemAugment_PROPERTIES)
 
+        friend class Character;
         friend class CItemSelectDialog;
         friend class CFindGearDialog;
         friend class Item;

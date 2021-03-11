@@ -215,12 +215,8 @@ void CInventoryDialog::OnPaint()
     // now iterate the current inventory and draw the item icons
     for (size_t i = Inventory_Unknown + 1; i < Inventory_Count; ++i)
     {
-        if (i == Inventory_Weapon2
-                && m_gearSet.HasItemInSlot(Inventory_Weapon1)
-                && !CanEquipTo2ndWeapon(m_pCharacter, m_gearSet.ItemInSlot(Inventory_Weapon1)))
+        if (m_gearSet.IsSlotRestricted((InventorySlotType)i, m_pCharacter))
         {
-            // Weapon equipped in main hand that precludes weapon in off hand
-            // do not permit selection of an item in the off hand slot
             CRect itemRect = m_hitBoxesInventory[i - 1].Rect();
             m_imagesCannotEquip.TransparentBlt(
                     memoryDc.GetSafeHdc(),
@@ -229,7 +225,7 @@ void CInventoryDialog::OnPaint()
                     32,
                     32);
         }
-        if (m_gearSet.HasItemInSlot((InventorySlotType)i))
+        else if (m_gearSet.HasItemInSlot((InventorySlotType)i))
         {
             Item item = m_gearSet.ItemInSlot((InventorySlotType)i);
             CImage image;

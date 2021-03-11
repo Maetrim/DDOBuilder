@@ -4856,6 +4856,17 @@ void Character::SetGear(
         {
             (*it).SetItem(slot, this, item);
             found = true;
+            // clear any items from restricted gear slots if required
+            if (item.HasRestrictedSlots())
+            {
+                for (size_t i = Inventory_Unknown + 1; i < Inventory_Count; ++i)
+                {
+                    if (item.RestrictedSlots().HasSlot((InventorySlotType)i))
+                    {
+                        (*it).ClearItem((InventorySlotType)i);
+                    }
+                }
+            }
         }
         ++it;
     }
@@ -6553,6 +6564,23 @@ Item Character::GetLatestVersionOfItem(const Item & original)
         newVersion = foundItem;
         // now copy across specific fields from the source item
         newVersion.CopyUserSetValues(original);
+        // make sure all the selected augments are valid
+        std::vector<ItemAugment> augments = original.Augments();
+        for (size_t i = 0; i < augments.size(); ++i)
+        {
+            if (augments[i].SelectedAugment() != "")
+            {
+                const Augment & augment = FindAugmentByName(augments[i].SelectedAugment());
+                if (augment.Name() == "")
+                {
+                    // if we failed to find the augment, its a bad one. Just clear it
+                    augments[i].Clear_SelectedAugment();
+                    augments[i].Clear_Value();
+                    augments[i].Clear_Value2();
+                }
+            }
+        }
+        newVersion.Set_Augments(augments);
     }
     return newVersion;
 }

@@ -11,7 +11,7 @@ class EquipmentSlot :
     public XmlLib::SaxContentElement
 {
     public:
-        EquipmentSlot(void);
+        EquipmentSlot(const XmlLib::SaxString & objectName);
         void Write(XmlLib::SaxWriter * writer) const;
 
         bool HasSlot(InventorySlotType slot) const;

@@ -8,14 +8,13 @@
 
 namespace
 {
-    const wchar_t f_saxElementName[] = L"EquipmentSlot";
     DL_DEFINE_NAMES(EquipmentSlot_PROPERTIES)
 
     const unsigned f_verCurrent = 1;
 }
 
-EquipmentSlot::EquipmentSlot() :
-    XmlLib::SaxContentElement(f_saxElementName, f_verCurrent)
+EquipmentSlot::EquipmentSlot(const XmlLib::SaxString & objectName) :
+    XmlLib::SaxContentElement(objectName, f_verCurrent)
 {
     DL_INIT(EquipmentSlot_PROPERTIES)
 }

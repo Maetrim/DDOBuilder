@@ -17,13 +17,17 @@ namespace
 }
 
 Item::Item() :
-    XmlLib::SaxContentElement(f_saxElementName, f_verCurrent)
+    XmlLib::SaxContentElement(f_saxElementName, f_verCurrent),
+    m_Slots(L"EquipmentSlot"),
+    m_RestrictedSlots(L"RestrictedSlots")
 {
     DL_INIT(Item_PROPERTIES)
 }
 
 Item::Item(const XmlLib::SaxString & objectName) :
-    XmlLib::SaxContentElement(objectName, f_verCurrent)
+    XmlLib::SaxContentElement(objectName, f_verCurrent),
+    m_Slots(L"EquipmentSlot"),
+    m_RestrictedSlots(L"RestrictedSlots")
 {
     DL_INIT(Item_PROPERTIES)
 }

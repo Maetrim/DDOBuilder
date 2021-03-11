@@ -59,6 +59,7 @@ class Item :
                 DL_ENUM_LIST(_, AbilityType, DamageModifier, Ability_Unknown, abilityTypeMap) \
                 DL_OPTIONAL_ENUM(_, ArmorType, Armor, Armor_Unknown, armorTypeMap) \
                 DL_OBJECT(_, EquipmentSlot, Slots) \
+                DL_OPTIONAL_OBJECT(_, EquipmentSlot, RestrictedSlots) \
                 DL_STRING_LIST(_, SetBonus) \
                 DL_OBJECT_VECTOR(_, Effect, Effects) \
                 DL_OBJECT_VECTOR(_, ItemAugment, Augments) \
@@ -72,6 +73,7 @@ class Item :
         DL_DECLARE_ACCESS(Item_PROPERTIES)
         DL_DECLARE_VARIABLES(Item_PROPERTIES)
 
+        friend class Character;
         friend class CItemSelectDialog;
         friend class CFindGearDialog;
         friend class EquippedGear;

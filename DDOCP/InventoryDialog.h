@@ -126,6 +126,7 @@ class CInventoryDialog :
         void EditFiligree(int filigreeIndex, CRect itemRect);
         void BuildImageList(const std::vector<Augment> & augments);
         void ToggleRareState(int filigree);
+
         Character * m_pCharacter;
         CSize m_bitmapSize;
         CBitmap m_cachedDisplay;
