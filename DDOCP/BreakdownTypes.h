@@ -266,6 +266,8 @@ enum BreakdownType
     Breakdown_WeaponCriticalMultiplier,
     Breakdown_WeaponCriticalMultiplier19To20,
     Breakdown_WeaponAttackSpeed,
+    Breakdown_WeaponGhostTouch,
+    Breakdown_WeaponTrueSeeing,
     Breakdown_DRBypass,
     Breakdown_MainHand,
     Breakdown_OffHand,

@@ -430,25 +430,32 @@ void CStancesView::AddStance(const Stance & stance)
                     m_nextStanceId++);
             pStance->AddStack();
             // add it to the correct user stance grouping
-            if (stance.Group() == "Arcane")
+            if (stance.HasGroup())
             {
-                m_userStancebuttonsArcane.push_back(pStance);
-            }
-            else if (stance.Group() == "Divine")
-            {
-                m_userStancebuttonsDivine.push_back(pStance);
-            }
-            else if (stance.Group() == "Martial")
-            {
-                m_userStancebuttonsMartial.push_back(pStance);
-            }
-            else if (stance.Group() == "Primal")
-            {
-                m_userStancebuttonsPrimal.push_back(pStance);
-            }
-            else if (stance.Group() == "Iconic")
-            {
-                m_userStancebuttonsIconic.push_back(pStance);
+                if (stance.Group() == "Arcane")
+                {
+                    m_userStancebuttonsArcane.push_back(pStance);
+                }
+                else if (stance.Group() == "Divine")
+                {
+                    m_userStancebuttonsDivine.push_back(pStance);
+                }
+                else if (stance.Group() == "Martial")
+                {
+                    m_userStancebuttonsMartial.push_back(pStance);
+                }
+                else if (stance.Group() == "Primal")
+                {
+                    m_userStancebuttonsPrimal.push_back(pStance);
+                }
+                else if (stance.Group() == "Iconic")
+                {
+                    m_userStancebuttonsIconic.push_back(pStance);
+                }
+                else
+                {
+                    m_userStancebuttons.push_back(pStance);
+                }
             }
             else
             {

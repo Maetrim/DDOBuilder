@@ -13793,7 +13793,7 @@ Cooldown: 1 minute 15 Seconds.</Description>
       <EnhancementTreeItem>
          <Name>Aasimar Scourge: Stronger Bonds II</Name>
          <InternalName>ScourgeAasimarCore3</InternalName>
-         <Description>+2 more uses of Healing Hands per rest.
+         <Description>You gain +2 more uses of Healing Hands per rest.
 Bond of the Scourge now grants you Ghost Touch on all weapon attacks.</Description>
          <Icon>StrongerBondsII</Icon>
          <XPosition>2</XPosition>
@@ -13810,6 +13810,13 @@ Bond of the Scourge now grants you Ghost Touch on all weapon attacks.</Descripti
                <Enhancement>ScourgeAasimarCore2</Enhancement>
             </Requirement>
          </Requirements>
+        <Effect>
+            <Type>GhostTouch</Type>
+            <Bonus>Enhancement</Bonus>
+              <Amount>1</Amount>
+            <Weapon>All</Weapon>
+           <Stance>Aasimar: Scourge Bond</Stance>
+        </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Aasimar Scourge: Ability II</Name>
@@ -13872,7 +13879,8 @@ Bond of the Scourge now grants you Ghost Touch on all weapon attacks.</Descripti
       <EnhancementTreeItem>
          <Name>Aasimar Scourge: Stronger Bonds III</Name>
          <InternalName>ScourgeAasimarCore5</InternalName>
-         <Description>+3 more uses of Healing Hands per rest. You recharge one use of Healing Hands every 3 minutes.</Description>
+         <Description>+3 more uses of Healing Hands per rest.
+You recharge one use of Healing Hands every 3 minutes.</Description>
          <Icon>StrongerBondsIII</Icon>
          <XPosition>4</XPosition>
          <YPosition>0</YPosition>
@@ -14139,8 +14147,9 @@ Passive: +2 Melee and Ranged power.</Description>
       <EnhancementTreeItem>
          <Name>Aasimar Scourge: Strike Down the Dead</Name>
          <InternalName>SAStrikeDowntheDead</InternalName>
-         <Description>+[1/2/3][W], single-target attack.. 15 second cooldown. On hit: Deals 1d4+4 per 
-Character Level (scales with 100% Melee Power) in Positive Damage to Undead creatures.</Description>
+         <Description>+[1/2/3][W] melee attack with +[1/2/3] Critical Threat Range. 15 second cooldown.
+On hit: Deals 1d4+4 per Character Level (scales with 100% Melee Power) in Positive
+Damage to Undead creatures.</Description>
          <Icon>StrikeDownTheDead</Icon>
          <XPosition>1</XPosition>
          <YPosition>3</YPosition>
@@ -33609,6 +33618,7 @@ Requires Divine Emissary of Light</Description>
 Requires Divine Emissary of Darkness</Description>
                <Icon>DDNegativeEnergyBurst</Icon>
                <Cost>1</Cost>
+               <Clickie/>
                <Requirements>
                   <Requirement>
                      <Enhancement>DDCore1</Enhancement>
@@ -33622,6 +33632,7 @@ Requires Divine Emissary of Darkness</Description>
 Requires Divine Emissary of Light</Description>
                <Icon>DDHolySmite</Icon>
                <Cost>1</Cost>
+               <Clickie/>
                <Requirements>
                   <Requirement>
                      <Enhancement>DDCore1</Enhancement>
@@ -38140,6 +38151,14 @@ Cooldown: 1 minute 30 seconds.</Description>
                <Level>2</Level>
             </Requirement>
          </Requirements>
+        <Effect>
+            <Type>GhostTouch</Type>
+            <Bonus>Enhancement</Bonus>
+              <Amount>1</Amount>
+            <Weapon>All</Weapon>
+            <AnyOfStance>Wolf</AnyOfStance>
+            <AnyOfStance>Winter Wolf</AnyOfStance>
+        </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Nature's Warrior: Brother Wolf</Name>
@@ -54081,6 +54100,12 @@ applies a Greater Restoration effect on your target.</Description>
             <Save>Spell</Save>
             <Stance>Evil Creatures</Stance>
          </Effect>
+        <Effect>
+            <Type>GhostTouch</Type>
+            <Bonus>Enhancement</Bonus>
+              <Amount>1</Amount>
+            <Weapon>All</Weapon>
+        </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Knight of the Chalice: Improved Courage of Heaven</Name>
@@ -57469,7 +57494,8 @@ Cooldown: 30 seconds</Description>
       <EnhancementTreeItem>
          <Name>Falconry: Killer Instinct II</Name>
          <InternalName>FalconKillerInstinctII</InternalName>
-         <Description>You can use your Wisdom modifier for damage with Melee and Missile weapons.</Description>
+         <Description>You can use your Wisdom modifier for damage with Melee and Missile weapons.
+BUG: DDO currently gives the Killer Instinct I to hit for Wisdom also with this enhancement.</Description>
          <Icon>Wisdom</Icon>
          <XPosition>0</XPosition>
          <YPosition>3</YPosition>
@@ -57481,6 +57507,12 @@ Cooldown: 30 seconds</Description>
                <MinLevel>3</MinLevel>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>WeaponAttackAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Weapon>All</Weapon>
+            <Ability>Wisdom</Ability>
+         </Effect>
          <Effect>
             <Type>WeaponDamageAbility</Type>
             <Bonus>Enhancement</Bonus>
@@ -57620,6 +57652,12 @@ attempts to Blind the target, causing them to become Helpless.</Description>
                <MinLevel>3</MinLevel>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>TrueSeeing</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+         </Effect>
       </EnhancementTreeItem>
       <!--Falconry Tier 4 Enhancements-->
       <EnhancementTreeItem>
@@ -59205,6 +59243,12 @@ In addition, you gain +2 Damage dice with Law on your Side.</Description>
             <ApplyAsItemEffect/>
             <Weapon>Light Crossbow</Weapon>
             <Weapon>Heavy Crossbow</Weapon>
+         </Effect>
+         <Effect>
+            <Type>TrueSeeing</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -62261,6 +62305,12 @@ of Invisibility, you gain +15% Missile Deflection</Description>
                <MinLevel>4</MinLevel>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>TrueSeeing</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Feydark Illusionist: Fan of Shadowblades</Name>
@@ -63114,6 +63164,13 @@ Ghost Touch ability.</Description>
             <Energy>Force</Energy>
             <Stance>Force Arrows</Stance>
          </Effect>
+        <Effect>
+            <Type>GhostTouch</Type>
+            <Bonus>Enhancement</Bonus>
+              <Amount>1</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Force Arrows</Stance>
+        </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Arcane Archer: Inferno Shot</Name>
@@ -67167,6 +67224,13 @@ Ghost Touch ability.</Description>
             <Energy>Force</Energy>
             <Stance>Force Arrows</Stance>
          </Effect>
+        <Effect>
+            <Type>GhostTouch</Type>
+            <Bonus>Enhancement</Bonus>
+              <Amount>1</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Force Arrows</Stance>
+        </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Arcane Archer (Elf): Inferno Shot</Name>
@@ -85322,6 +85386,12 @@ If you are in Wraith Form, this increases your total to 20%.</Description>
             <Skill>Hide</Skill>
             <Skill>Move Silently</Skill>
           </Effect>
+        <Effect>
+            <Type>GhostTouch</Type>
+            <Bonus>Enhancement</Bonus>
+              <Amount>1</Amount>
+            <Weapon>All</Weapon>
+        </Effect>
         </EnhancementSelection>
       </Selector>
       <Effect>
@@ -85555,6 +85625,12 @@ If you are in Wraith Form, this increases your total to 25%.</Description>
             <Skill>Hide</Skill>
             <Skill>Move Silently</Skill>
           </Effect>
+        <Effect>
+            <Type>GhostTouch</Type>
+            <Bonus>Enhancement</Bonus>
+              <Amount>1</Amount>
+            <Weapon>All</Weapon>
+        </Effect>
         </EnhancementSelection>
       </Selector>
       <Effect>
@@ -85789,6 +85865,12 @@ If you are in Wraith Form, this increases your total to 25%.</Description>
             <Skill>Hide</Skill>
             <Skill>Move Silently</Skill>
           </Effect>
+        <Effect>
+            <Type>GhostTouch</Type>
+            <Bonus>Enhancement</Bonus>
+              <Amount>1</Amount>
+            <Weapon>All</Weapon>
+        </Effect>
         </EnhancementSelection>
       </Selector>
       <Effect>
@@ -95108,6 +95190,12 @@ in battle.</Description>
             <Amount>3</Amount>
          </Effect>
          <Effect>
+            <Type>TrueSeeing</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+         </Effect>
+         <Effect>
             <Type>Immunity</Type>
             <Bonus>Destiny</Bonus>
             <Immunity>Blindness</Immunity>
@@ -97232,6 +97320,18 @@ Rank 2: Your attacks bypass Concealment as if you had True Seeing.</Description>
             <Type>FortificationBypass</Type>
             <Bonus>Destiny</Bonus>
             <AmountVector size="2">5 10</AmountVector>
+         </Effect>
+        <Effect>
+            <Type>GhostTouch</Type>
+            <Bonus>Enhancement</Bonus>
+              <Amount>1</Amount>
+            <Weapon>All</Weapon>
+        </Effect>
+         <Effect>
+            <Type>TrueSeeing</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -102711,6 +102811,12 @@ You bypass 20% Dodge and have Ghost Touch.</Description>
             <Bonus>Destiny</Bonus>
             <Amount>20</Amount>
          </Effect>
+        <Effect>
+            <Type>GhostTouch</Type>
+            <Bonus>Enhancement</Bonus>
+              <Amount>1</Amount>
+            <Weapon>All</Weapon>
+        </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Shiradi Champion: Favorable Wind</Name>

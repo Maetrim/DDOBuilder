@@ -30,6 +30,8 @@ BreakdownItemWeapon::BreakdownItemWeapon(
     m_criticalMultiplier(Breakdown_WeaponCriticalMultiplier,  treeList, NULL, NULL),
     m_criticalMultiplier19To20(Breakdown_WeaponCriticalMultiplier19To20, treeList, NULL, &m_criticalMultiplier),
     m_attackSpeed(Breakdown_WeaponAttackSpeed, Effect_Alacrity, "Attack Speed", treeList, NULL),
+    m_ghostTouch(Breakdown_WeaponGhostTouch, Effect_GhostTouch, "Ghost Touch", treeList, NULL),
+    m_trueSeeing(Breakdown_WeaponTrueSeeing, Effect_TrueSeeing, "True Seeing", treeList, NULL),
     m_drBypass(Breakdown_DRBypass, treeList, NULL),
     m_centeredCount(0),    // assume not centered with this weapon
     m_weaponCriticalMuliplier(weaponCriticalMultiplier)
@@ -46,6 +48,8 @@ BreakdownItemWeapon::BreakdownItemWeapon(
     m_criticalMultiplier.SetWeapon(weaponType, weaponCriticalMultiplier);
     m_criticalMultiplier19To20.SetWeapon(weaponType, weaponCriticalMultiplier);
     m_attackSpeed.SetWeapon(weaponType, weaponCriticalMultiplier);
+    m_ghostTouch.SetWeapon(weaponType, weaponCriticalMultiplier);
+    m_trueSeeing.SetWeapon(weaponType, weaponCriticalMultiplier);
     m_drBypass.SetWeapon(weaponType, weaponCriticalMultiplier);
 
     if (slot == Inventory_Weapon2)
@@ -67,6 +71,8 @@ BreakdownItemWeapon::BreakdownItemWeapon(
     m_criticalMultiplier.AttachObserver(this);
     m_criticalMultiplier19To20.AttachObserver(this);
     m_attackSpeed.AttachObserver(this);
+    m_ghostTouch.AttachObserver(this);
+    m_trueSeeing.AttachObserver(this);
     m_drBypass.AttachObserver(this);
 
     std::string strDamageDice = m_damageDice.Description(1);
@@ -83,6 +89,8 @@ BreakdownItemWeapon::BreakdownItemWeapon(
     AddTreeItem("Critical Multiplier", "", &m_criticalMultiplier);
     AddTreeItem("Critical Multiplier (19-20)", "", &m_criticalMultiplier19To20);
     AddTreeItem("Attack Speed", "", &m_attackSpeed);
+    AddTreeItem("Ghost Touch", "", &m_ghostTouch);
+    AddTreeItem("True Seeing", "", &m_trueSeeing);
     AddTreeItem("DR Bypass", "", &m_drBypass);
 }
 
@@ -134,6 +142,8 @@ void BreakdownItemWeapon::SetCharacter(Character * charData, bool observe)
     m_criticalMultiplier.SetCharacter(charData, false);        // we handle this for them
     m_criticalMultiplier19To20.SetCharacter(charData, false);        // we handle this for them
     m_attackSpeed.SetCharacter(charData, false);
+    m_ghostTouch.SetCharacter(charData, false);
+    m_trueSeeing.SetCharacter(charData, false);
     m_drBypass.SetCharacter(charData, false);
 }
 
@@ -226,6 +236,8 @@ void BreakdownItemWeapon::UpdateFeatEffect(
         m_criticalMultiplier.UpdateFeatEffect(pCharacter, featName, effect);
         m_criticalMultiplier19To20.UpdateFeatEffect(pCharacter, featName, effect);
         m_attackSpeed.UpdateFeatEffect(pCharacter, featName, effect);
+        m_ghostTouch.UpdateFeatEffect(pCharacter, featName, effect);
+        m_trueSeeing.UpdateFeatEffect(pCharacter, featName, effect);
         m_drBypass.UpdateFeatEffect(pCharacter, featName, effect);
 
         // we handle whether we are centered or not
@@ -269,6 +281,8 @@ void BreakdownItemWeapon::UpdateFeatEffectRevoked(
         m_criticalMultiplier.UpdateFeatEffectRevoked(pCharacter, featName, effect);
         m_criticalMultiplier19To20.UpdateFeatEffectRevoked(pCharacter, featName, effect);
         m_attackSpeed.UpdateFeatEffectRevoked(pCharacter, featName, effect);
+        m_ghostTouch.UpdateFeatEffectRevoked(pCharacter, featName, effect);
+        m_trueSeeing.UpdateFeatEffectRevoked(pCharacter, featName, effect);
         m_drBypass.UpdateFeatEffectRevoked(pCharacter, featName, effect);
 
         // we handle whether we are centered or not
@@ -313,6 +327,8 @@ void BreakdownItemWeapon::UpdateItemEffect(
         m_criticalMultiplier.UpdateItemEffect(pCharacter, itemName, effect);
         m_criticalMultiplier19To20.UpdateItemEffect(pCharacter, itemName, effect);
         m_attackSpeed.UpdateItemEffect(pCharacter, itemName, effect);
+        m_ghostTouch.UpdateItemEffect(pCharacter, itemName, effect);
+        m_trueSeeing.UpdateItemEffect(pCharacter, itemName, effect);
         m_drBypass.UpdateItemEffect(pCharacter, itemName, effect);
 
         // we handle whether we are centered or not
@@ -356,6 +372,8 @@ void BreakdownItemWeapon::UpdateItemEffectRevoked(
         m_criticalMultiplier.UpdateItemEffectRevoked(pCharacter, itemName, effect);
         m_criticalMultiplier19To20.UpdateItemEffectRevoked(pCharacter, itemName, effect);
         m_attackSpeed.UpdateItemEffectRevoked(pCharacter, itemName, effect);
+        m_ghostTouch.UpdateItemEffectRevoked(pCharacter, itemName, effect);
+        m_trueSeeing.UpdateItemEffectRevoked(pCharacter, itemName, effect);
         m_drBypass.UpdateItemEffectRevoked(pCharacter, itemName, effect);
 
         // we handle whether we are centered or not
@@ -399,6 +417,8 @@ void BreakdownItemWeapon::UpdateEnhancementEffect(
         m_criticalMultiplier.UpdateEnhancementEffect(pCharacter, enhancementName, effect);
         m_criticalMultiplier19To20.UpdateEnhancementEffect(pCharacter, enhancementName, effect);
         m_attackSpeed.UpdateEnhancementEffect(pCharacter, enhancementName, effect);
+        m_ghostTouch.UpdateEnhancementEffect(pCharacter, enhancementName, effect);
+        m_trueSeeing.UpdateEnhancementEffect(pCharacter, enhancementName, effect);
         m_drBypass.UpdateEnhancementEffect(pCharacter, enhancementName, effect);
 
         // we handle whether we are centered or not
@@ -442,6 +462,8 @@ void BreakdownItemWeapon::UpdateEnhancementEffectRevoked(
         m_criticalMultiplier.UpdateEnhancementEffectRevoked(pCharacter, enhancementName, effect);
         m_criticalMultiplier19To20.UpdateEnhancementEffectRevoked(pCharacter, enhancementName, effect);
         m_attackSpeed.UpdateEnhancementEffectRevoked(pCharacter, enhancementName, effect);
+        m_ghostTouch.UpdateEnhancementEffectRevoked(pCharacter, enhancementName, effect);
+        m_trueSeeing.UpdateEnhancementEffectRevoked(pCharacter, enhancementName, effect);
         m_drBypass.UpdateEnhancementEffectRevoked(pCharacter, enhancementName, effect);
 
         // we handle whether we are centered or not
@@ -585,6 +607,8 @@ void BreakdownItemWeapon::UpdateClassChanged(
     m_criticalMultiplier.UpdateClassChanged(charData, classFrom, classTo, level);
     m_criticalMultiplier19To20.UpdateClassChanged(charData, classFrom, classTo, level);
     m_attackSpeed.UpdateClassChanged(charData, classFrom, classTo, level);
+    m_ghostTouch.UpdateClassChanged(charData, classFrom, classTo, level);
+    m_trueSeeing.UpdateClassChanged(charData, classFrom, classTo, level);
     m_drBypass.UpdateClassChanged(charData, classFrom, classTo, level);
 }
 
@@ -606,6 +630,8 @@ void BreakdownItemWeapon::UpdateAPSpentInTreeChanged(
     m_criticalMultiplier.UpdateAPSpentInTreeChanged(charData, treeName);
     m_criticalMultiplier19To20.UpdateAPSpentInTreeChanged(charData, treeName);
     m_attackSpeed.UpdateAPSpentInTreeChanged(charData, treeName);
+    m_ghostTouch.UpdateAPSpentInTreeChanged(charData, treeName);
+    m_trueSeeing.UpdateAPSpentInTreeChanged(charData, treeName);
     m_drBypass.UpdateAPSpentInTreeChanged(charData, treeName);
 }
 
@@ -629,6 +655,8 @@ void BreakdownItemWeapon::UpdateEnhancementTrained(
     m_criticalMultiplier.UpdateEnhancementTrained(charData, enhancementName, selection, isTier5);
     m_criticalMultiplier19To20.UpdateEnhancementTrained(charData, enhancementName, selection, isTier5);
     m_attackSpeed.UpdateEnhancementTrained(charData, enhancementName, selection, isTier5);
+    m_ghostTouch.UpdateEnhancementTrained(charData, enhancementName, selection, isTier5);
+    m_trueSeeing.UpdateEnhancementTrained(charData, enhancementName, selection, isTier5);
     m_drBypass.UpdateEnhancementTrained(charData, enhancementName, selection, isTier5);
     if (enhancementName == "KenseiOneWithTheBlade"
             || enhancementName == "KenseiExoticWeaponMastery")
@@ -658,6 +686,8 @@ void BreakdownItemWeapon::UpdateEnhancementRevoked(
     m_criticalMultiplier.UpdateEnhancementRevoked(charData, enhancementName, selection, isTier5);
     m_criticalMultiplier19To20.UpdateEnhancementRevoked(charData, enhancementName, selection, isTier5);
     m_attackSpeed.UpdateEnhancementRevoked(charData, enhancementName, selection, isTier5);
+    m_ghostTouch.UpdateEnhancementRevoked(charData, enhancementName, selection, isTier5);
+    m_trueSeeing.UpdateEnhancementRevoked(charData, enhancementName, selection, isTier5);
     m_drBypass.UpdateEnhancementRevoked(charData, enhancementName, selection, isTier5);
     if (enhancementName == "KenseiOneWithTheBlade"
             || enhancementName == "KenseiExoticWeaponMastery")
@@ -685,6 +715,8 @@ void BreakdownItemWeapon::UpdateFeatTrained(
     m_criticalMultiplier.UpdateFeatTrained(charData, featName);
     m_criticalMultiplier19To20.UpdateFeatTrained(charData, featName);
     m_attackSpeed.UpdateFeatTrained(charData, featName);
+    m_ghostTouch.UpdateFeatTrained(charData, featName);
+    m_trueSeeing.UpdateFeatTrained(charData, featName);
     m_drBypass.UpdateFeatTrained(charData, featName);
 }
 
@@ -705,6 +737,8 @@ void BreakdownItemWeapon::UpdateFeatRevoked(
     m_criticalMultiplier.UpdateFeatRevoked(charData, featName);
     m_criticalMultiplier19To20.UpdateFeatRevoked(charData, featName);
     m_attackSpeed.UpdateFeatRevoked(charData, featName);
+    m_ghostTouch.UpdateFeatRevoked(charData, featName);
+    m_trueSeeing.UpdateFeatRevoked(charData, featName);
     m_drBypass.UpdateFeatRevoked(charData, featName);
 }
 
@@ -725,6 +759,8 @@ void BreakdownItemWeapon::UpdateStanceActivated(
     m_criticalMultiplier.UpdateStanceActivated(charData, stanceName);
     m_criticalMultiplier19To20.UpdateStanceActivated(charData, stanceName);
     m_attackSpeed.UpdateStanceActivated(charData, stanceName);
+    m_ghostTouch.UpdateStanceActivated(charData, stanceName);
+    m_trueSeeing.UpdateStanceActivated(charData, stanceName);
     m_drBypass.UpdateStanceActivated(charData, stanceName);
 }
 
@@ -745,6 +781,8 @@ void BreakdownItemWeapon::UpdateStanceDeactivated(
     m_criticalMultiplier.UpdateStanceDeactivated(charData, stanceName);
     m_criticalMultiplier19To20.UpdateStanceDeactivated(charData, stanceName);
     m_attackSpeed.UpdateStanceDeactivated(charData, stanceName);
+    m_ghostTouch.UpdateStanceDeactivated(charData, stanceName);
+    m_trueSeeing.UpdateStanceDeactivated(charData, stanceName);
     m_drBypass.UpdateStanceDeactivated(charData, stanceName);
 }
 
@@ -782,7 +820,16 @@ void BreakdownItemWeapon::AddForumExportData(std::stringstream & forumExport)
             m_otherCriticalDamageEffects.Value());
     forumExport << valueCrit1920;
     forumExport << "DR Bypass: " << m_drBypass.Value();
-    forumExport << "\r\n\r\n";
+    forumExport << "\r\n";
+    if (m_ghostTouch.Total() > 0)
+    {
+        forumExport << "You bypass Incorpreality miss chance with this weapon\r\n";
+    }
+    if (m_trueSeeing.Total() > 0)
+    {
+        forumExport << "You bypass Concealment miss chance with this weapon\r\n";
+    }
+    forumExport << "\r\n";
 }
 
 BreakdownItem * BreakdownItemWeapon::GetWeaponBreakdown(BreakdownType bt)
@@ -822,6 +869,12 @@ BreakdownItem * BreakdownItemWeapon::GetWeaponBreakdown(BreakdownType bt)
         break;
     case Breakdown_WeaponAttackSpeed:
         pBI = &m_attackSpeed;
+        break;
+    case Breakdown_WeaponGhostTouch:
+        pBI = &m_ghostTouch;
+        break;
+    case Breakdown_WeaponTrueSeeing:
+        pBI = &m_trueSeeing;
         break;
     case Breakdown_DRBypass:
         pBI = &m_drBypass;

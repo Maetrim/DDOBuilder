@@ -815,6 +815,14 @@ void Character::NotifyAllTwistEffects()
                     trainedTwist->EnhancementName(),
                     trainedTwist->HasSelection() ? trainedTwist->Selection() : "",
                     trainedTwist->Ranks());
+            // enhancements may give multiple stances
+            std::list<Stance> stances = item->Stances(trainedTwist->HasSelection() ? trainedTwist->Selection() : "");
+            std::list<Stance>::const_iterator sit = stances.begin();
+            while (sit != stances.end())
+            {
+                NotifyNewStance((*sit));
+                ++sit;
+            }
         }
     }
 }
@@ -3650,7 +3658,7 @@ void Character::VerifyTrainedFeats()
                     if (tf.FeatName() == "")
                     {
                         // it is, train it
-                        TrainFeat((*fit).FeatName(), (*fit).Type(), level, false, true);
+                        (*it).TrainFeat((*fit).FeatName(), (*fit).Type(), level, false);
                         fit = feats.erase(fit); // remove and go to next
                     }
                     else
@@ -4643,12 +4651,21 @@ void Character::SetTwist(size_t twistIndex, const TrainedEnhancement * te)
                 trainedTwist->EnhancementName(),
                 trainedTwist->HasSelection() ? trainedTwist->Selection() : "",
                 trainedTwist->Ranks());
+        // enhancements may give multiple stances
+        std::list<Stance> stances = item->Stances(trainedTwist->HasSelection() ? trainedTwist->Selection() : "");
+        std::list<Stance>::const_iterator sit = stances.begin();
+        while (sit != stances.end())
+        {
+            NotifyRevokeStance((*sit));
+            ++sit;
+        }
     }
 
     ASSERT(twistIndex < MAX_TWISTS);
     std::list<TwistOfFate>::iterator it = m_Twists.begin();
     std::advance(it, twistIndex);
-    if (te != NULL)
+    if (te != NULL
+            && te->EnhancementName() != "")
     {
         (*it).Set_Twist(*te);
         // now train the effects of the selected twist
@@ -4660,6 +4677,14 @@ void Character::SetTwist(size_t twistIndex, const TrainedEnhancement * te)
                 te->EnhancementName(),
                 te->HasSelection() ? te->Selection() : "",
                 te->Ranks());
+        // enhancements may give multiple stances
+        std::list<Stance> stances = item->Stances(te->HasSelection() ? te->Selection() : "");
+        std::list<Stance>::const_iterator sit = stances.begin();
+        while (sit != stances.end())
+        {
+            NotifyNewStance((*sit));
+            ++sit;
+        }
     }
     else
     {
@@ -6568,7 +6593,8 @@ Item Character::GetLatestVersionOfItem(const Item & original)
         std::vector<ItemAugment> augments = original.Augments();
         for (size_t i = 0; i < augments.size(); ++i)
         {
-            if (augments[i].SelectedAugment() != "")
+            if (augments[i].HasSelectedAugment()
+                    && augments[i].SelectedAugment() != "")
             {
                 const Augment & augment = FindAugmentByName(augments[i].SelectedAugment());
                 if (augment.Name() == "")

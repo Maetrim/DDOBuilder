@@ -421,11 +421,12 @@ BOOL CMainFrame::OnCmdMsg(
         // holds a view until we get the 1st view that handles the message.
         for (size_t x = 0; bReturn == FALSE && x < m_dockablePanes.size(); x++)
         {
-            CView * pView = m_dockablePanes[x]->GetView();
-            if (pView != NULL)
-            {
-                bReturn = pView->OnCmdMsg(nID, nCode, pExtra, pHandlerInfo);
-            }
+            bReturn = m_dockablePanes[x]->OnCmdMsg(nID, nCode, pExtra, pHandlerInfo);
+            //CView * pView = m_dockablePanes[x]->GetView();
+            //if (pView != NULL)
+            //{
+            //    bReturn = pView->OnCmdMsg(nID, nCode, pExtra, pHandlerInfo);
+            //}
         }
     }
 

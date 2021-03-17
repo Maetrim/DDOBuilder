@@ -39,4 +39,7 @@ class CCustomDockablePane :
         // Members
         CView * m_view;
         bool m_resizeViewWithPane;
+        CRect m_cachedRect;
+
+        friend class CMainFrame;
 };

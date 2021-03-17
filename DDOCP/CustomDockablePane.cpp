@@ -142,6 +142,20 @@ BOOL CCustomDockablePane::OnCmdMsg(
         handled =  CDockablePane::OnCmdMsg(nID, nCode, pExtra, pHandlerInfo);
     }
 
+    // this is a bit of a hack. ideally this should be in the WM_MOVE message or equivalent
+    // but even though those are sent to this window, they are never actually mapped to
+    // us through our message map so they cannot be used for this (not sure where they end up)
+    CRect rect;
+    GetWindowRect(&rect);
+    if (rect != m_cachedRect)
+    {
+        m_cachedRect = rect;
+        if (m_view != NULL)
+        {
+            m_view->PostMessage(WM_SIZE, SIZE_RESTORED, MAKELONG(rect.Width(), rect.Height()));
+        }
+    }
+
     return handled;
 }
 
@@ -191,4 +205,3 @@ void CCustomDockablePane::OnWindowPosChanging(WINDOWPOS * pos)
     CDockablePane::OnWindowPosChanging(pos);
     PostMessage(WM_SIZE, SIZE_RESTORED, MAKELONG(pos->cx, pos->cy));
 }
-

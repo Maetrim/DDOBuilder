@@ -78,6 +78,8 @@ class BreakdownItemWeapon :
         BreakdownItemWeaponCriticalMultiplier m_criticalMultiplier19To20;
         BreakdownItemWeaponDRBypass m_drBypass;
         BreakdownItemSimple m_attackSpeed;
+        BreakdownItemSimple m_ghostTouch;
+        BreakdownItemSimple m_trueSeeing;
         size_t m_centeredCount;
         size_t m_weaponCriticalMuliplier;
 

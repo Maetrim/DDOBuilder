@@ -432,7 +432,9 @@ bool Effect::VerifyObject(std::stringstream * ss) const
         case Effect_CriticalMultiplier:
         case Effect_CriticalRange:
         case Effect_DamageBonus:
+        case Effect_GhostTouch:
         case Effect_Seeker:
+        case Effect_TrueSeeing:
         case Effect_VorpalRange:
         case Effect_WeaponBaseDamageBonus:
         case Effect_WeaponDamageBonus:
