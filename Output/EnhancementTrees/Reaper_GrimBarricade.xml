@@ -195,7 +195,7 @@ in Reaper Difficulty.</Description>
       <EnhancementTreeItem>
          <Name>Reaper's Bulwark/Shroud I</Name>
          <InternalName>GrimBulwarkShroudI</InternalName>
-         <Description>+[1/2/3] (PRR or MRR) while in Reaper Difficulty</Description>
+         <Description>+[1/2/3] PRR or MRR while in Reaper Difficulty</Description>
          <Icon>ReapersBulwarkShroud</Icon>
          <XPosition>0</XPosition>
          <YPosition>1</YPosition>
@@ -310,6 +310,14 @@ and gain a +[5/10/15] Reaper Bonus to Saving Throws for 30 seconds.</Description
                <MinLevel>4</MinLevel>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Reaper</Bonus>
+            <AmountVector size="3">5 10 15</AmountVector>
+            <Save>All</Save>
+            <Stance>Reaper</Stance>
+            <Stance>Clickie</Stance>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Reaper's Constitution I</Name>
@@ -361,7 +369,7 @@ and gain a +[5/10/15] Reaper Bonus to Saving Throws for 30 seconds.</Description
       <EnhancementTreeItem>
          <Name>Reaper's Bullwark/Shroud II</Name>
          <InternalName>GrimBulwarkShroudII</InternalName>
-         <Description>+[1/2/3] (PRR or MRR) while in Reaper Difficulty (Take the same as tier 1)</Description>
+         <Description>+[1/2/3] PRR or MRR while in Reaper Difficulty (Take the same as tier 1)</Description>
          <Icon>ReapersBulwarkShroud</Icon>
          <XPosition>0</XPosition>
          <YPosition>2</YPosition>
@@ -551,7 +559,7 @@ and gain a +[5/10/15] Reaper Bonus to Saving Throws for 30 seconds.</Description
       <EnhancementTreeItem>
          <Name>Reaper's Bulwark/Shroud III</Name>
          <InternalName>GrimBulwarkShroudIII</InternalName>
-         <Description>+[1/2/3] (PRR or MRR) while in Reaper Difficulty (Take the same as tier 1)</Description>
+         <Description>+[1/2/3] PRR or MRR while in Reaper Difficulty (Take the same as tier 1)</Description>
          <Icon>ReapersBulwarkShroud</Icon>
          <XPosition>0</XPosition>
          <YPosition>3</YPosition>
@@ -739,7 +747,7 @@ and gain a +[5/10/15] Reaper Bonus to Saving Throws for 30 seconds.</Description
       <EnhancementTreeItem>
          <Name>Reaper's Bulwark/Shroud IV</Name>
          <InternalName>GrimBulwarkShroudIV</InternalName>
-         <Description>+[2/4/6] (PRR or MRR) while in Reaper Difficulty (Take the same as tier 1)</Description>
+         <Description>+[2/4/6] PRR or MRR while in Reaper Difficulty (Take the same as tier 1)</Description>
          <Icon>ReapersBulwarkShroud</Icon>
          <XPosition>0</XPosition>
          <YPosition>4</YPosition>
@@ -811,12 +819,19 @@ and gain a +[10/20/30] Profane Bonus to PRR for 30 Seconds.</Description>
                <MinLevel>21</MinLevel>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>PRR</Type>
+            <Bonus>Profane</Bonus>
+            <AmountVector size="3">10 20 30</AmountVector>
+            <Stance>Reaper</Stance>
+            <Stance>Clickie</Stance>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Reaper's Steadfastness</Name>
          <InternalName>GrimReapersSteadfastness</InternalName>
          <Description>While in Reaper Difficulty, activate to expend one Reaper Charge
-and gain a +30/60/90 Reaper Bonus to Fortification and a +[10/20/30] Reaper Bonus
+and gain a +[30/60/90] Reaper Bonus to Fortification and a +[10/20/30] Reaper Bonus
 to Energy Resistance for 30 Seconds.</Description>
          <Icon>ReapersSteadfastness</Icon>
          <XPosition>3</XPosition>
@@ -830,6 +845,21 @@ to Energy Resistance for 30 Seconds.</Description>
                <MinLevel>21</MinLevel>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>Fortification</Type>
+            <Bonus>Reaper</Bonus>
+            <AmountVector size="3">30 60 90</AmountVector>
+            <Stance>Reaper</Stance>
+            <Stance>Clickie</Stance>
+         </Effect>
+         <Effect>
+            <Type>EnergyResistance</Type>
+            <Bonus>Reaper</Bonus>
+            <AmountVector size="3">10 20 30</AmountVector>
+            <Energy>All</Energy>
+            <Stance>Reaper</Stance>
+            <Stance>Clickie</Stance>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Reaper's Heightened Evasion I</Name>
@@ -860,7 +890,7 @@ to Energy Resistance for 30 Seconds.</Description>
       <EnhancementTreeItem>
          <Name>Reaper's Bulwark/Shroud V</Name>
          <InternalName>GrimBulwarkShroudV</InternalName>
-         <Description>+[2/4/6] (PRR or MRR) while in Reaper Difficulty (Take the same as tier 4)</Description>
+         <Description>+[2/4/6] PRR or MRR while in Reaper Difficulty (Take the same as tier 4)</Description>
          <Icon>ReapersBulwarkShroud</Icon>
          <XPosition>0</XPosition>
          <YPosition>5</YPosition>

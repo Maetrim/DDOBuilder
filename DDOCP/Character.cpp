@@ -97,7 +97,8 @@ Character::Character(CDDOCPDoc * pDoc) :
     m_classTreeSpend(0),
     m_previousGuildLevel(0),
     m_bShowEpicOnly(false),
-    m_bShowUnavailableFeats(false)
+    m_bShowUnavailableFeats(false),
+    m_bShowIgnoredFeats(false)
 {
     DL_INIT(Character_PROPERTIES)
     // make sure we have MAX_LEVEL default LevelTraining objects in the list
@@ -2468,7 +2469,13 @@ std::vector<Feat> Character::TrainableFeats(
                     || (*it).Name() == includeThisFeat)
             {
                 // they can select this one, add it to the available list
-                trainable.push_back((*it));
+                // unless it is in the ignore list
+                if ((*it).Name() == includeThisFeat
+                        || m_bShowIgnoredFeats
+                        || !FeatIsInIgnoreList((*it).Name()))
+                {
+                    trainable.push_back((*it));
+                }
             }
             ++it;
         }
@@ -6737,6 +6744,31 @@ void Character::ToggleShowEpicOnly()
 void Character::ToggleShowUnavailable()
 {
     m_bShowUnavailableFeats = !m_bShowUnavailableFeats;
+}
+
+bool Character::ShowIgnoredFeats() const
+{
+    return m_bShowIgnoredFeats;
+}
+
+void Character::ToggleShowIgnoredFeats()
+{
+    m_bShowIgnoredFeats = !m_bShowIgnoredFeats;
+}
+
+void Character::AddFeatToIgnoreList(const std::string & name)
+{
+    ::AddFeatToIgnoreList(name);
+}
+
+void Character::RemoveFeatFromIgnoreList(const std::string & name)
+{
+    ::RemoveFeatFromIgnoreList(name);
+}
+
+bool Character::FeatIsInIgnoreList(const std::string & name) const
+{
+    return ::FeatIsInIgnoreList(name);
 }
 
 void Character::ApplySetBonus(

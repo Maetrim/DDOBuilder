@@ -10,6 +10,7 @@
 #include "StancesView.h"
 #include <boost/assign/std/vector.hpp>
 #include <algorithm>
+#include "IgnoredFeatsFile.h"
 
 namespace
 {
@@ -3373,4 +3374,58 @@ bool AddMenuItem(
     }
 
     return bSuccess;
+}
+
+void AddFeatToIgnoreList(const std::string & name)
+{
+    CDDOCPApp * pApp = dynamic_cast<CDDOCPApp*>(AfxGetApp());
+    if (pApp != NULL)
+    {
+        std::list<std::string> ignoredFeats = pApp->FeatIgnoreList();
+        ignoredFeats.push_back(name);
+        IgnoredFeatsFile file("");
+        file.Save(ignoredFeats);
+        pApp->UpdateFeatIgnoreList(ignoredFeats);
+    }
+}
+
+void RemoveFeatFromIgnoreList(const std::string & name)
+{
+    CDDOCPApp * pApp = dynamic_cast<CDDOCPApp*>(AfxGetApp());
+    if (pApp != NULL)
+    {
+        std::list<std::string> ignoredFeats = pApp->FeatIgnoreList();
+        std::list<std::string>::iterator it = ignoredFeats.begin();
+        while (it != ignoredFeats.end())
+        {
+            if ((*it) == name)
+            {
+                it = ignoredFeats.erase(it);
+            }
+            else
+            {
+                ++it;
+            }
+        }
+        IgnoredFeatsFile file("");
+        file.Save(ignoredFeats);
+        pApp->UpdateFeatIgnoreList(ignoredFeats);
+    }
+}
+
+bool FeatIsInIgnoreList(const std::string & name)
+{
+    bool found = false;
+    CDDOCPApp * pApp = dynamic_cast<CDDOCPApp*>(AfxGetApp());
+    if (pApp != NULL)
+    {
+        std::list<std::string> ignoredFeats = pApp->FeatIgnoreList();
+        std::list<std::string>::iterator it = ignoredFeats.begin();
+        while (!found && it != ignoredFeats.end())
+        {
+            found = ((*it) == name);
+            ++it;
+        }
+    }
+    return found;
 }

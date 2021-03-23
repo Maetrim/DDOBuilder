@@ -169,6 +169,10 @@ void Item::VerifyObject() const
         ss << "Item is missing image file \"" << Icon() << "\"\n";
         ok = false;
     }
+    if (m_hasDamageDice)
+    {
+        ok &= m_DamageDice.VerifyObject(&ss);
+    }
     // check item specific effects
     if (m_hasItemEffects)
     {

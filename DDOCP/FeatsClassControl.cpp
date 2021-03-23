@@ -10,6 +10,7 @@ namespace
 {
     const int c_FeatColumnWidth = 200;      // pixels
     const UINT UWM_UPDATE = ::RegisterWindowMessage(_T("Update"));
+    const UINT UWM_TOGGLE_FEAT = ::RegisterWindowMessage(_T("ToggleIgnoreFeat"));
     const int c_dudLevel = MAX_LEVEL + 1;
 }
 
@@ -28,6 +29,7 @@ CFeatsClassControl::CFeatsClassControl() :
     m_featSelectItem(HT_None, CRect(0, 0, 0, 0), 0, 0),
     m_bAlternateFeat(false)
 {
+    m_featSelector.SetIsForFeats();
     m_classImagesSmall.Create(16, 15, ILC_COLOR24, 0, Class_Count);
     CBitmap images;
     images.LoadBitmap(IDR_MENUICONS_TOOLBAR);
@@ -87,6 +89,7 @@ BEGIN_MESSAGE_MAP(CFeatsClassControl, CWnd)
     ON_CBN_SELENDOK(IDC_COMBO_FEATSELECT, OnFeatSelectOk)
     ON_CBN_SELENDCANCEL(IDC_COMBO_FEATSELECT, OnFeatSelectCancel)
     ON_MESSAGE(WM_MOUSEHOVER, OnHoverComboBox)
+    ON_REGISTERED_MESSAGE(UWM_TOGGLE_FEAT, OnToggleFeatIgnore)
 END_MESSAGE_MAP()
 #pragma warning(pop)
 
@@ -1465,5 +1468,27 @@ void CFeatsClassControl::HideTip()
 void CFeatsClassControl::SwapClasses(size_t level1, size_t level2)
 {
     m_pCharacter->SwapClasses(level1, level2);
+}
+
+LRESULT CFeatsClassControl::OnToggleFeatIgnore(WPARAM wParam, LPARAM lParam)
+{
+    // wParam = index of clicked item
+    // lParam = (CString*)name of feat
+    int selection = static_cast<int>(wParam);
+    CString* pFeatName = static_cast<CString*>((void*)lParam);
+    std::string featName = (LPCTSTR)(*pFeatName);
+    if (!m_pCharacter->ShowIgnoredFeats())
+    {
+        m_featSelector.DeleteString(selection);
+    }
+    if (m_pCharacter->FeatIsInIgnoreList(featName))
+    {
+        m_pCharacter->RemoveFeatFromIgnoreList(featName);
+    }
+    else
+    {
+        m_pCharacter->AddFeatToIgnoreList(featName);
+    }
+    return 0;
 }
 

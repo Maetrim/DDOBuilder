@@ -518,6 +518,10 @@ bool Effect::VerifyObject(std::stringstream * ss) const
             ok = false;
         }
     }
+    if (HasDiceRoll())
+    {
+        ok &= m_DiceRoll.VerifyObject(ss);
+    }
     return ok;
 }
 

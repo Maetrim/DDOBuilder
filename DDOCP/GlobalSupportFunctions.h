@@ -167,3 +167,6 @@ void FormatExportData(CString * exportData);
 size_t CasterLevel(Character * pCharacter, ClassType c);
 
 bool AddMenuItem(HMENU hTargetMenu, const CString& itemText, UINT itemID);
+void AddFeatToIgnoreList(const std::string & name);
+void RemoveFeatFromIgnoreList(const std::string & name);
+bool FeatIsInIgnoreList(const std::string & name);

@@ -309,7 +309,7 @@ Fallen Bond now grants +2 to Tactics DCs.</Description>
             <EnhancementSelection>
                <Name>Fallen</Name>
                <Description>+[1/2/3] to your Reflex Saving Throw</Description>
-               <Icon>TrueResilience</Icon>
+               <Icon>TrueResilienceFallen</Icon>
                <Cost>1</Cost>
                <Requirements>
                   <Requirement>
@@ -26614,7 +26614,7 @@ Rank 3: Supreme Cleave gives +1 Temp HP per hit, up to +10. (Hidden Effect)</Des
       <EnhancementTreeItem>
          <Name>Frenzied Berserker: Crazy Strike</Name>
          <InternalName>FBCrazyStrike</InternalName>
-         <Description>When you hit with Cracking Attack, for 12 seconds you gain +[0.5/0.1/2][W]
+         <Description>When you hit with Cracking Attack, for 12 seconds you gain +[0.5/1/2][W]
 damage and +[1/2/3] Melee Power.</Description>
          <Icon>FBCrazyStrike</Icon>
          <XPosition>1</XPosition>
@@ -30372,18 +30372,18 @@ hand gains an additional +1 to its Enhancement bonus.</Description>
          <Selector>
             <EnhancementSelection>
                <Name>Blow By Blow</Name>
-               <Description>Make a Melee attack with +(1/2/3) critical threat range that deals
-(+[1/2/3])d6 extra Sonic damage, and reduces your threat with nearby enemies by
-(100/200/300). This Sonic damage scales with spell power. </Description>
+               <Description>Make a Melee attack with +[1/2/3] critical threat range that deals
++[1/2/3]d6 extra Sonic damage, and reduces your threat with nearby enemies by
+[100/200/300]. This Sonic damage scales with spell power. </Description>
                <Icon>SBBlowByBlow</Icon>
                <Cost>1</Cost>
                <Clickie/>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Blow By Blow (Ranged)</Name>
-               <Description>Make a Ranged attack with +(1/2/3) critical threat range that deals
-(+[1/2/3])d6 extra Sonic damage, and reduces your threat with nearby enemies by
-(100/200/300). This Sonic damage scales with spell power. </Description>
+               <Description>Make a Ranged attack with +[1/2/3] critical threat range that deals
++[1/2/3]d6 extra Sonic damage, and reduces your threat with nearby enemies by
+[100/200/300]. This Sonic damage scales with spell power. </Description>
                <Icon>SBBlowByBlowRanged</Icon>
                <Cost>1</Cost>
                <Clickie/>
@@ -31690,7 +31690,7 @@ Cooldown: 8 seconds.</Description>
       <EnhancementTreeItem>
          <Name>Warchanter: Iced Edges</Name>
          <InternalName>WCIcedEdges</InternalName>
-         <Description>+[1d3/1d4/1d6] cold damage with attacks. Cooldown: 1 second. </Description>
+         <Description>+1d[3/4/6] cold damage with attacks. Cooldown: 1 second. </Description>
          <Icon>WCIcedEdges</Icon>
          <XPosition>3</XPosition>
          <YPosition>2</YPosition>
@@ -31879,7 +31879,7 @@ Rank 3: You are also immune to Fatigue, including Fatigue from Skaldic Rage.</De
          <Description>Make a melee attack with +[1/2/3][W] damage.
 Affected enemies must make a Fortitude save (10 + Charisma modifier + [0/¼/½] Bard Level + Stunning modifiers)
 or become frozen solid for number of seconds equal to your Bard level.
-Cooldown: (12/9/6) seconds. Cost: 1 sp. Bosses cannot be frozen.</Description>
+Cooldown: [12/9/6] seconds. Cost: 1 sp. Bosses cannot be frozen.</Description>
          <Icon>WCTheFrozenFury</Icon>
          <XPosition>3</XPosition>
          <YPosition>3</YPosition>
@@ -32112,7 +32112,7 @@ Bosses cannot be frozen.</Description>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Rallying Cry</Name>
-               <Description>Action Boost: You and all allies within range of your songs gain +(10/15/20)%
+               <Description>Action Boost: You and all allies within range of your songs gain +[10/15/20]%
 Action Boost bonus to movement speed and +1 Action Boost bonus to Saving Throws
 for twenty seconds. This ability can be used while feared, and dispels Fear effects.
 (Cooldown: 30 seconds)</Description>
@@ -32209,7 +32209,7 @@ ranged damage, and spell critical chance.</Description>
          <InternalName>WCSpinningIce</InternalName>
          <Description>Attack all enemies around you for +2[W] damage.
 Each affected enemy is frozen solid if they fail a Fortitude save
-(10/12/14 + Charisma modifier +[ 0/¼/½] Bard Level + Stunning modifiers)
+(10/12/14 + Charisma modifier +[0/¼/½] Bard Level + Stunning modifiers)
 for a number of seconds equal to your half your Bard level.
 Bosses cannot be frozen.
 Activation cost: 6/4/2 SP. Cooldown 45/35/25 seconds.</Description>
@@ -87303,6 +87303,20 @@ and gain a +[10/20/30]% Bonus to Doublestrike and Doubleshot for 30 seconds.</De
                <MinLevel>4</MinLevel>
             </Requirement>
          </Requirements>
+        <Effect>
+            <Type>Doublestrike</Type>
+            <Bonus>Reaper</Bonus>
+            <AmountVector size="3">10 20 30</AmountVector>
+            <Stance>Reaper</Stance>
+            <Stance>Clickie</Stance>
+        </Effect>
+        <Effect>
+            <Type>Doubleshot</Type>
+            <Bonus>Reaper</Bonus>
+            <AmountVector size="3">10 20 30</AmountVector>
+            <Stance>Reaper</Stance>
+            <Stance>Clickie</Stance>
+        </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Reaper's Strength or Dexterity I</Name>
@@ -87660,7 +87674,7 @@ and gain a +[10/20/30]% Bonus to Doublestrike and Doubleshot for 30 seconds.</De
          <Name>Reaper's Imbuement</Name>
          <InternalName>DAReapersImbuement</InternalName>
          <Description>While in Reaper Difficulty, activate to expend one Reaper Charge to
-gain Ghost Touch, bypass 5%/10%/15% of enemies' Fortification, and bypass 1/2/3%
+gain Ghost Touch, bypass [5/10/15]% of enemies' Fortification, and bypass [1/2/3]%
 of their Dodge. This lasts for 30 seconds.</Description>
          <Icon>ReapersImbuement</Icon>
          <XPosition>1</XPosition>
@@ -87674,6 +87688,20 @@ of their Dodge. This lasts for 30 seconds.</Description>
                <MinLevel>21</MinLevel>
             </Requirement>
          </Requirements>
+        <Effect>
+            <Type>FortificationBypass</Type>
+            <Bonus>Reaper</Bonus>
+            <AmountVector size="3">5 10 15</AmountVector>
+            <Stance>Reaper</Stance>
+            <Stance>Clickie</Stance>
+        </Effect>
+        <Effect>
+            <Type>DodgeBypass</Type>
+            <Bonus>Reaper</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Stance>Reaper</Stance>
+            <Stance>Clickie</Stance>
+        </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Reaper's Deadly Strikes</Name>
@@ -88077,7 +88105,7 @@ Every ability you take in this tree grants +4 Maximum Hit Points in Reaper Diffi
             </Requirement>
          </Requirements>
          <Effect>
-            <Type>SpellPower</Type>
+            <Type>UniversalSpellPower</Type>
             <Bonus>Reaper</Bonus>
             <SpellPower>All</SpellPower>
             <AmountVector size="3">2 4 6</AmountVector>
@@ -88112,7 +88140,7 @@ Every ability you take in this tree grants +4 Maximum Hit Points in Reaper Diffi
          <Name>Reaper's Power</Name>
          <InternalName>DirePower</InternalName>
          <Description>While in Reaper Difficulty, activate to expend one Reaper Charge
-and gain a +15/30/45 Profane Bonus to Universal Spell Power for 30 Seconds.</Description>
+and gain a +[15/30/45] Profane Bonus to Universal Spell Power for 30 Seconds.</Description>
          <Icon>ReapersPower</Icon>
          <XPosition>2</XPosition>
          <YPosition>1</YPosition>
@@ -88125,6 +88153,14 @@ and gain a +15/30/45 Profane Bonus to Universal Spell Power for 30 Seconds.</Des
                <MinLevel>4</MinLevel>
             </Requirement>
          </Requirements>
+        <Effect>
+            <Type>UniversalSpellPower</Type>
+            <Bonus>Profane</Bonus>
+            <AmountVector size="3">15 30 45</AmountVector>
+            <SpellPower>All</SpellPower>
+            <Stance>Reaper</Stance>
+            <Stance>Clickie</Stance>
+        </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Reapers's Ability I</Name>
@@ -88228,7 +88264,7 @@ and gain a +15/30/45 Profane Bonus to Universal Spell Power for 30 Seconds.</Des
             </Requirement>
          </Requirements>
          <Effect>
-            <Type>SpellPower</Type>
+            <Type>UniversalSpellPower</Type>
             <Bonus>Reaper</Bonus>
             <SpellPower>All</SpellPower>
             <AmountVector size="3">2 4 6</AmountVector>
@@ -88370,7 +88406,7 @@ and gain a +15/30/45 Profane Bonus to Universal Spell Power for 30 Seconds.</Des
             </Requirement>
          </Requirements>
          <Effect>
-            <Type>SpellPower</Type>
+            <Type>UniversalSpellPower</Type>
             <Bonus>Reaper</Bonus>
             <SpellPower>All</SpellPower>
             <AmountVector size="3">2 4 6</AmountVector>
@@ -88510,7 +88546,7 @@ and gain a +15/30/45 Profane Bonus to Universal Spell Power for 30 Seconds.</Des
             </Requirement>
          </Requirements>
          <Effect>
-            <Type>SpellPower</Type>
+            <Type>UniversalSpellPower</Type>
             <Bonus>Reaper</Bonus>
             <SpellPower>All</SpellPower>
             <AmountVector size="3">2 4 6</AmountVector>
@@ -88534,12 +88570,20 @@ and gain a +[2/4/6] Reaper Bonus to Spell DC's for 30 seconds.</Description>
                <MinLevel>21</MinLevel>
             </Requirement>
          </Requirements>
+        <Effect>
+            <Type>SpellDC</Type>
+            <Bonus>Reaper</Bonus>
+            <AmountVector size="3">2 4 6</AmountVector>
+            <School>All</School>
+            <Stance>Reaper</Stance>
+            <Stance>Clickie</Stance>
+        </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Reaper's Efficiency</Name>
          <InternalName>DireEfficiency</InternalName>
          <Description>While in Reaper Difficulty, activate to expend one Reaper Charge
-and reduce the Spell point cost of your spells by 15/30/45% for 30 seconds.</Description>
+and reduce the Spell point cost of your spells by [15/30/45]% for 30 seconds.</Description>
          <Icon>ReapersEfficiency</Icon>
          <XPosition>3</XPosition>
          <YPosition>4</YPosition>
@@ -88599,7 +88643,7 @@ and reduce the Spell point cost of your spells by 15/30/45% for 30 seconds.</Des
             </Requirement>
          </Requirements>
          <Effect>
-            <Type>SpellPower</Type>
+            <Type>UniversalSpellPower</Type>
             <Bonus>Reaper</Bonus>
             <SpellPower>All</SpellPower>
             <AmountVector size="3">2 4 6</AmountVector>
@@ -88925,7 +88969,7 @@ in Reaper Difficulty.</Description>
       <EnhancementTreeItem>
          <Name>Reaper's Bulwark/Shroud I</Name>
          <InternalName>GrimBulwarkShroudI</InternalName>
-         <Description>+[1/2/3] (PRR or MRR) while in Reaper Difficulty</Description>
+         <Description>+[1/2/3] PRR or MRR while in Reaper Difficulty</Description>
          <Icon>ReapersBulwarkShroud</Icon>
          <XPosition>0</XPosition>
          <YPosition>1</YPosition>
@@ -89040,6 +89084,14 @@ and gain a +[5/10/15] Reaper Bonus to Saving Throws for 30 seconds.</Description
                <MinLevel>4</MinLevel>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Reaper</Bonus>
+            <AmountVector size="3">5 10 15</AmountVector>
+            <Save>All</Save>
+            <Stance>Reaper</Stance>
+            <Stance>Clickie</Stance>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Reaper's Constitution I</Name>
@@ -89091,7 +89143,7 @@ and gain a +[5/10/15] Reaper Bonus to Saving Throws for 30 seconds.</Description
       <EnhancementTreeItem>
          <Name>Reaper's Bullwark/Shroud II</Name>
          <InternalName>GrimBulwarkShroudII</InternalName>
-         <Description>+[1/2/3] (PRR or MRR) while in Reaper Difficulty (Take the same as tier 1)</Description>
+         <Description>+[1/2/3] PRR or MRR while in Reaper Difficulty (Take the same as tier 1)</Description>
          <Icon>ReapersBulwarkShroud</Icon>
          <XPosition>0</XPosition>
          <YPosition>2</YPosition>
@@ -89281,7 +89333,7 @@ and gain a +[5/10/15] Reaper Bonus to Saving Throws for 30 seconds.</Description
       <EnhancementTreeItem>
          <Name>Reaper's Bulwark/Shroud III</Name>
          <InternalName>GrimBulwarkShroudIII</InternalName>
-         <Description>+[1/2/3] (PRR or MRR) while in Reaper Difficulty (Take the same as tier 1)</Description>
+         <Description>+[1/2/3] PRR or MRR while in Reaper Difficulty (Take the same as tier 1)</Description>
          <Icon>ReapersBulwarkShroud</Icon>
          <XPosition>0</XPosition>
          <YPosition>3</YPosition>
@@ -89469,7 +89521,7 @@ and gain a +[5/10/15] Reaper Bonus to Saving Throws for 30 seconds.</Description
       <EnhancementTreeItem>
          <Name>Reaper's Bulwark/Shroud IV</Name>
          <InternalName>GrimBulwarkShroudIV</InternalName>
-         <Description>+[2/4/6] (PRR or MRR) while in Reaper Difficulty (Take the same as tier 1)</Description>
+         <Description>+[2/4/6] PRR or MRR while in Reaper Difficulty (Take the same as tier 1)</Description>
          <Icon>ReapersBulwarkShroud</Icon>
          <XPosition>0</XPosition>
          <YPosition>4</YPosition>
@@ -89541,12 +89593,19 @@ and gain a +[10/20/30] Profane Bonus to PRR for 30 Seconds.</Description>
                <MinLevel>21</MinLevel>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>PRR</Type>
+            <Bonus>Profane</Bonus>
+            <AmountVector size="3">10 20 30</AmountVector>
+            <Stance>Reaper</Stance>
+            <Stance>Clickie</Stance>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Reaper's Steadfastness</Name>
          <InternalName>GrimReapersSteadfastness</InternalName>
          <Description>While in Reaper Difficulty, activate to expend one Reaper Charge
-and gain a +30/60/90 Reaper Bonus to Fortification and a +[10/20/30] Reaper Bonus
+and gain a +[30/60/90] Reaper Bonus to Fortification and a +[10/20/30] Reaper Bonus
 to Energy Resistance for 30 Seconds.</Description>
          <Icon>ReapersSteadfastness</Icon>
          <XPosition>3</XPosition>
@@ -89560,6 +89619,21 @@ to Energy Resistance for 30 Seconds.</Description>
                <MinLevel>21</MinLevel>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>Fortification</Type>
+            <Bonus>Reaper</Bonus>
+            <AmountVector size="3">30 60 90</AmountVector>
+            <Stance>Reaper</Stance>
+            <Stance>Clickie</Stance>
+         </Effect>
+         <Effect>
+            <Type>EnergyResistance</Type>
+            <Bonus>Reaper</Bonus>
+            <AmountVector size="3">10 20 30</AmountVector>
+            <Energy>All</Energy>
+            <Stance>Reaper</Stance>
+            <Stance>Clickie</Stance>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Reaper's Heightened Evasion I</Name>
@@ -89590,7 +89664,7 @@ to Energy Resistance for 30 Seconds.</Description>
       <EnhancementTreeItem>
          <Name>Reaper's Bulwark/Shroud V</Name>
          <InternalName>GrimBulwarkShroudV</InternalName>
-         <Description>+[2/4/6] (PRR or MRR) while in Reaper Difficulty (Take the same as tier 4)</Description>
+         <Description>+[2/4/6] PRR or MRR while in Reaper Difficulty (Take the same as tier 4)</Description>
          <Icon>ReapersBulwarkShroud</Icon>
          <XPosition>0</XPosition>
          <YPosition>5</YPosition>

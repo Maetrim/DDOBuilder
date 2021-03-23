@@ -15,6 +15,7 @@ namespace
     const int c_controlSpacing = 3;
     const UINT UWM_NEW_DOCUMENT = ::RegisterWindowMessage(_T("NewActiveDocument"));
     const UINT UWM_UPDATE_COMPLETE = ::RegisterWindowMessage(_T("UpdateComplete"));
+    const UINT UWM_TOGGLE_FEAT = ::RegisterWindowMessage(_T("ToggleIgnoreFeat"));
 
     enum SkillListColumns
     {
@@ -48,6 +49,9 @@ CLevelUpView::CLevelUpView() :
     m_hoverItem(-1),
     m_bIgnoreNextMessage(false)
 {
+    m_comboFeatSelect[0].SetIsForFeats();
+    m_comboFeatSelect[1].SetIsForFeats();
+    m_comboFeatSelect[2].SetIsForFeats();
     m_imagesSkills.Create(
             32,             // all icons are 32x32 pixels
             32,
@@ -147,6 +151,7 @@ BEGIN_MESSAGE_MAP(CLevelUpView, CFormView)
     ON_MESSAGE(WM_MOUSEENTER, OnMouseEnter)
     ON_MESSAGE(WM_MOUSELEAVE, OnMouseLeave)
     ON_MESSAGE(WM_MOUSEHOVER, OnHoverComboBox)
+    ON_REGISTERED_MESSAGE(UWM_TOGGLE_FEAT, OnToggleFeatIgnore)
 END_MESSAGE_MAP()
 #pragma warning(pop)
 
@@ -1256,7 +1261,7 @@ void CLevelUpView::OnDoubleClickListSkills(NMHDR*, LRESULT* pResult)
             m_comboSkillTome.MoveWindow(rctItem);
 
             // make sure it has the correct item selected
-            size_t value =m_pCharacter->SkillTomeValue(m_skillBeingEdited);
+            size_t value = m_pCharacter->SkillTomeValue(m_skillBeingEdited);
             m_comboSkillTome.SetCurSel(value);      // show previous selection for this skill
             m_comboSkillTome.ShowWindow(SW_SHOW);
             m_comboSkillTome.SetFocus();
@@ -2157,4 +2162,38 @@ void CLevelUpView::SetAbilitiesAtLevel()
         m_abilitiesAtLevel[4].SetWindowText("WIS");
         m_abilitiesAtLevel[5].SetWindowText("CHA");
     }
+}
+
+LRESULT CLevelUpView::OnToggleFeatIgnore(WPARAM wParam, LPARAM lParam)
+{
+    // wParam = index of clicked item
+    // lParam = (CString*)name of feat
+    int selection = static_cast<int>(wParam);
+    CString* pFeatName = static_cast<CString*>((void*)lParam);
+    std::string featName = (LPCTSTR)(*pFeatName);
+    if (!m_pCharacter->ShowIgnoredFeats())
+    {
+        CWnd * pWnd = GetFocus();
+        if (pWnd == &m_comboFeatSelect[0])
+        {
+            m_comboFeatSelect[0].DeleteString(wParam);
+        }
+        if (pWnd == &m_comboFeatSelect[1])
+        {
+            m_comboFeatSelect[1].DeleteString(wParam);
+        }
+        if (pWnd == &m_comboFeatSelect[2])
+        {
+            m_comboFeatSelect[2].DeleteString(wParam);
+        }
+    }
+    if (m_pCharacter->FeatIsInIgnoreList(featName))
+    {
+        m_pCharacter->RemoveFeatFromIgnoreList(featName);
+    }
+    else
+    {
+        m_pCharacter->AddFeatToIgnoreList(featName);
+    }
+    return 0;
 }

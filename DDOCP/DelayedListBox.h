@@ -22,6 +22,7 @@ protected:
     virtual void DeleteItem(LPDELETEITEMSTRUCT);
     afx_msg void OnShowWindow(BOOL bShow, UINT nStatus);
     afx_msg void OnLButtonUp(UINT uFlags, CPoint point);
+    afx_msg void OnRButtonDown(UINT nFlags, CPoint point);
     DECLARE_MESSAGE_MAP()
     ElapsedTimer m_elapsedTime;
     CComboBoxTooltip * m_pOwner;

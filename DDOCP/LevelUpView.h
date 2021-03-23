@@ -60,6 +60,7 @@ class CLevelUpView :
         afx_msg LRESULT OnMouseLeave(WPARAM wParam, LPARAM lParam);
         afx_msg void OnButtonLevel(UINT nID);
         afx_msg LRESULT OnHoverComboBox(WPARAM wParam, LPARAM lParam);
+        afx_msg LRESULT OnToggleFeatIgnore(WPARAM wParam, LPARAM lParam);
         DECLARE_MESSAGE_MAP()
 
         // DocumentObserver overrides

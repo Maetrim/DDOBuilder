@@ -74,6 +74,8 @@ class CDDOCPView :
         afx_msg void OnEditFeatsUpdateShowUnavailable(CCmdUI * pCmdUi);
         afx_msg void OnEditFeatsEpicOnly();
         afx_msg void OnEditFeatsShowUnavailable();
+        afx_msg void OnEditFeatsUpdateFeatIgnoreListActive(CCmdUI * pCmdUi);
+        afx_msg void OnEditFeatsFeatIgnoreListActive();
         DECLARE_MESSAGE_MAP()
 
         // Character overrides

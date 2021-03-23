@@ -11,6 +11,8 @@ public:
     CComboBoxTooltip();
     virtual ~CComboBoxTooltip();
 
+    void SetIsForFeats();
+
     void SetImageList(CImageList * il);
     // Derived class is responsible for implementing these handlers
     //   for owner/self draw controls (except for the optional DeleteItem)
@@ -18,6 +20,7 @@ public:
     virtual void MeasureItem(LPMEASUREITEMSTRUCT lpMis) override;
     virtual int CompareItem(LPCOMPAREITEMSTRUCT lpCis) override;
     virtual void DeleteItem(LPDELETEITEMSTRUCT lpDis) override;
+    void OnRButtonDown(int selection);
 protected:
     afx_msg void OnSetFocus(CWnd * pWnd);
     DECLARE_MESSAGE_MAP()
@@ -27,5 +30,6 @@ protected:
     int m_selection;
     bool m_bSubclassedListbox;
     CDelayedListBox m_delayedListBox;
+    bool m_bFeatList;
 };
 

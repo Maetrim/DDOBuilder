@@ -173,3 +173,24 @@ void Dice::AddStacks(size_t numStacks)
     Set_Number(vnumber);
 }
 
+bool Dice::VerifyObject(std::stringstream * ss) const
+{
+    bool ok = true;
+    try
+    {
+        // realize the vector to catch size/data mismatches
+        std::vector<size_t> n = m_Number;
+        n = m_Sides;
+        if (HasBonus())
+        {
+            std::vector<int> n = m_Bonus;
+        }
+    }
+    catch (...)
+    {
+        (*ss) << "Has bad vector size in Dice object\r\n";
+        ok = false;
+    }
+    return ok;
+}
+

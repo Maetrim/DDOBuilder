@@ -48,6 +48,9 @@ class CDDOCPApp :
         const std::list<GuildBuff> & GuildBuffs() const;
         const std::list<OptionalBuff> & OptionalBuffs() const;
         const std::list<SetBonus> & SetBonuses() const;
+        const std::list<std::string> & FeatIgnoreList() const;
+        void UpdateFeatIgnoreList(const std::list<std::string> & featList);
+
 
         virtual void PreLoadState();
         virtual void LoadCustomState();
@@ -67,6 +70,7 @@ class CDDOCPApp :
         void LoadGuildBuffs(const std::string & path);
         void LoadOptionalBuffs(const std::string & path);
         void LoadSetBonuses(const std::string & path);
+        void LoadFeatIgnoreList(const std::string & path);
         void VerifyFeats();     // verify that all feats are consistent
         void SeparateFeats();   // breaks them out into groups based on type
         void VerifyLoadedData();
@@ -97,6 +101,7 @@ class CDDOCPApp :
         std::list<GuildBuff> m_guildBuffs;
         std::list<OptionalBuff> m_optionalBuffs;
         std::list<SetBonus> m_setBonuses;
+        std::list<std::string> m_featIgnoreList;
 };
 
 extern CDDOCPApp theApp;

@@ -22,6 +22,8 @@ class Dice :
         void AddStacks(size_t numStacks);
         bool IsSameDiceType(const Dice & other) const;
 
+        bool VerifyObject(std::stringstream * ss) const;
+
         bool operator==(const Dice & other) const;
     protected:
         XmlLib::SaxContentElementInterface * StartElement(

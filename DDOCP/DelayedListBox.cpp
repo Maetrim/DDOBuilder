@@ -24,6 +24,7 @@ CDelayedListBox::~CDelayedListBox()
 BEGIN_MESSAGE_MAP(CDelayedListBox, CListBox)
     ON_WM_LBUTTONUP()
     ON_WM_SHOWWINDOW()
+    ON_WM_RBUTTONDOWN()
 END_MESSAGE_MAP()
 
 // CDelayedListBox message handlers
@@ -79,5 +80,11 @@ int CDelayedListBox::CompareItem(LPCOMPAREITEMSTRUCT lpCIS)
 void CDelayedListBox::DeleteItem(LPDELETEITEMSTRUCT lpDIS)
 {
     m_pOwner->DeleteItem(lpDIS);
+}
+
+void CDelayedListBox::OnRButtonDown(UINT nFlags, CPoint point)
+{
+    int sel = GetCurSel();
+    m_pOwner->OnRButtonDown(sel);
 }
 

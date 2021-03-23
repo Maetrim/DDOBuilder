@@ -59,6 +59,7 @@ protected:
     afx_msg void OnFeatSelectOk();
     afx_msg void OnFeatSelectCancel();
     afx_msg LRESULT OnHoverComboBox(WPARAM wParam, LPARAM lParam);
+    afx_msg LRESULT OnToggleFeatIgnore(WPARAM wParam, LPARAM lParam);
     DECLARE_MESSAGE_MAP()
 
 private:

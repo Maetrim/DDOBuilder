@@ -20,6 +20,7 @@
 #include "SpellsFile.h"
 #include "LocalSettingsStore.h"
 #include "SetBonusFile.h"
+#include "IgnoredFeatsFile.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -251,6 +252,7 @@ void CDDOCPApp::LoadData()
     LoadGuildBuffs(path);
     LoadOptionalBuffs(path);
     LoadSetBonuses(path);
+    LoadFeatIgnoreList(path);
     SeparateFeats();
 }
 
@@ -602,4 +604,35 @@ const std::list<SetBonus> & CDDOCPApp::SetBonuses() const
 
 // CDDOCPApp message handlers
 
+void CDDOCPApp::UpdateFeatIgnoreList(const std::list<std::string> & featList)
+{
+    m_featIgnoreList = featList;
+}
 
+const std::list<std::string> & CDDOCPApp::FeatIgnoreList() const
+{
+    return m_featIgnoreList;
+}
+
+void CDDOCPApp::LoadFeatIgnoreList(const std::string & path)
+{
+    // create the filename to load from
+    std::string filename = path;
+    filename += "FeatIgnoreList.xml";
+
+    bool exists = false;
+    WIN32_FIND_DATA findFileData;
+    HANDLE hFind = FindFirstFile(filename.c_str(), &findFileData);
+    if (hFind != INVALID_HANDLE_VALUE)
+    {
+        FindClose(hFind);
+        exists = true;
+    }
+
+    if (exists)
+    {
+        IgnoredFeatsFile file(filename);
+        file.Read();
+        m_featIgnoreList = file.IgnoredFeats();
+    }
+}
