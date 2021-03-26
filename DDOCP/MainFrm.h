@@ -58,6 +58,8 @@ class CMainFrame :
         afx_msg void OnUpdateDockPane(CCmdUI* pCmdUI);
         afx_msg void OnDockPane();
         afx_msg void OnResetScreenLayout();
+        afx_msg void OnUpdateSettingsLoadItems(CCmdUI* pCmdUI);
+        afx_msg void OnSettingsLoadItems();
         DECLARE_MESSAGE_MAP()
 
         void CopyDefaultIniToDDOBuilderIni();

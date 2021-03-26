@@ -59,6 +59,20 @@ void BreakdownItemBAB::CreateOtherEffects()
                 AddOtherEffect(classBonus);
             }
         }
+        if (classLevels[Class_Epic] > 0)
+        {
+            int amount = (int)((classLevels[Class_Epic] + 1) / 2);
+            std::string className = EnumEntryText(Class_Epic, classTypeMap);
+            className += " Levels";
+            ActiveEffect epicBonus(
+                    Bonus_class,
+                    className,
+                    1,
+                    amount,
+                    "");        // no tree
+            epicBonus.SetWholeNumbersOnly();
+            AddOtherEffect(epicBonus);
+        }
 
         if (m_overrideBabCount > 0)
         {
@@ -68,7 +82,7 @@ void BreakdownItemBAB::CreateOtherEffects()
                     Bonus_enhancement,
                     "BAB boost to character level",
                     1,
-                    MAX_LEVEL - currentBab - 5,
+                    MAX_LEVEL - currentBab,
                     "");        // no tree
             AddOtherEffect(amountTrained);
         }

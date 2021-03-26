@@ -43,6 +43,7 @@ class CFindGearDialog : public CDialog
         afx_msg void OnWindowPosChanging(WINDOWPOS * pos);
         afx_msg void OnSearchTextKillFocus();
         afx_msg void OnButtonEquipIt();
+        afx_msg void OnButtonClickedExcludeRaidItems();
     public:
         DECLARE_MESSAGE_MAP()
 
@@ -90,6 +91,7 @@ class CFindGearDialog : public CDialog
         CComboBox m_comboUpgradeDropList[MAX_Upgrades];
         CButton m_buttonEquipIt;
         Item m_item;
+        CButton m_checkExcludeRaidItems;
 
         std::list<Item> m_availableItems;
         CImageList m_itemImages;

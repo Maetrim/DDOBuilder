@@ -63,6 +63,7 @@ void CFindGearDialog::DoDataExchange(CDataExchange* pDX)
         DDX_Control(pDX, IDC_STATIC_UPGRADE_TYPE1 + i, m_upgradeType[i]);
         DDX_Control(pDX, IDC_COMBO_UPGRADE1 + i, m_comboUpgradeDropList[i]);
     }
+    DDX_Control(pDX, IDC_CHECK_EXCLUDE_RAID_ITEMS, m_checkExcludeRaidItems);
 }
 
 BEGIN_MESSAGE_MAP(CFindGearDialog, CDialog)
@@ -84,6 +85,7 @@ BEGIN_MESSAGE_MAP(CFindGearDialog, CDialog)
     ON_MESSAGE(WM_MOUSEENTER, OnMouseEnter)
     ON_BN_CLICKED(IDC_EQUIP_IT, OnButtonEquipIt)
     ON_EN_KILLFOCUS(IDC_EDIT_TEXT, OnSearchTextKillFocus)
+    ON_BN_CLICKED(IDC_CHECK_EXCLUDE_RAID_ITEMS, OnButtonClickedExcludeRaidItems)
 END_MESSAGE_MAP()
 
 // CFindGearDialog message handlers
@@ -140,6 +142,8 @@ void CFindGearDialog::PopulateAvailableItemList()
     m_editSearchText.GetWindowText(searchText);
     searchText.MakeLower(); // case less text match
 
+    bool bExcludeRaidItems = (m_checkExcludeRaidItems.GetCheck() == BST_CHECKED);
+
     // need to know how many levels and of what classes they have trained
     std::vector<size_t> classLevels = m_pCharacter->ClassLevels(MAX_LEVEL);
     // need to know which feats have already been trained by this point
@@ -160,6 +164,10 @@ void CFindGearDialog::PopulateAvailableItemList()
             if (searchText.GetLength() > 0)
             {
                 canSelect &= (*it).ContainsSearchText((LPCTSTR)searchText);
+            }
+            if (bExcludeRaidItems)
+            {
+                canSelect &= !(*it).ContainsSearchText((LPCTSTR)"raid:"); // search text must be lowercase
             }
             // some items have requirements to be able to use, see if they are met
             if ((*it).HasRequirementsToUse())
@@ -968,6 +976,11 @@ void CFindGearDialog::OnSearchTextKillFocus()
         m_bInitialising = false;
         m_previousSearchText = text;
     }
+}
+
+void CFindGearDialog::OnButtonClickedExcludeRaidItems()
+{
+    PopulateAvailableItemList();
 }
 
 BOOL CFindGearDialog::PreTranslateMessage(MSG* pMsg)

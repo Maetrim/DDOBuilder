@@ -235,6 +235,9 @@ void CForumExportDlg::PopulateExport()
             case FES_AlternateGearLayouts:
                 AddAlternateGear(forumExport);
                 break;
+            case FES_SimpleGear:
+                AddSimpleGear(forumExport);
+                break;
             }
         }
     }
@@ -1644,10 +1647,19 @@ void CForumExportDlg::AddTacticalDCs(std::stringstream & forumExport)
 void CForumExportDlg::AddGear(std::stringstream & forumExport)
 {
     EquippedGear gear = m_pCharacter->ActiveGearSet();
-    ExportGear(gear, forumExport);
+    ExportGear(gear, forumExport, false);
 }
 
-void CForumExportDlg::ExportGear(const EquippedGear & gear, std::stringstream & forumExport)
+void CForumExportDlg::AddSimpleGear(std::stringstream & forumExport)
+{
+    EquippedGear gear = m_pCharacter->ActiveGearSet();
+    ExportGear(gear, forumExport, true);
+}
+
+void CForumExportDlg::ExportGear(
+        const EquippedGear & gear,
+        std::stringstream & forumExport,
+        bool bSimple)
 {
     forumExport << "Equipped Gear Set : " << gear.Name() << "\r\n";
     forumExport << "------------------------------------------------------------------------------------------\r\n";
@@ -1666,18 +1678,25 @@ void CForumExportDlg::ExportGear(const EquippedGear & gear, std::stringstream & 
             forumExport << std::left << EnumEntryText((InventorySlotType)gi, InventorySlotTypeMap);
             forumExport << "    ";
             forumExport << item.Name();
-            forumExport << "\r\n";
-            // show effect descriptions up to the first encountered ":" character
-            const std::list<std::string> & eds = item.EffectDescription();
-            std::list<std::string>::const_iterator it = eds.begin();
-            while (it != eds.end())
+            if (item.HasDropLocation())
             {
-                std::string processedDescription = (*it);
-                processedDescription = processedDescription.substr(0, processedDescription.find(':'));
-                forumExport << "              ";
-                forumExport << processedDescription;
-                forumExport << "\r\n";
-                ++it;
+                forumExport << "   Drops in: " << item.DropLocation();
+            }
+            forumExport << "\r\n";
+            if (!bSimple)
+            {
+                // show effect descriptions up to the first encountered ":" character
+                const std::list<std::string> & eds = item.EffectDescription();
+                std::list<std::string>::const_iterator it = eds.begin();
+                while (it != eds.end())
+                {
+                    std::string processedDescription = (*it);
+                    processedDescription = processedDescription.substr(0, processedDescription.find(':'));
+                    forumExport << "              ";
+                    forumExport << processedDescription;
+                    forumExport << "\r\n";
+                    ++it;
+                }
             }
             // show any augment slots also
             bool bSetBonusSuppressed = false;
@@ -1756,7 +1775,7 @@ void CForumExportDlg::AddAlternateGear(std::stringstream & forumExport)
     {
         if ((*it).Name() != m_pCharacter->ActiveGear())
         {
-            ExportGear((*it), forumExport);
+            ExportGear((*it), forumExport, true);
         }
         ++it;
     }

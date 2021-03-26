@@ -85,6 +85,7 @@ void CItemSelectDialog::DoDataExchange(CDataExchange* pDX)
         DDX_Control(pDX, IDC_STATIC_UPGRADE_TYPE1 + i, m_upgradeType[i]);
         DDX_Control(pDX, IDC_COMBO_UPGRADE1 + i, m_comboUpgradeDropList[i]);
     }
+    DDX_Control(pDX, IDC_CHECK_EXCLUDE_RAID_ITEMS, m_checkExcludeRaidItems);
 }
 
 BEGIN_MESSAGE_MAP(CItemSelectDialog, CDialog)
@@ -106,6 +107,7 @@ BEGIN_MESSAGE_MAP(CItemSelectDialog, CDialog)
     ON_MESSAGE(WM_MOUSEHOVER, OnHoverComboBox)
     ON_MESSAGE(WM_MOUSEENTER, OnMouseEnter)
     ON_EN_KILLFOCUS(IDC_EDIT_TEXT, OnSearchTextKillFocus)
+    ON_BN_CLICKED(IDC_CHECK_EXCLUDE_RAID_ITEMS, OnButtonClickedExcludeRaidItems)
 END_MESSAGE_MAP()
 
 // CItemSelectDialog message handlers
@@ -190,6 +192,8 @@ void CItemSelectDialog::PopulateAvailableItemList()
     m_editSearchText.GetWindowText(searchText);
     searchText.MakeLower(); // case less text match
 
+    bool bExcludeRaidItems = (m_checkExcludeRaidItems.GetCheck() == BST_CHECKED);
+
     // need to know how many levels and of what classes they have trained
     std::vector<size_t> classLevels = m_pCharacter->ClassLevels(MAX_LEVEL);
     // need to know which feats have already been trained by this point
@@ -232,6 +236,11 @@ void CItemSelectDialog::PopulateAvailableItemList()
             if (searchText.GetLength() > 0)
             {
                 canSelect &= (*it).ContainsSearchText((LPCTSTR)searchText);
+            }
+            if (bExcludeRaidItems)
+            {
+                bool isRaidItem = (*it).ContainsSearchText((LPCTSTR)"raid:");   // search text must be lowercase
+                canSelect &= !isRaidItem;
             }
             // need to include the selected item in the list regardless of
             // filter category
@@ -1175,6 +1184,11 @@ void CItemSelectDialog::OnSearchTextKillFocus()
         m_bInitialising = false;
         m_previousSearchText = text;
     }
+}
+
+void CItemSelectDialog::OnButtonClickedExcludeRaidItems()
+{
+    PopulateAvailableItemList();
 }
 
 BOOL CItemSelectDialog::PreTranslateMessage(MSG* pMsg)

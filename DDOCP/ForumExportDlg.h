@@ -36,6 +36,7 @@ enum ForumExportSections
     FES_TacticalDCs,
     FES_Gear,
     FES_AlternateGearLayouts,
+    FES_SimpleGear,
     FES_Count,
 };
 
@@ -65,6 +66,7 @@ const XmlLib::enumMapEntry<ForumExportSections> forumExportSectionsMap[] =
     {FES_TacticalDCs, L"Tactical DCs"},
     {FES_Gear, L"Gear"},
     {FES_AlternateGearLayouts, L"Alternate Gear Layouts"},
+    {FES_SimpleGear, L"Simple Gear (name and augments only)"},
     {FES_Count, L"Enumeration Count"},
     {ForumExportSections(0), NULL}
 };
@@ -139,12 +141,13 @@ class CForumExportDlg : public CDialogEx
         void AddTacticalDCs(std::stringstream & forumExport);
         void AddGear(std::stringstream & forumExport);
         void AddAlternateGear(std::stringstream & forumExport);
+        void AddSimpleGear(std::stringstream & forumExport);
 
         void AddEnhancementTree(std::stringstream & forumExport, const EnhancementSpendInTree & treeSpend);
         void AddEpicDestinyTree(std::stringstream & forumExport, const EpicDestinySpendInTree & treeSpend);
         void AddReaperTree(std::stringstream & forumExport, const ReaperSpendInTree & treeSpend);
 
-        void ExportGear(const EquippedGear & gear, std::stringstream & forumExport);
+        void ExportGear(const EquippedGear & gear, std::stringstream & forumExport, bool bSimple);
 
         Character * m_pCharacter;
         CListCtrl m_listConfigureExport;

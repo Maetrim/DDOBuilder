@@ -247,8 +247,13 @@ void CDDOCPApp::LoadData()
     LoadFeats(path);
     LoadEnhancements(path);
     LoadSpells(path);
-    LoadItems(path);
-    LoadAugments(path);
+
+    int loadItems = AfxGetApp()->GetProfileInt("Inventory", "LoadItems", 1);
+    if (loadItems > 0)
+    {
+        LoadItems(path);
+        LoadAugments(path);
+    }
     LoadGuildBuffs(path);
     LoadOptionalBuffs(path);
     LoadSetBonuses(path);

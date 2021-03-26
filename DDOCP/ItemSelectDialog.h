@@ -46,6 +46,7 @@ class CItemSelectDialog : public CDialog
         afx_msg LRESULT OnMouseLeave(WPARAM wParam, LPARAM lParam);
         afx_msg void OnWindowPosChanging(WINDOWPOS * pos);
         afx_msg void OnSearchTextKillFocus();
+        afx_msg void OnButtonClickedExcludeRaidItems();
     public:
         DECLARE_MESSAGE_MAP()
 
@@ -93,6 +94,7 @@ class CItemSelectDialog : public CDialog
         CStatic m_staticUpgrades;
         CStatic m_upgradeType[MAX_Upgrades];
         CComboBox m_comboUpgradeDropList[MAX_Upgrades];
+        CButton m_checkExcludeRaidItems;
 
         std::list<Item> m_availableItems;
         CImageList m_itemImages;

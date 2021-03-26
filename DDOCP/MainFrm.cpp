@@ -70,6 +70,8 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWndEx)
     ON_COMMAND(ID_DOCK_SKILLS, OnDockPane)
     ON_COMMAND(ID_DOCK_CLASSFEATS, OnDockPane)
     ON_COMMAND(ID_VIEW_RESETSCREENLAYOUT, OnResetScreenLayout)
+    ON_UPDATE_COMMAND_UI(ID_SETTINGS_LOADITEMS, OnUpdateSettingsLoadItems)
+    ON_COMMAND(ID_SETTINGS_LOADITEMS, OnSettingsLoadItems)
 END_MESSAGE_MAP()
 
 static UINT indicators[] =
@@ -851,5 +853,19 @@ void CMainFrame::OnResetScreenLayout()
         ShowWindow(SW_SHOW);
         pAppEx->SaveState(this, "Workspace");
     }
+}
+
+void CMainFrame::OnUpdateSettingsLoadItems(CCmdUI* pCmdUI)
+{
+    int loadItems = AfxGetApp()->GetProfileInt("Inventory", "LoadItems", 1);
+    pCmdUI->SetCheck(loadItems > 0);
+}
+
+void CMainFrame::OnSettingsLoadItems()
+{
+    int loadItems = AfxGetApp()->GetProfileInt("Inventory", "LoadItems", 1);
+    loadItems ^= 0x0001;        // invert
+    AfxGetApp()->WriteProfileInt("Inventory", "LoadItems", loadItems);
+    AfxMessageBox("This change will not take effect until you restart the software", MB_ICONINFORMATION);
 }
 
