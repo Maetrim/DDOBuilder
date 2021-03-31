@@ -55,6 +55,17 @@ void SetBonus::VerifyObject() const
     if (!ImageFileExists(IT_augment, Icon()))
     {
         ss << "SetBonus " << Name() << " is missing image file \"" << Icon() << "\"\n";
+        ok = false;
+    }
+    // check the effects also
+    std::vector<Effect>::const_iterator eit = m_Effects.begin();
+    while (eit != m_Effects.end())
+    {
+        ok &= (*eit).VerifyObject(&ss);
+        ++eit;
+    }
+    if (!ok)
+    {
         ::OutputDebugString(ss.str().c_str());
     }
 }

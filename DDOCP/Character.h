@@ -173,11 +173,11 @@ class Character :
         bool ShowEpicOnly() const;
         void ToggleShowEpicOnly();
         void ToggleShowUnavailable();
-        bool ShowIgnoredFeats() const;
-        void ToggleShowIgnoredFeats();
-        void AddFeatToIgnoreList(const std::string & name);
-        void RemoveFeatFromIgnoreList(const std::string & name);
-        bool FeatIsInIgnoreList(const std::string & name) const;
+        bool ShowIgnoredItems() const;
+        void ToggleShowIgnoredItems();
+        void AddToIgnoreList(const std::string & name);
+        void RemoveFromIgnoreList(const std::string & name);
+        bool IsInIgnoreList(const std::string & name) const;
 
         // spells
         std::list<TrainedSpell> TrainedSpells(ClassType classType, size_t level) const;
@@ -478,7 +478,7 @@ class Character :
 
         bool m_bShowEpicOnly;
         bool m_bShowUnavailableFeats;
-        bool m_bShowIgnoredFeats;
+        bool m_bShowIgnoredItems;
 
         friend class CForumExportDlg;
         friend class CEnhancementTreeDialog;

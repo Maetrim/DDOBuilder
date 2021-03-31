@@ -99,6 +99,7 @@ class CSpellsControl :
         afx_msg void OnSpellSelectOk();
         afx_msg void OnSpellSelectCancel();
         afx_msg LRESULT OnHoverComboBox(WPARAM wParam, LPARAM lParam);
+        afx_msg LRESULT OnToggleSpellIgnore(WPARAM wParam, LPARAM lParam);
         //}}AFX_MSG
         DECLARE_MESSAGE_MAP()
 

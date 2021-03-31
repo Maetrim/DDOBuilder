@@ -406,7 +406,7 @@ void CInfoTip::SetFeatItem(
         m_requirements.push_back("This is an alternate feat selection.");
         m_bRequirementMet.push_back(false);
     }
-    if (FeatIsInIgnoreList(pItem->Name()))
+    if (IsInIgnoreList(pItem->Name()))
     {
         m_requirements.push_back("This Feat is in your ignore list (Right click to restore it).");
         m_bRequirementMet.push_back(false);

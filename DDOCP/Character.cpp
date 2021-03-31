@@ -98,7 +98,7 @@ Character::Character(CDDOCPDoc * pDoc) :
     m_previousGuildLevel(0),
     m_bShowEpicOnly(false),
     m_bShowUnavailableFeats(false),
-    m_bShowIgnoredFeats(false)
+    m_bShowIgnoredItems(false)
 {
     DL_INIT(Character_PROPERTIES)
     // make sure we have MAX_LEVEL default LevelTraining objects in the list
@@ -2471,8 +2471,8 @@ std::vector<Feat> Character::TrainableFeats(
                 // they can select this one, add it to the available list
                 // unless it is in the ignore list
                 if ((*it).Name() == includeThisFeat
-                        || m_bShowIgnoredFeats
-                        || !FeatIsInIgnoreList((*it).Name()))
+                        || m_bShowIgnoredItems
+                        || !IsInIgnoreList((*it).Name()))
                 {
                     trainable.push_back((*it));
                 }
@@ -5478,6 +5478,7 @@ void Character::UpdateWeaponStances()
         case Weapon_GreatClub:
         case Weapon_GreatSword:
         case Weapon_Maul:
+        case Weapon_Falchion:
             ActivateStance(thf);
             DeactivateStance(staff);
             DeactivateStance(swashbuckling);
@@ -6746,29 +6747,29 @@ void Character::ToggleShowUnavailable()
     m_bShowUnavailableFeats = !m_bShowUnavailableFeats;
 }
 
-bool Character::ShowIgnoredFeats() const
+bool Character::ShowIgnoredItems() const
 {
-    return m_bShowIgnoredFeats;
+    return m_bShowIgnoredItems;
 }
 
-void Character::ToggleShowIgnoredFeats()
+void Character::ToggleShowIgnoredItems()
 {
-    m_bShowIgnoredFeats = !m_bShowIgnoredFeats;
+    m_bShowIgnoredItems = !m_bShowIgnoredItems;
 }
 
-void Character::AddFeatToIgnoreList(const std::string & name)
+void Character::AddToIgnoreList(const std::string & name)
 {
-    ::AddFeatToIgnoreList(name);
+    ::AddToIgnoreList(name);
 }
 
-void Character::RemoveFeatFromIgnoreList(const std::string & name)
+void Character::RemoveFromIgnoreList(const std::string & name)
 {
-    ::RemoveFeatFromIgnoreList(name);
+    ::RemoveFromIgnoreList(name);
 }
 
-bool Character::FeatIsInIgnoreList(const std::string & name) const
+bool Character::IsInIgnoreList(const std::string & name) const
 {
-    return ::FeatIsInIgnoreList(name);
+    return ::IsInIgnoreList(name);
 }
 
 void Character::ApplySetBonus(

@@ -86,7 +86,7 @@ const std::list<GuildBuff> & GuildBuffs();
 const std::list<OptionalBuff> & OptionalBuffs();
 const std::list<SetBonus> & SetBonuses();
 MouseHook * GetMouseHook();
-std::vector<Spell> FilterSpells(ClassType ct, int level);
+std::vector<Spell> FilterSpells(const Character * pChar, ClassType ct, int level);
 Spell FindSpellByName(const std::string & name);
 const EnhancementTree & GetEnhancementTree(const std::string & treeName);
 const EnhancementTreeItem * FindEnhancement(const std::string & internalName, std::string * treeName = NULL);
@@ -167,6 +167,6 @@ void FormatExportData(CString * exportData);
 size_t CasterLevel(Character * pCharacter, ClassType c);
 
 bool AddMenuItem(HMENU hTargetMenu, const CString& itemText, UINT itemID);
-void AddFeatToIgnoreList(const std::string & name);
-void RemoveFeatFromIgnoreList(const std::string & name);
-bool FeatIsInIgnoreList(const std::string & name);
+void AddToIgnoreList(const std::string & name);
+void RemoveFromIgnoreList(const std::string & name);
+bool IsInIgnoreList(const std::string & name);

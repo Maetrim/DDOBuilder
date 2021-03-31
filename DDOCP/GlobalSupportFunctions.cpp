@@ -342,7 +342,7 @@ MouseHook * GetMouseHook()
     return pMainWnd->GetMouseHook();
 }
 
-std::vector<Spell> FilterSpells(ClassType ct, int level)
+std::vector<Spell> FilterSpells(const Character * pChar, ClassType ct, int level)
 {
     // return the list of spells for this class at this level
     // note that negative spell levels can be given to get the list of
@@ -434,7 +434,9 @@ std::vector<Spell> FilterSpells(ClassType ct, int level)
             }
             break;
         }
-        if (isClassLevelSpell)
+        if (isClassLevelSpell
+                && (pChar->ShowIgnoredItems()
+                    || !IsInIgnoreList((*si).Name())))
         {
             // add this one, its needed
             availableSpells.push_back(*si);
@@ -3376,31 +3378,31 @@ bool AddMenuItem(
     return bSuccess;
 }
 
-void AddFeatToIgnoreList(const std::string & name)
+void AddToIgnoreList(const std::string & name)
 {
     CDDOCPApp * pApp = dynamic_cast<CDDOCPApp*>(AfxGetApp());
     if (pApp != NULL)
     {
-        std::list<std::string> ignoredFeats = pApp->FeatIgnoreList();
-        ignoredFeats.push_back(name);
+        std::list<std::string> ignoredItems = pApp->IgnoreList();
+        ignoredItems.push_back(name);
         IgnoredFeatsFile file("");
-        file.Save(ignoredFeats);
-        pApp->UpdateFeatIgnoreList(ignoredFeats);
+        file.Save(ignoredItems);
+        pApp->UpdateIgnoreList(ignoredItems);
     }
 }
 
-void RemoveFeatFromIgnoreList(const std::string & name)
+void RemoveFromIgnoreList(const std::string & name)
 {
     CDDOCPApp * pApp = dynamic_cast<CDDOCPApp*>(AfxGetApp());
     if (pApp != NULL)
     {
-        std::list<std::string> ignoredFeats = pApp->FeatIgnoreList();
-        std::list<std::string>::iterator it = ignoredFeats.begin();
-        while (it != ignoredFeats.end())
+        std::list<std::string> ignoredItems = pApp->IgnoreList();
+        std::list<std::string>::iterator it = ignoredItems.begin();
+        while (it != ignoredItems.end())
         {
             if ((*it) == name)
             {
-                it = ignoredFeats.erase(it);
+                it = ignoredItems.erase(it);
             }
             else
             {
@@ -3408,20 +3410,20 @@ void RemoveFeatFromIgnoreList(const std::string & name)
             }
         }
         IgnoredFeatsFile file("");
-        file.Save(ignoredFeats);
-        pApp->UpdateFeatIgnoreList(ignoredFeats);
+        file.Save(ignoredItems);
+        pApp->UpdateIgnoreList(ignoredItems);
     }
 }
 
-bool FeatIsInIgnoreList(const std::string & name)
+bool IsInIgnoreList(const std::string & name)
 {
     bool found = false;
     CDDOCPApp * pApp = dynamic_cast<CDDOCPApp*>(AfxGetApp());
     if (pApp != NULL)
     {
-        std::list<std::string> ignoredFeats = pApp->FeatIgnoreList();
-        std::list<std::string>::iterator it = ignoredFeats.begin();
-        while (!found && it != ignoredFeats.end())
+        std::list<std::string> ignoredItems = pApp->IgnoreList();
+        std::list<std::string>::iterator it = ignoredItems.begin();
+        while (!found && it != ignoredItems.end())
         {
             found = ((*it) == name);
             ++it;

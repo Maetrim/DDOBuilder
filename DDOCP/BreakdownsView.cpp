@@ -1452,7 +1452,7 @@ void CBreakdownsView::CreateMagicalBreakdowns()
         AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierRepair, SpellPower_Repair, "Repair Critical Multiplier", hItem);
         AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierRust, SpellPower_Rust, "Rust Critical Multiplier", hItem);
         AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierSonic, SpellPower_Sonic, "Sonic Critical Multiplier", hItem);
-        AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierUniversal, SpellPower_All, "Universal Critical Multiplier", hItem);
+        AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierUniversal, SpellPower_Universal, "Universal Critical Multiplier", hItem);
     }
 
     {

@@ -102,16 +102,16 @@ void BreakdownItemSpellPower::CreateOtherEffects()
             {
                 pUSP->AttachObserver(this);
                 double total = pUSP->Total();
-                ActiveEffect implementBonus(
+                ActiveEffect universalBonus(
                         Bonus_universal,
                         "Universal Spell Power",
                         1,
                         total,
                         "");        // no tree
-                AddOtherEffect(implementBonus);
+                AddOtherEffect(universalBonus);
             }
         }
-        else    // its spell lore
+        else if (m_effect == Effect_SpellLore)
         {
             // universal spell power applies as a separate bonus
             BreakdownItem * pUSL = FindBreakdown(Breakdown_SpellCriticalChanceUniversal);
@@ -119,13 +119,33 @@ void BreakdownItemSpellPower::CreateOtherEffects()
             {
                 pUSL->AttachObserver(this);
                 double total = pUSL->Total();
-                ActiveEffect implementBonus(
+                ActiveEffect universalBonus(
                         Bonus_universal,
                         "Universal Spell Lore",
                         1,
                         total,
                         "");        // no tree
-                AddOtherEffect(implementBonus);
+                AddOtherEffect(universalBonus);
+            }
+        }
+        else // its spell critical multiplier
+        {
+            if (m_spellPowerType != SpellPower_Universal)   // don't monitor ourselves
+            {
+                // universal spell critical multiplier applies as a separate bonus
+                BreakdownItem * pUSM = FindBreakdown(Breakdown_SpellCriticalMultiplierUniversal);
+                if (pUSM != NULL)
+                {
+                    pUSM->AttachObserver(this);
+                    double total = pUSM->Total();
+                    ActiveEffect universalBonus(
+                            Bonus_universal,
+                            "Universal Spell Critical Multiplier",
+                            1,
+                            total,
+                            "");        // no tree
+                    AddOtherEffect(universalBonus);
+                }
             }
         }
     }

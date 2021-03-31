@@ -17,6 +17,7 @@ namespace
         SI_count
     };
     const int c_spellSlotImageSize = 36; // 36 * 36 pixels
+    const UINT UWM_TOGGLE_INCLUDED = ::RegisterWindowMessage(_T("ToggleIgnoreItem"));
 }
 
 // global image data used for drawing all enhancements trees.
@@ -46,6 +47,7 @@ CSpellsControl::CSpellsControl() :
     m_bHVisible(false),
     m_bVVisible(false)
 {
+    m_comboSpellSelect.SetCanRemoveItems();
     InitialiseStaticImages();
 }
 
@@ -69,6 +71,7 @@ BEGIN_MESSAGE_MAP(CSpellsControl, CStatic)
     ON_CBN_SELENDOK(IDC_COMBO_SPELLSELECT, OnSpellSelectOk)
     ON_CBN_SELENDCANCEL(IDC_COMBO_SPELLSELECT, OnSpellSelectCancel)
     ON_MESSAGE(WM_MOUSEHOVER, OnHoverComboBox)
+    ON_REGISTERED_MESSAGE(UWM_TOGGLE_INCLUDED, OnToggleSpellIgnore)
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 #pragma warning(pop)
@@ -392,7 +395,7 @@ void CSpellsControl::SetCharacter(Character * pCharacter, ClassType ct)
             m_fixedSpells[i].clear();
             // negative spell levels for auto-assigned spells
             int autoSpellLevel = -((int)i + 1);
-            std::vector<Spell> autoSpells = FilterSpells(ct, autoSpellLevel);
+            std::vector<Spell> autoSpells = FilterSpells(pCharacter, ct, autoSpellLevel);
             for (size_t si = 0; si < autoSpells.size(); ++si)
             {
                 FixedSpell spell(autoSpells[si].Name(), i + 1);
@@ -585,7 +588,7 @@ void CSpellsControl::OnLButtonDown(UINT nFlags, CPoint point)
                 // display a drop list combo just below the spell item
                 // get the list of trainable spells for this class and level
                 std::string currentSelection;
-                std::vector<Spell> spells = FilterSpells(m_class, item->SpellLevel());
+                std::vector<Spell> spells = FilterSpells(m_pCharacter, m_class, item->SpellLevel());
                 RemoveTrained(&spells, &currentSelection);
 
                 m_comboSpellSelect.SetImageList(NULL);
@@ -657,7 +660,7 @@ void CSpellsControl::OnRButtonDown(UINT nFlags, CPoint point)
                 m_editSpellIndex = item->SpellIndex();
                 // if a spell if trained in this slot query the revocation
                 std::string currentSelection;
-                std::vector<Spell> spells = FilterSpells(m_class, item->SpellLevel());
+                std::vector<Spell> spells = FilterSpells(m_pCharacter, m_class, item->SpellLevel());
                 RemoveTrained(&spells, &currentSelection);
                 if (currentSelection != "")
                 {
@@ -685,7 +688,7 @@ void CSpellsControl::OnSpellSelectOk()
         sel = m_comboSpellSelect.GetItemData(sel);
         std::list<TrainedSpell> trainedSpells =
                 m_pCharacter->TrainedSpells(m_class, m_editSpellLevel);
-        std::vector<Spell> spells = FilterSpells(m_class, m_editSpellLevel);
+        std::vector<Spell> spells = FilterSpells(m_pCharacter, m_class, m_editSpellLevel);
         RemoveTrained(&spells, NULL);
 
         // revoke any previous spell selection this selection is replacing
@@ -1016,3 +1019,26 @@ void CSpellsControl::ProcessScrollBars(int cx, int cy)
     m_scrollHorizontal.MoveWindow(rctHorz);
     m_scrollVertical.MoveWindow(rctVert);
 }
+
+LRESULT CSpellsControl::OnToggleSpellIgnore(WPARAM wParam, LPARAM lParam)
+{
+    // wParam = index of clicked item
+    // lParam = (CString*)name of spell
+    int selection = static_cast<int>(wParam);
+    CString* pFeatName = static_cast<CString*>((void*)lParam);
+    std::string featName = (LPCTSTR)(*pFeatName);
+    if (!m_pCharacter->ShowIgnoredItems())
+    {
+        m_comboSpellSelect.DeleteString(selection);
+    }
+    if (m_pCharacter->IsInIgnoreList(featName))
+    {
+        m_pCharacter->RemoveFromIgnoreList(featName);
+    }
+    else
+    {
+        m_pCharacter->AddToIgnoreList(featName);
+    }
+    return 0;
+}
+

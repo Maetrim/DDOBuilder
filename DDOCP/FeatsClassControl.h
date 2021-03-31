@@ -81,6 +81,9 @@ private:
     void UpdateClassChanged(Character * charData, ClassType classFrom, ClassType classTo, size_t level) override;
     void UpdateFeatTrained(Character * charData, const std::string & featName) override;
     void UpdateFeatRevoked(Character * charData, const std::string & featName) override;
+    void UpdateAbilityValueChanged(Character * charData, AbilityType ability) override;
+    void UpdateAbilityTomeChanged(Character * charData, AbilityType ability) override;
+    void UpdateRaceChanged(Character * charData, RaceType race) override;
 
     Character * m_pCharacter;
     bool m_bMenuDisplayed;

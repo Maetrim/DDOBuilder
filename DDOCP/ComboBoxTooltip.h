@@ -11,7 +11,7 @@ public:
     CComboBoxTooltip();
     virtual ~CComboBoxTooltip();
 
-    void SetIsForFeats();
+    void SetCanRemoveItems();
 
     void SetImageList(CImageList * il);
     // Derived class is responsible for implementing these handlers
@@ -30,6 +30,6 @@ protected:
     int m_selection;
     bool m_bSubclassedListbox;
     CDelayedListBox m_delayedListBox;
-    bool m_bFeatList;
+    bool m_bCanRemoveItems;
 };
 

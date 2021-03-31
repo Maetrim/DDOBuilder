@@ -257,7 +257,7 @@ void CDDOCPApp::LoadData()
     LoadGuildBuffs(path);
     LoadOptionalBuffs(path);
     LoadSetBonuses(path);
-    LoadFeatIgnoreList(path);
+    LoadIgnoreList(path);
     SeparateFeats();
 }
 
@@ -609,17 +609,17 @@ const std::list<SetBonus> & CDDOCPApp::SetBonuses() const
 
 // CDDOCPApp message handlers
 
-void CDDOCPApp::UpdateFeatIgnoreList(const std::list<std::string> & featList)
+void CDDOCPApp::UpdateIgnoreList(const std::list<std::string> & itemList)
 {
-    m_featIgnoreList = featList;
+    m_ignoreList = itemList;
 }
 
-const std::list<std::string> & CDDOCPApp::FeatIgnoreList() const
+const std::list<std::string> & CDDOCPApp::IgnoreList() const
 {
-    return m_featIgnoreList;
+    return m_ignoreList;
 }
 
-void CDDOCPApp::LoadFeatIgnoreList(const std::string & path)
+void CDDOCPApp::LoadIgnoreList(const std::string & path)
 {
     // create the filename to load from
     std::string filename = path;
@@ -638,6 +638,6 @@ void CDDOCPApp::LoadFeatIgnoreList(const std::string & path)
     {
         IgnoredFeatsFile file(filename);
         file.Read();
-        m_featIgnoreList = file.IgnoredFeats();
+        m_ignoreList = file.IgnoredFeats();
     }
 }

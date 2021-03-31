@@ -7,7 +7,7 @@
 #include "stdafx.h"
 #include "ComboBoxTooltip.h"
 
-const UINT UWM_TOGGLE_FEAT = ::RegisterWindowMessage(_T("ToggleIgnoreFeat"));
+const UINT UWM_TOGGLE_INCLUDED = ::RegisterWindowMessage(_T("ToggleIgnoreItem"));
 // CComboBoxTooltip
 IMPLEMENT_DYNAMIC(CComboBoxTooltip, CComboBox)
 
@@ -15,7 +15,7 @@ CComboBoxTooltip::CComboBoxTooltip() :
     m_bHasImageList(false),
     m_selection(CB_ERR),
     m_bSubclassedListbox(false),
-    m_bFeatList(false)
+    m_bCanRemoveItems(false)
 {
 }
 
@@ -23,9 +23,9 @@ CComboBoxTooltip::~CComboBoxTooltip()
 {
 }
 
-void CComboBoxTooltip::SetIsForFeats()
+void CComboBoxTooltip::SetCanRemoveItems()
 {
-    m_bFeatList = true;
+    m_bCanRemoveItems = true;
 }
 
 BEGIN_MESSAGE_MAP(CComboBoxTooltip, CComboBox)
@@ -168,11 +168,11 @@ void CComboBoxTooltip::OnSetFocus(CWnd * pWnd)
 
 void CComboBoxTooltip::OnRButtonDown(int selection)
 {
-    if (m_bFeatList)
+    if (m_bCanRemoveItems)
     {
         CString strItem;
         GetLBText(selection, strItem);
-        GetParent()->SendMessage(UWM_TOGGLE_FEAT, selection, (LPARAM)(&strItem));
+        GetParent()->SendMessage(UWM_TOGGLE_INCLUDED, selection, (LPARAM)(&strItem));
         // force a mouse move after click to get a new selection in the control
         // as an item may have been deleted
         CPoint p;
@@ -183,7 +183,7 @@ void CComboBoxTooltip::OnRButtonDown(int selection)
         {
             selection = GetCount() - 1;
         }
-        // ensure any feat tooltip updates
+        // ensure any tooltip updates
         // this is the item we need to notify a hover about
         ::SendMessage(
                 GetParent()->GetSafeHwnd(),

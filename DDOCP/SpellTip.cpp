@@ -7,6 +7,7 @@
 #include "EnhancementTreeItem.h"
 #include "Feat.h"
 #include "GlobalSupportFunctions.h"
+#include "Character.h"
 
 namespace
 {
@@ -19,7 +20,8 @@ CSpellTip::CSpellTip() :
     m_class(Class_Unknown),
     m_DC(0),
     m_spellLevel(0),
-    m_pCharacter(NULL)
+    m_pCharacter(NULL),
+    m_bIsIgnored(false)
 {
     // create the fonts used
     LOGFONT lf;
@@ -257,6 +259,16 @@ void CSpellTip::OnPaint()
         dc.MoveTo(rc.right - c_controlSpacing - m_csMetas.cx- c_controlSpacing, 0);
         dc.LineTo(rc.right - c_controlSpacing - m_csMetas.cx- c_controlSpacing, rc.bottom);
     }
+    // draw is in ignore list
+    if (m_bIsIgnored)
+    {
+        dc.SetTextColor(RGB(255, 0, 0));
+        dc.DrawText(
+                "This spell is in your ignore list, right click to restore it.",
+                &m_rcIgnored,
+                DT_LEFT | DT_EXPANDTABS | DT_NOPREFIX);
+        dc.SetTextColor(RGB(0, 0, 0));
+    }
     // draw the description
     dc.DrawText(
             m_spell.Description().c_str(),
@@ -306,6 +318,16 @@ BOOL CSpellTip::GetWindowSize(CDC* pDC, CSize * size)
     topWidth = max(topWidth, csCL.cx);
     rcWnd.bottom += csCL.cy;        // include line height
 
+    if (m_bIsIgnored)
+    {
+        m_rcIgnored = CRect(0, 0, 0, 0);
+        pDC->DrawText(
+                "This spell is in your ignore list, right click to restore it.",
+                &m_rcIgnored,
+                DT_CALCRECT | DT_LEFT | DT_EXPANDTABS | DT_NOPREFIX);
+        m_rcIgnored += CPoint(0, rcWnd.Height());
+        rcWnd.bottom += m_rcIgnored.Height();
+    }
     m_rcDescription = CRect(0, 0, 0, 0);
     pDC->DrawText(
             m_spell.Description().c_str(),
@@ -365,4 +387,5 @@ void CSpellTip::SetSpell(
     m_DC = m_spell.SpellDC(*charData, ct, spellLevel, maxSpellLevel);
     m_spellLevel = spellLevel;
     m_pCharacter = charData;
+    m_bIsIgnored = charData->IsInIgnoreList(spell.Name());
 }

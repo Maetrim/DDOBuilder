@@ -72,8 +72,8 @@ BEGIN_MESSAGE_MAP(CDDOCPView, CFormView)
     ON_UPDATE_COMMAND_UI(ID_EDIT_FEATS_SHOWUNAVAILABLE, &CDDOCPView::OnEditFeatsUpdateShowUnavailable)
     ON_COMMAND(ID_EDIT_FEATS_EPICONLY, &CDDOCPView::OnEditFeatsEpicOnly)
     ON_COMMAND(ID_EDIT_FEATS_SHOWUNAVAILABLE, &CDDOCPView::OnEditFeatsShowUnavailable)
-    ON_UPDATE_COMMAND_UI(ID_FEATIGNORELIST_ACTIVE, &CDDOCPView::OnEditFeatsUpdateFeatIgnoreListActive)
-    ON_COMMAND(ID_FEATIGNORELIST_ACTIVE, &CDDOCPView::OnEditFeatsFeatIgnoreListActive)
+    ON_UPDATE_COMMAND_UI(ID_EDIT_IGNORELIST_ACTIVE, &CDDOCPView::OnEditUpdateIgnoreListActive)
+    ON_COMMAND(ID_EDIT_IGNORELIST_ACTIVE, &CDDOCPView::OnEditIgnoreListActive)
 END_MESSAGE_MAP()
 #pragma warning(pop)
 
@@ -997,13 +997,13 @@ void CDDOCPView::OnEditFeatsShowUnavailable()
     m_pCharacter->ToggleShowUnavailable();
 }
 
-void CDDOCPView::OnEditFeatsUpdateFeatIgnoreListActive(CCmdUI * pCmdUi)
+void CDDOCPView::OnEditUpdateIgnoreListActive(CCmdUI * pCmdUi)
 {
-    pCmdUi->SetCheck(!m_pCharacter->ShowIgnoredFeats());
+    pCmdUi->SetCheck(m_pCharacter->ShowIgnoredItems());
 }
 
-void CDDOCPView::OnEditFeatsFeatIgnoreListActive()
+void CDDOCPView::OnEditIgnoreListActive()
 {
-    m_pCharacter->ToggleShowIgnoredFeats();
+    m_pCharacter->ToggleShowIgnoredItems();
 }
 

@@ -41,9 +41,11 @@ class CSpellTip :
         CImage m_image;
         Spell m_spell;
         ClassType m_class;
+        CRect m_rcIgnored;
         CRect m_rcDescription;
         CSize m_csMetas;
         size_t m_DC;
         size_t m_spellLevel;
         Character * m_pCharacter;
+        bool m_bIsIgnored;
 };

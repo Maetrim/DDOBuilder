@@ -49,9 +49,9 @@ CLevelUpView::CLevelUpView() :
     m_hoverItem(-1),
     m_bIgnoreNextMessage(false)
 {
-    m_comboFeatSelect[0].SetIsForFeats();
-    m_comboFeatSelect[1].SetIsForFeats();
-    m_comboFeatSelect[2].SetIsForFeats();
+    m_comboFeatSelect[0].SetCanRemoveItems();
+    m_comboFeatSelect[1].SetCanRemoveItems();
+    m_comboFeatSelect[2].SetCanRemoveItems();
     m_imagesSkills.Create(
             32,             // all icons are 32x32 pixels
             32,
@@ -2171,7 +2171,7 @@ LRESULT CLevelUpView::OnToggleFeatIgnore(WPARAM wParam, LPARAM lParam)
     int selection = static_cast<int>(wParam);
     CString* pFeatName = static_cast<CString*>((void*)lParam);
     std::string featName = (LPCTSTR)(*pFeatName);
-    if (!m_pCharacter->ShowIgnoredFeats())
+    if (!m_pCharacter->ShowIgnoredItems())
     {
         CWnd * pWnd = GetFocus();
         if (pWnd == &m_comboFeatSelect[0])
@@ -2187,13 +2187,13 @@ LRESULT CLevelUpView::OnToggleFeatIgnore(WPARAM wParam, LPARAM lParam)
             m_comboFeatSelect[2].DeleteString(wParam);
         }
     }
-    if (m_pCharacter->FeatIsInIgnoreList(featName))
+    if (m_pCharacter->IsInIgnoreList(featName))
     {
-        m_pCharacter->RemoveFeatFromIgnoreList(featName);
+        m_pCharacter->RemoveFromIgnoreList(featName);
     }
     else
     {
-        m_pCharacter->AddFeatToIgnoreList(featName);
+        m_pCharacter->AddToIgnoreList(featName);
     }
     return 0;
 }

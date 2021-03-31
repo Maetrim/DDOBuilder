@@ -24,6 +24,7 @@ enum SpellPowerType
     SpellPower_Rust,
     SpellPower_Sonic,
     SpellPower_Poison,
+    SpellPower_Universal,
     SpellPower_Last,
     SpellPower_All,
 };
@@ -44,6 +45,7 @@ const XmlLib::enumMapEntry<SpellPowerType> spellPowerTypeMap[] =
     {SpellPower_Rust, L"Rust"},
     {SpellPower_Sonic, L"Sonic"},
     {SpellPower_Poison, L"Poison"},
+    {SpellPower_Universal, L"Universal"},
     {SpellPower_All, L"All"},
     {SpellPowerType(0), NULL}
 };
