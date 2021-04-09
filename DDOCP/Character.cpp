@@ -3393,9 +3393,9 @@ void Character::JustLoaded()
                         const EnhancementTreeItem * pTreeItem = FindEnhancement((*teit).EnhancementName());
                         if (pTreeItem != NULL)
                         {
-                            apsSpent += pTreeItem->Cost() * (*teit).Ranks();
+                            apsSpent += pTreeItem->Cost((*teit).Selection()) * (*teit).Ranks();
                             // cost also updated so revoke of items will work
-                            (*teit).SetCost(pTreeItem->Cost());
+                            (*teit).SetCost(pTreeItem->Cost((*teit).Selection()));
                         }
                         else
                         {
@@ -3473,9 +3473,9 @@ void Character::JustLoaded()
                     const EnhancementTreeItem * pTreeItem = FindEnhancement((*teit).EnhancementName());
                     if (pTreeItem != NULL)
                     {
-                        apsSpent += pTreeItem->Cost() * (*teit).Ranks();
+                        apsSpent += pTreeItem->Cost((*teit).Selection()) * (*teit).Ranks();
                         // cost also updated so revoke of items will work
-                        (*teit).SetCost(pTreeItem->Cost());
+                        (*teit).SetCost(pTreeItem->Cost((*teit).Selection()));
                     }
                     else
                     {
@@ -3536,9 +3536,9 @@ void Character::JustLoaded()
                     const EnhancementTreeItem * pTreeItem = FindEnhancement((*teit).EnhancementName());
                     if (pTreeItem != NULL)
                     {
-                        apsSpent += pTreeItem->Cost() * (*teit).Ranks();
+                        apsSpent += pTreeItem->Cost((*teit).Selection()) * (*teit).Ranks();
                         // cost also updated so revoke of items will work
-                        (*teit).SetCost(pTreeItem->Cost());
+                        (*teit).SetCost(pTreeItem->Cost((*teit).Selection()));
                     }
                     else
                     {
@@ -6498,6 +6498,8 @@ void Character::UpdateGreensteelStances()
     Stance dominion("Dominion", "Dominion", "Dominion");
     Stance escalation("Escalation", "Escalation", "Escalation");
     Stance opposition("Opposition", "Opposition", "Opposition");
+    Stance ethereal("Ethereal", "Ethereal", "Ethereal");
+    Stance material("Material", "Material", "Material");
     // active stance is based on:
     // Must have at least 2 Greensteel items equipped
     EquippedGear gear = ActiveGearSet();
@@ -6523,6 +6525,8 @@ void Character::UpdateGreensteelStances()
         size_t dominionCount = StanceStackCount("Dominion");
         size_t escalationCount = StanceStackCount("Escalation");
         size_t oppositionCount = StanceStackCount("Opposition");
+        size_t etherealCount = StanceStackCount("Ethereal");
+        size_t materialCount = StanceStackCount("Material");
         if (dominionCount > max(escalationCount, oppositionCount))
         {
             ActivateStance(dominion);
@@ -6541,8 +6545,7 @@ void Character::UpdateGreensteelStances()
         }
         if (oppositionCount > max(dominionCount, escalationCount))
         {
-            if (dominionCount == 0
-                    && escalationCount == 0)
+            if (dominionCount == escalationCount)
             {
                 ActivateStance(opposition);
             }
@@ -6557,6 +6560,32 @@ void Character::UpdateGreensteelStances()
         {
             DeactivateStance(opposition);
         }
+        // requires 4 or more item for material/ethereal dominance set bonus
+        if (greensteelItemCount >= 4)
+        {
+            // its either material or ethereal dominance
+            if (etherealCount > 0 && etherealCount > materialCount)
+            {
+                ActivateStance(ethereal);
+            }
+            else
+            {
+                DeactivateStance(ethereal);
+            }
+            if (materialCount > 0 && materialCount > etherealCount)
+            {
+                ActivateStance(material);
+            }
+            else
+            {
+                DeactivateStance(material);
+            }
+        }
+        else
+        {
+            DeactivateStance(ethereal);
+            DeactivateStance(material);
+        }
     }
     else
     {
@@ -6564,6 +6593,8 @@ void Character::UpdateGreensteelStances()
         DeactivateStance(dominion);
         DeactivateStance(escalation);
         DeactivateStance(opposition);
+        DeactivateStance(ethereal);
+        DeactivateStance(material);
     }
 }
 
@@ -6789,6 +6820,15 @@ void Character::ApplySetBonus(
     Stance setStance(setObject.Name(), setObject.Icon(), setObject.Description());
     setStance.Set_SetBonus();
     NotifyNewStance(setStance);
+
+    // they may also have regular stance objects
+    const std::vector<Stance> & stances = setObject.Stances();
+    std::vector<Stance>::const_iterator sit = stances.begin();
+    while (sit != stances.end())
+    {
+        NotifyNewStance((*sit));
+        ++sit;
+    }
 }
 
 void Character::RevokeSetBonus(
@@ -6808,5 +6848,14 @@ void Character::RevokeSetBonus(
     Stance setStance(setObject.Name(), setObject.Icon(), setObject.Description());
     setStance.Set_SetBonus();
     NotifyRevokeStance(setStance);
+
+    // they may also have regular stance objects
+    const std::vector<Stance> & stances = setObject.Stances();
+    std::vector<Stance>::const_iterator sit = stances.begin();
+    while (sit != stances.end())
+    {
+        NotifyRevokeStance((*sit));
+        ++sit;
+    }
 }
 
