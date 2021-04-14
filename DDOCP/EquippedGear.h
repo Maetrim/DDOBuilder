@@ -24,6 +24,7 @@ class EquippedGear :
         void ClearItem(InventorySlotType slot);
 
         void SetNumFiligrees(size_t count);
+        bool HasMinorArtifact() const;
 
     protected:
         XmlLib::SaxContentElementInterface * StartElement(

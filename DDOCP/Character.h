@@ -275,6 +275,8 @@ class Character :
         bool LightWeaponInOffHand() const;
         bool IsFocusWeapon(WeaponType wt) const;
         void SetNumFiligrees(size_t count);
+        void ApplyFiligree(const std::string & filigree, size_t si, bool bArtifact);
+        void RevokeFiligree(const std::string & filigree, size_t si, bool bArtifact);
 
         // guild support
         void ToggleApplyGuildBuffs();

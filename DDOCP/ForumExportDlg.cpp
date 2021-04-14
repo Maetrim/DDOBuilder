@@ -1703,11 +1703,11 @@ void CForumExportDlg::ExportGear(
             std::vector<ItemAugment> augments = item.Augments();
             for (size_t i = 0; i < augments.size(); ++i)
             {
-                forumExport << "              ";
-                forumExport << augments[i].Type();
-                forumExport << ": ";
                 if (augments[i].HasSelectedAugment())
                 {
+                    forumExport << "              ";
+                    forumExport << augments[i].Type();
+                    forumExport << ": ";
                     // may be a configurable augment
                     if (augments[i].HasValue())
                     {
@@ -1718,12 +1718,19 @@ void CForumExportDlg::ExportGear(
                     forumExport << augments[i].SelectedAugment();
                     const Augment & augment = FindAugmentByName(augments[i].SelectedAugment());
                     bSetBonusSuppressed |= augment.HasSuppressSetBonus();
+                    forumExport << "\r\n";
                 }
                 else
                 {
-                    forumExport << "Empty augment slot";
+                    if (augments[i].Type() != "Mythic"
+                            && augments[i].Type() != "Reaper")
+                    {
+                        forumExport << "              ";
+                        forumExport << augments[i].Type();
+                        forumExport << ": ";
+                        forumExport << "Empty augment slot\r\n";
+                    }
                 }
-                forumExport << "\r\n";
             }
             // show any set bonuses (update name if suppressed)
             const std::list<std::string> & sets = item.SetBonus();
@@ -1742,6 +1749,42 @@ void CForumExportDlg::ExportGear(
                 forumExport << "\r\n";
                 ++sit;
             }
+            // show artifact filigrees if this is the artifact
+            if (item.HasMinorArtifact())
+            {
+                for (size_t fi = 0; fi < MAX_ARTIFACT_FILIGREE; ++fi)
+                {
+                    std::string filigree = gear.SentientIntelligence().GetArtifactFiligree(fi);
+                    if (filigree != "")
+                    {
+                        forumExport << "              Filigree " << (fi + 1) << ": ";
+                        forumExport << filigree;
+                        if (gear.SentientIntelligence().IsRareArtifactFiligree(fi))
+                        {
+                            forumExport << "(Rare Version)";
+                        }
+                        forumExport << "\r\n";
+                    }
+                }
+            }
+            if (gi == Inventory_Weapon1)
+            {
+                // now add the Filigree upgrades
+                for (size_t fi = 0; fi < MAX_FILIGREE; ++fi)
+                {
+                    std::string filigree = gear.SentientIntelligence().GetFiligree(fi);
+                    if (filigree != "")
+                    {
+                        forumExport << "              Filigree " << (fi + 1) << ": ";
+                        forumExport << filigree;
+                        if (gear.SentientIntelligence().IsRareFiligree(fi))
+                        {
+                            forumExport << "(Rare Version)";
+                        }
+                        forumExport << "\r\n";
+                    }
+                }
+            }
         }
     }
     // add any sentient weapon Filigree to the list also
@@ -1751,17 +1794,6 @@ void CForumExportDlg::ExportGear(
         forumExport << gear.SentientIntelligence().Personality();
     }
     forumExport << "\r\n";
-    // now add the Filigree upgrades
-    for (size_t fi = 0; fi < MAX_FILIGREE; ++fi)
-    {
-        forumExport << "              Filigree " << (fi + 1) << ": ";
-        forumExport << gear.SentientIntelligence().GetFiligree(fi);
-        if (gear.SentientIntelligence().IsRareFiligree(fi))
-        {
-            forumExport << "(Rare Version)";
-        }
-        forumExport << "\r\n";
-    }
     forumExport << "------------------------------------------------------------------------------------------\r\n";
     forumExport << "\r\n";
 }

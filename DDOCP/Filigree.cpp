@@ -8,14 +8,11 @@
 
 namespace
 {
-    const wchar_t f_saxElementName[] = L"Filigree";
     DL_DEFINE_NAMES(Filigree_PROPERTIES)
-
-    const unsigned f_verCurrent = 1;
 }
 
-Filigree::Filigree() :
-    XmlLib::SaxContentElement(f_saxElementName, f_verCurrent)
+Filigree::Filigree(const XmlLib::SaxString& elementName, unsigned verCurrent) :
+    XmlLib::SaxContentElement(elementName, verCurrent)
 {
     DL_INIT(Filigree_PROPERTIES)
 }
@@ -46,3 +43,12 @@ void Filigree::Write(XmlLib::SaxWriter * writer) const
     DL_WRITE(Filigree_PROPERTIES)
     writer->EndElement();
 }
+
+bool Filigree::operator==(const Filigree & other) const
+{
+    bool bEqual = 
+                m_Name == other.m_Name
+                && m_hasRare == other.m_hasRare;
+    return bEqual;
+}
+

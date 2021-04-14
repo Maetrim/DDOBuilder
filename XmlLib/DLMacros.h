@@ -90,6 +90,10 @@ namespace XmlLib
 // const std::list<type> & Xname() const;
 // void SetXname(const std::list<type> & newValue);
 //---------------------------------------------------------------------
+#define DL_THIS_OBJECT_LIST(_, type, xname) DL_THIS_OBJECT_LIST_##_(type, xname)
+// const std::list<type> & Xname() const;
+// void SetXname(const std::list<type> & newValue);
+//---------------------------------------------------------------------
 #define DL_STRING_VECTOR(_, xname) DL_STRING_VECTOR_##_(xname)
 // const std::vector<std::string> & Xname() const;
 // void SetXname(const std::vector<std::string> & newValue);
@@ -173,6 +177,8 @@ namespace XmlLib
         DL_VECTOR_ACCESS(type, xname)
 #define DL_OBJECT_LIST_ACCESS(type, xname) \
         DL_LIST_ACCESS(type, xname)
+#define DL_THIS_OBJECT_LIST_ACCESS(type, xname) \
+        DL_LIST_ACCESS(type, xname)
 #define DL_STRING_VECTOR_ACCESS(xname) \
         DL_VECTOR_ACCESS(std::string, xname)
 #define DL_STRING_LIST_ACCESS(xname) \
@@ -222,6 +228,8 @@ namespace XmlLib
         std::vector<type> DL_CAT(m_,xname);
 #define DL_OBJECT_LIST_VARIABLE(type, xname) \
         std::list<type> DL_CAT(m_,xname);
+#define DL_THIS_OBJECT_LIST_VARIABLE(type, xname) \
+        std::list<type> DL_CAT(m_,xname);
 #define DL_STRING_VECTOR_VARIABLE(xname) \
         std::vector<std::string> DL_CAT(m_,xname);
 #define DL_STRING_LIST_VARIABLE(xname) \
@@ -252,6 +260,7 @@ namespace XmlLib
 #define DL_OPTIONAL_VECTOR_DEFINE_NAME(type, xname) DL_GENERIC_DEFINE_NAME(xname)
 #define DL_OBJECT_VECTOR_DEFINE_NAME(type, xname)
 #define DL_OBJECT_LIST_DEFINE_NAME(type, xname)
+#define DL_THIS_OBJECT_LIST_DEFINE_NAME(type, xname)
 #define DL_STRING_VECTOR_DEFINE_NAME(xname) DL_GENERIC_DEFINE_NAME(xname)
 #define DL_STRING_LIST_DEFINE_NAME(xname) DL_GENERIC_DEFINE_NAME(xname)
 #define DL_OBJECT_DEFINE_NAME(type, xname) DL_GENERIC_DEFINE_NAME(xname)
@@ -289,6 +298,7 @@ namespace XmlLib
         DL_VECTOR_INIT(type, xname)
 #define DL_OBJECT_VECTOR_INIT(type, xname)
 #define DL_OBJECT_LIST_INIT(type, xname)
+#define DL_THIS_OBJECT_LIST_INIT(type, xname)
 #define DL_STRING_VECTOR_INIT(xname)
 #define DL_STRING_LIST_INIT(xname)
 #define DL_OBJECT_INIT(type, xname) \
@@ -443,6 +453,8 @@ namespace XmlLib
         }
 #define DL_OBJECT_LIST_DEFINE_ACCESS(type, xname) \
         DL_LIST_DEFINE_ACCESS(type, xname)
+#define DL_THIS_OBJECT_LIST_DEFINE_ACCESS(type, xname) \
+        DL_LIST_DEFINE_ACCESS(type, xname)
 
 #define DL_STRING_VECTOR_DEFINE_ACCESS(xname) \
         DL_VECTOR_DEFINE_ACCESS(std::string, xname)
@@ -470,7 +482,15 @@ namespace XmlLib
             std::stringstream ss; \
             ss << "Object " DL_STRINGIZE(DL_ELEMENT) " did not handle element named " << name << "\n"; \
             ::OutputDebugString(ss.str().c_str()); \
-            ASSERT(FALSE); \
+        }
+#define DL_START_MULTIPLE(elist) bool wasFlag = false; elist(START)
+#define DL_START_MULTIPLE_CONTINUE(elist) elist(START)
+#define DL_START_MULTIPLE_END(elist) elist(START) \
+        if (subHandler == NULL && !wasFlag) \
+        { \
+            std::stringstream ss; \
+            ss << "Object " DL_STRINGIZE(DL_ELEMENT) " did not handle element named " << name << "\n"; \
+            ::OutputDebugString(ss.str().c_str()); \
         }
 #define DL_GENERIC_DUPLICATE(flag,xname) SAXASSERT(!flag,DL_STRINGIZE(DL_ELEMENT) " had duplicate " DL_STRINGIZE(xname) " elements")
 #define DL_FLAG_START(xname) \
@@ -536,6 +556,16 @@ namespace XmlLib
         if (subHandler == NULL) \
         { \
             type object; \
+            if (object.SaxElementIsSelf(name, attributes)) \
+            { \
+                DL_CAT(m_,xname).push_back(object); \
+                subHandler = &DL_CAT(m_,xname).back(); \
+            } \
+        }
+#define DL_THIS_OBJECT_LIST_START(type, xname) \
+        if (subHandler == NULL) \
+        { \
+            type object(this); \
             if (object.SaxElementIsSelf(name, attributes)) \
             { \
                 DL_CAT(m_,xname).push_back(object); \
@@ -623,6 +653,7 @@ namespace XmlLib
 #define DL_OPTIONAL_VECTOR_END(type, xname)
 #define DL_OBJECT_VECTOR_END(type, xname)
 #define DL_OBJECT_LIST_END(type, xname)
+#define DL_THIS_OBJECT_LIST_END(type, xname)
 #define DL_STRING_VECTOR_END(xname)
 #define DL_STRING_LIST_END(xname)
 #define DL_OBJECT_END(type, xname) \
@@ -686,7 +717,15 @@ namespace XmlLib
                 iter->Write(writer); \
             } \
         }
-
+#define DL_THIS_OBJECT_LIST_WRITE(type, xname) \
+        if (!DL_CAT(m_,xname).empty()) \
+        { \
+            std::list<type>::const_iterator iter; \
+            for (iter = DL_CAT(m_,xname).begin(); iter != DL_CAT(m_,xname).end(); ++iter) \
+            { \
+                iter->Write(writer); \
+            } \
+        }
 #define DL_STRING_VECTOR_WRITE(xname) \
         if (!DL_CAT(m_,xname).empty()) \
         { \

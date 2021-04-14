@@ -9,8 +9,10 @@ class Filigree :
     public XmlLib::SaxContentElement
 {
     public:
-        Filigree(void);
+        Filigree(const XmlLib::SaxString& elementName, unsigned verCurrent);
         void Write(XmlLib::SaxWriter * writer) const;
+
+        bool operator==(const Filigree & other) const;
 
     protected:
         XmlLib::SaxContentElementInterface * StartElement(
@@ -19,7 +21,6 @@ class Filigree :
 
         virtual void EndElement();
 
-        // this gives us Number d Sides. e.g. 3d6
         #define Filigree_PROPERTIES(_) \
                 DL_STRING(_, Name) \
                 DL_FLAG(_, Rare)
@@ -28,4 +29,6 @@ class Filigree :
         DL_DECLARE_VARIABLES(Filigree_PROPERTIES)
 
         friend class SentientJewel;
+        friend class WeaponFiligree;
+        friend class ArtifactFiligree;
 };

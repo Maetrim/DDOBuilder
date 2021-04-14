@@ -27615,7 +27615,21 @@ or you have previously unlocked this tree for this character.</Description>
    </Feat>
    <Feat>
       <Name>Thunder-touched Tree</Name>
-      <Description>You have access to the thunder-touched enhancement tree through a DDO store purchase
+      <Description>You have access to the Thunder-touched enhancement tree through a DDO store purchase
+or you have previously unlocked this tree for this character.
+If you are not Strimtom - please ignore this tree.
+THIS IS NOT A REAL TREE IN THE GAME (at this time)</Description>
+      <Requirements/>
+      <Acquire>UniversalTree</Acquire>
+      <Icon>Thundertouched</Icon>
+      <Effect>
+         <Type>EnhancementTree</Type>
+         <Bonus>Enhancement</Bonus>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Oakheart Tree</Name>
+      <Description>You have access to the Oakheart enhancement tree through a DDO store purchase
 or you have previously unlocked this tree for this character.
 If you are not Strimtom - please ignore this tree.
 THIS IS NOT A REAL TREE IN THE GAME (at this time)</Description>
@@ -27723,18 +27737,18 @@ Reaction.
 Pyrite Reaction: Fire, Cold, Electric, Acid, and Poison Spell Power equal to
 (10 + 6x your Alchemist level) and a -50% Enhancement Bonus to Spell Point Cost.
 
-Verdanite Reaction: Positive and Negative Spell Power equal to (10 + 6x you
+Verdanite Reaction: Positive and Negative Spell Power equal to (10 + 6x your
 Alchemist level) and Transmutation and Conjuration DCs equal to (1 + 1 for every
-10 Alchemist Levels).
+5 Alchemist Levels).
 
 Orchidium Reaction: Physical Resistance rating and Elemental Resistance equal to
-(10 + 3x your Alchemist Level).
+(10 + 4x your Alchemist Level).
 
 Each Reaction does something unique that lasts for as long as you maintain that Reaction:
 
-Pyrite Reaction: +1 Fire, Cold, Electric, Acid, and Poison Spell Power per 2 Alchemist Levels.
-Verdanite Reaction: +1 Positive and Negative Spell Power per 2 Alchemist Levels.
-Orchidium Reaction: +1 Physical Resistance Rating per Alchemist Level.</Description>
+Pyrite Reaction: +2 Fire, Cold, Electric, Acid, and Poison Spell Power per Alchemist Level.
+Verdanite Reaction: +2 Positive and Negative Spell Power per Alchemist Level.
+Orchidium Reaction: +2 Physical Resistance Rating per Alchemist Level.</Description>
       <Requirements/>
       <Acquire>Automatic</Acquire>
       <Icon>AlchemicalSpellcasting</Icon>
@@ -27748,6 +27762,8 @@ Orchidium Reaction: +1 Physical Resistance Rating per Alchemist Level.</Descript
          <Description>You are in Pyrite Reaction.</Description>
          <IncompatibleStance>Verdanite</IncompatibleStance>
          <IncompatibleStance>Orchidium</IncompatibleStance>
+         <IncompatibleStance>Verdanite Spike</IncompatibleStance>
+         <IncompatibleStance>Orchidium Spike</IncompatibleStance>
       </Stance>
       <Stance>
          <Name>Verdanite</Name>
@@ -27755,6 +27771,8 @@ Orchidium Reaction: +1 Physical Resistance Rating per Alchemist Level.</Descript
          <Description>You are in Verdanite Reaction.</Description>
          <IncompatibleStance>Pyrite</IncompatibleStance>
          <IncompatibleStance>Orchidium</IncompatibleStance>
+         <IncompatibleStance>Pyrite Spike</IncompatibleStance>
+         <IncompatibleStance>Orchidium Spike</IncompatibleStance>
       </Stance>
       <Stance>
          <Name>Orchidium</Name>
@@ -27762,9 +27780,32 @@ Orchidium Reaction: +1 Physical Resistance Rating per Alchemist Level.</Descript
          <Description>You are in Orchidium Reaction.</Description>
          <IncompatibleStance>Pyrite</IncompatibleStance>
          <IncompatibleStance>Verdanite</IncompatibleStance>
+         <IncompatibleStance>Pyrite Spike</IncompatibleStance>
+         <IncompatibleStance>Verdanite Spike</IncompatibleStance>
+      </Stance>
+      <Stance>
+         <Name>Pyrite Spike</Name>
+         <Icon>Pyrite</Icon>
+         <Description>You are in Pyrite Reaction with the 12 second spike active.</Description>
+         <IncompatibleStance>Verdanite Spike</IncompatibleStance>
+         <IncompatibleStance>Orchidium Spike</IncompatibleStance>
+      </Stance>
+      <Stance>
+         <Name>Verdanite Spike</Name>
+         <Icon>Verdanite</Icon>
+         <Description>You are in Verdanite Reaction with the 12 second spike active.</Description>
+         <IncompatibleStance>Pyrite Spike</IncompatibleStance>
+         <IncompatibleStance>Orchidium Spike</IncompatibleStance>
+      </Stance>
+      <Stance>
+         <Name>Orchidium Spike</Name>
+         <Icon>Orchidium</Icon>
+         <Description>You are in Orchidium Reaction with the 12 second spike active.</Description>
+         <IncompatibleStance>Pyrite Spike</IncompatibleStance>
+         <IncompatibleStance>Verdanite Spike</IncompatibleStance>
       </Stance>
       <Effect>
-         <DisplayName>Pyrite 12 second buff</DisplayName>
+         <DisplayName>Pyrite Spike</DisplayName>
          <Type>SpellPower</Type>
          <Bonus>Feat</Bonus>
          <SpellPower>Fire</SpellPower>
@@ -27774,7 +27815,7 @@ Orchidium Reaction: +1 Physical Resistance Rating per Alchemist Level.</Descript
          <SpellPower>Poison</SpellPower>
          <Class>Alchemist</Class>
          <AmountVector size="20">16 22 28 34 40 46 52 58 64 70 76 82 88 94 100 106 112 118 124 130</AmountVector>
-         <Stance>Pyrite</Stance>
+         <Stance>Pyrite Spike</Stance>
       </Effect>
       <Effect>
          <DisplayName>Pyrite Reaction</DisplayName>
@@ -27786,17 +27827,27 @@ Orchidium Reaction: +1 Physical Resistance Rating per Alchemist Level.</Descript
          <SpellPower>Acid</SpellPower>
          <SpellPower>Poison</SpellPower>
          <Class>Alchemist</Class>
-         <AmountVector size="20">1 2 2 3 3 4 4 5 5 6 6 7 7 8 8 9 9 10 10 11</AmountVector>
+         <AmountVector size="20">2 4 6 8 10 12 14 16 18 20 22 24 26 28 30 32 34 36 38 40</AmountVector>
          <Stance>Pyrite</Stance>
       </Effect>
       <Effect>
-         <DisplayName>Verdanite 12 second buff</DisplayName>
+         <DisplayName>Verdanite Spike</DisplayName>
          <Type>SpellPower</Type>
          <Bonus>Feat</Bonus>
          <SpellPower>Positive</SpellPower>
          <SpellPower>Negative</SpellPower>
          <Class>Alchemist</Class>
          <AmountVector size="20">16 22 28 34 40 46 52 58 64 70 76 82 88 94 100 106 112 118 124 130</AmountVector>
+         <Stance>Verdanite Spike</Stance>
+      </Effect>
+      <Effect>
+         <DisplayName>Verdanite Reaction</DisplayName>
+         <Type>SpellPower</Type>
+         <Bonus>Feat</Bonus>
+         <SpellPower>Positive</SpellPower>
+         <SpellPower>Negative</SpellPower>
+         <Class>Alchemist</Class>
+         <AmountVector size="20">2 4 6 8 10 12 14 16 18 20 22 24 26 28 30 32 34 36 38 40</AmountVector>
          <Stance>Verdanite</Stance>
       </Effect>
       <Effect>
@@ -27805,7 +27856,7 @@ Orchidium Reaction: +1 Physical Resistance Rating per Alchemist Level.</Descript
          <Bonus>Feat</Bonus>
          <School>Conjuration</School>
          <Class>Alchemist</Class>
-         <AmountVector size="20">1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 3</AmountVector>
+         <AmountVector size="20">1 1 1 1 2 2 2 2 2 3 3 3 3 3 4 4 4 4 4 5</AmountVector>
          <Stance>Verdanite</Stance>
       </Effect>
       <Effect>
@@ -27814,36 +27865,24 @@ Orchidium Reaction: +1 Physical Resistance Rating per Alchemist Level.</Descript
          <Bonus>Feat</Bonus>
          <School>Transmutation</School>
          <Class>Alchemist</Class>
-         <AmountVector size="20">1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 3</AmountVector>
+         <AmountVector size="20">1 1 1 1 2 2 2 2 2 3 3 3 3 3 4 4 4 4 4 5</AmountVector>
          <Stance>Verdanite</Stance>
       </Effect>
       <Effect>
-         <DisplayName>Orchidium 12 second buff</DisplayName>
+         <DisplayName>Orchidium Spike</DisplayName>
          <Type>PRR</Type>
          <Bonus>Feat</Bonus>
          <Class>Alchemist</Class>
-         <AmountVector size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</AmountVector>
-         <Stance>Orchidium</Stance>
+         <AmountVector size="20">14 18 22 26 30 34 38 42 46 50 54 58 62 66 70 74 78 82 86 90</AmountVector>
+         <Stance>Orchidium Spike</Stance>
       </Effect>
       <Effect>
          <DisplayName>Orchidium Reaction</DisplayName>
          <Type>PRR</Type>
          <Bonus>Feat</Bonus>
          <Class>Alchemist</Class>
-         <AmountVector size="20">13 16 19 22 25 28 31 34 37 40 43 46 49 52 55 58 61 64 67 70</AmountVector>
+         <AmountVector size="20">2 4 6 8 10 12 14 16 18 20 22 24 26 28 30 32 34 36 38 40</AmountVector>
          <Stance>Orchidium</Stance>
-      </Effect>
-      <Effect>
-         <DisplayName>Orchidium Reaction</DisplayName>
-         <Type>EnergyResistance</Type>
-         <Bonus>Feat</Bonus>
-         <Class>Alchemist</Class>
-         <AmountVector size="20">13 16 19 22 25 28 31 34 37 40 43 46 49 52 55 58 61 64 67 70</AmountVector>
-         <Stance>Orchidium</Stance>
-         <Energy>Acid</Energy>
-         <Energy>Cold</Energy>
-         <Energy>Electric</Energy>
-         <Energy>Fire</Energy>
       </Effect>
    </Feat>
    <Feat>

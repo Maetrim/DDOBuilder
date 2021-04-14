@@ -3,7 +3,8 @@
 // An XML object wrapper that holds information on dice to be rolled
 #pragma once
 #include "XmlLib\DLMacros.h"
-#include "Filigree.h"
+#include "WeaponFiligree.h"
+#include "ArtifactFiligree.h"
 
 class SentientJewel :
     public XmlLib::SaxContentElement
@@ -21,6 +22,12 @@ class SentientJewel :
         void SetFiligree(size_t fi, const std::string & name);
         void SetFiligreeRare(size_t fi, bool isRare);
 
+        std::string GetArtifactFiligree(size_t fi) const;
+        bool IsRareArtifactFiligree(size_t fi) const;
+
+        void SetArtifactFiligree(size_t fi, const std::string & name);
+        void SetArtifactFiligreeRare(size_t fi, bool isRare);
+
     protected:
         XmlLib::SaxContentElementInterface * StartElement(
                 const XmlLib::SaxString & name,
@@ -31,7 +38,8 @@ class SentientJewel :
         #define SentientJewel_PROPERTIES(_) \
                 DL_OPTIONAL_STRING(_, Personality) \
                 DL_SIMPLE(_, size_t, NumFiligrees, 0) \
-                DL_OBJECT_LIST(_, Filigree, Filigrees) \
+                DL_OBJECT_LIST(_, WeaponFiligree, Filigrees) \
+                DL_OBJECT_LIST(_, ArtifactFiligree, ArtifactFiligrees) \
                 /* all following is for backwards compatibility */ \
                 DL_FLAG(_, SentientSpark) \
                 DL_OPTIONAL_STRING(_, Filigree1) \

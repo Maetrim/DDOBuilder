@@ -48,6 +48,7 @@
 #define MAX_TWIST_LEVEL         4
 #define MAX_ENHANCEMENT_TREES   7
 #define MAX_FILIGREE            15
+#define MAX_ARTIFACT_FILIGREE   3
 #define MAX_ABILITY_TOME        8
 #define MAX_SKILL_TOME          5
 

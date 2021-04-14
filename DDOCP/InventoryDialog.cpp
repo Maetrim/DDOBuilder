@@ -15,10 +15,11 @@ namespace
     // inventory window size
     const int c_sizeX = 418;
     const int c_sizeY = 290;
-    const int c_jewelX = 357;
-    const int c_jewelY = 24;
+    const int c_jewelX = 287;
+    const int c_jewelY = 15;
     const int c_filigreeX = 232;
-    const int c_filigreeY = 115;
+    const int c_filigreeY = 61;
+    const int c_filigreeArtifactY = 231;
     const int c_filigreeXOffset = 36;
     const int c_filigreeYOffset = 52;
 }
@@ -51,6 +52,7 @@ CInventoryDialog::CInventoryDialog(CWnd* pParent) :
     m_tooltipFiligree(-2),
     m_bIgnoreNextMessage(false),
     m_filigreeIndex(0),
+    m_bIsArtifactFiligree(false),
     m_bUseFiligreeMenu(false)
 {
     //{{AFX_DATA_INIT(CInventoryDialog)
@@ -80,6 +82,23 @@ CInventoryDialog::CInventoryDialog(CWnd* pParent) :
     for (size_t i = 0; i < MAX_FILIGREE; ++i)
     {
         m_hitBoxesFiligrees.push_back(FiligreeHitBox(i, filigreeLocation));
+        // move location for next filigree
+        if ((i % 5) == 4)
+        {
+            // start of next row
+            filigreeLocation += CPoint(c_filigreeXOffset * -4, c_filigreeYOffset);
+        }
+        else
+        {
+            // move across one
+            filigreeLocation += CPoint(c_filigreeXOffset, 0);
+        }
+    }
+    // now add the artifact filigree hit locations
+    filigreeLocation = CRect(c_filigreeX, c_filigreeArtifactY, c_filigreeX + 34, c_filigreeArtifactY + 48);
+    for (size_t i = 0; i < MAX_ARTIFACT_FILIGREE; ++i)
+    {
+        m_hitBoxesArtifactFiligrees.push_back(FiligreeHitBox(i, filigreeLocation));
         // move location for next filigree
         if ((i % 5) == 4)
         {
@@ -144,24 +163,6 @@ BOOL CInventoryDialog::OnInitDialog()
     // create the menu used for Filigree selection
     m_filigrees = CompatibleAugments("Filigree");
     std::sort(m_filigrees.begin(), m_filigrees.end());
-    m_filigreeMenu.CreatePopupMenu();
-    // create a new sub menu for each filigree group
-    int iItemIndex = 1;
-    std::vector<Augment>::const_iterator cit = m_filigrees.begin();
-    while (cit != m_filigrees.end())
-    {
-        std::string fullName = (*cit).Name();
-        if (fullName.find("/") != std::string::npos)
-        {
-            if (fullName.find(":") != std::string::npos)
-            {
-                fullName.replace(fullName.find(":"), 1, "-");
-            }
-            fullName = "Raid: " + fullName;
-        }
-        AddMenuItem(m_filigreeMenu.GetSafeHmenu(), fullName.c_str(), iItemIndex++);
-        ++cit;
-    }
 
     return TRUE;  // return TRUE unless you set the focus to a control
                   // EXCEPTION: OCX Property Pages should return FALSE
@@ -262,7 +263,9 @@ void CInventoryDialog::OnPaint()
                     32,
                     32);
         }
-        // now draw all the filigrees
+
+        bool bHasArtifact = m_gearSet.HasMinorArtifact();
+        // now draw all the weapon filigrees
         CSize filigreeLocation(c_filigreeX, c_filigreeY);
         size_t count = jewel.NumFiligrees();
         for (size_t i = 0; i < count; ++i)
@@ -322,6 +325,67 @@ void CInventoryDialog::OnPaint()
                 filigreeLocation.cx += c_filigreeXOffset;
             }
         }
+        if (bHasArtifact)
+        {
+            filigreeLocation = CSize(c_filigreeX, c_filigreeArtifactY);
+            for (size_t i = 0; i < MAX_ARTIFACT_FILIGREE; ++i)
+            {
+                // and draw the selected filigree icon if there is one
+                Augment filigree = FindAugmentByName(jewel.GetArtifactFiligree(i));
+                if (filigree.Name() != "")     // may not have a filigree selection
+                {
+                    bool isRare = jewel.IsRareArtifactFiligree(i);
+                    if (isRare)
+                    {
+                        m_imagesFiligreeRare.TransparentBlt(
+                                memoryDc.GetSafeHdc(),
+                                filigreeLocation.cx,
+                                filigreeLocation.cy,
+                                34,
+                                48);
+                    }
+                    else
+                    {
+                        m_imagesFiligree.TransparentBlt(
+                                memoryDc.GetSafeHdc(),
+                                filigreeLocation.cx,
+                                filigreeLocation.cy,
+                                34,
+                                48);
+                    }
+                    CImage image;
+                    LoadImageFile(IT_augment, filigree.Icon(), &image);
+                    image.TransparentBlt(
+                            memoryDc.GetSafeHdc(),
+                            filigreeLocation.cx+1,
+                            filigreeLocation.cy+1,
+                            32,
+                            32);
+                }
+                else
+                {
+                    // no rare option shown if no filigree selected
+                    m_imagesJewel.TransparentBlt(
+                            memoryDc.GetSafeHdc(),
+                            filigreeLocation.cx+1,
+                            filigreeLocation.cy+1,
+                            34,
+                            34);
+                }
+                // move draw location for next filigree
+                if ((i % 5) == 4)
+                {
+                    // start of next row
+                    filigreeLocation.cx = c_filigreeX;
+                    filigreeLocation.cy += c_filigreeYOffset;
+                }
+                else
+                {
+                    // move across one
+                    filigreeLocation.cx += c_filigreeXOffset;
+                }
+            }
+        }
     }
     // now draw to display
     pdc.BitBlt(
@@ -354,24 +418,34 @@ void CInventoryDialog::OnLButtonDown(UINT nFlags, CPoint point)
             SentientJewel jewel = m_gearSet.SentientIntelligence();
             int filigreeIndex = 0;
             bool isRareSection = false;
+            bool isArtifactFiligree = false;
             CRect itemRect;
-            bool bFiligree = FindFiligreeByPoint(&filigreeIndex, &isRareSection, &itemRect);
+            bool bFiligree = FindFiligreeByPoint(&filigreeIndex, &isRareSection, &isArtifactFiligree, &itemRect);
             if (bFiligree)
             {
                 if (m_bUseFiligreeMenu)
                 {
                     if (filigreeIndex < 0)
                     {
-                        EditFiligree(filigreeIndex, itemRect);   // jewel personality
+                        EditFiligree(filigreeIndex, isArtifactFiligree, itemRect);   // jewel personality
                     }
                     else
                     {
                         // if we have a filigree in this location allow it to be changed or
                         // toggle the rare state of this filigree
-                        std::string clickedFiligree = jewel.GetFiligree(filigreeIndex);
+                        std::string clickedFiligree;
+                        if (isArtifactFiligree)
+                        {
+                            clickedFiligree = jewel.GetArtifactFiligree(filigreeIndex);
+                        }
+                        else
+                        {
+                            clickedFiligree = jewel.GetFiligree(filigreeIndex);
+                        }
                         if (clickedFiligree.empty()
                                 || !isRareSection)
                         {
+                            CreateFiligreeMenu(filigreeIndex, isArtifactFiligree);
                             ClientToScreen(&itemRect);
                             CWinAppEx * pApp = dynamic_cast<CWinAppEx*>(AfxGetApp());
                             UINT sel = pApp->GetContextMenuManager()->TrackPopupMenu(
@@ -387,25 +461,44 @@ void CInventoryDialog::OnLButtonDown(UINT nFlags, CPoint point)
                                 {
                                     std::string selectedItem = (*cit).Name();
                                     SentientJewel jewel = m_gearSet.SentientIntelligence();
-                                    // if they selected "No Augment" then clear the selection
-                                    if (selectedItem == " No Augment")
+                                    if (isArtifactFiligree)
                                     {
-                                        jewel.SetFiligreeRare(filigreeIndex, false);
-                                        jewel.SetFiligree(filigreeIndex, "");
+                                        // if they selected "No Augment" then clear the selection
+                                        if (selectedItem == " No Augment")
+                                        {
+                                            jewel.SetArtifactFiligreeRare(filigreeIndex, false);
+                                            jewel.SetArtifactFiligree(filigreeIndex, "");
+                                        }
+                                        else
+                                        {
+                                            jewel.SetArtifactFiligree(filigreeIndex, selectedItem);
+                                        }
+                                        m_gearSet.Set_SentientIntelligence(jewel);
+                                        m_pCharacter->UpdateActiveGearSet(m_gearSet);
+                                        Invalidate();
                                     }
                                     else
                                     {
-                                        jewel.SetFiligree(filigreeIndex, selectedItem);
+                                        // if they selected "No Augment" then clear the selection
+                                        if (selectedItem == " No Augment")
+                                        {
+                                            jewel.SetFiligreeRare(filigreeIndex, false);
+                                            jewel.SetFiligree(filigreeIndex, "");
+                                        }
+                                        else
+                                        {
+                                            jewel.SetFiligree(filigreeIndex, selectedItem);
+                                        }
+                                        m_gearSet.Set_SentientIntelligence(jewel);
+                                        m_pCharacter->UpdateActiveGearSet(m_gearSet);
+                                        Invalidate();
                                     }
-                                    m_gearSet.Set_SentientIntelligence(jewel);
-                                    m_pCharacter->UpdateActiveGearSet(m_gearSet);
-                                    Invalidate();
                                 }
                             }
                         }
                         else
                         {
-                            ToggleRareState(filigreeIndex);
+                            ToggleRareState(filigreeIndex, isArtifactFiligree);
                         }
                     }
                 }
@@ -415,19 +508,19 @@ void CInventoryDialog::OnLButtonDown(UINT nFlags, CPoint point)
                     if (clickedFiligree.empty())
                     {
                         // just allow the user to select a filigree for this position
-                        EditFiligree(filigreeIndex, itemRect);
+                        EditFiligree(filigreeIndex, isArtifactFiligree, itemRect);
                     }
                     else
                     {
                         // if they clicked the rare section, toggle its rare state
                         if (isRareSection)
                         {
-                            ToggleRareState(filigreeIndex);
+                            ToggleRareState(filigreeIndex, isArtifactFiligree);
                         }
                         else
                         {
                             // allow the user to change this filigree selection
-                            EditFiligree(filigreeIndex, itemRect);
+                            EditFiligree(filigreeIndex, isArtifactFiligree, itemRect);
                         }
                     }
                 }
@@ -452,15 +545,24 @@ void CInventoryDialog::OnRButtonDown(UINT nFlags, CPoint point)
             SentientJewel jewel = m_gearSet.SentientIntelligence();
             int filigree = 0;
             bool isRareSection = false;
+            bool isArtifactFiligree = false;
             CRect itemRect;
-            bool bFiligree = FindFiligreeByPoint(&filigree, &isRareSection, &itemRect);
+            bool bFiligree = FindFiligreeByPoint(&filigree, &isRareSection, &isArtifactFiligree, &itemRect);
             if (bFiligree)
             {
                 // clear this Filigree/jewel
                 if (filigree >= 0)
                 {
-                    jewel.SetFiligreeRare(filigree, false);
-                    jewel.SetFiligree(filigree, "");
+                    if (isArtifactFiligree)
+                    {
+                        jewel.SetArtifactFiligreeRare(filigree, false);
+                        jewel.SetArtifactFiligree(filigree, "");
+                    }
+                    else
+                    {
+                        jewel.SetFiligreeRare(filigree, false);
+                        jewel.SetFiligree(filigree, "");
+                    }
                 }
                 else
                 {
@@ -501,14 +603,16 @@ InventorySlotType CInventoryDialog::FindItemByPoint(CRect * pRect) const
 bool CInventoryDialog::FindFiligreeByPoint(
         int * filigree,
         bool * isRareSection,
+        bool * bArtifactFiligree,
         CRect * pRect) const
 {
     bool found = false;
     CPoint point;
     GetCursorPos(&point);
     ScreenToClient(&point);
-    size_t count = 0;
     SentientJewel jewel = m_gearSet.SentientIntelligence();
+    size_t count = jewel.NumFiligrees();
+    bool bMinorArtifact = m_gearSet.HasMinorArtifact();
     // see if we need to highlight the item under the cursor
     std::vector<FiligreeHitBox>::const_iterator it = m_hitBoxesFiligrees.begin();
     while (!found && it != m_hitBoxesFiligrees.end())
@@ -517,7 +621,7 @@ bool CInventoryDialog::FindFiligreeByPoint(
         {
             // mouse is over this item
             // but the item must exist (slot always exists for jewel (-1))
-            if ((*it).Slot() < (int)jewel.NumFiligrees())
+            if ((*it).Slot() < (int)count)
             {
                 int yPos = point.y - (*it).Rect().top;
                 *isRareSection =  (yPos > 34);  // true if click rare part
@@ -531,6 +635,30 @@ bool CInventoryDialog::FindFiligreeByPoint(
         }
         ++it;
     }
+    if (bMinorArtifact)
+    {
+        it = m_hitBoxesArtifactFiligrees.begin();
+        while (!found && it != m_hitBoxesArtifactFiligrees.end())
+        {
+            if ((*it).IsInRect(point))
+            {
+                // mouse is over this item
+                if ((*it).Slot() < MAX_ARTIFACT_FILIGREE)
+                {
+                    int yPos = point.y - (*it).Rect().top;
+                    *isRareSection =  (yPos > 34);  // true if click rare part
+                    *filigree = (*it).Slot();
+                    *bArtifactFiligree = true;
+                    if (pRect != NULL)
+                    {
+                        *pRect = (*it).Rect();
+                    }
+                    found = true;
+                }
+            }
+            ++it;
+        }
+    }
     return found;
 }
 
@@ -541,7 +669,8 @@ void CInventoryDialog::OnMouseMove(UINT nFlags, CPoint point)
     InventorySlotType slot = FindItemByPoint(&itemRect);
     int filigree = 0;
     bool isRareSection = false;
-    bool bFiligree = FindFiligreeByPoint(&filigree, &isRareSection, &itemRect);
+    bool isArtifactFiligree = false;
+    bool bFiligree = FindFiligreeByPoint(&filigree, &isRareSection, &isArtifactFiligree, &itemRect);
     if (slot != Inventory_Unknown
             && slot != m_tooltipItem
             && slot != Inventory_FindItems)
@@ -569,11 +698,23 @@ void CInventoryDialog::OnMouseMove(UINT nFlags, CPoint point)
         }
         else    // filigree
         {
-            std::string filigreeName = jewel.GetFiligree(filigree);
-            if (filigreeName.size() != 0)
+            if (isArtifactFiligree)
             {
-                Augment augment = FindAugmentByName(filigreeName);
-                ShowTip(augment, itemRect);
+                std::string filigreeName = jewel.GetArtifactFiligree(filigree);
+                if (filigreeName.size() != 0)
+                {
+                    Augment augment = FindAugmentByName(filigreeName);
+                    ShowTip(augment, itemRect);
+                }
+            }
+            else
+            {
+                std::string filigreeName = jewel.GetFiligree(filigree);
+                if (filigreeName.size() != 0)
+                {
+                    Augment augment = FindAugmentByName(filigreeName);
+                    ShowTip(augment, itemRect);
+                }
             }
         }
     }
@@ -703,12 +844,13 @@ void CInventoryDialog::NotifySlotRightClicked(InventorySlotType slot)
     NotifyAll(&InventoryObserver::UpdateSlotRightClicked, this, slot);
 }
 
-void CInventoryDialog::EditFiligree(int filigreeIndex, CRect itemRect)
+void CInventoryDialog::EditFiligree(int filigreeIndex, bool isArtifactFiligree, CRect itemRect)
 {
     int sel = CB_ERR;   // assume no selection
     m_comboFiligreeSelect.SetImageList(NULL);
     m_comboFiligreeSelect.ResetContent();
     m_filigreeIndex = filigreeIndex;
+    m_bIsArtifactFiligree = isArtifactFiligree;
 
     SentientJewel jewel = m_gearSet.SentientIntelligence();
     if (filigreeIndex < 0)
@@ -746,34 +888,64 @@ void CInventoryDialog::EditFiligree(int filigreeIndex, CRect itemRect)
         std::vector<Augment> augments = CompatibleAugments("Filigree");
 
         // DDO BUG - It is possible to slot the same filigree multiple times
-        // while this is possible in game, it will be allowed here in the planner
-        // when the bug is fixed, uncomment the following code.
-
-        //for (size_t fi = 0; fi < MAX_FILIGREE; ++fi)
-        //{
-        //    // do not remove any selection from current slot
-        //    if (fi != filigreeIndex)
-        //    {
-        //        // get current selection (if any)
-        //        std::string filigree = jewel.GetFiligree(fi);
-        //        if (filigree != "")
-        //        {
-        //            // remove it from the augments list
-        //            std::vector<Augment>::iterator it = augments.begin();
-        //            while (it != augments.end())
-        //            {
-        //                if ((*it).Name() == filigree)
-        //                {
-        //                    it = augments.erase(it);
-        //                }
-        //                else
-        //                {
-        //                    ++it;
-        //                }
-        //            }
-        //        }
-        //    }
-        //}
+        // if they are in different items. But we don't allow the same filigree
+        // in the same item
+        if (isArtifactFiligree)
+        {
+            for (size_t fi = 0; fi < MAX_ARTIFACT_FILIGREE; ++fi)
+            {
+                // do not remove any selection from current slot
+                if (fi != filigreeIndex)
+                {
+                    // get current selection (if any)
+                    std::string filigree = jewel.GetArtifactFiligree(fi);
+                    if (filigree != "")
+                    {
+                        // remove it from the augments list
+                        std::vector<Augment>::iterator it = augments.begin();
+                        while (it != augments.end())
+                        {
+                            if ((*it).Name() == filigree)
+                            {
+                                it = augments.erase(it);
+                            }
+                            else
+                            {
+                                ++it;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        else
+        {
+            for (size_t fi = 0; fi < MAX_FILIGREE; ++fi)
+            {
+                // do not remove any selection from current slot
+                if (fi != filigreeIndex)
+                {
+                    // get current selection (if any)
+                    std::string filigree = jewel.GetFiligree(fi);
+                    if (filigree != "")
+                    {
+                        // remove it from the augments list
+                        std::vector<Augment>::iterator it = augments.begin();
+                        while (it != augments.end())
+                        {
+                            if ((*it).Name() == filigree)
+                            {
+                                it = augments.erase(it);
+                            }
+                            else
+                            {
+                                ++it;
+                            }
+                        }
+                    }
+                }
+            }
+        }
         BuildImageList(augments);
         m_comboFiligreeSelect.SetImageList(&m_filigreeImagesList);
 
@@ -784,9 +956,19 @@ void CInventoryDialog::EditFiligree(int filigreeIndex, CRect itemRect)
         {
             size_t pos = m_comboFiligreeSelect.AddString((*it).Name().c_str());
             m_comboFiligreeSelect.SetItemData(pos, fi);
-            if (jewel.GetFiligree(filigreeIndex) == (*it).Name())
+            if (isArtifactFiligree)
             {
-                sel = fi;
+                 if (jewel.GetArtifactFiligree(filigreeIndex) == (*it).Name())
+                {
+                    sel = fi;
+                }
+           }
+            else
+            {
+                if (jewel.GetFiligree(filigreeIndex) == (*it).Name())
+                {
+                    sel = fi;
+                }
             }
             ++fi;
             ++it;
@@ -836,14 +1018,29 @@ void CInventoryDialog::OnFiligreeSelectOk()
         else
         {
             // if they selected "No Augment" then clear the selection
-            if (selectedItem == " No Augment")
+            if (m_bIsArtifactFiligree)
             {
-                jewel.SetFiligreeRare(m_filigreeIndex, false);
-                jewel.SetFiligree(m_filigreeIndex, "");
+                if (selectedItem == " No Augment")
+                {
+                    jewel.SetArtifactFiligreeRare(m_filigreeIndex, false);
+                    jewel.SetArtifactFiligree(m_filigreeIndex, "");
+                }
+                else
+                {
+                    jewel.SetArtifactFiligree(m_filigreeIndex, (LPCTSTR)selectedItem);
+                }
             }
             else
             {
-                jewel.SetFiligree(m_filigreeIndex, (LPCTSTR)selectedItem);
+                if (selectedItem == " No Augment")
+                {
+                    jewel.SetFiligreeRare(m_filigreeIndex, false);
+                    jewel.SetFiligree(m_filigreeIndex, "");
+                }
+                else
+                {
+                    jewel.SetFiligree(m_filigreeIndex, (LPCTSTR)selectedItem);
+                }
             }
         }
         m_gearSet.Set_SentientIntelligence(jewel);
@@ -919,12 +1116,80 @@ void CInventoryDialog::BuildImageList(const std::vector<Augment> & augments)
     }
 }
 
-void CInventoryDialog::ToggleRareState(int filigree)
+void CInventoryDialog::ToggleRareState(int filigree, bool isArtifactFiligree)
 {
     SentientJewel jewel = m_gearSet.SentientIntelligence();
-    jewel.SetFiligreeRare(filigree, !jewel.IsRareFiligree(filigree));
+    if (isArtifactFiligree)
+    {
+        jewel.SetArtifactFiligreeRare(filigree, !jewel.IsRareArtifactFiligree(filigree));
+    }
+    else
+    {
+        jewel.SetFiligreeRare(filigree, !jewel.IsRareFiligree(filigree));
+    }
     m_gearSet.Set_SentientIntelligence(jewel);
     m_pCharacter->UpdateActiveGearSet(m_gearSet);
     Invalidate();
 }
 
+void CInventoryDialog::CreateFiligreeMenu(int filigreeIndex, bool bArtifact)
+{
+    SentientJewel jewel = m_gearSet.SentientIntelligence();
+    m_filigreeMenu.DestroyMenu();
+    m_filigreeMenu.CreatePopupMenu();
+    // ensure "Raid" menu at top of list
+    AddMenuItem(m_filigreeMenu.GetSafeHmenu(), "Raid:", 0);
+    // create a new sub menu for each filigree group
+    int iItemIndex = 1;
+    std::vector<Augment>::const_iterator cit = m_filigrees.begin();
+    while (cit != m_filigrees.end())
+    {
+        std::string fullName = (*cit).Name();
+        if (fullName.find("/") != std::string::npos)
+        {
+            if (fullName.find(":") != std::string::npos)
+            {
+                fullName.replace(fullName.find(":"), 1, "-");
+            }
+            fullName = "Raid: " + fullName;
+        }
+        bool bAdd = true;
+        if (bArtifact)
+        {
+            for (size_t fi = 0; fi < MAX_ARTIFACT_FILIGREE; ++fi)
+            {
+                // do not remove any selection from current slot
+                if (fi != filigreeIndex)
+                {
+                    std::string filigree = jewel.GetArtifactFiligree(fi);
+                    if ((*cit).Name() == filigree)
+                    {
+                        bAdd = false;
+                    }
+                }
+            }
+        }
+        else
+        {
+            for (size_t fi = 0; fi < MAX_FILIGREE; ++fi)
+            {
+                // do not remove any selection from current slot
+                if (fi != filigreeIndex)
+                {
+                    // get current selection (if any)
+                    std::string filigree = jewel.GetFiligree(fi);
+                    if ((*cit).Name() == filigree)
+                    {
+                        bAdd = false;
+                    }
+                }
+            }
+        }
+        if (bAdd)
+        {
+            AddMenuItem(m_filigreeMenu.GetSafeHmenu(), fullName.c_str(), iItemIndex);
+        }
+        iItemIndex++;
+        ++cit;
+    }
+}

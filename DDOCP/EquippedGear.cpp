@@ -267,17 +267,7 @@ void EquippedGear::SetItem(
     case Inventory_Weapon2: Set_OffHand(item); break;
     default: ASSERT(FALSE); break;
     }
-    if (slot == Inventory_Weapon1
-            && !CanEquipTo2ndWeapon(pCharacter, item)
-            && HasItemInSlot(Inventory_Weapon2))
-    {
-        ss << "The following item was removed because you cannot have an item in your off hand:\r\n\r\n";
-        ss << ItemInSlot(Inventory_Weapon2).Name();
-        // item in this slot now stops an item in weapon slot 2
-        ClearItem(Inventory_Weapon2);
-        itemsRemoved = true;
-    }
-    // if the item just equipped is a Minor Artifact, make sure
+     // if the item just equipped is a Minor Artifact, make sure
     // we do not have any other minor artifacts equipped.
     if (item.HasMinorArtifact())
     {
@@ -301,6 +291,16 @@ void EquippedGear::SetItem(
                 }
             }
         }
+    }
+   if (slot == Inventory_Weapon1
+            && !CanEquipTo2ndWeapon(pCharacter, item)
+            && HasItemInSlot(Inventory_Weapon2))
+    {
+        ss << "The following item was removed because you cannot have an item in your off hand:\r\n\r\n";
+        ss << ItemInSlot(Inventory_Weapon2).Name();
+        // item in this slot now stops an item in weapon slot 2
+        ClearItem(Inventory_Weapon2);
+        itemsRemoved = true;
     }
     if (itemsRemoved)
     {
@@ -337,3 +337,20 @@ void EquippedGear::SetNumFiligrees(size_t count)
     m_SentientIntelligence.SetNumFiligrees(count);
 }
 
+bool EquippedGear::HasMinorArtifact() const
+{
+    bool bHas = false;
+    // need to check all gear slots
+    for (size_t s = Inventory_Unknown + 1; s < Inventory_Count; ++s)
+    {
+        if (HasItemInSlot((InventorySlotType)s))
+        {
+            if (ItemInSlot((InventorySlotType)s).HasMinorArtifact())
+            {
+                // we do have at least 1 other minor artifact, remove it
+                bHas = true;
+            }
+        }
+    }
+    return bHas;
+}

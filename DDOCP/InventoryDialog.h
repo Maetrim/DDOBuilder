@@ -114,6 +114,7 @@ class CInventoryDialog :
         bool FindFiligreeByPoint(
                 int * filigree,
                 bool * isRareSection,
+                bool * bArtifactFiligree,
                 CRect * pRect = NULL) const;
         void ShowTip(const Item & item, CRect itemRect);
         void ShowTip(const Augment & augment, CRect itemRect);
@@ -123,9 +124,10 @@ class CInventoryDialog :
         CRect GetItemRect(InventorySlotType slot) const;
         void NotifySlotLeftClicked(InventorySlotType slot);
         void NotifySlotRightClicked(InventorySlotType slot);
-        void EditFiligree(int filigreeIndex, CRect itemRect);
+        void EditFiligree(int filigreeIndex, bool isArtifactFiligree, CRect itemRect);
         void BuildImageList(const std::vector<Augment> & augments);
-        void ToggleRareState(int filigree);
+        void ToggleRareState(int filigree, bool isArtifactFiligree);
+        void CreateFiligreeMenu(int filigree, bool bArtifact);
 
         Character * m_pCharacter;
         CSize m_bitmapSize;
@@ -138,6 +140,7 @@ class CInventoryDialog :
         CImage m_imagesFiligreeRare;
         std::vector<InventoryHitBox> m_hitBoxesInventory;
         std::vector<FiligreeHitBox> m_hitBoxesFiligrees;
+        std::vector<FiligreeHitBox> m_hitBoxesArtifactFiligrees;
         CInfoTip m_tooltip;
         bool m_showingItemTip;
         bool m_showingFiligreeTip;
@@ -149,6 +152,7 @@ class CInventoryDialog :
         CImageList m_filigreeImagesList;
         bool m_bIgnoreNextMessage;
         int m_filigreeIndex;        // index of filigree being edited
+        bool m_bIsArtifactFiligree;
         std::vector<Augment> m_filigrees;
         CMenu m_filigreeMenu;
         bool m_bUseFiligreeMenu;

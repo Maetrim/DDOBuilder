@@ -3300,48 +3300,51 @@ bool AddMenuItem(
                 }
             }
         }
-        // 4: If exists, do recursive call,
-        // else create do recursive call
-        // and then insert it
-        if (bFoundSubMenu)
+        if (remainingText != "")
         {
-            bSuccess = AddMenuItem(
-                    menuItemInfo.hSubMenu, 
-                    remainingText, 
-                    itemID);
-        }
-        else
-        {
-            // we need to create a new sub menu and insert it
-            HMENU hPopupMenu = ::CreatePopupMenu();
-            if (hPopupMenu != NULL)
+            // 4: If exists, do recursive call,
+            // else create do recursive call
+            // and then insert it
+            if (bFoundSubMenu)
             {
                 bSuccess = AddMenuItem(
-                        hPopupMenu, 
+                        menuItemInfo.hSubMenu, 
                         remainingText, 
                         itemID);
-                if (bSuccess)
+            }
+            else
+            {
+                // we need to create a new sub menu and insert it
+                HMENU hPopupMenu = ::CreatePopupMenu();
+                if (hPopupMenu != NULL)
                 {
-                    if (::AppendMenu(
-                            hTargetMenu, 
-                            MF_POPUP, 
-                            (UINT)hPopupMenu, 
-                            popupMenuName) > 0)
+                    bSuccess = AddMenuItem(
+                            hPopupMenu, 
+                            remainingText, 
+                            itemID);
+                    if (bSuccess)
                     {
-                        bSuccess = true;
-                        // hPopupMenu now owned by hTargetMenu,
-                        // we do not need to destroy it
-                    }
-                    else
-                    {
-                        // failed to insert the popup menu
-                        bSuccess = false;
-                        // stop a resource leak
-                        ::DestroyMenu(hPopupMenu);
+                        if (::AppendMenu(
+                                hTargetMenu, 
+                                MF_POPUP, 
+                                (UINT)hPopupMenu, 
+                                popupMenuName) > 0)
+                        {
+                            bSuccess = true;
+                            // hPopupMenu now owned by hTargetMenu,
+                            // we do not need to destroy it
+                        }
+                        else
+                        {
+                            // failed to insert the popup menu
+                            bSuccess = false;
+                            // stop a resource leak
+                            ::DestroyMenu(hPopupMenu);
+                        }
                     }
                 }
             }
-        }        
+        }
     }
     else
     {

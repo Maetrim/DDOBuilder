@@ -18,6 +18,11 @@ SentientJewel::SentientJewel() :
     XmlLib::SaxContentElement(f_saxElementName, f_verCurrent)
 {
     DL_INIT(SentientJewel_PROPERTIES)
+    // make sure we have the default artifact filigree items
+    while (m_ArtifactFiligrees.size() < MAX_ARTIFACT_FILIGREE)
+    {
+        m_ArtifactFiligrees.push_back(ArtifactFiligree());
+    }
 }
 
 DL_DEFINE_ACCESS(SentientJewel_PROPERTIES)
@@ -44,7 +49,7 @@ void SentientJewel::EndElement()
     {
         if (Deprecated_HasFiligree(i))
         {
-            Filigree f;
+            WeaponFiligree f;
             f.Set_Name(Deprecated_Filigree(i));
             if (Deprecated_IsRareFiligree(i))
             {
@@ -61,6 +66,16 @@ void SentientJewel::EndElement()
         m_hasNumFiligrees = true;
     }
     SaxContentElement::EndElement();
+    // make sure we have the right amount of artifact filigree objects
+    while (m_ArtifactFiligrees.size() > MAX_ARTIFACT_FILIGREE)
+    {
+        m_ArtifactFiligrees.pop_front();    // oldest are the ones not loaded
+    }
+    while (m_ArtifactFiligrees.size() < MAX_ARTIFACT_FILIGREE)
+    {
+        m_ArtifactFiligrees.push_back(ArtifactFiligree());
+    }
+
     DL_END(SentientJewel_PROPERTIES)
 }
 
@@ -76,7 +91,7 @@ std::string SentientJewel::GetFiligree(size_t fi) const
     std::string name;
     if (fi < m_Filigrees.size())
     {
-        std::list<Filigree>::const_iterator it = m_Filigrees.begin();
+        std::list<WeaponFiligree>::const_iterator it = m_Filigrees.begin();
         std::advance(it, fi);
         name = (*it).Name();
     }
@@ -88,7 +103,7 @@ bool SentientJewel::IsRareFiligree(size_t fi) const
     bool bRare = false;
     if (fi < m_Filigrees.size())
     {
-        std::list<Filigree>::const_iterator it = m_Filigrees.begin();
+        std::list<WeaponFiligree>::const_iterator it = m_Filigrees.begin();
         std::advance(it, fi);
         bRare = (*it).HasRare();
     }
@@ -107,7 +122,7 @@ void SentientJewel::SetNumFiligrees(size_t count)
     // add any required blank filigrees
     while (m_Filigrees.size() < count)
     {
-        m_Filigrees.push_back(Filigree());  // add a blank filigree
+        m_Filigrees.push_back(WeaponFiligree());  // add a blank filigree
     }
 }
 
@@ -120,7 +135,7 @@ void SentientJewel::SetFiligree(size_t fi, const std::string & name)
 {
     if (fi < m_NumFiligrees)
     {
-        std::list<Filigree>::iterator it = m_Filigrees.begin();
+        std::list<WeaponFiligree>::iterator it = m_Filigrees.begin();
         std::advance(it, fi);
         (*it).Set_Name(name);
     }
@@ -130,7 +145,58 @@ void SentientJewel::SetFiligreeRare(size_t fi, bool isRare)
 {
     if (fi < m_NumFiligrees)
     {
-        std::list<Filigree>::iterator it = m_Filigrees.begin();
+        std::list<WeaponFiligree>::iterator it = m_Filigrees.begin();
+        std::advance(it, fi);
+        if (isRare)
+        {
+            (*it).Set_Rare();
+        }
+        else
+        {
+            (*it).Clear_Rare();
+        }
+    }
+}
+
+std::string SentientJewel::GetArtifactFiligree(size_t fi) const
+{
+    std::string name;
+    if (fi < m_ArtifactFiligrees.size())
+    {
+        std::list<ArtifactFiligree>::const_iterator it = m_ArtifactFiligrees.begin();
+        std::advance(it, fi);
+        name = (*it).Name();
+    }
+    return name;
+}
+
+bool SentientJewel::IsRareArtifactFiligree(size_t fi) const
+{
+    bool bRare = false;
+    if (fi < m_ArtifactFiligrees.size())
+    {
+        std::list<ArtifactFiligree>::const_iterator it = m_ArtifactFiligrees.begin();
+        std::advance(it, fi);
+        bRare = (*it).HasRare();
+    }
+    return bRare;
+}
+
+void SentientJewel::SetArtifactFiligree(size_t fi, const std::string & name)
+{
+    if (fi < MAX_ARTIFACT_FILIGREE)
+    {
+        std::list<ArtifactFiligree>::iterator it = m_ArtifactFiligrees.begin();
+        std::advance(it, fi);
+        (*it).Set_Name(name);
+    }
+}
+
+void SentientJewel::SetArtifactFiligreeRare(size_t fi, bool isRare)
+{
+    if (fi < MAX_ARTIFACT_FILIGREE)
+    {
+        std::list<ArtifactFiligree>::iterator it = m_ArtifactFiligrees.begin();
         std::advance(it, fi);
         if (isRare)
         {

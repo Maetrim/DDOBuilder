@@ -937,6 +937,11 @@ void CItemSelectDialog::SetupFilterCombobox()
             i = m_comboFilter.AddString("Heavy Armor");
             m_comboFilter.SetItemData(i, Armor_Heavy);
             selItem = m_armorType;  // 1..4
+            if (m_pCharacter->IsEnhancementTrained("OakheartOakheart", "", TT_universal))
+            {
+                int i = m_comboFilter.AddString("Docent");
+                m_comboFilter.SetItemData(i, Armor_Docent);
+            }
         }
     }
     else if (m_slot == Inventory_Weapon1)
