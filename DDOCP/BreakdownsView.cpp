@@ -1007,20 +1007,6 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
                 hItem);
         m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pDS);
         m_items.push_back(pDS);
-        {
-            HTREEITEM hOHDS = m_itemBreakdownTree.InsertItem(
-                    "Off Hand Doublestrike",
-                    hItem,
-                    TVI_LAST);
-            BreakdownItem * pOHDS = new BreakdownItemSimple(
-                    Breakdown_OffHandDoubleStrike,
-                    Effect_OffHandDoublestrike,
-                    "Off Hand Doublestrike",
-                    &m_itemBreakdownTree,
-                    hOHDS);
-            m_itemBreakdownTree.SetItemData(hOHDS, (DWORD)(void*)pOHDS);
-            m_items.push_back(pOHDS);
-        }
     }
 
     {

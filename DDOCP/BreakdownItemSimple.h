@@ -25,4 +25,5 @@ class BreakdownItemSimple :
         EffectType m_effect;
 
         friend class BreakdownItemSave;
+        friend class BreakdownItemEDFCapped;
 };

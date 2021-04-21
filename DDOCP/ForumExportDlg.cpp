@@ -1563,8 +1563,6 @@ void CForumExportDlg::AddWeaponDamage(std::stringstream & forumExport)
     forumExport << "\r\n";
     AddBreakdown(forumExport, "Off-Hand attack Chance: ", 1, Breakdown_OffHandAttackBonus);
     forumExport << "%\r\n";
-    AddBreakdown(forumExport, "Off-Hand Doublestrike: ", 1, Breakdown_OffHandDoubleStrike);
-    forumExport << "%\r\n";
     AddBreakdown(forumExport, "Fortification Bypass: ", 1, Breakdown_FortificationBypass);
     forumExport << "%\r\n";
     AddBreakdown(forumExport, "Dodge Bypass: ", 1, Breakdown_DodgeBypass);

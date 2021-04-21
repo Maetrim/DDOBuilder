@@ -8455,8 +8455,7 @@ For item use purposes you are now treated as a second level Paladin
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Improved Dilettante: Ranger</Name>
-               <Description>Your Lesser Bow Strength has improved and at level 2 or higher are able
-to add up to 4 points of your strength bonus to attacks with bows.
+               <Description>You add an additional +1 to Damage with Longbows and Shortbows.
 For item use purposes you are now treated as a second level Ranger
 (or your total character level, whichever is lower)</Description>
                <Icon>HalfElfImprovedDilettanteRanger</Icon>
@@ -8466,6 +8465,13 @@ For item use purposes you are now treated as a second level Ranger
                      <Feat>Half-Elf Dilettante: Ranger</Feat>
                   </Requirement>
                </Requirements>
+              <Effect>
+                 <Type>DamageBonus</Type>
+                 <Bonus>Feat</Bonus>
+                 <Amount>1</Amount>
+                 <Weapon>Longbow</Weapon>
+                 <Weapon>Shortbow</Weapon>
+              </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Improved Dilettante: Rogue</Name>
@@ -8921,8 +8927,7 @@ For item use purposes you are now treated as a third level Paladin
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Improved Dilettante: Ranger</Name>
-               <Description>Your Lesser Bow Strength has improved and at level 3 or higher are able
-to add up to 4 points of your strength bonus to attacks with bows.
+               <Description>You hav an additional +1 to Damage with Longbows and Shortbows.
 For item use purposes you are now treated as a third level Ranger
 (or your total character level, whichever is lower)</Description>
                <Icon>HalfElfImprovedDilettanteRanger</Icon>
@@ -8932,6 +8937,13 @@ For item use purposes you are now treated as a third level Ranger
                      <Feat>Half-Elf Dilettante: Ranger</Feat>
                   </Requirement>
                </Requirements>
+              <Effect>
+                 <Type>DamageBonus</Type>
+                 <Bonus>Feat</Bonus>
+                 <Amount>1</Amount>
+                 <Weapon>Longbow</Weapon>
+                 <Weapon>Shortbow</Weapon>
+              </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Improved Dilettante: Rogue</Name>
@@ -9735,9 +9747,8 @@ is lower)</Description>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Improved Dilettante: Ranger</Name>
-               <Description>Your Lesser Bow Strength has improved and at level 4 or higher are able to
-add up to 8 points of your strength bonus to attacks with bows. For item use
-purposes you are now treated as a fourth level Ranger (or your total character
+               <Description>YYou add an additional +1 to Damage with Longbows and Shortbows.
+For item use purposes you are now treated as a fourth level Ranger (or your total character
 level, whichever is lower)</Description>
                <Icon>HalfElfImprovedDilettanteRanger</Icon>
                <Cost>1</Cost>
@@ -9746,6 +9757,13 @@ level, whichever is lower)</Description>
                      <Feat>Half-Elf Dilettante: Ranger</Feat>
                   </Requirement>
                </Requirements>
+              <Effect>
+                 <Type>DamageBonus</Type>
+                 <Bonus>Feat</Bonus>
+                 <Amount>1</Amount>
+                 <Weapon>Longbow</Weapon>
+                 <Weapon>Shortbow</Weapon>
+              </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Improved Dilettante: Rogue</Name>
@@ -13554,7 +13572,7 @@ Your Iconic Rage now uncenters you.</Description>
       <EnhancementTreeItem>
          <Name>Razorclaw Shifter: Second Claw</Name>
          <InternalName>RazorclawSecondClaw</InternalName>
-         <Description>+[3/6/10]% chance to make offhand attachs, +[1/2/3]% Offhand Doublestrike</Description>
+         <Description>+[3/6/10]% chance to make offhand attacks</Description>
          <Icon>RazorclawSecondClaw</Icon>
          <XPosition>3</XPosition>
          <YPosition>3</YPosition>
@@ -13566,11 +13584,6 @@ Your Iconic Rage now uncenters you.</Description>
             <Type>OffHandAttackBonus</Type>
             <Bonus>Enhancement</Bonus>
             <AmountVector size="3">3 6 10</AmountVector>
-         </Effect>
-         <Effect>
-            <Type>OffHandDoublestrike</Type>
-            <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">1 2 3</AmountVector>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -14159,7 +14172,7 @@ the higher of your Melee or Ranged Power. On Vorpal, enemies are Blinded.</Descr
          <Name>Aasimar Scourge: Greater Scourge Weapons</Name>
          <InternalName>SAGreaterScourgeWeapons</InternalName>
          <Description>While dual-wielding Clubs, Light Maces, Heavy Maces, and Morningstars, you gain
-5% chance to make off-hand attacks and 5% chance to doublestrike with your off-hand.
+5% chance to make off-hand attacks.
 Passive: +2 Melee and Ranged power.</Description>
          <Icon>GreaterScourgeWeapons</Icon>
          <XPosition>0</XPosition>
@@ -14175,12 +14188,6 @@ Passive: +2 Melee and Ranged power.</Description>
          <!--only when dual wielding clubs/maces or morningstars-->
          <Effect>
             <Type>OffHandAttackBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>5</Amount>
-            <Stance>Two Weapon Fighting</Stance>
-         </Effect>
-         <Effect>
-            <Type>OffHandDoublestrike</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>5</Amount>
             <Stance>Two Weapon Fighting</Stance>
@@ -18607,14 +18614,9 @@ When the initial effect expires, a smaller healing effect that heals 1 HP every
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Wild Swings</Name>
-               <Description>+5% Offhand Strike Chance.</Description>
+               <Description>+5% Offhand Strike Chance. WHAT DOES THIS DO NOW?</Description>
                <Icon>WoodElfWildSwings</Icon>
                <Cost>1</Cost>
-               <Effect>
-                  <Type>OffHandDoublestrike</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <Amount>5</Amount>
-               </Effect>
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
@@ -54189,12 +54191,12 @@ applies a Greater Restoration effect on your target.</Description>
             <Save>Spell</Save>
             <Stance>Evil Creatures</Stance>
          </Effect>
-        <Effect>
-            <Type>GhostTouch</Type>
-            <Bonus>Enhancement</Bonus>
+          <Effect>
+              <Type>GhostTouch</Type>
+              <Bonus>Enhancement</Bonus>
               <Amount>1</Amount>
-            <Weapon>All</Weapon>
-        </Effect>
+              <Weapon>All</Weapon>
+          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Knight of the Chalice: Improved Courage of Heaven</Name>
@@ -55012,13 +55014,13 @@ and a damage bonus based on your paladin level. Smites return at a rate of one e
          <Name>Knight of the Chalice: Knight's Training</Name>
          <InternalName>KotCKnightsTraining</InternalName>
          <Description>+1 to Attack and Damage with all weapons and +1 to Attack and Damage with
-Favored Weapons. You also gain the Knight's Training feat:
+Favored Weapons. You also gain the Knight's Training feat and the Shot on the Run feat:
 When wielding one of the following weapons, you are granted the following:
 Longswords you wield have a +1 Morale bonus to Critical Multiplier
 Battle Axes you wield have a +1 Morale bonus to Critical Threat Range, increasing
 to +2 Morale bonus if you have Improved Critical: Slashing
 Heavy Maces, Warhammers, and Morningstars you wield have a +1 Morale bonus to
-Critical Threat Range</Description>
+Critical Threat Range.</Description>
          <Icon>KotCKnightsTraining</Icon>
          <XPosition>0</XPosition>
          <YPosition>4</YPosition>
@@ -55092,6 +55094,11 @@ Critical Threat Range</Description>
             <Type>GrantFeat</Type>
             <Bonus>Enhancement</Bonus>
             <Feat>Knight's Training</Feat>
+         </Effect>
+         <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Enhancement</Bonus>
+            <Feat>Shot on the Run</Feat>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -60484,7 +60491,7 @@ projectile that would have struck you every 6 seconds.</Description>
          <Name>Vistani: Quick Reflexes</Name>
          <InternalName>VistaniCore3</InternalName>
          <Description>You gain Quickdraw as a bonus feat.
-You gain +5% Doublestrike (main and off hand), and Doubleshot.</Description>
+You gain +5% Doublestrike and Doubleshot.</Description>
          <Icon>KnifeSpecialist</Icon>
          <XPosition>2</XPosition>
          <YPosition>0</YPosition>
@@ -60507,11 +60514,6 @@ You gain +5% Doublestrike (main and off hand), and Doubleshot.</Description>
          </Effect>
          <Effect>
             <Type>Doubleshot</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>5</Amount>
-         </Effect>
-         <Effect>
-            <Type>OffHandDoublestrike</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>5</Amount>
          </Effect>
@@ -61202,7 +61204,7 @@ You are centered when fighting with daggers.
       <EnhancementTreeItem>
          <Name>Vistani: Celerity</Name>
          <InternalName>Celerity</InternalName>
-         <Description>You gain +5% Doublestrike (main and off hand), and Doubleshot.</Description>
+         <Description>You gain +5% Doublestrike and Doubleshot.</Description>
          <Icon>VistaniCelerity</Icon>
          <XPosition>1</XPosition>
          <YPosition>4</YPosition>
@@ -61216,11 +61218,6 @@ You are centered when fighting with daggers.
          </Requirements>
          <Effect>
             <Type>Doublestrike</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>5</Amount>
-         </Effect>
-         <Effect>
-            <Type>OffHandDoublestrike</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>5</Amount>
          </Effect>
@@ -61639,6 +61636,7 @@ multiplier to your equipped daggers or throwing knife for 15 seconds. 60 second 
                <Requirement>
                   <Enhancement>SSStudies</Enhancement>
                   <Selection>Magical Studies</Selection>
+                  <Amount>3</Amount>
                </Requirement>
                <Requirement>
                   <Enhancement>CelestialTutelage</Enhancement>
@@ -67832,10 +67830,8 @@ Taking this ability also grants Head Strike, a Melee version of the exact same a
       <EnhancementTreeItem>
          <Name>Deepwood Stalker: Improved Archer's Focus</Name>
          <InternalName>DSImprovedArchersFocus</InternalName>
-         <Description>Your Archer's Focus Stance can now stack up to 25 times instead of 15
-and also adds 10% Insight Bonus to Ranged Alacrity with Longbows and Shortbows
-when you have Archer's Focus active.
-Passive: +5 Melee Power and +5 Ranged Power</Description>
+         <Description>Your Archer's Focus Stance can now stack up to 25 times instead of 15.
+Passive: +5 Melee Power and +10 Ranged Power</Description>
          <Icon>DSImprovedArchersFocus</Icon>
          <XPosition>4</XPosition>
          <YPosition>5</YPosition>
@@ -67860,15 +67856,7 @@ Passive: +5 Melee Power and +5 Ranged Power</Description>
          <Effect>
             <Type>RangedPower</Type>
             <Bonus>Enhancement</Bonus>
-            <Amount>5</Amount>
-         </Effect>
-         <Effect>
-            <Type>Alacrity</Type>
-            <Bonus>Insightful</Bonus>
             <Amount>10</Amount>
-            <Weapon>Longbow</Weapon>
-            <Weapon>Shortbow</Weapon>
-            <Stance>Archer's Focus</Stance>
          </Effect>
       </EnhancementTreeItem>
    </EnhancementTree>
@@ -68138,9 +68126,8 @@ knocking aside one incoming projectile that would have struck you every 6 second
       <EnhancementTreeItem>
          <Name>Tempest: Dervish</Name>
          <InternalName>TempestCore6</InternalName>
-         <Description>+4 Dexterity. +25% chance to doublestrike with your off-hand while dual wielding.
-While wearing light or no armor: +10 Melee Power, Physical Resistance Rating,
-and Magical Resistance Rating</Description>
+         <Description>+4 Dexterity. +10% doublestrike. While wearing light or no armor: +10 Melee Power,
+Physical Resistance Rating, and Magical Resistance Rating</Description>
          <Icon>TempestDervish</Icon>
          <XPosition>5</XPosition>
          <YPosition>0</YPosition>
@@ -68170,9 +68157,9 @@ and Magical Resistance Rating</Description>
             <AnyOfStance>Light Armor</AnyOfStance>
          </Effect>
          <Effect>
-            <Type>OffHandDoublestrike</Type>
+            <Type>Doublestrike</Type>
             <Bonus>Enhancement</Bonus>
-            <Amount>25</Amount>
+            <Amount>10</Amount>
          </Effect>
          <Effect>
             <Type>ACBonus</Type>
@@ -97729,7 +97716,7 @@ as it applies the new one. You may activate this ability on yourself.
 
 Primal Resonance: +1 to Dexterity, Constitution and Wisdom, +25 Maximum Hit Points,
 +10 Spell resistance, +10 Healing Amplification, +10% Attack Speed with Throwing
-Weapons and Bows, and an additional +3 Strength while Raging.</Description>
+Weapons, and an additional +3 Strength while Raging.</Description>
          <Icon>PrimalHymn</Icon>
          <XPosition>3</XPosition>
          <YPosition>4</YPosition>
@@ -97743,7 +97730,7 @@ Weapons and Bows, and an additional +3 Strength while Raging.</Description>
             <Icon>PrimalHymn</Icon>
             <Description>Primal Resonance: +1 to Dexterity, Constitution and Wisdom, +25 Maximum Hit Points,
 +10 Spell Resistance, +10 Healing Amplification, +10% Attack Speed with Throwing
-Weapons and Bows, and an additional +3 Strength while Raging.</Description>
+Weapons, and an additional +3 Strength while Raging.</Description>
              <IncompatibleStance>Arcane Hymn</IncompatibleStance>
              <IncompatibleStance>Divine Hymn</IncompatibleStance>
              <IncompatibleStance>Martial Hymn</IncompatibleStance>
@@ -97793,13 +97780,6 @@ Weapons and Bows, and an additional +3 Strength while Raging.</Description>
             <Amount>10</Amount>
             <Stance>Primal Hymn</Stance>
             <WeaponClass>Thrown</WeaponClass>
-        </Effect>
-        <Effect>
-            <Type>Alacrity</Type>
-            <Bonus>Destiny</Bonus>
-            <Amount>10</Amount>
-            <Stance>Primal Hymn</Stance>
-            <WeaponClass>Bows</WeaponClass>
         </Effect>
         <Effect>
             <Type>AbilityBonus</Type>
@@ -98213,7 +98193,7 @@ I know not what.'
          <Description>You gain Druid and Ranger caster levels equal to your Fury of the Wild
 level if you have any levels in those classes.
 
-Gain 2 Adrenaline uses per rest. Consume 1 Adrenaline: Your next attack has +300%
+Gain 2 Adrenaline uses per rest. Consume 1 Adrenaline: Your next attack has +150%
 damage, and has +2 critical threat range and confirmation of critical hits.
 You are considered Raged until your next attack.
 
@@ -98299,7 +98279,7 @@ the Wild, including this one.</Description>
          <Name>Fury of the Wild: Adrenaline II</Name>
          <InternalName>FOTWCore3</InternalName>
          <Description>Gain +1 Adrenaline use per rest.
-Consume 1 Adrenaline: Your next attack has +300% damage, and has +4 critical threat
+Consume 1 Adrenaline: Your next attack has +150% damage, and has +4 critical threat
 range and confirmation of critical hits.
 You are considered Raged until your next attack.</Description>
          <Icon>Adrenaline</Icon>
@@ -98398,7 +98378,7 @@ You are considered Raged until your next attack.</Description>
          <Name>Fury of the Wild: Adrenaline III</Name>
          <InternalName>FOTWCore5</InternalName>
          <Description>Gain +1 Adrenaline use per rest.
-Consume 1 Adrenaline: Your next attack has +300% damage, and has +8 critical threat
+Consume 1 Adrenaline: Your next attack has +150% damage, and has +8 critical threat
 range and confirmation of critical hits.
 You are considered Raged until your next attack.</Description>
          <Icon>Adrenaline</Icon>
@@ -98447,7 +98427,7 @@ You are considered Raged until your next attack.</Description>
          <Name>Fury of the Wild: Adrenaline Overload</Name>
          <InternalName>FOTWCore6</InternalName>
          <Description>Gain +1 Adrenaline use per rest.
-Consume 1 Adrenaline: Your next attack has +400% damage, and has +16 critical threat
+Consume 1 Adrenaline: Your next attack has +200% damage, and has +16 critical threat
 range and confirmation of critical hits.
 You are considered Raged until your next attack.
 +1 Damage.</Description>
@@ -99082,8 +99062,7 @@ You heal 2d100 HP every two seconds over the next ten seconds.
 For 3 minutes, you gain +6 Wisdom and cannot benefit from rage or Adrenaline,
 and sentient enemies attacking you physically or magically have a 20% chance
 to become paralyzed and helpless with regret for 3 seconds on a failed DC 50
-Will Save.
-Cannot train if you have Fury Eternal.</Description>
+Will Save.</Description>
          <Icon>FuryMadePlacid</Icon>
          <XPosition>1</XPosition>
          <YPosition>5</YPosition>
@@ -99091,13 +99070,7 @@ Cannot train if you have Fury Eternal.</Description>
          <Ranks>1</Ranks>
          <MinSpent>16</MinSpent>
          <Clickie/>
-         <Requirements>
-            <RequiresNoneOf>
-               <Requirement>
-                  <Enhancement>FuryEternal</Enhancement>
-               </Requirement>
-            </RequiresNoneOf>
-         </Requirements>
+         <Requirements/>
          <Stance>
             <Name>Fury Made Placid</Name>
             <Icon>FuryMadePlacid</Icon>
@@ -99106,8 +99079,7 @@ You heal 2d100 HP every two seconds over the next ten seconds.
 For 3 minutes, you gain +6 Wisdom and cannot benefit from rage or Adrenaline,
 and sentient enemies attacking you physically or magically have a 20% chance
 to become paralyzed and helpless with regret for 3 seconds on a failed DC 50
-Will Save.
-Cannot train if you have Fury Eternal.</Description>
+Will Save.</Description>
          </Stance>
          <Effect>
             <Type>AbilityBonus</Type>
@@ -99130,21 +99102,14 @@ on a failed DC 50 Will Save.</Description>
          <Name>Fury of the Wild: Fury Eternal</Name>
          <InternalName>FuryEternal</InternalName>
          <Description>Gain +1 Adrenaline use per rest.
-Whenever you Vorpal on melee or ranged attack, 33% chance to regain 1 Adrenaline use.
-Cannot train Fury Made Placid.</Description>
+Whenever you Vorpal on melee or ranged attack, 100% chance to regain 1 Adrenaline use.</Description>
          <Icon>FuryEternal</Icon>
          <XPosition>2</XPosition>
          <YPosition>5</YPosition>
          <Cost>1</Cost>
          <Ranks>1</Ranks>
          <MinSpent>16</MinSpent>
-         <Requirements>
-            <RequiresNoneOf>
-               <Requirement>
-                  <Enhancement>FuryMadePlacid</Enhancement>
-               </Requirement>
-            </RequiresNoneOf>
-         </Requirements>
+         <Requirements/>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Fury of the Wild: Devastating Blow</Name>
@@ -106345,9 +106310,9 @@ Cooldown: 3 minutes</Description>
       <EnhancementTreeItem>
          <Name>Shiradi Champion: Hunt's End</Name>
          <InternalName>HuntsEnd</InternalName>
-         <Description>Your next shot with a Ranged or Thrown weapon has +400% damage and +16 to
+         <Description>Your next shot with a Ranged or Thrown weapon has +300% damage and +16 to
 its Critical Threat Range. This shot ignores incorpreality.
-Cooldown: 30 seconds.</Description>
+Cooldown: 18 seconds.</Description>
          <Icon>HuntsEnd</Icon>
          <XPosition>3</XPosition>
          <YPosition>6</YPosition>

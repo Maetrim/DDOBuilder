@@ -2,6 +2,7 @@
 //
 #include "stdafx.h"
 #include "BreakdownItemEDFCapped.h"
+#include "GlobalSupportFunctions.h"
 
 BreakdownItemEDFCapped::BreakdownItemEDFCapped(
         BreakdownType type,
@@ -35,4 +36,42 @@ CString BreakdownItemEDFCapped::Value() const
         value = BreakdownItemSimple::Value();
     }
     return value;
+}
+
+void BreakdownItemEDFCapped::CreateOtherEffects()
+{
+    if (m_pCharacter != NULL)
+    {
+        m_otherEffects.clear();
+        if (m_effect == Effect_DoubleShot
+                && m_pCharacter->IsFeatTrained("Manyshot"))
+        {
+            BreakdownItem * pBBAB = FindBreakdown(Breakdown_BAB);
+            ASSERT(pBBAB != NULL);
+            pBBAB->AttachObserver(this);  // need to know about changes to this effect
+            double amount = pBBAB->Total();
+            ActiveEffect prr(
+                    Bonus_feat,
+                    "Manyshot (BAB * 1.5)",
+                    1,
+                    (int)(amount * 1.5),        // drop fractions
+                    "");        // no tree
+            AddOtherEffect(prr);
+        }
+        if (m_effect == Effect_RangedPower
+                && m_pCharacter->IsFeatTrained("Rapid Shot"))
+        {
+            BreakdownItem * pBBAB = FindBreakdown(Breakdown_BAB);
+            ASSERT(pBBAB != NULL);
+            pBBAB->AttachObserver(this);  // need to know about changes to this effect
+            double amount = pBBAB->Total();
+            ActiveEffect prr(
+                    Bonus_feat,
+                    "Rapid Shot (BAB * 1.5)",
+                    1,
+                    (int)(amount * 1.5),        // drop fractions
+                    "");        // no tree
+            AddOtherEffect(prr);
+        }
+    }
 }

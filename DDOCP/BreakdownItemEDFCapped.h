@@ -17,4 +17,5 @@ class BreakdownItemEDFCapped :
 
         // required overrides
         virtual CString Value() const override;
+        virtual void CreateOtherEffects() override;
 };

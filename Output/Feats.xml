@@ -4915,8 +4915,8 @@ This feat is not recommended for characters with actual Paladin levels.</Descrip
    <Feat>
       <Name>Half-Elf Dilettante: Ranger</Name>
       <Description>You have hunted with some of the greatest rangers of Khorvaire.
-You gain proficiency with all martial ranged weapons and can add up to 2 points
-of your Strength bonus to bow damage. You are able to use wands and scrolls as
+You gain proficiency with all martial ranged weapons and have add +1 to Damage
+with Longbows and Shortbows. You are able to use wands and scrolls as
 if you were a level one Ranger. For item use purposes you count as a level one
 Ranger in addition to any other classes you possess.
 This feat is not recommended for characters with actual Ranger levels.</Description>
@@ -4942,9 +4942,9 @@ This feat is not recommended for characters with actual Ranger levels.</Descript
       <Effect>
          <Type>DamageBonus</Type>
          <Bonus>Feat</Bonus>
-         <DamageType>Ranged</DamageType>
-         <Amount>2</Amount>
-         <!--Handle capped by Strength modifier-->
+         <Amount>1</Amount>
+         <Weapon>Longbow</Weapon>
+         <Weapon>Shortbow</Weapon>
       </Effect>
    </Feat>
    <Feat>
@@ -7234,9 +7234,10 @@ drops below 12.</Description>
    </Feat>
    <Feat>
       <Name>Manyshot</Name>
-      <Description>For the next 20 seconds, add your BAB x 4 to your Doubleshot and Ranged power.
-This ability puts Ten Thousand Stars on a 30 second cooldown.
-Cooldown: 2 minutes.</Description>
+      <Description>Bow Attack: Fire three arrows in quick succession.
++1 Critical Threat Range and Multiplier on each of these shots.
+12 second cooldown.
+Passive: You gain Doubleshot equal to 1.5 your BAB with longbows and shortbows.</Description>
       <FeatGroup>
          <IsStandardFeat/>
          <IsFighterBonus/>
@@ -9353,7 +9354,8 @@ Warforged retain most living construct traits.</Description>
       <Name>Point Blank Shot</Name>
       <Description>Grants a +1 bonus to hit within 15 meters and your ranged weapons deal +1[W].
 This affects the base dice of the associated weapon any time they are rolled,
-including critical hits.</Description>
+including critical hits.
+When using a Longbow or Shortbow, you gain +1 Critical Multiplier on a roll of 19-20</Description>
       <FeatGroup>
          <IsArtificerBonus/>
          <IsStandardFeat/>
@@ -9374,6 +9376,13 @@ including critical hits.</Description>
          <Amount>1</Amount>
          <DamageType>Ranged</DamageType>
       </Effect>
+        <Effect>
+            <Type>CriticalMultiplier19To20</Type>
+            <Bonus>Competence</Bonus>
+            <Amount>1</Amount>
+            <Weapon>Shortbow</Weapon>
+            <Weapon>Longbow</Weapon>
+        </Effect>
    </Feat>
    <Feat>
       <Name>Poison Save Bonus</Name>
@@ -9864,7 +9873,8 @@ Constitution, a +2 Morale bonus to Will saves and a -2 penalty to AC.</Descripti
    </Feat>
    <Feat>
       <Name>Rapid Shot</Name>
-      <Description>You can make ranged attacks about 20% faster and reload faster when using a ranged weapon.</Description>
+      <Description>You can make ranged attacks about 20% faster and reload faster when using a ranged weapon.
+You gain Ranged Power equal to 1.5 your BAB with longbows and shortbows.</Description>
       <FeatGroup>
          <IsStandardFeat/>
          <IsArtificerBonus/>
@@ -10188,7 +10198,7 @@ negates this effect.</Description>
    <Feat>
       <Name>Shot on the Run</Name>
       <Description>Negates the penalty to your attack roll for firing ranged weapon while moving.
-Also gives +3 ranged power and 10% Alacrity bonus to Shortbows and Longbows</Description>
+Also gives +6 ranged power.</Description>
       <FeatGroup>
          <IsStandardFeat/>
          <IsArtificerBonus/>
@@ -10215,14 +10225,7 @@ Also gives +3 ranged power and 10% Alacrity bonus to Shortbows and Longbows</Des
       <Effect>
          <Type>RangedPower</Type>
          <Bonus>Feat</Bonus>
-         <Amount>3</Amount>
-      </Effect>
-      <Effect>
-         <Type>Alacrity</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>10</Amount>
-         <Weapon>Longbow</Weapon>
-         <Weapon>Shortbow</Weapon>
+         <Amount>6</Amount>
       </Effect>
    </Feat>
    <Feat>
@@ -15621,12 +15624,12 @@ This feat can be stacked up to three times.</Description>
    <!--Iconic past lives-->
    <Feat>
       <Name>Past Life: Aasimar Scourge</Name>
-      <Description>Iconic Past Life Stance: +1% Doublestrike and +2% Offhand Doublestrike per stack of this past life.
+      <Description>Iconic Past Life Stance: +2% Doublestrike stack of this past life.
 Passive Bonus: +1 Fortitude Save per stack of this Past Life.</Description>
       <Stance>
          <Name>Aasimar Scourge </Name>
          <Icon>IconicPastLifeAasimar</Icon>
-         <Description>Iconic Past Life Stance: +[1/2/3]% Doublestrike and +[2/4/6]% Offhand doublestrike.</Description>
+         <Description>Iconic Past Life Stance: +[2/4/6]% Doublestrike.</Description>
          <IncompatibleStance>Bladeforged </IncompatibleStance>
          <IncompatibleStance>Deep Gnome </IncompatibleStance>
          <IncompatibleStance>Morninglord </IncompatibleStance>
@@ -15641,12 +15644,6 @@ Passive Bonus: +1 Fortitude Save per stack of this Past Life.</Description>
       <Icon>IconicPastLifeAasimar</Icon>
       <Effect>
          <Type>Doublestrike</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>1</Amount>
-         <Stance>Aasimar Scourge </Stance>
-      </Effect>
-      <Effect>
-         <Type>OffHandDoublestrike</Type>
          <Bonus>Feat</Bonus>
          <Amount>2</Amount>
          <Stance>Aasimar Scourge </Stance>
@@ -16964,13 +16961,14 @@ Target: Foe, Directional, Breakable  Monsters who succeed a Fortitude save of
    <Feat>
       <Name>Combat Archery</Name>
       <Description>Your Ranged damage is increased by +1[W].
++1 Critical Threat Range with Longbows and Shortbows.
 You also gain 2% dodge bonus when using a ranged weapon.</Description>
       <FeatGroup>
          <IsEpicFeat/>
       </FeatGroup>
       <Requirements>
          <Requirement>
-            <MinLevel>21</MinLevel>
+            <MinLevel>17</MinLevel>
          </Requirement>
          <Requirement>
             <Feat>Point Blank Shot</Feat>
@@ -16994,6 +16992,14 @@ You also gain 2% dodge bonus when using a ranged weapon.</Description>
          <Amount>1</Amount>
          <WeaponClass>Ranged</WeaponClass>
       </Effect>
+         <Effect>
+            <Type>CriticalRange</Type>
+            <Bonus>Competence</Bonus>
+            <Amount>1</Amount>
+            <ApplyAsItemEffect/>
+            <Weapon>Shortbow</Weapon>
+            <Weapon>Longbow</Weapon>
+         </Effect>
    </Feat>
    <Feat>
       <Name>Construct Exemplar</Name>
@@ -20157,7 +20163,6 @@ Number of Destinies: 1</Description>
    <Feat>
       <Name>Perfect Two Weapon Fighting</Name>
       <Description>+5% Doublestrike.
-+10% Offhand Doublestrike.
 
 Sphere: Primal
 Number of Destinies: 1</Description>
@@ -20175,11 +20180,6 @@ Number of Destinies: 1</Description>
          <Type>Doublestrike</Type>
          <Bonus>Feat</Bonus>
          <Amount>5</Amount>
-      </Effect>
-      <Effect>
-         <Type>OffHandDoublestrike</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>10</Amount>
       </Effect>
       <Effect>
          <DisplayName>Epic Defensive Fighting</DisplayName>
