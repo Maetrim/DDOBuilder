@@ -1717,6 +1717,18 @@ void CForumExportDlg::ExportGear(
                     const Augment & augment = FindAugmentByName(augments[i].SelectedAugment());
                     bSetBonusSuppressed |= augment.HasSuppressSetBonus();
                     forumExport << "\r\n";
+                    const Augment & aug = FindAugmentByName(augments[i].SelectedAugment());
+                    // also include any of the effect descriptions it may have
+                    const std::list<std::string> & eds = aug.EffectDescription();
+                    std::list<std::string>::const_iterator it = eds.begin();
+                    while (it != eds.end())
+                    {
+                        CString processedDescription = (*it).c_str();
+                        forumExport << "              ";
+                        forumExport << processedDescription;
+                        forumExport << "\r\n";
+                        ++it;
+                    }
                 }
                 else
                 {
@@ -1768,11 +1780,20 @@ void CForumExportDlg::ExportGear(
             if (gi == Inventory_Weapon1)
             {
                 // now add the Filigree upgrades
+                bool bHadGem = false;
                 for (size_t fi = 0; fi < MAX_FILIGREE; ++fi)
                 {
                     std::string filigree = gear.SentientIntelligence().GetFiligree(fi);
                     if (filigree != "")
                     {
+                        // add any sentient weapon Filigree to the list also
+                        if (!bHadGem && gear.SentientIntelligence().HasPersonality())
+                        {
+                            forumExport << "              Sentient Weapon Personality: ";
+                            forumExport << gear.SentientIntelligence().Personality();
+                            forumExport << "\r\n";
+                            bHadGem = true;
+                        }
                         forumExport << "              Filigree " << (fi + 1) << ": ";
                         forumExport << filigree;
                         if (gear.SentientIntelligence().IsRareFiligree(fi))
@@ -1784,12 +1805,6 @@ void CForumExportDlg::ExportGear(
                 }
             }
         }
-    }
-    // add any sentient weapon Filigree to the list also
-    forumExport << "              Sentient Weapon Personality: ";
-    if (gear.SentientIntelligence().HasPersonality())
-    {
-        forumExport << gear.SentientIntelligence().Personality();
     }
     forumExport << "\r\n";
     forumExport << "------------------------------------------------------------------------------------------\r\n";

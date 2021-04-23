@@ -43,6 +43,7 @@ class Augment :
                 DL_STRING_LIST(_, SetBonus) \
                 DL_FLAG(_, SuppressSetBonus) \
                 DL_OBJECT_LIST(_, Stance, StanceData) \
+                DL_STRING_LIST(_, EffectDescription) \
                 DL_OBJECT_LIST(_, Effect, Effects) \
                 DL_OPTIONAL_OBJECT(_, RareEffects, Rares)
 

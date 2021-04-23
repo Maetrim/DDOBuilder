@@ -532,12 +532,24 @@ void CInfoTip::SetItem(
                 augmentText += text;
             }
             augmentText += augments[i].SelectedAugment().c_str();
+            m_effectDescriptions.push_back(augmentText);
+            const Augment & aug = FindAugmentByName(augments[i].SelectedAugment());
+            // also include any of the effect descriptions it may have
+            const std::list<std::string> & eds = aug.EffectDescription();
+            std::list<std::string>::const_iterator it = eds.begin();
+            while (it != eds.end())
+            {
+                CString processedDescription = (*it).c_str();
+                GenerateLineBreaks(&processedDescription);
+                m_effectDescriptions.push_back(processedDescription);
+                ++it;
+            }
         }
         else
         {
             augmentText += "Empty augment slot";
+            m_effectDescriptions.push_back(augmentText);
         }
-        m_effectDescriptions.push_back(augmentText);
     }
     m_requirements.clear();
     m_bRequirementMet.clear();
@@ -592,6 +604,16 @@ void CInfoTip::SetAugment(
     // actual carriage return are actual \n in text, convert to correct character
     GenerateLineBreaks(&m_title);
     GenerateLineBreaks(&m_description);
+    // also include any of the effect descriptions it may have
+    const std::list<std::string> & eds = pAugment->EffectDescription();
+    std::list<std::string>::const_iterator it = eds.begin();
+    while (it != eds.end())
+    {
+        CString processedDescription = (*it).c_str();
+        GenerateLineBreaks(&processedDescription);
+        m_effectDescriptions.push_back(processedDescription);
+        ++it;
+    }
     m_requirements.clear();
     m_bRequirementMet.clear();
     m_cost = "";
