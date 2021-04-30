@@ -55,6 +55,7 @@ class CBreakdownsView :
         void CreateEnergyResistancesBreakdowns();
         void CreateWeaponBreakdowns();
         void CreateHirelingBreakdowns();
+        void AddKiBreakdowns(HTREEITEM hParent);
         void AddClassCasterLevels(HTREEITEM hParent);
         void AddEnergyCasterLevels(HTREEITEM hParent);
         void AddSchoolCasterLevels(HTREEITEM hParent);

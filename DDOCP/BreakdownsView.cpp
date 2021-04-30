@@ -19,6 +19,7 @@
 #include "BreakdownItemEnergyResistance.h"
 #include "BreakdownItemHitpoints.h"
 #include "BreakdownItemImmunities.h"
+#include "BreakdownItemMaximumKi.h"
 #include "BreakdownItemMDB.h"
 #include "BreakdownItemMRR.h"
 #include "BreakdownItemMRRCap.h"
@@ -1227,6 +1228,13 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
     AddTacticalItem(Breakdown_TacticalBreathWeapon, Tactical_BreathWeapon, "Breath Weapon", hTacticalParent);
     AddTacticalItem(Breakdown_TacticalPoison, Tactical_Poison, "Poison", hTacticalParent);
     AddTacticalItem(Breakdown_TacticalRuneArm, Tactical_RuneArm, "Rune Arm", hTacticalParent);
+
+    HTREEITEM hKi = m_itemBreakdownTree.InsertItem(
+            "Ki Breakdowns", 
+            0,
+            TVI_ROOT);
+    m_itemBreakdownTree.SetItemData(hKi, 0);
+    AddKiBreakdowns(hKi);
 }
 
 void CBreakdownsView::CreateMagicalBreakdowns()
@@ -1531,6 +1539,63 @@ void CBreakdownsView::CreateTurnUndeadBreakdowns()
         m_items.push_back(pTUHD);
     }
 
+}
+
+void CBreakdownsView::AddKiBreakdowns(HTREEITEM hParent)
+{
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Maximum Ki",
+                hParent,
+                TVI_LAST);
+        BreakdownItem * pKi = new BreakdownItemMaximumKi(
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pKi);
+        m_items.push_back(pKi);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Ki Passive Regeneration",
+                hParent,
+                TVI_LAST);
+        BreakdownItem * pKi = new BreakdownItemSimple(
+                Breakdown_KiPassive,
+                Effect_KiPassive,
+                "Ki Passive Regeneration",
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pKi);
+        m_items.push_back(pKi);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Ki on Hit",
+                hParent,
+                TVI_LAST);
+        BreakdownItem * pKi = new BreakdownItemSimple(
+                Breakdown_KiHit,
+                Effect_KiHit,
+                "Ki on Hit",
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pKi);
+        m_items.push_back(pKi);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Ki on Critical Hit",
+                hParent,
+                TVI_LAST);
+        BreakdownItem * pKi = new BreakdownItemSimple(
+                Breakdown_KiCritical,
+                Effect_KiCritical,
+                "Ki on Critical Hit",
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pKi);
+        m_items.push_back(pKi);
+    }
 }
 
 void CBreakdownsView::AddClassCasterLevels(HTREEITEM hParent)

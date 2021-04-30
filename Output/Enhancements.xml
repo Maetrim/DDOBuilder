@@ -44138,6 +44138,11 @@ You may use this 5 times per rest.</Description>
             </Requirement>
          </Requirements>
          <Effect>
+            <Type>KiHit</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+         </Effect>
+         <Effect>
             <Type>Doublestrike</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>1</Amount>
@@ -45496,6 +45501,11 @@ Rank 3: Your passive Ki regeneration is increased by 1.</Description>
                <Icon>KenseiContemplation</Icon>
                <Cost>1</Cost>
                <Requirements/>
+                 <Effect>
+                    <Type>KiPassive</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <AmountVector size="3">0 0 1</AmountVector>
+                 </Effect>
                <Effect>
                   <Type>SkillBonus</Type>
                   <Bonus>Enhancement</Bonus>
@@ -49631,6 +49641,11 @@ Enemies have -2 Fire Resistance against your spells.</Description>
                <Level>6</Level>
             </Requirement>
          </Requirements>
+        <Effect>
+            <Type>KiHit</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+        </Effect>
          <Effect>
             <Type>MeleePower</Type>
             <Bonus>Enhancement</Bonus>
@@ -49736,6 +49751,32 @@ Enemies have -2 Fire Resistance against your spells.</Description>
             <Bonus>Enhancement</Bonus>
             <Amount>3</Amount>
          </Effect>
+          <Stance>
+             <Name>Cauldron Of Flame</Name>
+             <Icon>HMCauldronOfFlame</Icon>
+             <Description>You are fighting within your Cauldron of Flame</Description>
+          </Stance>
+          <Effect>
+             <Type>PRR</Type>
+             <Bonus>Enchantment</Bonus>
+             <Amount>20</Amount>
+             <Stance>Quarterstaff</Stance>
+             <Stance>Cauldron Of Flame</Stance>
+          </Effect>
+          <Effect>
+             <Type>MRR</Type>
+             <Bonus>Enchantment</Bonus>
+             <Amount>10</Amount>
+             <Stance>Quarterstaff</Stance>
+             <Stance>Cauldron Of Flame</Stance>
+          </Effect>
+          <Effect>
+             <Type>DodgeBonus</Type>
+             <Bonus>Enchantment</Bonus>
+             <Amount>15</Amount>
+             <Stance>Quarterstaff</Stance>
+             <Stance>Cauldron Of Flame</Stance>
+          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Henshin Mystic: Serenity</Name>
@@ -49781,6 +49822,39 @@ hit and damage, and a +1 Critical Multiplier.
             <Bonus>Enhancement</Bonus>
             <Energy>Fire</Energy>
             <Amount>2</Amount>
+         </Effect>
+        <Effect>
+            <Type>KiPassive</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+        </Effect>
+         <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>5</Amount>
+            <Stance>Cauldron Of Flame</Stance>
+            <Weapon>Quarterstaff</Weapon>
+         </Effect>
+         <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>5</Amount>
+            <Stance>Cauldron Of Flame</Stance>
+            <Weapon>Quarterstaff</Weapon>
+         </Effect>
+         <Effect>
+            <Type>CriticalMultiplier</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Stance>Cauldron Of Flame</Stance>
+            <Weapon>Quarterstaff</Weapon>
+         </Effect>
+         <Effect>
+            <Type>Alacrity</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>15</Amount>
+            <Stance>Cauldron Of Flame</Stance>
+            <Weapon>Quarterstaff</Weapon>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -49987,6 +50061,11 @@ penalty to Fortitude saves. At monk levels 3, 9, and 15, these bonuses and penal
 increase by 1. </Description>
                <Icon>HMWayOfTheElegantCrane</Icon>
                <Cost>2</Cost>
+        <Effect>
+            <Type>KiCritical</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+        </Effect>
                <Effect>
                   <Type>SkillBonus</Type>
                   <Bonus>Enhancement</Bonus>
@@ -50055,6 +50134,11 @@ increases by +0.25[W].</Description>
                   <AmountVector size="2">0 100</AmountVector>
                   <Amount>100</Amount>
                </Effect>
+        <Effect>
+            <Type>KiPassive</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+        </Effect>
                <Effect>
                   <Type>SkillBonus</Type>
                   <Bonus>Enhancement</Bonus>
@@ -50284,6 +50368,11 @@ Rank 3: Your passive Ki regeneration is increased by 1.</Description>
                <Level>2</Level>
             </Requirement>
          </Requirements>
+        <Effect>
+            <Type>KiPassive</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+        </Effect>
          <Effect>
             <Type>SkillBonus</Type>
             <Bonus>Enhancement</Bonus>
@@ -50420,6 +50509,11 @@ This damage scales with Melee Power. Your Ki generation on hit is reduced by 1.<
                <Level>3</Level>
             </Requirement>
          </Requirements>
+        <Effect>
+            <Type>KiCritical</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>-1</Amount>
+        </Effect>
          <Effect>
             <Type>WeaponOtherDamageBonus</Type>
             <Bonus>Enhancement</Bonus>
@@ -51363,6 +51457,13 @@ Rank 3: While centered and Sneaking, your passive Ki regeneration is increased b
                <Level>1</Level>
             </Requirement>
          </Requirements>
+        <Effect>
+            <Type>KiPassive</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Stance>Centered</Stance>
+            <Stance>Sneaking</Stance>
+        </Effect>
          <Effect>
             <Type>SkillBonus</Type>
             <Bonus>Enhancement</Bonus>
@@ -99254,7 +99355,7 @@ Cooldown: 5 minutes</Description>
       <IsEpicDestiny/>
       <Icon>GrandmasterOfFlowers</Icon>
       <Background>DestinyMartial</Background>
-      <!--Cores-->
+       <!--Cores-->
       <EnhancementTreeItem>
          <Name>Grandmaster of Flowers: Inner Focus</Name>
          <InternalName>GOFCore1</InternalName>
@@ -99280,6 +99381,11 @@ You gain proficiency with Handwraps.
          <Clickie/>
          <ArrowRight/>
          <Requirements/>
+         <Effect>
+            <Type>KiMaximum</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>10</Amount>
+         </Effect>
          <Effect>
             <Type>WeaponProficiency</Type>
             <Bonus>Destiny</Bonus>
@@ -99501,6 +99607,11 @@ and also gain +1 to Tactics DCs (including Stunning).</Description>
             </Requirement>
          </Requirements>
          <Effect>
+            <Type>KiPassive</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>1</Amount>
+         </Effect>
+         <Effect>
             <Type>SpellResistance</Type>
             <Bonus>Destiny</Bonus>
             <Amount>1</Amount>
@@ -99531,7 +99642,7 @@ and also gain +1 to Tactics DCs (including Stunning).</Description>
             <Amount>3</Amount>
          </Effect>
       </EnhancementTreeItem>
-      <!--Tier 1-->
+       <!--Tier 1-->
       <EnhancementTreeItem>
          <Name>Grandmaster of Flowers: Lily Petal</Name>
          <InternalName>LilyPetal</InternalName>
@@ -99585,6 +99696,11 @@ Gain +[0/0/1] passive Ki regeneration.</Description>
          <Ranks>3</Ranks>
          <MinSpent>0</MinSpent>
          <Requirements/>
+         <Effect>
+            <Type>KiPassive</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">0 0 1</AmountVector>
+         </Effect>
          <Effect>
             <Type>SkillBonus</Type>
             <Bonus>Destiny</Bonus>
@@ -99649,7 +99765,7 @@ Gain +[0/0/1] passive Ki regeneration.</Description>
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
-      <!--Tier 2-->
+       <!--Tier 2-->
       <EnhancementTreeItem>
          <Name>Grandmaster of Flowers: The Flower's Thorn</Name>
          <InternalName>TheFlowersThorn</InternalName>
@@ -99785,7 +99901,7 @@ with itself also. So 3/9/18 it is.</Description>
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
-      <!--Tier 3-->
+       <!--Tier 3-->
       <EnhancementTreeItem>
          <Name>Grandmaster of Flowers: Orchid Blossom</Name>
          <InternalName>OrchidBlossom</InternalName>
@@ -99942,7 +100058,7 @@ Rank 3: All Fortitude saves</Description>
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
-      <!--Tier 4-->
+       <!--Tier 4-->
       <EnhancementTreeItem>
          <Name>Grandmaster of Flowers: Standing with Stone</Name>
          <InternalName>StandingWithStone</InternalName>
@@ -99990,16 +100106,16 @@ Rank 2: Your attacks bypass Concealment as if you had True Seeing.</Description>
             <Bonus>Destiny</Bonus>
             <AmountVector size="2">5 10</AmountVector>
          </Effect>
-        <Effect>
-            <Type>GhostTouch</Type>
-            <Bonus>Enhancement</Bonus>
+          <Effect>
+              <Type>GhostTouch</Type>
+              <Bonus>Enhancement</Bonus>
               <Amount>1</Amount>
-            <Weapon>All</Weapon>
-        </Effect>
+              <Weapon>All</Weapon>
+          </Effect>
          <Effect>
             <Type>TrueSeeing</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>1</Amount>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="2">0 1</AmountVector>
             <Weapon>All</Weapon>
          </Effect>
       </EnhancementTreeItem>
@@ -100087,7 +100203,7 @@ total saving throw result is equal or higher than the DC of the effect.</Descrip
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
-      <!--Tier 5-->
+       <!--Tier 5-->
       <EnhancementTreeItem>
          <Name>Grandmaster of Flowers: Drifting Lotus</Name>
          <InternalName>DriftingLotus</InternalName>
@@ -100118,7 +100234,7 @@ Melee and ranged Power.</Description>
             <AmountVector size="1">10</AmountVector>
             <ClassLevel>All</ClassLevel>
             <ModAbility>Wisdom</ModAbility>
-            <Tactical>Stun</Tactical>
+             <Tactical>Stun</Tactical>
          </DC>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -100263,7 +100379,7 @@ total saving throw result is equal or higher than the DC effect.</Description>
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
-      <!--Tier 6-->
+       <!--Tier 6-->
       <EnhancementTreeItem>
          <Name>Grandmaster of Flowers: A Scattering of Petals</Name>
          <InternalName>AScatteringOfPetals</InternalName>

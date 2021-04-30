@@ -831,7 +831,7 @@
             <Type>SpellPower</Type>
             <Bonus>Equipment</Bonus>
             <Amount>145</Amount>
-            <SpellPower>All</SpellPower>
+            <SpellPower>Universal</SpellPower>
         </Effect>
         <EffectDescription>Quality Potency +23: Passive: +23 Quality Bonus to Universal Spell Power.</EffectDescription>
         <Effect>
@@ -1471,6 +1471,18 @@
             <Ability>All</Ability>
         </Effect>
         <EffectDescription>Arcane Augmentation IX: This item increases your caster level when casting first through ninth level sorcerer or wizard spells by two.</EffectDescription>
+        <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Class>Sorcerer</Class>
+        </Effect>
+        <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Class>Wizard</Class>
+        </Effect>
         <EffectDescription>Resonance +185: Passive: +185 Equipment Bonus to Sonic Spell Power.</EffectDescription>
         <EffectDescription>Extra Smite: you have one additional Smite Evil use per rest. You must rest to gain your initial charge.</EffectDescription>
         <EffectDescription>Extra Smites: +2 Smite Evil uses per rest. Smite Evil uses regenerate 10% faster.</EffectDescription>
@@ -1593,6 +1605,11 @@
             <Amount>1</Amount>
          </Effect>
     <EffectDescription>Enhanced Ki +3: Increases the rate at which the user gains Ki with each successful attack.</EffectDescription>
+         <Effect>
+            <Type>KiHit</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>3</Amount>
+         </Effect>
     <EffectDescription>Dazing X: On Hit: Your target suffers a -1 Penalty to Will Saving Throws for 6 seconds. This effect stacks up to 5 times. This effect effect may only occur on-hit once every three seconds. Passive: The DC of your Stunning Blow/Fist combat feats are increased by 15.</EffectDescription>
         <Effect>
             <Type>TacticalDC</Type>
@@ -1745,6 +1762,15 @@
             <Bonus>Equipment</Bonus>
             <Amount>214</Amount>
             <SpellPower>Repair</SpellPower>
+            <SpellPower>Rust</SpellPower>
+        </Effect>
+        <EffectDescription>Insightful Reconstruction +107: Passive: +107 Insightful Bonus to Repair and Rust Spell Power.</EffectDescription>
+        <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Insightful</Bonus>
+            <Amount>107</Amount>
+            <SpellPower>Repair</SpellPower>
+            <SpellPower>Rust</SpellPower>
         </Effect>
     <EffectDescription>Quality Enchantment Focus II: +2 Quality bonus to the DC of Enchantment spells.</EffectDescription>
     <EffectDescription>Sounding: On harmful Spellcast: Do an additional 4 to 24 Sonic Damage.</EffectDescription>
@@ -1789,6 +1815,47 @@
             <Amount>-1</Amount>
             <Class>All</Class>
             <Stance>Good</Stance>
+        </Effect>
+        <EffectDescription>Taint of Chaos: Lawful aligned characters equipping this item suffer a temporary negative level until the item is removed.</EffectDescription>
+        <Effect>
+            <DisplayName>Negative Level</DisplayName>
+            <Type>Hitpoints</Type>
+            <Bonus>Penalty</Bonus>
+            <Amount>-5</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Lawful</Stance>
+        </Effect>
+        <Effect>
+            <DisplayName>Negative Level</DisplayName>
+            <Type>AttackBonus</Type>
+            <Bonus>Penalty</Bonus>
+            <Amount>-2</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Lawful</Stance>
+        </Effect>
+        <Effect>
+            <DisplayName>Negative Level</DisplayName>
+            <Type>SaveBonus</Type>
+            <Bonus>Penalty</Bonus>
+            <Amount>-2</Amount>
+            <Save>All</Save>
+            <Stance>Lawful</Stance>
+        </Effect>
+        <Effect>
+            <DisplayName>Negative Level</DisplayName>
+            <Type>SkillBonus</Type>
+            <Bonus>Penalty</Bonus>
+            <Amount>-2</Amount>
+            <Skill>All</Skill>
+            <Stance>Lawful</Stance>
+        </Effect>
+        <Effect>
+            <DisplayName>Negative Level</DisplayName>
+            <Type>CasterLevel</Type>
+            <Bonus>Penalty</Bonus>
+            <Amount>-1</Amount>
+            <Class>All</Class>
+            <Stance>Lawful</Stance>
         </Effect>
     <EffectDescription>Fearsome: This item causes those who strike the user to be overcome with terror, as from the Fear spell.</EffectDescription>
     <EffectDescription>Blood Rage: Any time you are hit there is a chance that you will fall into a Blood Rage. Blood Rage gives up to a +8 bonus to Strength and Constitution but will also cause short periods of lethargy when your lust for blood becomes sated.</EffectDescription>
@@ -1900,6 +1967,7 @@
     <EffectDescription>Solar Guard VIII: When Hit in Melee: Deals 8d4 Light damage to your attacker.</EffectDescription>
     <EffectDescription>Thunderstruck: On melee vorpal hit: 35-60 Electric and 35-60 Sonic damage to your target.</EffectDescription>
     <EffectDescription>Radiant Glory: On harmful spellcast: Do an additional 4 to 24 Light damage.</EffectDescription>
+        <EffectDescription>Radiant Glory 2: On Harmful Spellcast: Do an additional 2 to 12 Light damage. This effect scales with Light Spell Power. Cooldown: 1 second.</EffectDescription>
         <EffectDescription>Radiance Lore +30%: +30% Equipment Bonus to Light and Alignment Spells chance to Critical Hit.</EffectDescription>
         <Effect>
             <Type>SpellLore</Type>
@@ -7622,7 +7690,12 @@ When struck you will occasionally have the Stoneskin spell cast on you.</EffectD
             <Amount>83</Amount>
             <Energy>Cold</Energy>
         </Effect>
-        <EffectDescription>Alchemical Convervation: This item modifies the user's energy expenditure in such a way that many abilities can be used more frequently than normal. You will gain +1 Ki on every successful attack, and you will increase the number of Action Boosts, Turn Undead attempts, and Bard Songs you can use per rest by 1 each. These additional yses will only take effect after you rest.</EffectDescription>
+        <EffectDescription>Alchemical Conservation: This item modifies the user's energy expenditure in such a way that many abilities can be used more frequently than normal. You will gain +1 Ki on every successful attack, and you will increase the number of Action Boosts, Turn Undead attempts, and Bard Songs you can use per rest by 1 each. These additional uses will only take effect after you rest.</EffectDescription>
+         <Effect>
+            <Type>KiHit</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+         </Effect>
         <EffectDescription>Chaos Absorption - 31%: Passive 31% Enhancement Bonus to Chaos Absorption. (Absorption reduces damage from an element by a percentage, after resistances have been taken into account.)</EffectDescription>
         <Effect>
             <Type>EnergyAbsorbance</Type>
@@ -9280,4 +9353,7 @@ When struck you will occasionally have the Stoneskin spell cast on you.</EffectD
             <Amount>20</Amount>
             <SpellPower>Sonic</SpellPower>
         </Effect>
+        <EffectDescription>Spell Turmoil: When casting any damaging Fire, Cold, Acid or Electric spells, there is a chance that you will gain a +20 Alchemical bonus to Spell Power to one of those energy types for 30 seconds.</EffectDescription>
+        <EffectDescription>Fusible: Something about this item looks incomplete. Perhaps in the future it will be compatible with another item to create a brand-new fusion of the two.</EffectDescription>
+        <EffectDescription>Malleable: This item has a magical aura of malleability and can be combined with any item that has the Fusible property to create a new, more powerful fusion of the two items.</EffectDescription>
 </EffectDescriptions>

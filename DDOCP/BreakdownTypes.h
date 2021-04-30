@@ -31,6 +31,7 @@ enum BreakdownType
     Breakdown_MovementSpeed,
     Breakdown_Hitpoints,
     Breakdown_FalseLife,
+    Breakdown_KiMaximum,
     Breakdown_UnconsciousRange,
     Breakdown_PRR,
     Breakdown_MRR,
@@ -84,6 +85,9 @@ enum BreakdownType
     Breakdown_HelplessDamageReduction,
     Breakdown_DamageAbilityMultiplier,
     Breakdown_DamageAbilityMultiplierOffhand,
+    Breakdown_KiPassive,
+    Breakdown_KiHit,
+    Breakdown_KiCritical,
     // skills
     Breakdown_SkillBalance,
     Breakdown_SkillBluff,
