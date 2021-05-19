@@ -619,7 +619,7 @@ void CStancesView::UpdateStanceDeactivated(Character * charData, const std::stri
     StanceDeactivated(m_userStancebuttonsMartial, stanceName);
     StanceDeactivated(m_userStancebuttonsPrimal, stanceName);
     StanceDeactivated(m_userStancebuttonsIconic, stanceName);
-    StanceActivated(m_userStancebuttonsMajorForm, stanceName);
+    StanceDeactivated(m_userStancebuttonsMajorForm, stanceName);
     // update the state of the required stance buttons
     for (size_t i = 0; i < m_autoStancebuttons.size(); ++i)
     {

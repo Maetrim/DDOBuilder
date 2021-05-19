@@ -17,7 +17,9 @@ enum AlignmentType
     Alignment_ChaoticNeutral,
     Alignment_ChaoticGood,
     // not selectable
-    Alignment_Count
+    Alignment_Count,
+    Alignment_NeutralEvil,
+    Alignment_ChaoticEvil,
 };
 const XmlLib::enumMapEntry<AlignmentType> alignmentTypeMap[] =
 {
@@ -28,5 +30,7 @@ const XmlLib::enumMapEntry<AlignmentType> alignmentTypeMap[] =
     {Alignment_TrueNeutral, L"Neutral"},
     {Alignment_ChaoticNeutral, L"Chaotic Neutral"},
     {Alignment_ChaoticGood, L"Chaotic Good"},
+    {Alignment_NeutralEvil, L"Neutral Evil"},
+    {Alignment_ChaoticEvil, L"Chaotic Evil"},
     {AlignmentType(0), NULL}
 };

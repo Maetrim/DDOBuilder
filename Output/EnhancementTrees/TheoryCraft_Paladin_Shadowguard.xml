@@ -1,0 +1,1301 @@
+<Enhancements>
+  <EnhancementTree>
+    <Name>Shadowguard</Name>
+    <Version>1</Version>
+    <Requirements>
+      <Requirement>
+        <Class>Paladin</Class>
+      </Requirement>
+    </Requirements>
+    <Icon>Paladin</Icon>
+    <Background>PaladinBackground</Background>
+    <EnhancementTreeItem>
+      <Name>Slayer of Good I</Name>
+      <InternalName>PalShadCore1</InternalName>
+      <Description>Slayer of Good I: Your alignment is considered True Neutral.
+You gain +1 to attack Good creatures, and +2 to saves vs Good creatures.
+You deal 1d4 Evil damage on hit, and heal 1d2 Positive energy 
+(or Negative energy if you are an Undead or have Night&#146;s Embrace) on each hit.
+
+Mutually exclusive with Knight of the Chalice
+THIS IS NOT A REAL TREE IN GAME</Description>
+      <Icon>AMPrimarySpellFocusNecromancy</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>0</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>1</Level>
+        </Requirement>
+        <RequiresNoneOf>
+          <Requirement>
+            <Enhancement>KotCCore1</Enhancement>
+          </Requirement>
+        </RequiresNoneOf>
+      </Requirements>
+         <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Good Creatures</Stance>
+         </Effect>
+         <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Good Creatures</Stance>
+         </Effect>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Stance>Good Creatures</Stance>
+            <Save>All</Save>
+         </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Malevolence of Mabar</Name>
+      <InternalName>PalShadCore2</InternalName>
+      <Description>Your Aura of Courage is replaced with an Aura of Malice.
+Your Aura of Malice applies a negative version of any buffs it would apply to
+all nearby enemies. (For example, if it would boost Armor Class for your
+friends, it now penalizes the AC of your enemies).
+
+Your Aura of Malice now adds a +2 penalty to saves vs Enchantments and Fear.
+Your bonus to hit Good creatures is increased to +3, and your bonus to saves
+versus Good creatures is improved to +3.
+Your bonus Evil damage and healing are improved to 1d8 and 1d4.</Description>
+      <Icon>AMPrimarySpellFocusEvocation</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>3</Level>
+        </Requirement>
+        <Requirement>
+          <Enhancement>PalShadCore1</Enhancement>
+        </Requirement>
+      </Requirements>
+         <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Good Creatures</Stance>
+         </Effect>
+         <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Good Creatures</Stance>
+         </Effect>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Stance>Good Creatures</Stance>
+            <Save>All</Save>
+         </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Slayer of Good II</Name>
+      <InternalName>PalShadCore3</InternalName>
+      <Description>Grants +3 Remove Disease Charges. You may expend a Remove Disease charge to cast Bane at will.
+(this is a SLA also assume Bane gets revamped to work like Bless and also no save)
+
+All your attacks are considered to be Ghost Touch.
+Your bonus Evil damage and healing are improved to 2d6 and 1d6.</Description>
+      <Icon>AMPrimarySpellFocusNecromancy</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Clickie/>
+      <Requirements>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>6</Level>
+        </Requirement>
+        <Requirement>
+          <Enhancement>PalShadCore2</Enhancement>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Improved Malevolence of Mabar</Name>
+      <InternalName>PalShadCore4</InternalName>
+      <Description>Your alignment is considered Evil.
+Your Aura of Malice now adds a +4 penalty to saves vs Enchantments and Fear
+Your bonus to hit Good creatures is increased to +4, and your bonus to saves
+versus Good creatures is improved to +4.
+Your bonus Evil damage and healing are improved to 3d6 and 2d4.</Description>
+      <Icon>AMPrimarySpellFocusTransmutation</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>12</Level>
+        </Requirement>
+        <Requirement>
+          <Enhancement>PalShadCore3</Enhancement>
+        </Requirement>
+      </Requirements>
+         <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Good Creatures</Stance>
+         </Effect>
+         <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Good Creatures</Stance>
+         </Effect>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Stance>Good Creatures</Stance>
+            <Save>All</Save>
+         </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Slayer of Good III</Name>
+      <InternalName>PalShadCore5</InternalName>
+      <Description>Your Vorpal hits versus Living targets apply 1 negative level.
+Your Aura of Malice now adds a Crushing Despair effect to all enemies.
+Your bonus Evil damage and healing are improved to 5d6 and 2d6.</Description>
+      <Icon>AMPrimarySpellFocusNecromancy</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>18</Level>
+        </Requirement>
+        <Requirement>
+          <Enhancement>PalShadCore4</Enhancement>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Pure Darkness</Name>
+      <InternalName>PalShadCore6</InternalName>
+      <Description>+4 Cha, +10 Melee and Ranged Power
+You cannot be blinded and your vision cannot be obscured. 
+Mabar&#146;s Manifest zone remains on you for up to 30 seconds after it dissipates.
+
+Your bonus to hit Good creatures is increased to +6, and your bonus to saves
+versus Good creatures is improved to +6.
+Your bonus Evil damage and healing are improved to 7d6 and 3d6.</Description>
+      <Icon>SpellCriticalNegative</Icon>
+      <XPosition>5</XPosition>
+      <YPosition>0</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>40</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>20</Level>
+        </Requirement>
+        <Requirement>
+          <Enhancement>PalShadCore5</Enhancement>
+        </Requirement>
+      </Requirements>
+         <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>4</Amount>
+            <Ability>Charisma</Ability>
+         </Effect>
+         <Effect>
+            <Type>MeleePower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>10</Amount>
+         </Effect>
+         <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>10</Amount>
+         </Effect>
+         <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Good Creatures</Stance>
+         </Effect>
+         <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Good Creatures</Stance>
+         </Effect>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Stance>Good Creatures</Stance>
+            <Save>All</Save>
+         </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Shade Combatant</Name>
+      <InternalName>PalShadShadeCombatant</InternalName>
+      <Description>+1 to hit and damage with favoured weapons.</Description>
+      <Icon>PMSpellCriticalNegativeEnergy</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>1</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>1</Level>
+        </Requirement>
+      </Requirements>
+         <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+         </Effect>
+         <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+         </Effect>
+         <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+         </Effect>
+         <Effect>
+            <Type>Seeker</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+         </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Extra Smites</Name>
+      <InternalName>PalShadExtraSmites</InternalName>
+      <Description>+[2/4/6] Extra Smite Evils</Description>
+      <Icon>KoTCExtraSmite</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>1</Level>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Siege Breaker</Name>
+      <InternalName>PalShadSiegeBreaker</InternalName>
+      <Description>+[1/2/3] Sunder DCs</Description>
+      <Icon>HalfOrcMightySundering</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>1</Level>
+        </Requirement>
+      </Requirements>
+        <Effect>
+            <Type>TacticalDC</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Tactical>Sunder</Tactical>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Dark Armor</Name>
+      <InternalName>PalShadDarkArmor</InternalName>
+      <Description>+[5/10/15] Hitpoints</Description>
+      <Icon>EKArmoredArcana</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>1</Level>
+        </Requirement>
+      </Requirements>
+        <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">5 10 15</AmountVector>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Shadowguard&#146;s Reputation</Name>
+      <InternalName>PalShadShadowguardsReputation</InternalName>
+      <Description>+[1/2/3] Intimidate, Heal, Balance
+Rank 3: +1 Fortitude Saves</Description>
+      <Icon>ShadarKaiGloomStalker</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>1</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>1</Level>
+        </Requirement>
+      </Requirements>
+        <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Skill>Intimidate</Skill>
+            <Skill>Heal</Skill>
+            <Skill>Balance</Skill>
+        </Effect>
+        <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">0 0 1</AmountVector>
+            <Save>Fortitude</Save>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Umbral Combatant</Name>
+      <InternalName>PalShadUmbralCombatant</InternalName>
+      <Description>+1 to hit and damage with all weapons.
+Sickle, scimitar, khopesh, and dagger are now considered as Favored Weapons
+regardless of your religion.</Description>
+      <Icon>PMSpellCriticalNegativeEnergyII</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>2</Level>
+        </Requirement>
+        <Requirement>
+          <Enhancement>PalShadShadeCombatant</Enhancement>
+        </Requirement>
+      </Requirements>
+         <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+         </Effect>
+         <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+         </Effect>
+         <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+         </Effect>
+         <Effect>
+            <Type>Seeker</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+         </Effect>
+         <Effect>
+            <Type>AddGroupWeapon</Type>
+            <Bonus>Enhancement</Bonus>
+            <WeaponGroup>Favored Weapon</WeaponGroup>
+            <Weapon>Sickle</Weapon>
+            <Weapon>Scimitar</Weapon>
+            <Weapon>Khopesh</Weapon>
+            <Weapon>Dagger</Weapon>
+         </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Profane Might</Name>
+      <InternalName>PalShadProfaneMight</InternalName>
+      <Description>Trance: You gain a profane bonus to Attack, Damage and the DC of the tactical
+feats equal to 1/2 of your Charisma modifier for [30/60/120] seconds.</Description>
+      <Icon>BouldersMight</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Clickie/>
+      <Requirements>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>2</Level>
+        </Requirement>
+      </Requirements>
+        <Stance>
+            <Name>Profane Might</Name>
+            <Icon>BouldersMight</Icon>
+            <Description>Trance: You gain a profane bonus to Attack, Damage and the DC of the tactical
+feats equal to 1/2 of your Charisma modifier for [30/60/120] seconds.</Description>
+        </Stance>
+        <Effect>
+            <Type>TacticalDC</Type>
+            <Bonus>Insightful</Bonus>
+            <Ability>Charisma</Ability>
+            <Divider>2</Divider>
+            <ApplyAsItemEffect/>
+            <Tactical>Trip</Tactical>
+            <Tactical>Sunder</Tactical>
+            <Tactical>Stun</Tactical>
+            <Tactical>General</Tactical>
+            <Tactical>Assassinate</Tactical>
+            <Stance>Profane Might</Stance>
+        </Effect>
+        <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Insightful</Bonus>
+            <Ability>Charisma</Ability>
+            <Divider>2</Divider>
+            <ApplyAsItemEffect/>
+            <Tactical>Trip</Tactical>
+            <Tactical>Sunder</Tactical>
+            <Tactical>Stun</Tactical>
+            <Tactical>General</Tactical>
+            <Tactical>Assassinate</Tactical>
+            <Stance>Profane Might</Stance>
+            <Weapon>All</Weapon>
+        </Effect>
+        <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Insightful</Bonus>
+            <Ability>Charisma</Ability>
+            <Divider>2</Divider>
+            <ApplyAsItemEffect/>
+            <Tactical>Trip</Tactical>
+            <Tactical>Sunder</Tactical>
+            <Tactical>Stun</Tactical>
+            <Tactical>General</Tactical>
+            <Tactical>Assassinate</Tactical>
+            <Stance>Profane Might</Stance>
+            <Weapon>All</Weapon>
+        </Effect>
+        <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Insightful</Bonus>
+            <Ability>Charisma</Ability>
+            <Divider>2</Divider>
+            <ApplyAsItemEffect/>
+            <Tactical>Trip</Tactical>
+            <Tactical>Sunder</Tactical>
+            <Tactical>Stun</Tactical>
+            <Tactical>General</Tactical>
+            <Tactical>Assassinate</Tactical>
+            <Stance>Profane Might</Stance>
+            <Weapon>All</Weapon>
+        </Effect>
+        <Effect>
+            <Type>Seeker</Type>
+            <Bonus>Insightful</Bonus>
+            <Ability>Charisma</Ability>
+            <Divider>2</Divider>
+            <ApplyAsItemEffect/>
+            <Tactical>Trip</Tactical>
+            <Tactical>Sunder</Tactical>
+            <Tactical>Stun</Tactical>
+            <Tactical>General</Tactical>
+            <Tactical>Assassinate</Tactical>
+            <Stance>Profane Might</Stance>
+            <Weapon>All</Weapon>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Offhand Strikes</Name>
+      <InternalName>PalShadOffhandStrikes</InternalName>
+      <Description>+[3/6/10]% Offhand Strike Chance
+Should this not be doublestrike as there is no offhand attack chance now?</Description>
+      <Icon>WPHolyStriker</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>2</Level>
+        </Requirement>
+        <Requirement>
+          <Enhancement>PalShadSiegeBreaker</Enhancement>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Wave of Shadow</Name>
+      <InternalName>PalShadWWaveOfShadow</InternalName>
+      <Description>Make a sweeping attack against all nearby enemies for +2[W] damage.
+Enemies hit by this attack must make a DC 10 + Paladin Level + Charisma + Sunder
+DCs or become blinded.
+Shares a cooldown with the Cleave feat. Cooldown: 5 seconds</Description>
+      <Icon>CloakOfShadows</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <Clickie/>
+      <Requirements>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>2</Level>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Action Boost: Shadow Cloud</Name>
+      <InternalName>PalShadActionBoostShadowCloud</InternalName>
+      <Description>You dissolve into a cloud of Shadow that emanates outwards from you,
+obscuring all nearby allies in a cloud of Obscuring Mist. You and all nearby
+allies within the cloud gain 25% Concealment, and you personally are considered
+Incorporeal with a 50% miss chance due to your form. This cloud follows you as
+you move, but allies that leave the radius will lose its concealment.</Description>
+      <Icon>AAActionBoost</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>2</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <Clickie/>
+      <Requirements>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>2</Level>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Gloomy Combatant</Name>
+      <InternalName>PalShadGloomyCombatant</InternalName>
+      <Description>+2 to hit and damage with Favored Weapons.
+Falchion are considered as favored Weapons regardless of your religion.</Description>
+      <Icon>PMSpellCriticalNegativeEnergyIII</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>3</Level>
+        </Requirement>
+        <Requirement>
+          <Enhancement>PalShadUmbralCombatant</Enhancement>
+        </Requirement>
+      </Requirements>
+         <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+         </Effect>
+         <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+         </Effect>
+         <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+         </Effect>
+         <Effect>
+            <Type>Seeker</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+         </Effect>
+         <Effect>
+            <Type>AddGroupWeapon</Type>
+            <Bonus>Enhancement</Bonus>
+            <WeaponGroup>Favored Weapon</WeaponGroup>
+            <Weapon>Falchion</Weapon>
+         </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Shadow Smite</Name>
+      <InternalName>PalShadShadowSmite</InternalName>
+      <Description>Multiselector (Melee or Ranged): An improved smite that adds
++1/+1/+2 to your weapon's critical damage multiplier and
++0/+1/+2 to your weapon's critical threat range. 
+
+Smite evil: Using this attack, you call on the paladin's ability to strike down
+evil creatures, gaining twice your Charisma bonus to your attack roll, and a
+damage bonus based on your paladin level. Smites return at a rate of one every
+90 seconds. In addition, your Smite evil and Exalted Smite abilities increase
+melee and ranged power by 5 for 10 seconds.</Description>
+      <Icon>ShadowManipulation</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Clickie/>
+      <Requirements>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>3</Level>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Critical Mastery</Name>
+      <InternalName>PalShadCriticalMastery</InternalName>
+      <Description>+[1/2/3] Critical Confirmation and Critical Damage</Description>
+      <Icon>KotCCriticalMastery</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>3</Level>
+        </Requirement>
+        <Requirement>
+          <Enhancement>PalShadOffhandStrikes</Enhancement>
+        </Requirement>
+      </Requirements>
+         <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Weapon>All</Weapon>
+         </Effect>
+         <Effect>
+            <Type>Seeker</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Weapon>All</Weapon>
+         </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Mabar's Tenacity</Name>
+      <InternalName>PalShadMabarsTenacity</InternalName>
+      <Description>The Inflict Wounds spells are added to your Spellbook at the following levels.
+
+Level 1: Inflict Light
+Level 2: Inflict Moderate, Inflict Light (Mass)
+Level 3: Inflict Serious, Inflict Moderate (Mass)
+Level 4: Inflict Critical, Inflict Serious (Mass)</Description>
+      <Icon>ShadarKaiGhostlyEssence</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>3</Level>
+        </Requirement>
+      </Requirements>
+        <Effect>
+            <Type>GrantSpell</Type>
+            <Bonus>Enhancement</Bonus>
+            <Spell>Inflict Light Wounds</Spell>
+            <SpellLevel>1</SpellLevel>
+            <Class>Paladin</Class>
+        </Effect>
+        <Effect>
+            <Type>GrantSpell</Type>
+            <Bonus>Enhancement</Bonus>
+            <Spell>Inflict Moderate Wounds</Spell>
+            <SpellLevel>2</SpellLevel>
+            <Class>Paladin</Class>
+        </Effect>
+        <Effect>
+            <Type>GrantSpell</Type>
+            <Bonus>Enhancement</Bonus>
+            <Spell>Inflict Light Wounds, Mass</Spell>
+            <SpellLevel>2</SpellLevel>
+            <Class>Paladin</Class>
+        </Effect>
+        <Effect>
+            <Type>GrantSpell</Type>
+            <Bonus>Enhancement</Bonus>
+            <Spell>Inflict Serious Wounds</Spell>
+            <SpellLevel>2</SpellLevel>
+            <Class>Paladin</Class>
+        </Effect>
+        <Effect>
+            <Type>GrantSpell</Type>
+            <Bonus>Enhancement</Bonus>
+            <Spell>Inflict Moderate Wounds, Mass</Spell>
+            <SpellLevel>3</SpellLevel>
+            <Class>Paladin</Class>
+        </Effect>
+        <Effect>
+            <Type>GrantSpell</Type>
+            <Bonus>Enhancement</Bonus>
+            <Spell>Inflict Critical Wounds</Spell>
+            <SpellLevel>2</SpellLevel>
+            <Class>Paladin</Class>
+        </Effect>
+        <Effect>
+            <Type>GrantSpell</Type>
+            <Bonus>Enhancement</Bonus>
+            <Spell>Inflict Serious Wounds, Mass</Spell>
+            <SpellLevel>4</SpellLevel>
+            <Class>Paladin</Class>
+        </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Ability I</Name>
+      <InternalName>PalShadAbilityI</InternalName>
+      <Description>Choose between Strength or Charisma</Description>
+      <Icon>StrCha</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>3</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>3</Level>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>+1 Strength</Name>
+          <Description>+1 Strength</Description>
+          <Icon>Strength</Icon>
+          <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Amount>1</Amount>
+                  <Ability>Strength</Ability>
+               </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Charisma</Name>
+          <Description>+1 Charisma</Description>
+          <Icon>Charisma</Icon>
+          <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Amount>1</Amount>
+                  <Ability>Charisma</Ability>
+               </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Penumbral Combatant</Name>
+      <InternalName>PalShadPenumbralCombatant</InternalName>
+      <Description>+1 to hit and damage with all weapons and an additional +1 to hit and damage with Favored Weapons.
+Taking this enhancement grants the Swords to Plowshares and Shot on the Run feats.</Description>
+      <Icon>PMSpellCriticalNegativeEnergyIV</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>4</Level>
+        </Requirement>
+        <Requirement>
+          <Enhancement>PalShadGloomyCombatant</Enhancement>
+        </Requirement>
+      </Requirements>
+         <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+         </Effect>
+         <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+         </Effect>
+         <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+         </Effect>
+         <Effect>
+            <Type>Seeker</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+         </Effect>
+         <Effect>
+            <DisplayName>Penumbral Combatant: Favored Weapon</DisplayName>
+            <Type>AttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+         </Effect>
+         <Effect>
+            <DisplayName>Penumbral Combatant: Favored Weapon</DisplayName>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+         </Effect>
+         <Effect>
+            <DisplayName>Penumbral Combatant: Favored Weapon</DisplayName>
+            <Type>DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+         </Effect>
+         <Effect>
+            <DisplayName>Penumbral Combatant: Favored Weapon</DisplayName>
+            <Type>Seeker</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+         </Effect>
+         <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Enhancement</Bonus>
+            <Feat>Knight's Training</Feat>
+         </Effect>
+         <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Enhancement</Bonus>
+            <Feat>Shot on the Run</Feat>
+         </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Night's Embrace I</Name>
+      <InternalName>PalShadNightsEmbraceI</InternalName>
+      <Description>You now heal 50% from negative energy and 75% from positive energy.
++20 Negative Amplification</Description>
+      <Icon>BEInfusedArmor</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>4</Level>
+        </Requirement>
+      </Requirements>
+         <Effect>
+            <Type>HealingAmplification</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>-25</Amount>
+         </Effect>
+         <Effect>
+            <Type>NegativeHealingAmplification</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>50</Amount>
+         </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Command Undead</Name>
+      <InternalName>PalShadCommandUndead</InternalName>
+      <Description>You count as [1/2/3] levels higher for the purpose of turning undead,
+add +[2/4/6] to the hit dice turned, and gain +[1/2/3] use per rest. 
+
+Your Turn Undead ability now dominates 50% of the Undead that it would turn,
+enthralling them to you for a short time. 
+After 30 seconds, the Undead crumbles to dust.
+Other Turned enemies are feared and begin cowering as normal.
+
+Shadows are automatically dominated instead of being turned.</Description>
+      <Icon>UndeadHunter</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>1</Cost>
+      <Ranks>3</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>4</Level>
+        </Requirement>
+      </Requirements>
+         <Effect>
+            <Type>ExtraTurns</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>TurnLevelBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>TurnBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">2 4 6</AmountVector>
+         </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Dark Feeding</Name>
+      <InternalName>PalShadDarkFeeding</InternalName>
+      <Description>You gain On Kill: You gain Temp HP equal to the CR of the monster slain.</Description>
+      <Icon>ATArcaneSkills</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>4</Level>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Ability II</Name>
+      <InternalName>PalShadAbilityII</InternalName>
+      <Description>Choose between Strength or Charisma</Description>
+      <Icon>StrCha</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>4</YPosition>
+      <Cost>2</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>4</Level>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>+1 Strength</Name>
+          <Description>+1 Strength</Description>
+          <Icon>Strength</Icon>
+          <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Amount>1</Amount>
+                  <Ability>Strength</Ability>
+               </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>+1 Charisma</Name>
+          <Description>+1 Charisma</Description>
+          <Icon>Charisma</Icon>
+          <Cost>2</Cost>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Amount>1</Amount>
+                  <Ability>Charisma</Ability>
+               </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Enemy of All</Name>
+      <InternalName>PalShadEnemyOfAll</InternalName>
+      <Description>+2 to hit and damage with all weapons.
+An additional +2 to hit and damage with Favored Weapons.
+You gain 15% Fortification Bypass.
+
+Your Core abilities that add Attack and Saves versus Good creatures now apply
+to all creatures.</Description>
+      <Icon>AssLightArmorMastery</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>5</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>12</MinLevel>
+        </Requirement>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>5</Level>
+        </Requirement>
+        <Requirement>
+          <Enhancement>PalShadPenumbralCombatant</Enhancement>
+        </Requirement>
+      </Requirements>
+         <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Weapon>All</Weapon>
+         </Effect>
+         <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Weapon>All</Weapon>
+         </Effect>
+         <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Weapon>All</Weapon>
+         </Effect>
+         <Effect>
+            <Type>Seeker</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Weapon>All</Weapon>
+         </Effect>
+         <Effect>
+            <DisplayName>Enemy of All: Favored Weapon</DisplayName>
+            <Type>AttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+         </Effect>
+         <Effect>
+            <DisplayName>Enemy of All: Favored Weapon</DisplayName>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+         </Effect>
+         <Effect>
+            <DisplayName>Enemy of All: Favored Weapon</DisplayName>
+            <Type>DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+         </Effect>
+         <Effect>
+            <DisplayName>Enemy of All: Favored Weapon</DisplayName>
+            <Type>Seeker</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+         </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Night's Embrace II</Name>
+      <InternalName>PalShadNightsEmbraceII</InternalName>
+      <Description>You now heal 100% from Negative Energy and 50% from Positive Energy.
++20 Negative Amplification</Description>
+      <Icon>BEInfusedArmorII</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>5</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>12</MinLevel>
+        </Requirement>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>5</Level>
+        </Requirement>
+        <Requirement>
+          <Enhancement>PalShadNightsEmbraceI</Enhancement>
+        </Requirement>
+      </Requirements>
+         <Effect>
+            <Type>HealingAmplification</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>-25</Amount>
+         </Effect>
+         <Effect>
+            <Type>NegativeHealingAmplification</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>50</Amount>
+         </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Planeshift Mabar</Name>
+      <InternalName>PalShadPlaneshiftMabar</InternalName>
+      <Description>Bring a section of the Endless Night into the Material Plane, subjecting all
+enemies in the area to Mabar&#146;s environmental effects. Enemies are slowed
+and take 15% more Negative and Evil damage, while you are empowered by the
+plane, instead gaining 30% Action Boost bonus to Movement speed, and allowing
+you to move freely within monsters as if you were intangible.
+You also gain +3 Profane bonus to Melee power for every 2 seconds you remain
+within the manifest zone. 
+
+Shadows are also empowered by this effect.</Description>
+      <Icon>ATStaticShock</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>5</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Clickie/>
+      <Tier5/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>12</MinLevel>
+        </Requirement>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>5</Level>
+        </Requirement>
+        <Requirement>
+          <Enhancement>PalShadBehead</Enhancement>
+        </Requirement>
+      </Requirements>
+         <Effect>
+            <Type>CreateSlider</Type>
+            <Bonus>Enhancement</Bonus>
+            <Slider>Mabar Manifest</Slider>
+            <AmountVector size="2">0 25</AmountVector>
+            <Amount>0</Amount>
+         </Effect>
+         <Effect>
+            <Type>MeleePower</Type>
+            <Bonus>Profane</Bonus>
+            <Amount>3</Amount>
+            <WeaponClass>Melee</WeaponClass>
+            <Stacks>Mabar Manifest</Stacks>
+            <ApplyAsItemEffect/>
+         </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Behead</Name>
+      <InternalName>PalShadBehead</InternalName>
+      <Description>You gain: On Vorpal: Slay target living opponent with a head.
++10 Melee/Ranged Power</Description>
+      <Icon>FBExtraRage</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>5</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <ArrowLeft/>
+      <Tier5/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>12</MinLevel>
+        </Requirement>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>5</Level>
+        </Requirement>
+        <Requirement>
+          <Enhancement>PalShadDarkFeeding</Enhancement>
+        </Requirement>
+      </Requirements>
+    <Effect>
+        <Type>MeleePower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>10</Amount>
+    </Effect>
+    <Effect>
+        <Type>RangedPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>10</Amount>
+    </Effect>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Abyssal Retribution</Name>
+      <InternalName>PalShadAbyssalRetribution</InternalName>
+      <Description>Melee Channel Divinity: Executes a powerful holy cleave against nearby targets that deals
++5[W] damage, 100 extra Evil damage that scales with 200% Melee or Ranged Power,
+-6 to all ability scores for 10 seconds, and recharges one Smite Evil charge to you.
+On Damage: Living creatures may be forced to make a Will save
+(DC 10 + Paladin Level + Charisma Mod + Sunder Bonuses) or be swallowed by their
+own shadow, killing them instantly.
+
+Also has a Ranged version.</Description>
+      <Icon>AssSoulshatterPoison</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>5</YPosition>
+      <Cost>1</Cost>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Clickie/>
+      <Tier5/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>12</MinLevel>
+        </Requirement>
+        <Requirement>
+          <Class>Paladin</Class>
+          <Level>5</Level>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+  </EnhancementTree>
+</Enhancements>

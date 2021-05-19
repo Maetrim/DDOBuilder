@@ -16,7 +16,9 @@
          <Description>You gain +1 to attack evil creatures and deal 1d4 additional light damage
 that scales with 200% Melee oe Ranged Power (whichever is higher). You resist
 evil influences particularly well, gaining a +2 bonus to saves against spells
-and effects produced by evil creatures.</Description>
+and effects produced by evil creatures.
+
+Mutually exclusive with Shadowguard</Description>
          <Icon>KotCSlayerOfEvil</Icon>
          <XPosition>0</XPosition>
          <YPosition>0</YPosition>
@@ -29,6 +31,11 @@ and effects produced by evil creatures.</Description>
                <Class>Paladin</Class>
                <Level>1</Level>
             </Requirement>
+            <RequiresNoneOf>
+               <Requirement>
+                  <Enhancement>PalShadCore1</Enhancement>
+               </Requirement>
+            </RequiresNoneOf>
          </Requirements>
          <Effect>
             <Type>WeaponOtherDamageBonus</Type>
@@ -674,14 +681,12 @@ Cooldown: 20 seconds</Description>
             <Bonus>Enhancement</Bonus>
             <AmountVector size="3">1 2 3</AmountVector>
             <Weapon>All</Weapon>
-            <Stance>Favored Weapon</Stance>
          </Effect>
          <Effect>
             <Type>Seeker</Type>
             <Bonus>Enhancement</Bonus>
             <AmountVector size="3">1 2 3</AmountVector>
             <Weapon>All</Weapon>
-            <Stance>Favored Weapon</Stance>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>

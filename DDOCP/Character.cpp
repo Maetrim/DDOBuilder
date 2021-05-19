@@ -910,43 +910,65 @@ void Character::SetAlignmentStances()
     Stance chaotic("Chaotic", "Chaotic", "You are Chaotic");
     Stance good("Good", "Good", "You are Good");
     Stance trueNeutral("True Neutral", "TrueNeutral", "You are True Neutral");
-    switch (m_Alignment)
+    Stance evil("Evil", "Evil", "You are Evil");
+
+    switch (OverrideAlignment())
     {
     case Alignment_LawfulGood:
         ActivateStance(lawful);
         ActivateStance(good);
         DeactivateStance(chaotic);
         DeactivateStance(trueNeutral);
+        DeactivateStance(evil);
         break;
     case Alignment_LawfulNeutral:
         ActivateStance(lawful);
         DeactivateStance(good);
         DeactivateStance(chaotic);
         DeactivateStance(trueNeutral);
+        DeactivateStance(evil);
         break;
     case Alignment_NeutralGood:
         DeactivateStance(lawful);
         ActivateStance(good);
         DeactivateStance(chaotic);
         DeactivateStance(trueNeutral);
+        DeactivateStance(evil);
         break;
     case Alignment_TrueNeutral:
         DeactivateStance(lawful);
         DeactivateStance(good);
         DeactivateStance(chaotic);
         ActivateStance(trueNeutral);
+        DeactivateStance(evil);
         break;
     case Alignment_ChaoticNeutral:
         DeactivateStance(lawful);
         DeactivateStance(good);
         ActivateStance(chaotic);
         DeactivateStance(trueNeutral);
+        DeactivateStance(evil);
         break;
     case Alignment_ChaoticGood:
         DeactivateStance(lawful);
         ActivateStance(good);
         ActivateStance(chaotic);
         DeactivateStance(trueNeutral);
+        DeactivateStance(evil);
+        break;
+    case Alignment_NeutralEvil:
+        DeactivateStance(lawful);
+        DeactivateStance(good);
+        DeactivateStance(chaotic);
+        DeactivateStance(trueNeutral);
+        ActivateStance(evil);
+        break;
+    case Alignment_ChaoticEvil:
+        DeactivateStance(lawful);
+        DeactivateStance(good);
+        ActivateStance(chaotic);
+        DeactivateStance(trueNeutral);
+        ActivateStance(evil);
         break;
     }
 }
@@ -2911,6 +2933,7 @@ void Character::Enhancement_TrainEnhancement(
     NotifyActionPointsChanged();
     NotifyAPSpentInTreeChanged(treeName);
     UpdateWeaponStances();
+    SetAlignmentStances();
     UpdateCenteredStance();
 }
 
@@ -2973,6 +2996,7 @@ void Character::Enhancement_RevokeEnhancement(
             *enhancementSelection = revokedEnhancementSelection;
         }
         UpdateWeaponStances();
+        SetAlignmentStances();
         UpdateCenteredStance();
     }
 }
@@ -6923,5 +6947,19 @@ void Character::RevokeSetBonus(
         NotifyRevokeStance((*sit));
         ++sit;
     }
+}
+
+AlignmentType Character::OverrideAlignment() const
+{
+    AlignmentType a = Alignment(); // assume
+    if (IsEnhancementTrained("PalShadCore4", "", TT_enhancement))
+    {
+        a = Alignment_NeutralEvil;
+    }
+    else if (IsEnhancementTrained("PalShadCore1", "", TT_enhancement))
+    {
+        a = Alignment_TrueNeutral;
+    }
+    return a;
 }
 

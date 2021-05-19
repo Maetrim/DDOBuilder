@@ -371,6 +371,27 @@ void CItemSelectDialog::EnableControls()
         m_upgradeType[upgradeIndex].ShowWindow(SW_HIDE);
         m_comboUpgradeDropList[upgradeIndex].ShowWindow(SW_HIDE);
     }
+    // disable OK button if we have multiple augments with set suppression
+    // (max one per item)
+    size_t count = 0;
+    const std::vector<ItemAugment> & itemAugments = m_item.Augments();
+    std::vector<ItemAugment>::const_iterator it = itemAugments.begin();
+    while (it != itemAugments.end())
+    {
+        const Augment & augment = FindAugmentByName((*it).SelectedAugment());
+        if (augment.HasSuppressSetBonus())
+        {
+            ++count;
+        }
+        ++it;
+    }
+    GetDlgItem(IDOK)->EnableWindow(count <= 1);
+    if (count > 1)
+    {
+        AfxMessageBox(
+                "Note: You cannot equip an item with multiple augments that suppress set bonuses",
+                MB_ICONERROR | MB_OK);
+    }
 }
 
 void CItemSelectDialog::PopulateAugmentList(
@@ -527,6 +548,7 @@ void CItemSelectDialog::OnAugmentSelect(UINT nID)
             const Augment & augment = FindAugmentByName((LPCTSTR)text);
             std::list<std::string> augmentsToAdd = augment.AddAugment();
             std::list<std::string>::const_iterator it = augmentsToAdd.begin();
+            bool bSuppressSetBonus = augment.HasSuppressSetBonus(); // a single item can only have one augment that does this
             while (it != augmentsToAdd.end())
             {
                 AddAugment(&augments, (*it));

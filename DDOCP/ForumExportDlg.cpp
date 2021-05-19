@@ -302,7 +302,7 @@ void CForumExportDlg::AddCharacterHeader(std::stringstream & forumExport)
     forumExport.fill(' ');
     forumExport.width(21);
     forumExport << std::left << race;
-    std::string alignment = EnumEntryText(m_pCharacter->Alignment(), alignmentTypeMap);
+    std::string alignment = EnumEntryText(m_pCharacter->OverrideAlignment(), alignmentTypeMap);
     forumExport << "Alignment: ";
     forumExport << std::left << alignment << "\r\n";
     // blank line
