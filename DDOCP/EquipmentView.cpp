@@ -810,6 +810,12 @@ void CEquipmentView::UpdateRevokeStance(Character * charData, const Stance & sta
     }
 }
 
+void CEquipmentView::UpdateRaceChanged(Character * charData, RaceType race)
+{
+    // ensure gear re-draws on a race change
+    m_inventoryView->Invalidate();
+}
+
 void CEquipmentView::OnMouseMove(UINT nFlags, CPoint point)
 {
     // determine which stance the mouse may be over

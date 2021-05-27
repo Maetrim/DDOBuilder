@@ -4,6 +4,7 @@
 #include "EquippedGear.h"
 #include "XmlLib\SaxWriter.h"
 #include "GlobalSupportFunctions.h"
+#include "Character.h"
 
 #define DL_ELEMENT EquippedGear
 
@@ -32,7 +33,9 @@ EquippedGear::EquippedGear(const std::string & name) :
     m_Quiver(L"Quiver"),
     m_Arrow(L"Arrow"),
     m_Ring1(L"Ring1"),
-    m_Ring2(L"Ring2")
+    m_Ring2(L"Ring2"),
+    m_Trinket2(L"Trinket2"),
+    m_Trinket3(L"Trinket3")
 {
     DL_INIT(EquippedGear_PROPERTIES)
     m_Name = name;
@@ -101,6 +104,8 @@ bool EquippedGear::HasItemInSlot(InventorySlotType slot) const
     case Inventory_Trinket: return HasTrinket();
     case Inventory_Weapon1: return HasMainHand();
     case Inventory_Weapon2: return HasOffHand();
+    case Inventory_Trinket2:return HasTrinket2();
+    case Inventory_Trinket3:return HasTrinket3();
     }
     return false;
 }
@@ -206,6 +211,18 @@ Item EquippedGear::ItemInSlot(InventorySlotType slot) const
             return OffHand();
         }
         break;
+    case Inventory_Trinket2:
+        if (HasTrinket2())
+        {
+            return Trinket2();
+        }
+        break;
+    case Inventory_Trinket3:
+        if (HasTrinket3())
+        {
+            return Trinket3();
+        }
+        break;
     }
     return noItem;
 }
@@ -237,6 +254,27 @@ bool EquippedGear::IsSlotRestricted(
             }
         }
     }
+    // Kobold gear restrictions
+    if (pChar != NULL)
+    {
+        switch (pChar->Race())
+        {
+        case Race_Kobold:
+        case Race_KoboldShamen:
+            // kobold cannot wear boots or gloves
+            if (slot == Inventory_Boots || slot == Inventory_Gloves)
+            {
+                bRestricted = true;
+            }
+            break;
+        default:
+            if (slot == Inventory_Trinket2 || slot == Inventory_Trinket3)
+            {
+                bRestricted = true;
+            }
+            break;
+        }
+    }
     return bRestricted;
 }
 
@@ -263,6 +301,8 @@ void EquippedGear::SetItem(
     case Inventory_Ring1:   Set_Ring1(item); break;
     case Inventory_Ring2:   Set_Ring2(item); break;
     case Inventory_Trinket: Set_Trinket(item); break;
+    case Inventory_Trinket2:Set_Trinket2(item); break;
+    case Inventory_Trinket3:Set_Trinket3(item); break;
     case Inventory_Weapon1: Set_MainHand(item); break;
     case Inventory_Weapon2: Set_OffHand(item); break;
     default: ASSERT(FALSE); break;
@@ -326,6 +366,8 @@ void EquippedGear::ClearItem(InventorySlotType slot)
     case Inventory_Ring1:   Clear_Ring1(); break;
     case Inventory_Ring2:   Clear_Ring2(); break;
     case Inventory_Trinket: Clear_Trinket(); break;
+    case Inventory_Trinket2:Clear_Trinket2(); break;
+    case Inventory_Trinket3:Clear_Trinket3(); break;
     case Inventory_Weapon1: Clear_MainHand(); break;
     case Inventory_Weapon2: Clear_OffHand(); break;
     default: ASSERT(FALSE); break;

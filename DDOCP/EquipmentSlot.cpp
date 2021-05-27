@@ -66,6 +66,8 @@ bool EquipmentSlot::HasSlot(InventorySlotType slot) const
         case Inventory_Ring1:       bHas = HasRing(); break;
         case Inventory_Ring2:       bHas = HasRing(); break;
         case Inventory_Trinket:     bHas = HasTrinket(); break;
+        case Inventory_Trinket2:    bHas = HasTrinket2(); break;
+        case Inventory_Trinket3:    bHas = HasTrinket3(); break;
         case Inventory_Weapon1:     bHas = HasWeapon1(); break;
         case Inventory_Weapon2:     bHas = HasWeapon2(); break;
         default: break;

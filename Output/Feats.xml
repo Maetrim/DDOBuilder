@@ -11701,6 +11701,12 @@ Armor Class and a +4 bonus on Hide checks. -4 penalty to Intimidate.</Descriptio
       <AutomaticAcquisition>
          <Race>Halfling</Race>
       </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Race>Kobold (Theorycraft)</Race>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Race>Kobold Shamen (Theorycraft)</Race>
+      </AutomaticAcquisition>
       <Effect>
          <Type>AttackBonus</Type>
          <Bonus>Size</Bonus>
@@ -23580,6 +23586,50 @@ Mauls are considered as a favored weapon.</Description>
          <Weapon>Maul</Weapon>
       </Effect>
    </Feat>
+   <Feat>
+      <Name>Follower of the Dark Six</Name>
+      <Description>You follow the Dark Six.
+You are proficient with Sickles and gain +1 to hit with them.
+Sickles are considered as a favored weapon.</Description>
+      <FeatGroup>
+         <IsFollowerOf/>
+      </FeatGroup>
+      <Requirements>
+          <RequiresOneOf>
+            <Requirement>
+               <Race>Kobold (Theorycraft)</Race>
+            </Requirement>
+            <Requirement>
+               <Race>Kobold Shamen (Theorycraft)</Race>
+            </Requirement>
+         </RequiresOneOf>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>DarkSix</Icon>
+      <Effect>
+         <Type>WeaponProficiency</Type>
+         <Bonus>Feat</Bonus>
+         <Weapon>Sickle</Weapon>
+      </Effect>
+      <Effect>
+         <Type>AttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
+         <Weapon>Sickle</Weapon>
+      </Effect>
+      <Effect>
+         <Type>CriticalAttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
+         <Weapon>Sickle</Weapon>
+      </Effect>
+      <Effect>
+         <Type>AddGroupWeapon</Type>
+         <Bonus>Enhancement</Bonus>
+         <WeaponGroup>Favored Weapon</WeaponGroup>
+         <Weapon>Sickle</Weapon>
+      </Effect>
+   </Feat>
    <!--Child of feats-->
    <Feat>
       <Name>Child of Faith</Name>
@@ -24381,6 +24431,60 @@ Toggling this on gives you Blessing of Silvanus: You permanently gain a
          <Amount>2</Amount>
          <Stance>Blessing of Silvanus</Stance>
          <Weapon>Maul</Weapon>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Profane Imbuement</Name>
+      <Description>You are a devoted follower of the Dark Six and your faith has been rewarded.
+Toggling this on gives you Profane Imbuement: You permanently gain a +3 to saving
+throws vs magic, and sickles you wield gain +2 to their Critical Threat Range
+and are considered two handed weapons. You gain additional animations while using sickles.</Description>
+      <FeatGroup>
+         <IsDeity/>
+         <IsStandardFeat/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <Feat>Follower of the Dark Six</Feat>
+         </Requirement>
+         <RequiresOneOf>
+            <Requirement>
+               <Class>Cleric</Class>
+               <Level>6</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Favored Soul</Class>
+               <Level>6</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Paladin</Class>
+               <Level>6</Level>
+            </Requirement>
+         </RequiresOneOf>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>DarkSix</Icon>
+      <Stance>
+         <Name>Profane Imbuement</Name>
+         <Icon>DarkSix</Icon>
+         <Description>You are a devoted follower of the Dark Six and your faith has been rewarded.
+Toggling this on gives you Profane Imbuement: You permanently gain a +3 to saving
+throws vs magic, and sickles you wield gain +2 to their Critical Threat Range
+and are considered two handed weapons. You gain additional animations while using sickles.</Description>
+      </Stance>
+      <Effect>
+         <Type>SaveBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>3</Amount>
+         <Save>Magic</Save>
+         <Stance>Profane Imbuement</Stance>
+      </Effect>
+      <Effect>
+         <Type>CriticalRange</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>2</Amount>
+         <Stance>Profane Imbuement</Stance>
+         <Weapon>Sickle</Weapon>
       </Effect>
    </Feat>
    <!--Beloved of feats-->
@@ -28350,5 +28454,142 @@ spell points.</Description>
          <Energy>Gildleaf</Energy>
          <Energy>Ceruleite</Energy>
       </Effect>
+   </Feat>
+    <!--Kobold feats!-->
+   <Feat>
+      <Name>Stench Immunity</Name>
+      <Description>Having been raised in a sewer, you are immune to all stench effects that
+debuff you in any way.</Description>
+      <Requirements/>
+      <Acquire>Automatic</Acquire>
+      <Icon>KoboldFeat</Icon>
+      <AutomaticAcquisition>
+         <Race>Kobold (Theorycraft)</Race>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Race>Kobold Shamen (Theorycraft)</Race>
+      </AutomaticAcquisition>
+      <Effect>
+         <Type>Immunity</Type>
+         <Bonus>Racial</Bonus>
+         <Immunity>Stench Effects</Immunity>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Timid</Name>
+      <Description>Kobolds are exceptionally timid and are easily feared.</Description>
+      <Requirements/>
+      <Acquire>Automatic</Acquire>
+      <Icon>KoboldFeat</Icon>
+      <AutomaticAcquisition>
+         <Race>Kobold (Theorycraft)</Race>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Race>Kobold Shamen (Theorycraft)</Race>
+      </AutomaticAcquisition>
+      <Effect>
+         <Type>SaveBonus</Type>
+         <Bonus>Penalty</Bonus>
+         <Amount>-2</Amount>
+         <Save>Fear</Save>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Draconic Awe</Name>
+      <Description>Being decended from dragons you naturally find it hard to fight them.
+-1 to attack and damage against all Dragons.</Description>
+      <Requirements/>
+      <Acquire>Automatic</Acquire>
+      <Icon>KoboldFeat</Icon>
+      <AutomaticAcquisition>
+         <Race>Kobold (Theorycraft)</Race>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Race>Kobold Shamen (Theorycraft)</Race>
+      </AutomaticAcquisition>
+      <Effect>
+         <Type>AttackBonus</Type>
+         <Bonus>Penalty</Bonus>
+         <Amount>-1</Amount>
+         <Weapon>All</Weapon>
+         <Stance>Dragon</Stance>
+      </Effect>
+      <Effect>
+         <Type>CriticalAttackBonus</Type>
+         <Bonus>Penalty</Bonus>
+         <Amount>-1</Amount>
+         <Weapon>All</Weapon>
+         <Stance>Dragon</Stance>
+      </Effect>
+      <Effect>
+         <Type>DamageBonus</Type>
+         <Bonus>Penalty</Bonus>
+         <Amount>-1</Amount>
+         <Weapon>All</Weapon>
+         <Stance>Dragon</Stance>
+      </Effect>
+      <Effect>
+         <Type>Seeker</Type>
+         <Bonus>Penalty</Bonus>
+         <Amount>-1</Amount>
+         <Weapon>All</Weapon>
+         <Stance>Dragon</Stance>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Nimble</Name>
+      <Description>You may freely walk through Monsters due to your size.</Description>
+      <Requirements/>
+      <Acquire>Automatic</Acquire>
+      <Icon>KoboldFeat</Icon>
+      <AutomaticAcquisition>
+         <Race>Kobold (Theorycraft)</Race>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Race>Kobold Shamen (Theorycraft)</Race>
+      </AutomaticAcquisition>
+   </Feat>
+   <Feat>
+      <Name>Kobold Friends!</Name>
+      <Description>All Kobolds stand together.
+All Kobolds will not agro you unless you physically damage them.</Description>
+      <Requirements/>
+      <Acquire>Automatic</Acquire>
+      <Icon>KoboldFeat</Icon>
+      <AutomaticAcquisition>
+         <Race>Kobold (Theorycraft)</Race>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Race>Kobold Shamen (Theorycraft)</Race>
+      </AutomaticAcquisition>
+   </Feat>
+   <Feat>
+      <Name>Small and Weak</Name>
+      <Description>Due to your size and stature all weapon types are considered one size larger
+for you. All light weapons are treated as one handed weapons. Heavy weapons are
+treated as two handed Weapons, and two Handed weapons cannot be used.</Description>
+      <Requirements/>
+      <Acquire>Automatic</Acquire>
+      <Icon>KoboldFeat</Icon>
+      <AutomaticAcquisition>
+         <Race>Kobold (Theorycraft)</Race>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Race>Kobold Shamen (Theorycraft)</Race>
+      </AutomaticAcquisition>
+   </Feat>
+   <Feat>
+      <Name>Gear Restriction</Name>
+      <Description>Kobolds never wear boots or gloves, but to compensate they love to wear
+shinies. You have two extra trinket slots.</Description>
+      <Requirements/>
+      <Acquire>Automatic</Acquire>
+      <Icon>KoboldFeat</Icon>
+      <AutomaticAcquisition>
+         <Race>Kobold (Theorycraft)</Race>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Race>Kobold Shamen (Theorycraft)</Race>
+      </AutomaticAcquisition>
    </Feat>
 </Feats>

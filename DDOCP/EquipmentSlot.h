@@ -37,6 +37,8 @@ class EquipmentSlot :
                 DL_FLAG(_, Quiver) \
                 DL_FLAG(_, Ring) \
                 DL_FLAG(_, Trinket) \
+                DL_FLAG(_, Trinket2) \
+                DL_FLAG(_, Trinket3) \
                 DL_FLAG(_, Weapon1) \
                 DL_FLAG(_, Weapon2)
 

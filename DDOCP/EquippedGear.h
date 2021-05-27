@@ -51,6 +51,8 @@ class EquippedGear :
                 DL_OPTIONAL_OBJECT(_, Item, Arrow) \
                 DL_OPTIONAL_OBJECT(_, Item, Ring1) \
                 DL_OPTIONAL_OBJECT(_, Item, Ring2) \
+                DL_OPTIONAL_OBJECT(_, Item, Trinket2) \
+                DL_OPTIONAL_OBJECT(_, Item, Trinket3) \
                 DL_OBJECT(_, SentientJewel, SentientIntelligence)
 
         DL_DECLARE_ACCESS(EquippedGear_PROPERTIES)

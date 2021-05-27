@@ -59,23 +59,43 @@ CInventoryDialog::CInventoryDialog(CWnd* pParent) :
     //}}AFX_DATA_INIT
     // there are a fixed list of hit boxes which are hard coded here
     // order is important as used for drawing items (declare in same order as enum InventorySlotType)
+    //m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Arrows, CRect(164, 237, 196, 269)));
+    //m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Armor, CRect(30, 78, 62, 110)));
+    //m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Belt, CRect(164, 124, 196, 156)));
+    //m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Boots, CRect(72, 180, 104, 212)));
+    //m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Bracers, CRect(30, 124, 62, 156)));
+    //m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Cloak, CRect(164, 78, 196, 110)));
+    //m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Gloves, CRect(117, 180, 149, 212)));
+    //m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Goggles, CRect(30, 35, 62, 67)));
+    //m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Helmet, CRect(72, 24, 104, 56)));
+    //m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Necklace, CRect(117, 24, 149, 56)));
+    //m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Quiver, CRect(117, 237, 149, 269)));
+    //m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Ring1, CRect(30, 169, 62, 200)));
+    //m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Ring2, CRect(164, 168, 196, 200)));
+    //m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Trinket, CRect(164, 35, 196, 67)));
+    //m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Weapon1, CRect(30, 237, 62, 269)));
+    //m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Weapon2, CRect(72, 237, 104, 269)));
+    //m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_FindItems, CRect(99, 96, 128, 124)));
+
     m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Arrows, CRect(164, 237, 196, 269)));
-    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Armor, CRect(30, 78, 62, 110)));
-    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Belt, CRect(164, 124, 196, 156)));
-    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Boots, CRect(72, 180, 104, 212)));
-    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Bracers, CRect(30, 124, 62, 156)));
-    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Cloak, CRect(164, 78, 196, 110)));
-    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Gloves, CRect(117, 180, 149, 212)));
-    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Goggles, CRect(30, 35, 62, 67)));
-    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Helmet, CRect(72, 24, 104, 56)));
-    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Necklace, CRect(117, 24, 149, 56)));
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Armor, CRect(11, 78, 43, 110)));
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Belt, CRect(145, 124, 177, 156)));
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Boots, CRect(53, 180, 85, 212)));
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Bracers, CRect(11, 124, 43, 156)));
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Cloak, CRect(145, 78, 177, 110)));
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Gloves, CRect(98, 180, 130, 212)));
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Goggles, CRect(11, 35, 43, 67)));
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Helmet, CRect(53, 24, 85, 56)));
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Necklace, CRect(98, 24, 130, 56)));
     m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Quiver, CRect(117, 237, 149, 269)));
-    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Ring1, CRect(30, 169, 62, 200)));
-    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Ring2, CRect(164, 168, 196, 200)));
-    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Trinket, CRect(164, 35, 196, 67)));
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Ring1, CRect(11, 169, 43, 200)));
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Ring2, CRect(145, 168, 177, 200)));
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Trinket, CRect(145, 35, 177, 67)));
     m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Weapon1, CRect(30, 237, 62, 269)));
     m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Weapon2, CRect(72, 237, 104, 269)));
-    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_FindItems, CRect(99, 96, 128, 124)));
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Trinket2, CRect(184, 35, 216, 67)));
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_Trinket3, CRect(184, 78, 216, 110)));
+    m_hitBoxesInventory.push_back(InventoryHitBox(Inventory_FindItems, CRect(80, 96, 109, 124)));
     // fixed hit boxes for Filigree items
     m_hitBoxesFiligrees.push_back(FiligreeHitBox(-1, CRect(c_jewelX, c_jewelY, c_jewelX + 34, c_jewelY + 34)));
     CRect filigreeLocation(c_filigreeX, c_filigreeY, c_filigreeX + 34, c_filigreeY + 48);

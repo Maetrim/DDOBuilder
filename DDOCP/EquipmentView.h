@@ -53,6 +53,7 @@ class CEquipmentView :
         virtual void UpdateGearChanged(Character * charData, InventorySlotType slot) override;
         virtual void UpdateNewStance(Character * charData, const Stance & stance) override;
         virtual void UpdateRevokeStance(Character * charData, const Stance & stance) override;
+        virtual void UpdateRaceChanged(Character * charData, RaceType race) override;
 
     private:
         void PopulateCombobox();

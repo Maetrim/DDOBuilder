@@ -855,7 +855,7 @@ void Character::SetRace(RaceType race)
     m_pDocument->SetModifiedFlag(TRUE);
     // revoking a racial feat can invalidate a feat selection in other levels (e.g. loss of Dodge)
     VerifyTrainedFeats();
-    VerifyGear();               // changing too/from forged can affect equipped gear
+    VerifyGear();               // changing too/from forged/kobold can affect equipped gear
     UpdateWeaponStances();
 }
 
@@ -6558,18 +6558,32 @@ void Character::VerifyGear()
         if (gear.HasItemInSlot((InventorySlotType)i))
         {
             Item item = gear.ItemInSlot((InventorySlotType)i);
-            if (item.HasRequirementsToUse())
+            if (gear.IsSlotRestricted((InventorySlotType)i, this))
             {
-                if (!item.RequirementsToUse().Met(*this, classLevels, MAX_LEVEL, currentFeats, true))
+                revokeOccurred = true;
+                ClearGearInSlot(gear.Name(), (InventorySlotType)i);
+                CString itemName;
+                itemName = EnumEntryText((InventorySlotType)i, InventorySlotTypeMap);
+                itemName += ": ";
+                itemName += item.Name().c_str();
+                itemName += "\r\n";
+                text += itemName;
+            }
+            else
+            {
+                if (item.HasRequirementsToUse())
                 {
-                    revokeOccurred = true;
-                    ClearGearInSlot(gear.Name(), (InventorySlotType)i);
-                    CString itemName;
-                    itemName = EnumEntryText((InventorySlotType)i, InventorySlotTypeMap);
-                    itemName += ": ";
-                    itemName += item.Name().c_str();
-                    itemName += "\r\n";
-                    text += itemName;
+                    if (!item.RequirementsToUse().Met(*this, classLevels, MAX_LEVEL, currentFeats, true))
+                    {
+                        revokeOccurred = true;
+                        ClearGearInSlot(gear.Name(), (InventorySlotType)i);
+                        CString itemName;
+                        itemName = EnumEntryText((InventorySlotType)i, InventorySlotTypeMap);
+                        itemName += ": ";
+                        itemName += item.Name().c_str();
+                        itemName += "\r\n";
+                        text += itemName;
+                    }
                 }
             }
         }

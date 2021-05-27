@@ -1089,6 +1089,11 @@ int RacialModifier(
         {
             mod = -2;
         }
+        if (race == Race_Kobold
+                || race == Race_KoboldShamen)
+        {
+            mod = -4;
+        }
         if (race == Race_HalfOrc
                 || race == Race_Dragonborn
                 || race == Race_RazorclawShifter)
@@ -1105,6 +1110,8 @@ int RacialModifier(
         if (race == Race_Drow
                 || race == Race_Halfling
                 || race == Race_Elf
+                || race == Race_Kobold
+                || race == Race_KoboldShamen
                 || race == Race_WoodElf
                 || race == Race_ShadarKai
                 || race == Race_Shifter)
@@ -1115,6 +1122,8 @@ int RacialModifier(
     case Ability_Constitution:
         if (race == Race_Drow
                 || race == Race_Elf
+                || race == Race_Kobold
+                || race == Race_KoboldShamen
                 || race == Race_Morninglord)
         {
             mod = -2;

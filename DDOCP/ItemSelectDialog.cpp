@@ -136,6 +136,8 @@ BOOL CItemSelectDialog::OnInitDialog()
     case Inventory_Quiver: text = "Quiver"; break;
     case Inventory_Ring1:
     case Inventory_Ring2: text = "Ring"; break;
+    case Inventory_Trinket2:
+    case Inventory_Trinket3:
     case Inventory_Trinket: text = "Trinket"; break;
     case Inventory_Weapon1: text = "Weapon"; break;
     case Inventory_Weapon2: text = "Weapon, Shield, Orb"; break;

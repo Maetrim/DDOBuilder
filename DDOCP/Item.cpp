@@ -117,6 +117,8 @@ bool Item::CanEquipToSlot(InventorySlotType slot) const
     case Inventory_Ring2:
         canEquipToSlot = m_Slots.HasRing();
         break;
+    case Inventory_Trinket2:
+    case Inventory_Trinket3:
     case Inventory_Trinket:
         canEquipToSlot = m_Slots.HasTrinket();
         break;
