@@ -285,9 +285,17 @@ void CDDOCPApp::LoadFeats(const std::string & path)
 
 void CDDOCPApp::LoadEnhancements(const std::string & path)
 {
+    UINT choice = AfxMessageBox("Use the proposed Lamannia versions fo the Shadar-Kai and Radiant Servant trees?", MB_YESNO);
     // create the filename to load from
     std::string filename = path;
-    filename += "Enhancements.xml";
+    if (choice == IDYES)
+    {
+        filename += "EnhancementsLamannia.xml";
+    }
+    else
+    {
+        filename += "Enhancements.xml";
+    }
 
     EnhancementsFile file(filename);
     file.Read();

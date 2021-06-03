@@ -2160,6 +2160,18 @@ std::vector<TrainableFeatTypes> Character::TrainableFeatTypeAtLevel(
             trainable.push_back(TFT_Standard);
         }
     }
+    if (Race() == Race_Kobold
+            && level == 0)
+    {
+        // Kobolds get a tribe feat at level 1
+        trainable.push_back(TFT_KoboldTribe);
+    }
+    if (Race() == Race_KoboldShamen
+            && level == 0)
+    {
+        // Kobolds get a tribe feat at level 1
+        trainable.push_back(TFT_KoboldTribe);
+    }
     if (Race() == Race_Aasimar
             && level == 0)
     {

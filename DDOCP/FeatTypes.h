@@ -83,6 +83,7 @@ enum TrainableFeatTypes
     TFT_WarlockResistance,
     TFT_WarlockPactSpell,
     TFT_WizardMetamagic,
+    TFT_KoboldTribe,
 };
 
 const XmlLib::enumMapEntry<TrainableFeatTypes> trainableFeatTypesMap[] =
@@ -133,5 +134,6 @@ const XmlLib::enumMapEntry<TrainableFeatTypes> trainableFeatTypesMap[] =
     {TFT_WarlockResistance, L"WarlockResistance"},
     {TFT_WarlockPactSpell, L"WarlockPactSpell"},
     {TFT_WizardMetamagic, L"Metamagic"},
+    {TFT_KoboldTribe, L"KoboldTribe"},
     {TrainableFeatTypes(0), NULL}
 };

@@ -584,6 +584,10 @@ std::vector<TrainableFeatTypes> RaceSpecificFeatTypes(RaceType type)
     std::vector<TrainableFeatTypes> types;
     switch (type)
     {
+    case Race_Kobold:
+    case Race_KoboldShamen:
+        types.push_back(TFT_KoboldTribe);
+        break;
     case Race_Aasimar:
         types.push_back(TFT_AasimarBond);
         break;
@@ -1384,6 +1388,10 @@ bool IsInGroup(TrainableFeatTypes type, const FeatGroup & group)
 
     case TFT_WizardMetamagic:
         inGroup = group.HasIsMetamagic();
+        break;
+
+    case TFT_KoboldTribe:
+        inGroup = group.HasIsKoboldTribe();
         break;
     }
     return inGroup;
@@ -2355,6 +2363,9 @@ CString TrainableFeatTypeLabel(TrainableFeatTypes type)
         break;
     case TFT_WizardMetamagic:
         text = "Metamagic";
+        break;
+    case TFT_KoboldTribe:
+        text = "Kobold Tribe";
         break;
     }
     return text;
