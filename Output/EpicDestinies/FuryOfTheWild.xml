@@ -10,15 +10,12 @@
       <EnhancementTreeItem>
          <Name>Fury of the Wild: Adrenaline I</Name>
          <InternalName>FOTWCore1</InternalName>
-         <Description>You gain Druid and Ranger caster levels equal to your Fury of the Wild
-level if you have any levels in those classes.
+         <Description>+1 Druid and Ranger caster level per level of Fury not including this one
++1 Melee damage per level of Fury of the Wild including this one (up to +6 total at level 5).
 
 Gain 2 Adrenaline uses per rest. Consume 1 Adrenaline: Your next attack has +150%
 damage, and has +2 critical threat range and confirmation of critical hits.
-You are considered Raged until your next attack.
-
-You gain +1 Melee Damage, +6 Melee power and +1 Ranged Power per level of Fury of
-the Wild, including this one.</Description>
+You are considered Raged until your next attack.</Description>
          <Icon>Adrenaline</Icon>
          <XPosition>0</XPosition>
          <YPosition>0</YPosition>
@@ -41,7 +38,7 @@ the Wild, including this one.</Description>
          <Effect>
             <Type>DamageBonus</Type>
             <Bonus>Destiny</Bonus>
-            <Weapon>All</Weapon>
+            <WeaponClass>Melee</WeaponClass>
             <Amount>1</Amount>
          </Effect>
       </EnhancementTreeItem>
@@ -74,7 +71,7 @@ the Wild, including this one.</Description>
          <Effect>
             <Type>DamageBonus</Type>
             <Bonus>Destiny</Bonus>
-            <Weapon>All</Weapon>
+            <WeaponClass>Melee</WeaponClass>
             <Amount>1</Amount>
          </Effect>
          <Effect>
@@ -128,7 +125,7 @@ You are considered Raged until your next attack.</Description>
          <Effect>
             <Type>DamageBonus</Type>
             <Bonus>Destiny</Bonus>
-            <Weapon>All</Weapon>
+            <WeaponClass>Melee</WeaponClass>
             <Amount>1</Amount>
          </Effect>
          <Effect>
@@ -173,7 +170,7 @@ You are considered Raged until your next attack.</Description>
          <Effect>
             <Type>DamageBonus</Type>
             <Bonus>Destiny</Bonus>
-            <Weapon>All</Weapon>
+            <WeaponClass>Melee</WeaponClass>
             <Amount>1</Amount>
          </Effect>
          <Effect>
@@ -227,7 +224,7 @@ You are considered Raged until your next attack.</Description>
          <Effect>
             <Type>DamageBonus</Type>
             <Bonus>Destiny</Bonus>
-            <Weapon>All</Weapon>
+            <WeaponClass>Melee</WeaponClass>
             <Amount>1</Amount>
          </Effect>
          <Effect>
@@ -276,8 +273,8 @@ You are considered Raged until your next attack.
          <Effect>
             <Type>DamageBonus</Type>
             <Bonus>Destiny</Bonus>
-            <Weapon>All</Weapon>
-            <Amount>2</Amount>
+            <WeaponClass>Melee</WeaponClass>
+            <Amount>1</Amount>
          </Effect>
          <Effect>
             <Type>CasterLevel</Type>
@@ -296,8 +293,9 @@ You are considered Raged until your next attack.
       <EnhancementTreeItem>
          <Name>Fury of the Wild: Tunnel Vision</Name>
          <InternalName>TunnelVision</InternalName>
-         <Description>While raged, your melee attacks deal +1d[8/10/12] extra damage, you
-gain +[1/2/3] Intimidate, +[1/2/3] Will Saves and you lose -5 AC, -10% Fortification.</Description>
+         <Description>While raged, your melee attacks deal +1d[8/10/12] extra untyped damage,
+you gain +[1/2/3] Intimidate, +[1/2/3] Will Saves and you lose -5 AC,
+-10% Fortification while raged.</Description>
          <Icon>TunnelVision</Icon>
          <XPosition>0</XPosition>
          <YPosition>1</YPosition>
@@ -339,6 +337,10 @@ gain +[1/2/3] Intimidate, +[1/2/3] Will Saves and you lose -5 AC, -10% Fortifica
             <Type>Fortification</Type>
             <Bonus>Destiny</Bonus>
             <AmountVector size="3">-10 -10 -10</AmountVector>
+            <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Wildhunt Shifter: Shifted Form</AnyOfStance>
+            <AnyOfStance>Rage</AnyOfStance>
+            <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -468,9 +470,9 @@ Cooldown: 6 Seconds.</Description>
       <EnhancementTreeItem>
          <Name>Fury of the Wild: Injury</Name>
          <InternalName>Injury</InternalName>
-         <Description>While you are below 100% health, enemies you damage in melee are shaken.
-Rank 2: When below 70% health, enemies you damage in melee bleed for 1d10 damage every 2 seconds for 12 seconds.
-Rank 3: When below 30% health, your melee strikes have a 10% chance to paralyze enemies for 5 seconds.</Description>
+         <Description>While you injured, enemies you damage in melee are shaken.
+Rank 2: When below 70% health, enemies you damage in melee bleed for 1d10 damage every 2 seconds for 10 seconds.
+Rank 3: When below 30% health, your have a 10% chance to paralyze enemies for 5 seconds.</Description>
          <Icon>Injury</Icon>
          <XPosition>0</XPosition>
          <YPosition>2</YPosition>
@@ -648,8 +650,8 @@ gains +2 Strength, +2 Constitution and loses -10 AC, -10 concentration and -10% 
          <Name>Fury of the Wild: Ward against Weird</Name>
          <InternalName>WardAgainstWeird</InternalName>
          <Description>You have 5 Spell Resistance when you are below 100% health.
-You have 30 Spell Resistance when you are below 70% health.
-You have 60 Spell Resistance when you are below 30% health.
+Rank 2: You have 30 Spell Resistance when you are below 70% health.
+Rank 3: You have 60 Spell Resistance when you are below 30% health.
 This is considered a Primal bonus for the purposes of stacking</Description>
          <Icon>WardAgainstWeird</Icon>
          <XPosition>3</XPosition>
@@ -851,7 +853,8 @@ damage per hit.</Description>
       <EnhancementTreeItem>
          <Name>Fury of the Wild: Strong Swings</Name>
          <InternalName>FuryStrongSwings</InternalName>
-         <Description>+10 Melee Power with Melee Weapons. While fighting in Two Handed Fighting style, this is instead +25</Description>
+         <Description>+10 Melee Power with Melee Weapons.
+While fighting in Two Handed Fighting style, this is instead +25</Description>
          <Icon>FuryStrongSwings</Icon>
          <XPosition>0</XPosition>
          <YPosition>5</YPosition>
@@ -879,10 +882,10 @@ damage per hit.</Description>
          <InternalName>FuryMadePlacid</InternalName>
          <Description>Spend 1 Adrenaline: Stop being raged.
 You heal 2d100 HP every two seconds over the next ten seconds.
-For 3 minutes, you gain +6 Wisdom and cannot benefit from rage or Adrenaline,
-and sentient enemies attacking you physically or magically have a 20% chance
-to become paralyzed and helpless with regret for 3 seconds on a failed DC 50
-Will Save.</Description>
+This healing scales with Melee Power. For 3 minutes you gain +6 wisdom,
++10% Doublestrike, +20 PRR and MRR, cannot benefit from rage or adrenaline,
+and sentient enemies attacking you physically or magically have a 3% chance
+to become paralyzed and helpless with regret for 3 seconds with no save.</Description>
          <Icon>FuryMadePlacid</Icon>
          <XPosition>1</XPosition>
          <YPosition>5</YPosition>
@@ -908,21 +911,30 @@ Will Save.</Description>
             <AmountVector size="1">6</AmountVector>
             <Stance>Fury Made Placid</Stance>
          </Effect>
-         <DC>
-            <Name>Fury of the Wild: Fury Made Placid</Name>
-            <Description>Enemies attacking you physically or magically
-have a 20% chance to become paralyzed and helpless with regret for 3 seconds
-on a failed DC 50 Will Save.</Description>
-            <Icon>FuryMadePlacid</Icon>
-            <DCVersus>Will</DCVersus>
-            <AmountVector size="1">50</AmountVector>
-         </DC>
+         <Effect>
+            <Type>Doublestrike</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="1">10</AmountVector>
+            <Stance>Fury Made Placid</Stance>
+         </Effect>
+         <Effect>
+            <Type>PRR</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="1">20</AmountVector>
+            <Stance>Fury Made Placid</Stance>
+         </Effect>
+         <Effect>
+            <Type>MRR</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="1">20</AmountVector>
+            <Stance>Fury Made Placid</Stance>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Fury of the Wild: Fury Eternal</Name>
          <InternalName>FuryEternal</InternalName>
          <Description>Gain +1 Adrenaline use per rest.
-Whenever you Vorpal on melee or ranged attack, 100% chance to regain 1 Adrenaline use.</Description>
+Whenever you Vorpal on melee or ranged attack, regain 1 Adrenaline use.</Description>
          <Icon>FuryEternal</Icon>
          <XPosition>2</XPosition>
          <YPosition>5</YPosition>
@@ -1010,14 +1022,13 @@ Whenever you Vorpal on melee or ranged attack, 100% chance to regain 1 Adrenalin
          <Name>Fury of the Wild: Unbridled Fury</Name>
          <InternalName>UnbridledFury</InternalName>
          <Description>Every three seconds, for thirty seconds, you gain Adrenaline Overload:
-Your next attack deals +400% damage and has +16 critical threat range and
+Your next attack deals +200% damage and has +16 critical threat range and
 confirmation of critical hits.
 
-While this is active and you fight with a Two Handed weapon, Strikethrough Blows
-produced on enemies around you when you stand still and attack deal +100% damage
-and have 100% chance of triggering weapon effects. +100% Strikethrough
-You gain the feats Two-Handed Fighting, Improved Two-Handed Fighting,
-and Greater Two-Handed Fighting for the duration.
+While this is active, you gain +100% Strikethrough chance. You gain the feats
+Two-Handed Fighting, Improved Two-Handed Fighting, and Greater Two-Handed
+Fighting for the duration. Note: This does not provide the extra 6 melee power,
+it is only an 100% with, or without, the THF line.
 Cooldown: 5 minutes</Description>
          <Icon>UnbridledFury</Icon>
          <XPosition>2</XPosition>

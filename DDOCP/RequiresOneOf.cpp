@@ -58,15 +58,27 @@ bool RequiresOneOf::Met(
     // one or more of the requirements must be met
     bool canTrain = false;
     std::list<Requirement>::const_iterator it = m_Requirements.begin();
+    size_t metCount = 0;
     while (it != m_Requirements.end())
     {
-        canTrain |= (*it).Met(
+        if ((*it).Met(
                 charData,
                 classLevels,
                 totalLevel,
                 currentFeats,
-                includeTomes);
+                includeTomes))
+        {
+            ++metCount;
+        }
         ++it;
+    }
+    if (HasCount())
+    {
+        canTrain = (metCount >= m_Count);
+    }
+    else
+    {
+        canTrain = (metCount >= 1);
     }
     return canTrain;
 }
@@ -77,12 +89,24 @@ bool RequiresOneOf::CanTrainEnhancement(
 {
     bool canTrain = false;
     std::list<Requirement>::const_iterator it = m_Requirements.begin();
+    size_t metCount = 0;
     while (it != m_Requirements.end())
     {
-        canTrain |= (*it).CanTrainEnhancement(
+        if ((*it).CanTrainEnhancement(
                 charData,
-                trainedRanks);
+                trainedRanks))
+        {
+            metCount++;
+        }
         ++it;
+    }
+    if (HasCount())
+    {
+        canTrain = (metCount >= m_Count);
+    }
+    else
+    {
+        canTrain = (metCount >= 1);
     }
     return canTrain;
 }
@@ -93,12 +117,24 @@ bool RequiresOneOf::IsAllowed(
 {
     bool canTrain = false;
     std::list<Requirement>::const_iterator it = m_Requirements.begin();
+    size_t metCount = 0;
     while (it != m_Requirements.end())
     {
-        canTrain |= (*it).IsAllowed(
+        if ((*it).IsAllowed(
                 charData,
-                trainedRanks);
+                trainedRanks))
+        {
+            metCount++;
+        }
         ++it;
+    }
+    if (HasCount())
+    {
+        canTrain = (metCount >= m_Count);
+    }
+    else
+    {
+        canTrain = (metCount >= 1);
     }
     return canTrain;
 }
@@ -108,11 +144,23 @@ bool RequiresOneOf::CanTrainTree(
 {
     // one or more of the requirements must be met
     bool canTrain = false;
+    size_t metCount = 0;
     std::list<Requirement>::const_iterator it = m_Requirements.begin();
     while (it != m_Requirements.end())
     {
-        canTrain |= (*it).CanTrainTree(charData);
+        if ((*it).CanTrainTree(charData))
+        {
+            metCount++;
+        }
         ++it;
+    }
+    if (HasCount())
+    {
+        canTrain = (metCount >= m_Count);
+    }
+    else
+    {
+        canTrain = (metCount >= 1);
     }
     return canTrain;
 }
@@ -137,7 +185,15 @@ void RequiresOneOf::CreateRequirementStrings(
         // a single entry which has a single met bool.
         // This is because some items can have so many inclusions that it would
         // take up several lines of screen space
-        CString description = "Requires one of: ";
+        CString description;
+        if (HasCount())
+        {
+            description.Format("Requires %d from: ", Count());
+        }
+        else
+        {
+            description = "Requires one of: ";
+        }
         description += m_DisplayDescription.c_str();
         bool wasMet = false;
         for (int i = 0; i < (int)localRequirements.size(); ++i)
@@ -180,7 +236,15 @@ void RequiresOneOf::CreateRequirementStrings(
         // re-package the local requirements to a single line
         if (localRequirements.size() > 0)
         {
-            CString description = "Requires one of: ";
+            CString description;
+            if (HasCount())
+            {
+                description.Format("Requires %d from: ", Count());
+            }
+            else
+            {
+                description = "Requires one of: ";
+            }
             bool wasMet = false;
             for (int i = 0; i < (int)localRequirements.size(); ++i)
             {

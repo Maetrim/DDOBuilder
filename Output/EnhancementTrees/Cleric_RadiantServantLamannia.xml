@@ -204,7 +204,7 @@ maximum healing and has +50% chance to critical.</Description>
       <EnhancementTreeItem>
          <Name>Radiant Servant: Divine Aid I</Name>
          <InternalName>RSDivineAidI</InternalName>
-         <Description>+2% Positive Spell Critical Damage.</Description>
+         <Description>+3% Positive Spell Critical Damage.</Description>
          <Icon>RSDivineAidI</Icon>
          <XPosition>0</XPosition>
          <YPosition>1</YPosition>
@@ -220,7 +220,7 @@ maximum healing and has +50% chance to critical.</Description>
          <Effect>
             <Type>SpellCriticalDamage</Type>
             <Bonus>Enhancement</Bonus>
-            <Amount>2</Amount>
+            <Amount>3</Amount>
             <SpellPower>Positive</SpellPower>
          </Effect>
       </EnhancementTreeItem>
@@ -356,7 +356,8 @@ total number of hit dice you can turn. In addition, you add an additional
       <EnhancementTreeItem>
          <Name>Radiant Servant: Mighty Turning</Name>
          <InternalName>RSMightyTurning</InternalName>
-         <Description>Undead that you successfully turn are instead destroyed</Description>
+         <Description>Undead that you successfully turn are instead destroyed.
+If they are immune to instant death, they will be affected as a normal Turn attempt</Description>
          <Icon>RSMightyTurning</Icon>
          <XPosition>1</XPosition>
          <YPosition>2</YPosition>
@@ -444,7 +445,7 @@ cost [1/2/4] fewer spell points.</Description>
       <EnhancementTreeItem>
          <Name>Radiant Servant: Divine Aid II</Name>
          <InternalName>RSDivineAidII</InternalName>
-         <Description>+2% Positive Spell Critical Damage.</Description>
+         <Description>+3% Positive Spell Critical Damage.</Description>
          <Icon>RSDivineAidI</Icon>
          <XPosition>0</XPosition>
          <YPosition>3</YPosition>
@@ -460,8 +461,34 @@ cost [1/2/4] fewer spell points.</Description>
          <Effect>
             <Type>SpellCriticalDamage</Type>
             <Bonus>Enhancement</Bonus>
-            <Amount>2</Amount>
+            <Amount>3</Amount>
             <SpellPower>Positive</SpellPower>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Radiant Servant: Unyielding Sovereignty</Name>
+         <InternalName>RSUnyieldingSovereignty</InternalName>
+         <Description>Activate: Fully heals all hit point damage done to a targeted ally,
+and removes ability damage, death penalty effects, negative levels, and the
+conditions blinded, dazed, deafened, diseased, exhausted, fatigued, feebleminded,
+insanity, nauseated, poisoned, and stunned. (Cooldown: 5 minutes)</Description>
+         <Icon>RSUnyieldingSovereignty</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Class>Cleric</Class>
+               <Level>3</Level>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellLikeAbility>Unyielding Sovereignty</SpellLikeAbility>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -469,7 +496,7 @@ cost [1/2/4] fewer spell points.</Description>
          <InternalName>RSIntenseHealing</InternalName>
          <Description>Your Positive Energy Spells are cast at +[1/2/3] caster level.</Description>
          <Icon>RSIntenseHealing</Icon>
-         <XPosition>1</XPosition>
+         <XPosition>2</XPosition>
          <YPosition>3</YPosition>
          <Cost>1</Cost>
          <Ranks>3</Ranks>
@@ -489,37 +516,11 @@ cost [1/2/4] fewer spell points.</Description>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Radiant Servant: Unyielding Sovereignty</Name>
-         <InternalName>RSUnyieldingSovereignty</InternalName>
-         <Description>Activate: Fully heals all hit point damage done to a targeted ally,
-and removes ability damage, death penalty effects, negative levels, and the
-conditions blinded, dazed, deafened, diseased, exhausted, fatigued, feebleminded,
-insanity, nauseated, poisoned, and stunned. (Cooldown: 5 minutes)</Description>
-         <Icon>RSUnyieldingSovereignty</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>3</YPosition>
-         <Cost>2</Cost>
-         <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
-         <Clickie/>
-         <Requirements>
-            <Requirement>
-               <Class>Cleric</Class>
-               <Level>3</Level>
-            </Requirement>
-         </Requirements>
-         <Effect>
-            <Type>SpellLikeAbility</Type>
-            <Bonus>Enhancement</Bonus>
-            <SpellLikeAbility>Unyielding Sovereignty</SpellLikeAbility>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
          <Name>Radiant Servant: Martyrdom</Name>
          <InternalName>RSMartyrdom</InternalName>
          <Description>Toggle: When you are killed, four turn attempts are expended.
-All nearby living allies and enemy undead receive [250/500/1000] positive energy
-healing and are affected by your Divine Cleansing ability if you possess it.
+All nearby living allies and enemy undead receive 1000 positive energy healing
+and are affected by your Divine Cleansing ability if you possess it.
 This healing effect is unaffected by Spell Power.
 (This ability has no effect if you have insufficient turn attempts when you die.)
 This ability toggles off on death.</Description>
@@ -527,7 +528,7 @@ This ability toggles off on death.</Description>
          <XPosition>3</XPosition>
          <YPosition>3</YPosition>
          <Cost>2</Cost>
-         <Ranks>3</Ranks>
+         <Ranks>1</Ranks>
          <MinSpent>10</MinSpent>
          <Clickie/>
          <Requirements>
@@ -582,12 +583,35 @@ This ability toggles off on death.</Description>
          </Selector>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
+         <Name>Radiant Servant: Divine Aid III</Name>
+         <InternalName>RSDivineAidIII</InternalName>
+         <Description>+3% Positive Spell Critical Damage.</Description>
+         <Icon>RSDivineAidI</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Cleric</Class>
+               <Level>4</Level>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SpellCriticalDamage</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>3</Amount>
+            <SpellPower>Positive</SpellPower>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
          <Name>Radiant Servant: Endless Turning</Name>
          <InternalName>RSEndlessTurning</InternalName>
          <Description>Turn Undead uses regenerate at a rate of one every 120 seconds, or
 [10/20/30]% faster if it already regenerates.</Description>
          <Icon>RSEndlessTurning</Icon>
-         <XPosition>0</XPosition>
+         <XPosition>1</XPosition>
          <YPosition>4</YPosition>
          <Cost>1</Cost>
          <Ranks>3</Ranks>
@@ -604,7 +628,7 @@ This ability toggles off on death.</Description>
          <InternalName>RSIncredibleHealing</InternalName>
          <Description>The maximum caster level of your Positive Energy Spells are increased by [1/2/3].</Description>
          <Icon>RSIncredibleHealing</Icon>
-         <XPosition>1</XPosition>
+         <XPosition>2</XPosition>
          <YPosition>4</YPosition>
          <Cost>1</Cost>
          <Ranks>3</Ranks>
@@ -631,7 +655,7 @@ This ability toggles off on death.</Description>
          <InternalName>RSDivineHealth</InternalName>
          <Description>You are immune to natural, magical, and supernatural diseases.</Description>
          <Icon>RSDivineHealth</Icon>
-         <XPosition>2</XPosition>
+         <XPosition>3</XPosition>
          <YPosition>4</YPosition>
          <Cost>2</Cost>
          <Ranks>1</Ranks>
@@ -808,12 +832,11 @@ unaffected by spell power. (Cooldown: 6 seconds)</Description>
          </Requirements>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Radiant Servant: Raise Dead</Name>
-         <InternalName>RSRaiseDead</InternalName>
-         <Description>Spell Like Ability: Resurrects the target, restores 10% of the target's hit points
-and preserves current spell points.
-15 Spell Points, 9 second cooldown.</Description>
-         <Icon>BoHRaiseDead</Icon>
+         <Name>Radiant Servant: Mass Resist Energy</Name>
+         <InternalName>RSMassResistEnergy</InternalName>
+         <Description>Spell Like Ability: Mass Resist Energy
+Cost: 75 Spell Points</Description>
+         <Icon>DivineEnergyResistance</Icon>
          <XPosition>4</XPosition>
          <YPosition>5</YPosition>
          <Cost>1</Cost>
@@ -832,8 +855,8 @@ and preserves current spell points.
          </Requirements>
          <Effect>
             <Type>SpellLikeAbility</Type>
-            <Bonus>Enhancement</Bonus>
-            <SpellLikeAbility>Raise Dead</SpellLikeAbility>
+            <Bonus>Destiny</Bonus>
+            <SpellLikeAbility>Divine Energy Resistance</SpellLikeAbility>
          </Effect>
       </EnhancementTreeItem>
    </EnhancementTree>

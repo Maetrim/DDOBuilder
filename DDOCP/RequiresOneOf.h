@@ -48,6 +48,7 @@ class RequiresOneOf :
 
         #define RequiresOneOf_PROPERTIES(_) \
                 DL_OPTIONAL_STRING(_, DisplayDescription) \
+                DL_OPTIONAL_SIMPLE(_, size_t, Count, 1) \
                 DL_OBJECT_LIST(_, Requirement, Requirements)
 
         DL_DECLARE_ACCESS(RequiresOneOf_PROPERTIES)
