@@ -40,6 +40,7 @@ class EnhancementTree :
                 DL_FLAG(_, IsRacialTree) \
                 DL_FLAG(_, IsReaperTree) \
                 DL_FLAG(_, IsUniversalTree) \
+                DL_FLAG(_, IsU51EpicDestiny) \
                 DL_STRING(_, Icon) \
                 DL_STRING(_, Background) \
                 DL_OBJECT_LIST(_, EnhancementTreeItem, Items)

@@ -1,0 +1,595 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Enhancements>
+   <EnhancementTree>
+      <Name>U51 Shiradi Champion</Name>
+      <Version>1</Version>
+      <Icon>ShiradiChampion</Icon>
+      <Background>U51Destiny</Background>
+      <Requirements>
+        <Requirement>
+            <Feat>Shiradi Champion</Feat>
+        </Requirement>
+      </Requirements>
+      <IsU51EpicDestiny/>
+      <!--tree core items-->
+      <EnhancementTreeItem>
+         <InternalName>U51ShiradiChampionCore1</InternalName>
+         <Name>Shiradi Champion: Fey Favor</Name>
+         <Description>You gain the Magical Training Feat.
+Each core ability including this one grants +6 Ranged power, +50 Spellpoints,
+and +5 Force and Universal Spell Power. In addition, this grants you a +1 Epic
+Bonus to Spell DCs. Only the Highest Epic Bonus to Spell DCs you get from
+Destiny Cores applies.</Description>
+         <Icon/>
+         <XPosition>0</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>0</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51ShiradiChampionCore2</InternalName>
+         <Name>Shiradi Champion: Pierce the Twilight</Name>
+         <Description>+5 to Attack with Ranged Weapons, +5 Spell Penetration.
+Your Epic Bonus to Spell DCs increases to +2.</Description>
+         <Icon/>
+         <XPosition>1</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>23</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Enhancement>U51ShiradiChampionCore1</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51ShiradiChampionCore3</InternalName>
+         <Name>Shiradi Champion: Audience with the Queen</Name>
+         <Description>Get some tea! When you Rest at a shrine, you pop off for some tea, and
+randomly get a beneficial effect based on the type of tea you receive.
+These effects last for 10 minutes. Your Epic Bonus to Spell DCs increases to +3.</Description>
+         <Icon/>
+         <XPosition>2</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>26</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Enhancement>U51ShiradiChampionCore2</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <!--Tier 1 Enhancements-->
+      <EnhancementTreeItem>
+         <InternalName>U51ShiradiChampionPrism</InternalName>
+         <Name>Shiradi Champion: Prism</Name>
+         <Description>Shiradi Champion Destiny Mantle: Ranged and thrown attacks and offensive
+spells have a 7% chance to deal 2d10 damage to a random ability score.</Description>
+         <Icon/>
+         <XPosition>0</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>1</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51ShiradiChampionWildMagics</InternalName>
+         <Name>Shiradi Champion: Wild Magics</Name>
+          <Description>+[30/60/100] SP.
+Rank 3: +5 Force and Universal Spell Power</Description>
+         <Icon/>
+         <XPosition>1</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51ShiradiChampionShiradiGrowth</InternalName>
+         <Name>Shiradi Champion: Shiradi Growth</Name>
+         <Description>Choose a Spell or a Ranged Attack that builds Primal Charges.</Description>
+         <Icon/>
+         <XPosition>2</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Pin</Name>
+               <Description>Primal Builder: Ranged Attack: +[1/2/3][W].
+On hit, generate one Primal Charge. The first target hit is Slowed for 3 seconds.
+On Crit: The first target hit is instead Immobilized for 3 seconds.
+Rank 3: +1 Critical Threat and Multiplier.
+Cooldown: 6 seconds, CC duration 3 seconds.</Description>
+               <Icon/>
+               <Cost>1</Cost>
+               <Clickie/>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Fey Lights</Name>
+               <Description>Primal Builder: SLA: Enemies in a cone must make a save
+DC (20 + Highest of INT/WIS/CHA + Illusion bonuses) versus Will, Fort, and
+Reflex for a Daze, Stun, and Immobilize effect. On hitting at least one enemy,
+generate one Primal Charge.
+Cooldown: 6 seconds, CC duration 3 seconds. Activation Cost: 10 Spell Points.</Description>
+               <Icon/>
+               <Cost>1</Cost>
+               <Clickie/>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51ShiradiChampionGoodLuck</InternalName>
+         <Name>Shiradi Champion: Good Luck</Name>
+         <Description>+[1/2/3] Luck bonus to all Saving Throws and Skills.
+If you have the Luck of Heroes feat, double this bonus.</Description>
+         <Icon/>
+         <XPosition>3</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51ShiradiChampionFeySight</InternalName>
+         <Name>Shiradi Champion: Fey Sight</Name>
+         <Description>+[2/4/6] Listen, Search, and Spot.
+Rank 3: You are immune to Blindness.</Description>
+         <Icon/>
+         <XPosition>4</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <!--Tier 2 Enhancements-->
+      <EnhancementTreeItem>
+         <InternalName>U51ShiradiChampionRainbow</InternalName>
+         <Name>Shiradi Champion: Rainbow</Name>
+         <Description>While in your Prism Destiny Mantle, your ranged and thrown attacks and
+offensive spells have a 7% chance to deal 1d100 extra damage of a random type.
+This damage scales with 200% Ranged Power.</Description>
+         <Icon/>
+         <XPosition>0</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51ShiradiChampionEmpatheticLink</InternalName>
+         <Name>Shiradi Champion: Empathetic Link</Name>
+          <Description>+[1/2/3] charges of Wild Empathy.</Description>
+         <Icon/>
+         <XPosition>1</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51ShiradiChampionShiradiPower</InternalName>
+         <Name>Shiradi Champion: Shiradi Power</Name>
+         <Description>Choose a Spell or Ranged Attack that expends Primal Charges.</Description>
+         <Icon/>
+         <XPosition>2</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Otto's Whistler</Name>
+               <Description>Primal Spender: Ranged Attack: Make a ranged attack with +[1/2/3][W].
+If target is moving, it is forced to Dance for 18 seconds. In addition, on hit
+you deal 1d6 Force Damage per Primal Charge spent. This damage scales with Ranged Power.
+Cooldown: 15 Seconds.</Description>
+               <Icon/>
+               <Cost>1</Cost>
+               <Clickie/>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Beguile</Name>
+               <Description>Primal Spender: SLA: Target must make a Will save versus
+DC (20 + Highest of INT/WIS/CHA + Enchantment bonuses) to Charm a single target.
+Cooldown 25 seconds.
++1 to the DC per Primal Charge consumed. Cooldown: 15 seconds.
+Activation Cost: 10 Spell Points.</Description>
+               <Icon/>
+               <Cost>1</Cost>
+               <Clickie/>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51ShiradiChampionHealingSpring</InternalName>
+         <Name>Shiradi Champion: Healing Spring</Name>
+         <Description>Casts Vigor on multiple targets.
+A positve energy conjuration that heals 1d6 +1 per 3 caster levels
+(max +11 at level 33), every 2 seconds for 8 seconds.
+When the initial effect expires, a smaller healing effect hat heals 1 HP every
+5 seconds for 30 seconds is applied. Only one Vigor spell can be active at a
+time, with the most beneficial taking priority. If multiple Vigor spells are
+cast on the same target, then the duration is extended.
+Cooldown: 30 Seconds. Activation Cost: 1 Wild Empathy Charge.
+Passive: +1 Wild Empathy Charge.</Description>
+         <Icon/>
+         <XPosition>3</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51ShiradiChampionPhaseDouble</InternalName>
+         <Name>Shiradi Champion: Phase Double</Name>
+         <Description>+[2/4/6]% Doubleshot.
+Each Primal Charge grants +1% stacking incorporeality.</Description>
+         <Icon/>
+         <XPosition>4</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <!--Tier 3 Enhancements-->
+      <EnhancementTreeItem>
+         <InternalName>U51ShiradiChampionDoubleRainbow</InternalName>
+         <Name>Shiradi Champion: Double Rainbow</Name>
+         <Description>While in your Prism Destiny Mantle, your ranged and thrown attacks and
+offensive spells have a 7% chance to inflict a random effect on your target.
+These effects scale with various different things depending on their origins,
+including Melee, Ranged, and Spell Power.</Description>
+         <Icon/>
+         <XPosition>0</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>23</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51ShiradiChampionPierceDeception</InternalName>
+         <Name>Shiradi Champion: Pierce Deception</Name>
+         <Description>You gain the Watchful Eye feat.
+(If you pass within 5 feet of a trap, you make a Search check to notice it as
+if actively Searching. (You still need the Trapfinding feat to successfully
+Search for difficult traps.))
+If you have the Watchful Eye feat, +5% Doubleshot.</Description>
+         <Icon/>
+         <XPosition>1</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>23</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51ShiradiChampionShiradiMagic</InternalName>
+         <Name>Shiradi Champion: Shiradi Magic</Name>
+         <Description>Select a Spell School to Specialize in. </Description>
+         <Icon/>
+         <XPosition>2</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>23</MinLevel>
+            </Requirement>
+         </Requirements>
+          <Selector>
+              <EnhancementSelection>
+                  <Name>Conjuration</Name>
+                  <Description>+[1/2/3] Conjuration Spell DCs.</Description>
+                  <Icon/>
+                  <Cost>1</Cost>
+              </EnhancementSelection>
+              <EnhancementSelection>
+                  <Name>Enchantment</Name>
+                  <Description>+[1/2/3] Enchantment Spell DCs.</Description>
+                  <Icon/>
+                  <Cost>1</Cost>
+              </EnhancementSelection>
+              <EnhancementSelection>
+                  <Name>Illusion</Name>
+                  <Description>+[1/2/3] Illusion Spell DCs.</Description>
+                  <Icon/>
+                  <Cost>1</Cost>
+              </EnhancementSelection>
+              <EnhancementSelection>
+                  <Name>Transmutation</Name>
+                  <Description>+[1/2/3] Transmutation Spell DCs.</Description>
+                  <Icon/>
+                  <Cost>1</Cost>
+              </EnhancementSelection>
+          </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51ShiradiChampionVision</InternalName>
+         <Name>Shiradi Champion: Vision</Name>
+         <Description>Your attacks have Ghost Touch and you bypass 5% dodge and fortification.
+If you have the Holy Strike feat, double the dodge and fortification bypass.</Description>
+         <Icon/>
+         <XPosition>3</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>23</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51ShiradiChampionElementalAbsorption</InternalName>
+         <Name>Shiradi Champion: Elemental Absorption</Name>
+         <Description>+[3/6/10]% elemental absorption with fire/cold/acid/electric damage.
+Rank 3: +1 Primal Charge cap.</Description>
+         <Icon/>
+         <XPosition>4</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>23</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <!--Tier 4 Enhancements-->
+      <EnhancementTreeItem>
+         <InternalName>U51ShiradiChampionFeyForm</InternalName>
+         <Name>Shiradi Champion: Fey Form</Name>
+         <Description> While in your Prism Mantle, gain DR 10/Cold Iron and +5 force and universal spell power.</Description>
+         <Icon/>
+         <XPosition>0</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>26</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51ShiradiChampionTrack</InternalName>
+         <Name>Shiradi Champion: Track</Name>
+         <Description>Dealing damage to enemies reduces their AC by 1 and fortification by 2%. stacks 10 times.</Description>
+         <Icon/>
+         <XPosition>1</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>26</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51ShiradiChampionEnemyOfMyOwn</InternalName>
+         <Name>Shiradi Champion: Enemy of my Own</Name>
+         <Description>You gain the Favored Enemy: Fey feat.</Description>
+         <Icon/>
+         <XPosition>2</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>26</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51ShiradiChampionWhirlingWrists</InternalName>
+         <Name>Shiradi Champion: Whirling Wrists</Name>
+         <Description>+[10/20/30]% Attack Speed with Thrown Weapons.</Description>
+         <Icon/>
+         <XPosition>3</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>26</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51ShiradiChampionStepIntoTheWilds</InternalName>
+         <Name>Shiradi Champion: Step into the Wilds</Name>
+         <Description>You gain Displacement. This effect lasts as long as the quest or until you
+die or it is dispelled. Resting will return it.</Description>
+         <Icon/>
+         <XPosition>4</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>26</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <!--Tier 5 Enhancements-->
+      <EnhancementTreeItem>
+         <InternalName>U51ShiradiChampionNerveVenom</InternalName>
+         <Name>Shiradi Champion: Nerve Venom</Name>
+         <Description>While in your Prism Mantle: Your ranged and thrown attacks and offensive spells
+have a 7% chance to paralyze living creatures for 6 seconds.</Description>
+         <Icon/>
+         <XPosition>0</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>30</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51ShiradiChampionLoreOfTheHunt</InternalName>
+         <Name>Shiradi Champion: Lore of the Hunt</Name>
+         <Description>Ranged Weapons gain +1 Critical Damage Multiplier on rolls of 19-20.</Description>
+         <Icon/>
+         <XPosition>1</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>30</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51ShiradiChampionControl</InternalName>
+         <Name>Shiradi Champion: Control</Name>
+         <Description>+[1/2/3] to all Spell DCs.</Description>
+         <Icon/>
+         <XPosition>2</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>30</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51ShiradiChampionFeywildAttunement</InternalName>
+         <Name>Shiradi Champion: Feywild Attunement</Name>
+         <Description>Every 4 Wilderness Lore feats grant you +1% Dodge.
+You are always considered to be in Point Blank Shot range.
++10 Force and Universal Spell Power.</Description>
+         <Icon/>
+         <XPosition>3</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>30</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51ShiradiChampionHuntsEnd</InternalName>
+         <Name>Shiradi Champion: Hunt's End</Name>
+         <Description>Your next shot with a Ranged or Thrown weapon has +400% damage.
+This shot has +20 to Critical Threat Range.
+Cooldown: 18 Seconds.</Description>
+         <Icon/>
+         <XPosition>4</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>30</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+   </EnhancementTree>
+</Enhancements>

@@ -1,0 +1,614 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Enhancements>
+   <EnhancementTree>
+      <Name>U51 Fury of the Wild</Name>
+      <Version>1</Version>
+      <Icon>FuryOfTheWild</Icon>
+      <Background>U51Destiny</Background>
+      <Requirements>
+        <Requirement>
+            <Feat>Fury of the Wild</Feat>
+        </Requirement>
+      </Requirements>
+      <IsU51EpicDestiny/>
+      <!--tree core items-->
+      <EnhancementTreeItem>
+         <InternalName>U51FuryOfTheWildCore1</InternalName>
+         <Name>Fury of the Wild: Die Hard</Name>
+         <Description>You gain the Diehard feat. Each Core ability, including this one, grants +20
+Maximum Hit Points and +10 Melee Power</Description>
+         <Icon>Brawn</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>0</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51FuryOfTheWildCore2</InternalName>
+         <Name>Fury of the Wild: Die Harder</Name>
+          <Description>+100 Unconsciousness Range.</Description>
+         <Icon>Brawn</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>23</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Enhancement>U51FuryOfTheWildCore1</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51FuryOfTheWildCore3</InternalName>
+         <Name>Fury of the Wild: Die Hardest</Name>
+          <Description>+250 Unconsciousness Range.</Description>
+         <Icon>Brawn</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>26</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Enhancement>U51FuryOfTheWildCore2</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <!--Tier 1 Enhancements-->
+      <EnhancementTreeItem>
+         <InternalName>U51FuryOfTheWildAcuteSenses</InternalName>
+         <Name>Fury of the Wild: Acute Senses</Name>
+          <Description>+[2/4/6] Fortitude, Reflex, and Will Saving Throws Vs. Traps.
+Rank 3: Your dodge cap is increased by 1%</Description>
+         <Icon>AcuteSenses</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51FuryOfTheWildBlindingFury</InternalName>
+         <Name>Fury of the Wild: Blinding Fury</Name>
+         <Description>Select a Melee Attack that builds Primal Charges</Description>
+         <Icon>Adrenaline</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Clickie/>
+          <Selector>
+              <EnhancementSelection>
+                  <Name>Adrenaline</Name>
+                  <Description>Primal Builder: Your next melee attack deals +[25/50/100]% damage,
+and increases your Critical Threat by 16. You gain one Primal Charge when the
+strike connects. Requires a melee weapon to use.
+Cooldown: 8 seconds.</Description>
+                  <Icon>Adrenaline</Icon>
+                  <Cost>1</Cost>
+                  <Clickie/>
+              </EnhancementSelection>
+              <EnhancementSelection>
+                  <Name>Quick Cutter</Name>
+                  <Description>Primal Builder: Melee Attack: When you use this attack, you gain a
+Primal Charge and gain the effect Quick. If you use this skill again while Quick
+is still active you instead apply Cutter to your current target.
+Quick: +[2/4/6]% Dodge, Duration 9 seconds.
+Cutter: 2d6 Bane damage per Character Level every 2 seconds.
+Stacks 3 times, scales with 200% Melee Power, Duration 24 Seconds.</Description>
+                  <Icon>UnbridledFury</Icon>
+                  <Cost>1</Cost>
+                  <Clickie/>
+              </EnhancementSelection>
+          </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51FuryOfTheWildSavageTakeDown</InternalName>
+         <Name>Fury of the Wild: Savage Take Down</Name>
+         <Description>+[1/2/3] Trip DCs.
+Rank 3: While wearing Medium or Light Armor, +1 additional bonuses to Trip DCs.</Description>
+         <Icon>OverwhelmingForce</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51FuryOfTheWildMantleOfFury</InternalName>
+         <Name>Fury of the Wild: Mantle of Fury</Name>
+          <Description>Fury of the Wild Destiny Mantle: You deal +[5/10/15]% damage against helpless
+targets. You also gain 2d10 Positive Energy Healing every 15 seconds. This
+healing scales with the highest of 100% Positive Spell Power or 200% Melee Power.</Description>
+         <Icon>FastHealing</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51FuryOfTheWildEnduring</InternalName>
+         <Name>Fury of the Wild: Enduring</Name>
+         <Description>+[2/4/6] Physical Resistance Rating.</Description>
+         <Icon>DamageReduction</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <!--Tier 2 Enhancements-->
+      <EnhancementTreeItem>
+         <InternalName>U51FuryOfTheWildFastAndFurious</InternalName>
+         <Name>Fury of the Wild: Fast and Furious</Name>
+         <Description>Melee Charge Attack: +[1/2/3][W], +[0/1/2] Critical Multiplier.
+Requires a melee weapon equipped to activate.
+Rank 3: On use, if you are Raging, the cooldown on this ability is reset,
+allowing you to use it a second time immediately. This may only trigger once
+every 10 seconds.</Description>
+         <Icon>FastAndFurious</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51FuryOfTheWildUnstoppableStrength</InternalName>
+         <Name>Fury of the Wild: Unstoppable Strength</Name>
+         <Description>Your Primal Charges now grant +1 to hit and damage.</Description>
+         <Icon>Injury</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51FuryOfTheWildImAlwaysAngry</InternalName>
+         <Name>Fury of the Wild: I'm Always Angry</Name>
+         <Description>You gain the Barbarian Rage feat. Adds +[1/2/3] uses of Rage per rest.</Description>
+         <Icon>UnstoppableFury</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51FuryOfTheWildPrimalScream</InternalName>
+         <Name>Fury of the Wild: Primal Scream</Name>
+          <Description>Primal Spender: Nearby Enemies take 1d12 Sonic damage per character level
+and are Shaken for 4 seconds. This damage scales with the highest of 200% Melee
+Power or 100% Sonic Spell Power. You and your allies gain a +1 Primal bonus to
+all physical Ability Scores per Primal Charge for 30 seconds. The Damage dealt
+and buff/debuff durations are increased by 50% per Primal Charge consumed.
+If you have 3 or more Primal Charge, triple this bonus and confuse all nearby
+enemies for 3 seconds with no save.</Description>
+         <Icon>PrimalScream</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51FuryOfTheWildEmbraceYourNature</InternalName>
+         <Name>Fury of the Wild: Embrace Your Nature</Name>
+         <Description>You have a 3% chance to gain a Primal Charge with each melee attack.</Description>
+         <Icon>AcuteInstincts</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <!--Tier 3 Enhancements-->
+      <EnhancementTreeItem>
+         <InternalName>U51FuryOfTheWildGirdAgainstDemons</InternalName>
+         <Name>Fury of the Wild: Gird against Demons</Name>
+         <Description>Weapons you wield bypass Silver and Cold Iron damage reduction.
++1 Primal Charge Cap.</Description>
+         <Icon>GirdAgainstDemons</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>23</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51FuryOfTheWildWildWeapons</InternalName>
+         <Name>Fury of the Wild: Wild Weapons</Name>
+         <Description>Choice between a strike through, off hand attack, or doublestrike bonus.</Description>
+         <Icon>WildWeapons</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>23</MinLevel>
+            </Requirement>
+         </Requirements>
+          <Selector>
+              <EnhancementSelection>
+                  <Name>Doublestrike</Name>
+                  <Description>+[1/2/3]% Doublestrike</Description>
+                  <Icon>WildWeaponsDoublestrike</Icon>
+                  <Cost>1</Cost>
+              </EnhancementSelection>
+              <EnhancementSelection>
+                  <Name>Off Hand Attack</Name>
+                  <Description>+[3/6/10]% Offhand Strike Chance</Description>
+                  <Icon>WildWeaponsOffHandAttack</Icon>
+                  <Cost>1</Cost>
+              </EnhancementSelection>
+              <EnhancementSelection>
+                  <Name>Strike Through</Name>
+                  <Description>+[5/10/15]% Strikethrough Chance</Description>
+                  <Icon>WildWeapons</Icon>
+                  <Cost>1</Cost>
+              </EnhancementSelection>
+          </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51FuryOfTheWildEternalRage</InternalName>
+         <Name>Fury of the Wild: Eternal Rage</Name>
+         <Description>If you are not raging and are currently out of rage charges, you have a
+[10/20/30]% chance to gain a charge of rage whenever you gain a Primal Charge.</Description>
+         <Icon>FuryEternal</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>23</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51FuryOfTheWildForceOfFury</InternalName>
+         <Name>Fury of the Wild: Force of Fury</Name>
+         <Description>Choice between brute strength or accuracy and advantage with certain natural spells.</Description>
+         <Icon>FuryEternal</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>23</MinLevel>
+            </Requirement>
+         </Requirements>
+          <Selector>
+              <EnhancementSelection>
+                  <Name>Furious</Name>
+                  <Description>+[1/2/3] Strength while Raging.
+Adrenaline damage bonus is increased by [25/50/10]0%.</Description>
+                  <Icon>FuryEternal</Icon>
+                  <Cost>1</Cost>
+              </EnhancementSelection>
+              <EnhancementSelection>
+                  <Name>Spirit of the Beast</Name>
+                  <Description>+[2/3/4] Attack bonus.
+Rank 3: The effects of Ram’s Might and Animal Growth are doubled for you.</Description>
+                  <Icon>SpiritOfTheBeast</Icon>
+                  <Cost>1</Cost>
+              </EnhancementSelection>
+          </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51FuryOfTheWildEmbraceThePain</InternalName>
+         <Name>Fury of the Wild: Embrace the Pain</Name>
+         <Description>When you drop below below [15/25/40]% HP, you immediately heal 2d10 Positive
+Energy Healing, and continue to do so every 6 seconds until you are over
+[15/25/40]% HP. This healing scales with the highest of 100% Positive Spell Power
+or 200% Melee Power.</Description>
+         <Icon>Injury</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>23</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <!--Tier 4 Enhancements-->
+      <EnhancementTreeItem>
+         <InternalName>U51FuryOfTheWildTopDog</InternalName>
+         <Name>Fury of the Wild: Top Dog</Name>
+         <Description>You gain the Improved Trip feat.</Description>
+         <Icon>TopDog</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>26</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51FuryOfTheWildSenseWeakness</InternalName>
+         <Name>Fury of the Wild: Sense Weakness</Name>
+         <Description>+[2/4/6]% Fortification Bypass.
+Your Fury of the Wild Destiny Mantle grants you an additional [5/10/15]% extra
+damage to helpless targets.</Description>
+         <Icon>SenseWeakness</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>26</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51FuryOfTheWildFearMyVengeance</InternalName>
+         <Name>Fury of the Wild: Fear my Vengeance</Name>
+         <Description>Against Shaken and Feared enemies, you gain +[1/2/3] to hit and damage.
+Adds to your Fury of the Wild Destiny Mantle: Enemies that strike you in melee
+range become Shaken.</Description>
+         <Icon>FuryEternal</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>26</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51FuryOfTheWildForce</InternalName>
+         <Name>Fury of the Wild: Force</Name>
+         <Description>Choice between enhancing adrenaline or fortification bypass and bonuses to
+animal forms and Two Weapon Fighting.</Description>
+         <Icon>Force</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>26</MinLevel>
+            </Requirement>
+         </Requirements>
+          <Selector>
+              <EnhancementSelection>
+                  <Name>Overwhelming Force</Name>
+                  <Description>Adrenaline now grants and additional [25/50/100]% bonus to damage.
+Rank 3: Foes struck by your Adrenaline attacks are now knocked down for 4 seconds.</Description>
+                  <Icon>Force</Icon>
+                  <Cost>1</Cost>
+              </EnhancementSelection>
+              <EnhancementSelection>
+                  <Name>Primal Force</Name>
+                  <Description>+[1/2/3] to Hit and [2/4/6]% Fortification Bypass.
+Rank 3: While Two Weapon Fighting or in Animal Form, gain +2% damage with all attacks.</Description>
+                  <Icon>SpiritOfTheBeast</Icon>
+                  <Cost>1</Cost>
+                  <Clickie/>
+              </EnhancementSelection>
+          </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51FuryOfTheWildUnquenchableRage</InternalName>
+         <Name>Fury of the Wild: Unquenchable Rage</Name>
+         <Description>Reduce all damage taken, except Untyped, by [10/15/25]% for 5 seconds after
+you consume a rage charge or use Primal Scream.
+Rank 3: You also apply the effects of a Heal spell to yourself, scaling by Melee Power.</Description>
+         <Icon>TunnelVision</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>26</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <!--Tier 5 Enhancements-->
+      <EnhancementTreeItem>
+         <InternalName>U51FuryOfTheWildLoreOfTheWilds</InternalName>
+         <Name>Fury of the Wild: Lore of the Wilds</Name>
+         <Description>Every 2 Wilderness Lore feats now grant a 1% Primal bonus to Maximum Hit Points.</Description>
+         <Icon>LoreOfTheWilds</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>30</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51FuryOfTheWildScarredByChaos</InternalName>
+         <Name>Fury of the Wild: Scarred by Chaos</Name>
+         <Description>Gain +50 HP and +10 Physical Resistance Rating.
+Double these bonuses if you have the Harbinger of Chaos feat.</Description>
+         <Icon>Injury</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>30</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51FuryOfTheWildWadeThrough</InternalName>
+         <Name>Fury of the Wild: WadeThrough</Name>
+         <Description>Choice between a strike through, off hand attack, or doublestrike bonus</Description>
+         <Icon>WilderWeapons</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>30</MinLevel>
+            </Requirement>
+         </Requirements>
+          <Selector>
+              <EnhancementSelection>
+                  <Name>Doublestrike</Name>
+                  <Description>+[1/2/3]% Doublestrike</Description>
+                  <Icon>WadeThroughDoublestrike</Icon>
+                  <Cost>1</Cost>
+              </EnhancementSelection>
+              <EnhancementSelection>
+                  <Name>Off Hand Attack</Name>
+                  <Description>+[3/6/10]% Offhand Strike Chance</Description>
+                  <Icon>WadeThroughOffHandAttack</Icon>
+                  <Cost>1</Cost>
+              </EnhancementSelection>
+              <EnhancementSelection>
+                  <Name>Strike Through</Name>
+                  <Description>+[5/10/15]% Strikethrough Chance</Description>
+                  <Icon>WilderWeapons</Icon>
+                  <Cost>1</Cost>
+              </EnhancementSelection>
+          </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51FuryOfTheWildNaturesFury</InternalName>
+         <Name>Fury of the Wild: Nature’s Fury</Name>
+         <Description>While Two Weapon Fighting, Two Handed Fighting, or while in Animal Form,
+you gain a +1 bonus to your Critical Multiplier on rolls of 19 or 20.</Description>
+         <Icon>FuryDevastatingBlow</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>30</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51FuryOfTheWildTheGreatLeveler</InternalName>
+         <Name>Fury of the Wild: The Great Leveler</Name>
+         <Description>Melee Attack: +[3/4/6][W], +[4/8/16] Critical Threat Range.
+You stop in place to create a shockwave that blasts all enemies in a small
+narrow cone. The size of the cone increases with each Primal Charge you have.
+Does not consume charges. Applies a Trip to all enemies struck
+(DC 20 + Highest of STR/DEX/CON + Trip DCs).</Description>
+         <Icon>TheGreatLeveller</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>30</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+   </EnhancementTree>
+</Enhancements>

@@ -97,7 +97,7 @@ class CEnhancementTreeDialog :
         void ShowTip(const EnhancementTreeItem & item, CRect itemRect);
         void HideTip();
         void SetTooltipText(const EnhancementTreeItem & item, CPoint tipTopLeft, CPoint tipAlternate);
-        bool CanSwapTree() const;
+        bool CanSwapTree(TreeType t) const;
         EnhancementTree m_tree;
         TreeType m_type;
         Character * m_pCharacter;

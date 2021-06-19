@@ -53,7 +53,9 @@ class FeatGroup :
                 DL_FLAG(_, IsWarlockResistance) \
                 DL_FLAG(_, IsWarlockSaveBonus) \
                 DL_FLAG(_, IsWarlockPactSpell) \
-                DL_FLAG(_, IsKoboldTribe)
+                DL_FLAG(_, IsKoboldTribe) \
+                DL_FLAG(_, IsEpicDestinyFeatU51) \
+                DL_FLAG(_, IsLegendaryFeatU51)
 
         DL_DECLARE_ACCESS(FeatGroup_PROPERTIES)
         DL_DECLARE_VARIABLES(FeatGroup_PROPERTIES)

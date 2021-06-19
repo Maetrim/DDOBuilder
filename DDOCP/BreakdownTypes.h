@@ -26,6 +26,8 @@ enum BreakdownType
     Breakdown_SaveTraps,
     Breakdown_SaveCurse,
     // physical
+    Breakdown_U51FatePoints,
+    Breakdown_DestinyPoints,
     Breakdown_ArmorCheckPenalty,
     Breakdown_BAB,
     Breakdown_MovementSpeed,

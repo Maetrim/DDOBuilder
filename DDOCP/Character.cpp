@@ -63,7 +63,8 @@ Character::Character() :
     m_racialTreeSpend(0),
     m_universalTreeSpend(0),
     m_classTreeSpend(0),
-    m_previousGuildLevel(0)
+    m_previousGuildLevel(0),
+    m_bLamanniaMode(false)
 {
     DL_INIT(Character_PROPERTIES)
     // make sure we have MAX_LEVEL default LevelTraining objects in the list
@@ -92,13 +93,15 @@ Character::Character(CDDOCPDoc * pDoc) :
     m_bonusRacialActionPoints(0),
     m_bonusUniversalActionPoints(0),
     m_bonusDestinyActionPoints(0),
+    m_destinyTreeSpend(0),
     m_racialTreeSpend(0),
     m_universalTreeSpend(0),
     m_classTreeSpend(0),
     m_previousGuildLevel(0),
     m_bShowEpicOnly(false),
     m_bShowUnavailableFeats(false),
-    m_bShowIgnoredItems(false)
+    m_bShowIgnoredItems(false),
+    m_bLamanniaMode(false)
 {
     DL_INIT(Character_PROPERTIES)
     // make sure we have MAX_LEVEL default LevelTraining objects in the list
@@ -174,6 +177,7 @@ void Character::EndElement()
     // keep older files working
     m_hasGuildLevel = true; // default guild level is 0
     m_hasNotes = true;
+    m_hasDestinyTrees = true;
 
     // notes text is not saved as \r\n's replace all text
     m_Notes = ReplaceAll(m_Notes, "\n", "\r\n");
@@ -189,17 +193,17 @@ void Character::EndElement()
 
     // backwards compatibility for old files without special feats for enhancement
     // trees trained.
-    if (IsTreeTrained("Falconry")
+    if (Enhancement_IsTreeTrained("Falconry")
             && !IsFeatTrained("Falconry Tree"))
     {
         TrainSpecialFeat("Falconry Tree", TFT_SpecialFeat);
     }
-    if (IsTreeTrained("Harper Agent")
+    if (Enhancement_IsTreeTrained("Harper Agent")
             && !IsFeatTrained("Harper Agent Tree"))
     {
         TrainSpecialFeat("Harper Agent Tree", TFT_SpecialFeat);
     }
-    if (IsTreeTrained("Vistani Knife Fighter")
+    if (Enhancement_IsTreeTrained("Vistani Knife Fighter")
             && !IsFeatTrained("Vistani Knife Fighter Tree"))
     {
         TrainSpecialFeat("Vistani Knife Fighter Tree", TFT_SpecialFeat);
@@ -1723,6 +1727,15 @@ std::list<TrainedFeat> Character::AutomaticFeats(
         }
         ++it;
     }
+    if (level == 1 && m_bLamanniaMode)
+    {
+        // add the special Lamannia feat
+        TrainedFeat feat;
+        feat.Set_FeatName("Lamannia");
+        feat.Set_Type(TFT_Automatic);
+        feat.Set_LevelTrainedAt(level);
+        feats.push_back(feat);
+    }
     return feats;
 }
 
@@ -2341,18 +2354,38 @@ std::vector<TrainableFeatTypes> Character::TrainableFeatTypeAtLevel(
             trainable.push_back(TFT_EpicFeat);
         }
 
-        // epic destiny feats can also be trained at levels 26, 28 and 29
-        if (level == 25     // level is 0 based
-                || level == 27
-                || level == 28)
+        if (m_bLamanniaMode)
         {
-            trainable.push_back(TFT_EpicDestinyFeat);
+            // epic destiny feats can also be trained at levels 22, 25 and 28
+            if (level == 21     // level is 0 based
+                    || level == 24
+                    || level == 27)
+            {
+                trainable.push_back(TFT_EpicDestinyFeatU51);
+            }
+        }
+        else
+        {
+            // epic destiny feats can also be trained at levels 26, 28 and 29
+            if (level == 25     // level is 0 based
+                    || level == 27
+                    || level == 28)
+            {
+                trainable.push_back(TFT_EpicDestinyFeat);
+            }
         }
 
         // legendary feat can only be trained at level 30
         if (level == 29)     // level is 0 based
         {
-            trainable.push_back(TFT_LegendaryFeat);
+            if (m_bLamanniaMode)
+            {
+                trainable.push_back(TFT_LegendaryFeatU51);
+            }
+            else
+            {
+                trainable.push_back(TFT_LegendaryFeat);
+            }
         }
         break;
 
@@ -2683,6 +2716,10 @@ int Character::TotalPointsAvailable(const std::string & treeName, TreeType type)
             aps += m_bonusDestinyActionPoints;  // count destiny AP tomes also
         }
         break;
+    case TT_epicDestiny51:
+        aps = (MAX_LEVEL - MAX_CLASS_LEVEL) * 4
+                + static_cast<int>(FindBreakdown(Breakdown_DestinyPoints)->Total());
+        break;
     }
     return aps;
 }
@@ -2728,6 +2765,11 @@ int Character::AvailableActionPoints(const std::string & treeName, TreeType type
             aps -= pThis->APSpentInTree(treeName);
         }
         break;
+    case TT_epicDestiny51:
+        aps = (MAX_LEVEL - MAX_CLASS_LEVEL) * 4
+                + static_cast<int>(FindBreakdown(Breakdown_DestinyPoints)->Total())
+                - m_destinyTreeSpend;
+        break;
     }
     return aps;
 }
@@ -2749,6 +2791,11 @@ int Character::APSpentInTree(const std::string & treeName)
     if (pEpicDestinyItem != NULL) // NULL if no items spent in tree or enhancement/reaper tree
     {
         spent = pEpicDestinyItem->Spent();
+    }
+    DestinySpendInTree * pDestinyItem = U51Destiny_FindTree(treeName);
+    if (pDestinyItem != NULL) // NULL if no items spent in tree or enhancement/reaper tree
+    {
+        spent = pDestinyItem->Spent();
     }
     return spent;
 }
@@ -2849,16 +2896,45 @@ const TrainedEnhancement * Character::IsTrained(
             ++it;
         }
     }
+
+    if (type == TT_epicDestiny51
+            || (type == TT_unknown && pItem == NULL))
+    {
+        // iterate the U51 epic destiny list to see if its present
+        std::list<DestinySpendInTree>::const_iterator it = m_DestinyTreeSpend.begin();
+        while (pItem == NULL
+                && it != m_DestinyTreeSpend.end())
+        {
+            const std::list<TrainedEnhancement> & te = (*it).Enhancements();
+            std::list<TrainedEnhancement>::const_iterator teit = te.begin();
+            while (pItem == NULL
+                    && teit != te.end())
+            {
+                if ((*teit).EnhancementName() == enhancementName)
+                {
+                    // may have a required sub-selection for the enhancement
+                    if (selection.empty()
+                            || selection == (*teit).Selection())
+                    {
+                        pItem = &(*teit);
+                        break;
+                    }
+                }
+                ++teit;
+            }
+            ++it;
+        }
+    }
     return pItem;
 }
 
-bool Character::IsTreeTrained(const std::string & tree) const
+bool Character::Enhancement_IsTreeTrained(const std::string & tree) const
 {
     // return tree if this is one of the selected trees
     return m_SelectedTrees.IsTreePresent(tree);
 }
 
-void Character::SwapTrees(const std::string & tree1, const std::string & tree2)
+void Character::Enhancement_SwapTrees(const std::string & tree1, const std::string & tree2)
 {
     m_SelectedTrees.SwapTrees(tree1, tree2);
     NotifyEnhancementTreeOrderChanged();
@@ -4765,6 +4841,12 @@ int Character::AvailableActionPoints() const
             - m_classTreeSpend;
 }
 
+int Character::U51Destiny_AvailableDestinyPoints() const
+{
+    return (MAX_LEVEL - MAX_CLASS_LEVEL) * 4
+            + static_cast<int>(FindBreakdown(Breakdown_DestinyPoints)->Total());
+}
+
 int Character::BonusRacialActionPoints() const
 {
     return m_bonusRacialActionPoints;
@@ -5591,10 +5673,12 @@ void Character::UpdateWeaponStances()
         case Weapon_ThrowingAxe:
         case Weapon_ThrowingDagger:
         case Weapon_ThrowingHammer:
+            DeactivateStance(thf);
             ActivateStance(swashbuckling);
             ActivateStance(swf);
             break;
         default:
+            DeactivateStance(thf);
             if (item1.Weapon() != Weapon_Handwraps
                     && !IsRangedWeapon(item1.Weapon()))
             {
@@ -6987,5 +7071,179 @@ AlignmentType Character::OverrideAlignment() const
         a = Alignment_TrueNeutral;
     }
     return a;
+}
+
+void Character::U51Destiny_SetSelectedTrees(const SelectedDestinyTrees & trees)
+{
+    Set_DestinyTrees(trees);
+}
+
+void Character::U51Destiny_TrainEnhancement(
+        const std::string & treeName,
+        const std::string & enhancementName,
+        const std::string & selection,
+        size_t cost)
+{
+    // Find the tree tracking amount spent and enhancements trained
+    DestinySpendInTree * pItem = U51Destiny_FindTree(treeName);
+    const EnhancementTree & eTree = GetEnhancementTree(treeName);
+    if (pItem == NULL)
+    {
+        // no tree item available for this tree, its a first time spend
+        // create an object to handle this tree
+        DestinySpendInTree tree;
+        tree.Set_TreeName(treeName);
+        tree.Set_TreeVersion(eTree.Version());  // need to track version of tree spent in
+        m_DestinyTreeSpend.push_back(tree);
+        pItem = &m_DestinyTreeSpend.back();
+    }
+    size_t ranks = 0;
+    const EnhancementTreeItem * pTreeItem = FindEnhancement(enhancementName);
+    int spent = pItem->TrainEnhancement(
+            enhancementName,
+            selection,
+            cost,
+            pTreeItem->HasTier5(),
+            &ranks);
+    m_destinyTreeSpend += spent;
+    ASSERT(pTreeItem != NULL);
+    if (HasU51Destiny_Tier5Tree() && pTreeItem->HasTier5())
+    {
+        ASSERT(U51Destiny_Tier5Tree() == treeName);    // should only be able to train other tier 5's in the same tree
+    }
+    else
+    {
+        // no tier 5 enhancement yet selected
+        if (pTreeItem->HasTier5())
+        {
+            // this is a tier 5, lockout all other tree's tier 5 enhancements
+            Set_U51Destiny_Tier5Tree(treeName);
+        }
+    }
+    // track whether this is a tier 5 enhancement
+    // now notify all and sundry about the enhancement effects
+    ApplyEnhancementEffects(treeName, enhancementName, selection, 1);
+    NotifyEnhancementTrained(enhancementName, selection, pTreeItem->HasTier5(), true);
+    NotifyActionPointsChanged();
+    NotifyAPSpentInTreeChanged(treeName);
+    UpdateWeaponStances();
+    SetAlignmentStances();
+    UpdateCenteredStance();
+}
+
+void Character::U51Destiny_RevokeEnhancement(
+        const std::string & treeName,
+        std::string * enhancementName,
+        std::string * enhancementSelection)
+{
+    DestinySpendInTree * pItem = U51Destiny_FindTree(treeName);
+    if (pItem != NULL
+            && pItem->Enhancements().size() > 0)
+    {
+        bool wasTier5 = pItem->HasTier5();
+        // return points available to spend also
+        std::string revokedEnhancement;
+        std::string revokedEnhancementSelection;
+        size_t ranks = 0;
+        size_t spent = pItem->RevokeEnhancement(
+                &revokedEnhancement,
+                &revokedEnhancementSelection,
+                &ranks);
+        m_destinyTreeSpend -= spent;
+        const EnhancementTree & eTree = GetEnhancementTree(treeName);
+        // now notify all and sundry about the enhancement effects
+        // get the list of effects this enhancement has
+        RevokeEnhancementEffects(treeName, revokedEnhancement, revokedEnhancementSelection, 1);
+        // determine whether we still have a tier 5 enhancement trained if the tree just had one
+        // revoked in it
+        if (HasTier5Tree() && U51Destiny_Tier5Tree() == treeName)
+        {
+            // may have lost the tier 5 status, check the tree to see if any tier 5 are still trained
+            if (!pItem->HasTier5())
+            {
+                Clear_U51Destiny_Tier5Tree();  // no longer a tier 5 trained
+            }
+        }
+        NotifyEnhancementRevoked(revokedEnhancement, revokedEnhancementSelection, wasTier5, true);
+        NotifyActionPointsChanged();
+        NotifyAPSpentInTreeChanged(treeName);
+        if (enhancementName != NULL)
+        {
+            *enhancementName = revokedEnhancement;
+        }
+        if (enhancementSelection != NULL)
+        {
+            *enhancementSelection = revokedEnhancementSelection;
+        }
+        UpdateWeaponStances();
+        SetAlignmentStances();
+        UpdateCenteredStance();
+    }
+}
+
+void Character::U51Destiny_ResetEnhancementTree(std::string treeName)
+{
+    // a whole tree is being reset
+    DestinySpendInTree * pItem = U51Destiny_FindTree(treeName);
+    if (pItem != NULL)
+    {
+        // clear all the enhancements trained by revoking them until none left
+        while (pItem->Enhancements().size() > 0)
+        {
+            U51Destiny_RevokeEnhancement(treeName);
+            pItem = U51Destiny_FindTree(treeName);
+        }
+        // now remove the tree entry from the list (not present if no spend in tree)
+        std::list<DestinySpendInTree>::iterator it = m_DestinyTreeSpend.begin();
+        while (it != m_DestinyTreeSpend.end())
+        {
+            if ((*it).TreeName() == treeName)
+            {
+                // done once we find it
+                m_DestinyTreeSpend.erase(it);
+                break;
+            }
+            ++it;
+        }
+        NotifyEnhancementTreeReset();
+        NotifyActionPointsChanged();
+        NotifyAPSpentInTreeChanged(treeName);
+        UpdateWeaponStances();
+        UpdateCenteredStance();
+    }
+}
+
+DestinySpendInTree * Character::U51Destiny_FindTree(const std::string & treeName)
+{
+    // Find the tree tracking amount spent and enhancements trained
+    DestinySpendInTree * pItem = NULL;
+    std::list<DestinySpendInTree>::iterator it = m_DestinyTreeSpend.begin();
+    while (pItem == NULL
+            && it != m_DestinyTreeSpend.end())
+    {
+        if ((*it).TreeName() == treeName)
+        {
+            pItem = &(*it);
+            break;
+        }
+        ++it;
+    }
+    return pItem;
+}
+
+void Character::U51Destiny_SwapTrees(const std::string & tree1, const std::string & tree2)
+{
+    m_DestinyTrees.SwapTrees(tree1, tree2);
+    NotifyEnhancementTreeOrderChanged();
+}
+
+void Character::SetLamanniaMode(bool bLamanniaPreview)
+{
+    m_bLamanniaMode = bLamanniaPreview;
+    // changing too/from Lamannia mode changes the feats available
+    UpdateFeats();
+    VerifyTrainedFeats();
+    NotifyRaceChanged(Race());  // just get stuff to update
+    m_pDocument->SetModifiedFlag(TRUE);
 }
 

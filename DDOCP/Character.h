@@ -6,10 +6,12 @@
 #include "AbilitySpend.h"
 #include "ActiveStances.h"
 #include "AlignmentTypes.h"
+#include "DestinySpendInTree.h"
 #include "EnhancementSpendInTree.h"
 #include "EpicDestinySpendInTree.h"
 #include "EquippedGear.h"
 #include "SelectedEnhancementTrees.h"
+#include "SelectedDestinyTrees.h"
 #include "FeatsListObject.h"
 #include "LevelTraining.h"
 #include "ObserverSubject.h"
@@ -88,6 +90,8 @@ class Character :
         explicit Character();
         Character(CDDOCPDoc * pDocument);
         void Write(XmlLib::SaxWriter * writer) const;
+
+        void SetLamanniaMode(bool bLamanniaPreview);
 
         void JustLoaded();  // called when file loaded and needs to be checked / updated
         void NowActive();   // called when active MDI changed
@@ -221,11 +225,12 @@ class Character :
                 std::string * enhancementSelection = NULL);
         void Enhancement_ResetEnhancementTree(std::string treeName);
         void Enhancement_SetSelectedTrees(const SelectedEnhancementTrees & trees);
+        bool Enhancement_IsTreeTrained(const std::string & tree) const;
+        void Enhancement_SwapTrees(const std::string & tree1, const std::string & tree2);
+
         int AvailableActionPoints() const;
         int BonusRacialActionPoints() const;
         int BonusUniversalActionPoints() const;
-        bool IsTreeTrained(const std::string & tree) const;
-        void SwapTrees(const std::string & tree1, const std::string & tree2);
 
         // reaper enhancement support
         void Reaper_TrainEnhancement(
@@ -235,6 +240,22 @@ class Character :
                 size_t cost);
         void Reaper_RevokeEnhancement(const std::string & treeName);
         void Reaper_ResetEnhancementTree(std::string treeName);
+
+        // U51 Epic destiny support
+        int U51Destiny_AvailableDestinyPoints() const;
+        void U51Destiny_TrainEnhancement(
+                const std::string & treeName,
+                const std::string & enhancementName,
+                const std::string & selection,
+                size_t cost);
+        void U51Destiny_RevokeEnhancement(
+                const std::string & treeName,
+                std::string * enhancementName = NULL,
+                std::string * enhancementSelection = NULL);
+        void U51Destiny_ResetEnhancementTree(std::string treeName);
+        void U51Destiny_SetSelectedTrees(const SelectedDestinyTrees & trees);
+        bool U51Destiny_IsTreeTrained(const std::string & tree) const;
+        void U51Destiny_SwapTrees(const std::string & tree1, const std::string & tree2);
 
         // epic destiny support
         void EpicDestiny_SetActiveDestiny(const std::string & treeName);
@@ -373,11 +394,14 @@ class Character :
                 DL_ENUM(_, ClassType, Class2, Class_Unknown, classTypeMap) \
                 DL_ENUM(_, ClassType, Class3, Class_Unknown, classTypeMap) \
                 DL_OBJECT(_, SelectedEnhancementTrees, SelectedTrees) \
+                DL_OBJECT(_, SelectedDestinyTrees, DestinyTrees) \
                 DL_OPTIONAL_STRING(_, Tier5Tree) \
+                DL_OPTIONAL_STRING(_, U51Destiny_Tier5Tree) \
                 DL_OBJECT_LIST(_, LevelTraining, Levels) \
                 DL_OBJECT_VECTOR(_, TrainedSpell, TrainedSpells) \
                 DL_OBJECT_LIST(_, EnhancementSpendInTree, EnhancementTreeSpend) \
                 DL_OBJECT_LIST(_, ReaperSpendInTree, ReaperTreeSpend) \
+                DL_OBJECT_LIST(_, DestinySpendInTree, DestinyTreeSpend) \
                 DL_STRING(_, ActiveEpicDestiny) \
                 DL_FLAG(_, EpicCompletionist) \
                 DL_SIMPLE(_, size_t, FatePoints, 0) \
@@ -411,6 +435,7 @@ class Character :
                 size_t ranks);
         EnhancementSpendInTree * Enhancement_FindTree(const std::string & treeName);
         ReaperSpendInTree * Reaper_FindTree(const std::string & treeName);
+        DestinySpendInTree * U51Destiny_FindTree(const std::string & treeName);
         EpicDestinySpendInTree * EpicDestiny_FindTree(const std::string & treeName);
         std::string GetEnhancementName(
                 const std::string & treeName,
@@ -470,6 +495,7 @@ class Character :
         int m_bonusRacialActionPoints;
         int m_bonusUniversalActionPoints;
         int m_bonusDestinyActionPoints;
+        int m_destinyTreeSpend;
         int m_racialTreeSpend;
         int m_universalTreeSpend;
         int m_classTreeSpend;
@@ -483,6 +509,7 @@ class Character :
         bool m_bShowEpicOnly;
         bool m_bShowUnavailableFeats;
         bool m_bShowIgnoredItems;
+        bool m_bLamanniaMode;
 
         friend class CForumExportDlg;
         friend class CEnhancementTreeDialog;

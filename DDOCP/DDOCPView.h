@@ -76,6 +76,8 @@ class CDDOCPView :
         afx_msg void OnEditFeatsShowUnavailable();
         afx_msg void OnEditUpdateIgnoreListActive(CCmdUI * pCmdUi);
         afx_msg void OnEditIgnoreListActive();
+        afx_msg void OnLamanniaPreview();
+        afx_msg void OnUpdateLamanniaPreview(CCmdUI * pCmdUi);
         DECLARE_MESSAGE_MAP()
 
         // Character overrides
@@ -144,6 +146,7 @@ class CDDOCPView :
         CComboBox m_comboAILevel28;
 
         bool m_bIgnoreFocus;
+        bool m_bLamanniaPreview;
 };
 
 #ifndef _DEBUG  // debug version in DDOCPView.cpp

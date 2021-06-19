@@ -42,6 +42,24 @@ void BreakdownItemSpellPoints::CreateOtherEffects()
     // create the class specific spell point contributions
     if (m_pCharacter != NULL)
     {
+        // sp bonus due to fate points
+        BreakdownItem * pBD = FindBreakdown(Breakdown_U51FatePoints);
+        if (pBD != NULL)
+        {
+            pBD->AttachObserver(this); // need to know about changes
+            int fatePoints = static_cast<int>(pBD->Total());
+            if (fatePoints != 0)
+            {
+                ActiveEffect fateBonus(
+                        Bonus_special,
+                        "Fate Points bonus",
+                        fatePoints,
+                        1,          // 1sp per fate points
+                        "");        // no tree
+                AddOtherEffect(fateBonus);
+            }
+        }
+
         std::vector<size_t> classLevels = m_pCharacter->ClassLevels(MAX_LEVEL);
         for (size_t ci = Class_Unknown; ci < Class_Count; ++ci)
         {

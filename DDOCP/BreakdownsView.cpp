@@ -11,6 +11,7 @@
 #include "BreakdownItemEnergyCasterLevel.h"
 #include "BreakdownItemSchoolCasterLevel.h"
 #include "BreakdownItemDice.h"
+#include "BreakdownItemDestinyAps.h"
 #include "BreakdownItemDodge.h"
 #include "BreakdownItemDuration.h"
 #include "BreakdownItemDR.h"
@@ -511,6 +512,31 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
             TVI_ROOT);
     m_itemBreakdownTree.SetItemData(hParent, 0);
 
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "U51 Fate Points",
+                hParent,
+                TVI_LAST);
+        BreakdownItem * pU51FP = new BreakdownItemSimple(
+                Breakdown_U51FatePoints,
+                Effect_U51FatePoint,
+                "U51 Fate Points",
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pU51FP);
+        m_items.push_back(pU51FP);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "U51 Destiny APs",
+                hParent,
+                TVI_LAST);
+        BreakdownItem * pU51DestinyAps = new BreakdownItemDestinyAps(
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pU51DestinyAps);
+        m_items.push_back(pU51DestinyAps);
+    }
     {
         HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
                 "Hitpoints",

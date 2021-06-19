@@ -61,6 +61,24 @@ void BreakdownItemHitpoints::CreateOtherEffects()
             }
         }
 
+        // hp bonus due to fate points
+        BreakdownItem * pBD = FindBreakdown(Breakdown_U51FatePoints);
+        if (pBD != NULL)
+        {
+            pBD->AttachObserver(this); // need to know about changes
+            int fatePoints = static_cast<int>(pBD->Total());
+            if (fatePoints != 0)
+            {
+                ActiveEffect fateBonus(
+                        Bonus_special,
+                        "Fate Points bonus",
+                        fatePoints,
+                        2,          // 2hp per fate point
+                        "");        // no tree
+                AddOtherEffect(fateBonus);
+            }
+        }
+
         // bonus HP due to constitution
         // this has to be based on the final constitution value from the breakdown
         double con = m_pConstitutionBreakdown->Total();

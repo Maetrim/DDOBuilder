@@ -17,6 +17,7 @@ enum FeatAcquisitionType
     FeatAcquisition_EpicPastLife,
     FeatAcquisition_Special,
     FeatAcquisition_UniversalTree,
+    FeatAcquisition_DestinyTree,
     FeatAcquisition_Favor,
     FeatAcquisition_Train,
 };
@@ -31,6 +32,7 @@ const XmlLib::enumMapEntry<FeatAcquisitionType> featAcquisitionMap[] =
     {FeatAcquisition_Train, L"Train"},
     {FeatAcquisition_Special, L"Special"},
     {FeatAcquisition_UniversalTree, L"UniversalTree"},
+    {FeatAcquisition_DestinyTree, L"DestinyTree"},
     {FeatAcquisition_Favor, L"Favor"},
     {FeatAcquisitionType(0), NULL}
 };
@@ -84,6 +86,10 @@ enum TrainableFeatTypes
     TFT_WarlockPactSpell,
     TFT_WizardMetamagic,
     TFT_KoboldTribe,
+
+    // U51 Support
+    TFT_EpicDestinyFeatU51,
+    TFT_LegendaryFeatU51,
 };
 
 const XmlLib::enumMapEntry<TrainableFeatTypes> trainableFeatTypesMap[] =
@@ -135,5 +141,8 @@ const XmlLib::enumMapEntry<TrainableFeatTypes> trainableFeatTypesMap[] =
     {TFT_WarlockPactSpell, L"WarlockPactSpell"},
     {TFT_WizardMetamagic, L"Metamagic"},
     {TFT_KoboldTribe, L"KoboldTribe"},
+
+    {TFT_EpicDestinyFeatU51, L"EpicDestinyFeatU51"},
+    {TFT_LegendaryFeatU51, L"LegendaryU51"},
     {TrainableFeatTypes(0), NULL}
 };

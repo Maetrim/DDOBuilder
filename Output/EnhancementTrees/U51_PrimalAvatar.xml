@@ -1,0 +1,919 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Enhancements>
+   <EnhancementTree>
+      <Name>U51 Primal Avatar</Name>
+      <Version>1</Version>
+      <Icon>PrimalAvatar</Icon>
+      <Background>U51Destiny</Background>
+      <Requirements>
+        <Requirement>
+            <Feat>Primal Avatar</Feat>
+        </Requirement>
+      </Requirements>
+      <IsU51EpicDestiny/>
+      <!--tree core items-->
+      <EnhancementTreeItem>
+         <InternalName>U51PrimalAvatarCore1</InternalName>
+         <Name>Primal Avatar: This is your Nature</Name>
+         <Description>Select either Heart, Sky or Thorn. The rest of this tree's options will be
+determined by this choice.</Description>
+         <Icon/>
+         <XPosition>0</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>0</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Heart</Name>
+               <Description>You follow the path of the Heart.
+Each Core Ability in this tree, including this one, grants the following:
++5 Fire, Light, Positive and Universal Spell Power, +50 Maximum Spellpoints,
++1 Epic bonus to all DCs.</Description>
+               <Icon>ShadowLance</Icon>
+               <Cost>1</Cost>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Sky</Name>
+               <Description>You follow the path of the Sky.
+Each Core Ability in this tree, including this one, grants the following:
++5 Electric, Cold, Sonic and Universal Spell Power, +50 Maximum Spellpoints,
++1 Epic bonus to all DCs.</Description>
+               <Icon>ShadowLance</Icon>
+               <Cost>1</Cost>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Thorn</Name>
+               <Description>You follow the path of the Thorn.
+Each Core Ability in this tree, including this one, grants the following:
++5 Acid, Force, Poison and Universal Spell Power, +50 Maximum Spellpoints,
++1 Epic bonus to all DCs.</Description>
+               <Icon>ShadowLance</Icon>
+               <Cost>1</Cost>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51PrimalAvatarCore2</InternalName>
+         <Name>Primal Avatar: Now Grow</Name>
+         <Description>Choose another aspect of nature to gain a minor affinity for.
+You cannot choose what you took in the first core again.
+This does NOT confer eligibility to abilities later in the tree.</Description>
+         <Icon/>
+         <XPosition>1</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>23</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Enhancement>U51PrimalAvatarCore1</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Selector>
+             <Exclude>U51PrimalAvatarCore1</Exclude>
+             <EnhancementSelection>
+               <Name>Heart</Name>
+               <Description>You gain a minor affinity for Heart.
+You gain the following for each Core Ability you take in this tree, including this one:
++3 Fire, Light, and Positive Spell Power.</Description>
+               <Icon>ShadowLance</Icon>
+               <Cost>1</Cost>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Sky</Name>
+               <Description>You gain a minor affinity for Sky.
+You gain the following for each Core Ability you take in this tree, including this one:
++3 Electric, Cold, and Sonic Spell Power.</Description>
+               <Icon>ShadowLance</Icon>
+               <Cost>1</Cost>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Thorn</Name>
+               <Description>You gain a minor affinity for Thorn.
+You gain the following for each Core Ability you take in this tree, including this one:
++3 Acid, Force, and Poison Spell Power.</Description>
+               <Icon>ShadowLance</Icon>
+               <Cost>1</Cost>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51PrimalAvatarCore3</InternalName>
+         <Name>Primal Avatar: Weathering the Elements</Name>
+         <Description>Gain 15% absorption against Fire/Cold/Acid/Electric/Poison damage.
+Whenever you cast any protection from element spell it grants you 25 points per
+level instead of 12 with no level cap.</Description>
+         <Icon/>
+         <XPosition>2</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>26</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Enhancement>U51PrimalAvatarCore2</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <!--Tier 1 Enhancements-->
+      <EnhancementTreeItem>
+         <InternalName>U51PrimalAvatarSeekingBalance</InternalName>
+         <Name>Primal Avatar: Seeking Balance</Name>
+         <Description>+[1/2/3] Reflex Saving Throws, +[2/4/6] Tumble and Balance.
+Rank 3: If you are using a Quarterstaff, you gain +1 Damage and +5 Universal
+Spell Power</Description>
+         <Icon/>
+         <XPosition>0</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+       <EnhancementTreeItem>
+           <InternalName>U51PrimalAvatarWellWeathered</InternalName>
+           <Name>Primal Avatar: Well Weathered</Name>
+           <Description>+[1/2/3] to Physical and Magical Resistance Rating.</Description>
+           <Icon/>
+           <XPosition>1</XPosition>
+           <YPosition>1</YPosition>
+           <Cost>1</Cost>
+           <Ranks>3</Ranks>
+           <MinSpent>1</MinSpent>
+           <Requirements>
+               <Requirement>
+                   <MinLevel>20</MinLevel>
+               </Requirement>
+           </Requirements>
+       </EnhancementTreeItem>
+       <EnhancementTreeItem>
+         <InternalName>U51PrimalAvatarBuilder</InternalName>
+         <Name>Primal Avatar: Builder</Name>
+         <Description>Gain a Spell that builds Primal Charges based on your nature</Description>
+         <Icon/>
+         <XPosition>2</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Spring to Summer</Name>
+               <Description>Primal Builder: A burst of butterflies forms around the caster in a
+small radius applying a copy of rejuvenation cocoon to all allies. After several
+seconds the butterflies burst into flame causing 2d6 fire damage per character
+level to all nearby enemies, with a reflex save for half damage
+(DC: 20 + Evocation Bonuses + Highest Mental Ability Score Modifier).
+For each enemy struck, gain one Primal Charge up to two.
+Activation Cost: 20 Spell Points. Cooldown: 12 Seconds.</Description>
+               <Icon>ShadowLance</Icon>
+               <Cost>1</Cost>
+               <Requirements>
+                    <Requirement>
+                        <Enhancement>U51PrimalAvatarCore1</Enhancement>
+                        <Selection>Heart</Selection>
+                    </Requirement>
+                </Requirements>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Storm Catcher</Name>
+               <Description>Primal Builder : Target enemy becomes chilled to the bone for 8 seconds,
+which slows them and cuases them to take 1d6 per 2 character levels in Cold
+damage every two seconds, with no save. As the effect ends the target will also
+be struck by a lightning bolt for 1d6+6 electric damage per caster level, with a
+Fortitude save for half damage, for the duration of the effect. You gain one
+Primal Charge.
+Activation Cost: 20 Spell Points. Cooldown: 8 Seconds.</Description>
+               <Icon>ShadowLance</Icon>
+               <Cost>1</Cost>
+                <Requirements>
+                    <Requirement>
+                        <Enhancement>U51PrimalAvatarCore1</Enhancement>
+                        <Selection>Sky</Selection>
+                    </Requirement>
+                </Requirements>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Carrion Swarm</Name>
+               <Description>Primal Builder: Target enemy becomes covered with biting acidic and
+poisonous insects. Every 2 seconds they take 1d6+1 acid and 1d6+1 poison damage
+per 2 character levels for 8 seconds. Stacks up to 3 times. Each stack also
+causes a -4 penalty to attack rolls and Armor class. You gain a Primal Charge.
+Cooldown: 6 Seconds. Activation Cost: 20 Spell Points.</Description>
+               <Icon>ShadowLance</Icon>
+               <Cost>1</Cost>
+                <Requirements>
+                    <Requirement>
+                        <Enhancement>U51PrimalAvatarCore1</Enhancement>
+                        <Selection>Thorn</Selection>
+                    </Requirement>
+                </Requirements>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51PrimalAvatarNaturesFriend</InternalName>
+         <Name>Primal Avatar: Nature's Friend</Name>
+          <Description>When you sit to rest at a rest shrine your selected friend of nature visits
+you briefly and offers comfort. You and nearby party members are granted a buff
+that lasts until the end of your current quest.</Description>
+         <Icon/>
+         <XPosition>3</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Bat of Echoes</Name>
+               <Description>+10 Sonic Spell Power, +15 Sonic Absorption, +3 Listen</Description>
+               <Icon>ShadowLance</Icon>
+               <Cost>1</Cost>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Bird of Wind</Name>
+               <Description>+10 Electric Spell Power, +1% Dodge, +3 Spot</Description>
+               <Icon>ShadowLance</Icon>
+               <Cost>1</Cost>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Fox of Flame</Name>
+               <Description>+10 Fire Spell Power, +2 Damage with Sneak Attacks, +3 Move Silently</Description>
+               <Icon>ShadowLance</Icon>
+               <Cost>1</Cost>
+            </EnhancementSelection>
+             <EnhancementSelection>
+                 <Name>Frog of the Lake</Name>
+                 <Description>+10 Cold Spell Power, +2 Magical Resistance Rating, +3 Jump</Description>
+                 <Icon>ShadowLance</Icon>
+                 <Cost>1</Cost>
+             </EnhancementSelection>
+             <EnhancementSelection>
+                 <Name>Spider of the Deeps</Name>
+                 <Description>+10 Poison and Acid Spell Power, 15% Poison Absorption</Description>
+                 <Icon>ShadowLance</Icon>
+                 <Cost>1</Cost>
+             </EnhancementSelection>
+             <EnhancementSelection>
+                 <Name>Squirrel of Luck</Name>
+                 <Description>+1 to Attack, Damage, and all Saving Throws</Description>
+                 <Icon>ShadowLance</Icon>
+                 <Cost>1</Cost>
+             </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51PrimalAvatarRejuvenationCocoon</InternalName>
+         <Name>Primal Avatar: Rejuvenation Cocoon</Name>
+         <Description>Protects target with a shield of [35/75/150] Temporary Hit Points for 9 seconds.
+Heals 5d6 HP every 2 seconds while the shield persists.</Description>
+         <Icon/>
+         <XPosition>4</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <!--Tier 2 Enhancements-->
+      <EnhancementTreeItem>
+         <InternalName>U51PrimalAvatarThrive</InternalName>
+         <Name>Primal Avatar: Thrive</Name>
+         <Description>Each Primal Charge you have now grant you 2% Spell Cost Reduction.</Description>
+         <Icon/>
+         <XPosition>0</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51PrimalAvatarNaturalShielding</InternalName>
+         <Name>Primal Avatar: Natural Shielding</Name>
+         <Description>You gain 10 Maximum Hit Points, +2 Magical Resistance Rating.
+Your summons, pets, and hirelings gain 60% bonus to Maximum Hit Points,
++3 Magical Resistance Rating, +4 Reflex Saving Throws, and gain the Evasion feat.</Description>
+         <Icon/>
+         <XPosition>1</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51PrimalAvatarMantleOfNature</InternalName>
+         <Name>Primal Avatar: Mantle of Nature</Name>
+         <Description>Primal Avatar Destiny Mantle</Description>
+         <Icon/>
+         <XPosition>2</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Heart</Name>
+               <Description>Your Healing spells have a chance to apply a copy of Rejuvination Cocoon
+to your target. Your Fire, Light, and Alignment spells have a chance to apply a
+blast of that damage type for an extra 1d3 per character level. All effects
+scale with 100% Spell Power. Each effect can only occur once every 5 seconds,
+tracked separately. Gain a Primal Charge whenever either of these effects occur.</Description>
+               <Icon>ShadowLance</Icon>
+               <Cost>1</Cost>
+               <Requirements>
+                    <Requirement>
+                        <Enhancement>U51PrimalAvatarCore1</Enhancement>
+                        <Selection>Heart</Selection>
+                    </Requirement>
+                </Requirements>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Sky</Name>
+               <Description>Your Cold, Electric, and Sonic spells have a chance to blast one target
+for an additional 1d3 damage per character level of the same type as the spell
+used. Each element can only occur once every 5 seconds, tracked separately.
+Gain a Primal Charge whenever this occurs.</Description>
+               <Icon>ShadowLance</Icon>
+               <Cost>1</Cost>
+                <Requirements>
+                    <Requirement>
+                        <Enhancement>U51PrimalAvatarCore1</Enhancement>
+                        <Selection>Sky</Selection>
+                    </Requirement>
+                </Requirements>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Thorn</Name>
+               <Description>Your Acid, Poison, and Force spells have a chance to blast one target
+for an additional 1d3 damage per character level of the same type as the spell
+used. Each element can only occur once every 5 seconds, tracked separately.
+Gain a Primal Charge whenever this occurs.</Description>
+               <Icon>ShadowLance</Icon>
+               <Cost>1</Cost>
+                <Requirements>
+                    <Requirement>
+                        <Enhancement>U51PrimalAvatarCore1</Enhancement>
+                        <Selection>Thorn</Selection>
+                    </Requirement>
+                </Requirements>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51PrimalAvatarSpender</InternalName>
+         <Name>Primal Avatar: Spender</Name>
+         <Description>Gain a Spell that expends Primal Charges based on your nature.</Description>
+         <Icon/>
+         <XPosition>3</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Reborn in Fire</Name>
+               <Description>Primal Spender: A swirl of fire surrounds you dealing 1d6 fire damage
+per character level to enemies and healing allies for 1d3 per character level.
+This consumes all Primal Charges, and both the damage and healing are increased
+by 25% per Primal Charge. If 3 or more Primal Charges are consumed, the bonus
+damage and healing are doubled and you gain Dancing Flame for 6 seconds.
+Dancing Flame: +35% Uncapped Dodge.
+Cooldown: 5 Seconds. Activation Cost: 20 Spell Points.</Description>
+               <Icon>ShadowLance</Icon>
+               <Cost>1</Cost>
+               <Requirements>
+                    <Requirement>
+                        <Enhancement>U51PrimalAvatarCore1</Enhancement>
+                        <Selection>Heart</Selection>
+                    </Requirement>
+                </Requirements>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Thunder Snow</Name>
+               <Description>Primal Spender: Sends forth a wide wave of freezing hail before you with
+a narrow blast of lightning at its center directly in front of the caster.
+The hail deals 1d6 cold damage per character level, Fortitude save for half
+(DC: 20 + Evocation Bonuses + Highest Mental Ability Score Modifier).
+The bolt of lightning strikes for 1d6 per character level. Reflex save for half.
+This consumes all Primal Charges, and damage of both the hail and lightning are
+increased by 25% per Primal Charge. If 3 or more Primal Charges are consumed,
+enemies caught within are slowed by 70%.
+Cooldown: 20 Seconds. Activation Cost: 20 Spell Points.</Description>
+               <Icon>ShadowLance</Icon>
+               <Cost>1</Cost>
+                <Requirements>
+                    <Requirement>
+                        <Enhancement>U51PrimalAvatarCore1</Enhancement>
+                        <Selection>Sky</Selection>
+                    </Requirement>
+                </Requirements>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Shard Storm</Name>
+               <Description>Summons a cloud of acidic poisonous shards that randomly strikes enemies
+within 15 meters. 6 strikes over 6 seconds. Each shard deals 1d3 poison and acid
+damage per character level. This consumes all Primal Charges, and the damage of
+each shard is increased by 25% per Primal Charge. If 3 or more Primal Charges
+are consumed, the bonus damage is doubled, and you gain Shard Deflection for 12
+seconds.
+Shard Deflection: You gain 30% of your Maximum Hit Points as Temporary Hit Points.
+Cooldown: 5 Seconds. Activation Cost: 20 Seconds.</Description>
+               <Icon>ShadowLance</Icon>
+               <Cost>1</Cost>
+                <Requirements>
+                    <Requirement>
+                        <Enhancement>U51PrimalAvatarCore1</Enhancement>
+                        <Selection>Thorn</Selection>
+                    </Requirement>
+                </Requirements>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51PrimalAvatarSpiritBoon</InternalName>
+         <Name>Primal Avatar: Spirit Boon</Name>
+          <Description>Multiselector</Description>
+         <Icon/>
+         <XPosition>4</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Mighty</Name>
+               <Description>+[1/2/2] Primal bonus to Strength, Dexterity, and Constitution.
+Rank 3: Your Primal Charge Cap is increased by 1.</Description>
+               <Icon>ShadowLance</Icon>
+               <Cost>1</Cost>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Mindful</Name>
+               <Description>+[1/2/2] Primal bonus to Intelligence, Wisdom, and Charisma.
+Rank 3: Your Primal Charge Cap is increased by 1.</Description>
+               <Icon>ShadowLance</Icon>
+               <Cost>1</Cost>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <!--Tier 3 Enhancements-->
+      <EnhancementTreeItem>
+         <InternalName>U51PrimalAvatarImprovedForm</InternalName>
+         <Name>Primal Avatar: Improved Form</Name>
+         <Description>While in any Elemental Form, you gain +[3/6/10] Universal Spell Power.
+While in any Wild Shape, you gain +[2/4/6] Magical Resistance Rating.</Description>
+         <Icon/>
+         <XPosition>0</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>23</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51PrimalAvatarSpiritHeart</InternalName>
+         <Name>Primal Avatar: Spirit Heart</Name>
+          <Description>+[2/4/6] Healing Amplification. Your Healing spells have a [5/10/15]% chance
+to grant a Divine Charge while you are in combat.</Description>
+         <Icon/>
+         <XPosition>1</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>23</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51PrimalAvatarMagicOfTheOldWorld</InternalName>
+         <Name>Primal Avatar: Magic of the Old World</Name>
+         <Description>Select a Spell School to Specialize in.</Description>
+         <Icon/>
+         <XPosition>2</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>23</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Evocation</Name>
+               <Description>+[1/2/3] Evocation Spell DCs.</Description>
+               <Icon>ShadowLance</Icon>
+               <Cost>1</Cost>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Conjuration</Name>
+               <Description>+[1/2/3] Conjuration Spell DCs.</Description>
+               <Icon>ShadowLance</Icon>
+               <Cost>1</Cost>
+            </EnhancementSelection>
+             <EnhancementSelection>
+                 <Name>Transmutation</Name>
+                 <Description>+[1/2/3] Transmutation Spell DCs.</Description>
+                 <Icon>ShadowLance</Icon>
+                 <Cost>1</Cost>
+             </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51PrimalAvatarNaturesBlessing</InternalName>
+         <Name>Primal Avatar: Nature's Blessing</Name>
+         <Description>When you rest the spirit of nature manifests as a Unicorn and provides with
+nature's blessing to you and nearby party members.
+Nature's Blessing: +5% Insight bonus to Maximum Hitpoints.
+This effect lasts until you leave the dungeon.</Description>
+         <Icon/>
+         <XPosition>3</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>23</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51PrimalAvatarFlowersInTheThorns</InternalName>
+         <Name>Primal Avatar: Flowers in the Thorns</Name>
+         <Description>Stepping inside a Spike Growth or Entangle spell, either hostile or friendly,
+heals you for 1d3 hit points every 5 seconds per character level of the spell's owner.</Description>
+         <Icon/>
+         <XPosition>4</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>23</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <!--Tier 4 Enhancements-->
+      <EnhancementTreeItem>
+         <InternalName>U51PrimalAvatarNaturalEvasion</InternalName>
+         <Name>Primal Avatar: Natural Evasion</Name>
+         <Description>ain the Evasion Feat.
+Exclusive from other enhancements that grant this feat.</Description>
+         <Icon/>
+         <XPosition>0</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>26</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51PrimalAvatarSharedMantle</InternalName>
+         <Name>Primal Avatar: Shared Mantle</Name>
+         <Description>Your summons now also benefit from your Mantle of Nature. When the mantle
+triggers for them they have a chance to give their summoner a Primal Charge.
+This still uses your spell power or melee/ranged power to scale.</Description>
+         <Icon/>
+         <XPosition>1</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>26</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51PrimalAvatarPrimalIntensity</InternalName>
+         <Name>Primal Avatar: Primal Intensity</Name>
+         <Description/>
+         <Icon/>
+         <XPosition>2</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>26</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Heart</Name>
+               <Description>+[5/10/15] Fire, Light, and Positive Spell Power</Description>
+               <Icon>ShadowLance</Icon>
+               <Cost>1</Cost>
+               <Requirements>
+                    <Requirement>
+                        <Enhancement>U51PrimalAvatarCore1</Enhancement>
+                        <Selection>Heart</Selection>
+                    </Requirement>
+                </Requirements>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Sky</Name>
+               <Description>+[5/10/15] Cold, Electric, and Sonic Spell Power</Description>
+               <Icon>ShadowLance</Icon>
+               <Cost>1</Cost>
+                <Requirements>
+                    <Requirement>
+                        <Enhancement>U51PrimalAvatarCore1</Enhancement>
+                        <Selection>Sky</Selection>
+                    </Requirement>
+                </Requirements>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Thorn</Name>
+               <Description>+[5/10/15] Acid, Poison, and Force Spell Power</Description>
+               <Icon>ShadowLance</Icon>
+               <Cost>1</Cost>
+                <Requirements>
+                    <Requirement>
+                        <Enhancement>U51PrimalAvatarCore1</Enhancement>
+                        <Selection>Thorn</Selection>
+                    </Requirement>
+                </Requirements>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51PrimalAvatarEpicImprovedMetamagicsI</InternalName>
+         <Name>Primal Avatar: Epic Improved Metamagics I</Name>
+         <Description>Select a Meta Magic to improve.</Description>
+         <Icon/>
+         <XPosition>3</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>26</MinLevel>
+            </Requirement>
+         </Requirements>
+          <Selector>
+              <EnhancementSelection>
+                  <Name>Empower</Name>
+                  <Description>Reduces the cost of the Empower Metamagic by [2/4/6] spell points.</Description>
+                  <Icon>ShadowLance</Icon>
+                  <Cost>1</Cost>
+              </EnhancementSelection>
+              <EnhancementSelection>
+                  <Name>Maximize</Name>
+                  <Description>Reduces the cost of the Maximize Metamagic by [3/6/9] spell points.</Description>
+                  <Icon>ShadowLance</Icon>
+                  <Cost>1</Cost>
+              </EnhancementSelection>
+              <EnhancementSelection>
+                  <Name>Quicken </Name>
+                  <Description>Reduces the cost of the Quicken Metamagic by [1/2/4] spell points.</Description>
+                  <Icon>ShadowLance</Icon>
+                  <Cost>1</Cost>
+              </EnhancementSelection>
+          </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+          <InternalName>U51PrimalAvatarEpicImprovedMetamagicsII</InternalName>
+          <Name>Primal Avatar: Epic Improved Metamagics II</Name>
+          <Description>Select a Meta Magic to improve.</Description>
+          <Icon/>
+         <XPosition>4</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>26</MinLevel>
+            </Requirement>
+         </Requirements>
+          <Selector>
+              <EnhancementSelection>
+                  <Name>Empower</Name>
+                  <Description>Reduces the cost of the Empower Metamagic by [2/4/6] spell points.</Description>
+                  <Icon>ShadowLance</Icon>
+                  <Cost>1</Cost>
+              </EnhancementSelection>
+              <EnhancementSelection>
+                  <Name>Maximize</Name>
+                  <Description>Reduces the cost of the Maximize Metamagic by [3/6/9] spell points.</Description>
+                  <Icon>ShadowLance</Icon>
+                  <Cost>1</Cost>
+              </EnhancementSelection>
+              <EnhancementSelection>
+                  <Name>Quicken </Name>
+                  <Description>Reduces the cost of the Quicken Metamagic by [1/2/4] spell points.</Description>
+                  <Icon>ShadowLance</Icon>
+                  <Cost>1</Cost>
+              </EnhancementSelection>
+          </Selector>
+      </EnhancementTreeItem>
+      <!--Tier 5 Enhancements-->
+      <EnhancementTreeItem>
+         <InternalName>U51PrimalAvatarPrimalAlly</InternalName>
+         <Name>Primal Avatar: Primal Ally</Name>
+         <Description/>
+         <Icon/>
+         <XPosition>0</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>30</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Heart Flame Dryad</Name>
+               <Description>Creates an elder dryad that casts fire, light, and healing spells.
+She remains rooted to her summoning point.
+Duration: 15 Seconds. Cooldown: 15 Seconds. Activation Cost: 50 Spell Points.</Description>
+               <Icon>ShadowLance</Icon>
+               <Cost>1</Cost>
+               <Requirements>
+                    <Requirement>
+                        <Enhancement>U51PrimalAvatarCore1</Enhancement>
+                        <Selection>Heart</Selection>
+                    </Requirement>
+                </Requirements>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Storm Guard</Name>
+               <Description>Creates a greater storm spirit to blast your foes with lightning, cold,
+and sound using your casting stats. Remains bound to their summoning spot.
+Duration: 15 Seconds. Cooldown: 15 Seconds. Activation Cost: 50 Spell Points.</Description>
+               <Icon>ShadowLance</Icon>
+               <Cost>1</Cost>
+                <Requirements>
+                    <Requirement>
+                        <Enhancement>U51PrimalAvatarCore1</Enhancement>
+                        <Selection>Sky</Selection>
+                    </Requirement>
+                </Requirements>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Briar Patch</Name>
+               <Description>Summoned a greater thorn spirit to blast your foes with Acid, Poison,
+and Force using your casting stats. Remains bound to their summoning spot.
+Duration: 15 Seconds. Cooldown: 15 Seconds. Activation Cost: 50 Spell Points.</Description>
+               <Icon>ShadowLance</Icon>
+               <Cost>1</Cost>
+                <Requirements>
+                    <Requirement>
+                        <Enhancement>U51PrimalAvatarCore1</Enhancement>
+                        <Selection>Thorn</Selection>
+                    </Requirement>
+                </Requirements>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51PrimalAvatarAncientWisdom</InternalName>
+         <Name>Primal Avatar: Ancient Wisdom</Name>
+          <Description>+[1/2/3] to all Spell DCs.</Description>
+         <Icon/>
+         <XPosition>1</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>30</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51PrimalAvatarMassFrog</InternalName>
+         <Name>Primal Avatar: Mass Frog</Name>
+         <Description>Up to six nearby enemies are turned into frogs.
+Each may avoid ribbiting on a successful Fortitude saving throw vs. DC
+(20+ Highest of Wisdom/Intelligence/Charisma modifier + Transmutation bonuses).
+Cooldown: 1 Minute. Activation Cost: 60 Spell Points.</Description>
+         <Icon/>
+         <XPosition>2</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>30</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51PrimalAvatarPrimalChannel</InternalName>
+         <Name>Primal Avatar: Primal Channel</Name>
+         <Description>Gain an enhancement spell cost reduction of 10% to all spells.</Description>
+         <Icon/>
+         <XPosition>3</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>30</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51PrimalAvatarEpicImprovedIntensifySpell</InternalName>
+         <Name>Primal Avatar: Epic Improved Intensify Spell</Name>
+         <Description>Reduces the cost of the Intensify Spell Metamagic by [2/4/6] Spell Points.</Description>
+         <Icon/>
+         <XPosition>4</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>30</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+   </EnhancementTree>
+</Enhancements>

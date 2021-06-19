@@ -183,6 +183,20 @@ BOOL CEnhancementsView::OnEraseBkgnd(CDC* pDC)
 {
     static int controlsNotToBeErased[] =
     {
+        IDC_TREE_SELECT2,
+        IDC_TREE_SELECT3,
+        IDC_TREE_SELECT4,
+        IDC_TREE_SELECT5,
+        IDC_TREE_SELECT6,
+        IDC_TREE_SELECT7,
+        IDC_BUTTON_UNIVERSAL_TREE1,
+        IDC_BUTTON_UNIVERSAL_TREE2,
+        IDC_BUTTON_UNIVERSAL_TREE3,
+        IDC_BUTTON_UNIVERSAL_TREE4,
+        IDC_BUTTON_UNIVERSAL_TREE5,
+        IDC_BUTTON_UNIVERSAL_TREE6,
+        IDC_BUTTON_UNIVERSAL_TREE7,
+        IDC_BUTTON_UNIVERSAL_TREE8,
         0 // end marker
     };
 
@@ -217,7 +231,8 @@ std::list<EnhancementTree> CEnhancementsView::DetermineTrees()
             // get all the trees that are compatible with the race/class setup
             if ((*it).MeetRequirements(*m_pCharacter)
                     && !(*it).HasIsReaperTree()         // no reaper trees in enhancements please!
-                    && !(*it).HasIsEpicDestiny())       // no epic destiny trees in enhancements please!
+                    && !(*it).HasIsEpicDestiny()        // no epic destiny trees in enhancements please!
+                    && !(*it).HasIsU51EpicDestiny())    // no U51 epic destiny trees in enhancements please!
             {
                 // yes this is one of our tree's add it
                 trees.push_back((*it));

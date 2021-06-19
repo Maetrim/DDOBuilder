@@ -40,4 +40,5 @@ class TrainedEnhancement :
         friend class EnhancementSpendInTree;
         friend class EpicDestinySpendInTree;
         friend class ReaperSpendInTree;
+        friend class DestinySpendInTree;
 };

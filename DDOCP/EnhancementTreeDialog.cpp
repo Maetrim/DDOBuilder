@@ -647,6 +647,12 @@ void CEnhancementTreeDialog::OnLButtonDown(UINT nFlags, CPoint point)
                                     dlg.Selection(),
                                     dlg.Cost());
                             break;
+                        case TT_epicDestiny51:
+                            m_pCharacter->U51Destiny_TrainEnhancement(
+                                    m_tree.Name(),
+                                    item->InternalName(),
+                                    dlg.Selection(),
+                                    dlg.Cost());
                         }
                         Invalidate();
                     }
@@ -670,6 +676,13 @@ void CEnhancementTreeDialog::OnLButtonDown(UINT nFlags, CPoint point)
                             break;
                         case TT_reaper:
                             m_pCharacter->Reaper_TrainEnhancement(
+                                    m_tree.Name(),
+                                    item->InternalName(),
+                                    (te != NULL && te->HasSelection()) ? te->Selection() : "",
+                                    item->Cost());
+                            break;
+                        case TT_epicDestiny51:
+                            m_pCharacter->U51Destiny_TrainEnhancement(
                                     m_tree.Name(),
                                     item->InternalName(),
                                     (te != NULL && te->HasSelection()) ? te->Selection() : "",
@@ -726,6 +739,9 @@ void CEnhancementTreeDialog::OnLButtonDown(UINT nFlags, CPoint point)
                     case TT_reaper:
                         m_pCharacter->Reaper_ResetEnhancementTree(m_tree.Name());
                         break;
+                    case TT_epicDestiny51:
+                        m_pCharacter->U51Destiny_ResetEnhancementTree(m_tree.Name());
+                        break;
                     }
                 }
             }
@@ -767,12 +783,16 @@ void CEnhancementTreeDialog::OnLButtonUp(UINT nFlags, CPoint point)
         if (pTarget != NULL
                 && pTarget != this)
         {
-            if (pTarget->CanSwapTree())
+            if (pTarget->CanSwapTree(m_type))
             {
                 // get the names of the two trees to swap
                 std::string tree1 = m_tree.Name();
                 std::string tree2 = pTarget->m_tree.Name();
-                m_pCharacter->SwapTrees(tree1, tree2);
+                switch (m_type)
+                {
+                case TT_enhancement:    m_pCharacter->Enhancement_SwapTrees(tree1, tree2); break;
+                case TT_epicDestiny51:  m_pCharacter->U51Destiny_SwapTrees(tree1, tree2); break;
+                }
             }
         }
     }
@@ -795,6 +815,9 @@ void CEnhancementTreeDialog::OnRButtonDown(UINT nFlags, CPoint point)
                 break;
             case TT_reaper:
                 m_pCharacter->Reaper_RevokeEnhancement(m_tree.Name());
+                break;
+            case TT_epicDestiny51:
+                m_pCharacter->U51Destiny_RevokeEnhancement(m_tree.Name());
                 break;
             }
             Invalidate();   // redraw
@@ -864,7 +887,7 @@ void CEnhancementTreeDialog::OnMouseMove(UINT nFlags, CPoint point)
                 && pTarget != this)
         {
             // has to be a valid target tree that is not us
-            if (pTarget->CanSwapTree())
+            if (pTarget->CanSwapTree(m_type))
             {
                 SetCursor(LoadCursor(NULL, IDC_UPARROW));
             }
@@ -1127,13 +1150,11 @@ BOOL CEnhancementTreeDialog::OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message
     return retVal;
 }
 
-bool CEnhancementTreeDialog::CanSwapTree() const
+bool CEnhancementTreeDialog::CanSwapTree(TreeType t) const
 {
     bool canSwap = false;
     // can we accept this drop request?
-    if (!m_tree.HasIsRacialTree()
-            && !m_tree.HasIsReaperTree()
-            && !m_tree.HasIsEpicDestiny()
+    if (m_type == t
             && m_tree.Items().size() > 0)
     {
         canSwap = true;

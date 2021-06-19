@@ -19,6 +19,7 @@
 #include "SpellsView.h"
 #include "SkillsView.h"
 #include "StancesView.h"
+#include "EpicDestinyViewU51.h"
 #include "afxdatarecovery.h"
 
 #ifdef _DEBUG
@@ -55,6 +56,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWndEx)
     ON_UPDATE_COMMAND_UI(ID_DOCK_DC, OnUpdateDockPane)
     ON_UPDATE_COMMAND_UI(ID_DOCK_SKILLS, OnUpdateDockPane)
     ON_UPDATE_COMMAND_UI(ID_DOCK_CLASSFEATS, OnUpdateDockPane)
+    ON_UPDATE_COMMAND_UI(ID_DOCK_U51EPICDESTINY, OnUpdateDockPane)
     ON_COMMAND(ID_DOCK_BREAKDOWNS, OnDockPane)
     ON_COMMAND(ID_DOCK_LEVELUP, OnDockPane)
     ON_COMMAND(ID_DOCK_SPECIALFEATS, OnDockPane)
@@ -69,6 +71,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWndEx)
     ON_COMMAND(ID_DOCK_DC, OnDockPane)
     ON_COMMAND(ID_DOCK_SKILLS, OnDockPane)
     ON_COMMAND(ID_DOCK_CLASSFEATS, OnDockPane)
+    ON_COMMAND(ID_DOCK_U51EPICDESTINY, OnDockPane)
     ON_COMMAND(ID_VIEW_RESETSCREENLAYOUT, OnResetScreenLayout)
     ON_UPDATE_COMMAND_UI(ID_SETTINGS_LOADITEMS, OnUpdateSettingsLoadItems)
     ON_COMMAND(ID_SETTINGS_LOADITEMS, OnSettingsLoadItems)
@@ -573,7 +576,14 @@ void CMainFrame::CreateViews()
             ID_DOCK_CLASSFEATS);
     pClassAndLevel->SetDocumentAndCharacter(GetActiveDocument(), NULL);
 
-    // next window id is 1014 if you add one
+    // create the floating views
+    CCustomDockablePane * pU51EpicDestiny = CreateDockablePane(
+            "U51 Epic Destinies",
+            GetActiveDocument(),
+            RUNTIME_CLASS(CEpicDestinyViewU51),
+            ID_DOCK_U51EPICDESTINY);
+    pU51EpicDestiny->SetDocumentAndCharacter(GetActiveDocument(), NULL);
+    // next window id is 1015 if you add one
 }
 
 void CMainFrame::SetActiveDocumentAndCharacter(CDocument * pDoc, Character * pCharacter)

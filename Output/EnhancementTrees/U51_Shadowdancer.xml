@@ -1,0 +1,584 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Enhancements>
+   <EnhancementTree>
+      <Name>U51 Shadowdancer</Name>
+      <Version>1</Version>
+      <Icon>Shadowdancer</Icon>
+      <Background>U51Destiny</Background>
+      <Requirements>
+        <Requirement>
+            <Feat>Shadowdancer</Feat>
+        </Requirement>
+      </Requirements>
+      <IsU51EpicDestiny/>
+      <!--tree core items-->
+      <EnhancementTreeItem>
+         <InternalName>U51ShadowdancerCore1</InternalName>
+         <Name>Shadowdancer: Retreat to the Shadows</Name>
+         <Description>You gain the Trapfinding feat if you did not have it already.
+Each core ability in this tree, including this one, grants +1 Epic bonus to
+all Spell DCs, +10 Melee Power, +6 Ranged Power, +5 Force Spellpower, and +5
+Universal spell power.</Description>
+         <Icon>ShadowTrainingI</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>0</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51ShadowdancerCore2</InternalName>
+         <Name>Shadowdancer: Step Through Shadow</Name>
+         <Description>Activate this ability to conjure a door of pure Shadow, which can take you
+and your party members to the entrance of the current dungeon.
+Cooldown: 2 minutes.</Description>
+         <Icon>StepThroughShadow</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>23</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Enhancement>U51ShadowdancerCore1</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51ShadowdancerCore3</InternalName>
+         <Name>Shadowdancer: The Darkest Luck</Name>
+         <Description>You gain the Evasion feat (normal Evasion rules apply).
+If you already have Evasion, you gain the Improved Evasion feat.
+If you already have Improved Evasion, you generate 25% less threat from all
+sources.</Description>
+         <Icon>TheDarkestLuck</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>26</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Enhancement>U51ShadowdancerCore2</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <!--Tier 1 Enhancements-->
+      <EnhancementTreeItem>
+         <InternalName>U51ShadowdancerStealthy</InternalName>
+         <Name>Shadowdancer: Stealthy</Name>
+         <Description>+[1/2/3] Reflex Saving Throws, +[2/4/6] Hide and Move Silently.
+Rank 3: You gain the Hide in Plane Sight feat.</Description>
+         <Icon>Stealthy</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51ShadowdancerCoverOfDarkness</InternalName>
+         <Name>Shadowdancer: Cover of Darkness</Name>
+         <Description>+[10/20/30]% less threat from all sources.
+Rank 3: You gain the benefits of the Nightshield spell.</Description>
+         <Icon>Untouchable</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51ShadowdancerBuilders</InternalName>
+         <Name>Shadowdancer: Builders</Name>
+         <Description>Select an ability that builds charges.</Description>
+         <Icon>ShadowLance</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>1</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Nightmare Lance</Name>
+               <Description>Arcane Builder: A lance of darkness extends from your fingers, impaling an enemy.
+They take 1d6+6 Force damage per Character level. The enemy must succeed on a
+(DC20 + highest of Int/Wis/Cha modifier + Illusion DC bonuses) will saving
+throw to avoid becoming blinded. On cast, this builds an Arcane Charge.
+Cooldown: 30/20/10 seconds. Activation Cost: 10 Spell Points.</Description>
+               <Icon>ShadowLance</Icon>
+               <Cost>1</Cost>
+               <Clickie/>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Shrouding Shot</Name>
+               <Description>Martial Builder: Ranged Attack: +1/2/3W, you gain 1 Martial Charge.
+On a failed fortitude save (DC20 + Highest Ability Modifier + Assassinate bonus)
+the target is Blinded for 12 seconds. Cooldown: 12 Seconds.</Description>
+               <Icon>ShadowLance</Icon>
+               <Cost>1</Cost>
+               <Clickie/>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Shrouding Strike</Name>
+               <Description>Martial Builder: Melee Attack: +1/2/3W, you gain 1 Martial Charge.
+On a failed fortitude save (DC20 + Highest Ability Modifier + Assassinate bonus)
+the target is Blinded for 12 seconds. Cooldown: 12 Seconds.</Description>
+               <Icon>ShadowLance</Icon>
+               <Cost>1</Cost>
+               <Clickie/>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51ShadowdancerAssassinate</InternalName>
+         <Name>Shadowdancer: Assassinate</Name>
+         <Description>+[2/4/6] Assassinate DCs.
+Rank 3: On Sneak Attack: 10% chance to gain 1 Martial Charge.</Description>
+         <Icon>Assassinate</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51ShadowdancerTechnician</InternalName>
+         <Name>Shadowdancer: Technician</Name>
+         <Description>+[2/4/6] to Search, Spot, Disable Device, and Open Lock.
+Rank 3: If you have the Nimble Fingers feat, you gain +1 Sneak Attack Dice.</Description>
+         <Icon>Technician</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <!--Tier 2 Enhancements-->
+      <EnhancementTreeItem>
+         <InternalName>U51ShadowdancerLongshadows</InternalName>
+         <Name>Shadowdancer: Long Shadows</Name>
+         <Description>Each Martial Charge now grants +1 Sneak Attack Dice.
+You no longer automatically fail Reflex saving throws when you roll a natural 1.</Description>
+         <Icon>Acrobatic</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51ShadowdancerSleightOfHand</InternalName>
+         <Name>Shadowdancer: Sleight of Hand</Name>
+         <Description>+[3/6/10]% Offhand Strike Chance, +[2/4/6] Bluff.</Description>
+         <Icon>SleightOfHand</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51ShadowdancerShadowform</InternalName>
+         <Name>Shadowdancer: Shadowform</Name>
+         <Description>Shadowdancer Destiny Mantle.
++[10/20/30]% Enhancement bonus to Movement Speed, and can Sneak +[20/35/50]% faster
+(this will not stack with other enhancements that grant a permanent bonus to
+movement speed while sneaking).
+Your attacks gain Ghost Touch, and may bypass the Incorporeality of monsters.</Description>
+         <Icon>ShadowForm</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51ShadowdancerMeldIntoDarkness</InternalName>
+         <Name>Shadowdancer: Meld into Darkness</Name>
+         <Description>Martial Spender: You gain 10% uncapped Dodge per Martial Charge for [10/15/20] seconds.
+Cooldown: 15 seconds.</Description>
+         <Icon>MeldIntoDarkness</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51ShadowdancerLithe</InternalName>
+         <Name>Shadowdancer: Lithe</Name>
+         <Description>+[2/4/6] Reflex Saving Throws, Armor Class, and Light Armor Max Dex Bonus.
++[3/6/10] Force and Universal Spellpower.</Description>
+         <Icon>Lithe</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <!--Tier 3 Enhancements-->
+      <EnhancementTreeItem>
+         <InternalName>U51ShadowdancerDepthsOfDarkness</InternalName>
+         <Name>Shadowdancer: Depths of Darkness</Name>
+         <Description>Your Shadowdancer Destiny Mantle grants +[1/2/3] Sneak Attack Dice
+and +[1/2/3] Spell Penetration.</Description>
+         <Icon>SealedSoul</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>23</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51ShadowdancerCrippledWithShadows</InternalName>
+         <Name>Shadowdancer: Crippled with Shadows</Name>
+         <Description>You gain the Crippling Strike feat.
+If you already have this feat, it will deal Constitution Damage on each hit
+instead of Strength. +1 Martial Charge cap</Description>
+         <Icon>CrippledWithSahdows</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>23</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51ShadowdancerGrimPrecision</InternalName>
+         <Name>Shadowdancer: Grim Precision</Name>
+         <Description>You bypass [5/10/15]% enemy fortification and [1/2/3]% enemy dodge.</Description>
+         <Icon>GrimPrecision</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>23</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51ShadowdancerSpellFocus</InternalName>
+         <Name>Shadowdancer: Spell Focus</Name>
+         <Description> Select a Spell School to Specialize in. </Description>
+         <Icon>GrimPrecision</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>23</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Illusion</Name>
+               <Description>+[1/2/3] Illusion Spell DCs.</Description>
+               <Icon>GrimPrecision</Icon>
+               <Cost>1</Cost>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Necromancy</Name>
+               <Description>+[1/2/3] Necromancy Spell DCs.</Description>
+               <Icon>GrimPrecision</Icon>
+               <Cost>1</Cost>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Abjuration</Name>
+               <Description>+[1/2/3] Abjuration Spell DCs.</Description>
+               <Icon>GrimPrecision</Icon>
+               <Cost>1</Cost>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Enchantment</Name>
+               <Description>+[1/2/3] Enchantment Spell DCs.</Description>
+               <Icon>GrimPrecision</Icon>
+               <Cost>1</Cost>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51ShadowdancerWhispers</InternalName>
+         <Name>Shadowdancer: Whispers</Name>
+         <Description>Create an Illusory Shadow that acts as a Noisemaker trap.
+Cooldown: [60/50/40] Seconds.</Description>
+         <Icon>Consume</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>23</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <!--Tier 4 Enhancements-->
+      <EnhancementTreeItem>
+         <InternalName>U51ShadowdancerPierceTheGloom</InternalName>
+         <Name>Shadowdancer: Pierce the Gloom</Name>
+         <Description>+[1/2/3] to hit, to-hit for Sneak attacks, and to-hit while Flanking.
+Rank 3: You gain Immunity to Silence, Quell, and Blindness.</Description>
+         <Icon>U51PierceTheGloom</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>26</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51ShadowdancerDarkArmor</InternalName>
+         <Name>Shadowdancer: Dark Armor</Name>
+         <Description>+[2/4/6] Physical and Magical Resistance Rating, +3 Force and Universal Spellpower.</Description>
+         <Icon>SkillMastery</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>26</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51ShadowdancerDarkMercy</InternalName>
+         <Name>Shadowdancer: Dark Mercy</Name>
+         <Description>Your Shadowdancer Destiny Mantle now grants +[5/10/15]% damage versus the Helpless.</Description>
+         <Icon>ShadowMastery</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>26</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51ShadowdancerTheDrop</InternalName>
+         <Name>Shadowdancer: The Drop</Name>
+         <Description>The First Blood feat now deals double its base damage, applies on harmful spellcasts,
+and its damage now scales with 100% of your Force Spellpower.
+Whenever you cast an Illusion spell, gain 1 Arcane Charge.</Description>
+         <Icon>TheDrop</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>26</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51ShadowdancerLingerInTheDark</InternalName>
+         <Name>Shadowdancer: Linger in the Dark</Name>
+         <Description>Tumbling while in Stealth now grants you a Martial Charge, +2 Sneak Attack Dice,
++5 to hit and damage with Sneak Attacks, +5 Hide and Move Silently, and the
+ability to sneak with full movement speed for 20 seconds.
+This may only trigger once every 1 minute.</Description>
+         <Icon>LingerInTheDark</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>26</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <!--Tier 5 Enhancements-->
+      <EnhancementTreeItem>
+         <InternalName>U51ShadowdancerImprovedShadowform</InternalName>
+         <Name>Shadowdancer: Improved Shadowform</Name>
+         <Description>Adds to your Shadowdancer Destiny Mantle: Cloak yourself in magic and assume
+the form of an illusory Shadow. This form grants you 25% Incorporeality,
++20 Hide and Move Silently, allows you to cast with a reduced movement
+speed penalty, and allows you to float as if you had Feather Fall.
+Also, when you roll a natural 20 on a melee or ranged attack, you envelop the
+target in shadow, removing its immunity to Sneak Attack for a short duration.
+You do not need to be in Shadowform for this to happen.</Description>
+         <Icon>ImprovedShadowform</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>30</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51ShadowdancerJustATaste</InternalName>
+         <Name>Shadowdancer: Just a Taste</Name>
+         <Description>You have +1 Critical Multiplier on a roll of 19-20 with Bows, Thrown Weapons,
+Crossbows, and Finessable melee weapons.</Description>
+         <Icon>JuastATaste</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>30</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51ShadowdancerWeird</InternalName>
+         <Name>Shadowdancer: Weird</Name>
+         <Description>The Weird spell is added to your Spellbook as a level 9 spell if you are
+a Cleric, Sorcerer, Druid, Wizard, or Favored Soul or a level 6 spell if you
+are an Artificer, Alchemist, Bard, or Warlock. Requires the ability to cast
+spells of those levels. Weird: A targeted foe and all nearby enemies are
+subject to a Phantasmal Killer effect, with a DC20 + highest of INT/WIS/CHA
+modifier + Illusion spell bonuses to prevent the death.</Description>
+         <Icon>Weird</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>30</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51ShadowdancerGreaterSpellFocus</InternalName>
+         <Name>Shadowdancer: Greater Spell Focus</Name>
+         <Description>+[1/2/3] to all Spell DCs</Description>
+         <Icon>GrimPrecision</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>30</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>U51ShadowdancerShadowMastery</InternalName>
+         <Name>Shadowdancer: Shadow Mastery</Name>
+         <Description>+[1/2/3]% dodge, +[1/2/3] Assassinate DC, +[2/4/6] Reflex Saving Throws.
+Rank 3: +1% Dodge Cap</Description>
+         <Icon>ShadowMastery</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>30</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+   </EnhancementTree>
+</Enhancements>

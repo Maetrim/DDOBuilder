@@ -368,7 +368,10 @@ void CInfoTip::SetFeatItem(
         bool grantedFeat)
 {
     m_image.Destroy();
-    LoadImageFile(IT_feat, pItem->Icon(), &m_image);
+    if (S_OK != LoadImageFile(IT_feat, pItem->Icon(), &m_image, false))
+    {
+        LoadImageFile(IT_ui, pItem->Icon(), &m_image);
+    }
     m_image.SetTransparentColor(c_transparentColour);
     m_title = pItem->Name().c_str();
     m_description = pItem->Description().c_str();

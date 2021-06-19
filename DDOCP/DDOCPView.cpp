@@ -74,6 +74,8 @@ BEGIN_MESSAGE_MAP(CDDOCPView, CFormView)
     ON_COMMAND(ID_EDIT_FEATS_SHOWUNAVAILABLE, &CDDOCPView::OnEditFeatsShowUnavailable)
     ON_UPDATE_COMMAND_UI(ID_EDIT_IGNORELIST_ACTIVE, &CDDOCPView::OnEditUpdateIgnoreListActive)
     ON_COMMAND(ID_EDIT_IGNORELIST_ACTIVE, &CDDOCPView::OnEditIgnoreListActive)
+    ON_COMMAND(ID_LAMANNIA_PREVIEW, OnLamanniaPreview)
+    ON_UPDATE_COMMAND_UI(ID_LAMANNIA_PREVIEW, OnUpdateLamanniaPreview)
 END_MESSAGE_MAP()
 #pragma warning(pop)
 
@@ -81,7 +83,8 @@ END_MESSAGE_MAP()
 CDDOCPView::CDDOCPView() :
     CFormView(CDDOCPView::IDD),
     m_pCharacter(NULL),
-    m_bIgnoreFocus(false)
+    m_bIgnoreFocus(false),
+    m_bLamanniaPreview(false)
 {
     // TODO: add construction code here
 }
@@ -1005,5 +1008,16 @@ void CDDOCPView::OnEditUpdateIgnoreListActive(CCmdUI * pCmdUi)
 void CDDOCPView::OnEditIgnoreListActive()
 {
     m_pCharacter->ToggleShowIgnoredItems();
+}
+
+void CDDOCPView::OnLamanniaPreview()
+{
+    m_bLamanniaPreview = !m_bLamanniaPreview;
+    m_pCharacter->SetLamanniaMode(m_bLamanniaPreview);
+}
+
+void CDDOCPView::OnUpdateLamanniaPreview(CCmdUI * pCmdUi)
+{
+    pCmdUi->SetCheck(m_bLamanniaPreview);
 }
 

@@ -36,6 +36,7 @@ class CIconButton :
         CImage m_image;
 
         friend class CEnhancementsView;
+        friend class CEpicDestinyViewU51;
 };
 
 //{{AFX_INSERT_LOCATION}}

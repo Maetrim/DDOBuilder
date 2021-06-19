@@ -83,7 +83,9 @@ bool FeatGroup::VerifyObject(std::stringstream * ss) const
             || HasIsWarlockResistance()
             || HasIsWarlockSaveBonus()
             || HasIsWarlockPactSpell()
-            || HasIsKoboldTribe();
+            || HasIsKoboldTribe()
+            || HasIsEpicDestinyFeatU51()
+            || HasIsLegendaryFeatU51();
     if (!ok)
     {
         (*ss) << "FeatGroup has no grouping elements\n";

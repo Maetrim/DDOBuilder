@@ -1316,6 +1316,10 @@ bool IsInGroup(TrainableFeatTypes type, const FeatGroup & group)
         inGroup = group.HasIsEpicDestinyFeat();
         break;
 
+    case TFT_EpicDestinyFeatU51:
+        inGroup = group.HasIsEpicDestinyFeatU51();
+        break;
+
     case TFT_EpicFeat:
         inGroup = group.HasIsStandardFeat() // regular feats can be trained in epic
                 || group.HasIsEpicFeat();
@@ -1343,6 +1347,10 @@ bool IsInGroup(TrainableFeatTypes type, const FeatGroup & group)
 
     case TFT_LegendaryFeat:
         inGroup = group.HasIsLegendaryFeat();
+        break;
+
+    case TFT_LegendaryFeatU51:
+        inGroup = group.HasIsLegendaryFeatU51();
         break;
 
     case TFT_MonkBonus:
@@ -2306,6 +2314,9 @@ CString TrainableFeatTypeLabel(TrainableFeatTypes type)
     case TFT_EpicDestinyFeat:
         text = "Epic Destiny Feat";
         break;
+    case TFT_EpicDestinyFeatU51:
+        text = "U51 Epic Destiny Feat";
+        break;
     case TFT_EpicFeat:
         text = "Epic Feat";
         break;
@@ -2329,6 +2340,9 @@ CString TrainableFeatTypeLabel(TrainableFeatTypes type)
         break;
     case TFT_LegendaryFeat:
         text = "Legendary";
+        break;
+    case TFT_LegendaryFeatU51:
+        text = "U51 Legendary";
         break;
     case TFT_MonkBonus:
     case TFT_MonkBonus6:

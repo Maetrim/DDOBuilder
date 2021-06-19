@@ -285,17 +285,9 @@ void CDDOCPApp::LoadFeats(const std::string & path)
 
 void CDDOCPApp::LoadEnhancements(const std::string & path)
 {
-    UINT choice = AfxMessageBox("Use the proposed Lamannia versions fo the Shadar-Kai and Radiant Servant trees?", MB_YESNO);
     // create the filename to load from
     std::string filename = path;
-    if (choice == IDYES)
-    {
-        filename += "EnhancementsLamannia.xml";
-    }
-    else
-    {
-        filename += "Enhancements.xml";
-    }
+    filename += "Enhancements.xml";
 
     EnhancementsFile file(filename);
     file.Read();
@@ -493,6 +485,10 @@ void CDDOCPApp::SeparateFeats()
         {
             m_universalTreeFeats.push_back((*it));
         }
+        else if ((*it).Acquire() == FeatAcquisition_DestinyTree)
+        {
+            m_destinyTreeFeats.push_back((*it));
+        }
         else if ((*it).Acquire() == FeatAcquisition_Favor)
         {
             m_favorFeats.push_back((*it));
@@ -573,6 +569,11 @@ const std::list<Feat> & CDDOCPApp::SpecialFeats() const
 const std::list<Feat> & CDDOCPApp::UniversalTreeFeats() const
 {
     return m_universalTreeFeats;
+}
+
+const std::list<Feat> & CDDOCPApp::DestinyTreeFeats() const
+{
+    return m_destinyTreeFeats;
 }
 
 const std::list<Feat> & CDDOCPApp::FavorFeats() const
