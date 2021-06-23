@@ -224,7 +224,7 @@ BOOL CEpicDestinyViewU51::OnEraseBkgnd(CDC* pDC)
 std::list<EnhancementTree> CEpicDestinyViewU51::DetermineTrees()
 {
     std::list<EnhancementTree> trees;
-    // see which classes we have and then make our race and class trees available
+    // see which destiny trees are available
     if (m_pCharacter != NULL)
     {
         // just find all the available epic destiny trees
@@ -242,6 +242,43 @@ std::list<EnhancementTree> CEpicDestinyViewU51::DetermineTrees()
         }
 
         SelectedDestinyTrees selTrees = m_pCharacter->DestinyTrees(); // take a copy
+
+        // first remove any trees present which are no longer compatible
+        // we also revoke those trees AP spends if required
+        for (size_t ti = 0; ti < MST_Number; ++ti)
+        {
+            std::string treeName = selTrees.Tree(ti);
+            if (!SelectedEnhancementTrees::IsNotSelected(treeName))
+            {
+                // we have a tree selected here, is it in the new list of trees available?
+                bool found = false;
+                std::list<EnhancementTree>::iterator tit = trees.begin();
+                while (!found && tit != trees.end())
+                {
+                    if ((*tit).Name() == treeName)
+                    {
+                        // ok, it's still in the list
+                        found = true;
+                    }
+                    ++tit;
+                }
+                if (!found)
+                {
+                    // the tree is no longer valid for this race/class setup
+                    // revoke any points spent in it
+                    if (m_pCharacter->APSpentInTree(treeName) > 0)
+                    {
+                        // no user confirmation for this as they have already changed
+                        // the base requirement that included the tree. All
+                        // APs spent in this tree have to be returned to the pool of
+                        // those available.
+                        m_pCharacter->U51Destiny_ResetEnhancementTree(treeName);   // revokes any trained enhancements also
+                    }
+                    // now remove it from the selected list
+                    selTrees.SetNotSelected(ti);
+                }
+            }
+        }
 
         // now that we have the tree list, assign them to unused tree selections
         // if there are any left
@@ -526,7 +563,7 @@ void CEpicDestinyViewU51::EnableDisableComboboxes()
     else
     {
         // all combo boxes should be hidden and disabled
-        for (size_t i = 1; i < MST_Number; ++i)
+        for (size_t i = 0; i < MST_Number; ++i)
         {
             m_comboTreeSelect[i].EnableWindow(false);
             m_comboTreeSelect[i].ShowWindow(SW_HIDE);

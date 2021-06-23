@@ -131,10 +131,10 @@ void CEnhancementsView::OnSize(UINT nType, int cx, int cy)
             // now move the rectangle to the next tree location
             itemRect += CPoint(itemRect.Width() + c_controlSpacing, 0);
         }
-        // position the universal tree buttons under the racial tree
+        // position the destiny claimed buttons under the trees and combo boxes
         CRect rect(0, 0, 36, 36);
         rect -= CPoint(scrollX, 0);   // take scroll location into account (scrollY from itemRect)
-        rect += CPoint(c_controlSpacing, itemRect.bottom + c_controlSpacing);
+        rect += CPoint(c_controlSpacing, itemRect.bottom + c_controlSpacing + GetSystemMetrics(SM_CYVSCROLL) + c_controlSpacing);
         for (size_t i = 0; i < m_numUniversalButtons; ++i)
         {
             m_universalTrees[i].MoveWindow(rect, true);
@@ -145,7 +145,7 @@ void CEnhancementsView::OnSize(UINT nType, int cx, int cy)
                 MM_TEXT,
                 CSize(
                         itemRect.left + scrollX,
-                        itemRect.bottom + 36 + scrollY + c_controlSpacing * 2));
+                        rect.bottom + scrollY + c_controlSpacing * 2));
     }
 }
 

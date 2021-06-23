@@ -18,7 +18,7 @@
          <Description>You gain proficiency with Handwraps, and are able to generate Ki if you did
 not already have that ability. Each Core Ability in this tree, including this one,
 grants the following: +10 Melee Power, +6 Ranged Power, and +25 Maximum Ki.</Description>
-         <Icon/>
+         <Icon>U51InnerFocus</Icon>
          <XPosition>0</XPosition>
          <YPosition>0</YPosition>
          <Cost>1</Cost>
@@ -29,6 +29,33 @@ grants the following: +10 Melee Power, +6 Ranged Power, and +25 Maximum Ki.</Des
                <MinLevel>20</MinLevel>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Destiny</Bonus>
+            <Feat>Exotic Weapon Proficiency: Handwraps</Feat>
+         </Effect>
+         <Effect>
+            <Type>MeleePower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>10</Amount>
+         </Effect>
+         <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>10</Amount>
+         </Effect>
+         <Effect>
+            <Type>KiMaximum</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>25</Amount>
+         </Effect>
+         <Effect>
+            <Type>CreateSlider</Type>
+            <Bonus>Enhancement</Bonus>
+            <Slider>Martial Builder</Slider>
+            <AmountVector size="2">0 50</AmountVector>
+            <Amount>0</Amount>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>U51GrandmasterOfFlowersCore2</InternalName>
@@ -36,7 +63,7 @@ grants the following: +10 Melee Power, +6 Ranged Power, and +25 Maximum Ki.</Des
          <Description>Select a Material Type. Your weapons bypass the chosen material type.
 Regardless of your choice you gain +5 Physical Resistance Rating, or +10 if you
 have the Discipline feat.</Description>
-         <Icon/>
+         <Icon>DiscipleOfMaterial</Icon>
          <XPosition>1</XPosition>
          <YPosition>0</YPosition>
          <Cost>1</Cost>
@@ -54,34 +81,79 @@ have the Discipline feat.</Description>
             <EnhancementSelection>
                <Name>Adamantine</Name>
                <Description>Your weapons bypass the Adamantine DR type.</Description>
-               <Icon/>
+               <Icon>MaterialAdamantine</Icon>
                <Cost>1</Cost>
+                <Effect>
+                    <Type>DRBypass</Type>
+                    <Bonus>Destiny</Bonus>
+                    <DR>Adamantine</DR>
+                    <Weapon>All</Weapon>
+                </Effect>
             </EnhancementSelection>
              <EnhancementSelection>
                  <Name>Byeshk</Name>
                  <Description>Your weapons bypass the Byeshk DR type.</Description>
-                 <Icon/>
+                 <Icon>MaterialByeshk</Icon>
                  <Cost>1</Cost>
+                <Effect>
+                    <Type>DRBypass</Type>
+                    <Bonus>Destiny</Bonus>
+                    <DR>Byeshk</DR>
+                    <Weapon>All</Weapon>
+                </Effect>
              </EnhancementSelection>
              <EnhancementSelection>
                  <Name>Cold Iron</Name>
                  <Description>Your weapons bypass the Cold Iron DR type.</Description>
-                 <Icon/>
+                 <Icon>MaterialColdIron</Icon>
                  <Cost>1</Cost>
+                <Effect>
+                    <Type>DRBypass</Type>
+                    <Bonus>Destiny</Bonus>
+                    <DR>Cold Iron</DR>
+                    <Weapon>All</Weapon>
+                </Effect>
              </EnhancementSelection>
              <EnhancementSelection>
                  <Name>Crystal</Name>
                  <Description>Your weapons bypass the Crystal DR type.</Description>
-                 <Icon/>
+                 <Icon>MaterialCrystal</Icon>
                  <Cost>1</Cost>
+                <Effect>
+                    <Type>DRBypass</Type>
+                    <Bonus>Destiny</Bonus>
+                    <DR>Crystal</DR>
+                    <Weapon>All</Weapon>
+                </Effect>
              </EnhancementSelection>
              <EnhancementSelection>
                  <Name>Silver</Name>
                  <Description>Your weapons bypass the Silver DR type.</Description>
-                 <Icon/>
+                 <Icon>MaterialSilver</Icon>
                  <Cost>1</Cost>
+                <Effect>
+                    <Type>DRBypass</Type>
+                    <Bonus>Destiny</Bonus>
+                    <DR>Silver</DR>
+                    <Weapon>All</Weapon>
+                </Effect>
              </EnhancementSelection>
          </Selector>
+         <Effect>
+            <Type>MeleePower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>10</Amount>
+         </Effect>
+         <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>10</Amount>
+         </Effect>
+         <Effect>
+            <Type>KiMaximum</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>25</Amount>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>U51GrandmasterOfFlowersCore3</InternalName>
@@ -89,7 +161,7 @@ have the Discipline feat.</Description>
          <Description>Select an Alignment. Your weapons bypass the chosen alignment.
 Regardless of your choice you gain +5 Magical Resistance Rating, or +10 if you
 have the Discipline feat.</Description>
-         <Icon/>
+         <Icon>DiscipleOfMorality</Icon>
          <XPosition>2</XPosition>
          <YPosition>0</YPosition>
          <Cost>1</Cost>
@@ -107,35 +179,74 @@ have the Discipline feat.</Description>
               <EnhancementSelection>
                   <Name>Chaotic</Name>
                   <Description>Your weapons bypass the Chaotic DR type.</Description>
-                  <Icon/>
+                  <Icon>MoralityChaotic</Icon>
                   <Cost>1</Cost>
+                <Effect>
+                    <Type>DRBypass</Type>
+                    <Bonus>Destiny</Bonus>
+                    <DR>Chaotic</DR>
+                    <Weapon>All</Weapon>
+                </Effect>
               </EnhancementSelection>
               <EnhancementSelection>
                   <Name>Evil</Name>
                   <Description>Your weapons bypass the Evil DR type.</Description>
-                  <Icon/>
+                  <Icon>MoralityEvil</Icon>
                   <Cost>1</Cost>
+                <Effect>
+                    <Type>DRBypass</Type>
+                    <Bonus>Destiny</Bonus>
+                    <DR>Evil</DR>
+                    <Weapon>All</Weapon>
+                </Effect>
               </EnhancementSelection>
               <EnhancementSelection>
                   <Name>Good</Name>
                   <Description>Your weapons bypass the Good DR type.</Description>
-                  <Icon/>
+                  <Icon>MoralityGood</Icon>
                   <Cost>1</Cost>
+                <Effect>
+                    <Type>DRBypass</Type>
+                    <Bonus>Destiny</Bonus>
+                    <DR>Good</DR>
+                    <Weapon>All</Weapon>
+                </Effect>
               </EnhancementSelection>
               <EnhancementSelection>
                   <Name>Lawful</Name>
                   <Description>Your weapons bypass the Lawful DR type.</Description>
-                  <Icon/>
+                  <Icon>MoralityLawful</Icon>
                   <Cost>1</Cost>
+                <Effect>
+                    <Type>DRBypass</Type>
+                    <Bonus>Destiny</Bonus>
+                    <DR>Lawful</DR>
+                    <Weapon>All</Weapon>
+                </Effect>
               </EnhancementSelection>
           </Selector>
+         <Effect>
+            <Type>MeleePower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>10</Amount>
+         </Effect>
+         <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>10</Amount>
+         </Effect>
+         <Effect>
+            <Type>KiMaximum</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>25</Amount>
+         </Effect>
       </EnhancementTreeItem>
       <!--Tier 1 Enhancements-->
       <EnhancementTreeItem>
          <InternalName>U51GrandmasterOfFlowersStrikeWithPoise</InternalName>
          <Name>Grandmaster of Flowers: Strike with Poise</Name>
          <Description>+[2/4/6] Stunning DCs</Description>
-         <Icon/>
+         <Icon>PassiveStub</Icon>
          <XPosition>0</XPosition>
          <YPosition>1</YPosition>
          <Cost>1</Cost>
@@ -146,6 +257,12 @@ have the Discipline feat.</Description>
                <MinLevel>20</MinLevel>
             </Requirement>
          </Requirements>
+        <Effect>
+            <Type>TacticalDC</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">2 4 6</AmountVector>
+            <Tactical>Stun</Tactical>
+        </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>U51GrandmasterOfFlowersSerenity</InternalName>
@@ -155,23 +272,39 @@ style as if you were a Monk. When you attack with Handwraps or begin falling,
 you will use the Monk class' animations instead of your own.
 You gain a +10% Action Boost bonus to movement speed, and no longer take damage
 from falling.</Description>
-         <Icon/>
+         <Icon>U51Serenity</Icon>
          <XPosition>1</XPosition>
          <YPosition>1</YPosition>
          <Cost>1</Cost>
          <Ranks>1</Ranks>
          <MinSpent>1</MinSpent>
+         <Clickie/>
          <Requirements>
             <Requirement>
                <MinLevel>20</MinLevel>
             </Requirement>
          </Requirements>
+         <Stance>
+            <Name>GoF Mantle</Name>
+            <Icon>U51Serenity</Icon>
+            <Description>You may now fight with the Unarmed combat style as if you were a Monk.
+When you attack with Handwraps or begin falling, you will use the Monk class'
+animations instead of your own.
+You gain a +10% Action Boost bonus to movement speed, and no longer take damage
+from falling.</Description>
+         </Stance>
+      <Effect>
+        <Type>MovementSpeed</Type>
+        <Bonus>Action Boost</Bonus>
+        <Amount>10</Amount>
+        <Stance>GoF Mantle</Stance>
+      </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>U51GrandmasterOfFlowersDisciplesStudies</InternalName>
          <Name>Grandmaster of Flowers: Disciple's Studies</Name>
          <Description>+[1/2/3] Heal, Intimidate, and Bluff. +[3/6/9] Healing Amplification.</Description>
-         <Icon/>
+         <Icon>DisciplesStudies</Icon>
          <XPosition>2</XPosition>
          <YPosition>1</YPosition>
          <Cost>1</Cost>
@@ -182,12 +315,25 @@ from falling.</Description>
                <MinLevel>20</MinLevel>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <Skill>Bluff</Skill>
+            <Skill>Heal</Skill>
+            <Skill>Intimidate</Skill>
+            <AmountVector size="3">2 4 6</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>HealingAmplification</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">3 6 9</AmountVector>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>U51GrandmasterOfFlowersBuilders</InternalName>
          <Name>Grandmaster of Flowers: Builders</Name>
          <Description>Multiselector</Description>
-         <Icon/>
+         <Icon>MartialBuilder</Icon>
          <XPosition>3</XPosition>
          <YPosition>1</YPosition>
          <Cost>2</Cost>
@@ -206,7 +352,7 @@ from falling.</Description>
 You also gain +5 Spell Resistance, with an additional +1 for each point of
 Passive Ki Regeneration you have for 10 seconds.
 Cooldown: 6 seconds.</Description>
-                  <Icon/>
+                  <Icon>BringIntoFocus</Icon>
                   <Cost>1</Cost>
                   <Clickie/>
               </EnhancementSelection>
@@ -218,7 +364,7 @@ doubled versus Tainted Creatures (Undead, Abberations, Evil Outsiders).
 Attempts to Stun for 2 seconds, DC 20 + highest ability modifier + Stunning bonuses.
 Grants 5 Ki and a Martial Charge when activated.
 Cooldown: 6 seconds.</Description>
-                  <Icon/>
+                  <Icon>LillyPetal</Icon>
                   <Cost>1</Cost>
                   <Clickie/>
               </EnhancementSelection>
@@ -229,7 +375,7 @@ Cooldown: 6 seconds.</Description>
          <Name>Grandmaster of Flowers: Enlightenment</Name>
          <Description>+[15/30/45] Maximum Ki and +[2/4/6] Concentration.
 Rank 3: +1 passive Ki Generation.</Description>
-         <Icon/>
+         <Icon>U51Enlightenment</Icon>
          <XPosition>4</XPosition>
          <YPosition>1</YPosition>
          <Cost>1</Cost>
@@ -240,6 +386,22 @@ Rank 3: +1 passive Ki Generation.</Description>
                <MinLevel>20</MinLevel>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>KiMaximum</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">15 30 45</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <Skill>Concentration</Skill>
+            <AmountVector size="3">2 4 6</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>KiPassive</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">0 0 1</AmountVector>
+         </Effect>
       </EnhancementTreeItem>
       <!--Tier 2 Enhancements-->
       <EnhancementTreeItem>
@@ -247,7 +409,7 @@ Rank 3: +1 passive Ki Generation.</Description>
          <Name>Grandmaster of Flowers: Calm before Storms</Name>
          <Description>+[3/6/10] Spell Resistance.
 Each Martial Charge now grants +1 to all Saving Throws.</Description>
-         <Icon/>
+         <Icon>CalmBeforeStorms</Icon>
          <XPosition>0</XPosition>
          <YPosition>2</YPosition>
          <Cost>1</Cost>
@@ -258,12 +420,24 @@ Each Martial Charge now grants +1 to all Saving Throws.</Description>
                <MinLevel>20</MinLevel>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>SpellResistance</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">3 6 10</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>>1</Amount>
+            <Stacks>Martial Builder</Stacks>
+            <Save>All</Save>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>U51GrandmasterOfFlowersSpenders</InternalName>
          <Name>Grandmaster of Flowers: Spenders</Name>
-         <Description/>
-         <Icon/>
+         <Description>Select a Martial Spender</Description>
+         <Icon>GoFSpenders</Icon>
          <XPosition>1</XPosition>
          <YPosition>2</YPosition>
          <Cost>1</Cost>
@@ -285,7 +459,7 @@ enemies struck. This force damage is doubled versus Tainted Creatures
 consumed, this also attempts to stun all enemies struck for 6 seconds,
 DC (20 + highest ability score modifier + stunning bonuses).
 Activation Cost: 30 Ki. Cooldown: 25 seconds.</Description>
-                  <Icon/>
+                  <Icon>DrfitingLotus</Icon>
                   <Cost>1</Cost>
                   <Clickie/>
               </EnhancementSelection>
@@ -300,7 +474,7 @@ blast of pure Ki when you activate this ability, dealing 1d6+5 Force damage to
 all enemies nearby and attempting to Stun all enemies struck for 6 seconds,
 DC (20 + highest ability score modifier + stunning bonuses).
 Activation Cost: 25 Ki. Cooldown: 25 seconds.</Description>
-                  <Icon/>
+                  <Icon>KiProjection</Icon>
                   <Cost>1</Cost>
                   <Clickie/>
               </EnhancementSelection>
@@ -314,7 +488,7 @@ Charges are consumed, also attempts to Stun all enemies struck,
 DC (20 + highest Ability Score modifier + stunning bonuses).
 Stun lasts 2 seconds. Grants 25 Ki when used.
 Cooldown: 25 seconds.</Description>
-                  <Icon/>
+                  <Icon>GoFSpenders</Icon>
                   <Cost>1</Cost>
                   <Clickie/>
               </EnhancementSelection>
@@ -325,7 +499,7 @@ Cooldown: 25 seconds.</Description>
          <Name>Grandmaster of Flowers: Meditate</Name>
          <Description>You gain the Meditation feat. +[1/2/3] Meditate charges.
 Meditation now recharges at a rate of 1 per [180/150/120] seconds.</Description>
-         <Icon/>
+         <Icon>ActiveStub</Icon>
          <XPosition>2</XPosition>
          <YPosition>2</YPosition>
          <Cost>1</Cost>
@@ -337,6 +511,11 @@ Meditation now recharges at a rate of 1 per [180/150/120] seconds.</Description>
                <MinLevel>20</MinLevel>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Destiny</Bonus>
+            <Feat>Meditation</Feat>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>U51GrandmasterOfFlowersWholenessOfSpirit</InternalName>
@@ -346,7 +525,7 @@ harmonious balance, restoring health as if you were affected by the benefits of
 a Heal spell, as well as curing all ability damage, negative levels, and other
 Adverse Conditions that may be affecting you.
 Cooldown: [3/2/1] minutes.</Description>
-         <Icon/>
+         <Icon>U51WholenessOfSpirit</Icon>
          <XPosition>3</XPosition>
          <YPosition>2</YPosition>
          <Cost>1</Cost>
@@ -363,7 +542,7 @@ Cooldown: [3/2/1] minutes.</Description>
          <InternalName>U51GrandmasterOfFlowersHailOfBlows</InternalName>
          <Name>Grandmaster of Flowers: Hail of Blows</Name>
          <Description>+5% Offhand Strike chance, +3% doublestrike and doubleshot.</Description>
-         <Icon/>
+         <Icon>U51HailOfBlows</Icon>
          <XPosition>4</XPosition>
          <YPosition>2</YPosition>
          <Cost>1</Cost>
@@ -374,13 +553,28 @@ Cooldown: [3/2/1] minutes.</Description>
                <MinLevel>20</MinLevel>
             </Requirement>
          </Requirements>
+        <Effect>
+            <Type>OffHandAttackBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>5</Amount>
+        </Effect>
+        <Effect>
+            <Type>Doublestrike</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>3</Amount>
+        </Effect>
+        <Effect>
+            <Type>Doubleshot</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>5</Amount>
+        </Effect>
       </EnhancementTreeItem>
       <!--Tier 3 Enhancements-->
       <EnhancementTreeItem>
          <InternalName>U51GrandmasterOfFlowersStrengthOfStone</InternalName>
          <Name>Grandmaster of Flowers: Strength of Stone</Name>
          <Description>+[5/10/15] Maximum Hitpoints, +[2/4/6] Physical Resistance Rating.</Description>
-         <Icon/>
+         <Icon>StrengthOfStone</Icon>
          <XPosition>0</XPosition>
          <YPosition>3</YPosition>
          <Cost>1</Cost>
@@ -391,6 +585,16 @@ Cooldown: [3/2/1] minutes.</Description>
                <MinLevel>23</MinLevel>
             </Requirement>
          </Requirements>
+        <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">5 10 15</AmountVector>
+        </Effect>
+        <Effect>
+            <Type>PRR</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">2 4 6</AmountVector>
+        </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>U51GrandmasterOfFlowersTheFlickeringFlame</InternalName>
@@ -399,7 +603,7 @@ Cooldown: [3/2/1] minutes.</Description>
 Rank 3: On hit, and upon being missed, you have a 10% chance to gain a Martial
 Charge. This may only happen once every 10 seconds, but can trigger independently,
 and these track their cooldowns separately.</Description>
-         <Icon/>
+         <Icon>TheFlickeringFlame</Icon>
          <XPosition>1</XPosition>
          <YPosition>3</YPosition>
          <Cost>1</Cost>
@@ -410,12 +614,36 @@ and these track their cooldowns separately.</Description>
                <MinLevel>23</MinLevel>
             </Requirement>
          </Requirements>
+        <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Weapon>All</Weapon>
+        </Effect>
+        <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Weapon>All</Weapon>
+        </Effect>
+        <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Weapon>All</Weapon>
+        </Effect>
+        <Effect>
+            <Type>Seeker</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Weapon>All</Weapon>
+        </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>U51GrandmasterOfFlowersADanceOfFlowers</InternalName>
          <Name>Grandmaster of Flowers: A Dance of Flowers</Name>
          <Description>While in the Grandmaster Destiny Mantle, your weapons gain +1[W].</Description>
-         <Icon/>
+         <Icon>U51ADanceOfFlowers</Icon>
          <XPosition>2</XPosition>
          <YPosition>3</YPosition>
          <Cost>1</Cost>
@@ -426,12 +654,19 @@ and these track their cooldowns separately.</Description>
                <MinLevel>23</MinLevel>
             </Requirement>
          </Requirements>
+        <Effect>
+            <Type>WeaponBaseDamageBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+            <Stance>GoF Mantle</Stance>
+        </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>U51GrandmasterOfFlowersLotusBlades</InternalName>
          <Name>Grandmaster of Flowers: Lotus Blades</Name>
          <Description>Select a feat to gain access to without meeting its prerequisites.</Description>
-         <Icon/>
+         <Icon>LotusBladesLongsword</Icon>
          <XPosition>3</XPosition>
          <YPosition>3</YPosition>
          <Cost>1</Cost>
@@ -447,26 +682,46 @@ and these track their cooldowns separately.</Description>
                   <Name>Long Sword</Name>
                   <Description>You gain the effects of the Whirling Steel Strike feat, and may use
 Longswords as if they were Ki weapons.</Description>
-                  <Icon/>
+                  <Icon>LotusBladesLongsword</Icon>
                   <Cost>1</Cost>
+                <Effect>
+                    <Type>GrantFeat</Type>
+                    <Bonus>Destiny</Bonus>
+                    <Feat>Whirling Steel Strike</Feat>
+                </Effect>
               </EnhancementSelection>
               <EnhancementSelection>
                   <Name>Deflection</Name>
                   <Description>You gain the Deflect Arrows feat, letting you knock aside one projectile every 6 seconds.</Description>
-                  <Icon/>
+                  <Icon>PassiveStub</Icon>
                   <Cost>1</Cost>
+                <Effect>
+                    <Type>GrantFeat</Type>
+                    <Bonus>Destiny</Bonus>
+                    <Feat>Deflect Arrows</Feat>
+                </Effect>
               </EnhancementSelection>
               <EnhancementSelection>
                   <Name>Longbow</Name>
                   <Description>You gain the effects of the Zen Archery feat, and may use Longbows as if they were Ki weapons.</Description>
-                  <Icon/>
+                  <Icon>PassiveStub</Icon>
                   <Cost>1</Cost>
+                <Effect>
+                    <Type>GrantFeat</Type>
+                    <Bonus>Destiny</Bonus>
+                    <Feat>Zen Archery</Feat>
+                </Effect>
               </EnhancementSelection>
               <EnhancementSelection>
                   <Name>Sickle</Name>
                   <Description>You gain the effects of the Prescient Curve feat, and may use Sickles as if they were Ki weapons.</Description>
-                  <Icon/>
+                  <Icon>PassiveStub</Icon>
                   <Cost>1</Cost>
+                <Effect>
+                    <Type>GrantFeat</Type>
+                    <Bonus>Destiny</Bonus>
+                    <Feat>Prescient Curve</Feat>
+                </Effect>
               </EnhancementSelection>
           </Selector>
       </EnhancementTreeItem>
@@ -475,7 +730,7 @@ Longswords as if they were Ki weapons.</Description>
          <Name>Grandmaster of Flowers: Balance in All Things</Name>
          <Description>While centered, you may tumble through enemies, and are immune to slippery
 surfaces and most forms of knockdown. +1 Martial Charge cap</Description>
-         <Icon/>
+         <Icon>U51BalanceInAllThings</Icon>
          <XPosition>4</XPosition>
          <YPosition>3</YPosition>
          <Cost>1</Cost>
@@ -486,13 +741,23 @@ surfaces and most forms of knockdown. +1 Martial Charge cap</Description>
                <MinLevel>23</MinLevel>
             </Requirement>
          </Requirements>
+        <Effect>
+            <Type>Immunity</Type>
+            <Bonus>Destiny</Bonus>
+            <Immunity>Slippery Surfaces</Immunity>
+        </Effect>
+        <Effect>
+            <Type>Immunity</Type>
+            <Bonus>Destiny</Bonus>
+            <Immunity>Most forms of Knockdown</Immunity>
+        </Effect>
       </EnhancementTreeItem>
       <!--Tier 4 Enhancements-->
       <EnhancementTreeItem>
          <InternalName>U51GrandmasterOfFlowersFlowOfWater</InternalName>
          <Name>Grandmaster of Flowers: Flow of Water</Name>
          <Description>+[1/2/3] Saving Throws, you take [5/10/15]% less damage while Helpless.</Description>
-         <Icon/>
+         <Icon>FlowOfWater</Icon>
          <XPosition>0</XPosition>
          <YPosition>4</YPosition>
          <Cost>1</Cost>
@@ -503,6 +768,17 @@ surfaces and most forms of knockdown. +1 Martial Charge cap</Description>
                <MinLevel>26</MinLevel>
             </Requirement>
          </Requirements>
+        <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Save>All</Save>
+        </Effect>
+         <Effect>
+            <Type>HelplessDamageReduction</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">5 10 15</AmountVector>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>U51GrandmasterOfFlowersPiercingClarity</InternalName>
@@ -510,7 +786,7 @@ surfaces and most forms of knockdown. +1 Martial Charge cap</Description>
          <Description>Your attacks bypass [5/10/15]% of enemy Fortification.
 Rank 2: Your attacks have Ghost Touch.
 Rank 3: You have True Seeing.</Description>
-         <Icon/>
+         <Icon>U51PiercingClarity</Icon>
          <XPosition>1</XPosition>
          <YPosition>4</YPosition>
          <Cost>1</Cost>
@@ -521,12 +797,29 @@ Rank 3: You have True Seeing.</Description>
                <MinLevel>26</MinLevel>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>FortificationBypass</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">5 10 15</AmountVector>
+         </Effect>
+          <Effect>
+              <Type>GhostTouch</Type>
+              <Bonus>Enhancement</Bonus>
+              <AmountVector size="3">0 1 1</AmountVector>
+              <Weapon>All</Weapon>
+          </Effect>
+         <Effect>
+            <Type>TrueSeeing</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">0 0 1</AmountVector>
+            <Weapon>All</Weapon>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>U51GrandmasterOfFlowersChasePerfection</InternalName>
          <Name>Grandmaster of Flowers: Chase Perfection</Name>
          <Description>Select a form of perfection</Description>
-         <Icon/>
+         <Icon>ChasePerfection</Icon>
          <XPosition>2</XPosition>
          <YPosition>4</YPosition>
          <Cost>1</Cost>
@@ -539,22 +832,40 @@ Rank 3: You have True Seeing.</Description>
          </Requirements>
           <Selector>
               <EnhancementSelection>
+                  <Name>Perfection of Soul</Name>
+                  <Description>You no longer fail Reflex saves automatically on a natural 1.</Description>
+                  <Icon>U51PerfectionOfSoul</Icon>
+                  <Cost>1</Cost>
+                 <Effect>
+                    <Type>SaveNoFailOn1</Type>
+                    <Bonus>Destiny</Bonus>
+                    <Save>Reflex</Save>
+                    <Amount>1</Amount>
+                 </Effect>
+              </EnhancementSelection>
+              <EnhancementSelection>
                   <Name>Perfection of Body</Name>
                   <Description>You no longer fail Fortitude saves automatically on a natural 1.</Description>
-                  <Icon/>
+                  <Icon>ChasePerfection</Icon>
                   <Cost>1</Cost>
+                 <Effect>
+                    <Type>SaveNoFailOn1</Type>
+                    <Bonus>Destiny</Bonus>
+                    <Save>Fortitude</Save>
+                    <Amount>1</Amount>
+                 </Effect>
               </EnhancementSelection>
               <EnhancementSelection>
                   <Name>Perfection of Mind</Name>
                   <Description>You no longer fail Will saves automatically on a natural 1.</Description>
-                  <Icon/>
+                  <Icon>U51PerfectionOfMind</Icon>
                   <Cost>1</Cost>
-              </EnhancementSelection>
-              <EnhancementSelection>
-                  <Name>Perfection of Soul</Name>
-                  <Description>You no longer fail Reflex saves automatically on a natural 1.</Description>
-                  <Icon/>
-                  <Cost>1</Cost>
+                 <Effect>
+                    <Type>SaveNoFailOn1</Type>
+                    <Bonus>Destiny</Bonus>
+                    <Save>Will</Save>
+                    <Amount>1</Amount>
+                 </Effect>
               </EnhancementSelection>
           </Selector>
       </EnhancementTreeItem>
@@ -563,7 +874,7 @@ Rank 3: You have True Seeing.</Description>
          <Name>Grandmaster of Flowers: Catch the Wind</Name>
          <Description>+[1/2/3]% Dodge chance and +[2/4/6] Max Dex bonus with all armor.
 Rank 3: You gain the Slippery Mind feat.</Description>
-         <Icon/>
+         <Icon>CatchTheWind</Icon>
          <XPosition>3</XPosition>
          <YPosition>4</YPosition>
          <Cost>2</Cost>
@@ -574,13 +885,28 @@ Rank 3: You gain the Slippery Mind feat.</Description>
                <MinLevel>26</MinLevel>
             </Requirement>
          </Requirements>
+        <Effect>
+           <Type>DodgeBonus</Type>
+           <Bonus>Destiny</Bonus>
+           <AmountVector size="3">1 2 3</AmountVector>
+        </Effect>
+        <Effect>
+           <Type>MaxDexBonus</Type>
+           <Bonus>Destiny</Bonus>
+           <AmountVector size="3">2 4 6</AmountVector>
+        </Effect>
+        <Effect>
+           <Type>GrantFeat</Type>
+           <Bonus>Destiny</Bonus>
+           <Feat>Slippery Mind</Feat>
+        </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>U51GrandmasterOfFlowersSereneMercy</InternalName>
          <Name>Grandmaster of Flowers: Serene Mercy</Name>
          <Description>While in the Grandmaster of Flowers Destiny Mantle, you deal +[5/10/15]% bonus
 damage to the Helpless.</Description>
-         <Icon/>
+         <Icon>SereneMercy</Icon>
          <XPosition>4</XPosition>
          <YPosition>4</YPosition>
          <Cost>1</Cost>
@@ -591,13 +917,19 @@ damage to the Helpless.</Description>
                <MinLevel>26</MinLevel>
             </Requirement>
          </Requirements>
+        <Effect>
+            <Type>HelplessDamage</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">5 10 15</AmountVector>
+            <Stance>GoF Mantle</Stance>
+        </Effect>
       </EnhancementTreeItem>
       <!--Tier 5 Enhancements-->
       <EnhancementTreeItem>
          <InternalName>U51GrandmasterOfFlowersBeyondTheCenter</InternalName>
          <Name>Grandmaster of Flowers: Beyond the Center</Name>
          <Description>+[5/10/15] Magical Resistance Rating Cap.</Description>
-         <Icon/>
+         <Icon>BeyondTheCenter</Icon>
          <XPosition>0</XPosition>
          <YPosition>5</YPosition>
          <Cost>1</Cost>
@@ -609,13 +941,18 @@ damage to the Helpless.</Description>
                <MinLevel>30</MinLevel>
             </Requirement>
          </Requirements>
+          <Effect>
+              <Type>MRRCap</Type>
+              <Bonus>Destiny</Bonus>
+              <AmountVector size="3">5 10 15</AmountVector>
+          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>U51GrandmasterOfFlowersImposingForce</InternalName>
          <Name>Grandmaster of Flowers: Imposing Force</Name>
          <Description>While centered, when rolling a 19 or 20 on an attack, your critical multiplier
 is increased by +1.</Description>
-         <Icon/>
+         <Icon>ImposingForce</Icon>
          <XPosition>1</XPosition>
          <YPosition>5</YPosition>
          <Cost>1</Cost>
@@ -627,6 +964,13 @@ is increased by +1.</Description>
                <MinLevel>30</MinLevel>
             </Requirement>
          </Requirements>
+            <Effect>
+                <Type>CriticalMultiplier19To20</Type>
+                <Bonus>Destiny</Bonus>
+                <Amount>1</Amount>
+                <Weapon>All</Weapon>
+                <Stance>Centered</Stance>
+            </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>U51GrandmasterOfFlowersAScatteringOfPetals</InternalName>
@@ -642,13 +986,14 @@ and gain +10 Physical Resistance Rating and Armor Class.
 Disorienting Petals debuff: Enemies with this debuff become vulnerable to sneak
 attacks and lose 100% Fortification.
 Cooldown: 1 Minute.</Description>
-         <Icon/>
+         <Icon>U51AScatteringOfPetals</Icon>
          <XPosition>2</XPosition>
          <YPosition>5</YPosition>
          <Cost>1</Cost>
          <Ranks>1</Ranks>
          <MinSpent>30</MinSpent>
          <Tier5/>
+         <Clickie/>
          <Requirements>
             <Requirement>
                <MinLevel>30</MinLevel>
@@ -660,7 +1005,7 @@ Cooldown: 1 Minute.</Description>
          <Name>Grandmaster of Flowers: Elude the Veil</Name>
          <Description>You gain the effects of the Elusive Target feat, and if you have it already,
 it instead has double the chance to occur. +3% dodge, +1% dodge cap.</Description>
-         <Icon/>
+         <Icon>EludeTheVeil</Icon>
          <XPosition>3</XPosition>
          <YPosition>5</YPosition>
          <Cost>1</Cost>
@@ -672,6 +1017,21 @@ it instead has double the chance to occur. +3% dodge, +1% dodge cap.</Descriptio
                <MinLevel>30</MinLevel>
             </Requirement>
          </Requirements>
+        <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Equipment</Bonus>
+            <Feat>Elusive Target (U51)</Feat>
+        </Effect>
+         <Effect>
+            <Type>DodgeBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>3</Amount>
+         </Effect>
+         <Effect>
+            <Type>DodgeCapBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>1</Amount>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>U51GrandmasterOfFlowersBalancedAttacks</InternalName>
@@ -679,11 +1039,11 @@ it instead has double the chance to occur. +3% dodge, +1% dodge cap.</Descriptio
          <Description>+[1/2/3] Tactical DCs, +1 Passive Ki generation.
 Rank 3: While dual wielding, you gain: On Vorpal: Knock down an enemy for 2 seconds.
 Knocked down enemies are Helpless.</Description>
-         <Icon/>
+         <Icon>U51BalancedAttacks</Icon>
          <XPosition>4</XPosition>
          <YPosition>5</YPosition>
          <Cost>1</Cost>
-         <Ranks>1</Ranks>
+         <Ranks>3</Ranks>
          <MinSpent>30</MinSpent>
          <Tier5/>
          <Requirements>
@@ -691,6 +1051,23 @@ Knocked down enemies are Helpless.</Description>
                <MinLevel>30</MinLevel>
             </Requirement>
          </Requirements>
+        <Effect>
+            <Type>TacticalDC</Type>
+            <Bonus>Artifact</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Tactical>Assassinate</Tactical>
+            <Tactical>Trip</Tactical>
+            <Tactical>Sunder</Tactical>
+            <Tactical>Stun</Tactical>
+            <Tactical>General</Tactical>
+            <Tactical>Rune Arm</Tactical>
+            <Tactical>Quivering Palm</Tactical>
+        </Effect>
+         <Effect>
+            <Type>KiPassive</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">1 1 1</AmountVector>
+         </Effect>
       </EnhancementTreeItem>
    </EnhancementTree>
 </Enhancements>

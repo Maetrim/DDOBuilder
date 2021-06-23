@@ -28,6 +28,28 @@ Maximum Hit Points and +10 Melee Power</Description>
                <MinLevel>20</MinLevel>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Destiny</Bonus>
+            <Feat>Diehard</Feat>
+         </Effect>
+         <Effect>
+            <Type>MeleePower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>10</Amount>
+         </Effect>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>20</Amount>
+         </Effect>
+         <Effect>
+            <Type>CreateSlider</Type>
+            <Bonus>Enhancement</Bonus>
+            <Slider>Primal Builder</Slider>
+            <AmountVector size="2">0 50</AmountVector>
+            <Amount>0</Amount>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>U51FuryOfTheWildCore2</InternalName>
@@ -47,6 +69,21 @@ Maximum Hit Points and +10 Melee Power</Description>
                <Enhancement>U51FuryOfTheWildCore1</Enhancement>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>UnconsciousRange</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>-100</Amount>
+         </Effect>
+         <Effect>
+            <Type>MeleePower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>10</Amount>
+         </Effect>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>20</Amount>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>U51FuryOfTheWildCore3</InternalName>
@@ -66,6 +103,21 @@ Maximum Hit Points and +10 Melee Power</Description>
                <Enhancement>U51FuryOfTheWildCore2</Enhancement>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>UnconsciousRange</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>-250</Amount>
+         </Effect>
+         <Effect>
+            <Type>MeleePower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>10</Amount>
+         </Effect>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>20</Amount>
+         </Effect>
       </EnhancementTreeItem>
       <!--Tier 1 Enhancements-->
       <EnhancementTreeItem>
@@ -84,6 +136,11 @@ Rank 3: Your dodge cap is increased by 1%</Description>
                <MinLevel>20</MinLevel>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>DodgeCapBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">0 0 1</AmountVector>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>U51FuryOfTheWildBlindingFury</InternalName>
@@ -142,6 +199,21 @@ Rank 3: While wearing Medium or Light Armor, +1 additional bonuses to Trip DCs.<
                <MinLevel>20</MinLevel>
             </Requirement>
          </Requirements>
+        <Effect>
+            <Type>TacticalDC</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Tactical>Trip</Tactical>
+        </Effect>
+        <Effect>
+            <DisplayName>Light and Medium Armor trip bonus</DisplayName>
+            <Type>TacticalDC</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">0 0 1</AmountVector>
+            <Tactical>Trip</Tactical>
+            <AnyOfStance>Light Armor</AnyOfStance>
+            <AnyOfStance>Medium Armor</AnyOfStance>
+        </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>U51FuryOfTheWildMantleOfFury</InternalName>
@@ -160,6 +232,19 @@ healing scales with the highest of 100% Positive Spell Power or 200% Melee Power
                <MinLevel>20</MinLevel>
             </Requirement>
          </Requirements>
+         <Stance>
+            <Name>Fury Mantle</Name>
+            <Icon>FastHealing</Icon>
+            <Description>You deal +[5/10/15]% damage against helpless targets.
+You also gain 2d10 Positive Energy Healing every 15 seconds.
+This healing scales with the highest of 100% Positive Spell Power or 200% Melee Power.</Description>
+         </Stance>
+        <Effect>
+            <Type>HelplessDamage</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">5 10 15</AmountVector>
+            <Stance>Fury Mantle</Stance>
+        </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>U51FuryOfTheWildEnduring</InternalName>
@@ -176,6 +261,11 @@ healing scales with the highest of 100% Positive Spell Power or 200% Melee Power
                <MinLevel>20</MinLevel>
             </Requirement>
          </Requirements>
+        <Effect>
+            <Type>PRR</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">2 4 6</AmountVector>
+        </Effect>
       </EnhancementTreeItem>
       <!--Tier 2 Enhancements-->
       <EnhancementTreeItem>
@@ -214,6 +304,34 @@ every 10 seconds.</Description>
                <MinLevel>20</MinLevel>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <Stacks>Primal Builder</Stacks>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+         </Effect>
+         <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <Stacks>Primal Builder</Stacks>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+         </Effect>
+         <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <Stacks>Primal Builder</Stacks>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+         </Effect>
+         <Effect>
+            <Type>Seeker</Type>
+            <Bonus>Destiny</Bonus>
+            <Stacks>Primal Builder</Stacks>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>U51FuryOfTheWildImAlwaysAngry</InternalName>
@@ -230,6 +348,11 @@ every 10 seconds.</Description>
                <MinLevel>20</MinLevel>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Destiny</Bonus>
+            <Feat>Rage</Feat>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>U51FuryOfTheWildPrimalScream</InternalName>
@@ -287,6 +410,18 @@ enemies for 3 seconds with no save.</Description>
                <MinLevel>23</MinLevel>
             </Requirement>
          </Requirements>
+        <Effect>
+            <Type>DRBypass</Type>
+            <Bonus>Destiny</Bonus>
+            <DR>Silver</DR>
+            <Weapon>All</Weapon>
+        </Effect>
+        <Effect>
+            <Type>DRBypass</Type>
+            <Bonus>Destiny</Bonus>
+            <DR>Cold Iron</DR>
+            <Weapon>All</Weapon>
+        </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>U51FuryOfTheWildWildWeapons</InternalName>
@@ -309,18 +444,33 @@ enemies for 3 seconds with no save.</Description>
                   <Description>+[1/2/3]% Doublestrike</Description>
                   <Icon>WildWeaponsDoublestrike</Icon>
                   <Cost>1</Cost>
+                <Effect>
+                    <Type>Doublestrike</Type>
+                    <Bonus>Destiny</Bonus>
+                    <AmountVector size="3">1 2 3</AmountVector>
+                </Effect>
               </EnhancementSelection>
               <EnhancementSelection>
                   <Name>Off Hand Attack</Name>
                   <Description>+[3/6/10]% Offhand Strike Chance</Description>
                   <Icon>WildWeaponsOffHandAttack</Icon>
                   <Cost>1</Cost>
+                <Effect>
+                    <Type>OffHandAttackBonus</Type>
+                    <Bonus>Destiny</Bonus>
+                    <AmountVector size="3">3 6 10</AmountVector>
+                </Effect>
               </EnhancementSelection>
               <EnhancementSelection>
                   <Name>Strike Through</Name>
                   <Description>+[5/10/15]% Strikethrough Chance</Description>
                   <Icon>WildWeapons</Icon>
                   <Cost>1</Cost>
+                <Effect>
+                    <Type>Strikethrough</Type>
+                    <Bonus>Destiny</Bonus>
+                    <AmountVector size="3">5 10 15</AmountVector>
+                </Effect>
               </EnhancementSelection>
           </Selector>
       </EnhancementTreeItem>
@@ -363,6 +513,15 @@ enemies for 3 seconds with no save.</Description>
 Adrenaline damage bonus is increased by [25/50/10]0%.</Description>
                   <Icon>FuryEternal</Icon>
                   <Cost>1</Cost>
+                  <Effect>
+                     <Type>AbilityBonus</Type>
+                     <Bonus>Destiny</Bonus>
+                     <Ability>Strength</Ability>
+                     <AmountVector size="3">1 2 3</AmountVector>
+                     <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
+                     <AnyOfStance>Rage</AnyOfStance>
+                     <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
+                  </Effect>
               </EnhancementSelection>
               <EnhancementSelection>
                   <Name>Spirit of the Beast</Name>
@@ -370,6 +529,60 @@ Adrenaline damage bonus is increased by [25/50/10]0%.</Description>
 Rank 3: The effects of Ram’s Might and Animal Growth are doubled for you.</Description>
                   <Icon>SpiritOfTheBeast</Icon>
                   <Cost>1</Cost>
+                  <Effect>
+                     <Type>AttackBonus</Type>
+                     <Bonus>Destiny</Bonus>
+                     <AmountVector size="3">2 3 4</AmountVector>
+                     <Weapon>All</Weapon>
+                  </Effect>
+                  <Effect>
+                     <Type>CriticalAttackBonus</Type>
+                     <Bonus>Destiny</Bonus>
+                     <AmountVector size="3">2 3 4</AmountVector>
+                     <Weapon>All</Weapon>
+                  </Effect>
+                  <Effect>
+                     <DisplayName>Double Ram's Might</DisplayName>
+                     <Type>AbilityBonus</Type>
+                     <Bonus>Size</Bonus>
+                     <Ability>Strength</Ability>
+                     <AmountVector size="4">0 0 0 2</AmountVector>
+                  </Effect>
+                  <Effect>
+                     <DisplayName>Double Ram's Might</DisplayName>
+                     <Type>DamageBonus</Type>
+                     <Bonus>Size</Bonus>
+                     <AmountVector size="4">0 0 0 2</AmountVector>
+                     <Weapon>All</Weapon>
+                  </Effect>
+                  <Effect>
+                     <DisplayName>Double Ram's Might</DisplayName>
+                     <Type>Seeker</Type>
+                     <Bonus>Size</Bonus>
+                     <AmountVector size="4">0 0 0 2</AmountVector>
+                     <Weapon>All</Weapon>
+                  </Effect>
+                  <Effect>
+                     <DisplayName>Double Animal Growth</DisplayName>
+                     <Type>AbilityBonus</Type>
+                     <Bonus>Size</Bonus>
+                     <Ability>Strength</Ability>
+                     <AmountVector size="4">0 0 0 4</AmountVector>
+                  </Effect>
+                  <Effect>
+                     <DisplayName>Double Animal Growth</DisplayName>
+                     <Type>AbilityBonus</Type>
+                     <Bonus>Size</Bonus>
+                     <Ability>Constitution</Ability>
+                     <AmountVector size="4">0 0 0 4</AmountVector>
+                  </Effect>
+                  <Effect>
+                     <DisplayName>Double Animal Growth</DisplayName>
+                     <Type>AbilityBonus</Type>
+                     <Bonus>Penalty</Bonus>
+                     <Ability>Dexterity</Ability>
+                     <AmountVector size="4">0 0 0 -2</AmountVector>
+                  </Effect>
               </EnhancementSelection>
           </Selector>
       </EnhancementTreeItem>
@@ -408,6 +621,11 @@ or 200% Melee Power.</Description>
                <MinLevel>26</MinLevel>
             </Requirement>
          </Requirements>
+        <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Equipment</Bonus>
+            <Feat>Improved Trip</Feat>
+        </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>U51FuryOfTheWildSenseWeakness</InternalName>
@@ -426,6 +644,17 @@ damage to helpless targets.</Description>
                <MinLevel>26</MinLevel>
             </Requirement>
          </Requirements>
+        <Effect>
+            <Type>FortificationBypass</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">2 4 6</AmountVector>
+        </Effect>
+        <Effect>
+            <Type>HelplessDamage</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">5 10 15</AmountVector>
+            <Stance>Fury Mantle</Stance>
+        </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>U51FuryOfTheWildFearMyVengeance</InternalName>
@@ -444,6 +673,38 @@ range become Shaken.</Description>
                <MinLevel>26</MinLevel>
             </Requirement>
          </Requirements>
+        <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Weapon>All</Weapon>
+            <AnyOfStance>Shaken</AnyOfStance>
+            <AnyOfStance>Feared</AnyOfStance>
+        </Effect>
+        <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Weapon>All</Weapon>
+            <AnyOfStance>Shaken</AnyOfStance>
+            <AnyOfStance>Feared</AnyOfStance>
+        </Effect>
+        <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Weapon>All</Weapon>
+            <AnyOfStance>Shaken</AnyOfStance>
+            <AnyOfStance>Feared</AnyOfStance>
+        </Effect>
+        <Effect>
+            <Type>Seeker</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Weapon>All</Weapon>
+            <AnyOfStance>Shaken</AnyOfStance>
+            <AnyOfStance>Feared</AnyOfStance>
+        </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>U51FuryOfTheWildForce</InternalName>
@@ -475,7 +736,35 @@ Rank 3: Foes struck by your Adrenaline attacks are now knocked down for 4 second
 Rank 3: While Two Weapon Fighting or in Animal Form, gain +2% damage with all attacks.</Description>
                   <Icon>SpiritOfTheBeast</Icon>
                   <Cost>1</Cost>
-                  <Clickie/>
+                <Effect>
+                    <Type>AttackBonus</Type>
+                    <Bonus>Destiny</Bonus>
+                    <AmountVector size="3">1 2 3</AmountVector>
+                    <Weapon>All</Weapon>
+                </Effect>
+                <Effect>
+                    <Type>CriticalAttackBonus</Type>
+                    <Bonus>Destiny</Bonus>
+                    <AmountVector size="3">1 2 3</AmountVector>
+                    <Weapon>All</Weapon>
+                </Effect>
+                <Effect>
+                    <Type>FortificationBypass</Type>
+                    <Bonus>Destiny</Bonus>
+                    <AmountVector size="3">2 4 6</AmountVector>
+                </Effect>
+                <Effect>
+                    <Type>DamageBonus</Type>
+                    <Bonus>Destiny</Bonus>
+                    <AmountVector size="3">0 0 2</AmountVector>
+                    <Weapon>All</Weapon>
+                    <Percent/>
+                    <AnyOfStance>Two Weapon Fighting</AnyOfStance>
+                     <AnyOfStance>Wolf</AnyOfStance>
+                     <AnyOfStance>Bear</AnyOfStance>
+                     <AnyOfStance>Winter Wolf</AnyOfStance>
+                     <AnyOfStance>Dire Bear</AnyOfStance>
+                </Effect>
               </EnhancementSelection>
           </Selector>
       </EnhancementTreeItem>
@@ -514,6 +803,13 @@ Rank 3: You also apply the effects of a Heal spell to yourself, scaling by Melee
                <MinLevel>30</MinLevel>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Primal</Bonus>
+            <Percent/>
+            <Stacks>Wilderness Lore</Stacks>
+            <AmountVector size="20">0 1 1 2 2 3 3 4 4 5 5 6 6 7 7 8 8 9 9 10</AmountVector>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>U51FuryOfTheWildScarredByChaos</InternalName>
@@ -532,6 +828,28 @@ Double these bonuses if you have the Harbinger of Chaos feat.</Description>
                <MinLevel>30</MinLevel>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>50</Amount>
+         </Effect>
+         <Effect>
+            <Type>PRR</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>10</Amount>
+         </Effect>
+         <Effect>
+            <DisplayName>Harbinger of Chaos / Scarred by Chaos</DisplayName>
+            <Type>Hitpoints</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="2">0 50</AmountVector>
+         </Effect>
+         <Effect>
+            <DisplayName>Harbinger of Chaos / Scarred by Chaos</DisplayName>
+            <Type>PRR</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="2">0 50</AmountVector>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>U51FuryOfTheWildWadeThrough</InternalName>
@@ -555,18 +873,33 @@ Double these bonuses if you have the Harbinger of Chaos feat.</Description>
                   <Description>+[1/2/3]% Doublestrike</Description>
                   <Icon>WadeThroughDoublestrike</Icon>
                   <Cost>1</Cost>
+                <Effect>
+                    <Type>Doublestrike</Type>
+                    <Bonus>Destiny</Bonus>
+                    <AmountVector size="3">1 2 3</AmountVector>
+                </Effect>
               </EnhancementSelection>
               <EnhancementSelection>
                   <Name>Off Hand Attack</Name>
                   <Description>+[3/6/10]% Offhand Strike Chance</Description>
                   <Icon>WadeThroughOffHandAttack</Icon>
                   <Cost>1</Cost>
+                <Effect>
+                    <Type>OffHandAttackBonus</Type>
+                    <Bonus>Destiny</Bonus>
+                    <AmountVector size="3">3 6 10</AmountVector>
+                </Effect>
               </EnhancementSelection>
               <EnhancementSelection>
                   <Name>Strike Through</Name>
                   <Description>+[5/10/15]% Strikethrough Chance</Description>
                   <Icon>WilderWeapons</Icon>
                   <Cost>1</Cost>
+                <Effect>
+                    <Type>Strikethrough</Type>
+                    <Bonus>Destiny</Bonus>
+                    <AmountVector size="3">5 10 15</AmountVector>
+                </Effect>
               </EnhancementSelection>
           </Selector>
       </EnhancementTreeItem>
@@ -587,6 +920,18 @@ you gain a +1 bonus to your Critical Multiplier on rolls of 19 or 20.</Descripti
                <MinLevel>30</MinLevel>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>CriticalMultiplier19To20</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+            <AnyOfStance>Two Weapon Fighting</AnyOfStance>
+            <AnyOfStance>Two Handed Fighting</AnyOfStance>
+            <AnyOfStance>Wolf</AnyOfStance>
+            <AnyOfStance>Bear</AnyOfStance>
+            <AnyOfStance>Winter Wolf</AnyOfStance>
+            <AnyOfStance>Dire Bear</AnyOfStance>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>U51FuryOfTheWildTheGreatLeveler</InternalName>

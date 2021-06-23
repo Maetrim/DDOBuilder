@@ -345,6 +345,7 @@ class Character :
         void NotifyAllEnhancementEffects();
         void NotifyAllReaperEnhancementEffects();
         void NotifyAllDestinyEffects();
+        void NotifyAllU51DestinyEffects();
         void NotifyAllTwistEffects();
         void NotifyEnhancementEffect(const std::string & enhancementName,  const Effect & effect, size_t ranks);
         void NotifyEnhancementEffectRevoked(const std::string & enhancementName, const Effect & effect, size_t ranks);

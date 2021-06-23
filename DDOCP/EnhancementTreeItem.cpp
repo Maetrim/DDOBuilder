@@ -116,12 +116,26 @@ bool EnhancementTreeItem::MeetRequirements(
     }
     // cannot train this enhancement if its tier5 and not from the same tier 5
     // tree if one has already been trained
-    if (HasTier5()                  // are we a tier 5 enhancement?
-            && charData.HasTier5Tree()
-            && treeName != charData.Tier5Tree())
+    if (m_type == TT_enhancement
+            || m_type == TT_universal)
     {
-        // not allowed this tier 5 enhancement
-        met = false;
+        if (HasTier5()                  // are we a tier 5 enhancement?
+                && charData.HasTier5Tree()
+                && treeName != charData.Tier5Tree())
+        {
+            // not allowed this tier 5 enhancement
+            met = false;
+        }
+    }
+    if (m_type == TT_epicDestiny51)
+    {
+        if (HasTier5()                  // are we a tier 5 enhancement?
+                && charData.HasU51Destiny_Tier5Tree()
+                && treeName != charData.U51Destiny_Tier5Tree())
+        {
+            // not allowed this tier 5 enhancement
+            met = false;
+        }
     }
     if (met && selection != "")
     {
@@ -161,13 +175,26 @@ bool EnhancementTreeItem::IsAllowed(
                 (pTE == NULL) ? 0 : pTE->Ranks());
     }
     // cannot train this enhancement if its tier5 and not from the same tier 5
-    // tree if one has already been trained
-    if (HasTier5()                  // are we a tier 5 enhancement?
-            && charData.HasTier5Tree()
-            && treeName != charData.Tier5Tree())
+    if (m_type == TT_enhancement
+            || m_type == TT_universal)
     {
-        // not allowed this tier 5 enhancement
-        met = false;
+        if (HasTier5()                  // are we a tier 5 enhancement?
+                && charData.HasTier5Tree()
+                && treeName != charData.Tier5Tree())
+        {
+            // not allowed this tier 5 enhancement
+            met = false;
+        }
+    }
+    if (m_type == TT_epicDestiny51)
+    {
+        if (HasTier5()                  // are we a tier 5 enhancement?
+                && charData.HasU51Destiny_Tier5Tree()
+                && treeName != charData.U51Destiny_Tier5Tree())
+        {
+            // not allowed this tier 5 enhancement
+            met = false;
+        }
     }
     if (met && selection != "")
     {

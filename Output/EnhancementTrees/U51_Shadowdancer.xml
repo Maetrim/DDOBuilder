@@ -30,6 +30,40 @@ Universal spell power.</Description>
                <MinLevel>20</MinLevel>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>CreateSlider</Type>
+            <Bonus>Enhancement</Bonus>
+            <Slider>Martial Charges</Slider>
+            <AmountVector size="2">0 50</AmountVector>
+            <Amount>0</Amount>
+         </Effect>
+         <Effect>
+            <Type>SpellDC</Type>
+            <Bonus>Epic</Bonus>
+            <Amount>1</Amount>
+            <School>All</School>
+         </Effect>
+         <Effect>
+            <Type>MeleePower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>10</Amount>
+         </Effect>
+         <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>6</Amount>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>5</Amount>
+            <SpellPower>Force/Untyped</SpellPower>
+         </Effect>
+         <Effect>
+            <Type>UniversalSpellPower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>5</Amount>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>U51ShadowdancerCore2</InternalName>
@@ -52,6 +86,38 @@ Cooldown: 2 minutes.</Description>
                <Enhancement>U51ShadowdancerCore1</Enhancement>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Destiny</Bonus>
+            <SpellLikeAbility>Dimension Door</SpellLikeAbility>
+         </Effect>
+         <Effect>
+            <Type>SpellDC</Type>
+            <Bonus>Epic</Bonus>
+            <Amount>1</Amount>
+            <School>All</School>
+         </Effect>
+         <Effect>
+            <Type>MeleePower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>10</Amount>
+         </Effect>
+         <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>6</Amount>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>5</Amount>
+            <SpellPower>Force/Untyped</SpellPower>
+         </Effect>
+         <Effect>
+            <Type>UniversalSpellPower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>5</Amount>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>U51ShadowdancerCore3</InternalName>
@@ -59,7 +125,7 @@ Cooldown: 2 minutes.</Description>
          <Description>You gain the Evasion feat (normal Evasion rules apply).
 If you already have Evasion, you gain the Improved Evasion feat.
 If you already have Improved Evasion, you generate 25% less threat from all
-sources.</Description>
+sources. (BUILDER BUG - Always awards all feats/threat bonus)</Description>
          <Icon>TheDarkestLuck</Icon>
          <XPosition>2</XPosition>
          <YPosition>0</YPosition>
@@ -74,6 +140,58 @@ sources.</Description>
                <Enhancement>U51ShadowdancerCore2</Enhancement>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Destiny</Bonus>
+            <Feat>Evasion</Feat>
+         </Effect>
+         <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Destiny</Bonus>
+            <Feat>Improved Evasion</Feat>
+         </Effect>
+         <Effect>
+            <Type>ThreatBonusMelee</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>-25</Amount>
+         </Effect>
+         <Effect>
+            <Type>ThreatBonusRanged</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>-25</Amount>
+         </Effect>
+         <Effect>
+            <Type>ThreatBonusSpell</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>-25</Amount>
+         </Effect>
+         <Effect>
+            <Type>SpellDC</Type>
+            <Bonus>Epic</Bonus>
+            <Amount>1</Amount>
+            <School>All</School>
+         </Effect>
+         <Effect>
+            <Type>MeleePower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>10</Amount>
+         </Effect>
+         <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>6</Amount>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>5</Amount>
+            <SpellPower>Force/Untyped</SpellPower>
+         </Effect>
+         <Effect>
+            <Type>UniversalSpellPower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>5</Amount>
+         </Effect>
       </EnhancementTreeItem>
       <!--Tier 1 Enhancements-->
       <EnhancementTreeItem>
@@ -92,6 +210,24 @@ Rank 3: You gain the Hide in Plane Sight feat.</Description>
                <MinLevel>20</MinLevel>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Save>Reflex</Save>
+         </Effect>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <Skill>Hide</Skill>
+            <Skill>Move Silently</Skill>
+            <AmountVector size="3">2 4 6</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Destiny</Bonus>
+            <Feat>Hide in Plain Sight</Feat>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>U51ShadowdancerCoverOfDarkness</InternalName>
@@ -109,6 +245,35 @@ Rank 3: You gain the benefits of the Nightshield spell.</Description>
                <MinLevel>20</MinLevel>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>ThreatBonusMelee</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">-10 -20 -30</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>ThreatBonusRanged</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">-10 -20 -30</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>ThreatBonusSpell</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">-10 -20 -30</AmountVector>
+         </Effect>
+          <!---Nightshield effects-->
+      <Effect>
+         <Type>Immunity</Type>
+         <Bonus>Enchantment</Bonus>
+         <Immunity/>
+         <Immunity/>
+         <Immunity>Magic Missiles</Immunity>
+      </Effect>
+      <Effect>
+         <Type>SaveBonus</Type>
+         <Bonus>Resistance</Bonus>
+         <AmountVector size="3">0 0 3</AmountVector>
+         <Save>All</Save>
+      </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>U51ShadowdancerBuilders</InternalName>
@@ -133,14 +298,14 @@ Rank 3: You gain the benefits of the Nightshield spell.</Description>
 They take 1d6+6 Force damage per Character level. The enemy must succeed on a
 (DC20 + highest of Int/Wis/Cha modifier + Illusion DC bonuses) will saving
 throw to avoid becoming blinded. On cast, this builds an Arcane Charge.
-Cooldown: 30/20/10 seconds. Activation Cost: 10 Spell Points.</Description>
+Cooldown: [30/20/10] seconds. Activation Cost: 10 Spell Points.</Description>
                <Icon>ShadowLance</Icon>
                <Cost>1</Cost>
                <Clickie/>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Shrouding Shot</Name>
-               <Description>Martial Builder: Ranged Attack: +1/2/3W, you gain 1 Martial Charge.
+               <Description>Martial Builder: Ranged Attack: +[1/2/3][W], you gain 1 Martial Charge.
 On a failed fortitude save (DC20 + Highest Ability Modifier + Assassinate bonus)
 the target is Blinded for 12 seconds. Cooldown: 12 Seconds.</Description>
                <Icon>ShadowLance</Icon>
@@ -149,7 +314,7 @@ the target is Blinded for 12 seconds. Cooldown: 12 Seconds.</Description>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Shrouding Strike</Name>
-               <Description>Martial Builder: Melee Attack: +1/2/3W, you gain 1 Martial Charge.
+               <Description>Martial Builder: Melee Attack: +[1/2/3][W], you gain 1 Martial Charge.
 On a failed fortitude save (DC20 + Highest Ability Modifier + Assassinate bonus)
 the target is Blinded for 12 seconds. Cooldown: 12 Seconds.</Description>
                <Icon>ShadowLance</Icon>
@@ -174,6 +339,12 @@ Rank 3: On Sneak Attack: 10% chance to gain 1 Martial Charge.</Description>
                <MinLevel>20</MinLevel>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>TacticalDC</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">2 4 6</AmountVector>
+            <Tactical>Assassinate</Tactical>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>U51ShadowdancerTechnician</InternalName>
@@ -191,6 +362,33 @@ Rank 3: If you have the Nimble Fingers feat, you gain +1 Sneak Attack Dice.</Des
                <MinLevel>20</MinLevel>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <Skill>Disable Device</Skill>
+            <Skill>Open Lock</Skill>
+            <Skill>Search</Skill>
+            <Skill>Spot</Skill>
+            <AmountVector size="3">2 4 6</AmountVector>
+         </Effect>
+         <Effect>
+            <DisplayName>Shadowdancer: Technician with Nimble Fingers</DisplayName>
+            <Type>SneakAttackDice</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="4">0 0 0 1</AmountVector>
+         </Effect>
+         <Effect>
+            <DisplayName>Shadowdancer: Technician with Nimble Fingers</DisplayName>
+            <Type>SneakAttackDice</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="4">0 0 0 1</AmountVector>
+         </Effect>
+         <Effect>
+            <DisplayName>Shadowdancer: Technician with Nimble Fingers</DisplayName>
+            <Type>SneakAttackDice</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="4">0 0 0 1</AmountVector>
+         </Effect>
       </EnhancementTreeItem>
       <!--Tier 2 Enhancements-->
       <EnhancementTreeItem>
@@ -209,6 +407,18 @@ You no longer automatically fail Reflex saving throws when you roll a natural 1.
                <MinLevel>20</MinLevel>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>SneakAttackDice</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>1</Amount>
+             <Stacks>Martial Charges</Stacks>
+         </Effect>
+         <Effect>
+            <Type>SaveNoFailOn1</Type>
+            <Bonus>Enhancement</Bonus>
+            <Save>Reflex</Save>
+            <Amount>1</Amount>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>U51ShadowdancerSleightOfHand</InternalName>
@@ -225,6 +435,18 @@ You no longer automatically fail Reflex saving throws when you roll a natural 1.
                <MinLevel>20</MinLevel>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>OffHandAttackBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">3 6 10</AmountVector>
+            <Stance>Centered</Stance>
+         </Effect>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <Skill>Bluff</Skill>
+            <AmountVector size="3">2 4 6</AmountVector>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>U51ShadowdancerShadowform</InternalName>
@@ -246,6 +468,20 @@ Your attacks gain Ghost Touch, and may bypass the Incorporeality of monsters.</D
                <MinLevel>20</MinLevel>
             </Requirement>
          </Requirements>
+         <Stance>
+            <Name>Shadowform Mantle</Name>
+            <Icon>ShadowForm</Icon>
+            <Description>+[10/20/30]% Enhancement bonus to Movement Speed, and can Sneak +[20/35/50]% faster
+(this will not stack with other enhancements that grant a permanent bonus to
+movement speed while sneaking).
+Your attacks gain Ghost Touch, and may bypass the Incorporeality of monsters.</Description>
+         </Stance>
+      <Effect>
+        <Type>MovementSpeed</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">10 20 30</AmountVector>
+        <Stance>Shadowform Mantle</Stance>
+      </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>U51ShadowdancerMeldIntoDarkness</InternalName>
@@ -281,6 +517,34 @@ Cooldown: 15 seconds.</Description>
                <MinLevel>20</MinLevel>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <Save>Reflex</Save>
+            <AmountVector size="3">2 4 6</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>ACBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">2 4 6</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>MaxDexBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">2 4 6</AmountVector>
+            <Stance>Light Armor</Stance>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">3 6 10</AmountVector>
+           <SpellPower>Force/Untyped</SpellPower>
+         </Effect>
+         <Effect>
+            <Type>UniversalSpellPower</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">3 6 10</AmountVector>
+         </Effect>
       </EnhancementTreeItem>
       <!--Tier 3 Enhancements-->
       <EnhancementTreeItem>
@@ -299,6 +563,16 @@ and +[1/2/3] Spell Penetration.</Description>
                <MinLevel>23</MinLevel>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>SneakAttackDice</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SpellPenetrationBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>U51ShadowdancerCrippledWithShadows</InternalName>
@@ -317,6 +591,11 @@ instead of Strength. +1 Martial Charge cap</Description>
                <MinLevel>23</MinLevel>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Destiny</Bonus>
+            <Feat>Crippling Strike</Feat>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>U51ShadowdancerGrimPrecision</InternalName>
@@ -333,6 +612,16 @@ instead of Strength. +1 Martial Charge cap</Description>
                <MinLevel>23</MinLevel>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>FortificationBypass</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">5 10 15</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>DodgeBypass</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>U51ShadowdancerSpellFocus</InternalName>
@@ -355,24 +644,48 @@ instead of Strength. +1 Martial Charge cap</Description>
                <Description>+[1/2/3] Illusion Spell DCs.</Description>
                <Icon>GrimPrecision</Icon>
                <Cost>1</Cost>
+               <Effect>
+                  <Type>SpellDC</Type>
+                  <Bonus>Destiny</Bonus>
+                  <AmountVector size="3">1 2 3</AmountVector>
+                  <School>Illusion</School>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Necromancy</Name>
                <Description>+[1/2/3] Necromancy Spell DCs.</Description>
                <Icon>GrimPrecision</Icon>
                <Cost>1</Cost>
+               <Effect>
+                  <Type>SpellDC</Type>
+                  <Bonus>Destiny</Bonus>
+                  <AmountVector size="3">1 2 3</AmountVector>
+                  <School>Necromancy</School>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Abjuration</Name>
                <Description>+[1/2/3] Abjuration Spell DCs.</Description>
                <Icon>GrimPrecision</Icon>
                <Cost>1</Cost>
+               <Effect>
+                  <Type>SpellDC</Type>
+                  <Bonus>Destiny</Bonus>
+                  <AmountVector size="3">1 2 3</AmountVector>
+                  <School>Abjuration</School>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Enchantment</Name>
                <Description>+[1/2/3] Enchantment Spell DCs.</Description>
                <Icon>GrimPrecision</Icon>
                <Cost>1</Cost>
+               <Effect>
+                  <Type>SpellDC</Type>
+                  <Bonus>Destiny</Bonus>
+                  <AmountVector size="3">1 2 3</AmountVector>
+                  <School>Enchantment</School>
+               </Effect>
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
@@ -398,7 +711,7 @@ Cooldown: [60/50/40] Seconds.</Description>
       <EnhancementTreeItem>
          <InternalName>U51ShadowdancerPierceTheGloom</InternalName>
          <Name>Shadowdancer: Pierce the Gloom</Name>
-         <Description>+[1/2/3] to hit, to-hit for Sneak attacks, and to-hit while Flanking.
+         <Description>+[1/2/3] to hit for Sneak attacks, and to-hit while Flanking.
 Rank 3: You gain Immunity to Silence, Quell, and Blindness.</Description>
          <Icon>U51PierceTheGloom</Icon>
          <XPosition>0</XPosition>
@@ -411,6 +724,32 @@ Rank 3: You gain Immunity to Silence, Quell, and Blindness.</Description>
                <MinLevel>26</MinLevel>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>SneakAttackAttack</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>Immunity</Type>
+            <Bonus>Destiny</Bonus>
+            <Immunity/>
+            <Immunity/>
+            <Immunity>Silence</Immunity>
+         </Effect>
+         <Effect>
+            <Type>Immunity</Type>
+            <Bonus>Destiny</Bonus>
+            <Immunity/>
+            <Immunity/>
+            <Immunity>Quell</Immunity>
+         </Effect>
+         <Effect>
+            <Type>Immunity</Type>
+            <Bonus>Destiny</Bonus>
+            <Immunity/>
+            <Immunity/>
+            <Immunity>Blindness</Immunity>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>U51ShadowdancerDarkArmor</InternalName>
@@ -427,6 +766,27 @@ Rank 3: You gain Immunity to Silence, Quell, and Blindness.</Description>
                <MinLevel>26</MinLevel>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>PRR</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">2 4 6</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>MRR</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">2 4 6</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">3 3 3</AmountVector>
+            <SpellPower>Force/Untyped</SpellPower>
+         </Effect>
+         <Effect>
+            <Type>UniversalSpellPower</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">3 3 3</AmountVector>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>U51ShadowdancerDarkMercy</InternalName>
@@ -443,6 +803,12 @@ Rank 3: You gain Immunity to Silence, Quell, and Blindness.</Description>
                <MinLevel>26</MinLevel>
             </Requirement>
          </Requirements>
+        <Effect>
+            <Type>HelplessDamage</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">5 10 15</AmountVector>
+            <Stance>Shadowform Mantle</Stance>
+        </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>U51ShadowdancerTheDrop</InternalName>
@@ -480,6 +846,32 @@ This may only trigger once every 1 minute.</Description>
                <MinLevel>26</MinLevel>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>SneakAttackDice</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>2</Amount>
+            <Stance>Tumble</Stance>
+         </Effect>
+         <Effect>
+            <Type>SneakAttackAttack</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>5</Amount>
+            <Stance>Tumble</Stance>
+         </Effect>
+         <Effect>
+            <Type>SneakAttackDamage</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>5</Amount>
+            <Stance>Tumble</Stance>
+         </Effect>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <Skill>Hide</Skill>
+            <Skill>Move Silently</Skill>
+            <Amount>5</Amount>
+            <Stance>Tumble</Stance>
+         </Effect>
       </EnhancementTreeItem>
       <!--Tier 5 Enhancements-->
       <EnhancementTreeItem>
@@ -504,6 +896,21 @@ You do not need to be in Shadowform for this to happen.</Description>
                <MinLevel>30</MinLevel>
             </Requirement>
          </Requirements>
+          <Effect>
+              <Type>Incorpreality</Type>
+              <Bonus>Enhancement</Bonus>
+              <Amount>25</Amount>
+              <ApplyAsItemEffect/>
+              <Stance>Shadowform Mantle</Stance>
+          </Effect>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <Skill>Hide</Skill>
+            <Skill>Move Silently</Skill>
+            <Amount>20</Amount>
+            <Stance>Shadowform Mantle</Stance>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>U51ShadowdancerJustATaste</InternalName>
@@ -522,6 +929,30 @@ Crossbows, and Finessable melee weapons.</Description>
                <MinLevel>30</MinLevel>
             </Requirement>
          </Requirements>
+        <Effect>
+            <Type>CriticalMultiplier</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>1</Amount>
+            <WeaponClass>Bows</WeaponClass>
+        </Effect>
+        <Effect>
+            <Type>CriticalMultiplier</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>1</Amount>
+            <WeaponClass>Thrown</WeaponClass>
+        </Effect>
+        <Effect>
+            <Type>CriticalMultiplier</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>1</Amount>
+            <WeaponClass>Crossbows</WeaponClass>
+        </Effect>
+        <Effect>
+            <Type>CriticalMultiplier</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>1</Amount>
+            <WeaponClass>Finesseable</WeaponClass>
+        </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>U51ShadowdancerWeird</InternalName>
@@ -544,6 +975,69 @@ modifier + Illusion spell bonuses to prevent the death.</Description>
                <MinLevel>30</MinLevel>
             </Requirement>
          </Requirements>
+        <Effect>
+            <Type>GrantSpell</Type>
+            <Bonus>Enhancement</Bonus>
+            <Spell>Weird</Spell>
+            <SpellLevel>9</SpellLevel>
+            <Class>Cleric</Class>
+        </Effect>
+        <Effect>
+            <Type>GrantSpell</Type>
+            <Bonus>Enhancement</Bonus>
+            <Spell>Weird</Spell>
+            <SpellLevel>9</SpellLevel>
+            <Class>Sorcerer</Class>
+        </Effect>
+        <Effect>
+            <Type>GrantSpell</Type>
+            <Bonus>Enhancement</Bonus>
+            <Spell>Weird</Spell>
+            <SpellLevel>9</SpellLevel>
+            <Class>Druid</Class>
+        </Effect>
+        <Effect>
+            <Type>GrantSpell</Type>
+            <Bonus>Enhancement</Bonus>
+            <Spell>Weird</Spell>
+            <SpellLevel>9</SpellLevel>
+            <Class>Wizard</Class>
+        </Effect>
+        <Effect>
+            <Type>GrantSpell</Type>
+            <Bonus>Enhancement</Bonus>
+            <Spell>Weird</Spell>
+            <SpellLevel>9</SpellLevel>
+            <Class>Favored Soul</Class>
+        </Effect>
+        <Effect>
+            <Type>GrantSpell</Type>
+            <Bonus>Enhancement</Bonus>
+            <Spell>Weird</Spell>
+            <SpellLevel>6</SpellLevel>
+            <Class>Artificer</Class>
+        </Effect>
+        <Effect>
+            <Type>GrantSpell</Type>
+            <Bonus>Enhancement</Bonus>
+            <Spell>Weird</Spell>
+            <SpellLevel>6</SpellLevel>
+            <Class>Alchemist</Class>
+        </Effect>
+        <Effect>
+            <Type>GrantSpell</Type>
+            <Bonus>Enhancement</Bonus>
+            <Spell>Weird</Spell>
+            <SpellLevel>6</SpellLevel>
+            <Class>Bard</Class>
+        </Effect>
+        <Effect>
+            <Type>GrantSpell</Type>
+            <Bonus>Enhancement</Bonus>
+            <Spell>Weird</Spell>
+            <SpellLevel>6</SpellLevel>
+            <Class>Warlock</Class>
+        </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>U51ShadowdancerGreaterSpellFocus</InternalName>
@@ -561,6 +1055,12 @@ modifier + Illusion spell bonuses to prevent the death.</Description>
                <MinLevel>30</MinLevel>
             </Requirement>
          </Requirements>
+        <Effect>
+            <Type>SpellDC</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <School>All</School>
+        </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <InternalName>U51ShadowdancerShadowMastery</InternalName>
@@ -579,6 +1079,28 @@ Rank 3: +1% Dodge Cap</Description>
                <MinLevel>30</MinLevel>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>DodgeBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>TacticalDC</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Tactical>Assassinate</Tactical>
+         </Effect>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+             <Save>Reflex</Save>
+         </Effect>
+         <Effect>
+            <Type>DodgeCapBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">0 0 1</AmountVector>
+         </Effect>
       </EnhancementTreeItem>
    </EnhancementTree>
 </Enhancements>

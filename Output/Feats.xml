@@ -7248,6 +7248,54 @@ physical resistance when wearing light armor.</Description>
          <Save>All</Save>
          <Amount>1</Amount>
       </Effect>
+         <Effect>
+            <DisplayName>Shiradi Champion: Good Luck and Luck of Heroes</DisplayName>
+            <Type>SkillBonus</Type>
+            <Bonus>Luck</Bonus>
+            <Skill>All</Skill>
+            <AmountVector size="6">0 0 0 1 2 3</AmountVector>
+            <ApplyAsItemEffect/>
+         </Effect>
+         <Effect>
+            <DisplayName>Shiradi Champion: Good Luck and Luck of Heroes</DisplayName>
+            <Type>SaveBonus</Type>
+            <Bonus>Luck</Bonus>
+            <Save>All</Save>
+            <AmountVector size="6">0 0 0 1 2 3</AmountVector>
+            <ApplyAsItemEffect/>
+         </Effect>
+         <Effect>
+            <DisplayName>Shiradi Champion: Good Luck and Luck of Heroes</DisplayName>
+            <Type>SkillBonus</Type>
+            <Bonus>Luck</Bonus>
+            <Skill>All</Skill>
+            <AmountVector size="6">0 0 0 1 2 3</AmountVector>
+            <ApplyAsItemEffect/>
+         </Effect>
+         <Effect>
+            <DisplayName>Shiradi Champion: Good Luck and Luck of Heroes</DisplayName>
+            <Type>SaveBonus</Type>
+            <Bonus>Luck</Bonus>
+            <Save>All</Save>
+            <AmountVector size="6">0 0 0 1 2 3</AmountVector>
+            <ApplyAsItemEffect/>
+         </Effect>
+         <Effect>
+            <DisplayName>Shiradi Champion: Good Luck and Luck of Heroes</DisplayName>
+            <Type>SkillBonus</Type>
+            <Bonus>Luck</Bonus>
+            <Skill>All</Skill>
+            <AmountVector size="6">0 0 0 1 2 3</AmountVector>
+            <ApplyAsItemEffect/>
+         </Effect>
+         <Effect>
+            <DisplayName>Shiradi Champion: Good Luck and Luck of Heroes</DisplayName>
+            <Type>SaveBonus</Type>
+            <Bonus>Luck</Bonus>
+            <Save>All</Save>
+            <AmountVector size="6">0 0 0 1 2 3</AmountVector>
+            <ApplyAsItemEffect/>
+         </Effect>
    </Feat>
    <Feat>
       <Name>Magical Training</Name>
@@ -8746,6 +8794,12 @@ This feat can be taken up to three times, and gives no benefit to druids in elem
          <Skill>Open Lock</Skill>
          <Amount>2</Amount>
       </Effect>
+         <Effect>
+            <DisplayName>Shadowdancer: Technician with Nimble Fingers</DisplayName>
+            <Type>SneakAttackDice</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="4">0 0 0 1</AmountVector>
+         </Effect>
    </Feat>
    <Feat>
       <Name>Offhand Versatility</Name>
@@ -9611,6 +9665,20 @@ hit damage (before multipliers are applied).</Description>
          <Amount>2</Amount>
          <Weapon>All</Weapon>
       </Effect>
+         <Effect>
+            <DisplayName>Power Critical Bonus</DisplayName>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="6">0 0 0 1 2 3</AmountVector>
+            <Weapon>All</Weapon>
+         </Effect>
+         <Effect>
+            <DisplayName>Power Critical Bonus</DisplayName>
+            <Type>Seeker</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="6">0 0 0 1 2 3</AmountVector>
+            <Weapon>All</Weapon>
+         </Effect>
    </Feat>
    <Feat>
       <Name>Precise Shot</Name>
@@ -17456,7 +17524,13 @@ saving throws on a roll of 1.</Description>
 Point cost of all spells. This feat can be acquired multiple times and is granted
 every epic level.</Description>
       <MaxTimesAcquire>10</MaxTimesAcquire>
-      <Requirements/>
+      <Requirements>
+          <RequiresNoneOf>
+              <Requirement>
+                <Feat>Lamannia</Feat>
+              </Requirement>
+          </RequiresNoneOf>
+      </Requirements>
       <Acquire>Automatic</Acquire>
       <Icon>EpicPower</Icon>
       <Effect>
@@ -17481,6 +17555,138 @@ every epic level.</Description>
          <Amount>-1</Amount>
          <Percent/>
       </Effect>
+      <AutomaticAcquisition>
+         <Level>21</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Level>22</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Level>23</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Level>24</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Level>25</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Level>26</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Level>27</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Level>28</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Level>29</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Level>30</Level>
+      </AutomaticAcquisition>
+   </Feat>
+   <Feat>
+      <Name>Epic Power (U51)</Name>
+      <Description>+3 Melee Power, +3 Ranged Power, +6 Universal Spell Power and -1% to the Spell
+Point cost of all spells. This feat can be acquired multiple times and is granted
+every epic level. +1 Spellcasting Level for all spell casters per 2 Epic levels</Description>
+      <MaxTimesAcquire>10</MaxTimesAcquire>
+      <Requirements>
+            <Requirement>
+            <Feat>Lamannia</Feat>
+            </Requirement>
+      </Requirements>
+      <Acquire>Automatic</Acquire>
+      <Icon>EpicPower</Icon>
+      <Effect>
+         <Type>MeleePower</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>3</Amount>
+      </Effect>
+      <Effect>
+         <Type>RangedPower</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>3</Amount>
+      </Effect>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>6</Amount>
+         <SpellPower>All</SpellPower>
+      </Effect>
+      <Effect>
+         <Type>AdditionalSpellPointCost</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>-1</Amount>
+         <Percent/>
+      </Effect>
+         <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Feat</Bonus>
+            <Class>Alchemist</Class>
+            <AmountVector size="10">0 1 1 2 2 3 3 4 4 5</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Feat</Bonus>
+            <Class>Artificer</Class>
+            <AmountVector size="10">0 1 1 2 2 3 3 4 4 5</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Feat</Bonus>
+            <Class>Bard</Class>
+            <AmountVector size="10">0 1 1 2 2 3 3 4 4 5</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Feat</Bonus>
+            <Class>Cleric</Class>
+            <AmountVector size="10">0 1 1 2 2 3 3 4 4 5</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Feat</Bonus>
+            <Class>Druid</Class>
+            <AmountVector size="10">0 1 1 2 2 3 3 4 4 5</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Feat</Bonus>
+            <Class>Favored Soul</Class>
+            <AmountVector size="10">0 1 1 2 2 3 3 4 4 5</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Feat</Bonus>
+            <Class>Paladin</Class>
+            <AmountVector size="10">0 1 1 2 2 3 3 4 4 5</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Feat</Bonus>
+            <Class>Ranger</Class>
+            <AmountVector size="10">0 1 1 2 2 3 3 4 4 5</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Feat</Bonus>
+            <Class>Sorcerer</Class>
+            <AmountVector size="10">0 1 1 2 2 3 3 4 4 5</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Feat</Bonus>
+            <Class>Warlock</Class>
+            <AmountVector size="10">0 1 1 2 2 3 3 4 4 5</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Feat</Bonus>
+            <Class>Wizard</Class>
+            <AmountVector size="10">0 1 1 2 2 3 3 4 4 5</AmountVector>
+         </Effect>
       <AutomaticAcquisition>
          <Level>21</Level>
       </AutomaticAcquisition>
@@ -19019,6 +19225,12 @@ Search for difficult traps.)</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>WatchfulEye</Icon>
+         <Effect>
+            <DisplayName>Shiradi Champion: Pierce Deception</DisplayName>
+            <Type>Doubleshot</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">0 0 5</AmountVector>
+         </Effect>
    </Feat>
    <Feat>
       <Name>Wellspring of Power</Name>
@@ -19698,6 +19910,18 @@ Number of Destinies: 1</Description>
               <Amount>1</Amount>
             <Weapon>All</Weapon>
         </Effect>
+          <Effect>
+              <DisplayName>Shiradi Champion: Vision and Holy Strike</DisplayName>
+              <Type>DodgeBypass</Type>
+              <Bonus>Enhancement</Bonus>
+              <AmountVector size="2">0 5</AmountVector>
+          </Effect>
+          <Effect>
+              <DisplayName>Shiradi Champion: Vision and Holy Strike</DisplayName>
+              <Type>FortificationBypass</Type>
+              <Bonus>Enhancement</Bonus>
+              <AmountVector size="2">0 5</AmountVector>
+          </Effect>
    </Feat>
    <Feat>
       <Name>Dire Charge</Name>
@@ -20744,6 +20968,18 @@ Number of Destinies: 2, 1</Description>
          <Weapon>All</Weapon>
          <Stance>Lawful Target</Stance>
       </Effect>
+         <Effect>
+            <DisplayName>Harbinger of Chaos / Scarred by Chaos</DisplayName>
+            <Type>Hitpoints</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="2">0 50</AmountVector>
+         </Effect>
+         <Effect>
+            <DisplayName>Harbinger of Chaos / Scarred by Chaos</DisplayName>
+            <Type>PRR</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="2">0 50</AmountVector>
+         </Effect>
    </Feat>
    <Feat>
       <Name>Spirit Blades</Name>
@@ -28001,6 +28237,18 @@ or you have previously unlocked this tree for this character.</Description>
       </Effect>
    </Feat>
    <Feat>
+      <Name>Horizon Walker Tree</Name>
+      <Description>You have access to the Horizon Walker enhancement tree through a DDO store purchase
+or you have previously unlocked this tree for this character.</Description>
+      <Requirements/>
+      <Acquire>UniversalTree</Acquire>
+      <Icon>HorizonWalker</Icon>
+      <Effect>
+         <Type>EnhancementTree</Type>
+         <Bonus>Enhancement</Bonus>
+      </Effect>
+   </Feat>
+   <Feat>
       <Name>Harper Agent Tree</Name>
       <Description>You have access to the Harper Agent enhancement tree through a DDO store purchase
 or you have previously unlocked this tree for this character.</Description>
@@ -29408,6 +29656,18 @@ vs. Evil enemies. (This bonus damage works with melee, unarmed and ranged attack
               <Amount>1</Amount>
             <Weapon>All</Weapon>
         </Effect>
+          <Effect>
+              <DisplayName>Shiradi Champion: Vision and Holy Strike</DisplayName>
+              <Type>DodgeBypass</Type>
+              <Bonus>Enhancement</Bonus>
+              <AmountVector size="2">0 5</AmountVector>
+          </Effect>
+          <Effect>
+              <DisplayName>Shiradi Champion: Vision and Holy Strike</DisplayName>
+              <Type>FortificationBypass</Type>
+              <Bonus>Enhancement</Bonus>
+              <AmountVector size="2">0 5</AmountVector>
+          </Effect>
    </Feat>
    <Feat>
       <Name>Elusive Target (U51)</Name>
@@ -29593,6 +29853,18 @@ form of damage reduction.</Description>
          <Tactical>Stun</Tactical>
          <Tactical>General</Tactical>
       </Effect>
+        <Effect>
+            <DisplayName>Tactican Bonus with Legendary Tactics</DisplayName>
+            <Type>PRR</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="2">0 5</AmountVector>
+        </Effect>
+        <Effect>
+            <DisplayName>Tactican Bonus with Legendary Tactics</DisplayName>
+            <Type>MRR</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="2">0 5</AmountVector>
+        </Effect>
    </Feat>
    <Feat>
       <Name>Doubleshot (U51)</Name>
@@ -30911,5 +31183,18 @@ Weapons and Unarmed attacks gain Superior Vampirism.</Description>
       <Requirements/>
       <Acquire>Automatic</Acquire>
       <Icon>Lamannia</Icon>
+   </Feat>
+   <Feat>
+      <Name>Prescient Curve</Name>
+      <Description>No details available - probably something to do with sickles.
+You can now use Sickles as if they were Ki weapons</Description>
+      <Requirements/>
+      <Acquire>Train</Acquire>
+      <Icon>Unknown</Icon>
+      <Effect>
+         <Type>CenteredWeapon</Type>
+         <Bonus>Feat</Bonus>
+         <Weapon>Sickle</Weapon>
+      </Effect>
    </Feat>
 </Feats>

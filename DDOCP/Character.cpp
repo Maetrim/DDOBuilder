@@ -805,6 +805,19 @@ void Character::NotifyAllDestinyEffects()
     }
 }
 
+void Character::NotifyAllU51DestinyEffects()
+{
+    // we only notify for the active tree and trained twists of fate
+    // for each tree that has a trained item
+    std::list<DestinySpendInTree>::const_iterator it = m_DestinyTreeSpend.begin();
+    while (it != m_DestinyTreeSpend.end())
+    {
+        const DestinySpendInTree & tree = (*it);
+        ApplyAllEffects(tree.TreeName(), tree.Enhancements());
+        ++it;
+    }
+}
+
 void Character::NotifyAllTwistEffects()
 {
     for (size_t twist = 0; twist < MAX_TWISTS; ++twist)
@@ -1578,6 +1591,7 @@ void Character::NowActive()
     NotifyAllEnhancementEffects();
     NotifyAllReaperEnhancementEffects();
     NotifyAllDestinyEffects();
+    NotifyAllU51DestinyEffects();
     NotifyAllTwistEffects();
     ApplyGearEffects();     // apply effects from equipped gear
     m_previousGuildLevel = 0;   // ensure all effects apply
@@ -3680,6 +3694,83 @@ void Character::JustLoaded()
             }
         }
     }
+
+    {
+        std::list<DestinySpendInTree>::iterator dsit = m_DestinyTreeSpend.begin();
+        while (dsit != m_DestinyTreeSpend.end())
+        {
+            const EnhancementTree & tree = GetEnhancementTree((*dsit).TreeName());
+            if (tree.Name() == "")
+            {
+                // the tree no longer exists, just delete this entry
+                CString text;
+                text.Format("The tree \"%s\" no longer exists. All enhancements spent in this tree were revoked.\n",
+                        (*dsit).TreeName().c_str());
+                message += text;
+                displayMessage = true;
+                dsit = m_DestinyTreeSpend.erase(dsit);
+            }
+            else
+            {
+                // is the recorded tree spend up to date with that loaded?
+                size_t spendVersion = (*dsit).TreeVersion();
+                if (spendVersion != tree.Version())
+                {
+                    // looks like this tree is now out of date, have to revoke all these
+                    // enhancements in this tree (i.e. just delete it)
+                    CString text;
+                    text.Format("All enhancements in tree \"%s\" were revoked as the tree has since been superseded\n",
+                            (*dsit).TreeName().c_str());
+                    message += text;
+                    displayMessage = true;
+                    dsit = m_DestinyTreeSpend.erase(dsit);
+                }
+                else
+                {
+                    // the tree is up to date, sum how many APs were spent in it
+                    bool bBadEnhancement = false;
+                    size_t apsSpent = 0;
+                    std::list<TrainedEnhancement> te = (*dsit).Enhancements();
+                    std::list<TrainedEnhancement>::iterator teit = te.begin();
+                    while (teit != te.end())
+                    {
+                        const EnhancementTreeItem * pTreeItem = FindEnhancement((*teit).EnhancementName());
+                        if (pTreeItem != NULL)
+                        {
+                            apsSpent += pTreeItem->Cost((*teit).Selection()) * (*teit).Ranks();
+                            // cost also updated so revoke of items will work
+                            (*teit).SetCost(pTreeItem->Cost((*teit).Selection()));
+                        }
+                        else
+                        {
+                            bBadEnhancement = true;
+                        }
+                        ++teit;
+                    }
+                    if (!bBadEnhancement)
+                    {
+                        // now set it on the tree so it knows how much has been spent in it
+                        (*dsit).Set_Enhancements(te);
+                        (*dsit).SetSpent(apsSpent);
+                        // done
+                        ++dsit;
+                    }
+                    else
+                    {
+                        // looks like this tree is now out of date, have to revoke all these
+                        // enhancements in this tree (i.e. just delete it)
+                        CString text;
+                        text.Format("All enhancements in tree \"%s\" were revoked as bad enhancement was encountered\n",
+                                (*dsit).TreeName().c_str());
+                        message += text;
+                        displayMessage = true;
+                        dsit = m_DestinyTreeSpend.erase(dsit);
+                    }
+                }
+            }
+        }
+    }
+
     // racial completionist state may have changed
     std::list<TrainedFeat> allFeats = SpecialFeats().Feats();
     for (size_t level = 0; level < MAX_LEVEL; ++level)
@@ -4844,7 +4935,8 @@ int Character::AvailableActionPoints() const
 int Character::U51Destiny_AvailableDestinyPoints() const
 {
     return (MAX_LEVEL - MAX_CLASS_LEVEL) * 4
-            + static_cast<int>(FindBreakdown(Breakdown_DestinyPoints)->Total());
+            + static_cast<int>(FindBreakdown(Breakdown_DestinyPoints)->Total())
+            - m_destinyTreeSpend;
 }
 
 int Character::BonusRacialActionPoints() const
