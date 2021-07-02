@@ -62,6 +62,7 @@ Character::Character() :
     m_bonusUniversalActionPoints(0),
     m_racialTreeSpend(0),
     m_universalTreeSpend(0),
+    m_destinyTreeSpend(0),
     m_classTreeSpend(0),
     m_previousGuildLevel(0),
     m_bLamanniaMode(false)
@@ -3754,6 +3755,7 @@ void Character::JustLoaded()
                         (*dsit).SetSpent(apsSpent);
                         // done
                         ++dsit;
+                        m_destinyTreeSpend += apsSpent;
                     }
                     else
                     {
