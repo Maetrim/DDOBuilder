@@ -524,7 +524,7 @@ void CFeatsClassControl::DrawFeat(
                 size_t imageIndex = FeatImageIndex(tf.AlternateFeatName());
                 CPoint pos = rctItem.TopLeft();
                 pos.x += 2;
-                pos.y += 2;
+                pos.y += 1;
                 m_imagesFeats.Draw(
                         pDC,
                         imageIndex,
@@ -534,7 +534,7 @@ void CFeatsClassControl::DrawFeat(
                 imageIndex = FeatImageIndex(tf.FeatName());
                 pos = rctItem.TopLeft();
                 pos.x += 18;        // half way across previous icon
-                pos.y += 2;
+                pos.y += 1;
                 m_imagesFeats.Draw(
                         pDC,
                         imageIndex,
@@ -562,7 +562,7 @@ void CFeatsClassControl::DrawFeat(
                 size_t imageIndex = FeatImageIndex(tf.FeatName());
                 CPoint pos = rctItem.TopLeft();
                 pos.x += 2;
-                pos.y += 2;
+                pos.y += 1;
                 m_imagesFeats.Draw(
                         pDC,
                         imageIndex,
@@ -587,7 +587,7 @@ void CFeatsClassControl::DrawFeat(
             // we can re-use the class [?] unknown icon
             CPoint pos = rctItem.TopLeft();
             pos.x += 2;
-            pos.y += 2;
+            pos.y += 1;
             m_classImagesLarge.Draw(
                     pDC,
                     Class_Unknown,
