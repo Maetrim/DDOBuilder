@@ -37,14 +37,32 @@
          <Bonus>Equipment</Bonus>
          <Amount>15</Amount>
       </Effect>
-      <EffectDescription>Damage and Type [2d6] + 6 Bludgeon, Magic</EffectDescription>
+      <EffectDescription>Damage and Type 3[2d6] + 6 Bludgeon, Good, Magic</EffectDescription>
       <EffectDescription>Critical Threat Range 20 x2</EffectDescription>
       <EffectDescription>+6 Enhancement Bonus: +6 Enhancement bonus to Armor Class.</EffectDescription>
       <ItemSpecificEffects>
+            <Effect>
+                <Type>DRBypass</Type>
+                <Bonus>Stacking</Bonus>
+                <DR>Bludgeon</DR>
+                <Weapon>All</Weapon>
+            </Effect>
+            <Effect>
+                <Type>DRBypass</Type>
+                <Bonus>Stacking</Bonus>
+                <DR>Good</DR>
+                <Weapon>All</Weapon>
+            </Effect>
+            <Effect>
+                <Type>DRBypass</Type>
+                <Bonus>Stacking</Bonus>
+                <DR>Magic</DR>
+                <Weapon>All</Weapon>
+            </Effect>
         <Effect>
             <Type>WeaponBaseDamageBonus</Type>
             <Bonus>Base</Bonus>
-            <Amount>2.5</Amount>
+            <Amount>3</Amount>
             <Weapon>Large Shield</Weapon>
         </Effect>
          <Effect>
@@ -66,63 +84,66 @@
                 <Weapon>All</Weapon>
             </Effect>
          <Effect>
-            <DisplayName>Greater Undead Bane</DisplayName>
+            <Type>Keen</Type>
+            <Bonus>Equipment</Bonus>
+            <Weapon>All</Weapon>
+         </Effect>
+         <Effect>
+            <DisplayName>Flaming Blast 4</DisplayName>
             <Type>WeaponOtherDamageBonus</Type>
             <Bonus>Stacking</Bonus>
             <Weapon>All</Weapon>
               <Dice>
-                 <Number size="1">3</Number>
-                 <Sides size="1">6</Sides>
-                 <Energy>Bane</Energy>
-              </Dice>
-         </Effect>
-         <Effect>
-            <DisplayName>Greater Undead Bane</DisplayName>
-            <Type>WeaponOtherCriticalDamageBonus</Type>
-            <Bonus>Stacking</Bonus>
-            <Weapon>All</Weapon>
-              <Dice>
-                 <Number size="1">3</Number>
-                 <Sides size="1">6</Sides>
-                 <Energy>Bane</Energy>
-              </Dice>
-         </Effect>
-         <Effect>
-            <DisplayName>Flaming Burst</DisplayName>
-            <Type>WeaponOtherDamageBonus</Type>
-            <Bonus>Stacking</Bonus>
-            <Weapon>All</Weapon>
-              <Dice>
-                 <Number size="1">1</Number>
+                 <Number size="1">4</Number>
                  <Sides size="1">6</Sides>
                  <Energy>Fire</Energy>
               </Dice>
          </Effect>
          <Effect>
-            <DisplayName>Flaming Burst</DisplayName>
+            <DisplayName>Flaming Blast 4</DisplayName>
             <Type>WeaponOtherCriticalDamageBonus</Type>
             <Bonus>Stacking</Bonus>
             <Weapon>All</Weapon>
-            <CriticalMultiplier/>
               <Dice>
-                 <Number size="4">0 1 2 3</Number>
-                 <Sides size="4">10 10 10 10</Sides>
+                 <Number size="1">8</Number>
+                 <Sides size="1">6</Sides>
                  <Energy>Fire</Energy>
+              </Dice>
+         </Effect>
+         <Effect>
+            <DisplayName>Undead Bane 4</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+              <Dice>
+                 <Number size="1">4</Number>
+                 <Sides size="1">10</Sides>
+                 <Energy>Bane</Energy>
+              </Dice>
+         </Effect>
+         <Effect>
+            <DisplayName>Undead Bane 4</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+              <Dice>
+                 <Number size="1">4</Number>
+                 <Sides size="1">10</Sides>
+                 <Energy>Bane</Energy>
               </Dice>
          </Effect>
       </ItemSpecificEffects>
-         <EffectDescription>Greater Undead Bane: A bane weapon excels at attacking one type or subtype of creature. Against Undeads, this weapon's effective enhancement bonus is +4 better than its normal enhancement bonus. It deals an extra 3 to 18 points of damage against the foe.</EffectDescription>
-        <EffectDescription>Flaming Burst: This weapon is sheathed in fire. The weapon deals an extra 1 to 6 fire damage each hit. In addition, critical hits deal an additional 1 to 10 fire damage for weapons with a x2 critical multiplier, 2 to 20 for a x3 critical multiplier and 3 to 30 for a x4 multiplier.</EffectDescription>
-        <EffectDescription>Ghost Touch: An incorporeal creature's 50% chance to avoid damage does not apply to attacks with ghost touch weapons.</EffectDescription>
-        <Effect>
-            <Type>GhostTouch</Type>
-            <Bonus>Enhancement</Bonus>
-              <Amount>1</Amount>
-            <Weapon>All</Weapon>
-        </Effect>
+        <EffectDescription>Impact: Passive: The base critical threat range of this weapon is doubled. This does not stack with the improved critical feat. Vorpal strikes by this weapon also bypass all Fortification.</EffectDescription>
+        <EffectDescription>Flaming Blast 4: This weapon burns with deadly magical fire, dealing 4d6 Fire damage on a successful hit, and in additional 4d6 Fire damage on a critical hit.</EffectDescription>
+         <EffectDescription>Undead Bane 4: Those that have did must return, and this weapon is attuned specifically to lay them to rest. This weapon deals an additional 4d10 bane damage vs. Undead</EffectDescription>
+        <EffectDescription>Superior Undead Guard: This armor burns those Undead that attack the wearer, causing 7 to 56 Good damage on a successful melee attack.</EffectDescription>
         <EffectDescription>Flametouched Iron: A flametouched iron weapon is treated as a good-aligned weapon.</EffectDescription>
+        <SetBonus>Epic Oasis of the Morality</SetBonus>
         <ItemAugment>
-            <Type>Purple</Type>
+            <Type>Red</Type>
+        </ItemAugment>
+        <ItemAugment>
+            <Type>Blue</Type>
         </ItemAugment>
     </Item>
 </Items>

@@ -17,15 +17,6 @@
         <EffectDescription>Damage and Type 5[1d12] + 12 Slash, Good, Magic</EffectDescription>
         <EffectDescription>Critical Threat Range 20 x4</EffectDescription>
         <EffectDescription>+12 Enhancement Bonus: +12 Enhancement bonus to attack and Damage rolls.</EffectDescription>
-        <EffectDescription>Improved Banishing: On Hit: 4 to 24 Bane damage to Outsiders. On Vorpal Hit: If an outsider struck by this weapon has fewer than 1500 Hit Points, it is instantly slain else it takes 150 damage.</EffectDescription>
-        <EffectDescription>Bloodletter VII: On Critical Hit: 15 to 90 Slashing damage from weapons with a x2 Critical Multiplier, 15 to 120 for x3 and 15 to 150 for x4 or greater.</EffectDescription>
-        <EffectDescription>Melee Power +6: This item provides a +6 Enhancement bonus to Melee power.</EffectDescription>
-            <Effect>
-                <Type>MeleePower</Type>
-                <Bonus>Enhancement</Bonus>
-                <Amount>6</Amount>
-            </Effect>
-        <EffectDescription>Flametouched Iron: A flametouched iron weapon is treated as a good-aligned weapon.</EffectDescription>
         <EquipmentSlot>
             <Weapon1/>
         </EquipmentSlot>
@@ -108,7 +99,40 @@
                      <Energy>Good</Energy>
                   </Dice>
              </Effect>
+            <Effect>
+                <DisplayName>Superior Force Burst</DisplayName>
+                <Type>WeaponOtherDamageBonus</Type>
+                <Bonus>Equipment</Bonus>
+                <Dice>
+                    <Number size="1">2</Number>
+                    <Sides size="1">6</Sides>
+                    <Energy>Force</Energy>
+                </Dice>
+                <Weapon>All</Weapon>
+            </Effect>
+             <Effect>
+                <DisplayName>Superior Force Burst</DisplayName>
+                <Type>WeaponOtherCriticalDamageBonus</Type>
+                <Bonus>Stacking</Bonus>
+                <Weapon>All</Weapon>
+                <CriticalMultiplier/>
+                  <Dice>
+                     <Number size="4">0 2 4 6</Number>
+                     <Sides size="4">10 10 10 10</Sides>
+                     <Energy>Force</Energy>
+                  </Dice>
+             </Effect>
         </ItemSpecificEffects>
+        <EffectDescription>Improved Banishing: On Hit: 4 to 24 Bane damage to Outsiders. On Vorpal Hit: If an outsider struck by this weapon has fewer than 1500 Hit Points, it is instantly slain else it takes 150 damage.</EffectDescription>
+        <EffectDescription>Bloodletter VII: On Critical Hit: 15 to 90 Slashing damage from weapons with a x2 Critical Multiplier, 15 to 120 for x3 and 15 to 150 for x4 or greater.</EffectDescription>
+        <EffectDescription>Melee Power +6: This item provides a +6 Enhancement bonus to Melee power.</EffectDescription>
+            <Effect>
+                <Type>MeleePower</Type>
+                <Bonus>Enhancement</Bonus>
+                <Amount>6</Amount>
+            </Effect>
+        <EffectDescription>Superior Force Burst: This weapon is humming with magical force. The weapon does an extra 2 to 12 Force damage each hit. In addition, critical hits deal an additional 2 to 20 Force damage for weapons with a x2 critical multiplier, 4 to 40 for x3 and 6 to 60 for x4</EffectDescription>
+        <EffectDescription>Flametouched Iron: A flametouched iron weapon is treated as a good-aligned weapon.</EffectDescription>
         <ItemAugment>
             <Type>Orange</Type>
         </ItemAugment>

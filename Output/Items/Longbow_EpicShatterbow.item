@@ -17,7 +17,7 @@
         <EquipmentSlot>
             <Weapon1/>
         </EquipmentSlot>
-        <EffectDescription>Damage and Type 2[1d8] + 6 Pierce, Magic</EffectDescription>
+        <EffectDescription>Damage and Type 2[1d8] + 6 Pierce, Adamantine, Magic</EffectDescription>
         <EffectDescription>Critical Threat Range 20 x3</EffectDescription>
         <EffectDescription>+6 Enhancement Bonus: +6 Enhancement bonus to attack and Damage rolls.</EffectDescription>
         <ItemSpecificEffects>
@@ -25,6 +25,12 @@
                 <Type>DRBypass</Type>
                 <Bonus>Stacking</Bonus>
                 <DR>Pierce</DR>
+                <Weapon>All</Weapon>
+            </Effect>
+            <Effect>
+                <Type>DRBypass</Type>
+                <Bonus>Stacking</Bonus>
+                <DR>Adamantine</DR>
                 <Weapon>All</Weapon>
             </Effect>
             <Effect>
@@ -57,62 +63,72 @@
                 <Amount>6</Amount>
                 <Weapon>All</Weapon>
             </Effect>
-        <Effect>
-            <DisplayName>Screaming</DisplayName>
-            <Type>WeaponOtherDamageBonus</Type>
-            <Bonus>Stacking</Bonus>
-            <Weapon>All</Weapon>
-            <Dice>
-                <Number size="1">1</Number>
-                <Sides size="1">6</Sides>
-                <Energy>Sonic</Energy>
-            </Dice>
-        </Effect>
-        <Effect>
-            <DisplayName>Screaming</DisplayName>
-            <Type>WeaponOtherCriticalDamageBonus</Type>
-            <Bonus>Stacking</Bonus>
-            <Weapon>All</Weapon>
-            <Dice>
-                <Number size="1">1</Number>
-                <Sides size="1">6</Sides>
-                <Energy>Sonic</Energy>
-            </Dice>
-        </Effect>
          <Effect>
-            <DisplayName>Greater Construct Bane</DisplayName>
+            <DisplayName>Sonic Blast 4</DisplayName>
             <Type>WeaponOtherDamageBonus</Type>
             <Bonus>Stacking</Bonus>
             <Weapon>All</Weapon>
               <Dice>
-                 <Number size="1">3</Number>
+                 <Number size="1">4</Number>
                  <Sides size="1">6</Sides>
-                 <Energy>Bane</Energy>
+                 <Energy>Sonic</Energy>
               </Dice>
-             <Stance>Construct</Stance>
          </Effect>
          <Effect>
-            <DisplayName>Greater Construct Bane</DisplayName>
+            <DisplayName>Sonic Blast 4</DisplayName>
             <Type>WeaponOtherCriticalDamageBonus</Type>
             <Bonus>Stacking</Bonus>
             <Weapon>All</Weapon>
               <Dice>
-                 <Number size="1">3</Number>
+                 <Number size="1">8</Number>
                  <Sides size="1">6</Sides>
-                 <Energy>Bane</Energy>
+                 <Energy>Sonic</Energy>
               </Dice>
-             <Stance>Construct</Stance>
          </Effect>
+        <Effect>
+            <DisplayName>Construct Bane 4</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+            <Dice>
+                <Number size="1">4</Number>
+                <Sides size="1">10</Sides>
+                <Energy>Bane</Energy>
+            </Dice>
+            <Stance>Construct</Stance>
+        </Effect>
+        <Effect>
+            <DisplayName>Construct Bane 4</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+            <Dice>
+                <Number size="1">4</Number>
+                <Sides size="1">10</Sides>
+                <Energy>Bane</Energy>
+            </Dice>
+            <Stance>Construct</Stance>
+        </Effect>
         </ItemSpecificEffects>
-        <EffectDescription>Screaming: Screaming weapons emit a piercing screech whenever they are used to make a successful attack. This screech does an additional 1 to 6 sonic damage.</EffectDescription>
-        <EffectDescription>Greater Construct Bane: A bane weapon excels at attacking one type or subtype of creature. Against Constructs, this weapon's effective enhancement bonus is +4 better than its normal enhancement bonus. It deals an extra 3 to 18 points of damage against the foe.</EffectDescription>
         <EffectDescription>Improved Destruction: On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second duration. Stacks up to 15 times.) This effect may trigger once every second.</EffectDescription>
-        <EffectDescription>Move Silently -10: Passive: -10 penalty to the Move Silently skill.</EffectDescription>
+        <EffectDescription>Sonic Blast 4: This weapon rings with the power of sound, dealing 4d6 Sonic damage on a successful hit, and an additional 4d6 Sonic damage on a critical hit.</EffectDescription>
+        <EffectDescription>Construct Bane 4: This weapon is attuned specifically to disrupt crearyions, dealing an additional 4d10 bane damage vs. Constructs.</EffectDescription>
+        <EffectDescription>Armor-Piercing +15%: +15% Enhancement bonus to bypass enemy fortification.</EffectDescription>
+        <Effect>
+            <Type>FortificationBypass</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>15</Amount>
+        </Effect>
+        <EffectDescription>Adamantine: Adamantine weapons may bypass the damage reduction of certain items and creatures.</EffectDescription>
+        <EffectDescription>Move Silently -10: Gives a -10 penalty to the Move Silently skill.</EffectDescription>
         <Effect>
             <Type>SkillBonus</Type>
             <Bonus>Penalty</Bonus>
             <Amount>-10</Amount>
             <Skill>Move Silently</Skill>
         </Effect>
+        <ItemAugment>
+            <Type>Red</Type>
+        </ItemAugment>
     </Item>
 </Items>

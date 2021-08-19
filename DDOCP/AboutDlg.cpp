@@ -64,6 +64,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
             "Caarb, "
             "Cardo, "
             "Carpone, "
+            "Cinnamoronroll, "
             "Civet, "
             "Cleru, "
             "cmecu, "

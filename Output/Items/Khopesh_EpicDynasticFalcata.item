@@ -13,14 +13,14 @@
         <DamageModifier>Strength</DamageModifier>
         <DamageModifier>Charisma</DamageModifier>
         <Dice>
-            <Number size="1">2</Number>
+            <Number size="1">1</Number>
             <Sides size="1">8</Sides>
         </Dice>
         <EquipmentSlot>
             <Weapon1/>
             <Weapon2/>
         </EquipmentSlot>
-        <EffectDescription>Damage and Type [2d8] + 6 Slash, Lawful, Adamantine, Magic</EffectDescription>
+        <EffectDescription>Damage and Type 2[1d8] + 6 Slash, Good, Lawful, Adamantine, Magic</EffectDescription>
         <EffectDescription>Critical Threat Range 19-20 x3</EffectDescription>
         <EffectDescription>+6 Enhancement Bonus: +6 Enhancement bonus to attack and Damage rolls.</EffectDescription>
         <ItemSpecificEffects>
@@ -28,6 +28,12 @@
                 <Type>DRBypass</Type>
                 <Bonus>Stacking</Bonus>
                 <DR>Slash</DR>
+                <Weapon>All</Weapon>
+            </Effect>
+            <Effect>
+                <Type>DRBypass</Type>
+                <Bonus>Stacking</Bonus>
+                <DR>Good</DR>
                 <Weapon>All</Weapon>
             </Effect>
             <Effect>
@@ -51,7 +57,7 @@
             <Effect>
                 <Type>WeaponBaseDamageBonus</Type>
                 <Bonus>Base</Bonus>
-                <Amount>3</Amount>
+                <Amount>2</Amount>
                 <Weapon>All</Weapon>
             </Effect>
             <Effect>
@@ -73,61 +79,69 @@
                 <Weapon>All</Weapon>
             </Effect>
              <Effect>
-                <DisplayName>Axiomatic Burst</DisplayName>
+                <DisplayName>Axiomatic Blast 4</DisplayName>
                 <Type>WeaponOtherDamageBonus</Type>
                 <Bonus>Stacking</Bonus>
                 <Weapon>All</Weapon>
                   <Dice>
-                     <Number size="1">2</Number>
+                     <Number size="1">4</Number>
                      <Sides size="1">6</Sides>
                      <Energy>Lawful</Energy>
                   </Dice>
              </Effect>
              <Effect>
-                <DisplayName>Axiomatic Burst</DisplayName>
+                <DisplayName>Axiomatic Blast 4</DisplayName>
                 <Type>WeaponOtherCriticalDamageBonus</Type>
                 <Bonus>Stacking</Bonus>
                 <Weapon>All</Weapon>
-                <CriticalMultiplier/>
                   <Dice>
-                     <Number size="5">0 3 4 5 6</Number>
-                     <Sides size="5">0 6 6 6 6</Sides>
+                     <Number size="1">8</Number>
+                     <Sides size="1">6</Sides>
                      <Energy>Lawful</Energy>
                   </Dice>
              </Effect>
-             <Effect>
-                <DisplayName>True Law</DisplayName>
-                <Type>WeaponOtherDamageBonus</Type>
-                <Bonus>Stacking</Bonus>
-                <Weapon>All</Weapon>
-                  <Dice>
-                     <Number size="1">1</Number>
-                     <Sides size="1">6</Sides>
-                  </Dice>
-                 <Stance>Non-Lawful</Stance>
-             </Effect>
-             <Effect>
-                <DisplayName>True Law</DisplayName>
-                <Type>WeaponOtherCriticalDamageBonus</Type>
-                <Bonus>Stacking</Bonus>
-                <Weapon>All</Weapon>
-                  <Dice>
-                     <Number size="1">1</Number>
-                     <Sides size="1">6</Sides>
-                  </Dice>
-                 <Stance>Non-Lawful</Stance>
-             </Effect>
+         <Effect>
+            <DisplayName>Good Blast 4</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+              <Dice>
+                 <Number size="1">4</Number>
+                 <Sides size="1">6</Sides>
+                 <Energy>Good</Energy>
+              </Dice>
+             <Stance>Evil</Stance>
+         </Effect>
+         <Effect>
+            <DisplayName>Good Blast 4</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+              <Dice>
+                 <Number size="1">8</Number>
+                 <Sides size="1">6</Sides>
+                 <Energy>Good</Energy>
+              </Dice>
+             <Stance>Evil</Stance>
+         </Effect>
         </ItemSpecificEffects>
-        <EffectDescription>Charisma +7: Passive: +7 Enhancement Bonus to Charisma.</EffectDescription>
+        <EffectDescription>Axiomatic Blast 4: This weapon is an implement of law, dealing 4d6 Law damage on a successful hit, and an additional 4d6 Law damage on a critical hit. This effect makes the weapon lawfully aligned. Chaotic characters wielding this weapon will suffer one negative level.</EffectDescription>
+        <EffectDescription>Good Blast 4: This weapon sings of virtue, dealing 4d6 Good damage on a successful hit to Evil enemies, and 4d6 Good damage on a critical hit to Evil enemies. This makes the weapon good aligned. Evil characters wielding this weapon will suffer one negative level.</EffectDescription>
+        <EffectDescription>Doublestrike +11%: +11% Enhancement bonus to Doublestrike chance.</EffectDescription>
         <Effect>
-            <Type>AbilityBonus</Type>
+            <Type>Doublestrike</Type>
             <Bonus>Enhancement</Bonus>
-            <Amount>7</Amount>
-            <Ability>Charisma</Ability>
+            <Amount>11</Amount>
+        </Effect>
+        <EffectDescription>Favored Weapon: This weapon has a divine attunement and gains bonuses as if it were a Favored Weapon regardless of your Deity.</EffectDescription>
+        <Effect>
+            <Type>AddGroupWeapon</Type>
+            <Bonus>Enhancement</Bonus>
+            <WeaponGroup>Favored Weapon</WeaponGroup>
+            <Weapon>Khopesh</Weapon>
         </Effect>
         <EffectDescription>Adamantine: Adamantine weapons may bypass the damage reduction of certain items and creatures.</EffectDescription>
-        <EffectDescription>Axiomatic Burst: An axiomatic weapon is lawfully aligned and infused with the power of law. It makes the weapon law-aligned and thus bypasses the corresponding damage reduction. It deals an extra 2 to 12 points of damage against all of chaotic alignment and an extra 3 to 18 on a critical hit for weapons with a x2 critical multiplier, 4 to 24 for a x3 multiplier and 5 to 30 for a x4 multiplier. Chaotic characters wielding this weapon suffer a negative level.</EffectDescription>
-        <EffectDescription>True Law: This weapon is infused with the power of true law. It does an additional 1 to 6 damage to non-lawful targets and can only be wielded by lawful aligned characters.</EffectDescription>
+        <SetBonus>Epic Menechtarun Scavenger</SetBonus>
         <ItemAugment>
             <Type>Red</Type>
         </ItemAugment>

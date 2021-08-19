@@ -15,7 +15,7 @@
             <Sides size="1">6</Sides>
             <Bonus size="1">6</Bonus>
         </Dice>
-        <EffectDescription>Damage and Type 5[2d6+6] + 15 Slash, Cold Iron, Magic</EffectDescription>
+        <EffectDescription>Damage and Type 5[2d6+6] + 15 Slash, Evil, Magic</EffectDescription>
         <EffectDescription>Critical Threat Range 19-20 x2</EffectDescription>
         <EffectDescription>+15 Enhancement Bonus: +15 Enhancement bonus to attack and Damage rolls.</EffectDescription>
         <EquipmentSlot>
@@ -31,13 +31,13 @@
             <Effect>
                 <Type>DRBypass</Type>
                 <Bonus>Stacking</Bonus>
-                <DR>Magic</DR>
+                <DR>Evil</DR>
                 <Weapon>All</Weapon>
             </Effect>
             <Effect>
                 <Type>DRBypass</Type>
                 <Bonus>Stacking</Bonus>
-                <DR>Cold Iron</DR>
+                <DR>Magic</DR>
                 <Weapon>All</Weapon>
             </Effect>
             <Effect>
@@ -65,31 +65,83 @@
                 <Weapon>All</Weapon>
             </Effect>
             <Effect>
-                <DisplayName>Entropic 10</DisplayName>
+                <DisplayName>Accursed Flame 6</DisplayName>
                 <Type>WeaponOtherDamageBonus</Type>
                 <Bonus>Enhancement</Bonus>
                 <Dice>
-                    <Number size="1">10</Number>
+                    <Number size="1">6</Number>
                     <Sides size="1">6</Sides>
-                    <Energy>Untyped</Energy>
+                    <Energy>Fire</Energy>
                 </Dice>
                 <Weapon>All</Weapon>
             </Effect>
             <Effect>
-                <DisplayName>Entropic 10</DisplayName>
+                <DisplayName>Accursed Flame 6</DisplayName>
                 <Type>WeaponOtherCriticalDamageBonus</Type>
                 <Bonus>Enhancement</Bonus>
                 <Dice>
-                    <Number size="1">10</Number>
+                    <Number size="1">6</Number>
                     <Sides size="1">6</Sides>
-                    <Energy>Untyped</Energy>
+                    <Energy>Fire</Energy>
                 </Dice>
                 <Weapon>All</Weapon>
             </Effect>
+            <Effect>
+                <DisplayName>Accursed Flame 6</DisplayName>
+                <Type>WeaponOtherCriticalDamageBonus</Type>
+                <Bonus>Enhancement</Bonus>
+                <Dice>
+                    <Number size="1">6</Number>
+                    <Sides size="1">6</Sides>
+                    <Energy>Evil</Energy>
+                </Dice>
+                <Weapon>All</Weapon>
+                <Stance>Quelled</Stance>
+            </Effect>
         </ItemSpecificEffects>
         <EffectDescription>Cursed Maelstrom: This weapon is wracked with a dangerous and volatile curse. Striking an enemy has a chance to place a random, debilitating and deadly curse on your foe.</EffectDescription>
-        <EffectDescription>Entropic 10: This weapon is intensely powerful, and crackles with destructive, unpredictable magic. It deals an additional 10d6 untyped damage on each hit.</EffectDescription>
-        <EffectDescription>Cold Iron: This iron, mined deep underground and known for its effectiveness against fey creatures and some demons, is forged at a lower temperature to preserve its delicate properties.</EffectDescription>
+        <EffectDescription>Accursed Flame: Coalesce beyond the material, join us in the Flame! Hatred burns eternal! This weapon is wrapped in cursed flames, dealing an additional 6d6 Fire damage on each hit. When striking an enemy that has been Quelled, it also deals 6d6 Evil damage each hit. This effect makes the weapon evil aligned. Good character wielding this weapon will suffer one negative level.</EffectDescription>
+        <Effect>
+            <DisplayName>Negative Level</DisplayName>
+            <Type>Hitpoints</Type>
+            <Bonus>Penalty</Bonus>
+            <Amount>-5</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Good</Stance>
+        </Effect>
+        <Effect>
+            <DisplayName>Negative Level</DisplayName>
+            <Type>AttackBonus</Type>
+            <Bonus>Penalty</Bonus>
+            <Amount>-2</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Good</Stance>
+        </Effect>
+        <Effect>
+            <DisplayName>Negative Level</DisplayName>
+            <Type>SaveBonus</Type>
+            <Bonus>Penalty</Bonus>
+            <Amount>-2</Amount>
+            <Save>All</Save>
+            <Stance>Good</Stance>
+        </Effect>
+        <Effect>
+            <DisplayName>Negative Level</DisplayName>
+            <Type>SkillBonus</Type>
+            <Bonus>Penalty</Bonus>
+            <Amount>-2</Amount>
+            <Skill>All</Skill>
+            <Stance>Good</Stance>
+        </Effect>
+        <Effect>
+            <DisplayName>Negative Level</DisplayName>
+            <Type>CasterLevel</Type>
+            <Bonus>Penalty</Bonus>
+            <Amount>-1</Amount>
+            <Class>All</Class>
+            <Stance>Good</Stance>
+        </Effect>
+        <EffectDescription>Improved Destruction: On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second duration. Stacks up to 15 times.) This effect may trigger once every second.</EffectDescription>
         <ItemAugment>
             <Type>Red</Type>
         </ItemAugment>

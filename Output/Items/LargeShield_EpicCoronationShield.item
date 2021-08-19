@@ -37,14 +37,32 @@
          <Bonus>Equipment</Bonus>
          <Amount>15</Amount>
       </Effect>
-      <EffectDescription>Damage and Type [2d6] + 6 Bludgeon, Magic</EffectDescription>
+      <EffectDescription>Damage and Type 3[2d6] + 6 Bludgeon, Good, Magic</EffectDescription>
       <EffectDescription>Critical Threat Range 20 x2</EffectDescription>
       <EffectDescription>+6 Enhancement Bonus: +6 Enhancement bonus to Armor Class.</EffectDescription>
       <ItemSpecificEffects>
+            <Effect>
+                <Type>DRBypass</Type>
+                <Bonus>Stacking</Bonus>
+                <DR>Bludgeon</DR>
+                <Weapon>All</Weapon>
+            </Effect>
+            <Effect>
+                <Type>DRBypass</Type>
+                <Bonus>Stacking</Bonus>
+                <DR>Good</DR>
+                <Weapon>All</Weapon>
+            </Effect>
+            <Effect>
+                <Type>DRBypass</Type>
+                <Bonus>Stacking</Bonus>
+                <DR>Magic</DR>
+                <Weapon>All</Weapon>
+            </Effect>
         <Effect>
             <Type>WeaponBaseDamageBonus</Type>
             <Bonus>Base</Bonus>
-            <Amount>2.5</Amount>
+            <Amount>3</Amount>
             <Weapon>Large Shield</Weapon>
         </Effect>
          <Effect>
@@ -65,9 +83,42 @@
                 <Amount>6</Amount>
                 <Weapon>All</Weapon>
             </Effect>
+         <Effect>
+            <Type>Keen</Type>
+            <Bonus>Equipment</Bonus>
+            <Weapon>All</Weapon>
+         </Effect>
+         <Effect>
+            <DisplayName>Holy Blast 4</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+              <Dice>
+                 <Number size="1">4</Number>
+                 <Sides size="1">6</Sides>
+                 <Energy>Good</Energy>
+              </Dice>
+         </Effect>
+         <Effect>
+            <DisplayName>Holy Blast 4</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+              <Dice>
+                 <Number size="1">8</Number>
+                 <Sides size="1">6</Sides>
+                 <Energy>Good</Energy>
+              </Dice>
+         </Effect>
       </ItemSpecificEffects>
-        <EffectDescription>Blinding Flash: Caster level: 5 Charges: 3 (3/day)</EffectDescription>
-        <EffectDescription>Undead Guard: This armor burns those Undead that attack the wearer, causing 3d8 Good damage on a successful melee attack.</EffectDescription>
+        <EffectDescription>Impact: Passive: The base critical threat range of this weapon is doubled. This does not stack with the improved critical feat. Vorpal strikes by this weapon also bypass all Fortification.</EffectDescription>
+        <EffectDescription>Holy Blast 4: This weapon sings of virtue, dealing 4d6 Good damage on a successful hit, and an additional 4d6 Good damage on a critical hit. This effect makes the weapon good aligned. Evil characters wielding this weapon will suffer one negative level.</EffectDescription>
+        <EffectDescription>Greater Sirocco: A critical hit with this weapon causes a whirlwind of desert sand to swirl about the target, temporarily blinding it. A successful Reflex save (DC 35) prevents the effect.</EffectDescription>
+        <EffectDescription>Epic Paragon Light Guard: When hit or missed in combat, the attacking creature takes 8d8 Light damage.</EffectDescription>
+        <SetBonus>Epic Oasis of Morality</SetBonus>
+        <ItemAugment>
+            <Type>Blue</Type>
+        </ItemAugment>
         <ItemAugment>
             <Type>Purple</Type>
         </ItemAugment>
