@@ -9,6 +9,11 @@
         </EquipmentSlot>
         <MinLevel>29</MinLevel>
         <EffectDescription>Feat - Quick Draw: While equipped, this item grants the Quick Draw feat.</EffectDescription>
+        <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Equipment</Bonus>
+            <Feat>Quick Draw</Feat>
+        </Effect>
         <EffectDescription>Lesser Displacement: Equipping this item causes light to distort around you. Attacks from enemies have a 25% chance to miss you due to concealment.</EffectDescription>
         <Effect>
             <Type>Displacement</Type>
@@ -16,7 +21,18 @@
             <Amount>25</Amount>
         </Effect>
         <EffectDescription>Efficient Metamagic - Maximize II: The additional spell point cost for using the Maximize Metamagic feat is reduced by 2 SP.</EffectDescription>
-        <EffectDescription>Mystic Diversion +31%: +31% Enhancement bonus to Decreased threat generated from spell damage.</EffectDescription>
+        <Effect>
+            <Type>AdditionalSpellPointCost</Type>
+            <Bonus>Equipment</Bonus>
+            <Amount>-2</Amount>
+            <Stance>Maximize</Stance>
+        </Effect>
+        <EffectDescription>Mystic Diversion +20%: +20% Enhancement bonus to Decreased threat generated from spell damage.</EffectDescription>
+        <Effect>
+            <Type>ThreatBonusSpell</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>-20</Amount>
+        </Effect>
         <SetBonus>Beacon of Magic Set (Legendary)</SetBonus>
         <ItemAugment>
             <Type>Green</Type>
