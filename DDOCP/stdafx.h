@@ -44,8 +44,6 @@
 #define MAX_CLASS_LEVEL         20
 #define MAX_LEVEL               30
 #define MAX_SPELL_LEVEL         9
-#define MAX_TWISTS              5
-#define MAX_TWIST_LEVEL         4
 #define MAX_ENHANCEMENT_TREES   7
 #define MAX_EPIC_DESTINY_TREES  3
 #define MAX_FILIGREE            15
@@ -59,7 +57,6 @@ enum TreeType
     TT_racial,
     TT_universal,
     TT_epicDestiny,
-    TT_epicDestiny51,
     TT_reaper,
     TT_unknown
 };

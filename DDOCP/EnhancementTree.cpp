@@ -110,10 +110,6 @@ void EnhancementTree::EndElement()
         {
             (*it).m_type = TT_reaper;
         }
-        else if (HasIsU51EpicDestiny())
-        {
-            (*it).m_type = TT_epicDestiny51;
-        }
         else
         {
             // must be a standard enhancement tree

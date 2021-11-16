@@ -1,0 +1,908 @@
+<Enhancements>
+   <EnhancementTree>
+      <Name>Legendary Dreadnought</Name>
+      <Version>1</Version>
+      <Requirements>
+         <Requirement>
+            <Feat>Legendary Dreadnought</Feat>
+         </Requirement>
+      </Requirements>
+      <IsEpicDestiny/>
+      <Icon>LegendaryDreadnought</Icon>
+      <Background>DestinyMartial</Background>
+      <!--Cores-->
+      <EnhancementTreeItem>
+         <Name>Legendary Dreadnought: Fearless</Name>
+         <InternalName>U51LegendaryDreadnoughtCore1</InternalName>
+         <Description>You are now immune to Fear.
+Each core grants +15 Hit Points, +5 Melee Power, +4 Ranged Power</Description>
+         <Icon>U51Fearless</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>0</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Immunity</Type>
+            <Bonus>Destiny</Bonus>
+            <Immunity>Fear</Immunity>
+         </Effect>
+         <Effect>
+            <Type>MeleePower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>5</Amount>
+         </Effect>
+         <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>4</Amount>
+         </Effect>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>15</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Legendary Dreadnought: Weaponmaster</Name>
+         <InternalName>U51LegendaryDreadnoughtCore2</InternalName>
+         <Description>+2 to Attack and Damage with all Weapons.</Description>
+         <Icon>U51Weaponmaster</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>23</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Enhancement>U51LegendaryDreadnoughtCore1</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>MeleePower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>5</Amount>
+         </Effect>
+         <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>4</Amount>
+         </Effect>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>15</Amount>
+         </Effect>
+         <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>2</Amount>
+            <Weapon>All</Weapon>
+         </Effect>
+         <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>2</Amount>
+            <Weapon>All</Weapon>
+         </Effect>
+         <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>2</Amount>
+            <Weapon>All</Weapon>
+         </Effect>
+         <Effect>
+            <Type>Seeker</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>2</Amount>
+            <Weapon>All</Weapon>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Legendary Dreadnought: Thick Skinned</Name>
+         <InternalName>U51LegendaryDreadnoughtCore3</InternalName>
+         <Description>+15 Physical Resistance Rating.</Description>
+         <Icon>U51ThickSkinned</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>26</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Enhancement>U51LegendaryDreadnoughtCore2</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>MeleePower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>5</Amount>
+         </Effect>
+         <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>4</Amount>
+         </Effect>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>15</Amount>
+         </Effect>
+         <Effect>
+            <Type>PRR</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>15</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <!--Tier 1-->
+      <EnhancementTreeItem>
+         <Name>Legendary Dreadnought: Push Through The Line</Name>
+         <InternalName>U51LegendaryDreadnoughtPushThroughTheLine</InternalName>
+         <Description>Activating an Action Boost grants +[1/2/3] to all Ability Scores for the
+duration of that Action Boost.</Description>
+         <Icon>PushThroughTheLine</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Stance>Action Boost</Stance>
+            <Ability>All</Ability>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Legendary Dreadnought: Epic Tactics</Name>
+         <InternalName>U51LegendaryDreadnoughtEpicTactics</InternalName>
+         <Description>+[1/2/3] to Tactics DCs</Description>
+         <Icon>EpicTactics</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>TacticalDC</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Tactical>Assassinate</Tactical>
+            <Tactical>Trip</Tactical>
+            <Tactical>Sunder</Tactical>
+            <Tactical>Stun</Tactical>
+            <Tactical>General</Tactical>
+            <Tactical>Rune Arm</Tactical>
+            <Tactical>Quivering Palm</Tactical>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Legendary Dreadnought: Dire Attack</Name>
+         <InternalName>U51LegendaryDreadnoughtDireAttack</InternalName>
+         <Description>Pick a Melee or Ranged attack.</Description>
+         <Icon>DireAttack</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>1</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Dire Charge</Name>
+               <Description>Epic Strike: Melee Attack: Rush forward at the targeted foe.
+That foe and all nearby foes are subject to +2[W] damage and must save or be Sundered.
+Sunder DC is (20 + highest ability score + bonus to Stun attacks).
+12 second cooldown.</Description>
+               <Icon>DireAttack</Icon>
+               <Cost>1</Cost>
+               <Clickie/>
+               <DC>
+                  <Name>Dire Charge</Name>
+                  <Description>Melee Attack: Rush forward at the targeted foe.
+That foe and all nearby foes are subject to +2[W] damage and must save or be Sundered.
+Sunder DC is (20 + highest ability score + bonus to Stun attacks).
+12 second cooldown.</Description>
+                  <Icon>DireAttack</Icon>
+                  <DCVersus>Fortitude</DCVersus>
+                  <AmountVector size="1">20</AmountVector>
+                  <Tactical>Stun</Tactical>
+               </DC>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Dire Shot</Name>
+               <Description>Ranged Attack: Fire an arrow at the target foe.
+On hit: +2[W] damage and must make a Fortitude save or be Sundered.
+Sunder DC is (20 + highest ability score + bonus to Stun attacks).
+Cooldown: 12 seconds</Description>
+               <Icon>DireShot</Icon>
+               <Cost>1</Cost>
+               <Clickie/>
+               <DC>
+                  <Name>Dire Shot</Name>
+                  <Description>Epic Strike: Ranged Attack: Fire your weapon at the targeted foe.
+That foe is subject to +2[W] damage and must save or be Sundered.
+Sunder DC is (20 + highest ability score + bonus to Stun attacks).
+12 second cooldown.
+(This is a single-target Ranged attack, but can be affected by Improved Precise Shot.)</Description>
+                  <Icon>DireShot</Icon>
+                  <DCVersus>Fortitude</DCVersus>
+                  <AmountVector size="1">20</AmountVector>
+                  <Tactical>Stun</Tactical>
+               </DC>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Legendary Dreadnought: Dread Mantle</Name>
+         <InternalName>U51LegendaryDreadnoughtDreadMantle</InternalName>
+         <Description>Legendary Dreadnought Destiny Mantle: Your weapon attacks apply 1 stack of Terror.
+The Terror effect is: -1 Melee Power, -1 Ranged Power, -3 Universal Spell Power, -1 Armor Class.
+stacks up to 15 times. This effect has a 0.1 second cooldown.</Description>
+         <Icon>DreadMantle</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>1</MinSpent>
+         <Clickie/>
+         <Stance>
+            <Name>Dread Mantle</Name>
+            <Icon>DreadMantle</Icon>
+            <Description>Legendary Dreadnought Destiny Mantle: Your weapon attacks apply 1 stack of Terror.
+The Terror effect is: -1 Melee Power, -1 Ranged Power, -3 Universal Spell Power, -1 Armor Class.
+stacks up to 15 times. This effect has a 0.1 second cooldown.</Description>
+            <Group>Mantle</Group>
+         </Stance>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Legendary Dreadnought: Shrug Off Punishment</Name>
+         <InternalName>U51LegendaryDreadnoughtShrugOffPunishment</InternalName>
+         <Description>+[10/20/30] Maximum Hit Points</Description>
+         <Icon>U51ShrugOffPunishment</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">10 20 30</AmountVector>
+         </Effect>
+      </EnhancementTreeItem>
+      <!--Tier 2-->
+      <EnhancementTreeItem>
+         <Name>Legendary Dreadnought: Extra Action Boosts</Name>
+         <InternalName>U51LegendaryDreadnoughtExtraActionBoosts</InternalName>
+         <Description>+[1/2/3] additional Action Boost use per rest.</Description>
+         <Icon>U51ExtraActionBoost</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Legendary Dreadnought: Ghost Touch</Name>
+         <InternalName>U51LegendaryDreadnoughtGhostTouch</InternalName>
+         <Description>Your melee and ranged weapons get the Ghost Touch effect.</Description>
+         <Icon>EpicPowerAttack</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>GhostTouch</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Legendary Dreadnought: Honor or Backstab</Name>
+         <InternalName>U51LegendaryDreadnoughtHonorOrBackstab</InternalName>
+         <Description>Pick a style of approach to combat!</Description>
+         <Icon>HonorOrBackstab</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Backstab</Name>
+               <Description>+[2/4/6] to Attack while Flanking.
+If you have the Tactician feat, double the bonus.</Description>
+               <Icon>Backstab</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <DisplayName>Legendary Dreadnought: Backstab</DisplayName>
+                  <Type>AttackBonus</Type>
+                  <Bonus>Destiny</Bonus>
+                  <AmountVector size="7">2 4 6 0 4 8 12</AmountVector>
+                  <Stance>Flanking</Stance>
+                  <Weapon>All</Weapon>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Honor</Name>
+               <Description>+[1/2/3] to Attack.
+If you have the Tactician feat, double the bonus.</Description>
+               <Icon>HonorOrBackstab</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <DisplayName>Legendary Dreadnought: Honor</DisplayName>
+                  <Type>AttackBonus</Type>
+                  <Bonus>Destiny</Bonus>
+                  <AmountVector size="7">1 2 3 0 2 4 6</AmountVector>
+                  <Weapon>All</Weapon>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Legendary Dreadnought: Combat Brute</Name>
+         <InternalName>U51LegendaryDreadnoughtCombatBrute</InternalName>
+         <Description>While in your Dread Mantle, your weapons gain +1[W].</Description>
+         <Icon>U51CombatBrute</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Enhancement>U51LegendaryDreadnoughtDreadMantle</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>WeaponBaseDamageBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>1</Amount>
+            <Stance>Dread Mantle</Stance>
+            <Weapon>All</Weapon>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Legendary Dreadnought: Life and Death</Name>
+         <InternalName>U51LegendaryDreadnoughtLifeAndDeath</InternalName>
+         <Description>+[3/6/10] Positive, Negative, and Repair Healing Amplification</Description>
+         <Icon>LifeAndDeath</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>HealingAmplification</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">3 6 10</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>NegativeHealingAmplification</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">3 6 10</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>RepairAmplification</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">3 6 10</AmountVector>
+         </Effect>
+      </EnhancementTreeItem>
+      <!--Tier 3-->
+      <EnhancementTreeItem>
+         <Name>Legendary Dreadnought: Action Boost Tactics</Name>
+         <InternalName>U51LegendaryDreadnoughtActionBoostTactics</InternalName>
+         <Description>For 20 seconds, gain +[3/6/9] Action Boost bonus to Sunder, Trip, and Stun DCs.
+30 second cooldown. Shared with other Action Boosts.
+Has charges like any other Action Boost.</Description>
+         <Icon>U51ActionBoostTactics</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>23</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>TacticalDC</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">3 6 9</AmountVector>
+            <Stance>Action Boost</Stance>
+            <Tactical>Assassinate</Tactical>
+            <Tactical>Trip</Tactical>
+            <Tactical>Sunder</Tactical>
+            <Tactical>Stun</Tactical>
+            <Tactical>General</Tactical>
+            <Tactical>Rune Arm</Tactical>
+            <Tactical>Quivering Palm</Tactical>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Legendary Dreadnought: Strike Twice</Name>
+         <InternalName>U51LegendaryDreadnoughtStrikeTwice</InternalName>
+         <Description>+[2/4/6]% Doublestrike and Doubleshot</Description>
+         <Icon>StrikeTwice</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>23</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Doublestrike</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">2 4 6</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>Doubleshot</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">2 4 6</AmountVector>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Legendary Dreadnought: Momentum Swing</Name>
+         <InternalName>U51LegendaryDreadnoughtMomentumSwing</InternalName>
+         <Description>When you use your Dire Attack, enemies must now also save or be Tripped.
+Trip DC is (20 + highest ability score + bonus to Stun attacks).</Description>
+         <Icon>MomentumSwing</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>23</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Enhancement>U51LegendaryDreadnoughtDireAttack</Enhancement>
+            </Requirement>
+         </Requirements>
+         <DC>
+            <Name>Momentum Swing Trip</Name>
+            <Description>When you use your Dire Charge or Dire Shot, enemies must now also make a
+Fortitude save or be Tripped.</Description>
+            <Icon>U51MomentumSwing</Icon>
+            <DCVersus>Fortitude</DCVersus>
+            <AmountVector size="1">20</AmountVector>
+            <Ability>Strength</Ability>
+            <Ability>Dexterity</Ability>
+            <Ability>Consitution</Ability>
+            <Ability>Intelligence</Ability>
+            <Ability>Wisdom</Ability>
+            <Ability>Charisma</Ability>
+            <Tactical>Stun</Tactical>
+         </DC>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Legendary Dreadnought: Epic Power &amp; Precision</Name>
+         <InternalName>U51LegendaryDreadnoughtEpicPowerAndPrecision</InternalName>
+         <Description>When you have Power Attack active, you gain +[2/4/6] Critical Hit damage.
+When you have Precision active, you gain +[2/4/6] to your critical confirmation rolls.</Description>
+         <Icon>EpicPowerAndPrecision</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>23</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Seeker</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">2 4 6</AmountVector>
+            <Stance>Power Attack</Stance>
+            <Weapon>All</Weapon>
+         </Effect>
+         <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">2 4 6</AmountVector>
+            <Stance>Precision</Stance>
+            <Weapon>All</Weapon>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Legendary Dreadnought: Armor of Dusk</Name>
+         <InternalName>U51LegendaryDreadnoughtArmorOfDusk</InternalName>
+         <Description>+[2/4/6] Armor Class and Maximum Dexterity Bonus.
+-[1/2/3] Armor Check Penalty to Skills.</Description>
+         <Icon>ArmorOfDusk</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>23</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>ACBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">2 4 6</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>MaxDexBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">2 4 6</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>ArmorCheckPenalty</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">-1 -2 -3</AmountVector>
+         </Effect>
+      </EnhancementTreeItem>
+      <!--Tier 4-->
+      <EnhancementTreeItem>
+         <Name>Legendary Dreadnought: Carry On</Name>
+         <InternalName>U51LegendaryDreadnoughtCarryOn</InternalName>
+         <Description>When you activate an Action Boost, you gain a 10% Action Boost bonus to attack speed for 20 seconds.
+(As it is an Action Boost bonus, it does not stack with Action Boost: Haste)</Description>
+         <Icon>CarryOn</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>26</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Alacrity</Type>
+            <Bonus>Action Boost</Bonus>
+            <Amount>10</Amount>
+            <Stance>Action Boost</Stance>
+            <Weapon>All</Weapon>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Legendary Dreadnought: Lay Waste</Name>
+         <InternalName>U51LegendaryDreadnoughtLayWaste</InternalName>
+         <Description>When you use your Dire Attack, enemies must now also save or be Stunned.
+Stun DC is (20 + highest ability score + bonus to Stun attacks).</Description>
+         <Icon>LayWaste</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>26</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Enhancement>U51LegendaryDreadnoughtDireAttack</Enhancement>
+            </Requirement>
+         </Requirements>
+         <DC>
+            <Name>Lay Waste Sun</Name>
+            <Description>When you use your Dire Attack, enemies must now also save or be Stunned.
+Stun DC is (20 + highest ability score + bonus to Stun attacks).</Description>
+            <Icon>LayWaste</Icon>
+            <DCVersus>Fortitude</DCVersus>
+            <AmountVector size="1">20</AmountVector>
+            <Ability>Strength</Ability>
+            <Ability>Dexterity</Ability>
+            <Ability>Consitution</Ability>
+            <Ability>Intelligence</Ability>
+            <Ability>Wisdom</Ability>
+            <Ability>Charisma</Ability>
+            <Tactical>Stun</Tactical>
+         </DC>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Legendary Dreadnought: Strike with Fear</Name>
+         <InternalName>U51LegendaryDreadnoughtStrikeWithFear</InternalName>
+         <Description>Your weapon attacks against creatures inflicted with Fear, or creatures with
+at least 5 stacks of Terror, add one stack of Vulnerability.</Description>
+         <Icon>StrikeWithFear</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>26</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Legendary Dreadnought: Kick While They're Down</Name>
+         <InternalName>U51LegendaryDreadnoughtKickWhileTheyreDown</InternalName>
+         <Description>While in your Dreadnought Destiny Mantle, you deal +[5/10/15]% damage to
+Helpless opponents.</Description>
+         <Icon>KickWhileTheyreDown</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>26</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Enhancement>U51LegendaryDreadnoughtDreadMantle</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>HelplessDamage</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">5 10 15</AmountVector>
+            <Stance>Dread Mantle</Stance>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Legendary Dreadnought: Untouchable</Name>
+         <InternalName>U51LegendaryDreadnoughtUntouchable</InternalName>
+         <Description>While any Action Boost is active, you have Displacement.</Description>
+         <Icon>U51Untouchable</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>26</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Displacement</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>50</Amount>
+            <ApplyAsItemEffect/>
+            <Stance>Action Boost</Stance>
+         </Effect>
+      </EnhancementTreeItem>
+      <!--Tier 5-->
+      <EnhancementTreeItem>
+         <Name>Legendary Dreadnought: Overpower</Name>
+         <InternalName>U51LegendaryDreadnoughtOverpower</InternalName>
+         <Description>Select a boost to Bludgeoning, Piercing, or Slashing weapons</Description>
+         <Icon>OverpowerBludgeon</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>30</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Impaler</Name>
+               <Description>When using a Piercing weapon in your main hand, you gain +1 Critical
+Multiplier on rolls of 19-20.</Description>
+               <Icon>OverpowerImpaler</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>CriticalMultiplier19To20</Type>
+                  <Bonus>Destiny</Bonus>
+                  <Amount>1</Amount>
+                  <DamageType>Piercing</DamageType>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Lacerator</Name>
+               <Description>When using a Slashing weapon in your main hand, you gain +1 Critical
+Multiplier on rolls of 19-20.</Description>
+               <Icon>OverpowerLacerator</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>CriticalMultiplier19To20</Type>
+                  <Bonus>Destiny</Bonus>
+                  <Amount>1</Amount>
+                  <DamageType>Slashing</DamageType>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Pulverizor</Name>
+               <Description>When using a Bludgeoning weapon in your main hand, you gain +1 Critical
+Multiplier on rolls of 19-20.</Description>
+               <Icon>OverpowerBludgeon</Icon>
+               <Cost>1</Cost>
+               <Effect>
+                  <Type>CriticalMultiplier19To20</Type>
+                  <Bonus>Destiny</Bonus>
+                  <Amount>1</Amount>
+                  <DamageType>Bludgeoning</DamageType>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Legendary Dreadnought: Legendary Rally</Name>
+         <InternalName>U51LegendaryDreadnoughtLegendaryRally</InternalName>
+         <Description>Pick a Melee or Ranged attack.</Description>
+         <Icon>LegendaryRally</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Clickie/>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>30</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Legendary Rally (Melee)</Name>
+               <Description>Melee Attack: +5[W] Cleave attack. Attack is considered an automatic critical.
+Can be used while Crowd Controlled, clears all Crowd Control effects on you when used.
+30 second cooldown.</Description>
+               <Icon>LegendaryRally</Icon>
+               <Cost>1</Cost>
+               <Clickie/>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Legendary Rally (Ranged)</Name>
+               <Description>Ranged Attack: +5[W] Single-Target Ranged attack. Fire a shot at your targeted foe.
+Attack is considered an automatic critical. Can be used while Crowd Controlled,
+clears all Crowd Control effects on you when used.
+30 second cooldown.
+(This is a single-target Ranged attack, but can be affected by Improved Precise Shot.)</Description>
+               <Icon>LegendaryRallyRanged</Icon>
+               <Cost>1</Cost>
+               <Clickie/>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Legendary Dreadnought: Sundering Swings</Name>
+         <InternalName>U51LegendaryDreadnoughtSunderingSwings</InternalName>
+         <Description>Creatures affected by your Improved Trip are also made Helpless.
+This supercedes other Improved Trip effects.
+Creatures affected by your Improved Sunder take -75% Fortification instead of the
+usual -25%. This supercedes other Improved Sunder effects.</Description>
+         <Icon>SunderingSwings</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>30</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Enhancement>U51LegendaryDreadnoughtDireAttack</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Legendary Dreadnought: Dusk Surge</Name>
+         <InternalName>U51LegendaryDreadnoughtDuskSurge</InternalName>
+         <Description>While in Dread Mantle, striking with weapons now has a chance to regenerate an
+Action Boost. Does not stack with other abilities that can regenerate Action Boosts.</Description>
+         <Icon>DuskSurge</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>30</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Legendary Dreadnought: Action Hero</Name>
+         <InternalName>U51LegendaryDreadnoughtActionHero</InternalName>
+         <Description>Epic Moment: For 40 seconds, you gain the following Bonuses:
+ +8  Action Boost Bonus to Attack
++30  Action Boost Bonus to Melee and Ranged Power
++30% Action Boost Bonus to Attack Speed
++30% Action Boost Bonus to Doublestrike and Doubleshot
++50% Action Boost Bonus to Movement Speed
++15  Action Boost Bonus to Armor Class and Physical Resistance Rating
++15% Action Boost Bonus to Dodge. This bonus ignores your Dodge Cap.
+ +9  Action Boost bonus to Sunder, Trip, and Stun DCs.
+ +6  Action Boost Bonus to Saving Throws
+ +6  Action Boost Bonus to Skills
+This ability is counted as an Action Boost, though does not have charges and does
+not share a cooldown with other Action Boosts. 5 minute cooldown.</Description>
+         <Icon>U51ActionHero</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Clickie/>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>30</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+   </EnhancementTree>
+</Enhancements>

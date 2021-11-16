@@ -231,8 +231,7 @@ std::list<EnhancementTree> CEnhancementsView::DetermineTrees()
             // get all the trees that are compatible with the race/class setup
             if ((*it).MeetRequirements(*m_pCharacter)
                     && !(*it).HasIsReaperTree()         // no reaper trees in enhancements please!
-                    && !(*it).HasIsEpicDestiny()        // no epic destiny trees in enhancements please!
-                    && !(*it).HasIsU51EpicDestiny())    // no U51 epic destiny trees in enhancements please!
+                    && !(*it).HasIsEpicDestiny())    // no U51 epic destiny trees in enhancements please!
             {
                 // yes this is one of our tree's add it
                 trees.push_back((*it));

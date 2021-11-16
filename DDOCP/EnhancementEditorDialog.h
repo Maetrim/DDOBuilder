@@ -2,7 +2,7 @@
 #pragma once
 
 class Character;
-class CDestinyTreeDialog;
+class CEnhancementTreeDialog;
 
 class CEnhancementEditorDialog : public CDialog
 {
@@ -66,7 +66,7 @@ class CEnhancementEditorDialog : public CDialog
         CEdit m_editCost;
         CEdit m_editTitle;
         CComboBox m_comboList;
-        CDestinyTreeDialog * m_pTreeDialog;
+        CEnhancementTreeDialog * m_pTreeDialog;
         CButton m_buttonArrowLeft;
         CButton m_buttonArrowRight;
         CButton m_buttonArrowUp;

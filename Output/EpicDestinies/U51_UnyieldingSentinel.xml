@@ -1,0 +1,907 @@
+<Enhancements>
+   <EnhancementTree>
+      <Name>Unyielding Sentinel</Name>
+      <Version>1</Version>
+      <Requirements>
+         <Requirement>
+            <Feat>Unyielding Sentinel</Feat>
+         </Requirement>
+      </Requirements>
+      <IsEpicDestiny/>
+      <Icon>UnyieldingSentinel</Icon>
+      <Background>DestinyDivine</Background>
+      <!--Cores-->
+      <EnhancementTreeItem>
+         <Name>Unyielding Sentinel: Ever Watchful</Name>
+         <InternalName>U51UnyieldingSentinelCore1</InternalName>
+         <Description>You gain the Diehard feat.
+Each core ability of this tree, including this one, grants +35 Hit Points,
+20 Spell Points, and 5 Melee Power</Description>
+         <Icon>StandAgainstTheTideI</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>0</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Destiny</Bonus>
+            <Feat>Diehard</Feat>
+         </Effect>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>35</Amount>
+         </Effect>
+         <Effect>
+            <Type>SpellPoints</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>20</Amount>
+         </Effect>
+         <Effect>
+            <Type>MeleePower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>5</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Unyielding Sentinel: Ward Against Darkness</Name>
+         <InternalName>U51UnyieldingSentinelCore2</InternalName>
+         <Description>You are protected by a ward against curses.
+This ward can absorb one curse every 60 seconds. You gain 10% Evil damage absorption.</Description>
+         <Icon>StandAgainstTheTideII</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>23</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Enhancement>U51UnyieldingSentinelCore1</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>35</Amount>
+         </Effect>
+         <Effect>
+            <Type>SpellPoints</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>20</Amount>
+         </Effect>
+         <Effect>
+            <Type>MeleePower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>5</Amount>
+         </Effect>
+         <Effect>
+            <Type>EnergyAbsorbance</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>10</Amount>
+            <Energy>Evil</Energy>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Unyielding Sentinel: Stand Against the Tide</Name>
+         <InternalName>U51UnyieldingSentinelCore3</InternalName>
+         <Description>Immune to most forms of knockdown while wearing a sheild.</Description>
+         <Icon>StandAgainstTheTideIII</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>0</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>26</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Enhancement>U51UnyieldingSentinelCore2</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>35</Amount>
+         </Effect>
+         <Effect>
+            <Type>SpellPoints</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>20</Amount>
+         </Effect>
+         <Effect>
+            <Type>MeleePower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>5</Amount>
+         </Effect>
+         <Effect>
+            <Type>Immunity</Type>
+            <Bonus>Enchantment</Bonus>
+            <Stance>Shield</Stance>
+            <Immunity>Most forms of Knockdown</Immunity>
+         </Effect>
+      </EnhancementTreeItem>
+      <!--Tier 1-->
+      <EnhancementTreeItem>
+         <Name>Unyielding Sentinel: Ever Watchful</Name>
+         <InternalName>U51UnyieldingSentinelEverWatchful</InternalName>
+         <Description>+[2/4/6] Spot and Listen
+Rank 3: Immunity to Blindness</Description>
+         <Icon>EverWatchful</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">2 4 6</AmountVector>
+            <Skill>Spot</Skill>
+            <Skill>Listen</Skill>
+         </Effect>
+         <Effect>
+            <Type>Immunity</Type>
+            <Bonus>Destiny</Bonus>
+            <Immunity/>
+            <Immunity/>
+            <Immunity>Blindness</Immunity>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Unyielding Sentinel: Divine Energy Resistance</Name>
+         <InternalName>U51UnyieldingSentinelDivineEnergyResistance</InternalName>
+         <Description>This SLA grants 35 resistance to Acid, Cold, Fire, Sonic, Electric damage for
+1 minute per character level to all allies in the standard area of effect; centered
+on the caster. You can apply Metamagic feats to this SLA for free (Extend, Quicken).
+The effect does not stack with the Resist Energy spell.
+Cost: 15 Spell Points
+Cooldown: 6 seconds.</Description>
+         <Icon>DivineEnergyResistance</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>1</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Destiny</Bonus>
+            <SpellLikeAbility>Divine Energy Resistance</SpellLikeAbility>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Unyielding Sentinel: Epic Strike</Name>
+         <InternalName>U51UnyieldingSentinelEpicStrike</InternalName>
+         <Description>Choose a strike type</Description>
+         <Icon>GuardUp</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>1</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Celestial Mandate</Name>
+               <Description>Melee Cleave: 6[W] Adds 3000 Hate to target and slows their movement by 50%
+for 10 seconds. Grants a +[1/2/3] buff to Magical and Physical Resistance Ratings
+for 15 seconds. Double this bonus if using a shield. Stacks 6 times.
+Cooldown: 6 seconds.</Description>
+               <Icon>U51CelestialMandate</Icon>
+               <Cost>2</Cost>
+               <Clickie/>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Guard Up</Name>
+               <Description>Gain a Sacred Temporary Hit Point bonus equal to 300% of your Melee Power
+for 6 seconds. This can be used while stunned, or otherwise disabled.
+Cooldown: 12 seconds.</Description>
+               <Icon>GuardUp</Icon>
+               <Cost>2</Cost>
+               <Clickie/>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Unyielding Sentinel: Attack and Defend</Name>
+         <InternalName>U51UnyieldingSentinelAttackAndDefend</InternalName>
+         <Description>Gain +[1/2/3] to Hit.
+Triple this bonus if using Combat Expertise.</Description>
+         <Icon>AttackAndDefend</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Weapon>All</Weapon>
+         </Effect>
+         <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Weapon>All</Weapon>
+         </Effect>
+         <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">2 4 6</AmountVector>
+            <Weapon>All</Weapon>
+            <Stance>Combat Expertise</Stance>
+         </Effect>
+         <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">2 4 6</AmountVector>
+            <Weapon>All</Weapon>
+            <Stance>Combat Expertise</Stance>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Unyielding Sentinel: Brace for Impact</Name>
+         <InternalName>U51UnyieldingSentinelBraceForImpact</InternalName>
+         <Description>+[10/25/50]% Fortificiation
+Rank 3: +1 to all saves.</Description>
+         <Icon>U51BraceForImpact</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>1</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Fortification</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">10 25 50</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">0 0 1</AmountVector>
+            <Save>All</Save>
+         </Effect>
+      </EnhancementTreeItem>
+      <!--Tier 2-->
+      <EnhancementTreeItem>
+         <Name>Unyielding Sentinel: Mantle of the Sentinel</Name>
+         <InternalName>U51UnyieldingSentinelMantleOftheSemtinel</InternalName>
+         <Description>Aura of Destiny - You gain a 15 Healing Amplification, Absorb 15% of all Force,
+Fire, Electric, Acid, Cold, Sonic, Chaos and Evil damage.
+Grants Immunity to Mind effects from evil creatures.</Description>
+         <Icon>MantleOfTheSentinel</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Clickie/>
+         <Stance>
+            <Name>Mantle of the Sentinel</Name>
+            <Icon>MantleOfFury</Icon>
+            <Description>Gain [5/10/15] Healing Amplification. You absorb [5/10/15]% of all Force, Fire,
+Electric, Acid, Cold, Sonic, Chaos and Evil damage.</Description>
+            <Group>Mantle</Group>
+         </Stance>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>HealingAmplification</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>15</Amount>
+            <Stance>Mantle of the Sentinel</Stance>
+         </Effect>
+         <Effect>
+            <Type>EnergyAbsorbance</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>15</Amount>
+            <Stance>Mantle of the Sentinel</Stance>
+            <Energy>Force</Energy>
+         </Effect>
+         <Effect>
+            <Type>EnergyAbsorbance</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>15</Amount>
+            <Stance>Mantle of the Sentinel</Stance>
+            <Energy>Fire</Energy>
+         </Effect>
+         <Effect>
+            <Type>EnergyAbsorbance</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>15</Amount>
+            <Stance>Mantle of the Sentinel</Stance>
+            <Energy>Electric</Energy>
+         </Effect>
+         <Effect>
+            <Type>EnergyAbsorbance</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>15</Amount>
+            <Stance>Mantle of the Sentinel</Stance>
+            <Energy>Acid</Energy>
+         </Effect>
+         <Effect>
+            <Type>EnergyAbsorbance</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>15</Amount>
+            <Stance>Mantle of the Sentinel</Stance>
+            <Energy>Cold</Energy>
+         </Effect>
+         <Effect>
+            <Type>EnergyAbsorbance</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>15</Amount>
+            <Stance>Mantle of the Sentinel</Stance>
+            <Energy>Sonic</Energy>
+         </Effect>
+         <Effect>
+            <Type>EnergyAbsorbance</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>15</Amount>
+            <Stance>Mantle of the Sentinel</Stance>
+            <Energy>Chaos</Energy>
+         </Effect>
+         <Effect>
+            <Type>EnergyAbsorbance</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>15</Amount>
+            <Stance>Mantle of the Sentinel</Stance>
+            <Energy>Evil</Energy>
+         </Effect>
+         <Effect>
+            <DisplayName>Unyielding Sentinel: Strength of Vitality</DisplayName>
+            <Type>Hitpoints</Type>
+            <Bonus>Insightful</Bonus>
+            <AmountVector size="7">3 6 10 0 6 12 20</AmountVector>
+            <Percent/>
+            <ApplyAsItemEffect/>
+            <Stance>Mantle of the Sentinel</Stance>
+         </Effect>
+         <Effect>
+            <DisplayName>Unyielding Sentinel: Strength of Vitality</DisplayName>
+            <Type>Hitpoints</Type>
+            <Bonus>Insightful</Bonus>
+            <AmountVector size="7">3 6 10 0 6 12 20</AmountVector>
+            <Percent/>
+            <ApplyAsItemEffect/>
+            <Stance>Mantle of the Sentinel</Stance>
+         </Effect>
+         <Effect>
+            <DisplayName>Unyielding Sentinel: Strength of Vitality</DisplayName>
+            <Type>Hitpoints</Type>
+            <Bonus>Insightful</Bonus>
+            <AmountVector size="7">3 6 10 0 6 12 20</AmountVector>
+            <Percent/>
+            <ApplyAsItemEffect/>
+            <Stance>Mantle of the Sentinel</Stance>
+         </Effect>
+         <Effect>
+            <DisplayName>Unyielding Sentinel: Strength of Vitality</DisplayName>
+            <Type>Hitpoints</Type>
+            <Bonus>Insightful</Bonus>
+            <AmountVector size="7">3 6 10 0 6 12 20</AmountVector>
+            <Percent/>
+            <ApplyAsItemEffect/>
+            <Stance>Mantle of the Sentinel</Stance>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Unyielding Sentinel: Renewal</Name>
+         <InternalName>U51UnyieldingSentinelRenewal</InternalName>
+         <Description>Active Ability: Heals 1d2 Hp per 2 character levels every 2 seconds fo 8 seconds.
+As a Spell-like ability it benefits from metamagic feats at no additional cost.
+Metamagics: Empower Heal, Quicken and Enlarge.
+Cost: 5 Spell Points
+Cooldown: 8 seconds.</Description>
+         <Icon>U51Renewal</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Destiny</Bonus>
+            <SpellLikeAbility>Renewel</SpellLikeAbility>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Unyielding Sentinel: Knight's Challenge</Name>
+         <InternalName>U51UnyieldingSentinelKnightsChallenge</InternalName>
+         <Description>Requires shield to use. Throws a Spiritual version of your Shield at a single
+target for 1d20 Law damage per character level, scales with 200% Melee Power.
+Creatures struck by the shield reset their hate and are compelled to target the
+player for 8 seconds.
+Cooldown: 20 seconds.</Description>
+         <Icon>KnightsChallenge</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Clickie/>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Unyielding Sentinel: Commanding Presence</Name>
+         <InternalName>U51UnyieldingSentinelCommandingPresence</InternalName>
+         <Description>Increases hate generation by [150/300/450]%</Description>
+         <Icon>U51CommandingPresence</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>ThreatBonusMelee</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">150 300 450</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>ThreatBonusRanged</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">150 300 450</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>ThreatBonusSpell</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">150 300 450</AmountVector>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Unyielding Sentinel: Shield Prowess</Name>
+         <InternalName>U51UnyieldingSentinelShieldProwess</InternalName>
+         <Description>Your shield's AC contribution is increased by [15/30/50]%</Description>
+         <Icon>U51ShieldProwess</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>2</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>20</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>ACBonusShield</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">15 30 50</AmountVector>
+            <Percent/>
+         </Effect>
+      </EnhancementTreeItem>
+      <!--Tier 3-->
+      <EnhancementTreeItem>
+         <Name>Unyielding Sentinel: Hands of the Sentinel</Name>
+         <InternalName>U51UnyieldingSentinelHandsOfTheSentinel</InternalName>
+         <Description>Gain the Lay on Hands feat. Using Lay Hands now uses the highest of Charisma or
+Constitution score to determine its effect and also uses your total character level
+instead of Paladin level.</Description>
+         <Icon>HandsOfTheSentinel</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>23</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Destiny</Bonus>
+            <Feat>Lay on Hands</Feat>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Unyielding Sentinel: Legendary Shield Mastery</Name>
+         <InternalName>U51UnyieldingSentinelLegendaryShieldMastery</InternalName>
+         <Description>While wearing a shield you gain +[5/10/15] Physical resistance.
+Rank 3: 6% Doublestrike.</Description>
+         <Icon>U51LegendaryShieldMastery</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>23</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>PRR</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">5 10 15</AmountVector>
+            <Stance>Shield</Stance>
+         </Effect>
+         <Effect>
+            <Type>Doublestrike</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">0 0 6</AmountVector>
+            <Stance>Shield</Stance>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Unyielding Sentinel: Spark of Life</Name>
+         <InternalName>U51UnyieldingSentinelSparkOfLife</InternalName>
+         <Description>Your armor gains Deathblock, protecting you from death effects.
+Passive: Gain 25 Hit Points.</Description>
+         <Icon>U51SparkOfLife</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>23</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Enhancement>U51UnyieldingSentinelKnightsChallenge</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Immunity</Type>
+            <Bonus>Destiny</Bonus>
+            <Immunity>Death Effects</Immunity>
+         </Effect>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Destiny</Bonus>
+             <Amount>25</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Unyielding Sentinel: Rule of Law</Name>
+         <InternalName>U51UnyieldingSentinelRuleOfLaw</InternalName>
+         <Description>Your Mantle of the Sentinel now grants your melee attacks a chance to pulse a
+out a wave of d[3/4/6] Law damage per character level around the player.
+Scales with the highest of 200% Melee Power or Spell Power.
+Cooldown of 8 seconds.</Description>
+         <Icon>U51RuleOfLaw</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>23</MinLevel>
+            </Requirement>
+             <Requirement>
+                 <Enhancement>U51UnyieldingSentinelMantleOftheSemtinel</Enhancement>
+             </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Unyielding Sentinel: Into the Fray</Name>
+         <InternalName>U51UnyieldingSentinelIntoTheFray</InternalName>
+         <Description>When you first strike a foe with a melee attack gain +[2/4/6] Damage and
++[10/15/25] Physical and Magical Resistance Rating buff for 5 seconds.
+This effect will not reoccur until you are out of combat for at least 3 seconds.</Description>
+         <Icon>IntoTheFray</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>3</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>23</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <!--Tier 4-->
+      <EnhancementTreeItem>
+         <Name>Unyielding Sentinel: Endless Vigil</Name>
+         <InternalName>U51UnyieldingSentinelEndlessVigil</InternalName>
+         <Description>+[1/2/3] Lay On Hands use per rest.
+Lay On Hands regenerate one use every [180/160/145] seconds.</Description>
+         <Icon>EndlessVigil</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>26</MinLevel>
+            </Requirement>
+            <RequiresOneOf>
+               <Requirement>
+                  <Enhancement>U51UnyieldingSentinelHandsOfTheSentinel</Enhancement>
+               </Requirement>
+               <Requirement>
+                  <Feat>Lay on Hands</Feat>
+               </Requirement>
+            </RequiresOneOf>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Unyielding Sentinel: Hardened Purpose</Name>
+         <InternalName>U51UnyieldingSentinelHardenedPurpose</InternalName>
+         <Description>+[5/10/15] Armor Class.
+Rank 3: Increase the Mantle of the Sentinel damage absorption by another 10%.</Description>
+         <Icon>U51Hardened</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>26</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>ACBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">5 10 15</AmountVector>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Unyielding Sentinel: Throw the Boom</Name>
+         <InternalName>U51UnyieldingSentinelThrowTheBoom</InternalName>
+         <Description>Knight's Challenge now affects small area around the target and applies a Stun,
+DC: 20 + Stun Bonuses + STR/DEX/CON/INT/WIS/CHA for 4 seconds.</Description>
+         <Icon>ThrowTheBoom</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>26</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Enhancement>U51UnyieldingSentinelSparkOfLife</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Unyielding Sentinel: Divine Bulwark</Name>
+         <InternalName>U51UnyieldingSentinelDivineBulwark</InternalName>
+         <Description>Gain +5 Physical Resistance.
+If you have Bulwark of Defense gain an additional +10 Physical Resistance.</Description>
+         <Icon>DivineBulwark</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>26</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <DisplayName>Unyielding Sentinel: Divine Bulwark</DisplayName>
+            <Type>PRR</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">5 0 15</AmountVector>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Unyielding Sentinel: The Best Defense</Name>
+         <InternalName>U51UnyieldingSentinelTheBestDefense</InternalName>
+         <Description>Blocking a melee attack now grants a +[1/2/4] bonus to Damage, Hit and Critical
+Hit damage for 12 seconds. This can only occur once every 12 seconds.
+Passive: Gain +[20/40/60] to Max Hit Points</Description>
+         <Icon>TheBestDefense</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>4</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>26</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">20 40 60</AmountVector>
+         </Effect>
+      </EnhancementTreeItem>
+      <!--Tier 5-->
+      <EnhancementTreeItem>
+         <Name>Unyielding Sentinel: Resurrection</Name>
+         <InternalName>U51UnyieldingSentinelResurrection</InternalName>
+         <Description>You can now case Resurrection as a spell-like ability.
+Metamagics: Quicken, Eschew Materials and Enlarge
+Cooldown: 6 seconds
+Cost: 15 Spell points</Description>
+         <Icon>U51Resurrection</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Clickie/>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>30</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Feat</Bonus>
+            <SpellLikeAbility>Resurrection</SpellLikeAbility>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Unyielding Sentinel: Strength of Vitality</Name>
+         <InternalName>U51UnyieldingSentinelStrengthOfVitality</InternalName>
+         <Description>Gain [3/6/10]% Insight bonus to Max Hit Points.
+Rank 3: Increase Insight bonus to 20% if Mantel of the Sentinel is active.</Description>
+         <Icon>U51StrengthOfVitality</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>1</Cost>
+         <Ranks>3</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>30</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <DisplayName>Unyielding Sentinel: Strength of Vitality (No mantle)</DisplayName>
+            <Type>Hitpoints</Type>
+            <Bonus>Insightful</Bonus>
+            <AmountVector size="3">3 6 10</AmountVector>
+            <Percent/>
+            <ApplyAsItemEffect/>
+         </Effect>
+         <Effect>
+            <DisplayName>Unyielding Sentinel: Strength of Vitality</DisplayName>
+            <Type>Hitpoints</Type>
+            <Bonus>Insightful</Bonus>
+            <AmountVector size="7">3 6 10 0 6 12 20</AmountVector>
+            <Percent/>
+            <ApplyAsItemEffect/>
+            <Stance>Mantle of the Sentinel</Stance>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Unyielding Sentinel: Undying Vanguard</Name>
+         <InternalName>U51UnyieldingSentinelUndyingVanguard</InternalName>
+         <Description>Epic Moment: Activate Your body becomes a fortified fortress.
+Completely heal yourself and gain 10,000 Temporary Hit Points and +5[W] Weapon
+Dice for 30 seconds. You can use this while Crowd Controlled.
+Cooldown: 5 minutes</Description>
+         <Icon>UndyingVanguard</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>2</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Clickie/>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>30</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Unyielding Sentinel: Deific Resilience</Name>
+         <InternalName>U51UnyieldingSentinelDeificResilience</InternalName>
+         <Description>You gain the Deific Warding feat. If you already have it, you gain +5% Quality
+bonus to maximum hitpoints.</Description>
+         <Icon>DeificResilience</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>30</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Destiny</Bonus>
+            <Feat>Deific Warding</Feat>
+         </Effect>
+         <Effect>
+            <DisplayName>Unyielding Sentinel: Deific Resilience</DisplayName>
+            <Type>Hitpoints</Type>
+            <Bonus>Quality</Bonus>
+            <AmountVector size="3">0 0 5</AmountVector>
+            <Percent/>
+            <ApplyAsItemEffect/>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Unyielding Sentinel: Light the Dark</Name>
+         <InternalName>U51UnyieldingSentinelLightTheDark</InternalName>
+         <Description>Using Lay on Hands is now an area of effect, healing friends and damaging undead
+near the selected target. This effect scales with the highest of 200% Melee Power
+or 50% of Spell Power.</Description>
+         <Icon>U51LightTheDark</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>5</YPosition>
+         <Cost>1</Cost>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>30</MinLevel>
+            </Requirement>
+            <RequiresOneOf>
+               <Requirement>
+                  <Feat>Lay on Hands</Feat>
+               </Requirement>
+               <Requirement>
+                  <Enhancement>U51UnyieldingSentinelHandsOfTheSentinel</Enhancement>
+               </Requirement>
+            </RequiresOneOf>
+         </Requirements>
+      </EnhancementTreeItem>
+   </EnhancementTree>
+</Enhancements>

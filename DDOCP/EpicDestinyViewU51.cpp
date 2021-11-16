@@ -232,7 +232,7 @@ std::list<EnhancementTree> CEpicDestinyViewU51::DetermineTrees()
         std::list<EnhancementTree>::const_iterator it = allTrees.begin();
         while (it != allTrees.end())
         {
-            if ((*it).HasIsU51EpicDestiny()
+            if ((*it).HasIsEpicDestiny()
                     && (*it).MeetRequirements(*m_pCharacter))
             {
                 // yes this is one of our tree's add it
@@ -327,7 +327,7 @@ void CEpicDestinyViewU51::CreateEnhancementWindows()
             // we have a selected tree here
             PopulateTreeCombo(&m_comboTreeSelect[i], treeName);
             // create the tree dialog
-            TreeType tt = TT_epicDestiny51;
+            TreeType tt = TT_epicDestiny;
             // show an enhancement dialog
             CEnhancementTreeDialog * dlg = new CEnhancementTreeDialog(
                     this,
@@ -348,7 +348,7 @@ void CEpicDestinyViewU51::CreateEnhancementWindows()
                     this,
                     m_pCharacter,
                     GetEnhancementTree(c_noSelection),
-                    TT_epicDestiny51);
+                    TT_epicDestiny);
             dlg->Create(CEnhancementTreeDialog::IDD, this);
             dlg->MoveWindow(&itemRect);
             dlg->ShowWindow(SW_SHOW);
@@ -497,7 +497,7 @@ void CEpicDestinyViewU51::UpdateWindowTitle()
     if (m_pCharacter != NULL)
     {
         CString text;
-        text.Format("U51 Epic Destinies - %d points available to spend",
+        text.Format("Epic Destinies - %d points available to spend",
                 m_pCharacter->U51Destiny_AvailableDestinyPoints());
         BreakdownItem * pBD = FindBreakdown(Breakdown_DestinyPoints);
         if (pBD != NULL)
@@ -511,7 +511,7 @@ void CEpicDestinyViewU51::UpdateWindowTitle()
     }
     else
     {
-        GetParent()->SetWindowText("U51 Epic Destinies");
+        GetParent()->SetWindowText("Epic Destinies");
     }
 }
 

@@ -86,10 +86,6 @@ enum TrainableFeatTypes
     TFT_WarlockPactSpell,
     TFT_WizardMetamagic,
     TFT_KoboldTribe,
-
-    // U51 Support
-    TFT_EpicDestinyFeatU51,
-    TFT_LegendaryFeatU51,
 };
 
 const XmlLib::enumMapEntry<TrainableFeatTypes> trainableFeatTypesMap[] =
@@ -141,8 +137,5 @@ const XmlLib::enumMapEntry<TrainableFeatTypes> trainableFeatTypesMap[] =
     {TFT_WarlockPactSpell, L"WarlockPactSpell"},
     {TFT_WizardMetamagic, L"Metamagic"},
     {TFT_KoboldTribe, L"KoboldTribe"},
-
-    {TFT_EpicDestinyFeatU51, L"EpicDestinyFeatU51"},
-    {TFT_LegendaryFeatU51, L"LegendaryU51"},
     {TrainableFeatTypes(0), NULL}
 };

@@ -80,11 +80,6 @@ Character::Character() :
         }
         m_Levels.push_back(lt);
     }
-    // ensure we have MAX_TWISTS twist of fate objects
-    while (m_Twists.size() < MAX_TWISTS)
-    {
-        m_Twists.push_back(TwistOfFate());
-    }
 }
 
 Character::Character(CDDOCPDoc * pDoc) :
@@ -116,11 +111,6 @@ Character::Character(CDDOCPDoc * pDoc) :
             lt.Set_Class(Class_Epic);
         }
         m_Levels.push_back(lt);
-    }
-    // ensure we have MAX_TWISTS twist of fate objects
-    while (m_Twists.size() < MAX_TWISTS)
-    {
-        m_Twists.push_back(TwistOfFate());
     }
     UpdateFeats();
     // by default they start with 1 gear layout called "Standard"
@@ -169,12 +159,6 @@ void Character::EndElement()
         m_Levels.push_back(lt);
     }
 
-    // same for twists of fate
-    // ensure we have MAX_TWISTS twist of fate objects
-    while (m_Twists.size() > MAX_TWISTS)
-    {
-        m_Twists.pop_front();
-    }
     // keep older files working
     m_hasGuildLevel = true; // default guild level is 0
     m_hasNotes = true;
@@ -186,7 +170,6 @@ void Character::EndElement()
     SaxContentElement::EndElement();
     DL_END(Character_PROPERTIES)
     ASSERT(m_Levels.size() == MAX_LEVEL);
-    ASSERT(m_Twists.size() == MAX_TWISTS);
 
     // also remove the default "Standard" gear layout which we get by default
     m_GearSetups.pop_front();
@@ -626,16 +609,6 @@ void Character::NotifyFatePointsChanged()
     NotifyAll(&CharacterObserver::UpdateFatePointsChanged, this);
 }
 
-void Character::NotifyEpicCompletionistChanged()
-{
-    NotifyAll(&CharacterObserver::UpdateEpicCompletionistChanged, this);
-}
-
-void Character::NotifyAvailableTwistsChanged()
-{
-    NotifyAll(&CharacterObserver::UpdateAvailableTwistsChanged, this);
-}
-
 void Character::NotifyEnhancementEffect(
         const std::string & enhancementName,
         const Effect & effect,
@@ -796,53 +769,14 @@ void Character::NotifyAllReaperEnhancementEffects()
     }
 }
 
-void Character::NotifyAllDestinyEffects()
-{
-    // we only notify for the active tree and trained twists of fate
-    EpicDestinySpendInTree * pActiveTree = EpicDestiny_FindTree(ActiveEpicDestiny());
-    if (pActiveTree != NULL)
-    {
-        ApplyAllEffects(pActiveTree->TreeName(), pActiveTree->Enhancements());
-    }
-}
-
 void Character::NotifyAllU51DestinyEffects()
 {
-    // we only notify for the active tree and trained twists of fate
-    // for each tree that has a trained item
     std::list<DestinySpendInTree>::const_iterator it = m_DestinyTreeSpend.begin();
     while (it != m_DestinyTreeSpend.end())
     {
         const DestinySpendInTree & tree = (*it);
         ApplyAllEffects(tree.TreeName(), tree.Enhancements());
         ++it;
-    }
-}
-
-void Character::NotifyAllTwistEffects()
-{
-    for (size_t twist = 0; twist < MAX_TWISTS; ++twist)
-    {
-        const TrainedEnhancement * trainedTwist = TrainedTwist(twist);
-        if (trainedTwist != NULL)
-        {
-            // now train the effects of the selected twist
-            std::string treeName;
-            const EnhancementTreeItem * item = FindEnhancement(trainedTwist->EnhancementName(), &treeName);
-            ApplyEnhancementEffects(
-                    treeName,
-                    trainedTwist->EnhancementName(),
-                    trainedTwist->HasSelection() ? trainedTwist->Selection() : "",
-                    trainedTwist->Ranks());
-            // enhancements may give multiple stances
-            std::list<Stance> stances = item->Stances(trainedTwist->HasSelection() ? trainedTwist->Selection() : "");
-            std::list<Stance>::const_iterator sit = stances.begin();
-            while (sit != stances.end())
-            {
-                NotifyNewStance((*sit));
-                ++sit;
-            }
-        }
     }
 }
 
@@ -1395,8 +1329,6 @@ void Character::TrainSpecialFeat(
 
     // number of past lives affects how many build points they have to spend
     DetermineBuildPoints();
-    DetermineFatePoints();
-    DetermineEpicCompletionist();
 
     // special feats may change the number of action points available
     CountBonusRacialAP();
@@ -1436,8 +1368,6 @@ void Character::RevokeSpecialFeat(
         m_pDocument->SetModifiedFlag(TRUE);
         // number of past lives affects how many build points they have to spend
         DetermineBuildPoints();
-        DetermineFatePoints();
-        DetermineEpicCompletionist();
         // special feats may change the number of action points available
         CountBonusRacialAP();
         CountBonusUniversalAP();
@@ -1585,15 +1515,12 @@ void Character::NowActive()
 {
     // keep all views up to date
     DetermineBuildPoints();
-    DetermineFatePoints();
     AutoTrainSingleSelectionFeats();
 
     NotifyAllLoadedEffects();
     NotifyAllEnhancementEffects();
     NotifyAllReaperEnhancementEffects();
-    NotifyAllDestinyEffects();
     NotifyAllU51DestinyEffects();
-    NotifyAllTwistEffects();
     ApplyGearEffects();     // apply effects from equipped gear
     m_previousGuildLevel = 0;   // ensure all effects apply
     ApplyGuildBuffs();
@@ -2369,38 +2296,18 @@ std::vector<TrainableFeatTypes> Character::TrainableFeatTypeAtLevel(
             trainable.push_back(TFT_EpicFeat);
         }
 
-        if (m_bLamanniaMode)
+        // epic destiny feats can also be trained at levels 22, 25 and 28
+        if (level == 21     // level is 0 based
+                || level == 24
+                || level == 27)
         {
-            // epic destiny feats can also be trained at levels 22, 25 and 28
-            if (level == 21     // level is 0 based
-                    || level == 24
-                    || level == 27)
-            {
-                trainable.push_back(TFT_EpicDestinyFeatU51);
-            }
-        }
-        else
-        {
-            // epic destiny feats can also be trained at levels 26, 28 and 29
-            if (level == 25     // level is 0 based
-                    || level == 27
-                    || level == 28)
-            {
-                trainable.push_back(TFT_EpicDestinyFeat);
-            }
+            trainable.push_back(TFT_EpicDestinyFeat);
         }
 
         // legendary feat can only be trained at level 30
         if (level == 29)     // level is 0 based
         {
-            if (m_bLamanniaMode)
-            {
-                trainable.push_back(TFT_LegendaryFeatU51);
-            }
-            else
-            {
-                trainable.push_back(TFT_LegendaryFeat);
-            }
+            trainable.push_back(TFT_LegendaryFeat);
         }
         break;
 
@@ -2724,14 +2631,6 @@ int Character::TotalPointsAvailable(const std::string & treeName, TreeType type)
         aps = 1000;  // no upper limit on reaper APs (i.e. you can buy all)
         break;
     case TT_epicDestiny:
-        // 0 APs unless the tree is claimed
-        if (DestinyClaimed(treeName))
-        {
-            aps = DestinyLevel(treeName) * 4; // destiny level is 0..6, i.e. 0 to 24 APs
-            aps += m_bonusDestinyActionPoints;  // count destiny AP tomes also
-        }
-        break;
-    case TT_epicDestiny51:
         aps = (MAX_LEVEL - MAX_CLASS_LEVEL) * 4
                 + static_cast<int>(FindBreakdown(Breakdown_DestinyPoints)->Total());
         break;
@@ -2771,16 +2670,6 @@ int Character::AvailableActionPoints(const std::string & treeName, TreeType type
         aps = 1000;  // no upper limit on reaper APs (i.e. you can buy all)
         break;
     case TT_epicDestiny:
-        // 0 APs unless the tree is claimed
-        if (DestinyClaimed(treeName))
-        {
-            aps = DestinyLevel(treeName) * 4; // destiny level is 0..6, i.e. 0 to 24 APs
-            aps += m_bonusDestinyActionPoints;
-            Character * pThis = const_cast<Character*>(this); // its used in a const way
-            aps -= pThis->APSpentInTree(treeName);
-        }
-        break;
-    case TT_epicDestiny51:
         aps = (MAX_LEVEL - MAX_CLASS_LEVEL) * 4
                 + static_cast<int>(FindBreakdown(Breakdown_DestinyPoints)->Total())
                 - m_destinyTreeSpend;
@@ -2801,11 +2690,6 @@ int Character::APSpentInTree(const std::string & treeName)
     if (pReaperItem != NULL) // NULL if no items spent in tree or enhancement/destiny tree
     {
         spent = pReaperItem->Spent();
-    }
-    EpicDestinySpendInTree * pEpicDestinyItem = EpicDestiny_FindTree(treeName);
-    if (pEpicDestinyItem != NULL) // NULL if no items spent in tree or enhancement/reaper tree
-    {
-        spent = pEpicDestinyItem->Spent();
     }
     DestinySpendInTree * pDestinyItem = U51Destiny_FindTree(treeName);
     if (pDestinyItem != NULL) // NULL if no items spent in tree or enhancement/reaper tree
@@ -2884,35 +2768,6 @@ const TrainedEnhancement * Character::IsTrained(
     }
 
     if (type == TT_epicDestiny
-            || (type == TT_unknown && pItem == NULL))
-    {
-        // iterate the epic destiny list to see if its present
-        std::list<EpicDestinySpendInTree>::const_iterator it = m_EpicDestinyTreeSpend.begin();
-        while (pItem == NULL
-                && it != m_EpicDestinyTreeSpend.end())
-        {
-            const std::list<TrainedEnhancement> & te = (*it).Enhancements();
-            std::list<TrainedEnhancement>::const_iterator teit = te.begin();
-            while (pItem == NULL
-                    && teit != te.end())
-            {
-                if ((*teit).EnhancementName() == enhancementName)
-                {
-                    // may have a required sub-selection for the enhancement
-                    if (selection.empty()
-                            || selection == (*teit).Selection())
-                    {
-                        pItem = &(*teit);
-                        break;
-                    }
-                }
-                ++teit;
-            }
-            ++it;
-        }
-    }
-
-    if (type == TT_epicDestiny51
             || (type == TT_unknown && pItem == NULL))
     {
         // iterate the U51 epic destiny list to see if its present
@@ -3634,69 +3489,6 @@ void Character::JustLoaded()
     }
 
     {
-        std::list<EpicDestinySpendInTree>::iterator edtsit = m_EpicDestinyTreeSpend.begin();
-        while (edtsit != m_EpicDestinyTreeSpend.end())
-        {
-            const EnhancementTree & tree = GetEnhancementTree((*edtsit).TreeName());
-            // is the recorded tree spend up to date with that loaded?
-            size_t spendVersion = (*edtsit).TreeVersion();
-            if (spendVersion != tree.Version())
-            {
-                // looks like this tree is now out of date, have to revoke all these
-                // enhancements in this tree (i.e. just delete it)
-                CString text;
-                text.Format("All enhancements in tree \"%s\" were revoked as the tree has since been superseded\n",
-                        (*edtsit).TreeName().c_str());
-                message += text;
-                displayMessage = true;
-                edtsit = m_EpicDestinyTreeSpend.erase(edtsit);
-            }
-            else
-            {
-                // the tree is up to date, sum how many APs were spent in it
-                bool bBadEnhancement = false;
-                size_t apsSpent = 0;
-                std::list<TrainedEnhancement> te = (*edtsit).Enhancements();
-                std::list<TrainedEnhancement>::iterator teit = te.begin();
-                while (teit != te.end())
-                {
-                    const EnhancementTreeItem * pTreeItem = FindEnhancement((*teit).EnhancementName());
-                    if (pTreeItem != NULL)
-                    {
-                        apsSpent += pTreeItem->Cost((*teit).Selection()) * (*teit).Ranks();
-                        // cost also updated so revoke of items will work
-                        (*teit).SetCost(pTreeItem->Cost((*teit).Selection()));
-                    }
-                    else
-                    {
-                        bBadEnhancement = true; 
-                    }
-                    ++teit;
-                }
-                if (!bBadEnhancement)
-                {
-                    // now set it on the tree so it knows how much has been spent in it
-                    (*edtsit).Set_Enhancements(te);
-                    (*edtsit).SetSpent(apsSpent);
-                    // done
-                    ++edtsit;
-                }
-                else
-                {
-                    // looks like this tree is now out of date, have to revoke all these
-                    // enhancements in this tree (i.e. just delete it)
-                    CString text;
-                    text.Format("All enhancements in tree \"%s\" were revoked as bad enhancement was encountered\n",
-                            (*edtsit).TreeName().c_str());
-                    message += text;
-                    displayMessage = true;
-                    edtsit = m_EpicDestinyTreeSpend.erase(edtsit);
-                }
-            }
-        }
-    }
-
-    {
         std::list<DestinySpendInTree>::iterator dsit = m_DestinyTreeSpend.begin();
         while (dsit != m_DestinyTreeSpend.end())
         {
@@ -4266,370 +4058,6 @@ ReaperSpendInTree * Character::Reaper_FindTree(const std::string & treeName)
     return pItem;
 }
 
-void Character::DetermineFatePoints()
-{
-    // from the DDOWiki:
-    //
-    // Characters receive fate points from various sources:
-    //      +1 for every 3 Epic Destiny levels
-    //      +2 for reaching level 29
-    //      +3 for reaching level 30
-    //      +1 for every 4 Epic Past Lives
-    //      Up to +3 from the Tome of Fate
-    //
-    // Fate points are never lost, except the +5 for reaching level 29 and 30. 
-    //
-    // Maximum fate points as of Update 29
-    // There are currently 12 Epic Destinies available with 5 levels each:
-    //      a total of 20 Fate Points available from levels. 
-    // 16 Epic Past Life Feats each stack up to 3 times:
-    //      48 Epic Past Lives -> 12 Fate Points 
-    // 3 Fate Points from the Tome of Fate 
-    // 5 Fate Points for level cap
-    //
-    // Total maximum achievable Fate Points = 40
-
-    // as we only consider characters at cap, we always start with at least
-    // the basic 5 fate points from levels 29/30
-    size_t fatePoints = 5;
-
-    //      +1 for every 3 Epic Destiny levels
-    // sum the levels for all epic destinies
-    size_t destinyLevels = 0;
-    std::list<EpicDestinySpendInTree>::iterator dit = m_EpicDestinyTreeSpend.begin();
-    while (dit != m_EpicDestinyTreeSpend.end())
-    {
-        size_t level = DestinyLevel((*dit).TreeName());
-        if (level > 0)
-        {
-            // DestinyLevel is 1 to 6, yet true level for Fate points
-            // is 0 to 5
-            --level;
-        }
-        destinyLevels += level;
-        ++dit;
-    }
-    fatePoints += (destinyLevels / 3); // integer arithmetic (drop fractions)
-
-    //      +1 for every 4 Epic Past Life 
-    // count the number of trained epic past lives
-    size_t numEpicPastLives = 0;
-    const std::list<TrainedFeat> & feats = SpecialFeats().Feats();
-    std::list<TrainedFeat>::const_iterator fit = feats.begin();
-    while (fit != feats.end())
-    {
-        const Feat & feat = FindFeat((*fit).FeatName());
-        if (feat.Acquire() == FeatAcquisition_EpicPastLife)
-        {
-            // epic past life
-            ++numEpicPastLives;
-        }
-        ++fit;
-    }
-    fatePoints += (numEpicPastLives / 4);   // integer arithmetic (drop fractions)
-
-    //      Up to +3 from the Tome of Fate 
-    fatePoints += GetSpecialFeatTrainedCount("Inherent Fate Point");
-    if (fatePoints != FatePoints())
-    {
-        // number of fate points available has changed
-        Set_FatePoints(fatePoints);
-        NotifyFatePointsChanged();
-    }
-}
-
-void Character::DetermineEpicCompletionist()
-{
-    // for epic completionist, they need 3 or more feats in each sphere
-    // of arcane, divine, martial and primal.
-    // Determine the counts in each
-    size_t spherePastLives[] = {0, 0, 0, 0};
-    const std::list<TrainedFeat> & feats = SpecialFeats().Feats();
-    std::list<TrainedFeat>::const_iterator fit = feats.begin();
-    while (fit != feats.end())
-    {
-        const Feat & feat = FindFeat((*fit).FeatName());
-        if (feat.Acquire() == FeatAcquisition_EpicPastLife)
-        {
-            // epic past life, what sphere?
-            if (feat.Sphere() == "Arcane")
-            {
-                spherePastLives[0]++;
-            }
-            if (feat.Sphere() == "Divine")
-            {
-                spherePastLives[1]++;
-            }
-            if (feat.Sphere() == "Martial")
-            {
-                spherePastLives[2]++;
-            }
-            if (feat.Sphere() == "Primal")
-            {
-                spherePastLives[3]++;
-            }
-        }
-        ++fit;
-    }
-    // now we have added them all up, see if we qualify for epic completionist
-    bool qualify = true;
-    for (size_t i = 0; i < 4; ++i)
-    {
-        if (spherePastLives[i] < 3)
-        {
-            qualify = false;
-        }
-    }
-    if (qualify != HasEpicCompletionist())
-    {
-        // we have a change in state of our epic completionist
-        if (qualify)
-        {
-            Set_EpicCompletionist();
-        }
-        else
-        {
-            Clear_EpicCompletionist();
-            // Ensure any twist trained in the epic completionist slot
-            // is removed as its no longer available
-            SetTwist(MAX_TWISTS - 1, NULL);
-        }
-        NotifyEpicCompletionistChanged();
-    }
-}
-
-void Character::EpicDestiny_SetActiveDestiny(const std::string & treeName)
-{
-    if (treeName != ActiveEpicDestiny())
-    {
-        // there is a change in active destiny
-
-        // first revoke all the enhancement effects of the previously active
-        // destiny (if there was one)
-        EpicDestinySpendInTree * pPrevious = EpicDestiny_FindTree(ActiveEpicDestiny());
-        if (pPrevious != NULL)
-        {
-            // we cheat for this. To get everything to revoke correctly we
-            // do a tree reset at this point, but to avoid losing the user
-            // selections, we first take a copy of the tree state and then re-insert the
-            // copy back into the tree list after it becomes de-active
-            EpicDestinySpendInTree copy = *pPrevious;
-            EpicDestiny_ResetEnhancementTree(ActiveEpicDestiny(), true);
-            // now re-insert the copy back into the trained tree list
-            ASSERT(EpicDestiny_FindTree(ActiveEpicDestiny()) == NULL);
-            m_EpicDestinyTreeSpend.push_back(copy);
-        }
-        Set_ActiveEpicDestiny(treeName);
-        // now apply all the trained enhancement effects in the selected destiny
-        EpicDestinySpendInTree * pNewActive = EpicDestiny_FindTree(treeName);
-        if (pNewActive != NULL) // may be active and have nothing trained
-        {
-            ApplyAllEffects(pNewActive->TreeName(), pNewActive->Enhancements());
-        }
-        // active tree affects available twists
-        DetermineFatePoints(); // as we did a tree reset we lost the fate points, recalculate them back in
-        NotifyAvailableTwistsChanged();
-        m_pDocument->SetModifiedFlag(TRUE);
-    }
-}
-
-bool Character::DestinyClaimed(const std::string & treeName) const
-{
-    // the destiny is claimed if any items are trained in it
-    // core items in destinies cost 0 AP, thus user can always train the 1st
-    // core enhancement
-    Character * pThis = const_cast<Character*>(this); // its used in a const way
-    EpicDestinySpendInTree * pItem = pThis->EpicDestiny_FindTree(treeName);
-    return (pItem != NULL);
-}
-
-size_t Character::DestinyLevel(const std::string & treeName) const
-{
-    // return the number of trained core items in this destiny tree
-    size_t destinyLevel = 0;
-    Character * pThis = const_cast<Character*>(this); // its used in a const way
-    EpicDestinySpendInTree * pItem = pThis->EpicDestiny_FindTree(treeName);
-    if (pItem != NULL)
-    {
-        // count each core item trained in this tree to determine destiny level
-        const std::list<TrainedEnhancement> & te = pItem->Enhancements();
-        std::list<TrainedEnhancement>::const_iterator it = te.begin();
-        while (it != te.end())
-        {
-            if ((*it).EnhancementName().find("Core") != std::string::npos)
-            {
-                // a core item is present
-                ++destinyLevel;
-            }
-            ++it;
-        }
-    }
-    return destinyLevel;
-}
-
-void Character::EpicDestiny_TrainEnhancement(
-        const std::string & treeName,
-        const std::string & enhancementName,
-        const std::string & selection,
-        size_t cost)
-{
-    // Find the tree tracking amount spent and enhancements trained
-    EpicDestinySpendInTree * pItem = EpicDestiny_FindTree(treeName);
-    if (pItem == NULL)
-    {
-        // no tree item available for this tree, its a first time spend
-        // create an object to handle this tree
-        EpicDestinySpendInTree tree;
-        tree.Set_TreeName(treeName);
-        const EnhancementTree & eTree = GetEnhancementTree(treeName);
-        tree.Set_TreeVersion(eTree.Version());  // need to track version of tree spent in
-        m_EpicDestinyTreeSpend.push_back(tree);
-        pItem = &m_EpicDestinyTreeSpend.back();
-    }
-    size_t ranks = 0;
-    pItem->TrainEnhancement(
-            enhancementName,
-            selection,
-            cost,
-            false,
-            &ranks);
-    // now notify all and sundry about the enhancement effects only if this is the
-    // active tree
-    if (treeName == ActiveEpicDestiny())
-    {
-        ApplyEnhancementEffects(treeName, enhancementName, selection, 1);
-    }
-    DetermineFatePoints();
-    NotifyEnhancementTrained(enhancementName, selection, false, (treeName == ActiveEpicDestiny()));
-
-    const EnhancementTreeItem * pTreeItem = FindEnhancement(enhancementName);
-    if (pTreeItem != NULL
-            && pTreeItem->YPosition() > 0
-            && pTreeItem->YPosition() <= MAX_TWIST_LEVEL)
-    {
-        // this item affects the available twists
-        NotifyAvailableTwistsChanged();
-    }
-    NotifyAPSpentInTreeChanged(treeName);
-    m_pDocument->SetModifiedFlag(TRUE);
-}
-
-void Character::EpicDestiny_RevokeEnhancement(
-        const std::string & treeName,
-        std::string * enhancementName,
-        std::string * enhancementSelection)
-{
-    EpicDestinySpendInTree * pItem = EpicDestiny_FindTree(treeName);
-    if (pItem != NULL
-            && pItem->Enhancements().size() > 0)
-    {
-        // return points available to spend also
-        std::string revokedEnhancement;
-        std::string revokedEnhancementSelection;
-        size_t ranks = 0;
-        pItem->RevokeEnhancement(
-                &revokedEnhancement,
-                &revokedEnhancementSelection,
-                &ranks);
-        // now notify all and sundry about the enhancement effects only if this is the
-        // active tree
-        if (treeName == ActiveEpicDestiny())
-        {
-            RevokeEnhancementEffects(treeName, revokedEnhancement, revokedEnhancementSelection, 1);
-        }
-        DetermineFatePoints();
-        NotifyEnhancementRevoked(revokedEnhancement, revokedEnhancementSelection, false, (treeName == ActiveEpicDestiny()));
-
-        const EnhancementTreeItem * pTreeItem = FindEnhancement(revokedEnhancement);
-        if (pTreeItem != NULL
-                && pTreeItem->YPosition() > 0
-                && pTreeItem->YPosition() <= MAX_TWIST_LEVEL)
-        {
-            // this item affects the available twists
-            NotifyAvailableTwistsChanged();
-        }
-        NotifyAPSpentInTreeChanged(treeName);
-        m_pDocument->SetModifiedFlag(TRUE);
-        if (enhancementName != NULL)
-        {
-            *enhancementName = revokedEnhancement;
-        }
-        if (enhancementSelection != NULL)
-        {
-            *enhancementSelection = revokedEnhancementSelection;
-        }
-    }
-}
-
-void Character::EpicDestiny_ResetEnhancementTree(std::string treeName, bool bFullRevoke)
-{
-    // a whole tree is being reset
-    EpicDestinySpendInTree * pItem = EpicDestiny_FindTree(treeName);
-    if (pItem != NULL)
-    {
-        // determine how many cores they have so they get retained after reset
-        size_t level = DestinyLevel(treeName);
-        // clear all the enhancements trained by revoking them until none left
-        while (pItem->Enhancements().size() > 0)
-        {
-            EpicDestiny_RevokeEnhancement(treeName);
-            pItem = EpicDestiny_FindTree(treeName);
-        }
-        // now remove the tree entry from the list (not present if no spend in tree)
-        std::list<EpicDestinySpendInTree>::iterator it = m_EpicDestinyTreeSpend.begin();
-        while (it != m_EpicDestinyTreeSpend.end())
-        {
-            if ((*it).TreeName() == treeName)
-            {
-                // done once we find it
-                m_EpicDestinyTreeSpend.erase(it);
-                break;
-            }
-            ++it;
-        }
-        if (!bFullRevoke)
-        {
-            // now re-buy the cores the user had
-            const EnhancementTree & tree = FindTree(treeName);
-            const std::list<EnhancementTreeItem> & items = tree.Items();
-            std::list<EnhancementTreeItem>::const_iterator tii = items.begin();
-            for (size_t index = 0; index < level; ++index)
-            {
-                if (!IsEnhancementTrained((*tii).InternalName(), "", TT_epicDestiny))
-                {
-                    EpicDestiny_TrainEnhancement(
-                            treeName,
-                            (*tii).InternalName(),
-                            "",
-                            0);         // core items are always free
-                }
-                ++tii;
-            }
-        }
-        NotifyEnhancementTreeReset();
-        NotifyAPSpentInTreeChanged(treeName);
-        m_pDocument->SetModifiedFlag(TRUE);
-    }
-}
-
-EpicDestinySpendInTree * Character::EpicDestiny_FindTree(const std::string & treeName)
-{
-    // Find the tree tracking amount spent and enhancements trained
-    EpicDestinySpendInTree * pItem = NULL;
-    std::list<EpicDestinySpendInTree>::iterator it = m_EpicDestinyTreeSpend.begin();
-    while (pItem == NULL
-            && it != m_EpicDestinyTreeSpend.end())
-    {
-        if ((*it).TreeName() == treeName)
-        {
-            pItem = &(*it);
-            break;
-        }
-        ++it;
-    }
-    return pItem;
-}
-
 void Character::ApplyAllEffects(
         const std::string & treename,
         const std::list<TrainedEnhancement> & enhancements)
@@ -4680,248 +4108,6 @@ void Character::RevokeAllEffects(
         }
         ++eit;
     }
-}
-
-bool Character::IsTwistActive(size_t twistIndex) const
-{
-    ASSERT(twistIndex < MAX_TWISTS);
-    // a twist is active if:
-    // its the first twist
-    // or the previous twist has at least 1 trained rank
-    bool active = false;
-    if (twistIndex == 0)
-    {
-        active = true;
-    }
-    else
-    {
-        active = (TwistTier(twistIndex-1) > 0);
-    }
-    return active;
-}
-
-size_t Character::TwistTier(size_t twistIndex) const
-{
-    ASSERT(twistIndex < MAX_TWISTS);
-    size_t tier = 0;
-    // ask the object for its tier if it exists, else its tier 0
-    if (twistIndex < m_Twists.size())
-    {
-        std::list<TwistOfFate>::const_iterator it = m_Twists.begin();
-        std::advance(it, twistIndex);
-        tier = (*it).Tier();
-    }
-    return tier;
-}
-
-bool Character::CanUpgradeTwist(size_t twistIndex) const
-{
-    ASSERT(twistIndex < MAX_TWISTS);
-    // we can only upgrade this twist if we have enough fate points
-    // 1st twist costs 1,2,3,4 to upgrade
-    // 2nd twist costs 2,3,4,5 to upgrade
-    // 3rd twist costs 3,4,5,6 to upgrade...
-    // and we are not at the maximum tier
-    size_t cost = 1 + twistIndex + TwistTier(twistIndex);
-    size_t spent = SpentFatePoints();
-    // available can be negative due to user shenanigans
-    int availableFatePoints = (int)FatePoints() - (int)spent;
-    return ((int)cost <= availableFatePoints)
-            && (TwistTier(twistIndex) < MAX_TWIST_LEVEL);
-}
-
-void Character::UpgradeTwist(size_t twistIndex)
-{
-    // note that upgrading a twist level cannot invalidate any
-    // trained twist
-    ASSERT(twistIndex < MAX_TWISTS);
-    ASSERT(TwistTier(twistIndex) < MAX_TWIST_LEVEL);
-    std::list<TwistOfFate>::iterator it = m_Twists.begin();
-    std::advance(it, twistIndex);
-    (*it).IncrementTier();
-    NotifyFatePointsChanged();  // number available has changed
-    m_pDocument->SetModifiedFlag(TRUE);
-    NotifyAvailableTwistsChanged();
-}
-
-void Character::DowngradeTwist(size_t twistIndex)
-{
-    ASSERT(twistIndex < MAX_TWISTS);
-    ASSERT(TwistTier(twistIndex) > 0);
-    std::list<TwistOfFate>::iterator it = m_Twists.begin();
-    std::advance(it, twistIndex);
-    (*it).DecrementTier();
-    NotifyFatePointsChanged();  // number available has changed
-    m_pDocument->SetModifiedFlag(TRUE);
-    // if the twist can no longer hold the trained twist, revoke it
-    const TrainedEnhancement * trainedTwist = TrainedTwist(twistIndex);
-    if (trainedTwist != NULL)
-    {
-        std::string treeName;
-        const EnhancementTreeItem * item = FindEnhancement(trainedTwist->EnhancementName(), &treeName);
-        if (item != NULL
-                && item->YPosition() > TwistTier(twistIndex))
-        {
-            // the selected twist is too high level for this slot
-            // have to revoke it
-            SetTwist(twistIndex, NULL);
-        }
-    }
-    NotifyAvailableTwistsChanged();
-}
-
-const TrainedEnhancement * Character::TrainedTwist(size_t twistIndex) const
-{
-    const TrainedEnhancement * item = NULL;
-    std::list<TwistOfFate>::const_iterator it = m_Twists.begin();
-    std::advance(it, twistIndex);
-    if ((*it).HasTwist())
-    {
-        item = &(*it).Twist();
-    }
-    return item;
-}
-
-std::list<TrainedEnhancement> Character::AvailableTwists(size_t twistIndex) const
-{
-    size_t maxTwistTier = TwistTier(twistIndex);
-    std::list<TrainedEnhancement> availableTwists;
-    // to get the list of available twists we need to iterate all the
-    // trained enhancements in all destinies except the active one
-    // we only include the TrainedEnhancement if:
-    // its not a core item
-    // its tier is less than or equal to the max tier of the twist
-    std::list<EpicDestinySpendInTree>::const_iterator edti = m_EpicDestinyTreeSpend.begin();
-    while (edti != m_EpicDestinyTreeSpend.end())
-    {
-        // must not be the active tree
-        if ((*edti).TreeName() != ActiveEpicDestiny())
-        {
-            const std::list<TrainedEnhancement> & te = (*edti).Enhancements();
-            std::list<TrainedEnhancement>::const_iterator tei = te.begin();
-            while (tei != te.end())
-            {
-                // must be in tier range to train. Get the actual enhancement
-                const EnhancementTreeItem * item = FindEnhancement((*tei).EnhancementName());
-                ASSERT(item != NULL);
-                // we can tell what tier this item is by the enhancements YPosition value
-                if (item->YPosition() > 0           // not a core (tier 0)
-                        && item->YPosition() <= maxTwistTier)
-                {
-                    // this item qualifies as a twist, add it
-                    availableTwists.push_back((*tei));
-                }
-                ++tei;
-            }
-        }
-        ++edti;     // on to the next tree
-    }
-    // remove any other trained twists from the list (can't twist same item twice)
-    for (size_t twist = 0; twist < MAX_TWISTS; ++twist)
-    {
-        // don't remove any item that is the selection for this twist
-        if (twist != twistIndex)
-        {
-            // remove this twist (if there is one)
-            const TrainedEnhancement * trainedTwist = TrainedTwist(twist);
-            if (trainedTwist != NULL)
-            {
-                bool found = false;
-                std::list<TrainedEnhancement>::iterator it = availableTwists.begin();
-                while (!found && it != availableTwists.end())
-                {
-                    if ((*it).EnhancementName() == trainedTwist->EnhancementName())
-                    {
-                        // this twist is selected elsewhere, remove from available list
-                        it = availableTwists.erase(it);
-                        found = true;   // were done
-                    }
-                    else
-                    {
-                        // check the next one
-                        ++it;
-                    }
-                }
-            }
-        }
-    }
-
-    return availableTwists;
-}
-
-void Character::SetTwist(size_t twistIndex, const TrainedEnhancement * te)
-{
-    // as the twist is changing, clear the effects on any previously trained twist
-    const TrainedEnhancement * trainedTwist = TrainedTwist(twistIndex);
-    if (trainedTwist != NULL)
-    {
-        std::string treeName;
-        const EnhancementTreeItem * item = FindEnhancement(trainedTwist->EnhancementName(), &treeName);
-        ASSERT(item != NULL);
-        RevokeEnhancementEffects(
-                treeName,
-                trainedTwist->EnhancementName(),
-                trainedTwist->HasSelection() ? trainedTwist->Selection() : "",
-                trainedTwist->Ranks());
-        // enhancements may give multiple stances
-        std::list<Stance> stances = item->Stances(trainedTwist->HasSelection() ? trainedTwist->Selection() : "");
-        std::list<Stance>::const_iterator sit = stances.begin();
-        while (sit != stances.end())
-        {
-            NotifyRevokeStance((*sit));
-            ++sit;
-        }
-    }
-
-    ASSERT(twistIndex < MAX_TWISTS);
-    std::list<TwistOfFate>::iterator it = m_Twists.begin();
-    std::advance(it, twistIndex);
-    if (te != NULL
-            && te->EnhancementName() != "")
-    {
-        (*it).Set_Twist(*te);
-        // now train the effects of the selected twist
-        std::string treeName;
-        // need to call once per rank of trained twist
-        const EnhancementTreeItem * item = FindEnhancement(te->EnhancementName(), &treeName);
-        ApplyEnhancementEffects(
-                treeName,
-                te->EnhancementName(),
-                te->HasSelection() ? te->Selection() : "",
-                te->Ranks());
-        // enhancements may give multiple stances
-        std::list<Stance> stances = item->Stances(te->HasSelection() ? te->Selection() : "");
-        std::list<Stance>::const_iterator sit = stances.begin();
-        while (sit != stances.end())
-        {
-            NotifyNewStance((*sit));
-            ++sit;
-        }
-    }
-    else
-    {
-        (*it).Clear_Twist();
-        // cleared, no effects
-    }
-
-    // as this selection has changed, other twists selectable twists will have changed
-    NotifyAvailableTwistsChanged();
-    m_pDocument->SetModifiedFlag(TRUE);
-}
-
-size_t Character::SpentFatePoints() const
-{
-    // count how many fate points have been spent by all 5 possible twists
-    size_t spent = 0;
-    for (size_t twistIndex = 0; twistIndex < MAX_TWISTS; ++twistIndex)
-    {
-        size_t tier = TwistTier(twistIndex);
-        for (size_t tierCost = 0; tierCost < tier; ++tierCost)
-        {
-            spent += (1 + twistIndex + tierCost);
-        }
-    }
-    return spent;
 }
 
 int Character::AvailableActionPoints() const
@@ -7041,12 +6227,10 @@ void Character::ResetBuild()
     blankCharacter.m_ChaTome = m_ChaTome;
     blankCharacter.m_Tomes = m_Tomes;
     blankCharacter.m_SpecialFeats = m_SpecialFeats;
-    blankCharacter.m_EpicDestinyTreeSpend = m_EpicDestinyTreeSpend;
     blankCharacter.m_ReaperTreeSpend = m_ReaperTreeSpend;
     blankCharacter.m_GearSetups = m_GearSetups;
     blankCharacter.m_ActiveGear = m_ActiveGear;
     blankCharacter.m_SelfAndPartyBuffs = m_SelfAndPartyBuffs;
-    blankCharacter.m_hasEpicCompletionist = m_hasEpicCompletionist;
     // now assign to ourselves
     (*this) = blankCharacter;
     JustLoaded();

@@ -127,7 +127,7 @@ bool EnhancementTreeItem::MeetRequirements(
             met = false;
         }
     }
-    if (m_type == TT_epicDestiny51)
+    if (m_type == TT_epicDestiny)
     {
         if (HasTier5()                  // are we a tier 5 enhancement?
                 && charData.HasU51Destiny_Tier5Tree()
@@ -186,7 +186,7 @@ bool EnhancementTreeItem::IsAllowed(
             met = false;
         }
     }
-    if (m_type == TT_epicDestiny51)
+    if (m_type == TT_epicDestiny)
     {
         if (HasTier5()                  // are we a tier 5 enhancement?
                 && charData.HasU51Destiny_Tier5Tree()

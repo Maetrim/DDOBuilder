@@ -8,7 +8,6 @@
 #include "AlignmentTypes.h"
 #include "DestinySpendInTree.h"
 #include "EnhancementSpendInTree.h"
-#include "EpicDestinySpendInTree.h"
 #include "EquippedGear.h"
 #include "SelectedEnhancementTrees.h"
 #include "SelectedDestinyTrees.h"
@@ -19,7 +18,6 @@
 #include "ReaperSpendInTree.h"
 #include "SkillTomes.h"
 #include "Stance.h"
-#include "TwistOfFate.h"
 #include "TrainedSpell.h"
 
 class Character;
@@ -71,8 +69,6 @@ class CharacterObserver :
         virtual void UpdateSpellTrained(Character * charData, const TrainedSpell & spell) {};
         virtual void UpdateSpellRevoked(Character * charData, const TrainedSpell & spell) {};
         virtual void UpdateFatePointsChanged(Character * charData) {};
-        virtual void UpdateEpicCompletionistChanged(Character * charData) {};
-        virtual void UpdateAvailableTwistsChanged(Character * charData) {};
         virtual void UpdateItemEffect(Character * charData, const std::string & itemName, const Effect & effect) {};
         virtual void UpdateItemEffectRevoked(Character * charData, const std::string & itemName, const Effect & effect) {};
         virtual void UpdateGrantedFeatsChanged(Character * charData) {};
@@ -257,32 +253,6 @@ class Character :
         bool U51Destiny_IsTreeTrained(const std::string & tree) const;
         void U51Destiny_SwapTrees(const std::string & tree1, const std::string & tree2);
 
-        // epic destiny support
-        void EpicDestiny_SetActiveDestiny(const std::string & treeName);
-        bool DestinyClaimed(const std::string & treeName) const;
-        size_t DestinyLevel(const std::string & treeName) const;
-        void EpicDestiny_TrainEnhancement(
-                const std::string & treeName,
-                const std::string & enhancementName,
-                const std::string & selection,
-                size_t cost);
-        void EpicDestiny_RevokeEnhancement(
-                const std::string & treeName,
-                std::string * enhancementName = NULL,
-                std::string * enhancementSelection = NULL);
-        void EpicDestiny_ResetEnhancementTree(std::string treeName, bool bFullRevoke);
-
-        // twists of fate support
-        size_t SpentFatePoints() const;
-        bool IsTwistActive(size_t twistIndex) const;
-        size_t TwistTier(size_t twistIndex) const;
-        bool CanUpgradeTwist(size_t twistIndex) const;
-        void UpgradeTwist(size_t twistIndex);
-        void DowngradeTwist(size_t twistIndex);
-        const TrainedEnhancement * TrainedTwist(size_t twistIndex) const;
-        std::list<TrainedEnhancement> AvailableTwists(size_t twistIndex) const;
-        void SetTwist(size_t twistIndex, const TrainedEnhancement * te);
-
         // gear support
         void AddGearSet(const EquippedGear & gear);
         void DeleteGearSet(const std::string & name);
@@ -335,8 +305,6 @@ class Character :
         void NotifyStanceActivated(const std::string & name);
         void NotifyStanceDeactivated(const std::string & name);
         void NotifyFatePointsChanged();
-        void NotifyEpicCompletionistChanged();
-        void NotifyAvailableTwistsChanged();
         void NotifyItemEffect(const std::string & itemName, const Effect & effect);
         void NotifyItemEffectRevoked(const std::string & itemName, const Effect & effect);
         void NotifyGearChanged(InventorySlotType slot);
@@ -346,7 +314,6 @@ class Character :
         void NotifyAllReaperEnhancementEffects();
         void NotifyAllDestinyEffects();
         void NotifyAllU51DestinyEffects();
-        void NotifyAllTwistEffects();
         void NotifyEnhancementEffect(const std::string & enhancementName,  const Effect & effect, size_t ranks);
         void NotifyEnhancementEffectRevoked(const std::string & enhancementName, const Effect & effect, size_t ranks);
         void NotifyEnhancementTrained(const std::string & enhancementName, const std::string & selection, bool isTier5, bool bActiveTree);
@@ -403,11 +370,7 @@ class Character :
                 DL_OBJECT_LIST(_, EnhancementSpendInTree, EnhancementTreeSpend) \
                 DL_OBJECT_LIST(_, ReaperSpendInTree, ReaperTreeSpend) \
                 DL_OBJECT_LIST(_, DestinySpendInTree, DestinyTreeSpend) \
-                DL_STRING(_, ActiveEpicDestiny) \
-                DL_FLAG(_, EpicCompletionist) \
                 DL_SIMPLE(_, size_t, FatePoints, 0) \
-                DL_OBJECT_LIST(_, EpicDestinySpendInTree, EpicDestinyTreeSpend) \
-                DL_OBJECT_LIST(_, TwistOfFate, Twists) \
                 DL_STRING(_, ActiveGear) \
                 DL_OBJECT_LIST(_, EquippedGear, GearSetups) \
                 DL_STRING_LIST(_, SelfAndPartyBuffs) \
@@ -437,7 +400,6 @@ class Character :
         EnhancementSpendInTree * Enhancement_FindTree(const std::string & treeName);
         ReaperSpendInTree * Reaper_FindTree(const std::string & treeName);
         DestinySpendInTree * U51Destiny_FindTree(const std::string & treeName);
-        EpicDestinySpendInTree * EpicDestiny_FindTree(const std::string & treeName);
         std::string GetEnhancementName(
                 const std::string & treeName,
                 const std::string & enhancementName,
@@ -456,10 +418,8 @@ class Character :
         void RevokeAllEffects(
                 const std::string & treename,
                 const std::list<TrainedEnhancement> & enhancements);
-        void DetermineEpicCompletionist();
         void CountBonusRacialAP();
         void CountBonusUniversalAP();
-        void DetermineFatePoints();
         void RevokeGearEffects();
         void ApplyGearEffects();
         void ApplyGuildBuffs();

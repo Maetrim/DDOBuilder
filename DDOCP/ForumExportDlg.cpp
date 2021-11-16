@@ -202,14 +202,8 @@ void CForumExportDlg::PopulateExport()
             case FES_EnhancementTrees:
                 AddEnhancements(forumExport);
                 break;
-            case FES_ActiveDestinyTree:
+            case FES_DestinyTrees:
                 AddEpicDestinyTree(forumExport);
-                break;
-            case FES_AllOtherDestinyTrees:
-                AddAllOtherEpicDestinyTrees(forumExport);
-                break;
-            case FES_TwistsOfFate:
-                AddTwistsOfFate(forumExport);
                 break;
             case FES_ReaperTrees:
                 AddReaperTrees(forumExport);
@@ -1082,52 +1076,36 @@ void CForumExportDlg::AddEnhancements(std::stringstream & forumExport)
 void CForumExportDlg::AddEpicDestinyTree(
         std::stringstream & forumExport)
 {
-    // now add the active epic destiny tree
-    std::string activeDestiny = m_pCharacter->ActiveEpicDestiny();
-    if (activeDestiny != "")
+    forumExport << "Epic Destinies: 40 APs";
+    //if (m_pCharacter->BonusRacialActionPoints() > 0)
+    //{
+    //    forumExport << ", Racial ";
+    //    forumExport.width(1);
+    //    forumExport << m_pCharacter->BonusRacialActionPoints();
+    //}
+    //if (m_pCharacter->BonusUniversalActionPoints() > 0)
+    //{
+    //    forumExport << ", Universal ";
+    //    forumExport.width(1);
+    //    forumExport << m_pCharacter->BonusUniversalActionPoints();
+    //}
+    forumExport << "\r\n";
+    forumExport << "------------------------------------------------------------------------------------------\r\n";
+    const SelectedDestinyTrees& trees = m_pCharacter->DestinyTrees();
+    for (size_t ti = 0; ti < MAX_EPIC_DESTINY_TREES; ++ti)
     {
-        forumExport << "\r\n";
-        forumExport << "Active Destiny Tree\r\n";
-        forumExport << "------------------------------------------------------------------------------------------\r\n";
-        // this is a tree we have to list
-        EpicDestinySpendInTree * treeSpend = m_pCharacter->EpicDestiny_FindTree(activeDestiny);
-        if (treeSpend != NULL)
+        const std::string & treeName = trees.Tree(ti);
+        if (!SelectedEnhancementTrees::IsNotSelected(treeName))
         {
-            // tree can be selected and have no enhancements trained, thus not be present
-            AddEpicDestinyTree(forumExport, *treeSpend);
-        }
-    }
-}
-
-void CForumExportDlg::AddAllOtherEpicDestinyTrees(
-        std::stringstream & forumExport)
-{
-    std::vector<EnhancementTree> destinyTrees;
-    const std::list<EnhancementTree> & allTrees = EnhancementTrees();
-    std::list<EnhancementTree>::const_iterator it = allTrees.begin();
-    while (it != allTrees.end())
-    {
-        if ((*it).HasIsEpicDestiny())
-        {
-            // its a destiny tree
-            // output if it is not the active tree
-            if ((*it).Name() != m_pCharacter->ActiveEpicDestiny())
+            // this is a tree we have to list
+            DestinySpendInTree * treeSpend = m_pCharacter->U51Destiny_FindTree(treeName);
+            if (treeSpend != NULL
+                    && treeSpend->Spent() > 0)
             {
-                destinyTrees.push_back((*it));
+                // tree can be selected and have no enhancements trained, thus not be present
+                AddEpicDestinyTree(forumExport, *treeSpend);
             }
         }
-        ++it;
-    }
-    std::vector<EnhancementTree>::const_iterator dtit = destinyTrees.begin();
-    while (dtit != destinyTrees.end())
-    {
-        EpicDestinySpendInTree * treeSpend = m_pCharacter->EpicDestiny_FindTree((*dtit).Name());
-        if (treeSpend != NULL)
-        {
-            // tree can be selected and have no enhancements trained, thus not be present
-            AddEpicDestinyTree(forumExport, *treeSpend);
-        }
-        ++dtit;
     }
 }
 
@@ -1216,15 +1194,13 @@ void CForumExportDlg::AddEnhancementTree(
 
 void CForumExportDlg::AddEpicDestinyTree(
         std::stringstream & forumExport,
-        const EpicDestinySpendInTree & treeSpend)
+        const DestinySpendInTree & treeSpend)
 {
     // TreeName: <name> - Points spent : xxx
     // <List of enhancements by display name>
     forumExport << treeSpend.TreeName() << " - Points spent: " << treeSpend.Spent() << "\r\n";
     const std::list<TrainedEnhancement> & enhancements = treeSpend.Enhancements();
 
-    std::string treeName = treeSpend.TreeName();
-    treeName += ": ";
     // output each enhancement by buy index
     size_t buyIndex = 0;
     bool found = true;
@@ -1263,7 +1239,7 @@ void CForumExportDlg::AddEpicDestinyTree(
                 }
                 // remove "Treename: " from the output for every individual enhancement
                 std::string name = item->DisplayName((*it).HasSelection() ? (*it).Selection() : "");
-                name = name.substr(treeName.length());
+                name = name.substr(name.find(':') + 2);
                 forumExport << "(" << item->Cost((*it).HasSelection() ? (*it).Selection() : "") << ") " << name << "\r\n";
             }
             else
@@ -1274,7 +1250,6 @@ void CForumExportDlg::AddEpicDestinyTree(
         ++buyIndex;
     }
     forumExport << "------------------------------------------------------------------------------------------\r\n";
-    forumExport << "\r\n";
 }
 
 void CForumExportDlg::AddReaperTree(
@@ -1334,52 +1309,6 @@ void CForumExportDlg::AddReaperTree(
         ++buyIndex;
     }
     forumExport << "------------------------------------------------------------------------------------------\r\n";
-    forumExport << "\r\n";
-}
-
-void CForumExportDlg::AddTwistsOfFate(std::stringstream & forumExport)
-{
-    // Twists of Fate - xx of yy fate points spent
-    // Twist 1 - Tier X: Selected twist
-    // Twist 2 - Tier X: Selected twist
-    // Twist 3 - Tier X: Selected twist
-    // Twist 4 - Tier X: Selected twist
-    // Twist 5 - Tier X: Selected twist
-    int totalFatePoints = m_pCharacter->FatePoints();
-    size_t spentFatePoints = m_pCharacter->SpentFatePoints();
-    forumExport << "Twists of fate - " << spentFatePoints << " of " << totalFatePoints;
-    forumExport << " Fate points spent.\r\n";
-    forumExport << "------------------------------------------------------------------------------------------\r\n";
-    for (size_t twist = 0; twist < MAX_TWISTS; ++twist)
-    {
-        if (twist == MAX_TWISTS - 1
-                && !m_pCharacter->HasEpicCompletionist())
-        {
-            // don't show last twist
-            break;
-        }
-        forumExport.width(1);
-        size_t tier = m_pCharacter->TwistTier(twist);
-        forumExport << "Twist " << (twist + 1) << " - Tier " << tier << ": ";
-        const TrainedEnhancement * tt = m_pCharacter->TrainedTwist(twist);
-        if (tt != NULL)
-        {
-            const EnhancementTreeItem * item = FindEnhancement(tt->EnhancementName());
-            if (item != NULL)
-            {
-                forumExport << item->DisplayName(tt->HasSelection() ? tt->Selection() : "");
-            }
-            else
-            {
-                forumExport << "Trained twist not found";
-            }
-        }
-        else
-        {
-            forumExport << "Twist slot empty";
-        }
-        forumExport << "\r\n";
-    }
     forumExport << "\r\n";
 }
 
@@ -1574,15 +1503,6 @@ void CForumExportDlg::AddWeaponDamage(std::stringstream & forumExport)
 
     pBI = FindBreakdown(Breakdown_RangedPower);
     forumExport << "Ranged Power: " << pBI->Total();
-    if (m_pCharacter->IsFeatTrained("Manyshot"))
-    {
-        // list ranged power when manyshot active additional BAB * 4
-        forumExport << "   with Manyshot active: ";
-        double total = pBI->Total();
-        pBI = FindBreakdown(Breakdown_BAB);
-        total += (pBI->Total() * 4);
-        forumExport << total;
-    }
     forumExport << "\r\n";
     AddBreakdown(forumExport, "Doubleshot Chance: ", 1, Breakdown_DoubleShot);
     forumExport << "%\r\n";

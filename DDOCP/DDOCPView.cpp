@@ -1018,6 +1018,7 @@ void CDDOCPView::OnLamanniaPreview()
 
 void CDDOCPView::OnUpdateLamanniaPreview(CCmdUI * pCmdUi)
 {
+    pCmdUi->Enable(FALSE);              // no Lamannia preview available
     pCmdUi->SetCheck(m_bLamanniaPreview);
 }
 

@@ -647,7 +647,7 @@ void CEnhancementTreeDialog::OnLButtonDown(UINT nFlags, CPoint point)
                                     dlg.Selection(),
                                     dlg.Cost());
                             break;
-                        case TT_epicDestiny51:
+                        case TT_epicDestiny:
                             m_pCharacter->U51Destiny_TrainEnhancement(
                                     m_tree.Name(),
                                     item->InternalName(),
@@ -681,7 +681,7 @@ void CEnhancementTreeDialog::OnLButtonDown(UINT nFlags, CPoint point)
                                     (te != NULL && te->HasSelection()) ? te->Selection() : "",
                                     item->Cost());
                             break;
-                        case TT_epicDestiny51:
+                        case TT_epicDestiny:
                             m_pCharacter->U51Destiny_TrainEnhancement(
                                     m_tree.Name(),
                                     item->InternalName(),
@@ -739,7 +739,7 @@ void CEnhancementTreeDialog::OnLButtonDown(UINT nFlags, CPoint point)
                     case TT_reaper:
                         m_pCharacter->Reaper_ResetEnhancementTree(m_tree.Name());
                         break;
-                    case TT_epicDestiny51:
+                    case TT_epicDestiny:
                         m_pCharacter->U51Destiny_ResetEnhancementTree(m_tree.Name());
                         break;
                     }
@@ -791,7 +791,7 @@ void CEnhancementTreeDialog::OnLButtonUp(UINT nFlags, CPoint point)
                 switch (m_type)
                 {
                 case TT_enhancement:    m_pCharacter->Enhancement_SwapTrees(tree1, tree2); break;
-                case TT_epicDestiny51:  m_pCharacter->U51Destiny_SwapTrees(tree1, tree2); break;
+                case TT_epicDestiny:    m_pCharacter->U51Destiny_SwapTrees(tree1, tree2); break;
                 }
             }
         }
@@ -816,7 +816,7 @@ void CEnhancementTreeDialog::OnRButtonDown(UINT nFlags, CPoint point)
             case TT_reaper:
                 m_pCharacter->Reaper_RevokeEnhancement(m_tree.Name());
                 break;
-            case TT_epicDestiny51:
+            case TT_epicDestiny:
                 m_pCharacter->U51Destiny_RevokeEnhancement(m_tree.Name());
                 break;
             }

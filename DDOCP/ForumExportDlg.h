@@ -4,7 +4,6 @@
 #include "XmlLib\SaxContentElement.h"
 #include "GlobalSupportFunctions.h"
 #include "EnhancementSpendInTree.h"
-#include "EpicDestinySpendInTree.h"
 
 class Character;
 class EquippedGear;
@@ -25,9 +24,7 @@ enum ForumExportSections
     FES_SelfAndPartyBuffs,
     FES_ActiveStances,
     FES_EnhancementTrees,
-    FES_ActiveDestinyTree,
-    FES_AllOtherDestinyTrees,
-    FES_TwistsOfFate,
+    FES_DestinyTrees,
     FES_ReaperTrees,
     FES_SpellPowers,
     FES_Spells,
@@ -55,9 +52,7 @@ const XmlLib::enumMapEntry<ForumExportSections> forumExportSectionsMap[] =
     {FES_SelfAndPartyBuffs, L"Self and Party Buffs"},
     {FES_ActiveStances, L"Active Stances"},
     {FES_EnhancementTrees, L"Enhancement Trees"},
-    {FES_ActiveDestinyTree, L"Active Destiny Tree"},
-    {FES_AllOtherDestinyTrees, L"All Other Destiny Trees"},
-    {FES_TwistsOfFate, L"Twists of Fate"},
+    {FES_DestinyTrees, L"Destiny Trees"},
     {FES_ReaperTrees, L"Reaper Trees"},
     {FES_SpellPowers, L"Spell Powers"},
     {FES_Spells, L"Spells"},
@@ -124,8 +119,6 @@ class CForumExportDlg : public CDialogEx
         void AddEnhancements(std::stringstream & forumExport);
         void AddEnhancementTree(std::stringstream & forumExport);
         void AddEpicDestinyTree(std::stringstream & forumExport);
-        void AddAllOtherEpicDestinyTrees(std::stringstream & forumExport);
-        void AddTwistsOfFate(std::stringstream & forumExport);
         void AddReaperTrees(std::stringstream & forumExport);
         void AddSpellPowers(std::stringstream & forumExport);
         void AddSpellPower(
@@ -144,7 +137,7 @@ class CForumExportDlg : public CDialogEx
         void AddSimpleGear(std::stringstream & forumExport);
 
         void AddEnhancementTree(std::stringstream & forumExport, const EnhancementSpendInTree & treeSpend);
-        void AddEpicDestinyTree(std::stringstream & forumExport, const EpicDestinySpendInTree & treeSpend);
+        void AddEpicDestinyTree(std::stringstream & forumExport, const DestinySpendInTree & treeSpend);
         void AddReaperTree(std::stringstream & forumExport, const ReaperSpendInTree & treeSpend);
 
         void ExportGear(const EquippedGear & gear, std::stringstream & forumExport, bool bSimple);

@@ -9,7 +9,6 @@
 #include "DDOCP.h"
 #include "DCView.h"
 #include "EnhancementsView.h"
-#include "EpicDestiniesView.h"
 #include "EquipmentView.h"
 #include "LevelUpView.h"
 #include "NotesView.h"
@@ -56,7 +55,6 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWndEx)
     ON_UPDATE_COMMAND_UI(ID_DOCK_DC, OnUpdateDockPane)
     ON_UPDATE_COMMAND_UI(ID_DOCK_SKILLS, OnUpdateDockPane)
     ON_UPDATE_COMMAND_UI(ID_DOCK_CLASSFEATS, OnUpdateDockPane)
-    ON_UPDATE_COMMAND_UI(ID_DOCK_U51EPICDESTINY, OnUpdateDockPane)
     ON_COMMAND(ID_DOCK_BREAKDOWNS, OnDockPane)
     ON_COMMAND(ID_DOCK_LEVELUP, OnDockPane)
     ON_COMMAND(ID_DOCK_SPECIALFEATS, OnDockPane)
@@ -71,7 +69,6 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWndEx)
     ON_COMMAND(ID_DOCK_DC, OnDockPane)
     ON_COMMAND(ID_DOCK_SKILLS, OnDockPane)
     ON_COMMAND(ID_DOCK_CLASSFEATS, OnDockPane)
-    ON_COMMAND(ID_DOCK_U51EPICDESTINY, OnDockPane)
     ON_COMMAND(ID_VIEW_RESETSCREENLAYOUT, OnResetScreenLayout)
     ON_UPDATE_COMMAND_UI(ID_SETTINGS_LOADITEMS, OnUpdateSettingsLoadItems)
     ON_COMMAND(ID_SETTINGS_LOADITEMS, OnSettingsLoadItems)
@@ -521,12 +518,12 @@ void CMainFrame::CreateViews()
     pReaperPane->SetDocumentAndCharacter(GetActiveDocument(), NULL);
 
     // create the floating views
-    CCustomDockablePane * pEpicDestiniesPane = CreateDockablePane(
+    CCustomDockablePane * pU51EpicDestiny = CreateDockablePane(
             "Epic Destinies",
             GetActiveDocument(),
-            RUNTIME_CLASS(CEpicDestiniesView),
+            RUNTIME_CLASS(CEpicDestinyViewU51),
             ID_DOCK_EPICDESTINIES);
-    pEpicDestiniesPane->SetDocumentAndCharacter(GetActiveDocument(), NULL);
+    pU51EpicDestiny->SetDocumentAndCharacter(GetActiveDocument(), NULL);
 
     // create the floating views
     CCustomDockablePane * pStancesPane = CreateDockablePane(
@@ -576,13 +573,6 @@ void CMainFrame::CreateViews()
             ID_DOCK_CLASSFEATS);
     pClassAndLevel->SetDocumentAndCharacter(GetActiveDocument(), NULL);
 
-    // create the floating views
-    CCustomDockablePane * pU51EpicDestiny = CreateDockablePane(
-            "U51 Epic Destinies",
-            GetActiveDocument(),
-            RUNTIME_CLASS(CEpicDestinyViewU51),
-            ID_DOCK_U51EPICDESTINY);
-    pU51EpicDestiny->SetDocumentAndCharacter(GetActiveDocument(), NULL);
     // next window id is 1015 if you add one
 }
 

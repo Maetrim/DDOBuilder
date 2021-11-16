@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include "DDOCP.h"
 #include "EnhancementEditorDialog.h"
-#include "DestinyTreeDialog.h"
+#include "EnhancementTreeDialog.h"
 #include "EnhancementsFile.h"
 #include "GlobalSupportFunctions.h"
 
@@ -130,12 +130,12 @@ void CEnhancementEditorDialog::UpdateTree()
     const size_t c_sizeY = 526;
     CRect itemRect(425, 0, 425 + c_sizeX, 0 + c_sizeY);
     // show an enhancement dialog
-    m_pTreeDialog = new CDestinyTreeDialog(
+    m_pTreeDialog = new CEnhancementTreeDialog(
             this,
             m_pCharacter,
             m_loadedTrees.front(),
             TT_enhancement);        // type doesn't matter in editor
-    m_pTreeDialog->Create(CDestinyTreeDialog::IDD, this);
+    m_pTreeDialog->Create(CEnhancementTreeDialog::IDD, this);
     m_pTreeDialog->MoveWindow(&itemRect);
     m_pTreeDialog->ShowWindow(SW_SHOW);
     if (pFocusWnd != NULL)
