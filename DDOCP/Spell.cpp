@@ -222,6 +222,9 @@ size_t Spell::SpellDC(
     case SpellSchool_Transmutation:
         bt = Breakdown_SpellSchoolTransmutation;
         break;
+    case SpellSchool_Fear:
+        bt = Breakdown_SpellSchoolFear;
+        break;
     }
     // DC = breakdown amount + class ability amount + spell level
     // + maxSpellLevel - spellLevel) if heightened

@@ -56,6 +56,7 @@ class CEnhancementTreeDialog :
 
         const std::string & CurrentTree() const;
         void ChangeTree(const EnhancementTree & tree);
+        void SetTreeType(TreeType tt);
 
     protected:
         //{{AFX_VIRTUAL(CEnhancementTreeDialog)

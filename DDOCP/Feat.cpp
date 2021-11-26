@@ -119,10 +119,13 @@ void Feat::VerifyObject(
         ++edcit;
     }
 
-    if (!ImageFileExists(IT_feat, Icon()))
+    if (Acquire() != FeatAcquisition_DestinyTree)
     {
-        ss << "Feat is missing image file \"" << Icon() << "\"\n";
-        ok = false;
+        if (!ImageFileExists(IT_feat, Icon()))
+        {
+            ss << "Feat is missing image file \"" << Icon() << "\"\n";
+            ok = false;
+        }
     }
     if (!ok)
     {

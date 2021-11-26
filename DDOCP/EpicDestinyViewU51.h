@@ -66,13 +66,15 @@ class CEpicDestinyViewU51 :
         void SetTooltipText(const CIconButton & item, CPoint tipTopLeft, CPoint tipAlternate);
         enum MaxSupportTrees
         {
-            MST_Number = MAX_EPIC_DESTINY_TREES
+            // +1 as we have the preview tree slot
+            MST_Number = MAX_EPIC_DESTINY_TREES + 1
         };
         CDocument * m_pDocument;
         Character * m_pCharacter;
         std::list<EnhancementTree> m_availableTrees;
         CComboBox m_comboTreeSelect[MST_Number];
         CIconButton m_destinyTrees[12];
+        CStatic m_staticPreview;
         std::vector<CEnhancementTreeDialog *> m_treeViews;
         std::vector<size_t> m_visibleTrees; // only some trees will be visible (indexes into m_treeViews)
         size_t m_numDestinyButtons;

@@ -153,6 +153,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
             "Spodi, "
             "Swimms, "
             "Talchwi, "
+            "Tarrith, "
             "TeamscorpioRI, "
             "TheGoldyGopher, "
             "ValariusK, "
@@ -162,6 +163,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
             "Vychos, "
             "warioman91, "
             "wolvemd, "
+            "Wrunt, "
             "Xycona, "
             "Zretch");
     m_bugReporters.SetSel(-1);    // nothing starts selected

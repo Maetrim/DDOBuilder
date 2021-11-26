@@ -20,7 +20,8 @@ SelectedDestinyTrees::SelectedDestinyTrees() :
     XmlLib::SaxContentElement(f_saxElementName, f_verCurrent)
 {
     DL_INIT(SelectedDestinyTrees_PROPERTIES)
-    m_TreeName.resize(MAX_EPIC_DESTINY_TREES, f_noSelection);
+        // +1 as we have a preview tree
+    m_TreeName.resize(MAX_EPIC_DESTINY_TREES+1, f_noSelection);
 }
 
 DL_DEFINE_ACCESS(SelectedDestinyTrees_PROPERTIES)
@@ -42,14 +43,13 @@ void SelectedDestinyTrees::EndElement()
     SaxContentElement::EndElement();
     DL_END(SelectedDestinyTrees_PROPERTIES)
     // any load operation will have appended the loaded values
-    // onto the m_TreeName object, reduce it down until we find the
-    // first racial tree
-    while (m_TreeName.size() > MAX_EPIC_DESTINY_TREES)
+    // onto the m_TreeName object
+    while (m_TreeName.size() > MAX_EPIC_DESTINY_TREES + 1)
     {
         m_TreeName.erase(m_TreeName.begin());
     }
     // ensure we have the right number of elements after load
-    m_TreeName.resize(MAX_EPIC_DESTINY_TREES, f_noSelection);
+    m_TreeName.resize(MAX_EPIC_DESTINY_TREES + 1, f_noSelection);
 }
 
 void SelectedDestinyTrees::Write(XmlLib::SaxWriter * writer) const

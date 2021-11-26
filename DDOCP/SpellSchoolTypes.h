@@ -19,6 +19,7 @@ enum SpellSchoolType
     SpellSchool_Illusion,
     SpellSchool_Necromancy,
     SpellSchool_Transmutation,
+    SpellSchool_Fear,
     SpellSchool_GlobalDC,
 };
 const XmlLib::enumMapEntry<SpellSchoolType> spellSchoolTypeMap[] =
@@ -33,6 +34,7 @@ const XmlLib::enumMapEntry<SpellSchoolType> spellSchoolTypeMap[] =
     {SpellSchool_Illusion,      L"Illusion"},
     {SpellSchool_Necromancy,    L"Necromancy"},
     {SpellSchool_Transmutation, L"Transmutation"},
+    {SpellSchool_Fear,          L"Fear"},
     {SpellSchool_GlobalDC,      L"Global DC"},
     {SpellSchoolType(0), NULL}
 };

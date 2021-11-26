@@ -3582,6 +3582,8 @@ void Character::JustLoaded()
     CountBonusUniversalAP();
     UpdateSkillPoints(); // when tomes apply has changed
 
+    VerifyTrainedFeats();   // ensure feats are still correct after an update
+
     // update loaded gear objects to latest versions loaded to pick up any changes
     // to fixed items.
     UpdateGearToLatestVersions();

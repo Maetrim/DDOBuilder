@@ -164,6 +164,12 @@ void CEnhancementTreeDialog::ChangeTree(const EnhancementTree & tree)
     }
 }
 
+void CEnhancementTreeDialog::SetTreeType(TreeType tt)
+{
+    // only called when being changed to a preview tree
+    m_type = tt;
+}
+
 void CEnhancementTreeDialog::DoDataExchange(CDataExchange* pDX)
 {
     CDialog::DoDataExchange(pDX);
@@ -749,7 +755,6 @@ void CEnhancementTreeDialog::OnLButtonDown(UINT nFlags, CPoint point)
         // optional tree drag and reposition option
         if (!m_tree.HasIsRacialTree()
                 && !m_tree.HasIsReaperTree()
-                && !m_tree.HasIsEpicDestiny()
                 && m_tree.Items().size() > 0)
         {
             CPoint mouse;

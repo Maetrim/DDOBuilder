@@ -1076,19 +1076,14 @@ void CForumExportDlg::AddEnhancements(std::stringstream & forumExport)
 void CForumExportDlg::AddEpicDestinyTree(
         std::stringstream & forumExport)
 {
-    forumExport << "Epic Destinies: 40 APs";
-    //if (m_pCharacter->BonusRacialActionPoints() > 0)
-    //{
-    //    forumExport << ", Racial ";
-    //    forumExport.width(1);
-    //    forumExport << m_pCharacter->BonusRacialActionPoints();
-    //}
-    //if (m_pCharacter->BonusUniversalActionPoints() > 0)
-    //{
-    //    forumExport << ", Universal ";
-    //    forumExport.width(1);
-    //    forumExport << m_pCharacter->BonusUniversalActionPoints();
-    //}
+    int permanentDestinyPoints = 0;
+    BreakdownItem * pBD = FindBreakdown(Breakdown_DestinyPoints);
+    if (pBD != NULL)
+    {
+        permanentDestinyPoints = static_cast<int>(pBD->Total());
+    }
+    forumExport << "Epic Destinies: 40 APs + "
+            << permanentDestinyPoints << " permanent Destiny Points";
     forumExport << "\r\n";
     forumExport << "------------------------------------------------------------------------------------------\r\n";
     const SelectedDestinyTrees& trees = m_pCharacter->DestinyTrees();

@@ -202,6 +202,7 @@ enum BreakdownType
     Breakdown_SpellSchoolIllusion,
     Breakdown_SpellSchoolNecromancy,
     Breakdown_SpellSchoolTransmutation,
+    Breakdown_SpellSchoolFear,
     Breakdown_SpellSchoolGlobalDC,
     // songs
     Breakdown_SongCount,

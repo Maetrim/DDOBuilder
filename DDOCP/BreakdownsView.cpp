@@ -1423,13 +1423,13 @@ void CBreakdownsView::CreateMagicalBreakdowns()
         m_itemBreakdownTree.SetItemData(hItem, 0);
         {
             HTREEITEM hUSPItem = m_itemBreakdownTree.InsertItem(
-                    "Universal Spell Lore",
+                    "Universal Spell Critical Chance",
                     hItem,
                     TVI_LAST);
             BreakdownItem * usl = new BreakdownItemSimple(
                     Breakdown_SpellCriticalChanceUniversal,
                     Effect_UniversalSpellLore,
-                    "Universal Spell Lore",
+                    "Universal Spell Critical Chance",
                     &m_itemBreakdownTree,
                     hUSPItem);
             m_itemBreakdownTree.SetItemData(hUSPItem, (DWORD)(void*)usl);
@@ -1458,6 +1458,20 @@ void CBreakdownsView::CreateMagicalBreakdowns()
                 hParent,
                 TVI_LAST);
         m_itemBreakdownTree.SetItemData(hItem, 0);
+        {
+            HTREEITEM hUSPItem = m_itemBreakdownTree.InsertItem(
+                    "Universal Spell Critical Multiplier",
+                    hItem,
+                    TVI_LAST);
+            BreakdownItem * usl = new BreakdownItemSimple(
+                    Breakdown_SpellCriticalMultiplierUniversal,
+                    Effect_UniversalSpellCriticalDamage,
+                    "Universal Spell Critical Multiplier",
+                    &m_itemBreakdownTree,
+                    hUSPItem);
+            m_itemBreakdownTree.SetItemData(hUSPItem, (DWORD)(void*)usl);
+            m_items.push_back(usl);
+        }
         AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierAcid, SpellPower_Acid, "Acid Critical Multiplier", hItem);
         AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierLightAlignment, SpellPower_LightAlignment, "Light/Alignment Critical Multiplier", hItem);
         AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierCold, SpellPower_Cold, "Cold Critical Multiplier", hItem);
@@ -1472,7 +1486,6 @@ void CBreakdownsView::CreateMagicalBreakdowns()
         AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierRepair, SpellPower_Repair, "Repair Critical Multiplier", hItem);
         AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierRust, SpellPower_Rust, "Rust Critical Multiplier", hItem);
         AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierSonic, SpellPower_Sonic, "Sonic Critical Multiplier", hItem);
-        AddSpellCriticalMultiplier(Breakdown_SpellCriticalMultiplierUniversal, SpellPower_Universal, "Universal Critical Multiplier", hItem);
     }
 
     {
@@ -1490,6 +1503,7 @@ void CBreakdownsView::CreateMagicalBreakdowns()
         AddSpellSchool(Breakdown_SpellSchoolIllusion, SpellSchool_Illusion, "Illusion DC", hItem);
         AddSpellSchool(Breakdown_SpellSchoolNecromancy, SpellSchool_Necromancy, "Necromancy DC", hItem);
         AddSpellSchool(Breakdown_SpellSchoolTransmutation, SpellSchool_Transmutation, "Transmutation DC", hItem);
+        AddSpellSchool(Breakdown_SpellSchoolFear, SpellSchool_Fear, "Fear DC", hItem);
         AddSpellSchool(Breakdown_SpellSchoolGlobalDC, SpellSchool_GlobalDC, "Global DC Bonus", hItem);
     }
 }

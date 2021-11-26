@@ -2564,6 +2564,9 @@ BreakdownType SchoolToBreakdown(SpellSchoolType school)
         case SpellSchool_Transmutation:
             bt = Breakdown_SpellSchoolTransmutation;
             break;
+        case SpellSchool_Fear:
+            bt = Breakdown_SpellSchoolFear;
+            break;
         case SpellSchool_GlobalDC:
             bt = Breakdown_SpellSchoolGlobalDC;
             break;

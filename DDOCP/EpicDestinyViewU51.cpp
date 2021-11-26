@@ -47,6 +47,8 @@ void CEpicDestinyViewU51::DoDataExchange(CDataExchange* pDX)
     DDX_Control(pDX, IDC_TREE_SELECT1, m_comboTreeSelect[0]);
     DDX_Control(pDX, IDC_TREE_SELECT2, m_comboTreeSelect[1]);
     DDX_Control(pDX, IDC_TREE_SELECT3, m_comboTreeSelect[2]);
+    DDX_Control(pDX, IDC_TREE_SELECT4, m_comboTreeSelect[3]);
+    DDX_Control(pDX, IDC_STATIC_PREVIEW, m_staticPreview);
     DDX_Control(pDX, IDC_BUTTON_DESTINY_TREE1, m_destinyTrees[0]);
     DDX_Control(pDX, IDC_BUTTON_DESTINY_TREE2, m_destinyTrees[1]);
     DDX_Control(pDX, IDC_BUTTON_DESTINY_TREE3, m_destinyTrees[2]);
@@ -68,7 +70,7 @@ BEGIN_MESSAGE_MAP(CEpicDestinyViewU51, CFormView)
     ON_WM_ERASEBKGND()
     ON_REGISTERED_MESSAGE(UWM_NEW_DOCUMENT, OnNewDocument)
     ON_REGISTERED_MESSAGE(UWM_UPDATE_TREES, OnUpdateTrees)
-    ON_CONTROL_RANGE(CBN_SELENDOK, IDC_TREE_SELECT1, IDC_TREE_SELECT3, OnTreeSelect)
+    ON_CONTROL_RANGE(CBN_SELENDOK, IDC_TREE_SELECT1, IDC_TREE_SELECT4, OnTreeSelect)
     ON_CONTROL_RANGE(BN_CLICKED, IDC_BUTTON_DESTINY_TREE1, IDC_BUTTON_DESTINY_TREE12, OnClaimTree)
     ON_WM_MOUSEMOVE()
 END_MESSAGE_MAP()
@@ -116,6 +118,10 @@ void CEpicDestinyViewU51::OnSize(UINT nType, int cx, int cy)
         int scrollY = GetScrollPos(SB_VERT);
         itemRect -= CPoint(scrollX, scrollY);
 
+        CRect rctStaticPreview;
+        m_staticPreview.GetWindowRect(&rctStaticPreview);
+        rctStaticPreview -= rctStaticPreview.TopLeft();
+
         ASSERT(m_treeViews.size() == MST_Number);
         for (size_t ti = 0; ti < m_visibleTrees.size(); ++ti)
         {
@@ -127,6 +133,14 @@ void CEpicDestinyViewU51::OnSize(UINT nType, int cx, int cy)
             CRect rctCombo(itemRect.left, itemRect.bottom, itemRect.right, itemRect.bottom + 300);
             m_comboTreeSelect[ti].MoveWindow(rctCombo);
             m_comboTreeSelect[ti].ShowWindow(SW_SHOW);
+            // if this is the preview tree, place the preview text under the combo box
+            if (ti == MST_Number - 1)
+            {
+                rctStaticPreview += rctCombo.TopLeft();
+                rctStaticPreview += CPoint(0, rctStaticPreview.Height() + c_controlSpacing);
+                rctStaticPreview.right = rctCombo.right;
+                m_staticPreview.MoveWindow(rctStaticPreview);
+            }
             // now move the rectangle to the next tree location
             itemRect += CPoint(itemRect.Width() + c_controlSpacing, 0);
         }
@@ -190,6 +204,8 @@ BOOL CEpicDestinyViewU51::OnEraseBkgnd(CDC* pDC)
         IDC_TREE_SELECT1,
         IDC_TREE_SELECT2,
         IDC_TREE_SELECT3,
+        IDC_TREE_SELECT4,
+        IDC_STATIC_PREVIEW,
         IDC_BUTTON_DESTINY_TREE1,
         IDC_BUTTON_DESTINY_TREE2,
         IDC_BUTTON_DESTINY_TREE3,
@@ -327,7 +343,7 @@ void CEpicDestinyViewU51::CreateEnhancementWindows()
             // we have a selected tree here
             PopulateTreeCombo(&m_comboTreeSelect[i], treeName);
             // create the tree dialog
-            TreeType tt = TT_epicDestiny;
+            TreeType tt = (i != MST_Number - 1) ? TT_epicDestiny : TT_preview;
             // show an enhancement dialog
             CEnhancementTreeDialog * dlg = new CEnhancementTreeDialog(
                     this,
@@ -348,7 +364,7 @@ void CEpicDestinyViewU51::CreateEnhancementWindows()
                     this,
                     m_pCharacter,
                     GetEnhancementTree(c_noSelection),
-                    TT_epicDestiny);
+                    (i != MST_Number - 1) ? TT_epicDestiny : TT_preview);
             dlg->Create(CEnhancementTreeDialog::IDD, this);
             dlg->MoveWindow(&itemRect);
             dlg->ShowWindow(SW_SHOW);
@@ -395,6 +411,12 @@ void CEpicDestinyViewU51::UpdateEnhancementWindows()
             if (pDlg->CurrentTree() != treeName)
             {
                 pDlg->ChangeTree(GetEnhancementTree(treeName));
+                if (i == MST_Number - 1)
+                {
+                    // this is the preview tree, change the tree type so items from
+                    // it cannot be changed, or the tree can not be dragged dropped from/too
+                    pDlg->SetTreeType(TT_preview);
+                }
             }
             // always update the list of available trees
             PopulateTreeCombo(&m_comboTreeSelect[i], treeName);
@@ -559,6 +581,7 @@ void CEpicDestinyViewU51::EnableDisableComboboxes()
             bool trained = (m_pCharacter->GetSpecialFeatTrainedCount((LPCTSTR)name) > 0);
             m_destinyTrees[i].SetSelected(trained);
         }
+        m_staticPreview.ShowWindow(SW_SHOW);
     }
     else
     {
@@ -574,6 +597,7 @@ void CEpicDestinyViewU51::EnableDisableComboboxes()
             m_destinyTrees[i].EnableWindow(false);
             m_destinyTrees[i].ShowWindow(SW_HIDE);
         }
+        m_staticPreview.ShowWindow(SW_HIDE);
     }
 
 }

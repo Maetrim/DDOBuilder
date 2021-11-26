@@ -130,22 +130,19 @@ void BreakdownItemSpellPower::CreateOtherEffects()
         }
         else // its spell critical multiplier
         {
-            if (m_spellPowerType != SpellPower_Universal)   // don't monitor ourselves
+            // universal spell critical multiplier applies as a separate bonus
+            BreakdownItem * pUSM = FindBreakdown(Breakdown_SpellCriticalMultiplierUniversal);
+            if (pUSM != NULL)
             {
-                // universal spell critical multiplier applies as a separate bonus
-                BreakdownItem * pUSM = FindBreakdown(Breakdown_SpellCriticalMultiplierUniversal);
-                if (pUSM != NULL)
-                {
-                    pUSM->AttachObserver(this);
-                    double total = pUSM->Total();
-                    ActiveEffect universalBonus(
-                            Bonus_universal,
-                            "Universal Spell Critical Multiplier",
-                            1,
-                            total,
-                            "");        // no tree
-                    AddOtherEffect(universalBonus);
-                }
+                pUSM->AttachObserver(this);
+                double total = pUSM->Total();
+                ActiveEffect universalBonus(
+                        Bonus_universal,
+                        "Universal Spell Critical Multiplier",
+                        1,
+                        total,
+                        "");        // no tree
+                AddOtherEffect(universalBonus);
             }
         }
     }

@@ -1095,10 +1095,9 @@
       </Effect>
       <Effect>
          <DisplayName>Coalesced Magic: +4% Spell Critical Damage</DisplayName>
-         <Type>SpellCriticalDamage</Type>
+         <Type>UniversalSpellCriticalDamage</Type>
          <Bonus>Stacking</Bonus>
          <AmountVector size="5">0 0 4 4 4</AmountVector>
-         <SpellPower>Universal</SpellPower>
       </Effect>
       <!--Arcane spell caster level-->
       <Effect>
@@ -2437,13 +2436,13 @@
    <SetBonus>
       <Name>Esoterica</Name>
       <Description>Esoterica:
-3: +4 Artifact Bonus to all Spell DCs</Description>
+3: +3 Artifact Bonus to all Spell DCs</Description>
       <Icon>ColorlessRaidItemEssence</Icon>
       <Effect>
          <DisplayName>Esoterica</DisplayName>
          <Type>SpellDC</Type>
          <Bonus>Artifact</Bonus>
-         <AmountVector size="3">0 0 4</AmountVector>
+         <AmountVector size="3">0 0 3</AmountVector>
          <School>All</School>
       </Effect>
    </SetBonus>
@@ -2624,10 +2623,9 @@
       </Effect>
       <Effect>
          <DisplayName>Eminence of Autumn: Spell Critical Damage</DisplayName>
-         <Type>SpellCriticalDamage</Type>
+         <Type>UniversalSpellCriticalDamage</Type>
          <Bonus>Legendary</Bonus>
          <AmountVector size="7">0 0 0 0 0 0 15</AmountVector>
-         <SpellPower>Universal</SpellPower>
       </Effect>
    </SetBonus>
    <SetBonus>
@@ -4211,50 +4209,6 @@ Your bard songs regenerate slowly over time.
       </Effect>
    </SetBonus>
    <SetBonus>
-      <Name>Greater Might of the Abishai</Name>
-      <Description>Greater Might of the Abishai:
-3: +3 Profane bonus to Natural Armor
-3: +3 Proane bonus to Strength
-3: +3 Profane bonus to your caster levels for Evocation spells
-5: +3 Profane bonus to Constitution
-5: +3 Profane bonus to your Conjuration spells.</Description>
-      <Icon>GreaterMightOfTheAbishai</Icon>
-      <Effect>
-         <DisplayName>Greater Might of the Abishai</DisplayName>
-         <Type>NaturalArmor</Type>
-         <Bonus>Profane</Bonus>
-         <AmountVector size="5">0 0 3 3 3</AmountVector>
-      </Effect>
-      <Effect>
-         <DisplayName>Greater Might of the Abishai</DisplayName>
-         <Type>AbilityBonus</Type>
-         <Bonus>Profane</Bonus>
-         <AmountVector size="5">0 0 3 3 3</AmountVector>
-         <Ability>Strength</Ability>
-      </Effect>
-      <Effect>
-         <DisplayName>Greater Might of the Abishai</DisplayName>
-         <Type>AbilityBonus</Type>
-         <Bonus>Profane</Bonus>
-         <AmountVector size="5">0 0 0 0 3</AmountVector>
-         <Ability>Constitution</Ability>
-      </Effect>
-      <Effect>
-         <DisplayName>Greater Might of the Abishai</DisplayName>
-         <Type>CasterLevel</Type>
-         <Bonus>Profane</Bonus>
-         <AmountVector size="5">0 0 3 3 3</AmountVector>
-         <School>Evocation</School>
-      </Effect>
-      <Effect>
-         <DisplayName>Greater Might of the Abishai</DisplayName>
-         <Type>CasterLevel</Type>
-         <Bonus>Profane</Bonus>
-         <AmountVector size="5">0 0 0 0 3</AmountVector>
-         <School>Conjuration</School>
-      </Effect>
-   </SetBonus>
-   <SetBonus>
       <Name>Epic The Devil's Handiwork</Name>
       <Description>Epic The Devil's Handiwork:
 5: +3 Quality bonus to all ability scores.</Description>
@@ -5363,7 +5317,7 @@ You must have 4 or more Greensteel items equipped.
          <SpellPower>All</SpellPower>
       </Effect>
       <Effect>
-         <DisplayName>Legendary Elder's Knowledge: Spell Critical Chance</DisplayName>
+         <DisplayName>Legendary Elder's Knowledge: Spell Critical Damage</DisplayName>
          <Type>SpellCriticalDamage</Type>
          <Bonus>Legendary</Bonus>
          <AmountVector size="2">0 15</AmountVector>
@@ -5461,6 +5415,107 @@ You must have 4 or more Greensteel items equipped.
          <Type>MRR</Type>
          <Bonus>Artifact</Bonus>
          <AmountVector size="2">0 30</AmountVector>
+      </Effect>
+   </SetBonus>
+   <SetBonus>
+      <Name>The Legendary Desert's Starless Nights</Name>
+      <Description>The Legendary Desert's Starless Nights:
+2: +6% Artifact bonus to Negative and Poison Spellcrit Chance
+2: +30 Artifact bonus to Negative and Poison Spellpower
+2: +15% Artifact bonus to Damage vs the Helpless</Description>
+      <Icon>TheLegendaryDesertsStarlessNights</Icon>
+      <Effect>
+         <DisplayName>The Legendary Desert's Starless Nights: Negative and Poison Spell Critical Chance</DisplayName>
+         <Type>SpellLore</Type>
+         <Bonus>Artifact</Bonus>
+         <AmountVector size="2">0 6</AmountVector>
+         <SpellPower>Negative</SpellPower>
+         <SpellPower>Poison</SpellPower>
+      </Effect>
+      <Effect>
+         <DisplayName>The Legendary Desert's Starless Nights: Negative and Poison Spellpower</DisplayName>
+         <Type>SpellPower</Type>
+         <Bonus>Artifact</Bonus>
+         <AmountVector size="2">0 30</AmountVector>
+         <SpellPower>Negative</SpellPower>
+         <SpellPower>Poison</SpellPower>
+      </Effect>
+      <Effect>
+         <DisplayName>The Legendary Desert's Starless Nights: Helpless Damage</DisplayName>
+         <Type>HelplessDamage</Type>
+         <Bonus>Artifact</Bonus>
+         <AmountVector size="2">0 15</AmountVector>
+      </Effect>
+   </SetBonus>
+   <SetBonus>
+      <Name>Legendary Vulkoor's Chosen</Name>
+      <Description>Legendary Vulkoor's Chosen:
+2: +30 Artifact bonus to Poison Resistance
+2: +3 Sneak Dice
+2: +3 Artifact bonus to Saving Throws
+2: +3 Artifact bonus to Dexterity and Constitution</Description>
+      <Icon>LegendaryVulkoorsChosen</Icon>
+      <Effect>
+         <DisplayName>Legendary Vulkoor's Chosen: Poison resistance</DisplayName>
+         <Type>EnergyResistance</Type>
+         <Bonus>Artifact</Bonus>
+         <AmountVector size="2">0 30</AmountVector>
+         <Energy>Poison</Energy>
+      </Effect>
+      <Effect>
+         <DisplayName>Legendary Vulkoor's Chosen: Sneak Attack Dice</DisplayName>
+         <Type>SneakAttackDice</Type>
+         <Bonus>Artifact</Bonus>
+         <AmountVector size="2">0 3</AmountVector>
+      </Effect>
+      <Effect>
+         <DisplayName>Legendary Vulkoor's Chosen: Save Bonus</DisplayName>
+         <Type>SaveBonus</Type>
+         <Bonus>Artifact</Bonus>
+         <AmountVector size="2">0 3</AmountVector>
+         <Save>All</Save>
+      </Effect>
+      <Effect>
+         <DisplayName>Legendary Vulkoor's Chosen: Ability Bonus</DisplayName>
+         <Type>AbilityBonus</Type>
+         <Bonus>Artifact</Bonus>
+         <AmountVector size="2">0 3</AmountVector>
+         <Ability>Constitution</Ability>
+      </Effect>
+      <Effect>
+         <DisplayName>Legendary Vulkoor's Chosen: Ability Bonus</DisplayName>
+         <Type>AbilityBonus</Type>
+         <Bonus>Artifact</Bonus>
+         <AmountVector size="2">0 3</AmountVector>
+         <Ability>Dexterity</Ability>
+      </Effect>
+   </SetBonus>
+   <SetBonus>
+      <Name>Legendary Oasis of Morality</Name>
+      <Description>Legendary Oasis of Morality:
+2: +6% Artifact bonus to Positive Spellcrit Chance
+2: +30 Artifact bonus to Positive Spellpower
+2: +15% Artifact bonus to Fortification Bypass</Description>
+      <Icon>LegendaryOasisOfMorality</Icon>
+      <Effect>
+         <DisplayName>Legendary Oasis of Morality</DisplayName>
+         <Type>SpellLore</Type>
+         <Bonus>Artifact</Bonus>
+         <AmountVector size="2">0 6</AmountVector>
+         <SpellPower>Positive</SpellPower>
+      </Effect>
+      <Effect>
+         <DisplayName>Legendary Oasis of Morality</DisplayName>
+         <Type>SpellPower</Type>
+         <Bonus>Artifact</Bonus>
+         <AmountVector size="2">0 30</AmountVector>
+         <SpellPower>Positive</SpellPower>
+      </Effect>
+      <Effect>
+         <DisplayName>Legendary Oasis of Morality</DisplayName>
+         <Type>FortificationBypass</Type>
+         <Bonus>Artifact</Bonus>
+         <AmountVector size="2">0 15</AmountVector>
       </Effect>
    </SetBonus>
    <SetBonus>
@@ -6078,6 +6133,170 @@ You must have 4 or more Greensteel items equipped.
          <Bonus>Legendary</Bonus>
          <AmountVector size="2">0 10</AmountVector>
          <SpellPower>All</SpellPower>
+      </Effect>
+   </SetBonus>
+   <SetBonus>
+      <Name>The Legendary Desert's Biting Sands</Name>
+      <Description>The Legenadry Desert's Biting Sands:
+2: 6% Artifact Bonus to Force Spellcrit Chance
+2: +30 Artifact Bonus to Force Spellpower
+2: +30 Artifact Bonus to Magical Resistance Rating Cap</Description>
+      <Icon>TheLegendaryEpicDesertsBitingSands</Icon>
+      <Effect>
+         <DisplayName>The Legendary Desert's Biting Sands</DisplayName>
+         <Type>SpellLore</Type>
+         <Bonus>Artifact</Bonus>
+         <AmountVector size="2">0 6</AmountVector>
+         <SpellPower>Force/Untyped</SpellPower>
+      </Effect>
+      <Effect>
+         <DisplayName>The Legendary Desert's Biting Sands</DisplayName>
+         <Type>SpellPower</Type>
+         <Bonus>Artifact</Bonus>
+         <AmountVector size="2">0 30</AmountVector>
+         <SpellPower>Force/Untyped</SpellPower>
+      </Effect>
+      <Effect>
+         <DisplayName>The Legendary Desert's Biting Sands</DisplayName>
+         <Type>MRRCap</Type>
+         <Bonus>Artifact</Bonus>
+         <AmountVector size="2">0 30</AmountVector>
+      </Effect>
+   </SetBonus>
+   <SetBonus>
+      <Name>The Legendary Desert's Burning Sun</Name>
+      <Description>The Legendary Desert's Burning Sun:
+2: +6% Artifact bonus to Fire Spellcrit Chance
+2: +30 Artifact bonus to Fire Spellpower
+2: +30 Artifact bonus to Physical Resistance Rating</Description>
+      <Icon>TheLegendaryDesertsBurningSun</Icon>
+      <Effect>
+         <DisplayName>The Legendary Desert's Burning Sun</DisplayName>
+         <Type>SpellLore</Type>
+         <Bonus>Artifact</Bonus>
+         <AmountVector size="2">0 6</AmountVector>
+         <SpellPower>Fire</SpellPower>
+      </Effect>
+      <Effect>
+         <DisplayName>The Legendary Desert's Burning Sun</DisplayName>
+         <Type>SpellPower</Type>
+         <Bonus>Artifact</Bonus>
+         <AmountVector size="2">0 30</AmountVector>
+         <SpellPower>Fire</SpellPower>
+      </Effect>
+      <Effect>
+         <DisplayName>The Legendary Desert's Burning Sun</DisplayName>
+         <Type>PRR</Type>
+         <Bonus>Artifact</Bonus>
+         <AmountVector size="2">0 30</AmountVector>
+      </Effect>
+   </SetBonus>
+   <SetBonus>
+      <Name>Epic Might of the Abishai</Name>
+      <Description>Epic Might of the Abishai:
+3: +10 Artifact bonus to Sheltering
+3: +5 Artifact bonus to Natural Armor
+3: +2 Artifact bonus to all Ability Scores
+3: +2 Artifact bonus to DCs
+5: +15 Artifact bonus to Sheltering
+5: +8 Artifact bonus to Natural Armor
+5: +2 Artifact bonus to all Ability Scores
+5: +2 Artifact bonus to DCs</Description>
+      <Icon>EpicMightOfTheAbishai</Icon>
+      <Effect>
+         <DisplayName>Epic Might of the Abishai</DisplayName>
+         <Type>NaturalArmor</Type>
+         <Bonus>Artifact</Bonus>
+         <AmountVector size="5">0 0 5 5 8</AmountVector>
+      </Effect>
+      <Effect>
+         <DisplayName>Epic Might of the Abishai</DisplayName>
+         <Type>AbilityBonus</Type>
+         <Bonus>Artifact</Bonus>
+         <AmountVector size="5">0 0 2 2 2</AmountVector>
+         <Ability>Strength</Ability>
+      </Effect>
+      <Effect>
+         <DisplayName>Epic Might of the Abishai</DisplayName>
+         <Type>AbilityBonus</Type>
+         <Bonus>Artifact</Bonus>
+         <AmountVector size="5">0 0 2 2 2</AmountVector>
+         <Ability>Constitution</Ability>
+      </Effect>
+      <Effect>
+         <DisplayName>Epic Might of the Abishai</DisplayName>
+         <Type>SpellDC</Type>
+         <Bonus>Artifact</Bonus>
+         <AmountVector size="5">0 0 2 2 2</AmountVector>
+         <School>All</School>
+      </Effect>
+   </SetBonus>
+   <SetBonus>
+      <Name>Legendary Windlasher's Ferocity</Name>
+      <Description>Legendary Windlasher's Ferocity:
+2: +15% Artifact bonus to Doublestrike and Doubleshot
+2: +15 Artifact bonus to Melee and Ranged Power</Description>
+      <Icon>PartOfTheFamily</Icon>
+      <Effect>
+         <DisplayName>Legendary Windlasher's Ferocity: Doublestrike</DisplayName>
+         <Type>Doublestrike</Type>
+         <Bonus>Artifact</Bonus>
+         <AmountVector size="2">0 15</AmountVector>
+      </Effect>
+      <Effect>
+         <DisplayName>Legendary Windlasher's Ferocity: Doubleshot</DisplayName>
+         <Type>Doubleshot</Type>
+         <Bonus>Artifact</Bonus>
+         <AmountVector size="2">0 15</AmountVector>
+      </Effect>
+      <Effect>
+         <DisplayName>Legendary Windlasher's Ferocity: Melee Power</DisplayName>
+         <Type>MeleePower</Type>
+         <Bonus>Artifact</Bonus>
+         <AmountVector size="2">0 15</AmountVector>
+      </Effect>
+      <Effect>
+         <DisplayName>Legendary Windlasher's Ferocity: Ranged Power</DisplayName>
+         <Type>RangedPower</Type>
+         <Bonus>Artifact</Bonus>
+         <AmountVector size="2">0 15</AmountVector>
+      </Effect>
+   </SetBonus>
+   <SetBonus>
+      <Name>Legendary Menechtarun Scavenger</Name>
+      <Description>Legendary Menechtarun Scavenger:
+2: +15 Artifact bonus to Physical and Magical Resistance Rating
+2: +30 Artifact bonus to Positive, Negative, and Repair Amplification</Description>
+      <Icon>EpicMenechtarunScavenger</Icon>
+      <Effect>
+         <DisplayName>Legendary Menechtarun Scavenger: PRR</DisplayName>
+         <Type>PRR</Type>
+         <Bonus>Artifact</Bonus>
+         <AmountVector size="2">0 15</AmountVector>
+      </Effect>
+      <Effect>
+         <DisplayName>Legendary Menechtarun Scavenger: MRR</DisplayName>
+         <Type>MRR</Type>
+         <Bonus>Artifact</Bonus>
+         <AmountVector size="2">0 15</AmountVector>
+      </Effect>
+      <Effect>
+         <DisplayName>Legendary Menechtarun Scavenger</DisplayName>
+         <Type>HealingAmplification</Type>
+         <Bonus>Artifact</Bonus>
+         <AmountVector size="2">0 30</AmountVector>
+      </Effect>
+      <Effect>
+         <DisplayName>Legendary Menechtarun Scavenger</DisplayName>
+         <Type>RepairAmplification</Type>
+         <Bonus>Artifact</Bonus>
+         <AmountVector size="2">0 30</AmountVector>
+      </Effect>
+      <Effect>
+         <DisplayName>Legendary Menechtarun Scavenger</DisplayName>
+         <Type>NegativeHealingAmplification</Type>
+         <Bonus>Artifact</Bonus>
+         <AmountVector size="2">0 30</AmountVector>
       </Effect>
    </SetBonus>
 </SetBonuses>
