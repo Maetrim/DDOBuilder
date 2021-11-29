@@ -65,13 +65,45 @@ void BreakdownItemEDFCapped::CreateOtherEffects()
             ASSERT(pBBAB != NULL);
             pBBAB->AttachObserver(this);  // need to know about changes to this effect
             double amount = pBBAB->Total();
-            ActiveEffect prr(
+            ActiveEffect rp(
                     Bonus_feat,
                     "Rapid Shot (BAB * 1.5)",
                     1,
                     (int)(amount * 1.5),        // drop fractions
                     "");        // no tree
-            AddOtherEffect(prr);
+            rp.AddAnyOfStance("Shortbow");
+            rp.AddAnyOfStance("Longbow");
+            AddOtherEffect(rp);
         }
     }
 }
+
+void BreakdownItemEDFCapped::UpdateClassChanged(
+        Character * charData,
+        ClassType classFrom,
+        ClassType classTo,
+        size_t level)
+{
+    CreateOtherEffects();
+    BreakdownItemSimple::UpdateClassChanged(charData, classFrom, classTo, level);
+    Populate();
+}
+
+void BreakdownItemEDFCapped::UpdateFeatTrained(
+        Character * charData,
+        const std::string & featName)
+{
+    CreateOtherEffects();
+    BreakdownItemSimple::UpdateFeatTrained(charData, featName);
+    Populate();
+}
+
+void BreakdownItemEDFCapped::UpdateFeatRevoked(
+        Character * charData,
+        const std::string & featName)
+{
+    CreateOtherEffects();
+    BreakdownItemSimple::UpdateFeatRevoked(charData, featName);
+    Populate();
+}
+

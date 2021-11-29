@@ -6436,7 +6436,7 @@ void Character::U51Destiny_RevokeEnhancement(
         RevokeEnhancementEffects(treeName, revokedEnhancement, revokedEnhancementSelection, 1);
         // determine whether we still have a tier 5 enhancement trained if the tree just had one
         // revoked in it
-        if (HasTier5Tree() && U51Destiny_Tier5Tree() == treeName)
+        if (HasU51Destiny_Tier5Tree() && U51Destiny_Tier5Tree() == treeName)
         {
             // may have lost the tier 5 status, check the tree to see if any tier 5 are still trained
             if (!pItem->HasTier5())
