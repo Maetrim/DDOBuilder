@@ -29,6 +29,9 @@ class EnhancementTreeItem :
                 const Character & charData,
                 const std::string & selection,
                 const std::string & treeName) const;
+        bool IsTier5Blocked(
+                const Character & charData,
+                const std::string& treeName) const;
         bool CanTrain(
                 const Character & charData,
                 const std::string & treeName,

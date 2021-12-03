@@ -18987,11 +18987,12 @@ each Elven Core Ability you possess from this tree.</Description>
             </Requirement>
          </Requirements>
          <Effect>
+            <DisplayName>Wood Elf: Accuracy I - Flat 2% Extra Attack Bonus</DisplayName>
             <Type>AttackBonus</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>2</Amount>
-            <Percent/>
             <Weapon>All</Weapon>
+            <Stance>After Effect</Stance>
          </Effect>
          <Effect>
             <Type>SneakAttackRange</Type>
@@ -19059,12 +19060,6 @@ each Elven Core Ability you possess from this tree.</Description>
             <Bonus>Enhancement</Bonus>
             <Amount>2</Amount>
          </Effect>
-         <Effect>
-            <Type>AbilityBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>1</Amount>
-            <Ability>Dexterity</Ability>
-         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Wood Elf: Accuracy II</Name>
@@ -19086,11 +19081,12 @@ each Elven Core Ability you possess from this tree.</Description>
             </Requirement>
          </Requirements>
          <Effect>
+            <DisplayName>Wood Elf: Accuracy II - Flat 2% Extra Attack Bonus</DisplayName>
             <Type>AttackBonus</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>2</Amount>
-            <Percent/>
             <Weapon>All</Weapon>
+            <Stance>After Effect</Stance>
          </Effect>
          <Effect>
             <Type>SneakAttackRange</Type>
@@ -19158,12 +19154,6 @@ each Elven Core Ability you possess from this tree.</Description>
             <Bonus>Enhancement</Bonus>
             <Amount>2</Amount>
          </Effect>
-         <Effect>
-            <Type>AbilityBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>1</Amount>
-            <Ability>Dexterity</Ability>
-         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Wood Elf: Accuracy III</Name>
@@ -19184,11 +19174,12 @@ each Elven Core Ability you possess from this tree.</Description>
             </Requirement>
          </Requirements>
          <Effect>
+            <DisplayName>Wood Elf: Accuracy III - Flat 2% Extra Attack Bonus</DisplayName>
             <Type>AttackBonus</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>2</Amount>
-            <Percent/>
             <Weapon>All</Weapon>
+            <Stance>After Effect</Stance>
          </Effect>
          <Effect>
             <Type>SneakAttackRange</Type>
@@ -49211,6 +49202,7 @@ Stalwart Defense, you gain a +10%/+15%/+20% Competence bonus to maximum hit poin
                   <Type>ArmorACBonus</Type>
                   <Bonus>Enhancement</Bonus>
                   <AmountVector size="3">15 30 50</AmountVector>
+                  <Percent/>
                   <Stance>Stalwart Defense</Stance>
                </Effect>
             </EnhancementSelection>
@@ -49224,6 +49216,7 @@ Note: This stacks with Reinforced Defense from Sacred Defender.</Description>
                   <Type>ACBonusShield</Type>
                   <Bonus>Enhancement</Bonus>
                   <AmountVector size="3">15 30 50</AmountVector>
+                  <Percent/>
                   <Stance>Stalwart Defense</Stance>
                </Effect>
             </EnhancementSelection>
@@ -49450,6 +49443,7 @@ Stalwart Defense, you gain a +10%/+15%/+20% Competence bonus to maximum hit poin
                   <Type>ArmorACBonus</Type>
                   <Bonus>Enhancement</Bonus>
                   <AmountVector size="3">15 30 50</AmountVector>
+                  <Percent/>
                   <Stance>Stalwart Defense</Stance>
                </Effect>
             </EnhancementSelection>
@@ -49464,6 +49458,7 @@ Note: This stacks with Reinforced Defense from Sacred Defender.
                   <Type>ACBonusShield</Type>
                   <Bonus>Enhancement</Bonus>
                   <AmountVector size="3">15 30 50</AmountVector>
+                  <Percent/>
                   <Stance>Stalwart Defense</Stance>
                </Effect>
             </EnhancementSelection>
@@ -59065,6 +59060,7 @@ you gain a +[10/15%/20]% Competence bonus to maximum hit points.</Description>
                <Effect>
                   <Type>ArmorACBonus</Type>
                   <Bonus>Enhancement</Bonus>
+                  <Percent/>
                   <AmountVector size="3">15 30 50</AmountVector>
                </Effect>
             </EnhancementSelection>
@@ -59078,6 +59074,7 @@ Note: This stacks with Reinforced Defense from Stalwart Defender.</Description>
                <Effect>
                   <Type>ACBonusShield</Type>
                   <Bonus>Enhancement</Bonus>
+                  <Percent/>
                   <AmountVector size="3">15 30 50</AmountVector>
                </Effect>
             </EnhancementSelection>
@@ -59297,6 +59294,7 @@ Choose the option you didn't chose at Tier 4.</Description>
                <Effect>
                   <Type>ArmorACBonus</Type>
                   <Bonus>Enhancement</Bonus>
+                  <Percent/>
                   <AmountVector size="3">15 30 50</AmountVector>
                </Effect>
             </EnhancementSelection>
@@ -59318,6 +59316,7 @@ Note: This stacks with Reinforced Defense from Stalwart Defender.</Description>
                <Effect>
                   <Type>ACBonusShield</Type>
                   <Bonus>Enhancement</Bonus>
+                  <Percent/>
                   <AmountVector size="3">15 30 50</AmountVector>
                </Effect>
             </EnhancementSelection>
@@ -61788,9 +61787,15 @@ Passive: +1 DC for your spells</Description>
       <Version>1</Version>
       <IsUniversalTree/>
       <Requirements>
-         <Requirement>
-            <Feat>Inquisitive Tree</Feat>
-         </Requirement>
+          <RequiresOneOf>
+            <Requirement>
+                <Feat>Inquisitive Tree</Feat>
+            </Requirement>
+            <Requirement>
+               <Feat>Sharn City Council Favor Rewards</Feat>
+               <Amount>3</Amount>
+            </Requirement>
+           </RequiresOneOf>
       </Requirements>
       <Icon>Inquisitive</Icon>
       <Background>HarperBackground</Background>
@@ -61878,7 +61883,7 @@ Cooldown: 1 Minute</Description>
          <InternalName>InquisitiveCore3</InternalName>
          <Description>+3 to Will Saving Throws.
 You no longer automatically fail Saving Throws for Fear, Enchantment or
-Illusion effects on a Natutal 1.
+Illusion effects on a Natural 1.
 You will automatically perform a Search check to locate traps and secret
 doors when you are in range to Spot them, although this Search check
 operates at a -4 penalty.</Description>
@@ -62053,7 +62058,7 @@ In addition, you gain +4 Damage dice with Law on your Side.</Description>
          <Description>While you have a Light or Heavy (non-repeating) Crossbow equipped,
 you instead fight with a Hand Crossbow in each hand, with each mimicking
 the damage and effects of your equipped Crossbow. While fighting in Dual Crossbow
-style, you only benefit from 2/3 of your Doubleshot. +1 to Attack and Damage with
+style, you only benefit from ½ of your Doubleshot. +1 to Attack and Damage with
 Light and Heavy (non-repeating) crossbows.</Description>
          <Icon>DualShooter</Icon>
          <XPosition>0</XPosition>
@@ -63401,18 +63406,18 @@ This puts Ten Thousand Stars and Manyshot on a 10 second cooldown.</Description>
          <Clickie/>
          <Requirements/>
          <Effect>
+            <DisplayName>Vistani: Rapid Attack - Can be kept up 100%</DisplayName>
             <Type>Doublestrike</Type>
             <Bonus>Morale</Bonus>
             <Amount>20</Amount>
             <ApplyAsItemEffect/>
-            <Stance>Rapid Attack</Stance>
          </Effect>
          <Effect>
+            <DisplayName>Vistani: Rapid Attack - Can be kept up 100%</DisplayName>
             <Type>Doubleshot</Type>
             <Bonus>Morale</Bonus>
             <Amount>20</Amount>
             <ApplyAsItemEffect/>
-            <Stance>Rapid Attack</Stance>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -69935,7 +69940,7 @@ PRR bonus does not apply to cloth or no armor.</Description>
          <InternalName>DSKiller</InternalName>
          <Description>When you kill a target, you gain a 5% Morale bonus to Melee Doublestrike
 and Extra Shot Chance for 15 seconds. Weak enemies will not always produce
-this effect. The Killer buff can stack up to 2/3/4 times.
+this effect. The Killer buff can stack up to [2/3/4] times.
 Stacks are reduced one at a time.
 (Repeating Crossbows have a reduced chance to produce Extra Shots.)</Description>
          <Icon>DSKiller</Icon>
@@ -106714,12 +106719,6 @@ Rank 3: You gain the benefits of the Nightshield spell.</Description>
             <Immunity/>
             <Immunity>Magic Missiles</Immunity>
          </Effect>
-         <Effect>
-            <Type>SaveBonus</Type>
-            <Bonus>Resistance</Bonus>
-            <AmountVector size="3">0 0 3</AmountVector>
-            <Save>All</Save>
-         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Shadowdancer: Well of Darkness</Name>
@@ -107078,12 +107077,12 @@ ability will put every Epic Strike onto this ability's cooldown.</Description>
                <Effect>
                   <Type>Doublestrike</Type>
                   <Bonus>Destiny</Bonus>
-                  <AmountVector size="3">2 4 6</AmountVector>
+                  <Amount>5</Amount>
                </Effect>
                <Effect>
                   <Type>Doubleshot</Type>
                   <Bonus>Destiny</Bonus>
-                  <AmountVector size="3">2 4 6</AmountVector>
+                  <Amount>5</Amount>
                </Effect>
             </EnhancementSelection>
          </Selector>
@@ -108546,11 +108545,13 @@ This Stun applies to the additional creature types in Fey Flash, if you have tha
          <Name>Shiradi Champion: Whirling Wrists</Name>
          <InternalName>U51ShiradiChampionWhirlingWrists</InternalName>
          <Description>+[10/20/30]% Attack Speed with Thrown Weapons.
-You gain +[2/4/6]% stacking Incorporeality.</Description>
+You gain +[2/4/6]% stacking Incorporeality.
+Note AP cost should be [2/1/1] per rank, but variable costs not supported in
+this version of the builder</Description>
          <Icon>U51WhirlingWrists</Icon>
          <XPosition>4</XPosition>
          <YPosition>4</YPosition>
-         <Cost>2</Cost>
+         <Cost>1</Cost>
          <Ranks>3</Ranks>
          <MinSpent>20</MinSpent>
          <Requirements>

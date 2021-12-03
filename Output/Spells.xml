@@ -1339,7 +1339,7 @@ damage plus an additional 1 to 4 for every caster level up to caster level 40.</
       <Enlarge/>
       <Maximize/>
       <Quicken/>
-      <Artificer>-6</Artificer>
+      <Artificer>6</Artificer>
       <MaxCasterLevel>40</MaxCasterLevel>
    </Spell>
    <Spell>
@@ -1366,7 +1366,7 @@ Hit Points plus 1 per caster level. (Maximum caster level 40.)</Description>
       <Enlarge/>
       <Maximize/>
       <Quicken/>
-      <Artificer>-6</Artificer>
+      <Artificer>6</Artificer>
       <Sorcerer>8</Sorcerer>
       <Wizard>8</Wizard>
       <MaxCasterLevel>40</MaxCasterLevel>
@@ -2633,6 +2633,14 @@ is also warded from Evil magical controls and compulsions.</Description>
          <Type>ACBonus</Type>
          <Bonus>Deflection</Bonus>
          <Amount>2</Amount>
+         <Stance>Evil Enemy</Stance>
+      </Effect>
+      <Effect>
+         <Type>SaveBonus</Type>
+         <Bonus>Resistance</Bonus>
+         <Amount>2</Amount>
+         <Save>All</Save>
+         <Stance>Evil Enemy</Stance>
       </Effect>
       <Effect>
          <Type>Immunity</Type>
@@ -7869,11 +7877,19 @@ without paying the normal additional spell point cost. Cooldown: 30 seconds</Des
    </Spell>
    <Spell>
       <Name>Divine Wrath</Name>
-      <Description>No Info</Description>
+      <Description>Calls down divine wrath on foes, dealing 2d6 light damage per character level,
+will save for half. Allies caught within blast are healed for 1d6 Positive
+Energy damage per character level. This SLA does not require Endless Ardor, but
+casting this will reset Endless Ardor stacks to zero.
+DC: 10 + character level + charisma or wisdom mod
+Cooldown: 20 seconds</Description>
       <Icon>DivineWrath</Icon>
-      <SPCost/>
+      <SPCost>40</SPCost>
       <Cleric>9</Cleric>
       <FavoredSoul>9</FavoredSoul>
+      <Maximize/>
+      <Empower/>
+      <Quicken/>
    </Spell>
    <Spell>
       <Name>Celestial Bombardment</Name>

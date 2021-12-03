@@ -356,7 +356,8 @@ void CEnhancementTreeDialog::RenderTreeItem(
         }
         // show how many have been acquired of max ranks
         bool isAllowed = item.IsAllowed(*m_pCharacter, "", m_tree.Name());
-        if (isAllowed)
+        bool isTier5Blocked = item.IsTier5Blocked(*m_pCharacter, m_tree.Name());
+        if (!isTier5Blocked)
         {
             // only show trained x/y if item is allowed
             const TrainedEnhancement * te = m_pCharacter->IsTrained(item.InternalName(), "", m_type);
@@ -566,10 +567,20 @@ void CEnhancementTreeDialog::RenderItemState(
 {
     size_t spentInTree = m_pCharacter->APSpentInTree(m_tree.Name());
     bool isAllowed = item.IsAllowed(*m_pCharacter, "", m_tree.Name());
+    bool isTier5Blocked = item.IsTier5Blocked(*m_pCharacter, m_tree.Name());
     bool isTrainable = item.CanTrain(*m_pCharacter, m_tree.Name(), spentInTree, m_type);
-    if (!isAllowed)
+    if (isTier5Blocked)
     {
-        s_imageBorders[item.HasClickie() ? IBE_ActiveNotAllowed : IBE_PassiveNotAllowed].TransparentBlt(
+        VERIFY(s_imageBorders[item.HasClickie() ? IBE_ActiveNotAllowed : IBE_PassiveNotAllowed].TransparentBlt(
+                pDC->GetSafeHdc(),
+                itemRect.left,
+                itemRect.top,
+                itemRect.Width(),
+                itemRect.Height()) != 0);
+    }
+    else if (!isAllowed)
+    {
+        s_imageBorders[item.HasClickie() ? IBE_ActiveNotAvailable : IBE_PassiveNotAvailable].TransparentBlt(
                 pDC->GetSafeHdc(),
                 itemRect.left,
                 itemRect.top,

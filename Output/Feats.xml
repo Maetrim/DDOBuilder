@@ -4124,6 +4124,7 @@ your Ability Score bonus to damage improves by 25%</Description>
          <Type>Strikethrough</Type>
          <Bonus>Feat</Bonus>
          <Amount>30</Amount>
+         <Stance>Two Handed Fighting</Stance>
       </Effect>
       <Effect>
          <Type>DamageAbilityMultiplier</Type>
@@ -6217,6 +6218,7 @@ your Ability Score bonus to damage improves by 25%</Description>
          <Type>Strikethrough</Type>
          <Bonus>Feat</Bonus>
          <Amount>30</Amount>
+         <Stance>Two Handed Fighting</Stance>
       </Effect>
       <Effect>
          <Type>MeleePower</Type>
@@ -8776,11 +8778,15 @@ This ability functions only in private instances.</Description>
    </Feat>
    <Feat>
       <Name>Natural Fighting</Name>
-      <Description>Natural Fighting grants you +4 Melee Power, Physical Resistance
-and Doublestrike chance while in a druid animal form.
-If in Bear/Dire Bear form, your Two-Handed ability mod increases by 25% and
-+60/30/30% Strikethrough per time acquiring this feat.
-This feat can be taken up to three times, and gives no benefit to druids in elemental forms.</Description>
+      <Description>You have grown accustomed to fighting with claws, paws, and jaws.
+While in Druid animal form, such as Bear or Wolf, you receive +4 to Melee Power,
+Physical Resistance Rating, and Doublestrike.
+In Bear form, you gain +50% Strikethrough Chance the first time you take this feat,
+and an additional 30% each subsequent time.
+In Bear form, while wielding a Two Handed Weapon, your Ability Score modifier to
+Damage increases by 25%.
+This feat can be taken up to three times.
+This feat gives no benefit to druids in elemental forms.</Description>
       <MaxTimesAcquire>3</MaxTimesAcquire>
       <Requirements>
          <Requirement>
@@ -8790,11 +8796,6 @@ This feat can be taken up to three times, and gives no benefit to druids in elem
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>NaturalFighting</Icon>
-      <Effect>
-         <Type>Strikethrough</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>15</Amount>
-      </Effect>
       <Effect>
          <Type>MeleePower</Type>
          <Bonus>Feat</Bonus>
@@ -8825,7 +8826,7 @@ This feat can be taken up to three times, and gives no benefit to druids in elem
       <Effect>
          <Type>Strikethrough</Type>
          <Bonus>Feat</Bonus>
-         <AmountVector size="3">60 90 120</AmountVector>
+         <AmountVector size="3">50 80 110</AmountVector>
          <AnyOfStance>Bear</AnyOfStance>
          <AnyOfStance>Dire Bear</AnyOfStance>
       </Effect>
@@ -9846,11 +9847,12 @@ fortification against your attacks by 25%.</Description>
          <IncompatibleStance>Power Attack</IncompatibleStance>
       </Stance>
       <Effect>
+         <DisplayName>Precision - Flat 5% Extra Attack Bonus</DisplayName>
          <Type>AttackBonus</Type>
          <Bonus>Feat</Bonus>
          <Percent/>
          <Amount>5</Amount>
-         <Stance>Precision</Stance>
+         <Stance>Flat Precision</Stance>
          <Weapon>All</Weapon>
       </Effect>
       <Effect>
@@ -13416,6 +13418,7 @@ Druid Animal Formas), your Ability Score bonus to damage improves by 25%.</Descr
          <Type>Strikethrough</Type>
          <Bonus>Feat</Bonus>
          <Amount>60</Amount>
+         <Stance>Two Handed Fighting</Stance>
       </Effect>
       <Effect>
          <Type>DamageAbilityMultiplier</Type>
@@ -25687,8 +25690,9 @@ Rank 3: Access to the Feydark Illusionist Tree</Description>
    <Feat>
       <Name>Sharn City Council Favor Rewards</Name>
       <Description>Rank 1: Favor 75 - "Sharn City Council: Skill Bonus" - "This feat grants you +2 bonus to Bluff and Haggle skills."
-Rank 2: Favor 150 - "Sharn City Council: Hit Point Bonus" - "This feat grants you +5 HP."</Description>
-      <MaxTimesAcquire>2</MaxTimesAcquire>
+Rank 2: Favor 150 - "Sharn City Council: Hit Point Bonus" - "This feat grants you +5 HP."
+Rank 3: Favor 225 - Access to the Inquisitive tree</Description>
+      <MaxTimesAcquire>3</MaxTimesAcquire>
       <Requirements/>
       <Acquire>Favor</Acquire>
       <Icon>SharnCityCouncil</Icon>
@@ -25696,7 +25700,7 @@ Rank 2: Favor 150 - "Sharn City Council: Hit Point Bonus" - "This feat grants yo
          <DisplayName>Sharn City Council: Skill Bonus</DisplayName>
          <Type>SkillBonus</Type>
          <Bonus>Feat</Bonus>
-         <AmountVector size="2">2 2</AmountVector>
+         <AmountVector size="3">2 2 2</AmountVector>
          <Skill>Bluff</Skill>
          <Skill>Haggle</Skill>
       </Effect>
@@ -25704,7 +25708,11 @@ Rank 2: Favor 150 - "Sharn City Council: Hit Point Bonus" - "This feat grants yo
          <DisplayName>Sharn City Council: Hit Point Bonus</DisplayName>
          <Type>Hitpoints</Type>
          <Bonus>Feat</Bonus>
-         <AmountVector size="2">0 5</AmountVector>
+         <AmountVector size="3">0 5 5</AmountVector>
+      </Effect>
+      <Effect>
+         <Type>EnhancementTree</Type>
+         <Bonus>Enhancement</Bonus>
       </Effect>
    </Feat>
    <Feat>
@@ -27965,6 +27973,7 @@ ability score modifer to their base damage.</Description>
          <Type>Strikethrough</Type>
          <Bonus>Feat</Bonus>
          <Amount>30</Amount>
+         <Stance>Two Handed Fighting</Stance>
       </Effect>
       <Effect>
          <Type>MeleePower</Type>

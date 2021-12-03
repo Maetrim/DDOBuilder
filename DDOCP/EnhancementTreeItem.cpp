@@ -160,6 +160,40 @@ bool EnhancementTreeItem::MeetRequirements(
     return met;
 }
 
+bool EnhancementTreeItem::IsTier5Blocked(
+    const Character & charData,
+    const std::string& treeName) const
+{
+    bool bTier5Blocked = false;
+    switch (m_type)
+    {
+    case TT_enhancement:
+    case TT_universal:
+        // cannot train this enhancement if its tier5 and not from the same tier 5
+        // tree if one has already been trained
+        if (HasTier5()                  // are we a tier 5 enhancement?
+                && charData.HasTier5Tree()
+                && treeName != charData.Tier5Tree())
+        {
+            // not allowed this tier 5 enhancement
+            bTier5Blocked = true;
+        }
+        break;
+    case TT_epicDestiny:
+        // cannot train this enhancement if its tier5 and not from the same tier 5
+        // tree if one has already been trained
+        if (HasTier5()                  // are we a tier 5 enhancement?
+                && charData.HasU51Destiny_Tier5Tree()
+                && treeName != charData.U51Destiny_Tier5Tree())
+        {
+            // not allowed this tier 5 enhancement
+            bTier5Blocked = true;
+        }
+        break;
+    }
+    return bTier5Blocked;
+}
+
 bool EnhancementTreeItem::IsAllowed(
         const Character & charData,
         const std::string & selection,

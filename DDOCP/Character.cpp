@@ -192,6 +192,26 @@ void Character::EndElement()
     {
         TrainSpecialFeat("Vistani Knife Fighter Tree", TFT_SpecialFeat);
     }
+    if (HasTier5Tree())
+    {
+        // check that this tree still exists, if not, clear it
+        const EnhancementTree& t = FindTree(Tier5Tree());
+        if (t.Name() != Tier5Tree())
+        {
+            // tree no longer exists, just clear it so a new tier 5 can be selected
+            Clear_Tier5Tree();
+        }
+    }
+    if (HasU51Destiny_Tier5Tree())
+    {
+        // check that this tree still exists, if not, clear it
+        const EnhancementTree& t = FindTree(U51Destiny_Tier5Tree());
+        if (t.Name() != U51Destiny_Tier5Tree())
+        {
+            // tree no longer exists, just clear it so a new tier 5 can be selected
+            Clear_U51Destiny_Tier5Tree();
+        }
+    }
 }
 
 void Character::Write(XmlLib::SaxWriter * writer) const
