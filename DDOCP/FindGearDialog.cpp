@@ -824,6 +824,10 @@ void CFindGearDialog::AddSpecialSlots()
         std::vector<ItemAugment> currentAugments = m_item.Augments();
         AddAugment(&currentAugments, "Mythic", true);
         AddAugment(&currentAugments, "Reaper", true);
+        if (m_item.CanEquipToSlot(Inventory_Ring1))
+        {
+            AddAugment(&currentAugments, "Reaper Ring", true);
+        }
         // now set the slots on the item
         m_item.Set_Augments(currentAugments);
     }

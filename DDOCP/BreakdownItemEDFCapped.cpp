@@ -50,13 +50,15 @@ void BreakdownItemEDFCapped::CreateOtherEffects()
             ASSERT(pBBAB != NULL);
             pBBAB->AttachObserver(this);  // need to know about changes to this effect
             double amount = pBBAB->Total();
-            ActiveEffect prr(
+            ActiveEffect ds(
                     Bonus_feat,
                     "Manyshot (BAB * 1.5)",
                     1,
                     (int)(amount * 1.5),        // drop fractions
                     "");        // no tree
-            AddOtherEffect(prr);
+            ds.AddAnyOfStance("Shortbow");
+            ds.AddAnyOfStance("Longbow");
+            AddOtherEffect(ds);
         }
         if (m_effect == Effect_RangedPower
                 && m_pCharacter->IsFeatTrained("Rapid Shot"))

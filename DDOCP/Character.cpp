@@ -4781,7 +4781,7 @@ void Character::ApplyFiligree(
         EquippedGear gear = ActiveGearSet(); // empty if no gear found
         if (bArtifact)
         {
-            if (gear.SentientIntelligence().IsRareFiligree(si))
+            if (gear.SentientIntelligence().IsRareArtifactFiligree(si))
             {
                 std::list<Effect> effects = augment.Rares().Effects();
                 std::list<Effect>::iterator it = effects.begin();
@@ -4794,7 +4794,7 @@ void Character::ApplyFiligree(
         }
         else
         {
-            if (gear.SentientIntelligence().IsRareArtifactFiligree(si))
+            if (gear.SentientIntelligence().IsRareFiligree(si))
             {
                 std::list<Effect> effects = augment.Rares().Effects();
                 std::list<Effect>::iterator it = effects.begin();
