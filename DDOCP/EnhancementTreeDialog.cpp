@@ -43,6 +43,8 @@ namespace
         IBE_CoreActiveAvailable,
         IBE_ResetTreeDisabled,
         IBE_ResetTreeEnabled,
+        IBE_CoreRevokeOverlay,
+        IBE_StandardRevokeOverlay,
         IBE_count
     };
     const int c_leftOffsetCore = 16;
@@ -93,6 +95,8 @@ void CEnhancementTreeDialog::InitialiseStaticImages()
         LoadImageFile(IT_ui, "CoreActiveAvailable", &s_imageBorders[IBE_CoreActiveAvailable]);
         LoadImageFile(IT_ui, "ResetTreeEnabled", &s_imageBorders[IBE_ResetTreeEnabled]);
         LoadImageFile(IT_ui, "ResetTreeEnabled", &s_imageBorders[IBE_ResetTreeDisabled]);
+        LoadImageFile(IT_ui, "CoreRevokeOverlay", &s_imageBorders[IBE_CoreRevokeOverlay]);
+        LoadImageFile(IT_ui, "StandardRevokeOverlay", &s_imageBorders[IBE_StandardRevokeOverlay]);
         for (size_t i = 0; i < IBE_count; ++i)
         {
             s_imageBorders[i].SetTransparentColor(c_transparentColour);
@@ -372,6 +376,16 @@ void CEnhancementTreeDialog::RenderTreeItem(
                     itemRect.bottom - textSize.cy - 2,
                     text);
         }
+        bool canRevoke = item.CanRevoke(m_pCharacter->FindSpendInTree(m_tree.Name()));
+        if (canRevoke)
+        {
+            VERIFY(s_imageBorders[IBE_StandardRevokeOverlay].TransparentBlt(
+                    pDC->GetSafeHdc(),
+                    itemRect.left,
+                    itemRect.top,
+                    itemRect.Width(),
+                    itemRect.Height()) != 0);
+        }
         if (item.HasArrowLeft())
         {
             s_imageBorders[IBE_ArrowLeft].TransparentBlt(
@@ -429,6 +443,7 @@ void CEnhancementTreeDialog::RenderItemCore(
     size_t spentInTree = m_pCharacter->APSpentInTree(m_tree.Name());
     bool isAllowed = item.IsAllowed(*m_pCharacter, "", m_tree.Name());
     bool isTrainable = item.CanTrain(*m_pCharacter, m_tree.Name(), spentInTree, m_type);
+    bool canRevoke = item.CanRevoke(m_pCharacter->FindSpendInTree(m_tree.Name()));
     // now apply the item position to the rectangle
     itemRect += CPoint(c_leftOffsetCore + c_xItemSpacingCore * item.XPosition(), c_topCore);
     // clickie item state may be overridden by item selection
@@ -490,6 +505,15 @@ void CEnhancementTreeDialog::RenderItemCore(
         m_hitBoxes.push_back(hitBox);
     }
 
+    if (canRevoke)
+    {
+        VERIFY(s_imageBorders[IBE_CoreRevokeOverlay].TransparentBlt(
+                pDC->GetSafeHdc(),
+                itemRect.left,
+                itemRect.top,
+                itemRect.Width(),
+                itemRect.Height()) != 0);
+    }
     if (isTrainable && isAllowed)
     {
         // available outline is larger
@@ -655,21 +679,21 @@ void CEnhancementTreeDialog::OnLButtonDown(UINT nFlags, CPoint point)
                                     m_tree.Name(),
                                     item->InternalName(),
                                     dlg.Selection(),
-                                    dlg.Cost());
+                                    item->ItemCosts(dlg.Selection()));
                             break;
                         case TT_reaper:
                             m_pCharacter->Reaper_TrainEnhancement(
                                     m_tree.Name(),
                                     item->InternalName(),
                                     dlg.Selection(),
-                                    dlg.Cost());
+                                    item->ItemCosts(dlg.Selection()));
                             break;
                         case TT_epicDestiny:
                             m_pCharacter->U51Destiny_TrainEnhancement(
                                     m_tree.Name(),
                                     item->InternalName(),
                                     dlg.Selection(),
-                                    dlg.Cost());
+                                    item->ItemCosts(dlg.Selection()));
                         }
                         Invalidate();
                     }
@@ -677,6 +701,7 @@ void CEnhancementTreeDialog::OnLButtonDown(UINT nFlags, CPoint point)
                 }
                 else
                 {
+                    std::string selection = (te != NULL && te->HasSelection()) ? te->Selection() : "";
                     if (te == NULL          // if its not trained
                             || te->Ranks() < item->Ranks()) // or has ranks still to be trained
                     {
@@ -689,21 +714,21 @@ void CEnhancementTreeDialog::OnLButtonDown(UINT nFlags, CPoint point)
                                     m_tree.Name(),
                                     item->InternalName(),
                                     (te != NULL && te->HasSelection()) ? te->Selection() : "",
-                                    item->Cost());
+                                    item->ItemCosts(selection));
                             break;
                         case TT_reaper:
                             m_pCharacter->Reaper_TrainEnhancement(
                                     m_tree.Name(),
                                     item->InternalName(),
                                     (te != NULL && te->HasSelection()) ? te->Selection() : "",
-                                    item->Cost());
+                                    item->ItemCosts(selection));
                             break;
                         case TT_epicDestiny:
                             m_pCharacter->U51Destiny_TrainEnhancement(
                                     m_tree.Name(),
                                     item->InternalName(),
                                     (te != NULL && te->HasSelection()) ? te->Selection() : "",
-                                    item->Cost());
+                                    item->ItemCosts(selection));
                             break;
                         }
                         Invalidate();
@@ -817,23 +842,25 @@ void CEnhancementTreeDialog::OnLButtonUp(UINT nFlags, CPoint point)
 void CEnhancementTreeDialog::OnRButtonDown(UINT nFlags, CPoint point)
 {
     CDialog::OnRButtonDown(nFlags, point);
-    // revoke the last enhancement trained in this tree
     if (m_pCharacter != NULL)
     {
-        if (m_tree.Items().size() > 0)
+        // determine which enhancement has been clicked on
+        const EnhancementTreeItem * item = FindByPoint();
+        if (item != NULL
+                && item->CanRevoke(m_pCharacter->FindSpendInTree(m_tree.Name())))
         {
             switch (m_type)
             {
             case TT_universal:
             case TT_racial:
             case TT_enhancement:
-                m_pCharacter->Enhancement_RevokeEnhancement(m_tree.Name());
+                m_pCharacter->Enhancement_RevokeEnhancement(m_tree.Name(), item->InternalName());
                 break;
             case TT_reaper:
-                m_pCharacter->Reaper_RevokeEnhancement(m_tree.Name());
+                m_pCharacter->Reaper_RevokeEnhancement(m_tree.Name(), item->InternalName());
                 break;
             case TT_epicDestiny:
-                m_pCharacter->U51Destiny_RevokeEnhancement(m_tree.Name());
+                m_pCharacter->U51Destiny_RevokeEnhancement(m_tree.Name(), item->InternalName());
                 break;
             }
             Invalidate();   // redraw
@@ -1031,62 +1058,86 @@ void CEnhancementTreeDialog::UpdateFeatRevoked(
             "requirements are no longer met.\r\n\r\n";
     bool bEnhancementsRevoked = false;
     // review all trained enhancements in this tree
-    // if they are no longer valid, revoke enhancements in the
-    // reverse order they were trained until all trained tree
-    // enhancements are valid
+    // if they are no longer valid, revoke enhancements in the tree:
+    // 1: Either revoke directly if it can be
+    // 2: Revoke the last enhancement trained until the bad enhancement can be revoked
     bool bTreeHasInvalidItems = false;
     const std::list<EnhancementTreeItem> & items = m_tree.Items();
     do 
     {
         bTreeHasInvalidItems = false;
-        EnhancementSpendInTree * esit = m_pCharacter->Enhancement_FindTree(m_tree.Name());
+        SpendInTree * esit = m_pCharacter->FindSpendInTree(m_tree.Name());
+        const EnhancementTreeItem * pBadItem = NULL;
         if (esit != NULL)
         {
-            std::list<TrainedEnhancement> enhancements = esit->Enhancements();
+            std::string revokedSelection;
+            const std::list<TrainedEnhancement>& enhancements = esit->Enhancements();
             std::list<TrainedEnhancement>::const_iterator it = enhancements.begin();
             while (!bTreeHasInvalidItems && it != enhancements.end())
             {
                 const EnhancementTreeItem * pItem = FindEnhancement((*it).EnhancementName());
+                revokedSelection = (*it).HasSelection() ? (*it).Selection() : "";
                 bool isAllowed = pItem->MeetRequirements(
                         *m_pCharacter,
-                        (*it).HasSelection() ? (*it).Selection() : "",
+                        revokedSelection,
                         m_tree.Name());
                 if (!isAllowed)
                 {
                     bTreeHasInvalidItems = true;
+                    pBadItem = pItem;
                     break;
                 }
                 ++it;
             }
-        }
-        if (bTreeHasInvalidItems)
-        {
-            // get the name of the tree item about to be revoked and add it to the
-            // reported revoked message.
-            std::string revokedEnhancement;
-            std::string revokedSelection;
-            // the tree does have invalid items in it.
-            // revoke an item in this tree and try again to see if the tree is now valid
-            m_pCharacter->Enhancement_RevokeEnhancement(
-                    m_tree.Name(),
-                    &revokedEnhancement,
-                    &revokedSelection);
-            bEnhancementsRevoked = true;
-            const EnhancementTreeItem * pItem = FindEnhancement(revokedEnhancement);
-            if (pItem != NULL)
+            if (bTreeHasInvalidItems)
             {
-                // show the tier of the enhancement
-                switch (pItem->YPosition())
+                // get the name of the tree item about to be revoked and add it to the
+                // reported revoked message.
+                std::string revokedEnhancement;
+                // 1: can we revoke the bad enhancement directly?
+                if (pBadItem->CanRevoke(esit))
                 {
-                case 0: ss << "Core  "; break;
-                case 1: ss << "Tier1 "; break;
-                case 2: ss << "Tier2 "; break;
-                case 3: ss << "Tier3 "; break;
-                case 4: ss << "Tier4 "; break;
-                case 5: ss << "Tier5 "; break;
-                case 6: ss << "Tier6 "; break;
+                    revokedEnhancement = pBadItem->InternalName();
                 }
-                ss << pItem->DisplayName(revokedSelection) << "\r\n";
+                else
+                {
+                    // revoke the last trained enhancement until we can revoke the bad one
+                    revokedEnhancement = enhancements.back().EnhancementName();
+                    revokedSelection = enhancements.back().HasSelection() ? enhancements.back().Selection() : "";
+                }
+                // the tree does have invalid items in it.
+                // revoke an item in this tree and try again to see if the tree is now valid
+                switch (m_type)
+                {
+                case TT_universal:
+                case TT_racial:
+                case TT_enhancement:
+                    m_pCharacter->Enhancement_RevokeEnhancement(m_tree.Name(), revokedEnhancement);
+                    break;
+                case TT_reaper:
+                    m_pCharacter->Reaper_RevokeEnhancement(m_tree.Name(), revokedEnhancement);
+                    break;
+                case TT_epicDestiny:
+                    m_pCharacter->U51Destiny_RevokeEnhancement(m_tree.Name(), revokedEnhancement);
+                    break;
+                }
+                bEnhancementsRevoked = true;
+                const EnhancementTreeItem * pItem = FindEnhancement(revokedEnhancement);
+                if (pItem != NULL)
+                {
+                    // show the tier of the enhancement
+                    switch (pItem->YPosition())
+                    {
+                    case 0: ss << "Core  "; break;
+                    case 1: ss << "Tier1 "; break;
+                    case 2: ss << "Tier2 "; break;
+                    case 3: ss << "Tier3 "; break;
+                    case 4: ss << "Tier4 "; break;
+                    case 5: ss << "Tier5 "; break;
+                    case 6: ss << "Tier6 "; break;
+                    }
+                    ss << pItem->DisplayName(revokedSelection) << "\r\n";
+                }
             }
         }
     } while (bTreeHasInvalidItems);

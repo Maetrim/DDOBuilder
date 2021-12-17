@@ -427,9 +427,10 @@ void CEnhancementEditorDialog::OnKillFocusEditCost()
         std::advance(it, sel);  // get correct item
         CString text;
         m_editCost.GetWindowText(text);
-        if (atoi(text) != (*it).Cost())
+        if (atoi(text) != (*it).Cost("", 0))
         {
-            (*it).Set_Cost(atoi(text));
+            std::vector<size_t> costs(it->Ranks(), atoi(text));
+            (*it).Set_CostPerRank(costs);
             m_loadedTrees.front().Set_Items(items);
             UpdateTree();
         }
@@ -499,7 +500,7 @@ void CEnhancementEditorDialog::OnSelendokEnhancement()
         m_editIcon.SetWindowText((*it).Icon().c_str());
         m_editFeatName.SetWindowText("");
         CString text;
-        text.Format("%d", (*it).Cost());
+        text.Format("%d", (*it).Cost("", 0));
         m_editCost.SetWindowText(text);
         text.Format("%d", (*it).Ranks());
         m_editRanks.SetWindowText(text);
@@ -676,7 +677,7 @@ void CEnhancementEditorDialog::PopulateSelection()
             m_editSelectionIcon.SetWindowText((*sit).Icon().c_str());
             m_editFeatSelection.SetWindowText("");
             CString text;
-            text.Format("%d", (*sit).Cost());
+            text.Format("%d", (*sit).Cost(0));
             m_editSelectionCost.SetWindowText(text);
         }
     }
@@ -848,9 +849,10 @@ void CEnhancementEditorDialog::OnKillfocusEditCost2()
             std::list<EnhancementSelection> selections = (*it).Selections().Selections();
             std::list<EnhancementSelection>::iterator sit = selections.begin();
             std::advance(sit, index);
-            if ((*sit).Cost() != atoi(text))
+            if ((*sit).Cost(0) != atoi(text))
             {
-                (*sit).Set_Cost(atoi(text));
+                std::vector<size_t> costs(it->Ranks(), atoi(text));
+                (*sit).Set_CostPerRank(costs);
                 Selector lsel;
                 lsel.Set_Selections(selections);
                 (*it).Set_Selections(lsel);

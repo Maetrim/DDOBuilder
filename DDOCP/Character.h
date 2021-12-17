@@ -203,6 +203,9 @@ class Character :
                 const std::string & selection,
                 TreeType type) const;
 
+        const SpendInTree* FindSpendInTree(const std::string& treeName) const;
+        SpendInTree* FindSpendInTree(const std::string& treeName);
+
         // enhancement support
         const EnhancementTree & FindTree(const std::string & treeName) const;
         bool IsEnhancementTrained(
@@ -214,11 +217,10 @@ class Character :
                 const std::string & treeName,
                 const std::string & enhancementName,
                 const std::string & selection,
-                size_t cost);
+                const std::vector<size_t>& cost);
         void Enhancement_RevokeEnhancement(
                 const std::string & treeName,
-                std::string * enhancementName = NULL,
-                std::string * enhancementSelection = NULL);
+                const std::string & revokedEnhancement);
         void Enhancement_ResetEnhancementTree(std::string treeName);
         void Enhancement_SetSelectedTrees(const SelectedEnhancementTrees & trees);
         bool Enhancement_IsTreeTrained(const std::string & tree) const;
@@ -233,8 +235,10 @@ class Character :
                 const std::string & treeName,
                 const std::string & enhancementName,
                 const std::string & selection,
-                size_t cost);
-        void Reaper_RevokeEnhancement(const std::string & treeName);
+                const std::vector<size_t>& cost);
+        void Reaper_RevokeEnhancement(
+                const std::string& treeName,
+                const std::string & revokedEnhancement);
         void Reaper_ResetEnhancementTree(std::string treeName);
 
         // U51 Epic destiny support
@@ -243,11 +247,10 @@ class Character :
                 const std::string & treeName,
                 const std::string & enhancementName,
                 const std::string & selection,
-                size_t cost);
+                const std::vector<size_t>& cost);
         void U51Destiny_RevokeEnhancement(
-                const std::string & treeName,
-                std::string * enhancementName = NULL,
-                std::string * enhancementSelection = NULL);
+                const std::string& treeName,
+                const std::string & revokedEnhancement);
         void U51Destiny_ResetEnhancementTree(std::string treeName);
         void U51Destiny_SetSelectedTrees(const SelectedDestinyTrees & trees);
         bool U51Destiny_IsTreeTrained(const std::string & tree) const;

@@ -172,6 +172,19 @@ void Requirements::CreateRequirementStrings(
     }
 }
 
+bool Requirements::RequiresEnhancement(const std::string& name) const
+{
+    bool bRequiresIt = false;
+    // check all the individual requirements
+    std::list<Requirement>::const_iterator it = m_Requires.begin();
+    while (it != m_Requires.end())
+    {
+        bRequiresIt |= (*it).RequiresEnhancement(name);
+        ++it;
+    }
+    return bRequiresIt;
+}
+
 bool Requirements::VerifyObject(
         std::stringstream * ss,
         const std::list<EnhancementTree> & allTrees,

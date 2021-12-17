@@ -11,6 +11,7 @@
 class Character;
 class EnhancementTree;
 class Feat;
+class SpendInTree;
 
 class EnhancementTreeItem :
     public XmlLib::SaxContentElement
@@ -37,6 +38,7 @@ class EnhancementTreeItem :
                 const std::string & treeName,
                 size_t spentInTree,
                 TreeType type) const;
+        bool CanRevoke(const SpendInTree* pTreeSpend) const;
         std::list<Effect> ActiveEffects(const std::string & selection) const;
         std::list<DC> ActiveDCs(const std::string & selection) const;
         void CreateRequirementStrings(
@@ -45,8 +47,12 @@ class EnhancementTreeItem :
                 std::vector<bool> * met,
                 size_t level) const;
         std::list<Stance> Stances(const std::string & selection) const;
-        size_t Cost(const std::string & selection) const;
+        bool CostVaries(const std::string& selection) const;
+        size_t Cost(const std::string & selection, size_t rank) const;
+        const std::vector<size_t>& ItemCosts(const std::string& selection) const;
         bool IsSelectionClickie(const std::string & selection) const;
+
+        bool RequiresEnhancement(const std::string& name) const;
 
         bool VerifyObject(
                 std::stringstream * ss,
@@ -67,7 +73,7 @@ class EnhancementTreeItem :
                 DL_STRING(_, Icon) \
                 DL_SIMPLE(_, size_t, XPosition, 0) \
                 DL_SIMPLE(_, size_t, YPosition, 0) \
-                DL_SIMPLE(_, size_t, Cost, 0) \
+                DL_VECTOR(_, size_t, CostPerRank) \
                 DL_SIMPLE(_, size_t, Ranks, 1) \
                 DL_SIMPLE(_, size_t, MinSpent, 0) \
                 DL_FLAG(_, Clickie) \

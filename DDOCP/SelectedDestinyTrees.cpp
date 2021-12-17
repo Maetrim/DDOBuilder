@@ -45,7 +45,7 @@ void SelectedDestinyTrees::EndElement()
     // any load operation will have appended the loaded values
     // onto the m_TreeName object
     while (m_TreeName.size() > MAX_EPIC_DESTINY_TREES + 1
-            || m_TreeName.front() == f_noSelection)
+            || (m_TreeName.size() > 0 && m_TreeName.front() == f_noSelection))
     {
         m_TreeName.erase(m_TreeName.begin());
     }

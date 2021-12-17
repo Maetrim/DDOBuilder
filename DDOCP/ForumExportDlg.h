@@ -4,6 +4,8 @@
 #include "XmlLib\SaxContentElement.h"
 #include "GlobalSupportFunctions.h"
 #include "EnhancementSpendInTree.h"
+#include "DestinySpendInTree.h"
+#include "ReaperSpendInTree.h"
 
 class Character;
 class EquippedGear;

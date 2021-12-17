@@ -84,7 +84,7 @@ BOOL CSelectionSelectDialog::OnInitDialog()
         m_buttonOption[index].MoveWindow(&rctButton);
         m_buttonOption[index].SetImage((*it).Icon());
         m_buttonOption[index].SetWindowText((*it).Name().c_str());
-        m_costs[index] = (*it).Cost();
+        m_costs[index] = (*it).Cost(0); // always 1st rank cost
         m_selections[index] = (*it).Name();
         bool excluded = false;
         const std::list<std::string> & exclusions = selector.Exclude();
@@ -117,7 +117,7 @@ BOOL CSelectionSelectDialog::OnInitDialog()
                     trainedFeats,
                     true);          // do include tomes
         }
-        bool enoughAP = (m_charData.AvailableActionPoints(m_treeName, m_type) >= (int)(*it).Cost());
+        bool enoughAP = (m_charData.AvailableActionPoints(m_treeName, m_type) >= (int)(*it).Cost(0));
         bool requiredAPSpent = (spentInTree >= m_item.MinSpent());
         m_buttonOption[index].EnableWindow(!excluded && canTrain && enoughAP && requiredAPSpent);
         ++it;

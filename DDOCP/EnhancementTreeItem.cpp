@@ -262,32 +262,44 @@ bool EnhancementTreeItem::CanTrain(
     // must not be trained to max ranks
     const TrainedEnhancement * te = charData.IsTrained(InternalName(), "", m_type);
     size_t trainedRanks = (te != NULL) ? te->Ranks() : 0;
+    std::string selection = (te != NULL && te->HasSelection()) ? te->Selection() : "";
     bool canTrain = (trainedRanks < Ranks());
     canTrain &= (spentInTree >= MinSpent());
     // verify and enhancements we are dependent on have enough trained ranks also
     canTrain &= m_RequirementsToTrain.CanTrainEnhancement(charData, trainedRanks);
     // must have enough action points to buy it
     int availableAP = charData.AvailableActionPoints(treeName, type);
-    // Cost can be variable compared to base item if item is trained
-    int cost = Cost();
-    if (te != NULL
-            && te->HasSelection())
+    canTrain &= (availableAP >= (int)Cost(selection, trainedRanks));
+    return canTrain;
+}
+
+bool EnhancementTreeItem::CanRevoke(
+        const SpendInTree* pTreeSpend) const
+{
+    bool canRevoke = false;
+    // This enhancement cannot be revoked if:
+    if (pTreeSpend != NULL)
     {
-        // selected item may have different cost
-        std::list<EnhancementSelection>::const_iterator it =
-                m_Selections.Selections().begin();
-        while (it != m_Selections.Selections().end())
+        // 1. No ranks have been spent in this enhancement
+        std::string selection;
+        size_t ranks = pTreeSpend->TrainedRanks(InternalName(), &selection);
+        if (ranks != 0)
         {
-            if ((*it).Name() == te->Selection())
+            // 2. Revoking a rank of this enhancement would reduce the APs spent in the tree
+            // below those required for a higher tier enhancement to be trained
+
+            // sum how many Aps have been spent in this min Ap tier
+            canRevoke = pTreeSpend->CanRevokeAtTier(MinSpent(), Cost(selection, ranks));
+
+            if (canRevoke)
             {
-                cost = (*it).Cost();
-                break;      // were done
+                // 3. Another enhancement that is dependent on this enhancement being trained has
+                // equal or more ranks than this enhancement
+                canRevoke = !pTreeSpend->HasTrainedDependants(InternalName(), ranks);
             }
-            ++it;
         }
     }
-    canTrain &= (availableAP >= cost);
-    return canTrain;
+    return canRevoke;
 }
 
 void EnhancementTreeItem::RenderIcon(
@@ -423,15 +435,58 @@ std::list<Stance> EnhancementTreeItem::Stances(const std::string & selection) co
     return stances;
 }
 
-size_t EnhancementTreeItem::Cost(const std::string & selection) const
+bool EnhancementTreeItem::CostVaries(const std::string& selection) const
 {
-    size_t cost = Cost();
+    bool varies = false;
     if (selection != ""
             && HasSelections())
     {
-        cost = m_Selections.Cost(selection);
+        varies = m_Selections.CostVaries(selection);
+    }
+    else
+    {
+        size_t cost = m_CostPerRank[0];
+        for (size_t i = 1; i < m_CostPerRank.size(); ++i)
+        {
+            varies |= (m_CostPerRank[i] != cost);
+        }
+    }
+    return varies;
+}
+
+size_t EnhancementTreeItem::Cost(
+        const std::string& selection,
+        size_t rank) const
+{
+    size_t cost = 0;
+    if (rank < m_CostPerRank.size())
+    {
+        cost = m_CostPerRank[rank];
+    }
+    else
+    {
+        cost = m_CostPerRank[0];
+    }
+    if (selection != ""
+            && HasSelections())
+    {
+        cost = m_Selections.Cost(selection, rank);
     }
     return cost;
+}
+
+const std::vector<size_t>& EnhancementTreeItem::ItemCosts(
+        const std::string& selection) const
+{
+    if (selection != ""
+            && HasSelections())
+    {
+        return m_Selections.ItemCosts(selection);
+    }
+    else
+    {
+        return m_CostPerRank;
+    }
 }
 
 bool EnhancementTreeItem::IsSelectionClickie(const std::string & selection) const
@@ -439,3 +494,8 @@ bool EnhancementTreeItem::IsSelectionClickie(const std::string & selection) cons
     return m_Selections.IsSelectionClickie(selection);
 }
 
+bool EnhancementTreeItem::RequiresEnhancement(const std::string& name) const
+{
+    bool bRequiresIt = m_RequirementsToTrain.RequiresEnhancement(name);
+    return bRequiresIt;
+}

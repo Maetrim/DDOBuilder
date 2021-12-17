@@ -2852,7 +2852,7 @@ void Character::Enhancement_TrainEnhancement(
         const std::string & treeName,
         const std::string & enhancementName,
         const std::string & selection,
-        size_t cost)
+    const std::vector<size_t>& cost)
 {
     // Find the tree tracking amount spent and enhancements trained
     EnhancementSpendInTree * pItem = Enhancement_FindTree(treeName);
@@ -2861,9 +2861,7 @@ void Character::Enhancement_TrainEnhancement(
     {
         // no tree item available for this tree, its a first time spend
         // create an object to handle this tree
-        EnhancementSpendInTree tree;
-        tree.Set_TreeName(treeName);
-        tree.Set_TreeVersion(eTree.Version());  // need to track version of tree spent in
+        EnhancementSpendInTree tree(treeName, eTree.Version());
         m_EnhancementTreeSpend.push_back(tree);
         pItem = &m_EnhancementTreeSpend.back();
     }
@@ -2873,6 +2871,7 @@ void Character::Enhancement_TrainEnhancement(
             enhancementName,
             selection,
             cost,
+            pTreeItem->MinSpent(),
             pTreeItem->HasTier5(),
             &ranks);
     if (eTree.HasIsRacialTree())
@@ -2916,9 +2915,8 @@ void Character::Enhancement_TrainEnhancement(
 }
 
 void Character::Enhancement_RevokeEnhancement(
-        const std::string & treeName,
-        std::string * enhancementName,
-        std::string * enhancementSelection)
+        const std::string& treeName,
+        const std::string& revokedEnhancement)
 {
     EnhancementSpendInTree * pItem = Enhancement_FindTree(treeName);
     if (pItem != NULL
@@ -2926,11 +2924,10 @@ void Character::Enhancement_RevokeEnhancement(
     {
         bool wasTier5 = pItem->HasTier5();
         // return points available to spend also
-        std::string revokedEnhancement;
         std::string revokedEnhancementSelection;
         size_t ranks = 0;
         size_t spent = pItem->RevokeEnhancement(
-                &revokedEnhancement,
+                revokedEnhancement,
                 &revokedEnhancementSelection,
                 &ranks);
         const EnhancementTree & eTree = GetEnhancementTree(treeName);
@@ -2965,14 +2962,6 @@ void Character::Enhancement_RevokeEnhancement(
         NotifyEnhancementRevoked(revokedEnhancement, revokedEnhancementSelection, wasTier5, true);
         NotifyActionPointsChanged();
         NotifyAPSpentInTreeChanged(treeName);
-        if (enhancementName != NULL)
-        {
-            *enhancementName = revokedEnhancement;
-        }
-        if (enhancementSelection != NULL)
-        {
-            *enhancementSelection = revokedEnhancementSelection;
-        }
         UpdateWeaponStances();
         SetAlignmentStances();
         UpdateCenteredStance();
@@ -2988,7 +2977,7 @@ void Character::Enhancement_ResetEnhancementTree(std::string treeName)
         // clear all the enhancements trained by revoking them until none left
         while (pItem->Enhancements().size() > 0)
         {
-            Enhancement_RevokeEnhancement(treeName);
+            Enhancement_RevokeEnhancement(treeName, pItem->Enhancements().back().EnhancementName());
             pItem = Enhancement_FindTree(treeName);
         }
         // now remove the tree entry from the list (not present if no spend in tree)
@@ -3395,9 +3384,14 @@ void Character::JustLoaded()
                         const EnhancementTreeItem * pTreeItem = FindEnhancement((*teit).EnhancementName());
                         if (pTreeItem != NULL)
                         {
-                            apsSpent += pTreeItem->Cost((*teit).Selection()) * (*teit).Ranks();
+                            std::string selection;
+                            selection = (*teit).HasSelection() ? (*teit).Selection() : "";
+                            for (size_t i = 0; i < (*teit).Ranks(); ++i)
+                            {
+                                apsSpent += pTreeItem->Cost(selection, i);
+                            }
                             // cost also updated so revoke of items will work
-                            (*teit).SetCost(pTreeItem->Cost((*teit).Selection()));
+                            (*teit).SetCost(pTreeItem->ItemCosts(selection));
                         }
                         else
                         {
@@ -3475,9 +3469,14 @@ void Character::JustLoaded()
                     const EnhancementTreeItem * pTreeItem = FindEnhancement((*teit).EnhancementName());
                     if (pTreeItem != NULL)
                     {
-                        apsSpent += pTreeItem->Cost((*teit).Selection()) * (*teit).Ranks();
+                        std::string selection;
+                        selection = (*teit).HasSelection() ? (*teit).Selection() : "";
+                        for (size_t i = 0; i < (*teit).Ranks(); ++i)
+                        {
+                            apsSpent += pTreeItem->Cost(selection, i);
+                        }
                         // cost also updated so revoke of items will work
-                        (*teit).SetCost(pTreeItem->Cost((*teit).Selection()));
+                        (*teit).SetCost(pTreeItem->ItemCosts(selection));
                     }
                     else
                     {
@@ -3550,9 +3549,14 @@ void Character::JustLoaded()
                         const EnhancementTreeItem * pTreeItem = FindEnhancement((*teit).EnhancementName());
                         if (pTreeItem != NULL)
                         {
-                            apsSpent += pTreeItem->Cost((*teit).Selection()) * (*teit).Ranks();
+                            std::string selection;
+                            selection = (*teit).HasSelection() ? (*teit).Selection() : "";
+                            for (size_t i = 0; i < (*teit).Ranks(); ++i)
+                            {
+                                apsSpent += pTreeItem->Cost(selection, i);
+                            }
                             // cost also updated so revoke of items will work
-                            (*teit).SetCost(pTreeItem->Cost((*teit).Selection()));
+                            (*teit).SetCost(pTreeItem->ItemCosts(selection));
                         }
                         else
                         {
@@ -3979,7 +3983,7 @@ void Character::Reaper_TrainEnhancement(
         const std::string & treeName,
         const std::string & enhancementName,
         const std::string & selection,
-        size_t cost)
+        const std::vector<size_t>& cost)
 {
     // Find the tree tracking amount spent and enhancements trained
     ReaperSpendInTree * pItem = Reaper_FindTree(treeName);
@@ -3987,19 +3991,20 @@ void Character::Reaper_TrainEnhancement(
     {
         // no tree item available for this tree, its a first time spend
         // create an object to handle this tree
-        ReaperSpendInTree tree;
-        tree.Set_TreeName(treeName);
         const EnhancementTree & eTree = GetEnhancementTree(treeName);
-        tree.Set_TreeVersion(eTree.Version());  // need to track version of tree spent in
+        ReaperSpendInTree tree(treeName, eTree.Version());
         m_ReaperTreeSpend.push_back(tree);
         pItem = &m_ReaperTreeSpend.back();
     }
     size_t ranks = 0;
+    std::string temp;
+    const EnhancementTreeItem* pTreeItem = FindEnhancement(enhancementName, &temp);
     pItem->TrainEnhancement(
             enhancementName,
             selection,
             cost,
-            false,
+            pTreeItem->MinSpent(),
+            pTreeItem->HasTier5(),
             &ranks);
     // now notify all and sundry about the enhancement effects
     ApplyEnhancementEffects(treeName, enhancementName, selection, 1);
@@ -4009,18 +4014,18 @@ void Character::Reaper_TrainEnhancement(
 }
 
 void Character::Reaper_RevokeEnhancement(
-        const std::string & treeName)
+        const std::string& treeName,
+        const std::string& revokedEnhancement)
 {
     ReaperSpendInTree * pItem = Reaper_FindTree(treeName);
     if (pItem != NULL
             && pItem->Enhancements().size() > 0)
     {
         // return points available to spend also
-        std::string revokedEnhancement;
         std::string revokedEnhancementSelection;
         size_t ranks = 0;
         pItem->RevokeEnhancement(
-                &revokedEnhancement,
+                revokedEnhancement,
                 &revokedEnhancementSelection,
                 &ranks);
         // now notify all and sundry about the enhancement effects
@@ -4041,7 +4046,7 @@ void Character::Reaper_ResetEnhancementTree(std::string treeName)
         // clear all the enhancements trained by revoking them until none left
         while (pItem->Enhancements().size() > 0)
         {
-            Reaper_RevokeEnhancement(treeName);
+            Reaper_RevokeEnhancement(treeName, pItem->Enhancements().back().EnhancementName());
             pItem = Reaper_FindTree(treeName);
         }
         // now remove the tree entry from the list (not present if no spend in tree)
@@ -6382,7 +6387,7 @@ void Character::U51Destiny_TrainEnhancement(
         const std::string & treeName,
         const std::string & enhancementName,
         const std::string & selection,
-        size_t cost)
+        const std::vector<size_t>& cost)
 {
     // Find the tree tracking amount spent and enhancements trained
     DestinySpendInTree * pItem = U51Destiny_FindTree(treeName);
@@ -6403,7 +6408,8 @@ void Character::U51Destiny_TrainEnhancement(
             enhancementName,
             selection,
             cost,
-            pTreeItem->HasTier5(),
+            pTreeItem->MinSpent(),
+            false,
             &ranks);
     m_destinyTreeSpend += spent;
     ASSERT(pTreeItem != NULL);
@@ -6432,27 +6438,20 @@ void Character::U51Destiny_TrainEnhancement(
 }
 
 void Character::U51Destiny_RevokeEnhancement(
-        const std::string & treeName,
-        std::string * enhancementName,
-        std::string * enhancementSelection)
+        const std::string& treeName,
+        const std::string& revokedEnhancement)
 {
     DestinySpendInTree * pItem = U51Destiny_FindTree(treeName);
     if (pItem != NULL
             && pItem->Enhancements().size() > 0)
     {
-        bool wasTier5 = pItem->HasTier5();
         // return points available to spend also
-        std::string revokedEnhancement;
         std::string revokedEnhancementSelection;
         size_t ranks = 0;
-        size_t spent = pItem->RevokeEnhancement(
-                &revokedEnhancement,
+        pItem->RevokeEnhancement(
+                revokedEnhancement,
                 &revokedEnhancementSelection,
                 &ranks);
-        m_destinyTreeSpend -= spent;
-        const EnhancementTree & eTree = GetEnhancementTree(treeName);
-        // now notify all and sundry about the enhancement effects
-        // get the list of effects this enhancement has
         RevokeEnhancementEffects(treeName, revokedEnhancement, revokedEnhancementSelection, 1);
         // determine whether we still have a tier 5 enhancement trained if the tree just had one
         // revoked in it
@@ -6464,17 +6463,9 @@ void Character::U51Destiny_RevokeEnhancement(
                 Clear_U51Destiny_Tier5Tree();  // no longer a tier 5 trained
             }
         }
-        NotifyEnhancementRevoked(revokedEnhancement, revokedEnhancementSelection, wasTier5, true);
+        NotifyEnhancementRevoked(revokedEnhancement, revokedEnhancementSelection, false, true);
         NotifyActionPointsChanged();
         NotifyAPSpentInTreeChanged(treeName);
-        if (enhancementName != NULL)
-        {
-            *enhancementName = revokedEnhancement;
-        }
-        if (enhancementSelection != NULL)
-        {
-            *enhancementSelection = revokedEnhancementSelection;
-        }
         UpdateWeaponStances();
         SetAlignmentStances();
         UpdateCenteredStance();
@@ -6490,7 +6481,7 @@ void Character::U51Destiny_ResetEnhancementTree(std::string treeName)
         // clear all the enhancements trained by revoking them until none left
         while (pItem->Enhancements().size() > 0)
         {
-            U51Destiny_RevokeEnhancement(treeName);
+            U51Destiny_RevokeEnhancement(treeName, pItem->Enhancements().back().EnhancementName());
             pItem = U51Destiny_FindTree(treeName);
         }
         // now remove the tree entry from the list (not present if no spend in tree)
@@ -6547,3 +6538,94 @@ void Character::SetLamanniaMode(bool bLamanniaPreview)
     m_pDocument->SetModifiedFlag(TRUE);
 }
 
+const SpendInTree* Character::FindSpendInTree(const std::string& treeName) const
+{
+    const SpendInTree* pTree = NULL;
+
+    std::list<EnhancementSpendInTree>::const_iterator eit = m_EnhancementTreeSpend.begin();
+    while (pTree == NULL
+        && eit != m_EnhancementTreeSpend.end())
+    {
+        if ((*eit).TreeName() == treeName)
+        {
+            pTree = &(*eit);
+            break;
+        }
+        ++eit;
+    }
+    if (pTree == NULL)
+    {
+        std::list<ReaperSpendInTree>::const_iterator rit = m_ReaperTreeSpend.begin();
+        while (pTree == NULL
+            && rit != m_ReaperTreeSpend.end())
+        {
+            if ((*rit).TreeName() == treeName)
+            {
+                pTree = &(*rit);
+                break;
+            }
+            ++rit;
+        }
+    }
+    if (pTree == NULL)
+    {
+        std::list<DestinySpendInTree>::const_iterator dit = m_DestinyTreeSpend.begin();
+        while (pTree == NULL
+            && dit != m_DestinyTreeSpend.end())
+        {
+            if ((*dit).TreeName() == treeName)
+            {
+                pTree = &(*dit);
+                break;
+            }
+            ++dit;
+        }
+    }
+    return pTree;
+}
+
+SpendInTree* Character::FindSpendInTree(const std::string& treeName)
+{
+    SpendInTree* pTree = NULL;
+
+    std::list<EnhancementSpendInTree>::iterator eit = m_EnhancementTreeSpend.begin();
+    while (pTree == NULL
+        && eit != m_EnhancementTreeSpend.end())
+    {
+        if ((*eit).TreeName() == treeName)
+        {
+            pTree = &(*eit);
+            break;
+        }
+        ++eit;
+    }
+    if (pTree == NULL)
+    {
+        std::list<ReaperSpendInTree>::iterator rit = m_ReaperTreeSpend.begin();
+        while (pTree == NULL
+            && rit != m_ReaperTreeSpend.end())
+        {
+            if ((*rit).TreeName() == treeName)
+            {
+                pTree = &(*rit);
+                break;
+            }
+            ++rit;
+        }
+    }
+    if (pTree == NULL)
+    {
+        std::list<DestinySpendInTree>::iterator dit = m_DestinyTreeSpend.begin();
+        while (pTree == NULL
+            && dit != m_DestinyTreeSpend.end())
+        {
+            if ((*dit).TreeName() == treeName)
+            {
+                pTree = &(*dit);
+                break;
+            }
+            ++dit;
+        }
+    }
+    return pTree;
+}

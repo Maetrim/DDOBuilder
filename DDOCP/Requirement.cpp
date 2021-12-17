@@ -506,3 +506,13 @@ void Requirement::CreateRequirementStrings(
         met->push_back(charData.AbilityAtLevel(Ability(), level, true) >= Amount());
     }
 }
+
+bool Requirement::RequiresEnhancement(const std::string& name) const
+{
+    bool bRequires = false;
+    if (HasEnhancement())
+    {
+        bRequires = (name == m_Enhancement);
+    }
+    return bRequires;
+}

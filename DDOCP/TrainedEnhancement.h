@@ -10,13 +10,19 @@ class TrainedEnhancement :
         TrainedEnhancement();
         void Write(XmlLib::SaxWriter * writer) const;
 
-        void AddRank(size_t buyIndex, bool isTier5);
-        bool IsLastBuyIndex(size_t buyIndex) const;
-        bool HasBuyIndex(size_t buyIndex) const;
+        void AddRank(bool isTier5);
         void RevokeRank();
 
-        void SetCost(size_t cost);
-        size_t Cost() const;
+        void SetCost(const std::vector<size_t>& cost);
+        size_t Cost(size_t rank) const;
+        size_t TotalCost() const;
+
+        void SetRequiredAps(size_t requiredAps);
+        size_t RequiredAps() const;
+
+        bool HasRequirementOf(const std::string& dependentOnEnhancementName) const;
+
+        bool operator<(const TrainedEnhancement& other) const;
 
     protected:
         XmlLib::SaxContentElementInterface * StartElement(
@@ -29,16 +35,13 @@ class TrainedEnhancement :
                 DL_STRING(_, EnhancementName) \
                 DL_OPTIONAL_STRING(_, Selection) \
                 DL_SIMPLE(_, size_t, Ranks, 0) \
-                DL_FLAG(_, IsTier5) \
-                DL_VECTOR(_, size_t, BuyIndex)
+                DL_FLAG(_, IsTier5)
 
         DL_DECLARE_ACCESS(TrainedEnhancement_PROPERTIES)
         DL_DECLARE_VARIABLES(TrainedEnhancement_PROPERTIES)
 
-        size_t m_cost;      // cached only as may change on enhancements update
+        std::vector<size_t> m_cost;      // cached only as may change on enhancements update
+        size_t m_requiredAps;
 
-        friend class EnhancementSpendInTree;
-        friend class EpicDestinySpendInTree;
-        friend class ReaperSpendInTree;
-        friend class DestinySpendInTree;
+        friend class SpendInTree;
 };

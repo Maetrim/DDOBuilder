@@ -1137,52 +1137,38 @@ void CForumExportDlg::AddEnhancementTree(
     const std::list<TrainedEnhancement> & enhancements = treeSpend.Enhancements();
 
     // output each enhancement by buy index
-    size_t buyIndex = 0;
-    bool found = true;
-    while (found)
+    std::list<TrainedEnhancement>::const_iterator it = enhancements.begin();
+    while (it != enhancements.end())
     {
-        // find the object with this buy index
-        found = false;
-        std::list<TrainedEnhancement>::const_iterator it = enhancements.begin();
-        while (!found && it != enhancements.end())
+        const EnhancementTreeItem * item = FindEnhancement((*it).EnhancementName());
+        if (item != NULL)
         {
-            found = (*it).HasBuyIndex(buyIndex);
-            if (found)
+            // show the tier of the enhancement
+            switch (item->YPosition())
             {
-                break;
+            case 0: forumExport << "Core" << item->XPosition()+1 << " "; break;
+            case 1: forumExport << "Tier1 "; break;
+            case 2: forumExport << "Tier2 "; break;
+            case 3: forumExport << "Tier3 "; break;
+            case 4: forumExport << "Tier4 "; break;
+            case 5: forumExport << "Tier5 "; break;
+            case 6: forumExport << "Tier6 "; break;
             }
-            ++it;
+            // remove "Treename: " from the output for every individual enhancement
+            std::string name = item->DisplayName((*it).HasSelection() ? (*it).Selection() : "");
+            name = name.substr(name.find(':') + 2);
+            forumExport << name;
+            if (item->Ranks() > 1)
+            {
+                forumExport << " - " << item->Ranks() << " Ranks";
+            }
+            forumExport << "\r\n";
         }
-        if (found)
+        else
         {
-            // Found it, output it
-            forumExport.width(2);
-            forumExport << std::right << (buyIndex + 1) << " ";
-            const EnhancementTreeItem * item = FindEnhancement((*it).EnhancementName());
-            if (item != NULL)
-            {
-                // show the tier of the enhancement
-                switch (item->YPosition())
-                {
-                case 0: forumExport << "Core  "; break;
-                case 1: forumExport << "Tier1 "; break;
-                case 2: forumExport << "Tier2 "; break;
-                case 3: forumExport << "Tier3 "; break;
-                case 4: forumExport << "Tier4 "; break;
-                case 5: forumExport << "Tier5 "; break;
-                case 6: forumExport << "Tier6 "; break;
-                }
-                // remove "Treename: " from the output for every individual enhancement
-                std::string name = item->DisplayName((*it).HasSelection() ? (*it).Selection() : "");
-                name = name.substr(name.find(':') + 2);
-                forumExport << "(" << item->Cost((*it).HasSelection() ? (*it).Selection() : "") << ") " << name << "\r\n";
-            }
-            else
-            {
-                forumExport << "Error - Unknown enhancement\r\n";
-            }
+            forumExport << "Error - Unknown enhancement\r\n";
         }
-        ++buyIndex;
+        ++it;
     }
     forumExport << "------------------------------------------------------------------------------------------\r\n";
 }
@@ -1196,53 +1182,38 @@ void CForumExportDlg::AddEpicDestinyTree(
     forumExport << treeSpend.TreeName() << " - Points spent: " << treeSpend.Spent() << "\r\n";
     const std::list<TrainedEnhancement> & enhancements = treeSpend.Enhancements();
 
-    // output each enhancement by buy index
-    size_t buyIndex = 0;
-    bool found = true;
-    while (found)
+    std::list<TrainedEnhancement>::const_iterator it = enhancements.begin();
+    while (it != enhancements.end())
     {
-        // find the object with this buy index
-        found = false;
-        std::list<TrainedEnhancement>::const_iterator it = enhancements.begin();
-        while (!found && it != enhancements.end())
+        const EnhancementTreeItem * item = FindEnhancement((*it).EnhancementName());
+        if (item != NULL)
         {
-            found = (*it).HasBuyIndex(buyIndex);
-            if (found)
+            // show the tier of the enhancement
+            switch (item->YPosition())
             {
-                break;
+            case 0: forumExport << "Core" << item->XPosition()+1 << " "; break;
+            case 1: forumExport << "Tier1 "; break;
+            case 2: forumExport << "Tier2 "; break;
+            case 3: forumExport << "Tier3 "; break;
+            case 4: forumExport << "Tier4 "; break;
+            case 5: forumExport << "Tier5 "; break;
+            case 6: forumExport << "Tier6 "; break;
             }
-            ++it;
+            // remove "Treename: " from the output for every individual enhancement
+            std::string name = item->DisplayName((*it).HasSelection() ? (*it).Selection() : "");
+            name = name.substr(name.find(':') + 2);
+            forumExport << name;
+            if (item->Ranks() > 1)
+            {
+                forumExport << " - " << item->Ranks() << " Ranks";
+            }
+            forumExport << "\r\n";
         }
-        if (found)
+        else
         {
-            // Found it, output it
-            forumExport.width(2);
-            forumExport << std::right << (buyIndex + 1) << " ";
-            const EnhancementTreeItem * item = FindEnhancement((*it).EnhancementName());
-            if (item != NULL)
-            {
-                // show the tier of the enhancement
-                switch (item->YPosition())
-                {
-                case 0: forumExport << "Core  "; break;
-                case 1: forumExport << "Tier1 "; break;
-                case 2: forumExport << "Tier2 "; break;
-                case 3: forumExport << "Tier3 "; break;
-                case 4: forumExport << "Tier4 "; break;
-                case 5: forumExport << "Tier5 "; break;
-                case 6: forumExport << "Tier6 "; break;
-                }
-                // remove "Treename: " from the output for every individual enhancement
-                std::string name = item->DisplayName((*it).HasSelection() ? (*it).Selection() : "");
-                name = name.substr(name.find(':') + 2);
-                forumExport << "(" << item->Cost((*it).HasSelection() ? (*it).Selection() : "") << ") " << name << "\r\n";
-            }
-            else
-            {
-                forumExport << "Error - Unknown enhancement\r\n";
-            }
+            forumExport << "Error - Unknown enhancement\r\n";
         }
-        ++buyIndex;
+        ++it;
     }
     forumExport << "------------------------------------------------------------------------------------------\r\n";
 }
@@ -1256,52 +1227,37 @@ void CForumExportDlg::AddReaperTree(
     forumExport << treeSpend.TreeName() << " - Points spent: " << treeSpend.Spent() << "\r\n";
     const std::list<TrainedEnhancement> & enhancements = treeSpend.Enhancements();
 
-    // output each enhancement by buy index
-    size_t buyIndex = 0;
-    bool found = true;
-    while (found)
+    std::list<TrainedEnhancement>::const_iterator it = enhancements.begin();
+    while (it != enhancements.end())
     {
-        // find the object with this buy index
-        found = false;
-        std::list<TrainedEnhancement>::const_iterator it = enhancements.begin();
-        while (!found && it != enhancements.end())
+        const EnhancementTreeItem * item = FindEnhancement((*it).EnhancementName());
+        if (item != NULL)
         {
-            found = (*it).HasBuyIndex(buyIndex);
-            if (found)
+            // show the tier of the enhancement
+            switch (item->YPosition())
             {
-                break;
+            case 0: forumExport << "Core" << item->XPosition()+1 << " "; break;
+            case 1: forumExport << "Tier1 "; break;
+            case 2: forumExport << "Tier2 "; break;
+            case 3: forumExport << "Tier3 "; break;
+            case 4: forumExport << "Tier4 "; break;
+            case 5: forumExport << "Tier5 "; break;
+            case 6: forumExport << "Tier6 "; break;
             }
-            ++it;
+            // remove "Treename: " from the output for every individual enhancement
+            std::string name = item->DisplayName((*it).HasSelection() ? (*it).Selection() : "");
+            forumExport << name;
+            if (item->Ranks() > 1)
+            {
+                forumExport << " - " << item->Ranks() << " Ranks";
+            }
+            forumExport << "\r\n";
         }
-        if (found)
+        else
         {
-            // Found it, output it
-            forumExport.width(2);
-            forumExport << std::right << (buyIndex + 1) << " ";
-            const EnhancementTreeItem * item = FindEnhancement((*it).EnhancementName());
-            if (item != NULL)
-            {
-                // show the tier of the enhancement
-                switch (item->YPosition())
-                {
-                case 0: forumExport << "Core  "; break;
-                case 1: forumExport << "Tier1 "; break;
-                case 2: forumExport << "Tier2 "; break;
-                case 3: forumExport << "Tier3 "; break;
-                case 4: forumExport << "Tier4 "; break;
-                case 5: forumExport << "Tier5 "; break;
-                case 6: forumExport << "Tier6 "; break;
-                }
-                // remove "Treename: " from the output for every individual enhancement
-                std::string name = item->DisplayName((*it).HasSelection() ? (*it).Selection() : "");
-                forumExport << "(" << item->Cost((*it).HasSelection() ? (*it).Selection() : "") << ") " << name << "\r\n";
-            }
-            else
-            {
-                forumExport << "Error - Unknown enhancement\r\n";
-            }
+            forumExport << "Error - Unknown enhancement\r\n";
         }
-        ++buyIndex;
+        ++it;
     }
     forumExport << "------------------------------------------------------------------------------------------\r\n";
     forumExport << "\r\n";
@@ -1576,7 +1532,7 @@ void CForumExportDlg::ExportGear(
         std::stringstream & forumExport,
         bool bSimple)
 {
-    forumExport << "Equipped Gear Set : " << gear.Name() << "\r\n";
+    forumExport << "Equipped Gear Set: " << gear.Name() << "\r\n";
     forumExport << "------------------------------------------------------------------------------------------\r\n";
     for (size_t gi = Inventory_Unknown; gi < Inventory_Count; ++gi)
     {
@@ -1650,7 +1606,8 @@ void CForumExportDlg::ExportGear(
                 else
                 {
                     if (augments[i].Type() != "Mythic"
-                            && augments[i].Type() != "Reaper")
+                            && augments[i].Type() != "Reaper"
+                            && augments[i].Type() != "Reaper Ring")
                     {
                         forumExport << "              ";
                         forumExport << augments[i].Type();

@@ -37,6 +37,7 @@ class Requirements :
                 std::vector<CString> * requirements,
                 std::vector<bool> * met,
                 size_t level) const;
+        bool RequiresEnhancement(const std::string& name) const;
         bool VerifyObject(
                 std::stringstream * ss,
                 const std::list<EnhancementTree> & allTrees,

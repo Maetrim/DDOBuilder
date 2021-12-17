@@ -107,13 +107,14 @@ void BreakdownItemAC::CreateOtherEffects()
         {
             pBI->AttachObserver(this);      // need to know about changes
             double percentBonus = pBI->Total();
-            double value = GetEffectValue(Bonus_armor);
-            int amount = (int)((value * percentBonus) / 100.0);
+            double valueArmor = GetEffectValue(Bonus_armor);
+            double valueEnhancement = GetEffectValue(Bonus_enhancement);
+            int amount = (int)(((valueArmor + valueEnhancement) * percentBonus) / 100.0);
             std::stringstream ss;
-            ss << "Armor " << percentBonus << "% Bonus";
+            ss << "Armor " << percentBonus << "% Bonus of " << (valueArmor + valueEnhancement) << " (Armor + Enhancement)";
             // now add a percentage of that
             ActiveEffect feat(
-                    Bonus_enhancement,
+                    Bonus_percent,
                     ss.str(),
                     1,
                     amount,
@@ -125,13 +126,14 @@ void BreakdownItemAC::CreateOtherEffects()
         {
             pBI->AttachObserver(this);      // need to know about changes
             double percentBonus = pBI->Total();
-            double value = GetEffectValue(Bonus_shield);
-            int amount = (int)((value * percentBonus) / 100.0);
+            double valueShield = GetEffectValue(Bonus_shield);
+            double valueEnhancement = GetEffectValue(Bonus_enhancement);
+            int amount = (int)(((valueShield + valueEnhancement) * percentBonus) / 100.0);
             std::stringstream ss;
-            ss << "Shield " << percentBonus << "% Bonus";
+            ss << "Shield " << percentBonus << "% Bonus of "<< (valueShield + valueEnhancement) << " (Shield + Enhancement)";
             // now add a percentage of that
             ActiveEffect feat(
-                    Bonus_enhancement,
+                    Bonus_percent,
                     ss.str(),
                     1,
                     amount,

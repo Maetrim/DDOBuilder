@@ -326,7 +326,16 @@ void CInfoTip::SetEnhancementTreeItem(
             &m_requirements,
             &m_bRequirementMet,
             MAX_LEVEL);
-    m_cost.Format("  Cost %d", pItem->Cost(selection));
+    m_cost.Format("Cost %d", pItem->Cost(selection, 0));
+    if (pItem->CostVaries(selection))
+    {
+        for (size_t rank = 1; rank < pItem->Ranks(); ++rank)
+        {
+            CString rankCost;
+            rankCost.Format("/%d", pItem->Cost(selection, rank));
+            m_cost += rankCost;
+        }
+    }
     m_ranks.Format("  Ranks %d", pItem->Ranks());
 }
 
@@ -356,7 +365,16 @@ void CInfoTip::SetEnhancementSelectionItem(
             &m_requirements,
             &m_bRequirementMet,
             MAX_LEVEL);
-    m_cost.Format("  Cost %d", pSelection->Cost());
+    m_cost.Format("Cost %d", pSelection->Cost(0));
+    if (pSelection->CostVaries())
+    {
+        for (size_t rank = 1; rank < pItem->Ranks(); ++rank)
+        {
+            CString rankCost;
+            rankCost.Format("/%d", pSelection->Cost(rank));
+            m_cost += rankCost;
+        }
+    }
     m_ranks.Format("  Ranks %d", ranks);
 }
 
