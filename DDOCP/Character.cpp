@@ -6448,10 +6448,11 @@ void Character::U51Destiny_RevokeEnhancement(
         // return points available to spend also
         std::string revokedEnhancementSelection;
         size_t ranks = 0;
-        pItem->RevokeEnhancement(
+        int spent = pItem->RevokeEnhancement(
                 revokedEnhancement,
                 &revokedEnhancementSelection,
                 &ranks);
+        m_destinyTreeSpend -= spent;
         RevokeEnhancementEffects(treeName, revokedEnhancement, revokedEnhancementSelection, 1);
         // determine whether we still have a tier 5 enhancement trained if the tree just had one
         // revoked in it
