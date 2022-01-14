@@ -490,9 +490,9 @@ Cooldown: 15 seconds.</Description>
       <EnhancementTreeItem>
          <Name>Shiradi Champion: Healing Spring</Name>
          <InternalName>U51ShiradiChampionHealingSpring</InternalName>
-         <Description>Casts Vigor on multiple targets.
-A positve energy conjuration that heals 1d6, +1 per 3 caster levels
-(max +11 at level 33), every 2 seconds for 8 seconds.
+         <Description>Casts Greater Vigor, Mass on multiple targets.
+A positve energy conjuration that heals 1d8, +1 per 3 caster levels
+(max +13 at level 39), every 2 seconds for 8 seconds.
 When the initial effect expires, a smaller healing effect hat heals 1 HP every
 5 seconds for 30 seconds is applied. Only one Vigor spell can be active at a
 time, with the most beneficial taking priority. If multiple Vigor spells are
@@ -682,6 +682,12 @@ who would normally be immune to such effects.</Description>
             </Requirement>
          </Requirements>
          <Selector>
+            <Exclude>U51ShadowdancerSpellFocus</Exclude>
+            <Exclude>U51PrimalAvatarMagicOfTheOldWorld</Exclude>
+            <Exclude>U51MagusPartialEclipse</Exclude>
+            <Exclude>U51FatesingerTheMagicOfMusic</Exclude>
+            <Exclude>U51ExaltedAngelAngelicSpellFocus</Exclude>
+            <Exclude>U51DraconicIncarnationDraconicSpellFocus</Exclude>
             <EnhancementSelection>
                <Name>Conjuration</Name>
                <Description>+[1/2/3] Conjuration Spell DCs.</Description>
@@ -866,8 +872,7 @@ This Stun applies to the additional creature types in Fey Flash, if you have tha
       <EnhancementTreeItem>
          <Name>Shiradi Champion: Whirling Wrists</Name>
          <InternalName>U51ShiradiChampionWhirlingWrists</InternalName>
-         <Description>+[10/20/30]% Attack Speed with Thrown Weapons.
-You gain +[2/4/6]% stacking Incorporeality.</Description>
+         <Description>+[10/20/30]% Attack Speed with Thrown Weapons.</Description>
          <Icon>U51WhirlingWrists</Icon>
          <XPosition>4</XPosition>
          <YPosition>4</YPosition>
@@ -885,12 +890,6 @@ You gain +[2/4/6]% stacking Incorporeality.</Description>
             <AmountVector size="3">10 20 30</AmountVector>
             <ApplyAsItemEffect/>
             <WeaponClass>Thrown</WeaponClass>
-         </Effect>
-         <Effect>
-            <Type>Incorpreality</Type>
-            <Bonus>Stacking</Bonus>
-            <AmountVector size="3">2 4 6</AmountVector>
-            <ApplyAsItemEffect/>
          </Effect>
       </EnhancementTreeItem>
       <!--Tier 5-->

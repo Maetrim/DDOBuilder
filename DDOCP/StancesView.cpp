@@ -43,6 +43,7 @@ void CStancesView::DoDataExchange(CDataExchange* pDX)
     DDX_Control(pDX, IDC_STATIC_USER_ICONIC, m_userStancesIconic);
     DDX_Control(pDX, IDC_STATIC_USER_MAJORFORM, m_userStancesMajorForm);
     DDX_Control(pDX, IDC_STATIC_USER_MANTLE, m_userStancesMantle);
+    DDX_Control(pDX, IDC_STATIC_USER_IMBUE, m_userStancesImbue);
     DDX_Control(pDX, IDC_STATIC_AUTOCONTROLLED, m_autoStances);
 }
 
@@ -250,6 +251,21 @@ void CStancesView::OnSize(UINT nType, int cx, int cy)
             CRect notVisibleRect(-100, -100, -68, -68);
             m_userStancesMantle.MoveWindow(notVisibleRect, FALSE);
         }
+        if (m_userStancebuttonsImbue.size() > 0)
+        {
+            m_userStancesImbue.ShowWindow(SW_SHOW);
+            PositionWindow(&m_userStancesImbue, &itemRect, maxX);
+            for (size_t i = 0; i < m_userStancebuttonsImbue.size(); ++i)
+            {
+                PositionWindow(m_userStancebuttonsImbue[i], &itemRect, maxX);
+            }
+        }
+        else
+        {
+            m_userStancesImbue.ShowWindow(SW_HIDE);
+            CRect notVisibleRect(-100, -100, -68, -68);
+            m_userStancesImbue.MoveWindow(notVisibleRect, FALSE);
+        }
         // Now auto stances, which always start on a new line (unless we are at a new line)
         if (itemRect.left != c_controlSpacing)
         {
@@ -424,6 +440,7 @@ void CStancesView::AddStance(const Stance & stance)
     found |= AddStance(stance, m_userStancebuttonsIconic);
     found |= AddStance(stance, m_userStancebuttonsMajorForm);
     found |= AddStance(stance, m_userStancebuttonsMantle);
+    found |= AddStance(stance, m_userStancebuttonsImbue);
     found |= AddStance(stance, m_autoStancebuttons);
     if (!found)
     {
@@ -494,6 +511,10 @@ void CStancesView::AddStance(const Stance & stance)
                 {
                     m_userStancebuttonsMantle.push_back(pStance);
                 }
+                else if (stance.Group() == "Imbue")
+                {
+                    m_userStancebuttonsImbue.push_back(pStance);
+                }
                 else
                 {
                     m_userStancebuttons.push_back(pStance);
@@ -557,6 +578,7 @@ void CStancesView::RevokeStance(const Stance & stance)
     RevokeStance(stance, m_userStancebuttonsIconic);
     RevokeStance(stance, m_userStancebuttonsMajorForm);
     RevokeStance(stance, m_userStancebuttonsMantle);
+    RevokeStance(stance, m_userStancebuttonsImbue);
     RevokeStance(stance, m_autoStancebuttons);
 }
 
@@ -613,6 +635,7 @@ void CStancesView::UpdateStanceActivated(Character * charData, const std::string
     StanceActivated(m_userStancebuttonsIconic, stanceName);
     StanceActivated(m_userStancebuttonsMajorForm, stanceName);
     StanceActivated(m_userStancebuttonsMantle, stanceName);
+    StanceActivated(m_userStancebuttonsImbue, stanceName);
     // update the state of the required stance buttons
     for (size_t i = 0; i < m_autoStancebuttons.size(); ++i)
     {
@@ -656,6 +679,7 @@ void CStancesView::UpdateStanceDeactivated(Character * charData, const std::stri
     StanceDeactivated(m_userStancebuttonsIconic, stanceName);
     StanceDeactivated(m_userStancebuttonsMajorForm, stanceName);
     StanceDeactivated(m_userStancebuttonsMantle, stanceName);
+    StanceDeactivated(m_userStancebuttonsImbue, stanceName);
     // update the state of the required stance buttons
     for (size_t i = 0; i < m_autoStancebuttons.size(); ++i)
     {
@@ -893,6 +917,7 @@ void CStancesView::DestroyAllStances()
     DestroyStances(m_userStancebuttonsIconic);
     DestroyStances(m_userStancebuttonsMajorForm);
     DestroyStances(m_userStancebuttonsMantle);
+    DestroyStances(m_userStancebuttonsImbue);
     DestroyStances(m_autoStancebuttons);
     m_nextStanceId = IDC_SPECIALFEAT_0;
 
@@ -931,6 +956,7 @@ const std::vector<CStanceButton *> & CStancesView::ActiveUserStances() const
     AddActiveStances(m_userStancebuttonsIconic, &activeStances);
     AddActiveStances(m_userStancebuttonsMajorForm, &activeStances);
     AddActiveStances(m_userStancebuttonsMantle, &activeStances);
+    AddActiveStances(m_userStancebuttonsImbue, &activeStances);
     return activeStances;
 }
 
@@ -967,6 +993,7 @@ const CStanceButton * CStancesView::GetStance(const std::string & stanceName) co
     GetStance(stanceName, m_userStancebuttonsIconic, &pButton);
     GetStance(stanceName, m_userStancebuttonsMajorForm, &pButton);
     GetStance(stanceName, m_userStancebuttonsMantle, &pButton);
+    GetStance(stanceName, m_userStancebuttonsImbue, &pButton);
     GetStance(stanceName, m_autoStancebuttons, &pButton);
     return pButton;
 }

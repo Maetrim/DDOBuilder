@@ -137,6 +137,39 @@ ActiveEffect::ActiveEffect(
 ActiveEffect::ActiveEffect(
         BonusType bonusType,
         const std::string & name,
+        ClassType classType,
+        const Dice & dice,
+        const std::string & tree) :
+    m_bonusType(bonusType),
+    m_type(ET_dicePerClassLevel),
+    m_effectName(name),
+    m_numStacks(-1),
+    m_amount(0),            // not used
+    m_dice(dice),
+    m_bHasEnergy(false),
+    m_energy(Energy_Unknown),
+    m_tree(tree),
+    m_bt(Breakdown_Unknown),
+    m_amountPerLevel(0),
+    m_levelStacks(0),
+    m_class(classType),
+    m_bIsPercentage(false),
+    m_percentageAmount(0),
+    m_bWholeNumbersOnly(false),
+    m_bHasWeaponType(false),
+    m_weaponType(Weapon_Unknown),
+    m_clearValue(false),
+    m_bIsItemEffect(false),
+    m_divider(1.0),
+    m_dividerType(DT_none),
+    m_bHasStacksControl(false),
+    m_pCharacter(NULL)
+{
+}
+
+ActiveEffect::ActiveEffect(
+        BonusType bonusType,
+        const std::string & name,
         size_t stacks,
         const std::vector<double> & amounts) :
     m_bonusType(bonusType),
@@ -313,7 +346,16 @@ CString ActiveEffect::Name() const
 CString ActiveEffect::Stacks() const
 {
     CString text;
-    text.Format("%d", NumStacks());
+    if (m_type == ET_amountPerLevel
+            || m_type == ET_dicePerClassLevel
+            || m_type == ET_amountVectorPerClassLevel)
+    {
+        text.Format("%d", m_levelStacks);
+    }
+    else
+    {
+        text.Format("%d", NumStacks());
+    }
     return text;
 }
 
@@ -322,6 +364,48 @@ CString ActiveEffect::AmountAsText(double multiplier) const
     CString text;
     switch (m_type)
     {
+    case ET_dicePerClassLevel:
+        text.Format("%dD%d",
+                (int)m_dice.Number(m_levelStacks-1),
+                (int)m_dice.Sides(m_levelStacks-1));
+        if (m_dice.HasBonus())
+        {
+            CString bonus;
+            bonus.Format("+%d", (int)m_dice.Bonus(m_levelStacks-1));
+            text += bonus;
+        }
+        if (m_dice.HasScalesWithMeleePower()
+                || m_dice.HasScalesWithRangedPower()
+                || m_dice.HasScalesWithSpellPower())
+        {
+            CString withScaling;
+            if (m_dice.HasScalesWithSpellPower())
+            {
+                withScaling.Format("(%s) * %s Spell Power",
+                        text,
+                        EnumEntryText(m_dice.SpellPower(), spellPowerTypeMap));
+            }
+            else
+            {
+                if (m_dice.HasScalesWithMeleePower() && m_dice.HasScalesWithRangedPower())
+                {
+                    withScaling.Format("(%s) * MAX(Melee, Ranged) Power",
+                            text);
+                }
+                else if (m_dice.HasScalesWithMeleePower())
+                {
+                    withScaling.Format("(%s) * Melee Power",
+                            text);
+                }
+                else
+                {
+                    withScaling.Format("(%s) * Ranged Power",
+                            text);
+                }
+            }
+            text = withScaling;
+        }
+        break;
     case ET_dice:
         text.Format("%dD%d",
                 (int)m_dice.Number(NumStacks()-1),
@@ -485,6 +569,48 @@ CString ActiveEffect::AmountAsPercent() const
     CString text;
     switch (m_type)
     {
+    case ET_dicePerClassLevel:
+        text.Format("%dD%d",
+                (int)m_dice.Number(m_levelStacks-1),
+                (int)m_dice.Sides(m_levelStacks-1));
+        if (m_dice.HasBonus())
+        {
+            CString bonus;
+            bonus.Format("+%d", (int)m_dice.Bonus(m_levelStacks-1));
+            text += bonus;
+        }
+        if (m_dice.HasScalesWithMeleePower()
+                || m_dice.HasScalesWithRangedPower()
+                || m_dice.HasScalesWithSpellPower())
+        {
+            CString withScaling;
+            if (m_dice.HasScalesWithSpellPower())
+            {
+                withScaling.Format("(%s) * %s Spell Power",
+                        text,
+                        EnumEntryText(m_dice.SpellPower(), spellPowerTypeMap));
+            }
+            else
+            {
+                if (m_dice.HasScalesWithMeleePower() && m_dice.HasScalesWithRangedPower())
+                {
+                    withScaling.Format("(%s) * MAX(Melee, Ranged) Power",
+                            text);
+                }
+                else if (m_dice.HasScalesWithMeleePower())
+                {
+                    withScaling.Format("(%s) * Melee Power",
+                            text);
+                }
+                else
+                {
+                    withScaling.Format("(%s) * Ranged Power",
+                            text);
+                }
+            }
+            text = withScaling;
+        }
+        break;
     case ET_dice:
         text.Format("%dD%d",
                 (int)m_dice.Number(NumStacks()-1),
@@ -646,7 +772,8 @@ bool ActiveEffect::HasBreakdownDependency(BreakdownType bt) const
 bool ActiveEffect::BasedOnClassLevel(ClassType type) const
 {
     if (m_type == ET_amountPerLevel
-            || m_type == ET_amountVectorPerClassLevel)
+            || m_type == ET_amountVectorPerClassLevel
+            || m_type == ET_dicePerClassLevel)
     {
         return (type == m_class);
     }
@@ -718,6 +845,9 @@ double ActiveEffect::TotalAmount(bool allowTruncate) const
     double value = 0.0;
     switch (m_type)
     {
+    case ET_dicePerClassLevel:
+        value = m_dice.Number(m_levelStacks-1);
+        break;
     case ET_dice:
         value = 1;  // just need a non-zero value
         break;
@@ -950,6 +1080,10 @@ bool ActiveEffect::operator==(const ActiveEffect & other) const
         case ET_dice:
             equal = (m_dice == other.m_dice);
             break;
+        case ET_dicePerClassLevel:
+            equal = (m_dice == other.m_dice)
+                    && (m_class == other.m_class);
+            break;
         case ET_amount:
         case ET_amountPerAp:
             equal = (m_amount == other.m_amount);
@@ -992,6 +1126,9 @@ std::string ActiveEffect::Description() const
         break;
     case ET_dice:
         ss << m_dice.Description(NumStacks());
+        break;
+    case ET_dicePerClassLevel:
+        ss << m_dice.Description(m_levelStacks);
         break;
     case ET_immunity:
         if (NumStacks() <= m_immunities.size())

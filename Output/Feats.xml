@@ -4124,7 +4124,9 @@ your Ability Score bonus to damage improves by 25%</Description>
          <Type>Strikethrough</Type>
          <Bonus>Feat</Bonus>
          <Amount>30</Amount>
-         <Stance>Two Handed Fighting</Stance>
+         <AnyOfStance>Two Handed Fighting</AnyOfStance>
+         <AnyOfStance>Bastard Sword</AnyOfStance>
+         <AnyOfStance>Dwarven Axe</AnyOfStance>
       </Effect>
       <Effect>
          <Type>DamageAbilityMultiplier</Type>
@@ -6218,7 +6220,9 @@ your Ability Score bonus to damage improves by 25%</Description>
          <Type>Strikethrough</Type>
          <Bonus>Feat</Bonus>
          <Amount>30</Amount>
-         <Stance>Two Handed Fighting</Stance>
+         <AnyOfStance>Two Handed Fighting</AnyOfStance>
+         <AnyOfStance>Bastard Sword</AnyOfStance>
+         <AnyOfStance>Dwarven Axe</AnyOfStance>
       </Effect>
       <Effect>
          <Type>MeleePower</Type>
@@ -7921,6 +7925,10 @@ Passive: You gain Doubleshot equal to 1.5 your BAB with longbows and shortbows.<
          <Level>1</Level>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
+         <Class>Druid</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
          <Class>Fighter</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
@@ -9590,10 +9598,12 @@ Warforged retain most living construct traits.</Description>
    </Feat>
    <Feat>
       <Name>Point Blank Shot</Name>
-      <Description>Grants a +1 bonus to hit within 15 meters and your ranged weapons deal +1[W].
-This affects the base dice of the associated weapon any time they are rolled,
-including critical hits.
-When using a Longbow or Shortbow, you gain +1 Critical Multiplier on a roll of 19-20</Description>
+      <Description>You gain a +1 bonus to hit with ranged attacks within 15 meters, and your ranged
+weapons deal +1[W]. (A weapon that deals 1d6 damage per hit will deal 2d6 damage
+per hit instead, while a weapon that deals 2d8 damage per hit will deal 4d8 damage
+instead. This affects the base dice associated with a weapon any time they are
+rolled, including critical hits.) While wielding Longbows and Shortbows,
+you gain +1 Critical Threat Range.</Description>
       <FeatGroup>
          <IsArtificerBonus/>
          <IsStandardFeat/>
@@ -9615,7 +9625,7 @@ When using a Longbow or Shortbow, you gain +1 Critical Multiplier on a roll of 1
          <DamageType>Ranged</DamageType>
       </Effect>
         <Effect>
-            <Type>CriticalMultiplier19To20</Type>
+            <Type>CriticalRange</Type>
             <Bonus>Competence</Bonus>
             <Amount>1</Amount>
             <Weapon>Shortbow</Weapon>
@@ -13419,7 +13429,9 @@ Druid Animal Formas), your Ability Score bonus to damage improves by 25%.</Descr
          <Type>Strikethrough</Type>
          <Bonus>Feat</Bonus>
          <Amount>60</Amount>
-         <Stance>Two Handed Fighting</Stance>
+         <AnyOfStance>Two Handed Fighting</AnyOfStance>
+         <AnyOfStance>Bastard Sword</AnyOfStance>
+         <AnyOfStance>Dwarven Axe</AnyOfStance>
       </Effect>
       <Effect>
          <Type>DamageAbilityMultiplier</Type>
@@ -15990,7 +16002,7 @@ This can occur once every two minutes.</Description>
          <Amount>1</Amount>
       </Effect>
           <Effect>
-              <Type>Incorpreality</Type>
+              <Type>Incorporeality</Type>
               <Bonus>Enhancement</Bonus>
               <Amount>25</Amount>
               <Stance>Ghostly Essence</Stance>
@@ -17259,13 +17271,13 @@ points earns you a Destiny Action Point.</Description>
    <!--Epic Feats-->
    <Feat>
       <Name>Arcane Insight</Name>
-      <Description>Activate to gain + 6 to all spell DCs and +6 to Spell Penetration for 300 seconds.
+      <Description>Activate to gain +6 to all spell DCs and +6 to Spell Penetration for 30 seconds.
 Duration 30 seconds, 3 minute cooldown
 Passive: +110 Maximum Spell Point</Description>
       <Stance>
          <Name>Arcane Insight</Name>
          <Icon>ArcaneInsight</Icon>
-         <Description>Activate to gain + 6 to all spell DCs and +6 to Spell Penetration for 300 seconds.
+         <Description>Activate to gain +6 to all spell DCs and +6 to Spell Penetration for 30 seconds.
 Duration 30 seconds, 3 minute cooldown</Description>
       </Stance>
       <FeatGroup>
@@ -17443,9 +17455,9 @@ Target: Foe, Directional, Breakable  Monsters who succeed a Fortitude save of
    </Feat>
    <Feat>
       <Name>Combat Archery</Name>
-      <Description>Your Ranged damage is increased by +1[W].
-+1 Critical Threat Range with Longbows and Shortbows.
-You also gain 2% dodge bonus when using a ranged weapon.</Description>
+      <Description>Your ranged damage is increased by +1[W].
+You gain a 2% Dodge bonus while using a ranged weapon.
+In addition, while using a Longbow or Shortbow, you gain +1 Critical Multiplier.</Description>
       <FeatGroup>
          <IsEpicFeat/>
       </FeatGroup>
@@ -17467,7 +17479,13 @@ You also gain 2% dodge bonus when using a ranged weapon.</Description>
          <Bonus>Feat</Bonus>
          <Type>DodgeBonus</Type>
          <Amount>2</Amount>
-         <Stance>Ranged Combat</Stance>
+         <AnyOfStance>Longbow</AnyOfStance>
+         <AnyOfStance>Shortbow</AnyOfStance>
+         <AnyOfStance>Great Crossbow</AnyOfStance>
+         <AnyOfStance>Heavy Crossbow</AnyOfStance>
+         <AnyOfStance>Light Crossbow</AnyOfStance>
+         <AnyOfStance>Repeating Heavy Crossbow</AnyOfStance>
+         <AnyOfStance>Repeating Light Crossbow</AnyOfStance>
       </Effect>
       <Effect>
          <Bonus>Feat</Bonus>
@@ -17476,7 +17494,7 @@ You also gain 2% dodge bonus when using a ranged weapon.</Description>
          <WeaponClass>Ranged</WeaponClass>
       </Effect>
          <Effect>
-            <Type>CriticalRange</Type>
+            <Type>CriticalMultiplier</Type>
             <Bonus>Competence</Bonus>
             <Amount>1</Amount>
             <ApplyAsItemEffect/>
@@ -22344,7 +22362,7 @@ feebleminded, insanity, nauseated, poisoned and stunned.</Description>
    <Feat>
       <Name>Vulkoor's Avatar</Name>
       <Description>You are a devoted follower of Vulkoor and your faith has been rewarded.
-Activate this ability to to ask Vulkoor to send one of his servants to
+Activate this ability to ask Vulkoor to send one of his servants to
 destroy your enemies. Duration: 10 minutes</Description>
       <FeatGroup>
          <IsDeity/>
@@ -27974,7 +27992,9 @@ ability score modifer to their base damage.</Description>
          <Type>Strikethrough</Type>
          <Bonus>Feat</Bonus>
          <Amount>30</Amount>
-         <Stance>Two Handed Fighting</Stance>
+         <AnyOfStance>Two Handed Fighting</AnyOfStance>
+         <AnyOfStance>Bastard Sword</AnyOfStance>
+         <AnyOfStance>Dwarven Axe</AnyOfStance>
       </Effect>
       <Effect>
          <Type>MeleePower</Type>

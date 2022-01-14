@@ -135,6 +135,7 @@ class CStancesView :
         CStatic m_userStancesIconic;
         CStatic m_userStancesMajorForm;
         CStatic m_userStancesMantle;
+        CStatic m_userStancesImbue;
         CStatic m_autoStances;
         std::vector<CStanceButton *> m_userStancebuttons;
         std::vector<CStanceButton *> m_userStancebuttonsArcane;
@@ -144,6 +145,7 @@ class CStancesView :
         std::vector<CStanceButton *> m_userStancebuttonsIconic;
         std::vector<CStanceButton *> m_userStancebuttonsMajorForm;
         std::vector<CStanceButton *> m_userStancebuttonsMantle;
+        std::vector<CStanceButton *> m_userStancebuttonsImbue;
         std::vector<CStanceButton *> m_autoStancebuttons;
         CInfoTip m_tooltip;
         bool m_showingTip;

@@ -162,7 +162,23 @@ std::list<Stance> Selector::Stances(const std::string & selection) const
     return stances;
 }
 
-size_t Selector::Cost(const std::string & selection) const
+bool Selector::CostVaries(const std::string& selection) const
+{
+    bool varies = false;
+    std::list<EnhancementSelection>::const_iterator it = m_Selections.begin();
+    while (it != m_Selections.end())
+    {
+        if ((*it).Name() == selection)
+        {
+            varies = (*it).CostVaries();
+            break;          // done
+        }
+        ++it;
+    }
+    return varies;
+}
+
+size_t Selector::Cost(const std::string& selection, size_t rank) const
 {
     size_t cost = 0;
     std::list<EnhancementSelection>::const_iterator it = m_Selections.begin();
@@ -170,12 +186,27 @@ size_t Selector::Cost(const std::string & selection) const
     {
         if ((*it).Name() == selection)
         {
-            cost = (*it).Cost();
+            cost = (*it).Cost(rank);
             break;          // done
         }
         ++it;
     }
     return cost;
+}
+
+const std::vector<size_t>& Selector::ItemCosts(const std::string& selection) const
+{
+    static std::vector<size_t> defaultCost(1, 1);
+    std::list<EnhancementSelection>::const_iterator it = m_Selections.begin();
+    while (it != m_Selections.end())
+    {
+        if ((*it).Name() == selection)
+        {
+            return (*it).CostPerRank();
+        }
+        ++it;
+    }
+    return defaultCost;
 }
 
 bool Selector::IsSelectionClickie(const std::string & selection) const

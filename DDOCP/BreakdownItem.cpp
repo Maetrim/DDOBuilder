@@ -945,14 +945,31 @@ bool BreakdownItem::GetActiveEffect(
     }
     else if (effect.HasDiceRoll())
     {
-        // a Dice roll bonus to the breakdown. May have additional sub item effects
-        // such as it is "Fire" damage
-        *activeEffect = ActiveEffect(
-                effect.Bonus(),
-                name,
-                activeEffect->NumStacks(),     // retain stack count passed in
-                effect.DiceRoll(),
-                "");
+        if (effect.HasClass())
+        {
+            // a Dice roll bonus to the breakdown. May have additional sub item effects
+            // such as it is "Fire" damage
+            *activeEffect = ActiveEffect(
+                    effect.Bonus(),
+                    name,
+                    effect.Class(),
+                    effect.DiceRoll(),
+                    "");
+            size_t levels = m_pCharacter->ClassLevels(MAX_LEVEL)[effect.Class()];
+            double amount = (int)(levels / divider);       // integer arithmetic
+            activeEffect->SetClassLevel((size_t)amount);
+        }
+        else
+        {
+            // a Dice roll bonus to the breakdown. May have additional sub item effects
+            // such as it is "Fire" damage
+            *activeEffect = ActiveEffect(
+                    effect.Bonus(),
+                    name,
+                    activeEffect->NumStacks(),     // retain stack count passed in
+                    effect.DiceRoll(),
+                    "");
+        }
     }
     else if (effect.HasClass())
     {

@@ -30,6 +30,7 @@ enum ActiveEffectType
     ET_amountVectorPerClassLevel,
     ET_immunity,
     ET_DR,
+    ET_dicePerClassLevel,
 };
 
 class ActiveEffect
@@ -51,6 +52,12 @@ class ActiveEffect
                 BonusType bonusType,
                 const std::string & name,
                 size_t stacks,
+                const Dice & dice,
+                const std::string & tree);
+        ActiveEffect(
+                BonusType bonusType,
+                const std::string & name,
+                ClassType classType,
                 const Dice & dice,
                 const std::string & tree);
         ActiveEffect(

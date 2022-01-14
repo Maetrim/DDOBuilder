@@ -25,6 +25,9 @@ class EnhancementSelection :
                 std::vector<bool> * met,
                 size_t level) const;
 
+        bool CostVaries() const;
+        size_t Cost(size_t rank) const;
+
         bool VerifyObject(
                 std::stringstream * ss,
                 const std::list<EnhancementTree> & trees,
@@ -40,7 +43,7 @@ class EnhancementSelection :
                 DL_STRING(_, Name) \
                 DL_STRING(_, Description) \
                 DL_STRING(_, Icon) \
-                DL_SIMPLE(_, size_t, Cost, 0) \
+                DL_VECTOR(_, size_t, CostPerRank) \
                 DL_FLAG(_, Clickie) \
                 DL_OPTIONAL_OBJECT(_, Requirements, RequirementsToTrain) \
                 DL_OBJECT_LIST(_, Stance, Stances) \

@@ -833,13 +833,13 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
 
     {
         HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
-                "Incorpreality",
+                "Incorporeality",
                 hDefensiveParent,
                 TVI_LAST);
         BreakdownItem * pIncorp = new BreakdownItemSimple(
                 Breakdown_Incorpreality,
                 Effect_Incorpreality,
-                "Incorpreality",
+                "Incorporeality",
                 &m_itemBreakdownTree,
                 hItem);
         m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pIncorp);

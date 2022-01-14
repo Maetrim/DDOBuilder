@@ -69,6 +69,7 @@ int Dice::Bonus(size_t index) const
     if (m_hasBonus)
     {
         ASSERT(index < m_Bonus.size());
+        index = min(index, m_Bonus.size() -1 );
         return m_Bonus[index];
     }
     else

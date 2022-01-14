@@ -244,7 +244,7 @@ const XmlLib::enumMapEntry<EffectType> effectTypeMap[] =
     {Effect_HirelingSpellPower, L"HirelingSpellPower"},
     {Effect_Hitpoints, L"Hitpoints"},
     {Effect_Immunity, L"Immunity"},
-    {Effect_Incorpreality, L"Incorpreality"},
+    {Effect_Incorpreality, L"Incorporeality"},
     {Effect_Keen, L"Keen"},
     {Effect_KiCritical, L"KiCritical"},
     {Effect_KiHit, L"KiHit"},

@@ -103,3 +103,27 @@ void EnhancementSelection::RenderIcon(CDC * pDC, const CRect & itemRect) const
             itemRect.Height());
 }
 
+bool EnhancementSelection::CostVaries() const
+{
+    size_t cost = m_CostPerRank[0];
+    bool varies = false;
+    for (size_t i = 1; i < m_CostPerRank.size(); ++i)
+    {
+        varies |= (m_CostPerRank[i] != cost);
+    }
+    return varies;
+}
+
+size_t EnhancementSelection::Cost(size_t rank) const
+{
+    size_t cost = 0;
+    if (rank < m_CostPerRank.size())
+    {
+        cost = m_CostPerRank[rank];
+    }
+    else
+    {
+        cost = m_CostPerRank[0];
+    }
+    return cost;
+}

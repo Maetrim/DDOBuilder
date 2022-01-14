@@ -823,7 +823,7 @@ void BreakdownItemWeapon::AddForumExportData(std::stringstream & forumExport)
     forumExport << "\r\n";
     if (m_ghostTouch.Total() > 0)
     {
-        forumExport << "You bypass Incorpreality miss chance with this weapon\r\n";
+        forumExport << "You bypass Incorporeality miss chance with this weapon\r\n";
     }
     if (m_trueSeeing.Total() > 0)
     {

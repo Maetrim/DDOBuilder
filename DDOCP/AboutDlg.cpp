@@ -65,6 +65,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
             "Caarb, "
             "Cardo, "
             "Carpone, "
+            "Chaos-Magus, "
             "Cinnamoronroll, "
             "Civet, "
             "Cleru, "
@@ -88,6 +89,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
             "FullPlayer20, "
             "Gemini-Dragon357, "
             "Gerkenstein, "
+            "ghost, "
             "Gizah10, "
             "Gizmo0815, "
             "Grunthorno, "
@@ -128,6 +130,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
             "mikameow, "
             "MIvanIsten, "
             "Modern_Jesus, "
+            "MrDorak, "
             "Mystickal413, "
             "nadia72295, "
             "NaughtyNancy, "
@@ -171,6 +174,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
             "wolvemd, "
             "Wrunt, "
             "Xycona, "
+            "zilgabex, "
             "Zretch");
     m_bugReporters.SetSel(-1);    // nothing starts selected
 
