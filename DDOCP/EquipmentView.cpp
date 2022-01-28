@@ -61,6 +61,7 @@ void CEquipmentView::DoDataExchange(CDataExchange* pDX)
     DDX_Control(pDX, IDC_BUTTON_COPY, m_buttonCopy);
     DDX_Control(pDX, IDC_BUTTON_PASTE, m_buttonPaste);
     DDX_Control(pDX, IDC_BUTTON_DELETE, m_buttonDelete);
+    DDX_Control(pDX, IDC_BUTTON_IMPORT, m_buttonImport);
     DDX_Control(pDX, IDC_STATIC_NUM_FILIGREES, m_staticNumFiligrees);
     DDX_Control(pDX, IDC_COMBO_NUM_FILLIGREES, m_comboNumFiligrees);
     DDX_Control(pDX, IDC_CHECK_FILIGREE_MENU, m_filigreeMenu);
@@ -84,6 +85,7 @@ BEGIN_MESSAGE_MAP(CEquipmentView, CFormView)
     ON_BN_CLICKED(IDC_BUTTON_COPY, OnGearCopy)
     ON_BN_CLICKED(IDC_BUTTON_PASTE, OnGearPaste)
     ON_BN_CLICKED(IDC_BUTTON_DELETE, OnGearDelete)
+    ON_BN_CLICKED(IDC_BUTTON_IMPORT, OnGearImport)
     ON_CBN_SELENDOK(IDC_COMBO_GEAR_NAME, OnGearSelectionSelEndOk)
     ON_CBN_SELENDOK(IDC_COMBO_NUM_FILLIGREES, OnGearNumFiligreesSelEndOk)
     ON_BN_CLICKED(IDC_CHECK_FILIGREE_MENU, OnToggleFiligreeMenu)
@@ -131,6 +133,7 @@ void CEquipmentView::OnInitialUpdate()
     m_buttonCopy.SetImage(IDB_BITMAP_COPY);
     m_buttonPaste.SetImage(IDB_BITMAP_PASTE);
     m_buttonDelete.SetImage(IDB_BITMAP_DELETE);
+    m_buttonImport.SetImage(IDB_BITMAP_IMPORT);
 
     bool bChecked = (AfxGetApp()->GetProfileInt("Inventory", "FiligreeMenu", 0) != 0);
     m_filigreeMenu.SetCheck(bChecked ? BST_CHECKED : BST_UNCHECKED);
@@ -145,15 +148,15 @@ void CEquipmentView::OnSize(UINT nType, int cx, int cy)
     {
         // position all the windows
         // +---------------------------------------------------------+
-        // | [Drop List Combo] [N][C][P][D] [Num Filigrees][List][Menu]|
-        // | +----------------------------+ +-----------------------+|
-        // | |                            | |                       ||
-        // | | Inventory Bitmap           | | Filigrees Bitmap      ||
-        // | |                            | |                       ||
-        // | +---------------------   ----+ +-----------------------+|
-        // | +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ |
-        // | +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ | (set icons)
-        // +---------------------------------------------------------+
+        // | [Drop List Combo] [N][C][P][D][I] [Num Filigrees][List][Menu]|
+        // | +-------------------------------+ +-----------------------+|
+        // | |                               | |                       ||
+        // | | Inventory Bitmap              | | Filigrees Bitmap      ||
+        // | |                               | |                       ||
+        // | +-------------------------------+ +-----------------------+|
+        // | +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+|
+        // | +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+| (set icons)
+        // +------------------------------------------------------------+
         CRect rctCombo;
         m_comboGearSelections.GetWindowRect(&rctCombo);
         rctCombo -= rctCombo.TopLeft();
@@ -162,6 +165,7 @@ void CEquipmentView::OnSize(UINT nType, int cx, int cy)
         CRect rctCopy;
         CRect rctPaste;
         CRect rctDelete;
+        CRect rctImport;
         CRect rctNumFiligrees;
         CRect rctNumFiligreesCombo;
         CRect rctFiligreeMenu;
@@ -169,9 +173,12 @@ void CEquipmentView::OnSize(UINT nType, int cx, int cy)
         m_buttonCopy.GetWindowRect(&rctCopy);
         m_buttonPaste.GetWindowRect(&rctPaste);
         m_buttonDelete.GetWindowRect(&rctDelete);
+        m_buttonImport.GetWindowRect(&rctImport);
 
+        rctImport -= rctImport.TopLeft();
+        rctImport += CSize(223 + c_controlSpacing - rctImport.Width(), c_controlSpacing);
         rctDelete -= rctDelete.TopLeft();
-        rctDelete += CSize(223 + c_controlSpacing - rctDelete.Width(), c_controlSpacing);
+        rctDelete += CSize(rctImport.left - c_controlSpacing - rctPaste.Width(), c_controlSpacing);
         rctPaste -= rctPaste.TopLeft();
         rctPaste += CSize(rctDelete.left - c_controlSpacing - rctPaste.Width(), c_controlSpacing);
         rctCopy -= rctCopy.TopLeft();
@@ -181,7 +188,7 @@ void CEquipmentView::OnSize(UINT nType, int cx, int cy)
         rctCombo.right = rctNew.left - c_controlSpacing;
         m_staticNumFiligrees.GetWindowRect(rctNumFiligrees);
         rctNumFiligrees -= rctNumFiligrees.TopLeft();
-        rctNumFiligrees += CPoint(rctDelete.right + c_controlSpacing, c_controlSpacing);
+        rctNumFiligrees += CPoint(rctImport.right + c_controlSpacing, c_controlSpacing);
         m_comboNumFiligrees.GetWindowRect(rctNumFiligreesCombo);
         rctNumFiligreesCombo -= rctNumFiligreesCombo.TopLeft();
         rctNumFiligreesCombo += CPoint(rctNumFiligrees.right + c_controlSpacing, c_controlSpacing);
@@ -192,14 +199,15 @@ void CEquipmentView::OnSize(UINT nType, int cx, int cy)
 
         CRect rctInventory(
                 c_controlSpacing,
-                rctDelete.bottom + c_controlSpacing,
+                rctImport.bottom + c_controlSpacing,
                 c_controlSpacing + 418,
-                rctDelete.bottom + c_controlSpacing + 290);
+                rctImport.bottom + c_controlSpacing + 290);
         m_comboGearSelections.MoveWindow(rctCombo);
         m_buttonNew.MoveWindow(rctNew);
         m_buttonCopy.MoveWindow(rctCopy);
         m_buttonPaste.MoveWindow(rctPaste);
         m_buttonDelete.MoveWindow(rctDelete);
+        m_buttonImport.MoveWindow(rctImport);
         m_inventoryView->MoveWindow(rctInventory);
         m_staticNumFiligrees.MoveWindow(rctNumFiligrees);
         m_comboNumFiligrees.MoveWindow(rctNumFiligreesCombo);
@@ -367,6 +375,7 @@ void CEquipmentView::EnableControls()
         m_buttonCopy.EnableWindow(FALSE);
         m_buttonPaste.EnableWindow(FALSE);
         m_buttonDelete.EnableWindow(FALSE);
+        m_buttonImport.EnableWindow(FALSE);
         m_staticNumFiligrees.EnableWindow(FALSE);
         m_comboNumFiligrees.EnableWindow(FALSE);
         m_filigreeMenu.EnableWindow(FALSE);
@@ -380,6 +389,7 @@ void CEquipmentView::EnableControls()
         m_buttonCopy.EnableWindow(setups.size() > 0);
         m_buttonPaste.EnableWindow(IsClipboardFormatAvailable(CF_PRIVATEFIRST));
         m_buttonDelete.EnableWindow(setups.size() > 0);
+        m_buttonImport.EnableWindow(setups.size() > 0);
         m_staticNumFiligrees.EnableWindow(TRUE);
         m_comboNumFiligrees.EnableWindow(TRUE);
         m_filigreeMenu.EnableWindow(TRUE);
@@ -680,6 +690,62 @@ void CEquipmentView::OnGearDelete()
             EnableControls();
             // now show correct gear in inventory window
             PopulateGear();
+        }
+    }
+}
+
+void CEquipmentView::OnGearImport()
+{
+    // display the file select dialog
+    CFileDialog dlg(
+            TRUE,
+            NULL,
+            NULL,
+            OFN_EXPLORER|OFN_FILEMUSTEXIST|OFN_HIDEREADONLY,
+            "Gear Planner Files (*.gearset)|*.gearset|All files (*.*)|*.*||",
+            this);
+    if (dlg.DoModal() == IDOK)
+    {
+        // update the filename
+        CString name = dlg.GetPathName();
+        // we try and parse the data first before allowing the user to name the gear set
+        EquippedGear newGear("");
+        if (newGear.ImportFromFile(name))
+        {
+            // we successfully imported the item data
+            // now allow the user to name the gear set
+            // no tooltips while a dialog is displayed
+            GetMouseHook()->SaveState();
+            // create a new gear set that they must name
+            CGearSetNameDialog dlg(this, m_pCharacter);
+            if (dlg.DoModal() == IDOK)
+            {
+                // ensure the gear set name is unique
+                if (!m_pCharacter->DoesGearSetExist(dlg.Name()))
+                {
+                    newGear.Set_Name(dlg.Name());
+                    m_pCharacter->AddGearSet(newGear);
+                    // once added the new gear set automatically becomes active
+                    m_pCharacter->SetActiveGearSet(dlg.Name());
+                    // add it to the combo box
+                    // index is the count of gear items
+                    int index = m_comboGearSelections.AddString(dlg.Name().c_str());
+                    // new entry starts selected
+                    m_comboGearSelections.SetCurSel(index);
+                    PopulateGear();
+                    // have the correct enable state
+                    EnableControls();
+                }
+                else
+                {
+                    AfxMessageBox(
+                            "Error: A gear set must have a unique name.\n"
+                            "A gear set with the name you selected already exists.\n"
+                            "Try again but use a different name.",
+                            MB_ICONERROR);
+                }
+            }
+            GetMouseHook()->RestoreState();
         }
     }
 }

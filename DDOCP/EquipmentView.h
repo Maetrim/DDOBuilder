@@ -34,6 +34,7 @@ class CEquipmentView :
         afx_msg void OnGearCopy();
         afx_msg void OnGearPaste();
         afx_msg void OnGearDelete();
+        afx_msg void OnGearImport();
         afx_msg void OnUpdateGearNew(CCmdUI * pCmdUi);
         afx_msg void OnUpdateGearCopy(CCmdUI * pCmdUi);
         afx_msg void OnUpdateGearPaste(CCmdUI * pCmdUi);
@@ -72,6 +73,7 @@ class CEquipmentView :
         CMFCButton m_buttonCopy;
         CMFCButton m_buttonPaste;
         CMFCButton m_buttonDelete;
+        CMFCButton m_buttonImport;
         CStatic m_staticNumFiligrees;
         CComboBox m_comboNumFiligrees;
         CButton m_filigreeMenu;

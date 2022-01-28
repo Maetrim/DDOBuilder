@@ -35,4 +35,5 @@ class ItemAugment :
         friend class CItemSelectDialog;
         friend class CFindGearDialog;
         friend class Item;
+        friend class EquippedGear;
 };

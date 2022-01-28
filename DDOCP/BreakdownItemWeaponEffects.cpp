@@ -511,7 +511,7 @@ bool BreakdownItemWeaponEffects::IsLightWeapon(WeaponType wt) const
     bool isUs = false;
     switch (wt)
     {
-        // TBD: this list not complete
+        // TBD: This list not complete
     case Weapon_LightHammer:
     case Weapon_LightMace:
     case Weapon_LightPick:

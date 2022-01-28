@@ -396,3 +396,248 @@ bool EquippedGear::HasMinorArtifact() const
     }
     return bHas;
 }
+
+bool EquippedGear::ImportFromFile(const CString& filename)
+{
+    bool bSuccess = false;
+    // first read the entire content of the import file into a buffer
+    CFile importFile;
+    if (importFile.Open(filename, CFile::modeRead))
+    {
+        ULONGLONG size = importFile.GetLength();
+        if (size < 1024 * 20)       // 20k
+        {
+            size_t uSize = (size_t)size;
+            char buffer[1024*20];
+            size_t pif = 0;         // position in file being parsed
+            importFile.Read(buffer, uSize);
+            while (pif < uSize)
+            {
+                CString lineOfText;
+                pif = ExtractLine(&lineOfText, pif, buffer, uSize);
+                ProcessLine(lineOfText);
+            }
+            bSuccess = true;
+        }
+        else
+        {
+            // the file being imported is far too big, just report an error
+            CString errMsg;
+            errMsg.Format("The import file \"%s\" is too large to process", filename);
+            AfxMessageBox(errMsg, MB_ICONERROR);
+        }
+    }
+    else
+    {
+        CString errMsg;
+        errMsg.Format("Failed to open the import file \"%s\"", filename);
+        AfxMessageBox(errMsg, MB_ICONERROR);
+    }
+    return bSuccess;
+}
+
+size_t EquippedGear::ExtractLine(
+        CString* line,
+        size_t pif,
+        char* buffer,
+        size_t bufferSize)
+{
+    bool eol = false;
+    while (pif < bufferSize && !eol)
+    {
+        char ch = buffer[pif];
+        eol = (ch == '\n');
+        if (!eol)
+        {
+            if (ch != '\r')
+            {
+                *line += ch;
+            }
+        }
+        // always move to the next character
+        ++pif;
+    }
+    return pif;
+}
+
+bool EquippedGear::ProcessLine(CString line)
+{
+    bool bSuccess = false;
+    InventorySlotType st = Inventory_Unknown;
+    // first try and determine which slot this line references
+    if (line.Find("Eye:", 0) >= 0)
+    {
+        st = Inventory_Goggles;
+        line.Replace("Eye:", "");
+    }
+    else if (line.Find("Head:", 0) >= 0)
+    {
+        st = Inventory_Helmet;
+        line.Replace("Head:", "");
+    }
+    else if (line.Find("Neck:", 0) >= 0)
+    {
+        st = Inventory_Necklace;
+        line.Replace("Neck:", "");
+    }
+    else if (line.Find("Trinket:", 0) >= 0)
+    {
+        st = Inventory_Trinket;
+        line.Replace("Trinket:", "");
+    }
+    else if (line.Find("Body:", 0) >= 0)
+    {
+        st = Inventory_Armor;
+        line.Replace("Body:", "");
+    }
+    else if (line.Find("Back:", 0) >= 0)
+    {
+        st = Inventory_Cloak;
+        line.Replace("Back:", "");
+    }
+    else if (line.Find("Wrist:", 0) >= 0)
+    {
+        st = Inventory_Bracers;
+        line.Replace("Wrist:", "");
+    }
+    else if (line.Find("Waist:", 0) >= 0)
+    {
+        st = Inventory_Belt;
+        line.Replace("Waist:", "");
+    }
+    else if (line.Find("Finger1:", 0) >= 0)
+    {
+        st = Inventory_Ring1;
+        line.Replace("Finger1:", "");
+    }
+    else if (line.Find("Feet:", 0) >= 0)
+    {
+        st = Inventory_Boots;
+        line.Replace("Feet:", "");
+    }
+    else if (line.Find("Hand:", 0) >= 0)
+    {
+        st = Inventory_Gloves;
+        line.Replace("Hand:", "");
+    }
+    else if (line.Find("Finger2:", 0) >= 0)
+    {
+        st = Inventory_Ring2;
+        line.Replace("Finger2:", "");
+    }
+    else if (line.Find("Weapon:", 0) >= 0)
+    {
+        st = Inventory_Weapon1;
+        line.Replace("Weapon:", "");
+    }
+    else if (line.Find("Offhand:", 0) >= 0)
+    {
+        st = Inventory_Weapon2;
+        line.Replace("Offhand:", "");
+    }
+    if (st != Inventory_Unknown)
+    {
+        // inventory slot was recognised, now find the item and apply
+        // any enhancement selection that may be present
+
+        // the remaining text is the item name up to the first '{' character
+        CString itemName(line);
+        itemName.Replace("(level ", "(Level ");
+        int pos = line.Find('{', 0);
+        if (pos >= 0)
+        {
+            itemName = line.Left(pos);
+        }
+        Item i = FindItem((LPCSTR)itemName);
+        if (i.Name() != (LPCSTR)itemName)
+        {
+            // could be a possible level field in the name " (Level xx)"
+            pos = itemName.Find(" (Level");
+            if (pos >= 0)
+            {
+                itemName = itemName.Left(pos); // strip " (Level xx)"
+                i = FindItem((LPCSTR)itemName);
+            }
+        }
+        if (i.Name() == (LPCSTR)itemName)
+        {
+            // item was found, process any enhancement options
+            line.Replace(itemName, "");     // remove the item name
+            int sil = line.Find('{', 0);
+            int pil = line.Find('}', 0);
+            while (sil >= 0 && pil >= 0)
+            {
+                CString augmentText = line.Mid(sil + 1, pil - sil);
+                ApplyItemAugment(&i, augmentText);
+                // setup for next iteration
+                sil = line.Find('{', pil);
+                pil = line.Find('}', pil+1);
+            }
+
+            // finally set the item in gear
+            SetItem(st, NULL, i);
+        }
+        bSuccess = true;
+    }
+    return bSuccess;
+}
+
+void EquippedGear::ApplyItemAugment(Item* pItem, CString augmentText)
+{
+    // example augmentText is:
+    // "enhancement Strength 21"
+    // "enhancement Dexterity 8"
+    // "insight Constitution 6"
+    // "enhancement Doubleshot 8"
+    // "enhancement Sneak Attack Damage 16"
+
+    // break the line up into it's components and we need to find all text
+    // items in a given augments compatible augment descriptions
+    std::vector<CString> augmentComponents;
+    augmentComponents.reserve(10);
+    int pis = 0;    // position in string
+    while (pis >= 0)
+    {
+        int start = pis;
+        pis = augmentText.Find(' ', pis);
+        if (pis >= 0)
+        {
+            CString element = augmentText.Mid(start, pis - start);
+            element.MakeLower();
+            augmentComponents.push_back(element);
+            ++pis;      // skip the ' ' we found last
+        }
+    }
+    // now we have the elements, search all augment slots in order on this item
+    // to see if we can assign the selection to it, if it does not already have one
+    bool bPlaced = false;
+    std::vector<ItemAugment> augments = pItem->Augments();
+    for (size_t i = 0; !bPlaced && i < augments.size(); ++i)
+    {
+        if (!augments[i].HasSelectedAugment())
+        {
+            // this augment has no selection, see if we can place this augment here
+            // first find the list of compatible augments for this augment slot
+            std::vector<Augment> compatibleAugments = CompatibleAugments(augments[i].Type());
+            std::vector<Augment>::const_iterator it = compatibleAugments.begin();
+            while (!bPlaced && it != compatibleAugments.end())
+            {
+                CString description = (*it).Description().c_str();
+                description.MakeLower();
+                bPlaced = true;     // assume, gets cleared if not compatible
+                for (size_t j = 0; bPlaced && j < augmentComponents.size(); ++j)
+                {
+                    // all text augemtns component items must be found in the description text
+                    bPlaced = (description.Find(augmentComponents[j]) >= 0);
+                }
+                if (bPlaced)
+                {
+                    // this augment goes in this slot. Place it
+                    augments[i].Set_SelectedAugment((*it).Name());
+                }
+                ++it;
+            }
+        }
+    }
+    pItem->Set_Augments(augments);
+}

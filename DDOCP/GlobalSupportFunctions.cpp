@@ -3162,7 +3162,7 @@ void FormatExportData(std::string * exportData)
 
 void FormatExportData(CString * exportData)
 {
-    // implemented by the std;;string version
+    // implemented by the std::string version
     std::string copy = (LPCTSTR)(*exportData);
     FormatExportData(&copy);
     *exportData = copy.c_str();

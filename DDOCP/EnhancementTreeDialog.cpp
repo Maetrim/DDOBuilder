@@ -831,6 +831,7 @@ void CEnhancementTreeDialog::OnLButtonUp(UINT nFlags, CPoint point)
                 std::string tree2 = pTarget->m_tree.Name();
                 switch (m_type)
                 {
+                case TT_universal:
                 case TT_enhancement:    m_pCharacter->Enhancement_SwapTrees(tree1, tree2); break;
                 case TT_epicDestiny:    m_pCharacter->U51Destiny_SwapTrees(tree1, tree2); break;
                 }
@@ -1221,8 +1222,10 @@ bool CEnhancementTreeDialog::CanSwapTree(TreeType t) const
 {
     bool canSwap = false;
     // can we accept this drop request?
-    if (m_type == t
+    if ((m_type == t
             && m_tree.Items().size() > 0)
+            || (t == TT_universal && m_type == TT_enhancement)
+            || (t == TT_enhancement && m_type == TT_universal))
     {
         canSwap = true;
     }

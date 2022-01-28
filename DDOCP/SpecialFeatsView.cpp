@@ -357,7 +357,10 @@ BOOL CSpecialFeatsView::OnEraseBkgnd(CDC* pDC)
         IDC_STATIC_HEROIC,
         IDC_STATIC_RACIAL,
         IDC_STATIC_ICONIC,
-        IDC_STATIC_EPIC,
+        IDC_STATIC_EPIC_ARCANE,
+        IDC_STATIC_EPIC_PRIMAL,
+        IDC_STATIC_EPIC_DIVINE,
+        IDC_STATIC_EPIC_MARTIAL,
         IDC_STATIC_SPECIAL,
         IDC_STATIC_FAVOR,
         0 // end marker

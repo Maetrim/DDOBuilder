@@ -96,7 +96,6 @@ BOOL CDDOCPApp::InitInstance()
 
     EnableTaskbarInteraction();
 
-    LoadData();
     // AfxInitRichEdit2() is required to use RichEdit control
     // AfxInitRichEdit2();
 
@@ -107,6 +106,8 @@ BOOL CDDOCPApp::InitInstance()
     // Change the registry key under which our settings are stored
     SetRegistryKey(_T("DDOBuilder"));
     LoadStdProfileSettings(10);  // Load standard INI file options (including MRU)
+
+    LoadData();
 
     //InitContextMenuManager();    // we construct our own custom one
     InitKeyboardManager();

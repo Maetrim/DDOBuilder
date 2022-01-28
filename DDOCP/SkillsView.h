@@ -1,4 +1,4 @@
-// DCView.h
+// SkillsView.h
 //
 #pragma once
 #include "Resource.h"

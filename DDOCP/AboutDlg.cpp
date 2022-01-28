@@ -49,8 +49,6 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
     SetDlgItemText(IDC_STATIC_SETBONUS_COUNT, text);
 
     m_bugReporters.SetWindowText(
-            "In alphabetical order:\r\n"
-            "\r\n"
             "aaron250, "
             "Aganthor, "
             "Amastris, "
@@ -110,8 +108,8 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
             "Kamdragon, "
             "Kaustics "
             "Kenaustin, "
-            "Kentpb, "
             "Kentos9, "
+            "Kentpb, "
             "Kerkos, "
             "Kerthyn, "
             "Kiriitto, "
@@ -226,7 +224,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
         "Mind and Matter, "
         "One with the Swarm, "
         "Way of the Sun Soul, "
-        "Woodsman's Guile, ");
+        "Woodsman's Guile.");
 }
 
 BEGIN_MESSAGE_MAP(CAboutDlg, CDialogEx)

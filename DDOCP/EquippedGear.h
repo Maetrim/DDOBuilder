@@ -26,6 +26,8 @@ class EquippedGear :
         void SetNumFiligrees(size_t count);
         bool HasMinorArtifact() const;
 
+        bool ImportFromFile(const CString& filename);
+
     protected:
         XmlLib::SaxContentElementInterface * StartElement(
                 const XmlLib::SaxString & name,
@@ -61,4 +63,8 @@ class EquippedGear :
         friend class CEquipmentView;
         friend class EquippedGear;
         friend class CInventoryDialog;
+    private:
+        size_t ExtractLine(CString* line, size_t pif, char* buffer, size_t bufferSize);
+        bool ProcessLine(CString line);
+        void ApplyItemAugment(Item* pItem, CString augmentText);
 };
