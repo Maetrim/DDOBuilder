@@ -39,6 +39,7 @@ class CEquipmentView :
         afx_msg void OnUpdateGearCopy(CCmdUI * pCmdUi);
         afx_msg void OnUpdateGearPaste(CCmdUI * pCmdUi);
         afx_msg void OnUpdateGearDelete(CCmdUI * pCmdUi);
+        afx_msg void OnUpdateGearimport(CCmdUI * pCmdUi);
         afx_msg void OnGearSelectionSelEndOk();
         afx_msg void OnGearNumFiligreesSelEndOk();
         afx_msg void OnToggleFiligreeMenu();

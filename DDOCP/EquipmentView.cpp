@@ -77,10 +77,12 @@ BEGIN_MESSAGE_MAP(CEquipmentView, CFormView)
     ON_COMMAND(ID_GEAR_COPY, OnGearCopy)
     ON_COMMAND(ID_GEAR_PASTE, OnGearPaste)
     ON_COMMAND(ID_GEAR_DELETE, OnGearDelete)
+    ON_COMMAND(ID_GEAR_IMPORT, OnGearImport)
     ON_UPDATE_COMMAND_UI(ID_GEAR_NEW, OnUpdateGearNew)
     ON_UPDATE_COMMAND_UI(ID_GEAR_COPY, OnUpdateGearCopy)
     ON_UPDATE_COMMAND_UI(ID_GEAR_PASTE, OnUpdateGearPaste)
     ON_UPDATE_COMMAND_UI(ID_GEAR_DELETE, OnUpdateGearDelete)
+    ON_UPDATE_COMMAND_UI(ID_GEAR_IMPORT, OnUpdateGearimport)
     ON_BN_CLICKED(IDC_BUTTON_NEW, OnGearNew)
     ON_BN_CLICKED(IDC_BUTTON_COPY, OnGearCopy)
     ON_BN_CLICKED(IDC_BUTTON_PASTE, OnGearPaste)
@@ -389,7 +391,7 @@ void CEquipmentView::EnableControls()
         m_buttonCopy.EnableWindow(setups.size() > 0);
         m_buttonPaste.EnableWindow(IsClipboardFormatAvailable(CF_PRIVATEFIRST));
         m_buttonDelete.EnableWindow(setups.size() > 0);
-        m_buttonImport.EnableWindow(setups.size() > 0);
+        m_buttonImport.EnableWindow(TRUE);
         m_staticNumFiligrees.EnableWindow(TRUE);
         m_comboNumFiligrees.EnableWindow(TRUE);
         m_filigreeMenu.EnableWindow(TRUE);
@@ -523,6 +525,20 @@ void CEquipmentView::OnUpdateGearDelete(CCmdUI * pCmdUi)
         pCmdUi->Enable(FALSE);
     }
 }
+
+void CEquipmentView::OnUpdateGearimport(CCmdUI * pCmdUi)
+{
+    if (m_pCharacter != NULL)
+    {
+        // can always import if we have a character
+        pCmdUi->Enable(TRUE);
+    }
+    else
+    {
+        pCmdUi->Enable(FALSE);
+    }
+}
+
 
 void CEquipmentView::OnGearNew()
 {
