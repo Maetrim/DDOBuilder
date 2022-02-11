@@ -16,6 +16,8 @@ class CFeatSelectionDialog :
     public:
         CFeatSelectionDialog(CWnd* pParent, const Feat & feat, TrainableFeatTypes type);
 
+        void DoLeftClickAction();
+        void DoRightClickAction();
     ///////////////////////////////////////////////////////////////////
     // MFC
 

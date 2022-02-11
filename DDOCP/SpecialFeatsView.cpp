@@ -134,7 +134,7 @@ void CSpecialFeatsView::DoDataExchange(CDataExchange* pDX)
 void CSpecialFeatsView::CreateFeatWindows(
         CStatic * groupWindow,
         const std::list<Feat> & featList,
-        std::vector<CDialog *> * dialogs,
+        std::vector<CFeatSelectionDialog *> * dialogs,
         TrainableFeatTypes type)
 {
     // position the created windows left to right under the static control until
@@ -177,6 +177,16 @@ BEGIN_MESSAGE_MAP(CSpecialFeatsView, CFormView)
     ON_WM_SIZE()
     //ON_WM_ERASEBKGND()
     ON_REGISTERED_MESSAGE(UWM_NEW_DOCUMENT, OnNewDocument)
+    ON_BN_CLICKED(IDC_STATIC_HEROIC, OnHeroic)
+    ON_BN_CLICKED(IDC_STATIC_RACIAL, OnRacial)
+    ON_BN_CLICKED(IDC_STATIC_ICONIC, OnIconic)
+    ON_BN_CLICKED(IDC_STATIC_EPIC_ARCANE, OnEpicArcane)
+    ON_BN_CLICKED(IDC_STATIC_EPIC_DIVINE, OnEpicDivine)
+    ON_BN_CLICKED(IDC_STATIC_EPIC_MARTIAL, OnEpicMartial)
+    ON_BN_CLICKED(IDC_STATIC_EPIC_PRIMAL, OnEpicPrimal)
+    ON_BN_CLICKED(IDC_STATIC_SPECIAL, OnSpecial)
+    ON_BN_CLICKED(IDC_STATIC_FAVOR, OnFavor)
+    ON_MESSAGE(WM_CONTEXTMENU, OnRevokeFeats)
 END_MESSAGE_MAP()
 #pragma warning(pop)
 
@@ -240,7 +250,7 @@ size_t CSpecialFeatsView::PositionWindows(
         CStatic * groupWindow,
         int startX,
         size_t startIndex,
-        const std::vector<CDialog *> & dialogs,
+        const std::vector<CFeatSelectionDialog *> & dialogs,
         int * maxX,
         int * yPos,
         bool bMoveDownALine)
@@ -542,4 +552,91 @@ BOOL CSpecialFeatsView::OnEraseBkgnd(CDC* pDC)
     }
 
     return ret;
+}
+
+void CSpecialFeatsView::OnHeroic()
+{
+    TrainAllFeats(m_heroicSelectionViews);
+}
+
+void CSpecialFeatsView::OnRacial()
+{
+    TrainAllFeats(m_racialSelectionViews);
+}
+
+void CSpecialFeatsView::OnIconic()
+{
+    TrainAllFeats(m_iconicSelectionViews);
+}
+
+void CSpecialFeatsView::OnEpicArcane()
+{
+    TrainAllFeats(m_epicSelectionViewsArcane);
+}
+
+void CSpecialFeatsView::OnEpicDivine()
+{
+    TrainAllFeats(m_epicSelectionViewsDivine);
+}
+
+void CSpecialFeatsView::OnEpicMartial()
+{
+    TrainAllFeats(m_epicSelectionViewsMartial);
+}
+
+void CSpecialFeatsView::OnEpicPrimal()
+{
+    TrainAllFeats(m_epicSelectionViewsPrimal);
+}
+
+void CSpecialFeatsView::OnSpecial()
+{
+    TrainAllFeats(m_specialSelectionViews);
+}
+
+void CSpecialFeatsView::OnFavor()
+{
+    TrainAllFeats(m_favorSelectionViews);
+}
+
+void CSpecialFeatsView::TrainAllFeats(std::vector<CFeatSelectionDialog *>& feats)
+{
+    // try and train one of each feat (only if it can be trained)
+    for (size_t i = 0; i < feats.size(); ++i)
+    {
+        feats[i]->DoLeftClickAction();
+    }
+}
+
+LRESULT CSpecialFeatsView::OnRevokeFeats(WPARAM, LPARAM)
+{
+    CPoint p;
+    GetCursorPos(&p);
+    CWnd* pWnd = WindowFromPoint(p);
+    if (pWnd != NULL)
+    {
+        UINT nID = pWnd->GetDlgCtrlID();
+        switch (nID)
+        {
+        case IDC_STATIC_HEROIC: RevokeAllFeats(m_heroicSelectionViews); break;
+        case IDC_STATIC_RACIAL: RevokeAllFeats(m_racialSelectionViews); break;
+        case IDC_STATIC_ICONIC: RevokeAllFeats(m_iconicSelectionViews); break;
+        case IDC_STATIC_EPIC_ARCANE:   RevokeAllFeats(m_epicSelectionViewsArcane); break;
+        case IDC_STATIC_EPIC_DIVINE:   RevokeAllFeats(m_epicSelectionViewsDivine); break;
+        case IDC_STATIC_EPIC_MARTIAL:   RevokeAllFeats(m_epicSelectionViewsMartial); break;
+        case IDC_STATIC_EPIC_PRIMAL:   RevokeAllFeats(m_epicSelectionViewsPrimal); break;
+        case IDC_STATIC_SPECIAL:    RevokeAllFeats(m_specialSelectionViews); break;
+        case IDC_STATIC_FAVOR:  RevokeAllFeats(m_favorSelectionViews); break;
+        }
+    }
+    return 0;
+}
+
+void CSpecialFeatsView::RevokeAllFeats(std::vector<CFeatSelectionDialog *>& feats)
+{
+    // try and revoke one of each feat (only if it has been trained)
+    for (size_t i = 0; i < feats.size(); ++i)
+    {
+        feats[i]->DoRightClickAction();
+    }
 }

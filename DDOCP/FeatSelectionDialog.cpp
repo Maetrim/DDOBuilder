@@ -259,3 +259,12 @@ void CFeatSelectionDialog::OnCancel()
     // do nothing to stop dialog being dismissed
 }
 
+void CFeatSelectionDialog::DoLeftClickAction()
+{
+    OnFeatButtonLeftClick();
+}
+
+void CFeatSelectionDialog::DoRightClickAction()
+{
+    OnFeatButtonRightClick(NULL, NULL);
+}
