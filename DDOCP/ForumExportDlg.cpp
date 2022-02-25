@@ -579,6 +579,7 @@ void CForumExportDlg::AddFeatSelections(std::stringstream & forumExport)
             case Race_PurpleDragonKnight: requiresHeartOfWood = (expectedClass != Class_Fighter); break;
             case Race_RazorclawShifter: requiresHeartOfWood = (expectedClass != Class_Barbarian); break;
             case Race_ShadarKai: requiresHeartOfWood = (expectedClass != Class_Rogue); break;
+            case Race_TabaxiIconic: requiresHeartOfWood = (expectedClass != Class_Sorcerer); break;
             case Race_TieflingScoundrel: requiresHeartOfWood = (expectedClass != Class_Bard); break;
             }
             if (requiresHeartOfWood)
@@ -737,6 +738,7 @@ void CForumExportDlg::AddConsolidatedFeats(std::stringstream & forumExport)
             case Race_PurpleDragonKnight: requiresHeartOfWood = (expectedClass != Class_Fighter); break;
             case Race_RazorclawShifter: requiresHeartOfWood = (expectedClass != Class_Barbarian); break;
             case Race_ShadarKai: requiresHeartOfWood = (expectedClass != Class_Rogue); break;
+            case Race_TabaxiIconic: requiresHeartOfWood = (expectedClass != Class_Sorcerer); break;
             case Race_TieflingScoundrel: requiresHeartOfWood = (expectedClass != Class_Bard); break;
             }
             if (requiresHeartOfWood)

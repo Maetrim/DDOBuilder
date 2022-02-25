@@ -390,6 +390,21 @@ This can stack up to three times (up to Psionic Potency +24) and each stack last
       <Icon>Sapphire</Icon>
    </Augment>
    <Augment>
+      <Name>Sapphire of the Snowpeaks Speed</Name>
+      <Description>Provides a 30% Enhancement bonus to movement speed</Description>
+      <MinLevel>8</MinLevel>
+      <Type>Blue</Type>
+      <Type>Green</Type>
+      <Type>Purple</Type>
+      <Icon>Sapphire</Icon>
+      <Effect>
+         <Type>MovementSpeed</Type>
+         <Bonus>Enhancement</Bonus>
+         <Amount>30</Amount>
+         <ApplyAsItemEffect/>
+      </Effect>
+   </Augment>
+   <Augment>
       <Name>The Master's Gift</Name>
       <Description>+5% Enhancement bonus to all earned Experience Points</Description>
       <MinLevel>1</MinLevel>
@@ -32849,7 +32864,7 @@ take significant Force damage.</Description>
     <!--U52 Augments-->
    <Augment>
       <Name>Sapphire of Healing Amplification</Name>
-      <Description>Enhancement bonus to Healing Amplification</Description>
+      <Description>Competence bonus to Healing Amplification</Description>
       <MinLevel>1</MinLevel>
       <Type>Blue</Type>
       <Type>Green</Type>
@@ -32858,13 +32873,13 @@ take significant Force damage.</Description>
       <EnterValue/>
       <Effect>
          <Type>HealingAmplification</Type>
-         <Bonus>Enhancement</Bonus>
+         <Bonus>Competence</Bonus>
          <Amount>8</Amount>
       </Effect>
    </Augment>
    <Augment>
       <Name>Sapphire of Repair Amplification</Name>
-      <Description>Enhancement bonus to Repair Amplification</Description>
+      <Description>Competence bonus to Repair Amplification</Description>
       <MinLevel>1</MinLevel>
       <Type>Blue</Type>
       <Type>Green</Type>
@@ -32873,13 +32888,13 @@ take significant Force damage.</Description>
       <EnterValue/>
       <Effect>
          <Type>RepairAmplification</Type>
-         <Bonus>Enhancement</Bonus>
+         <Bonus>Competence</Bonus>
          <Amount>8</Amount>
       </Effect>
    </Augment>
    <Augment>
       <Name>Sapphire of Negative Healing Amplification</Name>
-      <Description>Enhancement bonus to Negative Healing Amplification</Description>
+      <Description>Competence bonus to Negative Healing Amplification</Description>
       <MinLevel>1</MinLevel>
       <Type>Blue</Type>
       <Type>Green</Type>
@@ -32888,7 +32903,7 @@ take significant Force damage.</Description>
       <EnterValue/>
       <Effect>
          <Type>NegativeHealingAmplification</Type>
-         <Bonus>Enhancement</Bonus>
+         <Bonus>Competence</Bonus>
          <Amount>8</Amount>
       </Effect>
    </Augment>
@@ -32921,5 +32936,121 @@ take significant Force damage.</Description>
          <Bonus>Enhancement</Bonus>
          <Amount>8</Amount>
       </Effect>
+   </Augment>
+   <Augment>
+      <Name>Emerald of Vile Empowerment</Name>
+      <Description>Provides a +1 Enhancement bonus to Vile Chemist Dice.</Description>
+      <MinLevel>28</MinLevel>
+      <Type>Green</Type>
+      <Icon>GreenAugment</Icon>
+   </Augment>
+   <Augment>
+      <Name>Emerald of Arcane Empowerment</Name>
+      <Description>Provides a +1 Enhancement bonus to Arcane Archer Dice.</Description>
+      <MinLevel>28</MinLevel>
+      <Type>Green</Type>
+      <Icon>GreenAugment</Icon>
+   </Augment>
+   <Augment>
+      <Name>Emerald of Eldritch Empowerment</Name>
+      <Description>Provides a +1 Enhancement bonus to Eldritch Knight Dice.</Description>
+      <MinLevel>28</MinLevel>
+      <Type>Green</Type>
+      <Icon>GreenAugment</Icon>
+         <Effect>
+            <DisplayName>Spellsword: Acid</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Dice>
+               <Number size="20">0 0 1 1 1 2 2 2 3 3 3 4 4 4 5 5 5 6 6 6</Number>
+               <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
+               <Energy>Acid</Energy>
+               <ScalesWithSpellPower/>
+               <SpellPower>Acid</SpellPower>
+            </Dice>
+            <Stance>Spellsword: Acid</Stance>
+            <Weapon>All</Weapon>
+            <Class>Sorcerer</Class>
+            <IsItemSpecific/>
+         </Effect>
+         <Effect>
+            <DisplayName>Spellsword: Cold</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Dice>
+               <Number size="20">0 0 1 1 1 2 2 2 3 3 3 4 4 4 5 5 5 6 6 6</Number>
+               <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
+               <Energy>Cold</Energy>
+               <ScalesWithSpellPower/>
+               <SpellPower>Cold</SpellPower>
+            </Dice>
+            <Stance>Spellsword: Cold</Stance>
+            <Weapon>All</Weapon>
+            <Class>Sorcerer</Class>
+            <IsItemSpecific/>
+         </Effect>
+         <Effect>
+            <DisplayName>Spellsword: Electric</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Dice>
+               <Number size="20">0 0 1 1 1 2 2 2 3 3 3 4 4 4 5 5 5 6 6 6</Number>
+               <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
+               <Energy>Electric</Energy>
+               <ScalesWithSpellPower/>
+               <SpellPower>Electric</SpellPower>
+            </Dice>
+            <Stance>Spellsword: Electric</Stance>
+            <Weapon>All</Weapon>
+            <Class>Sorcerer</Class>
+            <IsItemSpecific/>
+         </Effect>
+         <Effect>
+            <DisplayName>Spellsword: Fire</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Dice>
+               <Number size="20">0 0 1 1 1 2 2 2 3 3 3 4 4 4 5 5 5 6 6 6</Number>
+               <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
+               <Energy>Fire</Energy>
+               <ScalesWithSpellPower/>
+               <SpellPower>Fire</SpellPower>
+            </Dice>
+            <Stance>Spellsword: Fire</Stance>
+            <Weapon>All</Weapon>
+            <Class>Sorcerer</Class>
+            <IsItemSpecific/>
+         </Effect>
+   </Augment>
+   <Augment>
+      <Name>Crystallized Unicorn Tear</Name>
+      <Description>Provides a 5% chance to gain 150 Temporary Hitpoints when you are hit. This can only proc once every 10 seconds. These Hitpoints last for 10 minutes or until used up, whichever is first.</Description>
+      <MinLevel>28</MinLevel>
+      <Icon>BlueAugment</Icon>
+      <Type>Blue</Type>
+      <Type>Green</Type>
+      <Type>Purple</Type>
+   </Augment>
+   <Augment>
+      <Name>Crystallized Drop of Tea</Name>
+      <Description>Provides a -4 SP Cost to Empowered spells. Additionally, once every 3 seconds when you take physical damage, you get +8 Psionic Bonus to Universal Spell Power. Tis can stack up to 3 times and each stack lasts for 20 seconds.</Description>
+      <MinLevel>28</MinLevel>
+      <Icon>YellowAugment</Icon>
+      <Type>Yellow</Type>
+      <Type>Green</Type>
+      <Type>Orange</Type>
+         <Effect>
+            <Type>CreateSlider</Type>
+            <Bonus>Enhancement</Bonus>
+            <Slider>Drop of Tea</Slider>
+            <AmountVector size="2">0 3</AmountVector>
+            <Amount>0</Amount>
+         </Effect>
+         <Effect>
+            <Type>UniversalSpellPower</Type>
+            <Bonus>Psionic</Bonus>
+            <Amount>8</Amount>
+            <Stacks>Drop of Tea</Stacks>
+         </Effect>
    </Augment>
 </Augments>

@@ -438,10 +438,11 @@
          </Effect>
     <EffectDescription>Druidic Survival Mastery: While in Wild Shape, you receive a Primal bonus to damage equal to half the number of Wilderness Lore feats you have.</EffectDescription>
          <Effect>
-            <Type>PRR</Type>
+            <Type>DamageBonus</Type>
             <Bonus>Primal</Bonus>
             <Stacks>Wilderness Lore</Stacks>
             <Amount>0.5</Amount>
+            <Weapon>All</Weapon>
             <AnyOfStance>Bear</AnyOfStance>
             <AnyOfStance>Wolf</AnyOfStance>
             <AnyOfStance>Dire Bear</AnyOfStance>
@@ -1811,6 +1812,20 @@
             <Type>SpellPower</Type>
             <Bonus>Equipment</Bonus>
             <Amount>185</Amount>
+            <SpellPower>Electric</SpellPower>
+        </Effect>
+        <EffectDescription>Insightful Magnetism +74: Passive: +74 Insight Bonus to Electric Spell Power.</EffectDescription>
+        <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Insightful</Bonus>
+            <Amount>74</Amount>
+            <SpellPower>Electric</SpellPower>
+        </Effect>
+        <EffectDescription>Quality Magnetism +36: Passive: +36 Quality Bonus to Electric Spell Power.</EffectDescription>
+        <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Quality</Bonus>
+            <Amount>36</Amount>
             <SpellPower>Electric</SpellPower>
         </Effect>
         <EffectDescription>Void Lore +29%: Passive: Your Negative/Poison energy spells gain a +29% Equipment Bonus to their chance to Critical Hit.</EffectDescription>
@@ -7398,7 +7413,7 @@ When struck you will occasionally have the Stoneskin spell cast on you.</EffectD
         <EffectDescription>Mind Control Immunity: ?</EffectDescription>
         <EffectDescription>Acid Vulnerability: On Hit: Applies a stack of Vulnerable (1% more damage for 3 seconds. This effect stacks up to 20 times.) This effect may only occur once per second.</EffectDescription>
         <EffectDescription>Cold Vulnerability: On Hit: Applies a stack of Vulnerable (1% more damage for 3 seconds. This effect stacks up to 20 times.) This effect may only occur once per second.</EffectDescription>
-        <EffectDescription>Eelctric Vulnerability: On Hit: Applies a stack of Vulnerable (1% more damage for 3 seconds. This effect stacks up to 20 times.) This effect may only occur once per second.</EffectDescription>
+        <EffectDescription>Electric Vulnerability: On Hit: Applies a stack of Vulnerable (1% more damage for 3 seconds. This effect stacks up to 20 times.) This effect may only occur once per second.</EffectDescription>
         <EffectDescription>Fire Vulnerability: On Hit: Applies a stack of Vulnerable (1% more damage for 3 seconds. This effect stacks up to 20 times.) This effect may only occur once per second.</EffectDescription>
         <EffectDescription>Disrupting Weapons: While wearing this item, your melee and ranged weapons gain Vorpal Effect: On an attack roll of 20 which is confirmed as a critical hit this weapon will completely destroy an undead. Powerful undead may resist the vorpal effect until sufficiently damaged.</EffectDescription>
         <EffectDescription>Rune Arm Imbue Evil Shot VI: Wearing this Rune Arm will imbue any weapon you wield, dealing 2 to 24 points of evil damage per hit. This damage scales with 200% Melee or Ranged power (whichever is higher)</EffectDescription>
@@ -8388,6 +8403,51 @@ When struck you will occasionally have the Stoneskin spell cast on you.</EffectD
             <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
         </Effect>
         <EffectDescription>Enhanced Bloodrage: This weapon is enhanced by blood - your blood! Each time you take damage or kill an enemy, there is a small chance that you will fall into an unholy bloodrage, greatly increasing your Melee Power, Constitution, and Damage. However, this rage will leave you more vulnerable to Physical attacks, slightly reducing your Armor Class.</EffectDescription>
+         <Stance>
+            <Name>Enhanced Bloodrage</Name>
+            <Icon>FBBloodTribute</Icon>
+            <Description>THIRST FOR BLOOD
+You spell blood... Blood! BLOOD
+BLOOD BLOOD! GIVE ME BLOOD!
+
++10 Melee Power
++8 Constitution
++5 Damage
+-4 Armor Class</Description>
+         </Stance>
+        <Effect>
+            <Type>MeleePower</Type>
+            <Bonus>Stacking</Bonus>
+            <Amount>10</Amount>
+            <Stance>Enhanced Bloodrage</Stance>
+        </Effect>
+        <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Amount>8</Amount>
+            <Ability>Constitution</Ability>
+            <Stance>Enhanced Bloodrage</Stance>
+        </Effect>
+        <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Amount>5</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Enhanced Bloodrage</Stance>
+        </Effect>
+        <Effect>
+            <Type>Seeker</Type>
+            <Bonus>Stacking</Bonus>
+            <Amount>5</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Enhanced Bloodrage</Stance>
+        </Effect>
+        <Effect>
+            <Type>ACBonus</Type>
+            <Bonus>Penalty</Bonus>
+            <Amount>-4</Amount>
+            <Stance>Enhanced Bloodrage</Stance>
+        </Effect>
         <EffectDescription>Favored Weapon: This weapon has a divine attunement and gains bonuses as if it were a Favored Weapon regardless of your Deity.</EffectDescription>
         <Effect>
             <Type>AddGroupWeapon</Type>
@@ -9630,6 +9690,12 @@ When struck you will occasionally have the Stoneskin spell cast on you.</EffectD
             <SpellPower>Poison</SpellPower>
         </Effect>
         <EffectDescription>Shadowblade: This blade is made os pure force and is surprisingly light to the touch. It bypasses the Incorporeal chances of Ethereal monsters innately.</EffectDescription>
+        <Effect>
+            <Type>GhostTouch</Type>
+            <Bonus>Enhancement</Bonus>
+              <Amount>1</Amount>
+            <Weapon>All</Weapon>
+        </Effect>
         <EffectDescription>Force Blast 4: This weapon ripples with intense force, dealing 4d6 Force damage on a successful hit, and an additional 4d6 Force damage on a critical hit.</EffectDescription>
         <Effect>
             <DisplayName>Force Blast 4</DisplayName>
@@ -10029,5 +10095,73 @@ When struck you will occasionally have the Stoneskin spell cast on you.</EffectD
         <EffectDescription>Legendary Cursespewing: On a natural 20 attack roll, this weapon lashes out with a vengeful curse that confers a -4 morale penalty on attack rolls, damage rolls, saving throws, and skill checks. This agonizing curse also causes the victim to take 6d6+6 damage every two seconds for a duration of twelve seconds. Additional vorpal strikes while the curse is still active will extend the duration by another twelve seconds.</EffectDescription>
         <EffectDescription>Soundproof: Protects against stunning, dazing and disorientation from sound-based spells such as Soundburst and Greater Shout.</EffectDescription>
         <EffectDescription>Brilliance of the Shattered Sun: Light drips from within this small container, sparkling before your eyes. With this item equipped, your offensive attacks and spells have a chance of creating a burst of pure light, dealing Light damage and blinding enemies.</EffectDescription>
+        <EffectDescription>Soul Tear: This weapon tears at the soul of our foes, reducing their PRR and Healing Amplification.</EffectDescription>
+        <EffectDescription>Unholy Burst 6: This weapon is a sinister implement of evil deeds, dealing 6d6 Evil damage on a successful hit to Good enemies, and 14d6 Evil damage on a critical hit to Good enemies. This makes the weapon evil aligned. Good characters wielding this weapon will suffer one negative level.</EffectDescription>
+         <Effect>
+            <DisplayName>Unholy Burst 6</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+              <Dice>
+                 <Number size="1">6</Number>
+                 <Sides size="1">6</Sides>
+                 <Energy>Evil</Energy>
+              </Dice>
+             <Stance>Good</Stance>
+         </Effect>
+         <Effect>
+            <DisplayName>Unholy Burst 6</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+              <Dice>
+                 <Number size="1">14</Number>
+                 <Sides size="1">6</Sides>
+                 <Energy>Evil</Energy>
+              </Dice>
+             <Stance>Good</Stance>
+         </Effect>
+        <EffectDescription>The Falling Star: On hit, this weapon has a chance to pull down a falling star upon your foes, dealing 90d6 Fire Damage and 30d6 Bludgeoning Damage to enemies caught within the blast. The blast is so powerful it has a chance to knock nearby enemies down upon impact.</EffectDescription>
+        <EffectDescription>Thrill of the Hunt: "Lesser beings hunt for the prize, but for me, the hunt itself is prize enough". On Hit: You have a small chance to attempt to hold a monster in place. Even if the Hold is unsuccessful, their Will saves will be reduced by 5.</EffectDescription>
+        <EffectDescription>Feat: Elusive Target: Passive: You gain the feat Elusive Target.</EffectDescription>
+        <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Equipment</Bonus>
+            <Feat>Elusive Target</Feat>
+        </Effect>
+        <EffectDescription>Sacred Ground Lore +22%: Passive: Your Acid, Light, and Alignment spells gan a +22% Equipment Bonus to their chance to critical hit.</EffectDescription>
+        <Effect>
+            <Type>SpellLore</Type>
+            <Bonus>Equipment</Bonus>
+            <Amount>22</Amount>
+            <SpellPower>Acid</SpellPower>
+            <SpellPower>Light/Alignment</SpellPower>
+        </Effect>
 
+         <EffectDescription>Plant Bane 6: This weapon is attuned specifically to disrupt Plants, dealing an additional 6d10 bane damage vs. Plants.</EffectDescription>
+         <Effect>
+            <DisplayName>Plant Bane 6</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+              <Dice>
+                 <Number size="1">6</Number>
+                 <Sides size="1">10</Sides>
+                 <Energy>Bane</Energy>
+              </Dice>
+             <Stance>Plant</Stance>
+         </Effect>
+         <Effect>
+            <DisplayName>Plant Bane 6</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Weapon>All</Weapon>
+              <Dice>
+                 <Number size="1">6</Number>
+                 <Sides size="1">10</Sides>
+                 <Energy>Bane</Energy>
+              </Dice>
+             <Stance>Plant</Stance>
+         </Effect>
+        <EffectDescription>Legendary Slay Living: On hit, this has a chance of snuffing the life from your foes, slaying them instantly. Struck enemies must make a DC 100 Fortititude save or be slain.</EffectDescription>
 </EffectDescriptions>

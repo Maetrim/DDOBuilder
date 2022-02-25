@@ -588,6 +588,12 @@ std::vector<TrainableFeatTypes> RaceSpecificFeatTypes(RaceType type)
     case Race_KoboldShamen:
         types.push_back(TFT_KoboldTribe);
         break;
+    //case Race_Tabaxi:
+        //???
+        //break;
+    //case Race_TabaxiIconic:
+        //???
+        //break;
     case Race_Aasimar:
         types.push_back(TFT_AasimarBond);
         break;
@@ -1118,6 +1124,8 @@ int RacialModifier(
                 || race == Race_KoboldShamen
                 || race == Race_WoodElf
                 || race == Race_ShadarKai
+                || race == Race_Tabaxi
+                || race == Race_TabaxiIconic
                 || race == Race_Shifter)
         {
             mod = +2;
@@ -1183,6 +1191,11 @@ int RacialModifier(
                 || race == Race_TieflingScoundrel)
         {
             mod = +2;
+        }
+        if (race == Race_Tabaxi
+                || race == Race_TabaxiIconic)
+        {
+            mod += 1;
         }
         break;
     }

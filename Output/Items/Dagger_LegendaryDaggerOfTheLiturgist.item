@@ -69,6 +69,51 @@
         </ItemSpecificEffects>
         <EffectDescription>Relentless Fury: While this item is equipped, any killing blows you strike against enemies may drive you into a furious rage, providing a 5% Enhancement damage bonus to your melee, ranged and unarmed attacks for 30 seconds. Slaying weaker opponents has a reduced chance of producing this effect.</EffectDescription>
         <EffectDescription>Enhanced Bloodrage: This weapon is enhanced by blood - your blood! Each time you take damage or kill an enemy, there is a small chance that you will fall into an unholy bloodrage, greatly increasing your Melee Power, Constitution, and Damage. However, this rage will leave you more vulnerable to Physical attacks, slightly reducing your Armor Class.</EffectDescription>
+         <Stance>
+            <Name>Enhanced Bloodrage</Name>
+            <Icon>FBBloodTribute</Icon>
+            <Description>THIRST FOR BLOOD
+You spell blood... Blood! BLOOD
+BLOOD BLOOD! GIVE ME BLOOD!
+
++10 Melee Power
++8 Constitution
++5 Damage
+-4 Armor Class</Description>
+         </Stance>
+        <Effect>
+            <Type>MeleePower</Type>
+            <Bonus>Stacking</Bonus>
+            <Amount>10</Amount>
+            <Stance>Enhanced Bloodrage</Stance>
+        </Effect>
+        <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Amount>8</Amount>
+            <Ability>Constitution</Ability>
+            <Stance>Enhanced Bloodrage</Stance>
+        </Effect>
+        <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Amount>5</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Enhanced Bloodrage</Stance>
+        </Effect>
+        <Effect>
+            <Type>Seeker</Type>
+            <Bonus>Stacking</Bonus>
+            <Amount>5</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Enhanced Bloodrage</Stance>
+        </Effect>
+        <Effect>
+            <Type>ACBonus</Type>
+            <Bonus>Penalty</Bonus>
+            <Amount>-4</Amount>
+            <Stance>Enhanced Bloodrage</Stance>
+        </Effect>
         <EffectDescription>Blood Rage: Any time you are hit there is a chance that you will fall into a Blood Rage. Blood Rage gives up to a +8 bonus to Strength and Constitution but will also cause short periods of lethargy when your lust for blood becomes sated.</EffectDescription>
         <EffectDescription>Sovereign Vorpal: Passive: 0.5[W] damage dice. On Vorpal Hit: If your target has fewer than 3000hp, they are instantly slain, else they take 300 additional damage.</EffectDescription>
         <ItemAugment>
