@@ -331,6 +331,30 @@ Your Base Attack Bonus is now equal to your Character Level.</Description>
         <Bonus>Enhancement</Bonus>
         <Stance>Holy Mantle</Stance>
       </Effect>
+      <Effect>
+         <Type>DRBypass</Type>
+         <Bonus>Feat</Bonus>
+         <DR>Lawful</DR>
+         <Weapon>All</Weapon>
+         <Stance>Holy Mantle</Stance>
+         <Stance>Lawful</Stance>
+      </Effect>
+      <Effect>
+         <Type>DRBypass</Type>
+         <Bonus>Feat</Bonus>
+         <DR>Chaotic</DR>
+         <Weapon>All</Weapon>
+         <Stance>Holy Mantle</Stance>
+         <Stance>Chaotic</Stance>
+      </Effect>
+      <Effect>
+         <Type>DRBypass</Type>
+         <Bonus>Feat</Bonus>
+         <DR>Good</DR>
+         <Weapon>All</Weapon>
+         <Stance>Holy Mantle</Stance>
+         <Stance>Good</Stance>
+      </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Divine Crusader: Shield of Light</Name>
@@ -455,7 +479,7 @@ Rank 3: You gain Magic Missile immunity (as per the Shield spell) while holding 
 to their Enhancement bonus.
 Rank 3: Favored Weapons are also now considered Implements to you automatically,
 and gain +1[W].</Description>
-      <Icon>StrikeWithPoise</Icon>
+      <Icon>DCStrikeWithPoise</Icon>
       <XPosition>1</XPosition>
       <YPosition>3</YPosition>
       <CostPerRank size="1">1</CostPerRank>
@@ -814,6 +838,21 @@ Only sentient creatures, Undead, Aberrations, and Outsiders may be cowered
               <Enhancement>U51DivineCrusaderConsecration</Enhancement>
           </Requirement>
       </Requirements>
+      <DC>
+         <Name>Cower Before Me</Name>
+         <Description>When you use Consecrate, nearby enemies must make a Fortitude save or become
+Cowered for 4 seconds. Cower makes an enemy helpless for the duration.</Description>
+         <Icon>CowerBeforeMe</Icon>
+         <DCVersus>Fortitude</DCVersus>
+         <AmountVector size="1">20</AmountVector>
+         <ModAbility>Strength</ModAbility>
+         <ModAbility>Dexterity</ModAbility>
+         <ModAbility>Intelligence</ModAbility>
+         <ModAbility>Wisdom</ModAbility>
+         <ModAbility>Constitution</ModAbility>
+         <ModAbility>Charisma</ModAbility>
+         <Tactical>Sunder</Tactical>
+      </DC>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Divine Crusader: Rend Armor</Name>
@@ -919,6 +958,66 @@ Power, and apply a stack of Vulnerability and Armor Destruction on Critical Hits
         <Type>GrantFeat</Type>
         <Bonus>Destiny</Bonus>
         <Feat>Embodiment of Law</Feat>
+      </Effect>
+      <Effect>
+         <DisplayName>Embodiment of Law</DisplayName>
+         <Type>WeaponOtherDamageBonus</Type>
+         <Bonus>Feat</Bonus>
+         <AmountVector size="2">10 10</AmountVector>
+         <Energy>Bane</Energy>
+         <Weapon>All</Weapon>
+      </Effect>
+      <Effect>
+         <DisplayName>Embodiment of Law</DisplayName>
+         <Type>WeaponOtherDamageBonus</Type>
+         <Bonus>Feat</Bonus>
+         <AmountVector size="2">20 20</AmountVector>
+         <Energy>Lawful</Energy>
+         <Weapon>All</Weapon>
+         <Stance>Chaotic Target</Stance>
+      </Effect>
+      <Effect>
+         <DisplayName>Embodiment of Law</DisplayName>
+         <Type>WeaponOtherCriticalDamageBonus</Type>
+         <Bonus>Feat</Bonus>
+         <AmountVector size="2">10 10</AmountVector>
+         <Energy>Bane</Energy>
+         <Weapon>All</Weapon>
+      </Effect>
+      <Effect>
+         <DisplayName>Embodiment of Law</DisplayName>
+         <Type>WeaponOtherCriticalDamageBonus</Type>
+         <Bonus>Feat</Bonus>
+         <AmountVector size="2">20 20</AmountVector>
+         <Energy>Lawful</Energy>
+         <Weapon>All</Weapon>
+         <Stance>Chaotic Target</Stance>
+      </Effect>
+      <Effect>
+         <DisplayName>Embodiment of Law and Law of the Divine</DisplayName>
+         <Type>WeaponOtherDamageBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Dice>
+            <Number size="2">0 10</Number>
+            <Sides size="2">0 6</Sides>
+            <Energy>Lawful</Energy>
+            <ScalesWithMeleePower/>
+         </Dice>
+         <Energy>Lawful</Energy>
+         <Weapon>All</Weapon>
+      </Effect>
+      <Effect>
+         <DisplayName>Embodiment of Law and Law of the Divine</DisplayName>
+         <Type>WeaponOtherCriticalDamageBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Dice>
+            <Number size="2">0 10</Number>
+            <Sides size="2">0 6</Sides>
+            <Energy>Lawful</Energy>
+            <ScalesWithMeleePower/>
+         </Dice>
+         <Energy>Lawful</Energy>
+         <Weapon>All</Weapon>
       </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>

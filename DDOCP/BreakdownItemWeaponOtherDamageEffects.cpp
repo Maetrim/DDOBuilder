@@ -37,19 +37,28 @@ CString BreakdownItemWeaponOtherDamageEffects::Value() const
     std::list<ActiveEffect>::const_iterator it = m_otherEffects.begin();
     while (it != m_otherEffects.end())
     {
-        AddEffectToString(&value, (*it));
+        if ((*it).TotalAmount(false) != 0)
+        {
+            AddEffectToString(&value, (*it));
+        }
         ++it;
     }
     it = m_effects.begin();
     while (it != m_effects.end())
     {
-        AddEffectToString(&value, (*it));
+        if ((*it).TotalAmount(false) != 0)
+        {
+            AddEffectToString(&value, (*it));
+        }
         ++it;
     }
     it = m_itemEffects.begin();
     while (it != m_itemEffects.end())
     {
-        AddEffectToString(&value, (*it));
+        if ((*it).TotalAmount(false) != 0)
+        {
+            AddEffectToString(&value, (*it));
+        }
         ++it;
     }
     return value;

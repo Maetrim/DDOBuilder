@@ -849,7 +849,7 @@ double ActiveEffect::TotalAmount(bool allowTruncate) const
         value = m_dice.Number(m_levelStacks-1);
         break;
     case ET_dice:
-        value = 1;  // just need a non-zero value
+        value = m_dice.Number(NumStacks()-1);  // just need a non-zero value
         break;
     case ET_amount:
         if (m_dividerType != DT_statBonus)
