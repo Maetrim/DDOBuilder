@@ -733,7 +733,7 @@ void CFeatsClassControl::OnMouseMove(UINT nFlags, CPoint point)
             case Race_PurpleDragonKnight: expectedClass = Class_Fighter; break;
             case Race_RazorclawShifter: expectedClass = Class_Barbarian; break;
             case Race_ShadarKai: expectedClass = Class_Rogue; break;
-            case Race_TabaxiIconic: expectedClass = Class_Sorcerer; break;
+            case Race_TabaxiTrailblazer: expectedClass = Class_Monk; break;
             case Race_TieflingScoundrel: expectedClass = Class_Bard; break;
             }
         }

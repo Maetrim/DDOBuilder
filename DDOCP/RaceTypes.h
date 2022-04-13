@@ -35,7 +35,7 @@ enum RaceType
     Race_Kobold,
     Race_KoboldShamen,
     Race_Tabaxi,
-    Race_TabaxiIconic,
+    Race_TabaxiTrailblazer,
     // not selectable
     Race_Count,
     Race_All
@@ -68,7 +68,7 @@ const XmlLib::enumMapEntry<RaceType> raceTypeMap[] =
     {Race_Kobold, L"Kobold (Theorycraft)"},
     {Race_KoboldShamen, L"Kobold Shamen (Theorycraft)"},
     {Race_Tabaxi, L"Tabaxi"},
-    {Race_TabaxiIconic, L"Tabaxi Iconic"},
+    {Race_TabaxiTrailblazer, L"Tabaxi Trailblazer"},
     {Race_All, L"All"},
     {RaceType(0), NULL}
 };

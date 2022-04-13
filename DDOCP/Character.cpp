@@ -2135,16 +2135,6 @@ std::vector<TrainableFeatTypes> Character::TrainableFeatTypeAtLevel(
             trainable.push_back(TFT_Standard);
         }
     }
-    //if (Race() == Race_Tabaxi
-    //        && level == 0)
-    //{
-    //    // Tabaxi's get ???
-    //}
-    //if (Race() == Race_TabaxiIconic
-    //        && level == 0)
-    //{
-    //    // Tabaxi's get ???
-    //}
     if (Race() == Race_Kobold
             && level == 0)
     {
