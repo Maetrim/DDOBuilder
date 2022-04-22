@@ -427,7 +427,7 @@ void CSkillSpendDialog::OnLeftClickSkillsList(NMHDR*, LRESULT* pResult)
     if (pt.x >= 1 && pt.x < 1 + MAX_CLASS_LEVEL)
     {
         // they have left clicked on a class level item
-        if (pt.y >= 2 && pt.y < 2 + Skill_Count)
+        if (pt.y >= 2 && pt.y < 1 + Skill_Count)
         {
             SkillType skill = (SkillType)(pt.y - 1);
             int level = pt.x - 1;
@@ -462,7 +462,7 @@ void CSkillSpendDialog::OnRightClickSkillsList(NMHDR*, LRESULT* pResult)
     if (pt.x >= 1 && pt.x < 1 + MAX_CLASS_LEVEL)
     {
         // they have right clicked on a class level item
-        if (pt.y >= 2 && pt.y < 2 + Skill_Count)
+        if (pt.y >= 2 && pt.y < 1 + Skill_Count)
         {
             SkillType skill = (SkillType)(pt.y - 1);
             int level = pt.x - 1;

@@ -197,7 +197,7 @@
       <EnhancementTreeItem>
          <Name>Tabaxi: Cat Scratch</Name>
          <InternalName>TabCatScratch</InternalName>
-         <Description>Active: +2[W] Single target Melee Attack.
+         <Description>Active: +2[W] Melee Attack: Strike all nearby foes in front of you.
 6 second cooldown.</Description>
          <Icon>TabCatScratch</Icon>
          <XPosition>0</XPosition>
@@ -216,7 +216,7 @@
          <Icon>TabSharpClaws</Icon>
          <XPosition>1</XPosition>
          <YPosition>1</YPosition>
-         <CostPerRank size="3">1 1 1</CostPerRank>
+         <CostPerRank size="1">1</CostPerRank>
          <Ranks>3</Ranks>
          <MinSpent>1</MinSpent>
          <Requirements/>
@@ -240,7 +240,7 @@
          <Icon>TabAcrobatic</Icon>
          <XPosition>2</XPosition>
          <YPosition>1</YPosition>
-         <CostPerRank size="3">1 1 1</CostPerRank>
+         <CostPerRank size="1">1</CostPerRank>
          <Ranks>3</Ranks>
          <MinSpent>1</MinSpent>
          <Requirements/>
@@ -318,7 +318,7 @@ movement rate by 50%. Some creatures are immune to the Hamstring effect.</Descri
          <Icon>TabSurpriseClaws</Icon>
          <XPosition>1</XPosition>
          <YPosition>2</YPosition>
-         <CostPerRank size="3">1 1 1</CostPerRank>
+         <CostPerRank size="1">1</CostPerRank>
          <Ranks>3</Ranks>
          <MinSpent>5</MinSpent>
          <Requirements/>
@@ -376,7 +376,7 @@ Rank 3: You gain +1 to Reflex Saves.</Description>
          <Icon>TabSlipOutOfDanger</Icon>
          <XPosition>4</XPosition>
          <YPosition>2</YPosition>
-         <CostPerRank size="3">1 1 1</CostPerRank>
+         <CostPerRank size="1">1</CostPerRank>
          <Ranks>3</Ranks>
          <MinSpent>5</MinSpent>
          <Requirements/>
@@ -395,11 +395,28 @@ Rank 3: You gain +1 to Reflex Saves.</Description>
       </EnhancementTreeItem>
       <!--Tier 3 Enhancements-->
       <EnhancementTreeItem>
+         <Name>Tabaxi: Corner</Name>
+         <InternalName>TabCorner</InternalName>
+         <Description>+[1/2/3]% Dodge Bypass</Description>
+         <Icon>TabCorner</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements/>
+         <Effect>
+            <Type>DodgeBypass</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
          <Name>Tabaxi: Sharp Claws II</Name>
          <InternalName>TabSharpClawsII</InternalName>
          <Description>+[1/2/3] to Melee Damage.</Description>
          <Icon>TabSharpClawsII</Icon>
-         <XPosition>0</XPosition>
+         <XPosition>1</XPosition>
          <YPosition>3</YPosition>
          <CostPerRank size="1">1</CostPerRank>
          <Ranks>3</Ranks>
@@ -419,35 +436,25 @@ Rank 3: You gain +1 to Reflex Saves.</Description>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Tabaxi: Corner</Name>
-         <InternalName>TabCorner</InternalName>
-         <Description>+[1/2/3]% Dodge Bypass</Description>
-         <Icon>TabCorner</Icon>
-         <XPosition>1</XPosition>
-         <YPosition>3</YPosition>
-         <CostPerRank size="3">1 1 1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>10</MinSpent>
-         <Requirements/>
-         <Effect>
-            <Type>DodgeBypass</Type>
-            <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">1 2 3</AmountVector>
-         </Effect>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
-         <Name>Tabaxi: Natural Climber</Name>
-         <InternalName>TabNaturalClimber</InternalName>
-         <Description>+50% Movement Speed while climbing Ladders and other climbable surfaces (such as Vines).
-(Known Issue: This ability is being cut for technical reasons, but has not been
-replaced yet in this build. We are open to suggestions on its replacement).</Description>
-         <Icon>TabNaturalClimber</Icon>
+         <Name>Tabaxi: Stealthy</Name>
+         <InternalName>TabStealthy</InternalName>
+         <Description>+[1/2/3] Hide and Move Silently. +[20/35/50]% Enhancement Bonus to Movement
+Speed while Sneaking. If you have Ki, while centered and sneaking, your passive
+Ki regeneration is increased by 1.</Description>
+         <Icon>TabStealthy</Icon>
          <XPosition>2</XPosition>
          <YPosition>3</YPosition>
          <CostPerRank size="1">1</CostPerRank>
          <Ranks>1</Ranks>
          <MinSpent>10</MinSpent>
          <Requirements/>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Skill>Hide</Skill>
+            <Skill>Move Silently</Skill>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Tabaxi: Focused Agility</Name>
@@ -461,6 +468,7 @@ and lasts for 9 seconds.</Description>
          <Ranks>1</Ranks>
          <MinSpent>10</MinSpent>
          <Requirements/>
+         <ArrowUp/>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Tabaxi: Sneaky Strikes II</Name>
@@ -555,37 +563,40 @@ and scales with Melee Power.</Description>
          </Requirements>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Tabaxi: Focused Agility II</Name>
-         <InternalName>TabFocusedAgilityII</InternalName>
-         <Description>Your Feline Agility now only requires you to stand still for 3 seconds,
-and lasts for 9 seconds.</Description>
-         <Icon>TabFocusedAgilityII</Icon>
-         <XPosition>2</XPosition>
-         <YPosition>4</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>1</Ranks>
-         <MinSpent>15</MinSpent>
-         <Requirements/>
-      </EnhancementTreeItem>
-      <EnhancementTreeItem>
          <Name>Tabaxi: Nine Lives</Name>
          <InternalName>TabNineLives</InternalName>
          <Description>You gain Rogue's Defensive Roll feat.
 While below 20% HP, there's a chance equal to your Reflex save that attacks do
 half damage and have their effects negated.</Description>
          <Icon>TabNineLives</Icon>
-         <XPosition>3</XPosition>
+         <XPosition>2</XPosition>
          <YPosition>4</YPosition>
          <CostPerRank size="1">1</CostPerRank>
          <Ranks>1</Ranks>
          <MinSpent>15</MinSpent>
-         <ArrowRight/>
          <Requirements/>
          <Effect>
             <Type>GrantFeat</Type>
             <Bonus>Enhancement</Bonus>
             <Feat>Defensive Roll</Feat>
          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Tabaxi: Fast Sprinter</Name>
+         <InternalName>TabFastSprinter</InternalName>
+         <Description>Your Feline Agility now grants 50% Action Boost Bonus to Movement Speed
+and lasts for 18 seconds.</Description>
+         <Icon>TabFastSprinter</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>15</MinSpent>
+         <Requirements>
+             <Requirement>
+                 <Enhancement>TabFocusedAgility</Enhancement>
+             </Requirement>
+         </Requirements>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Tabaxi: Lucky Cat</Name>
@@ -597,11 +608,7 @@ half damage and have their effects negated.</Description>
          <CostPerRank size="1">1</CostPerRank>
          <Ranks>1</Ranks>
          <MinSpent>15</MinSpent>
-         <Requirements>
-            <Requirement>
-               <Enhancement>TabNineLives</Enhancement>
-            </Requirement>
-         </Requirements>
+         <Requirements/>
          <Effect>
             <Type>GrantFeat</Type>
             <Bonus>Enhancement</Bonus>
