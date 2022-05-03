@@ -14,7 +14,10 @@
       <EnhancementTreeItem>
          <Name>Tabaxi: Nimble Cat I</Name>
          <InternalName>TabCore1</InternalName>
-         <Description>+1% Dodge, +1 Maximum Dexterity Bonus in Light Armor</Description>
+         <Description>+1% Dodge, +1 Maximum Dexterity Bonus in Light Armor.
+You gain Dexterity to Hit with Dagger, Handaxe, Handwraps, Kama, Light Hammer,
+Light Mace, Light Pick, Rapier, Short Sword, Sickle, or while Unarmed or in a
+Druid animal form.</Description>
          <Icon>TabNimbleCat</Icon>
          <XPosition>0</XPosition>
          <YPosition>0</YPosition>
@@ -36,6 +39,21 @@
             <Bonus>Enhancement</Bonus>
             <Amount>1</Amount>
             <Stance>Light Armor</Stance>
+         </Effect>
+         <Effect>
+            <Type>WeaponAttackAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Ability>Dexterity</Ability>
+            <Weapon>Dagger</Weapon>
+            <Weapon>Hand Axe</Weapon>
+            <Weapon>Handwraps</Weapon>
+            <Weapon>Kama</Weapon>
+            <Weapon>Light Hammer</Weapon>
+            <Weapon>Light Mace</Weapon>
+            <Weapon>Light Pick</Weapon>
+            <Weapon>Rapier</Weapon>
+            <Weapon>Shortsword</Weapon>
+            <Weapon>Sickle</Weapon>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -351,7 +369,7 @@ Hit Confirmation, +2 Critical Hit Damage, and +25% Armor Piercing for 20 seconds
          <Requirements/>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Tabaxi: Honed reflexes</Name>
+         <Name>Tabaxi: Deflect Arrows</Name>
          <InternalName>TabHonedReflexes</InternalName>
          <Description>You gain the benefits of the Deflect Arrows feat, knocking aside one incoming
 projectile that would have struck you every 6 seconds.</Description>
@@ -436,11 +454,11 @@ Rank 3: You gain +1 to Reflex Saves.</Description>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Tabaxi: Stealthy</Name>
-         <InternalName>TabStealthy</InternalName>
-         <Description>+[1/2/3] Hide and Move Silently. +[20/35/50]% Enhancement Bonus to Movement
-Speed while Sneaking. If you have Ki, while centered and sneaking, your passive
-Ki regeneration is increased by 1.</Description>
+         <Name>Tabaxi: Improved Nimble Cat</Name>
+         <InternalName>TabImprovedNimbleCat</InternalName>
+         <Description>You gain Dexterity to Damage with Dagger, Handaxe, Handwraps, Kama, Light Hammer,
+Light Mace, Light Pick, Rapier, Short Sword, Sickle, or while Unarmed or in a
+Druid animal form.</Description>
          <Icon>TabStealthy</Icon>
          <XPosition>2</XPosition>
          <YPosition>3</YPosition>
@@ -449,11 +467,19 @@ Ki regeneration is increased by 1.</Description>
          <MinSpent>10</MinSpent>
          <Requirements/>
          <Effect>
-            <Type>SkillBonus</Type>
+            <Type>WeaponDamageAbility</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">1 2 3</AmountVector>
-            <Skill>Hide</Skill>
-            <Skill>Move Silently</Skill>
+            <Ability>Dexterity</Ability>
+            <Weapon>Dagger</Weapon>
+            <Weapon>Hand Axe</Weapon>
+            <Weapon>Handwraps</Weapon>
+            <Weapon>Kama</Weapon>
+            <Weapon>Light Hammer</Weapon>
+            <Weapon>Light Mace</Weapon>
+            <Weapon>Light Pick</Weapon>
+            <Weapon>Rapier</Weapon>
+            <Weapon>Shortsword</Weapon>
+            <Weapon>Sickle</Weapon>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -548,7 +574,7 @@ and lasts for 9 seconds.</Description>
          <Name>Tabaxi: Deep Scratches</Name>
          <InternalName>TabDeepScratches</InternalName>
          <Description>Your Cat Scratch now deals Bane damage to targets it hits that are vulnerable
-to Bleed. This damage is equal to 1d8 damage +1 damage per Character Level,
+to Bleed. This damage is equal to 1d8 damage 1d4 damage per Character Level,
 and scales with Melee Power.</Description>
          <Icon>TabDeepScratches</Icon>
          <XPosition>1</XPosition>
@@ -584,7 +610,7 @@ half damage and have their effects negated.</Description>
       <EnhancementTreeItem>
          <Name>Tabaxi: Fast Sprinter</Name>
          <InternalName>TabFastSprinter</InternalName>
-         <Description>Your Feline Agility now grants 50% Action Boost Bonus to Movement Speed
+         <Description>Your Feline Agility now grants 30% Action Boost Bonus to Movement Speed
 and lasts for 18 seconds.</Description>
          <Icon>TabFastSprinter</Icon>
          <XPosition>3</XPosition>

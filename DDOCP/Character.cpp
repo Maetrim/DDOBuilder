@@ -6482,7 +6482,8 @@ void Character::U51Destiny_ResetEnhancementTree(std::string treeName)
         // clear all the enhancements trained by revoking them until none left
         while (pItem->Enhancements().size() > 0)
         {
-            U51Destiny_RevokeEnhancement(treeName, pItem->Enhancements().back().EnhancementName());
+            std::string itemName = pItem->Enhancements().back().EnhancementName();
+            U51Destiny_RevokeEnhancement(treeName, itemName);
             pItem = U51Destiny_FindTree(treeName);
         }
         // now remove the tree entry from the list (not present if no spend in tree)

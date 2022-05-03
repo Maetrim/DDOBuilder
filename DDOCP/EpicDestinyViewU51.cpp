@@ -638,6 +638,8 @@ void CEpicDestinyViewU51::OnClaimTree(UINT nID)
     bool trained = (m_pCharacter->GetSpecialFeatTrainedCount((LPCTSTR)name) > 0);
     if (trained)
     {
+        // ensure that any trained destiny actions are revoked
+        m_pCharacter->U51Destiny_ResetEnhancementTree((LPCTSTR)name);
         m_pCharacter->RevokeSpecialFeat((LPCTSTR)name, TFT_SpecialFeat);
     }
     else

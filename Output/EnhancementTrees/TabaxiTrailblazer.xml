@@ -15,7 +15,10 @@
       <EnhancementTreeItem>
          <Name>Tabaxi Trailblazer: Instinct I</Name>
          <InternalName>TabTrailCore1</InternalName>
-         <Description>+1% Dodge, +2% Dodge Bypass</Description>
+         <Description>+1% Dodge, +1 Maximum Dexterity Bonus in Light Armor.
+You gain Dexterity to Hit with Dagger, Handaxe, Handwraps, Kama, Light Hammer,
+Light Mace, Light Pick, Rapier, Short Sword, Sickle, or while Unarmed or in a
+Druid animal form.</Description>
          <Icon>TabInstinct</Icon>
          <XPosition>0</XPosition>
          <YPosition>0</YPosition>
@@ -33,9 +36,25 @@
             <Amount>1</Amount>
          </Effect>
          <Effect>
-            <Type>DodgeBypass</Type>
+            <Type>MaxDexBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <Amount>2</Amount>
+            <Amount>1</Amount>
+            <Stance>Light Armor</Stance>
+         </Effect>
+         <Effect>
+            <Type>WeaponAttackAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <Ability>Dexterity</Ability>
+            <Weapon>Dagger</Weapon>
+            <Weapon>Hand Axe</Weapon>
+            <Weapon>Handwraps</Weapon>
+            <Weapon>Kama</Weapon>
+            <Weapon>Light Hammer</Weapon>
+            <Weapon>Light Mace</Weapon>
+            <Weapon>Light Pick</Weapon>
+            <Weapon>Rapier</Weapon>
+            <Weapon>Shortsword</Weapon>
+            <Weapon>Sickle</Weapon>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -303,30 +322,17 @@
       </EnhancementTreeItem>
       <!--Tier 2 Enhancements-->
       <EnhancementTreeItem>
-         <Name>Tabaxi Trailblazer: Surprise Claws</Name>
-         <InternalName>TabTrailSurpriseClaws</InternalName>
-         <Description>+[1/2/3] to Attack while Flanking.</Description>
-         <Icon>TabSurpriseClaws</Icon>
+         <Name>Tabaxi Trailblazer: Staff Deflection</Name>
+         <InternalName>TabTrailStaffDeflection</InternalName>
+         <Description>Staff Deflection: While holding a Quarterstaff, when Deflect Arrows triggers
+you gain a +10% Action Boost bonus to Doublestrike for 6 seconds.</Description>
+         <Icon>TabStaffDeflection</Icon>
          <XPosition>0</XPosition>
          <YPosition>2</YPosition>
          <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
+         <Ranks>1</Ranks>
          <MinSpent>5</MinSpent>
          <Requirements/>
-         <Effect>
-            <Type>AttackBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">1 2 3</AmountVector>
-            <Stance>Flanking</Stance>
-            <Weapon>All</Weapon>
-         </Effect>
-         <Effect>
-            <Type>CriticalAttackBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">1 2 3</AmountVector>
-            <Stance>Flanking</Stance>
-            <Weapon>All</Weapon>
-         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Tabaxi Trailblazer: Wayfinder's Weapons</Name>
@@ -434,36 +440,32 @@ Rank 3: You gain +1 to Reflex Saves.</Description>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Tabaxi Trailblazer: Stealthy</Name>
+         <Name>Tabaxi Trailblazer: Improved Instincts</Name>
          <InternalName>TabTrailStealthy</InternalName>
-         <Description>+[1/2/3] Hide and Move Silently. +[20/35/50]% movement speed while sneaking.
-Rank 3: While centered and Sneaking, your passive ki regeneration is increased by 1.</Description>
+         <Description>You gain Dexterity to Damage with Dagger, Handaxe, Handwraps, Kama, Light Hammer,
+Light Mace, Light Pick, Rapier, Short Sword, Sickle, or while Unarmed or in a
+Druid animal form.</Description>
          <Icon>TabStealthy</Icon>
          <XPosition>2</XPosition>
          <YPosition>3</YPosition>
          <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
+         <Ranks>1</Ranks>
          <MinSpent>10</MinSpent>
          <Requirements/>
          <Effect>
-            <Type>SkillBonus</Type>
+            <Type>WeaponDamageAbility</Type>
             <Bonus>Enhancement</Bonus>
-            <Skill>Hide</Skill>
-            <Skill>Move Silently</Skill>
-            <AmountVector size="3">1 2 3</AmountVector>
-         </Effect>
-         <Effect>
-            <Type>MovementSpeed</Type>
-            <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">20 35 50</AmountVector>
-            <Stance>Sneaking</Stance>
-         </Effect>
-         <Effect>
-            <Type>KiPassive</Type>
-            <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">0 0 1</AmountVector>
-            <Stance>Sneaking</Stance>
-            <Stance>Centered</Stance>
+            <Ability>Dexterity</Ability>
+            <Weapon>Dagger</Weapon>
+            <Weapon>Hand Axe</Weapon>
+            <Weapon>Handwraps</Weapon>
+            <Weapon>Kama</Weapon>
+            <Weapon>Light Hammer</Weapon>
+            <Weapon>Light Mace</Weapon>
+            <Weapon>Light Pick</Weapon>
+            <Weapon>Rapier</Weapon>
+            <Weapon>Shortsword</Weapon>
+            <Weapon>Sickle</Weapon>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -502,7 +504,7 @@ and lasts for 9 seconds.</Description>
          <InternalName>TabTrailWideSweep</InternalName>
          <Name>Tabaxi Trailblazer: Wide Sweep</Name>
          <Description>Quarterstaff Melee Attack: Swing wide, dealing +[1/3/5][W] to all nearby enemies.
-Enemies who are hit must make a Balance check (DC 14 + DEX Mod + Trip bonuses)
+Enemies who are hit must make a Balance check (DC 14 + Max(DEX,WIS) Mod + Trip bonuses)
 or be Tripped for 20. Shares cooldown with Great Cleave.</Description>
          <Icon>TabTrailWideSweep</Icon>
          <XPosition>0</XPosition>
@@ -514,11 +516,12 @@ or be Tripped for 20. Shares cooldown with Great Cleave.</Description>
          <Clickie/>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <InternalName>TabTrailStaffDeflection</InternalName>
-         <Name>Tabaxi Trailblazer: Staff Deflection</Name>
-         <Description>While holding a Quarterstaff, when Deflect Arrows triggers you gain a +10% Action
-Boost bonus to Doublestrike for 6 seconds.</Description>
-         <Icon>TabTrailStaffDeflection</Icon>
+         <InternalName>TabTrailSpringingPounce</InternalName>
+         <Name>Tabaxi Trailblazer: Springing Pounce</Name>
+         <Description>You gain the Spring Attack feat. When you use it while holding a Quarterstaff,
+you gain Feline Agility and deal bludgeoning damage equal to your Jump score to
+all enemies Spring Attack hits. This damage scales with 200% Melee Power.</Description>
+         <Icon>TabTrailSpringingPounce</Icon>
          <XPosition>1</XPosition>
          <YPosition>4</YPosition>
          <CostPerRank size="1">1</CostPerRank>
@@ -527,9 +530,8 @@ Boost bonus to Doublestrike for 6 seconds.</Description>
          <Requirements/>
          <Effect>
             <Bonus>Enhancement</Bonus>
-            <Type>Doublestrike</Type>
-            <Amount>10</Amount>
-            <Stance>Deflect Arrows</Stance>
+            <Type>GrantFeat</Type>
+            <Feat>Spring Attack</Feat>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -539,7 +541,7 @@ Boost bonus to Doublestrike for 6 seconds.</Description>
          <Icon>TabTrailCatsEye</Icon>
          <XPosition>2</XPosition>
          <YPosition>4</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
+         <CostPerRank size="1">1</CostPerRank>
          <Ranks>1</Ranks>
          <MinSpent>15</MinSpent>
          <Requirements/>
@@ -553,7 +555,7 @@ Boost bonus to Doublestrike for 6 seconds.</Description>
       <EnhancementTreeItem>
          <InternalName>TabTrailFastSprinter</InternalName>
          <Name>Tabaxi Trailblazer: Fast Sprinter</Name>
-         <Description>Your Feline Agility now grants 50% Action Boost Bonus to Movement Speed and lasts for 18 seconds.</Description>
+         <Description>Your Feline Agility now grants 30% Action Boost Bonus to Movement Speed and lasts for 18 seconds.</Description>
          <Icon>TabTrailFastSprinter</Icon>
          <XPosition>3</XPosition>
          <YPosition>4</YPosition>

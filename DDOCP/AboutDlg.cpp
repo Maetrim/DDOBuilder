@@ -71,6 +71,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
             "cmecu, "
             "crcabanillas, "
             "Crolug, "
+            "Cromfrein, "
             "cswob, "
             "Cybree, "
             "DaWiner, "
