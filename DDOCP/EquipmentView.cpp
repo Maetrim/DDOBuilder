@@ -824,7 +824,7 @@ void CEquipmentView::AddStance(const Stance & stance)
         if (stance.HasSetBonus())
         {
             // now create the new auto stance control
-            m_setsStancebuttons.push_back(new CStanceButton(m_pCharacter, stance));
+            m_setsStancebuttons.push_back(new CStanceButton(m_pCharacter, stance, true));
             // create a parent window that is c_windowSize by c_windowSize pixels in size
             m_setsStancebuttons.back()->Create(
                     "",

@@ -21,7 +21,10 @@ BEGIN_MESSAGE_MAP(CStanceButton, CStatic)
 END_MESSAGE_MAP()
 #pragma warning(pop)
 
-CStanceButton::CStanceButton(Character * charData, const Stance & stance) :
+CStanceButton::CStanceButton(
+        Character * charData,
+        const Stance & stance,
+        bool bAugmentImagesFirst) :
     m_pCharacter(charData),
     m_stance(stance),
     m_bSelected(false),
@@ -30,7 +33,22 @@ CStanceButton::CStanceButton(Character * charData, const Stance & stance) :
 {
     //{{AFX_DATA_INIT(CStanceButton)
     //}}AFX_DATA_INIT
-    if (S_OK != LoadImageFile(IT_enhancement, stance.Icon(), &m_image, false))
+    if (bAugmentImagesFirst)
+    {
+        if (S_OK != LoadImageFile(IT_augment, stance.Icon(), &m_image, false))
+        {
+            // see if its a feat icon we need to use
+            if (S_OK != LoadImageFile(IT_feat, stance.Icon(), &m_image, false))
+            {
+                // finally check if its a UI (racial) icon we need to use
+                if (S_OK != LoadImageFile(IT_ui, stance.Icon(), &m_image, false))
+                {
+                    LoadImageFile(IT_enhancement, stance.Icon(), &m_image);
+                }
+            }
+        }
+    }
+    else if (S_OK != LoadImageFile(IT_enhancement, stance.Icon(), &m_image, false))
     {
         // see if its a feat icon we need to use
         if (S_OK != LoadImageFile(IT_feat, stance.Icon(), &m_image, false))

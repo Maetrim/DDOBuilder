@@ -62,6 +62,9 @@ class CDDOCPView :
         afx_msg void OnSelendokComboAbilityLevel20();
         afx_msg void OnSelendokComboAbilityLevel24();
         afx_msg void OnSelendokComboAbilityLevel28();
+        afx_msg void OnSelendokComboAbilityLevel32();
+        afx_msg void OnSelendokComboAbilityLevel36();
+        afx_msg void OnSelendokComboAbilityLevel40();
         afx_msg void OnButtonGuildBuffs();
         afx_msg void OnKillFocusGuildLevel();
         afx_msg void OnSize(UINT nType, int cx, int cy);
@@ -144,6 +147,9 @@ class CDDOCPView :
         CComboBox m_comboAILevel20;
         CComboBox m_comboAILevel24;
         CComboBox m_comboAILevel28;
+        CComboBox m_comboAILevel32;
+        CComboBox m_comboAILevel36;
+        CComboBox m_comboAILevel40;
 
         bool m_bIgnoreFocus;
         bool m_bLamanniaPreview;

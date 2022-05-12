@@ -61,6 +61,9 @@ BEGIN_MESSAGE_MAP(CDDOCPView, CFormView)
     ON_CBN_SELENDOK(IDC_COMBO_LEVEL20_ABILITY, OnSelendokComboAbilityLevel20)
     ON_CBN_SELENDOK(IDC_COMBO_LEVEL24_ABILITY, OnSelendokComboAbilityLevel24)
     ON_CBN_SELENDOK(IDC_COMBO_LEVEL28_ABILITY, OnSelendokComboAbilityLevel28)
+    ON_CBN_SELENDOK(IDC_COMBO_LEVEL32_ABILITY, OnSelendokComboAbilityLevel32)
+    ON_CBN_SELENDOK(IDC_COMBO_LEVEL36_ABILITY, OnSelendokComboAbilityLevel36)
+    ON_CBN_SELENDOK(IDC_COMBO_LEVEL40_ABILITY, OnSelendokComboAbilityLevel40)
     ON_WM_SIZE()
     ON_WM_CTLCOLOR()
     ON_BN_CLICKED(IDC_CHECK_GUILD_BUFFS, OnButtonGuildBuffs)
@@ -144,6 +147,9 @@ void CDDOCPView::DoDataExchange(CDataExchange* pDX)
     DDX_Control(pDX, IDC_COMBO_LEVEL20_ABILITY, m_comboAILevel20);
     DDX_Control(pDX, IDC_COMBO_LEVEL24_ABILITY, m_comboAILevel24);
     DDX_Control(pDX, IDC_COMBO_LEVEL28_ABILITY, m_comboAILevel28);
+    DDX_Control(pDX, IDC_COMBO_LEVEL32_ABILITY, m_comboAILevel32);
+    DDX_Control(pDX, IDC_COMBO_LEVEL36_ABILITY, m_comboAILevel36);
+    DDX_Control(pDX, IDC_COMBO_LEVEL40_ABILITY, m_comboAILevel40);
 }
 
 void CDDOCPView::OnInitialUpdate()
@@ -386,7 +392,23 @@ void CDDOCPView::PopulateComboboxes()
         m_comboAILevel24.SetItemData(i, ai);
         i = m_comboAILevel28.AddString(text);
         m_comboAILevel28.SetItemData(i, ai);
+        i = m_comboAILevel32.AddString(text);
+        m_comboAILevel32.SetItemData(i, ai);
+        i = m_comboAILevel36.AddString(text);
+        m_comboAILevel36.SetItemData(i, ai);
+        i = m_comboAILevel40.AddString(text);
+        m_comboAILevel40.SetItemData(i, ai);
     }
+    m_comboAILevel4.EnableWindow(MAX_LEVEL >= 4);
+    m_comboAILevel8.EnableWindow(MAX_LEVEL >= 8);
+    m_comboAILevel12.EnableWindow(MAX_LEVEL >= 12);
+    m_comboAILevel16.EnableWindow(MAX_LEVEL >= 16);
+    m_comboAILevel20.EnableWindow(MAX_LEVEL >= 20);
+    m_comboAILevel24.EnableWindow(MAX_LEVEL >= 24);
+    m_comboAILevel28.EnableWindow(MAX_LEVEL >= 28);
+    m_comboAILevel32.EnableWindow(MAX_LEVEL >= 32);
+    m_comboAILevel36.EnableWindow(MAX_LEVEL >= 36);
+    m_comboAILevel40.EnableWindow(MAX_LEVEL >= 40);
 }
 
 void CDDOCPView::RestoreControls()
@@ -432,6 +454,9 @@ void CDDOCPView::RestoreControls()
     SelectComboboxEntry(m_pCharacter->Level20(), &m_comboAILevel20);
     SelectComboboxEntry(m_pCharacter->Level24(), &m_comboAILevel24);
     SelectComboboxEntry(m_pCharacter->Level28(), &m_comboAILevel28);
+    SelectComboboxEntry(m_pCharacter->Level32(), &m_comboAILevel32);
+    SelectComboboxEntry(m_pCharacter->Level36(), &m_comboAILevel36);
+    SelectComboboxEntry(m_pCharacter->Level40(), &m_comboAILevel40);
 
     // guild level
     CString level;
@@ -758,6 +783,9 @@ void CDDOCPView::OnSelendokComboAbilityLevel4()
         m_pCharacter->SetAbilityLevelUp(20, value);
         m_pCharacter->SetAbilityLevelUp(24, value);
         m_pCharacter->SetAbilityLevelUp(28, value);
+        m_pCharacter->SetAbilityLevelUp(32, value);
+        m_pCharacter->SetAbilityLevelUp(36, value);
+        m_pCharacter->SetAbilityLevelUp(40, value);
         // keep UI up to date also
         SelectComboboxEntry(m_pCharacter->Level4(), &m_comboAILevel4);
         SelectComboboxEntry(m_pCharacter->Level8(), &m_comboAILevel8);
@@ -766,6 +794,9 @@ void CDDOCPView::OnSelendokComboAbilityLevel4()
         SelectComboboxEntry(m_pCharacter->Level20(), &m_comboAILevel20);
         SelectComboboxEntry(m_pCharacter->Level24(), &m_comboAILevel24);
         SelectComboboxEntry(m_pCharacter->Level28(), &m_comboAILevel28);
+        SelectComboboxEntry(m_pCharacter->Level32(), &m_comboAILevel32);
+        SelectComboboxEntry(m_pCharacter->Level36(), &m_comboAILevel36);
+        SelectComboboxEntry(m_pCharacter->Level40(), &m_comboAILevel40);
     }
     else
     {
@@ -808,6 +839,24 @@ void CDDOCPView::OnSelendokComboAbilityLevel28()
 {
     AbilityType value = (AbilityType)GetComboboxSelection(&m_comboAILevel28);
     m_pCharacter->SetAbilityLevelUp(28, value);
+}
+
+void CDDOCPView::OnSelendokComboAbilityLevel32()
+{
+    AbilityType value = (AbilityType)GetComboboxSelection(&m_comboAILevel32);
+    m_pCharacter->SetAbilityLevelUp(32, value);
+}
+
+void CDDOCPView::OnSelendokComboAbilityLevel36()
+{
+    AbilityType value = (AbilityType)GetComboboxSelection(&m_comboAILevel36);
+    m_pCharacter->SetAbilityLevelUp(36, value);
+}
+
+void CDDOCPView::OnSelendokComboAbilityLevel40()
+{
+    AbilityType value = (AbilityType)GetComboboxSelection(&m_comboAILevel40);
+    m_pCharacter->SetAbilityLevelUp(40, value);
 }
 
 void CDDOCPView::UpdateBuildDescription()
@@ -1021,4 +1070,3 @@ void CDDOCPView::OnUpdateLamanniaPreview(CCmdUI * pCmdUi)
     pCmdUi->Enable(FALSE);              // no Lamannia preview available
     pCmdUi->SetCheck(m_bLamanniaPreview);
 }
-

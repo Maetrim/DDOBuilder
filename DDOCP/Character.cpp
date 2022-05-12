@@ -73,10 +73,16 @@ Character::Character() :
     for (size_t index = count; index < MAX_LEVEL; ++index)
     {
         LevelTraining lt;
-        if (index >= MAX_CLASS_LEVEL)
+        if (index >= MAX_CLASS_LEVELS && index < MAX_CLASS_LEVELS + MAX_EPIC_LEVELS)
         {
-            // all levels above level MAX_CLASS_LEVEL are epic levels by default
+            // all levels above level MAX_CLASS_LEVELS are epic levels by default
             lt.Set_Class(Class_Epic);
+        }
+        else if (index >= MAX_CLASS_LEVELS + MAX_EPIC_LEVELS)
+        {
+            // all levels above level MAX_CLASS_LEVELS + MAX_EPIC_LEVELS are legendary
+            // levels by default
+            lt.Set_Class(Class_Legendary);
         }
         m_Levels.push_back(lt);
     }
@@ -105,10 +111,16 @@ Character::Character(CDDOCPDoc * pDoc) :
     for (size_t index = count; index < MAX_LEVEL; ++index)
     {
         LevelTraining lt;
-        if (index >= MAX_CLASS_LEVEL)
+        if (index >= MAX_CLASS_LEVELS && index < MAX_CLASS_LEVELS + MAX_EPIC_LEVELS)
         {
-            // all levels above level MAX_CLASS_LEVEL are epic levels by default
+            // all levels above level MAX_CLASS_LEVELS are epic levels by default
             lt.Set_Class(Class_Epic);
+        }
+        else if (index >= MAX_CLASS_LEVELS + MAX_EPIC_LEVELS)
+        {
+            // all levels above level MAX_CLASS_LEVELS + MAX_EPIC_LEVELS are legendary
+            // levels by default
+            lt.Set_Class(Class_Legendary);
         }
         m_Levels.push_back(lt);
     }
@@ -143,19 +155,29 @@ void Character::EndElement()
     {
         m_Levels.erase(m_Levels.begin());
     }
-    // also clear any epic levels if the number of total levels has been increased
+    // also clear any epic/legendary levels if the number of total levels has been increased
     // these epic levels will be at the start of m_Levels
     while (m_Levels.size() > 0
             && m_Levels.begin()->HasClass()
-            && m_Levels.begin()->Class() == Class_Epic)
+            && (m_Levels.begin()->Class() == Class_Epic
+                || m_Levels.begin()->Class() == Class_Legendary))
     {
         m_Levels.erase(m_Levels.begin());
     }
-    // old files may need to have levels padded by adding Epic class levels
+    // old files may need to have levels padded by adding Epic/Legendary class levels
     while (m_Levels.size() < MAX_LEVEL)
     {
         LevelTraining lt;
-        lt.Set_Class(Class_Epic);
+        if (m_Levels.size() < MAX_CLASS_LEVELS + MAX_EPIC_LEVELS)
+        {
+            // need to add epic
+            lt.Set_Class(Class_Epic);
+        }
+        else
+        {
+            // need to add legendary
+            lt.Set_Class(Class_Legendary);
+        }
         m_Levels.push_back(lt);
     }
 
@@ -163,6 +185,25 @@ void Character::EndElement()
     m_hasGuildLevel = true; // default guild level is 0
     m_hasNotes = true;
     m_hasDestinyTrees = true;
+
+    // if there has been a level cap increase older files may not hav ethe Level32(), Level36() and Level40()
+    // fields. Add these automatically to the same value as that for previous
+    // level up Level28()for 32, 32 for 36 and 36 for 40.
+    if (!m_hasLevel32)
+    {
+        m_hasLevel32 = true;
+        Set_Level32(Level28());
+    }
+    if (!m_hasLevel36)
+    {
+        m_hasLevel36 = true;
+        Set_Level36(Level32());
+    }
+    if (!m_hasLevel40)
+    {
+        m_hasLevel40 = true;
+        Set_Level40(Level36());
+    }
 
     // notes text is not saved as \r\n's replace all text
     m_Notes = ReplaceAll(m_Notes, "\n", "\r\n");
@@ -196,9 +237,11 @@ void Character::EndElement()
     {
         // check that this tree still exists, if not, clear it
         const EnhancementTree& t = FindTree(Tier5Tree());
-        if (t.Name() != Tier5Tree())
+        const SpendInTree* pSpendInTree = FindSpendInTree(Tier5Tree());
+        if (t.Name() != Tier5Tree()
+                || pSpendInTree == NULL)
         {
-            // tree no longer exists, just clear it so a new tier 5 can be selected
+            // tree no longer exists or no points spent in it, just clear it so a new tier 5 can be selected
             Clear_Tier5Tree();
         }
     }
@@ -206,9 +249,11 @@ void Character::EndElement()
     {
         // check that this tree still exists, if not, clear it
         const EnhancementTree& t = FindTree(U51Destiny_Tier5Tree());
-        if (t.Name() != U51Destiny_Tier5Tree())
+        const SpendInTree* pSpendInTree = FindSpendInTree(U51Destiny_Tier5Tree());
+        if (t.Name() != U51Destiny_Tier5Tree()
+                || pSpendInTree == NULL)
         {
-            // tree no longer exists, just clear it so a new tier 5 can be selected
+            // tree no longer exists or no points spent in it, just clear it so a new tier 5 can be selected
             Clear_U51Destiny_Tier5Tree();
         }
     }
@@ -1077,7 +1122,7 @@ void Character::SetClass1(size_t level, ClassType type)
         Set_Class3(Class_Unknown);
     }
     // now set all levels that were classFrom to current Class1
-    for (level = 0; level < MAX_CLASS_LEVEL; ++level)
+    for (level = 0; level < MAX_CLASS_LEVELS; ++level)
     {
         if (!LevelData(level).HasClass()
                 || LevelData(level).Class() == classFrom
@@ -1120,7 +1165,7 @@ void Character::SetClass2(size_t level, ClassType type)
         Set_Class3(Class_Unknown);
     }
     // now set all levels that were classFrom to current Class1
-    for (level = 0; level < MAX_CLASS_LEVEL; ++level)
+    for (level = 0; level < MAX_CLASS_LEVELS; ++level)
     {
         if (!LevelData(level).HasClass()
                 || LevelData(level).Class() == classFrom
@@ -1157,7 +1202,7 @@ void Character::SetClass3(size_t level, ClassType type)
     }
     Set_Class3(type);
     // now set all levels that were classFrom to current Class1
-    for (level = 0; level < MAX_CLASS_LEVEL; ++level)
+    for (level = 0; level < MAX_CLASS_LEVELS; ++level)
     {
         if (!LevelData(level).HasClass()
                 || LevelData(level).Class() == classFrom
@@ -1185,7 +1230,7 @@ void Character::SetClass(size_t level, ClassType type)
     ClassType classFrom = Class_Unknown;
     size_t oldCasterLevelTo = CasterLevel(this, type);
     size_t oldCasterLevelFrom = 0;
-    if (level < MAX_CLASS_LEVEL)    // 0 based
+    if (level < MAX_CLASS_LEVELS)    // 0 based
     {
         ASSERT(m_Levels.size() == MAX_LEVEL);
         std::list<LevelTraining>::iterator it = m_Levels.begin();
@@ -1278,7 +1323,7 @@ void Character::SkillsUpdated()
     // once for every skill at level 20
     for (size_t skill = Skill_Unknown + 1; skill < Skill_Count; ++skill)
     {
-        NotifySkillSpendChanged(MAX_CLASS_LEVEL, (SkillType)skill);
+        NotifySkillSpendChanged(MAX_CLASS_LEVELS, (SkillType)skill);
     }
     VerifyTrainedFeats();
     m_pDocument->SetModifiedFlag(TRUE);
@@ -1438,6 +1483,18 @@ void Character::SetAbilityLevelUp(
     case 28:
         old = Level28();
         Set_Level28(ability);
+        break;
+    case 32:
+        old = Level32();
+        Set_Level32(ability);
+        break;
+    case 36:
+        old = Level36();
+        Set_Level36(ability);
+        break;
+    case 40:
+        old = Level40();
+        Set_Level40(ability);
         break;
     default:
         ASSERT(FALSE);      // invalid level up level
@@ -1847,7 +1904,7 @@ int Character::LevelUpsAtLevel(
         size_t level) const
 {
     size_t levelUps = 0;
-    // add on level ups on 4,8,12,16,20,24 and 28
+    // add on level ups on 4, 8, 12, 16, 20, 24, 28, 32, 36 and 40
     if (Level4() == ability && level >= 3)
     {
         ++levelUps;
@@ -1873,6 +1930,18 @@ int Character::LevelUpsAtLevel(
         ++levelUps;
     }
     if (Level28() == ability && level >= 27)
+    {
+        ++levelUps;
+    }
+    if (Level32() == ability && level >= 31)
+    {
+        ++levelUps;
+    }
+    if (Level36() == ability && level >= 35)
+    {
+        ++levelUps;
+    }
+    if (Level40() == ability && level >= 39)
     {
         ++levelUps;
     }
@@ -1940,6 +2009,16 @@ int Character::TomeAtLevel(
     case 28:
     case 29:
     case 30:
+    case 31:
+    case 32:
+    case 33:
+    case 34:
+    case 35:
+    case 36:
+    case 37:
+    case 38:
+    case 39:
+    case 40:
         maxAtLevel = 999;   // no upper limit
         break;
 
@@ -1959,6 +2038,9 @@ AbilityType Character::AbilityLevelUp(size_t level) const
         case 20:    return Level20();
         case 24:    return Level24();
         case 28:    return Level28();
+        case 32:    return Level32();
+        case 36:    return Level36();
+        case 40:    return Level40();
     }
     return Ability_Unknown;
 }
@@ -1975,7 +2057,7 @@ double Character::MaxSkillForLevel(
             level);
 
     ++level;        // 1 based for calculation
-    level = min(MAX_CLASS_LEVEL, level); // only valid for heroic levels
+    level = min(MAX_CLASS_LEVELS, level); // only valid for heroic levels
     if (isClassSkill)
     {
         // max skill is 3 + character level
@@ -2107,7 +2189,7 @@ std::vector<size_t> Character::ClassLevels(
         ++currentLevel;
     }
     classLevels[Class_All] = level;
-    classLevels[Class_NotEpic] = MAX_CLASS_LEVEL;
+    classLevels[Class_NotEpic] = MAX_CLASS_LEVELS;
     return classLevels;
 }
 
@@ -2129,7 +2211,7 @@ std::vector<TrainableFeatTypes> Character::TrainableFeatTypeAtLevel(
             || ((level + 1) % 3) == 0)
     {
         // we can train a standard feat selection at this level
-        if (level < MAX_CLASS_LEVEL)
+        if (level < MAX_CLASS_LEVELS)
         {
             // TFT_Epic handles for level 21+
             trainable.push_back(TFT_Standard);
@@ -2337,6 +2419,25 @@ std::vector<TrainableFeatTypes> Character::TrainableFeatTypeAtLevel(
                 || classLevels[Class_Fighter] % 2 == 0)
         {
             trainable.push_back(TFT_FighterBonus);
+        }
+        break;
+
+    case Class_Legendary:
+        // epic level feats can be selected at 33, 36, 39 and 30
+        if (level == 32     // level is 0 based
+                || level == 35
+                || level == 38)
+        {
+            trainable.push_back(TFT_EpicFeat);
+        }
+
+        // epic destiny feats can also be trained at levels 31, 34, 37 and 40
+        if (level == 30     // level is 0 based
+                || level == 33
+                || level == 36
+                || level == 39)
+        {
+            trainable.push_back(TFT_EpicDestinyFeat);
         }
         break;
 
@@ -2651,7 +2752,7 @@ int Character::TotalPointsAvailable(const std::string & treeName, TreeType type)
         aps = 1000;  // no upper limit on reaper APs (i.e. you can buy all)
         break;
     case TT_epicDestiny:
-        aps = (MAX_LEVEL - MAX_CLASS_LEVEL) * 4
+        aps = (MAX_LEVEL - MAX_CLASS_LEVELS) * 4
                 + static_cast<int>(FindBreakdown(Breakdown_DestinyPoints)->Total());
         break;
     }
@@ -2690,7 +2791,7 @@ int Character::AvailableActionPoints(const std::string & treeName, TreeType type
         aps = 1000;  // no upper limit on reaper APs (i.e. you can buy all)
         break;
     case TT_epicDestiny:
-        aps = (MAX_LEVEL - MAX_CLASS_LEVEL) * 4
+        aps = (MAX_LEVEL - MAX_CLASS_LEVELS) * 4
                 + static_cast<int>(FindBreakdown(Breakdown_DestinyPoints)->Total())
                 - m_destinyTreeSpend;
         break;
@@ -4149,7 +4250,7 @@ int Character::AvailableActionPoints() const
 
 int Character::U51Destiny_AvailableDestinyPoints() const
 {
-    return (MAX_LEVEL - MAX_CLASS_LEVEL) * 4
+    return (MAX_LEVEL - MAX_CLASS_LEVELS) * 4
             + static_cast<int>(FindBreakdown(Breakdown_DestinyPoints)->Total())
             - m_destinyTreeSpend;
 }
@@ -5617,7 +5718,7 @@ void Character::AutoTrainSingleSelectionFeats()
     ss << "The following feats at the indicated levels were automatically\n"
             "trained for you as there is only a single selection available.\n"
             "\n";
-    for (size_t level = 0; level < MAX_CLASS_LEVEL; ++level)
+    for (size_t level = 0; level < MAX_CLASS_LEVELS; ++level)
     {
         std::vector<TrainableFeatTypes> tfts = TrainableFeatTypeAtLevel(level);
         for (size_t i = 0; i < tfts.size(); ++i)
@@ -5914,7 +6015,7 @@ void Character::UpdateSkillPoints()
     // update the skill points for all levels
     ASSERT(m_Levels.size() == MAX_LEVEL);
     std::list<LevelTraining>::iterator it = m_Levels.begin();
-    for (size_t level = 0; level < MAX_CLASS_LEVEL; ++level)
+    for (size_t level = 0; level < MAX_CLASS_LEVELS; ++level)
     {
         size_t available = SkillPoints(
                 (*it).HasClass() ? (*it).Class() : Class_Unknown,
@@ -5930,7 +6031,7 @@ void Character::UpdateSkillPoints(size_t level)
 {
     // update the skill points for this specific level
     ASSERT(m_Levels.size() == MAX_LEVEL);
-    if (level < MAX_CLASS_LEVEL)
+    if (level < MAX_CLASS_LEVELS)
     {
         // only have skill points for heroic levels
         std::list<LevelTraining>::iterator it = m_Levels.begin();

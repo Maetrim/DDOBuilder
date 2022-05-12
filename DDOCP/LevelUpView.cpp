@@ -961,7 +961,7 @@ void CLevelUpView::EnableControls()
     {
         const LevelTraining & level = m_pCharacter->LevelData(m_level);
         ClassType type = (level.HasClass() ? level.Class() : Class_Unknown);
-        if (m_level < MAX_CLASS_LEVEL
+        if (m_level < MAX_CLASS_LEVELS
                 && type != Class_Unknown)
         {
             // skill point assign controls can be enabled
@@ -985,7 +985,7 @@ void CLevelUpView::EnableControls()
         m_comboClass[0].EnableWindow(FALSE);
         m_comboClass[1].EnableWindow(FALSE);
         m_comboClass[2].EnableWindow(FALSE);
-        for (size_t i = 0; i < MAX_CLASS_LEVEL; ++i)
+        for (size_t i = 0; i < MAX_CLASS_LEVELS; ++i)
         {
             m_buttonLevels[i].EnableWindow(FALSE);
         }
@@ -1368,8 +1368,8 @@ bool CLevelUpView::CanBuySkill(SkillType skill) const
     // also ensure we do not overspend a skill across all levels
     double maxSkill20 = m_pCharacter->MaxSkillForLevel(
             skill,
-            MAX_CLASS_LEVEL-1);
-    double currentSkill20 = m_pCharacter->SkillAtLevel(skill, MAX_CLASS_LEVEL-1, false);
+            MAX_CLASS_LEVELS-1);
+    double currentSkill20 = m_pCharacter->SkillAtLevel(skill, MAX_CLASS_LEVELS-1, false);
     canBuy = ((maxSkill - currentSkill) > 0.1)      // covers rounding errors due to subtraction of doubles
             && ((available - spent) > 0)            // can go negative if intelligence adjusted down after spend
             && (currentSkill20 < maxSkill20);
@@ -1734,7 +1734,7 @@ void CLevelUpView::OnButtonLevel(UINT nID)
         m_level = level;
         PopulateControls();
     }
-    else if (level < MAX_CLASS_LEVEL) // can only set for heroic levels
+    else if (level < MAX_CLASS_LEVELS) // can only set for heroic levels
     {
         // if they click the same button again, show a pop up menu
         // to allow them to select a class to train

@@ -415,7 +415,8 @@ size_t CFeatsClassControl::DrawLevelLine(
         ClassType ct = m_pCharacter->Class(cc);
         // only drawn if it matches current class selection
         if (m_pCharacter->Class(cc) == classSelection
-                || (classSelection == Class_Epic && cc == 0))
+                || (classSelection == Class_Epic && cc == 0)
+                || (classSelection == Class_Legendary && cc == 0))
         {
             if (bFeatsAvailable)
             {
@@ -978,7 +979,7 @@ void CFeatsClassControl::OnRButtonUp(UINT nFlags, CPoint point)
     ScreenToClient(&point);
     HitCheckItem ht = HitCheck(point);
     if (ht.Level() >= 0
-            && ht.Level() < MAX_CLASS_LEVEL
+            && ht.Level() < MAX_CLASS_LEVELS
             && ht.Type() != HT_None)
     {
         // yes, we can display a pop up menu
@@ -1016,7 +1017,7 @@ void CFeatsClassControl::OnRButtonUp(UINT nFlags, CPoint point)
         {
             bool enable = false;
             size_t targetLevel = ht.Level() + (i - ID_MOVECLASS_DOWN1 + 1);
-            if (targetLevel < MAX_CLASS_LEVEL)
+            if (targetLevel < MAX_CLASS_LEVELS)
             {
                 ClassType c2 = m_pCharacter->LevelData(targetLevel).HasClass()
                         ? m_pCharacter->LevelData(targetLevel).Class()
@@ -1079,37 +1080,40 @@ void CFeatsClassControl::DoClass1()
         ClassType type3 = m_pCharacter->Class3();
         for (size_t ci = Class_Unknown; ci < Class_Count; ++ci)
         {
-            bool bAlignmentRestricted = !m_pCharacter->IsClassAvailable((ClassType)ci);
-            if (ci != type2
-                    && ci != type3
-                    || ci == Class_Unknown)
+            if (ci != Class_Epic && ci != Class_Legendary)
             {
-                // this class is selectable
-                CString text = EnumEntryText(
-                        (ClassType)ci,
-                        classTypeMap);
-                if (bAlignmentRestricted)
+                bool bAlignmentRestricted = !m_pCharacter->IsClassAvailable((ClassType)ci);
+                if (ci != type2
+                        && ci != type3
+                        || ci == Class_Unknown)
                 {
-                    // add text to class name to show why it cannot be selected
-                    text += " (Wrong Alignment)";
-                    menu.AppendMenu(
-                            MF_STRING | MF_DISABLED,
-                            ID_CLASS_UNKNOWN + ci,
-                            text);
-                }
-                else if (ci == type1)
-                {
-                    menu.AppendMenu(
-                            MF_STRING | MF_CHECKED,
-                            ID_CLASS_UNKNOWN + ci,
-                            text);
-                }
-                else
-                {
-                    menu.AppendMenu(
-                            MF_STRING,
-                            ID_CLASS_UNKNOWN + ci,
-                            text);
+                    // this class is selectable
+                    CString text = EnumEntryText(
+                            (ClassType)ci,
+                            classTypeMap);
+                    if (bAlignmentRestricted)
+                    {
+                        // add text to class name to show why it cannot be selected
+                        text += " (Wrong Alignment)";
+                        menu.AppendMenu(
+                                MF_STRING | MF_DISABLED,
+                                ID_CLASS_UNKNOWN + ci,
+                                text);
+                    }
+                    else if (ci == type1)
+                    {
+                        menu.AppendMenu(
+                                MF_STRING | MF_CHECKED,
+                                ID_CLASS_UNKNOWN + ci,
+                                text);
+                    }
+                    else
+                    {
+                        menu.AppendMenu(
+                                MF_STRING,
+                                ID_CLASS_UNKNOWN + ci,
+                                text);
+                    }
                 }
             }
         }
@@ -1143,37 +1147,40 @@ void CFeatsClassControl::DoClass2()
         ClassType type3 = m_pCharacter->Class3();
         for (size_t ci = Class_Unknown; ci < Class_Count; ++ci)
         {
-            bool bAlignmentRestricted = !m_pCharacter->IsClassAvailable((ClassType)ci);
-            if (ci != type1
-                    && ci != type3
-                    || ci == Class_Unknown)
+            if (ci != Class_Epic && ci != Class_Legendary)
             {
-                // this class is selectable
-                CString text = EnumEntryText(
-                        (ClassType)ci,
-                        classTypeMap);
-                if (bAlignmentRestricted)
+                bool bAlignmentRestricted = !m_pCharacter->IsClassAvailable((ClassType)ci);
+                if (ci != type1
+                        && ci != type3
+                        || ci == Class_Unknown)
                 {
-                    // add text to class name to show why it cannot be selected
-                    text += " (Wrong Alignment)";
-                    menu.AppendMenu(
-                            MF_STRING | MF_DISABLED,
-                            ID_CLASS_UNKNOWN + ci,
-                            text);
-                }
-                else if (ci == type1)
-                {
-                    menu.AppendMenu(
-                            MF_STRING | MF_CHECKED,
-                            ID_CLASS_UNKNOWN + ci,
-                            text);
-                }
-                else
-                {
-                    menu.AppendMenu(
-                            MF_STRING,
-                            ID_CLASS_UNKNOWN + ci,
-                            text);
+                    // this class is selectable
+                    CString text = EnumEntryText(
+                            (ClassType)ci,
+                            classTypeMap);
+                    if (bAlignmentRestricted)
+                    {
+                        // add text to class name to show why it cannot be selected
+                        text += " (Wrong Alignment)";
+                        menu.AppendMenu(
+                                MF_STRING | MF_DISABLED,
+                                ID_CLASS_UNKNOWN + ci,
+                                text);
+                    }
+                    else if (ci == type1)
+                    {
+                        menu.AppendMenu(
+                                MF_STRING | MF_CHECKED,
+                                ID_CLASS_UNKNOWN + ci,
+                                text);
+                    }
+                    else
+                    {
+                        menu.AppendMenu(
+                                MF_STRING,
+                                ID_CLASS_UNKNOWN + ci,
+                                text);
+                    }
                 }
             }
         }
@@ -1207,37 +1214,40 @@ void CFeatsClassControl::DoClass3()
         ClassType type3 = m_pCharacter->Class3();
         for (size_t ci = Class_Unknown; ci < Class_Count; ++ci)
         {
-            bool bAlignmentRestricted = !m_pCharacter->IsClassAvailable((ClassType)ci);
-            if (ci != type1
-                    && ci != type2
-                    || ci == Class_Unknown)
+            if (ci != Class_Epic && ci != Class_Legendary)
             {
-                // this class is selectable
-                CString text = EnumEntryText(
-                        (ClassType)ci,
-                        classTypeMap);
-                if (bAlignmentRestricted)
+                bool bAlignmentRestricted = !m_pCharacter->IsClassAvailable((ClassType)ci);
+                if (ci != type1
+                        && ci != type2
+                        || ci == Class_Unknown)
                 {
-                    // add text to class name to show why it cannot be selected
-                    text += " (Wrong Alignment)";
-                    menu.AppendMenu(
-                            MF_STRING | MF_DISABLED,
-                            ID_CLASS_UNKNOWN + ci,
-                            text);
-                }
-                else if (ci == type1)
-                {
-                    menu.AppendMenu(
-                            MF_STRING | MF_CHECKED,
-                            ID_CLASS_UNKNOWN + ci,
-                            text);
-                }
-                else
-                {
-                    menu.AppendMenu(
-                            MF_STRING,
-                            ID_CLASS_UNKNOWN + ci,
-                            text);
+                    // this class is selectable
+                    CString text = EnumEntryText(
+                            (ClassType)ci,
+                            classTypeMap);
+                    if (bAlignmentRestricted)
+                    {
+                        // add text to class name to show why it cannot be selected
+                        text += " (Wrong Alignment)";
+                        menu.AppendMenu(
+                                MF_STRING | MF_DISABLED,
+                                ID_CLASS_UNKNOWN + ci,
+                                text);
+                    }
+                    else if (ci == type1)
+                    {
+                        menu.AppendMenu(
+                                MF_STRING | MF_CHECKED,
+                                ID_CLASS_UNKNOWN + ci,
+                                text);
+                    }
+                    else
+                    {
+                        menu.AppendMenu(
+                                MF_STRING,
+                                ID_CLASS_UNKNOWN + ci,
+                                text);
+                    }
                 }
             }
         }
@@ -1346,7 +1356,7 @@ LRESULT CFeatsClassControl::UpdateControl(WPARAM, LPARAM)
 
 void CFeatsClassControl::SetClassLevel(ClassType ct, size_t level)
 {
-    if (level < MAX_CLASS_LEVEL)
+    if (level < MAX_CLASS_LEVELS)
     {
         if (!m_pCharacter->LevelData(level).HasClass()
                 || m_pCharacter->LevelData(level).Class() != ct)

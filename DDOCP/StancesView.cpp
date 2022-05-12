@@ -458,7 +458,7 @@ void CStancesView::AddStance(const Stance & stance)
         if (stance.HasAutoControlled())
         {
             // now create the new auto stance control
-            m_autoStancebuttons.push_back(new CStanceButton(m_pCharacter, stance));
+            m_autoStancebuttons.push_back(new CStanceButton(m_pCharacter, stance, false));
             // create a parent window that is c_windowSize by c_windowSize pixels in size
             m_autoStancebuttons.back()->Create(
                     "",
@@ -471,7 +471,7 @@ void CStancesView::AddStance(const Stance & stance)
         else
         {
             // now create the new user stance control
-            CStanceButton * pStance = new CStanceButton(m_pCharacter, stance);
+            CStanceButton * pStance = new CStanceButton(m_pCharacter, stance, false);
             // create a parent window that is c_windowSize by c_windowSize pixels in size
             pStance->Create(
                     "",

@@ -41,8 +41,10 @@
 #endif
 
 #define MAX_ACTION_POINTS       80
-#define MAX_CLASS_LEVEL         20
-#define MAX_LEVEL               30
+#define MAX_CLASS_LEVELS        20
+#define MAX_EPIC_LEVELS         10
+#define MAX_LEGENDARY_LEVELS    2
+#define MAX_LEVEL               32
 #define MAX_SPELL_LEVEL         9
 #define MAX_ENHANCEMENT_TREES   7
 #define MAX_EPIC_DESTINY_TREES  3

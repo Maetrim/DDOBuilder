@@ -147,7 +147,7 @@ double BreakdownItemSpellPoints::Multiplier() const
     // from item effects
     size_t fvsLevels = m_pCharacter->ClassLevels(Class_FavoredSoul);
     size_t sorcLevels = m_pCharacter->ClassLevels(Class_Sorcerer);
-    double factor = 1.0 + (double)(fvsLevels + sorcLevels) / (double)MAX_CLASS_LEVEL;
+    double factor = 1.0 + (double)(fvsLevels + sorcLevels) / (double)MAX_CLASS_LEVELS;
     return factor;
 }
 

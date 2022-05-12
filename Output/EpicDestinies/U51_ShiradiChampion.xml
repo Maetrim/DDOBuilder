@@ -1,7 +1,7 @@
 <Enhancements>
    <EnhancementTree>
       <Name>Shiradi Champion</Name>
-      <Version>1</Version>
+      <Version>2</Version>
       <Requirements>
          <Requirement>
             <Feat>Shiradi Champion</Feat>
@@ -16,9 +16,9 @@
          <InternalName>U51ShiradiChampionCore1</InternalName>
          <Description>You gain the Magical Training Feat.
 Each core ability including this one grants +4 Ranged power, +50 Spell Points,
-and +5 Force and Universal Spell Power.
-Each core also grants a +1 Epic bonus to all Spell DCs.
-Only the highest Epic Bonus to Spell DCs you get from Destiny Cores applies.</Description>
+and +5 Force and Universal Spell Power. In addition, this grants a +1 Epic bonus
+to Spell DCs. Only the highest Epic Bonus to Spell DCs you get from Destiny
+Cores applies.</Description>
          <Icon>U51FeyFavor</Icon>
          <XPosition>0</XPosition>
          <YPosition>0</YPosition>
@@ -69,7 +69,8 @@ Only the highest Epic Bonus to Spell DCs you get from Destiny Cores applies.</De
          <Name>Shiradi Champion: Vision</Name>
          <InternalName>U51ShiradiChampionCore2</InternalName>
          <Description>Your attacks have Ghost Touch and you bypass 5% dodge and fortification.
-If you have the Holy Strike feat, double the dodge and fortification bypass.</Description>
+If you have the Holy Strike feat, double the dodge and fortification bypass.
+Your Epic Bonus to Spell DCs increases to +2.</Description>
          <Icon>Vision</Icon>
          <XPosition>1</XPosition>
          <YPosition>0</YPosition>
@@ -149,7 +150,8 @@ If you have the Holy Strike feat, double the dodge and fortification bypass.</De
          <InternalName>U51ShiradiChampionCore3</InternalName>
          <Description>Get some tea! When you rest at a shrine, you pop off for some tea, and
 randomly get a beneficial effect based on the type of tea you receive.
-These effects last for 10 minutes or until you die.</Description>
+These effects last for 10 minutes or until you die. Your Epic Bonus to Spell DCs
+increases to +3.</Description>
          <Icon>U51AudienceWithTheQueen</Icon>
          <XPosition>2</XPosition>
          <YPosition>0</YPosition>
@@ -194,14 +196,71 @@ These effects last for 10 minutes or until you die.</Description>
             <School>All</School>
          </Effect>
       </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Shiradi Champion: Fey Countenance</Name>
+         <InternalName>U51ShiradiChampionCore4</InternalName>
+         <Description>+2 to Saving Throws vs. Spells. Whenever you activate Pin or Beguiling
+Charm, enemies near you become Fascinated for 12 seconds with no Saving Throw.
+Their Saving throws vs. Spells are also reduced by 2 for 12 seconds, even if the
+Fascinate ends.</Description>
+         <Icon>FeyCountenance</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <MinLevel>32</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Enhancement>U51ShiradiChampionCore3</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>RangedPower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>4</Amount>
+         </Effect>
+         <Effect>
+            <Type>SpellPoints</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>50</Amount>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>5</Amount>
+            <SpellPower>Force/Untyped</SpellPower>
+         </Effect>
+         <Effect>
+            <Type>UniversalSpellPower</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>5</Amount>
+         </Effect>
+         <Effect>
+            <DisplayName>Shiradi Champion: Epic Spell DCs</DisplayName>
+            <Type>SpellDC</Type>
+            <Bonus>Epic</Bonus>
+            <Amount>1</Amount>
+            <ApplyAsItemEffect/>
+            <School>All</School>
+         </Effect>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Destiny</Bonus>
+            <Amount>2</Amount>
+            <Save>Spell</Save>
+         </Effect>
+      </EnhancementTreeItem>
       <!--Tier 1-->
       <EnhancementTreeItem>
          <Name>Shiradi Champion: Prism</Name>
          <InternalName>U51ShiradiChampionPrism</InternalName>
-         <Description>Shiradi Champion Destiny Mantle: Your ranged and thrown attacks have a 15% chance
-to deal 3d100+100 extra damage of a random type. This damage scales with 200%
-Ranged Power. Your offensive spells have a 5% chance to deal 3d100+100 extra
-damage of a random type. This damage scales with 100% of the type's Spell Power.</Description>
+         <Description>Shiradi Destiny Mantle: Your ranged and thrown attacks have a 15% chance
+to deal 7d77 extra damage of a random type scaling with 200% Ranged Power.
+Your offensive spells have a 7% chance to deal 7d77 extra damage of a random
+type, scaling with that type's Spell Power.</Description>
          <Icon>ShiradiDestinyMantle</Icon>
          <XPosition>0</XPosition>
          <YPosition>1</YPosition>
@@ -212,10 +271,10 @@ damage of a random type. This damage scales with 100% of the type's Spell Power.
          <Stance>
             <Name>Shiradi Destiny Mantle</Name>
             <Icon>ShiradiDestinyMantle</Icon>
-            <Description>Shiradi Champion Destiny Mantle: Your ranged and thrown attacks have a 15% chance
-to deal 3d100+100 extra damage of a random type. This damage scales with 200%
-Ranged Power. Your offensive spells have a 5% chance to deal 3d100+100 extra
-damage of a random type. This damage scales with 100% of the type's Spell Power.</Description>
+            <Description>Shiradi Destiny Mantle: Your ranged and thrown attacks have a 15% chance
+to deal 7d77 extra damage of a random type scaling with 200% Ranged Power.
+Your offensive spells have a 7% chance to deal 7d77 extra damage of a random
+type, scaling with that type's Spell Power.</Description>
             <Group>Mantle</Group>
          </Stance>
          <Requirements>
@@ -260,7 +319,7 @@ Rank 3: +5 Force and Universal Spell Power</Description>
       <EnhancementTreeItem>
          <Name>Shiradi Champion: Good Luck</Name>
          <InternalName>U51ShiradiChampionGoodLuck</InternalName>
-         <Description>+[1/2/3] Luck bonus to attack and saving throws.
+         <Description>+[1/2/3] Luck bonus to all Saving throws and Skills.
 If you have the Luck of Heroes feat, double this bonus.</Description>
          <Icon>GoodLuck</Icon>
          <XPosition>2</XPosition>
@@ -274,18 +333,6 @@ If you have the Luck of Heroes feat, double this bonus.</Description>
             </Requirement>
          </Requirements>
          <Effect>
-            <Type>AttackBonus</Type>
-            <Bonus>Luck</Bonus>
-            <AmountVector size="3">1 2 3</AmountVector>
-            <Weapon>All</Weapon>
-         </Effect>
-         <Effect>
-            <Type>CriticalAttackBonus</Type>
-            <Bonus>Luck</Bonus>
-            <AmountVector size="3">1 2 3</AmountVector>
-            <Weapon>All</Weapon>
-         </Effect>
-         <Effect>
             <Type>SaveBonus</Type>
             <Bonus>Luck</Bonus>
             <AmountVector size="3">1 2 3</AmountVector>
@@ -296,20 +343,6 @@ If you have the Luck of Heroes feat, double this bonus.</Description>
             <Bonus>Luck</Bonus>
             <AmountVector size="3">1 2 3</AmountVector>
             <Skill>All</Skill>
-         </Effect>
-         <Effect>
-            <DisplayName>Shiradi Champion: Good Luck and Luck of Heroes</DisplayName>
-            <Type>AttackBonus</Type>
-            <Bonus>Luck</Bonus>
-            <AmountVector size="6">0 0 0 1 2 3</AmountVector>
-            <Weapon>All</Weapon>
-         </Effect>
-         <Effect>
-            <DisplayName>Shiradi Champion: Good Luck and Luck of Heroes</DisplayName>
-            <Type>CriticalAttackBonus</Type>
-            <Bonus>Luck</Bonus>
-            <AmountVector size="6">0 0 0 1 2 3</AmountVector>
-            <Weapon>All</Weapon>
          </Effect>
          <Effect>
             <DisplayName>Shiradi Champion: Good Luck and Luck of Heroes</DisplayName>
@@ -345,20 +378,24 @@ If you have the Luck of Heroes feat, double this bonus.</Description>
          <Selector>
             <EnhancementSelection>
                <Name>Fey Lights</Name>
-               <Description>Epic Strike: Enemies are sprayed with illusions of color, and must make a Will
-save or be Dazed, Blinded, and/or Silenced. The target must make a saving throw
-for each effect. (20 + Highest of Int/Wis/Cha + Highest of Enchantment or Illusion bonuses)
-Cooldown: 6 seconds.
-Costs 10 Spell Points.</Description>
+               <Description>Epic Strike: Enemies in a cone must make a save
+(20 + Max(INT, WIS,CHA) + Illusion bonuses) versus Will, Fort, and Reflex for
+a Daze, Blind, and Silence effect. Cooldown: 6 seconds, CC duration 3 seconds.
+Cost 10 SP.
+
+Every Epic Strike shares a cooldown with every other Epic Strike. Using this
+ability will put every Epic Strike onto this ability's cooldown.</Description>
                <Icon>FeyLights</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Clickie/>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Hunt's End</Name>
-               <Description>Epic Strike: Your next shot with a Ranged or Thrown weapon has +75% damage,
-and increases your Critical Threat Range by 16.
-Cooldown: 8 seconds.</Description>
+               <Description>Epic Strike: Your next shot with a Ranged or Thrown weapon has +75% damage.
+This shot has +16 to Critical Threat Range. 8 second cooldown.
+
+Every Epic Strike shares a cooldown with every other Epic Strike. Using this
+ability will put every Epic Strike onto this ability's cooldown.</Description>
                <Icon>U51HuntsEnd</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Clickie/>
@@ -401,7 +438,7 @@ Rank 3: You are immune to Blindness.</Description>
       <EnhancementTreeItem>
          <Name>Shiradi Champion: Stay</Name>
          <InternalName>U51ShiradiChampionStay</InternalName>
-         <Description>Pick whether to Stay Good or Stay Frosty</Description>
+         <Description>Pick a Secondary Element.</Description>
          <Icon>Stay</Icon>
          <XPosition>0</XPosition>
          <YPosition>2</YPosition>
@@ -418,25 +455,47 @@ Rank 3: You are immune to Blindness.</Description>
          </Requirements>
          <Selector>
             <EnhancementSelection>
-               <Name>Stay Frosty</Name>
-               <Description>While in your Prism stance, Ranged and thrown attacks have a 15% chance to
-deal [1/2/3]d77 extra Cold damage. Your offensive spells have a 7%
-chance to proc this damage. This Light damage scales with 200% Ranged Power if
-from a Ranged attack, or 50% Cold Spell Power if from a spell.
-Rank 3: Enemies hit by your ranged attacks have a 20% chance to be slowed for 10 seconds.
-Enemies hit by your offensive spells have a 30% chance to be slowed for 10 seconds.</Description>
-               <Icon>U51StayFrosty</Icon>
-               <CostPerRank size="1">1</CostPerRank>
-            </EnhancementSelection>
-            <EnhancementSelection>
                <Name>Stay Good</Name>
                <Description>While in your Prism stance, Ranged and thrown attacks have a 15% chance to
-deal [1/2/3]d77 extra Light damage. Your offensive spells have a 7%
-chance to proc this damage. This Light damage scales with 200% Ranged Power if
-from a Ranged attack, or 50% Light Spell Power if from a spell.
+deal [1/2/3]d77 extra Light damage. Your offensive spells have a 7% chance to
+proc this damage. This Light damage scales with 200% Ranged Power if from a
+Ranged attack, or 100% Light Spell Power if from a spell.
 Rank 3: Enemies hit by your ranged attacks have a 20% chance to be blinded for 10 seconds.
 Enemies hit by your offensive spells have a 30% chance to be blinded for 10 seconds.</Description>
                <Icon>Stay</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Stay Loud</Name>
+               <Description>While in your Prism stance, Ranged and thrown attacks have a 15% chance to
+deal [1/2/3]d77 extra Sonic damage. Your offensive spells have a 7% chance to
+proc this damage. This Sonic damage scales with 200% Ranged Power if from a
+Ranged attack, or 100% Sonic Spell Power if from a spell.
+Rank 3: Enemies hit by your ranged attacks have a 20% chance to be blinded for 10 seconds.
+Enemies hit by your offensive spells have a 30% chance to be blinded for 10 seconds.</Description>
+               <Icon>StayLoud</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Stay Strong</Name>
+               <Description>While in your Prism stance, Ranged and thrown attacks have a 15% chance to
+deal [1/2/3]d77 extra Force damage. Your offensive spells have a 7% chance to
+proc this damage. This Force damage scales with 200% Ranged Power if from a
+Ranged attack, or 100% Force Spell Power if from a spell.
+Rank 3: Enemies hit by your ranged attacks have a 20% chance to be blinded for 10 seconds.
+Enemies hit by your offensive spells have a 30% chance to be blinded for 10 seconds.</Description>
+               <Icon>StayStrong</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Stay Toxic</Name>
+               <Description>While in your Prism stance, Ranged and thrown attacks have a 15% chance to
+deal [1/2/3]d77 extra Poison damage. Your offensive spells have a 7%
+chance to proc this damage. This Poison damage scales with 200% Ranged Power if
+from a Ranged attack, or 100% Poison Spell Power if from a spell.
+Rank 3: Enemies hit by your ranged attacks have a 20% chance to be slowed for 10 seconds.
+Enemies hit by your offensive spells have a 30% chance to be slowed for 10 seconds.</Description>
+               <Icon>StayPoison</Icon>
                <CostPerRank size="1">1</CostPerRank>
             </EnhancementSelection>
          </Selector>
@@ -507,9 +566,10 @@ Cooldown: 15 seconds.</Description>
 A positve energy conjuration that heals 1d8, +1 per 3 caster levels
 (max +13 at level 39), every 2 seconds for 8 seconds.
 When the initial effect expires, a smaller healing effect hat heals 1 HP every
-5 seconds for 30 seconds is applied. Only one Vigor spell can be active at a
-time, with the most beneficial taking priority. If multiple Vigor spells are
-cast on the same target, then the duration is extended.
+5 seconds for 30 seconds is applied.
+
+Only one Vigor spell can be active at a time, with the most beneficial taking
+priority. If multiple Vigor spells are cast on the same target, then the duration is extended.
 Passive: +1 Wild Empathy Charge.
 Metamagics: Empower, Empower Heal, Maximize, Quicken
 Cooldown: 30 Seconds.
@@ -547,10 +607,10 @@ Cost: 1 Wild Empathy Charge.</Description>
       <EnhancementTreeItem>
          <Name>Shiradi Champion: Double Rainbow</Name>
          <InternalName>U51ShiradiChampionDoubleRainbow</InternalName>
-         <Description>While in your Prism Mantle, your ranged and thrown attacks have a 7% chance to
-inflict a random effect on your target. Your offensive spells have a 14% chance
-to proc these effects. These effects scale with various different things depending
-on their origins, including Melee, Ranged, and Spell Power.</Description>
+         <Description>While in your Prism Destiny Mantle, your ranged and thrown attacks have
+a 7% chance to inflict a random effect on your target. these effects scale with
+various different things depending on their origins, including Melee, Ranged,
+and Spell Power.</Description>
          <Icon>U51DoubleRainbow</Icon>
          <XPosition>0</XPosition>
          <YPosition>3</YPosition>
@@ -599,7 +659,7 @@ difficult traps. If you have the Watchful Eye feat, +5% Doubleshot.</Description
       <EnhancementTreeItem>
          <Name>Shiradi Champion: Improved Shiradi Power</Name>
          <InternalName>U51ShiradiChampionImprovedShiradiPower</InternalName>
-         <Description>Upgrade Pin or Beguiing Charm</Description>
+         <Description>Upgrade Pin or Beguiling Charm</Description>
          <Icon>ImprovedShiradiPower</Icon>
          <XPosition>2</XPosition>
          <YPosition>3</YPosition>
@@ -624,10 +684,8 @@ and spells while under the effects of Beguile.</Description>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Otto's Whistlery</Name>
-               <Description>If enemies hit by Pin are not moving, they must make a Reflex save
-(20 + highest ability score + Spot bonus) or be Immobilized for 18 seconds.
-If enemies hit by Pin are moving, they must make a Will save
-(20 + highest ability score + Listen bonus) or Dance for 18 seconds.</Description>
+               <Description>If enemies hit by Pin are not moving, they are Immobilized for 18 seconds.
+If enemies hit by Pin are moving, they Dance for 18 seconds.</Description>
                <Icon>ImprovedShiradiPower</Icon>
                <CostPerRank size="1">1</CostPerRank>
             </EnhancementSelection>
@@ -654,8 +712,8 @@ If enemies hit by Pin are moving, they must make a Will save
          <Selector>
             <EnhancementSelection>
                <Name>Fey Flash</Name>
-               <Description>Fey Lights now additionally affects Undead, Plants, Constructs, and Oozes,
-who would normally be immune to such effects.</Description>
+               <Description>Fey Flash: Fey Lights now additionally affects Undead, Plants,
+Constructs, and Oozes, who would normally be immune to such effects.</Description>
                <Icon>FeyFlash</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Requirements>
@@ -682,7 +740,7 @@ who would normally be immune to such effects.</Description>
       <EnhancementTreeItem>
          <Name>Shiradi Champion: Shiradi Magic</Name>
          <InternalName>U51ShiradiChampionShiradiMagic</InternalName>
-         <Description>Select a Spell School to Specialize in.</Description>
+         <Description>Select a Spell School to gain DCs in</Description>
          <Icon>ShiradiMagic</Icon>
          <XPosition>4</XPosition>
          <YPosition>3</YPosition>
@@ -704,7 +762,7 @@ who would normally be immune to such effects.</Description>
             <EnhancementSelection>
                <Name>Conjuration</Name>
                <Description>+[1/2/3] Conjuration Spell DCs.</Description>
-               <Icon>ShiradiMagic</Icon>
+               <Icon>ShiradiMagicConjuration</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Effect>
                   <Type>SpellDC</Type>
@@ -716,7 +774,7 @@ who would normally be immune to such effects.</Description>
             <EnhancementSelection>
                <Name>Enchantment</Name>
                <Description>+[1/2/3] Enchantment Spell DCs.</Description>
-               <Icon>ShiradiMagic</Icon>
+               <Icon>ShiradiMagicEnchantment</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Effect>
                   <Type>SpellDC</Type>
@@ -728,7 +786,7 @@ who would normally be immune to such effects.</Description>
             <EnhancementSelection>
                <Name>Illusion</Name>
                <Description>+[1/2/3] Illusion Spell DCs.</Description>
-               <Icon>ShiradiMagic</Icon>
+               <Icon>ShiradiMagicillusion</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Effect>
                   <Type>SpellDC</Type>
@@ -740,7 +798,7 @@ who would normally be immune to such effects.</Description>
             <EnhancementSelection>
                <Name>Transmutation</Name>
                <Description>+[1/2/3] Transmutation Spell DCs.</Description>
-               <Icon>ShiradiMagic</Icon>
+               <Icon>ShiradiMagicTransmutation</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Effect>
                   <Type>SpellDC</Type>
@@ -755,8 +813,8 @@ who would normally be immune to such effects.</Description>
       <EnhancementTreeItem>
          <Name>Shiradi Champion: Fey Form</Name>
          <InternalName>U51ShiradiChampionFeyForm</InternalName>
-         <Description>While in your Prism Mantle, gain 9% extra damage against Helpless targets,
-DR 10 Cold Iron, and +5 Force and Universal Spell Power</Description>
+         <Description>While in your Prism Destiny Mantle, gain DR 10 Cold Iron, +5 Force and
+Universal Spell Power, and +9% extra damage against Helpless targets,</Description>
          <Icon>U51FeyForm</Icon>
          <XPosition>0</XPosition>
          <YPosition>4</YPosition>
@@ -801,8 +859,8 @@ DR 10 Cold Iron, and +5 Force and Universal Spell Power</Description>
       <EnhancementTreeItem>
          <Name>Shiradi Champion: Track</Name>
          <InternalName>U51ShiradiChampionTrack</InternalName>
-         <Description>Dealing damage to enemies reduces their AC by 1 and fortification by 2%.
-Stacks 10 times.</Description>
+         <Description>Dealing damage to enemies with spells or ranged attacks reduces their AC
+by 1 and fortification by 2%. Stacks 10 times.</Description>
          <Icon>U51Track</Icon>
          <XPosition>1</XPosition>
          <YPosition>4</YPosition>
@@ -907,10 +965,11 @@ This Stun applies to the additional creature types in Fey Flash, if you have tha
       </EnhancementTreeItem>
       <!--Tier 5-->
       <EnhancementTreeItem>
-         <Name>Shiradi Champion: Stay II</Name>
-         <InternalName>U51ShiradiChampionStayII</InternalName>
-         <Description>Upgrade Stay Good of Stay Frosty</Description>
-         <Icon>Stay</Icon>
+         <Name>Shiradi Champion: Nerve Venom</Name>
+         <InternalName>U51ShiradiChampionNerveVenom</InternalName>
+         <Description>While in Prism stance, your ranged and thrown attacks and offensive
+spells have a 7% chance to paralyze living creatures for 6 seconds.</Description>
+         <Icon>ShiradiNerveVenom</Icon>
          <XPosition>0</XPosition>
          <YPosition>5</YPosition>
          <CostPerRank size="1">2</CostPerRank>
@@ -925,34 +984,6 @@ This Stun applies to the additional creature types in Fey Flash, if you have tha
                <Enhancement>U51ShiradiChampionPrism</Enhancement>
             </Requirement>
          </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>Stay Frozen</Name>
-               <Description>While in Prism stance, your ranged and thrown attacks and offensive spells
-have a 7% chance to freeze living creatures for 6 seconds.</Description>
-               <Icon>U51StayFrosty</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Requirements>
-                  <Requirement>
-                     <Enhancement>U51ShiradiChampionStay</Enhancement>
-                     <Selection>Stay Frosty</Selection>
-                  </Requirement>
-               </Requirements>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Stay Still</Name>
-               <Description>While in Prism stance, your Ranged and thrown attacks and offensive spells
-have a 7% chance to paralyze living creatures for 6 seconds.</Description>
-               <Icon>Stay</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-               <Requirements>
-                  <Requirement>
-                     <Enhancement>U51ShiradiChampionStay</Enhancement>
-                     <Selection>Stay Good</Selection>
-                  </Requirement>
-               </Requirements>
-            </EnhancementSelection>
-         </Selector>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Shiradi Champion: Control</Name>
@@ -1066,11 +1097,10 @@ and Shortbows, you have Base Attack Bonus equal to your Character Level.
                <Description>Epic Moment: For 30 seconds, you gain +30 Ranged Power, can move while still
 gaining Archer's Focus stacks, and you do not take the normal 20% damage penalty
 while using Improved Precise Shot. You also gain 30% Action Boost bonus to
-Movement Speed for the duration. In addition, your Ranged attacks have a 100%
+Movement Speed for the duration. In addition, your Ranged attacks have a 30%
 chance to deal 3d100+180 Cold damage and 3d100+180 Light damage which scale with
-200% Ranged Power in addition to Stay Good or Stay Frosty.
-Finally, your Ranged attacks in this state have a 100% chance to proc Double
-Rainbow effects.
+200% Ranged Power. Finally, your Ranged attacks in this state have a 100% chance
+to proc Double Rainbow effects.
 Cooldown: 5 minutes.</Description>
                <Icon>ShiradiEpicMoment</Icon>
                <CostPerRank size="1">1</CostPerRank>
@@ -1079,7 +1109,7 @@ Cooldown: 5 minutes.</Description>
             <EnhancementSelection>
                <Name>Mass Chaos</Name>
                <Description>Epic Moment: Enemies in an area are Confused with no save for 30 seconds,
-gain a stack of Fey Chaos, and apply a stack of Fey Chaos on hitting non-Player,
+gain 1 stack of Fey Chaos, and apply a stack of Fey Chaos on hitting non-Player,
 non-Hireling targets while Confused.
 5 minute cooldown.
 

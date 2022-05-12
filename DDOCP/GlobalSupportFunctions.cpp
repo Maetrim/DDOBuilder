@@ -1491,6 +1491,7 @@ size_t ClassHitpoints(ClassType type)
         // d10 classes
         case Class_Epic:
         case Class_Fighter:
+        case Class_Legendary:
         case Class_Paladin:
             hp = 10;
             break;
@@ -1506,9 +1507,9 @@ size_t ClassHitpoints(ClassType type)
 size_t ClassSave(SaveType st, ClassType ct, size_t level)
 {
     size_t save = 0;
-    if (ct != Class_Epic)
+    if (ct != Class_Epic && ct != Class_Legendary)
     {
-        ASSERT(level <= MAX_CLASS_LEVEL);
+        ASSERT(level <= MAX_CLASS_LEVELS);
         // saves due to class levels come in two types:
         // Level    1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20
         // -------------------------------------------------------------------
@@ -1773,7 +1774,7 @@ std::vector<size_t> SpellSlotsForClass(ClassType ct, size_t level)
     using namespace boost::assign;
     std::vector<size_t> spellsSlotsPerSpellLevel;
 
-    ASSERT(level <= MAX_CLASS_LEVEL);
+    ASSERT(level <= MAX_CLASS_LEVELS);
     switch (ct)
     {
     case Class_Alchemist:
@@ -1897,20 +1898,20 @@ std::vector<size_t> SpellSlotsForClass(ClassType ct, size_t level)
             case  4: spellsSlotsPerSpellLevel += 4, 3, 0, 0, 0, 0, 0, 0, 0; break;
             case  5: spellsSlotsPerSpellLevel += 4, 3, 2, 0, 0, 0, 0, 0, 0; break;
             case  6: spellsSlotsPerSpellLevel += 4, 4, 3, 0, 0, 0, 0, 0, 0; break;
-            case  7: spellsSlotsPerSpellLevel += 5, 4, 3, 2, 0, 0, 0, 0, 0; break;
+            case  7: spellsSlotsPerSpellLevel += 4, 4, 3, 2, 0, 0, 0, 0, 0; break;
             case  8: spellsSlotsPerSpellLevel += 5, 4, 4, 3, 0, 0, 0, 0, 0; break;
             case  9: spellsSlotsPerSpellLevel += 5, 5, 4, 3, 2, 0, 0, 0, 0; break;
             case 10: spellsSlotsPerSpellLevel += 5, 5, 4, 4, 3, 0, 0, 0, 0; break;
             case 11: spellsSlotsPerSpellLevel += 5, 5, 5, 4, 3, 2, 0, 0, 0; break;
             case 12: spellsSlotsPerSpellLevel += 5, 5, 5, 4, 4, 3, 0, 0, 0; break;
-            case 13: spellsSlotsPerSpellLevel += 5, 5, 5, 5, 4, 3, 2, 0, 0; break;
-            case 14: spellsSlotsPerSpellLevel += 5, 5, 5, 5, 4, 4, 3, 0, 0; break;
-            case 15: spellsSlotsPerSpellLevel += 5, 5, 5, 5, 5, 4, 3, 2, 0; break;
-            case 16: spellsSlotsPerSpellLevel += 5, 5, 5, 5, 5, 4, 4, 3, 0; break;
-            case 17: spellsSlotsPerSpellLevel += 5, 5, 5, 5, 5, 5, 4, 3, 2; break;
-            case 18: spellsSlotsPerSpellLevel += 5, 5, 5, 5, 5, 5, 4, 4, 3; break;
-            case 19: spellsSlotsPerSpellLevel += 5, 5, 5, 5, 5, 5, 5, 4, 4; break;
-            case 20: spellsSlotsPerSpellLevel += 5, 5, 5, 5, 5, 5, 5, 5, 5; break;
+            case 13: spellsSlotsPerSpellLevel += 6, 5, 5, 5, 4, 3, 2, 0, 0; break;
+            case 14: spellsSlotsPerSpellLevel += 6, 5, 5, 5, 4, 4, 3, 0, 0; break;
+            case 15: spellsSlotsPerSpellLevel += 6, 5, 5, 5, 5, 4, 3, 2, 0; break;
+            case 16: spellsSlotsPerSpellLevel += 6, 5, 5, 5, 5, 4, 4, 3, 0; break;
+            case 17: spellsSlotsPerSpellLevel += 6, 5, 5, 5, 5, 5, 4, 3, 2; break;
+            case 18: spellsSlotsPerSpellLevel += 6, 5, 5, 5, 5, 5, 4, 4, 3; break;
+            case 19: spellsSlotsPerSpellLevel += 6, 5, 5, 5, 5, 5, 5, 4, 4; break;
+            case 20: spellsSlotsPerSpellLevel += 6, 5, 5, 5, 5, 5, 5, 5, 5; break;
             default: ASSERT(FALSE); break;
         }
         break;
@@ -2093,7 +2094,7 @@ size_t ClassSpellPoints(ClassType ct, size_t level)
 {
     using namespace boost::assign;
     std::vector<size_t> spPerLevel;
-    ASSERT(level <= MAX_CLASS_LEVEL);
+    ASSERT(level <= MAX_CLASS_LEVELS);
     switch (ct)
     {
     case Class_Alchemist:
@@ -2124,7 +2125,7 @@ size_t ClassSpellPoints(ClassType ct, size_t level)
         break;
     default:
         // all other class's have 0 spell points
-        spPerLevel.resize(MAX_CLASS_LEVEL, 0);
+        spPerLevel.resize(MAX_CLASS_LEVELS, 0);
         break;
     }
     ASSERT(spPerLevel.size() >= level);

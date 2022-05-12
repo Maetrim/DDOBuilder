@@ -146,7 +146,7 @@ void CSkillSpendDialog::PopulateItems()
     int sel = m_skillsList.GetSelectionMark();
     int index = 0;
     // populate the available skill points at each level
-    for (size_t level = 0; level < MAX_CLASS_LEVEL; ++level)
+    for (size_t level = 0; level < MAX_CLASS_LEVELS; ++level)
     {
         const LevelTraining & levelData = m_pCharacter->LevelData(level);
         int available = levelData.SkillPointsAvailable();
@@ -161,7 +161,7 @@ void CSkillSpendDialog::PopulateItems()
     {
         CString text;
         // add the number of skill points spent on this skill at each heroic level
-        for (size_t level = 0; level < MAX_CLASS_LEVEL; ++level)
+        for (size_t level = 0; level < MAX_CLASS_LEVELS; ++level)
         {
             const LevelTraining & levelData = m_pCharacter->LevelData(level);
             const std::list<TrainedSkill> & ts = levelData.TrainedSkills();
@@ -205,14 +205,14 @@ void CSkillSpendDialog::PopulateItems()
             }
         }
         // show the total trained ranks at end of heroic levels
-        double total = m_pCharacter->SkillAtLevel((SkillType)skill, MAX_CLASS_LEVEL, false);
+        double total = m_pCharacter->SkillAtLevel((SkillType)skill, MAX_CLASS_LEVELS, false);
         text.Format("%.1f", total);
-        m_skillsList.SetItemText(index, 1 + MAX_CLASS_LEVEL, text);
+        m_skillsList.SetItemText(index, 1 + MAX_CLASS_LEVELS, text);
         ++index;
     }
     ++index;        // skip class icons line
     // and finally a spent row
-    for (size_t level = 0; level < MAX_CLASS_LEVEL; ++level)
+    for (size_t level = 0; level < MAX_CLASS_LEVELS; ++level)
     {
         const LevelTraining & levelData = m_pCharacter->LevelData(level);
         int available = levelData.SkillPointsAvailable();
@@ -323,7 +323,7 @@ void CSkillSpendDialog::OnCustomDrawSkillsList(NMHDR* pNMHDR, LRESULT* pResult)
                     || pLVCD->nmcd.dwItemSpec == lastItem - 1)
             {
                 // for post-paint we do all 20 classes in one go
-                for (size_t level = 0; level < MAX_CLASS_LEVEL; ++level)
+                for (size_t level = 0; level < MAX_CLASS_LEVELS; ++level)
                 {
                     // find out where we are drawing the class icon
                     CRect rctItem;
@@ -424,7 +424,7 @@ void CSkillSpendDialog::OnCustomDrawSkillsList(NMHDR* pNMHDR, LRESULT* pResult)
 void CSkillSpendDialog::OnLeftClickSkillsList(NMHDR*, LRESULT* pResult)
 {
     CPoint pt = IdentifyItemUnderMouse(true);
-    if (pt.x >= 1 && pt.x < 1 + MAX_CLASS_LEVEL)
+    if (pt.x >= 1 && pt.x < 1 + MAX_CLASS_LEVELS)
     {
         // they have left clicked on a class level item
         if (pt.y >= 2 && pt.y < 1 + Skill_Count)
@@ -459,7 +459,7 @@ void CSkillSpendDialog::OnLeftClickSkillsList(NMHDR*, LRESULT* pResult)
 void CSkillSpendDialog::OnRightClickSkillsList(NMHDR*, LRESULT* pResult)
 {
     CPoint pt = IdentifyItemUnderMouse(true);
-    if (pt.x >= 1 && pt.x < 1 + MAX_CLASS_LEVEL)
+    if (pt.x >= 1 && pt.x < 1 + MAX_CLASS_LEVELS)
     {
         // they have right clicked on a class level item
         if (pt.y >= 2 && pt.y < 1 + Skill_Count)
@@ -555,7 +555,7 @@ void CSkillSpendDialog::OnButtonMaxThisSkill()
 
 void CSkillSpendDialog::MaxThisSkill(SkillType skill, bool suppressUpdate)
 {
-    for (size_t level = 0; level < MAX_CLASS_LEVEL; ++level)
+    for (size_t level = 0; level < MAX_CLASS_LEVELS; ++level)
     {
         bool spent = true;
         while (spent)
@@ -568,18 +568,18 @@ void CSkillSpendDialog::MaxThisSkill(SkillType skill, bool suppressUpdate)
             // also ensure we do not overspend a skill across all levels
             double maxSkill20 = m_pCharacter->MaxSkillForLevel(
                     skill,
-                    MAX_CLASS_LEVEL-1);
-            double currentSkill20 = m_pCharacter->SkillAtLevel(skill, MAX_CLASS_LEVEL-1, false);
+                    MAX_CLASS_LEVELS-1);
+            double currentSkill20 = m_pCharacter->SkillAtLevel(skill, MAX_CLASS_LEVELS-1, false);
             if (maxSkill > 0.0
                     && currentSkill < maxSkill
                     && currentSkill20 < maxSkill20)
             {
                 // special case for last class level and a non-class skill
                 // which we do not want to train to 11.5 ranks
-                if (MAX_CLASS_LEVEL % 2 == 0
-                        && level == (MAX_CLASS_LEVEL - 1)
-                        && maxSkill == (MAX_CLASS_LEVEL + 3) / 2.0
-                        && currentSkill == (MAX_CLASS_LEVEL + 2) / 2.0)
+                if (MAX_CLASS_LEVELS % 2 == 0
+                        && level == (MAX_CLASS_LEVELS - 1)
+                        && maxSkill == (MAX_CLASS_LEVELS + 3) / 2.0
+                        && currentSkill == (MAX_CLASS_LEVELS + 2) / 2.0)
                 {
                     // we don't spend for this specific case
                     spent = false;
@@ -618,7 +618,7 @@ void CSkillSpendDialog::OnButtonClearThisSkill()
     // clear any trained ranks for this skill at all class levels
     int sel = m_skillsList.GetSelectionMark();
     SkillType skill = (SkillType)(sel - 1);
-    for (size_t level = 0; level < MAX_CLASS_LEVEL; ++level)
+    for (size_t level = 0; level < MAX_CLASS_LEVELS; ++level)
     {
         const LevelTraining & levelData = m_pCharacter->LevelData(level);
         bool rankRevoked = true;
@@ -651,7 +651,7 @@ void CSkillSpendDialog::OnButtonClearThisSkill()
 void CSkillSpendDialog::OnButtonClearAllSkills()
 {
     // clear any trained ranks for all skills at all class levels
-    for (size_t level = 0; level < MAX_CLASS_LEVEL; ++level)
+    for (size_t level = 0; level < MAX_CLASS_LEVELS; ++level)
     {
         const LevelTraining & levelData = m_pCharacter->LevelData(level);
         bool rankRevoked = true;
@@ -721,7 +721,7 @@ void CSkillSpendDialog::OnButtonAutoSpendSkillPoints()
     {
         skills.push_back(WeightedSkill((SkillType)skill));
     }
-    std::vector<size_t> classLevels = m_pCharacter->ClassLevels(MAX_CLASS_LEVEL);
+    std::vector<size_t> classLevels = m_pCharacter->ClassLevels(MAX_CLASS_LEVELS);
     for (size_t ct = Class_Unknown; ct < Class_Count; ++ct)
     {
         if (classLevels[ct] > 0)
@@ -768,6 +768,7 @@ void CSkillSpendDialog::OnButtonAutoSpendSkillPoints()
                     break;
                 case Class_Druid:
                     skills[Skill_Concentration].AddWeighting(100);
+                    skills[Skill_SpellCraft].AddWeighting(100);
                     break;
                 case Class_FavoredSoul:
                     skills[Skill_Concentration].AddWeighting(100);

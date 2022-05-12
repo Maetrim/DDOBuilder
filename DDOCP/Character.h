@@ -361,6 +361,9 @@ class Character :
                 DL_ENUM(_, AbilityType, Level20, Ability_Strength, abilityTypeMap) \
                 DL_ENUM(_, AbilityType, Level24, Ability_Strength, abilityTypeMap) \
                 DL_ENUM(_, AbilityType, Level28, Ability_Strength, abilityTypeMap) \
+                DL_ENUM(_, AbilityType, Level32, Ability_Strength, abilityTypeMap) \
+                DL_ENUM(_, AbilityType, Level36, Ability_Strength, abilityTypeMap) \
+                DL_ENUM(_, AbilityType, Level40, Ability_Strength, abilityTypeMap) \
                 DL_ENUM(_, ClassType, Class1, Class_Unknown, classTypeMap) \
                 DL_ENUM(_, ClassType, Class2, Class_Unknown, classTypeMap) \
                 DL_ENUM(_, ClassType, Class3, Class_Unknown, classTypeMap) \

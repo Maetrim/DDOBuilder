@@ -14,7 +14,7 @@ class CStanceButton :
     public CStatic
 {
     public:
-        CStanceButton(Character * charData, const Stance & stance);
+        CStanceButton(Character * charData, const Stance & stance, bool bAugmentImagesFirst);
 
         void SetSelected(bool selected);
         bool IsSelected() const;

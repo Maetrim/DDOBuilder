@@ -898,7 +898,7 @@ void CForumExportDlg::AddSkills(std::stringstream & forumExport)
     forumExport << "Skills\r\n";
     forumExport << "------------------------------------------------------------------------------------------\r\n";
     forumExport << "Skill Points    ";
-    for (size_t level = 0; level < MAX_CLASS_LEVEL; ++level)
+    for (size_t level = 0; level < MAX_CLASS_LEVELS; ++level)
     {
         const LevelTraining & levelData = m_pCharacter->LevelData(level);
         forumExport.width(3);
@@ -913,7 +913,7 @@ void CForumExportDlg::AddSkills(std::stringstream & forumExport)
         skillName.Format("%-16s", EnumEntryText((SkillType)skill, skillTypeMap));
         forumExport << skillName;
         // now add the number of skill points spent on this skill at each heroic level
-        for (size_t level = 0; level < MAX_CLASS_LEVEL; ++level)
+        for (size_t level = 0; level < MAX_CLASS_LEVELS; ++level)
         {
             const LevelTraining & levelData = m_pCharacter->LevelData(level);
             const std::list<TrainedSkill> & ts = levelData.TrainedSkills();
@@ -958,7 +958,7 @@ void CForumExportDlg::AddSkills(std::stringstream & forumExport)
                 forumExport << "   ";
             }
         }
-        double total = m_pCharacter->SkillAtLevel((SkillType)skill, MAX_CLASS_LEVEL, false);
+        double total = m_pCharacter->SkillAtLevel((SkillType)skill, MAX_CLASS_LEVELS, false);
         forumExport.precision(1);          // max 1 dp
         forumExport.width(7);              // xxx.y
         forumExport << std::fixed << std::right << total;
@@ -972,7 +972,7 @@ void CForumExportDlg::AddSkills(std::stringstream & forumExport)
     forumExport << "------------------------------------------------------------------------------------------\r\n";
     // show how many available skill points there are to spend
     forumExport << "Available Points";
-    for (size_t level = 0; level < MAX_CLASS_LEVEL; ++level)
+    for (size_t level = 0; level < MAX_CLASS_LEVELS; ++level)
     {
         const LevelTraining & levelData = m_pCharacter->LevelData(level);
         forumExport.width(3);
