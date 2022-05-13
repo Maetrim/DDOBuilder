@@ -64,13 +64,12 @@ Character::Character() :
     m_universalTreeSpend(0),
     m_destinyTreeSpend(0),
     m_classTreeSpend(0),
-    m_previousGuildLevel(0),
-    m_bLamanniaMode(false)
+    m_previousGuildLevel(0)
 {
     DL_INIT(Character_PROPERTIES)
-    // make sure we have MAX_LEVEL default LevelTraining objects in the list
+    // make sure we have MaxLevel() default LevelTraining objects in the list
     size_t count = m_Levels.size();
-    for (size_t index = count; index < MAX_LEVEL; ++index)
+    for (size_t index = count; index < MaxLevel(); ++index)
     {
         LevelTraining lt;
         if (index >= MAX_CLASS_LEVELS && index < MAX_CLASS_LEVELS + MAX_EPIC_LEVELS)
@@ -102,13 +101,12 @@ Character::Character(CDDOCPDoc * pDoc) :
     m_previousGuildLevel(0),
     m_bShowEpicOnly(false),
     m_bShowUnavailableFeats(false),
-    m_bShowIgnoredItems(false),
-    m_bLamanniaMode(false)
+    m_bShowIgnoredItems(false)
 {
     DL_INIT(Character_PROPERTIES)
     // make sure we have MAX_LEVEL default LevelTraining objects in the list
     size_t count = m_Levels.size();
-    for (size_t index = count; index < MAX_LEVEL; ++index)
+    for (size_t index = count; index < MaxLevel(); ++index)
     {
         LevelTraining lt;
         if (index >= MAX_CLASS_LEVELS && index < MAX_CLASS_LEVELS + MAX_EPIC_LEVELS)
@@ -150,8 +148,8 @@ XmlLib::SaxContentElementInterface * Character::StartElement(
 void Character::EndElement()
 {
     // when we load in we end up with MAX_LEVEL blank levels followed by what was loaded
-    // clear the first MAX_LEVEL
-    while (m_Levels.size() > MAX_LEVEL)
+    // clear the first MAX_CLASS_LEVELS
+    for (size_t i = 0 ; i < MAX_CLASS_LEVELS; ++i)
     {
         m_Levels.erase(m_Levels.begin());
     }
@@ -165,7 +163,7 @@ void Character::EndElement()
         m_Levels.erase(m_Levels.begin());
     }
     // old files may need to have levels padded by adding Epic/Legendary class levels
-    while (m_Levels.size() < MAX_LEVEL)
+    while (m_Levels.size() < MaxLevel())
     {
         LevelTraining lt;
         if (m_Levels.size() < MAX_CLASS_LEVELS + MAX_EPIC_LEVELS)
@@ -210,7 +208,7 @@ void Character::EndElement()
 
     SaxContentElement::EndElement();
     DL_END(Character_PROPERTIES)
-    ASSERT(m_Levels.size() == MAX_LEVEL);
+    ASSERT(m_Levels.size() == MaxLevel());
 
     // also remove the default "Standard" gear layout which we get by default
     m_GearSetups.pop_front();
@@ -388,7 +386,7 @@ bool Character::IsFeatTrained(const std::string & featName, bool includeGrantedF
 {
     // return true if the given feat is trained
     bool bTrained = false;
-    std::list<TrainedFeat> currentFeats = CurrentFeats(MAX_LEVEL);
+    std::list<TrainedFeat> currentFeats = CurrentFeats(MaxLevel());
 
     std::list<TrainedFeat>::const_iterator it = currentFeats.begin();
     while (it != currentFeats.end())
@@ -441,8 +439,8 @@ TrainedFeat Character::GetTrainedFeat(
 
 const LevelTraining & Character::LevelData(size_t level) const
 {
-    ASSERT(m_Levels.size() == MAX_LEVEL);
-    ASSERT(level < MAX_LEVEL);
+    ASSERT(m_Levels.size() == MaxLevel());
+    ASSERT(level < MaxLevel());
     std::list<LevelTraining>::const_iterator it = m_Levels.begin();
     std::advance(it, level);  // point to level of interest
     const LevelTraining & data = (*it);
@@ -485,7 +483,7 @@ void Character::UpdateSpells()
     // check that we do not have more spells trained at a given spell
     // level than the current class assignments allow. If we do,
     // revoke the spells over the maximum size
-    std::vector<size_t> classLevels = ClassLevels(MAX_LEVEL);
+    std::vector<size_t> classLevels = ClassLevels(MaxLevel());
     for (size_t ci = Class_Unknown + 1; ci < Class_Count; ++ci)
     {
         // get the number of spells available for this class at this level
@@ -519,7 +517,7 @@ void Character::UpdateFeats()
     std::list<TrainedFeat> allFeats = SpecialFeats().Feats();
     // for each level, determine what automatic feats are trained
     // also, update each level with the trainable feat types
-    for (size_t level = 0; level < MAX_LEVEL; ++level)
+    for (size_t level = 0; level < MaxLevel(); ++level)
     {
         UpdateFeats(level, &allFeats);
     }
@@ -799,7 +797,7 @@ void Character::NotifyRevokeDC(const DC & dc)
 void Character::NotifyAllLoadedEffects()
 {
     // get a list of all feats and notify for each feat effect
-    std::list<TrainedFeat> feats = CurrentFeats(MAX_LEVEL);
+    std::list<TrainedFeat> feats = CurrentFeats(MaxLevel());
     std::list<TrainedFeat>::iterator it = feats.begin();
     while (it != feats.end())
     {
@@ -1232,7 +1230,7 @@ void Character::SetClass(size_t level, ClassType type)
     size_t oldCasterLevelFrom = 0;
     if (level < MAX_CLASS_LEVELS)    // 0 based
     {
-        ASSERT(m_Levels.size() == MAX_LEVEL);
+        ASSERT(m_Levels.size() == MaxLevel());
         std::list<LevelTraining>::iterator it = m_Levels.begin();
         std::advance(it, level);
         classFrom = (*it).HasClass() ? (*it).Class() : Class_Unknown;
@@ -1746,7 +1744,7 @@ std::list<TrainedFeat> Character::AutomaticFeats(
         }
         ++it;
     }
-    if (level == 1 && m_bLamanniaMode)
+    if (level == 1 && m_hasLamanniaMode)
     {
         // add the special Lamannia feat
         TrainedFeat feat;
@@ -1852,7 +1850,7 @@ bool Character::IsClassSkill(
     bool isClassSkill = false;  // assume not a class skill
 
     // check the class at each previous trained level to see if its a class skill
-    ASSERT(m_Levels.size() == MAX_LEVEL);
+    ASSERT(m_Levels.size() == MaxLevel());
     std::list<LevelTraining>::const_iterator it = m_Levels.begin();
     for (size_t li = 0; li <= level; ++li)
     {
@@ -2135,7 +2133,7 @@ double Character::SkillAtLevel(
 {
     double skillLevel = 0;  // assume untrained
 
-    ASSERT(m_Levels.size() == MAX_LEVEL);
+    ASSERT(m_Levels.size() == MaxLevel());
     std::list<LevelTraining>::const_iterator it = m_Levels.begin();
     for (size_t li = 0; li <= level; ++li)
     {
@@ -2195,7 +2193,7 @@ std::vector<size_t> Character::ClassLevels(
 
 size_t Character::ClassLevels(ClassType ct) const
 {
-    std::vector<size_t> classLevels(ClassLevels(MAX_LEVEL));
+    std::vector<size_t> classLevels(ClassLevels(MaxLevel()));
     return classLevels[ct];
 }
 
@@ -2752,7 +2750,7 @@ int Character::TotalPointsAvailable(const std::string & treeName, TreeType type)
         aps = 1000;  // no upper limit on reaper APs (i.e. you can buy all)
         break;
     case TT_epicDestiny:
-        aps = (MAX_LEVEL - MAX_CLASS_LEVELS) * 4
+        aps = (MaxLevel() - MAX_CLASS_LEVELS) * 4
                 + static_cast<int>(FindBreakdown(Breakdown_DestinyPoints)->Total());
         break;
     }
@@ -2791,7 +2789,7 @@ int Character::AvailableActionPoints(const std::string & treeName, TreeType type
         aps = 1000;  // no upper limit on reaper APs (i.e. you can buy all)
         break;
     case TT_epicDestiny:
-        aps = (MAX_LEVEL - MAX_CLASS_LEVELS) * 4
+        aps = (MaxLevel() - MAX_CLASS_LEVELS) * 4
                 + static_cast<int>(FindBreakdown(Breakdown_DestinyPoints)->Total())
                 - m_destinyTreeSpend;
         break;
@@ -3692,7 +3690,7 @@ void Character::JustLoaded()
 
     // racial completionist state may have changed
     std::list<TrainedFeat> allFeats = SpecialFeats().Feats();
-    for (size_t level = 0; level < MAX_LEVEL; ++level)
+    for (size_t level = 0; level < MaxLevel(); ++level)
     {
         // automatic feats are no longer saved. regenerate them all
         UpdateFeats(level, &allFeats);
@@ -4250,7 +4248,7 @@ int Character::AvailableActionPoints() const
 
 int Character::U51Destiny_AvailableDestinyPoints() const
 {
-    return (MAX_LEVEL - MAX_CLASS_LEVELS) * 4
+    return (MaxLevel() - MAX_CLASS_LEVELS) * 4
             + static_cast<int>(FindBreakdown(Breakdown_DestinyPoints)->Total())
             - m_destinyTreeSpend;
 }
@@ -5673,7 +5671,7 @@ void Character::SetGuildLevel(size_t level)
 std::string Character::GetBuildDescription() const
 {
     // determine how many levels of each class have been trained
-    std::vector<size_t> classLevels = ClassLevels(MAX_LEVEL);
+    std::vector<size_t> classLevels = ClassLevels(MaxLevel());
 
     // levels in each non zero class listed, sorted by count then name
     // unknown listed also as shows how many need to be trained
@@ -6013,7 +6011,7 @@ void Character::KeepGrantedFeatsUpToDate()
 void Character::UpdateSkillPoints()
 {
     // update the skill points for all levels
-    ASSERT(m_Levels.size() == MAX_LEVEL);
+    ASSERT(m_Levels.size() == MaxLevel());
     std::list<LevelTraining>::iterator it = m_Levels.begin();
     for (size_t level = 0; level < MAX_CLASS_LEVELS; ++level)
     {
@@ -6030,7 +6028,7 @@ void Character::UpdateSkillPoints()
 void Character::UpdateSkillPoints(size_t level)
 {
     // update the skill points for this specific level
-    ASSERT(m_Levels.size() == MAX_LEVEL);
+    ASSERT(m_Levels.size() == MaxLevel());
     if (level < MAX_CLASS_LEVELS)
     {
         // only have skill points for heroic levels
@@ -6052,10 +6050,10 @@ void Character::VerifyGear()
             "requirements for use are no longer met:\r\n");
     bool revokeOccurred = false;
     // need to know how many levels and of what classes they have trained
-    std::vector<size_t> classLevels = ClassLevels(MAX_LEVEL);
+    std::vector<size_t> classLevels = ClassLevels(MaxLevel());
     // need to know which feats have already been trained by this point
     // include any feats also trained at the current level
-    std::list<TrainedFeat> currentFeats = CurrentFeats(MAX_LEVEL);
+    std::list<TrainedFeat> currentFeats = CurrentFeats(MaxLevel());
     // check every item
     for (size_t i = Inventory_Unknown + 1; i < Inventory_Count; ++i)
     {
@@ -6077,7 +6075,7 @@ void Character::VerifyGear()
             {
                 if (item.HasRequirementsToUse())
                 {
-                    if (!item.RequirementsToUse().Met(*this, classLevels, MAX_LEVEL, currentFeats, true))
+                    if (!item.RequirementsToUse().Met(*this, classLevels, MaxLevel(), currentFeats, true))
                     {
                         revokeOccurred = true;
                         ClearGearInSlot(gear.Name(), (InventorySlotType)i);
@@ -6633,12 +6631,53 @@ void Character::U51Destiny_SwapTrees(const std::string & tree1, const std::strin
 
 void Character::SetLamanniaMode(bool bLamanniaPreview)
 {
-    m_bLamanniaMode = bLamanniaPreview;
+    m_hasLamanniaMode = bLamanniaPreview;
+    // add or remove required objects
+    if (m_hasLamanniaMode)
+    {
+        // need to add new additional LevelTraining objects
+        while (m_Levels.size() < MaxLevel())
+        {
+            LevelTraining lt;
+            if (m_Levels.size() < MAX_CLASS_LEVELS + MAX_EPIC_LEVELS)
+            {
+                // need to add epic
+                lt.Set_Class(Class_Epic);
+            }
+            else
+            {
+                // need to add legendary
+                lt.Set_Class(Class_Legendary);
+            }
+            m_Levels.push_back(lt);
+        }
+    }
+    else
+    {
+        // need to remove the additional LevelTraining objects
+        while (m_Levels.size() > MaxLevel())
+        {
+            // now clear the object
+            // note that feat revokation etc is handled by or swap too/from the character
+            // in the main view
+            m_Levels.pop_back();
+        }
+    }
     // changing too/from Lamannia mode changes the feats available
     UpdateFeats();
     VerifyTrainedFeats();
     NotifyRaceChanged(Race());  // just get stuff to update
     m_pDocument->SetModifiedFlag(TRUE);
+}
+
+size_t Character::MaxLevel() const
+{
+    size_t level = MAX_NORMAL_LEVEL;
+    if (m_hasLamanniaMode)
+    {
+        level = MAX_LAMANNIA_LEVEL;
+    }
+    return level;
 }
 
 const SpendInTree* Character::FindSpendInTree(const std::string& treeName) const

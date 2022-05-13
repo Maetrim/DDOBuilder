@@ -655,7 +655,9 @@ void BreakdownItem::AddEffect(
     std::list<ActiveEffect>::iterator it = effectList->begin();
     while (!found && it != effectList->end())
     {
-        if (effect == (*it))
+        // amount per level effects need to keep individual stacks of things
+        // and not stack them up in the usual way.
+        if (effect == (*it) && effect.Type() != ET_amountVectorPerClassLevel)
         {
             // it is an existing effect, add another stack
             found = true;
@@ -795,7 +797,7 @@ bool BreakdownItem::UpdateEffectAmounts(std::list<ActiveEffect> * list, ClassTyp
     {
         if ((*it).BasedOnClassLevel(type))
         {
-            std::vector<size_t> classLevels = m_pCharacter->ClassLevels(MAX_LEVEL);
+            std::vector<size_t> classLevels = m_pCharacter->ClassLevels(m_pCharacter->MaxLevel());
             (*it).SetClassLevel(classLevels[type]);
             itemChanged = true;
         }
@@ -848,7 +850,7 @@ bool BreakdownItem::GetActiveEffect(
     else if (effect.HasAmountPerLevel())
     {
         ASSERT(effect.HasClass());
-        size_t levels = m_pCharacter->ClassLevels(MAX_LEVEL)[effect.Class()];
+        size_t levels = m_pCharacter->ClassLevels(m_pCharacter->MaxLevel())[effect.Class()];
         *activeEffect = ActiveEffect(
                 effect.Bonus(),
                 name,
@@ -955,7 +957,7 @@ bool BreakdownItem::GetActiveEffect(
                     effect.Class(),
                     effect.DiceRoll(),
                     "");
-            size_t levels = m_pCharacter->ClassLevels(MAX_LEVEL)[effect.Class()];
+            size_t levels = m_pCharacter->ClassLevels(m_pCharacter->MaxLevel())[effect.Class()];
             double amount = (int)(levels / divider);       // integer arithmetic
             activeEffect->SetClassLevel((size_t)amount);
         }
@@ -974,7 +976,7 @@ bool BreakdownItem::GetActiveEffect(
     else if (effect.HasClass())
     {
         // its per n class levels
-        size_t levels = m_pCharacter->ClassLevels(MAX_LEVEL)[effect.Class()];
+        size_t levels = m_pCharacter->ClassLevels(m_pCharacter->MaxLevel())[effect.Class()];
         double amount = (int)(levels / divider);       // integer arithmetic
         if (amount > 0)
         {

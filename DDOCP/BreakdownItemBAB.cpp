@@ -41,7 +41,7 @@ void BreakdownItemBAB::CreateOtherEffects()
     if (m_pCharacter != NULL)
     {
         m_otherEffects.clear();
-        std::vector<size_t> classLevels = m_pCharacter->ClassLevels(MAX_LEVEL);
+        std::vector<size_t> classLevels = m_pCharacter->ClassLevels(m_pCharacter->MaxLevel());
         for (size_t ci = Class_Unknown; ci < Class_Count; ++ci)
         {
             if (classLevels[ci] > 0)
@@ -77,12 +77,12 @@ void BreakdownItemBAB::CreateOtherEffects()
         if (m_overrideBabCount > 0)
         {
             // have at least 1 enhancement that boosts BAB to Character level
-            size_t currentBab = m_pCharacter->BaseAttackBonus(MAX_LEVEL);
+            size_t currentBab = m_pCharacter->BaseAttackBonus(m_pCharacter->MaxLevel());
             ActiveEffect amountTrained(
                     Bonus_enhancement,
                     "BAB boost to character level",
                     1,
-                    MAX_LEVEL - currentBab,
+                    m_pCharacter->MaxLevel() - currentBab,
                     "");        // no tree
             AddOtherEffect(amountTrained);
         }

@@ -219,7 +219,7 @@ void CLevelUpView::OnInitialUpdate()
             c_controlSpacing,
             c_levelButtonSizeX + c_controlSpacing,
             c_levelButtonSizeY + c_controlSpacing);
-    for (size_t i = 0 ; i < MAX_LEVEL; ++i)
+    for (size_t i = 0 ; i < MAX_LAMANNIA_LEVEL; ++i)
     {
         m_buttonLevels[i].SetLevel(i + 1);
         m_buttonLevels[i].Create("", WS_CHILD | WS_VISIBLE, itemRect, this, IDC_LEVEL1 + i);
@@ -348,12 +348,12 @@ void CLevelUpView::OnSize(UINT nType, int cx, int cy)
         ScreenToClient(&rctButton);
         rctButton -= rctButton.TopLeft();
         rctButton += CPoint(c_controlSpacing, c_controlSpacing);
-        for (size_t bi = 0; bi < MAX_LEVEL; ++bi)
+        for (size_t bi = 0; bi < MAX_LAMANNIA_LEVEL; ++bi)
         {
             m_buttonLevels[bi].MoveWindow(rctButton);
             rctButton += CPoint(0, rctButton.Height() + c_controlSpacing);
             if (rctButton.bottom > cy - c_controlSpacing
-                    && bi < MAX_LEVEL - 1)  // no need to move on if its the last one
+                    && bi < MAX_LAMANNIA_LEVEL - 1)  // no need to move on if its the last one
             {
                 // not enough room for this button, start another column
                 rctButton -= CPoint(0, rctButton.top);
@@ -543,7 +543,7 @@ void CLevelUpView::UpdateHookRectangles()
                     m_hookFeatHandles[i],
                     rect);          // screen coordinates
         }
-        for (size_t i = 0; i < MAX_LEVEL; ++i)
+        for (size_t i = 0; i < MAX_LAMANNIA_LEVEL; ++i)
         {
             CRect rect;
             m_buttonLevels[i].GetWindowRect(&rect);
@@ -706,15 +706,16 @@ void CLevelUpView::PopulateControls()
 
 void CLevelUpView::SetLevelButtonStates()
 {
-    for (size_t i = 0; i < MAX_LEVEL; ++i)
+    for (size_t i = 0; i < MAX_LAMANNIA_LEVEL; ++i)
     {
         m_buttonLevels[i].SetSelected(m_level == i);
         ClassType type = Class_Unknown;
-        if (m_pCharacter != NULL)
+        if (m_pCharacter != NULL && i < m_pCharacter->MaxLevel())
         {
             const LevelTraining & ld = m_pCharacter->LevelData(i);
             type = ld.HasClass() ? ld.Class() : Class_Unknown;
-            m_buttonLevels[i].EnableWindow(TRUE);
+            m_buttonLevels[i].EnableWindow(i <= m_pCharacter->MaxLevel());
+            m_buttonLevels[i].ShowWindow(SW_SHOW);
             // there are issues with this level if not all feats have been
             // trained
             std::vector<TrainableFeatTypes> trainable =
@@ -750,6 +751,10 @@ void CLevelUpView::SetLevelButtonStates()
             // no character, buttons disabled
             m_buttonLevels[i].EnableWindow(FALSE);
             m_buttonLevels[i].SetIssueState(false);
+            if (m_pCharacter != NULL && i >= m_pCharacter->MaxLevel())
+            {
+                m_buttonLevels[i].ShowWindow(SW_HIDE);
+            }
         }
         m_buttonLevels[i].SetClass(type);
     }
@@ -1720,7 +1725,11 @@ void CLevelUpView::OnLButtonDown(UINT nFlags, CPoint point)
         if (pLevelButton != NULL)
         {
             // yes, its a level button
-            OnButtonLevel(pLevelButton->GetDlgCtrlID());
+            if (pLevelButton->IsWindowEnabled())
+            {
+                // and it is enabled
+                OnButtonLevel(pLevelButton->GetDlgCtrlID());
+            }
         }
     }
 }
@@ -1940,32 +1949,35 @@ LRESULT CLevelUpView::OnUpdateComplete(WPARAM wParam, LPARAM lParam)
 
 LRESULT CLevelUpView::OnMouseEnter(WPARAM wParam, LPARAM lParam)
 {
-    // is it an enter over a feat combo box?
-    bool done = false;
-    for (size_t i = 0; i < 3; ++i)
+    if (m_pCharacter != NULL)
     {
-        if (wParam == m_hookFeatHandles[i]
-                && m_staticFeatDescription[i].IsWindowVisible())
+        // is it an enter over a feat combo box?
+        bool done = false;
+        for (size_t i = 0; i < 3; ++i)
         {
-            CRect itemRect;
-            m_comboFeatSelect[i].GetWindowRect(&itemRect);
-            ShowFeatTip(i, itemRect);
-            done = true;
-            break;
-        }
-    }
-    if (!done)
-    {
-        for (size_t i = 0; i < MAX_LEVEL; ++i)
-        {
-            if (wParam == m_hookLevelHandles[i]
-                    && m_buttonLevels[i].IsWindowVisible())
+            if (wParam == m_hookFeatHandles[i]
+                    && m_staticFeatDescription[i].IsWindowVisible())
             {
                 CRect itemRect;
-                m_buttonLevels[i].GetWindowRect(&itemRect);
-                ShowLevelTip(i, itemRect);
+                m_comboFeatSelect[i].GetWindowRect(&itemRect);
+                ShowFeatTip(i, itemRect);
                 done = true;
                 break;
+            }
+        }
+        if (!done)
+        {
+            for (size_t i = 0; i < m_pCharacter->MaxLevel(); ++i)
+            {
+                if (wParam == m_hookLevelHandles[i]
+                        && m_buttonLevels[i].IsWindowVisible())
+                {
+                    CRect itemRect;
+                    m_buttonLevels[i].GetWindowRect(&itemRect);
+                    ShowLevelTip(i, itemRect);
+                    done = true;
+                    break;
+                }
             }
         }
     }

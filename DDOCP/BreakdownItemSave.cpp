@@ -84,7 +84,7 @@ void BreakdownItemSave::CreateOtherEffects()
                 || m_saveType == Save_Reflex
                 || m_saveType == Save_Will)
         {
-            std::vector<size_t> classLevels = m_pCharacter->ClassLevels(MAX_LEVEL);
+            std::vector<size_t> classLevels = m_pCharacter->ClassLevels(m_pCharacter->MaxLevel());
             for (size_t ci = Class_Unknown; ci < Class_Count; ++ci)
             {
                 if (classLevels[ci] > 0
@@ -102,7 +102,7 @@ void BreakdownItemSave::CreateOtherEffects()
                 }
             }
             // special case, look for Divine Grace feat
-            size_t count = TrainedCount(m_pCharacter->CurrentFeats(MAX_LEVEL), "Divine Grace");
+            size_t count = TrainedCount(m_pCharacter->CurrentFeats(m_pCharacter->MaxLevel()), "Divine Grace");
             if (count > 0)
             {
                 // character has divine grace feat trained. Add charisma bonus for this save
@@ -134,7 +134,7 @@ void BreakdownItemSave::CreateOtherEffects()
             else
             {
                 // now check for the half elf: Paladin Dilettante feat
-                count = TrainedCount(m_pCharacter->CurrentFeats(MAX_LEVEL), "Half-Elf Dilettante: Paladin");
+                count = TrainedCount(m_pCharacter->CurrentFeats(m_pCharacter->MaxLevel()), "Half-Elf Dilettante: Paladin");
                 if (count > 0)
                 {
                     // yes, they have it. Work out what the max capped charisma bonus to saves is

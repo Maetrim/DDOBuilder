@@ -833,7 +833,7 @@ size_t ActiveEffect::NumStacks() const
         else
         {
             // must be a feat count
-            std::list<TrainedFeat> currentFeats = m_pCharacter->CurrentFeats(MAX_LEVEL);
+            std::list<TrainedFeat> currentFeats = m_pCharacter->CurrentFeats(m_pCharacter->MaxLevel());
             count = TrainedCount(currentFeats, m_stacksControl);
         }
     }

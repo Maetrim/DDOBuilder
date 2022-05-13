@@ -106,7 +106,7 @@ class CLevelUpView :
         void UpdateHookRectangles();
 
         Character * m_pCharacter;
-        CLevelButton m_buttonLevels[MAX_LEVEL];
+        CLevelButton m_buttonLevels[MAX_LAMANNIA_LEVEL];
         CStatic m_staticClass;
         CComboBox m_comboClass[3];
         CStatic m_staticFeatDescription[3];
@@ -138,7 +138,7 @@ class CLevelUpView :
         int m_selectedSkill;
 
         UINT m_hookFeatHandles[3];
-        UINT m_hookLevelHandles[MAX_LEVEL];
+        UINT m_hookLevelHandles[MAX_LAMANNIA_LEVEL];
         UINT m_automaticHandle;
         int m_hoverItem;
         bool m_bIgnoreNextMessage;

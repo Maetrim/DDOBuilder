@@ -79,7 +79,7 @@ void BreakdownItemAbility::CreateOtherEffects()
             AddOtherEffect(tome);
         }
         // level ups
-        amount = charData.LevelUpsAtLevel(m_ability, MAX_LEVEL);
+        amount = charData.LevelUpsAtLevel(m_ability, charData.MaxLevel());
         if (amount > 0)
         {
             ActiveEffect tome(

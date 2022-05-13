@@ -44,7 +44,7 @@ void BreakdownItemHitpoints::CreateOtherEffects()
     if (m_pCharacter != NULL)
     {
         m_otherEffects.clear();
-        std::vector<size_t> classLevels = m_pCharacter->ClassLevels(MAX_LEVEL);
+        std::vector<size_t> classLevels = m_pCharacter->ClassLevels(m_pCharacter->MaxLevel());
         for (size_t ci = Class_Unknown; ci < Class_Count; ++ci)
         {
             if (classLevels[ci] > 0)
@@ -88,7 +88,7 @@ void BreakdownItemHitpoints::CreateOtherEffects()
             ActiveEffect conBonus(
                     Bonus_ability,
                     "Constitution bonus",
-                    MAX_LEVEL,  // con bonus applies for every level
+                    m_pCharacter->MaxLevel(),  // con bonus applies for every level
                     bonus,
                     "");        // no tree
             AddOtherEffect(conBonus);

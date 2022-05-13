@@ -41,7 +41,7 @@ void BreakdownItemClassCasterLevel::CreateOtherEffects()
     {
         m_otherEffects.clear();
         const Character & charData = *m_pCharacter;
-        std::vector<size_t> classLevels = charData.ClassLevels(MAX_LEVEL);
+        std::vector<size_t> classLevels = charData.ClassLevels(m_pCharacter->MaxLevel());
         if (classLevels[m_class] != 0)
         {
             CString text;

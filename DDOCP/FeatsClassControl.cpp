@@ -11,7 +11,7 @@ namespace
     const int c_FeatColumnWidth = 200;      // pixels
     const UINT UWM_UPDATE = ::RegisterWindowMessage(_T("Update"));
     const UINT UWM_TOGGLE_INCLUDED = ::RegisterWindowMessage(_T("ToggleIgnoreItem"));
-    const int c_dudLevel = MAX_LEVEL + 1;
+    const int c_dudLevel = MAX_LAMANNIA_LEVEL + 1;
 }
 
 IMPLEMENT_DYNAMIC(CFeatsClassControl, CWnd)
@@ -143,7 +143,7 @@ CSize CFeatsClassControl::RequiredSize()
             width += (csText.cx + 1);
         }
         int height = m_levelRect.Height();
-        for (size_t level = 0; level < MAX_LEVEL; ++level)
+        for (size_t level = 0; level < m_pCharacter->MaxLevel(); ++level)
         {
             bool bFeatsAvailable = (m_availableFeats[level].size() > 0);
             if (bFeatsAvailable)
@@ -166,6 +166,7 @@ CSize CFeatsClassControl::RequiredSize()
 
 void CFeatsClassControl::SetupControl()
 {
+    LockWindowUpdate();
     if (!m_tipCreated)
     {
         m_tooltip.Create(this);
@@ -198,7 +199,7 @@ void CFeatsClassControl::SetupControl()
                 m_numClassColumns++;        // need to show class 3 column
             }
         }
-        for (size_t level = 0; level < MAX_LEVEL; ++level)
+        for (size_t level = 0; level < m_pCharacter->MaxLevel(); ++level)
         {
             std::vector<TrainableFeatTypes> availableFeatSlots =
                     m_pCharacter->TrainableFeatTypeAtLevel(level);
@@ -206,6 +207,7 @@ void CFeatsClassControl::SetupControl()
             m_maxRequiredFeats = max(m_maxRequiredFeats, availableFeatSlots.size());
         }
     }
+    UnlockWindowUpdate();
 }
 
 void CFeatsClassControl::OnPaint()
@@ -247,7 +249,7 @@ void CFeatsClassControl::OnPaint()
         // the height of all other items depends on whether there are feat
         // selections available for that level.
         size_t top = DrawTopLine(&memoryDc, rctWindow);
-        for (size_t level = 0; level < MAX_LEVEL; ++level)
+        for (size_t level = 0; level < m_pCharacter->MaxLevel(); ++level)
         {
             m_levelRects[level] = CRect(0, top, rctWindow.right, top);
             top = DrawLevelLine(&memoryDc, top, level, rctWindow);
@@ -372,7 +374,8 @@ size_t CFeatsClassControl::DrawLevelLine(
         fillBrush.CreateSolidBrush(::GetSysColor(COLOR_BTNFACE));
     }
     CRect rctItem = m_levelRect;
-    bool bFeatsAvailable = (m_availableFeats[level].size() > 0);
+    const std::vector<TrainableFeatTypes>& featOptions = m_availableFeats[level];
+    bool bFeatsAvailable = (featOptions.size() > 0);
     rctItem.top = top;
     if (bFeatsAvailable)
     {
@@ -631,137 +634,140 @@ LRESULT CFeatsClassControl::OnMouseLeave(WPARAM wParam, LPARAM lParam)
 
 void CFeatsClassControl::OnMouseMove(UINT nFlags, CPoint point)
 {
-    // determine which row the mouse is over, and change highlight if required
-    size_t overLevel = c_dudLevel;
-    for (size_t level = 0; level < MAX_LEVEL; ++level)
+    if (m_pCharacter != NULL)
     {
-        if (m_levelRects[level].PtInRect(point))
+        // determine which row the mouse is over, and change highlight if required
+        size_t overLevel = c_dudLevel;
+        for (size_t level = 0; level < m_pCharacter->MaxLevel(); ++level)
         {
-            overLevel = level;
-            break;
+            if (m_levelRects[level].PtInRect(point))
+            {
+                overLevel = level;
+                break;
+            }
         }
-    }
-    if (overLevel != m_highlightedLevelLine)
-    {
-        m_highlightedLevelLine = overLevel;
-        Invalidate();
-    }
-    // hit check the mouse location and display feat tooltips if required
-    HitCheckItem ht = HitCheck(point);
-    if (ht.Type() == HT_Feat)
-    {
-        // mouse is over a feat, display tooltip if its a trained feat
-        if (m_showingTip
-                && ht.Type() == m_tooltipItem.Type()
-                && ht.Level() == m_tooltipItem.Level()
-                && ht.Data() == m_tooltipItem.Data())
+        if (overLevel != m_highlightedLevelLine)
         {
-            // already showing the right tip, do nothing
+            m_highlightedLevelLine = overLevel;
+            Invalidate();
+        }
+        // hit check the mouse location and display feat tooltips if required
+        HitCheckItem ht = HitCheck(point);
+        if (ht.Type() == HT_Feat)
+        {
+            // mouse is over a feat, display tooltip if its a trained feat
+            if (m_showingTip
+                    && ht.Type() == m_tooltipItem.Type()
+                    && ht.Level() == m_tooltipItem.Level()
+                    && ht.Data() == m_tooltipItem.Data())
+            {
+                // already showing the right tip, do nothing
+            }
+            else
+            {
+                HideTip();
+                m_tooltipItem = HitCheckItem(HT_None, CRect(0, 0, 0, 0), 0, 0);
+                // get the selected feat name (if there is one)
+                std::vector<TrainableFeatTypes> tfts = m_availableFeats[ht.Level()];
+                if (tfts.size() > ht.Data())
+                {
+                    // if we have an actual trained feat, draw it
+                    TrainedFeat tf = m_pCharacter->GetTrainedFeat(
+                            ht.Level(),
+                            tfts[ht.Data()]);
+                    std::string featName = tf.FeatName();
+                    if (featName != "")
+                    {
+                        const Feat & feat = FindFeat(tf.FeatName());
+                        // determine whether there is a feat swap warning if training at level 1
+                        bool warn = false;
+                        if (ht.Level() == 0
+                                && tfts[ht.Data()] != TFT_Automatic
+                                && tfts[ht.Data()] != TFT_GrantedFeat
+                                && featName != " No Selection")
+                        {
+                            warn = !m_pCharacter->IsFeatTrainable(
+                                    ht.Level(),
+                                    tfts[ht.Data()],
+                                    feat,
+                                    false,
+                                    true)
+                                    || (featName == "Completionist" && (ht.Level() == 0));
+                        }
+                        CPoint tipTopLeft(ht.Rect().left, ht.Rect().bottom);
+                        CPoint tipAlternate(ht.Rect().left, ht.Rect().top);
+                        ClientToScreen(&tipTopLeft);
+                        ClientToScreen(&tipAlternate);
+                        m_tooltip.SetOrigin(tipTopLeft, tipAlternate, false);
+                        m_tooltip.SetFeatItem(*m_pCharacter, &feat, warn, ht.Level(), false);
+                        m_tooltip.Show();
+                        m_showingTip = true;
+                        m_tooltipItem = ht;
+                        if (tf.HasAlternateFeatName())
+                        {
+                            CDC * pDC = GetDC();
+                            CSize windowSize;
+                            m_tooltip.GetWindowSize(pDC, &windowSize);
+                            ReleaseDC(pDC);
+                            const Feat & feat = FindFeat(tf.AlternateFeatName());
+                            tipTopLeft += CPoint(0, windowSize.cy + 5);
+                            tipAlternate -= CPoint(0, windowSize.cy + 5);
+                            m_tooltip2.SetOrigin(tipTopLeft, tipAlternate, false);
+                            m_tooltip2.SetFeatItem(*m_pCharacter, &feat, false, ht.Level(), false);
+                            m_tooltip2.Show();
+                        }
+                    }
+                }
+            }
+        }
+        else if (ht.Type() == HT_LevelClass1
+                || ht.Type() == HT_LevelClass2
+                || ht.Type() == HT_LevelClass3)
+        {
+            // look up the selected class
+            const LevelTraining & levelData = m_pCharacter->LevelData(ht.Level());
+            ClassType expectedClass = levelData.HasClass() ? levelData.Class() : Class_Unknown;
+            if (ht.Level() == 0)
+            {
+                switch (m_pCharacter->Race())
+                {
+                case Race_AasimarScourge: expectedClass = Class_Ranger; break;
+                case Race_BladeForged: expectedClass = Class_Paladin; break;
+                case Race_DeepGnome: expectedClass = Class_Wizard; break;
+                case Race_KoboldShamen: expectedClass = Class_Sorcerer; break;
+                case Race_Morninglord: expectedClass = Class_Cleric; break;
+                case Race_PurpleDragonKnight: expectedClass = Class_Fighter; break;
+                case Race_RazorclawShifter: expectedClass = Class_Barbarian; break;
+                case Race_ShadarKai: expectedClass = Class_Rogue; break;
+                case Race_TabaxiTrailblazer: expectedClass = Class_Monk; break;
+                case Race_TieflingScoundrel: expectedClass = Class_Bard; break;
+                }
+            }
+            CPoint tipTopLeft(ht.Rect().left, ht.Rect().bottom);
+            CPoint tipAlternate(ht.Rect().left, ht.Rect().top);
+            ClientToScreen(&tipTopLeft);
+            ClientToScreen(&tipAlternate);
+            m_tooltip.SetOrigin(tipTopLeft, tipAlternate, false);
+            m_tooltip.SetLevelItem(*m_pCharacter, ht.Level(), &levelData, expectedClass);
+            m_tooltip.Show();
+            m_showingTip = true;
+            m_tooltipItem = ht;
         }
         else
         {
             HideTip();
             m_tooltipItem = HitCheckItem(HT_None, CRect(0, 0, 0, 0), 0, 0);
-            // get the selected feat name (if there is one)
-            std::vector<TrainableFeatTypes> tfts = m_availableFeats[ht.Level()];
-            if (tfts.size() > ht.Data())
-            {
-                // if we have an actual trained feat, draw it
-                TrainedFeat tf = m_pCharacter->GetTrainedFeat(
-                        ht.Level(),
-                        tfts[ht.Data()]);
-                std::string featName = tf.FeatName();
-                if (featName != "")
-                {
-                    const Feat & feat = FindFeat(tf.FeatName());
-                    // determine whether there is a feat swap warning if training at level 1
-                    bool warn = false;
-                    if (ht.Level() == 0
-                            && tfts[ht.Data()] != TFT_Automatic
-                            && tfts[ht.Data()] != TFT_GrantedFeat
-                            && featName != " No Selection")
-                    {
-                        warn = !m_pCharacter->IsFeatTrainable(
-                                ht.Level(),
-                                tfts[ht.Data()],
-                                feat,
-                                false,
-                                true)
-                                || (featName == "Completionist" && (ht.Level() == 0));
-                    }
-                    CPoint tipTopLeft(ht.Rect().left, ht.Rect().bottom);
-                    CPoint tipAlternate(ht.Rect().left, ht.Rect().top);
-                    ClientToScreen(&tipTopLeft);
-                    ClientToScreen(&tipAlternate);
-                    m_tooltip.SetOrigin(tipTopLeft, tipAlternate, false);
-                    m_tooltip.SetFeatItem(*m_pCharacter, &feat, warn, ht.Level(), false);
-                    m_tooltip.Show();
-                    m_showingTip = true;
-                    m_tooltipItem = ht;
-                    if (tf.HasAlternateFeatName())
-                    {
-                        CDC * pDC = GetDC();
-                        CSize windowSize;
-                        m_tooltip.GetWindowSize(pDC, &windowSize);
-                        ReleaseDC(pDC);
-                        const Feat & feat = FindFeat(tf.AlternateFeatName());
-                        tipTopLeft += CPoint(0, windowSize.cy + 5);
-                        tipAlternate -= CPoint(0, windowSize.cy + 5);
-                        m_tooltip2.SetOrigin(tipTopLeft, tipAlternate, false);
-                        m_tooltip2.SetFeatItem(*m_pCharacter, &feat, false, ht.Level(), false);
-                        m_tooltip2.Show();
-                    }
-                }
-            }
         }
-    }
-    else if (ht.Type() == HT_LevelClass1
-            || ht.Type() == HT_LevelClass2
-            || ht.Type() == HT_LevelClass3)
-    {
-        // look up the selected class
-        const LevelTraining & levelData = m_pCharacter->LevelData(ht.Level());
-        ClassType expectedClass = levelData.HasClass() ? levelData.Class() : Class_Unknown;
-        if (ht.Level() == 0)
-        {
-            switch (m_pCharacter->Race())
-            {
-            case Race_AasimarScourge: expectedClass = Class_Ranger; break;
-            case Race_BladeForged: expectedClass = Class_Paladin; break;
-            case Race_DeepGnome: expectedClass = Class_Wizard; break;
-            case Race_KoboldShamen: expectedClass = Class_Sorcerer; break;
-            case Race_Morninglord: expectedClass = Class_Cleric; break;
-            case Race_PurpleDragonKnight: expectedClass = Class_Fighter; break;
-            case Race_RazorclawShifter: expectedClass = Class_Barbarian; break;
-            case Race_ShadarKai: expectedClass = Class_Rogue; break;
-            case Race_TabaxiTrailblazer: expectedClass = Class_Monk; break;
-            case Race_TieflingScoundrel: expectedClass = Class_Bard; break;
-            }
-        }
-        CPoint tipTopLeft(ht.Rect().left, ht.Rect().bottom);
-        CPoint tipAlternate(ht.Rect().left, ht.Rect().top);
-        ClientToScreen(&tipTopLeft);
-        ClientToScreen(&tipAlternate);
-        m_tooltip.SetOrigin(tipTopLeft, tipAlternate, false);
-        m_tooltip.SetLevelItem(*m_pCharacter, ht.Level(), &levelData, expectedClass);
-        m_tooltip.Show();
-        m_showingTip = true;
-        m_tooltipItem = ht;
-    }
-    else
-    {
-        HideTip();
-        m_tooltipItem = HitCheckItem(HT_None, CRect(0, 0, 0, 0), 0, 0);
-    }
-    // track the mouse so we know when it leaves our window
-    TRACKMOUSEEVENT tme;
-    tme.cbSize = sizeof(tme);
-    tme.hwndTrack = m_hWnd;
-    tme.dwFlags = TME_LEAVE;
-    tme.dwHoverTime = 1;
-    _TrackMouseEvent(&tme);
+        // track the mouse so we know when it leaves our window
+        TRACKMOUSEEVENT tme;
+        tme.cbSize = sizeof(tme);
+        tme.hwndTrack = m_hWnd;
+        tme.dwFlags = TME_LEAVE;
+        tme.dwHoverTime = 1;
+        _TrackMouseEvent(&tme);
 
-    __super::OnMouseMove(nFlags, point);
+        __super::OnMouseMove(nFlags, point);
+    }
 }
 
 void CFeatsClassControl::OnLButtonUp(UINT nFlags, CPoint point)

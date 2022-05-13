@@ -145,10 +145,10 @@ void CFindGearDialog::PopulateAvailableItemList()
     bool bExcludeRaidItems = (m_checkExcludeRaidItems.GetCheck() == BST_CHECKED);
 
     // need to know how many levels and of what classes they have trained
-    std::vector<size_t> classLevels = m_pCharacter->ClassLevels(MAX_LEVEL);
+    std::vector<size_t> classLevels = m_pCharacter->ClassLevels(m_pCharacter->MaxLevel());
     // need to know which feats have already been trained by this point
     // include any feats also trained at the current level
-    std::list<TrainedFeat> currentFeats = m_pCharacter->CurrentFeats(MAX_LEVEL);
+    std::list<TrainedFeat> currentFeats = m_pCharacter->CurrentFeats(m_pCharacter->MaxLevel());
 
     const std::list<Item> & allItems = Items();
     m_availableItems.clear();
@@ -172,7 +172,7 @@ void CFindGearDialog::PopulateAvailableItemList()
             // some items have requirements to be able to use, see if they are met
             if ((*it).HasRequirementsToUse())
             {
-                if (!(*it).RequirementsToUse().Met(*m_pCharacter, classLevels, MAX_LEVEL, currentFeats, true))
+                if (!(*it).RequirementsToUse().Met(*m_pCharacter, classLevels, m_pCharacter->MaxLevel(), currentFeats, true))
                 {
                     canSelect = false;
                 }

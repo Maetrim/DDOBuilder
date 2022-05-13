@@ -88,6 +88,7 @@ class Character :
         void Write(XmlLib::SaxWriter * writer) const;
 
         void SetLamanniaMode(bool bLamanniaPreview);
+        size_t MaxLevel() const;
 
         void JustLoaded();  // called when file loaded and needs to be checked / updated
         void NowActive();   // called when active MDI changed
@@ -380,7 +381,8 @@ class Character :
                 DL_STRING(_, ActiveGear) \
                 DL_OBJECT_LIST(_, EquippedGear, GearSetups) \
                 DL_STRING_LIST(_, SelfAndPartyBuffs) \
-                DL_STRING(_, Notes)
+                DL_STRING(_, Notes) \
+                DL_FLAG(_, LamanniaMode)
 
         DL_DECLARE_ACCESS(Character_PROPERTIES)
         DL_DECLARE_VARIABLES(Character_PROPERTIES)
@@ -476,7 +478,6 @@ class Character :
         bool m_bShowEpicOnly;
         bool m_bShowUnavailableFeats;
         bool m_bShowIgnoredItems;
-        bool m_bLamanniaMode;
 
         friend class CForumExportDlg;
         friend class CEnhancementTreeDialog;

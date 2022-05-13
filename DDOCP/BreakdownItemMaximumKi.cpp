@@ -55,7 +55,7 @@ void BreakdownItemMaximumKi::CreateOtherEffects()
             AddOtherEffect(wisBonus);
         }
         // monk level bonus
-        std::vector<size_t> classLevels = m_pCharacter->ClassLevels(MAX_LEVEL);
+        std::vector<size_t> classLevels = m_pCharacter->ClassLevels(m_pCharacter->MaxLevel());
         size_t monkLevels = classLevels[Class_Monk];
         if (monkLevels > 0)
         {

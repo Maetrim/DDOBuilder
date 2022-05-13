@@ -60,7 +60,7 @@ void BreakdownItemSpellPoints::CreateOtherEffects()
             }
         }
 
-        std::vector<size_t> classLevels = m_pCharacter->ClassLevels(MAX_LEVEL);
+        std::vector<size_t> classLevels = m_pCharacter->ClassLevels(m_pCharacter->MaxLevel());
         for (size_t ci = Class_Unknown; ci < Class_Count; ++ci)
         {
             // class level spell points

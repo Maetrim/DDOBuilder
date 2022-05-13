@@ -101,7 +101,7 @@ private:
     CRect m_statRects[7];
     bool m_bUpdatePending;
     size_t m_highlightedLevelLine;
-    CRect m_levelRects[MAX_LEVEL];
+    CRect m_levelRects[MAX_LAMANNIA_LEVEL];
     // feat tooltip
     CInfoTip m_tooltip;
     CInfoTip m_tooltip2;

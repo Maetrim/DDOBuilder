@@ -108,12 +108,12 @@ BOOL CSelectionSelectDialog::OnInitDialog()
         bool canTrain = true;
         if ((*it).HasRequirementsToTrain())
         {
-            std::vector<size_t> classLevels = m_charData.ClassLevels(MAX_LEVEL);
-            std::list<TrainedFeat> trainedFeats = m_charData.CurrentFeats(MAX_LEVEL);
+            std::vector<size_t> classLevels = m_charData.ClassLevels(m_charData.MaxLevel());
+            std::list<TrainedFeat> trainedFeats = m_charData.CurrentFeats(m_charData.MaxLevel());
             canTrain = (*it).RequirementsToTrain().Met(
                     m_charData,
                     classLevels,
-                    MAX_LEVEL,
+                    m_charData.MaxLevel(),
                     trainedFeats,
                     true);          // do include tomes
         }

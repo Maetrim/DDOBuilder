@@ -86,8 +86,7 @@ END_MESSAGE_MAP()
 CDDOCPView::CDDOCPView() :
     CFormView(CDDOCPView::IDD),
     m_pCharacter(NULL),
-    m_bIgnoreFocus(false),
-    m_bLamanniaPreview(false)
+    m_bIgnoreFocus(false)
 {
     // TODO: add construction code here
 }
@@ -399,16 +398,16 @@ void CDDOCPView::PopulateComboboxes()
         i = m_comboAILevel40.AddString(text);
         m_comboAILevel40.SetItemData(i, ai);
     }
-    m_comboAILevel4.EnableWindow(MAX_LEVEL >= 4);
-    m_comboAILevel8.EnableWindow(MAX_LEVEL >= 8);
-    m_comboAILevel12.EnableWindow(MAX_LEVEL >= 12);
-    m_comboAILevel16.EnableWindow(MAX_LEVEL >= 16);
-    m_comboAILevel20.EnableWindow(MAX_LEVEL >= 20);
-    m_comboAILevel24.EnableWindow(MAX_LEVEL >= 24);
-    m_comboAILevel28.EnableWindow(MAX_LEVEL >= 28);
-    m_comboAILevel32.EnableWindow(MAX_LEVEL >= 32);
-    m_comboAILevel36.EnableWindow(MAX_LEVEL >= 36);
-    m_comboAILevel40.EnableWindow(MAX_LEVEL >= 40);
+    m_comboAILevel4.EnableWindow(m_pCharacter->MaxLevel() >= 4);
+    m_comboAILevel8.EnableWindow(m_pCharacter->MaxLevel() >= 8);
+    m_comboAILevel12.EnableWindow(m_pCharacter->MaxLevel() >= 12);
+    m_comboAILevel16.EnableWindow(m_pCharacter->MaxLevel() >= 16);
+    m_comboAILevel20.EnableWindow(m_pCharacter->MaxLevel() >= 20);
+    m_comboAILevel24.EnableWindow(m_pCharacter->MaxLevel() >= 24);
+    m_comboAILevel28.EnableWindow(m_pCharacter->MaxLevel() >= 28);
+    m_comboAILevel32.EnableWindow(m_pCharacter->MaxLevel() >= 32);
+    m_comboAILevel36.EnableWindow(m_pCharacter->MaxLevel() >= 36);
+    m_comboAILevel40.EnableWindow(m_pCharacter->MaxLevel() >= 40);
 }
 
 void CDDOCPView::RestoreControls()
@@ -1061,12 +1060,30 @@ void CDDOCPView::OnEditIgnoreListActive()
 
 void CDDOCPView::OnLamanniaPreview()
 {
-    m_bLamanniaPreview = !m_bLamanniaPreview;
-    m_pCharacter->SetLamanniaMode(m_bLamanniaPreview);
+    m_pCharacter->SetLamanniaMode(!m_pCharacter->HasLamanniaMode());    // toggle
+    // cause the UI to update by simulating a character change
+    CWnd* pWnd = AfxGetMainWnd();
+    CMainFrame* pFrame = dynamic_cast<CMainFrame*>(pWnd);
+    if (pFrame != NULL)
+    {
+        pFrame->SetActiveDocumentAndCharacter(NULL, NULL);
+        pFrame->SetActiveDocumentAndCharacter(GetDocument(), m_pCharacter);
+        m_comboAILevel4.EnableWindow(m_pCharacter->MaxLevel() >= 4);
+        m_comboAILevel8.EnableWindow(m_pCharacter->MaxLevel() >= 8);
+        m_comboAILevel12.EnableWindow(m_pCharacter->MaxLevel() >= 12);
+        m_comboAILevel16.EnableWindow(m_pCharacter->MaxLevel() >= 16);
+        m_comboAILevel20.EnableWindow(m_pCharacter->MaxLevel() >= 20);
+        m_comboAILevel24.EnableWindow(m_pCharacter->MaxLevel() >= 24);
+        m_comboAILevel28.EnableWindow(m_pCharacter->MaxLevel() >= 28);
+        m_comboAILevel32.EnableWindow(m_pCharacter->MaxLevel() >= 32);
+        m_comboAILevel36.EnableWindow(m_pCharacter->MaxLevel() >= 36);
+        m_comboAILevel40.EnableWindow(m_pCharacter->MaxLevel() >= 40);
+        UpdateBuildDescription();
+    }
 }
 
 void CDDOCPView::OnUpdateLamanniaPreview(CCmdUI * pCmdUi)
 {
-    pCmdUi->Enable(FALSE);              // no Lamannia preview available
-    pCmdUi->SetCheck(m_bLamanniaPreview);
+    pCmdUi->Enable(TRUE);
+    pCmdUi->SetCheck(m_pCharacter->HasLamanniaMode());
 }

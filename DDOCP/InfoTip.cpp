@@ -325,7 +325,7 @@ void CInfoTip::SetEnhancementTreeItem(
             charData,
             &m_requirements,
             &m_bRequirementMet,
-            MAX_LEVEL);
+            charData.MaxLevel());
     m_cost.Format("Cost %d", pItem->Cost(selection, 0));
     if (pItem->CostVaries(selection))
     {
@@ -364,7 +364,7 @@ void CInfoTip::SetEnhancementSelectionItem(
             charData,
             &m_requirements,
             &m_bRequirementMet,
-            MAX_LEVEL);
+            charData.MaxLevel());
     m_cost.Format("Cost %d", pSelection->Cost(0));
     if (pSelection->CostVaries())
     {

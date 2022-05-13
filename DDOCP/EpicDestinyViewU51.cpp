@@ -728,7 +728,7 @@ void CEpicDestinyViewU51::SetTooltipText(
     item.GetWindowText(text);
     const Feat & feat = FindFeat((LPCTSTR)text);
     m_tooltip.SetOrigin(tipTopLeft, tipAlternate, false);
-    m_tooltip.SetFeatItem(*m_pCharacter, &feat, false, MAX_LEVEL, false);
+    m_tooltip.SetFeatItem(*m_pCharacter, &feat, false, m_pCharacter->MaxLevel(), false);
     m_tooltip.Show();
 }
 

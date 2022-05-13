@@ -66,7 +66,7 @@ void BreakdownItemSkill::CreateOtherEffects()
         // all skills have the amount trained first
         double amount = m_pCharacter->SkillAtLevel(
                 m_skill,
-                MAX_LEVEL - 1, // 0 based
+                m_pCharacter->MaxLevel() - 1, // 0 based
                 false);     // skill tome not included
         if (amount > 0)
         {

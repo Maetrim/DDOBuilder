@@ -152,7 +152,6 @@ class CDDOCPView :
         CComboBox m_comboAILevel40;
 
         bool m_bIgnoreFocus;
-        bool m_bLamanniaPreview;
 };
 
 #ifndef _DEBUG  // debug version in DDOCPView.cpp

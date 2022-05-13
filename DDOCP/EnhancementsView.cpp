@@ -223,7 +223,7 @@ std::list<EnhancementTree> CEnhancementsView::DetermineTrees()
     if (m_pCharacter != NULL)
     {
         // to determine which tree's we need to know how many class levels we have in each class
-        std::vector<size_t> classLevels = m_pCharacter->ClassLevels(MAX_LEVEL);
+        std::vector<size_t> classLevels = m_pCharacter->ClassLevels(m_pCharacter->MaxLevel());
         const std::list<EnhancementTree> & allTrees = EnhancementTrees();
         std::list<EnhancementTree>::const_iterator it = allTrees.begin();
         while (it != allTrees.end())
@@ -803,6 +803,6 @@ void CEnhancementsView::SetTooltipText(
     item.GetWindowText(text);
     const Feat & feat = FindFeat((LPCTSTR)text);
     m_tooltip.SetOrigin(tipTopLeft, tipAlternate, false);
-    m_tooltip.SetFeatItem(*m_pCharacter, &feat, false, MAX_LEVEL, false);
+    m_tooltip.SetFeatItem(*m_pCharacter, &feat, false, m_pCharacter->MaxLevel(), false);
     m_tooltip.Show();
 }

@@ -497,7 +497,7 @@ void CForumExportDlg::AddAbilityValues(std::stringstream & forumExport, AbilityT
     size_t baseValue = m_pCharacter->BaseAbilityValue(ability);
     BreakdownItem * pBI = FindBreakdown(StatToBreakdown(ability));
     size_t buffedValue = (size_t)pBI->Total();      // whole numbers only
-    size_t tomeValue = m_pCharacter->TomeAtLevel(ability, MAX_LEVEL-1);
+    size_t tomeValue = m_pCharacter->TomeAtLevel(ability, m_pCharacter->MaxLevel()-1);
     // get the stat name and limit to first 3 character
     std::string name = (EnumEntryText(ability, abilityTypeMap));
     name.resize(3);
@@ -562,7 +562,7 @@ void CForumExportDlg::AddFeatSelections(std::stringstream & forumExport)
     forumExport << "Class and Feat Selection\r\n";
     forumExport << "------------------------------------------------------------------------------------------\r\n";
     forumExport << "Level Class            Feats\r\n";
-    for (size_t level = 0; level < MAX_LEVEL; ++level)
+    for (size_t level = 0; level < m_pCharacter->MaxLevel(); ++level)
     {
         const LevelTraining & levelData = m_pCharacter->LevelData(level);
         if (level == 0)
@@ -678,7 +678,7 @@ void CForumExportDlg::AddAutomaticFeats(std::stringstream & forumExport)
     forumExport << "Automatic Feats\r\n";
     forumExport << "------------------------------------------------------------------------------------------\r\n";
     forumExport << "Level Class            Feats\r\n";
-    for (size_t level = 0; level < MAX_LEVEL; ++level)
+    for (size_t level = 0; level < m_pCharacter->MaxLevel(); ++level)
     {
         const LevelTraining & levelData = m_pCharacter->LevelData(level);
         std::vector<size_t> classLevels = m_pCharacter->ClassLevels(level);
@@ -720,7 +720,7 @@ void CForumExportDlg::AddConsolidatedFeats(std::stringstream & forumExport)
     forumExport << "Class and Feat Selection (Consolidated)\r\n";
     forumExport << "------------------------------------------------------------------------------------------\r\n";
     forumExport << "Level Class            Feats\r\n";
-    for (size_t level = 0; level < MAX_LEVEL; ++level)
+    for (size_t level = 0; level < m_pCharacter->MaxLevel(); ++level)
     {
         bool first = true;
         const LevelTraining & levelData = m_pCharacter->LevelData(level);
@@ -1319,7 +1319,7 @@ void CForumExportDlg::AddSpells(std::stringstream & forumExport)
 {
     bool first = true;
     // check each possible class for selected spells
-    std::vector<size_t> classLevels = m_pCharacter->ClassLevels(MAX_LEVEL);
+    std::vector<size_t> classLevels = m_pCharacter->ClassLevels(m_pCharacter->MaxLevel());
     for (size_t ci = Class_Unknown + 1; ci < Class_Count; ++ci)
     {
         if (classLevels[ci] > 0)

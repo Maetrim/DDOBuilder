@@ -198,7 +198,7 @@ bool Requirement::CanTrainEnhancement(
     if (HasClass())
     {
         // must be a specific level/min level of a given class
-        std::vector<size_t> classLevels = charData.ClassLevels(MAX_LEVEL);
+        std::vector<size_t> classLevels = charData.ClassLevels(charData.MaxLevel());
         size_t classLevel = classLevels[Class()];
         if (HasMinLevel())
         {
@@ -207,6 +207,20 @@ bool Requirement::CanTrainEnhancement(
         if (HasLevel())
         {
             met &= (classLevel >= Level());
+        }
+    }
+    else
+    {
+        // no class means the level field specifies a required level
+        if (HasMinLevel())
+        {
+            // minimum overall level
+            met &= (charData.MaxLevel() >= MinLevel());
+        }
+        if (HasLevel())
+        {
+            // specific level
+            met &= (charData.MaxLevel() == Level());
         }
     }
     if (HasEnhancement())
@@ -244,17 +258,17 @@ bool Requirement::CanTrainEnhancement(
     if (HasSkill())
     {
         // must have this number of ranks in the skill at the current level to train
-        met &= (charData.SkillAtLevel(Skill(), MAX_LEVEL, true) >= Amount());
+        met &= (charData.SkillAtLevel(Skill(), charData.MaxLevel(), true) >= Amount());
     }
     if (HasBAB())
     {
         // must have at least this BAB at the current total level to train
-        met &= (charData.BaseAttackBonus(MAX_LEVEL) >= BAB());
+        met &= (charData.BaseAttackBonus(charData.MaxLevel()) >= BAB());
     }
     if (HasFeat())
     {
         // must have this feat previously trained at the current level to train
-        std::list<TrainedFeat> feats = charData.CurrentFeats(MAX_LEVEL);
+        std::list<TrainedFeat> feats = charData.CurrentFeats(charData.MaxLevel());
         size_t count = TrainedCount(feats, Feat());
         size_t numNeeded = 1;
         if (HasAmount())
@@ -267,7 +281,7 @@ bool Requirement::CanTrainEnhancement(
     {
         // must have this specific base ability value to train (Base + Tome + Level up only)
         ASSERT(HasAmount());
-        size_t value = charData.AbilityAtLevel(Ability(), MAX_LEVEL, true);
+        size_t value = charData.AbilityAtLevel(Ability(), charData.MaxLevel(), true);
         met = (value >= Amount());
     }
     return met;
@@ -287,7 +301,7 @@ bool Requirement::IsAllowed(
     if (HasClass())
     {
         // must be a specific level/min level of a given class
-        std::vector<size_t> classLevels = charData.ClassLevels(MAX_LEVEL);
+        std::vector<size_t> classLevels = charData.ClassLevels(charData.MaxLevel());
         size_t classLevel = classLevels[Class()];
         if (HasMinLevel())
         {
@@ -302,17 +316,17 @@ bool Requirement::IsAllowed(
     if (HasSkill())
     {
         // must have this number of ranks in the skill at the current level to train
-        met &= (charData.SkillAtLevel(Skill(), MAX_LEVEL, true) >= Amount());
+        met &= (charData.SkillAtLevel(Skill(), charData.MaxLevel(), true) >= Amount());
     }
     if (HasBAB())
     {
         // must have at least this BAB at the current total level to train
-        met &= (charData.BaseAttackBonus(MAX_LEVEL) >= BAB());
+        met &= (charData.BaseAttackBonus(charData.MaxLevel()) >= BAB());
     }
     if (HasFeat())
     {
         // must have this feat previously trained at the current level to train
-        std::list<TrainedFeat> feats = charData.CurrentFeats(MAX_LEVEL);
+        std::list<TrainedFeat> feats = charData.CurrentFeats(charData.MaxLevel());
         size_t count = TrainedCount(feats, Feat());
         size_t numNeeded = 1;
         if (HasAmount())
@@ -325,7 +339,7 @@ bool Requirement::IsAllowed(
     {
         // must have this specific base ability value to train (Base + Tome + Level up only)
         ASSERT(HasAmount());
-        size_t value = charData.AbilityAtLevel(Ability(), MAX_LEVEL, true);
+        size_t value = charData.AbilityAtLevel(Ability(), charData.MaxLevel(), true);
         met = (value >= Amount());
     }
     return met;
@@ -345,7 +359,7 @@ bool Requirement::CanTrainTree(
     if (HasClass())
     {
         // must have a specific class present
-        std::vector<size_t> classLevels = charData.ClassLevels(MAX_LEVEL);
+        std::vector<size_t> classLevels = charData.ClassLevels(charData.MaxLevel());
         size_t classLevel = classLevels[Class()];
         met = (classLevel > 0);
     }
@@ -361,7 +375,7 @@ bool Requirement::CanTrainTree(
     if (HasFeat())
     {
         // must have this feat previously trained to access this tree
-        std::list<TrainedFeat> feats = charData.CurrentFeats(MAX_LEVEL);
+        std::list<TrainedFeat> feats = charData.CurrentFeats(charData.MaxLevel());
         size_t count = TrainedCount(feats, Feat());
         size_t numNeeded = 1;
         if (HasAmount())
@@ -402,7 +416,7 @@ void Requirement::CreateRequirementStrings(
         // must be a specific level/min level of a given class
         description = "Requires: ";
         description += EnumEntryText(Class(), classTypeMap);
-        std::vector<size_t> classLevels = charData.ClassLevels(MAX_LEVEL);
+        std::vector<size_t> classLevels = charData.ClassLevels(charData.MaxLevel());
         size_t classLevel = classLevels[Class()];
         if (HasMinLevel())
         {

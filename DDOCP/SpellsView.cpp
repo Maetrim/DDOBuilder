@@ -183,7 +183,7 @@ void CSpellsView::DetermineSpellViews()
     std::vector<size_t> classLevels;
     if (m_pCharacter != NULL)
     {
-        classLevels = m_pCharacter->ClassLevels(MAX_LEVEL);
+        classLevels = m_pCharacter->ClassLevels(MAX_CLASS_LEVELS);
     }
     else
     {
