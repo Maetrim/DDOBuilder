@@ -303,6 +303,15 @@ bool Effect::VerifyObject(std::stringstream * ss) const
                 ok = false;
             }
             break;
+        case Effect_SpellListAddition:
+            if (!HasSpell()
+                    || !HasSpellLevel()
+                    || !HasClass())
+            {
+                (*ss) << "SpellListAddition effect missing required element\n";
+                ok = false;
+            }
+            break;
         case Effect_TacticalDC:
             if (m_Tactical.size() == 0)
             {

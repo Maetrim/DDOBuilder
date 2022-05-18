@@ -357,6 +357,9 @@ void CStancesView::CreateStanceWindows()
     Stance thf("Two Handed Fighting", "TwoHandedFighting", "You are fighting with a single weapon in both hands");
     thf.Set_AutoControlled();
     AddStance(thf);
+    Stance thf2("Two Handed Fighting in Bear Form", "TwoHandedFighting", "You are fighting with a single weapon in both hands in Bear Form");
+    thf2.Set_AutoControlled();
+    AddStance(thf2);
     Stance swf("Single Weapon Fighting", "SingleWeaponFighting", "You are fighting with a single weapon");
     swf.Set_AutoControlled();
     AddStance(swf);

@@ -81,6 +81,7 @@ class CDDOCPView :
         afx_msg void OnEditIgnoreListActive();
         afx_msg void OnLamanniaPreview();
         afx_msg void OnUpdateLamanniaPreview(CCmdUI * pCmdUi);
+        afx_msg void OnRefreshBreakdowns();
         DECLARE_MESSAGE_MAP()
 
         // Character overrides

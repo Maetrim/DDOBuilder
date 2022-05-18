@@ -79,6 +79,7 @@ BEGIN_MESSAGE_MAP(CDDOCPView, CFormView)
     ON_COMMAND(ID_EDIT_IGNORELIST_ACTIVE, &CDDOCPView::OnEditIgnoreListActive)
     ON_COMMAND(ID_LAMANNIA_PREVIEW, OnLamanniaPreview)
     ON_UPDATE_COMMAND_UI(ID_LAMANNIA_PREVIEW, OnUpdateLamanniaPreview)
+    ON_COMMAND(ID_EDIT_REFRESHBREAKDOWNS, OnRefreshBreakdowns)
 END_MESSAGE_MAP()
 #pragma warning(pop)
 
@@ -88,7 +89,6 @@ CDDOCPView::CDDOCPView() :
     m_pCharacter(NULL),
     m_bIgnoreFocus(false)
 {
-    // TODO: add construction code here
 }
 
 CDDOCPView::~CDDOCPView()
@@ -234,6 +234,9 @@ BOOL CDDOCPView::OnEraseBkgnd(CDC* pDC)
         IDC_COMBO_LEVEL20_ABILITY,
         IDC_COMBO_LEVEL24_ABILITY,
         IDC_COMBO_LEVEL28_ABILITY,
+        IDC_COMBO_LEVEL32_ABILITY,
+        IDC_COMBO_LEVEL36_ABILITY,
+        IDC_COMBO_LEVEL40_ABILITY,
         0 // end marker
     };
 
@@ -985,7 +988,6 @@ void CDDOCPView::OnBnClickedRadio32pt()
     m_pCharacter->SetBuildPoints(32);
 }
 
-
 void CDDOCPView::OnEditResetbuild()
 {
     // make sure the user really wants to do this, as its a big change
@@ -1086,4 +1088,16 @@ void CDDOCPView::OnUpdateLamanniaPreview(CCmdUI * pCmdUi)
 {
     pCmdUi->Enable(TRUE);
     pCmdUi->SetCheck(m_pCharacter->HasLamanniaMode());
+}
+
+void CDDOCPView::OnRefreshBreakdowns()
+{
+    // cause the UI to update by simulating a character change
+    CWnd* pWnd = AfxGetMainWnd();
+    CMainFrame* pFrame = dynamic_cast<CMainFrame*>(pWnd);
+    if (pFrame != NULL)
+    {
+        pFrame->SetActiveDocumentAndCharacter(NULL, NULL);
+        pFrame->SetActiveDocumentAndCharacter(GetDocument(), m_pCharacter);
+    }
 }

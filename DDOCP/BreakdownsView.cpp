@@ -1856,6 +1856,19 @@ void CBreakdownsView::AddEnergyCasterLevels(HTREEITEM hParent)
     }
     {
         HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Light/Alignment Spell Caster Level",
+                hParent,
+                TVI_LAST);
+        BreakdownItem * pLight = new BreakdownItemEnergyCasterLevel(
+                Energy_Light,
+                Breakdown_CasterLevel_Spell_Light,
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pLight);
+        m_items.push_back(pLight);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
                 "Negative Spell Caster Level",
                 hParent,
                 TVI_LAST);
@@ -1866,6 +1879,19 @@ void CBreakdownsView::AddEnergyCasterLevels(HTREEITEM hParent)
                 hItem);
         m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pNegative);
         m_items.push_back(pNegative);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Poison Spell Caster Level",
+                hParent,
+                TVI_LAST);
+        BreakdownItem * pPoison = new BreakdownItemEnergyCasterLevel(
+                Energy_Poison,
+                Breakdown_CasterLevel_Spell_Poison,
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pPoison);
+        m_items.push_back(pPoison);
     }
     {
         HTREEITEM hItem = m_itemBreakdownTree.InsertItem(

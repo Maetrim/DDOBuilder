@@ -434,6 +434,10 @@ std::vector<Spell> FilterSpells(const Character * pChar, ClassType ct, int level
             }
             break;
         }
+        if (pChar->IsSpellInSpellListAdditionList(ct, level, (*si).Name()))
+        {
+            isClassLevelSpell = true;
+        }
         if (isClassLevelSpell
                 && (pChar->ShowIgnoredItems()
                     || !IsInIgnoreList((*si).Name())))

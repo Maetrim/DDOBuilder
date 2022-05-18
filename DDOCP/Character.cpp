@@ -478,7 +478,7 @@ void Character::UpdateSpells()
 {
     bool showMsg = false;
     std::stringstream ss;
-    ss << "The following spells were revoked due to class level changes:\r\n"
+    ss << "The following spells were revoked due to class level or enhancement changes:\r\n"
         "\r\n";
     // check that we do not have more spells trained at a given spell
     // level than the current class assignments allow. If we do,
@@ -502,6 +502,36 @@ void Character::UpdateSpells()
                 ss << "\r\n";
                 showMsg = true;
                 RevokeSpell((ClassType)ci, ts.Level(), ts.SpellName());
+            }
+            // the spell must also still be in the available list for this class and level
+            std::vector<Spell> availableSpells = FilterSpells(this, (ClassType)ci, spellLevel+1);
+            std::list<TrainedSpell>::iterator tsit = trainedSpells.begin();
+            while (tsit != trainedSpells.end())
+            {
+                std::string spellName = (*tsit).SpellName();
+                bool bFound = false;
+                for (size_t asi = 0; asi < availableSpells.size(); ++asi)
+                {
+                    if (availableSpells[asi].Name() == spellName)
+                    {
+                        bFound = true;
+                        break;
+                    }
+                }
+                if (!bFound)
+                {
+                    // need to revoke this spell
+                    ss << EnumEntryText((ClassType)ci, classTypeMap) << ": ";
+                    ss << spellName << " Spell Level " << (*tsit).Level();
+                    ss << "\r\n";
+                    showMsg = true;
+                    RevokeSpell((ClassType)ci, (*tsit).Level(), spellName);
+                    tsit = trainedSpells.erase(tsit);
+                }
+                else
+                {
+                    ++tsit;
+                }
             }
         }
     }
@@ -3064,6 +3094,7 @@ void Character::Enhancement_RevokeEnhancement(
         UpdateWeaponStances();
         SetAlignmentStances();
         UpdateCenteredStance();
+        UpdateSpells();     // some enhancements can control what spells are available
     }
 }
 
@@ -4936,6 +4967,7 @@ void Character::UpdateWeaponStances()
     // TWF, THF, SWF, Unarmed, Axe, Sword and Board, Staff, Orb, RuneArm, Swashbuckling
     Stance twf("Two Weapon Fighting", "", "");
     Stance thf("Two Handed Fighting", "", "");
+    Stance thf2("Two Handed Fighting in Bear Form", "", "");
     Stance swf("Single Weapon Fighting", "", "");
     Stance unarmed("Unarmed", "", "");
     Stance axe("Axe", "", "");
@@ -4980,6 +5012,7 @@ void Character::UpdateWeaponStances()
             break;
         }
         DeactivateStance(thf);
+        DeactivateStance(thf2);
         if (enableSwf)
         {
             ActivateStance(swf);
@@ -5061,6 +5094,7 @@ void Character::UpdateWeaponStances()
         case Weapon_Quarterstaff:
             ActivateStance(thf);
             ActivateStance(staff);
+            DeactivateStance(thf2);
             DeactivateStance(swashbuckling);
             DeactivateStance(swf);
             break;
@@ -5070,6 +5104,7 @@ void Character::UpdateWeaponStances()
         case Weapon_Maul:
         case Weapon_Falchion:
             ActivateStance(thf);
+            DeactivateStance(thf2);
             DeactivateStance(staff);
             DeactivateStance(swashbuckling);
             DeactivateStance(swf);
@@ -5080,11 +5115,13 @@ void Character::UpdateWeaponStances()
         case Weapon_ThrowingDagger:
         case Weapon_ThrowingHammer:
             DeactivateStance(thf);
+            DeactivateStance(thf2);
             ActivateStance(swashbuckling);
             ActivateStance(swf);
             break;
         default:
             DeactivateStance(thf);
+            DeactivateStance(thf2);
             if (item1.Weapon() != Weapon_Handwraps
                     && !IsRangedWeapon(item1.Weapon()))
             {
@@ -5132,6 +5169,7 @@ void Character::UpdateWeaponStances()
         // 1 off hand item equipped
         Item item1 = gear.ItemInSlot(Inventory_Weapon2);
         DeactivateStance(thf);
+        DeactivateStance(thf2);
         DeactivateStance(staff);
         DeactivateStance(swashbuckling);
         DeactivateStance(twf);
@@ -5160,6 +5198,7 @@ void Character::UpdateWeaponStances()
         // no items equipped
         DeactivateStance(twf);
         DeactivateStance(thf);
+        DeactivateStance(thf2);
         DeactivateStance(swf);
         ActivateStance(unarmed);
         DeactivateStance(sab);
@@ -5178,6 +5217,11 @@ void Character::UpdateWeaponStances()
     {
         // if they are in an animal form, then all specialised fighting
         // stances are disabled
+        if (IsStanceActive("Two Handed Fighting")
+                && (IsStanceActive("Bear") || IsStanceActive("Dire Bear")))
+        {
+            ActivateStance(thf2);
+        }
         DeactivateStance(twf);
         DeactivateStance(thf);
         DeactivateStance(swf);
@@ -5829,6 +5873,10 @@ void Character::UpdateFeatEffect(
     {
         AddGrantedFeat(effect.Feat());
     }
+    if (effect.Type() == Effect_SpellListAddition)
+    {
+        AddSpellListAddition(effect);
+    }
 }
 
 void Character::UpdateFeatEffectRevoked(
@@ -5839,6 +5887,10 @@ void Character::UpdateFeatEffectRevoked(
     if (effect.Type() == Effect_GrantFeat)
     {
         RevokeGrantedFeat(effect.Feat());
+    }
+    if (effect.Type() == Effect_SpellListAddition)
+    {
+        RevokeSpellListAddition(effect);
     }
 }
 
@@ -5851,6 +5903,10 @@ void Character::UpdateEnhancementEffect(
     {
         AddGrantedFeat(effect.m_effect.Feat());
     }
+    if (effect.m_effect.Type() == Effect_SpellListAddition)
+    {
+        AddSpellListAddition(effect.m_effect);
+    }
 }
 
 void Character::UpdateEnhancementEffectRevoked(
@@ -5861,6 +5917,10 @@ void Character::UpdateEnhancementEffectRevoked(
     if (effect.m_effect.Type() == Effect_GrantFeat)
     {
         RevokeGrantedFeat(effect.m_effect.Feat());
+    }
+    if (effect.m_effect.Type() == Effect_SpellListAddition)
+    {
+        RevokeSpellListAddition(effect.m_effect);
     }
 }
 
@@ -5873,6 +5933,10 @@ void Character::UpdateItemEffect(
     {
         AddGrantedFeat(effect.Feat());
     }
+    if (effect.Type() == Effect_SpellListAddition)
+    {
+        AddSpellListAddition(effect);
+    }
 }
 
 void Character::UpdateItemEffectRevoked(
@@ -5883,6 +5947,10 @@ void Character::UpdateItemEffectRevoked(
     if (effect.Type() == Effect_GrantFeat)
     {
         RevokeGrantedFeat(effect.Feat());
+    }
+    if (effect.Type() == Effect_SpellListAddition)
+    {
+        RevokeSpellListAddition(effect);
     }
 }
 
@@ -6770,4 +6838,65 @@ SpendInTree* Character::FindSpendInTree(const std::string& treeName)
         }
     }
     return pTree;
+}
+
+void Character::AddSpellListAddition(const Effect& effect)
+{
+    // check to make sure it is not already present
+    if (!IsSpellInSpellListAdditionList(effect.Class(), effect.SpellLevel(), effect.Spell()))
+    {
+        SpellListAddition sla(effect.Class(), effect.SpellLevel(), effect.Spell());
+        m_additionalSpells.push_back(sla);
+    }
+    else
+    {
+        // its already present, add to its count
+        for (size_t i = 0; i < m_additionalSpells.size(); ++i)
+        {
+            if (m_additionalSpells[i].AddsToSpellList(effect.Class(), effect.SpellLevel())
+                    && m_additionalSpells[i].SpellName() == effect.Spell())
+            {
+                m_additionalSpells[i].AddReference();
+            }
+        }
+    }
+}
+
+void Character::RevokeSpellListAddition(const Effect& effect)
+{
+    bool bUpdate = false;
+    // if its present remove a stack and revoke if now all gone
+    for (size_t i = 0; i < m_additionalSpells.size(); ++i)
+    {
+        if (m_additionalSpells[i].AddsToSpellList(effect.Class(), effect.SpellLevel())
+                && m_additionalSpells[i].SpellName() == effect.Spell())
+        {
+            bool erase = m_additionalSpells[i].RemoveReference();
+            if (erase)
+            {
+                m_additionalSpells.erase(m_additionalSpells.begin() + i);
+                --i;        // keep index right
+                bUpdate = true;
+            }
+        }
+    }
+    if (bUpdate)
+    {
+        // make sure trained spell lists are correct on spell list changes
+        UpdateSpells();
+    }
+}
+
+bool Character::IsSpellInSpellListAdditionList(
+        ClassType ct,
+        size_t spellLevel,
+        const std::string& spellName) const
+{
+    bool bPresent = false;
+    for (size_t i = 0; !bPresent && i < m_additionalSpells.size(); ++i)
+    {
+        bPresent = m_additionalSpells[i].AddsToSpellList(ct, spellLevel)
+                && m_additionalSpells[i].SpellName() == spellName;
+    }
+    return bPresent;
 }

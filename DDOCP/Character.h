@@ -17,6 +17,7 @@
 #include "RaceTypes.h"
 #include "ReaperSpendInTree.h"
 #include "SkillTomes.h"
+#include "SpellListAddition.h"
 #include "Stance.h"
 #include "TrainedSpell.h"
 
@@ -188,6 +189,9 @@ class Character :
         void ApplySpellEffects(const std::string & spellName, size_t castingLevel);
         void RevokeSpellEffects(const std::string & spellName, size_t castingLevel);
         std::list<TrainedSpell> FixedSpells(ClassType classType, size_t level) const;
+        void AddSpellListAddition(const Effect& effect);
+        void RevokeSpellListAddition(const Effect& effect);
+        bool IsSpellInSpellListAdditionList(ClassType ct, size_t spellLevel, const std::string& spellName) const;
 
         // stances
         void ActivateStance(const Stance & stance);
@@ -474,6 +478,7 @@ class Character :
         // be used as a requirement met for a feat you want to train.
         std::list<TrainedFeat> m_grantedFeats;
         std::list<bool> m_grantedNotifyState;
+        std::vector<SpellListAddition> m_additionalSpells;
 
         bool m_bShowEpicOnly;
         bool m_bShowUnavailableFeats;

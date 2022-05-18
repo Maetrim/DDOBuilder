@@ -12,8 +12,11 @@ namespace
     const UINT UWM_UPDATE = ::RegisterWindowMessage(_T("UpdateView"));
 
     COLORREF f_classSkillColour = RGB(152,251,152);             // pale green
+    COLORREF f_classSkillColourHighlighted = RGB(52,151,52);    // darker green
     COLORREF f_crossClassSkillColour = RGB(255, 255, 255);      // white
+    COLORREF f_crossClassSkillColourHighlighted = RGB(180, 180, 180);      // gray
     COLORREF f_untrainableSkillColour = RGB(0xFF, 0xB6, 0xC1);  // light pink
+    COLORREF f_untrainableSkillColourHighlighted = RGB(222, 160, 171);  // dark pink
     COLORREF f_selectedColour = ::GetSysColor(COLOR_HIGHLIGHT);
     COLORREF f_skillOverspendColour = RGB(0xFF, 0x00, 0x00);    // RED
     COLORREF f_black = RGB(0, 0, 0);                            // black
@@ -51,7 +54,8 @@ CSkillsView::CSkillsView() :
     m_pDocument(NULL),
     m_hlightlightColumn(-1),
     m_hlightlightRow(-1),
-    m_bUpdatePending(false)
+    m_bUpdatePending(false),
+    m_selectedColumn(-1)
 {
     //{{AFX_DATA_INIT(CSkillsView)
     //}}AFX_DATA_INIT
@@ -92,6 +96,8 @@ BEGIN_MESSAGE_MAP(CSkillsView, CFormView)
     ON_BN_CLICKED(IDC_BUTTON_CLEAR_SKILL, OnButtonClearThisSkill)
     ON_BN_CLICKED(IDC_BUTTON_CLEAR_ALL_SKILLS, OnButtonClearAllSkills)
     ON_BN_CLICKED(IDC_BUTTON_AUTOSPEND, OnButtonAutoSpendSkillPoints)
+    ON_NOTIFY(LVN_COLUMNCLICK, IDC_SKILL_LIST, OnColumnClickSkillsList)
+    ON_NOTIFY(HDN_ITEMCLICK, IDC_SKILL_LIST, OnColumnClickSkillsList)
 END_MESSAGE_MAP()
 #pragma warning(pop)
 
@@ -137,8 +143,12 @@ void CSkillsView::OnInitialUpdate()
     m_skillsList.InsertColumn(20, "20", LVCFMT_CENTER, 30);
     m_skillsList.InsertColumn(21, "Total", LVCFMT_LEFT, 40);
     m_skillsList.InsertColumn(22, "Tome", LVCFMT_CENTER, 40);
-    // cannot change column header sizes
-    m_skillsList.GetHeaderCtrl()->EnableWindow(FALSE);
+
+    // ensure the header control for the list is the same as the main control
+    CHeaderCtrl* pHeaderCtrl = m_skillsList.GetHeaderCtrl();
+    pHeaderCtrl->SetDlgCtrlID(m_skillsList.GetDlgCtrlID());
+    // we do some custom processing of header control messages
+    m_skillsHeader.SubclassWindow(m_skillsList.GetHeaderCtrl()->GetSafeHwnd());
 
     m_skillsList.InsertItem(0, "Skill Points", 0);     // item 0 shows the available skill points
     m_skillsList.InsertItem(1, "Class", 0);         // item 1 shows the class icons
@@ -374,6 +384,8 @@ void CSkillsView::OnCustomDrawSkillsList(NMHDR* pNMHDR, LRESULT* pResult)
         }
         else if ((CDDS_ITEMPREPAINT | CDDS_SUBITEM) == pLVCD->nmcd.dwDrawStage)
         {
+            pLVCD->clrTextBk = (pLVCD->iSubItem == m_selectedColumn) ? f_crossClassSkillColourHighlighted : f_crossClassSkillColour;
+            pLVCD->clrText = f_black;
             if (pLVCD->iSubItem > 0 && pLVCD->iSubItem <= 20)
             {
                 int level = pLVCD->iSubItem - 1;
@@ -398,7 +410,7 @@ void CSkillsView::OnCustomDrawSkillsList(NMHDR* pNMHDR, LRESULT* pResult)
                         if (IsClassSkill(ct, skill))
                         {
                             // show its a class skill
-                            pLVCD->clrTextBk = f_classSkillColour;
+                            pLVCD->clrTextBk = (pLVCD->iSubItem == m_selectedColumn) ? f_classSkillColourHighlighted : f_classSkillColour;
                             pLVCD->clrText = f_black;
                         }
                         else
@@ -406,13 +418,13 @@ void CSkillsView::OnCustomDrawSkillsList(NMHDR* pNMHDR, LRESULT* pResult)
                             // white to cross class skill, red for cannot train skill at all
                             if (maxSkill > 0.0)
                             {
-                                pLVCD->clrTextBk = f_crossClassSkillColour;
+                                pLVCD->clrTextBk = (pLVCD->iSubItem == m_selectedColumn) ? f_crossClassSkillColourHighlighted : f_crossClassSkillColour;
                                 pLVCD->clrText = f_black;
                             }
                             else
                             {
                                 // this skill cannot be trained at all
-                                pLVCD->clrTextBk = f_untrainableSkillColour;
+                                pLVCD->clrTextBk = (pLVCD->iSubItem == m_selectedColumn) ? f_untrainableSkillColourHighlighted : f_untrainableSkillColour;
                                 pLVCD->clrText = f_black;
                             }
                         }
@@ -423,11 +435,6 @@ void CSkillsView::OnCustomDrawSkillsList(NMHDR* pNMHDR, LRESULT* pResult)
                         }
                     }
                 }
-            }
-            else
-            {
-                pLVCD->clrTextBk = f_crossClassSkillColour;
-                pLVCD->clrText = f_black;
             }
         }
         else if (CDDS_ITEMPOSTPAINT == pLVCD->nmcd.dwDrawStage)
@@ -1110,3 +1117,24 @@ LRESULT CSkillsView::OnUpdateView(WPARAM wParam, LPARAM lParam)
     m_bUpdatePending = false;
     return 0L;
 }
+
+void CSkillsView::OnColumnClickSkillsList(NMHDR* pNMHDR, LRESULT* pResult)
+{
+    NMHEADER* pHeader = (NMHEADER*)pNMHDR;
+    if (m_selectedColumn == pHeader->iItem)
+    {
+        // clear the selection
+        m_selectedColumn = -1;
+    }
+    else
+    {
+        m_selectedColumn = pHeader->iItem;
+        // don;t allow non level columns to be selected
+        if (m_selectedColumn == 0 || m_selectedColumn > 20)
+        {
+            m_selectedColumn = -1;
+        }
+    }
+    m_skillsList.Invalidate(FALSE);
+}
+

@@ -4,6 +4,7 @@
 #include "Resource.h"
 
 #include "Character.h"
+#include "SkillsHeaderCtrl.h"
 
 class CSkillsView :
     public CFormView,
@@ -39,6 +40,7 @@ class CSkillsView :
         afx_msg void OnButtonClearAllSkills();
         afx_msg void OnButtonAutoSpendSkillPoints();
         afx_msg LRESULT OnUpdateView(WPARAM wParam, LPARAM lParam);
+        afx_msg void OnColumnClickSkillsList(NMHDR* pNMHDR, LRESULT* pResult);
         DECLARE_MESSAGE_MAP()
 
     private:
@@ -58,12 +60,14 @@ class CSkillsView :
         void MaxThisSkill(SkillType skill, bool suppressUpdate);
         void EnableControls();
         CListCtrl m_skillsList;
+        CSkillsHeaderCtrl m_skillsHeader;
         CButton m_buttonMaxThisSkill;
         CButton m_buttonClearThisSkill;
         CButton m_buttonClearAllSkills;
         CButton m_buttonAutoBuySkills;
         CImageList m_classIcons;
-        int m_hlightlightColumn;
-        int m_hlightlightRow;
+        int m_hlightlightColumn;    // column mouse is over
+        int m_hlightlightRow;       // row the mouse is over
         bool m_bUpdatePending;
+        int m_selectedColumn;       // column whos button has been clicked on
 };
