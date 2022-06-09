@@ -42,6 +42,10 @@ void TrainedFeat::EndElement()
     {
         m_FeatName = "Embodiment of Law";
     }
+    if (m_FeatName == "Epic Arcane Eldritch Blast")
+    {
+        m_FeatName = "Epic Pact Dice";
+    }
     SaxContentElement::EndElement();
     DL_END(TrainedFeat_PROPERTIES)
     // update TFT_Special to correct type

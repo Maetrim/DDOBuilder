@@ -258,6 +258,41 @@ void CInventoryDialog::OnPaint()
                     itemRect.top,
                     32,
                     32);
+            // show the augment slots this item has
+            const std::vector<ItemAugment>& augments = item.Augments();
+            std::vector<ItemAugment>::const_iterator ait = augments.begin();
+            CRect augmentRect = CRect(itemRect.left, itemRect.bottom + 1, itemRect.left + 6, itemRect.bottom + 7);
+            while (ait != augments.end())
+            {
+                std::string colour = (*ait).Type();
+                // no augment icons for mythic and reaper options
+                if (colour != "Mythic" && colour.find("Reaper") == std::string::npos)
+                {
+                    memoryDc.SaveDC();
+                    CPen augmentBorder(
+                            PS_SOLID,
+                            1,
+                            (*ait).HasSelectedAugment()
+                                    ? RGB(0, 0, 0)              // black border if we have an augment
+                                    : RGB(255, 255, 255));      // white border if the no augment
+                    memoryDc.SelectObject(augmentBorder);
+                    COLORREF augmentColour = RGB(255, 255, 255);
+                    if (colour == "Yellow") augmentColour = RGB(255, 255, 0);
+                    else if (colour == "Red") augmentColour = RGB(255, 0, 0);
+                    else if (colour == "Green") augmentColour = RGB(0, 255, 0);
+                    else if (colour == "Blue") augmentColour = RGB(0, 0, 255);
+                    else if (colour == "Purple") augmentColour = RGB(147, 112, 219);
+                    else if (colour == "Orange") augmentColour = RGB(255, 165, 0);
+                    else if (colour == "Colorless") augmentColour = RGB(255, 255, 255);
+                    else augmentColour = RGB(128, 128, 128);            // all other augments are shown as gray
+                    CBrush augmentFillBrush(augmentColour);
+                    memoryDc.SelectObject(augmentFillBrush);
+                    memoryDc.Rectangle(augmentRect);
+                    memoryDc.RestoreDC(-1);
+                    augmentRect += CPoint(augmentRect.Width(), 0);
+                }
+                ++ait;
+            }
         }
     }
     // now paint the Jewel and Filigrees

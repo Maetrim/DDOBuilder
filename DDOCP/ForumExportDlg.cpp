@@ -1158,11 +1158,14 @@ void CForumExportDlg::AddEnhancementTree(
             }
             // remove "Treename: " from the output for every individual enhancement
             std::string name = item->DisplayName((*it).HasSelection() ? (*it).Selection() : "");
-            name = name.substr(name.find(':') + 2);
+            if (name.find(':') != std::string::npos)
+            {
+                name = name.substr(name.find(':') + 2);
+            }
             forumExport << name;
             if (item->Ranks() > 1)
             {
-                forumExport << " - " << item->Ranks() << " Ranks";
+                forumExport << " - " << (*it).Ranks() << " Ranks";
             }
             forumExport << "\r\n";
         }
@@ -1203,11 +1206,14 @@ void CForumExportDlg::AddEpicDestinyTree(
             }
             // remove "Treename: " from the output for every individual enhancement
             std::string name = item->DisplayName((*it).HasSelection() ? (*it).Selection() : "");
-            name = name.substr(name.find(':') + 2);
+            if (name.find(':') != std::string::npos)
+            {
+                name = name.substr(name.find(':') + 2);
+            }
             forumExport << name;
             if (item->Ranks() > 1)
             {
-                forumExport << " - " << item->Ranks() << " Ranks";
+                forumExport << " - " << (*it).Ranks() << " Ranks";
             }
             forumExport << "\r\n";
         }
