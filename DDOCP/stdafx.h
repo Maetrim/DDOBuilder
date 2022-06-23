@@ -44,7 +44,7 @@
 #define MAX_CLASS_LEVELS        20
 #define MAX_EPIC_LEVELS         10
 #define MAX_LEGENDARY_LEVELS    2
-#define MAX_NORMAL_LEVEL        30
+#define MAX_NORMAL_LEVEL        32
 #define MAX_LAMANNIA_LEVEL      32
 #define MAX_SPELL_LEVEL         9
 #define MAX_ENHANCEMENT_TREES   7

@@ -1246,7 +1246,6 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
     AddTacticalItem(Breakdown_TacticalSunder, Tactical_Sunder, "Sunder", hTacticalParent);
     AddTacticalItem(Breakdown_TacticalTrip, Tactical_Trip, "Trip", hTacticalParent);
     AddTacticalItem(Breakdown_TacticalGeneral, Tactical_General, "General", hTacticalParent);
-    AddTacticalItem(Breakdown_QuiveringPalm, Tactical_QuiveringPalm, "Quivering Palm", hTacticalParent);
     AddTacticalItem(Breakdown_TacticalStunningShield, Tactical_StunningShield, "Stunning Shield", hTacticalParent);
     AddTacticalItem(Breakdown_TacticalWands, Tactical_Wands, "Wands", hTacticalParent);
     AddTacticalItem(Breakdown_TacticalFear, Tactical_Fear, "Fear", hTacticalParent);

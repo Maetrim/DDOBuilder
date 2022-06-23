@@ -2535,9 +2535,6 @@ BreakdownType TacticalToBreakdown(TacticalType tactical)
         case Tactical_RuneArm:
             bt = Breakdown_TacticalRuneArm;
             break;
-        case Tactical_QuiveringPalm:
-            bt = Breakdown_QuiveringPalm;
-            break;
     }
     return bt;
 }

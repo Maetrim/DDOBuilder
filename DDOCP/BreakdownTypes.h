@@ -74,7 +74,6 @@ enum BreakdownType
     Breakdown_TacticalBreathWeapon,
     Breakdown_TacticalPoison,
     Breakdown_TacticalRuneArm,
-    Breakdown_QuiveringPalm,
     Breakdown_MissileDeflection,
     Breakdown_MissileDeflectionBypass,
     Breakdown_Incorpreality,

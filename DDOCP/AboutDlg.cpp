@@ -51,6 +51,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
     m_bugReporters.SetWindowText(
             "aaron250, "
             "Aganthor, "
+            "Amateretsu, "
             "Amastris, "
             "Amberlink, "
             "ASilver, "
@@ -171,6 +172,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
             "Talchwi, "
             "Tarrith, "
             "TeamscorpioRI, "
+            "Teog09, "
             "Texturace, "
             "TheGoldyGopher, "
             "Toefer, "

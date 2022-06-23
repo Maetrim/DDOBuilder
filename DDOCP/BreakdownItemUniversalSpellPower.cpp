@@ -30,8 +30,7 @@ void BreakdownItemUniversalSpellPower::CreateOtherEffects()
         // providing a +3 Implement bonus to Universal Spell Power for every +1
         // Enhancement bonus on the weapon.
         // find the main hand weapon breakdown
-        if (m_pCharacter->IsEnhancementTrained("BECore6", "", TT_enhancement)
-                || m_pCharacter->IsEnhancementTrained("BomCore2", "", TT_enhancement))
+        if (m_pCharacter->IsEnhancementTrained("BECore6", "", TT_enhancement))
         {
             // get the main hand weapon breakdown
             BreakdownItem * pBI = FindBreakdown(Breakdown_WeaponEffectHolder);
@@ -54,6 +53,36 @@ void BreakdownItemUniversalSpellPower::CreateOtherEffects()
                     ActiveEffect implementBonus(
                             Bonus_implement,
                             "Battle Engineer: Master Engineer",
+                            weaponPlus,
+                            3,          // +3 per weapon plus
+                            "");        // no tree
+                    AddOtherEffect(implementBonus);
+                }
+            }
+        }
+        if (m_pCharacter->IsEnhancementTrained("BomCore2", "", TT_enhancement))
+        {
+            // get the main hand weapon breakdown
+            BreakdownItem * pBI = FindBreakdown(Breakdown_WeaponEffectHolder);
+            BreakdownItemWeaponEffects * pBIW = dynamic_cast<BreakdownItemWeaponEffects*>(pBI);
+            if (pBIW != NULL)
+            {
+                pBI = pBIW->GetWeaponBreakdown(true, Breakdown_WeaponAttackBonus);
+                if (pBI != NULL)
+                {
+                    int weaponPlus = (int)pBI->GetEffectValue(Bonus_weaponEnchantment);
+                    // this is increased by battle engineer cores by +3
+                    weaponPlus += 3;
+
+                    // Enchant weapon past life feat can be active
+                    size_t count = m_pCharacter->GetSpecialFeatTrainedCount("Past Life: Arcane Sphere: Enchant Weapon");
+                    if (m_pCharacter->IsStanceActive("Enchant Weapon", Weapon_Unknown))
+                    {
+                        weaponPlus += count;
+                    }
+                    ActiveEffect implementBonus(
+                            Bonus_implement,
+                            "Bombardier: Arcane Oil",
                             weaponPlus,
                             3,          // +3 per weapon plus
                             "");        // no tree
