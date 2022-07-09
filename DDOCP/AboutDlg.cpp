@@ -56,6 +56,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
             "Amberlink, "
             "ASilver, "
             "awsome-dudes, "
+            "Augon, "
             "Aymerick55, "
             "AzrielAngelus, "
             "Bjond, "
@@ -202,6 +203,11 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
         "Legendary Kundarak Delving Equipment, "
         "Legendary Slavelords Might, "
         "Way of the Sun Soul, "
+        "Deacon of the Auricular Sacrarium, "
+        "Defender of Tanaroa, "
+        "Devotion of the Firemouth, "
+        "Dread Stalker, "
+        "Echoes of the Walking Ancestors, "
         "Woodsman's Guile.");
 }
 
