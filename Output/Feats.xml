@@ -688,6 +688,11 @@ attack repeatedly until your target is defeated, or activated once by right-clic
          <Description>You are sneaking</Description>
       </Stance>
       <Stance>
+         <Name>Action Boost</Name>
+         <Icon>ActionBoostAttack</Icon>
+         <Description>An action boost is active</Description>
+      </Stance>
+      <Stance>
          <Name>Cloth Armor</Name>
          <Icon>ClothArmorProficiency</Icon>
          <Description>You are wearing cloth or no armor.
@@ -6311,9 +6316,9 @@ two weapons (or as an unarmed monk) by an additional 20% to 60%.</Description>
    </Feat>
    <Feat>
       <Name>Improved Uncanny Dodge</Name>
-      <Description>Activate this ability to gain a temporary 25% Dodge bonus and +6 reflex
-save bonus. This feat also grants you a 1% passive bonus to Dodge at levels
-4, 6, 8, 12, 16 and 20.</Description>
+      <Description>Activate this ability to gain a temporary 50% Dodge bonus and +6 Reflex
+save bonus for 20 seconds. This feat also grants you a 1% passive bonus to Dodge
+at levels 4, 6, 8, 12, 16 and 20.</Description>
       <Requirements/>
       <Acquire>Automatic</Acquire>
       <Icon>ImprovedUncannyDodge</Icon>
@@ -6325,20 +6330,6 @@ save bonus. This feat also grants you a 1% passive bonus to Dodge at levels
          <Class>Rogue</Class>
          <Level>8</Level>
       </AutomaticAcquisition>
-      <Effect>
-         <DisplayName>Improved Uncanny Dodge (Barbarian)</DisplayName>
-         <Type>DodgeBonus</Type>
-         <Bonus>Feat</Bonus>
-         <AmountVector size="20">0 0 0 1 1 2 2 3 3 3 3 4 4 4 4 5 5 5 5 6</AmountVector>
-         <Class>Barbarian</Class>
-      </Effect>
-      <Effect>
-         <DisplayName>Improved Uncanny Dodge (Rogue)</DisplayName>
-         <Type>DodgeBonus</Type>
-         <Bonus>Feat</Bonus>
-         <AmountVector size="20">0 0 0 1 1 2 2 3 3 3 3 4 4 4 4 5 5 5 5 6</AmountVector>
-         <Class>Rogue</Class>
-      </Effect>
       <Effect>
          <DisplayName>Uncanny dodge reflex save bonus</DisplayName>
          <Type>SaveBonus</Type>
@@ -13610,8 +13601,8 @@ your fists and feat are lethal weapons.</Description>
    <Feat>
       <Name>Uncanny Dodge</Name>
       <Description>Activate this ability to gain a temporary 25% Dodge bonus and a +4 reflex
-save bonus. This feat also grants you a 1% passive bonus to Dodge at levels 4,
-6, 8, 12, 16 and 20.</Description>
+save bonus for 20 seconds. This feat also grants you a 1% passive bonus to Dodge
+at levels 4, 6, 8, 12, 16 and 20.</Description>
       <MaxTimesAcquire>6</MaxTimesAcquire>
       <Requirements/>
       <Acquire>Automatic</Acquire>
@@ -29597,8 +29588,8 @@ Coating, Eldritch Knight's Spellsword, and Inquisitive's Law on Your Side.</Desc
             <Type>WeaponOtherDamageBonus</Type>
             <Bonus>Stacking</Bonus>
             <Dice>
-               <Number size="15">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15</Number>
-               <Sides size="15">8 8 8 8 8 8 8 8 8 8 8 8 8 8 8</Sides>
+               <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
+               <Sides size="20">8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8</Sides>
                <Energy>Lawful</Energy>
             </Dice>
             <Weapon>Light Crossbow</Weapon>
@@ -29606,12 +29597,12 @@ Coating, Eldritch Knight's Spellsword, and Inquisitive's Law on Your Side.</Desc
             <Stance>Law on your side</Stance>
          </Effect>
          <Effect>
-            <DisplayName>Law on your side (Non-Lawful Enemies)</DisplayName>
-            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <DisplayName>Law on your side (Lawful Enemies)</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
             <Bonus>Stacking</Bonus>
             <Dice>
-               <Number size="15">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15</Number>
-               <Sides size="15">8 8 8 8 8 8 8 8 8 8 8 8 8 8 8</Sides>
+               <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
+               <Sides size="20">4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4</Sides>
                <Energy>Lawful</Energy>
             </Dice>
             <Weapon>Light Crossbow</Weapon>
@@ -29633,24 +29624,6 @@ Coating, Eldritch Knight's Spellsword, and Inquisitive's Law on Your Side.</Desc
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>LegendaryAim</Icon>
-   </Feat>
-   <Feat>
-      <Name>Legendary Point Blank Shot</Name>
-      <Description>Toggle: With ranged weapons, you attack 10% slower but deal 15% more damage.</Description>
-      <MaxTimesAcquire>1</MaxTimesAcquire>
-      <FeatGroup>
-         <IsEpicDestinyFeat/>
-      </FeatGroup>
-      <Requirements>
-         <Requirement>
-            <MinLevel>31</MinLevel>
-         </Requirement>
-         <Requirement>
-            <Feat>Point Blank Shot</Feat>
-         </Requirement>
-      </Requirements>
-      <Acquire>Train</Acquire>
-      <Icon>ActiveStub</Icon>
    </Feat>
    <Feat>
       <Name>Legendary Toughness</Name>
@@ -29834,7 +29807,7 @@ Animal Form. This does not count as a Combat Fighting Style feat.</Description>
          </RequiresNoneOf>
       </Requirements>
       <Acquire>Train</Acquire>
-      <Icon>PassiveStub</Icon>
+      <Icon>SpellSpecialty</Icon>
       <Effect>
          <Type>SpellDC</Type>
          <Bonus>Feat</Bonus>
@@ -29881,7 +29854,7 @@ Animal Form. This does not count as a Combat Fighting Style feat.</Description>
          </RequiresNoneOf>
       </Requirements>
       <Acquire>Train</Acquire>
-      <Icon>PassiveStub</Icon>
+      <Icon>SpellSpecialty</Icon>
       <Effect>
          <Type>SpellDC</Type>
          <Bonus>Feat</Bonus>
@@ -29928,7 +29901,7 @@ Animal Form. This does not count as a Combat Fighting Style feat.</Description>
          </RequiresNoneOf>
       </Requirements>
       <Acquire>Train</Acquire>
-      <Icon>PassiveStub</Icon>
+      <Icon>SpellSpecialty</Icon>
       <Effect>
          <Type>SpellDC</Type>
          <Bonus>Feat</Bonus>
@@ -29975,7 +29948,7 @@ Animal Form. This does not count as a Combat Fighting Style feat.</Description>
          </RequiresNoneOf>
       </Requirements>
       <Acquire>Train</Acquire>
-      <Icon>PassiveStub</Icon>
+      <Icon>SpellSpecialty</Icon>
       <Effect>
          <Type>SpellDC</Type>
          <Bonus>Feat</Bonus>
@@ -30022,7 +29995,7 @@ Animal Form. This does not count as a Combat Fighting Style feat.</Description>
          </RequiresNoneOf>
       </Requirements>
       <Acquire>Train</Acquire>
-      <Icon>PassiveStub</Icon>
+      <Icon>SpellSpecialty</Icon>
       <Effect>
          <Type>SpellDC</Type>
          <Bonus>Feat</Bonus>
@@ -30069,7 +30042,7 @@ Animal Form. This does not count as a Combat Fighting Style feat.</Description>
          </RequiresNoneOf>
       </Requirements>
       <Acquire>Train</Acquire>
-      <Icon>PassiveStub</Icon>
+      <Icon>SpellSpecialty</Icon>
       <Effect>
          <Type>SpellDC</Type>
          <Bonus>Feat</Bonus>
@@ -30116,7 +30089,7 @@ Animal Form. This does not count as a Combat Fighting Style feat.</Description>
          </RequiresNoneOf>
       </Requirements>
       <Acquire>Train</Acquire>
-      <Icon>PassiveStub</Icon>
+      <Icon>SpellSpecialty</Icon>
       <Effect>
          <Type>SpellDC</Type>
          <Bonus>Feat</Bonus>
@@ -30245,7 +30218,7 @@ to Armor Class. While in bear or dire bear form, you gain wolf form's
          </Requirement>
       </Requirements>
       <Acquire>Train</Acquire>
-      <Icon>PassiveStub</Icon>
+      <Icon>WildForce</Icon>
       <Effect>
          <Type>ACBonus</Type>
          <Bonus>Exceptional</Bonus>
@@ -30280,6 +30253,6 @@ Apotheosis or Druid Elemental Wild Shape form: +3 Caster Levels with those eleme
          </Requirement>
       </Requirements>
       <Acquire>Train</Acquire>
-      <Icon>PassiveStub</Icon>
+      <Icon>ElementalFormSpecialty</Icon>
    </Feat>
 </Feats>
