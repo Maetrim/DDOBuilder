@@ -875,10 +875,13 @@ void CLevelUpView::SetAvailableClasses()
         ClassType type3 = m_pCharacter->Class3();
         for (size_t ci = Class_Unknown; ci < Class_Count; ++ci)
         {
-            if (m_pCharacter->IsClassAvailable((ClassType)ci)
+            if ((m_pCharacter->IsClassAvailable((ClassType)ci)
                     && ci != type2
                     && ci != type3
                     || ci == Class_Unknown)
+                && (!m_pCharacter->IsClassRestricted((ClassType)ci)
+                    || ci == type1
+                    || SameArchetype((ClassType)ci, type1)))
             {
                 // this class is selectable
                 CString text = EnumEntryText(
@@ -896,10 +899,13 @@ void CLevelUpView::SetAvailableClasses()
         {
             for (size_t ci = Class_Unknown; ci < Class_Count; ++ci)
             {
-                if (m_pCharacter->IsClassAvailable((ClassType)ci)
+                if ((m_pCharacter->IsClassAvailable((ClassType)ci)
                         && ci != type1
                         && ci != type3
-                        || ci == Class_Unknown)
+                    || ci == Class_Unknown)
+                    && (!m_pCharacter->IsClassRestricted((ClassType)ci)
+                        || ci == type2
+                        || SameArchetype((ClassType)ci, type2)))
                 {
                     // this class is selectable at this level
                     CString text = EnumEntryText(
@@ -917,10 +923,13 @@ void CLevelUpView::SetAvailableClasses()
             {
                 for (size_t ci = Class_Unknown; ci < Class_Count; ++ci)
                 {
-                    if (m_pCharacter->IsClassAvailable((ClassType)ci)
+                    if ((m_pCharacter->IsClassAvailable((ClassType)ci)
                             && ci != type1
                             && ci != type2
                             || ci == Class_Unknown)
+                        && (!m_pCharacter->IsClassRestricted((ClassType)ci)
+                            || ci == type3
+                            || SameArchetype((ClassType)ci, type3)))
                     {
                         // this class is selectable at this level
                         CString text = EnumEntryText(

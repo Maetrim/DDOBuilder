@@ -1086,7 +1086,7 @@ void CDDOCPView::OnLamanniaPreview()
 
 void CDDOCPView::OnUpdateLamanniaPreview(CCmdUI * pCmdUi)
 {
-    pCmdUi->Enable(FALSE);
+    pCmdUi->Enable(TRUE);
     pCmdUi->SetCheck(m_pCharacter->HasLamanniaMode());
 }
 

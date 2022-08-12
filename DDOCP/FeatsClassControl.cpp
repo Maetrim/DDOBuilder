@@ -1089,6 +1089,7 @@ void CFeatsClassControl::DoClass1()
             if (ci != Class_Epic && ci != Class_Legendary)
             {
                 bool bAlignmentRestricted = !m_pCharacter->IsClassAvailable((ClassType)ci);
+                bool bClassRestricted = m_pCharacter->IsClassRestricted((ClassType)ci);
                 if (ci != type2
                         && ci != type3
                         || ci == Class_Unknown)
@@ -1101,6 +1102,16 @@ void CFeatsClassControl::DoClass1()
                     {
                         // add text to class name to show why it cannot be selected
                         text += " (Wrong Alignment)";
+                        menu.AppendMenu(
+                                MF_STRING | MF_DISABLED,
+                                ID_CLASS_UNKNOWN + ci,
+                                text);
+                    }
+                    else if (bClassRestricted
+                            && !SameArchetype((ClassType)ci, type1)) // ensure ui allows switch of base types in same selection
+                    {
+                        // add text to class name to show why it cannot be selected
+                        text += " (Archetype Restricted)";
                         menu.AppendMenu(
                                 MF_STRING | MF_DISABLED,
                                 ID_CLASS_UNKNOWN + ci,
@@ -1156,6 +1167,7 @@ void CFeatsClassControl::DoClass2()
             if (ci != Class_Epic && ci != Class_Legendary)
             {
                 bool bAlignmentRestricted = !m_pCharacter->IsClassAvailable((ClassType)ci);
+                bool bClassRestricted = m_pCharacter->IsClassRestricted((ClassType)ci);
                 if (ci != type1
                         && ci != type3
                         || ci == Class_Unknown)
@@ -1168,6 +1180,16 @@ void CFeatsClassControl::DoClass2()
                     {
                         // add text to class name to show why it cannot be selected
                         text += " (Wrong Alignment)";
+                        menu.AppendMenu(
+                                MF_STRING | MF_DISABLED,
+                                ID_CLASS_UNKNOWN + ci,
+                                text);
+                    }
+                    else if (bClassRestricted
+                            && !SameArchetype((ClassType)ci, type2)) // ensure ui allows switch of base types in same selection
+                    {
+                        // add text to class name to show why it cannot be selected
+                        text += " (Archetype Restricted)";
                         menu.AppendMenu(
                                 MF_STRING | MF_DISABLED,
                                 ID_CLASS_UNKNOWN + ci,
@@ -1223,6 +1245,7 @@ void CFeatsClassControl::DoClass3()
             if (ci != Class_Epic && ci != Class_Legendary)
             {
                 bool bAlignmentRestricted = !m_pCharacter->IsClassAvailable((ClassType)ci);
+                bool bClassRestricted = m_pCharacter->IsClassRestricted((ClassType)ci);
                 if (ci != type1
                         && ci != type2
                         || ci == Class_Unknown)
@@ -1235,6 +1258,16 @@ void CFeatsClassControl::DoClass3()
                     {
                         // add text to class name to show why it cannot be selected
                         text += " (Wrong Alignment)";
+                        menu.AppendMenu(
+                                MF_STRING | MF_DISABLED,
+                                ID_CLASS_UNKNOWN + ci,
+                                text);
+                    }
+                    else if (bClassRestricted
+                            && !SameArchetype((ClassType)ci, type3)) // ensure ui allows switch of base types in same selection
+                    {
+                        // add text to class name to show why it cannot be selected
+                        text += " (Archetype Restricted)";
                         menu.AppendMenu(
                                 MF_STRING | MF_DISABLED,
                                 ID_CLASS_UNKNOWN + ci,

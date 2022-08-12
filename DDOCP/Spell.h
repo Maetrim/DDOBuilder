@@ -59,7 +59,9 @@ class Spell :
                 DL_OPTIONAL_SIMPLE(_, int, Alchemist, 0) \
                 DL_OPTIONAL_SIMPLE(_, int, Artificer, 0) \
                 DL_OPTIONAL_SIMPLE(_, int, Bard, 0) \
+                DL_OPTIONAL_SIMPLE(_, int, Stormsinger, 0) \
                 DL_OPTIONAL_SIMPLE(_, int, Cleric, 0) \
+                DL_OPTIONAL_SIMPLE(_, int, DarkApostate, 0) \
                 DL_OPTIONAL_SIMPLE(_, int, Druid, 0) \
                 DL_OPTIONAL_SIMPLE(_, int, FavoredSoul, 0) \
                 DL_OPTIONAL_SIMPLE(_, int, Paladin, 0) \

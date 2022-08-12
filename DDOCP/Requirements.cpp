@@ -61,10 +61,11 @@ bool Requirements::Met(
         met = (*it).Met(charData, classLevels, totalLevel, currentFeats, includeTomes);
         ++it;
     }
-    if (met
-            && HasOneOf())
+    std::list<RequiresOneOf>::const_iterator rooIt = OneOf().begin();
+    while (met && rooIt != OneOf().end())
     {
-        met = OneOf().Met(charData, classLevels, totalLevel, currentFeats, includeTomes);
+        met = rooIt->Met(charData, classLevels, totalLevel, currentFeats, includeTomes);
+        rooIt++;
     }
     if (met
             && HasNoneOf())
@@ -86,10 +87,11 @@ bool Requirements::CanTrainEnhancement(
         met = (*it).CanTrainEnhancement(charData, trainedRanks);
         ++it;
     }
-    if (met
-            && HasOneOf())
+    std::list<RequiresOneOf>::const_iterator rooIt = OneOf().begin();
+    while (met && rooIt != OneOf().end())
     {
-        met = OneOf().CanTrainEnhancement(charData, trainedRanks);
+        met = rooIt->CanTrainEnhancement(charData, trainedRanks);
+        rooIt++;
     }
     if (met
             && HasNoneOf())
@@ -112,11 +114,12 @@ bool Requirements::IsAllowed(
         met = (*it).IsAllowed(charData, trainedRanks);
         ++it;
     }
-    if (met
-            && HasOneOf())
+    std::list<RequiresOneOf>::const_iterator rooIt = OneOf().begin();
+    while (met && rooIt != OneOf().end())
     {
-        // subset, excluding enhancements
-        met = OneOf().IsAllowed(charData, trainedRanks);
+         // subset, excluding enhancements
+       met = rooIt->IsAllowed(charData, trainedRanks);
+        rooIt++;
     }
     if (met
             && HasNoneOf())
@@ -137,10 +140,11 @@ bool Requirements::CanTrainTree(
         met = (*it).CanTrainTree(charData);
         ++it;
     }
-    if (met
-            && HasOneOf())
+    std::list<RequiresOneOf>::const_iterator rooIt = OneOf().begin();
+    while (met && rooIt != OneOf().end())
     {
-        met = OneOf().CanTrainTree(charData);
+       met = rooIt->CanTrainTree(charData);
+        rooIt++;
     }
     if (met
             && HasNoneOf())
@@ -162,9 +166,11 @@ void Requirements::CreateRequirementStrings(
         (*it).CreateRequirementStrings(charData, requirements, met, level);
         ++it;
     }
-    if (HasOneOf())
+    std::list<RequiresOneOf>::const_iterator rooIt = OneOf().begin();
+    while (rooIt != OneOf().end())
     {
-        OneOf().CreateRequirementStrings(charData, requirements, met, level);
+        rooIt->CreateRequirementStrings(charData, requirements, met, level);
+        rooIt++;
     }
     if (HasNoneOf())
     {
@@ -172,14 +178,16 @@ void Requirements::CreateRequirementStrings(
     }
 }
 
-bool Requirements::RequiresEnhancement(const std::string& name) const
+bool Requirements::RequiresEnhancement(
+        const std::string& name,
+        const std::string& selection) const
 {
     bool bRequiresIt = false;
     // check all the individual requirements
     std::list<Requirement>::const_iterator it = m_Requires.begin();
     while (it != m_Requires.end())
     {
-        bRequiresIt |= (*it).RequiresEnhancement(name);
+        bRequiresIt |= (*it).RequiresEnhancement(name, selection);
         ++it;
     }
     return bRequiresIt;
@@ -198,9 +206,11 @@ bool Requirements::VerifyObject(
         ok &= (*it).VerifyObject(ss, allFeats);
         ++it;
     }
-    if (HasOneOf())
+    std::list<RequiresOneOf>::const_iterator rooIt = OneOf().begin();
+    while (rooIt != OneOf().end())
     {
-        ok &= m_OneOf.VerifyObject(ss, allFeats);
+        ok &= rooIt->VerifyObject(ss, allFeats);
+        rooIt++;
     }
     if (HasNoneOf())
     {

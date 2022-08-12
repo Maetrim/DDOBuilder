@@ -32,7 +32,8 @@ class CInfoTip :
                 const Character & charData,
                 const EnhancementTreeItem * pItem,
                 const EnhancementSelection * pSelection,
-                size_t ranks);
+                size_t ranks,
+                size_t spentInTree);
         void SetFeatItem(
                 const Character & charData,
                 const Feat * pItem,

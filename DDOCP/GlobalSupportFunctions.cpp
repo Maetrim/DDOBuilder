@@ -377,9 +377,23 @@ std::vector<Spell> FilterSpells(const Character * pChar, ClassType ct, int level
                 isClassLevelSpell = true;
             }
             break;
+        case Class_BardStormsinger:
+            if ((*si).HasStormsinger()
+                    && (*si).Stormsinger() == level)
+            {
+                isClassLevelSpell = true;
+            }
+            break;
         case Class_Cleric:
             if ((*si).HasCleric()
                     && (*si).Cleric() == level)
+            {
+                isClassLevelSpell = true;
+            }
+            break;
+        case Class_ClericDarkApostate:
+            if ((*si).HasDarkApostate()
+                    && (*si).DarkApostate() == level)
             {
                 isClassLevelSpell = true;
             }
@@ -399,6 +413,7 @@ std::vector<Spell> FilterSpells(const Character * pChar, ClassType ct, int level
             }
             break;
         case Class_Paladin:
+        case Class_PaladinSacredFist:
             if ((*si).HasPaladin()
                     && (*si).Paladin() == level)
             {
@@ -527,6 +542,7 @@ std::vector<TrainableFeatTypes> ClassSpecificFeatTypes(ClassType type)
             types.push_back(TFT_ArtificerBonus);
             break;
         case Class_Cleric:
+        case Class_ClericDarkApostate:
             types.push_back(TFT_FollowerOf);    // level 1
             types.push_back(TFT_Domain);        // level 2
             types.push_back(TFT_DomainFeat);    // level 5/9/14
@@ -549,6 +565,7 @@ std::vector<TrainableFeatTypes> ClassSpecificFeatTypes(ClassType type)
             types.push_back(TFT_FighterBonus);
             break;
         case Class_Paladin:
+        case Class_PaladinSacredFist:
             types.push_back(TFT_FollowerOf);    // level 1
             types.push_back(TFT_Deity);         // level 6
             break;
@@ -576,6 +593,7 @@ std::vector<TrainableFeatTypes> ClassSpecificFeatTypes(ClassType type)
         case Class_Sorcerer:
         case Class_Barbarian:
         case Class_Bard:
+        case Class_BardStormsinger:
             // these classes have no specific feat types associated with them
             break;
     }
@@ -767,6 +785,7 @@ bool IsClassSkill(ClassType type, SkillType skill)
     case Skill_Balance:
         if (type == Class_Alchemist
                 || type == Class_Bard
+                || type == Class_BardStormsinger
                 || type == Class_Monk
                 || type == Class_Rogue)
         {
@@ -776,6 +795,7 @@ bool IsClassSkill(ClassType type, SkillType skill)
     case Skill_Bluff:
         if (type == Class_Alchemist
                 || type == Class_Bard
+                || type == Class_BardStormsinger
                 || type == Class_Rogue
                 || type == Class_Sorcerer
                 || type == Class_Warlock)
@@ -787,11 +807,14 @@ bool IsClassSkill(ClassType type, SkillType skill)
         if (type == Class_Alchemist
                 || type == Class_Artificer
                 || type == Class_Bard
+                || type == Class_BardStormsinger
                 || type == Class_Cleric
+                || type == Class_ClericDarkApostate
                 || type == Class_Druid
                 || type == Class_FavoredSoul
                 || type == Class_Monk
                 || type == Class_Paladin
+                || type == Class_PaladinSacredFist
                 || type == Class_Ranger
                 || type == Class_Sorcerer
                 || type == Class_Warlock
@@ -803,11 +826,13 @@ bool IsClassSkill(ClassType type, SkillType skill)
     case Skill_Diplomacy:
         if (type == Class_Alchemist
                 || type == Class_Bard
+                || type == Class_BardStormsinger
                 || type == Class_Cleric
                 || type == Class_Druid
                 || type == Class_FavoredSoul
                 || type == Class_Monk
                 || type == Class_Paladin
+                || type == Class_PaladinSacredFist
                 || type == Class_Rogue)
         {
             isClassSkill = true;
@@ -824,6 +849,7 @@ bool IsClassSkill(ClassType type, SkillType skill)
         if (type == Class_Alchemist
                 || type == Class_Artificer
                 || type == Class_Bard
+                || type == Class_BardStormsinger
                 || type == Class_Rogue)
         {
             isClassSkill = true;
@@ -832,9 +858,11 @@ bool IsClassSkill(ClassType type, SkillType skill)
     case Skill_Heal:
         if (type == Class_Alchemist
                 || type == Class_Cleric
+                || type == Class_ClericDarkApostate
                 || type == Class_Druid
                 || type == Class_FavoredSoul
                 || type == Class_Paladin
+                || type == Class_PaladinSacredFist
                 || type == Class_Ranger)
         {
             isClassSkill = true;
@@ -842,6 +870,7 @@ bool IsClassSkill(ClassType type, SkillType skill)
         break;
     case Skill_Hide:
         if (type == Class_Bard
+                || type == Class_BardStormsinger
                 || type == Class_Monk
                 || type == Class_Ranger
                 || type == Class_Rogue)
@@ -854,6 +883,7 @@ bool IsClassSkill(ClassType type, SkillType skill)
                 || type == Class_Druid
                 || type == Class_Fighter
                 || type == Class_Paladin
+                || type == Class_PaladinSacredFist
                 || type == Class_Rogue
                 || type == Class_Warlock)
         {
@@ -863,6 +893,7 @@ bool IsClassSkill(ClassType type, SkillType skill)
     case Skill_Jump:
         if (type == Class_Barbarian
                 || type == Class_Bard
+                || type == Class_BardStormsinger
                 || type == Class_FavoredSoul
                 || type == Class_Fighter
                 || type == Class_Monk
@@ -876,6 +907,7 @@ bool IsClassSkill(ClassType type, SkillType skill)
     case Skill_Listen:
         if (type == Class_Barbarian
                 || type == Class_Bard
+                || type == Class_BardStormsinger
                 || type == Class_Druid
                 || type == Class_Monk
                 || type == Class_Ranger
@@ -886,6 +918,7 @@ bool IsClassSkill(ClassType type, SkillType skill)
         break;
     case Skill_MoveSilently:
         if (type == Class_Bard
+                || type == Class_BardStormsinger
                 || type == Class_Monk
                 || type == Class_Ranger
                 || type == Class_Rogue)
@@ -901,7 +934,8 @@ bool IsClassSkill(ClassType type, SkillType skill)
         }
         break;
     case Skill_Perform:
-        if (type == Class_Bard)
+        if (type == Class_Bard
+                || type == Class_BardStormsinger)
         {
             isClassSkill = true;
         }
@@ -928,7 +962,9 @@ bool IsClassSkill(ClassType type, SkillType skill)
         if (type == Class_Alchemist
                 || type == Class_Artificer
                 || type == Class_Bard
+                || type == Class_BardStormsinger
                 || type == Class_Cleric
+                || type == Class_ClericDarkApostate
                 || type == Class_Druid
                 || type == Class_FavoredSoul
                 || type == Class_Sorcerer
@@ -952,6 +988,7 @@ bool IsClassSkill(ClassType type, SkillType skill)
     case Skill_Swim:
         if (type == Class_Barbarian
                 || type == Class_Bard
+                || type == Class_BardStormsinger
                 || type == Class_Druid
                 || type == Class_Fighter
                 || type == Class_Monk
@@ -963,6 +1000,7 @@ bool IsClassSkill(ClassType type, SkillType skill)
         break;
     case Skill_Tumble:
         if (type == Class_Bard
+                || type == Class_BardStormsinger
                 || type == Class_Monk
                 || type == Class_Rogue)
         {
@@ -973,6 +1011,7 @@ bool IsClassSkill(ClassType type, SkillType skill)
         if (type == Class_Alchemist
                 || type == Class_Artificer
                 || type == Class_Bard
+                || type == Class_BardStormsinger
                 || type == Class_Rogue
                 || type == Class_Warlock)
         {
@@ -999,9 +1038,11 @@ size_t SkillPoints(
     switch (type)
     {
     case Class_Cleric:
+    case Class_ClericDarkApostate:
     case Class_Fighter:
     case Class_FavoredSoul:
     case Class_Paladin:
+    case Class_PaladinSacredFist:
     case Class_Sorcerer:
     case Class_Warlock:
     case Class_Wizard:
@@ -1017,6 +1058,7 @@ size_t SkillPoints(
         break;
 
     case Class_Bard:
+    case Class_BardStormsinger:
     case Class_Ranger:
         skillPoints = 6;
         break;
@@ -1206,11 +1248,13 @@ bool CanTrainClass(
         canTrain = true;
         break;
     case Class_Paladin:
+    case Class_PaladinSacredFist:
         canTrain = (alignment == Alignment_LawfulGood);
         break;
 
     case Class_Barbarian:
     case Class_Bard:
+    case Class_BardStormsinger:
         // any non-lawful
         canTrain = (alignment == Alignment_TrueNeutral)
                 || (alignment == Alignment_ChaoticNeutral)
@@ -1235,6 +1279,7 @@ bool CanTrainClass(
     case Class_Alchemist:
     case Class_Artificer:
     case Class_Cleric:
+    case Class_ClericDarkApostate:
     case Class_FavoredSoul:
     case Class_Fighter:
     case Class_Ranger:
@@ -1478,6 +1523,7 @@ size_t ClassHitpoints(ClassType type)
         // d6 classes
         case Class_Artificer:
         case Class_Bard:
+        case Class_BardStormsinger:
         case Class_Rogue:
         case Class_Warlock:
             hp = 6;
@@ -1485,6 +1531,7 @@ size_t ClassHitpoints(ClassType type)
 
         // d8 classes
         case Class_Cleric:
+        case Class_ClericDarkApostate:
         case Class_Druid:
         case Class_FavoredSoul:
         case Class_Monk:
@@ -1497,6 +1544,7 @@ size_t ClassHitpoints(ClassType type)
         case Class_Fighter:
         case Class_Legendary:
         case Class_Paladin:
+        case Class_PaladinSacredFist:
             hp = 10;
             break;
 
@@ -1528,6 +1576,7 @@ size_t ClassSave(SaveType st, ClassType ct, size_t level)
             {
             case Class_Artificer:
             case Class_Bard:
+            case Class_BardStormsinger:
             case Class_Rogue:
             case Class_Sorcerer:
             case Class_Warlock:
@@ -1537,11 +1586,13 @@ size_t ClassSave(SaveType st, ClassType ct, size_t level)
             case Class_Alchemist:
             case Class_Barbarian:
             case Class_Cleric:
+            case Class_ClericDarkApostate:
             case Class_Druid:
             case Class_FavoredSoul:
             case Class_Fighter:
             case Class_Monk:
             case Class_Paladin:
+            case Class_PaladinSacredFist:
             case Class_Ranger:
                 type2 = true;
                 break;
@@ -1553,9 +1604,11 @@ size_t ClassSave(SaveType st, ClassType ct, size_t level)
             case Class_Artificer:
             case Class_Barbarian:
             case Class_Cleric:
+            case Class_ClericDarkApostate:
             case Class_Druid:
             case Class_Fighter:
             case Class_Paladin:
+            case Class_PaladinSacredFist:
             case Class_Sorcerer:
             case Class_Warlock:
             case Class_Wizard:
@@ -1563,6 +1616,7 @@ size_t ClassSave(SaveType st, ClassType ct, size_t level)
                 break;
             case Class_Alchemist:
             case Class_Bard:
+            case Class_BardStormsinger:
             case Class_FavoredSoul:
             case Class_Monk:
             case Class_Ranger:
@@ -1578,13 +1632,16 @@ size_t ClassSave(SaveType st, ClassType ct, size_t level)
             case Class_Barbarian:
             case Class_Fighter:
             case Class_Paladin:
+            case Class_PaladinSacredFist:
             case Class_Ranger:
             case Class_Rogue:
                 type1 = true;
                 break;
             case Class_Artificer:
             case Class_Bard:
+            case Class_BardStormsinger:
             case Class_Cleric:
+            case Class_ClericDarkApostate:
             case Class_Druid:
             case Class_FavoredSoul:
             case Class_Monk:
@@ -1839,6 +1896,7 @@ std::vector<size_t> SpellSlotsForClass(ClassType ct, size_t level)
         // no spells of any level
         break;
     case Class_Bard:
+    case Class_BardStormsinger:
         switch (level)
         {
             case  0: break; // no spells, as no class levels in bard
@@ -1866,6 +1924,7 @@ std::vector<size_t> SpellSlotsForClass(ClassType ct, size_t level)
         }
         break;
     case Class_Cleric:
+    case Class_ClericDarkApostate:
         switch (level)
         {
             case  0: break; // no spells, as no class levels in cleric
@@ -1953,6 +2012,7 @@ std::vector<size_t> SpellSlotsForClass(ClassType ct, size_t level)
         // no spells of any level
         break;
     case Class_Paladin:
+    case Class_PaladinSacredFist:
         switch (level)
         {
             case  0: break; // no spells, as no class levels in paladin
@@ -2107,11 +2167,13 @@ size_t ClassSpellPoints(ClassType ct, size_t level)
         spPerLevel +=  50,  75, 100, 125, 150, 180, 210, 245, 280, 320, 360, 405, 450, 500,  550,  600,  660,  720,  780,  845;
         break;
     case Class_Bard:
+    case Class_BardStormsinger:
     case Class_Warlock:
         // Level        1    2    3    4    5    6    7    8    9   10   11   12   13   14    15    16    17    18    19    20
         spPerLevel +=  50,  75, 100, 125, 150, 175, 200, 225, 250, 275, 300, 325, 350, 375,  400,  425,  450,  475,  500,  525;
         break;
     case Class_Cleric:
+    case Class_ClericDarkApostate:
     case Class_Druid:
     case Class_Wizard:
         // Level        1    2    3    4    5    6    7    8    9   10   11   12   13   14    15    16    17    18    19    20
@@ -2123,6 +2185,7 @@ size_t ClassSpellPoints(ClassType ct, size_t level)
         spPerLevel += 100, 150, 200, 250, 300, 355, 415, 480, 550, 625, 705, 790, 880, 975, 1075, 1180, 1290, 1405, 1525, 1650;
         break;
     case Class_Paladin:
+    case Class_PaladinSacredFist:
     case Class_Ranger:
         // Level        1    2    3    4    5    6    7    8    9   10   11   12   13   14    15    16    17    18    19    20
         spPerLevel +=   0,   0,   0,  20,  35,  50,  65,  80,  95, 110, 125, 140, 155, 170,  185,  200,  215,  230,  245,  260;
@@ -2149,13 +2212,16 @@ AbilityType ClassCastingStat(ClassType ct)
         at = Ability_Intelligence;
         break;
     case Class_Bard:
+    case Class_BardStormsinger:
     case Class_Sorcerer:
     case Class_Warlock:
         at = Ability_Charisma;
         break;
     case Class_Cleric:
+    case Class_ClericDarkApostate:
     case Class_Druid:
     case Class_Paladin:
+    case Class_PaladinSacredFist:
     case Class_Ranger:
         at = Ability_Wisdom;
         break;
@@ -2611,6 +2677,7 @@ double BAB(ClassType ct)
     case Class_Barbarian:
     case Class_Fighter:
     case Class_Paladin:
+    case Class_PaladinSacredFist:
     case Class_Ranger:
         // full BAB class
         bab = 1;
@@ -2619,7 +2686,9 @@ double BAB(ClassType ct)
     case Class_Alchemist:
     case Class_Artificer:
     case Class_Bard:
+    case Class_BardStormsinger:
     case Class_Cleric:
+    case Class_ClericDarkApostate:
     case Class_Druid:
     case Class_FavoredSoul:
     case Class_Monk:
@@ -3180,9 +3249,11 @@ BreakdownType ClassToCasterLevelsBreakdown(ClassType ct)
     case Class_Alchemist: bt = Breakdown_CasterLevel_Alchemist; break;
     case Class_Artificer: bt = Breakdown_CasterLevel_Artificer; break;
     case Class_Cleric: bt = Breakdown_CasterLevel_Cleric; break;
+    case Class_ClericDarkApostate: bt = Breakdown_CasterLevel_Cleric; break;
     case Class_Druid: bt = Breakdown_CasterLevel_Druid; break;
     case Class_FavoredSoul: bt = Breakdown_CasterLevel_FavoredSoul; break;
     case Class_Paladin: bt = Breakdown_CasterLevel_Paladin; break;
+    case Class_PaladinSacredFist: bt = Breakdown_CasterLevel_Paladin; break;
     case Class_Sorcerer: bt = Breakdown_CasterLevel_Sorcerer; break;
     case Class_Ranger: bt = Breakdown_CasterLevel_Ranger; break;
     case Class_Warlock: bt = Breakdown_CasterLevel_Warlock; break;
@@ -3237,6 +3308,7 @@ size_t CasterLevel(Character * pCharacter, ClassType c)
         casterLevel = (size_t)FindBreakdown(Breakdown_CasterLevel_Artificer)->Total();
         break;
     case Class_Cleric:
+    case Class_ClericDarkApostate:
         casterLevel = (size_t)FindBreakdown(Breakdown_CasterLevel_Cleric)->Total();
         break;
     case Class_Druid:
@@ -3246,6 +3318,7 @@ size_t CasterLevel(Character * pCharacter, ClassType c)
         casterLevel = (size_t)FindBreakdown(Breakdown_CasterLevel_FavoredSoul)->Total();
         break;
     case Class_Paladin:
+    case Class_PaladinSacredFist:
         casterLevel = (size_t)FindBreakdown(Breakdown_CasterLevel_Paladin)->Total();
         break;
     case Class_Sorcerer:
@@ -3461,3 +3534,46 @@ bool IsInIgnoreList(const std::string & name)
     }
     return found;
 }
+
+bool SameArchetype(ClassType ct1, ClassType ct2)
+{
+    // return true of both classes are of the same base type (e.g. both a paladin type)
+    size_t bardCount = 0;
+    size_t clericCount = 0;
+    size_t paladinCount = 0;
+    switch (ct1)
+    {
+    case Class_Bard:
+    case Class_BardStormsinger:
+            bardCount++;
+            break;
+    case Class_Cleric:
+    case Class_ClericDarkApostate:
+            clericCount++;
+            break;
+    case Class_Paladin:
+    case Class_PaladinSacredFist:
+            paladinCount++;
+            break;
+    }
+    switch (ct2)
+    {
+    case Class_Bard:
+    case Class_BardStormsinger:
+            bardCount++;
+            break;
+    case Class_Cleric:
+    case Class_ClericDarkApostate:
+            clericCount++;
+            break;
+    case Class_Paladin:
+    case Class_PaladinSacredFist:
+            paladinCount++;
+            break;
+    }
+    // if any total equals 2, then they are of the same base type
+    return (bardCount == 2)
+            || (clericCount == 2)
+            || (paladinCount == 2);
+}
+

@@ -45,6 +45,7 @@ class EnhancementSelection :
                 DL_STRING(_, Icon) \
                 DL_VECTOR(_, size_t, CostPerRank) \
                 DL_FLAG(_, Clickie) \
+                DL_OPTIONAL_SIMPLE(_, size_t, MinSpent, 0) \
                 DL_OPTIONAL_OBJECT(_, Requirements, RequirementsToTrain) \
                 DL_OBJECT_LIST(_, Stance, Stances) \
                 DL_OBJECT_LIST(_, Effect, Effects) \

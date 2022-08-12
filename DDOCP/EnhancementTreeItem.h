@@ -25,11 +25,13 @@ class EnhancementTreeItem :
         bool MeetRequirements(
                 const Character & charData,
                 const std::string & selection,
-                const std::string & treeName) const;
+                const std::string & treeName,
+                size_t spentInTree) const;
         bool IsAllowed(
                 const Character & charData,
                 const std::string & selection,
-                const std::string & treeName) const;
+                const std::string & treeName,
+                size_t spentInTree) const;
         bool IsTier5Blocked(
                 const Character & charData,
                 const std::string& treeName) const;
@@ -52,7 +54,8 @@ class EnhancementTreeItem :
         const std::vector<size_t>& ItemCosts(const std::string& selection) const;
         bool IsSelectionClickie(const std::string & selection) const;
 
-        bool RequiresEnhancement(const std::string& name) const;
+        bool RequiresEnhancement(const std::string& name, const std::string& selection, const std::string& subSelection) const;
+        size_t MinSpent(const std::string& selection) const;
 
         bool VerifyObject(
                 std::stringstream * ss,

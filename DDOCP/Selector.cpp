@@ -162,6 +162,27 @@ std::list<Stance> Selector::Stances(const std::string & selection) const
     return stances;
 }
 
+size_t Selector::MinSpent(
+        const std::string& selection,
+        size_t defaultMinSpent) const
+{
+    size_t min = defaultMinSpent;
+    std::list<EnhancementSelection>::const_iterator it = m_Selections.begin();
+    while (it != m_Selections.end())
+    {
+        if ((*it).Name() == selection)
+        {
+            if ((*it).HasMinSpent())
+            {
+                min = (*it).MinSpent();
+            }
+            break;          // done
+        }
+        ++it;
+    }
+    return min;
+}
+
 bool Selector::CostVaries(const std::string& selection) const
 {
     bool varies = false;
@@ -223,5 +244,55 @@ bool Selector::IsSelectionClickie(const std::string & selection) const
         ++it;
     }
     return isClickie;
+}
+
+bool Selector::RequiresEnhancement(
+        const std::string& name,
+        const std::string& selection,
+        const std::string& subSelection) const
+{
+    bool bRequiresIt = false;
+    std::list<EnhancementSelection>::const_iterator it = m_Selections.begin();
+    while (it != m_Selections.end())
+    {
+        if ((*it).Name() == subSelection)
+        {
+            if ((*it).HasRequirementsToTrain())
+            {
+                bRequiresIt = (*it).RequirementsToTrain().RequiresEnhancement(name, selection);
+            }
+            break;          // done
+        }
+        ++it;
+    }
+    return bRequiresIt;
+}
+
+bool Selector::HasTrainableOption(
+        const Character & charData,
+        size_t spentInTree) const
+{
+    bool bHasTrainableOption = false;
+    std::list<EnhancementSelection>::const_iterator it = m_Selections.begin();
+    while (it != m_Selections.end())
+    {
+        bool optionTrainable = false;
+        if ((*it).HasRequirementsToTrain())
+        {
+            optionTrainable = (*it).RequirementsToTrain().CanTrainEnhancement(charData, 0);
+        }
+        else
+        {
+            // if no requirements, then it is selectable
+            optionTrainable = true;
+        }
+        if ((*it).HasMinSpent())
+        {
+            optionTrainable &= (spentInTree >= (*it).MinSpent());
+        }
+        bHasTrainableOption |= optionTrainable;
+        ++it;
+    }
+    return bHasTrainableOption;
 }
 

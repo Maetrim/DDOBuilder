@@ -10,7 +10,7 @@
 #define BUILDINFO_VERSION_MAJOR 1
 #define BUILDINFO_VERSION_MINOR 0
 #define BUILDINFO_VERSION_MODIF 0
-#define BUILDINFO_VERSION_BUILD 168
+#define BUILDINFO_VERSION_BUILD 169
 
 // Macro used to make combination strings automatically from the above
 // -------------------------------------------------------------------

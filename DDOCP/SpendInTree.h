@@ -19,6 +19,7 @@ class SpendInTree :
         bool CanRevokeAtTier(size_t minSpent, size_t cost) const;
         bool HasTrainedDependants(
                 const std::string& enhancementName,
+                const std::string& selection,
                 size_t ranksTrained) const;
         size_t TrainEnhancement(
                 const std::string& enhancementName,

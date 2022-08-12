@@ -46,15 +46,37 @@ Add your Wisdom bonus to your AC.</Description>
       </Effect>
    </Feat>
    <Feat>
+      <Name>AC Bonus: Charisma</Name>
+      <Description>Your training improves your armor class, so long as you remain centered.
+Add your Charisma bonus to your AC.</Description>
+      <Requirements/>
+      <Acquire>Automatic</Acquire>
+      <AutomaticAcquisition>
+         <Class>Sacred Fist</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <Icon>ACBonus</Icon>
+      <Effect>
+         <Type>ACBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Ability>Charisma</Ability>
+         <Stance>Centered</Stance>
+      </Effect>
+   </Feat>
+   <Feat>
       <Name>AC Bonus</Name>
       <Description>Your training improves your armor class, so long as you remain centered
 You gain a set amount of AC based on your Monk level:
-Monk 2: 3 AC, Monk 5: 6 AC, Monk 10: 9 AC, Monk 15: 12 AC, Monk 20: 15 AC</Description>
+Level 2: 3 AC, Level 5: 6 AC, Level 10: 9 AC, Level 15: 12 AC, Level 20: 15 AC</Description>
       <Requirements/>
       <Acquire>Automatic</Acquire>
       <AutomaticAcquisition>
          <Class>Monk</Class>
          <Level>2</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Sacred Fist</Class>
+         <Level>5</Level>
       </AutomaticAcquisition>
       <Icon>ACBonus</Icon>
       <Effect>
@@ -62,6 +84,13 @@ Monk 2: 3 AC, Monk 5: 6 AC, Monk 10: 9 AC, Monk 15: 12 AC, Monk 20: 15 AC</Descr
          <Bonus>Feat</Bonus>
          <AmountVector size="20">0 3 3 3 6 6 6 6 6 9 9 9 9 9 12 12 12 12 12 15</AmountVector>
          <Class>Monk</Class>
+         <Stance>Centered</Stance>
+      </Effect>
+      <Effect>
+         <Type>ACBonus</Type>
+         <Bonus>Feat</Bonus>
+         <AmountVector size="20">0 3 3 3 6 6 6 6 6 9 9 9 9 9 12 12 12 12 12 15</AmountVector>
+         <Class>Sacred Fist</Class>
          <Stance>Centered</Stance>
       </Effect>
    </Feat>
@@ -913,6 +942,10 @@ Paladin, granting a bonus to saves against fear.</Description>
          <Class>Paladin</Class>
          <Level>3</Level>
       </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Sacred Fist</Class>
+         <Level>3</Level>
+      </AutomaticAcquisition>
       <Stance>
          <Name>Aura of Courage</Name>
          <Icon>AuraOfCourage</Icon>
@@ -935,6 +968,10 @@ to saves and Armor Class against evil creatures.</Description>
       <Icon>AuraOfGood</Icon>
       <AutomaticAcquisition>
          <Class>Paladin</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Sacred Fist</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
       <Stance>
@@ -1206,7 +1243,15 @@ enemies in an arc in front of you. This attack deals +1[W] damage.</Description>
                <Level>1</Level>
             </Requirement>
             <Requirement>
+               <Class>Stormsinger</Class>
+               <Level>1</Level>
+            </Requirement>
+            <Requirement>
                <Class>Cleric</Class>
+               <Level>1</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Dark Apostate</Class>
                <Level>1</Level>
             </Requirement>
             <Requirement>
@@ -1219,6 +1264,10 @@ enemies in an arc in front of you. This attack deals +1[W] damage.</Description>
             </Requirement>
             <Requirement>
                <Class>Paladin</Class>
+               <Level>4</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Sacred Fist</Class>
                <Level>4</Level>
             </Requirement>
             <Requirement>
@@ -1308,6 +1357,11 @@ Note: Although this feat is selectable at level 1, it can only be trained at lev
          <Requirement>
             <MinLevel>1</MinLevel>
          </Requirement>
+          <RequiresNoneOf>
+              <Requirement>
+                  <Feat>Lamannia</Feat>
+              </Requirement>
+          </RequiresNoneOf>
          <Requirement>
             <Feat>Past Life: Alchemist</Feat>
          </Requirement>
@@ -1317,12 +1371,12 @@ Note: Although this feat is selectable at level 1, it can only be trained at lev
          <Requirement>
             <Feat>Past Life: Barbarian</Feat>
          </Requirement>
-         <Requirement>
+        <Requirement>
             <Feat>Past Life: Bard</Feat>
-         </Requirement>
-         <Requirement>
+        </Requirement>
+        <Requirement>
             <Feat>Past Life: Cleric</Feat>
-         </Requirement>
+        </Requirement>
          <Requirement>
             <Feat>Past Life: Druid</Feat>
          </Requirement>
@@ -1335,9 +1389,9 @@ Note: Although this feat is selectable at level 1, it can only be trained at lev
          <Requirement>
             <Feat>Past Life: Monk</Feat>
          </Requirement>
-         <Requirement>
+        <Requirement>
             <Feat>Past Life: Paladin</Feat>
-         </Requirement>
+        </Requirement>
          <Requirement>
             <Feat>Past Life: Rogue</Feat>
          </Requirement>
@@ -1355,6 +1409,95 @@ Note: Although this feat is selectable at level 1, it can only be trained at lev
          </Requirement>
       </Requirements>
       <Acquire>Train</Acquire>
+      <Icon>Completionist</Icon>
+      <Effect>
+         <Type>AbilityBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Ability>All</Ability>
+         <Amount>2</Amount>
+      </Effect>
+      <Effect>
+         <Type>SkillBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Skill>All</Skill>
+         <Amount>2</Amount>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Completionist U56</Name>
+      <Description>You win DDO! You've leveled to 20 in every class/archetype
+you are awarded this feat to get a +2 bonus to all Skills and Ability scores.
+When more classes are added, this feat will deactivate and you will need to gain
+those past lives before this benefit reactivates.</Description>
+      <Requirements>
+          <Requirement>
+              <Feat>Lamannia</Feat>
+          </Requirement>
+         <Requirement>
+            <Feat>Past Life: Alchemist</Feat>
+         </Requirement>
+         <Requirement>
+            <Feat>Past Life: Artificer</Feat>
+         </Requirement>
+         <Requirement>
+            <Feat>Past Life: Barbarian</Feat>
+         </Requirement>
+          <RequiresOneOf>
+            <Requirement>
+                <Feat>Past Life: Bard</Feat>
+            </Requirement>
+            <Requirement>
+              <Feat>Past Life: Bard (Stormsinger)</Feat>
+            </Requirement>
+          </RequiresOneOf>
+          <RequiresOneOf>
+            <Requirement>
+                <Feat>Past Life: Cleric</Feat>
+            </Requirement>
+            <Requirement>
+              <Feat>Past Life: Cleric (Dark Apostate)</Feat>
+            </Requirement>
+          </RequiresOneOf>
+         <Requirement>
+            <Feat>Past Life: Druid</Feat>
+         </Requirement>
+         <Requirement>
+            <Feat>Past Life: Favored Soul</Feat>
+         </Requirement>
+         <Requirement>
+            <Feat>Past Life: Fighter</Feat>
+         </Requirement>
+         <Requirement>
+            <Feat>Past Life: Monk</Feat>
+         </Requirement>
+          <RequiresOneOf>
+            <Requirement>
+                <Feat>Past Life: Paladin</Feat>
+            </Requirement>
+            <Requirement>
+              <Feat>Past Life: Paladin (Sacred Fist)</Feat>
+            </Requirement>
+          </RequiresOneOf>
+         <Requirement>
+            <Feat>Past Life: Rogue</Feat>
+         </Requirement>
+         <Requirement>
+            <Feat>Past Life: Ranger</Feat>
+         </Requirement>
+         <Requirement>
+            <Feat>Past Life: Sorcerer</Feat>
+         </Requirement>
+         <Requirement>
+            <Feat>Past Life: Warlock</Feat>
+         </Requirement>
+         <Requirement>
+            <Feat>Past Life: Wizard</Feat>
+         </Requirement>
+      </Requirements>
+      <Acquire>Automatic</Acquire>
+      <AutomaticAcquisition>
+         <SpecificLevel>3</SpecificLevel>
+      </AutomaticAcquisition>
       <Icon>Completionist</Icon>
       <Effect>
          <Type>AbilityBonus</Type>
@@ -1941,6 +2084,10 @@ controlling effect.</Description>
          <Level>1</Level>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
+         <Class>Stormsinger</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
          <Class>Druid</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
@@ -1996,6 +2143,10 @@ Divine Grace is capped at 2 + (3 x Paladin level). For multiclassing, this means
          <Class>Paladin</Class>
          <Level>2</Level>
       </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Sacred Fist</Class>
+         <Level>2</Level>
+      </AutomaticAcquisition>
       <Icon>DivineGrace</Icon>
       <!--This effect is handled by the C++ code for saves-->
    </Feat>
@@ -2006,6 +2157,10 @@ Divine Grace is capped at 2 + (3 x Paladin level). For multiclassing, this means
       <Acquire>Automatic</Acquire>
       <AutomaticAcquisition>
          <Class>Paladin</Class>
+         <Level>3</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Sacred Fist</Class>
          <Level>3</Level>
       </AutomaticAcquisition>
       <Icon>DivineHealth</Icon>
@@ -2183,7 +2338,15 @@ spells affected by Empower Healing, but they consume 10 additional spell points.
                <Level>1</Level>
             </Requirement>
             <Requirement>
+               <Class>Stormsinger</Class>
+               <Level>1</Level>
+            </Requirement>
+            <Requirement>
                <Class>Cleric</Class>
+               <Level>1</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Dark Apostate</Class>
                <Level>1</Level>
             </Requirement>
             <Requirement>
@@ -2196,6 +2359,10 @@ spells affected by Empower Healing, but they consume 10 additional spell points.
             </Requirement>
             <Requirement>
                <Class>Paladin</Class>
+               <Level>4</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Sacred Fist</Class>
                <Level>4</Level>
             </Requirement>
             <Requirement>
@@ -2251,7 +2418,15 @@ spells affected by Empower Spell, but they consume 15 additional spell points.</
                <Level>1</Level>
             </Requirement>
             <Requirement>
+               <Class>Stormsinger</Class>
+               <Level>1</Level>
+            </Requirement>
+            <Requirement>
                <Class>Cleric</Class>
+               <Level>1</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Dark Apostate</Class>
                <Level>1</Level>
             </Requirement>
             <Requirement>
@@ -2264,6 +2439,10 @@ spells affected by Empower Spell, but they consume 15 additional spell points.</
             </Requirement>
             <Requirement>
                <Class>Paladin</Class>
+               <Level>4</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Sacred Fist</Class>
                <Level>4</Level>
             </Requirement>
             <Requirement>
@@ -2480,7 +2659,15 @@ but they consume 10 additional spell points.</Description>
                <Level>1</Level>
             </Requirement>
             <Requirement>
+               <Class>Stormsinger</Class>
+               <Level>1</Level>
+            </Requirement>
+            <Requirement>
                <Class>Cleric</Class>
+               <Level>1</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Dark Apostate</Class>
                <Level>1</Level>
             </Requirement>
             <Requirement>
@@ -2493,6 +2680,10 @@ but they consume 10 additional spell points.</Description>
             </Requirement>
             <Requirement>
                <Class>Paladin</Class>
+               <Level>4</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Sacred Fist</Class>
                <Level>4</Level>
             </Requirement>
             <Requirement>
@@ -2553,7 +2744,15 @@ required, but spells consume 2 additional spell points.</Description>
                <Level>1</Level>
             </Requirement>
             <Requirement>
+               <Class>Stormsinger</Class>
+               <Level>1</Level>
+            </Requirement>
+            <Requirement>
                <Class>Cleric</Class>
+               <Level>1</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Dark Apostate</Class>
                <Level>1</Level>
             </Requirement>
             <Requirement>
@@ -2566,6 +2765,10 @@ required, but spells consume 2 additional spell points.</Description>
             </Requirement>
             <Requirement>
                <Class>Paladin</Class>
+               <Level>4</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Sacred Fist</Class>
                <Level>4</Level>
             </Requirement>
             <Requirement>
@@ -2612,6 +2815,10 @@ damage instead of half damage.</Description>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
          <Class>Monk</Class>
+         <Level>2</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Sacred Fist</Class>
          <Level>2</Level>
       </AutomaticAcquisition>
    </Feat>
@@ -2684,6 +2891,10 @@ attack styles.)</Description>
                   <Class>Paladin</Class>
                   <Level>1</Level>
                </Requirement>
+                <Requirement>
+                   <Class>Sacred Fist</Class>
+                   <Level>1</Level>
+                </Requirement>
                <Requirement>
                   <Class>Ranger</Class>
                   <Level>1</Level>
@@ -2748,6 +2959,11 @@ Great crossbows may knock opponents to the ground on a confirmed attack roll of 
       <AutomaticAcquisition>
          <IgnoreRequirements/>
          <Race>Razorclaw Shifter</Race>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <IgnoreRequirements/>
+         <Class>Sacred Fist</Class>
+         <Level>1</Level>
       </AutomaticAcquisition>
       <Icon>ExoticWeaponProficiency</Icon>
       <Effect>
@@ -2914,7 +3130,15 @@ but they consume 10 additional spell points.</Description>
                <Level>1</Level>
             </Requirement>
             <Requirement>
+               <Class>Stormsinger</Class>
+               <Level>1</Level>
+            </Requirement>
+            <Requirement>
                <Class>Cleric</Class>
+               <Level>1</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Dark Apostate</Class>
                <Level>1</Level>
             </Requirement>
             <Requirement>
@@ -2928,6 +3152,10 @@ but they consume 10 additional spell points.</Description>
             <Requirement>
                <Class>Paladin</Class>
                <Level>4</Level>
+            </Requirement>
+            <Requirement>
+                <Class>Sacred Fist</Class>
+                <Level>4</Level>
             </Requirement>
             <Requirement>
                <Class>Sorcerer</Class>
@@ -2966,8 +3194,16 @@ but they consume 10 additional spell points.</Description>
                <Level>1</Level>
             </Requirement>
             <Requirement>
+               <Class>Dark Apostate</Class>
+               <Level>1</Level>
+            </Requirement>
+            <Requirement>
                <Class>Paladin</Class>
                <Level>4</Level>
+            </Requirement>
+            <Requirement>
+                <Class>Sacred Fist</Class>
+                <Level>4</Level>
             </Requirement>
          </RequiresOneOf>
       </Requirements>
@@ -2992,6 +3228,10 @@ Has a save DC of your perform skill plus the roll of a twenty-sided die.</Descri
          <Class>Bard</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Stormsinger</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
       <Effect>
          <Type>SpellLikeAbility</Type>
          <Bonus>Feat</Bonus>
@@ -3010,6 +3250,20 @@ Has a save DC of your perform skill plus the roll of a twenty-sided die.</Descri
          <Bonus>Feat</Bonus>
          <AmountPerLevel>1</AmountPerLevel>
          <Class>Bard</Class>
+      </Effect>
+      <Effect>
+         <DisplayName>Song Duration per Bard level</DisplayName>
+         <Type>SongDuration</Type>
+         <Bonus>Feat</Bonus>
+         <AmountPerLevel>30</AmountPerLevel>
+         <Class>Stormsinger</Class>
+      </Effect>
+      <Effect>
+         <DisplayName>Songs per Bard level</DisplayName>
+         <Type>SongCount</Type>
+         <Bonus>Feat</Bonus>
+         <AmountPerLevel>1</AmountPerLevel>
+         <Class>Stormsinger</Class>
       </Effect>
       <DC>
          <Name>Fascinate</Name>
@@ -3332,6 +3586,10 @@ You can make an attack that has a chance of blinding your opponent.</Description
       <Acquire>Automatic</Acquire>
       <AutomaticAcquisition>
          <Class>Paladin</Class>
+         <Level>3</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Sacred Fist</Class>
          <Level>3</Level>
       </AutomaticAcquisition>
       <Icon>FearImmunity</Icon>
@@ -5317,6 +5575,11 @@ in physical resistance when wearing heavy armor.</Description>
          <Class>Cleric</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <IgnoreRequirements/>
+         <Class>Dark Apostate</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
       <!--PRR bonus handled in C++-->
    </Feat>
    <Feat>
@@ -5352,7 +5615,15 @@ resist, but increasing their spell point cost.</Description>
                <Level>4</Level>
             </Requirement>
             <Requirement>
+               <Class>Stormsinger</Class>
+               <Level>4</Level>
+            </Requirement>
+            <Requirement>
                <Class>Cleric</Class>
+               <Level>3</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Dark Apostate</Class>
                <Level>3</Level>
             </Requirement>
             <Requirement>
@@ -5366,6 +5637,10 @@ resist, but increasing their spell point cost.</Description>
             <Requirement>
                <Class>Paladin</Class>
                <Level>8</Level>
+            </Requirement>
+            <Requirement>
+                <Class>Sacred Fist</Class>
+                <Level>8</Level>
             </Requirement>
             <Requirement>
                <Class>Sorcerer</Class>
@@ -5841,7 +6116,15 @@ chance by 1%. Stacks with Mental Toughness.</Description>
                <Level>7</Level>
             </Requirement>
             <Requirement>
+               <Class>Stormsinger</Class>
+               <Level>7</Level>
+            </Requirement>
+            <Requirement>
                <Class>Cleric</Class>
+               <Level>5</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Dark Apostate</Class>
                <Level>5</Level>
             </Requirement>
             <Requirement>
@@ -5855,6 +6138,10 @@ chance by 1%. Stacks with Mental Toughness.</Description>
             <Requirement>
                <Class>Paladin</Class>
                <Level>10</Level>
+            </Requirement>
+            <Requirement>
+                <Class>Sacred Fist</Class>
+                <Level>10</Level>
             </Requirement>
             <Requirement>
                <Class>Ranger</Class>
@@ -6160,7 +6447,15 @@ You Turn Undead as if you were 1 level higher.</Description>
                <Level>1</Level>
             </Requirement>
             <Requirement>
+               <Class>Dark Apostate</Class>
+               <Level>1</Level>
+            </Requirement>
+            <Requirement>
                <Class>Paladin</Class>
+               <Level>4</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Sacred Fist</Class>
                <Level>4</Level>
             </Requirement>
          </RequiresOneOf>
@@ -6633,6 +6928,10 @@ or dealing that much damage to an undead target.</Description>
       <Icon>LayOnHands</Icon>
       <AutomaticAcquisition>
          <Class>Paladin</Class>
+         <Level>2</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Sacred Fist</Class>
          <Level>2</Level>
       </AutomaticAcquisition>
       <Effect>
@@ -7251,7 +7550,15 @@ physical resistance when wearing light armor.</Description>
          <Level>1</Level>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
+         <Class>Stormsinger</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
          <Class>Cleric</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Dark Apostate</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
@@ -7419,6 +7726,10 @@ drops below 12.</Description>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
          <Class>Cleric</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Dark Apostate</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
@@ -7848,6 +8159,10 @@ Passive: You gain Doubleshot equal to 1.5 your BAB with longbows and shortbows.<
          <Level>1</Level>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
+         <Class>Stormsinger</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
          <Race>Wood Elf</Race>
       </AutomaticAcquisition>
    </Feat>
@@ -7907,6 +8222,10 @@ Passive: You gain Doubleshot equal to 1.5 your BAB with longbows and shortbows.<
       </AutomaticAcquisition>
       <AutomaticAcquisition>
          <Class>Bard</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Stormsinger</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
       <Effect>
@@ -7986,6 +8305,10 @@ Passive: You gain Doubleshot equal to 1.5 your BAB with longbows and shortbows.<
          <Class>Bard</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Stormsinger</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
       <Effect>
          <Type>WeaponProficiency</Type>
          <Bonus>Feat</Bonus>
@@ -8023,6 +8346,10 @@ Passive: You gain Doubleshot equal to 1.5 your BAB with longbows and shortbows.<
       </AutomaticAcquisition>
       <AutomaticAcquisition>
          <Class>Bard</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Stormsinger</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
       <Effect>
@@ -8134,6 +8461,10 @@ Requires 21 trained ranks (not total mod) of the Perform skill to use.</Descript
       <Icon>MassSuggestion</Icon>
       <AutomaticAcquisition>
          <Class>Bard</Class>
+         <Level>18</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Stormsinger</Class>
          <Level>18</Level>
       </AutomaticAcquisition>
       <Effect>
@@ -8381,7 +8712,15 @@ casting spells affected by Maximize Spell, but they consume 25 additional spell 
                <Level>1</Level>
             </Requirement>
             <Requirement>
+               <Class>Stormsinger</Class>
+               <Level>1</Level>
+            </Requirement>
+            <Requirement>
                <Class>Cleric</Class>
+               <Level>1</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Dark Apostate</Class>
                <Level>1</Level>
             </Requirement>
             <Requirement>
@@ -8395,6 +8734,10 @@ casting spells affected by Maximize Spell, but they consume 25 additional spell 
             <Requirement>
                <Class>Paladin</Class>
                <Level>4</Level>
+            </Requirement>
+            <Requirement>
+                <Class>Sacred Fist</Class>
+                <Level>4</Level>
             </Requirement>
             <Requirement>
                <Class>Sorcerer</Class>
@@ -8469,6 +8812,10 @@ physical resistance when wearing medium armor.</Description>
          <Level>1</Level>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
+         <Class>Dark Apostate</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
          <IgnoreRequirements/>
          <Class>Druid</Class>
          <Level>1</Level>
@@ -8514,7 +8861,15 @@ Also increases your spell critical chance by 1%.</Description>
                <Level>1</Level>
             </Requirement>
             <Requirement>
+               <Class>Stormsinger</Class>
+               <Level>1</Level>
+            </Requirement>
+            <Requirement>
                <Class>Cleric</Class>
+               <Level>1</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Dark Apostate</Class>
                <Level>1</Level>
             </Requirement>
             <Requirement>
@@ -8528,6 +8883,10 @@ Also increases your spell critical chance by 1%.</Description>
             <Requirement>
                <Class>Paladin</Class>
                <Level>4</Level>
+            </Requirement>
+            <Requirement>
+                <Class>Sacred Fist</Class>
+                <Level>4</Level>
             </Requirement>
             <Requirement>
                <Class>Ranger</Class>
@@ -8711,7 +9070,15 @@ penalties are decreased by 1.</Description>
                <Level>4</Level>
             </Requirement>
             <Requirement>
+               <Class>Stormsinger</Class>
+               <Level>4</Level>
+            </Requirement>
+            <Requirement>
                <Class>Cleric</Class>
+               <Level>3</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Dark Apostate</Class>
                <Level>3</Level>
             </Requirement>
             <Requirement>
@@ -8725,6 +9092,10 @@ penalties are decreased by 1.</Description>
             <Requirement>
                <Class>Paladin</Class>
                <Level>7</Level>
+            </Requirement>
+            <Requirement>
+                <Class>Sacred Fist</Class>
+                <Level>7</Level>
             </Requirement>
             <Requirement>
                <Class>Ranger</Class>
@@ -9132,9 +9503,14 @@ damage rolls before enhancements.)</Description>
          <Requirement>
             <MinLevel>3</MinLevel>
          </Requirement>
-         <Requirement>
-            <Feat>Past Life: Bard</Feat>
-         </Requirement>
+         <RequiresOneOf>
+            <Requirement>
+                <Feat>Past Life: Bard</Feat>
+            </Requirement>
+            <Requirement>
+                <Feat>Past Life: Bard (Stormsinger)</Feat>
+            </Requirement>
+         </RequiresOneOf>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>PastLifeBard</Icon>
@@ -9300,9 +9676,14 @@ D&amp;D Dice: Deals 1d4 damage plus 1d4 additional damage per two caster levels.
          <Requirement>
             <MinLevel>3</MinLevel>
          </Requirement>
-         <Requirement>
-            <Feat>Past Life: Cleric</Feat>
-         </Requirement>
+         <RequiresOneOf>
+            <Requirement>
+                <Feat>Past Life: Cleric</Feat>
+            </Requirement>
+            <Requirement>
+                <Feat>Past Life: Cleric (Dark Apostate)</Feat>
+            </Requirement>
+         </RequiresOneOf>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>PastLifeCleric</Icon>
@@ -9408,9 +9789,14 @@ maximum of +3 at caster level 9.)</Description>
          <Requirement>
             <MinLevel>3</MinLevel>
          </Requirement>
-         <Requirement>
-            <Feat>Past Life: Paladin</Feat>
-         </Requirement>
+         <RequiresOneOf>
+            <Requirement>
+                <Feat>Past Life: Paladin</Feat>
+            </Requirement>
+            <Requirement>
+                <Feat>Past Life: Paladin (Sacred Fist)</Feat>
+            </Requirement>
+         </RequiresOneOf>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>PastLifePaladin</Icon>
@@ -9956,7 +10342,15 @@ be interrupted by enemy attacks, but they consume 10 additional spell points.</D
                <Level>1</Level>
             </Requirement>
             <Requirement>
+               <Class>Stormsinger</Class>
+               <Level>1</Level>
+            </Requirement>
+            <Requirement>
                <Class>Cleric</Class>
+               <Level>1</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Dark Apostate</Class>
                <Level>1</Level>
             </Requirement>
             <Requirement>
@@ -9970,6 +10364,10 @@ be interrupted by enemy attacks, but they consume 10 additional spell points.</D
             <Requirement>
                <Class>Paladin</Class>
                <Level>4</Level>
+            </Requirement>
+            <Requirement>
+                <Class>Sacred Fist</Class>
+                <Level>4</Level>
             </Requirement>
             <Requirement>
                <Class>Sorcerer</Class>
@@ -10185,6 +10583,10 @@ You gain Ranged Power equal to 1.5 your BAB with longbows and shortbows.</Descri
       <Icon>RemoveDisease</Icon>
       <AutomaticAcquisition>
          <Class>Paladin</Class>
+         <Level>6</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Sacred Fist</Class>
          <Level>6</Level>
       </AutomaticAcquisition>
       <Effect>
@@ -10419,7 +10821,15 @@ Add +3 Melee Power</Description>
          <Level>1</Level>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
+         <Class>Stormsinger</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
          <Class>Cleric</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Dark Apostate</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
@@ -10602,7 +11012,15 @@ equal to your Dexterity.)</Description>
          <Level>1</Level>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
+         <Class>Stormsinger</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
          <Class>Cleric</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Dark Apostate</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
@@ -10623,6 +11041,10 @@ equal to your Dexterity.)</Description>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
          <Class>Paladin</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Sacred Fist</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
@@ -10674,7 +11096,15 @@ equal to your Dexterity.)</Description>
          <Level>1</Level>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
+         <Class>Stormsinger</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
          <Class>Cleric</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Dark Apostate</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
@@ -10695,6 +11125,10 @@ equal to your Dexterity.)</Description>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
          <Class>Paladin</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Sacred Fist</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
@@ -10746,7 +11180,15 @@ equal to your Dexterity.)</Description>
          <Level>1</Level>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
+         <Class>Stormsinger</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
          <Class>Cleric</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Dark Apostate</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
@@ -10763,6 +11205,10 @@ equal to your Dexterity.)</Description>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
          <Class>Paladin</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Sacred Fist</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
@@ -10810,7 +11256,15 @@ equal to your Dexterity.)</Description>
          <Level>1</Level>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
+         <Class>Stormsinger</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
          <Class>Cleric</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Dark Apostate</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
@@ -10827,6 +11281,10 @@ equal to your Dexterity.)</Description>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
          <Class>Paladin</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Sacred Fist</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
@@ -10878,7 +11336,15 @@ equal to your Dexterity.)</Description>
          <Level>1</Level>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
+         <Class>Stormsinger</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
          <Class>Cleric</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Dark Apostate</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
@@ -10891,6 +11357,10 @@ equal to your Dexterity.)</Description>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
          <Class>Paladin</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Sacred Fist</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
@@ -10938,7 +11408,15 @@ equal to your Dexterity.)</Description>
          <Level>1</Level>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
+         <Class>Stormsinger</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
          <Class>Cleric</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Dark Apostate</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
@@ -10955,6 +11433,10 @@ equal to your Dexterity.)</Description>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
          <Class>Paladin</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Sacred Fist</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
@@ -11006,7 +11488,15 @@ equal to your Dexterity.)</Description>
          <Level>1</Level>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
+         <Class>Stormsinger</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
          <Class>Cleric</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Dark Apostate</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
@@ -11019,6 +11509,10 @@ equal to your Dexterity.)</Description>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
          <Class>Paladin</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Sacred Fist</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
@@ -11066,7 +11560,15 @@ equal to your Dexterity.)</Description>
          <Level>1</Level>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
+         <Class>Stormsinger</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
          <Class>Cleric</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Dark Apostate</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
@@ -11079,6 +11581,10 @@ equal to your Dexterity.)</Description>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
          <Class>Paladin</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Sacred Fist</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
@@ -11126,7 +11632,15 @@ equal to your Dexterity.)</Description>
          <Level>1</Level>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
+         <Class>Stormsinger</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
          <Class>Cleric</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Dark Apostate</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
@@ -11147,6 +11661,10 @@ equal to your Dexterity.)</Description>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
          <Class>Paladin</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Sacred Fist</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
@@ -11198,7 +11716,15 @@ equal to your Dexterity.)</Description>
          <Level>1</Level>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
+         <Class>Stormsinger</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
          <Class>Cleric</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Dark Apostate</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
@@ -11215,6 +11741,10 @@ equal to your Dexterity.)</Description>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
          <Class>Paladin</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Sacred Fist</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
@@ -11262,7 +11792,15 @@ equal to your Dexterity.)</Description>
          <Level>1</Level>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
+         <Class>Stormsinger</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
          <Class>Cleric</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Dark Apostate</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
@@ -11275,6 +11813,10 @@ equal to your Dexterity.)</Description>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
          <Class>Paladin</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Sacred Fist</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
@@ -11327,7 +11869,15 @@ or when attacking from an animal form.</Description>
          <Level>1</Level>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
+         <Class>Stormsinger</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
          <Class>Cleric</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Dark Apostate</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
@@ -11348,6 +11898,10 @@ or when attacking from an animal form.</Description>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
          <Class>Paladin</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Sacred Fist</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
@@ -11623,10 +12177,16 @@ or when attacking from an animal form.</Description>
          <IsArtificerBonus/>
       </FeatGroup>
       <Requirements>
-         <Requirement>
-            <Class>Bard</Class>
-            <Level>1</Level>
-         </Requirement>
+          <RequiresOneOf>
+             <Requirement>
+                <Class>Bard</Class>
+                <Level>1</Level>
+             </Requirement>
+             <Requirement>
+                <Class>Stormsinger</Class>
+                <Level>1</Level>
+             </Requirement>
+          </RequiresOneOf>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>SkillFocus</Icon>
@@ -11938,6 +12498,26 @@ bonus based on your Paladin level. Smites return at a rate of one every 90 secon
          <Class>Paladin</Class>
          <Level>20</Level>
       </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Sacred Fist</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Sacred Fist</Class>
+         <Level>5</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Sacred Fist</Class>
+         <Level>10</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Sacred Fist</Class>
+         <Level>15</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Sacred Fist</Class>
+         <Level>20</Level>
+      </AutomaticAcquisition>
    </Feat>
    <Feat>
       <Name>Smite Evil (Ranged)</Name>
@@ -11966,6 +12546,26 @@ bonus based on your Paladin level. Smites return at a rate of one every 90 secon
       </AutomaticAcquisition>
       <AutomaticAcquisition>
          <Class>Paladin</Class>
+         <Level>20</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Sacred Fist</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Sacred Fist</Class>
+         <Level>5</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Sacred Fist</Class>
+         <Level>10</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Sacred Fist</Class>
+         <Level>15</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Sacred Fist</Class>
          <Level>20</Level>
       </AutomaticAcquisition>
    </Feat>
@@ -12076,7 +12676,15 @@ receiving an additional +1 bonus on save DCs.</Description>
                <Level>1</Level>
             </Requirement>
             <Requirement>
+               <Class>Stormsinger</Class>
+               <Level>1</Level>
+            </Requirement>
+            <Requirement>
                <Class>Cleric</Class>
+               <Level>1</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Dark Apostate</Class>
                <Level>1</Level>
             </Requirement>
             <Requirement>
@@ -12089,6 +12697,10 @@ receiving an additional +1 bonus on save DCs.</Description>
             </Requirement>
             <Requirement>
                <Class>Paladin</Class>
+               <Level>1</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Sacred Fist</Class>
                <Level>1</Level>
             </Requirement>
             <Requirement>
@@ -12141,7 +12753,15 @@ receiving an additional +1 bonus on save DCs.</Description>
                <Level>1</Level>
             </Requirement>
             <Requirement>
+               <Class>Stormsinger</Class>
+               <Level>1</Level>
+            </Requirement>
+            <Requirement>
                <Class>Cleric</Class>
+               <Level>1</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Dark Apostate</Class>
                <Level>1</Level>
             </Requirement>
             <Requirement>
@@ -12154,6 +12774,10 @@ receiving an additional +1 bonus on save DCs.</Description>
             </Requirement>
             <Requirement>
                <Class>Paladin</Class>
+               <Level>1</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Sacred Fist</Class>
                <Level>1</Level>
             </Requirement>
             <Requirement>
@@ -12206,7 +12830,15 @@ receiving an additional +1 bonus on save DCs.</Description>
                <Level>1</Level>
             </Requirement>
             <Requirement>
+               <Class>Stormsinger</Class>
+               <Level>1</Level>
+            </Requirement>
+            <Requirement>
                <Class>Cleric</Class>
+               <Level>1</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Dark Apostate</Class>
                <Level>1</Level>
             </Requirement>
             <Requirement>
@@ -12219,6 +12851,10 @@ receiving an additional +1 bonus on save DCs.</Description>
             </Requirement>
             <Requirement>
                <Class>Paladin</Class>
+               <Level>1</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Sacred Fist</Class>
                <Level>1</Level>
             </Requirement>
             <Requirement>
@@ -12271,7 +12907,15 @@ receiving an additional +1 bonus on save DCs.</Description>
                <Level>1</Level>
             </Requirement>
             <Requirement>
+               <Class>Stormsinger</Class>
+               <Level>1</Level>
+            </Requirement>
+            <Requirement>
                <Class>Cleric</Class>
+               <Level>1</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Dark Apostate</Class>
                <Level>1</Level>
             </Requirement>
             <Requirement>
@@ -12284,6 +12928,10 @@ receiving an additional +1 bonus on save DCs.</Description>
             </Requirement>
             <Requirement>
                <Class>Paladin</Class>
+               <Level>1</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Sacred Fist</Class>
                <Level>1</Level>
             </Requirement>
             <Requirement>
@@ -12336,7 +12984,15 @@ receiving an additional +1 bonus on save DCs.</Description>
                <Level>1</Level>
             </Requirement>
             <Requirement>
+               <Class>Stormsinger</Class>
+               <Level>1</Level>
+            </Requirement>
+            <Requirement>
                <Class>Cleric</Class>
+               <Level>1</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Dark Apostate</Class>
                <Level>1</Level>
             </Requirement>
             <Requirement>
@@ -12349,6 +13005,10 @@ receiving an additional +1 bonus on save DCs.</Description>
             </Requirement>
             <Requirement>
                <Class>Paladin</Class>
+               <Level>1</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Sacred Fist</Class>
                <Level>1</Level>
             </Requirement>
             <Requirement>
@@ -12401,7 +13061,15 @@ receiving an additional +1 bonus on save DCs.</Description>
                <Level>1</Level>
             </Requirement>
             <Requirement>
+               <Class>Stormsinger</Class>
+               <Level>1</Level>
+            </Requirement>
+            <Requirement>
                <Class>Cleric</Class>
+               <Level>1</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Dark Apostate</Class>
                <Level>1</Level>
             </Requirement>
             <Requirement>
@@ -12414,6 +13082,10 @@ receiving an additional +1 bonus on save DCs.</Description>
             </Requirement>
             <Requirement>
                <Class>Paladin</Class>
+               <Level>1</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Sacred Fist</Class>
                <Level>1</Level>
             </Requirement>
             <Requirement>
@@ -12466,7 +13138,15 @@ receiving an additional +1 bonus on save DCs.</Description>
                <Level>1</Level>
             </Requirement>
             <Requirement>
+               <Class>Stormsinger</Class>
+               <Level>1</Level>
+            </Requirement>
+            <Requirement>
                <Class>Cleric</Class>
+               <Level>1</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Dark Apostate</Class>
                <Level>1</Level>
             </Requirement>
             <Requirement>
@@ -12479,6 +13159,10 @@ receiving an additional +1 bonus on save DCs.</Description>
             </Requirement>
             <Requirement>
                <Class>Paladin</Class>
+               <Level>1</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Sacred Fist</Class>
                <Level>1</Level>
             </Requirement>
             <Requirement>
@@ -12526,7 +13210,15 @@ receiving an additional +1 bonus on save DCs.</Description>
                <Level>1</Level>
             </Requirement>
             <Requirement>
+               <Class>Stormsinger</Class>
+               <Level>1</Level>
+            </Requirement>
+            <Requirement>
                <Class>Cleric</Class>
+               <Level>1</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Dark Apostate</Class>
                <Level>1</Level>
             </Requirement>
             <Requirement>
@@ -12539,6 +13231,10 @@ receiving an additional +1 bonus on save DCs.</Description>
             </Requirement>
             <Requirement>
                <Class>Paladin</Class>
+               <Level>4</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Sacred Fist</Class>
                <Level>4</Level>
             </Requirement>
             <Requirement>
@@ -13391,7 +14087,15 @@ A successful Balance check negates this effect.</Description>
          <Level>1</Level>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
+         <Class>Dark Apostate</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
          <Class>Paladin</Class>
+         <Level>4</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Sacred Fist</Class>
          <Level>4</Level>
       </AutomaticAcquisition>
       <DC>
@@ -13587,6 +14291,30 @@ your fists and feat are lethal weapons.</Description>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
          <Class>Monk</Class>
+         <Level>20</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Sacred Fist</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Sacred Fist</Class>
+         <Level>4</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Sacred Fist</Class>
+         <Level>8</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Sacred Fist</Class>
+         <Level>12</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Sacred Fist</Class>
+         <Level>16</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Sacred Fist</Class>
          <Level>20</Level>
       </AutomaticAcquisition>
       <Effect>
@@ -15626,6 +16354,24 @@ This feat can be stacked up to three times.</Description>
       </Effect>
    </Feat>
    <Feat>
+      <Name>Past Life: Bard (Stormsinger)</Name>
+      <Description>You were a Stormsinger in a past life.
+You occasionally find yourself wishing for some thunderstorms.
+Each time you acquire this feat you gain +5 Electric and Sonic Spellpower.
+This feat can be stacked up to three times.</Description>
+      <Requirements/>
+      <MaxTimesAcquire>3</MaxTimesAcquire>
+      <Acquire>HeroicPastLife</Acquire>
+      <Icon>PastLifeBard</Icon>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Feat</Bonus>
+         <SpellPower>Electric</SpellPower>
+         <SpellPower>Sonic</SpellPower>
+         <Amount>5</Amount>
+      </Effect>
+   </Feat>
+   <Feat>
       <Name>Past Life: Cleric</Name>
       <Description>You were a Cleric in a past life.
 You occasionally feel the presence of the divine.
@@ -15651,6 +16397,22 @@ This feat can be stacked up to three times.</Description>
          <Type>TurnLevelBonus</Type>
          <Bonus>Feat</Bonus>
          <Amount>2</Amount>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Past Life: Cleric (Dark Apostate)</Name>
+      <Description>You were a Dark Apostate in a past life.
+You occasionally feel the presence of the heritical.
+Each time you acquire this feat you gain +5 to your Negative Healing Amplification.
+This feat can be stacked up to three times.</Description>
+      <Requirements/>
+      <MaxTimesAcquire>3</MaxTimesAcquire>
+      <Acquire>HeroicPastLife</Acquire>
+      <Icon>PastLifeCleric</Icon>
+      <Effect>
+         <Type>NegativeHealingAmplification</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>5</Amount>
       </Effect>
    </Feat>
    <Feat>
@@ -15749,6 +16511,28 @@ Each time you acquire this feat you gain 10% positive healing amplification.
          <Type>HealingAmplification</Type>
          <Bonus>Feat</Bonus>
          <Amount>10</Amount>
+      </Effect>
+   </Feat>
+   <Feat>
+      <Name>Past Life: Paladin (Sacred Fist)</Name>
+      <Description>You were a Sacred Fist in a past life.
+You occasionally find yourself contemplating the flickering flame of campfires.
+Each time you acquire this feat you gain +5% positive healing amplification
+and +5 Positive Spellpower. This feat can be stacked up to 3 times.</Description>
+      <Requirements/>
+      <MaxTimesAcquire>3</MaxTimesAcquire>
+      <Acquire>HeroicPastLife</Acquire>
+      <Icon>PastLifePaladin</Icon>
+      <Effect>
+         <Type>HealingAmplification</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>5</Amount>
+      </Effect>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>5</Amount>
+         <SpellPower>Positive</SpellPower>
       </Effect>
    </Feat>
    <Feat>
@@ -16543,7 +17327,6 @@ per stack of this Past Life.</Description>
          <Type>SpellPower</Type>
          <Bonus>Feat</Bonus>
          <SpellPower>Negative</SpellPower>
-         <SpellPower>Poison</SpellPower>
          <Amount>10</Amount>
          <Stance>Power Over Life and Death</Stance>
       </Effect>
@@ -17239,6 +18022,46 @@ points earns you a Destiny Action Point.</Description>
          <Class>Bard</Class>
          <Level>19</Level>
       </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Stormsinger</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Stormsinger</Class>
+         <Level>3</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Stormsinger</Class>
+         <Level>5</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Stormsinger</Class>
+         <Level>7</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Stormsinger</Class>
+         <Level>9</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Stormsinger</Class>
+         <Level>11</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Stormsinger</Class>
+         <Level>13</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Stormsinger</Class>
+         <Level>15</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Stormsinger</Class>
+         <Level>17</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Stormsinger</Class>
+         <Level>19</Level>
+      </AutomaticAcquisition>
       <Icon>WildernessLore</Icon>
    </Feat>
    <Feat>
@@ -17255,6 +18078,9 @@ points earns you a Destiny Action Point.</Description>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
          <Class>Bard</Class>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Stormsinger</Class>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
          <Class>Sorcerer</Class>
@@ -17274,10 +18100,16 @@ points earns you a Destiny Action Point.</Description>
          <Class>Cleric</Class>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
+         <Class>Dark Apostate</Class>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
          <Class>Favored Soul</Class>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
          <Class>Paladin</Class>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Sacred Fist</Class>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
          <Class>Bard</Class>
@@ -17317,6 +18149,46 @@ points earns you a Destiny Action Point.</Description>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
          <Class>Bard</Class>
+         <Level>19</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Stormsinger</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Stormsinger</Class>
+         <Level>3</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Stormsinger</Class>
+         <Level>5</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Stormsinger</Class>
+         <Level>7</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Stormsinger</Class>
+         <Level>9</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Stormsinger</Class>
+         <Level>11</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Stormsinger</Class>
+         <Level>13</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Stormsinger</Class>
+         <Level>15</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Stormsinger</Class>
+         <Level>17</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Stormsinger</Class>
          <Level>19</Level>
       </AutomaticAcquisition>
       <Icon>ReligiousLore</Icon>
@@ -17811,10 +18683,24 @@ For a total of +5 to all casting classes at level 30.</Description>
          <Amount>1</Amount>
       </Effect>
       <Effect>
+         <DisplayName>Epic Knowledge: Stormsinger</DisplayName>
+         <Type>CasterLevel</Type>
+         <Bonus>Feat</Bonus>
+         <Class>Stormsinger</Class>
+         <Amount>1</Amount>
+      </Effect>
+      <Effect>
          <DisplayName>Epic Knowledge: Cleric</DisplayName>
          <Type>CasterLevel</Type>
          <Bonus>Feat</Bonus>
          <Class>Cleric</Class>
+         <Amount>1</Amount>
+      </Effect>
+      <Effect>
+         <DisplayName>Epic Knowledge: Dark Apostate</DisplayName>
+         <Type>CasterLevel</Type>
+         <Bonus>Feat</Bonus>
+         <Class>Dark Apostate</Class>
          <Amount>1</Amount>
       </Effect>
       <Effect>
@@ -17836,6 +18722,13 @@ For a total of +5 to all casting classes at level 30.</Description>
          <Type>CasterLevel</Type>
          <Bonus>Feat</Bonus>
          <Class>Paladin</Class>
+         <Amount>1</Amount>
+      </Effect>
+      <Effect>
+         <DisplayName>Epic Knowledge: Sacred Fist</DisplayName>
+         <Type>CasterLevel</Type>
+         <Bonus>Feat</Bonus>
+         <Class>Sacred Fist</Class>
          <Amount>1</Amount>
       </Effect>
       <Effect>
@@ -18151,7 +19044,15 @@ receiving an additional +1 bonus on save DCs.</Description>
                <Level>16</Level>
             </Requirement>
             <Requirement>
+               <Class>Stormsinger</Class>
+               <Level>16</Level>
+            </Requirement>
+            <Requirement>
                <Class>Cleric</Class>
+               <Level>11</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Dark Apostate</Class>
                <Level>11</Level>
             </Requirement>
             <Requirement>
@@ -18213,7 +19114,15 @@ receiving an additional +1 bonus on save DCs.</Description>
                <Level>16</Level>
             </Requirement>
             <Requirement>
+               <Class>Stormsinger</Class>
+               <Level>16</Level>
+            </Requirement>
+            <Requirement>
                <Class>Cleric</Class>
+               <Level>11</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Dark Apostate</Class>
                <Level>11</Level>
             </Requirement>
             <Requirement>
@@ -18275,7 +19184,15 @@ receiving an additional +1 bonus on save DCs.</Description>
                <Level>16</Level>
             </Requirement>
             <Requirement>
+               <Class>Stormsinger</Class>
+               <Level>16</Level>
+            </Requirement>
+            <Requirement>
                <Class>Cleric</Class>
+               <Level>11</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Dark Apostate</Class>
                <Level>11</Level>
             </Requirement>
             <Requirement>
@@ -18337,7 +19254,15 @@ receiving an additional +1 bonus on save DCs.</Description>
                <Level>16</Level>
             </Requirement>
             <Requirement>
+               <Class>Stormsinger</Class>
+               <Level>16</Level>
+            </Requirement>
+            <Requirement>
                <Class>Cleric</Class>
+               <Level>11</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Dark Apostate</Class>
                <Level>11</Level>
             </Requirement>
             <Requirement>
@@ -18399,7 +19324,15 @@ receiving an additional +1 bonus on save DCs.</Description>
                <Level>16</Level>
             </Requirement>
             <Requirement>
+               <Class>Stormsinger</Class>
+               <Level>16</Level>
+            </Requirement>
+            <Requirement>
                <Class>Cleric</Class>
+               <Level>11</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Dark Apostate</Class>
                <Level>11</Level>
             </Requirement>
             <Requirement>
@@ -18461,7 +19394,15 @@ receiving an additional +1 bonus on save DCs.</Description>
                <Level>16</Level>
             </Requirement>
             <Requirement>
+               <Class>Stormsinger</Class>
+               <Level>16</Level>
+            </Requirement>
+            <Requirement>
                <Class>Cleric</Class>
+               <Level>11</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Dark Apostate</Class>
                <Level>11</Level>
             </Requirement>
             <Requirement>
@@ -18523,7 +19464,15 @@ receiving an additional +1 bonus on save DCs.</Description>
                <Level>16</Level>
             </Requirement>
             <Requirement>
+               <Class>Stormsinger</Class>
+               <Level>16</Level>
+            </Requirement>
+            <Requirement>
                <Class>Cleric</Class>
+               <Level>11</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Dark Apostate</Class>
                <Level>11</Level>
             </Requirement>
             <Requirement>
@@ -18942,10 +19891,16 @@ skill to use.</Description>
          <IsEpicFeat/>
       </FeatGroup>
       <Requirements>
-         <Requirement>
-            <Class>Bard</Class>
-            <Level>12</Level>
-         </Requirement>
+          <RequiresOneOf>
+             <Requirement>
+                <Class>Bard</Class>
+                <Level>12</Level>
+             </Requirement>
+            <Requirement>
+               <Class>Stormsinger</Class>
+               <Level>12</Level>
+            </Requirement>
+          </RequiresOneOf>
          <Requirement>
             <Skill>Perform</Skill>
             <Amount>20</Amount>
@@ -21842,6 +22797,44 @@ Sickles are considered as a favored weapon.</Description>
          <Weapon>Sickle</Weapon>
       </Effect>
    </Feat>
+   <Feat>
+      <Name>Follower of the Path of Light</Name>
+      <Description>You follow the Path of Light. You are proficient with Handwraps and they are
+considered as a favored weapon. You gain +1 to hit with Favored Weapons.</Description>
+      <FeatGroup>
+         <IsFollowerOf/>
+      </FeatGroup>
+      <Requirements>
+        <Requirement>
+            <Class>Sacred Fist</Class>
+        </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>FollowerOfThePathOfLight</Icon>
+      <Effect>
+         <Type>WeaponProficiency</Type>
+         <Bonus>Feat</Bonus>
+         <Weapon>Handwraps</Weapon>
+      </Effect>
+      <Effect>
+         <Type>AttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
+         <Weapon>Handwraps</Weapon>
+      </Effect>
+      <Effect>
+         <Type>CriticalAttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
+         <Weapon>Handwraps</Weapon>
+      </Effect>
+      <Effect>
+         <Type>AddGroupWeapon</Type>
+         <Bonus>Enhancement</Bonus>
+         <WeaponGroup>Favored Weapon</WeaponGroup>
+         <Weapon>Handwraps</Weapon>
+      </Effect>
+   </Feat>
    <!--Child of feats-->
    <Feat>
       <Name>Child of Faith</Name>
@@ -21861,11 +22854,19 @@ Exotic Favored Weapons gain +1 to Attack and Damage.</Description>
                <Level>3</Level>
             </Requirement>
             <Requirement>
+               <Class>Dark Apostate</Class>
+               <Level>3</Level>
+            </Requirement>
+            <Requirement>
                <Class>Favored Soul</Class>
                <Level>3</Level>
             </Requirement>
             <Requirement>
                <Class>Paladin</Class>
+               <Level>3</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Sacred Fist</Class>
                <Level>3</Level>
             </Requirement>
          </RequiresOneOf>
@@ -21948,11 +22949,19 @@ Feat Exchange rules and costs).</Description>
                <Level>6</Level>
             </Requirement>
             <Requirement>
+               <Class>Dark Apostate</Class>
+               <Level>6</Level>
+            </Requirement>
+            <Requirement>
                <Class>Favored Soul</Class>
                <Level>6</Level>
             </Requirement>
             <Requirement>
                <Class>Paladin</Class>
+               <Level>6</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Sacred Fist</Class>
                <Level>6</Level>
             </Requirement>
          </RequiresOneOf>
@@ -21988,11 +22997,19 @@ Hit Dice affected by Turn Undead.</Description>
                <Level>6</Level>
             </Requirement>
             <Requirement>
+               <Class>Dark Apostate</Class>
+               <Level>6</Level>
+            </Requirement>
+            <Requirement>
                <Class>Favored Soul</Class>
                <Level>6</Level>
             </Requirement>
             <Requirement>
                <Class>Paladin</Class>
+               <Level>6</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Sacred Fist</Class>
                <Level>6</Level>
             </Requirement>
          </RequiresOneOf>
@@ -22064,11 +23081,19 @@ sources of Vampirism.</Description>
                <Level>6</Level>
             </Requirement>
             <Requirement>
+               <Class>Dark Apostate</Class>
+               <Level>6</Level>
+            </Requirement>
+            <Requirement>
                <Class>Favored Soul</Class>
                <Level>6</Level>
             </Requirement>
             <Requirement>
                <Class>Paladin</Class>
+               <Level>6</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Sacred Fist</Class>
                <Level>6</Level>
             </Requirement>
          </RequiresOneOf>
@@ -22144,11 +23169,19 @@ healing spells.</Description>
                <Level>6</Level>
             </Requirement>
             <Requirement>
+               <Class>Dark Apostate</Class>
+               <Level>6</Level>
+            </Requirement>
+            <Requirement>
                <Class>Favored Soul</Class>
                <Level>6</Level>
             </Requirement>
             <Requirement>
                <Class>Paladin</Class>
+               <Level>6</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Sacred Fist</Class>
                <Level>6</Level>
             </Requirement>
          </RequiresOneOf>
@@ -22246,11 +23279,19 @@ Religious Lore feat you have.</Description>
                <Level>6</Level>
             </Requirement>
             <Requirement>
+               <Class>Dark Apostate</Class>
+               <Level>6</Level>
+            </Requirement>
+            <Requirement>
                <Class>Favored Soul</Class>
                <Level>6</Level>
             </Requirement>
             <Requirement>
                <Class>Paladin</Class>
+               <Level>6</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Sacred Fist</Class>
                <Level>6</Level>
             </Requirement>
          </RequiresOneOf>
@@ -22280,11 +23321,19 @@ otherwise already benefit from Repair, you gain +30 Repair Amplification.</Descr
                <Level>6</Level>
             </Requirement>
             <Requirement>
+               <Class>Dark Apostate</Class>
+               <Level>6</Level>
+            </Requirement>
+            <Requirement>
                <Class>Favored Soul</Class>
                <Level>6</Level>
             </Requirement>
             <Requirement>
                <Class>Paladin</Class>
+               <Level>6</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Sacred Fist</Class>
                <Level>6</Level>
             </Requirement>
          </RequiresOneOf>
@@ -22353,6 +23402,10 @@ to half. The Save DC for this ability is 10 + Cleric Level + Charisma Modifier.<
                <Level>6</Level>
             </Requirement>
             <Requirement>
+               <Class>Dark Apostate</Class>
+               <Level>6</Level>
+            </Requirement>
+            <Requirement>
                <Class>Favored Soul</Class>
                <Level>6</Level>
             </Requirement>
@@ -22360,12 +23413,16 @@ to half. The Save DC for this ability is 10 + Cleric Level + Charisma Modifier.<
                <Class>Paladin</Class>
                <Level>6</Level>
             </Requirement>
+            <Requirement>
+               <Class>Sacred Fist</Class>
+               <Level>6</Level>
+            </Requirement>
          </RequiresOneOf>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>SilverFlame</Icon>
       <DC>
-         <Name>Silver Flame Exorcism</Name>
+         <Name>Silver Flame Exorcism (Cleric)</Name>
          <Description>Activate this ability to attempt to exorcise an extraplanar creature, which
 is entirely consumed in holy fire on a failed Will save or savagely burned by
 the light of the Silver Flame. A successful Fortitude save reduces the damage
@@ -22374,6 +23431,18 @@ to half.</Description>
          <DCVersus>Will</DCVersus>
          <AmountVector size="1">10</AmountVector>
          <ClassLevel>Cleric</ClassLevel>
+         <ModAbility>Charisma</ModAbility>
+      </DC>
+      <DC>
+         <Name>Silver Flame Exorcism (Dark Apostate)</Name>
+         <Description>Activate this ability to attempt to exorcise an extraplanar creature, which
+is entirely consumed in holy fire on a failed Will save or savagely burned by
+the light of the Silver Flame. A successful Fortitude save reduces the damage
+to half.</Description>
+         <Icon>SilverFlame</Icon>
+         <DCVersus>Will</DCVersus>
+         <AmountVector size="1">10</AmountVector>
+         <ClassLevel>Dark Apostate</ClassLevel>
          <ModAbility>Charisma</ModAbility>
       </DC>
    </Feat>
@@ -22396,11 +23465,19 @@ as a True Resurrection on high elven spirits or a Raise Dead for others.</Descri
                <Level>6</Level>
             </Requirement>
             <Requirement>
+               <Class>Dark Apostate</Class>
+               <Level>6</Level>
+            </Requirement>
+            <Requirement>
                <Class>Favored Soul</Class>
                <Level>6</Level>
             </Requirement>
             <Requirement>
                <Class>Paladin</Class>
+               <Level>6</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Sacred Fist</Class>
                <Level>6</Level>
             </Requirement>
          </RequiresOneOf>
@@ -22434,11 +23511,19 @@ feebleminded, insanity, nauseated, poisoned and stunned.</Description>
                <Level>6</Level>
             </Requirement>
             <Requirement>
+               <Class>Dark Apostate</Class>
+               <Level>6</Level>
+            </Requirement>
+            <Requirement>
                <Class>Favored Soul</Class>
                <Level>6</Level>
             </Requirement>
             <Requirement>
                <Class>Paladin</Class>
+               <Level>6</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Sacred Fist</Class>
                <Level>6</Level>
             </Requirement>
          </RequiresOneOf>
@@ -22470,11 +23555,19 @@ destroy your enemies. Duration: 10 minutes</Description>
                <Level>6</Level>
             </Requirement>
             <Requirement>
+               <Class>Dark Apostate</Class>
+               <Level>6</Level>
+            </Requirement>
+            <Requirement>
                <Class>Favored Soul</Class>
                <Level>6</Level>
             </Requirement>
             <Requirement>
                <Class>Paladin</Class>
+               <Level>6</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Sacred Fist</Class>
                <Level>6</Level>
             </Requirement>
          </RequiresOneOf>
@@ -22500,11 +23593,19 @@ Activate this ability to turn on your Fire Shield (Fire).</Description>
                <Level>6</Level>
             </Requirement>
             <Requirement>
+               <Class>Dark Apostate</Class>
+               <Level>6</Level>
+            </Requirement>
+            <Requirement>
                <Class>Favored Soul</Class>
                <Level>6</Level>
             </Requirement>
             <Requirement>
                <Class>Paladin</Class>
+               <Level>6</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Sacred Fist</Class>
                <Level>6</Level>
             </Requirement>
          </RequiresOneOf>
@@ -22538,11 +23639,19 @@ equal to the number of Religious Lore feats you have.</Description>
                <Level>6</Level>
             </Requirement>
             <Requirement>
+               <Class>Dark Apostate</Class>
+               <Level>6</Level>
+            </Requirement>
+            <Requirement>
                <Class>Favored Soul</Class>
                <Level>6</Level>
             </Requirement>
             <Requirement>
                <Class>Paladin</Class>
+               <Level>6</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Sacred Fist</Class>
                <Level>6</Level>
             </Requirement>
          </RequiresOneOf>
@@ -22613,11 +23722,19 @@ Toggling this on gives you Blessing of Silvanus: You permanently gain a
                <Level>6</Level>
             </Requirement>
             <Requirement>
+               <Class>Dark Apostate</Class>
+               <Level>6</Level>
+            </Requirement>
+            <Requirement>
                <Class>Favored Soul</Class>
                <Level>6</Level>
             </Requirement>
             <Requirement>
                <Class>Paladin</Class>
+               <Level>6</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Sacred Fist</Class>
                <Level>6</Level>
             </Requirement>
          </RequiresOneOf>
@@ -22665,11 +23782,19 @@ and are considered two handed weapons. You gain additional animations while usin
                <Level>6</Level>
             </Requirement>
             <Requirement>
+               <Class>Dark Apostate</Class>
+               <Level>6</Level>
+            </Requirement>
+            <Requirement>
                <Class>Favored Soul</Class>
                <Level>6</Level>
             </Requirement>
             <Requirement>
                <Class>Paladin</Class>
+               <Level>6</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Sacred Fist</Class>
                <Level>6</Level>
             </Requirement>
          </RequiresOneOf>
@@ -22718,11 +23843,19 @@ Exotic Favored Weapons gain +1 to Attack and Damage.</Description>
                <Level>12</Level>
             </Requirement>
             <Requirement>
+               <Class>Dark Apostate</Class>
+               <Level>12</Level>
+            </Requirement>
+            <Requirement>
                <Class>Favored Soul</Class>
                <Level>12</Level>
             </Requirement>
             <Requirement>
                <Class>Paladin</Class>
+               <Level>12</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Sacred Fist</Class>
                <Level>12</Level>
             </Requirement>
          </RequiresOneOf>
@@ -23166,6 +24299,29 @@ twice your Cleric level, for 20 seconds.</Description>
          <Energy>Electric</Energy>
          <Stance>Turn Undead</Stance>
       </Effect>
+      <Effect>
+         <Type>SpellDC</Type>
+         <Bonus>Feat</Bonus>
+         <AmountVector size="20">0 1 1 1 1 2 2 2 2 2 2 3 3 3 3 3 3 4 4 4</AmountVector>
+         <School>Evocation</School>
+         <Class>Dark Apostate</Class>
+      </Effect>
+      <Effect>
+         <Type>SaveBonus</Type>
+         <Bonus>Feat</Bonus>
+         <AmountPerLevel>0.5</AmountPerLevel>
+         <Class>Dark Apostate</Class>
+         <Save>Reflex</Save>
+         <Stance>Turn Undead</Stance>
+      </Effect>
+      <Effect>
+         <Type>EnergyResistance</Type>
+         <Bonus>Feat</Bonus>
+         <AmountPerLevel>2</AmountPerLevel>
+         <Class>Dark Apostate</Class>
+         <Energy>Electric</Energy>
+         <Stance>Turn Undead</Stance>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Animal Domain Tier I</Name>
@@ -23202,6 +24358,29 @@ half your Cleric level for 20 seconds.</Description>
          <Ability>Constitution</Ability>
          <Stance>Turn Undead</Stance>
       </Effect>
+      <Effect>
+         <Type>SkillBonus</Type>
+         <Bonus>Feat</Bonus>
+         <AmountPerLevel>0.5</AmountPerLevel>
+         <Class>Dark Apostate</Class>
+         <Skill>Spot</Skill>
+         <Skill>Listen</Skill>
+      </Effect>
+      <Effect>
+         <Type>SaveBonus</Type>
+         <Bonus>Feat</Bonus>
+         <AmountPerLevel>0.5</AmountPerLevel>
+         <Class>Dark Apostate</Class>
+         <Save>Reflex</Save>
+      </Effect>
+      <Effect>
+         <Type>AbilityBonus</Type>
+         <Bonus>Feat</Bonus>
+         <AmountPerLevel>0.5</AmountPerLevel>
+         <Class>Dark Apostate</Class>
+         <Ability>Constitution</Ability>
+         <Stance>Turn Undead</Stance>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Chaos Domain Tier I</Name>
@@ -23231,6 +24410,13 @@ Ranged Power, Physical Resistance Rating and Magical Resistance Rating.</Descrip
          <Class>Cleric</Class>
          <Save>Will</Save>
       </Effect>
+      <Effect>
+         <Type>SaveBonus</Type>
+         <Bonus>Feat</Bonus>
+         <AmountPerLevel>0.5</AmountPerLevel>
+         <Class>Dark Apostate</Class>
+         <Save>Will</Save>
+      </Effect>
       <!--d20/d10 rolls to bonuses not modelled-->
    </Feat>
    <Feat>
@@ -23251,6 +24437,14 @@ Cleric level to Turn Undead and +2 to the hit dice of undead effected.</Descript
          <AmountVector size="20">0 1 1 1 1 2 2 2 2 2 2 3 3 3 3 3 3 4 4 4</AmountVector>
          <School>Necromancy</School>
          <Class>Cleric</Class>
+      </Effect>
+      <Effect>
+         <Type>SpellDC</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
+         <AmountVector size="20">0 1 1 1 1 2 2 2 2 2 2 3 3 3 3 3 3 4 4 4</AmountVector>
+         <School>Necromancy</School>
+         <Class>Dark Apostate</Class>
       </Effect>
       <Effect>
          <Type>TurnLevelBonus</Type>
@@ -23300,6 +24494,26 @@ Melee and Ranged Power equal to half your Cleric level for 20 seconds.</Descript
          <Class>Cleric</Class>
          <Stance>Turn Undead</Stance>
       </Effect>
+      <Effect>
+         <Type>MeleePower</Type>
+         <Bonus>Feat</Bonus>
+         <AmountVector size="20">0 1 1 2 2 2 2 3 3 3 3 4 4 4 4 5 5 5 5 6</AmountVector>
+         <Class>Dark Apostate</Class>
+      </Effect>
+      <Effect>
+         <Type>MeleePower</Type>
+         <Bonus>Divine</Bonus>
+         <AmountPerLevel>0.5</AmountPerLevel>
+         <Class>Dark Apostate</Class>
+         <Stance>Turn Undead</Stance>
+      </Effect>
+      <Effect>
+         <Type>RangedPower</Type>
+         <Bonus>Divine</Bonus>
+         <AmountPerLevel>0.5</AmountPerLevel>
+         <Class>Dark Apostate</Class>
+         <Stance>Turn Undead</Stance>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Earth Domain Tier I</Name>
@@ -23338,6 +24552,29 @@ Acid Resistance equal to twice your Cleric level for 20 seconds.</Description>
          <Energy>Acid</Energy>
          <Stance>Turn Undead</Stance>
       </Effect>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Feat</Bonus>
+         <AmountPerLevel>2</AmountPerLevel>
+         <Class>Dark Apostate</Class>
+         <SpellPower>Acid</SpellPower>
+      </Effect>
+      <Effect>
+         <Type>SaveBonus</Type>
+         <Bonus>Feat</Bonus>
+         <AmountPerLevel>0.5</AmountPerLevel>
+         <Class>Dark Apostate</Class>
+         <Save>Fortitude</Save>
+         <Stance>Turn Undead</Stance>
+      </Effect>
+      <Effect>
+         <Type>EnergyResistance</Type>
+         <Bonus>Feat</Bonus>
+         <AmountPerLevel>2</AmountPerLevel>
+         <Class>Dark Apostate</Class>
+         <Energy>Acid</Energy>
+         <Stance>Turn Undead</Stance>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Fire Domain Tier I</Name>
@@ -23364,6 +24601,21 @@ for 20 seconds. Your Turn Undead works on Elemental creatures.</Description>
          <Bonus>Feat</Bonus>
          <AmountPerLevel>2</AmountPerLevel>
          <Class>Cleric</Class>
+         <Energy>Fire</Energy>
+         <Stance>Turn Undead</Stance>
+      </Effect>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Feat</Bonus>
+         <AmountPerLevel>2</AmountPerLevel>
+         <Class>Dark Apostate</Class>
+         <SpellPower>Fire</SpellPower>
+      </Effect>
+      <Effect>
+         <Type>EnergyResistance</Type>
+         <Bonus>Feat</Bonus>
+         <AmountPerLevel>2</AmountPerLevel>
+         <Class>Dark Apostate</Class>
          <Energy>Fire</Energy>
          <Stance>Turn Undead</Stance>
       </Effect>
@@ -23401,6 +24653,27 @@ Cleric level for 20 seconds.</Description>
          <Class>Cleric</Class>
          <Stance>Turn Undead</Stance>
       </Effect>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Feat</Bonus>
+         <AmountPerLevel>2</AmountPerLevel>
+         <Class>Dark Apostate</Class>
+         <SpellPower>Light/Alignment</SpellPower>
+      </Effect>
+      <Effect>
+         <Type>SkillBonus</Type>
+         <Bonus>Feat</Bonus>
+         <AmountPerLevel>0.5</AmountPerLevel>
+         <Class>Dark Apostate</Class>
+         <Skill>Heal</Skill>
+      </Effect>
+      <Effect>
+         <Type>Hitpoints</Type>
+         <Bonus>Feat</Bonus>
+         <AmountPerLevel>5</AmountPerLevel>
+         <Class>Dark Apostate</Class>
+         <Stance>Turn Undead</Stance>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Healing Domain Tier I</Name>
@@ -23418,6 +24691,13 @@ Amplification.</Description>
          <Bonus>Feat</Bonus>
          <AmountPerLevel>2</AmountPerLevel>
          <Class>Cleric</Class>
+         <SpellPower>Positive</SpellPower>
+      </Effect>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Feat</Bonus>
+         <AmountPerLevel>2</AmountPerLevel>
+         <Class>Dark Apostate</Class>
          <SpellPower>Positive</SpellPower>
       </Effect>
       <Effect>
@@ -23449,6 +24729,14 @@ seconds.</Description>
          <Bonus>Feat</Bonus>
          <AmountPerLevel>0.5</AmountPerLevel>
          <Class>Cleric</Class>
+         <Ability>Intelligence</Ability>
+         <Stance>Turn Undead</Stance>
+      </Effect>
+      <Effect>
+         <Type>AbilityBonus</Type>
+         <Bonus>Feat</Bonus>
+         <AmountPerLevel>0.5</AmountPerLevel>
+         <Class>Dark Apostate</Class>
          <Ability>Intelligence</Ability>
          <Stance>Turn Undead</Stance>
       </Effect>
@@ -23489,6 +24777,21 @@ half your Cleric level for 20 seconds.</Description>
          <Save>All</Save>
          <Stance>Turn Undead</Stance>
       </Effect>
+      <Effect>
+         <Type>SpellDC</Type>
+         <Bonus>Feat</Bonus>
+         <AmountVector size="20">0 1 1 1 1 2 2 2 2 2 2 3 3 3 3 3 3 4 4 4</AmountVector>
+         <School>Enchantment</School>
+         <Class>Dark Apostate</Class>
+      </Effect>
+      <Effect>
+         <Type>SaveBonus</Type>
+         <Bonus>Sacred</Bonus>
+         <AmountPerLevel>0.5</AmountPerLevel>
+         <Class>Dark Apostate</Class>
+         <Save>All</Save>
+         <Stance>Turn Undead</Stance>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Luck Domain Tier I</Name>
@@ -23517,6 +24820,21 @@ to half your Cleric level for 20 seconds.</Description>
          <Save>All</Save>
          <Stance>Turn Undead</Stance>
       </Effect>
+      <Effect>
+         <Type>SaveBonus</Type>
+         <Bonus>Sacred</Bonus>
+         <AmountVector size="20">0 1 1 1 1 2 2 2 2 2 2 3 3 3 3 3 3 4 4 4</AmountVector>
+         <Save>All</Save>
+         <Class>Dark Apostate</Class>
+      </Effect>
+      <Effect>
+         <Type>SaveBonus</Type>
+         <Bonus>Divine</Bonus>
+         <AmountPerLevel>0.5</AmountPerLevel>
+         <Class>Dark Apostate</Class>
+         <Save>All</Save>
+         <Stance>Turn Undead</Stance>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Magic Domain Tier I</Name>
@@ -23542,6 +24860,21 @@ equal to twice your Cleric level for 20 seconds.</Description>
          <Bonus>Divine</Bonus>
          <AmountPerLevel>2</AmountPerLevel>
          <Class>Cleric</Class>
+         <SpellPower>All</SpellPower>
+         <Stance>Turn Undead</Stance>
+      </Effect>
+      <Effect>
+         <Type>SpellDC</Type>
+         <Bonus>Feat</Bonus>
+         <AmountVector size="20">0 1 1 1 1 2 2 2 2 2 2 3 3 3 3 3 3 4 4 4</AmountVector>
+         <School>Evocation</School>
+         <Class>Dark Apostate</Class>
+      </Effect>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Divine</Bonus>
+         <AmountPerLevel>2</AmountPerLevel>
+         <Class>Dark Apostate</Class>
          <SpellPower>All</SpellPower>
          <Stance>Turn Undead</Stance>
       </Effect>
@@ -23576,6 +24909,24 @@ bonus to PRR and MRR equal to twice your Cleric level for 20 seconds.</Descripti
          <AmountVector size="20">0 1 1 1 2 2 2 2 2 3 3 3 3 3 4 4 4 4 4 5</AmountVector>
          <Class>Cleric</Class>
       </Effect>
+      <Effect>
+         <Type>ACBonus</Type>
+         <Bonus>Feat</Bonus>
+         <AmountVector size="20">0 1 1 1 2 2 2 2 2 3 3 3 3 3 4 4 4 4 4 5</AmountVector>
+         <Class>Dark Apostate</Class>
+      </Effect>
+      <Effect>
+         <Type>PRR</Type>
+         <Bonus>Feat</Bonus>
+         <AmountVector size="20">0 1 1 1 2 2 2 2 2 3 3 3 3 3 4 4 4 4 4 5</AmountVector>
+         <Class>Dark Apostate</Class>
+      </Effect>
+      <Effect>
+         <Type>MRR</Type>
+         <Bonus>Feat</Bonus>
+         <AmountVector size="20">0 1 1 1 2 2 2 2 2 3 3 3 3 3 4 4 4 4 4 5</AmountVector>
+         <Class>Dark Apostate</Class>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Strength Domain Tier I</Name>
@@ -23600,6 +24951,14 @@ gains a Divine bonus to Strength equal to half your Cleric level for 20 seconds.
          <AmountPerLevel>0.5</AmountPerLevel>
          <Ability>Strength</Ability>
          <Class>Cleric</Class>
+         <Stance>Turn Undead</Stance>
+      </Effect>
+      <Effect>
+         <Type>AbilityBonus</Type>
+         <Bonus>Feat</Bonus>
+         <AmountPerLevel>0.5</AmountPerLevel>
+         <Ability>Strength</Ability>
+         <Class>Dark Apostate</Class>
          <Stance>Turn Undead</Stance>
       </Effect>
    </Feat>
@@ -23630,6 +24989,20 @@ inflicted with 10% Vulnerability to Light damage.</Description>
          <Class>Cleric</Class>
          <SpellPower>Light/Alignment</SpellPower>
       </Effect>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Feat</Bonus>
+         <AmountPerLevel>2</AmountPerLevel>
+         <Class>Dark Apostate</Class>
+         <SpellPower>Fire</SpellPower>
+      </Effect>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Feat</Bonus>
+         <AmountPerLevel>2</AmountPerLevel>
+         <Class>Dark Apostate</Class>
+         <SpellPower>Light/Alignment</SpellPower>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Trickery Domain Tier I</Name>
@@ -23656,6 +25029,21 @@ Cleric level for 20 seconds.</Description>
          <AmountPerLevel>0.5</AmountPerLevel>
          <Ability>Charisma</Ability>
          <Class>Cleric</Class>
+         <Stance>Turn Undead</Stance>
+      </Effect>
+      <Effect>
+         <Type>SpellDC</Type>
+         <Bonus>Feat</Bonus>
+         <AmountVector size="20">0 1 1 1 1 2 2 2 2 2 2 3 3 3 3 3 3 4 4 4</AmountVector>
+         <School>Enchantment</School>
+         <Class>Dark Apostate</Class>
+      </Effect>
+      <Effect>
+         <Type>AbilityBonus</Type>
+         <Bonus>Feat</Bonus>
+         <AmountPerLevel>0.5</AmountPerLevel>
+         <Ability>Charisma</Ability>
+         <Class>Dark Apostate</Class>
          <Stance>Turn Undead</Stance>
       </Effect>
    </Feat>
@@ -23697,6 +25085,34 @@ Ranged Power equal to half your Cleric level for 20 seconds.</Description>
          <Bonus>Divine</Bonus>
          <AmountPerLevel>0.5</AmountPerLevel>
          <Class>Cleric</Class>
+         <Stance>Turn Undead</Stance>
+      </Effect>
+      <Effect>
+         <Type>AttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <AmountVector size="20">0 1 1 2 2 2 2 3 3 3 3 4 4 4 4 5 5 5 5 6</AmountVector>
+         <Weapon>All</Weapon>
+         <Class>Dark Apostate</Class>
+      </Effect>
+      <Effect>
+         <Type>DamageBonus</Type>
+         <Bonus>Feat</Bonus>
+         <AmountVector size="20">0 1 1 2 2 2 2 3 3 3 3 4 4 4 4 5 5 5 5 6</AmountVector>
+         <Weapon>All</Weapon>
+         <Class>Dark Apostate</Class>
+      </Effect>
+      <Effect>
+         <Type>MeleePower</Type>
+         <Bonus>Divine</Bonus>
+         <AmountPerLevel>0.5</AmountPerLevel>
+         <Class>Dark Apostate</Class>
+         <Stance>Turn Undead</Stance>
+      </Effect>
+      <Effect>
+         <Type>RangedPower</Type>
+         <Bonus>Divine</Bonus>
+         <AmountPerLevel>0.5</AmountPerLevel>
+         <Class>Dark Apostate</Class>
          <Stance>Turn Undead</Stance>
       </Effect>
    </Feat>
@@ -23747,6 +25163,36 @@ points of Cold Resistance equal to twice your Cleric level for 20 seconds.</Desc
          <Bonus>Feat</Bonus>
          <AmountPerLevel>2</AmountPerLevel>
          <Class>Cleric</Class>
+         <Energy>Cold</Energy>
+         <Stance>Turn Undead</Stance>
+      </Effect>
+      <Effect>
+         <Type>SkillBonus</Type>
+         <Bonus>Feat</Bonus>
+         <AmountPerLevel>1</AmountPerLevel>
+         <Class>Dark Apostate</Class>
+         <Skill>Swim</Skill>
+      </Effect>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Feat</Bonus>
+         <AmountPerLevel>2</AmountPerLevel>
+         <Class>Dark Apostate</Class>
+         <SpellPower>Cold</SpellPower>
+      </Effect>
+      <Effect>
+         <Type>SaveBonus</Type>
+         <Bonus>Feat</Bonus>
+         <AmountPerLevel>0.5</AmountPerLevel>
+         <Class>Dark Apostate</Class>
+         <Save>Will</Save>
+         <Stance>Turn Undead</Stance>
+      </Effect>
+      <Effect>
+         <Type>EnergyResistance</Type>
+         <Bonus>Feat</Bonus>
+         <AmountPerLevel>2</AmountPerLevel>
+         <Class>Dark Apostate</Class>
          <Energy>Cold</Energy>
          <Stance>Turn Undead</Stance>
       </Effect>
@@ -23832,6 +25278,13 @@ You also add 10 hit points for each Epic level you have gained.</Description>
          <Bonus>Feat</Bonus>
          <AmountPerLevel>10</AmountPerLevel>
          <Class>Cleric</Class>
+      </Effect>
+      <Effect>
+         <DisplayName>Animal Domain I: Dark Apostate Levels</DisplayName>
+         <Type>Hitpoints</Type>
+         <Bonus>Feat</Bonus>
+         <AmountPerLevel>10</AmountPerLevel>
+         <Class>Dark Apostate</Class>
       </Effect>
       <Effect>
          <DisplayName>Animal Domain I: Epic Levels</DisplayName>
@@ -23962,7 +25415,7 @@ a +3[W] bonus and enemies must make a Reflex saving throw.</Description>
          </Requirement>
       </Requirements>
       <Acquire>Train</Acquire>
-      <Icon>DeathDomain</Icon>
+      <Icon>DeathDomainTier2</Icon>
       <Effect>
          <Type>SpellLikeAbility</Type>
          <Bonus>Feat</Bonus>
@@ -24001,7 +25454,7 @@ a +3[W] bonus and enemies must make a Reflex saving throw.</Description>
          </Requirement>
       </Requirements>
       <Acquire>Train</Acquire>
-      <Icon>DeathDomain</Icon>
+      <Icon>DeathDomainTier4</Icon>
       <Effect>
          <Type>SpellLikeAbility</Type>
          <Bonus>Feat</Bonus>
@@ -24545,6 +25998,13 @@ Chaotic creatures.</Description>
          <Class>Cleric</Class>
          <SpellPower>All</SpellPower>
       </Effect>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Feat</Bonus>
+         <AmountPerLevel>2</AmountPerLevel>
+         <Class>Dark Apostate</Class>
+         <SpellPower>All</SpellPower>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Protection Domain Tier II</Name>
@@ -24609,6 +26069,18 @@ Chaotic creatures.</Description>
          <Bonus>Feat</Bonus>
          <AmountPerLevel>1</AmountPerLevel>
          <Class>Cleric</Class>
+      </Effect>
+      <Effect>
+         <Type>ACBonus</Type>
+         <Bonus>Feat</Bonus>
+         <AmountPerLevel>1</AmountPerLevel>
+         <Class>Dark Apostate</Class>
+      </Effect>
+      <Effect>
+         <Type>PRR</Type>
+         <Bonus>Feat</Bonus>
+         <AmountPerLevel>1</AmountPerLevel>
+         <Class>Dark Apostate</Class>
       </Effect>
    </Feat>
    <Feat>
@@ -24853,6 +26325,16 @@ Chaotic creatures.</Description>
          <Bonus>Feat</Bonus>
          <AmountPerLevel>0.5</AmountPerLevel>
          <Class>Cleric</Class>
+         <Tactical>Trip</Tactical>
+         <Tactical>Sunder</Tactical>
+         <Tactical>Stun</Tactical>
+         <Tactical>General</Tactical>
+      </Effect>
+      <Effect>
+         <Type>TacticalDC</Type>
+         <Bonus>Feat</Bonus>
+         <AmountPerLevel>0.5</AmountPerLevel>
+         <Class>Dark Apostate</Class>
          <Tactical>Trip</Tactical>
          <Tactical>Sunder</Tactical>
          <Tactical>Stun</Tactical>
@@ -25327,6 +26809,10 @@ Duration: 1 Minute</Description>
          <Class>Bard</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Stormsinger</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
       <Icon>BardicBallad</Icon>
       <Effect>
          <DisplayName>Inspire Courage</DisplayName>
@@ -25386,6 +26872,10 @@ Inspire Competence: Grants you or a single ally +4 Music Bonus to all Skills.</D
          <Class>Bard</Class>
          <Level>3</Level>
       </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Stormsinger</Class>
+         <Level>3</Level>
+      </AutomaticAcquisition>
       <Icon>BardicInspiration</Icon>
       <Effect>
          <Type>SkillBonus</Type>
@@ -25403,6 +26893,10 @@ Requires 9 trained ranks (not total mod) of the Perform skill to use.</Descripti
       <Icon>Suggestion</Icon>
       <AutomaticAcquisition>
          <Class>Bard</Class>
+         <Level>6</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Stormsinger</Class>
          <Level>6</Level>
       </AutomaticAcquisition>
       <Effect>
@@ -25432,6 +26926,10 @@ and fear saves, and +3 Universal Spell Power</Description>
       <Acquire>Automatic</Acquire>
       <AutomaticAcquisition>
          <Class>Bard</Class>
+         <Level>8</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Stormsinger</Class>
          <Level>8</Level>
       </AutomaticAcquisition>
       <Icon>SoothingSong</Icon>
@@ -25495,6 +26993,10 @@ Requires 12 trained ranks (not total mod) of the Perform skill.</Description>
          <Class>Bard</Class>
          <Level>9</Level>
       </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Stormsinger</Class>
+         <Level>9</Level>
+      </AutomaticAcquisition>
       <Effect>
          <DisplayName>Inspire Greatness</DisplayName>
          <Type>Hitpoints</Type>
@@ -25532,6 +27034,10 @@ of the Perform skill.</Description>
          <Class>Bard</Class>
          <Level>12</Level>
       </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Stormsinger</Class>
+         <Level>12</Level>
+      </AutomaticAcquisition>
       <Effect>
          <Type>SpellLikeAbility</Type>
          <Bonus>Feat</Bonus>
@@ -25547,10 +27053,16 @@ your Bardic Inspiration as if you had two more Bard Levels.</Description>
          <IsStandardFeat/>
       </FeatGroup>
       <Requirements>
-         <Requirement>
-            <Class>Bard</Class>
-            <Level>12</Level>
-         </Requirement>
+          <RequiresOneOf>
+             <Requirement>
+                <Class>Bard</Class>
+                <Level>12</Level>
+             </Requirement>
+            <Requirement>
+               <Class>Stormsinger</Class>
+               <Level>12</Level>
+            </Requirement>
+          </RequiresOneOf>
          <Requirement>
             <Skill>Perform</Skill>
             <Amount>15</Amount>
@@ -25596,6 +27108,10 @@ Duration: 1 minute</Description>
       <Icon>InspireCourage</Icon>
       <AutomaticAcquisition>
          <Class>Bard</Class>
+         <Level>14</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Stormsinger</Class>
          <Level>14</Level>
       </AutomaticAcquisition>
       <Effect>
@@ -25646,6 +27162,10 @@ Requires 18 trained ranks (not total mod) of the Perform skill to use.</Descript
       <Icon>InspireHeroics</Icon>
       <AutomaticAcquisition>
          <Class>Bard</Class>
+         <Level>15</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Stormsinger</Class>
          <Level>15</Level>
       </AutomaticAcquisition>
       <Effect>
@@ -29506,7 +31026,19 @@ Action Boost bonus to Movement Speed for 6 seconds.</Description>
       <Effect>
          <Type>CasterLevel</Type>
          <Bonus>Feat</Bonus>
+         <Class>Stormsinger</Class>
+         <AmountVector size="5">1 2 3 4 5</AmountVector>
+      </Effect>
+      <Effect>
+         <Type>CasterLevel</Type>
+         <Bonus>Feat</Bonus>
          <Class>Cleric</Class>
+         <AmountVector size="5">1 2 3 4 5</AmountVector>
+      </Effect>
+      <Effect>
+         <Type>CasterLevel</Type>
+         <Bonus>Feat</Bonus>
+         <Class>Dark Apostate</Class>
          <AmountVector size="5">1 2 3 4 5</AmountVector>
       </Effect>
       <Effect>
@@ -29525,6 +31057,12 @@ Action Boost bonus to Movement Speed for 6 seconds.</Description>
          <Type>CasterLevel</Type>
          <Bonus>Feat</Bonus>
          <Class>Paladin</Class>
+         <AmountVector size="5">1 2 3 4 5</AmountVector>
+      </Effect>
+      <Effect>
+         <Type>CasterLevel</Type>
+         <Bonus>Feat</Bonus>
+         <Class>Sacred Fist</Class>
          <AmountVector size="5">1 2 3 4 5</AmountVector>
       </Effect>
       <Effect>

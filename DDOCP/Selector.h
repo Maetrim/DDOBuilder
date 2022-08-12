@@ -21,10 +21,13 @@ class Selector :
         std::list<DC> EffectDCs(const std::string & selection) const;
         std::list<Stance> Stances(const std::string & selection) const;
 
+        size_t MinSpent(const std::string& selection, size_t defaultMinSpent) const;
         bool CostVaries(const std::string& selection) const;
         size_t Cost(const std::string& selection, size_t rank) const;
         const std::vector<size_t>& ItemCosts(const std::string& selection) const;
         bool IsSelectionClickie(const std::string & selection) const;
+        bool RequiresEnhancement(const std::string& name, const std::string& selection, const std::string& subSelection) const;
+        bool HasTrainableOption(const Character & charData, size_t spentInTree) const;
 
         bool VerifyObject(
                 std::stringstream * ss,

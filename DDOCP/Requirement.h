@@ -40,7 +40,7 @@ class Requirement :
                 std::vector<bool> * met,
                 size_t level) const;
 
-        bool RequiresEnhancement(const std::string& name) const;
+        bool RequiresEnhancement(const std::string& name, const std::string& selection) const;
 
         bool VerifyObject(
                 std::stringstream * ss,

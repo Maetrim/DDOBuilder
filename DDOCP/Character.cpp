@@ -2136,6 +2136,24 @@ bool Character::IsClassAvailable(
     return bAvailable;
 }
 
+bool Character::IsClassRestricted(
+        ClassType type) const
+{
+    bool bRestricted = false;
+    // archetype/default classes of the same type are mutually exclusive
+    std::vector<size_t> classLevels(ClassLevels(MaxLevel()));
+    switch (type)
+    {
+    case Class_Bard:                bRestricted = (classLevels[Class_BardStormsinger] != 0); break;
+    case Class_BardStormsinger:     bRestricted = (classLevels[Class_Bard] != 0); break;
+    case Class_Cleric:              bRestricted = (classLevels[Class_ClericDarkApostate] != 0); break;
+    case Class_ClericDarkApostate:  bRestricted = (classLevels[Class_Cleric] != 0); break;
+    case Class_Paladin:             bRestricted = (classLevels[Class_PaladinSacredFist] != 0); break;
+    case Class_PaladinSacredFist:   bRestricted = (classLevels[Class_Paladin] != 0); break;
+    }
+    return bRestricted;
+}
+
 size_t Character::SpentAtLevel(
         SkillType skill,
         size_t level) const
@@ -2352,6 +2370,37 @@ std::vector<TrainableFeatTypes> Character::TrainableFeatTypeAtLevel(
         }
         break;
 
+    case Class_ClericDarkApostate:
+        // clerics get a Follower of (faith) selection at level 1
+        // domain selection at level 2
+        // domain feats at 5, 9 and 14
+        // and a deity feat at level 6
+        if (classLevels[Class_ClericDarkApostate] == 1)
+        {
+            if (NotPresentInEarlierLevel(level, TFT_FollowerOf))
+            {
+                trainable.push_back(TFT_FollowerOf);
+            }
+        }
+        if (classLevels[Class_ClericDarkApostate] == 2)
+        {
+            trainable.push_back(TFT_Domain);
+        }
+        if (classLevels[Class_ClericDarkApostate] == 5
+                || classLevels[Class_ClericDarkApostate] == 9
+                || classLevels[Class_ClericDarkApostate] == 14)
+        {
+            trainable.push_back(TFT_DomainFeat);
+        }
+        if (classLevels[Class_ClericDarkApostate] == 6)
+        {
+            if (NotPresentInEarlierLevel(level, TFT_Deity))
+            {
+                trainable.push_back(TFT_Deity);
+            }
+        }
+        break;
+
     case Class_Druid:
         // druids can select a wild shape at levels 2 and 5, 8, 11, 13, 17
         if (classLevels[Class_Druid] == 2
@@ -2499,6 +2548,25 @@ std::vector<TrainableFeatTypes> Character::TrainableFeatTypeAtLevel(
             }
         }
         if (classLevels[Class_Paladin] == 6)
+        {
+            if (NotPresentInEarlierLevel(level, TFT_Deity))
+            {
+                trainable.push_back(TFT_Deity);
+            }
+        }
+        break;
+
+    case Class_PaladinSacredFist:
+        // paladins gain a follower of feat at level 1
+        // and a deity feat at level 6
+        if (classLevels[Class_PaladinSacredFist] == 1)
+        {
+            if (NotPresentInEarlierLevel(level, TFT_FollowerOf))
+            {
+                trainable.push_back(TFT_FollowerOf);
+            }
+        }
+        if (classLevels[Class_PaladinSacredFist] == 6)
         {
             if (NotPresentInEarlierLevel(level, TFT_Deity))
             {
@@ -3000,7 +3068,7 @@ void Character::Enhancement_TrainEnhancement(
             enhancementName,
             selection,
             cost,
-            pTreeItem->MinSpent(),
+            pTreeItem->MinSpent(selection),
             pTreeItem->HasTier5(),
             &ranks);
     if (eTree.HasIsRacialTree())
@@ -4133,7 +4201,7 @@ void Character::Reaper_TrainEnhancement(
             enhancementName,
             selection,
             cost,
-            pTreeItem->MinSpent(),
+            pTreeItem->MinSpent(selection),
             pTreeItem->HasTier5(),
             &ranks);
     // now notify all and sundry about the enhancement effects
@@ -6575,7 +6643,7 @@ void Character::U51Destiny_TrainEnhancement(
             enhancementName,
             selection,
             cost,
-            pTreeItem->MinSpent(),
+            pTreeItem->MinSpent(selection),
             false,
             &ranks);
     m_destinyTreeSpend += spent;

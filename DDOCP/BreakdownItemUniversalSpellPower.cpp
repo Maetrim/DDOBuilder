@@ -90,6 +90,37 @@ void BreakdownItemUniversalSpellPower::CreateOtherEffects()
                 }
             }
         }
+        if (m_pCharacter->IsEnhancementTrained("EKWizCore3", "", TT_enhancement)
+                || m_pCharacter->IsEnhancementTrained("EKSorcCore3", "", TT_enhancement))
+        {
+            // get the main hand weapon breakdown
+            BreakdownItem * pBI = FindBreakdown(Breakdown_WeaponEffectHolder);
+            BreakdownItemWeaponEffects * pBIW = dynamic_cast<BreakdownItemWeaponEffects*>(pBI);
+            if (pBIW != NULL)
+            {
+                pBI = pBIW->GetWeaponBreakdown(true, Breakdown_WeaponAttackBonus);
+                if (pBI != NULL)
+                {
+                    int weaponPlus = (int)pBI->GetEffectValue(Bonus_weaponEnchantment);
+                    // this is increased by battle engineer cores by +3
+                    weaponPlus += 3;
+
+                    // Enchant weapon past life feat can be active
+                    size_t count = m_pCharacter->GetSpecialFeatTrainedCount("Past Life: Arcane Sphere: Enchant Weapon");
+                    if (m_pCharacter->IsStanceActive("Enchant Weapon", Weapon_Unknown))
+                    {
+                        weaponPlus += count;
+                    }
+                    ActiveEffect implementBonus(
+                            Bonus_implement,
+                            "Eldritch Knight: Imbue the Blade",
+                            weaponPlus,
+                            3,          // +3 per weapon plus
+                            "");        // no tree
+                    AddOtherEffect(implementBonus);
+                }
+            }
+        }
     }
 }
 

@@ -770,10 +770,12 @@ void CSkillSpendDialog::OnButtonAutoSpendSkillPoints()
                     skills[Skill_Balance].AddWeighting(100);
                     break;
                 case Class_Bard:
+                case Class_BardStormsinger:
                     skills[Skill_Perform].AddWeighting(100);
                     skills[Skill_UMD].AddWeighting(100);
                     break;
                 case Class_Cleric:
+                case Class_ClericDarkApostate:
                     skills[Skill_Concentration].AddWeighting(100);
                     skills[Skill_Heal].AddWeighting(100);
                     skills[Skill_SpellCraft].AddWeighting(100);
@@ -795,6 +797,7 @@ void CSkillSpendDialog::OnButtonAutoSpendSkillPoints()
                     skills[Skill_Concentration].AddWeighting(100);
                     break;
                 case Class_Paladin:
+                case Class_PaladinSacredFist:
                     skills[Skill_Intimidate].AddWeighting(100);
                     break;
                 case Class_Ranger:

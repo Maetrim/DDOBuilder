@@ -103,7 +103,8 @@ bool EnhancementTreeItem::VerifyObject(
 bool EnhancementTreeItem::MeetRequirements(
         const Character & charData,
         const std::string & selection,
-        const std::string & treeName) const
+        const std::string & treeName,
+        size_t spentInTree) const
 {
     bool met = true;
     // must also meet the requirements of the item
@@ -147,9 +148,13 @@ bool EnhancementTreeItem::MeetRequirements(
             if ((*it).Name() == selection)
             {
                 // this is the one we need to check
+                if ((*it).HasMinSpent())
+                {
+                    met &= ((*it).MinSpent() <= spentInTree);
+                }
                 if ((*it).HasRequirementsToTrain())
                 {
-                    met = (*it).RequirementsToTrain().CanTrainEnhancement(charData, 0);
+                    met &= (*it).RequirementsToTrain().CanTrainEnhancement(charData, 0);
                 }
                 // and were done
                 break;
@@ -197,7 +202,8 @@ bool EnhancementTreeItem::IsTier5Blocked(
 bool EnhancementTreeItem::IsAllowed(
         const Character & charData,
         const std::string & selection,
-        const std::string & treeName) const
+        const std::string & treeName,
+        size_t spentInTree) const
 {
     bool met = true;
     // must also meet a subset of the requirements of the item
@@ -240,6 +246,10 @@ bool EnhancementTreeItem::IsAllowed(
             if ((*it).Name() == selection)
             {
                 // this is the one we need to check
+                if ((*it).HasMinSpent())
+                {
+                    met &= ((*it).MinSpent() <= spentInTree);
+                }
                 if ((*it).HasRequirementsToTrain())
                 {
                     met = (*it).RequirementsToTrain().IsAllowed(charData, 0);
@@ -264,7 +274,14 @@ bool EnhancementTreeItem::CanTrain(
     size_t trainedRanks = (te != NULL) ? te->Ranks() : 0;
     std::string selection = (te != NULL && te->HasSelection()) ? te->Selection() : "";
     bool canTrain = (trainedRanks < Ranks());
-    canTrain &= (spentInTree >= MinSpent());
+    canTrain &= (spentInTree >= MinSpent(selection));
+    // if we have no selection, and we have a selector, only enabled if at least
+    // one of the sub selector items can be trained
+    if (selection == ""
+            && HasSelections())
+    {
+        canTrain &= Selections().HasTrainableOption(charData, spentInTree);
+    }
     // verify and enhancements we are dependent on have enough trained ranks also
     canTrain &= m_RequirementsToTrain.CanTrainEnhancement(charData, trainedRanks);
     // must have enough action points to buy it
@@ -289,13 +306,13 @@ bool EnhancementTreeItem::CanRevoke(
             // below those required for a higher tier enhancement to be trained
 
             // sum how many Aps have been spent in this min Ap tier
-            canRevoke = pTreeSpend->CanRevokeAtTier(MinSpent(), Cost(selection, ranks));
+            canRevoke = pTreeSpend->CanRevokeAtTier(MinSpent(selection), Cost(selection, ranks));
 
             if (canRevoke)
             {
                 // 3. Another enhancement that is dependent on this enhancement being trained has
                 // equal or more ranks than this enhancement
-                canRevoke = !pTreeSpend->HasTrainedDependants(InternalName(), ranks);
+                canRevoke = !pTreeSpend->HasTrainedDependants(InternalName(), selection, ranks);
             }
         }
     }
@@ -494,8 +511,27 @@ bool EnhancementTreeItem::IsSelectionClickie(const std::string & selection) cons
     return m_Selections.IsSelectionClickie(selection);
 }
 
-bool EnhancementTreeItem::RequiresEnhancement(const std::string& name) const
+bool EnhancementTreeItem::RequiresEnhancement(
+        const std::string& name,
+        const std::string& selection,
+        const std::string& subSelection) const
 {
-    bool bRequiresIt = m_RequirementsToTrain.RequiresEnhancement(name);
+    bool bRequiresIt = m_RequirementsToTrain.RequiresEnhancement(name, selection);
+    // need to also check any selection if that has different requirements
+    if (selection != "")
+    {
+        bRequiresIt |= m_Selections.RequiresEnhancement(name, selection, subSelection);
+    }
     return bRequiresIt;
+}
+
+size_t EnhancementTreeItem::MinSpent(const std::string& selection) const
+{
+    size_t min = MinSpent();    // assume default
+    if (selection != "")
+    {
+        // find the selection and use its MinSepnt if it has one
+        min = m_Selections.MinSpent(selection, min);    // returns min if no MinSpent on item or not found
+    }
+    return min;
 }

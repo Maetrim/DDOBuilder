@@ -318,9 +318,9 @@ void CInfoTip::SetEnhancementTreeItem(
     m_bRequirementMet.clear();
     // add the required spent in tree to requirements list
     CString text;
-    text.Format("Requires: %d AP spent in tree", pItem->MinSpent());
+    text.Format("Requires: %d AP spent in tree", pItem->MinSpent(selection));
     m_requirements.push_back(text);
-    m_bRequirementMet.push_back(spentInTree >= pItem->MinSpent());
+    m_bRequirementMet.push_back(spentInTree >= pItem->MinSpent(selection));
     pItem->CreateRequirementStrings(
             charData,
             &m_requirements,
@@ -343,7 +343,8 @@ void CInfoTip::SetEnhancementSelectionItem(
         const Character & charData,
         const EnhancementTreeItem * pItem,
         const EnhancementSelection * pSelection,
-        size_t ranks)
+        size_t ranks,
+        size_t spentInTree)
 {
     m_image.Destroy();
     LoadImageFile(IT_enhancement, pSelection->Icon(), &m_image);
@@ -357,9 +358,9 @@ void CInfoTip::SetEnhancementSelectionItem(
     m_requirements.clear();
     m_bRequirementMet.clear();
     CString text;
-    text.Format("Requires: %d AP spent in tree", pItem->MinSpent());
+    text.Format("Requires: %d AP spent in tree", pItem->MinSpent(pSelection->Name()));
     m_requirements.push_back(text);
-    m_bRequirementMet.push_back(true);
+    m_bRequirementMet.push_back((spentInTree >= pItem->MinSpent(pSelection->Name())));
     pSelection->CreateRequirementStrings(
             charData,
             &m_requirements,

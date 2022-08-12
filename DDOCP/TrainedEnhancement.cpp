@@ -103,14 +103,17 @@ size_t TrainedEnhancement::RequiredAps() const
     return m_requiredAps;
 }
 
-bool TrainedEnhancement::HasRequirementOf(const std::string& dependentOnEnhancementName) const
+bool TrainedEnhancement::HasRequirementOf(
+        const std::string& dependentOnEnhancementName,
+        const std::string& selection) const
 {
     bool bRequiresIt = false;
     // find the this trained enhancement to look at its requirements
     const EnhancementTreeItem *pItem = FindEnhancement(EnhancementName());
     if (pItem != NULL)
     {
-        bRequiresIt = pItem->RequiresEnhancement(dependentOnEnhancementName);
+        std::string subSelection = HasSelection() ? Selection() : "";
+        bRequiresIt = pItem->RequiresEnhancement(dependentOnEnhancementName, selection, subSelection);
     }
 
     return bRequiresIt;

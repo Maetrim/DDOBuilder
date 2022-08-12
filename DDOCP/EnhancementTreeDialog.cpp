@@ -325,6 +325,7 @@ void CEnhancementTreeDialog::RenderTreeItem(
         CDC * pDC)
 {
     bool isCore = (item.InternalName().find("Core") != std::string::npos);
+    size_t spentInTree = m_pCharacter->APSpentInTree(m_tree.Name());
 
     if (isCore)
     {
@@ -359,7 +360,7 @@ void CEnhancementTreeDialog::RenderTreeItem(
             RenderItemPassive(item, pDC, itemRect);
         }
         // show how many have been acquired of max ranks
-        bool isAllowed = item.IsAllowed(*m_pCharacter, "", m_tree.Name());
+        bool isAllowed = item.IsAllowed(*m_pCharacter, "", m_tree.Name(), spentInTree);
         bool isTier5Blocked = item.IsTier5Blocked(*m_pCharacter, m_tree.Name());
         if (!isTier5Blocked)
         {
@@ -441,7 +442,7 @@ void CEnhancementTreeDialog::RenderItemCore(
     // core items are rendered across the bottom section of the bitmap
     CRect itemRect(0, 0, 38, 38);
     size_t spentInTree = m_pCharacter->APSpentInTree(m_tree.Name());
-    bool isAllowed = item.IsAllowed(*m_pCharacter, "", m_tree.Name());
+    bool isAllowed = item.IsAllowed(*m_pCharacter, "", m_tree.Name(), spentInTree);
     bool isTrainable = item.CanTrain(*m_pCharacter, m_tree.Name(), spentInTree, m_type);
     bool canRevoke = item.CanRevoke(m_pCharacter->FindSpendInTree(m_tree.Name()));
     // now apply the item position to the rectangle
@@ -590,7 +591,7 @@ void CEnhancementTreeDialog::RenderItemState(
         CRect itemRect) // work on a copy
 {
     size_t spentInTree = m_pCharacter->APSpentInTree(m_tree.Name());
-    bool isAllowed = item.IsAllowed(*m_pCharacter, "", m_tree.Name());
+    bool isAllowed = item.IsAllowed(*m_pCharacter, "", m_tree.Name(), spentInTree);
     bool isTier5Blocked = item.IsTier5Blocked(*m_pCharacter, m_tree.Name());
     bool isTrainable = item.CanTrain(*m_pCharacter, m_tree.Name(), spentInTree, m_type);
     if (isTier5Blocked)
@@ -649,7 +650,7 @@ void CEnhancementTreeDialog::OnLButtonDown(UINT nFlags, CPoint point)
             // an item has been clicked, see if we can train a rank in it
             size_t spentInTree = m_pCharacter->APSpentInTree(m_tree.Name());
             const TrainedEnhancement * te = m_pCharacter->IsTrained(item->InternalName(), "", m_type);
-            bool isAllowed = item->MeetRequirements(*m_pCharacter, "", m_tree.Name());
+            bool isAllowed = item->MeetRequirements(*m_pCharacter, "", m_tree.Name(), spentInTree);
             bool isTrainable = item->CanTrain(*m_pCharacter, m_tree.Name(), spentInTree, m_type);
             if (isAllowed && isTrainable)
             {
@@ -1026,7 +1027,8 @@ void CEnhancementTreeDialog::SetTooltipText(
                 *m_pCharacter,
                 &item,
                 es,
-                te->Ranks());
+                te->Ranks(),
+                m_pCharacter->APSpentInTree(m_tree.Name()));
     }
     else
     {
@@ -1068,6 +1070,7 @@ void CEnhancementTreeDialog::UpdateFeatRevoked(
     {
         bTreeHasInvalidItems = false;
         SpendInTree * esit = m_pCharacter->FindSpendInTree(m_tree.Name());
+        size_t spentInTree = m_pCharacter->APSpentInTree(m_tree.Name());
         const EnhancementTreeItem * pBadItem = NULL;
         if (esit != NULL)
         {
@@ -1081,7 +1084,8 @@ void CEnhancementTreeDialog::UpdateFeatRevoked(
                 bool isAllowed = pItem->MeetRequirements(
                         *m_pCharacter,
                         revokedSelection,
-                        m_tree.Name());
+                        m_tree.Name(),
+                        spentInTree);
                 if (!isAllowed)
                 {
                     bTreeHasInvalidItems = true;

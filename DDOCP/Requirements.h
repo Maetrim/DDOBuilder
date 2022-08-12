@@ -37,7 +37,7 @@ class Requirements :
                 std::vector<CString> * requirements,
                 std::vector<bool> * met,
                 size_t level) const;
-        bool RequiresEnhancement(const std::string& name) const;
+        bool RequiresEnhancement(const std::string& name, const std::string& selection) const;
         bool VerifyObject(
                 std::stringstream * ss,
                 const std::list<EnhancementTree> & allTrees,
@@ -51,7 +51,7 @@ class Requirements :
 
         #define Requirements_PROPERTIES(_) \
                 DL_OBJECT_LIST(_, Requirement, Requires) \
-                DL_OPTIONAL_OBJECT(_, RequiresOneOf, OneOf) \
+                DL_OBJECT_LIST(_, RequiresOneOf, OneOf) \
                 DL_OPTIONAL_OBJECT(_, RequiresNoneOf, NoneOf)
 
         DL_DECLARE_ACCESS(Requirements_PROPERTIES)

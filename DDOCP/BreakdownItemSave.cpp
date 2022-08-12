@@ -109,7 +109,7 @@ void BreakdownItemSave::CreateOtherEffects()
                 // Divine Grace is capped at 2+(3 x paladin level).
                 // For multiclassing, this means 2 levels of Paladin would at best
                 // grant a max of +8 to saves (2 + {3x2}). 
-                int maxBonus = (classLevels[Class_Paladin] * 3) + 2;
+                int maxBonus = ((classLevels[Class_Paladin] + classLevels[Class_PaladinSacredFist])* 3) + 2;
                 BreakdownItem * pBI = FindBreakdown(StatToBreakdown(Ability_Charisma));
                 ASSERT(pBI != NULL);
                 pBI->AttachObserver(this); // watch for any changes

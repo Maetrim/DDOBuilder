@@ -20,7 +20,8 @@ class TrainedEnhancement :
         void SetRequiredAps(size_t requiredAps);
         size_t RequiredAps() const;
 
-        bool HasRequirementOf(const std::string& dependentOnEnhancementName) const;
+        bool HasRequirementOf(const std::string& dependentOnEnhancementName,
+                const std::string& selection) const;
 
         bool operator<(const TrainedEnhancement& other) const;
 

@@ -106,11 +106,15 @@ BOOL CSelectionSelectDialog::OnInitDialog()
             ++eit;
         }
         bool canTrain = true;
+        if ((*it).HasMinSpent())
+        {
+            canTrain &= ((*it).MinSpent() <= spentInTree);
+        }
         if ((*it).HasRequirementsToTrain())
         {
             std::vector<size_t> classLevels = m_charData.ClassLevels(m_charData.MaxLevel());
             std::list<TrainedFeat> trainedFeats = m_charData.CurrentFeats(m_charData.MaxLevel());
-            canTrain = (*it).RequirementsToTrain().Met(
+            canTrain &= (*it).RequirementsToTrain().Met(
                     m_charData,
                     classLevels,
                     m_charData.MaxLevel(),
@@ -234,7 +238,8 @@ void CSelectionSelectDialog::SetTooltipText(
             m_charData,
             &m_item,
             &item,
-            m_item.Ranks());
+            m_item.Ranks(),
+            m_charData.APSpentInTree(m_treeName));
     m_tooltip.Show();
 }
 

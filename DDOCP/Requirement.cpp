@@ -521,12 +521,22 @@ void Requirement::CreateRequirementStrings(
     }
 }
 
-bool Requirement::RequiresEnhancement(const std::string& name) const
+bool Requirement::RequiresEnhancement(
+        const std::string& name,
+        const std::string& selection) const
 {
     bool bRequires = false;
     if (HasEnhancement())
     {
         bRequires = (name == m_Enhancement);
+        if (bRequires && selection != "")
+        {
+            if (HasSelection())
+            {
+                // selection also has to match
+                bRequires &= (selection == m_Selection);
+            }
+        }
     }
     return bRequires;
 }

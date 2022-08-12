@@ -170,3 +170,4 @@ bool AddMenuItem(HMENU hTargetMenu, const CString& itemText, UINT itemID);
 void AddToIgnoreList(const std::string & name);
 void RemoveFromIgnoreList(const std::string & name);
 bool IsInIgnoreList(const std::string & name);
+bool SameArchetype(ClassType ct1, ClassType ct2);
