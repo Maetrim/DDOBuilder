@@ -209,7 +209,6 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
         "Deacon of the Auricular Sacrarium, "
         "Defender of Tanaroa, "
         "Devotion of the Firemouth, "
-        "Dread Stalker, "
         "Echoes of the Walking Ancestors, "
         "Woodsman's Guile.");
 }

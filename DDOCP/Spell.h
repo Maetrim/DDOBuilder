@@ -7,6 +7,7 @@
 #include "EnergyTypes.h"
 #include "SpellSchoolTypes.h"
 #include "Effect.h"
+#include "Stance.h"
 
 class Character;
 
@@ -45,6 +46,7 @@ class Spell :
                 DL_OPTIONAL_ENUM(_, SpellSchoolType, School, SpellSchool_Unknown, spellSchoolTypeMap) \
                 DL_OPTIONAL_STRING(_, SPCost) \
                 DL_OPTIONAL_ENUM(_, EnergyType, Energy, Energy_Unknown, energyTypeMap) \
+                DL_OBJECT_LIST(_, Stance, StanceData) \
                 DL_OBJECT_VECTOR(_, Effect, Effects) \
                 DL_FLAG(_, Accelerate) \
                 DL_FLAG(_, Embolden) \
@@ -65,6 +67,7 @@ class Spell :
                 DL_OPTIONAL_SIMPLE(_, int, Druid, 0) \
                 DL_OPTIONAL_SIMPLE(_, int, FavoredSoul, 0) \
                 DL_OPTIONAL_SIMPLE(_, int, Paladin, 0) \
+                DL_OPTIONAL_SIMPLE(_, int, SacredFist, 0) \
                 DL_OPTIONAL_SIMPLE(_, int, Ranger, 0) \
                 DL_OPTIONAL_SIMPLE(_, int, Sorcerer, 0) \
                 DL_OPTIONAL_SIMPLE(_, int, Warlock, 0) \

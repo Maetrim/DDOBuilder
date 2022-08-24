@@ -14,7 +14,7 @@
       <Name>Sacred Fist: Sacred Flame</Name>
       <InternalName>SFCore1</InternalName>
       <Description>Toggle: Your melee attacks while centered deal an extra 1d6 Fire damage, scaling
-with Melee Power. Each core ability in this tree grants you +5 Healing
+with 200% Melee Power. Each core ability in this tree grants you +5 Healing
 Amplification and +5 Positive Spellpower.</Description>
       <Icon>SFSacredFlame</Icon>
       <XPosition>0</XPosition>
@@ -97,7 +97,7 @@ Restoration to your target.</Description>
       <Name>Sacred Fist: Rising Hope</Name>
       <InternalName>SFCore5</InternalName>
       <Description>+1 Saves and AC. +1 Sacred Flame dice. When you use Turn Undead, you
-and nearby allies gain +1 Ki on hit and +3 on crit for 20 seconds.</Description>
+and nearby allies gain +1 Ki on hit and +3 Ki on crit for 20 seconds.</Description>
       <Icon>SFRisingHope</Icon>
       <XPosition>4</XPosition>
       <YPosition>0</YPosition>
@@ -209,7 +209,7 @@ Rank 3: +1 Reflex saving throws.</Description>
     <EnhancementTreeItem>
       <Name>Sacred Fist: Ki Shout</Name>
       <InternalName>SFKiStrike</InternalName>
-      <Description>Ki Activate: intimidates nearby enemies, encouraging them to attack you.
+      <Description>Ki Activate: Intimidates nearby enemies, encouraging them to attack you.
 This ability uses your Concentration skill, and shares a cooldown with the
 Intimidate skill.</Description>
       <Icon>SFKiShout</Icon>
@@ -252,7 +252,13 @@ Intimidate skill.</Description>
       <Name>Sacred Fist: Exalted Whirlwind</Name>
       <InternalName>SFExaltedWhirlwind</InternalName>
       <Description>Make a sweeping martial arts attack against all nearby enemies for +3[W] damage.
-Shares its cooldown with the Cleave feat.</Description>
+Damaged enemies gain 2 stacks of Vulnerability.
+Shares its cooldown with the Cleave feat.
+
+Vulnerability: You take 1% more damage for 3 seconds. This effect stacks up to 20 times,
+and loses one stack on expiration.
+Cost: 12 Ki
+Cooldown: 5 seconds.</Description>
       <Icon>SFExaltedWhirlwind</Icon>
       <XPosition>1</XPosition>
       <YPosition>2</YPosition>
@@ -287,12 +293,12 @@ Shares its cooldown with the Cleave feat.</Description>
     <EnhancementTreeItem>
       <Name>Sacred Fist: Fast Movement</Name>
       <InternalName>SFFastMovement</InternalName>
-      <Description>You run 1% faster for each of your Paladin levels.</Description>
+      <Description>You run 1% faster for each of your Sacred Fist levels.</Description>
       <Icon>SFFastMovement</Icon>
       <XPosition>3</XPosition>
       <YPosition>2</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
       <MinSpent>5</MinSpent>
       <Requirements>
         <Requirement>
@@ -328,8 +334,8 @@ Usable 5 times per rest.</Description>
       <Icon>SFSacredStrikeI</Icon>
       <XPosition>0</XPosition>
       <YPosition>3</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
       <MinSpent>10</MinSpent>
       <ArrowUp/>
       <Requirements>
@@ -422,6 +428,32 @@ Incorporeal enemies as if you had Ghost Touch.</Description>
           <Level>3</Level>
         </Requirement>
       </Requirements>
+       <Selector>
+          <EnhancementSelection>
+             <Name>Shadowguard: +1 Strength</Name>
+             <Description>+1 Strength</Description>
+             <Icon>Strength</Icon>
+             <CostPerRank size="1">2</CostPerRank>
+             <Effect>
+                <Type>AbilityBonus</Type>
+                <Bonus>Enhancement</Bonus>
+                <Amount>1</Amount>
+                <Ability>Strength</Ability>
+             </Effect>
+          </EnhancementSelection>
+          <EnhancementSelection>
+             <Name>Shadowguard: +1 Charisma</Name>
+             <Description>+1 Charisma</Description>
+             <Icon>Charisma</Icon>
+             <CostPerRank size="1">2</CostPerRank>
+             <Effect>
+                <Type>AbilityBonus</Type>
+                <Bonus>Enhancement</Bonus>
+                <Amount>1</Amount>
+                <Ability>Charisma</Ability>
+             </Effect>
+          </EnhancementSelection>
+       </Selector>
     </EnhancementTreeItem>
     <!--Tier 4-->
     <EnhancementTreeItem>
@@ -448,8 +480,8 @@ Incorporeal enemies as if you had Ghost Touch.</Description>
     <EnhancementTreeItem>
       <Name>Sacred Fist: Deflect Arrows</Name>
       <InternalName>SFDeflect Arrows</InternalName>
-      <Description>While centered you gain the benefits of the Deflect Arrows feat, knocking aside
-one incoming projectile that would have struck you every 6 seconds.</Description>
+      <Description>You gain the benefits of the Deflect Arrows feat, knocking aside one incoming
+projectile that would have struck you every 6 seconds.</Description>
       <Icon>SFDeflectArrows</Icon>
       <XPosition>1</XPosition>
       <YPosition>4</YPosition>
@@ -524,6 +556,32 @@ one incoming projectile that would have struck you every 6 seconds.</Description
           <Enhancement>SFAbilityI</Enhancement>
         </Requirement>
       </Requirements>
+       <Selector>
+          <EnhancementSelection>
+             <Name>Shadowguard: +1 Strength</Name>
+             <Description>+1 Strength</Description>
+             <Icon>Strength</Icon>
+             <CostPerRank size="1">2</CostPerRank>
+             <Effect>
+                <Type>AbilityBonus</Type>
+                <Bonus>Enhancement</Bonus>
+                <Amount>1</Amount>
+                <Ability>Strength</Ability>
+             </Effect>
+          </EnhancementSelection>
+          <EnhancementSelection>
+             <Name>Shadowguard: +1 Charisma</Name>
+             <Description>+1 Charisma</Description>
+             <Icon>Charisma</Icon>
+             <CostPerRank size="1">2</CostPerRank>
+             <Effect>
+                <Type>AbilityBonus</Type>
+                <Bonus>Enhancement</Bonus>
+                <Amount>1</Amount>
+                <Ability>Charisma</Ability>
+             </Effect>
+          </EnhancementSelection>
+       </Selector>
     </EnhancementTreeItem>
     <!--Tier 5-->
     <EnhancementTreeItem>
@@ -574,6 +632,27 @@ an attack that normally deals half damage on a successful save, you only take
       </Requirements>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
+      <Name>Sacred Fist: Divine Strike</Name>
+      <InternalName>SFDivineStrike</InternalName>
+      <Description>You gain OnVorpal: Stun any Demons or Devils with no save for 3 seconds.</Description>
+      <Icon>SFDivineStrike</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>12</MinLevel>
+        </Requirement>
+        <Requirement>
+          <Class>Sacred Fist</Class>
+          <Level>5</Level>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
       <Name>Sacred Fist: Avenging Whirlwind</Name>
       <InternalName>SFAvengingWhirlwind</InternalName>
       <Description>Make a sweeping martial arts attack against all nearby enemies for +5[W]
@@ -582,7 +661,9 @@ damage. Damaged enemies gain one stack of Vulnerability.
 Shares a cooldown with the Great Cleave feat.
 
 Vulnerability: You take 1% more damage for 3 seconds. This effect stacks up to
-20 times, and loses one stack on expiration.</Description>
+20 times, and loses one stack on expiration.
+Cost: 18 Ki
+Cooldown: 5 seconds.</Description>
       <Icon>SFAvengingWhirlwind</Icon>
       <XPosition>3</XPosition>
       <YPosition>5</YPosition>
@@ -605,7 +686,7 @@ Vulnerability: You take 1% more damage for 3 seconds. This effect stacks up to
       <Name>Sacred Fist: Violence Begets Violence</Name>
       <InternalName>SFViolenceBegetsViolence</InternalName>
       <Description>While Centered, when an opponent misses you in melee, you gain +1 critical
-threat range for 6 seconds. This stacks up to 5 times and is reset if you ciritcally hit.</Description>
+threat range for 6 seconds. This stacks up to 5 times and is reset if you critically hit.</Description>
       <Icon>SFViolenceBegetsViolence</Icon>
       <XPosition>4</XPosition>
       <YPosition>5</YPosition>

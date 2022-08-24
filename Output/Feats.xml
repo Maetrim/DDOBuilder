@@ -7745,6 +7745,10 @@ drops below 12.</Description>
          <Level>1</Level>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
+         <Class>Stormsinger</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
          <Class>Warlock</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
@@ -15701,10 +15705,20 @@ you wield them.</Description>
          <IsMonkBonus/>
       </FeatGroup>
       <Requirements>
-         <Requirement>
-            <Class>Monk</Class>
-            <Level>1</Level>
-         </Requirement>
+         <RequiresOneOf>
+            <Requirement>
+               <Class>Monk</Class>
+               <Level>1</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Paladin</Class>
+               <Level>1</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Sacred Fist</Class>
+               <Level>1</Level>
+            </Requirement>
+         </RequiresOneOf>
          <Requirement>
             <Feat>Weapon Focus: Slashing Weapons</Feat>
          </Requirement>
@@ -15717,6 +15731,12 @@ you wield them.</Description>
             </Requirement>
             <Requirement>
                <Feat>Martial Weapon Proficiency: Longsword</Feat>
+            </Requirement>
+            <Requirement>
+               <Class>Paladin</Class>
+            </Requirement>
+            <Requirement>
+               <Class>Sacred Fist</Class>
             </Requirement>
          </RequiresOneOf>
       </Requirements>
@@ -15748,6 +15768,28 @@ a 360 degree arc around you. This attack deals +4[W] damage.</Description>
          </Requirement>
          <Requirement>
             <Feat>Spring Attack</Feat>
+         </Requirement>
+         <Requirement>
+            <BAB>4</BAB>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>WhirlwindAttack</Icon>
+   </Feat>
+   <Feat>
+      <Name>Whirlwind Attack U56</Name>
+      <Description>Tactical Melee Cleave: Make a martial arts attack that hits all enemies in an area twice.
+This attack deals +4[W] damage.</Description>
+      <FeatGroup>
+         <IsStandardFeat/>
+         <IsFighterBonus/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <Feat>Dodge</Feat>
+         </Requirement>
+         <Requirement>
+            <Feat>Mobility</Feat>
          </Requirement>
          <Requirement>
             <BAB>4</BAB>
@@ -22801,16 +22843,13 @@ Sickles are considered as a favored weapon.</Description>
       <Name>Follower of the Path of Light</Name>
       <Description>You follow the Path of Light. You are proficient with Handwraps and they are
 considered as a favored weapon. You gain +1 to hit with Favored Weapons.</Description>
-      <FeatGroup>
-         <IsFollowerOf/>
-      </FeatGroup>
-      <Requirements>
-        <Requirement>
-            <Class>Sacred Fist</Class>
-        </Requirement>
-      </Requirements>
-      <Acquire>Train</Acquire>
+      <Acquire>Automatic</Acquire>
       <Icon>FollowerOfThePathOfLight</Icon>
+      <Requirements/>
+      <AutomaticAcquisition>
+         <Class>Sacred Fist</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
       <Effect>
          <Type>WeaponProficiency</Type>
          <Bonus>Feat</Bonus>
@@ -22932,6 +22971,18 @@ Exotic Favored Weapons gain +1 to Attack and Damage.</Description>
    </Feat>
    <!--Deity feats-->
    <Feat>
+      <Name>Divine Dream</Name>
+      <Description>While centered, you are considered to be wearing Heavy Armor for the purpose
+of the Sacred Defender tree.</Description>
+      <Requirements/>
+      <Acquire>Automatic</Acquire>
+      <Icon>FollowerOfThePathOfLight</Icon>
+      <AutomaticAcquisition>
+         <Class>Sacred Fist</Class>
+         <Level>6</Level>
+      </AutomaticAcquisition>
+   </Feat>
+   <Feat>
       <Name>Search the Soul</Name>
       <Description>You are seeking guidance to new paths of Faith.
 Passive: You gain +3 to the Concentration skill. As this Feat has no particular
@@ -22958,10 +23009,6 @@ Feat Exchange rules and costs).</Description>
             </Requirement>
             <Requirement>
                <Class>Paladin</Class>
-               <Level>6</Level>
-            </Requirement>
-            <Requirement>
-               <Class>Sacred Fist</Class>
                <Level>6</Level>
             </Requirement>
          </RequiresOneOf>
@@ -25210,7 +25257,7 @@ points of Cold Resistance equal to twice your Cleric level for 20 seconds.</Desc
          </Requirement>
       </Requirements>
       <Acquire>Train</Acquire>
-      <Icon>AirDomain</Icon>
+      <Icon>ImprovedDomainOfAir</Icon>
       <Effect>
          <Type>SpellLikeAbility</Type>
          <Bonus>Feat</Bonus>
@@ -25230,7 +25277,7 @@ points of Cold Resistance equal to twice your Cleric level for 20 seconds.</Desc
          </Requirement>
       </Requirements>
       <Acquire>Train</Acquire>
-      <Icon>AirDomain</Icon>
+      <Icon>GreaterDomainOfAir</Icon>
       <Effect>
          <Type>SpellLikeAbility</Type>
          <Bonus>Feat</Bonus>
@@ -25250,7 +25297,7 @@ points of Cold Resistance equal to twice your Cleric level for 20 seconds.</Desc
          </Requirement>
       </Requirements>
       <Acquire>Train</Acquire>
-      <Icon>AirDomain</Icon>
+      <Icon>MasterDomainOfAir</Icon>
       <Effect>
          <Type>SpellLikeAbility</Type>
          <Bonus>Feat</Bonus>
@@ -25651,7 +25698,7 @@ a +3[W] bonus and enemies must make a Reflex saving throw.</Description>
          </Requirement>
       </Requirements>
       <Acquire>Train</Acquire>
-      <Icon>GoodDomain</Icon>
+      <Icon>ImprovedDomainOfGood</Icon>
       <Effect>
          <Type>SpellLikeAbility</Type>
          <Bonus>Feat</Bonus>
@@ -27240,8 +27287,9 @@ Morningstars you wield have a +1 Morale bonus to Critical Threat Range</Descript
       <Name>Swords to Plowshares</Name>
       <Description>You are an expert with the usage of traditionally nonviolent weapons in
 impressive ways. When wielding one of the following weapons, you are granted the following:
-Quarterstaves you wield gain a +2 Morale bonus to Critical Threat Range.
-Kamas and Sickles you wield gain a +1 Morale bonus to Critical Threat Range.</Description>
+
+Kamas, Handwraps, and Sickles you wield gain a +1 Morale bonus to Critical Threat Range.
+Quarterstaves you wield gain a +2 Morale bonus to Critical Threat Range.</Description>
       <FeatGroup>
          <IsStandardFeat/>
          <IsFighterBonus/>
@@ -27265,6 +27313,7 @@ Kamas and Sickles you wield gain a +1 Morale bonus to Critical Threat Range.</De
          <Bonus>Morale</Bonus>
          <Amount>1</Amount>
          <Weapon>Kama</Weapon>
+         <Weapon>Handwraps</Weapon>
          <Weapon>Sickle</Weapon>
       </Effect>
    </Feat>
@@ -31109,7 +31158,8 @@ Action Boost bonus to Movement Speed for 6 seconds.</Description>
    <Feat>
       <Name>Enhanced Elemental Dice</Name>
       <Description>+1 Damage Die with Arcane Archer's Elemental Arrows, Vile Chemist's Poisoned
-Coating, Eldritch Knight's Spellsword, and Inquisitive's Law on Your Side.</Description>
+Coating, Eldritch Knight's Spellsword, Dark Apostate's Apostate's Curse, Sacred Fist,
+and Inquisitive's Law on Your Side.</Description>
       <MaxTimesAcquire>1</MaxTimesAcquire>
       <FeatGroup>
          <IsEpicDestinyFeat/>
@@ -31684,7 +31734,7 @@ Form. This does not count as a Combat Fighting Style feat.</Description>
       <Effect>
          <Type>DamageAbilityMultiplier</Type>
          <Bonus>Base</Bonus>
-         <Amount>2.25</Amount>
+         <Amount>0.75</Amount>
          <Stance>Two Handed Fighting</Stance>
       </Effect>
       <Effect>

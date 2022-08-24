@@ -118,6 +118,13 @@ void Feat::VerifyObject(
         ok &= (*edcit).VerifyObject(&ss);
         ++edcit;
     }
+    // verify stance objects
+    std::list<Stance>::const_iterator sit = m_StanceData.begin();
+    while (sit != m_StanceData.end())
+    {
+        ok &= (*sit).VerifyObject(&ss);
+        ++sit;
+    }
 
     if (Acquire() != FeatAcquisition_DestinyTree)
     {

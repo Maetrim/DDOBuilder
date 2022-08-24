@@ -2559,20 +2559,23 @@ std::vector<TrainableFeatTypes> Character::TrainableFeatTypeAtLevel(
     case Class_PaladinSacredFist:
         // paladins gain a follower of feat at level 1
         // and a deity feat at level 6
-        if (classLevels[Class_PaladinSacredFist] == 1)
-        {
-            if (NotPresentInEarlierLevel(level, TFT_FollowerOf))
-            {
-                trainable.push_back(TFT_FollowerOf);
-            }
-        }
-        if (classLevels[Class_PaladinSacredFist] == 6)
-        {
-            if (NotPresentInEarlierLevel(level, TFT_Deity))
-            {
-                trainable.push_back(TFT_Deity);
-            }
-        }
+        // For a Sacred Fist these are automatically assigned
+        // if if they multiclass its possible this way to get
+        // multiple FollowerOf and Deity feats
+        //if (classLevels[Class_PaladinSacredFist] == 1)
+        //{
+        //    if (NotPresentInEarlierLevel(level, TFT_FollowerOf))
+        //    {
+        //        trainable.push_back(TFT_FollowerOf);
+        //    }
+        //}
+        //if (classLevels[Class_PaladinSacredFist] == 6)
+        //{
+        //    if (NotPresentInEarlierLevel(level, TFT_Deity))
+        //    {
+        //        trainable.push_back(TFT_Deity);
+        //    }
+        //}
         break;
 
     case Class_Ranger:
@@ -5907,6 +5910,15 @@ void Character::ApplySpellEffects(const std::string & spellName, size_t castingL
 {
     // spells use the same interface for effects as items
     Spell spell = FindSpellByName(spellName);
+    // apply any spell stances also
+    std::list<Stance> stances = spell.StanceData();
+    std::list<Stance>::const_iterator sit = stances.begin();
+    while (sit != stances.end())
+    {
+        NotifyNewStance((*sit));
+        ++sit;
+    }
+    // and now the effects
     std::vector<Effect> effects = spell.UpdatedEffects(castingLevel);
     std::vector<Effect>::const_iterator it = effects.begin();
     while (it != effects.end())
@@ -5921,6 +5933,15 @@ void Character::RevokeSpellEffects(const std::string & spellName, size_t casting
 {
     // spells use the same interface for effects as items
     Spell spell = FindSpellByName(spellName);
+    // apply any spell stances also
+    std::list<Stance> stances = spell.StanceData();
+    std::list<Stance>::const_iterator sit = stances.begin();
+    while (sit != stances.end())
+    {
+        NotifyRevokeStance((*sit));
+        ++sit;
+    }
+    // and now the effects
     std::vector<Effect> effects = spell.UpdatedEffects(castingLevel);
     std::vector<Effect>::const_iterator it = effects.begin();
     while (it != effects.end())

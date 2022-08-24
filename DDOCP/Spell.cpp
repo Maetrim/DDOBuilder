@@ -189,6 +189,13 @@ void Spell::VerifyObject() const
         ok &= (*eit).VerifyObject(&ss);
         ++eit;
     }
+    // verify stance objects
+    std::list<Stance>::const_iterator sit = m_StanceData.begin();
+    while (sit != m_StanceData.end())
+    {
+        ok &= (*sit).VerifyObject(&ss);
+        ++sit;
+    }
     if (!ok)
     {
         ::OutputDebugString(ss.str().c_str());

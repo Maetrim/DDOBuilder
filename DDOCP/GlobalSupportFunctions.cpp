@@ -413,9 +413,15 @@ std::vector<Spell> FilterSpells(const Character * pChar, ClassType ct, int level
             }
             break;
         case Class_Paladin:
-        case Class_PaladinSacredFist:
             if ((*si).HasPaladin()
                     && (*si).Paladin() == level)
+            {
+                isClassLevelSpell = true;
+            }
+            break;
+        case Class_PaladinSacredFist:
+            if ((*si).HasSacredFist()
+                    && (*si).SacredFist() == level)
             {
                 isClassLevelSpell = true;
             }
@@ -565,9 +571,12 @@ std::vector<TrainableFeatTypes> ClassSpecificFeatTypes(ClassType type)
             types.push_back(TFT_FighterBonus);
             break;
         case Class_Paladin:
-        case Class_PaladinSacredFist:
             types.push_back(TFT_FollowerOf);    // level 1
             types.push_back(TFT_Deity);         // level 6
+            break;
+        case Class_PaladinSacredFist:
+            // although this class has Follower/Deity feats, these are auto assigned
+            // and thus do not appear in the list here
             break;
         case Class_Ranger:
             types.push_back(TFT_RangerFavoredEnemy);
