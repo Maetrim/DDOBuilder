@@ -205,6 +205,7 @@ enum BreakdownType
     Breakdown_SpellSchoolTransmutation,
     Breakdown_SpellSchoolFear,
     Breakdown_SpellSchoolGlobalDC,
+    Breakdown_ImplementInYourHands,
     // songs
     Breakdown_SongCount,
     Breakdown_SongDuration,

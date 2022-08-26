@@ -346,7 +346,11 @@ CString ActiveEffect::Name() const
 CString ActiveEffect::Stacks() const
 {
     CString text;
-    if (m_type == ET_amountPerLevel
+    if (m_bHasStacksControl)
+    {
+        text.Format("%d", NumStacks());
+    }
+    else if (m_type == ET_amountPerLevel
             || m_type == ET_dicePerClassLevel
             || m_type == ET_amountVectorPerClassLevel)
     {
@@ -512,13 +516,20 @@ CString ActiveEffect::AmountAsText(double multiplier) const
                     ::OutputDebugString((LPCTSTR)Name());
                     ::OutputDebugString(" has more stacks than amount vector\n");
                 }
+                double amount = m_amounts[index] * multiplier;
+                if (m_bHasStacksControl)
+                {
+                    // value now depends on the number of stacks
+                    size_t stacks = NumStacks();
+                    amount *= stacks;
+                }
                 if (multiplier != 1.0)
                 {
-                    text.Format("%.2f (* %.2f)", m_amounts[index] * multiplier, multiplier);
+                    text.Format("%.2f (* %.2f)", amount, multiplier);
                 }
                 else
                 {
-                    text.Format("%.2f", m_amounts[index] * multiplier);
+                    text.Format("%.2f", amount);
                 }
             }
             else
@@ -892,10 +903,22 @@ double ActiveEffect::TotalAmount(bool allowTruncate) const
                 }
                 value = m_amounts[index];
             }
+            if (m_bHasStacksControl)
+            {
+                // value now depends on the number of stacks
+                size_t stacks = NumStacks();
+                value *= stacks;
+            }
         }
         break;
     case ET_amountPerLevel:
         value = m_amountPerLevel * m_levelStacks;
+        if (m_bHasStacksControl)
+        {
+            // value now depends on the number of stacks
+            size_t stacks = NumStacks();
+            value *= stacks;
+        }
         break;
     case ET_amountPerAp:
         value = m_amount * NumStacks();

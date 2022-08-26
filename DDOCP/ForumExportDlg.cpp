@@ -648,6 +648,7 @@ void CForumExportDlg::AddFeatSelections(std::stringstream & forumExport)
         {
             forumExport << "\r\n";
         }
+        AddSkillsAtLevel(level, forumExport);
     }
     forumExport << "\r\n";
 }
@@ -984,6 +985,68 @@ void CForumExportDlg::AddSkills(std::stringstream & forumExport)
     forumExport << "------------------------------------------------------------------------------------------\r\n";
     // blank line after
     forumExport << "\r\n";
+}
+
+void CForumExportDlg::AddSkillsAtLevel(size_t level, std::stringstream & forumExport)
+{
+    // get the ranks spent in each skill for this level
+    const LevelTraining & levelData = m_pCharacter->LevelData(level);
+    const std::list<TrainedSkill> & ts = levelData.TrainedSkills();
+    std::list<TrainedSkill>::const_iterator it = ts.begin();
+    std::vector<size_t> skillRanks(Skill_Count, 0);
+    while (it != ts.end())
+    {
+        skillRanks[(*it).Skill()]++;
+        ++it;
+    }
+    // add the class skills
+    size_t numAdded = 0;
+    for (size_t skill = Skill_Unknown + 1; skill < Skill_Count; ++skill)
+    {
+        if (skillRanks[skill] > 0
+                && IsClassSkill(levelData.Class(), (SkillType)skill))
+        {
+            if (numAdded > 0)
+            {
+                forumExport << ", ";
+            }
+            else
+            {
+                forumExport << "                       Class Skills: ";
+            }
+            forumExport << EnumEntryText((SkillType)skill, skillTypeMap)
+                    << "(" << skillRanks[skill] << ")";
+            ++numAdded;
+        }
+    }
+    if (numAdded > 0)
+    {
+        forumExport << "\r\n";
+    }
+    // add the cross class skills
+    numAdded = 0;
+    for (size_t skill = Skill_Unknown + 1; skill < Skill_Count; ++skill)
+    {
+        if (skillRanks[skill] > 0
+                && !IsClassSkill(levelData.Class(), (SkillType)skill))
+        {
+            if (numAdded > 0)
+            {
+                forumExport << ", ";
+            }
+            else
+            {
+                forumExport << "                       Cross Class Skills: ";
+            }
+            forumExport << EnumEntryText((SkillType)skill, skillTypeMap)
+                    << "(" << skillRanks[skill] << ")";
+            ++numAdded;
+        }
+    }
+    if (numAdded > 0)
+    {
+        forumExport << "\r\n";
+    }
 }
 
 void CForumExportDlg::AddEnergyResistances(std::stringstream & forumExport)

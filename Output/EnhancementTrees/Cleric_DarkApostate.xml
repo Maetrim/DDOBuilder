@@ -27,6 +27,18 @@
           <Level>1</Level>
         </Requirement>
       </Requirements>
+         <Effect>
+            <Type>NegativeHealingAmplification</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>5</Amount>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>5</Amount>
+            <SpellPower>Negative</SpellPower>
+            <SpellPower>Light/Alignment</SpellPower>
+         </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Dark Apostate: Shadow Shrouding</Name>
@@ -35,7 +47,7 @@
 While in Shadow form, you are considered an Undead, gain a base 100% Fortification,
 and may heal from Negative Energies. This healing comes at a cost - Undead naturally
 only take 50% healing from Positive Energy and take 100% more damage from Light.
-You gain +2 Wisdom and +2 Constitution, as well as +5% Incorpreality and Concealment
+You gain +2 Wisdom and +2 Constitution, as well as +5% Incorporeality and Concealment
 as your form is partially obscured and intangible.</Description>
       <Icon>ShadowShrouding</Icon>
       <XPosition>1</XPosition>
@@ -53,11 +65,84 @@ as your form is partially obscured and intangible.</Description>
           <Enhancement>DACore1</Enhancement>
         </Requirement>
       </Requirements>
+         <Effect>
+            <Type>NegativeHealingAmplification</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>5</Amount>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>5</Amount>
+            <SpellPower>Negative</SpellPower>
+            <SpellPower>Light/Alignment</SpellPower>
+         </Effect>
+          <Stance>
+            <Name>Shadow Shrouding</Name>
+            <Icon>ShadowShrouding</Icon>
+            <Description>Shroud yourself in Necromantic Energies and assume the form of a Shadow.
+While in Shadow form, you are considered an Undead, gain a base 100% Fortification,
+and may heal from Negative Energies. This healing comes at a cost - Undead naturally
+only take 50% healing from Positive Energy and take 100% more damage from Light.</Description>
+         <Group>Major Form</Group>
+        <IncompatibleStance>Air Elemental</IncompatibleStance>
+        <IncompatibleStance>Earth Elemental</IncompatibleStance>
+        <IncompatibleStance>Fire Elemental</IncompatibleStance>
+        <IncompatibleStance>Water Elemental</IncompatibleStance>
+        <IncompatibleStance>Celestial Spirit</IncompatibleStance>
+        <IncompatibleStance>Shroud of the Vampire</IncompatibleStance>
+        <IncompatibleStance>Shroud of the Wraith</IncompatibleStance>
+        <IncompatibleStance>Shroud of the Lich</IncompatibleStance>
+        <IncompatibleStance>Angelic Form</IncompatibleStance>
+        <IncompatibleStance>Avatar of Nature</IncompatibleStance>
+        <IncompatibleStance>Shadow Form</IncompatibleStance>
+        <IncompatibleStance>Aasimar: Ascendant Bond: Protector</IncompatibleStance>
+        <IncompatibleStance>Aasimar: Ascendant Bond: Fallen</IncompatibleStance>
+        <IncompatibleStance>Aasimar Scourge: Divine Form</IncompatibleStance>
+        <IncompatibleStance>Bear</IncompatibleStance>
+        <IncompatibleStance>Wolf</IncompatibleStance>
+        <IncompatibleStance>Dire Bear</IncompatibleStance>
+        <IncompatibleStance>Winter Wolf</IncompatibleStance>
+          </Stance>
+          <Effect>
+            <Type>Fortification</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>100</Amount>
+            <Stance>Shadow Shrouding</Stance>
+          </Effect>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Ability>Wisdom</Ability>
+            <Stance>Shadow Shrouding</Stance>
+          </Effect>
+          <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Ability>Constitution</Ability>
+            <Stance>Shadow Shrouding</Stance>
+          </Effect>
+          <Effect>
+            <DisplayName>Shadow Shrouding - Incorporeality</DisplayName>
+            <Type>Incorporeality</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="5">5 10 15 20 25</AmountVector>
+            <Stance>Shadow Shrouding</Stance>
+          </Effect>
+          <Effect>
+            <DisplayName>Shadow Shrouding - Concealment</DisplayName>
+            <Type>Displacement</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="5">5 10 15 20 25</AmountVector>
+            <Stance>Shadow Shrouding</Stance>
+          </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Dark Apostate: Enhanced Shadowform I</Name>
       <InternalName>DACore3</InternalName>
-      <Description>Your Shadow Shrouding gains an additional +5% Incorpreality and Concealment
+      <Description>Your Shadow Shrouding gains an additional +5% Incorporeality and Concealment
 (for a total of 10% each).
 Passive: +1 Apostate's Curse Dice.</Description>
       <Icon>EnhancedShadowformI</Icon>
@@ -75,11 +160,65 @@ Passive: +1 Apostate's Curse Dice.</Description>
           <Enhancement>DACore2</Enhancement>
         </Requirement>
       </Requirements>
+         <Effect>
+            <Type>NegativeHealingAmplification</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>5</Amount>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>5</Amount>
+            <SpellPower>Negative</SpellPower>
+            <SpellPower>Light/Alignment</SpellPower>
+         </Effect>
+          <Effect>
+            <DisplayName>Shadow Shrouding - Incorporeality</DisplayName>
+            <Type>Incorporeality</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="5">5 10 15 20 25</AmountVector>
+            <Stance>Shadow Shrouding</Stance>
+          </Effect>
+          <Effect>
+            <DisplayName>Shadow Shrouding - Concealment</DisplayName>
+            <Type>Displacement</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="5">5 10 15 20 25</AmountVector>
+            <Stance>Shadow Shrouding</Stance>
+          </Effect>
+         <Effect>
+            <DisplayName>Apostate's Curse</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Dice>
+               <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
+               <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
+                <Energy>Evil</Energy>
+            </Dice>
+            <Stance>Apostate's Curse</Stance>
+            <Stance>Favored Weapon</Stance>
+            <Weapon>All</Weapon>
+            <IsItemSpecific/>
+         </Effect>
+         <Effect>
+            <DisplayName>Apostate's Curse</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Dice>
+               <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
+               <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
+                <Energy>Evil</Energy>
+            </Dice>
+            <Stance>Apostate's Curse</Stance>
+            <Stance>Favored Weapon</Stance>
+            <Weapon>All</Weapon>
+            <IsItemSpecific/>
+         </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Dark Apostate: Enhanced Shadowform II</Name>
       <InternalName>DACore4</InternalName>
-      <Description>Your Shadow Shrouding gains an additional +5% Incorpreality and Concealment
+      <Description>Your Shadow Shrouding gains an additional +5% Incorporeality and Concealment
 (for a total of 15% each).
 
 Passive: Your Bestow Curse, Doom, and Bane spells no longer have a saving throw.</Description>
@@ -98,11 +237,37 @@ Passive: Your Bestow Curse, Doom, and Bane spells no longer have a saving throw.
           <Enhancement>DACore3</Enhancement>
         </Requirement>
       </Requirements>
+         <Effect>
+            <Type>NegativeHealingAmplification</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>5</Amount>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>5</Amount>
+            <SpellPower>Negative</SpellPower>
+            <SpellPower>Light/Alignment</SpellPower>
+         </Effect>
+          <Effect>
+            <DisplayName>Shadow Shrouding - Incorporeality</DisplayName>
+            <Type>Incorporeality</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="5">5 10 15 20 25</AmountVector>
+            <Stance>Shadow Shrouding</Stance>
+          </Effect>
+          <Effect>
+            <DisplayName>Shadow Shrouding - Concealment</DisplayName>
+            <Type>Displacement</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="5">5 10 15 20 25</AmountVector>
+            <Stance>Shadow Shrouding</Stance>
+          </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Dark Apostate: Enhanced Shadowform III</Name>
       <InternalName>DACore5</InternalName>
-      <Description>Your Shadow Shrouding gains an additional +5% Incorpreality and Concealment
+      <Description>Your Shadow Shrouding gains an additional +5% Incorporeality and Concealment
 (for a total of 20% each).
 
 Passive: +1 Necromancy DC, +1 Apostate's Curse Dice..</Description>
@@ -121,11 +286,71 @@ Passive: +1 Necromancy DC, +1 Apostate's Curse Dice..</Description>
           <Enhancement>DACore4</Enhancement>
         </Requirement>
       </Requirements>
+         <Effect>
+            <Type>NegativeHealingAmplification</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>5</Amount>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>5</Amount>
+            <SpellPower>Negative</SpellPower>
+            <SpellPower>Light/Alignment</SpellPower>
+         </Effect>
+         <Effect>
+            <Type>SpellDC</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <School>Necromancy</School>
+         </Effect>
+          <Effect>
+            <DisplayName>Shadow Shrouding - Incorporeality</DisplayName>
+            <Type>Incorporeality</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="5">5 10 15 20 25</AmountVector>
+            <Stance>Shadow Shrouding</Stance>
+          </Effect>
+          <Effect>
+            <DisplayName>Shadow Shrouding - Concealment</DisplayName>
+            <Type>Displacement</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="5">5 10 15 20 25</AmountVector>
+            <Stance>Shadow Shrouding</Stance>
+          </Effect>
+         <Effect>
+            <DisplayName>Apostate's Curse</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Dice>
+               <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
+               <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
+                <Energy>Evil</Energy>
+            </Dice>
+            <Stance>Apostate's Curse</Stance>
+            <Stance>Favored Weapon</Stance>
+            <Weapon>All</Weapon>
+            <IsItemSpecific/>
+         </Effect>
+         <Effect>
+            <DisplayName>Apostate's Curse</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Dice>
+               <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
+               <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
+                <Energy>Evil</Energy>
+            </Dice>
+            <Stance>Apostate's Curse</Stance>
+            <Stance>Favored Weapon</Stance>
+            <Weapon>All</Weapon>
+            <IsItemSpecific/>
+         </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Dark Apostate: Master of Shadows</Name>
       <InternalName>DACore6</InternalName>
-      <Description>Your Shadow Shrouding gains an additional +5% Incorpreality and Concealment
+      <Description>Your Shadow Shrouding gains an additional +5% Incorporeality and Concealment
 (for a total of 25% each).
 
 Passive: +4 Wisdom, +1 Apostate's Curse Dice.</Description>
@@ -144,6 +369,66 @@ Passive: +4 Wisdom, +1 Apostate's Curse Dice.</Description>
           <Enhancement>DACore5</Enhancement>
         </Requirement>
       </Requirements>
+         <Effect>
+            <Type>NegativeHealingAmplification</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>5</Amount>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>5</Amount>
+            <SpellPower>Negative</SpellPower>
+            <SpellPower>Light/Alignment</SpellPower>
+         </Effect>
+          <Effect>
+            <DisplayName>Shadow Shrouding - Incorporeality</DisplayName>
+            <Type>Incorporeality</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="5">5 10 15 20 25</AmountVector>
+            <Stance>Shadow Shrouding</Stance>
+          </Effect>
+          <Effect>
+            <DisplayName>Shadow Shrouding - Concealment</DisplayName>
+            <Type>Displacement</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="5">5 10 15 20 25</AmountVector>
+            <Stance>Shadow Shrouding</Stance>
+          </Effect>
+      <Effect>
+        <Type>AbilityBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>4</Amount>
+        <Ability>Wisdom</Ability>
+      </Effect>
+         <Effect>
+            <DisplayName>Apostate's Curse</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Dice>
+               <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
+               <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
+                <Energy>Evil</Energy>
+            </Dice>
+            <Stance>Apostate's Curse</Stance>
+            <Stance>Favored Weapon</Stance>
+            <Weapon>All</Weapon>
+            <IsItemSpecific/>
+         </Effect>
+         <Effect>
+            <DisplayName>Apostate's Curse</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Dice>
+               <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
+               <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
+                <Energy>Evil</Energy>
+            </Dice>
+            <Stance>Apostate's Curse</Stance>
+            <Stance>Favored Weapon</Stance>
+            <Weapon>All</Weapon>
+            <IsItemSpecific/>
+         </Effect>
     </EnhancementTreeItem>
      <!--Tier 1-->
     <EnhancementTreeItem>
@@ -165,6 +450,11 @@ this effect. Bane counters and dispels Bless.</Description>
           <Level>1</Level>
         </Requirement>
       </Requirements>
+      <Effect>
+        <Type>SpellLikeAbility</Type>
+        <Bonus>Enhancement</Bonus>
+        <SpellLikeAbility>Bane</SpellLikeAbility>
+      </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Dark Apostate: Apostate's Skills</Name>
@@ -183,6 +473,20 @@ Rank 3: +1 Will saving throws.</Description>
           <Level>1</Level>
         </Requirement>
       </Requirements>
+      <Effect>
+        <Type>SkillBonus</Type>
+        <Bonus>Enhancement</Bonus>
+        <AmountVector size="3">1 2 3</AmountVector>
+        <Skill>Bluff</Skill>
+        <Skill>Heal</Skill>
+        <Skill>Hide</Skill>
+      </Effect>
+          <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">0 0 1</AmountVector>
+            <Save>Will</Save>
+          </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Dark Apostate: Shadowy Bulwark</Name>
@@ -200,6 +504,11 @@ Rank 3: +1 Will saving throws.</Description>
           <Level>1</Level>
         </Requirement>
       </Requirements>
+          <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">5 10 15</AmountVector>
+          </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Dark Apostate: Apostate's Curse</Name>
@@ -221,6 +530,42 @@ Damage on hit (scaling with 100% spellpower).</Description>
           <Level>1</Level>
         </Requirement>
       </Requirements>
+         <Stance>
+            <Name>Apostate's Curse</Name>
+            <Icon>DAApostatesCurse</Icon>
+            <Description>Your Favored Weapons channel the dark energies within you,
+twisting them into evil versions of themselves - they deal an additional 1d6 Evil
+Damage on hit (scaling with 100% spellpower).</Description>
+            <Group>Imbue</Group>
+         </Stance>
+         <Effect>
+            <DisplayName>Apostate's Curse</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Dice>
+               <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
+               <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
+                <Energy>Evil</Energy>
+            </Dice>
+            <Stance>Apostate's Curse</Stance>
+            <Stance>Favored Weapon</Stance>
+            <Weapon>All</Weapon>
+            <IsItemSpecific/>
+         </Effect>
+         <Effect>
+            <DisplayName>Apostate's Curse</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Dice>
+               <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
+               <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
+                <Energy>Evil</Energy>
+            </Dice>
+            <Stance>Apostate's Curse</Stance>
+            <Stance>Favored Weapon</Stance>
+            <Weapon>All</Weapon>
+            <IsItemSpecific/>
+         </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Dark Apostate: Traditionalist Caster</Name>
@@ -238,6 +583,20 @@ Damage on hit (scaling with 100% spellpower).</Description>
           <Level>1</Level>
         </Requirement>
       </Requirements>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>All</SpellPower>
+            <AmountVector size="3">3 6 10</AmountVector>
+            <Stance>Orb</Stance>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>All</SpellPower>
+            <AmountVector size="3">3 6 10</AmountVector>
+            <Stance>Staff</Stance>
+         </Effect>
     </EnhancementTreeItem>
      <!--Tier 2-->
     <EnhancementTreeItem>
@@ -260,6 +619,11 @@ checks, with this buff and debuff increasing in magnitude by 1 every 5 caster le
           <Level>2</Level>
         </Requirement>
       </Requirements>
+      <Effect>
+        <Type>SpellLikeAbility</Type>
+        <Bonus>Enhancement</Bonus>
+        <SpellLikeAbility>Prayer</SpellLikeAbility>
+      </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Dark Apostate: Enhanced Turning</Name>
@@ -279,6 +643,11 @@ checks, with this buff and debuff increasing in magnitude by 1 every 5 caster le
           <Level>2</Level>
         </Requirement>
       </Requirements>
+         <Effect>
+            <Type>ExtraTurns</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">2 4 6</AmountVector>
+         </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Dark Apostate: Mighty Turning</Name>
@@ -321,6 +690,42 @@ Favored Weapons Ghost Touch.</Description>
           <Enhancement>DAApostatesCurse</Enhancement>
         </Requirement>
       </Requirements>
+         <Effect>
+            <DisplayName>Apostate's Curse</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Dice>
+               <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
+               <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
+                <Energy>Evil</Energy>
+            </Dice>
+            <Stance>Apostate's Curse</Stance>
+            <Stance>Favored Weapon</Stance>
+            <Weapon>All</Weapon>
+            <IsItemSpecific/>
+         </Effect>
+         <Effect>
+            <DisplayName>Apostate's Curse</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Dice>
+               <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
+               <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
+                <Energy>Evil</Energy>
+            </Dice>
+            <Stance>Apostate's Curse</Stance>
+            <Stance>Favored Weapon</Stance>
+            <Weapon>All</Weapon>
+            <IsItemSpecific/>
+         </Effect>
+          <Effect>
+              <Type>GhostTouch</Type>
+              <Bonus>Enhancement</Bonus>
+              <Amount>1</Amount>
+              <Weapon>All</Weapon>
+              <Stance>Apostate's Curse</Stance>
+              <Stance>Favored Weapon</Stance>
+          </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Dark Apostate: Dark Rewards</Name>
@@ -399,6 +804,11 @@ and the spell Bestow Curse now deals 6f6 Bane damage to Undead per Dark Apostate
           <Level>3</Level>
         </Requirement>
       </Requirements>
+         <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellLikeAbility>Bestow Curse</SpellLikeAbility>
+         </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Dark Apostate: Enhanced Curse II</Name>
@@ -421,6 +831,40 @@ Your Deity's Favored Weapon is now an Implement in your hands.</Description>
           <Enhancement>DAEnhancedCurseI</Enhancement>
         </Requirement>
       </Requirements>
+         <Effect>
+            <DisplayName>Apostate's Curse</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Dice>
+               <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
+               <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
+                <Energy>Evil</Energy>
+            </Dice>
+            <Stance>Apostate's Curse</Stance>
+            <Stance>Favored Weapon</Stance>
+            <Weapon>All</Weapon>
+            <IsItemSpecific/>
+         </Effect>
+         <Effect>
+            <DisplayName>Apostate's Curse</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Dice>
+               <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
+               <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
+                <Energy>Evil</Energy>
+            </Dice>
+            <Stance>Apostate's Curse</Stance>
+            <Stance>Favored Weapon</Stance>
+            <Weapon>All</Weapon>
+            <IsItemSpecific/>
+         </Effect>
+        <Effect>
+            <Type>ImplementInYourHands</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Stance>Favored Weapon</Stance>
+        </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Dark Apostate: Wisdom I</Name>
@@ -439,6 +883,12 @@ Your Deity's Favored Weapon is now an Implement in your hands.</Description>
           <Level>3</Level>
         </Requirement>
       </Requirements>
+        <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Ability>Wisdom</Ability>
+            <Amount>1</Amount>
+        </Effect>
     </EnhancementTreeItem>
      <!--Tier 4-->
     <EnhancementTreeItem>
@@ -458,6 +908,11 @@ Your Deity's Favored Weapon is now an Implement in your hands.</Description>
           <Level>4</Level>
         </Requirement>
       </Requirements>
+         <Effect>
+            <Type>UnconsciousRange</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">-50 -100 -150</AmountVector>
+         </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Dark Apostate: Return to Dusk</Name>
@@ -522,6 +977,34 @@ On crit, you apply the effects of the Curse spell.</Description>
           <Enhancement>DAEnhancedCurseII</Enhancement>
         </Requirement>
       </Requirements>
+         <Effect>
+            <DisplayName>Apostate's Curse</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Dice>
+               <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
+               <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
+                <Energy>Evil</Energy>
+            </Dice>
+            <Stance>Apostate's Curse</Stance>
+            <Stance>Favored Weapon</Stance>
+            <Weapon>All</Weapon>
+            <IsItemSpecific/>
+         </Effect>
+         <Effect>
+            <DisplayName>Apostate's Curse</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Dice>
+               <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
+               <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
+                <Energy>Evil</Energy>
+            </Dice>
+            <Stance>Apostate's Curse</Stance>
+            <Stance>Favored Weapon</Stance>
+            <Weapon>All</Weapon>
+            <IsItemSpecific/>
+         </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Dark Apostate: Wisdom II</Name>
@@ -542,6 +1025,12 @@ On crit, you apply the effects of the Curse spell.</Description>
           <Enhancement>DAAbilityI</Enhancement>
         </Requirement>
       </Requirements>
+        <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Ability>Wisdom</Ability>
+            <Amount>1</Amount>
+        </Effect>
     </EnhancementTreeItem>
      <!--Tier 5-->
     <EnhancementTreeItem>
@@ -609,6 +1098,12 @@ level (max 120) for each energy type has been absorbed.</Description>
           <Level>5</Level>
         </Requirement>
       </Requirements>
+         <Effect>
+            <Type>SpellDC</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <School>Necromancy</School>
+         </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Dark Apostate: Ultimate Heresy</Name>
@@ -634,6 +1129,62 @@ On crit, you apply 1d3 stacks of Vulnerability.</Description>
           <Enhancement>DAEnhancedCurseIII</Enhancement>
         </Requirement>
       </Requirements>
+         <Effect>
+            <DisplayName>Apostate's Curse</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Dice>
+               <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
+               <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
+                <Energy>Evil</Energy>
+            </Dice>
+            <Stance>Apostate's Curse</Stance>
+            <Stance>Favored Weapon</Stance>
+            <Weapon>All</Weapon>
+            <IsItemSpecific/>
+         </Effect>
+         <Effect>
+            <DisplayName>Apostate's Curse</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Dice>
+               <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
+               <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
+                <Energy>Evil</Energy>
+            </Dice>
+            <Stance>Apostate's Curse</Stance>
+            <Stance>Favored Weapon</Stance>
+            <Weapon>All</Weapon>
+            <IsItemSpecific/>
+         </Effect>
+         <Effect>
+            <DisplayName>Apostate's Curse</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Dice>
+               <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
+               <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
+                <Energy>Evil</Energy>
+            </Dice>
+            <Stance>Apostate's Curse</Stance>
+            <Stance>Favored Weapon</Stance>
+            <Weapon>All</Weapon>
+            <IsItemSpecific/>
+         </Effect>
+         <Effect>
+            <DisplayName>Apostate's Curse</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Dice>
+               <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
+               <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
+                <Energy>Evil</Energy>
+            </Dice>
+            <Stance>Apostate's Curse</Stance>
+            <Stance>Favored Weapon</Stance>
+            <Weapon>All</Weapon>
+            <IsItemSpecific/>
+         </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Dark Apostate: Shadows of Death</Name>
@@ -655,6 +1206,13 @@ On crit, you apply 1d3 stacks of Vulnerability.</Description>
           <Level>5</Level>
         </Requirement>
       </Requirements>
+         <Effect>
+            <Type>SpellLore</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>5</Amount>
+            <SpellPower>Negative</SpellPower>
+            <SpellPower>Light/Alignment</SpellPower>
+         </Effect>
     </EnhancementTreeItem>
   </EnhancementTree>
 </Enhancements>

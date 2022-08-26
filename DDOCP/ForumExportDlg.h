@@ -116,6 +116,7 @@ class CForumExportDlg : public CDialogEx
         void AddSelfAndPartyBuffs(std::stringstream & forumExport);
         void AddActiveStances(std::stringstream & forumExport);
         void AddSkills(std::stringstream & forumExport);
+        void AddSkillsAtLevel(size_t level, std::stringstream & forumExport);
         void AddEnergyResistances(std::stringstream & forumExport);
         void AddEnergyResistances(std::stringstream & forumExport, const std::string & name, BreakdownType bt1, BreakdownType bt2);
         void AddEnhancements(std::stringstream & forumExport);

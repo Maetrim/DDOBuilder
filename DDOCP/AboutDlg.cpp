@@ -167,6 +167,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
             "ShinuzukaRakam, "
             "ShintaoMonk, "
             "smithbt, "
+            "Sqrlmonger, "
             "Strambotica, "
             "Strimtom, "
             "SouCarioca, "

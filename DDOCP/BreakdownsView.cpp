@@ -1396,6 +1396,20 @@ void CBreakdownsView::CreateMagicalBreakdowns()
                     hUSPItem);
             m_itemBreakdownTree.SetItemData(hUSPItem, (DWORD)(void*)usp);
             m_items.push_back(usp);
+            {
+                HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                        "Implement in Your Hands",
+                        hUSPItem,
+                        TVI_LAST);
+                BreakdownItem * pIIYH = new BreakdownItemSimple(
+                        Breakdown_ImplementInYourHands,
+                        Effect_ImplementInYourHands,
+                        "Implement in Your Hands",
+                        &m_itemBreakdownTree,
+                        hItem);
+                m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pIIYH);
+                m_items.push_back(pIIYH);
+            }
         }
         AddSpellPower(Breakdown_SpellPowerAcid, SpellPower_Acid, "Acid Spell power", hItem);
         AddSpellPower(Breakdown_SpellPowerLightAlignment, SpellPower_LightAlignment, "Light/Alignment Spell power", hItem);

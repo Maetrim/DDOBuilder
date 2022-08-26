@@ -1,257 +1,682 @@
 <Enhancements>
-  <EnhancementTree>
-    <Name>Sacred Fist</Name>
-    <Version>1</Version>
-    <Requirements>
-      <Requirement>
-        <Class>Sacred Fist</Class>
-      </Requirement>
-    </Requirements>
-    <Icon>Paladin</Icon>
-    <Background>PaladinBackground</Background>
-    <!--Core items-->
-    <EnhancementTreeItem>
-      <Name>Sacred Fist: Sacred Flame</Name>
-      <InternalName>SFCore1</InternalName>
-      <Description>Toggle: Your melee attacks while centered deal an extra 1d6 Fire damage, scaling
+   <EnhancementTree>
+      <Name>Sacred Fist</Name>
+      <Version>1</Version>
+      <Requirements>
+         <Requirement>
+            <Class>Sacred Fist</Class>
+         </Requirement>
+      </Requirements>
+      <Icon>Paladin</Icon>
+      <Background>PaladinBackground</Background>
+      <!--Core items-->
+      <EnhancementTreeItem>
+         <Name>Sacred Fist: Sacred Flame</Name>
+         <InternalName>SFCore1</InternalName>
+         <Description>Toggle: Your melee attacks while centered deal an extra 1d6 Fire damage, scaling
 with 200% Melee Power. Each core ability in this tree grants you +5 Healing
 Amplification and +5 Positive Spellpower.</Description>
-      <Icon>SFSacredFlame</Icon>
-      <XPosition>0</XPosition>
-      <YPosition>0</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>1</Ranks>
-      <MinSpent>0</MinSpent>
-      <Clickie/>
-      <Requirements>
-        <Requirement>
-          <Class>Sacred Fist</Class>
-          <Level>1</Level>
-        </Requirement>
-      </Requirements>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Sacred Fist: Strike Evil</Name>
-      <InternalName>SFCore2</InternalName>
-      <Description>+1 Saves and AC. +1 Sacred Flame dice. Your weapons while using Sacred Flame
+         <Icon>SFSacredFlame</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>0</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Class>Sacred Fist</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>Positive</SpellPower>
+            <Amount>5</Amount>
+         </Effect>
+         <Effect>
+            <Type>HealingAmplification</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>5</Amount>
+         </Effect>
+         <Stance>
+            <Name>Sacred Flame</Name>
+            <Icon>SFSacredFlame</Icon>
+            <Description>Your melee attacks while centered deal an extra 1d6 Fire damage, scaling with 200% Melee Power.</Description>
+            <Group>Imbue</Group>
+         </Stance>
+         <Effect>
+            <DisplayName>Sacred Flame</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Dice>
+               <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
+               <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
+               <Energy>Fire</Energy>
+               <ScalesWithMeleePower/>
+            </Dice>
+            <Stance>Sacred Flame</Stance>
+            <Stance>Centered</Stance>
+            <Weapon>All</Weapon>
+            <IsItemSpecific/>
+         </Effect>
+         <Effect>
+            <DisplayName>Sacred Flame</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Dice>
+               <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
+               <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
+               <Energy>Fire</Energy>
+               <ScalesWithMeleePower/>
+            </Dice>
+            <Stance>Sacred Flame</Stance>
+            <Stance>Centered</Stance>
+            <Weapon>All</Weapon>
+            <IsItemSpecific/>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Sacred Fist: Strike Evil</Name>
+         <InternalName>SFCore2</InternalName>
+         <Description>+1 Saves and AC. +1 Sacred Flame dice. Your weapons while using Sacred Flame
 now bypass Lawful and Good DR.</Description>
-      <Icon>SFStrikeEvil</Icon>
-      <XPosition>1</XPosition>
-      <YPosition>0</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>1</Ranks>
-      <MinSpent>5</MinSpent>
-      <Requirements>
-        <Requirement>
-          <Class>Sacred Fist</Class>
-          <Level>3</Level>
-        </Requirement>
-        <Requirement>
-          <Enhancement>SFCore1</Enhancement>
-        </Requirement>
-      </Requirements>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Sacred Fist: Soothe the Suffering</Name>
-      <InternalName>SFCore3</InternalName>
-      <Description>+1 Saves and AC. +1 Sacred Flame dice.
+         <Icon>SFStrikeEvil</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Sacred Fist</Class>
+               <Level>3</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>SFCore1</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+             <Save>All</Save>
+         </Effect>
+         <Effect>
+            <Type>ACBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+         </Effect>
+         <Effect>
+            <Type>DRBypass</Type>
+            <Bonus>Enhancement</Bonus>
+            <DR>Lawful</DR>
+            <Weapon>All</Weapon>
+            <Stance>Centered</Stance>
+         </Effect>
+         <Effect>
+            <Type>DRBypass</Type>
+            <Bonus>Enhancement</Bonus>
+            <DR>Good</DR>
+            <Weapon>All</Weapon>
+            <Stance>Centered</Stance>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>Positive</SpellPower>
+            <Amount>5</Amount>
+         </Effect>
+         <Effect>
+            <Type>HealingAmplification</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>5</Amount>
+         </Effect>
+         <Effect>
+            <DisplayName>Sacred Flame</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Dice>
+               <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
+               <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
+               <Energy>Fire</Energy>
+               <ScalesWithMeleePower/>
+            </Dice>
+            <Stance>Sacred Flame</Stance>
+            <Stance>Centered</Stance>
+            <Weapon>All</Weapon>
+            <IsItemSpecific/>
+         </Effect>
+         <Effect>
+            <DisplayName>Sacred Flame</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Dice>
+               <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
+               <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
+               <Energy>Fire</Energy>
+               <ScalesWithMeleePower/>
+            </Dice>
+            <Stance>Sacred Flame</Stance>
+            <Stance>Centered</Stance>
+            <Weapon>All</Weapon>
+            <IsItemSpecific/>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Sacred Fist: Soothe the Suffering</Name>
+         <InternalName>SFCore3</InternalName>
+         <Description>+1 Saves and AC. +1 Sacred Flame dice.
 Gain +3 Remove Disease Charges and your Remove Disease now applies Greater
 Restoration to your target.</Description>
-      <Icon>SFSootheTheSuffering</Icon>
-      <XPosition>2</XPosition>
-      <YPosition>0</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>1</Ranks>
-      <MinSpent>10</MinSpent>
-      <Requirements>
-        <Requirement>
-          <Class>Sacred Fist</Class>
-          <Level>6</Level>
-        </Requirement>
-        <Requirement>
-          <Enhancement>SFCore2</Enhancement>
-        </Requirement>
-      </Requirements>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Sacred Fist: Defend Against Darkness</Name>
-      <InternalName>SFCore4</InternalName>
-      <Description>+1 Saves and AC. +1 Sacred Flame dice. You gain Immunity to Energy Drain.</Description>
-      <Icon>SFDefendAgainstDarkness</Icon>
-      <XPosition>3</XPosition>
-      <YPosition>0</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>1</Ranks>
-      <MinSpent>20</MinSpent>
-      <Requirements>
-        <Requirement>
-          <Class>Sacred Fist</Class>
-          <Level>12</Level>
-        </Requirement>
-        <Requirement>
-          <Enhancement>SFCore3</Enhancement>
-        </Requirement>
-      </Requirements>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Sacred Fist: Rising Hope</Name>
-      <InternalName>SFCore5</InternalName>
-      <Description>+1 Saves and AC. +1 Sacred Flame dice. When you use Turn Undead, you
+         <Icon>SFSootheTheSuffering</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Sacred Fist</Class>
+               <Level>6</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>SFCore2</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+             <Save>All</Save>
+         </Effect>
+         <Effect>
+            <Type>ACBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>Positive</SpellPower>
+            <Amount>5</Amount>
+         </Effect>
+         <Effect>
+            <Type>HealingAmplification</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>5</Amount>
+         </Effect>
+         <Effect>
+            <DisplayName>Sacred Flame</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Dice>
+               <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
+               <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
+               <Energy>Fire</Energy>
+               <ScalesWithMeleePower/>
+            </Dice>
+            <Stance>Sacred Flame</Stance>
+            <Stance>Centered</Stance>
+            <Weapon>All</Weapon>
+            <IsItemSpecific/>
+         </Effect>
+         <Effect>
+            <DisplayName>Sacred Flame</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Dice>
+               <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
+               <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
+               <Energy>Fire</Energy>
+               <ScalesWithMeleePower/>
+            </Dice>
+            <Stance>Sacred Flame</Stance>
+            <Stance>Centered</Stance>
+            <Weapon>All</Weapon>
+            <IsItemSpecific/>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Sacred Fist: Defend Against Darkness</Name>
+         <InternalName>SFCore4</InternalName>
+         <Description>+1 Saves and AC. +1 Sacred Flame dice. You gain Immunity to Energy Drain.</Description>
+         <Icon>SFDefendAgainstDarkness</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Sacred Fist</Class>
+               <Level>12</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>SFCore3</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+             <Save>All</Save>
+         </Effect>
+         <Effect>
+            <Type>ACBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+         </Effect>
+         <Effect>
+            <Type>Immunity</Type>
+            <Bonus>Enhancement</Bonus>
+            <Immunity>Energy Drain</Immunity>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>Positive</SpellPower>
+            <Amount>5</Amount>
+         </Effect>
+         <Effect>
+            <Type>HealingAmplification</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>5</Amount>
+         </Effect>
+         <Effect>
+            <DisplayName>Sacred Flame</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Dice>
+               <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
+               <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
+               <Energy>Fire</Energy>
+               <ScalesWithMeleePower/>
+            </Dice>
+            <Stance>Sacred Flame</Stance>
+            <Stance>Centered</Stance>
+            <Weapon>All</Weapon>
+            <IsItemSpecific/>
+         </Effect>
+         <Effect>
+            <DisplayName>Sacred Flame</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Dice>
+               <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
+               <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
+               <Energy>Fire</Energy>
+               <ScalesWithMeleePower/>
+            </Dice>
+            <Stance>Sacred Flame</Stance>
+            <Stance>Centered</Stance>
+            <Weapon>All</Weapon>
+            <IsItemSpecific/>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Sacred Fist: Rising Hope</Name>
+         <InternalName>SFCore5</InternalName>
+         <Description>+1 Saves and AC. +1 Sacred Flame dice. When you use Turn Undead, you
 and nearby allies gain +1 Ki on hit and +3 Ki on crit for 20 seconds.</Description>
-      <Icon>SFRisingHope</Icon>
-      <XPosition>4</XPosition>
-      <YPosition>0</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>1</Ranks>
-      <MinSpent>30</MinSpent>
-      <Requirements>
-        <Requirement>
-          <Class>Sacred Fist</Class>
-          <Level>18</Level>
-        </Requirement>
-        <Requirement>
-          <Enhancement>SFCore4</Enhancement>
-        </Requirement>
-      </Requirements>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Sacred Fist: Ultimate Flame</Name>
-      <InternalName>SFCore6</InternalName>
-      <Description>+4 Charisma, +3 Saves, +1 Sacred Flame dice.
+         <Icon>SFRisingHope</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Sacred Fist</Class>
+               <Level>18</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>SFCore4</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+             <Save>All</Save>
+         </Effect>
+         <Effect>
+            <Type>ACBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>Positive</SpellPower>
+            <Amount>5</Amount>
+         </Effect>
+         <Effect>
+            <Type>HealingAmplification</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>5</Amount>
+         </Effect>
+         <Effect>
+            <DisplayName>Sacred Flame</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Dice>
+               <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
+               <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
+               <Energy>Fire</Energy>
+               <ScalesWithMeleePower/>
+            </Dice>
+            <Stance>Sacred Flame</Stance>
+            <Stance>Centered</Stance>
+            <Weapon>All</Weapon>
+            <IsItemSpecific/>
+         </Effect>
+         <Effect>
+            <DisplayName>Sacred Flame</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Dice>
+               <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
+               <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
+               <Energy>Fire</Energy>
+               <ScalesWithMeleePower/>
+            </Dice>
+            <Stance>Sacred Flame</Stance>
+            <Stance>Centered</Stance>
+            <Weapon>All</Weapon>
+            <IsItemSpecific/>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Sacred Fist: Ultimate Flame</Name>
+         <InternalName>SFCore6</InternalName>
+         <Description>+4 Charisma, +3 Saves, +1 Sacred Flame dice.
 +10 Melee Power. +1[W] with Weapons. You absorb 25% of all Fire damage.</Description>
-      <Icon>SFUltimateFlame</Icon>
-      <XPosition>5</XPosition>
-      <YPosition>0</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>1</Ranks>
-      <MinSpent>40</MinSpent>
-      <Requirements>
-        <Requirement>
-          <Class>Sacred Fist</Class>
-          <Level>20</Level>
-        </Requirement>
-        <Requirement>
-          <Enhancement>SFCore5</Enhancement>
-        </Requirement>
-      </Requirements>
-    </EnhancementTreeItem>
-    <!--Tier 1-->
-    <EnhancementTreeItem>
-      <Name>Sacred Fist: Sacred Strike I</Name>
-      <InternalName>SFSacredStrikeI</InternalName>
-      <Description>+1 to Attack and Damage with Favored Weapons.</Description>
-      <Icon>SFSacredStrikeI</Icon>
-      <XPosition>0</XPosition>
-      <YPosition>1</YPosition>
-      <CostPerRank size="1">2</CostPerRank>
-      <Ranks>1</Ranks>
-      <MinSpent>1</MinSpent>
-      <ArrowUp/>
-      <Requirements>
-        <Requirement>
-          <Class>Sacred Fist</Class>
-          <Level>1</Level>
-        </Requirement>
-      </Requirements>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Sacred Fist: Extra Smite</Name>
-      <InternalName>SFExtraSmite</InternalName>
-      <Description> You gain +[2/4/6] additional uses of Smite Evil per rest.</Description>
-      <Icon>SFExtraSmite</Icon>
-      <XPosition>1</XPosition>
-      <YPosition>1</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
-      <MinSpent>1</MinSpent>
-      <Requirements>
-        <Requirement>
-          <Class>Sacred Fist</Class>
-          <Level>1</Level>
-        </Requirement>
-      </Requirements>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Sacred Fist: Disciple of the Fist</Name>
-      <InternalName>SFDiscipleOfTheFist</InternalName>
-      <Description>+[1/2/3] to Heal, Concentration, and Intimidate.
+         <Icon>SFUltimateFlame</Icon>
+         <XPosition>5</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>40</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Sacred Fist</Class>
+               <Level>20</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>SFCore5</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>4</Amount>
+            <Ability>Charisma</Ability>
+         </Effect>
+         <Effect>
+            <Type>MeleePower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>10</Amount>
+         </Effect>
+         <Effect>
+            <Type>WeaponBaseDamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+             <Weapon>All</Weapon>
+         </Effect>
+         <Effect>
+            <Type>EnergyAbsorbance</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>25</Amount>
+            <Energy>Fire</Energy>
+         </Effect>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>3</Amount>
+             <Save>All</Save>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>Positive</SpellPower>
+            <Amount>5</Amount>
+         </Effect>
+         <Effect>
+            <Type>HealingAmplification</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>5</Amount>
+         </Effect>
+         <Effect>
+            <DisplayName>Sacred Flame</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Dice>
+               <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
+               <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
+               <Energy>Fire</Energy>
+               <ScalesWithMeleePower/>
+            </Dice>
+            <Stance>Sacred Flame</Stance>
+            <Stance>Centered</Stance>
+            <Weapon>All</Weapon>
+            <IsItemSpecific/>
+         </Effect>
+         <Effect>
+            <DisplayName>Sacred Flame</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Dice>
+               <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
+               <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
+               <Energy>Fire</Energy>
+               <ScalesWithMeleePower/>
+            </Dice>
+            <Stance>Sacred Flame</Stance>
+            <Stance>Centered</Stance>
+            <Weapon>All</Weapon>
+            <IsItemSpecific/>
+         </Effect>
+      </EnhancementTreeItem>
+      <!--Tier 1-->
+      <EnhancementTreeItem>
+         <Name>Sacred Fist: Sacred Strike I</Name>
+         <InternalName>SFSacredStrikeI</InternalName>
+         <Description>+1 to Attack and Damage with Favored Weapons.</Description>
+         <Icon>SFSacredStrikeI</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>1</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Sacred Fist</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+         </Effect>
+         <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+         </Effect>
+         <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+         </Effect>
+         <Effect>
+            <Type>Seeker</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Sacred Fist: Extra Smite</Name>
+         <InternalName>SFExtraSmite</InternalName>
+         <Description> You gain +[2/4/6] additional uses of Smite Evil per rest.</Description>
+         <Icon>SFExtraSmite</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Sacred Fist</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>ExtraSmite</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">2 4 6</AmountVector>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Sacred Fist: Disciple of the Fist</Name>
+         <InternalName>SFDiscipleOfTheFist</InternalName>
+         <Description>+[1/2/3] to Heal, Concentration, and Intimidate.
 Rank 3: +1 Reflex saving throws.</Description>
-      <Icon>SFDiscipleOfTheFist</Icon>
-      <XPosition>2</XPosition>
-      <YPosition>1</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
-      <MinSpent>1</MinSpent>
-      <Requirements>
-        <Requirement>
-          <Class>Sacred Fist</Class>
-          <Level>1</Level>
-        </Requirement>
-      </Requirements>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Sacred Fist: Deft Strikes</Name>
-      <InternalName>SFDeftStrikes</InternalName>
-      <Description>While centered, you gain +[3/6/10]% Offhand Strike Chance.</Description>
-      <Icon>SFDeftStrikes</Icon>
-      <XPosition>3</XPosition>
-      <YPosition>1</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
-      <MinSpent>1</MinSpent>
-      <Requirements>
-        <Requirement>
-          <Class>Sacred Fist</Class>
-          <Level>1</Level>
-        </Requirement>
-      </Requirements>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Sacred Fist: Ki Shout</Name>
-      <InternalName>SFKiStrike</InternalName>
-      <Description>Ki Activate: Intimidates nearby enemies, encouraging them to attack you.
+         <Icon>SFDiscipleOfTheFist</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Sacred Fist</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Skill>Heal</Skill>
+            <Skill>Concentration</Skill>
+            <Skill>Intimidate</Skill>
+         </Effect>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">0 0 1</AmountVector>
+            <Save>Reflex</Save>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Sacred Fist: Deft Strikes</Name>
+         <InternalName>SFDeftStrikes</InternalName>
+         <Description>While centered, you gain +[3/6/10]% Offhand Strike Chance.</Description>
+         <Icon>SFDeftStrikes</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Sacred Fist</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>OffHandAttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">3 6 10</AmountVector>
+            <Stance>Centered</Stance>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Sacred Fist: Ki Shout</Name>
+         <InternalName>SFKiStrike</InternalName>
+         <Description>Ki Activate: Intimidates nearby enemies, encouraging them to attack you.
 This ability uses your Concentration skill, and shares a cooldown with the
 Intimidate skill.</Description>
-      <Icon>SFKiShout</Icon>
-      <XPosition>4</XPosition>
-      <YPosition>1</YPosition>
-      <CostPerRank size="1">2</CostPerRank>
-      <Ranks>1</Ranks>
-      <MinSpent>1</MinSpent>
-      <Clickie/>
-      <Requirements>
-        <Requirement>
-          <Class>Sacred Fist</Class>
-          <Level>1</Level>
-        </Requirement>
-      </Requirements>
-    </EnhancementTreeItem>
-    <!--Tier 2-->
-    <EnhancementTreeItem>
-      <Name>Sacred Fist: Sacred Strike II</Name>
-      <InternalName>SFSacredStrikeII</InternalName>
-      <Description>+2 to Attack and +1 to Damage with Favored Weapons.</Description>
-      <Icon>SFSacredStrikeI</Icon>
-      <XPosition>0</XPosition>
-      <YPosition>2</YPosition>
-      <CostPerRank size="1">2</CostPerRank>
-      <Ranks>1</Ranks>
-      <MinSpent>5</MinSpent>
-      <ArrowUp/>
-      <Requirements>
-        <Requirement>
-          <Class>Sacred Fist</Class>
-          <Level>2</Level>
-        </Requirement>
-        <Requirement>
-          <Enhancement>SFSacredStrikeI</Enhancement>
-        </Requirement>
-      </Requirements>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Sacred Fist: Exalted Whirlwind</Name>
-      <InternalName>SFExaltedWhirlwind</InternalName>
-      <Description>Make a sweeping martial arts attack against all nearby enemies for +3[W] damage.
+         <Icon>SFKiShout</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>1</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Class>Sacred Fist</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <!--Tier 2-->
+      <EnhancementTreeItem>
+         <Name>Sacred Fist: Sacred Strike II</Name>
+         <InternalName>SFSacredStrikeII</InternalName>
+         <Description>+2 to Attack and +1 to Damage with Favored Weapons.</Description>
+         <Icon>SFSacredStrikeI</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Sacred Fist</Class>
+               <Level>2</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>SFSacredStrikeI</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+         </Effect>
+         <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+         </Effect>
+         <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+         </Effect>
+         <Effect>
+            <Type>Seeker</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Sacred Fist: Exalted Whirlwind</Name>
+         <InternalName>SFExaltedWhirlwind</InternalName>
+         <Description>Make a sweeping martial arts attack against all nearby enemies for +3[W] damage.
 Damaged enemies gain 2 stacks of Vulnerability.
 Shares its cooldown with the Cleave feat.
 
@@ -259,99 +684,146 @@ Vulnerability: You take 1% more damage for 3 seconds. This effect stacks up to 2
 and loses one stack on expiration.
 Cost: 12 Ki
 Cooldown: 5 seconds.</Description>
-      <Icon>SFExaltedWhirlwind</Icon>
-      <XPosition>1</XPosition>
-      <YPosition>2</YPosition>
-      <CostPerRank size="1">2</CostPerRank>
-      <Ranks>1</Ranks>
-      <MinSpent>5</MinSpent>
-      <Clickie/>
-      <Requirements>
-        <Requirement>
-          <Class>Sacred Fist</Class>
-          <Level>2</Level>
-        </Requirement>
-      </Requirements>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Sacred Fist: Critical Mastery</Name>
-      <InternalName>SFCriticalMastery</InternalName>
-      <Description>+[1/2/3] to confirm critical hits and critical hit damage (before weapon multipliers)</Description>
-      <Icon>SFCriticalMastery</Icon>
-      <XPosition>2</XPosition>
-      <YPosition>2</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
-      <MinSpent>5</MinSpent>
-      <Requirements>
-        <Requirement>
-          <Class>Sacred Fist</Class>
-          <Level>2</Level>
-        </Requirement>
-      </Requirements>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Sacred Fist: Fast Movement</Name>
-      <InternalName>SFFastMovement</InternalName>
-      <Description>You run 1% faster for each of your Sacred Fist levels.</Description>
-      <Icon>SFFastMovement</Icon>
-      <XPosition>3</XPosition>
-      <YPosition>2</YPosition>
-      <CostPerRank size="1">2</CostPerRank>
-      <Ranks>1</Ranks>
-      <MinSpent>5</MinSpent>
-      <Requirements>
-        <Requirement>
-          <Class>Sacred Fist</Class>
-          <Level>2</Level>
-        </Requirement>
-      </Requirements>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Sacred Fist: Action Boost: Doublestrike</Name>
-      <InternalName>SFActionBoostDoublestrike</InternalName>
-      <Description>You gain a +[10/20/30]% Action Boost bonus to Doublestrike for 20 seconds.
+         <Icon>SFExaltedWhirlwind</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Class>Sacred Fist</Class>
+               <Level>2</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Sacred Fist: Critical Mastery</Name>
+         <InternalName>SFCriticalMastery</InternalName>
+         <Description>+[1/2/3] to confirm critical hits and critical hit damage (before weapon multipliers)</Description>
+         <Icon>SFCriticalMastery</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Sacred Fist</Class>
+               <Level>2</Level>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Weapon>All</Weapon>
+         </Effect>
+         <Effect>
+            <Type>Seeker</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Weapon>All</Weapon>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Sacred Fist: Fast Movement</Name>
+         <InternalName>SFFastMovement</InternalName>
+         <Description>You run 1% faster for each of your Sacred Fist levels.</Description>
+         <Icon>SFFastMovement</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Sacred Fist</Class>
+               <Level>2</Level>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>MovementSpeed</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountPerLevel>1</AmountPerLevel>
+            <Class>Sacred Fist</Class>
+            <ApplyAsItemEffect/>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Sacred Fist: Action Boost: Doublestrike</Name>
+         <InternalName>SFActionBoostDoublestrike</InternalName>
+         <Description>You gain a +[10/20/30]% Action Boost bonus to Doublestrike for 20 seconds.
 Usable 5 times per rest.</Description>
-      <Icon>SFActionBoostDoublestrike</Icon>
-      <XPosition>4</XPosition>
-      <YPosition>2</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
-      <MinSpent>5</MinSpent>
-      <Clickie/>
-      <Requirements>
-        <Requirement>
-          <Class>Sacred Fist</Class>
-          <Level>2</Level>
-        </Requirement>
-      </Requirements>
-    </EnhancementTreeItem>
-    <!--Tier 3-->
-    <EnhancementTreeItem>
-      <Name>Sacred Fist: Sacred Strike III</Name>
-      <InternalName>SFSacredStrikeIII</InternalName>
-      <Description>+1 to Attack and Damage with Favored Weapons.</Description>
-      <Icon>SFSacredStrikeI</Icon>
-      <XPosition>0</XPosition>
-      <YPosition>3</YPosition>
-      <CostPerRank size="1">2</CostPerRank>
-      <Ranks>1</Ranks>
-      <MinSpent>10</MinSpent>
-      <ArrowUp/>
-      <Requirements>
-        <Requirement>
-          <Class>Sacred Fist</Class>
-          <Level>3</Level>
-        </Requirement>
-        <Requirement>
-          <Enhancement>SFSacredStrikeII</Enhancement>
-        </Requirement>
-      </Requirements>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Sacred Fist: Exalted Smite</Name>
-      <InternalName>SFExaltedSmite</InternalName>
-      <Description>Active: An improved Smite Evil that adds 
+         <Icon>SFActionBoostDoublestrike</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Class>Sacred Fist</Class>
+               <Level>2</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <!--Tier 3-->
+      <EnhancementTreeItem>
+         <Name>Sacred Fist: Sacred Strike III</Name>
+         <InternalName>SFSacredStrikeIII</InternalName>
+         <Description>+1 to Attack and Damage with Favored Weapons.</Description>
+         <Icon>SFSacredStrikeI</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Sacred Fist</Class>
+               <Level>3</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>SFSacredStrikeII</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+         </Effect>
+         <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+         </Effect>
+         <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+         </Effect>
+         <Effect>
+            <Type>Seeker</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Sacred Fist: Exalted Smite</Name>
+         <InternalName>SFExaltedSmite</InternalName>
+         <Description>Active: An improved Smite Evil that adds 
 +[0/1/2] to your weapon's critical threat range
 +[1/1/2] to your weapon's critical damage multiplier
 Cooldown: [5/4/3] seconds
@@ -361,301 +833,440 @@ evil creatures, gaining twice your Charisma bonus to your attack roll, and a
 damage bonus based on your Paladin level. Smites return at a rate of one every
 90 seconds. In addition, your Smite Evil and Exalted Smite abilities increase
 Melee and Ranged Power by 5 for 10 seconds.</Description>
-      <Icon>SFExaltedSmite</Icon>
-      <XPosition>1</XPosition>
-      <YPosition>3</YPosition>
-      <CostPerRank size="1">2</CostPerRank>
-      <Ranks>3</Ranks>
-      <MinSpent>10</MinSpent>
-      <Clickie/>
-      <Requirements>
-        <Requirement>
-          <Class>Sacred Fist</Class>
-          <Level>3</Level>
-        </Requirement>
-      </Requirements>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Sacred Fist: Light of Hope</Name>
-      <InternalName>SFLightOfHope</InternalName>
-      <Description>+1 Sacred Flame dice. Your Sacred Flame toggle now allows you to strike
+         <Icon>SFExaltedSmite</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Class>Sacred Fist</Class>
+               <Level>3</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Sacred Fist: Light of Hope</Name>
+         <InternalName>SFLightOfHope</InternalName>
+         <Description>+1 Sacred Flame dice. Your Sacred Flame toggle now allows you to strike
 Incorporeal enemies as if you had Ghost Touch.</Description>
-      <Icon>SFLightOfHope</Icon>
-      <XPosition>2</XPosition>
-      <YPosition>3</YPosition>
-      <CostPerRank size="1">2</CostPerRank>
-      <Ranks>1</Ranks>
-      <MinSpent>10</MinSpent>
-      <ArrowUp/>
-      <Requirements>
-        <Requirement>
-          <Class>Sacred Fist</Class>
-          <Level>3</Level>
-        </Requirement>
-      </Requirements>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Sacred Fist: Instinctive Defense</Name>
-      <InternalName>SFInstinctiveDefense</InternalName>
-      <Description>You take [5/10/15]% less damage while Helpless.</Description>
-      <Icon>SFInstinctiveDefense</Icon>
-      <XPosition>3</XPosition>
-      <YPosition>3</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
-      <MinSpent>10</MinSpent>
-      <Requirements>
-        <Requirement>
-          <Class>Sacred Fist</Class>
-          <Level>3</Level>
-        </Requirement>
-      </Requirements>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Sacred Fist: Ability I</Name>
-      <InternalName>SFAbilityI</InternalName>
-      <Description>Strength or Charisma</Description>
-      <Icon>StrCha</Icon>
-      <XPosition>4</XPosition>
-      <YPosition>3</YPosition>
-      <CostPerRank size="1">2</CostPerRank>
-      <Ranks>1</Ranks>
-      <MinSpent>10</MinSpent>
-      <ArrowUp/>
-      <Requirements>
-        <Requirement>
-          <Class>Sacred Fist</Class>
-          <Level>3</Level>
-        </Requirement>
-      </Requirements>
-       <Selector>
-          <EnhancementSelection>
-             <Name>Shadowguard: +1 Strength</Name>
-             <Description>+1 Strength</Description>
-             <Icon>Strength</Icon>
-             <CostPerRank size="1">2</CostPerRank>
-             <Effect>
-                <Type>AbilityBonus</Type>
-                <Bonus>Enhancement</Bonus>
-                <Amount>1</Amount>
-                <Ability>Strength</Ability>
-             </Effect>
-          </EnhancementSelection>
-          <EnhancementSelection>
-             <Name>Shadowguard: +1 Charisma</Name>
-             <Description>+1 Charisma</Description>
-             <Icon>Charisma</Icon>
-             <CostPerRank size="1">2</CostPerRank>
-             <Effect>
-                <Type>AbilityBonus</Type>
-                <Bonus>Enhancement</Bonus>
-                <Amount>1</Amount>
-                <Ability>Charisma</Ability>
-             </Effect>
-          </EnhancementSelection>
-       </Selector>
-    </EnhancementTreeItem>
-    <!--Tier 4-->
-    <EnhancementTreeItem>
-      <Name>Sacred Fist: Sacred Strike IV</Name>
-      <InternalName>SFSacredStrikeIV</InternalName>
-      <Description>+2 to Attack and +1 to Damage with Favored Weapons.</Description>
-      <Icon>SFSacredStrikeI</Icon>
-      <XPosition>0</XPosition>
-      <YPosition>4</YPosition>
-      <CostPerRank size="1">2</CostPerRank>
-      <Ranks>1</Ranks>
-      <MinSpent>20</MinSpent>
-      <ArrowUp/>
-      <Requirements>
-        <Requirement>
-          <Class>Sacred Fist</Class>
-          <Level>4</Level>
-        </Requirement>
-        <Requirement>
-          <Enhancement>SFSacredStrikeIII</Enhancement>
-        </Requirement>
-      </Requirements>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Sacred Fist: Deflect Arrows</Name>
-      <InternalName>SFDeflect Arrows</InternalName>
-      <Description>You gain the benefits of the Deflect Arrows feat, knocking aside one incoming
+         <Icon>SFLightOfHope</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Sacred Fist</Class>
+               <Level>3</Level>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <DisplayName>Sacred Flame</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Dice>
+               <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
+               <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
+               <Energy>Fire</Energy>
+               <ScalesWithMeleePower/>
+            </Dice>
+            <Stance>Sacred Flame</Stance>
+            <Stance>Centered</Stance>
+            <Weapon>All</Weapon>
+            <IsItemSpecific/>
+         </Effect>
+         <Effect>
+            <DisplayName>Sacred Flame</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Dice>
+               <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
+               <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
+               <Energy>Fire</Energy>
+               <ScalesWithMeleePower/>
+            </Dice>
+            <Stance>Sacred Flame</Stance>
+            <Stance>Centered</Stance>
+            <Weapon>All</Weapon>
+            <IsItemSpecific/>
+         </Effect>
+          <Effect>
+              <Type>GhostTouch</Type>
+              <Bonus>Enhancement</Bonus>
+              <Amount>1</Amount>
+              <Weapon>All</Weapon>
+              <Stance>Sacred Flame</Stance>
+          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Sacred Fist: Instinctive Defense</Name>
+         <InternalName>SFInstinctiveDefense</InternalName>
+         <Description>You take [5/10/15]% less damage while Helpless.</Description>
+         <Icon>SFInstinctiveDefense</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Sacred Fist</Class>
+               <Level>3</Level>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>HelplessDamageReduction</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">5 10 15</AmountVector>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Sacred Fist: Ability I</Name>
+         <InternalName>SFAbilityI</InternalName>
+         <Description>Strength or Charisma</Description>
+         <Icon>StrCha</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Sacred Fist</Class>
+               <Level>3</Level>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Shadowguard: +1 Strength</Name>
+               <Description>+1 Strength</Description>
+               <Icon>Strength</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Amount>1</Amount>
+                  <Ability>Strength</Ability>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Shadowguard: +1 Charisma</Name>
+               <Description>+1 Charisma</Description>
+               <Icon>Charisma</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Amount>1</Amount>
+                  <Ability>Charisma</Ability>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <!--Tier 4-->
+      <EnhancementTreeItem>
+         <Name>Sacred Fist: Sacred Strike IV</Name>
+         <InternalName>SFSacredStrikeIV</InternalName>
+         <Description>+2 to Attack and +1 to Damage with Favored Weapons.</Description>
+         <Icon>SFSacredStrikeI</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Sacred Fist</Class>
+               <Level>4</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>SFSacredStrikeIII</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+         </Effect>
+         <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+         </Effect>
+         <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+         </Effect>
+         <Effect>
+            <Type>Seeker</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Sacred Fist: Deflect Arrows</Name>
+         <InternalName>SFDeflect Arrows</InternalName>
+         <Description>You gain the benefits of the Deflect Arrows feat, knocking aside one incoming
 projectile that would have struck you every 6 seconds.</Description>
-      <Icon>SFDeflectArrows</Icon>
-      <XPosition>1</XPosition>
-      <YPosition>4</YPosition>
-      <CostPerRank size="1">2</CostPerRank>
-      <Ranks>1</Ranks>
-      <MinSpent>20</MinSpent>
-      <Requirements>
-        <Requirement>
-          <Class>Sacred Fist</Class>
-          <Level>4</Level>
-        </Requirement>
-      </Requirements>
-      <Effect>
-        <Type>GrantFeat</Type>
-        <Bonus>Enhancement</Bonus>
-        <Feat>Deflect Arrows</Feat>
-      </Effect>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Sacred Fist: Light of Glory</Name>
-      <InternalName>SFLightOfGlory</InternalName>
-      <Description>+1 Sacred Flame dice. Your Sacred Flame damage is now Light instead of Fire.</Description>
-      <Icon>SFLightOfGlory</Icon>
-      <XPosition>2</XPosition>
-      <YPosition>4</YPosition>
-      <CostPerRank size="1">2</CostPerRank>
-      <Ranks>1</Ranks>
-      <MinSpent>20</MinSpent>
-      <Requirements>
-        <Requirement>
-          <Class>Sacred Fist</Class>
-          <Level>4</Level>
-        </Requirement>
-        <Requirement>
-          <Enhancement>SFLightOfHope</Enhancement>
-        </Requirement>
-      </Requirements>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Sacred Fist: Iron Skin</Name>
-      <InternalName>SFIronSkin</InternalName>
-      <Description>While centered, you gain +[5/10/15] Physical Resistance Rating.</Description>
-      <Icon>SFIronSkin</Icon>
-      <XPosition>3</XPosition>
-      <YPosition>4</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
-      <MinSpent>20</MinSpent>
-      <Requirements>
-        <Requirement>
-          <Class>Sacred Fist</Class>
-          <Level>4</Level>
-        </Requirement>
-      </Requirements>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Sacred Fist: Ability II</Name>
-      <InternalName>SFAbilityII</InternalName>
-      <Description>Strength or Charisma</Description>
-      <Icon>StrCha</Icon>
-      <XPosition>4</XPosition>
-      <YPosition>4</YPosition>
-      <CostPerRank size="1">2</CostPerRank>
-      <Ranks>1</Ranks>
-      <MinSpent>20</MinSpent>
-      <Requirements>
-        <Requirement>
-          <Class>Sacred Fist</Class>
-          <Level>4</Level>
-        </Requirement>
-        <Requirement>
-          <Enhancement>SFAbilityI</Enhancement>
-        </Requirement>
-      </Requirements>
-       <Selector>
-          <EnhancementSelection>
-             <Name>Shadowguard: +1 Strength</Name>
-             <Description>+1 Strength</Description>
-             <Icon>Strength</Icon>
-             <CostPerRank size="1">2</CostPerRank>
-             <Effect>
-                <Type>AbilityBonus</Type>
-                <Bonus>Enhancement</Bonus>
-                <Amount>1</Amount>
-                <Ability>Strength</Ability>
-             </Effect>
-          </EnhancementSelection>
-          <EnhancementSelection>
-             <Name>Shadowguard: +1 Charisma</Name>
-             <Description>+1 Charisma</Description>
-             <Icon>Charisma</Icon>
-             <CostPerRank size="1">2</CostPerRank>
-             <Effect>
-                <Type>AbilityBonus</Type>
-                <Bonus>Enhancement</Bonus>
-                <Amount>1</Amount>
-                <Ability>Charisma</Ability>
-             </Effect>
-          </EnhancementSelection>
-       </Selector>
-    </EnhancementTreeItem>
-    <!--Tier 5-->
-    <EnhancementTreeItem>
-      <Name>Sacred Fist: Sacred Strike V</Name>
-      <InternalName>SFSacredStrikeV</InternalName>
-      <Description>+3 to Attack and Damage with Favored Weapons, +10 Melee Power.</Description>
-      <Icon>SFSacredStrikeI</Icon>
-      <XPosition>0</XPosition>
-      <YPosition>5</YPosition>
-      <CostPerRank size="1">2</CostPerRank>
-      <Ranks>1</Ranks>
-      <MinSpent>30</MinSpent>
-      <Tier5/>
-      <Requirements>
-        <Requirement>
-          <MinLevel>12</MinLevel>
-        </Requirement>
-        <Requirement>
-          <Class>Sacred Fist</Class>
-          <Level>5</Level>
-        </Requirement>
-        <Requirement>
-          <Enhancement>SFSacredStrikeIV</Enhancement>
-        </Requirement>
-      </Requirements>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Sacred Fist: Evasive Dance</Name>
-      <InternalName>SFEvasiveDance</InternalName>
-      <Description>Improves your Evasion ability so on a failed Reflex saving throw against
+         <Icon>SFDeflectArrows</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Sacred Fist</Class>
+               <Level>4</Level>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Enhancement</Bonus>
+            <Feat>Deflect Arrows</Feat>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Sacred Fist: Light of Glory</Name>
+         <InternalName>SFLightOfGlory</InternalName>
+         <Description>+1 Sacred Flame dice. Your Sacred Flame damage is now Light instead of Fire.</Description>
+         <Icon>SFLightOfGlory</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Sacred Fist</Class>
+               <Level>4</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>SFLightOfHope</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <DisplayName>Sacred Flame</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Dice>
+               <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
+               <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
+               <Energy>Fire</Energy>
+               <ScalesWithMeleePower/>
+            </Dice>
+            <Stance>Sacred Flame</Stance>
+            <Stance>Centered</Stance>
+            <Weapon>All</Weapon>
+            <IsItemSpecific/>
+         </Effect>
+         <Effect>
+            <DisplayName>Sacred Flame</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Stacking</Bonus>
+            <Dice>
+               <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
+               <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
+               <Energy>Fire</Energy>
+               <ScalesWithMeleePower/>
+            </Dice>
+            <Stance>Sacred Flame</Stance>
+            <Stance>Centered</Stance>
+            <Weapon>All</Weapon>
+            <IsItemSpecific/>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Sacred Fist: Iron Skin</Name>
+         <InternalName>SFIronSkin</InternalName>
+         <Description>While centered, you gain +[5/10/15] Physical Resistance Rating.</Description>
+         <Icon>SFIronSkin</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Sacred Fist</Class>
+               <Level>4</Level>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>PRR</Type>
+            <Bonus>Enhancement</Bonus>
+            <Stance>Centered</Stance>
+            <AmountVector size="3">5 10 20</AmountVector>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Sacred Fist: Ability II</Name>
+         <InternalName>SFAbilityII</InternalName>
+         <Description>Strength or Charisma</Description>
+         <Icon>StrCha</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Sacred Fist</Class>
+               <Level>4</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>SFAbilityI</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Shadowguard: +1 Strength</Name>
+               <Description>+1 Strength</Description>
+               <Icon>Strength</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Amount>1</Amount>
+                  <Ability>Strength</Ability>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Shadowguard: +1 Charisma</Name>
+               <Description>+1 Charisma</Description>
+               <Icon>Charisma</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Amount>1</Amount>
+                  <Ability>Charisma</Ability>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <!--Tier 5-->
+      <EnhancementTreeItem>
+         <Name>Sacred Fist: Sacred Strike V</Name>
+         <InternalName>SFSacredStrikeV</InternalName>
+         <Description>+3 to Attack and Damage with Favored Weapons, +10 Melee Power.</Description>
+         <Icon>SFSacredStrikeI</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>5</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>12</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Class>Sacred Fist</Class>
+               <Level>5</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>SFSacredStrikeIV</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>3</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+         </Effect>
+         <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>3</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+         </Effect>
+         <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>3</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+         </Effect>
+         <Effect>
+            <Type>Seeker</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>3</Amount>
+            <Weapon>All</Weapon>
+            <Stance>Favored Weapon</Stance>
+         </Effect>
+         <Effect>
+            <Type>MeleePower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>10</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Sacred Fist: Evasive Dance</Name>
+         <InternalName>SFEvasiveDance</InternalName>
+         <Description>Improves your Evasion ability so on a failed Reflex saving throw against
 an attack that normally deals half damage on a successful save, you only take
 [85/70/50]% damage.</Description>
-      <Icon>SFEvasiveDance</Icon>
-      <XPosition>1</XPosition>
-      <YPosition>5</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
-      <MinSpent>30</MinSpent>
-      <Tier5/>
-      <Requirements>
-        <Requirement>
-          <MinLevel>12</MinLevel>
-        </Requirement>
-        <Requirement>
-          <Class>Sacred Fist</Class>
-          <Level>5</Level>
-        </Requirement>
-      </Requirements>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Sacred Fist: Divine Strike</Name>
-      <InternalName>SFDivineStrike</InternalName>
-      <Description>You gain OnVorpal: Stun any Demons or Devils with no save for 3 seconds.</Description>
-      <Icon>SFDivineStrike</Icon>
-      <XPosition>2</XPosition>
-      <YPosition>5</YPosition>
-      <CostPerRank size="1">2</CostPerRank>
-      <Ranks>1</Ranks>
-      <MinSpent>30</MinSpent>
-      <Tier5/>
-      <Requirements>
-        <Requirement>
-          <MinLevel>12</MinLevel>
-        </Requirement>
-        <Requirement>
-          <Class>Sacred Fist</Class>
-          <Level>5</Level>
-        </Requirement>
-      </Requirements>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Sacred Fist: Avenging Whirlwind</Name>
-      <InternalName>SFAvengingWhirlwind</InternalName>
-      <Description>Make a sweeping martial arts attack against all nearby enemies for +5[W]
+         <Icon>SFEvasiveDance</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>5</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>12</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Class>Sacred Fist</Class>
+               <Level>5</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Sacred Fist: Divine Strike</Name>
+         <InternalName>SFDivineStrike</InternalName>
+         <Description>You gain On Vorpal: Stun any Demons or Devils with no save for 3 seconds.</Description>
+         <Icon>SFDivineStrike</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>5</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>12</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Class>Sacred Fist</Class>
+               <Level>5</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Sacred Fist: Avenging Whirlwind</Name>
+         <InternalName>SFAvengingWhirlwind</InternalName>
+         <Description>Make a sweeping martial arts attack against all nearby enemies for +5[W]
 damage. Damaged enemies gain one stack of Vulnerability.
 
 Shares a cooldown with the Great Cleave feat.
@@ -664,45 +1275,45 @@ Vulnerability: You take 1% more damage for 3 seconds. This effect stacks up to
 20 times, and loses one stack on expiration.
 Cost: 18 Ki
 Cooldown: 5 seconds.</Description>
-      <Icon>SFAvengingWhirlwind</Icon>
-      <XPosition>3</XPosition>
-      <YPosition>5</YPosition>
-      <CostPerRank size="1">2</CostPerRank>
-      <Ranks>1</Ranks>
-      <MinSpent>30</MinSpent>
-      <Clickie/>
-      <Tier5/>
-      <Requirements>
-        <Requirement>
-          <MinLevel>12</MinLevel>
-        </Requirement>
-        <Requirement>
-          <Class>Sacred Fist</Class>
-          <Level>5</Level>
-        </Requirement>
-      </Requirements>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Sacred Fist: Violence Begets Violence</Name>
-      <InternalName>SFViolenceBegetsViolence</InternalName>
-      <Description>While Centered, when an opponent misses you in melee, you gain +1 critical
+         <Icon>SFAvengingWhirlwind</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>5</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Clickie/>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>12</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Class>Sacred Fist</Class>
+               <Level>5</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Sacred Fist: Violence Begets Violence</Name>
+         <InternalName>SFViolenceBegetsViolence</InternalName>
+         <Description>While Centered, when an opponent misses you in melee, you gain +1 critical
 threat range for 6 seconds. This stacks up to 5 times and is reset if you critically hit.</Description>
-      <Icon>SFViolenceBegetsViolence</Icon>
-      <XPosition>4</XPosition>
-      <YPosition>5</YPosition>
-      <CostPerRank size="1">2</CostPerRank>
-      <Ranks>1</Ranks>
-      <MinSpent>30</MinSpent>
-      <Tier5/>
-      <Requirements>
-        <Requirement>
-          <MinLevel>12</MinLevel>
-        </Requirement>
-        <Requirement>
-          <Class>Sacred Fist</Class>
-          <Level>5</Level>
-        </Requirement>
-      </Requirements>
-    </EnhancementTreeItem>
-  </EnhancementTree>
+         <Icon>SFViolenceBegetsViolence</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>5</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>12</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Class>Sacred Fist</Class>
+               <Level>5</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+   </EnhancementTree>
 </Enhancements>

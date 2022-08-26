@@ -544,8 +544,8 @@
       <Name>Zarigan's Arcane Enlightenment</Name>
       <Description>Zarigan's Arcane Enlightenment:
 2: -10% Arcane Spell Failure
-3: +1 to your Transmutation and Conjuration DCs
-4: +1 to your Enchantment and Necromancy DCs</Description>
+3: +20 Force Spell Power
+4: +1 All Spell DCs</Description>
       <Icon>ZarigansArcaneEnlightenment</Icon>
       <Effect>
          <DisplayName>Zarigan's Arcane Enlightenment: -10% Arcane Spell Failure</DisplayName>
@@ -554,32 +554,18 @@
          <AmountVector size="4">0 -10 -10 -10</AmountVector>
       </Effect>
       <Effect>
-         <DisplayName>Zarigan's Arcane Enlightenment: +1 Transmutation DCs</DisplayName>
-         <Type>SpellDC</Type>
+         <DisplayName>Zarigan's Arcane Enlightenment: +20 Force Spellpower</DisplayName>
+         <Type>SpellPower</Type>
          <Bonus>Stacking</Bonus>
-         <AmountVector size="4">0 0 1 1</AmountVector>
-         <School>Transmutation</School>
+         <AmountVector size="4">0 0 20 20</AmountVector>
+         <SpellPower>Force/Untyped</SpellPower>
       </Effect>
       <Effect>
-         <DisplayName>Zarigan's Arcane Enlightenment: +1 Conjuration DCs</DisplayName>
-         <Type>SpellDC</Type>
-         <Bonus>Stacking</Bonus>
-         <AmountVector size="4">0 0 1 1</AmountVector>
-         <School>Conjuration</School>
-      </Effect>
-      <Effect>
-         <DisplayName>Zarigan's Arcane Enlightenment: +1 Enchantment DCs</DisplayName>
+         <DisplayName>Zarigan's Arcane Enlightenment: +1 Spell DCs</DisplayName>
          <Type>SpellDC</Type>
          <Bonus>Stacking</Bonus>
          <AmountVector size="4">0 0 0 1</AmountVector>
-         <School>Enchantment</School>
-      </Effect>
-      <Effect>
-         <DisplayName>Zarigan's Arcane Enlightenment: +1 Necromancy DCs</DisplayName>
-         <Type>SpellDC</Type>
-         <Bonus>Stacking</Bonus>
-         <AmountVector size="4">0 0 0 1</AmountVector>
-         <School>Necromancy</School>
+         <School>All</School>
       </Effect>
    </SetBonus>
    <SetBonus>
@@ -2933,7 +2919,7 @@
 3: +25 Artifact bonus to Universal Spell Power
 3: +3 Artifact bonus to Intelligence, Wisdom and Charisma
 3: +3 Artifact bonus to Spell DCs
-3: +30Stacking bonus to Magical Resistance rating Cap</Description>
+3: +30 Artifact bonus to Magical Resistance rating Cap</Description>
       <Icon>LegendaryEsotericInitiate</Icon>
       <Effect>
          <DisplayName>Legendary Esoteric Initiate: Universal Spell Power</DisplayName>
@@ -2972,7 +2958,7 @@
       <Effect>
          <DisplayName>Legendary Esoteric Initiate: MRR Cap</DisplayName>
          <Type>MRRCap</Type>
-         <Bonus>Stacking</Bonus>
+         <Bonus>Artifact</Bonus>
          <AmountVector size="3">0 0 30</AmountVector>
       </Effect>
    </SetBonus>
@@ -5302,15 +5288,14 @@ You must have 4 or more Greensteel items equipped.
    <SetBonus>
       <Name>Legendary Elder's Knowledge</Name>
       <Description>Legendary Elder's Knowledge:
-2: +6% Artifact bonus to Spell Critical Chance
+2: +6% Artifact bonus to Universal Spell Critical Chance
 2: +15% Legendary bonus to Spell Critical Damage</Description>
       <Icon>LegendaryEldersKnowledge</Icon>
       <Effect>
          <DisplayName>Legendary Elder's Knowledge: Spell Critical Chance</DisplayName>
-         <Type>SpellLore</Type>
+         <Type>UniversalSpellLore</Type>
          <Bonus>Artifact</Bonus>
          <AmountVector size="2">0 6</AmountVector>
-         <SpellPower>All</SpellPower>
       </Effect>
       <Effect>
          <DisplayName>Legendary Elder's Knowledge: Spell Critical Damage</DisplayName>
