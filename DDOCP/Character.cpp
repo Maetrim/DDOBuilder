@@ -1130,7 +1130,7 @@ void Character::SetSkillTome(SkillType skill, size_t value)
     VerifyTrainedFeats();
 }
 
-void Character::SetClass1(size_t level, ClassType type)
+void Character::SetClass1(ClassType type)
 {
     ClassType classFrom = Class1();
     if (Class1() != Class_Unknown)
@@ -1150,7 +1150,7 @@ void Character::SetClass1(size_t level, ClassType type)
         Set_Class3(Class_Unknown);
     }
     // now set all levels that were classFrom to current Class1
-    for (level = 0; level < MAX_CLASS_LEVELS; ++level)
+    for (size_t level = 0; level < MAX_CLASS_LEVELS; ++level)
     {
         if (!LevelData(level).HasClass()
                 || LevelData(level).Class() == classFrom
@@ -1173,7 +1173,7 @@ void Character::SetClass1(size_t level, ClassType type)
     NotifyStanceDeactivated("Force correct update of effects");
 }
 
-void Character::SetClass2(size_t level, ClassType type)
+void Character::SetClass2(ClassType type)
 {
     ClassType classFrom = Class2();
     if (Class2() != Class_Unknown)
@@ -1193,7 +1193,7 @@ void Character::SetClass2(size_t level, ClassType type)
         Set_Class3(Class_Unknown);
     }
     // now set all levels that were classFrom to current Class1
-    for (level = 0; level < MAX_CLASS_LEVELS; ++level)
+    for (size_t level = 0; level < MAX_CLASS_LEVELS; ++level)
     {
         if (!LevelData(level).HasClass()
                 || LevelData(level).Class() == classFrom
@@ -1216,7 +1216,7 @@ void Character::SetClass2(size_t level, ClassType type)
     NotifyStanceDeactivated("Force correct update of effects");
 }
 
-void Character::SetClass3(size_t level, ClassType type)
+void Character::SetClass3(ClassType type)
 {
     ClassType classFrom = Class3();
     if (Class3() != Class_Unknown)
@@ -1230,7 +1230,7 @@ void Character::SetClass3(size_t level, ClassType type)
     }
     Set_Class3(type);
     // now set all levels that were classFrom to current Class1
-    for (level = 0; level < MAX_CLASS_LEVELS; ++level)
+    for (size_t level = 0; level < MAX_CLASS_LEVELS; ++level)
     {
         if (!LevelData(level).HasClass()
                 || LevelData(level).Class() == classFrom
@@ -1284,6 +1284,31 @@ void Character::SetClass(size_t level, ClassType type)
     if (pSC != NULL)
     {
         pSC->UpdateSpells(oldCasterLevelFrom);
+    }
+    // it is possible to select multiple archetype classes before assigning
+    // levels. If they do this we need to revoke the archetype/default class
+    // selection at he point at which the first class level is set for the
+    // archetype/default
+    size_t c1Levels = ClassLevels(Class1());
+    size_t c2Levels = ClassLevels(Class2());
+    size_t c3Levels = ClassLevels(Class3());
+    if ((c2Levels > 0 && SameArchetype(Class1(), Class2()))
+            || (c3Levels > 0 && SameArchetype(Class1(), Class3())))
+    {
+        // need to revoke class 1 selection
+        SetClass1(Class_Unknown);
+    }
+    if ((c1Levels > 0 && SameArchetype(Class1(), Class2()))
+            || (c3Levels > 0 && SameArchetype(Class2(), Class3())))
+    {
+        // need to revoke class 2 selection
+        SetClass2(Class_Unknown);
+    }
+    if ((c2Levels > 0 && SameArchetype(Class2(), Class3()))
+            || (c1Levels > 0 && SameArchetype(Class1(), Class3())))
+    {
+        // need to revoke class 3 selection
+        SetClass3(Class_Unknown);
     }
 }
 

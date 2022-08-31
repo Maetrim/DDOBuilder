@@ -1147,7 +1147,7 @@ void CFeatsClassControl::DoClass1()
         {
             sel -= ID_CLASS_UNKNOWN;
             ClassType ct = (ClassType)(sel);
-            m_pCharacter->SetClass1(0, ct); // level does not matter
+            m_pCharacter->SetClass1(ct);
         }
     }
 }
@@ -1225,7 +1225,7 @@ void CFeatsClassControl::DoClass2()
         {
             sel -= ID_CLASS_UNKNOWN;
             ClassType ct = (ClassType)(sel);
-            m_pCharacter->SetClass2(0, ct); // level does not matter
+            m_pCharacter->SetClass2(ct);
         }
     }
 }
@@ -1303,7 +1303,7 @@ void CFeatsClassControl::DoClass3()
         {
             sel -= ID_CLASS_UNKNOWN;
             ClassType ct = (ClassType)(sel);
-            m_pCharacter->SetClass3(0, ct); // level does not matter
+            m_pCharacter->SetClass3(ct);
         }
     }
 }

@@ -129,9 +129,9 @@ class Character :
         // class selection
         bool IsClassAvailable(ClassType type) const;
         bool IsClassRestricted(ClassType type) const;
-        void SetClass1(size_t level, ClassType type);
-        void SetClass2(size_t level, ClassType type);
-        void SetClass3(size_t level, ClassType type);
+        void SetClass1(ClassType type);
+        void SetClass2(ClassType type);
+        void SetClass3(ClassType type);
         void SetClass(size_t level, ClassType type);
         void SwapClasses(size_t level1, size_t level2);
         bool RevokeClass(ClassType type);

@@ -1338,21 +1338,21 @@ void CLevelUpView::OnClass1Selected()
 {
     // class selection complete
     ClassType type = (ClassType)GetComboboxSelection(&m_comboClass[0]);
-    m_pCharacter->SetClass1(m_level, type);
+    m_pCharacter->SetClass1(type);
 }
 
 void CLevelUpView::OnClass2Selected()
 {
     // class selection complete
     ClassType type = (ClassType)GetComboboxSelection(&m_comboClass[1]);
-    m_pCharacter->SetClass2(m_level, type);
+    m_pCharacter->SetClass2(type);
 }
 
 void CLevelUpView::OnClass3Selected()
 {
     // class selection complete
     ClassType type = (ClassType)GetComboboxSelection(&m_comboClass[2]);
-    m_pCharacter->SetClass3(m_level, type);
+    m_pCharacter->SetClass3(type);
 }
 
 bool CLevelUpView::CanBuySkill(SkillType skill) const
