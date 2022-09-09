@@ -40,29 +40,58 @@ void BreakdownItemMaximumKi::CreateOtherEffects()
     if (m_pCharacter != NULL)
     {
         m_otherEffects.clear();
-        BreakdownItem * pWisdom = FindBreakdown(Breakdown_Wisdom);
-        if (pWisdom != NULL)
-        {
-            pWisdom->AttachObserver(this);      // need to track changes
-            int total = static_cast<int>(pWisdom->Total());
-            int wisStatBonus =  BaseStatToBonus(total);
-            ActiveEffect wisBonus(
-                    Bonus_ability,
-                    "Wisdom bonus x5",
-                    1,
-                    wisStatBonus * 5,
-                    "");        // no tree
-            AddOtherEffect(wisBonus);
-        }
+        m_itemEffects.clear();
         // monk level bonus
         std::vector<size_t> classLevels = m_pCharacter->ClassLevels(m_pCharacter->MaxLevel());
         size_t monkLevels = classLevels[Class_Monk];
         if (monkLevels > 0)
         {
+            // monks get Ki bonus from Wisdom
+            BreakdownItem * pWisdom = FindBreakdown(Breakdown_Wisdom);
+            if (pWisdom != NULL)
+            {
+                pWisdom->AttachObserver(this);      // need to track changes
+                int total = static_cast<int>(pWisdom->Total());
+                int wisStatBonus =  BaseStatToBonus(total);
+                ActiveEffect wisBonus(
+                        Bonus_ability,
+                        "Wisdom bonus x5",
+                        1,
+                        wisStatBonus * 5,
+                        "");        // no tree
+                AddItemEffect(wisBonus);
+            }
             ActiveEffect classBonus(
                     Bonus_class,
                     "Monk levels x10",
                     monkLevels,
+                    10,
+                    "");        // no tree
+            AddOtherEffect(classBonus);
+        }
+        // sacred fist level bonus
+        size_t sacredFistLevels = classLevels[Class_PaladinSacredFist];
+        if (sacredFistLevels > 0)
+        {
+            // Sacred Fists get Ki bonus from Charisma
+            BreakdownItem * pCharisma = FindBreakdown(Breakdown_Charisma);
+            if (pCharisma != NULL)
+            {
+                pCharisma->AttachObserver(this);      // need to track changes
+                int total = static_cast<int>(pCharisma->Total());
+                int chaStatBonus =  BaseStatToBonus(total);
+                ActiveEffect chaBonus(
+                        Bonus_ability,
+                        "Charisma bonus x5",
+                        1,
+                        chaStatBonus * 5,
+                        "");        // no tree
+                AddItemEffect(chaBonus);
+            }
+            ActiveEffect classBonus(
+                    Bonus_class,
+                    "Sacred Fist levels x10",
+                    sacredFistLevels,
                     10,
                     "");        // no tree
             AddOtherEffect(classBonus);

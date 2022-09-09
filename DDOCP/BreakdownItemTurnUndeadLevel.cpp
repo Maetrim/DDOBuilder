@@ -45,11 +45,16 @@ void BreakdownItemTurnUndeadLevel::CreateOtherEffects()
         // effective cleric level or effective paladin level - 3
         // get the caster level breakdowns for cleric and paladin
         BreakdownItem * pCB = FindBreakdown(Breakdown_CasterLevel_Cleric);
-        pCB->AttachObserver(this);
+        BreakdownItem * pDAB = FindBreakdown(Breakdown_CasterLevel_DarkApostate);
+        pDAB->AttachObserver(this);
+
         BreakdownItem * pPB = FindBreakdown(Breakdown_CasterLevel_Paladin);
+        BreakdownItem * pSFB = FindBreakdown(Breakdown_CasterLevel_SacredFist);
         pPB->AttachObserver(this);
-        double clericLevels = pCB->Total();
-        double paladinLevels = pPB->Total() - 3;
+        pSFB->AttachObserver(this);
+
+        double clericLevels = max(pCB->Total(), pDAB->Total());
+        double paladinLevels = max(pPB->Total(), pSFB->Total()) - 3;
         if (clericLevels >= paladinLevels)
         {
             ActiveEffect cl(

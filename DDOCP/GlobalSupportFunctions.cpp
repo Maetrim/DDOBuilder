@@ -3258,11 +3258,11 @@ BreakdownType ClassToCasterLevelsBreakdown(ClassType ct)
     case Class_Alchemist: bt = Breakdown_CasterLevel_Alchemist; break;
     case Class_Artificer: bt = Breakdown_CasterLevel_Artificer; break;
     case Class_Cleric: bt = Breakdown_CasterLevel_Cleric; break;
-    case Class_ClericDarkApostate: bt = Breakdown_CasterLevel_Cleric; break;
+    case Class_ClericDarkApostate: bt = Breakdown_CasterLevel_DarkApostate; break;
     case Class_Druid: bt = Breakdown_CasterLevel_Druid; break;
     case Class_FavoredSoul: bt = Breakdown_CasterLevel_FavoredSoul; break;
     case Class_Paladin: bt = Breakdown_CasterLevel_Paladin; break;
-    case Class_PaladinSacredFist: bt = Breakdown_CasterLevel_Paladin; break;
+    case Class_PaladinSacredFist: bt = Breakdown_CasterLevel_SacredFist; break;
     case Class_Sorcerer: bt = Breakdown_CasterLevel_Sorcerer; break;
     case Class_Ranger: bt = Breakdown_CasterLevel_Ranger; break;
     case Class_Warlock: bt = Breakdown_CasterLevel_Warlock; break;
@@ -3316,9 +3316,17 @@ size_t CasterLevel(Character * pCharacter, ClassType c)
     case Class_Artificer:
         casterLevel = (size_t)FindBreakdown(Breakdown_CasterLevel_Artificer)->Total();
         break;
+    case Class_Bard:
+        casterLevel = (size_t)FindBreakdown(Breakdown_CasterLevel_Bard)->Total();
+        break;
+    case Class_BardStormsinger:
+        casterLevel = (size_t)FindBreakdown(Breakdown_CasterLevel_BardStormsinger)->Total();
+        break;
     case Class_Cleric:
-    case Class_ClericDarkApostate:
         casterLevel = (size_t)FindBreakdown(Breakdown_CasterLevel_Cleric)->Total();
+        break;
+    case Class_ClericDarkApostate:
+        casterLevel = (size_t)FindBreakdown(Breakdown_CasterLevel_DarkApostate)->Total();
         break;
     case Class_Druid:
         casterLevel = (size_t)FindBreakdown(Breakdown_CasterLevel_Druid)->Total();
@@ -3327,8 +3335,10 @@ size_t CasterLevel(Character * pCharacter, ClassType c)
         casterLevel = (size_t)FindBreakdown(Breakdown_CasterLevel_FavoredSoul)->Total();
         break;
     case Class_Paladin:
-    case Class_PaladinSacredFist:
         casterLevel = (size_t)FindBreakdown(Breakdown_CasterLevel_Paladin)->Total();
+        break;
+    case Class_PaladinSacredFist:
+        casterLevel = (size_t)FindBreakdown(Breakdown_CasterLevel_SacredFist)->Total();
         break;
     case Class_Sorcerer:
         casterLevel = (size_t)FindBreakdown(Breakdown_CasterLevel_Sorcerer)->Total();

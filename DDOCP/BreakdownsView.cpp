@@ -1694,6 +1694,19 @@ void CBreakdownsView::AddClassCasterLevels(HTREEITEM hParent)
     }
     {
         HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Stormsinger Caster Level",
+                hParent,
+                TVI_LAST);
+        BreakdownItem * pBard = new BreakdownItemClassCasterLevel(
+                Class_BardStormsinger,
+                Breakdown_CasterLevel_BardStormsinger,
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pBard);
+        m_items.push_back(pBard);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
                 "Cleric Caster Level",
                 hParent,
                 TVI_LAST);
@@ -1704,6 +1717,19 @@ void CBreakdownsView::AddClassCasterLevels(HTREEITEM hParent)
                 hItem);
         m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pCleric);
         m_items.push_back(pCleric);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Dark Apostate Caster Level",
+                hParent,
+                TVI_LAST);
+        BreakdownItem * pDA = new BreakdownItemClassCasterLevel(
+                Class_ClericDarkApostate,
+                Breakdown_CasterLevel_DarkApostate,
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pDA);
+        m_items.push_back(pDA);
     }
     {
         HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
@@ -1743,6 +1769,19 @@ void CBreakdownsView::AddClassCasterLevels(HTREEITEM hParent)
                 hItem);
         m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pPally);
         m_items.push_back(pPally);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Sacred Fist Caster Level",
+                hParent,
+                TVI_LAST);
+        BreakdownItem * pSF = new BreakdownItemClassCasterLevel(
+                Class_PaladinSacredFist,
+                Breakdown_CasterLevel_SacredFist,
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pSF);
+        m_items.push_back(pSF);
     }
     {
         HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
