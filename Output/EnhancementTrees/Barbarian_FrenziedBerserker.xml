@@ -68,7 +68,7 @@
          <Name>Frenzied Berserker: Frenzy</Name>
          <InternalName>FBCore3</InternalName>
          <Description>Enter a frenzy, increasing your strength by +2 and adding Vicious to your
-melee weapons (+2d6 damage). This damage scales with 100% Melee Power 
+melee weapons (+2d6 damage). This damage scales with 100% Melee Power.
 Passive: +5 Melee Power
 Activation Cost: 10 Hit Points.
 Cooldown: 30 seconds.</Description>
@@ -89,6 +89,12 @@ Cooldown: 30 seconds.</Description>
                <Enhancement>FBCore2</Enhancement>
             </Requirement>
          </Requirements>
+      <Stance>
+         <Name>Frenzy</Name>
+         <Icon>FBFrenzy</Icon>
+         <Description>Enter a frenzy, increasing your strength by +2 and adding Vicious to your
+melee weapons (+2d6 damage). This damage scales with 100% Melee Power.</Description>
+      </Stance>
          <Effect>
             <Type>MeleePower</Type>
             <Bonus>Enhancement</Bonus>
@@ -155,7 +161,7 @@ Cooldown: 30 seconds.</Description>
          <Description>Expend 20 hit points to enter a Death Frenzy for one minute: 
 +4 strength, +1 critical damage multiplier on rolls of 19-20. 
 Your melee weapons gain 'Greater Vicious'. +4d6 damage to your attacks.
-This damage scales with 100% Melee Power
+This damage scales with 100% Melee Power.
 Passive: +10 Melee Power
 Activation Cost: 20 Hit Points.
 Cooldown: 30 seconds.</Description>
@@ -176,6 +182,14 @@ Cooldown: 30 seconds.</Description>
                <Enhancement>FBCore4</Enhancement>
             </Requirement>
          </Requirements>
+      <Stance>
+         <Name>Death Frenzy</Name>
+         <Icon>FBDeathFrenzy</Icon>
+         <Description>Expend 20 hit points to enter a Death Frenzy for one minute: 
++4 strength, +1 critical damage multiplier on rolls of 19-20. 
+Your melee weapons gain 'Greater Vicious'. +4d6 damage to your attacks.
+This damage scales with 100% Melee Power.</Description>
+      </Stance>
          <Effect>
             <Type>MeleePower</Type>
             <Bonus>Enhancement</Bonus>
@@ -615,6 +629,25 @@ damage and +[1/2/3] Melee Power.</Description>
                <Enhancement>FBBodyBlow</Enhancement>
             </Requirement>
          </Requirements>
+      <Stance>
+         <Name>Crazy Strike</Name>
+         <Icon>FBCrazyStrike</Icon>
+         <Description>When you hit with Cracking Attack, for 12 seconds you gain +[0.5/1/2][W]
+damage and +[1/2/3] Melee Power.</Description>
+      </Stance>
+        <Effect>
+            <Type>WeaponBaseDamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">0.5 1.0 2.0</AmountVector>
+            <Stance>Crazy Strike</Stance>
+            <Weapon>All</Weapon>
+        </Effect>
+        <Effect>
+            <Type>MeleePower</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Stance>Crazy Strike</Stance>
+        </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Frenzied Berserker: Exhausting Blow</Name>

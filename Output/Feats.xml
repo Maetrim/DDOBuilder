@@ -1020,8 +1020,9 @@ Mass Repair Serious Damage.</Description>
          <Amount>2</Amount>
       </Effect>
       <Effect>
+         <DisplayName>Bladeforged: Additional Healing Amplication Penalty</DisplayName>
          <Type>HealingAmplification</Type>
-         <Bonus>Feat</Bonus>
+         <Bonus>Penalty</Bonus>
          <Amount>-10</Amount>
       </Effect>
       <Effect>
@@ -1311,6 +1312,9 @@ against all Rage effects.</Description>
 when this mode is active.</Description>
          <IncompatibleStance>Resilience</IncompatibleStance>
          <IncompatibleStance>Rage</IncompatibleStance>
+         <IncompatibleStance>Beasthide Shifter: Shifted Form</IncompatibleStance>
+         <IncompatibleStance>Wildhunt Shifter: Shifted Form</IncompatibleStance>
+         <IncompatibleStance>Razorclaw Shifter: Shifted Form</IncompatibleStance>
          <IncompatibleStance>Power Attack</IncompatibleStance>
          <IncompatibleStance>Defensive Fighting</IncompatibleStance>
          <IncompatibleStance>Precision</IncompatibleStance>
@@ -1748,10 +1752,14 @@ three Barbarian levels thereafter.</Description>
          <Icon>DefensiveFighting</Icon>
          <Description>While using Defensive Fighting mode, you gain a 5% bonus to AC
 and a -5% penalty to-hit. Casting a spell ends this mode.</Description>
-         <IncompatibleStance>Rage</IncompatibleStance>
-         <IncompatibleStance>Resilience</IncompatibleStance>
-         <IncompatibleStance>Power Attack</IncompatibleStance>
          <IncompatibleStance>Combat Expertise</IncompatibleStance>
+         <IncompatibleStance>Resilience</IncompatibleStance>
+         <IncompatibleStance>Rage</IncompatibleStance>
+         <IncompatibleStance>Beasthide Shifter: Shifted Form</IncompatibleStance>
+         <IncompatibleStance>Wildhunt Shifter: Shifted Form</IncompatibleStance>
+         <IncompatibleStance>Razorclaw Shifter: Shifted Form</IncompatibleStance>
+         <IncompatibleStance>Power Attack</IncompatibleStance>
+         <IncompatibleStance>Precision</IncompatibleStance>
       </Stance>
       <Requirements/>
       <Acquire>Automatic</Acquire>
@@ -3976,6 +3984,7 @@ when wearing Medium armor. +10 Melee Power while the rage is active.</Descriptio
          <Ability>Strength</Ability>
          <AmountVector size="4">4 6 8 10</AmountVector>
          <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
+         <AnyOfStance>Wildhunt Shifter: Shifted Form</AnyOfStance>
          <AnyOfStance>Rage</AnyOfStance>
          <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
          <ApplyAsItemEffect/>
@@ -7540,6 +7549,12 @@ physical resistance when wearing light armor.</Description>
          <Race>Bladeforged</Race>
       </AutomaticAcquisition>
       <Effect>
+         <DisplayName>War/Blade forged: Standard Penalty to Healing Amplification</DisplayName>
+         <Type>HealingAmplification</Type>
+         <Bonus>Penalty</Bonus>
+         <Amount>-50</Amount>
+      </Effect>
+      <Effect>
          <Type>Fortification</Type>
          <Bonus>Feat</Bonus>
          <Amount>25</Amount>
@@ -10190,8 +10205,13 @@ fortification against your attacks by 25%.</Description>
          <Description>While using Precision mode, you gain +5% to hit and reduces the target's
 fortification against your attacks by 25%.</Description>
          <IncompatibleStance>Combat Expertise</IncompatibleStance>
+         <IncompatibleStance>Resilience</IncompatibleStance>
          <IncompatibleStance>Rage</IncompatibleStance>
+         <IncompatibleStance>Beasthide Shifter: Shifted Form</IncompatibleStance>
+         <IncompatibleStance>Wildhunt Shifter: Shifted Form</IncompatibleStance>
+         <IncompatibleStance>Razorclaw Shifter: Shifted Form</IncompatibleStance>
          <IncompatibleStance>Power Attack</IncompatibleStance>
+         <IncompatibleStance>Defensive Fighting</IncompatibleStance>
       </Stance>
       <Effect>
          <DisplayName>Precision - Flat 5% Extra Attack Bonus</DisplayName>
@@ -10547,10 +10567,14 @@ active. Cannot be used while raged.</Description>
          <Icon>Resilience</Icon>
          <Description>You gain a +4 to all saving throws.
 Spells have three times their normal cooldown when this mode is active.</Description>
-         <IncompatibleStance>Power Attack</IncompatibleStance>
          <IncompatibleStance>Combat Expertise</IncompatibleStance>
          <IncompatibleStance>Rage</IncompatibleStance>
+         <IncompatibleStance>Beasthide Shifter: Shifted Form</IncompatibleStance>
+         <IncompatibleStance>Wildhunt Shifter: Shifted Form</IncompatibleStance>
+         <IncompatibleStance>Razorclaw Shifter: Shifted Form</IncompatibleStance>
+         <IncompatibleStance>Power Attack</IncompatibleStance>
          <IncompatibleStance>Defensive Fighting</IncompatibleStance>
+         <IncompatibleStance>Precision</IncompatibleStance>
       </Stance>
       <FeatGroup>
          <IsStandardFeat/>
@@ -20915,7 +20939,13 @@ and prevents use of other abilities that cannot be used while Raging.</Descripti
 Armor Class and Constitution, a +2 Morale bonus to Fortitude saves, and a -2 penalty to Wisdom.
 When the form ends, however, you will lose the hit points granted by increased Constitution
 and become fatigued.</Description>
+         <IncompatibleStance>Combat Expertise</IncompatibleStance>
+         <IncompatibleStance>Resilience</IncompatibleStance>
          <IncompatibleStance>Rage</IncompatibleStance>
+         <IncompatibleStance>Razorclaw Shifter: Shifted Form</IncompatibleStance>
+         <IncompatibleStance>Power Attack</IncompatibleStance>
+         <IncompatibleStance>Defensive Fighting</IncompatibleStance>
+         <IncompatibleStance>Precision</IncompatibleStance>
       </Stance>
       <Effect>
          <Type>AbilityBonus</Type>
@@ -20984,7 +21014,13 @@ and prevents use of other abilities that cannot be used while Raging.</Descripti
          <Description>Active: Activate this Shifter ability to shift your form, granting you a +4 Rage bonus to
 Wisdom and Dexterity, a +2 Morale bonus to Fortitude saves, and a -2 penalty to Strength.
 When the form ends, however, you will become fatigued.</Description>
+         <IncompatibleStance>Combat Expertise</IncompatibleStance>
+         <IncompatibleStance>Resilience</IncompatibleStance>
          <IncompatibleStance>Rage</IncompatibleStance>
+         <IncompatibleStance>Beasthide Shifter: Shifted Form</IncompatibleStance>
+         <IncompatibleStance>Power Attack</IncompatibleStance>
+         <IncompatibleStance>Defensive Fighting</IncompatibleStance>
+         <IncompatibleStance>Precision</IncompatibleStance>
       </Stance>
       <Effect>
          <Type>AbilityBonus</Type>
@@ -26040,24 +26076,28 @@ Chaotic creatures.</Description>
       <Acquire>Train</Acquire>
       <Icon>ProtectionDomainTier4</Icon>
       <Effect>
+         <DisplayName>Protection Domain Tier IV(Cleric)</DisplayName>
          <Type>ACBonus</Type>
          <Bonus>Feat</Bonus>
          <AmountPerLevel>1</AmountPerLevel>
          <Class>Cleric</Class>
       </Effect>
       <Effect>
+         <DisplayName>Protection Domain Tier IV(Cleric)</DisplayName>
          <Type>PRR</Type>
          <Bonus>Feat</Bonus>
          <AmountPerLevel>1</AmountPerLevel>
          <Class>Cleric</Class>
       </Effect>
       <Effect>
+         <DisplayName>Protection Domain Tier IV(Dark Apostate)</DisplayName>
          <Type>ACBonus</Type>
          <Bonus>Feat</Bonus>
          <AmountPerLevel>1</AmountPerLevel>
          <Class>Dark Apostate</Class>
       </Effect>
       <Effect>
+         <DisplayName>Protection Domain Tier IV(Dark Apostate)</DisplayName>
          <Type>PRR</Type>
          <Bonus>Feat</Bonus>
          <AmountPerLevel>1</AmountPerLevel>
