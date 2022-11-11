@@ -1155,8 +1155,7 @@ Blessed Knives: Requires throwing knife. Missile attack. +5[W] damage, plus one 
       <EnhancementTreeItem>
          <Name>Vistani: Vendetta</Name>
          <InternalName>Vendetta</InternalName>
-         <Description>Activate to gain a unique +1 Critical Threat Range and +1 to Critical damage
-multiplier to your equipped daggers or throwing knife for 15 seconds. 60 second cooldown.</Description>
+         <Description>Choose</Description>
          <Icon>Vendetta</Icon>
          <XPosition>4</XPosition>
          <YPosition>5</YPosition>
@@ -1170,30 +1169,52 @@ multiplier to your equipped daggers or throwing knife for 15 seconds. 60 second 
                <MinLevel>12</MinLevel>
             </Requirement>
          </Requirements>
-         <Stance>
-            <Name>Vendetta</Name>
-            <Icon>Vendetta</Icon>
-            <Description>Activate to gain a unique +1 Critical Threat Range and +1 to Critical damage
+         <Selector>
+            <EnhancementSelection>
+               <Name>Vendetta</Name>
+               <Description>Activate to gain a unique +1 Critical Threat Range and +1 to Critical damage
 multiplier to your equipped daggers or throwing knife for 15 seconds. 60 second cooldown.</Description>
-         </Stance>
-         <Effect>
-            <Type>CriticalRange</Type>
-            <Bonus>Unique</Bonus>
-            <Amount>1</Amount>
-            <ApplyAsItemEffect/>
-            <Stance>Vendetta</Stance>
-            <Weapon>Dagger</Weapon>
-            <Weapon>Throwing Dagger</Weapon>
-         </Effect>
-         <Effect>
-            <Type>CriticalMultiplier</Type>
-            <Bonus>Unique</Bonus>
-            <Amount>1</Amount>
-            <ApplyAsItemEffect/>
-            <Stance>Vendetta</Stance>
-            <Weapon>Dagger</Weapon>
-            <Weapon>Throwing Dagger</Weapon>
-         </Effect>
+               <Icon>Vendetta</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+                 <Stance>
+                    <Name>Vendetta</Name>
+                    <Icon>Vendetta</Icon>
+                    <Description>Activate to gain a unique +1 Critical Threat Range and +1 to Critical damage
+multiplier to your equipped daggers or throwing knife for 15 seconds. 60 second cooldown.</Description>
+                 </Stance>
+                 <Effect>
+                    <Type>CriticalRange</Type>
+                    <Bonus>Unique</Bonus>
+                    <Amount>1</Amount>
+                    <ApplyAsItemEffect/>
+                    <Stance>Vendetta</Stance>
+                    <Weapon>Dagger</Weapon>
+                    <Weapon>Throwing Dagger</Weapon>
+                 </Effect>
+                 <Effect>
+                    <Type>CriticalMultiplier</Type>
+                    <Bonus>Unique</Bonus>
+                    <Amount>1</Amount>
+                    <ApplyAsItemEffect/>
+                    <Stance>Vendetta</Stance>
+                    <Weapon>Dagger</Weapon>
+                    <Weapon>Throwing Dagger</Weapon>
+                 </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Grudge Bearer</Name>
+               <Description>+25% Competence bonus to Maximum Hitpoints</Description>
+               <Icon>Vendetta</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+                <Effect>
+                    <Type>Hitpoints</Type>
+                    <Bonus>Competence</Bonus>
+                    <Amount>25</Amount>
+                    <Percent/>
+                    <ApplyAsItemEffect/>
+                </Effect>
+            </EnhancementSelection>
+         </Selector>
       </EnhancementTreeItem>
    </EnhancementTree>
 </Enhancements>

@@ -13,9 +13,9 @@
       <EnhancementTreeItem>
          <Name>Sacred Fist: Sacred Flame</Name>
          <InternalName>SFCore1</InternalName>
-         <Description>Toggle: Your melee attacks while centered deal an extra 1d6 Fire damage, scaling
-with 200% Melee Power. Each core ability in this tree grants you +5 Healing
-Amplification and +5 Positive Spellpower.</Description>
+         <Description>Toggle: Your melee attacks while centered deal an extra 1d6 Fire damage
+per Imbue Dice, scaling with 200% Melee Power. Each core ability in this tree
+grants you +5 Healing Amplification and +5 Positive Spellpower.</Description>
          <Icon>SFSacredFlame</Icon>
          <XPosition>0</XPosition>
          <YPosition>0</YPosition>
@@ -43,44 +43,19 @@ Amplification and +5 Positive Spellpower.</Description>
          <Stance>
             <Name>Sacred Flame</Name>
             <Icon>SFSacredFlame</Icon>
-            <Description>Your melee attacks while centered deal an extra 1d6 Fire damage, scaling with 200% Melee Power.</Description>
+            <Description>Your melee attacks while centered deal an extra 1d6 Fire damage per Imbue dice, scaling with 200% Melee Power.</Description>
             <Group>Imbue</Group>
          </Stance>
          <Effect>
-            <DisplayName>Sacred Flame</DisplayName>
-            <Type>WeaponOtherDamageBonus</Type>
-            <Bonus>Stacking</Bonus>
-            <Dice>
-               <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
-               <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
-               <Energy>Fire</Energy>
-               <ScalesWithMeleePower/>
-            </Dice>
-            <Stance>Sacred Flame</Stance>
-            <Stance>Centered</Stance>
-            <Weapon>All</Weapon>
-            <IsItemSpecific/>
-         </Effect>
-         <Effect>
-            <DisplayName>Sacred Flame</DisplayName>
-            <Type>WeaponOtherCriticalDamageBonus</Type>
-            <Bonus>Stacking</Bonus>
-            <Dice>
-               <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
-               <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
-               <Energy>Fire</Energy>
-               <ScalesWithMeleePower/>
-            </Dice>
-            <Stance>Sacred Flame</Stance>
-            <Stance>Centered</Stance>
-            <Weapon>All</Weapon>
-            <IsItemSpecific/>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Sacred Fist: Strike Evil</Name>
          <InternalName>SFCore2</InternalName>
-         <Description>+1 Saves and AC. +1 Sacred Flame dice. Your weapons while using Sacred Flame
+         <Description>+1 Saves and AC. +1 Imbue dice. Your weapons while using Sacred Flame
 now bypass Lawful and Good DR.</Description>
          <Icon>SFStrikeEvil</Icon>
          <XPosition>1</XPosition>
@@ -134,40 +109,15 @@ now bypass Lawful and Good DR.</Description>
             <Amount>5</Amount>
          </Effect>
          <Effect>
-            <DisplayName>Sacred Flame</DisplayName>
-            <Type>WeaponOtherDamageBonus</Type>
-            <Bonus>Stacking</Bonus>
-            <Dice>
-               <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
-               <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
-               <Energy>Fire</Energy>
-               <ScalesWithMeleePower/>
-            </Dice>
-            <Stance>Sacred Flame</Stance>
-            <Stance>Centered</Stance>
-            <Weapon>All</Weapon>
-            <IsItemSpecific/>
-         </Effect>
-         <Effect>
-            <DisplayName>Sacred Flame</DisplayName>
-            <Type>WeaponOtherCriticalDamageBonus</Type>
-            <Bonus>Stacking</Bonus>
-            <Dice>
-               <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
-               <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
-               <Energy>Fire</Energy>
-               <ScalesWithMeleePower/>
-            </Dice>
-            <Stance>Sacred Flame</Stance>
-            <Stance>Centered</Stance>
-            <Weapon>All</Weapon>
-            <IsItemSpecific/>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Sacred Fist: Soothe the Suffering</Name>
          <InternalName>SFCore3</InternalName>
-         <Description>+1 Saves and AC. +1 Sacred Flame dice.
+         <Description>+1 Saves and AC. +1 Imbue dice.
 Gain +3 Remove Disease Charges and your Remove Disease now applies Greater
 Restoration to your target.</Description>
          <Icon>SFSootheTheSuffering</Icon>
@@ -208,40 +158,15 @@ Restoration to your target.</Description>
             <Amount>5</Amount>
          </Effect>
          <Effect>
-            <DisplayName>Sacred Flame</DisplayName>
-            <Type>WeaponOtherDamageBonus</Type>
-            <Bonus>Stacking</Bonus>
-            <Dice>
-               <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
-               <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
-               <Energy>Fire</Energy>
-               <ScalesWithMeleePower/>
-            </Dice>
-            <Stance>Sacred Flame</Stance>
-            <Stance>Centered</Stance>
-            <Weapon>All</Weapon>
-            <IsItemSpecific/>
-         </Effect>
-         <Effect>
-            <DisplayName>Sacred Flame</DisplayName>
-            <Type>WeaponOtherCriticalDamageBonus</Type>
-            <Bonus>Stacking</Bonus>
-            <Dice>
-               <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
-               <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
-               <Energy>Fire</Energy>
-               <ScalesWithMeleePower/>
-            </Dice>
-            <Stance>Sacred Flame</Stance>
-            <Stance>Centered</Stance>
-            <Weapon>All</Weapon>
-            <IsItemSpecific/>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Sacred Fist: Defend Against Darkness</Name>
          <InternalName>SFCore4</InternalName>
-         <Description>+1 Saves and AC. +1 Sacred Flame dice. You gain Immunity to Energy Drain.</Description>
+         <Description>+1 Saves and AC. +1 Imbue dice. You gain Immunity to Energy Drain.</Description>
          <Icon>SFDefendAgainstDarkness</Icon>
          <XPosition>3</XPosition>
          <YPosition>0</YPosition>
@@ -285,40 +210,15 @@ Restoration to your target.</Description>
             <Amount>5</Amount>
          </Effect>
          <Effect>
-            <DisplayName>Sacred Flame</DisplayName>
-            <Type>WeaponOtherDamageBonus</Type>
-            <Bonus>Stacking</Bonus>
-            <Dice>
-               <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
-               <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
-               <Energy>Fire</Energy>
-               <ScalesWithMeleePower/>
-            </Dice>
-            <Stance>Sacred Flame</Stance>
-            <Stance>Centered</Stance>
-            <Weapon>All</Weapon>
-            <IsItemSpecific/>
-         </Effect>
-         <Effect>
-            <DisplayName>Sacred Flame</DisplayName>
-            <Type>WeaponOtherCriticalDamageBonus</Type>
-            <Bonus>Stacking</Bonus>
-            <Dice>
-               <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
-               <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
-               <Energy>Fire</Energy>
-               <ScalesWithMeleePower/>
-            </Dice>
-            <Stance>Sacred Flame</Stance>
-            <Stance>Centered</Stance>
-            <Weapon>All</Weapon>
-            <IsItemSpecific/>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Sacred Fist: Rising Hope</Name>
          <InternalName>SFCore5</InternalName>
-         <Description>+1 Saves and AC. +1 Sacred Flame dice. When you use Turn Undead, you
+         <Description>+1 Saves and AC. +1 Imbue dice. When you use Turn Undead, you
 and nearby allies gain +1 Ki on hit and +3 Ki on crit for 20 seconds.</Description>
          <Icon>SFRisingHope</Icon>
          <XPosition>4</XPosition>
@@ -358,40 +258,15 @@ and nearby allies gain +1 Ki on hit and +3 Ki on crit for 20 seconds.</Descripti
             <Amount>5</Amount>
          </Effect>
          <Effect>
-            <DisplayName>Sacred Flame</DisplayName>
-            <Type>WeaponOtherDamageBonus</Type>
-            <Bonus>Stacking</Bonus>
-            <Dice>
-               <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
-               <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
-               <Energy>Fire</Energy>
-               <ScalesWithMeleePower/>
-            </Dice>
-            <Stance>Sacred Flame</Stance>
-            <Stance>Centered</Stance>
-            <Weapon>All</Weapon>
-            <IsItemSpecific/>
-         </Effect>
-         <Effect>
-            <DisplayName>Sacred Flame</DisplayName>
-            <Type>WeaponOtherCriticalDamageBonus</Type>
-            <Bonus>Stacking</Bonus>
-            <Dice>
-               <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
-               <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
-               <Energy>Fire</Energy>
-               <ScalesWithMeleePower/>
-            </Dice>
-            <Stance>Sacred Flame</Stance>
-            <Stance>Centered</Stance>
-            <Weapon>All</Weapon>
-            <IsItemSpecific/>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Sacred Fist: Ultimate Flame</Name>
          <InternalName>SFCore6</InternalName>
-         <Description>+4 Charisma, +3 Saves, +1 Sacred Flame dice.
+         <Description>+4 Charisma, +3 Saves, +1 Imbue dice.
 +10 Melee Power. +1[W] with Weapons. You absorb 25% of all Fire damage.</Description>
          <Icon>SFUltimateFlame</Icon>
          <XPosition>5</XPosition>
@@ -449,34 +324,9 @@ and nearby allies gain +1 Ki on hit and +3 Ki on crit for 20 seconds.</Descripti
             <Amount>5</Amount>
          </Effect>
          <Effect>
-            <DisplayName>Sacred Flame</DisplayName>
-            <Type>WeaponOtherDamageBonus</Type>
-            <Bonus>Stacking</Bonus>
-            <Dice>
-               <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
-               <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
-               <Energy>Fire</Energy>
-               <ScalesWithMeleePower/>
-            </Dice>
-            <Stance>Sacred Flame</Stance>
-            <Stance>Centered</Stance>
-            <Weapon>All</Weapon>
-            <IsItemSpecific/>
-         </Effect>
-         <Effect>
-            <DisplayName>Sacred Flame</DisplayName>
-            <Type>WeaponOtherCriticalDamageBonus</Type>
-            <Bonus>Stacking</Bonus>
-            <Dice>
-               <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
-               <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
-               <Energy>Fire</Energy>
-               <ScalesWithMeleePower/>
-            </Dice>
-            <Stance>Sacred Flame</Stance>
-            <Stance>Centered</Stance>
-            <Weapon>All</Weapon>
-            <IsItemSpecific/>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
          </Effect>
       </EnhancementTreeItem>
       <!--Tier 1-->
@@ -745,7 +595,7 @@ Cooldown: 5 seconds.</Description>
          </Requirements>
          <Effect>
             <Type>MovementSpeed</Type>
-            <Bonus>Enhancement</Bonus>
+            <Bonus>Class</Bonus>
             <AmountPerLevel>1</AmountPerLevel>
             <Class>Sacred Fist</Class>
             <ApplyAsItemEffect/>
@@ -850,7 +700,7 @@ Melee and Ranged Power by 5 for 10 seconds.</Description>
       <EnhancementTreeItem>
          <Name>Sacred Fist: Light of Hope</Name>
          <InternalName>SFLightOfHope</InternalName>
-         <Description>+1 Sacred Flame dice. Your Sacred Flame toggle now allows you to strike
+         <Description>+1 Imbue dice. Your Sacred Flame toggle now allows you to strike
 Incorporeal enemies as if you had Ghost Touch.</Description>
          <Icon>SFLightOfHope</Icon>
          <XPosition>2</XPosition>
@@ -866,34 +716,9 @@ Incorporeal enemies as if you had Ghost Touch.</Description>
             </Requirement>
          </Requirements>
          <Effect>
-            <DisplayName>Sacred Flame</DisplayName>
-            <Type>WeaponOtherDamageBonus</Type>
-            <Bonus>Stacking</Bonus>
-            <Dice>
-               <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
-               <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
-               <Energy>Fire</Energy>
-               <ScalesWithMeleePower/>
-            </Dice>
-            <Stance>Sacred Flame</Stance>
-            <Stance>Centered</Stance>
-            <Weapon>All</Weapon>
-            <IsItemSpecific/>
-         </Effect>
-         <Effect>
-            <DisplayName>Sacred Flame</DisplayName>
-            <Type>WeaponOtherCriticalDamageBonus</Type>
-            <Bonus>Stacking</Bonus>
-            <Dice>
-               <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
-               <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
-               <Energy>Fire</Energy>
-               <ScalesWithMeleePower/>
-            </Dice>
-            <Stance>Sacred Flame</Stance>
-            <Stance>Centered</Stance>
-            <Weapon>All</Weapon>
-            <IsItemSpecific/>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
          </Effect>
          <Effect>
             <Type>GhostTouch</Type>
@@ -1045,7 +870,7 @@ projectile that would have struck you every 6 seconds.</Description>
       <EnhancementTreeItem>
          <Name>Sacred Fist: Light of Glory</Name>
          <InternalName>SFLightOfGlory</InternalName>
-         <Description>+1 Sacred Flame dice. Your Sacred Flame damage is now Light instead of Fire.</Description>
+         <Description>+1 Imbue dice. Your Sacred Flame damage is now Light instead of Fire.</Description>
          <Icon>SFLightOfGlory</Icon>
          <XPosition>2</XPosition>
          <YPosition>4</YPosition>
@@ -1062,34 +887,9 @@ projectile that would have struck you every 6 seconds.</Description>
             </Requirement>
          </Requirements>
          <Effect>
-            <DisplayName>Sacred Flame</DisplayName>
-            <Type>WeaponOtherDamageBonus</Type>
-            <Bonus>Stacking</Bonus>
-            <Dice>
-               <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
-               <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
-               <Energy>Fire</Energy>
-               <ScalesWithMeleePower/>
-            </Dice>
-            <Stance>Sacred Flame</Stance>
-            <Stance>Centered</Stance>
-            <Weapon>All</Weapon>
-            <IsItemSpecific/>
-         </Effect>
-         <Effect>
-            <DisplayName>Sacred Flame</DisplayName>
-            <Type>WeaponOtherCriticalDamageBonus</Type>
-            <Bonus>Stacking</Bonus>
-            <Dice>
-               <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
-               <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
-               <Energy>Fire</Energy>
-               <ScalesWithMeleePower/>
-            </Dice>
-            <Stance>Sacred Flame</Stance>
-            <Stance>Centered</Stance>
-            <Weapon>All</Weapon>
-            <IsItemSpecific/>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -1243,9 +1043,10 @@ an attack that normally deals half damage on a successful save, you only take
          </Requirements>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Sacred Fist: Divine Strike</Name>
+         <Name>Sacred Fist: Divine Striker</Name>
          <InternalName>SFDivineStrike</InternalName>
-         <Description>You gain On Vorpal: Stun any Demons or Devils with no save for 3 seconds.</Description>
+         <Description>You gain On Vorpal: Stun any Demons or Devils with no save for 3 seconds.
++25% Competence bonus to Maximum Hitpoints.</Description>
          <Icon>SFDivineStrike</Icon>
          <XPosition>2</XPosition>
          <YPosition>5</YPosition>
@@ -1262,6 +1063,13 @@ an attack that normally deals half damage on a successful save, you only take
                <Level>5</Level>
             </Requirement>
          </Requirements>
+        <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Competence</Bonus>
+            <Amount>25</Amount>
+            <Percent/>
+            <ApplyAsItemEffect/>
+        </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Sacred Fist: Avenging Whirlwind</Name>

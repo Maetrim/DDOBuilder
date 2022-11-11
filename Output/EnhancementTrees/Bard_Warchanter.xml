@@ -68,7 +68,8 @@ Duration increases with effects that increase Song durations.
          <Name>Warchanter: Weapon Training</Name>
          <InternalName>WCCore2</InternalName>
          <Description>You gain proficiency with martial weapons. (Dwarves gain also the Waraxe.)
-+10 HP. Inspire Courage grants an additional +1 damage.</Description>
++10 HP. Inspire Courage grants an additional +1 damage.
++1 Imbue Dice</Description>
          <Icon>WCWeaponTraining</Icon>
          <XPosition>1</XPosition>
          <YPosition>0</YPosition>
@@ -120,6 +121,11 @@ Duration increases with effects that increase Song durations.
             <Weapon>Throwing Hammer</Weapon>
             <Weapon>Warhammer</Weapon>
          </Effect>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Warchanter: Song of Heroism</Name>
@@ -128,7 +134,8 @@ Duration increases with effects that increase Song durations.
 Inspire Courage grants an additional +1 damage.
 Requires 4 trained Ranks in Perform to use.
 Heroism: +2 Morale bonus to Attack, all saving throws and skill checks,
-as well as immunity to fear and some temporary hitpoints.</Description>
+as well as immunity to fear and some temporary hitpoints.
++1 Imbue Dice</Description>
          <Icon>WCSongOfHeroism</Icon>
          <XPosition>2</XPosition>
          <YPosition>0</YPosition>
@@ -192,13 +199,19 @@ as well as immunity to fear and some temporary hitpoints.</Description>
             <Bonus>Morale</Bonus>
             <Immunity>Fear</Immunity>
          </Effect>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Warchanter: Fighting Spirit</Name>
          <InternalName>WCCore4</InternalName>
          <Description>+10 hit points
 Your Inspire Greatness now uses your Charisma score for its Temporary hit points,
-doubled in Epic levels.</Description>
+doubled in Epic levels.
++1 Imbue Dice</Description>
          <Icon>WCFightingSpirit</Icon>
          <XPosition>3</XPosition>
          <YPosition>0</YPosition>
@@ -226,12 +239,18 @@ doubled in Epic levels.</Description>
             <Bonus>Enhancement</Bonus>
             <Amount>10</Amount>
          </Effect>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Warchanter: Victory Song</Name>
          <InternalName>WCCore5</InternalName>
          <Description>The range of your Bardic Aria is doubled.
-You have +20 hit points, and a Base Attack Bonus equal to your character level.</Description>
+You have +20 hit points, and a Base Attack Bonus equal to your character level.
++1 Imbue Dice</Description>
          <Icon>WCVictorySong</Icon>
          <XPosition>4</XPosition>
          <YPosition>0</YPosition>
@@ -263,6 +282,11 @@ You have +20 hit points, and a Base Attack Bonus equal to your character level.<
             <Type>OverrideBAB</Type>
             <Bonus>Enhancement</Bonus>
          </Effect>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Warchanter: Skaldic Scream</Name>
@@ -274,7 +298,8 @@ expending a Bard Song to force enemies in an area to make a Fortitude saving
 throw versus being frozen solid in frigid ice for 6 seconds.
 (DC 14 + Charisma Mod + 1/2 Bard Level + Stunning Modifiers).
 Even if they make the save, they take 20d20 Cold Damage and are significantly
-slowed for 6 seconds.</Description>
+slowed for 6 seconds.
++1 Imbue Dice</Description>
          <Icon>WCWarmaster</Icon>
          <XPosition>5</XPosition>
          <YPosition>0</YPosition>
@@ -325,6 +350,11 @@ throw versus being frozen solid in frigid ice for 6 seconds.</Description>
             <ModAbility>Charisma</ModAbility>
             <Tactical>Stun</Tactical>
          </DC>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Warchanter: Inspired Bravery</Name>
@@ -611,14 +641,13 @@ Cooldown: 8 seconds.</Description>
       <EnhancementTreeItem>
          <Name>Warchanter: Iced Edges</Name>
          <InternalName>WCIcedEdges</InternalName>
-         <Description>+1d[3/4/6] cold damage with attacks. Cooldown: 1 second. </Description>
+         <Description>+1d6 cold damage with attacks.</Description>
          <Icon>WCIcedEdges</Icon>
          <XPosition>3</XPosition>
          <YPosition>2</YPosition>
          <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
+         <Ranks>1</Ranks>
          <MinSpent>5</MinSpent>
-         <ArrowUp/>
          <Requirements>
             <RequiresOneOf>
                <Requirement>
@@ -631,16 +660,11 @@ Cooldown: 8 seconds.</Description>
                </Requirement>
             </RequiresOneOf>
          </Requirements>
-         <Effect>
-            <Type>WeaponOtherDamageBonus</Type>
+        <Effect>
+            <Type>ImbueDice</Type>
             <Bonus>Enhancement</Bonus>
-            <Dice>
-               <Number size="3">1 1 1</Number>
-               <Sides size="3">3 4 6</Sides>
-               <Energy>Cold</Energy>
-            </Dice>
-            <Weapon>All</Weapon>
-         </Effect>
+            <Amount>1</Amount>
+        </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Warchanter Action Boost: Sprint</Name>
@@ -827,10 +851,7 @@ Rank 3: You are also immune to Fatigue, including Fatigue from Skaldic Rage.</De
       <EnhancementTreeItem>
          <Name>Warchanter: Frozen Fury</Name>
          <InternalName>WCTheFrozenFury</InternalName>
-         <Description>Make a melee attack with +[1/2/3][W] damage.
-Affected enemies must make a Fortitude save (10 + Charisma modifier + [0/¼/½] Bard Level + Stunning modifiers)
-or become frozen solid for number of seconds equal to your Bard level.
-Cooldown: [12/9/6] seconds. Cost: 1 sp. Bosses cannot be frozen.</Description>
+         <Description>1d6 Cold Damage on hit, cold spellpower</Description>
          <Icon>WCTheFrozenFury</Icon>
          <XPosition>3</XPosition>
          <YPosition>3</YPosition>
@@ -850,10 +871,18 @@ Cooldown: [12/9/6] seconds. Cost: 1 sp. Bosses cannot be frozen.</Description>
                   <Level>3</Level>
                </Requirement>
             </RequiresOneOf>
-            <Requirement>
-               <Enhancement>WCIcedEdges</Enhancement>
-            </Requirement>
          </Requirements>
+         <Stance>
+            <Name>Warchanter: Frozen Fury</Name>
+            <Icon>Toughness</Icon>
+            <Description>1d6 Cold damage for each Imbue dice that scales with Cold spell power.</Description>
+            <Group>Imbue</Group>
+         </Stance>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Warchanter: Ability I</Name>
@@ -1179,7 +1208,8 @@ ranged damage, and spell critical chance.</Description>
       <EnhancementTreeItem>
          <Name>Warchanter: Howl of the North</Name>
          <InternalName>WCHowlOfTheNorth</InternalName>
-         <Description>+1 critical damage multiplier on attack rolls of 19-20.</Description>
+         <Description>+1 critical damage multiplier on attack rolls of 19-20.
++20% Competence bonus to Maximum Hitpoints.</Description>
          <Icon>WCHowlOfTheNorth</Icon>
          <XPosition>2</XPosition>
          <YPosition>5</YPosition>
@@ -1208,6 +1238,13 @@ ranged damage, and spell critical chance.</Description>
             <Amount>1</Amount>
             <Weapon>All</Weapon>
          </Effect>
+                <Effect>
+                    <Type>Hitpoints</Type>
+                    <Bonus>Competence</Bonus>
+                    <Amount>20</Amount>
+                    <Percent/>
+                    <ApplyAsItemEffect/>
+                </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Warchanter: Spinning Ice</Name>

@@ -8,8 +8,7 @@
 BreakdownItemBAB::BreakdownItemBAB(
         MfcControls::CTreeListCtrl * treeList,
         HTREEITEM hItem) :
-    BreakdownItem(Breakdown_BAB, treeList, hItem),
-    m_overrideBabCount(0)
+    BreakdownItem(Breakdown_BAB, treeList, hItem)
 {
 }
 
@@ -74,17 +73,23 @@ void BreakdownItemBAB::CreateOtherEffects()
             AddOtherEffect(epicBonus);
         }
 
-        if (m_overrideBabCount > 0)
+        // Override of BAB to 25
+        BreakdownItem * pOB = FindBreakdown(Breakdown_OverrideBAB);
+        if (pOB != NULL)
         {
-            // have at least 1 enhancement that boosts BAB to Character level
-            size_t currentBab = m_pCharacter->BaseAttackBonus(m_pCharacter->MaxLevel());
-            ActiveEffect amountTrained(
-                    Bonus_enhancement,
-                    "BAB boost to character level",
-                    1,
-                    m_pCharacter->MaxLevel() - currentBab,
-                    "");        // no tree
-            AddOtherEffect(amountTrained);
+            pOB->AttachObserver(this); // need to know about changes
+            int overrideCount = static_cast<int>(pOB->Total());
+            if (overrideCount != 0)
+            {
+                size_t currentBab = m_pCharacter->BaseAttackBonus(m_pCharacter->MaxLevel());
+                ActiveEffect amountTrained(
+                        Bonus_enhancement,
+                        "BAB boost to max 25",
+                        1,
+                        25 - currentBab,
+                        "");        // no tree
+                AddOtherEffect(amountTrained);
+            }
         }
     }
 }
@@ -92,11 +97,6 @@ void BreakdownItemBAB::CreateOtherEffects()
 bool BreakdownItemBAB::AffectsUs(const Effect & effect) const
 {
     bool isUs = false;
-    // see if this feat effect applies to us, if so add it
-    if (effect.Type() == Effect_OverrideBAB)
-    {
-        isUs = true;
-    }
     return isUs;
 }
 
@@ -110,94 +110,4 @@ void BreakdownItemBAB::UpdateClassChanged(
     // need to re-create other effects list
     CreateOtherEffects();
     Populate();
-}
-
-void BreakdownItemBAB::UpdateFeatEffect(
-        Character * pCharacter,
-        const std::string & featName,
-        const Effect & effect)
-{
-    // handle checking for override BAB
-    if (effect.Type() == Effect_OverrideBAB)
-    {
-        ++m_overrideBabCount;
-        CreateOtherEffects();
-    }
-    // pass through to the base class
-    //BreakdownItem::UpdateFeatEffect(pCharacter, featName, effect);
-}
-
-void BreakdownItemBAB::UpdateFeatEffectRevoked(
-        Character * pCharacter,
-        const std::string & featName,
-        const Effect & effect)
-{
-    // handle checking for override BAB
-    if (effect.Type() == Effect_OverrideBAB)
-    {
-        --m_overrideBabCount;
-        CreateOtherEffects();
-    }
-    // pass through to the base class
-    //BreakdownItem::UpdateFeatEffectRevoked(pCharacter, featName, effect);
-}
-
-void BreakdownItemBAB::UpdateItemEffect(
-        Character * pCharacter,
-        const std::string & itemName,
-        const Effect & effect)
-{
-    // handle checking for override BAB
-    if (effect.Type() == Effect_OverrideBAB)
-    {
-        ++m_overrideBabCount;
-        CreateOtherEffects();
-    }
-    // pass through to the base class
-    //BreakdownItem::UpdateItemEffect(pCharacter, itemName, effect);
-}
-
-void BreakdownItemBAB::UpdateItemEffectRevoked(
-        Character * pCharacter,
-        const std::string & itemName,
-        const Effect & effect)
-{
-    // handle checking for override BAB
-    if (effect.Type() == Effect_OverrideBAB)
-    {
-        --m_overrideBabCount;
-        CreateOtherEffects();
-    }
-    // pass through to the base class
-    //BreakdownItem::UpdateItemEffectRevoked(pCharacter, itemName, effect);
-}
-
-void BreakdownItemBAB::UpdateEnhancementEffect(
-        Character * pCharacter,
-        const std::string & enhancementName,
-        const EffectTier & effect)
-{
-    // handle checking for override BAB
-    if (effect.m_effect.Type() == Effect_OverrideBAB)
-    {
-        ++m_overrideBabCount;
-        CreateOtherEffects();
-    }
-    // pass through to the base class
-    //BreakdownItem::UpdateEnhancementEffect(pCharacter, enhancementName, effect);
-}
-
-void BreakdownItemBAB::UpdateEnhancementEffectRevoked(
-        Character * pCharacter,
-        const std::string & enhancementName,
-        const EffectTier & effect)
-{
-    // handle checking for override BAB
-    if (effect.m_effect.Type() == Effect_OverrideBAB)
-    {
-        --m_overrideBabCount;
-        CreateOtherEffects();
-    }
-    // pass through to the base class
-    //BreakdownItem::UpdateEnhancementEffectRevoked(pCharacter, enhancementName, effect);
 }

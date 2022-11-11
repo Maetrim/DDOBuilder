@@ -350,19 +350,19 @@ Passive: +5 Universal Spell Power</Description>
                <Icon>AACorrosiveArrows</Icon>
                <CostPerRank size="1">2</CostPerRank>
                <Clickie/>
-               <Effect>
-                  <Type>WeaponOtherDamageBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <WeaponClass>Bows</WeaponClass>
-                  <Dice>
-                     <Number size="1">1</Number>
-                     <Sides size="1">8</Sides>
-                     <ScalesWithSpellPower/>
-                     <SpellPower>Acid</SpellPower>
-                  </Dice>
-                  <Energy>Acid</Energy>
-                  <Stance>Elemental Arrows</Stance>
-               </Effect>
+                 <Stance>
+                    <Name>Corrosive Arrows</Name>
+                    <Icon>AACorrosiveArrows</Icon>
+                    <Description>Arcane Archer Imbue Toggle: Your arrows gain the Corrosive ability,
+dealing 1d8 acid damage per Imbue Dice on hit, scaling with Spell Power.
+Passive: +5 Universal Spell Power</Description>
+                    <Group>Imbue</Group>
+                 </Stance>
+                 <Effect>
+                    <Type>ImbueDice</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <Amount>1</Amount>
+                 </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Flaming Arrows</Name>
@@ -372,19 +372,19 @@ Passive: +5 Universal Spell Power</Description>
                <Icon>AAFlamingArrows</Icon>
                <CostPerRank size="1">2</CostPerRank>
                <Clickie/>
-               <Effect>
-                  <Type>WeaponOtherDamageBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <WeaponClass>Bows</WeaponClass>
-                  <Dice>
-                     <Number size="1">1</Number>
-                     <Sides size="1">8</Sides>
-                     <ScalesWithSpellPower/>
-                     <SpellPower>Fire</SpellPower>
-                  </Dice>
-                  <Energy>Fire</Energy>
-                  <Stance>Elemental Arrows</Stance>
-               </Effect>
+                 <Stance>
+                    <Name>Flaming Arrows</Name>
+                    <Icon>AAFlamingArrows</Icon>
+                    <Description>Arcane Archer Imbue Toggle: Your arrows gain the Flaming ability,
+dealing 1d8 fire damage per Imbue Dice on hit, scaling with Spell Power.
+Passive: +5 Universal Spell Power</Description>
+                    <Group>Imbue</Group>
+                 </Stance>
+                 <Effect>
+                    <Type>ImbueDice</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <Amount>1</Amount>
+                 </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Frost Arrows</Name>
@@ -394,19 +394,19 @@ Passive: +5 Universal Spell Power</Description>
                <Icon>AAFrostArrows</Icon>
                <CostPerRank size="1">2</CostPerRank>
                <Clickie/>
-               <Effect>
-                  <Type>WeaponOtherDamageBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <WeaponClass>Bows</WeaponClass>
-                  <Dice>
-                     <Number size="1">1</Number>
-                     <Sides size="1">8</Sides>
-                     <ScalesWithSpellPower/>
-                     <SpellPower>Cold</SpellPower>
-                  </Dice>
-                  <Energy>Cold</Energy>
-                  <Stance>Elemental Arrows</Stance>
-               </Effect>
+                 <Stance>
+                    <Name>Frost Arrows</Name>
+                    <Icon>AAFrostArrows</Icon>
+                    <Description>Arcane Archer Imbue Toggle: Your arrows gain the Frost ability,
+dealing 1d8 cold damage per Imbue Dice on hit, scaling with Spell Power.
+Passive: +5 Universal Spell Power</Description>
+                    <Group>Imbue</Group>
+                 </Stance>
+                 <Effect>
+                    <Type>ImbueDice</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <Amount>1</Amount>
+                 </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Shock Arrows</Name>
@@ -416,19 +416,19 @@ Passive: +5 Universal Spell Power</Description>
                <Icon>AAShockArrows</Icon>
                <CostPerRank size="1">2</CostPerRank>
                <Clickie/>
-               <Effect>
-                  <Type>WeaponOtherDamageBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <WeaponClass>Bows</WeaponClass>
-                  <Dice>
-                     <Number size="1">1</Number>
-                     <Sides size="1">8</Sides>
-                     <ScalesWithSpellPower/>
-                     <SpellPower>Electric</SpellPower>
-                  </Dice>
-                  <Energy>Electric</Energy>
-                  <Stance>Elemental Arrows</Stance>
-               </Effect>
+                 <Stance>
+                    <Name>Shock Arrows</Name>
+                    <Icon>AAShockArrows</Icon>
+                    <Description>Arcane Archer Imbue Toggle: Your arrows gain the Shock ability,
+dealing 1d8 electrical damage per Imbue Dice on hit, scaling with Spell Power.
+Passive: +5 Universal Spell Power</Description>
+                    <Group>Imbue</Group>
+                 </Stance>
+                 <Effect>
+                    <Type>ImbueDice</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <Amount>1</Amount>
+                 </Effect>
             </EnhancementSelection>
          </Selector>
          <Effect>
@@ -494,34 +494,18 @@ Force Arrows dice. This damage also scales with Spell Power.</Description>
          <MinSpent>5</MinSpent>
          <Clickie/>
          <Requirements/>
-         <Stance>
+        <Stance>
             <Name>Force Arrows</Name>
             <Icon>AAForceArrows</Icon>
-            <Description>Your arrows gain On Hit: 1d4/1d6/1d6 (1d10-3d10 on crit) force damage and the
-Ghost Touch ability.</Description>
-         </Stance>
-         <Effect>
-            <Type>WeaponOtherDamageBonus</Type>
+            <Description>Arcane Archer Imbue Toggle: You imbue your arrows with magical force.
+Your arrows gain On Hit: 1d8 force damage per Imbue Dice.</Description>
+            <Group>Imbue</Group>
+        </Stance>
+        <Effect>
+            <Type>ImbueDice</Type>
             <Bonus>Enhancement</Bonus>
-            <WeaponClass>Bows</WeaponClass>
-            <Dice>
-               <Number size="3">1 1 1</Number>
-               <Sides size="3">4 6 6</Sides>
-            </Dice>
-            <Energy>Force</Energy>
-            <Stance>Force Arrows</Stance>
-         </Effect>
-         <Effect>
-            <Type>WeaponOtherCriticalDamageBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <WeaponClass>Bows</WeaponClass>
-            <Dice>
-               <Number size="3">1 2 3</Number>
-               <Sides size="3">10 10 10</Sides>
-            </Dice>
-            <Energy>Force</Energy>
-            <Stance>Force Arrows</Stance>
-         </Effect>
+            <Amount>1</Amount>
+        </Effect>
          <Effect>
             <Type>GhostTouch</Type>
             <Bonus>Enhancement</Bonus>
@@ -582,19 +566,19 @@ Passive: +5 Universal Spell Power</Description>
                      </Requirement>
                   </RequiresNoneOf>
                </Requirements>
-               <Effect>
-                  <Type>WeaponOtherDamageBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <WeaponClass>Bows</WeaponClass>
-                  <Dice>
-                     <Number size="1">1</Number>
-                     <Sides size="1">8</Sides>
-                     <ScalesWithSpellPower/>
-                     <SpellPower>Acid</SpellPower>
-                  </Dice>
-                  <Energy>Acid</Energy>
-                  <Stance>Elemental Arrows</Stance>
-               </Effect>
+                 <Stance>
+                    <Name>Corrosive Arrows</Name>
+                    <Icon>AACorrosiveArrows</Icon>
+                    <Description>Arcane Archer Imbue Toggle: Your arrows gain the Corrosive ability,
+dealing 1d8 acid damage per Imbue Dice on hit, scaling with Spell Power.
+Passive: +5 Universal Spell Power</Description>
+                    <Group>Imbue</Group>
+                 </Stance>
+                 <Effect>
+                    <Type>ImbueDice</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <Amount>1</Amount>
+                 </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Flaming Arrows</Name>
@@ -612,19 +596,19 @@ Passive: +5 Universal Spell Power</Description>
                      </Requirement>
                   </RequiresNoneOf>
                </Requirements>
-               <Effect>
-                  <Type>WeaponOtherDamageBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <WeaponClass>Bows</WeaponClass>
-                  <Dice>
-                     <Number size="1">1</Number>
-                     <Sides size="1">8</Sides>
-                     <ScalesWithSpellPower/>
-                     <SpellPower>Fire</SpellPower>
-                  </Dice>
-                  <Energy>Fire</Energy>
-                  <Stance>Elemental Arrows</Stance>
-               </Effect>
+                 <Stance>
+                    <Name>Flaming Arrows</Name>
+                    <Icon>AAFlamingArrows</Icon>
+                    <Description>Arcane Archer Imbue Toggle: Your arrows gain the Flaming ability,
+dealing 1d8 fire damage per Imbue Dice on hit, scaling with Spell Power.
+Passive: +5 Universal Spell Power</Description>
+                    <Group>Imbue</Group>
+                 </Stance>
+                 <Effect>
+                    <Type>ImbueDice</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <Amount>1</Amount>
+                 </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Frost Arrows</Name>
@@ -642,19 +626,19 @@ Passive: +5 Universal Spell Power</Description>
                      </Requirement>
                   </RequiresNoneOf>
                </Requirements>
-               <Effect>
-                  <Type>WeaponOtherDamageBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <WeaponClass>Bows</WeaponClass>
-                  <Dice>
-                     <Number size="1">1</Number>
-                     <Sides size="1">8</Sides>
-                     <ScalesWithSpellPower/>
-                     <SpellPower>Cold</SpellPower>
-                  </Dice>
-                  <Energy>Cold</Energy>
-                  <Stance>Elemental Arrows</Stance>
-               </Effect>
+                 <Stance>
+                    <Name>Frost Arrows</Name>
+                    <Icon>AAFrostArrows</Icon>
+                    <Description>Arcane Archer Imbue Toggle: Your arrows gain the Frost ability,
+dealing 1d8 cold damage per Imbue Dice on hit, scaling with Spell Power.
+Passive: +5 Universal Spell Power</Description>
+                    <Group>Imbue</Group>
+                 </Stance>
+                 <Effect>
+                    <Type>ImbueDice</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <Amount>1</Amount>
+                 </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Shock Arrows</Name>
@@ -672,26 +656,31 @@ Passive: +5 Universal Spell Power</Description>
                      </Requirement>
                   </RequiresNoneOf>
                </Requirements>
-               <Effect>
-                  <Type>WeaponOtherDamageBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <WeaponClass>Bows</WeaponClass>
-                  <Dice>
-                     <Number size="1">1</Number>
-                     <Sides size="1">8</Sides>
-                     <ScalesWithSpellPower/>
-                     <SpellPower>Electric</SpellPower>
-                  </Dice>
-                  <Energy>Electric</Energy>
-                  <Stance>Elemental Arrows</Stance>
-               </Effect>
+                 <Stance>
+                    <Name>Shock Arrows</Name>
+                    <Icon>AAShockArrows</Icon>
+                    <Description>Arcane Archer Imbue Toggle: Your arrows gain the Shock ability,
+dealing 1d8 electrical damage per Imbue Dice on hit, scaling with Spell Power.
+Passive: +5 Universal Spell Power</Description>
+                    <Group>Imbue</Group>
+                 </Stance>
+                 <Effect>
+                    <Type>ImbueDice</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <Amount>1</Amount>
+                 </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Elemental Damage</Name>
-               <Description>+2 Damage dice with Elemental Arrows (Corrosive, Frost, Shock, Flaming, Force)</Description>
+               <Description>+2 Imbue dice
+Passive: +5 Universal Spell Power</Description>
                <Icon>AAImprovedElementalArrows</Icon>
                <CostPerRank size="1">2</CostPerRank>
-               <!--How to handle additional damage dice?-->
+                 <Effect>
+                    <Type>ImbueDice</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <Amount>2</Amount>
+                 </Effect>
             </EnhancementSelection>
          </Selector>
          <Effect>
@@ -853,19 +842,19 @@ Passive: +5 Universal Spell Power</Description>
                      </Requirement>
                   </RequiresNoneOf>
                </Requirements>
-               <Effect>
-                  <Type>WeaponOtherDamageBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <WeaponClass>Bows</WeaponClass>
-                  <Dice>
-                     <Number size="1">1</Number>
-                     <Sides size="1">8</Sides>
-                     <ScalesWithSpellPower/>
-                     <SpellPower>Acid</SpellPower>
-                  </Dice>
-                  <Energy>Acid</Energy>
-                  <Stance>Elemental Arrows</Stance>
-               </Effect>
+                 <Stance>
+                    <Name>Corrosive Arrows</Name>
+                    <Icon>AACorrosiveArrows</Icon>
+                    <Description>Arcane Archer Imbue Toggle: Your arrows gain the Corrosive ability,
+dealing 1d8 acid damage per Imbue Dice on hit, scaling with Spell Power.
+Passive: +5 Universal Spell Power</Description>
+                    <Group>Imbue</Group>
+                 </Stance>
+                 <Effect>
+                    <Type>ImbueDice</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <Amount>1</Amount>
+                 </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Flaming Arrows</Name>
@@ -887,19 +876,19 @@ Passive: +5 Universal Spell Power</Description>
                      </Requirement>
                   </RequiresNoneOf>
                </Requirements>
-               <Effect>
-                  <Type>WeaponOtherDamageBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <WeaponClass>Bows</WeaponClass>
-                  <Dice>
-                     <Number size="1">1</Number>
-                     <Sides size="1">8</Sides>
-                     <ScalesWithSpellPower/>
-                     <SpellPower>Fire</SpellPower>
-                  </Dice>
-                  <Energy>Fire</Energy>
-                  <Stance>Elemental Arrows</Stance>
-               </Effect>
+                 <Stance>
+                    <Name>Flaming Arrows</Name>
+                    <Icon>AAFlamingArrows</Icon>
+                    <Description>Arcane Archer Imbue Toggle: Your arrows gain the Flaming ability,
+dealing 1d8 fire damage per Imbue Dice on hit, scaling with Spell Power.
+Passive: +5 Universal Spell Power</Description>
+                    <Group>Imbue</Group>
+                 </Stance>
+                 <Effect>
+                    <Type>ImbueDice</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <Amount>1</Amount>
+                 </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Frost Arrows</Name>
@@ -921,19 +910,19 @@ Passive: +5 Universal Spell Power</Description>
                      </Requirement>
                   </RequiresNoneOf>
                </Requirements>
-               <Effect>
-                  <Type>WeaponOtherDamageBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <WeaponClass>Bows</WeaponClass>
-                  <Dice>
-                     <Number size="1">1</Number>
-                     <Sides size="1">8</Sides>
-                     <ScalesWithSpellPower/>
-                     <SpellPower>Cold</SpellPower>
-                  </Dice>
-                  <Energy>Cold</Energy>
-                  <Stance>Elemental Arrows</Stance>
-               </Effect>
+                 <Stance>
+                    <Name>Frost Arrows</Name>
+                    <Icon>AAFrostArrows</Icon>
+                    <Description>Arcane Archer Imbue Toggle: Your arrows gain the Frost ability,
+dealing 1d8 cold damage per Imbue Dice on hit, scaling with Spell Power.
+Passive: +5 Universal Spell Power</Description>
+                    <Group>Imbue</Group>
+                 </Stance>
+                 <Effect>
+                    <Type>ImbueDice</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <Amount>1</Amount>
+                 </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Shock Arrows</Name>
@@ -955,27 +944,31 @@ Passive: +5 Universal Spell Power</Description>
                      </Requirement>
                   </RequiresNoneOf>
                </Requirements>
-               <Effect>
-                  <Type>WeaponOtherDamageBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <WeaponClass>Bows</WeaponClass>
-                  <Dice>
-                     <Number size="1">1</Number>
-                     <Sides size="1">8</Sides>
-                     <ScalesWithSpellPower/>
-                     <SpellPower>Electric</SpellPower>
-                  </Dice>
-                  <Energy>Electric</Energy>
-                  <Stance>Elemental Arrows</Stance>
-               </Effect>
+                 <Stance>
+                    <Name>Shock Arrows</Name>
+                    <Icon>AAShockArrows</Icon>
+                    <Description>Arcane Archer Imbue Toggle: Your arrows gain the Shock ability,
+dealing 1d8 electrical damage per Imbue Dice on hit, scaling with Spell Power.
+Passive: +5 Universal Spell Power</Description>
+                    <Group>Imbue</Group>
+                 </Stance>
+                 <Effect>
+                    <Type>ImbueDice</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <Amount>1</Amount>
+                 </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Elemental Damage</Name>
-               <Description>+2 Damage dice with Elemental Arrows (Corrosive, Frost, Shock, Flaming, Force).
+               <Description>+2 Imbue dice
 Passive: +5 Universal Spell Power</Description>
                <Icon>AAImprovedElementalArrows</Icon>
                <CostPerRank size="1">2</CostPerRank>
-               <!--How to handle additional damage dice?-->
+                 <Effect>
+                    <Type>ImbueDice</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <Amount>2</Amount>
+                 </Effect>
             </EnhancementSelection>
          </Selector>
          <Effect>
@@ -1172,19 +1165,19 @@ Passive: +5 Universal Spell Power</Description>
                      </Requirement>
                   </RequiresNoneOf>
                </Requirements>
-               <Effect>
-                  <Type>WeaponOtherDamageBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <WeaponClass>Bows</WeaponClass>
-                  <Dice>
-                     <Number size="1">1</Number>
-                     <Sides size="1">8</Sides>
-                     <ScalesWithSpellPower/>
-                     <SpellPower>Acid</SpellPower>
-                  </Dice>
-                  <Energy>Acid</Energy>
-                  <Stance>Elemental Arrows</Stance>
-               </Effect>
+                 <Stance>
+                    <Name>Corrosive Arrows</Name>
+                    <Icon>AACorrosiveArrows</Icon>
+                    <Description>Arcane Archer Imbue Toggle: Your arrows gain the Corrosive ability,
+dealing 1d8 acid damage per Imbue Dice on hit, scaling with Spell Power.
+Passive: +5 Universal Spell Power</Description>
+                    <Group>Imbue</Group>
+                 </Stance>
+                 <Effect>
+                    <Type>ImbueDice</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <Amount>1</Amount>
+                 </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Flaming Arrows</Name>
@@ -1210,19 +1203,19 @@ Passive: +5 Universal Spell Power</Description>
                      </Requirement>
                   </RequiresNoneOf>
                </Requirements>
-               <Effect>
-                  <Type>WeaponOtherDamageBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <WeaponClass>Bows</WeaponClass>
-                  <Dice>
-                     <Number size="1">1</Number>
-                     <Sides size="1">8</Sides>
-                     <ScalesWithSpellPower/>
-                     <SpellPower>Fire</SpellPower>
-                  </Dice>
-                  <Energy>Fire</Energy>
-                  <Stance>Elemental Arrows</Stance>
-               </Effect>
+                 <Stance>
+                    <Name>Flaming Arrows</Name>
+                    <Icon>AAFlamingArrows</Icon>
+                    <Description>Arcane Archer Imbue Toggle: Your arrows gain the Flaming ability,
+dealing 1d8 fire damage per Imbue Dice on hit, scaling with Spell Power.
+Passive: +5 Universal Spell Power</Description>
+                    <Group>Imbue</Group>
+                 </Stance>
+                 <Effect>
+                    <Type>ImbueDice</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <Amount>1</Amount>
+                 </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Frost Arrows</Name>
@@ -1248,19 +1241,19 @@ Passive: +5 Universal Spell Power</Description>
                      </Requirement>
                   </RequiresNoneOf>
                </Requirements>
-               <Effect>
-                  <Type>WeaponOtherDamageBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <WeaponClass>Bows</WeaponClass>
-                  <Dice>
-                     <Number size="1">1</Number>
-                     <Sides size="1">8</Sides>
-                     <ScalesWithSpellPower/>
-                     <SpellPower>Cold</SpellPower>
-                  </Dice>
-                  <Energy>Cold</Energy>
-                  <Stance>Elemental Arrows</Stance>
-               </Effect>
+                 <Stance>
+                    <Name>Frost Arrows</Name>
+                    <Icon>AAFrostArrows</Icon>
+                    <Description>Arcane Archer Imbue Toggle: Your arrows gain the Frost ability,
+dealing 1d8 cold damage per Imbue Dice on hit, scaling with Spell Power.
+Passive: +5 Universal Spell Power</Description>
+                    <Group>Imbue</Group>
+                 </Stance>
+                 <Effect>
+                    <Type>ImbueDice</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <Amount>1</Amount>
+                 </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Shock Arrows</Name>
@@ -1286,27 +1279,31 @@ Passive: +5 Universal Spell Power</Description>
                      </Requirement>
                   </RequiresNoneOf>
                </Requirements>
-               <Effect>
-                  <Type>WeaponOtherDamageBonus</Type>
-                  <Bonus>Enhancement</Bonus>
-                  <WeaponClass>Bows</WeaponClass>
-                  <Dice>
-                     <Number size="1">1</Number>
-                     <Sides size="1">8</Sides>
-                     <ScalesWithSpellPower/>
-                     <SpellPower>Electric</SpellPower>
-                  </Dice>
-                  <Energy>Electric</Energy>
-                  <Stance>Elemental Arrows</Stance>
-               </Effect>
+                 <Stance>
+                    <Name>Shock Arrows</Name>
+                    <Icon>AAShockArrows</Icon>
+                    <Description>Arcane Archer Imbue Toggle: Your arrows gain the Shock ability,
+dealing 1d8 electrical damage per Imbue Dice on hit, scaling with Spell Power.
+Passive: +5 Universal Spell Power</Description>
+                    <Group>Imbue</Group>
+                 </Stance>
+                 <Effect>
+                    <Type>ImbueDice</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <Amount>1</Amount>
+                 </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Elemental Damage</Name>
-               <Description>+2 Damage dice with Elemental Arrows (Corrosive, Frost, Shock, Flaming, Force).
+               <Description>+2 Imbue dice
 Passive: +5 Universal Spell Power</Description>
                <Icon>AAImprovedElementalArrows</Icon>
                <CostPerRank size="1">2</CostPerRank>
-               <!--How to handle additional damage dice?-->
+                 <Effect>
+                    <Type>ImbueDice</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <Amount>2</Amount>
+                 </Effect>
             </EnhancementSelection>
          </Selector>
          <Effect>

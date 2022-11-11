@@ -125,7 +125,8 @@ Sacred Defense and Stalwart Defense can't be active at the same time</Descriptio
       <EnhancementTreeItem>
          <Name>Stalwart Defender: Stand Fast</Name>
          <InternalName>SDCore4</InternalName>
-         <Description>While in Stalwart Defense, you are immune to Fear and most forms of being Knocked down.</Description>
+         <Description>While in Stalwart Defense, you are immune to Fear and most forms of being Knocked down.
++10% Quality bonus to Maximum Hit Points.</Description>
          <Icon>SDStandFast</Icon>
          <XPosition>3</XPosition>
          <YPosition>0</YPosition>
@@ -157,6 +158,13 @@ Sacred Defense and Stalwart Defense can't be active at the same time</Descriptio
             <Bonus>Enhancement</Bonus>
             <Immunity>Knockdown</Immunity>
          </Effect>
+        <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Quality</Bonus>
+            <Amount>10</Amount>
+            <Percent/>
+            <ApplyAsItemEffect/>
+        </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Stalwart Defender: Defensive Footwork</Name>
@@ -692,13 +700,13 @@ Stalwart Defense, you gain a +[2/4/6] Competence bonus to Strength. </Descriptio
             <EnhancementSelection>
                <Name>Tenacious Defense</Name>
                <Description>While wearing medium armor, heavy armor, or wielding a shield and in
-Stalwart Defense, you gain a +10%/+15%/+20% Competence bonus to maximum hit points.</Description>
+Stalwart Defense, you gain a +10%/+15%/+25% Competence bonus to maximum hit points.</Description>
                <Icon>SDTenaciousDefense</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Effect>
                   <Type>Hitpoints</Type>
                   <Bonus>Competence</Bonus>
-                  <AmountVector size="3">10 15 20</AmountVector>
+                  <AmountVector size="3">10 15 25</AmountVector>
                   <Percent/>
                   <ApplyAsItemEffect/>
                   <Stance>Stalwart Defense</Stance>
@@ -887,13 +895,13 @@ Stalwart Defense, you gain a +[2/4/6] Competence bonus to Strength. </Descriptio
             <EnhancementSelection>
                <Name>Tenacious Defense</Name>
                <Description>While wearing medium armor, heavy armor, or wielding a shield and in
-Stalwart Defense, you gain a +10%/+15%/+20% Competence bonus to maximum hit points.</Description>
+Stalwart Defense, you gain a +10%/+15%/+25% Competence bonus to maximum hit points.</Description>
                <Icon>SDTenaciousDefense</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Effect>
                   <Type>Hitpoints</Type>
                   <Bonus>Competence</Bonus>
-                  <AmountVector size="3">10 15 20</AmountVector>
+                  <AmountVector size="3">10 15 25</AmountVector>
                   <Percent/>
                   <ApplyAsItemEffect/>
                   <Stance>Stalwart Defense</Stance>
@@ -998,8 +1006,7 @@ Note: This stacks with Reinforced Defense from Sacred Defender.</Description>
       <EnhancementTreeItem>
          <Name>Stalwart Defender: The Thick of Battle</Name>
          <InternalName>SDThickOfBattle</InternalName>
-         <Description>Striking enemies increases you Melee Threat by 10% for 10 seconds,
-stacks 10 times. After 10 seconds, all stacks fade.</Description>
+         <Description>+100% Threat generation and +60 Maximum Hitpoints.</Description>
          <Icon>SDThickOfBattle</Icon>
          <XPosition>0</XPosition>
          <YPosition>5</YPosition>
@@ -1017,25 +1024,23 @@ stacks 10 times. After 10 seconds, all stacks fade.</Description>
             </Requirement>
          </Requirements>
          <Effect>
-            <Type>CreateSlider</Type>
-            <Bonus>Enhancement</Bonus>
-            <Slider>Thick of Battle</Slider>
-            <AmountVector size="2">0 10</AmountVector>
-            <Amount>0</Amount>
-         </Effect>
-         <Effect>
             <Type>ThreatBonusMelee</Type>
             <Bonus>Enhancement</Bonus>
-            <Amount>10</Amount>
-            <Stacks>Thick of Battle</Stacks>
+            <Amount>100</Amount>
+         </Effect>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>60</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Stalwart Defender: Block and Cut</Name>
          <InternalName>SDBlockAndCut</InternalName>
          <Description>Shield Melee Attack: Performs a melee attack with your main hand weapon
-that deals +[1/2/3][W]. On Damage: You gain a [10/15/25]% Morale bonus to
-melee doublestrike for 10 seconds. (Cooldown: 20 seconds.)</Description>
+that deals +[2/4/6][W]. On Damage: You gain a [10/15/25]% Morale bonus to
+melee doublestrike and a [10/15/25] bonus to Armor Class for 10 seconds.
+(Cooldown: 20 seconds.)</Description>
          <Icon>SDBlockAndCut</Icon>
          <XPosition>1</XPosition>
          <YPosition>5</YPosition>
@@ -1118,13 +1123,13 @@ Stalwart Defense, you gain a +[2/4/6] Competence bonus to Strength. </Descriptio
             <EnhancementSelection>
                <Name>Tenacious Defense</Name>
                <Description>While wearing medium armor, heavy armor, or wielding a shield and in
-Stalwart Defense, you gain a +10%/+15%/+20% Competence bonus to maximum hit points.</Description>
+Stalwart Defense, you gain a +10%/+15%/+25% Competence bonus to maximum hit points.</Description>
                <Icon>SDTenaciousDefense</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Effect>
                   <Type>Hitpoints</Type>
                   <Bonus>Competence</Bonus>
-                  <AmountVector size="3">10 15 20</AmountVector>
+                  <AmountVector size="3">10 15 25</AmountVector>
                   <Percent/>
                   <ApplyAsItemEffect/>
                   <Stance>Stalwart Defense</Stance>
@@ -1193,7 +1198,8 @@ Note: This stacks with Reinforced Defense from Sacred Defender.
          <Name>Stalwart Defender: Against All Odds</Name>
          <InternalName>SDAgainstAllOdds</InternalName>
          <Description>+5 Armor Class. When you take damage, you gain +2 Armor Class for
-1 minute - stacks 10 times for a total of +20 additional Armor Class.</Description>
+1 minute - stacks 10 times for a total of +20 additional Armor Class.
++60 Maximum Hitpoints.</Description>
          <Icon>SDAgainstAllOdds</Icon>
          <XPosition>4</XPosition>
          <YPosition>5</YPosition>
@@ -1227,6 +1233,11 @@ Note: This stacks with Reinforced Defense from Sacred Defender.
             <Bonus>Enhancement</Bonus>
             <Amount>2</Amount>
             <Stacks>Against All Odds</Stacks>
+         </Effect>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>60</Amount>
          </Effect>
       </EnhancementTreeItem>
    </EnhancementTree>

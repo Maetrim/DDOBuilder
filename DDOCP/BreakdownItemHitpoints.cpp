@@ -43,6 +43,7 @@ void BreakdownItemHitpoints::CreateOtherEffects()
     // add class hit points
     if (m_pCharacter != NULL)
     {
+        size_t classHitpoints = 0;      // needed for style bonus
         m_otherEffects.clear();
         std::vector<size_t> classLevels = m_pCharacter->ClassLevels(m_pCharacter->MaxLevel());
         for (size_t ci = Class_Unknown; ci < Class_Count; ++ci)
@@ -58,6 +59,16 @@ void BreakdownItemHitpoints::CreateOtherEffects()
                         ClassHitpoints((ClassType)ci),
                         "");        // no tree
                 AddOtherEffect(classBonus);
+                if (ci != Class_Epic && ci != Class_Legendary)
+                {
+                    // full bonus
+                    classHitpoints += ClassHitpoints((ClassType)ci) * classLevels[ci];
+                }
+                else
+                {
+                    // epic / legendary give 50% bonus
+                    classHitpoints += (ClassHitpoints((ClassType)ci) * classLevels[ci] / 2);
+                }
             }
         }
 
@@ -94,8 +105,25 @@ void BreakdownItemHitpoints::CreateOtherEffects()
             AddOtherEffect(conBonus);
         }
 
+        // fighting style bonus
+        BreakdownItem *pBreakdown = FindBreakdown(Breakdown_StyleBonusFeats);
+        pBreakdown->AttachObserver(this);
+        bonus = pBreakdown->Total();
+        if (bonus > 0)
+        {
+            // 25% per style feat, max 100%
+            bonus = 0.25 * min(4, bonus) * classHitpoints;
+            ActiveEffect styleBonus(
+                    Bonus_feat,
+                    "Style Bonus",
+                    1,
+                    bonus,
+                    "");        // no tree
+            AddOtherEffect(styleBonus);
+        }
+
         // add the false life bonus
-        BreakdownItem *pBreakdown = FindBreakdown(Breakdown_FalseLife);
+        pBreakdown = FindBreakdown(Breakdown_FalseLife);
         pBreakdown->AttachObserver(this);
         bonus = pBreakdown->Total();
         if (bonus != 0)

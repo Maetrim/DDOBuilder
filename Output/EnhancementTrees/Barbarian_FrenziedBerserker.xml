@@ -36,7 +36,8 @@
       <EnhancementTreeItem>
          <Name>Frenzied Berserker: Frenzied Toughness I</Name>
          <InternalName>FBCore2</InternalName>
-         <Description>+20 hit points and +10 Healing Amplification</Description>
+         <Description>+20 hit points and +10 Healing Amplification.
+You deal 1d8 Bane Damage which scales with Melee power.</Description>
          <Icon>Toughness</Icon>
          <XPosition>1</XPosition>
          <YPosition>0</YPosition>
@@ -62,6 +63,17 @@
             <Type>HealingAmplification</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>10</Amount>
+         </Effect>
+         <Stance>
+            <Name>Frenzied Berserker: Imbue</Name>
+            <Icon>Toughness</Icon>
+            <Description>1d8 Bane damage for each Imbue dice that scales with Melee power.</Description>
+            <Group>Imbue</Group>
+         </Stance>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -159,9 +171,10 @@ melee weapons (+2d6 damage). This damage scales with 100% Melee Power.</Descript
          <Name>Frenzied Berserker: Death Frenzy</Name>
          <InternalName>FBCore5</InternalName>
          <Description>Expend 20 hit points to enter a Death Frenzy for one minute: 
-+4 strength, +1 critical damage multiplier on rolls of 19-20. 
++6 strength, +1 critical damage multiplier on rolls of 19-20. 
 Your melee weapons gain 'Greater Vicious'. +4d6 damage to your attacks.
 This damage scales with 100% Melee Power.
++3 Imbue Dice when Death Frenzy is active.
 Passive: +10 Melee Power
 Activation Cost: 20 Hit Points.
 Cooldown: 30 seconds.</Description>
@@ -198,7 +211,7 @@ This damage scales with 100% Melee Power.</Description>
          <Effect>
             <Type>AbilityBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <Amount>4</Amount>
+            <Amount>6</Amount>
             <Ability>Strength</Ability>
             <Stance>Death Frenzy</Stance>
          </Effect>
@@ -218,6 +231,12 @@ This damage scales with 100% Melee Power.</Description>
                <ScalesWithMeleePower/>
             </Dice>
             <WeaponClass>Melee</WeaponClass>
+            <Stance>Death Frenzy</Stance>
+         </Effect>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>3</Amount>
             <Stance>Death Frenzy</Stance>
          </Effect>
       </EnhancementTreeItem>
@@ -814,7 +833,8 @@ the AC of enemies by [1/2/3] for six seconds. This stacks up to five times.</Des
             <EnhancementSelection>
                <Name>Accelerated Metabolism</Name>
                <Description>While barbarian raging, you gain 20 healing amplification and heal 3d6 hit
-points every 4 seconds. This healing scales with 100% Melee Power.</Description>
+points every 4 seconds. This healing scales with 100% Melee Power.
++25% Competence bonus to Maximum Hitpoints.</Description>
                <Icon>FBAcceleratedMetabolism</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Effect>
@@ -829,7 +849,8 @@ points every 4 seconds. This healing scales with 100% Melee Power.</Description>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Raging Blows</Name>
-               <Description>While barbarian raging, you gain +5 Melee Power and your melee attacks gain +1[W] to damage.</Description>
+               <Description>While barbarian raging, you gain +5 Melee Power and your melee attacks gain +1[W] to damage.
++25% Competence bonus to Maximum Hitpoints.</Description>
                <Icon>FBRagingBlows</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Effect>
@@ -853,6 +874,13 @@ points every 4 seconds. This healing scales with 100% Melee Power.</Description>
                </Effect>
             </EnhancementSelection>
          </Selector>
+        <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Competence</Bonus>
+            <Amount>25</Amount>
+            <Percent/>
+            <ApplyAsItemEffect/>
+        </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Frenzied Berserker: Tantrum</Name>

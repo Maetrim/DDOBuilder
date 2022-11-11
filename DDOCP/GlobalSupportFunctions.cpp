@@ -1522,38 +1522,34 @@ size_t ClassHitpoints(ClassType type)
     int hp = 0;
     switch (type)
     {
-        // d4 classes
+        // d6 classes
         case Class_Alchemist:
         case Class_Sorcerer:
         case Class_Wizard:
-            hp = 4;
-            break;
-
-        // d6 classes
-        case Class_Artificer:
-        case Class_Bard:
-        case Class_BardStormsinger:
-        case Class_Rogue:
         case Class_Warlock:
             hp = 6;
             break;
 
         // d8 classes
+        case Class_Artificer:
+        case Class_Bard:
+        case Class_BardStormsinger:
         case Class_Cleric:
         case Class_ClericDarkApostate:
         case Class_Druid:
         case Class_FavoredSoul:
         case Class_Monk:
-        case Class_Ranger:
+        case Class_Rogue:
             hp = 8;
             break;
 
         // d10 classes
         case Class_Epic:
-        case Class_Fighter:
         case Class_Legendary:
+        case Class_Fighter:
         case Class_Paladin:
         case Class_PaladinSacredFist:
+        case Class_Ranger:
             hp = 10;
             break;
 

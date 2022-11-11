@@ -940,6 +940,34 @@ A successful fortitude save negates this effect.</Description>
          </Selector>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
+         <Name>Battle Engineer: Imbue</Name>
+         <InternalName>BEImbue</InternalName>
+         <Description>1d6 Electric damage, electric spellpower</Description>
+         <Icon>PassiveStub</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Artificer</Class>
+               <Level>3</Level>
+            </Requirement>
+         </Requirements>
+         <Stance>
+            <Name>Battle Engineer: Imbue</Name>
+            <Icon>PassiveStub</Icon>
+            <Description>1d6 Electric damage, electric spellpower</Description>
+            <Group>Imbue</Group>
+         </Stance>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
          <Name>Battle Engineer: Ability I</Name>
          <InternalName>BEAbilityScoreI</InternalName>
          <Description>Choose one of Strength, Dexterity or Intelligence</Description>
@@ -1142,7 +1170,7 @@ bonus for 20 seconds. (Cooldown: 30 seconds.)</Description>
       <EnhancementTreeItem>
          <Name>Battle Engineer: Agility Engine</Name>
          <InternalName>BEAbilityEngine</InternalName>
-         <Description>3/6/10% Doublestrike and Doubleshot while wearing a Rune Arm.</Description>
+         <Description>+[1/2/3] Imbue Dice while wearing a Rune Arm.</Description>
          <Icon>BEAgilityEngine</Icon>
          <XPosition>3</XPosition>
          <YPosition>4</YPosition>
@@ -1157,15 +1185,9 @@ bonus for 20 seconds. (Cooldown: 30 seconds.)</Description>
             </Requirement>
          </Requirements>
          <Effect>
-            <Type>Doublestrike</Type>
+            <Type>ImbueDice</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">3 6 10</AmountVector>
-            <Stance>Rune Arm</Stance>
-         </Effect>
-         <Effect>
-            <Type>Doubleshot</Type>
-            <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">3 6 10</AmountVector>
+            <AmountVector size="3">1 2 3</AmountVector>
             <Stance>Rune Arm</Stance>
          </Effect>
       </EnhancementTreeItem>
@@ -1274,7 +1296,8 @@ bonus for 20 seconds. (Cooldown: 30 seconds.)</Description>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Reconstructed Edges</Name>
-               <Description>+1 Competence Bonus to Critical Threat Range with Bastard Swords and Dwarven Axes</Description>
+               <Description>+1 Competence Bonus to Critical Threat Range with Bastard Swords and Dwarven Axes.
++20% Competence bonus to Maximum Hitpoints.</Description>
                <Icon>BEReconstructedEdges</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Effect>
@@ -1285,11 +1308,19 @@ bonus for 20 seconds. (Cooldown: 30 seconds.)</Description>
                   <Weapon>Bastard Sword</Weapon>
                   <Weapon>Dwarven Axe</Weapon>
                </Effect>
+                 <Effect>
+                    <Type>Hitpoints</Type>
+                    <Bonus>Competence</Bonus>
+                    <Amount>20</Amount>
+                    <Percent/>
+                    <ApplyAsItemEffect/>
+                 </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Reconstructed Arms</Name>
                <Description>+1 Competence Bonus to Critical Threat Range with with
-Light Hammers, Warhammers and Morningstars.</Description>
+Light Hammers, Warhammers and Morningstars.
++20% Competence bonus to Maximum Hitpoints.</Description>
                <Icon>BEReconstructedArms</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Effect>
@@ -1301,6 +1332,13 @@ Light Hammers, Warhammers and Morningstars.</Description>
                   <Weapon>Warhammer</Weapon>
                   <Weapon>Morningstar</Weapon>
                </Effect>
+                 <Effect>
+                    <Type>Hitpoints</Type>
+                    <Bonus>Competence</Bonus>
+                    <Amount>20</Amount>
+                    <Percent/>
+                    <ApplyAsItemEffect/>
+                 </Effect>
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
@@ -1425,7 +1463,8 @@ Trips the target. A successful Strength check negates the Trip effect.</Descript
       <EnhancementTreeItem>
          <Name>Battle Engineer: Unlock Potential</Name>
          <InternalName>BEUnlockPotential</InternalName>
-         <Description>+20 Ranged and Melee power while wielding a Rune Arm.</Description>
+         <Description>+20 Ranged and Melee power while wielding a Rune Arm.
++1 Imbue Dice</Description>
          <Icon>BEUnlockPotential</Icon>
          <XPosition>3</XPosition>
          <YPosition>5</YPosition>
@@ -1455,6 +1494,12 @@ Trips the target. A successful Strength check negates the Trip effect.</Descript
             <Type>RangedPower</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>20</Amount>
+            <Stance>Rune Arm</Stance>
+         </Effect>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
             <Stance>Rune Arm</Stance>
          </Effect>
       </EnhancementTreeItem>

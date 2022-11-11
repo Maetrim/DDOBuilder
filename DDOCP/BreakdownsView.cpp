@@ -549,6 +549,20 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
         m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pHP);
         m_items.push_back(pHP);
         {
+            HTREEITEM hStyleBonus = m_itemBreakdownTree.InsertItem(
+                    "Style Bonus Feats",
+                    hItem,
+                    TVI_LAST);
+            BreakdownItem * pSB = new BreakdownItemSimple(
+                    Breakdown_StyleBonusFeats,
+                    Effect_HitpointsStyleBonus,
+                    "Style Bonus Feats",
+                    &m_itemBreakdownTree,
+                    hStyleBonus);
+            m_itemBreakdownTree.SetItemData(hStyleBonus, (DWORD)(void*)pSB);
+            m_items.push_back(pSB);
+        }
+        {
             HTREEITEM hUnconsciousRange = m_itemBreakdownTree.InsertItem(
                     "Unconscious Range",
                     hItem,
@@ -962,6 +976,20 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
                 hItem);
         m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pBAB);
         m_items.push_back(pBAB);
+        {
+            HTREEITEM hOverrideBab = m_itemBreakdownTree.InsertItem(
+                    "BAB Override",
+                    hItem,
+                    TVI_LAST);
+            BreakdownItem * poverrideBab = new BreakdownItemSimple(
+                    Breakdown_OverrideBAB,
+                    Effect_OverrideBAB,
+                    "BAB Override",
+                    &m_itemBreakdownTree,
+                    hOverrideBab);
+            m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)poverrideBab);
+            m_items.push_back(poverrideBab);
+        }
     }
     {
         HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
@@ -1034,6 +1062,21 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
                 hItem);
         m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pDS);
         m_items.push_back(pDS);
+    }
+
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Imbue Dice",
+                hOffensiveParent,
+                TVI_LAST);
+        BreakdownItem * pID = new BreakdownItemSneakAttackDice(
+                Breakdown_ImbueDice,
+                Effect_ImbueDice,
+                "Imbue Dice",
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pID);
+        m_items.push_back(pID);
     }
 
     {

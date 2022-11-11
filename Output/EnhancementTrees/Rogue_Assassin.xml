@@ -297,32 +297,32 @@ Will save to negate, DC 10 + half Rogue level + INT modifier)</Description>
          </Selector>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Assassin: Toxin Affinity</Name>
-         <InternalName>AssToxinAffinity</InternalName>
-         <Description>+[1/2/3] Fortitude saves vs. Poisons and to the save DC of your Poison attacks</Description>
-         <Icon>AssToxinAffinity</Icon>
+         <Name>Assassin: Venomed Blades</Name>
+         <InternalName>AssVenomedBlades</InternalName>
+         <Description>Poison Stance: On hit: 1d8 poison damage per Imbue Dice scaling with Melee or Ranged power.</Description>
+         <Icon>AssVenomedBlades</Icon>
          <XPosition>1</XPosition>
          <YPosition>1</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
-         <MinSpent>1</MinSpent>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Clickie/>
          <Requirements>
             <Requirement>
                <Class>Rogue</Class>
-               <Level>1</Level>
+               <Level>2</Level>
             </Requirement>
          </Requirements>
+         <Stance>
+            <Name>Venomed Blades</Name>
+            <Icon>AssVenomedBlades</Icon>
+            <Description>On hit: 1d8 poison damage per Imbue Dice scaling with Melee or Ranged power.</Description>
+            <Group>Imbue</Group>
+         </Stance>
          <Effect>
-            <Type>SaveBonus</Type>
+            <Type>ImbueDice</Type>
             <Bonus>Enhancement</Bonus>
-            <Save>Poison</Save>
-            <AmountVector size="3">1 2 3</AmountVector>
-         </Effect>
-         <Effect>
-            <Type>TacticalDC</Type>
-            <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">1 2 3</AmountVector>
-            <Tactical>Poison</Tactical>
+            <Amount>1</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -505,38 +505,32 @@ Will save to negate, DC 10 + half Rogue level + INT modifier)</Description>
          </Selector>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Assassin: Venomed Blades</Name>
-         <InternalName>AssVenomedBlades</InternalName>
-         <Description>Poison Stance: On hit: 1d[4/6/8] poison damage with weapon attacks.</Description>
-         <Icon>AssVenomedBlades</Icon>
+         <Name>Assassin: Toxin Affinity</Name>
+         <InternalName>AssToxinAffinity</InternalName>
+         <Description>+[1/2/3] Imbue Dice.
++[1/2/3] Fortitude saves vs. Poisons and to the save DC of your Poison attacks</Description>
+         <Icon>AssToxinAffinity</Icon>
          <XPosition>1</XPosition>
          <YPosition>2</YPosition>
          <CostPerRank size="1">1</CostPerRank>
          <Ranks>3</Ranks>
-         <MinSpent>5</MinSpent>
-         <Clickie/>
+         <MinSpent>1</MinSpent>
          <Requirements>
             <Requirement>
                <Class>Rogue</Class>
-               <Level>2</Level>
+               <Level>1</Level>
             </Requirement>
          </Requirements>
-         <Stance>
-            <Name>Venomed Blades</Name>
-            <Icon>AssVenomedBlades</Icon>
-            <Description>On hit: 1d[4/6/8] poison damage with weapon attacks.</Description>
-         </Stance>
          <Effect>
-            <Type>WeaponOtherDamageBonus</Type>
+            <Type>SaveBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <Weapon>All</Weapon>
-            <Dice>
-               <Number size="3">1 1 1</Number>
-               <Sides size="3">4 6 8</Sides>
-               <ScalesWithMeleePower/>
-            </Dice>
-            <Energy>Poison</Energy>
-            <Stance>Venomed Blades</Stance>
+            <Save>Poison</Save>
+            <AmountVector size="3">1 2 3</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -1173,7 +1167,8 @@ Improved Critical: Piercing, this bonus to Threat Range is doubled.</Description
       <EnhancementTreeItem>
          <Name>Assassin: Light Armor Mastery</Name>
          <InternalName>AssLightArmorMastery</InternalName>
-         <Description>Gain [2/4/6] to the maximum dexterity bonus of light armor and [2/4/6] PRR.</Description>
+         <Description>Gain [2/4/6] to the maximum dexterity bonus of light armor and [2/4/6] PRR.
+Rank 3: +25% Competence bonus to Maximum Hitpoints.</Description>
          <Icon>AssLightArmorMastery</Icon>
          <XPosition>4</XPosition>
          <YPosition>5</YPosition>
@@ -1202,6 +1197,13 @@ Improved Critical: Piercing, this bonus to Threat Range is doubled.</Description
             <AmountVector size="3">2 4 6</AmountVector>
             <Stance>Light Armor</Stance>
          </Effect>
+        <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Competence</Bonus>
+            <AmountVector size="3">0 0 25</AmountVector>
+            <Percent/>
+            <ApplyAsItemEffect/>
+        </Effect>
       </EnhancementTreeItem>
    </EnhancementTree>
 </Enhancements>

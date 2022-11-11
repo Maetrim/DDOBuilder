@@ -65,7 +65,7 @@ Passive: +2 Armor Class, +5 Fire Spell Power, +5 Light Spell Power</Description>
          <Name>War Soul: Resilience of Battle</Name>
          <InternalName>WarSoulCore2</InternalName>
          <Description>Passive: Damage Reduction 5/-, +2 Armor Class, +5 Fire Spell Power,
-+5 Light Spell Power</Description>
++5 Light Spell Power. +1 Imbue Dice</Description>
          <Icon>WPResilienceOfBattle</Icon>
          <XPosition>1</XPosition>
          <YPosition>0</YPosition>
@@ -82,6 +82,11 @@ Passive: +2 Armor Class, +5 Fire Spell Power, +5 Light Spell Power</Description>
                <Level>3</Level>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+         </Effect>
          <Effect>
             <Type>DR</Type>
             <Bonus>Enhancement</Bonus>
@@ -153,6 +158,7 @@ Passive:
          <Description>Blur is added to your spellbook as a level 2 spell.
 In addition, you permanently benefit from the effect of the Blur spell.
 Passive:
++1 Imbue Dice
 +2 Armor Class
 +5 Fire Spell Power
 +5 Light Spell Power</Description>
@@ -172,6 +178,11 @@ Passive:
                <Level>12</Level>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+         </Effect>
          <Effect>
             <Type>SpellListAddition</Type>
             <Bonus>Enhancement</Bonus>
@@ -197,6 +208,7 @@ Passive:
          <InternalName>WarSoulCore5</InternalName>
          <Description>Haste is added to your spellbook as a level 3 spell.
 Passive:
++1 Imbue Dice
 +2 Armor Class
 +5 Fire Spell Power
 +5 Light Spell Power
@@ -217,6 +229,11 @@ Passive:
                <Level>18</Level>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+         </Effect>
          <Effect>
             <Type>SpellListAddition</Type>
             <Bonus>Enhancement</Bonus>
@@ -1051,7 +1068,7 @@ this skill.</Description>
       <EnhancementTreeItem>
          <Name>War Soul: Silence the Wicked</Name>
          <InternalName>WSSilenceTheWicked</InternalName>
-         <Description>Choose between a Melee and a Ranged attack.</Description>
+         <Description>1d6 Fire damage per Imbue dice, scales with Fire spell power.</Description>
          <Icon>WSSilenceTheWicked</Icon>
          <XPosition>1</XPosition>
          <YPosition>4</YPosition>
@@ -1065,22 +1082,17 @@ this skill.</Description>
                <Level>4</Level>
             </Requirement>
          </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>Silence the Wicked (Melee)</Name>
-               <Description>Favored Weapon Melee Attack: +[1/2/3][W]: On Hit: Affected enemy can't cast spells for 4/8/12 seconds</Description>
-               <Icon>WSSilenceTheWicked</Icon>
-               <CostPerRank size="1">1</CostPerRank>
-               <Clickie/>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Silence the Wicked (Ranged)</Name>
-               <Description>Favored Weapon Ranged Attack: +[1/2/3][W]: On Hit: Affected enemy can't cast spells for 4/8/12 seconds</Description>
-               <Icon>WSSilenceTheWicked</Icon>
-               <CostPerRank size="1">1</CostPerRank>
-               <Clickie/>
-            </EnhancementSelection>
-         </Selector>
+         <Stance>
+            <Name>War Soul: Silence the Wicked</Name>
+            <Description>1d6 Fire damage per Imbue dice scaling with Fire spell power.</Description>
+            <Icon>SBResonantArms</Icon>
+            <Group>Imbue</Group>
+         </Stance>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>War Soul: Righteous Weapons IV</Name>
@@ -1326,10 +1338,7 @@ Damage per character level.
          <Name>War Soul: Wrathful Weapons</Name>
          <InternalName>WSWrathfulWeapons</InternalName>
          <Description>When wielding your religion's favored weapon in your main hand, you gain
-+3 to hit and damage, and +9 Universal Spell Power. When you score a Vorpal
-Hit with your religion's favored weapon, your attacks gain 10d6 Light Damage
-on hit for the next 12 seconds. This damage scales at 200% with the higher of
-your Melee or Ranged Power.</Description>
++3 to hit and damage, and +9 Universal Spell Power. +3 imbue Dice.</Description>
          <Icon>WPWrathfulWeapons</Icon>
          <XPosition>2</XPosition>
          <YPosition>5</YPosition>
@@ -1361,12 +1370,18 @@ your Melee or Ranged Power.</Description>
             <Amount>9</Amount>
             <SpellPower>All</SpellPower>
          </Effect>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>3</Amount>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>War Soul: Divine Champion</Name>
          <InternalName>WSDivineChampion</InternalName>
          <Description>While wearing Medium armor (or in Mithral body feat), you gain +5% Doublestrike,
-+5% Doubleshot, +5 to confirm Critical hits and damage (before weapon multipliers).</Description>
++5% Doubleshot, +5 to confirm Critical hits and damage (before weapon multipliers).
++20% Competence bonus to Maximum Hitpoints.</Description>
          <Icon>WSDivineChampion</Icon>
          <XPosition>3</XPosition>
          <YPosition>5</YPosition>
@@ -1409,6 +1424,13 @@ your Melee or Ranged Power.</Description>
             <Stance>Medium Armor</Stance>
             <Weapon>All</Weapon>
          </Effect>
+        <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Competence</Bonus>
+            <Amount>20</Amount>
+            <Percent/>
+            <ApplyAsItemEffect/>
+        </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>War Soul: Divine Intervention</Name>

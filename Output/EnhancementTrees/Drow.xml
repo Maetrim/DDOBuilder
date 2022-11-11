@@ -548,9 +548,26 @@ uses give you additional uses per rest of this ability.</Description>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
+         <Name>Drow: Imbue I</Name>
+         <InternalName>DrowImbueI</InternalName>
+         <Description>+1 Imbue Dice</Description>
+         <Icon>PassiveStub</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements/>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
          <Name>Drow: Venomed Blades</Name>
          <InternalName>DrowVenomedBlades</InternalName>
-         <Description>Poison Stance: On Hit: 1d[4/6/8] Poison damage with weapon attacks.
+         <Description>Poison Stance: On Hit: 1d8 Poison damage with weapon attacks.
 (This enhancement cannot be taken at the same time as Venomed Blades in the Assassin tree.) </Description>
          <Icon>DrowVenomedBlades</Icon>
          <XPosition>1</XPosition>
@@ -569,15 +586,16 @@ uses give you additional uses per rest of this ability.</Description>
                </Requirement>
             </RequiresNoneOf>
          </Requirements>
+         <Stance>
+            <Name>DrowVenomedBlades Blades</Name>
+            <Icon>AssVenomedBlades</Icon>
+            <Description>On hit: 1d8 poison damage per Imbue Dice scaling with Melee or Ranged power.</Description>
+            <Group>Imbue</Group>
+         </Stance>
          <Effect>
-            <Type>WeaponOtherDamageBonus</Type>
+            <Type>ImbueDice</Type>
             <Bonus>Enhancement</Bonus>
-            <Dice>
-               <Number size="3">1 1 1</Number>
-               <Sides size="3">4 6 8</Sides>
-               <Energy>Poison</Energy>
-            </Dice>
-            <Weapon>All</Weapon>
+            <Amount>1</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -610,6 +628,23 @@ uses give you additional uses per rest of this ability.</Description>
             <Weapon>Rapier</Weapon>
             <Weapon>Shortsword</Weapon>
             <Weapon>Shuriken</Weapon>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Drow: Imbue II</Name>
+         <InternalName>DrowImbueII</InternalName>
+         <Description>+1 Imbue Dice</Description>
+         <Icon>PassiveStub</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>15</MinSpent>
+         <Requirements/>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
          </Effect>
       </EnhancementTreeItem>
    </EnhancementTree>

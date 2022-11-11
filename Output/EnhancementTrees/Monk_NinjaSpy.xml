@@ -1127,6 +1127,7 @@ save and momentarily dazing opponents on a failed fortitude save.</Description>
          <Name>Ninja Spy: Sting of the Ninja</Name>
          <InternalName>NSStingOfTheNinja</InternalName>
          <Description>Weapon Stance: You poison your weapon with a secret mixture.
+You do 1d6 Poison damage per Imbue Dice scaling with either Melee or Ranged power.
 While you are centered, any shortsword, kama, or shuriken you wield will inflict
 your foe with a stack of Ninja Poison on critical hits.
 (Magical Poison: Target takes 1d4 points of Poison damage every 3 seconds for 15
@@ -1134,7 +1135,7 @@ seconds. The target's vulnerability to poison is increaseed by 5%. This ability
 can stack up to 20 times. On timer expiration, 5 stacks of Ninja Poison are
 removed at a time.)
 
-If another ability allows you to emain centered while wielding other types of
+If another ability allows you to remain centered while wielding other types of
 melee weapon, then those weapons will also get the benfit of Sting of the Ninja
 if they are normally Piercing or Slashing weapons. Cooldown: 3 seconds.</Description>
          <Icon>NSStingOfTheNinja</Icon>
@@ -1150,6 +1151,18 @@ if they are normally Piercing or Slashing weapons. Cooldown: 3 seconds.</Descrip
                <Level>3</Level>
             </Requirement>
          </Requirements>
+         <Stance>
+            <Name>Ninja Spy: Sting of the Ninja</Name>
+            <Icon>NSStingOfTheNinja</Icon>
+            <Description>Weapon Stance: You poison your weapon with a secret mixture.
+You do 1d6 Poison damage per Imbue Dice scaling with either Melee or Ranged power.</Description>
+            <Group>Imbue</Group>
+         </Stance>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Ninja Spy: Ability I</Name>
@@ -1689,6 +1702,44 @@ Kamas and Shuriken gain double this bonus.</Description>
             <Bonus>Enhancement</Bonus>
             <Feat>Crippling Strike</Feat>
          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Ninja Spy: Self Defense</Name>
+         <InternalName>NSSelfDefense</InternalName>
+         <Description>Grants +5 MRR and MRR Cap and 25% competence bonus to Hit Points</Description>
+         <Icon>PassiveStub</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>5</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <Class>Monk</Class>
+               <Level>5</Level>
+            </Requirement>
+            <Requirement>
+               <MinLevel>12</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>MRR</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>5</Amount>
+         </Effect>
+         <Effect>
+            <Type>MRRCap</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>5</Amount>
+         </Effect>
+        <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Competence</Bonus>
+            <Amount>25</Amount>
+            <Percent/>
+            <ApplyAsItemEffect/>
+        </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Ninja Spy: Shadow Double</Name>

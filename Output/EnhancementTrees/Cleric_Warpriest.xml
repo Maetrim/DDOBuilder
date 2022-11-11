@@ -76,7 +76,7 @@ Passive: +2 Armor Class, +5 Fire Spell Power, +5 Light Spell Power</Description>
          <Name>Warpriest: Resilience of Battle</Name>
          <InternalName>WPCore2</InternalName>
          <Description>Passive: Damage Reduction 5/-, +2 Armor Class, +5 Fire Spell Power,
-+5 Light Spell Power</Description>
++5 Light Spell Power. +1 Imbue Dice</Description>
          <Icon>WPResilienceOfBattle</Icon>
          <XPosition>1</XPosition>
          <YPosition>0</YPosition>
@@ -99,6 +99,11 @@ Passive: +2 Armor Class, +5 Fire Spell Power, +5 Light Spell Power</Description>
                </Requirement>
             </RequiresOneOf>
          </Requirements>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+         </Effect>
          <Effect>
             <Type>DR</Type>
             <Bonus>Enhancement</Bonus>
@@ -170,11 +175,12 @@ Passive:
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Warpriest War Domain: Blur</Name>
+         <Name>Warpriest: War Domain: Blur</Name>
          <InternalName>WPCore4</InternalName>
          <Description>Blur is added to your spellbook as a level 2 spell.
 In addition, you permanently benefit from the effect of the Blur spell.
 Passive:
++1 Imbue Dice
 +2 Armor Class
 +5 Fire Spell Power
 +5 Light Spell Power
@@ -201,6 +207,11 @@ Passive:
                </Requirement>
             </RequiresOneOf>
          </Requirements>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+         </Effect>
          <Effect>
             <Type>SpellListAddition</Type>
             <Bonus>Enhancement</Bonus>
@@ -233,6 +244,7 @@ Passive:
          <InternalName>WPCore5</InternalName>
          <Description>Haste is added to your spellbook as a level 3 spell.
 Passive:
++1 Imbue Dice
 +2 Armor Class
 +5 Fire Spell Power
 +5 Light Spell Power
@@ -259,6 +271,11 @@ Passive:
                </Requirement>
             </RequiresOneOf>
          </Requirements>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+         </Effect>
          <Effect>
             <Type>SpellListAddition</Type>
             <Bonus>Enhancement</Bonus>
@@ -1082,12 +1099,12 @@ Positive Spell Power)</Description>
       <EnhancementTreeItem>
          <Name>War Priest: Silence the Wicked</Name>
          <InternalName>WPSilenceTheWicked</InternalName>
-         <Description>Choose between a Melee and a Ranged attack.</Description>
+         <Description>1d6 Fire damage per Imbue dice, scales with Fire spell power.</Description>
          <Icon>WPSilenceTheWicked</Icon>
          <XPosition>1</XPosition>
          <YPosition>4</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
          <MinSpent>20</MinSpent>
          <Clickie/>
          <Requirements>
@@ -1102,22 +1119,17 @@ Positive Spell Power)</Description>
                </Requirement>
             </RequiresOneOf>
          </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>Silence the Wicked (Melee)</Name>
-               <Description>Favored Weapon Melee Attack: +1[W]: On Hit: Affected enemy can't cast spells for 4/8/12 seconds</Description>
-               <Icon>WPSilenceTheWickedMelee</Icon>
-               <CostPerRank size="1">1</CostPerRank>
-               <Clickie/>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Silence the Wicked (Ranged)</Name>
-               <Description>Favored Weapon Ranged Attack: +1[W]: On Hit: Affected enemy can't cast spells for 4/8/12 seconds</Description>
-               <Icon>WPSilenceTheWicked</Icon>
-               <CostPerRank size="1">1</CostPerRank>
-               <Clickie/>
-            </EnhancementSelection>
-         </Selector>
+         <Stance>
+            <Name>War Priest: Silence the Wicked</Name>
+            <Description>1d6 Fire damage per Imbue dice scaling with Fire spell power.</Description>
+            <Icon>SBResonantArms</Icon>
+            <Group>Imbue</Group>
+         </Stance>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Warpriest: Righteous Weapons IV</Name>
@@ -1364,9 +1376,7 @@ of Divine Conduit, instead of 25.</Description>
          <Name>Warpriest: Wrathful Weapons</Name>
          <InternalName>WPWrathfulWeapons</InternalName>
          <Description>When wielding your religion's favored weapon, it gains an additional +1
-to its Enhancement Bonus. When you score a Vorpal Hit with your religion's
-favored weapon, your attacks gain 10d6 Light Damage on hit for the next 6 seconds.
-This damage scales with 200% of the higher of your Melee or Ranged Power.</Description>
+to its Enhancement Bonus. +3 Imbue Dice</Description>
          <Icon>WPWrathfulWeapons</Icon>
          <XPosition>2</XPosition>
          <YPosition>5</YPosition>
@@ -1398,12 +1408,17 @@ This damage scales with 200% of the higher of your Melee or Ranged Power.</Descr
             <Amount>1</Amount>
             <Weapon>All</Weapon>
          </Effect>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>3</Amount>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>War Priest: Divine Bastion</Name>
          <InternalName>WPDivineBastion</InternalName>
          <Description>While wearing Heavy armor (or in Adamantine body feat), you gain +10 PRR,
-+10 MRR, +10 AC and +50% threat generation with melee and ranged attacks.</Description>
++10 MRR, +10 AC, +20% Competence bonus to Maximum Hitpoints.</Description>
          <Icon>WPDivineBastion</Icon>
          <XPosition>3</XPosition>
          <YPosition>5</YPosition>
@@ -1444,18 +1459,13 @@ This damage scales with 200% of the higher of your Melee or Ranged Power.</Descr
             <Amount>10</Amount>
             <Stance>Heavy Armor</Stance>
          </Effect>
-         <Effect>
-            <Type>ThreatBonusMelee</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>50</Amount>
-            <Stance>Heavy Armor</Stance>
-         </Effect>
-         <Effect>
-            <Type>ThreatBonusRanged</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>50</Amount>
-            <Stance>Heavy Armor</Stance>
-         </Effect>
+        <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Competence</Bonus>
+            <Amount>20</Amount>
+            <Percent/>
+            <ApplyAsItemEffect/>
+        </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Warpriest: Divine Intervention</Name>

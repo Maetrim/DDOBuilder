@@ -590,7 +590,8 @@ The bleed effect can stack up to 5 times. (Cooldown: 6 seconds.)</Description>
          <Name>Tempest: Storm Dancer</Name>
          <InternalName>TempestStormDancer</InternalName>
          <Description>Stance: Absorb 15% of Electrical damage.
-Your melee attacks deal +1d6 Electrical damage. This damage scales with 100% Melee Power.</Description>
+Your melee attacks deal +1d8 Electrical damage per Imbue Dice.
+This damage scales with 100% Melee or Ranged Power.</Description>
          <Icon>TempestStormDancer</Icon>
          <XPosition>0</XPosition>
          <YPosition>3</YPosition>
@@ -608,37 +609,22 @@ Your melee attacks deal +1d6 Electrical damage. This damage scales with 100% Mel
          <Stance>
             <Name>Storm Dancer</Name>
             <Icon>TempestStormDancer</Icon>
-            <Description>you absorb an additional 15% of Electrical damage.</Description>
+            <Description>You absorb an additional 15% of Electrical damage.
+Your melee attacks deal +1d8 Electrical damage per Imbue Dice.
+This damage scales with 100% Melee or Ranged Power.</Description>
+            <Group>Imbue</Group>
          </Stance>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+         </Effect>
          <Effect>
             <Type>EnergyAbsorbance</Type>
             <Bonus>Enhancement</Bonus>
             <Energy>Electric</Energy>
             <Stance>Storm Dancer</Stance>
             <Amount>15</Amount>
-         </Effect>
-         <Effect>
-            <Type>WeaponOtherDamageBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Dice>
-               <Number size="1">1</Number>
-               <Sides size="1">6</Sides>
-               <Energy>Electric</Energy>
-               <ScalesWithMeleePower/>
-            </Dice>
-            <Stance>Storm Dancer</Stance>
-            <Weapon>All</Weapon>
-         </Effect>
-         <Effect>
-            <Type>WeaponOtherCriticalDamageBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Dice>
-               <Number size="1">1</Number>
-               <Sides size="1">6</Sides>
-               <Energy>Electric</Energy>
-            </Dice>
-            <Stance>Storm Dancer</Stance>
-            <Weapon>All</Weapon>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -798,8 +784,7 @@ Your melee attacks deal +1d6 Electrical damage. This damage scales with 100% Mel
       <EnhancementTreeItem>
          <Name>Tempest: Storm Tempest</Name>
          <InternalName>TempestStormTempest</InternalName>
-         <Description>Upgrades Storm Dancer Electrical damage absorption to 30% (instead of 15%).
-Upgrades melee attacks to deal +2d6 electrical damage (instead of 1d6).</Description>
+         <Description>Upgrades Storm Dancer Electrical damage absorption to 30% (instead of 15%).</Description>
          <Icon>TempestStormTempest</Icon>
          <XPosition>0</XPosition>
          <YPosition>4</YPosition>
@@ -821,30 +806,6 @@ Upgrades melee attacks to deal +2d6 electrical damage (instead of 1d6).</Descrip
             <Energy>Electric</Energy>
             <Stance>Storm Dancer</Stance>
             <Amount>15</Amount>
-         </Effect>
-         <Effect>
-            <Type>WeaponOtherDamageBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Dice>
-               <Number size="1">1</Number>
-               <Sides size="1">6</Sides>
-               <Energy>Electric</Energy>
-               <ScalesWithMeleePower/>
-            </Dice>
-            <Stance>Storm Dancer</Stance>
-            <Weapon>All</Weapon>
-         </Effect>
-         <Effect>
-            <Type>WeaponOtherCriticalDamageBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Dice>
-               <Number size="1">1</Number>
-               <Sides size="1">6</Sides>
-               <ScalesWithMeleePower/>
-               <Energy>Electric</Energy>
-            </Dice>
-            <Stance>Storm Dancer</Stance>
-            <Weapon>All</Weapon>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -967,7 +928,8 @@ can stack up to 10 times. (Cooldown: 30 seconds) </Description>
       <EnhancementTreeItem>
          <Name>Tempest: Dual Perfection</Name>
          <InternalName>TempestDualPerfection</InternalName>
-         <Description>Your off hand weapon now adds your full attribute damage modifier.</Description>
+         <Description>Your off hand weapon now adds your full attribute damage modifier.
++25% Competence bonus to Maximum Hitpoints.</Description>
          <Icon>TempestDualPerfection</Icon>
          <XPosition>0</XPosition>
          <YPosition>5</YPosition>
@@ -989,6 +951,13 @@ can stack up to 10 times. (Cooldown: 30 seconds) </Description>
             <Bonus>Enhancement</Bonus>
             <Amount>0.5</Amount>
          </Effect>
+        <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Competence</Bonus>
+            <Amount>25</Amount>
+            <Percent/>
+            <ApplyAsItemEffect/>
+        </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Tempest: Evasive Dance</Name>

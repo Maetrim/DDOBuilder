@@ -462,7 +462,8 @@ at a -[12/8/4] penalty.</Description>
       <EnhancementTreeItem>
          <Name>Shadar-Kai: Winter Favored</Name>
          <InternalName>ShadarKaiLWinterFavored</InternalName>
-         <Description>Toggle: Your sneak attacks deal 1d6 extra Cold damage, and you gain 5 Cold resistance.</Description>
+         <Description>Toggle: Your sneak attacks deal 1d12 extra Cold damage per Imbue Dice scaling
+with Melee or Ranged power, and you gain 5 Cold resistance.</Description>
          <Icon>ShadarKaiWinterFavored</Icon>
          <XPosition>3</XPosition>
          <YPosition>4</YPosition>
@@ -477,14 +478,17 @@ at a -[12/8/4] penalty.</Description>
             <Amount>5</Amount>
             <Energy>Cold</Energy>
          </Effect>
+         <Stance>
+            <Name>Shadar-Kai: Winter Favored</Name>
+            <Icon>ShadarKaiWinterFavored</Icon>
+         <Description>Toggle: Your sneak attacks deal 1d12 extra Cold damage per Imbue Dice scaling
+with Melee or Ranged power, and you gain 5 Cold resistance.</Description>
+            <Group>Imbue</Group>
+         </Stance>
          <Effect>
-            <Type>SneakAttackDamage</Type>
+            <Type>ImbueDice</Type>
             <Bonus>Enhancement</Bonus>
-            <Dice>
-               <Number size="1">1</Number>
-               <Sides size="1">6</Sides>
-            </Dice>
-            <Energy>Cold</Energy>
+            <Amount>1</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>

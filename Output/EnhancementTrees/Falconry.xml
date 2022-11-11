@@ -1053,16 +1053,43 @@ Cooldown: 25 seconds</Description>
                <MinLevel>12</MinLevel>
             </Requirement>
          </Requirements>
-         <Effect>
-            <Type>MeleePower</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>10</Amount>
-         </Effect>
-         <Effect>
-            <Type>RangedPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>10</Amount>
-         </Effect>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Dangerous</Name>
+               <Description>+10 melee power, +25% competence bonus to hit points.</Description>
+               <Icon>FalconDangerous</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+                 <Effect>
+                    <Type>MeleePower</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <Amount>10</Amount>
+                 </Effect>
+                <Effect>
+                    <Type>Hitpoints</Type>
+                    <Bonus>Competence</Bonus>
+                    <Amount>25</Amount>
+                    <Percent/>
+                    <ApplyAsItemEffect/>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Swift</Name>
+               <Description>+3 Reflex saves, 10 Ranged power.</Description>
+               <Icon>FalconrySummonGreyOwl</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+                 <Effect>
+                    <Type>SaveBonus</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <Amount>3</Amount>
+                     <Save>Reflex</Save>
+                 </Effect>
+                 <Effect>
+                    <Type>RangedPower</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <Amount>10</Amount>
+                 </Effect>
+            </EnhancementSelection>
+         </Selector>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Falconry: Death From Above</Name>

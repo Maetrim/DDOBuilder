@@ -13,10 +13,10 @@
       <EnhancementTreeItem>
          <Name>Knight of the Chalice: Slayer of Evil I</Name>
          <InternalName>KotCCore1</InternalName>
-         <Description>You gain +1 to attack evil creatures and deal 1d4 additional light damage
-that scales with 200% Melee oe Ranged Power (whichever is higher). You resist
-evil influences particularly well, gaining a +2 bonus to saves against spells
-and effects produced by evil creatures.
+         <Description>You gain +1 to attack evil creatures and deal 1d6 Light damage
+per Imbue dice that scales with 200% Melee oe Ranged Power (whichever is higher).
+You resist evil influences particularly well, gaining a +2 bonus to saves against
+spells and effects produced by evil creatures.
 
 Mutually exclusive with Shadowguard</Description>
          <Icon>KotCSlayerOfEvil</Icon>
@@ -37,16 +37,16 @@ Mutually exclusive with Shadowguard</Description>
                </Requirement>
             </RequiresNoneOf>
          </Requirements>
+         <Stance>
+            <Name>Knight of the Chalice: Slayer of Evil</Name>
+            <Icon>KotCSlayerOfEvil</Icon>
+            <Description>You 1d6 Light damage per Imbue dice that scales with 200% Melee oe Ranged Power</Description>
+            <Group>Imbue</Group>
+         </Stance>
          <Effect>
-            <Type>WeaponOtherDamageBonus</Type>
+            <Type>ImbueDice</Type>
             <Bonus>Enhancement</Bonus>
-            <Dice>
-               <Number size="1">1</Number>
-               <Sides size="1">4</Sides>
-               <Energy>Light</Energy>
-               <ScalesWithMeleePower/>
-            </Dice>
-            <Weapon>All</Weapon>
+            <Amount>1</Amount>
          </Effect>
          <Effect>
             <Type>SaveBonus</Type>
@@ -61,8 +61,8 @@ Mutually exclusive with Shadowguard</Description>
          <InternalName>KotCCore2</InternalName>
          <Description>Your Aura of Courage grants an additional +2 Sacred bonus to saves against Fear
 and now also grants a +2 Sacred bonus to saves against Enchantment. You gain +1
-to hit for all attacks. Your Slayer of Evil now now deals 1d8 Light damage
-that scales with 200% Melee or Ranged Power (whichever is higher).</Description>
+to hit for all attacks. 
++1 Imbue Dice</Description>
          <Icon>KotCCourageOfHeaven</Icon>
          <XPosition>1</XPosition>
          <YPosition>0</YPosition>
@@ -79,6 +79,11 @@ that scales with 200% Melee or Ranged Power (whichever is higher).</Description>
                <Level>3</Level>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+         </Effect>
          <Effect>
             <Type>SaveBonus</Type>
             <Bonus>Enhancement</Bonus>
@@ -105,16 +110,6 @@ that scales with 200% Melee or Ranged Power (whichever is higher).</Description>
             <Amount>1</Amount>
             <Weapon>All</Weapon>
          </Effect>
-         <Effect>
-            <Type>WeaponOtherDamageBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Dice>
-               <Number size="1">1</Number>
-               <Sides size="1">8</Sides>
-               <Energy>Light</Energy>
-            </Dice>
-            <Weapon>All</Weapon>
-         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Knight of the Chalice: Slayer of Evil II</Name>
@@ -124,6 +119,7 @@ that scales with 200% Melee or Ranged Power (whichever is higher).</Description>
 You now resist evil influences particularly well, gaining a +2 bonus to saves
 against spells and effects produced by evil creatures.
 Your weapons gain the Ghost Touch effect.
++1 Imbue Dice.
 
 In addition, you gain +4 Remove Disease charges and your Remove Disease also
 applies a Greater Restoration effect on your target.</Description>
@@ -144,14 +140,9 @@ applies a Greater Restoration effect on your target.</Description>
             </Requirement>
          </Requirements>
          <Effect>
-            <Type>WeaponOtherDamageBonus</Type>
+            <Type>ImbueDice</Type>
             <Bonus>Enhancement</Bonus>
-            <Dice>
-               <Number size="1">2</Number>
-               <Sides size="1">6</Sides>
-               <Energy>Light</Energy>
-            </Dice>
-            <Weapon>All</Weapon>
+            <Amount>1</Amount>
          </Effect>
          <Effect>
             <Type>SaveBonus</Type>
@@ -172,8 +163,8 @@ applies a Greater Restoration effect on your target.</Description>
          <InternalName>KotCCore4</InternalName>
          <Description>Your Aura of Courage grants an additional +2 Sacred bonus to saves against
 Fear and now also grants a +2 Sacred bonus to saves against Enchantment. You now
-gain +2 to hit for all attacks. Your Slayer of Evil now deals 3d6 Light damage
-that scales with 200% Melee or Ranged Power (whichever is higher).
+gain +2 to hit for all attacks.
++1 Imbue Dice.
 
 You are now immune to Energy Drain.</Description>
          <Icon>KotCImprovedCourageOfHeaven</Icon>
@@ -192,6 +183,11 @@ You are now immune to Energy Drain.</Description>
                <Level>12</Level>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+         </Effect>
          <Effect>
             <Type>SaveBonus</Type>
             <Bonus>Enhancement</Bonus>
@@ -219,16 +215,6 @@ You are now immune to Energy Drain.</Description>
             <Weapon>All</Weapon>
          </Effect>
          <Effect>
-            <Type>WeaponOtherDamageBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Dice>
-               <Number size="1">3</Number>
-               <Sides size="1">6</Sides>
-               <Energy>Light</Energy>
-            </Dice>
-            <Weapon>All</Weapon>
-         </Effect>
-         <Effect>
             <Type>Immunity</Type>
             <Bonus>Enhancement</Bonus>
             <Immunity>Energy Drain</Immunity>
@@ -241,7 +227,8 @@ You are now immune to Energy Drain.</Description>
 Light damage that scales with 200% Melee or Ranged Power (whichever is higher).
 You now resist evil influences particulary well, gaining a +4 bonus to saves
 against spells and effects produced by evil creatures. Your Vorpal hits against
-undead do an additional 500 damage.</Description>
+undead do an additional 500 damage.
++1 Imbue Dice.</Description>
          <Icon>KotCSlayerOfEvil</Icon>
          <XPosition>4</XPosition>
          <YPosition>0</YPosition>
@@ -259,14 +246,9 @@ undead do an additional 500 damage.</Description>
             </Requirement>
          </Requirements>
          <Effect>
-            <Type>WeaponOtherDamageBonus</Type>
+            <Type>ImbueDice</Type>
             <Bonus>Enhancement</Bonus>
-            <Dice>
-               <Number size="1">5</Number>
-               <Sides size="1">6</Sides>
-               <Energy>Light</Energy>
-            </Dice>
-            <Weapon>All</Weapon>
+            <Amount>1</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -275,8 +257,8 @@ undead do an additional 500 damage.</Description>
          <Description>You gain +4 Charisma and 10 Melee and Ranged Power.
 The save bonuses vs. Fear and Enchantment granted by Courage of Heaven are
 increased by an additional +2, Any weapon you wield is considered Good Aligned
-for purposes of bypassing damage reduction. Your Slayer of Evil now deals 7d6
-Light damage that scales with 200% Melee or Ranged Power (whichever is higher).
+for purposes of bypassing damage reduction.
++1 Imbue Dice
 
 In addition, your Aura of Courage now grants allies a +3% Sacred bonus to Melee
 and Ranged damage, and if you have Ascendancy your Blessed Purpose now stacks
@@ -296,6 +278,11 @@ up to 25 times.</Description>
                <Level>20</Level>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+         </Effect>
          <Effect>
             <Type>AbilityBonus</Type>
             <Bonus>Enhancement</Bonus>
@@ -325,16 +312,6 @@ up to 25 times.</Description>
             <Amount>2</Amount>
             <Stance>Aura of Courage</Stance>
             <Save>Enchantment</Save>
-         </Effect>
-         <Effect>
-            <Type>WeaponOtherDamageBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Dice>
-               <Number size="1">7</Number>
-               <Sides size="1">6</Sides>
-               <Energy>Light</Energy>
-            </Dice>
-            <Weapon>All</Weapon>
          </Effect>
          <Effect>
             <Type>DRBypass</Type>
@@ -1090,7 +1067,7 @@ Critical Threat Range.</Description>
          <Name>Knight of the Chalice: Vigor of Life I</Name>
          <InternalName>KotCVigorOfLifeI</InternalName>
          <Description>+30 Positive Healing Amplification
--30 Negative Healing Amplification</Description>
+-30 Negative Healing Amplification.</Description>
          <Icon>KotCVigorOfLife</Icon>
          <XPosition>2</XPosition>
          <YPosition>4</YPosition>
@@ -1351,7 +1328,8 @@ You also gain 10 Melee and Ranged Power.</Description>
          <Name>Knight of the Chalice: Vigor of Life II</Name>
          <InternalName>KotCVigorOfLifeII</InternalName>
          <Description>+30 Positive Healing Amplification
--30 Negative Healing Amplification</Description>
+-30 Negative Healing Amplification.
++25% Competence bonus to Maximum Hitpoints.</Description>
          <Icon>KotCVigorOfLife</Icon>
          <XPosition>2</XPosition>
          <YPosition>5</YPosition>
@@ -1381,6 +1359,13 @@ You also gain 10 Melee and Ranged Power.</Description>
             <Bonus>Enhancement</Bonus>
             <Amount>-30</Amount>
          </Effect>
+        <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Competence</Bonus>
+            <Amount>25</Amount>
+            <Percent/>
+            <ApplyAsItemEffect/>
+        </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Knight of the Chalice: Avenging Attack</Name>

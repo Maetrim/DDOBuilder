@@ -460,6 +460,7 @@ void CInventoryDialog::OnPaint()
 void CInventoryDialog::OnLButtonDown(UINT nFlags, CPoint point)
 {
     CDialog::OnLButtonDown(nFlags, point);
+    static bool bInPopupMenu = false;
     InventorySlotType slotClicked = FindItemByPoint(NULL);
     if (slotClicked != Inventory_Unknown)
     {
@@ -500,55 +501,64 @@ void CInventoryDialog::OnLButtonDown(UINT nFlags, CPoint point)
                         if (clickedFiligree.empty()
                                 || !isRareSection)
                         {
-                            CreateFiligreeMenu(filigreeIndex, isArtifactFiligree);
-                            ClientToScreen(&itemRect);
                             CWinAppEx * pApp = dynamic_cast<CWinAppEx*>(AfxGetApp());
-                            UINT sel = pApp->GetContextMenuManager()->TrackPopupMenu(
-                                    m_filigreeMenu.GetSafeHmenu(),
-                                    itemRect.left,
-                                    itemRect.top,
-                                    this);
-                            if (sel > 0)
+                            if (!bInPopupMenu)
                             {
-                                std::vector<Augment>::const_iterator cit = m_filigrees.begin();
-                                std::advance(cit, sel - 1);
-                                if (cit != m_filigrees.end())
+                                bInPopupMenu = true;
+                                CreateFiligreeMenu(filigreeIndex, isArtifactFiligree);
+                                ClientToScreen(&itemRect);
+                                UINT sel = pApp->GetContextMenuManager()->TrackPopupMenu(
+                                        m_filigreeMenu.GetSafeHmenu(),
+                                        itemRect.left,
+                                        itemRect.top,
+                                        this);
+                                bInPopupMenu = false;
+                                if (sel > 0)
                                 {
-                                    std::string selectedItem = (*cit).Name();
-                                    SentientJewel jewel = m_gearSet.SentientIntelligence();
-                                    if (isArtifactFiligree)
+                                    std::vector<Augment>::const_iterator cit = m_filigrees.begin();
+                                    std::advance(cit, sel - 1);
+                                    if (cit != m_filigrees.end())
                                     {
-                                        // if they selected "No Augment" then clear the selection
-                                        if (selectedItem == " No Augment")
+                                        std::string selectedItem = (*cit).Name();
+                                        SentientJewel jewel = m_gearSet.SentientIntelligence();
+                                        if (isArtifactFiligree)
                                         {
-                                            jewel.SetArtifactFiligreeRare(filigreeIndex, false);
-                                            jewel.SetArtifactFiligree(filigreeIndex, "");
+                                            // if they selected "No Augment" then clear the selection
+                                            if (selectedItem == " No Augment")
+                                            {
+                                                jewel.SetArtifactFiligreeRare(filigreeIndex, false);
+                                                jewel.SetArtifactFiligree(filigreeIndex, "");
+                                            }
+                                            else
+                                            {
+                                                jewel.SetArtifactFiligree(filigreeIndex, selectedItem);
+                                            }
+                                            m_gearSet.Set_SentientIntelligence(jewel);
+                                            m_pCharacter->UpdateActiveGearSet(m_gearSet);
+                                            Invalidate();
                                         }
                                         else
                                         {
-                                            jewel.SetArtifactFiligree(filigreeIndex, selectedItem);
+                                            // if they selected "No Augment" then clear the selection
+                                            if (selectedItem == " No Augment")
+                                            {
+                                                jewel.SetFiligreeRare(filigreeIndex, false);
+                                                jewel.SetFiligree(filigreeIndex, "");
+                                            }
+                                            else
+                                            {
+                                                jewel.SetFiligree(filigreeIndex, selectedItem);
+                                            }
+                                            m_gearSet.Set_SentientIntelligence(jewel);
+                                            m_pCharacter->UpdateActiveGearSet(m_gearSet);
+                                            Invalidate();
                                         }
-                                        m_gearSet.Set_SentientIntelligence(jewel);
-                                        m_pCharacter->UpdateActiveGearSet(m_gearSet);
-                                        Invalidate();
-                                    }
-                                    else
-                                    {
-                                        // if they selected "No Augment" then clear the selection
-                                        if (selectedItem == " No Augment")
-                                        {
-                                            jewel.SetFiligreeRare(filigreeIndex, false);
-                                            jewel.SetFiligree(filigreeIndex, "");
-                                        }
-                                        else
-                                        {
-                                            jewel.SetFiligree(filigreeIndex, selectedItem);
-                                        }
-                                        m_gearSet.Set_SentientIntelligence(jewel);
-                                        m_pCharacter->UpdateActiveGearSet(m_gearSet);
-                                        Invalidate();
                                     }
                                 }
+                            }
+                            else
+                            {
+                                pApp->GetContextMenuManager()->ResetState();
                             }
                         }
                         else

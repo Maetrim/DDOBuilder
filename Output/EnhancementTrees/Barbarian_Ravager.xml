@@ -68,9 +68,7 @@ This effect stacks and one stack fades every six seconds.</Description>
       <EnhancementTreeItem>
          <Name>Ravager: Pain Touch I</Name>
          <InternalName>RavCore2</InternalName>
-         <Description>Your melee attacks deal 1d6 extra damage.
-This damage scales with 100% Melee Power.
-Passive: +10 Healing Amplification</Description>
+         <Description>Passive: +5 Melee power and +10 Healing Amplification</Description>
          <Icon>RavPainTouch</Icon>
          <XPosition>1</XPosition>
          <YPosition>0</YPosition>
@@ -88,14 +86,9 @@ Passive: +10 Healing Amplification</Description>
             </Requirement>
          </Requirements>
          <Effect>
-            <Type>WeaponOtherDamageBonus</Type>
+            <Type>MeleePower</Type>
             <Bonus>Enhancement</Bonus>
-            <WeaponClass>Melee</WeaponClass>
-            <Dice>
-               <Number size="1">1</Number>
-               <Sides size="1">6</Sides>
-               <ScalesWithMeleePower/>
-            </Dice>
+             <Amount>5</Amount>
          </Effect>
          <Effect>
             <Type>HealingAmplification</Type>
@@ -149,9 +142,7 @@ a failed DC 20 Will saving throw.</Description>
       <EnhancementTreeItem>
          <Name>Ravager: Pain Touch II</Name>
          <InternalName>RavCore4</InternalName>
-         <Description>Upgrades Pain Touch so your melee attacks deal 2d6 extra damage.
-This damage scales with 100% Melee Power.
-Passive: You gain +60 hitpoints and +20 healing amplification</Description>
+         <Description>Passive: You gain +60 hitpoints, +5 Melee power and +20 healing amplification</Description>
          <Icon>RavPainTouch</Icon>
          <XPosition>3</XPosition>
          <YPosition>0</YPosition>
@@ -169,14 +160,9 @@ Passive: You gain +60 hitpoints and +20 healing amplification</Description>
             </Requirement>
          </Requirements>
          <Effect>
-            <Type>WeaponOtherDamageBonus</Type>
+            <Type>MeleePower</Type>
             <Bonus>Enhancement</Bonus>
-            <WeaponClass>Melee</WeaponClass>
-            <Dice>
-               <Number size="1">1</Number>
-               <Sides size="1">6</Sides>
-               <ScalesWithMeleePower/>
-            </Dice>
+             <Amount>5</Amount>
          </Effect>
          <Effect>
             <Type>Hitpoints</Type>
@@ -771,7 +757,8 @@ Blood Strength has a one-second cooldown when you kill an enemy.</Description>
       <EnhancementTreeItem>
          <Name>Ravager: Uncanny Balance</Name>
          <InternalName>RavUncannyBalance</InternalName>
-         <Description>You are immune to most knockdowns and slippery surfaces.</Description>
+         <Description>You are immune to most knockdowns and slippery surfaces.
++25% Competence bonus to Maximum Hitpoints.</Description>
          <Icon>RavUncannyBalance</Icon>
          <XPosition>3</XPosition>
          <YPosition>5</YPosition>
@@ -798,6 +785,13 @@ Blood Strength has a one-second cooldown when you kill an enemy.</Description>
             <Bonus>Enhancement</Bonus>
             <Immunity>Slippery Surfaces</Immunity>
          </Effect>
+        <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Competence</Bonus>
+            <Amount>25</Amount>
+            <Percent/>
+            <ApplyAsItemEffect/>
+        </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Ravager: Critical Rage</Name>

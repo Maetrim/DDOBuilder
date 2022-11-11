@@ -11,6 +11,40 @@
    </Feat>
    <!--A list of all the feats that can be selected in game-->
    <Feat>
+      <Name>Second Wind</Name>
+      <Description>Active this ability to regain 50% of your max hit points.
+15 second cool down. You can used this once per rest, with an additional charges
+gained at Fighter levels 4, 8, 12, 16, 20. This can be used while Crowd Controlled.
+At level 8 Second Wind removes negative effects like the Panacea spell.</Description>
+      <Requirements/>
+      <Acquire>Automatic</Acquire>
+      <AutomaticAcquisition>
+         <Class>Fighter</Class>
+         <Level>2</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Fighter</Class>
+         <Level>4</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Fighter</Class>
+         <Level>8</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Fighter</Class>
+         <Level>12</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Fighter</Class>
+         <Level>16</Level>
+      </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <Class>Fighter</Class>
+         <Level>20</Level>
+      </AutomaticAcquisition>
+      <Icon>SecondWind</Icon>
+   </Feat>
+   <Feat>
       <Name>Abundant Step</Name>
       <Description>You are able to leap through the air to bring the fight to your enemies or
 traverse chasms that make normal adventurers balk.</Description>
@@ -2568,7 +2602,6 @@ but they consume 10 additional spell points.</Description>
          <Icon>EnlargeSpell</Icon>
          <Description>While this metamagic feat is active, spells have twice the range,
 but they consume 10 additional spell points.</Description>
-         <IncompatibleStance>Epic Defensive Fighting</IncompatibleStance>
       </Stance>
       <Requirements>
          <RequiresOneOf>
@@ -4072,7 +4105,6 @@ Does not function in animal forms.</Description>
          <Bonus>Combat Style</Bonus>
          <Amount>4</Amount>
          <Stance>Sword and Board</Stance>
-         <ApplyAsItemEffect/>
       </Effect>
       <Effect>
          <DisplayName>Greater Shield Mastery: Buckler</DisplayName>
@@ -4103,13 +4135,9 @@ Does not function in animal forms.</Description>
          <Stance>Tower Shield</Stance>
       </Effect>
       <Effect>
-         <DisplayName>Epic Defensive Fighting</DisplayName>
-         <Type>Hitpoints</Type>
-         <Bonus>Competence</Bonus>
-         <Percent/>
-         <Stance>Epic Defensive Fighting</Stance>
-         <AmountVector size="5">5 10 15 20 25</AmountVector>
-         <ApplyAsItemEffect/>
+         <Type>HitpointsStyleBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
       </Effect>
    </Feat>
    <Feat>
@@ -4157,13 +4185,9 @@ your appropriate ability score to your damage (similar to Two-Handed Fighting).<
          <Stance>Single Weapon Fighting</Stance>
       </Effect>
       <Effect>
-         <DisplayName>Epic Defensive Fighting</DisplayName>
-         <Type>Hitpoints</Type>
-         <Bonus>Competence</Bonus>
-         <Percent/>
-         <Stance>Epic Defensive Fighting</Stance>
-         <AmountVector size="5">5 10 15 20 25</AmountVector>
-         <ApplyAsItemEffect/>
+         <Type>HitpointsStyleBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
       </Effect>
    </Feat>
    <Feat>
@@ -4359,17 +4383,12 @@ your Ability Score bonus to damage improves by 25%</Description>
          <Type>MeleePower</Type>
          <Bonus>Combat Style</Bonus>
          <Stance>Two Handed Fighting</Stance>
-         <Amount>6</Amount>
-         <ApplyAsItemEffect/>
+         <Amount>2</Amount>
       </Effect>
       <Effect>
-         <DisplayName>Epic Defensive Fighting</DisplayName>
-         <Type>Hitpoints</Type>
-         <Bonus>Competence</Bonus>
-         <Percent/>
-         <Stance>Epic Defensive Fighting</Stance>
-         <AmountVector size="5">5 10 15 20 25</AmountVector>
-         <ApplyAsItemEffect/>
+         <Type>HitpointsStyleBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
       </Effect>
    </Feat>
    <Feat>
@@ -4405,13 +4424,9 @@ two weapons (or as an unarmed monk) by an additional 20% to 80%.</Description>
          <Amount>20</Amount>
       </Effect>
       <Effect>
-         <DisplayName>Epic Defensive Fighting</DisplayName>
-         <Type>Hitpoints</Type>
-         <Bonus>Competence</Bonus>
-         <Percent/>
-         <Stance>Epic Defensive Fighting</Stance>
-         <AmountVector size="5">5 10 15 20 25</AmountVector>
-         <ApplyAsItemEffect/>
+         <Type>HitpointsStyleBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
       </Effect>
    </Feat>
    <Feat>
@@ -5306,7 +5321,7 @@ This feat is not recommended for characters with actual Sorcerer levels.</Descri
    <Feat>
       <Name>Half-Elf Dilettante: Warlock</Name>
       <Description>Able to use wands and scrolls as if you were a level one Warlock.
-Toggle: You deal 1D4 extra Fire damage with attacks and spells.
+Toggle: You deal 1d4 extra Fire damage per Imbue Dice with attacks and spells.
 This trigger at most once every two seconds.
 This toggle is exclusive with Warlock Pact toggles.</Description>
       <FeatGroup>
@@ -5323,6 +5338,18 @@ This toggle is exclusive with Warlock Pact toggles.</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>DilettanteWarlock</Icon>
+         <Stance>
+            <Name>Half-Elf Dilettante: Warlock</Name>
+            <Icon>DilettanteWarlock</Icon>
+            <Description>Toggle: You deal 1d4 extra Fire damage per Imbue Dice with attacks and spells.
+This trigger at most once every two seconds.</Description>
+            <Group>Imbue</Group>
+         </Stance>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+         </Effect>
    </Feat>
    <Feat>
       <Name>Half-Elf Dilettante: Wizard</Name>
@@ -5619,7 +5646,11 @@ resist, but increasing their spell point cost.</Description>
    </Feat>
    <Feat>
       <Name>Heroic Durability</Name>
-      <Description>Increases your maximum hit points by 30.</Description>
+      <Description>Increases your maximum hit points by 30.
+In addition, for every melee combat style feat you take you gain a 25% bonus
+to the hit points gained from your class levels.
+Epic and Legendary levels count at half value.
+This bonus can only stack up to 100%.</Description>
       <Requirements/>
       <Acquire>Automatic</Acquire>
       <Icon>HeroicDurability</Icon>
@@ -6215,7 +6246,7 @@ Add +3 Melee Power(for a total of +6)</Description>
       </Effect>
       <Effect>
          <Type>MeleePower</Type>
-         <Bonus>Feat</Bonus>
+         <Bonus>Combat Style</Bonus>
          <Amount>3</Amount>
          <Stance>Sword and Board</Stance>
       </Effect>
@@ -6248,13 +6279,9 @@ Add +3 Melee Power(for a total of +6)</Description>
          <Stance>Tower Shield</Stance>
       </Effect>
       <Effect>
-         <DisplayName>Epic Defensive Fighting</DisplayName>
-         <Type>Hitpoints</Type>
-         <Bonus>Competence</Bonus>
-         <Percent/>
-         <Stance>Epic Defensive Fighting</Stance>
-         <AmountVector size="5">5 10 15 20 25</AmountVector>
-         <ApplyAsItemEffect/>
+         <Type>HitpointsStyleBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
       </Effect>
    </Feat>
    <Feat>
@@ -6303,13 +6330,9 @@ of just your ability score (for instance, you add 1.25 times your Strength as da
          <Stance>Single Weapon Fighting</Stance>
       </Effect>
       <Effect>
-         <DisplayName>Epic Defensive Fighting</DisplayName>
-         <Type>Hitpoints</Type>
-         <Bonus>Competence</Bonus>
-         <Percent/>
-         <Stance>Epic Defensive Fighting</Stance>
-         <AmountVector size="5">5 10 15 20 25</AmountVector>
-         <ApplyAsItemEffect/>
+         <Type>HitpointsStyleBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
       </Effect>
    </Feat>
    <Feat>
@@ -6486,8 +6509,7 @@ your Ability Score bonus to damage improves by 25%</Description>
          <Type>MeleePower</Type>
          <Bonus>Combat Style</Bonus>
          <Stance>Two Handed Fighting</Stance>
-         <Amount>4</Amount>
-         <ApplyAsItemEffect/>
+         <Amount>2</Amount>
       </Effect>
       <Effect>
          <Type>DamageAbilityMultiplier</Type>
@@ -6504,13 +6526,9 @@ your Ability Score bonus to damage improves by 25%</Description>
          <AnyOfStance>Dwarven Axe</AnyOfStance>
       </Effect>
       <Effect>
-         <DisplayName>Epic Defensive Fighting</DisplayName>
-         <Type>Hitpoints</Type>
-         <Bonus>Competence</Bonus>
-         <Percent/>
-         <Stance>Epic Defensive Fighting</Stance>
-         <AmountVector size="5">5 10 15 20 25</AmountVector>
-         <ApplyAsItemEffect/>
+         <Type>HitpointsStyleBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
       </Effect>
    </Feat>
    <Feat>
@@ -6546,13 +6564,9 @@ two weapons (or as an unarmed monk) by an additional 20% to 60%.</Description>
          <Amount>20</Amount>
       </Effect>
       <Effect>
-         <DisplayName>Epic Defensive Fighting</DisplayName>
-         <Type>Hitpoints</Type>
-         <Bonus>Competence</Bonus>
-         <Percent/>
-         <Stance>Epic Defensive Fighting</Stance>
-         <AmountVector size="5">5 10 15 20 25</AmountVector>
-         <ApplyAsItemEffect/>
+         <Type>HitpointsStyleBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
       </Effect>
    </Feat>
    <Feat>
@@ -9186,13 +9200,9 @@ This feat gives no benefit to druids in elemental forms.</Description>
          <AnyOfStance>Dire Bear</AnyOfStance>
       </Effect>
       <Effect>
-         <DisplayName>Epic Defensive Fighting</DisplayName>
-         <Type>Hitpoints</Type>
-         <Bonus>Competence</Bonus>
-         <Percent/>
-         <Stance>Epic Defensive Fighting</Stance>
-         <AmountVector size="5">5 10 15 20 25</AmountVector>
-         <ApplyAsItemEffect/>
+         <Type>HitpointsStyleBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
       </Effect>
    </Feat>
    <Feat>
@@ -9240,9 +9250,7 @@ This feat gives no benefit to druids in elemental forms.</Description>
 offhand while Single Weapon Fighting. If you have nothing in your offhand, your
 ability score modifier contributes 25% more to your melee damage.
 
-If you have an Orb or a Runearm in your Offhand, On Vorpal strike while Single
-Weapon Fighting, for the next 5 seconds, all of your spells will automatically
-crit.</Description>
+If you have an Orb or Runearm in your Offhand, gain +1 Imbue Dice</Description>
       <FeatGroup>
          <IsStandardFeat/>
          <IsFighterBonus/>
@@ -9263,6 +9271,13 @@ crit.</Description>
          <Amount>0.25</Amount>
          <Stance>Single Weapon Fighting</Stance>
       </Effect>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <AnyOfStance>Orb</AnyOfStance>
+            <AnyOfStance>Rune Arm</AnyOfStance>
+         </Effect>
    </Feat>
    <Feat>
       <Name>Opportunist</Name>
@@ -10721,7 +10736,7 @@ Add +3 Melee Power</Description>
       </Effect>
       <Effect>
          <Type>MeleePower</Type>
-         <Bonus>Feat</Bonus>
+         <Bonus>Combat Style</Bonus>
          <Amount>3</Amount>
          <Stance>Sword and Board</Stance>
       </Effect>
@@ -10754,13 +10769,9 @@ Add +3 Melee Power</Description>
          <Stance>Tower Shield</Stance>
       </Effect>
       <Effect>
-         <DisplayName>Epic Defensive Fighting</DisplayName>
-         <Type>Hitpoints</Type>
-         <Bonus>Competence</Bonus>
-         <Percent/>
-         <Stance>Epic Defensive Fighting</Stance>
-         <AmountVector size="5">5 10 15 20 25</AmountVector>
-         <ApplyAsItemEffect/>
+         <Type>HitpointsStyleBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
       </Effect>
    </Feat>
    <Feat>
@@ -10916,13 +10927,9 @@ and wielding only an orb, runearm, or nothing in your off hand.</Description>
          <ApplyAsItemEffect/>
       </Effect>
       <Effect>
-         <DisplayName>Epic Defensive Fighting</DisplayName>
-         <Type>Hitpoints</Type>
-         <Bonus>Competence</Bonus>
-         <Percent/>
-         <Stance>Epic Defensive Fighting</Stance>
-         <AmountVector size="5">5 10 15 20 25</AmountVector>
-         <ApplyAsItemEffect/>
+         <Type>HitpointsStyleBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
       </Effect>
    </Feat>
    <Feat>
@@ -12662,15 +12669,15 @@ receiving an additional +1 bonus on save DCs.</Description>
             </Requirement>
             <Requirement>
                <Class>Paladin</Class>
-               <Level>1</Level>
+               <Level>4</Level>
             </Requirement>
             <Requirement>
                <Class>Sacred Fist</Class>
-               <Level>1</Level>
+               <Level>4</Level>
             </Requirement>
             <Requirement>
                <Class>Ranger</Class>
-               <Level>1</Level>
+               <Level>4</Level>
             </Requirement>
             <Requirement>
                <Class>Sorcerer</Class>
@@ -12739,15 +12746,15 @@ receiving an additional +1 bonus on save DCs.</Description>
             </Requirement>
             <Requirement>
                <Class>Paladin</Class>
-               <Level>1</Level>
+               <Level>4</Level>
             </Requirement>
             <Requirement>
                <Class>Sacred Fist</Class>
-               <Level>1</Level>
+               <Level>4</Level>
             </Requirement>
             <Requirement>
                <Class>Ranger</Class>
-               <Level>1</Level>
+               <Level>4</Level>
             </Requirement>
             <Requirement>
                <Class>Sorcerer</Class>
@@ -12816,15 +12823,15 @@ receiving an additional +1 bonus on save DCs.</Description>
             </Requirement>
             <Requirement>
                <Class>Paladin</Class>
-               <Level>1</Level>
+               <Level>4</Level>
             </Requirement>
             <Requirement>
                <Class>Sacred Fist</Class>
-               <Level>1</Level>
+               <Level>4</Level>
             </Requirement>
             <Requirement>
                <Class>Ranger</Class>
-               <Level>1</Level>
+               <Level>4</Level>
             </Requirement>
             <Requirement>
                <Class>Sorcerer</Class>
@@ -12893,15 +12900,15 @@ receiving an additional +1 bonus on save DCs.</Description>
             </Requirement>
             <Requirement>
                <Class>Paladin</Class>
-               <Level>1</Level>
+               <Level>4</Level>
             </Requirement>
             <Requirement>
                <Class>Sacred Fist</Class>
-               <Level>1</Level>
+               <Level>4</Level>
             </Requirement>
             <Requirement>
                <Class>Ranger</Class>
-               <Level>1</Level>
+               <Level>4</Level>
             </Requirement>
             <Requirement>
                <Class>Sorcerer</Class>
@@ -12970,15 +12977,15 @@ receiving an additional +1 bonus on save DCs.</Description>
             </Requirement>
             <Requirement>
                <Class>Paladin</Class>
-               <Level>1</Level>
+               <Level>4</Level>
             </Requirement>
             <Requirement>
                <Class>Sacred Fist</Class>
-               <Level>1</Level>
+               <Level>4</Level>
             </Requirement>
             <Requirement>
                <Class>Ranger</Class>
-               <Level>1</Level>
+               <Level>4</Level>
             </Requirement>
             <Requirement>
                <Class>Sorcerer</Class>
@@ -13047,15 +13054,15 @@ receiving an additional +1 bonus on save DCs.</Description>
             </Requirement>
             <Requirement>
                <Class>Paladin</Class>
-               <Level>1</Level>
+               <Level>4</Level>
             </Requirement>
             <Requirement>
                <Class>Sacred Fist</Class>
-               <Level>1</Level>
+               <Level>4</Level>
             </Requirement>
             <Requirement>
                <Class>Ranger</Class>
-               <Level>1</Level>
+               <Level>4</Level>
             </Requirement>
             <Requirement>
                <Class>Sorcerer</Class>
@@ -13124,15 +13131,15 @@ receiving an additional +1 bonus on save DCs.</Description>
             </Requirement>
             <Requirement>
                <Class>Paladin</Class>
-               <Level>1</Level>
+               <Level>4</Level>
             </Requirement>
             <Requirement>
                <Class>Sacred Fist</Class>
-               <Level>1</Level>
+               <Level>4</Level>
             </Requirement>
             <Requirement>
                <Class>Ranger</Class>
-               <Level>1</Level>
+               <Level>4</Level>
             </Requirement>
             <Requirement>
                <Class>Sorcerer</Class>
@@ -14122,16 +14129,11 @@ Druid Animal Formas), your Ability Score bonus to damage improves by 25%.</Descr
          <Bonus>Combat Style</Bonus>
          <Stance>Two Handed Fighting</Stance>
          <Amount>2</Amount>
-         <ApplyAsItemEffect/>
       </Effect>
       <Effect>
-         <DisplayName>Epic Defensive Fighting</DisplayName>
-         <Type>Hitpoints</Type>
-         <Bonus>Competence</Bonus>
-         <Percent/>
-         <Stance>Epic Defensive Fighting</Stance>
-         <AmountVector size="5">5 10 15 20 25</AmountVector>
-         <ApplyAsItemEffect/>
+         <Type>HitpointsStyleBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
       </Effect>
    </Feat>
    <Feat>
@@ -14217,13 +14219,9 @@ Two Weapon Fighting also increases the chance to proc an off-hand attack by
          <Weapon>All</Weapon>
       </Effect>
       <Effect>
-         <DisplayName>Epic Defensive Fighting</DisplayName>
-         <Type>Hitpoints</Type>
-         <Bonus>Competence</Bonus>
-         <Percent/>
-         <Stance>Epic Defensive Fighting</Stance>
-         <AmountVector size="5">5 10 15 20 25</AmountVector>
-         <ApplyAsItemEffect/>
+         <Type>HitpointsStyleBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
       </Effect>
    </Feat>
    <Feat>
@@ -16004,7 +16002,9 @@ bonus to AC. Gain 20% Strikethrough chance.</Description>
    </Feat>
    <Feat>
       <Name>Wild Shape: Fire Elemental</Name>
-      <Description>You can transform into Fire Elemental form.</Description>
+      <Description>You can transform into Fire Elemental form.
+When in this form you do 1d6 Fire damage per Imbue Dice that scales with Fire
+spell power per attack. +1 Imbue Dice</Description>
       <FeatGroup>
          <IsDruidWildShape/>
       </FeatGroup>
@@ -16055,10 +16055,17 @@ bonus to AC. Gain 20% Strikethrough chance.</Description>
          <Amount>-15</Amount>
          <Stance>Fire Elemental</Stance>
       </Effect>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>3</Amount>
+         </Effect>
    </Feat>
    <Feat>
       <Name>Wild Shape: Water Elemental</Name>
-      <Description>You can transform into Water Elemental form.</Description>
+      <Description>You can transform into Water Elemental form.
+When in this form you do 1d6 Cold damage per Imbue Dice that scales with Cold
+spell power per attack. +3 imbue Dice</Description>
       <FeatGroup>
          <IsDruidWildShape/>
       </FeatGroup>
@@ -16109,6 +16116,11 @@ bonus to AC. Gain 20% Strikethrough chance.</Description>
          <Amount>-15</Amount>
          <Stance>Water Elemental</Stance>
       </Effect>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>3</Amount>
+         </Effect>
    </Feat>
    <Feat>
       <Name>Wild Shape: Winter Wolf</Name>
@@ -18296,7 +18308,6 @@ all saving throws and +4 Armor Class.</Description>
          <AnyOfStance>Resilience</AnyOfStance>
          <AnyOfStance>Stalwart Defense</AnyOfStance>
          <AnyOfStance>Sacred Defense</AnyOfStance>
-         <AnyOfStance>Epic Defensive Fighting</AnyOfStance>
       </Effect>
       <Effect>
          <Type>ACBonus</Type>
@@ -18307,7 +18318,6 @@ all saving throws and +4 Armor Class.</Description>
          <AnyOfStance>Resilience</AnyOfStance>
          <AnyOfStance>Stalwart Defense</AnyOfStance>
          <AnyOfStance>Sacred Defense</AnyOfStance>
-         <AnyOfStance>Epic Defensive Fighting</AnyOfStance>
       </Effect>
       <Effect>
          <DisplayName>Unyielding Sentinel: Divine Bulwark</DisplayName>
@@ -18755,67 +18765,6 @@ For a total of +5 to all casting classes at level 30.</Description>
       <AutomaticAcquisition>
          <Level>30</Level>
       </AutomaticAcquisition>
-   </Feat>
-   <Feat>
-      <Name>Epic Defensive Fighting</Name>
-      <Description>Your hero has learned to enter a reactive state, protecting themselves in the
-chaos of battle by rolling with the punches, but this hampers their ability to
-engage ranged threats.
-
-Combat Style Feats Include:
-All Single Weapon Fighting Feats
-All Two Handed Fighting Feats
-All Two Weapon Fighting Feats
-All Natural Fighting Feats
-All Shield Mastery Feats
-
-While Toggle is active:
-1: 5% Competence Bonus to max hit points, with an additional 5% for every
-combat "fighting" style feat you have, to a max of 25%.
-2: All spell or spell like abilities that are effected by metamagics have their
-ranged reduced to touch range.
-3: Reduces your Doubleshot and Ranged Power to 0 while active.
-4: Exclusive from Range stances
----Improved Precise Shot, Archers Focus, Shiradi stances, Warlock Blast stances.
-5: Exclusive from the Enlarge Spell Metamagic toggle
-6: Remains active while dead
-7: Can be used with other defensive/offensive stances and Rage</Description>
-      <Requirements/>
-      <Acquire>Automatic</Acquire>
-      <Icon>EpicPower</Icon>
-      <AutomaticAcquisition>
-         <Level>21</Level>
-      </AutomaticAcquisition>
-      <Stance>
-         <Name>Epic Defensive Fighting</Name>
-         <Icon>EpicDefensiveFighting</Icon>
-         <Description>Your hero has learned to enter a reactive state, protecting themselves in the
-chaos of battle by rolling with the punches, but this hampers their ability to
-engage ranged threats.
-
-While Toggle is active:
-1: 5% Competence Bonus to max hit points, with an additional 5% for every
-combat "fighting" style feat you have, to a max of 25%.
-2: All spell or spell like abilities that are effected by metamagics have their
-ranged reduced to touch range.
-3: Reduces your Doubleshot and Ranged Power to 0 while active.
-4: Exclusive from Range stances
----Improved Precise Shot, Archers Focus, Shiradi stances, Warlock Blast stances.
-5: Exclusive from the Enlarge Spell Metamagic toggle
-6: Remains active while dead
-7: Can be used with other defensive/offensive stances and Rage</Description>
-         <IncompatibleStance>Enlarge</IncompatibleStance>
-         <IncompatibleStance>Eldritch Aura</IncompatibleStance>
-      </Stance>
-      <Effect>
-         <DisplayName>Epic Defensive Fighting</DisplayName>
-         <Type>Hitpoints</Type>
-         <Bonus>Competence</Bonus>
-         <Percent/>
-         <Stance>Epic Defensive Fighting</Stance>
-         <AmountVector size="5">5 10 15 20 25</AmountVector>
-         <ApplyAsItemEffect/>
-      </Effect>
    </Feat>
    <Feat>
       <Name>Epic Reflexes</Name>
@@ -20378,6 +20327,12 @@ Search for difficult traps.)</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>WatchfulEye</Icon>
+      <Effect>
+         <DisplayName>Shiradi Champion: Pierce Deception</DisplayName>
+         <Type>Doubleshot</Type>
+         <Bonus>Destiny</Bonus>
+         <AmountVector size="3">0 0 5</AmountVector>
+      </Effect>
       <Effect>
          <DisplayName>Shiradi Champion: Pierce Deception</DisplayName>
          <Type>Doubleshot</Type>
@@ -25277,8 +25232,8 @@ points of Cold Resistance equal to twice your Cleric level for 20 seconds.</Desc
    </Feat>
    <Feat>
       <Name>Animal Domain Tier II</Name>
-      <Description>You gain 10 hit points per Cleric level.
-You also add 10 hit points for each Epic level you have gained.</Description>
+      <Description>You gain 4 hit points per Cleric level.
+You also add 2 hit points for each Epic/Legendary level you have gained.</Description>
       <FeatGroup>
          <IsDomainFeat/>
       </FeatGroup>
@@ -25293,22 +25248,29 @@ You also add 10 hit points for each Epic level you have gained.</Description>
          <DisplayName>Animal Domain I: Cleric Levels</DisplayName>
          <Type>Hitpoints</Type>
          <Bonus>Feat</Bonus>
-         <AmountPerLevel>10</AmountPerLevel>
+         <AmountPerLevel>4</AmountPerLevel>
          <Class>Cleric</Class>
       </Effect>
       <Effect>
          <DisplayName>Animal Domain I: Dark Apostate Levels</DisplayName>
          <Type>Hitpoints</Type>
          <Bonus>Feat</Bonus>
-         <AmountPerLevel>10</AmountPerLevel>
+         <AmountPerLevel>4</AmountPerLevel>
          <Class>Dark Apostate</Class>
       </Effect>
       <Effect>
          <DisplayName>Animal Domain I: Epic Levels</DisplayName>
          <Type>Hitpoints</Type>
          <Bonus>Feat</Bonus>
-         <AmountPerLevel>10</AmountPerLevel>
+         <AmountPerLevel>2</AmountPerLevel>
          <Class>Epic</Class>
+      </Effect>
+      <Effect>
+         <DisplayName>Animal Domain I: Legendary Levels</DisplayName>
+         <Type>Hitpoints</Type>
+         <Bonus>Feat</Bonus>
+         <AmountPerLevel>2</AmountPerLevel>
+         <Class>Legendary</Class>
       </Effect>
    </Feat>
    <Feat>
@@ -26544,7 +26506,7 @@ to or greater than half of your total Heroic Character level.</Description>
    <!--Favored soul heart feats-->
    <Feat>
       <Name>Stout of Heart</Name>
-      <Description>You gain 10 Hit Points per Favored Soul or Epic level.</Description>
+      <Description>You gain 4 Hitpoints per Favored Soul level and 2 Hitpoints per Epic/Legendary level.</Description>
       <FeatGroup>
          <IsHeart/>
       </FeatGroup>
@@ -26555,15 +26517,22 @@ to or greater than half of your total Heroic Character level.</Description>
          <DisplayName>Stout of Heart: Favored Soul Levels</DisplayName>
          <Type>Hitpoints</Type>
          <Bonus>Feat</Bonus>
-         <AmountPerLevel>10</AmountPerLevel>
+         <AmountPerLevel>4</AmountPerLevel>
          <Class>Favored Soul</Class>
       </Effect>
       <Effect>
          <DisplayName>Stout of Heart: Epic Levels</DisplayName>
          <Type>Hitpoints</Type>
          <Bonus>Feat</Bonus>
-         <AmountPerLevel>10</AmountPerLevel>
+         <AmountPerLevel>2</AmountPerLevel>
          <Class>Epic</Class>
+      </Effect>
+      <Effect>
+         <DisplayName>Stout of Heart: Legendary Levels</DisplayName>
+         <Type>Hitpoints</Type>
+         <Bonus>Feat</Bonus>
+         <AmountPerLevel>2</AmountPerLevel>
+         <Class>Legendary</Class>
       </Effect>
    </Feat>
    <Feat>
@@ -29012,13 +28981,9 @@ to Melee power.</Description>
          <Stance>Single Weapon Fighting</Stance>
       </Effect>
       <Effect>
-         <DisplayName>Epic Defensive Fighting</DisplayName>
-         <Type>Hitpoints</Type>
-         <Bonus>Competence</Bonus>
-         <Percent/>
-         <Stance>Epic Defensive Fighting</Stance>
-         <AmountVector size="5">5 10 15 20 25</AmountVector>
-         <ApplyAsItemEffect/>
+         <Type>HitpointsStyleBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
       </Effect>
    </Feat>
    <Feat>
@@ -29585,13 +29550,9 @@ and +5 Physical Resistance Rating.</Description>
          <Stance>Shield</Stance>
       </Effect>
       <Effect>
-         <DisplayName>Epic Defensive Fighting</DisplayName>
-         <Type>Hitpoints</Type>
-         <Bonus>Competence</Bonus>
-         <Percent/>
-         <Stance>Epic Defensive Fighting</Stance>
-         <AmountVector size="5">5 10 15 20 25</AmountVector>
-         <ApplyAsItemEffect/>
+         <Type>HitpointsStyleBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
       </Effect>
    </Feat>
    <Feat>
@@ -29610,13 +29571,9 @@ ability score modifer to their base damage.</Description>
       <Acquire>Train</Acquire>
       <Icon>PerfectTwoHandedFighting</Icon>
       <Effect>
-         <DisplayName>Epic Defensive Fighting</DisplayName>
-         <Type>Hitpoints</Type>
-         <Bonus>Competence</Bonus>
-         <Percent/>
-         <Stance>Epic Defensive Fighting</Stance>
-         <AmountVector size="5">5 10 15 20 25</AmountVector>
-         <ApplyAsItemEffect/>
+         <Type>HitpointsStyleBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
       </Effect>
       <Effect>
          <Type>Strikethrough</Type>
@@ -29629,9 +29586,8 @@ ability score modifer to their base damage.</Description>
       <Effect>
          <Type>MeleePower</Type>
          <Bonus>Combat Style</Bonus>
-         <Amount>10</Amount>
+         <Amount>4</Amount>
          <Stance>Two Handed Fighting</Stance>
-         <ApplyAsItemEffect/>
       </Effect>
       <Effect>
          <Type>DamageAbilityMultiplier</Type>
@@ -29693,13 +29649,9 @@ versus the base 50%, up to a maximum of 65%.</Description>
       <Acquire>Train</Acquire>
       <Icon>PerfectTwoWeaponFighting</Icon>
       <Effect>
-         <DisplayName>Epic Defensive Fighting</DisplayName>
-         <Type>Hitpoints</Type>
-         <Bonus>Competence</Bonus>
-         <Percent/>
-         <Stance>Epic Defensive Fighting</Stance>
-         <AmountVector size="5">5 10 15 20 25</AmountVector>
-         <ApplyAsItemEffect/>
+         <Type>HitpointsStyleBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
       </Effect>
    </Feat>
    <Feat>
@@ -29722,13 +29674,9 @@ If in any Wolf form, you gain +15% competence bonus to maximum hit points and +2
       <Acquire>Train</Acquire>
       <Icon>PerfectNaturalFighting</Icon>
       <Effect>
-         <DisplayName>Epic Defensive Fighting</DisplayName>
-         <Type>Hitpoints</Type>
-         <Bonus>Competence</Bonus>
-         <Percent/>
-         <Stance>Epic Defensive Fighting</Stance>
-         <AmountVector size="5">5 10 15 20 25</AmountVector>
-         <ApplyAsItemEffect/>
+         <Type>HitpointsStyleBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
       </Effect>
       <Effect>
          <Type>DamageAbilityMultiplier</Type>
@@ -29831,9 +29779,7 @@ Activate to pop off to the land of dreams.</Description>
    </Feat>
    <Feat>
       <Name>Embodiment of Law</Name>
-      <Description>With weapon and unarmed attacks, deal 10 Bane damage against all targets
-and an additional 20 Law damage against Chaotic targets.
-This scales with Melee or Ranged power depending on your weapons.</Description>
+      <Description>+3 PRR and MRR, If you are Lawful you also gain +2 Imbue dice</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -29844,64 +29790,22 @@ This scales with Melee or Ranged power depending on your weapons.</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>EmbodimentOfLaw</Icon>
-      <Effect>
-         <DisplayName>Embodiment of Law</DisplayName>
-         <Type>WeaponOtherDamageBonus</Type>
-         <Bonus>Feat</Bonus>
-         <AmountVector size="2">10 10</AmountVector>
-         <Energy>Bane</Energy>
-         <Weapon>All</Weapon>
-      </Effect>
-      <Effect>
-         <DisplayName>Embodiment of Law</DisplayName>
-         <Type>WeaponOtherDamageBonus</Type>
-         <Bonus>Feat</Bonus>
-         <AmountVector size="2">20 20</AmountVector>
-         <Energy>Lawful</Energy>
-         <Weapon>All</Weapon>
-         <Stance>Chaotic Target</Stance>
-      </Effect>
-      <Effect>
-         <DisplayName>Embodiment of Law</DisplayName>
-         <Type>WeaponOtherCriticalDamageBonus</Type>
-         <Bonus>Feat</Bonus>
-         <AmountVector size="2">10 10</AmountVector>
-         <Energy>Bane</Energy>
-         <Weapon>All</Weapon>
-      </Effect>
-      <Effect>
-         <DisplayName>Embodiment of Law</DisplayName>
-         <Type>WeaponOtherCriticalDamageBonus</Type>
-         <Bonus>Feat</Bonus>
-         <AmountVector size="2">20 20</AmountVector>
-         <Energy>Lawful</Energy>
-         <Weapon>All</Weapon>
-         <Stance>Chaotic Target</Stance>
-      </Effect>
-      <Effect>
-         <DisplayName>Embodiment of Law and Law of the Divine</DisplayName>
-         <Type>WeaponOtherDamageBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Dice>
-            <Number size="2">0 10</Number>
-            <Sides size="2">0 6</Sides>
-            <Energy>Lawful</Energy>
-            <ScalesWithMeleePower/>
-         </Dice>
-         <Weapon>All</Weapon>
-      </Effect>
-      <Effect>
-         <DisplayName>Embodiment of Law and Law of the Divine</DisplayName>
-         <Type>WeaponOtherCriticalDamageBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Dice>
-            <Number size="2">0 10</Number>
-            <Sides size="2">0 6</Sides>
-            <Energy>Lawful</Energy>
-            <ScalesWithMeleePower/>
-         </Dice>
-         <Weapon>All</Weapon>
-      </Effect>
+         <Effect>
+            <Type>PRR</Type>
+            <Bonus>Feat</Bonus>
+            <Amount>3</Amount>
+         </Effect>
+         <Effect>
+            <Type>MRR</Type>
+            <Bonus>Feat</Bonus>
+            <Amount>3</Amount>
+         </Effect>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Feat</Bonus>
+            <Amount>2</Amount>
+             <Stance>Lawful</Stance>
+         </Effect>
    </Feat>
    <Feat>
       <Name>Fount of Life</Name>
@@ -29966,9 +29870,7 @@ This scales with Melee or Ranged power depending on your weapons.</Description>
    </Feat>
    <Feat>
       <Name>Harbinger of Chaos</Name>
-      <Description>With weapon and unarmed attacks, deal 1d20 Bane damage against all targets
-and an additional 2d20 Chaos damage against Lawful targets.
-This scales with Melee or Ranged power depending on your weapons.</Description>
+      <Description>+2% Doublestrike and doubleshot. If you are Chaotic, you gain +2 Imbue diece.</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -29979,60 +29881,22 @@ This scales with Melee or Ranged power depending on your weapons.</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>HarbingerOfChaos</Icon>
-      <Effect>
-         <Type>WeaponOtherDamageBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Dice>
-            <Number size="1">1</Number>
-            <Sides size="1">20</Sides>
-            <Energy>Bane</Energy>
-         </Dice>
-         <Weapon>All</Weapon>
-      </Effect>
-      <Effect>
-         <Type>WeaponOtherDamageBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Dice>
-            <Number size="1">2</Number>
-            <Sides size="1">20</Sides>
-            <Energy>Chaos</Energy>
-         </Dice>
-         <Weapon>All</Weapon>
-         <Stance>Lawful Target</Stance>
-      </Effect>
-      <Effect>
-         <Type>WeaponOtherCriticalDamageBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Dice>
-            <Number size="1">1</Number>
-            <Sides size="1">20</Sides>
-            <Energy>Bane</Energy>
-         </Dice>
-         <Weapon>All</Weapon>
-      </Effect>
-      <Effect>
-         <Type>WeaponOtherCriticalDamageBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Dice>
-            <Number size="1">2</Number>
-            <Sides size="1">20</Sides>
-            <Energy>Chaos</Energy>
-         </Dice>
-         <Weapon>All</Weapon>
-         <Stance>Lawful Target</Stance>
-      </Effect>
-      <Effect>
-         <DisplayName>Harbinger of Chaos / Scarred by Chaos</DisplayName>
-         <Type>Hitpoints</Type>
-         <Bonus>Destiny</Bonus>
-         <AmountVector size="2">0 50</AmountVector>
-      </Effect>
-      <Effect>
-         <DisplayName>Harbinger of Chaos / Scarred by Chaos</DisplayName>
-         <Type>PRR</Type>
-         <Bonus>Destiny</Bonus>
-         <AmountVector size="2">0 10</AmountVector>
-      </Effect>
+         <Effect>
+            <Type>Doublestrike</Type>
+            <Bonus>Feat</Bonus>
+            <Amount>2</Amount>
+         </Effect>
+         <Effect>
+            <Type>Doubleshot</Type>
+            <Bonus>Feat</Bonus>
+            <Amount>2</Amount>
+         </Effect>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Feat</Bonus>
+            <Amount>2</Amount>
+             <Stance>Chaotic</Stance>
+         </Effect>
    </Feat>
    <Feat>
       <Name>Spirit Blades</Name>
@@ -30075,7 +29939,8 @@ with no save. This may only trigger once every 12 seconds.</Description>
       <Description>+20 Melee and Ranged Power
 +20 Force Spell Power and +20 Universal Spell Power
 +2 to the Enhancement Bonus of your weapon
-+4 to Fortitude Saves</Description>
++4 to Fortitude Saves
++1 Imbue dice</Description>
       <FeatGroup>
          <IsLegendaryFeat/>
       </FeatGroup>
@@ -30118,6 +29983,11 @@ with no save. This may only trigger once every 12 seconds.</Description>
          <Bonus>Feat</Bonus>
          <Save>Fortitude</Save>
          <Amount>4</Amount>
+      </Effect>
+      <Effect>
+         <Type>ImbueDice</Type>
+         <Bonus>Enhancement</Bonus>
+         <Amount>1</Amount>
       </Effect>
    </Feat>
    <Feat>
@@ -30417,7 +30287,7 @@ as per the effect.</Description>
       <Description>+10 Sonic and Force Spell Power, +30 Universal Spell Power,
 +15% Sonic and Force Spell Critical Damage, +10% all other spell critical damage
 +4 to the DCs of Enchantment and Illusion spells, +2 to DCs of other spells
-Add 2d20 Sonic damage to weapon and unarmed attacks (Scales with Spell Power)
+Gain +3 Imbue Dice
 +20 Healing Amplification</Description>
       <FeatGroup>
          <IsLegendaryFeat/>
@@ -30477,28 +30347,11 @@ Add 2d20 Sonic damage to weapon and unarmed attacks (Scales with Spell Power)
          <Bonus>Feat</Bonus>
          <Amount>20</Amount>
       </Effect>
-      <Effect>
-         <Type>WeaponOtherDamageBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Weapon>All</Weapon>
-         <Dice>
-            <Number size="1">2</Number>
-            <Sides size="1">20</Sides>
-            <Energy>Sonic</Energy>
-            <ScalesWithSpellPower/>
-         </Dice>
-      </Effect>
-      <Effect>
-         <Type>WeaponOtherCriticalDamageBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Weapon>All</Weapon>
-         <Dice>
-            <Number size="1">2</Number>
-            <Sides size="1">20</Sides>
-            <Energy>Sonic</Energy>
-            <ScalesWithSpellPower/>
-         </Dice>
-      </Effect>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>3</Amount>
+         </Effect>
    </Feat>
    <Feat>
       <Name>Scion of the Plane of Air</Name>
@@ -30506,7 +30359,7 @@ Add 2d20 Sonic damage to weapon and unarmed attacks (Scales with Spell Power)
 +4% Dodge, +4 to Dodge Cap
 +10 Electric Spell Power, +30 Universal Spell Power
 +15% Electric Spell Critical Damage, +10% all other spell critical damage
-Add 2d20 Electric damage to weapon and unarmed attacks (Scales with Spell Power)</Description>
++3 Imbue Dice</Description>
       <FeatGroup>
          <IsLegendaryFeat/>
       </FeatGroup>
@@ -30562,28 +30415,11 @@ Add 2d20 Electric damage to weapon and unarmed attacks (Scales with Spell Power)
          <SpellPower>All</SpellPower>
          <Amount>10</Amount>
       </Effect>
-      <Effect>
-         <Type>WeaponOtherDamageBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Weapon>All</Weapon>
-         <Dice>
-            <Number size="1">2</Number>
-            <Sides size="1">20</Sides>
-            <Energy>Electric</Energy>
-            <ScalesWithSpellPower/>
-         </Dice>
-      </Effect>
-      <Effect>
-         <Type>WeaponOtherCriticalDamageBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Weapon>All</Weapon>
-         <Dice>
-            <Number size="1">2</Number>
-            <Sides size="1">20</Sides>
-            <Energy>Electric</Energy>
-            <ScalesWithSpellPower/>
-         </Dice>
-      </Effect>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>3</Amount>
+         </Effect>
    </Feat>
    <Feat>
       <Name>Scion of the Plane of Earth</Name>
@@ -30591,7 +30427,7 @@ Add 2d20 Electric damage to weapon and unarmed attacks (Scales with Spell Power)
 +20 Physical Resistance Rating
 +10 Acid and Poison Spell Power, +30 Universal Spell Power
 +15% Acid and Poison Spell Critical Damage, +10% all other spell critical damage
-Add 2d20 Acid damage to weapon and unarmed attacks (Scales with Spell Power)</Description>
+Gain +3 Imbue Dice</Description>
       <FeatGroup>
          <IsLegendaryFeat/>
       </FeatGroup>
@@ -30650,35 +30486,18 @@ Add 2d20 Acid damage to weapon and unarmed attacks (Scales with Spell Power)</De
          <SpellPower>All</SpellPower>
          <Amount>10</Amount>
       </Effect>
-      <Effect>
-         <Type>WeaponOtherDamageBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Weapon>All</Weapon>
-         <Dice>
-            <Number size="1">2</Number>
-            <Sides size="1">20</Sides>
-            <Energy>Acid</Energy>
-            <ScalesWithSpellPower/>
-         </Dice>
-      </Effect>
-      <Effect>
-         <Type>WeaponOtherCriticalDamageBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Weapon>All</Weapon>
-         <Dice>
-            <Number size="1">2</Number>
-            <Sides size="1">20</Sides>
-            <Energy>Acid</Energy>
-            <ScalesWithSpellPower/>
-         </Dice>
-      </Effect>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>3</Amount>
+         </Effect>
    </Feat>
    <Feat>
       <Name>Scion of the Plane of Fire</Name>
       <Description>+4 to the DCs of Evocation spells, +2 to the DCs of other spells
 +10 Physical Resistance Rating, +10 Magical Resistance Rating
 +10 Fire Spell Power, +30 Universal Spell Power, +15% Fire Spell Critical Damage, +10% all other spell critical damage
-Add 2d20 Fire damage to weapon and unarmed attacks (Scales with Spell Power)</Description>
++3 Imbue Dice</Description>
       <FeatGroup>
          <IsLegendaryFeat/>
       </FeatGroup>
@@ -30734,28 +30553,11 @@ Add 2d20 Fire damage to weapon and unarmed attacks (Scales with Spell Power)</De
          <SpellPower>All</SpellPower>
          <Amount>10</Amount>
       </Effect>
-      <Effect>
-         <Type>WeaponOtherDamageBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Weapon>All</Weapon>
-         <Dice>
-            <Number size="1">2</Number>
-            <Sides size="1">20</Sides>
-            <Energy>Fire</Energy>
-            <ScalesWithSpellPower/>
-         </Dice>
-      </Effect>
-      <Effect>
-         <Type>WeaponOtherCriticalDamageBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Weapon>All</Weapon>
-         <Dice>
-            <Number size="1">2</Number>
-            <Sides size="1">20</Sides>
-            <Energy>Fire</Energy>
-            <ScalesWithSpellPower/>
-         </Dice>
-      </Effect>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>3</Amount>
+         </Effect>
    </Feat>
    <Feat>
       <Name>Scion of the Plane of Water</Name>
@@ -30763,7 +30565,7 @@ Add 2d20 Fire damage to weapon and unarmed attacks (Scales with Spell Power)</De
 +20 Magical Resistance Rating, +200 Maximum Spell Points
 +10 Cold Spell Power, +30 Universal Spell Power
 +15% Cold Spell Critical Damage, +10% all other spell critical damage
-Add 2d20 Cold damage to weapon and unarmed attacks (Scales with Spell Power)</Description>
++3 Imbue Dice</Description>
       <FeatGroup>
          <IsLegendaryFeat/>
       </FeatGroup>
@@ -30819,28 +30621,11 @@ Add 2d20 Cold damage to weapon and unarmed attacks (Scales with Spell Power)</De
          <SpellPower>All</SpellPower>
          <Amount>10</Amount>
       </Effect>
-      <Effect>
-         <Type>WeaponOtherDamageBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Weapon>All</Weapon>
-         <Dice>
-            <Number size="1">2</Number>
-            <Sides size="1">20</Sides>
-            <Energy>Cold</Energy>
-            <ScalesWithSpellPower/>
-         </Dice>
-      </Effect>
-      <Effect>
-         <Type>WeaponOtherCriticalDamageBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Weapon>All</Weapon>
-         <Dice>
-            <Number size="1">2</Number>
-            <Sides size="1">20</Sides>
-            <Energy>Cold</Energy>
-            <ScalesWithSpellPower/>
-         </Dice>
-      </Effect>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>3</Amount>
+         </Effect>
    </Feat>
    <Feat>
       <Name>Scion of the Shadowfell</Name>
@@ -31131,9 +30916,7 @@ Action Boost bonus to Movement Speed for 6 seconds.</Description>
    <!--Legendary Epic Destiny feats-->
    <Feat>
       <Name>Enhanced Elemental Dice</Name>
-      <Description>+1 Damage Die with Arcane Archer's Elemental Arrows, Vile Chemist's Poisoned
-Coating, Eldritch Knight's Spellsword, Dark Apostate's Apostate's Curse, Sacred Fist,
-and Inquisitive's Law on Your Side.</Description>
+      <Description>+1 Imbue Dice.</Description>
       <MaxTimesAcquire>1</MaxTimesAcquire>
       <FeatGroup>
          <IsEpicDestinyFeat/>
@@ -31145,90 +30928,11 @@ and Inquisitive's Law on Your Side.</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>EnhancedElementalDice</Icon>
-      <Effect>
-         <DisplayName>Law on your side (Non-Lawful Enemies)</DisplayName>
-         <Type>WeaponOtherDamageBonus</Type>
-         <Bonus>Stacking</Bonus>
-         <Dice>
-            <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
-            <Sides size="20">8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8</Sides>
-            <Energy>Lawful</Energy>
-         </Dice>
-         <Weapon>Light Crossbow</Weapon>
-         <Weapon>Heavy Crossbow</Weapon>
-         <Stance>Law on your side</Stance>
-      </Effect>
-      <Effect>
-         <DisplayName>Law on your side (Lawful Enemies)</DisplayName>
-         <Type>WeaponOtherDamageBonus</Type>
-         <Bonus>Stacking</Bonus>
-         <Dice>
-            <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
-            <Sides size="20">4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4</Sides>
-            <Energy>Lawful</Energy>
-         </Dice>
-         <Weapon>Light Crossbow</Weapon>
-         <Weapon>Heavy Crossbow</Weapon>
-         <Stance>Law on your side</Stance>
-      </Effect>
-      <Effect>
-         <DisplayName>Sacred Flame</DisplayName>
-         <Type>WeaponOtherDamageBonus</Type>
-         <Bonus>Stacking</Bonus>
-         <Dice>
-            <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
-            <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
-            <Energy>Fire</Energy>
-            <ScalesWithMeleePower/>
-         </Dice>
-         <Stance>Sacred Flame</Stance>
-         <Stance>Centered</Stance>
-         <Weapon>All</Weapon>
-         <IsItemSpecific/>
-      </Effect>
-      <Effect>
-         <DisplayName>Sacred Flame</DisplayName>
-         <Type>WeaponOtherCriticalDamageBonus</Type>
-         <Bonus>Stacking</Bonus>
-         <Dice>
-            <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
-            <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
-            <Energy>Fire</Energy>
-            <ScalesWithMeleePower/>
-         </Dice>
-         <Stance>Sacred Flame</Stance>
-         <Stance>Centered</Stance>
-         <Weapon>All</Weapon>
-         <IsItemSpecific/>
-      </Effect>
-      <Effect>
-         <DisplayName>Apostate's Curse</DisplayName>
-         <Type>WeaponOtherDamageBonus</Type>
-         <Bonus>Stacking</Bonus>
-         <Dice>
-            <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
-            <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
-            <Energy>Evil</Energy>
-         </Dice>
-         <Stance>Apostate's Curse</Stance>
-         <Stance>Favored Weapon</Stance>
-         <Weapon>All</Weapon>
-         <IsItemSpecific/>
-      </Effect>
-      <Effect>
-         <DisplayName>Apostate's Curse</DisplayName>
-         <Type>WeaponOtherCriticalDamageBonus</Type>
-         <Bonus>Stacking</Bonus>
-         <Dice>
-            <Number size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</Number>
-            <Sides size="20">6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6</Sides>
-            <Energy>Evil</Energy>
-         </Dice>
-         <Stance>Apostate's Curse</Stance>
-         <Stance>Favored Weapon</Stance>
-         <Weapon>All</Weapon>
-         <IsItemSpecific/>
-      </Effect>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+         </Effect>
    </Feat>
    <Feat>
       <Name>Legendary Aim</Name>
@@ -31244,6 +30948,24 @@ and Inquisitive's Law on Your Side.</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>LegendaryAim</Icon>
+         <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Feat</Bonus>
+            <Amount>5</Amount>
+            <WeaponClass>Ranged</WeaponClass>
+         </Effect>
+         <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Feat</Bonus>
+            <Amount>5</Amount>
+            <WeaponClass>Ranged</WeaponClass>
+         </Effect>
+         <Effect>
+            <Type>DodgeBypass</Type>
+            <Bonus>Feat</Bonus>
+            <Amount>5</Amount>
+            <WeaponClass>Ranged</WeaponClass>
+         </Effect>
    </Feat>
    <Feat>
       <Name>Legendary Toughness</Name>

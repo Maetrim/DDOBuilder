@@ -154,7 +154,7 @@ Passive: Your Eldritch Aura now affects enemies every 3 seconds and you gain pro
          <Name>Enlightened Spirit: Celestial Spirit</Name>
          <InternalName>WESCore5</InternalName>
          <Description>Major Form Toggle: When enabled, you float above the ground, gain Feather Falling,
-are immune to most knockdown effects, and your Eldritch Blasts gain 3d6 Light damage.
+are immune to most knockdown effects, and you gain +3 Imbue Dice.
 Passive: Your Eldritch Aura now affects enemies every 2 seconds.</Description>
          <Icon>WESCelestialSpirit</Icon>
          <XPosition>4</XPosition>
@@ -177,7 +177,7 @@ Passive: Your Eldritch Aura now affects enemies every 2 seconds.</Description>
             <Name>Celestial Spirit</Name>
             <Icon>WESCelestialSpirit</Icon>
             <Description>You float above the ground, gain Feather Falling, and are immune to knockdown effects.
-When enabled, your Eldritch Blasts gain 3d6 Light damage.</Description>
+When enabled, you Gain +3 Imbue Dice.</Description>
             <Group>Major Form</Group>
             <IncompatibleStance>Shadow Shrouding</IncompatibleStance>
             <IncompatibleStance>Air Elemental</IncompatibleStance>
@@ -199,6 +199,12 @@ When enabled, your Eldritch Blasts gain 3d6 Light damage.</Description>
             <IncompatibleStance>Dire Bear</IncompatibleStance>
             <IncompatibleStance>Winter Wolf</IncompatibleStance>
          </Stance>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>3</Amount>
+            <Stance>Celestial Spirit</Stance>
+         </Effect>
          <Effect>
             <Type>EldritchBlast</Type>
             <Bonus>Enhancement</Bonus>
@@ -756,13 +762,13 @@ in medium armor without arcane spell failure.</Description>
       <EnhancementTreeItem>
          <Name>Enlightened Spirit: Spiritual Retribution</Name>
          <InternalName>WESSpiritualRetribution</InternalName>
-         <Description>Your Eldritch Blasts, Melee Attacks, and Ranged Attacks gain 1d4/2d4/3d4 Light damage
+         <Description>Your Eldritch Blasts, Melee Attacks, and Ranged Attacks gain 1d6 Light damage
 that scales with Spell Power.</Description>
          <Icon>WESSpiritualRetribution</Icon>
          <XPosition>1</XPosition>
          <YPosition>4</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
          <MinSpent>20</MinSpent>
          <Requirements>
             <Requirement>
@@ -773,26 +779,17 @@ that scales with Spell Power.</Description>
                <Enhancement>WESSpiritualWard</Enhancement>
             </Requirement>
          </Requirements>
+         <Stance>
+            <Name>Enlightened Spirit: Spiritual Retribution</Name>
+            <Icon>WESSpiritualRetribution</Icon>
+            <Description>Your Eldritch Blasts, Melee Attacks, and Ranged Attacks gain 1d6 Light damage
+per Imbue Dice that scales with Spell Power.</Description>
+            <Group>Imbue</Group>
+         </Stance>
          <Effect>
-            <Type>WeaponOtherDamageBonus</Type>
+            <Type>ImbueDice</Type>
             <Bonus>Enhancement</Bonus>
-            <Weapon>All</Weapon>
-            <Dice>
-               <Sides size="3">1 2 3</Sides>
-               <Number size="3">4 4 4</Number>
-               <ScalesWithSpellPower/>
-               <SpellPower>Light/Alignment</SpellPower>
-            </Dice>
-            <Energy>Light</Energy>
-         </Effect>
-         <Effect>
-            <Type>EldritchBlast</Type>
-            <Bonus>Feat</Bonus>
-            <Dice>
-               <Number size="3">1 2 3</Number>
-               <Sides size="3">4 4 4</Sides>
-            </Dice>
-            <Energy>Light</Energy>
+            <Amount>1</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>

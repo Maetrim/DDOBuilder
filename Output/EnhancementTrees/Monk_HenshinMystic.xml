@@ -15,6 +15,7 @@
          <InternalName>HMCore1</InternalName>
          <Description>Each Core Enhancement in the Henshin Mystic tree, including this one,
 grants you the following passive abilities:
++1 Imbue Dice
 +3 Melee Power 
 +2 Fire Resistance 
 +3 PRR
@@ -32,6 +33,11 @@ Enemies have -2 Fire Resistance against your spells.</Description>
                <Level>1</Level>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+         </Effect>
          <Effect>
             <Type>MeleePower</Type>
             <Bonus>Enhancement</Bonus>
@@ -53,7 +59,9 @@ Enemies have -2 Fire Resistance against your spells.</Description>
          <Name>Henshin Mystic: Ki Bolt</Name>
          <InternalName>HMCore2</InternalName>
          <Description>Ki Spell-Like Ability: Ki Bolt
-Passive: +3 Melee Power 
+Passive:
++1 Imbue Dice
++3 Melee Power 
 +2 Fire Resistance 
 +3 PRR 
 Enemies have -2 Fire Resistance against your spells.</Description>
@@ -74,6 +82,11 @@ Enemies have -2 Fire Resistance against your spells.</Description>
                <Level>3</Level>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+         </Effect>
          <Effect>
             <Type>MeleePower</Type>
             <Bonus>Enhancement</Bonus>
@@ -98,7 +111,9 @@ Enemies have -2 Fire Resistance against your spells.</Description>
 and attacking. In addition, while you are centered and wielding a quarterstaff,
 you gain +2 Ki each time you hit a creature.
 This stacks with all other sources of Ki generation.
-Passive: +3 Melee Power 
+Passive:
++1 Imbue Dice
++3 Melee Power 
 +2 Fire Resistance 
 +3 PRR 
 Enemies have -2 Fire Resistance against your spells.</Description>
@@ -118,6 +133,11 @@ Enemies have -2 Fire Resistance against your spells.</Description>
                <Level>6</Level>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+         </Effect>
          <Effect>
             <Type>KiHit</Type>
             <Bonus>Enhancement</Bonus>
@@ -149,7 +169,9 @@ Enemies have -2 Fire Resistance against your spells.</Description>
          <Name>Henshin Mystic: Incinerating Wave</Name>
          <InternalName>HMCore4</InternalName>
          <Description>Fire Ki Spell-Like Ability: Incinerating Wave
-Passive: +3 Melee Power
+Passive:
++1 Imbue Dice
++3 Melee Power
 +2 Fire Resistance 
 +3 PRR 
 Enemies have -2 Fire Resistance against your spells.</Description>
@@ -171,6 +193,11 @@ Enemies have -2 Fire Resistance against your spells.</Description>
             </Requirement>
          </Requirements>
          <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+         </Effect>
+         <Effect>
             <Type>MeleePower</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>3</Amount>
@@ -191,7 +218,9 @@ Enemies have -2 Fire Resistance against your spells.</Description>
          <Name>Henshin Mystic: Cauldron Of Flame</Name>
          <InternalName>HMCore5</InternalName>
          <Description>Fire Ki Spell-Like Ability: Cauldron of Flame
-Passive: +3 Melee Power
+Passive:
++1 Imbue Dice
++3 Melee Power
 +2 Fire Resistance
 +3 PRR
 Enemies have -2 Fire Resistance against your spells.</Description>
@@ -259,7 +288,9 @@ Enemies have -2 Fire Resistance against your spells.</Description>
          <Name>Henshin Mystic: Serenity</Name>
          <InternalName>HMCore6</InternalName>
          <Description>Your understanding of things has evolved to a level that defies description.
-Passive: +4 Wisdom 
+Passive:
++4 Wisdom 
++1 Imbue Dice
 +10 Concentration 
 +1 Passive Ki Generation 
 +15 Melee Power 
@@ -283,6 +314,11 @@ hit and damage, and a +1 Critical Multiplier.
                <Level>20</Level>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+         </Effect>
          <Effect>
             <Type>AbilityBonus</Type>
             <Bonus>Enhancement</Bonus>
@@ -967,13 +1003,9 @@ cause them to feel the chill of death. On Hit: Target takes +1[W] damage,
          <Name>Henshin Mystic: Lighting the Candle</Name>
          <InternalName>HMLightingTheCandle</InternalName>
          <Description>Weapon Stance: While you are centered, you enhance your attacks with Ki flame.
-Two handed weapons gain:
-    On Hit: 2d[4/6/8] Fire damage
-    On Critical: [2/4/6]d10 Force damage.
-One handed weapons and handwraps gain:
-    On Hit: 2d[2/3/4] Fire damage
-    On Critical: [2/4/6]d6 Force damage.
-This damage scales with Melee Power. Your Ki generation on hit is reduced by 1.</Description>
++1d6 Fire and 1d6 Force damage on critical per Imbue Dice you have scaling with Melee or
+Ranged power.
+Your Ki generation on hit is reduced by 1.</Description>
          <Icon>HMLightingTheCandle</Icon>
          <XPosition>2</XPosition>
          <YPosition>3</YPosition>
@@ -992,45 +1024,17 @@ This damage scales with Melee Power. Your Ki generation on hit is reduced by 1.<
             <Bonus>Enhancement</Bonus>
             <Amount>-1</Amount>
          </Effect>
+         <Stance>
+            <Name>Henshin Mystic: Lighting the Candle</Name>
+            <Description>+1d6 Fire and 1d6 Force damage on cricial per Imbue Dice you have scaling with Melee or
+Ranged power.</Description>
+            <Icon>HMLightingTheCandle</Icon>
+            <Group>Imbue</Group>
+         </Stance>
          <Effect>
-            <Type>WeaponOtherDamageBonus</Type>
+            <Type>ImbueDice</Type>
             <Bonus>Enhancement</Bonus>
-            <Dice>
-               <Number size="3">2 2 2</Number>
-               <Sides size="3">4 6 8</Sides>
-               <Energy>Fire</Energy>
-            </Dice>
-            <WeaponClass>TwoHanded</WeaponClass>
-         </Effect>
-         <Effect>
-            <Type>WeaponOtherDamageBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Dice>
-               <Number size="3">2 2 2</Number>
-               <Sides size="3">2 3 4</Sides>
-               <Energy>Fire</Energy>
-            </Dice>
-            <WeaponClass>OneHanded</WeaponClass>
-         </Effect>
-         <Effect>
-            <Type>WeaponOtherCriticalDamageBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Dice>
-               <Number size="3">2 4 6</Number>
-               <Sides size="3">10 10 10</Sides>
-               <Energy>Force</Energy>
-            </Dice>
-            <WeaponClass>TwoHanded</WeaponClass>
-         </Effect>
-         <Effect>
-            <Type>WeaponOtherCriticalDamageBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Dice>
-               <Number size="3">2 4 6</Number>
-               <Sides size="3">6 6 6</Sides>
-               <Energy>Force</Energy>
-            </Dice>
-            <WeaponClass>OneHanded</WeaponClass>
+            <Amount>1</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -1481,6 +1485,44 @@ with quarterstaves.</Description>
             <Weapon>Quarterstaff</Weapon>
             <Amount>1</Amount>
          </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Henshin Mystic: Self Defense</Name>
+         <InternalName>HMSelfDefense</InternalName>
+         <Description>Grants +5 MRR and MRR Cap and 25% competence bonus to Hit Points</Description>
+         <Icon>PassiveStub</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>5</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <Class>Monk</Class>
+               <Level>5</Level>
+            </Requirement>
+            <Requirement>
+               <MinLevel>12</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>MRR</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>5</Amount>
+         </Effect>
+         <Effect>
+            <Type>MRRCap</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>5</Amount>
+         </Effect>
+        <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Competence</Bonus>
+            <Amount>25</Amount>
+            <Percent/>
+            <ApplyAsItemEffect/>
+        </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Henshin Mystic: Balance in Dawn</Name>

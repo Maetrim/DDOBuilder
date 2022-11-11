@@ -708,7 +708,7 @@ incoming projectile that would have struck you every 6 seconds.
          </Requirements>
          <Effect>
             <Type>MovementSpeed</Type>
-            <Bonus>Enhancement</Bonus>
+            <Bonus>Class</Bonus>
             <AmountPerLevel>1</AmountPerLevel>
             <Class>Bard</Class>
             <ApplyAsItemEffect/>
@@ -865,9 +865,7 @@ Fighting line of feats.</Description>
       <EnhancementTreeItem>
          <Name>Swashbuckler: Resonant Arms</Name>
          <InternalName>SBResonantArms</InternalName>
-         <Description>While Swashbuckling, the Finesseable or Thrown weapon in your main hand deals
-an additional [2/4/6]d6 Sonic Damage on critical hits.
-This Sonic damage scales with spell power.</Description>
+         <Description>1d6 Sonic damage per Imbue dice scaling with Sonic spell power.</Description>
          <Icon>SBResonantArms</Icon>
          <XPosition>2</XPosition>
          <YPosition>3</YPosition>
@@ -880,27 +878,16 @@ This Sonic damage scales with spell power.</Description>
                <Level>3</Level>
             </Requirement>
          </Requirements>
+         <Stance>
+            <Name>Swashbuckler: Resonant Arms</Name>
+            <Description>1d6 Sonic damage per Imbue dice scaling with Sonic spell power.</Description>
+            <Icon>SBResonantArms</Icon>
+            <Group>Imbue</Group>
+         </Stance>
          <Effect>
-            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Type>ImbueDice</Type>
             <Bonus>Enhancement</Bonus>
-            <WeaponClass>Thrown</WeaponClass>
-            <Dice>
-               <Number size="3">2 4 6</Number>
-               <Sides size="3">6 6 6</Sides>
-               <Energy>Sonic</Energy>
-            </Dice>
-            <Stance>Swashbuckling</Stance>
-         </Effect>
-         <Effect>
-            <Type>WeaponOtherCriticalDamageBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <WeaponClass>Finesseable</WeaponClass>
-            <Dice>
-               <Number size="3">2 4 6</Number>
-               <Sides size="3">6 6 6</Sides>
-               <Energy>Sonic</Energy>
-            </Dice>
-            <Stance>Swashbuckling</Stance>
+            <Amount>1</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -1013,7 +1000,7 @@ critical hits (before weapon multipliers)</Description>
          <Icon>SBOnTheMark</Icon>
          <XPosition>0</XPosition>
          <YPosition>4</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
+         <CostPerRank size="1">1</CostPerRank>
          <Ranks>3</Ranks>
          <MinSpent>20</MinSpent>
          <Requirements>
@@ -1100,6 +1087,11 @@ Arm Weapon Imbue deals an additional 1d6 Sonic damage. </Description>
                   <Stance>Rune Arm</Stance>
                   <Weapon>All</Weapon>
                </Effect>
+             <Effect>
+                <Type>ImbueDice</Type>
+                <Bonus>Enhancement</Bonus>
+                <Amount>1</Amount>
+             </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Slap in the Face</Name>
@@ -1261,11 +1253,12 @@ Paralyzed, Petrified, or Stunned enemy, it must make a Fortitude save
       <EnhancementTreeItem>
          <Name>Swashbuckler: Second Skin</Name>
          <InternalName>SBSecondSkin</InternalName>
-         <Description>While Swashbuckling, +[2/4/6] to your Reflex Saves and +[2/4/6] to the Max Dex Bonus of your Armor.</Description>
+         <Description>While Swashbuckling, +[1/2/3] to your Reflex Saves and +[2/4/6] to the Max Dex Bonus of your Armor.
+Rank 3: +20% competence bonus to hit points.</Description>
          <Icon>SBSecondSkin</Icon>
          <XPosition>2</XPosition>
          <YPosition>5</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
+         <CostPerRank size="1">1</CostPerRank>
          <Ranks>3</Ranks>
          <MinSpent>30</MinSpent>
          <Tier5/>
@@ -1282,7 +1275,7 @@ Paralyzed, Petrified, or Stunned enemy, it must make a Fortitude save
             <Type>SaveBonus</Type>
             <Bonus>Enhancement</Bonus>
             <Save>Reflex</Save>
-            <AmountVector size="3">2 4 6</AmountVector>
+            <AmountVector size="3">1 2 3</AmountVector>
             <Stance>Swashbuckling</Stance>
          </Effect>
          <Effect>
@@ -1291,6 +1284,13 @@ Paralyzed, Petrified, or Stunned enemy, it must make a Fortitude save
             <AmountVector size="3">2 4 6</AmountVector>
             <Stance>Swashbuckling</Stance>
          </Effect>
+        <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Competence</Bonus>
+            <AmountVector size="3">0 0 20</AmountVector>
+            <Percent/>
+            <ApplyAsItemEffect/>
+        </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Swashbuckler: Exploit Weaknesses</Name>
