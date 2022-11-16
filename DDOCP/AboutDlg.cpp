@@ -183,6 +183,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
             "Spodi, "
             "Swimms, "
             "Talchwi, "
+            "Talnar, "
             "TandyFW, "
             "Tarrith, "
             "TeamscorpioRI, "

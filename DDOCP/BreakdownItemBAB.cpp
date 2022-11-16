@@ -43,19 +43,25 @@ void BreakdownItemBAB::CreateOtherEffects()
         std::vector<size_t> classLevels = m_pCharacter->ClassLevels(m_pCharacter->MaxLevel());
         for (size_t ci = Class_Unknown; ci < Class_Count; ++ci)
         {
-            if (classLevels[ci] > 0)
+            if (ci != Class_Epic && ci != Class_Legendary)
             {
-                std::string className = EnumEntryText((ClassType)ci, classTypeMap);
-                className += " Levels";
-                double classBab = BAB((ClassType)ci);
-                ActiveEffect classBonus(
-                        Bonus_class,
-                        className,
-                        classLevels[ci],
-                        classBab,
-                        "");        // no tree
-                classBonus.SetWholeNumbersOnly();
-                AddOtherEffect(classBonus);
+                if (classLevels[ci] > 0)
+                {
+                    std::string className = EnumEntryText((ClassType)ci, classTypeMap);
+                    className += " Levels";
+                    double classBab = BAB((ClassType)ci);
+                    if (classBab > 0)
+                    {
+                        ActiveEffect classBonus(
+                                Bonus_class,
+                                className,
+                                classLevels[ci],
+                                classBab,
+                                "");        // no tree
+                        classBonus.SetWholeNumbersOnly();
+                        AddOtherEffect(classBonus);
+                    }
+                }
             }
         }
         if (classLevels[Class_Epic] > 0)
@@ -111,3 +117,14 @@ void BreakdownItemBAB::UpdateClassChanged(
     CreateOtherEffects();
     Populate();
 }
+
+void BreakdownItemBAB::UpdateTotalChanged(
+    BreakdownItem * item,
+    BreakdownType type)
+{
+    BreakdownItem::UpdateTotalChanged(item, type);
+    // need to re-create other effects list
+    CreateOtherEffects();
+    Populate();
+}
+

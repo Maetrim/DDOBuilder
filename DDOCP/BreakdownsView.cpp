@@ -950,6 +950,7 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
 
     // offensive breakdowns include:
     // BAB
+    //    Override BAB
     // threat generation
     // off hand attack chance
     // doublestrike
@@ -981,14 +982,14 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
                     "BAB Override",
                     hItem,
                     TVI_LAST);
-            BreakdownItem * poverrideBab = new BreakdownItemSimple(
+            BreakdownItem * pOverrideBab = new BreakdownItemSimple(
                     Breakdown_OverrideBAB,
                     Effect_OverrideBAB,
                     "BAB Override",
                     &m_itemBreakdownTree,
                     hOverrideBab);
-            m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)poverrideBab);
-            m_items.push_back(poverrideBab);
+            m_itemBreakdownTree.SetItemData(hOverrideBab, (DWORD)(void*)pOverrideBab);
+            m_items.push_back(pOverrideBab);
         }
     }
     {

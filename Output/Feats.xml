@@ -15,32 +15,14 @@
       <Description>Active this ability to regain 50% of your max hit points.
 15 second cool down. You can used this once per rest, with an additional charges
 gained at Fighter levels 4, 8, 12, 16, 20. This can be used while Crowd Controlled.
-At level 8 Second Wind removes negative effects like the Panacea spell.</Description>
+At level 8 in addition to the heal the following effects are cured:
+Ability damage, Blind, Confusion, Dazed, Dazzled, Deafend, Diseased, Exhausted,
+Fatigued, Feebleminded, Nauseated, Poisoned, or Stunned.</Description>
       <Requirements/>
       <Acquire>Automatic</Acquire>
       <AutomaticAcquisition>
          <Class>Fighter</Class>
          <Level>2</Level>
-      </AutomaticAcquisition>
-      <AutomaticAcquisition>
-         <Class>Fighter</Class>
-         <Level>4</Level>
-      </AutomaticAcquisition>
-      <AutomaticAcquisition>
-         <Class>Fighter</Class>
-         <Level>8</Level>
-      </AutomaticAcquisition>
-      <AutomaticAcquisition>
-         <Class>Fighter</Class>
-         <Level>12</Level>
-      </AutomaticAcquisition>
-      <AutomaticAcquisition>
-         <Class>Fighter</Class>
-         <Level>16</Level>
-      </AutomaticAcquisition>
-      <AutomaticAcquisition>
-         <Class>Fighter</Class>
-         <Level>20</Level>
       </AutomaticAcquisition>
       <Icon>SecondWind</Icon>
    </Feat>
@@ -4103,8 +4085,9 @@ Does not function in animal forms.</Description>
       <Effect>
          <Type>MeleePower</Type>
          <Bonus>Combat Style</Bonus>
-         <Amount>4</Amount>
+         <Amount>10</Amount>
          <Stance>Sword and Board</Stance>
+         <ApplyAsItemEffect/>
       </Effect>
       <Effect>
          <DisplayName>Greater Shield Mastery: Buckler</DisplayName>
@@ -4383,7 +4366,8 @@ your Ability Score bonus to damage improves by 25%</Description>
          <Type>MeleePower</Type>
          <Bonus>Combat Style</Bonus>
          <Stance>Two Handed Fighting</Stance>
-         <Amount>2</Amount>
+         <Amount>6</Amount>
+         <ApplyAsItemEffect/>
       </Effect>
       <Effect>
          <Type>HitpointsStyleBonus</Type>
@@ -6247,8 +6231,9 @@ Add +3 Melee Power(for a total of +6)</Description>
       <Effect>
          <Type>MeleePower</Type>
          <Bonus>Combat Style</Bonus>
-         <Amount>3</Amount>
+         <Amount>6</Amount>
          <Stance>Sword and Board</Stance>
+         <ApplyAsItemEffect/>
       </Effect>
       <Effect>
          <DisplayName>Improved Shield Mastery: Buckler</DisplayName>
@@ -6509,7 +6494,8 @@ your Ability Score bonus to damage improves by 25%</Description>
          <Type>MeleePower</Type>
          <Bonus>Combat Style</Bonus>
          <Stance>Two Handed Fighting</Stance>
-         <Amount>2</Amount>
+         <Amount>4</Amount>
+         <ApplyAsItemEffect/>
       </Effect>
       <Effect>
          <Type>DamageAbilityMultiplier</Type>
@@ -9267,13 +9253,14 @@ If you have an Orb or Runearm in your Offhand, gain +1 Imbue Dice</Description>
       <Icon>OffhandVersatility</Icon>
       <Effect>
          <Type>DamageAbilityMultiplier</Type>
-         <Bonus>Enhancement</Bonus>
+         <Bonus>Feat</Bonus>
          <Amount>0.25</Amount>
          <Stance>Single Weapon Fighting</Stance>
+         <Stance>Empty Offhand</Stance>
       </Effect>
          <Effect>
             <Type>ImbueDice</Type>
-            <Bonus>Enhancement</Bonus>
+            <Bonus>Feat</Bonus>
             <Amount>1</Amount>
             <AnyOfStance>Orb</AnyOfStance>
             <AnyOfStance>Rune Arm</AnyOfStance>
@@ -9974,6 +9961,7 @@ you gain +1 Critical Threat Range.</Description>
          <IsArtificerBonus/>
          <IsStandardFeat/>
          <IsAlchemistBonus/>
+         <IsFighterBonus/>
       </FeatGroup>
       <Requirements/>
       <Acquire>Train</Acquire>
@@ -10716,7 +10704,7 @@ Tower Shield: 40%</Description>
       <Description>You are skilled with the use of a shield and your physical resistance
 is increased by 3 when using a buckler or small shield, 5 when using a large
 shield, or 10 when using a tower shield. You gain 3% double strike while using a shield.
-Add +3 Melee Power</Description>
+Add +3 Combat Style bonus to Melee Power</Description>
       <FeatGroup>
          <IsStandardFeat/>
          <IsFighterBonus/>
@@ -10739,6 +10727,7 @@ Add +3 Melee Power</Description>
          <Bonus>Combat Style</Bonus>
          <Amount>3</Amount>
          <Stance>Sword and Board</Stance>
+         <ApplyAsItemEffect/>
       </Effect>
       <Effect>
          <DisplayName>Shield Mastery: Buckler</DisplayName>
@@ -14129,6 +14118,7 @@ Druid Animal Formas), your Ability Score bonus to damage improves by 25%.</Descr
          <Bonus>Combat Style</Bonus>
          <Stance>Two Handed Fighting</Stance>
          <Amount>2</Amount>
+         <ApplyAsItemEffect/>
       </Effect>
       <Effect>
          <Type>HitpointsStyleBonus</Type>
@@ -23203,6 +23193,7 @@ healing spells.</Description>
       <Effect>
          <Type>OverrideBAB</Type>
          <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
          <Stance>Bladesworn Transformation</Stance>
       </Effect>
       <Effect>
@@ -27291,8 +27282,9 @@ Rank 3: Access to the Feydark Illusionist Tree</Description>
    </Feat>
    <Feat>
       <Name>Morgrave University Favor Rewards</Name>
-      <Description>Rank 1: +2 to Search and Spell Craft</Description>
-      <MaxTimesAcquire>1</MaxTimesAcquire>
+      <Description>Rank 1: +2 to Search and Spell Craft
+Rank 2: +5 HP</Description>
+      <MaxTimesAcquire>2</MaxTimesAcquire>
       <Requirements/>
       <Acquire>Favor</Acquire>
       <Icon>MorgraveUniversity</Icon>
@@ -27303,6 +27295,12 @@ Rank 3: Access to the Feydark Illusionist Tree</Description>
          <AmountVector size="3">2 2 2</AmountVector>
          <Skill>Search</Skill>
          <Skill>Spell Craft</Skill>
+      </Effect>
+      <Effect>
+         <DisplayName>Morgrave University: Hit Point Bonus</DisplayName>
+         <Type>Hitpoints</Type>
+         <Bonus>Feat</Bonus>
+         <AmountVector size="3">0 5 5</AmountVector>
       </Effect>
    </Feat>
    <Feat>
@@ -29586,8 +29584,9 @@ ability score modifer to their base damage.</Description>
       <Effect>
          <Type>MeleePower</Type>
          <Bonus>Combat Style</Bonus>
-         <Amount>4</Amount>
+         <Amount>10</Amount>
          <Stance>Two Handed Fighting</Stance>
+         <ApplyAsItemEffect/>
       </Effect>
       <Effect>
          <Type>DamageAbilityMultiplier</Type>
@@ -29896,6 +29895,18 @@ Activate to pop off to the land of dreams.</Description>
             <Bonus>Feat</Bonus>
             <Amount>2</Amount>
              <Stance>Chaotic</Stance>
+         </Effect>
+         <Effect>
+            <DisplayName>Harbinger of Chaos / Scarred by Chaos</DisplayName>
+            <Type>Hitpoints</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="2">0 50</AmountVector>
+         </Effect>
+         <Effect>
+            <DisplayName>Harbinger of Chaos / Scarred by Chaos</DisplayName>
+            <Type>PRR</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="2">0 10</AmountVector>
          </Effect>
    </Feat>
    <Feat>

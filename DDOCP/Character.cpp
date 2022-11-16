@@ -5073,6 +5073,8 @@ void Character::UpdateWeaponStances()
     Stance ra("Rune Arm", "", "");
     Stance swashbuckling("Swashbuckling", "", "");
     Stance thrown("Thrown Weapon", "", "");
+    Stance emptyOffhand("Empty Offhand", "", "");
+
     if (gear.HasItemInSlot(Inventory_Weapon1)
             && gear.HasItemInSlot(Inventory_Weapon2))
     {
@@ -5180,6 +5182,7 @@ void Character::UpdateWeaponStances()
         {
             DeactivateStance(thrown);
         }
+        DeactivateStance(emptyOffhand);
     }
     else if (gear.HasItemInSlot(Inventory_Weapon1))
     {
@@ -5259,6 +5262,7 @@ void Character::UpdateWeaponStances()
         {
             DeactivateStance(thrown);
         }
+        ActivateStance(emptyOffhand);
     }
     else if (gear.HasItemInSlot(Inventory_Weapon2))
     {
@@ -5288,6 +5292,7 @@ void Character::UpdateWeaponStances()
             DeactivateStance(ra);
         }
         DeactivateStance(thrown);
+        ActivateStance(emptyOffhand);
     }
     else
     {
@@ -5303,6 +5308,7 @@ void Character::UpdateWeaponStances()
         DeactivateStance(ra);
         DeactivateStance(swashbuckling);
         DeactivateStance(thrown);
+        ActivateStance(emptyOffhand);
     }
     if (IsStanceActive("Wolf")
             || IsStanceActive("Bear")

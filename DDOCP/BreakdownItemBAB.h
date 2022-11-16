@@ -18,4 +18,6 @@ class BreakdownItemBAB :
     protected:
         // CharacterObserver overrides
         virtual void UpdateClassChanged(Character * charData, ClassType classFrom, ClassType classTo, size_t level) override;
+
+        virtual void UpdateTotalChanged(BreakdownItem * item, BreakdownType type) override;
 };

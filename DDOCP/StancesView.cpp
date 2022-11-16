@@ -387,6 +387,9 @@ void CStancesView::CreateStanceWindows()
     Stance thrown("Thrown Weapon", "AMEvocationIMagicMissile", "You are wielding a thrown weapon");
     thrown.Set_AutoControlled();
     AddStance(thrown);
+    Stance emptyOffhand("Empty Offhand", "U51LightTheDark", "Your off-hand is empty");
+    emptyOffhand.Set_AutoControlled();
+    AddStance(emptyOffhand);
     // add the auto controlled stances for each weapon type
     for (size_t wt = Weapon_Unknown; wt < Weapon_Count; ++wt)
     {
