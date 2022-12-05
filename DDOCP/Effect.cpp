@@ -240,7 +240,7 @@ bool Effect::VerifyObject(std::stringstream * ss) const
             }
             break;
         case Effect_OverrideBAB:
-            if (HasAmount()
+            if (!HasAmount()
                     || HasAmountVector()
                     || HasAmountPerLevel())
             {

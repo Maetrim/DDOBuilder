@@ -30,7 +30,10 @@ CDCButton::CDCButton(Character * charData, const DC & dc) :
         {
             if (S_OK != LoadImageFile(IT_item, dc.Icon(), &m_image, false))
             {
-                LoadImageFile(IT_ui, dc.Icon(), &m_image);
+                if (S_OK != LoadImageFile(IT_ui, dc.Icon(), &m_image, false))
+                {
+                    LoadImageFile(IT_spell, dc.Icon(), &m_image);
+                }
             }
         }
     }

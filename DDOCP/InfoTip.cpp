@@ -790,7 +790,10 @@ void CInfoTip::SetDCItem(
         {
             if (S_OK != LoadImageFile(IT_item, pDC->Icon(), &m_image, false))
             {
-                LoadImageFile(IT_ui, pDC->Icon(), &m_image);
+                if (S_OK != LoadImageFile(IT_ui, pDC->Icon(), &m_image, false))
+                {
+                    LoadImageFile(IT_spell, pDC->Icon(), &m_image);
+                }
             }
         }
     }

@@ -4695,6 +4695,19 @@ effect. A successful Balance check negates this effect.
 feat also improve Takedown.)</Description>
       <Icon>Takedown</Icon>
       <Druid>1</Druid>
+      <DC>
+         <Name>Takedown</Name>
+         <Description>This attack deals an extra 2[W] damage, and you may trip the
+target, rendering it prone. Some creatures may be immune to this
+effect. A successful Balance check negates this effect.
+(DC 11 + WIS mod. Any effects that improve the DC for the Trip
+feat also improve Takedown.)</Description>
+         <Icon>Takedown</Icon>
+         <DCVersus>Balance</DCVersus>
+         <AmountVector size="1">11</AmountVector>
+         <ModAbility>Wisdom</ModAbility>
+         <Tactical>Trip</Tactical>
+      </DC>
    </Spell>
    <!--Druid level 2's-->
    <Spell>
@@ -5090,6 +5103,21 @@ Any effects that improve the DC for the Sunder feat also improve Shred)
 Attack has +1 Critical threat range and multiplier.</Description>
       <Icon>Shred</Icon>
       <Druid>3</Druid>
+      <DC>
+         <Name>Shred</Name>
+         <Description>Valid Forms: Bear, Dire Bear. This attack deals an extra 3[W] damage
+to the target, and you may reduce the target's Armor Class by 4
+for a short time. Some creatures may be immune to the sunder effect.
+A successful Fortitude save negates this effect. (DC 13 + Max(Str, Wis) mod + 1/2 Druid level)
+Any effects that improve the DC for the Sunder feat also improve Shred)</Description>
+         <Icon>Shred</Icon>
+         <DCVersus>Fortitude</DCVersus>
+         <AmountVector size="1">13</AmountVector>
+         <ModAbility>Strength</ModAbility>
+         <ModAbility>Wisdom</ModAbility>
+         <Tactical>Sunder</Tactical>
+         <HalfClassLevel>Druid</HalfClassLevel>
+      </DC>
    </Spell>
    <!--Druid level 4's-->
    <Spell>
@@ -5454,6 +5482,22 @@ save attempt every two seconds. (DC 17 + Max(Str, Wis) mod + Druid level).
       <Heighten/>
       <Quicken/>
       <Druid>6</Druid>
+      <DC>
+         <Name>Jaws of Winter</Name>
+         <Description>Winter Wolf. As your jaws close over your enemies,
+they feel the deep cold of winter's heart close around them.
+This attack deals an extra 6[W], and if it counts as a sneak
+attack, your foe is frozen solid for 30 seconds. Frozen
+creatures gain DR 5/Adamantine, but are considered helpless.
+Fortitude save negates, and the creature gets an additional
+save attempt every two seconds</Description>
+         <Icon>JawsOfWinter</Icon>
+         <DCVersus>Fortitude</DCVersus>
+         <AmountVector size="1">17</AmountVector>
+         <ModAbility>Strength</ModAbility>
+         <ModAbility>Wisdom</ModAbility>
+         <ClassLevel>Druid</ClassLevel>
+      </DC>
    </Spell>
    <Spell>
       <Name>Word of Balance</Name>
@@ -5492,6 +5536,18 @@ feet. Enemies around fall prone. Fortitude save negates. Save DC is
 16 + half Druid level + max(Str, Wis) bonus. Melee attack +2[W]</Description>
       <Icon>Tremor</Icon>
       <Druid>6</Druid>
+      <DC>
+         <Name>Tremor</Name>
+         <Description>Valid Forms: Bear, Dire Bear. The ground trembles beneath your
+feet. Enemies around fall prone. Fortitude save negates. Save DC is
+16 + half Druid level + max(Str, Wis) bonus. Melee attack +2[W]</Description>
+         <Icon>Tremor</Icon>
+         <DCVersus>Fortitude</DCVersus>
+         <AmountVector size="1">16</AmountVector>
+         <ModAbility>Strength</ModAbility>
+         <ModAbility>Wisdom</ModAbility>
+         <HalfClassLevel>Druid</HalfClassLevel>
+      </DC>
    </Spell>
    <!--Druid level 7's-->
    <Spell>
@@ -5800,6 +5856,22 @@ are considered helpless, but they also gain DR/Adamantine 5.
       <Heighten/>
       <Quicken/>
       <Druid>9</Druid>
+      <DC>
+         <Name>Snowslide</Name>
+         <Description>You attack enemies in your path, dealing an extra 2[W], and targets
+caught in your wake are frozen solid for 20 seconds. A successful
+reflex save negates the effect, and creatures caught in the ice can
+attempt fortitude saves to escape every 3 seconds. Creatures frozen
+are considered helpless, but they also gain DR/Adamantine 5.
+(DC 19 + Max(Str, Wis) mod + Stun modifiers + Druid Level)</Description>
+         <Icon>Snowslide</Icon>
+         <DCVersus>Fortitude</DCVersus>
+         <AmountVector size="1">19</AmountVector>
+         <ModAbility>Strength</ModAbility>
+         <ModAbility>Wisdom</ModAbility>
+         <Tactical>Stun</Tactical>
+         <ClassLevel>Druid</ClassLevel>
+      </DC>
    </Spell>
    <Spell>
       <Name>Regenerate, Mass</Name>
@@ -7952,6 +8024,17 @@ An enemy succeeding on a Will save vs DC(10 + Warlock level + Charisma Modifier)
 is instead paralyzed and helpless with fear for 6 seconds.</Description>
       <Icon>HurlThroughHell</Icon>
       <SPCost/>
+      <DC>
+         <Name>Hurl Through Hell</Name>
+         <Description>Exile one target enemy from this existence.
+An enemy succeeding on a Will save vs DC(10 + Warlock level + Charisma Modifier)
+is instead paralyzed and helpless with fear for 6 seconds.</Description>
+         <Icon>HurlThroughHell</Icon>
+         <DCVersus>Will</DCVersus>
+         <AmountVector size="1">10</AmountVector>
+         <ModAbility>Charisma</ModAbility>
+         <ClassLevel>Warlock</ClassLevel>
+      </DC>
    </Spell>
    <Spell>
       <Name>Misty escape</Name>
@@ -8054,6 +8137,17 @@ Activation Cost: 10/5/2 Spell Points. Cooldown: 8 seconds</Description>
 level + charisma or wisdom mod) for half damage. (Cooldown 12 seconds, 12sp)</Description>
       <Icon>SunBolt</Icon>
       <SPCost>12</SPCost>
+      <DC>
+         <Name>Sun Bolt</Name>
+         <Description>Casts Sun Bolt as a Spell-Like Ability doing 1d6+3 damage per caster level
+(benefits from metamagic feats at no additional cost).</Description>
+         <Icon>SunBolt</Icon>
+         <DCVersus>Reflex</DCVersus>
+         <AmountVector size="1">10</AmountVector>
+         <ModAbility>Wisdom</ModAbility>
+         <ModAbility>Charisma</ModAbility>
+         <ClassLevel>All</ClassLevel>
+      </DC>
    </Spell>
    <Spell>
       <Name>Summon Archon</Name>
@@ -8100,6 +8194,16 @@ At levels 11 and 21 an additional bolt is fired. Effects that grant Action Boost
 uses give you additional uses per rest of this ability.</Description>
       <Icon>DrowDarkfire</Icon>
       <SPCost/>
+      <DC>
+         <Name>Drow Dark Fire</Name>
+         <Description>Fires a bolt of darkness that deals 1d12 damage per character
+level, Reflex DC (10 + Half Character Level + Charisma Modifier) Half Damage.</Description>
+         <Icon>DrowDarkfire</Icon>
+         <DCVersus>Reflex</DCVersus>
+         <AmountVector size="1">10</AmountVector>
+         <ModAbility>Charisma</ModAbility>
+         <HalfClassLevel>All</HalfClassLevel>
+      </DC>
    </Spell>
    <Spell>
       <Name>Bring Out the Leeches</Name>
@@ -8151,6 +8255,17 @@ opponents on a failed fortitude save. Both saving throws have DC equal to
 (10/14/18 + Monk Level + Wisdom Modifier).</Description>
       <Icon>FlashBang</Icon>
       <SPCost/>
+      <DC>
+         <Name>Flash Bang</Name>
+         <Description>Throws a fragile eggshell imbued with ninja magic that explodes into light,
+blinding opponents for 6 seconds on a failed reflex save and momentarily dazing
+opponents on a failed fortitude save.</Description>
+         <Icon>FlashBang</Icon>
+         <DCVersus>Reflex</DCVersus>
+         <AmountVector size="3">10 14 18</AmountVector>
+         <ModAbility>Wisdom</ModAbility>
+         <ClassLevel>Monk</ClassLevel>
+      </DC>
    </Spell>
    <Spell>
       <Name>Rejuvenation of Dawn</Name>
@@ -8213,6 +8328,18 @@ manner. Fire creatures are immune to this effect.
 (Activation Cost: 50 Spell Points. Cooldown: 1 minute.)</Description>
       <Icon>HeatDeath</Icon>
       <SPCost>50</SPCost>
+      <DC>
+         <Name>Heat Death</Name>
+         <Description>You raise the internal temperature of a living target to lethal levels.
+The target must succeed on a Fortitude save (DC: 10 + Constitution Modifier + Sorcerer Level)
+or take 2,000 points of fire damage as its blood (or other internal fluid) boils in a horific
+manner.</Description>
+         <Icon>HeatDeath</Icon>
+         <DCVersus>Fortitude</DCVersus>
+         <AmountVector size="1">10</AmountVector>
+         <ModAbility>Constitution</ModAbility>
+         <ClassLevel>Sorcerer</ClassLevel>
+      </DC>
    </Spell>
    <Spell>
       <Name>Icy Prison</Name>
@@ -8223,6 +8350,17 @@ targets gets occasional saves to attempt to escape.
 (Activation Cost: 25 Spell Points. Cooldown: 1 minute.)</Description>
       <Icon>IcyPrison</Icon>
       <SPCost>25</SPCost>
+      <DC>
+         <Name>Icy Prison</Name>
+         <Description>You deal 500 cold damage to your opponent, with a Fortitude save
+(DC: 10 + Constitution Modifier + Sorcerer Level) for half damage, and an additional
+Reflex save or be encased in ice.</Description>
+         <Icon>IcyPrison</Icon>
+         <DCVersus>Fortitude</DCVersus>
+         <AmountVector size="1">10</AmountVector>
+         <ModAbility>Constitution</ModAbility>
+         <ClassLevel>Sorcerer</ClassLevel>
+      </DC>
    </Spell>
    <Spell>
       <Name>Resist Energies</Name>
@@ -8243,6 +8381,17 @@ Cooldown: 15 seconds.</Description>
       <Icon>DevourTheSoul</Icon>
       <School>Necromancy</School>
       <SPCost/>
+      <DC>
+         <Name>Devour the Soul</Name>
+         <Description>You consume the soul of your targeted enemy, killing it instantly unless it
+makes a Will saving throw with a DC of 18 + Warlock level + Charisma bonus.
+This ability is considered a Necromancy spell.</Description>
+         <Icon>DevourTheSoul</Icon>
+         <DCVersus>Will</DCVersus>
+         <AmountVector size="1">18</AmountVector>
+         <ModAbility>Charisma</ModAbility>
+         <ClassLevel>Warlock</ClassLevel>
+      </DC>
    </Spell>
    <Spell>
       <Name>Arcane Bolt</Name>
@@ -8315,6 +8464,18 @@ Cooldown: 20 seconds</Description>
       <Maximize/>
       <Empower/>
       <Quicken/>
+      <DC>
+         <Name>Divine Wrath</Name>
+         <Description>Calls down divine wrath on foes, dealing 2d6 light damage per character level,
+will save for half. Allies caught within blast are healed for 1d6 Positive
+Energy damage per character level.</Description>
+         <Icon>DivineWrath</Icon>
+         <DCVersus>Will</DCVersus>
+         <AmountVector size="1">10</AmountVector>
+         <ModAbility>Wisdom</ModAbility>
+         <ModAbility>Charisma</ModAbility>
+         <ClassLevel>All</ClassLevel>
+      </DC>
    </Spell>
    <Spell>
       <Name>Celestial Bombardment</Name>
@@ -8331,6 +8492,20 @@ Activation cost is [300/200/100] Spell points and has a cooldown of [3/2/1] minu
       <Cleric>9</Cleric>
       <DarkApostate>9</DarkApostate>
       <FavoredSoul>9</FavoredSoul>
+      <DC>
+         <Name>Celestial Bombardment</Name>
+         <Description>Divine wrath falls from the heavens to smite your foes.
+This spell calls down three stars at your target, dealing a total
+of 3d6 fire damage per character level, split into three hits. This damage is
+affected by fire spell power and may critically hit. In addition, enemies must
+succeed at three consecutive Reflex saving throws versus a DC of
+20+Wisdom mod+Evocation spell DC modifier or be knocked prone.</Description>
+         <Icon>CelestialBombardment</Icon>
+         <DCVersus>Reflex</DCVersus>
+         <AmountVector size="1">20</AmountVector>
+         <ModAbility>Wisdom</ModAbility>
+         <School>Evocation</School>
+      </DC>
    </Spell>
    <Spell>
       <Name>Flyby Attack</Name>
@@ -8341,6 +8516,20 @@ character level + INT/CHA modifier for half damage; STR/DEX save DC 20 + 1/2
 character level + INT/CHA modifier negates knockdown). (Cooldown 1min)</Description>
       <Icon>FlybyAttack</Icon>
       <SPCost/>
+      <DC>
+         <Name>Flyby Attack</Name>
+         <Description>Executes an abundant step which passes through enemies and deals 2d6
+[fire/cold/acid/electric] damage per character level to any enemy struck
+during the attack. Each enemy is also knocked down (reflex save DC 20 + 1/2
+character level + INT/CHA modifier for half damage; STR/DEX save DC 20 + 1/2
+character level + INT/CHA modifier negates knockdown). (Cooldown 1min)</Description>
+         <Icon>FlybyAttack</Icon>
+         <DCVersus>Reflex</DCVersus>
+         <AmountVector size="1">20</AmountVector>
+         <ModAbility>Intelligence</ModAbility>
+         <ModAbility>Charisma</ModAbility>
+         <HalfClassLevel>All</HalfClassLevel>
+      </DC>
    </Spell>
    <Spell>
       <Name>Soundburst SLA</Name>
@@ -8356,6 +8545,18 @@ wisdom mod) or Spell Resistance save negates stun.
       <Maximize/>
       <Quicken/>
       <SPCost>12/9/6</SPCost>
+      <DC>
+         <Name>Soundburst SLA</Name>
+         <Description>Casts Soundburst as a Spell-Like Ability (benefits from metamagic feats
+at no additional cost). Fortitude (DC 10 + character level + charisma or
+wisdom mod) or Spell Resistance save negates stun.</Description>
+         <Icon>Soundburst</Icon>
+         <DCVersus>Fortitude</DCVersus>
+         <AmountVector size="1">10</AmountVector>
+         <ModAbility>Wisdom</ModAbility>
+         <ModAbility>Charisma</ModAbility>
+         <ClassLevel>All</ClassLevel>
+      </DC>
    </Spell>
    <Spell>
       <Name>Wholeness of Spirit</Name>
@@ -8584,14 +8785,25 @@ allies. This overrides their innate base healing from Repair spells for the dura
    </Spell>
    <Spell>
       <Name>Great Maul</Name>
-      <Description>Activate
-to do an Innate Attack: Deals 3[W] with +1 bonus to critical threat
+      <Description>Activate to do an Innate Attack: Deals 3[W] with +1 bonus to critical threat
 and damage, and the target you strike must make a Fortitude save or
 be stunned for 6 seconds, DC: 13 + Max(Str, Wis) mod + Tactical bonuses.
 SP Cost: 3
 Cooldown: 12 seconds.</Description>
       <Icon>NPBigClaws</Icon>
       <SPCost>3</SPCost>
+      <DC>
+         <Name>Great Maul</Name>
+         <Description>Activate to do an Innate Attack: Deals 3[W] with +1 bonus to critical threat
+and damage, and the target you strike must make a Fortitude save or
+be stunned for 6 seconds, DC: 13 + Max(Str, Wis) mod + Tactical bonuses.</Description>
+         <Icon>NPBigClaws</Icon>
+         <DCVersus>Fortitude</DCVersus>
+         <AmountVector size="1">13</AmountVector>
+         <ModAbility>Strength</ModAbility>
+         <ModAbility>Wisdom</ModAbility>
+         <Tactical>Stun</Tactical>
+      </DC>
    </Spell>
    <Spell>
       <Name>Palliative Admixture</Name>
@@ -9821,12 +10033,21 @@ Corporeal for 6 seconds, plus 1 second per Caster Level</Description>
       <Description>Primer Element: Ceruleite
 Throws a caustic liquid at a lock, attempting to dissolve it.
 You make a d20 + Spellcraft skill check against the DC of the lock, and if
-successful, th elock will behave as if it has been affected by a Knock spell
+successful, the lock will behave as if it has been affected by a Knock spell
 of equivalent effectiveness.</Description>
       <Icon>MeltLock</Icon>
       <School>Transmutation</School>
       <SPCost>15</SPCost>
       <Alchemist>3</Alchemist>
+      <DC>
+         <Name>Melt Lock</Name>
+         <Description>Throws a caustic liquid at a lock, attempting to dissolve it.
+You make a d20 + Spellcraft skill check against the DC of the lock</Description>
+         <Icon>MeltLock</Icon>
+         <DCVersus>Lock DC</DCVersus>
+         <Other>D20</Other>
+         <Skill>Spell Craft</Skill>
+      </DC>
    </Spell>
    <Spell>
       <Name>Molotov Cocktail</Name>
@@ -10690,6 +10911,20 @@ enemies caught within are slowed by 70%.</Description>
       <Empower/>
       <Quicken/>
       <Maximize/>
+      <DC>
+         <Name>Thunder Snow</Name>
+         <Description>Sends forth a wide wave of freezing hail before you with
+a narrow blast of lightning at its center directly in front of the caster.
+The hail deals 1d6 cold damage per character level, Fortitude save for half
+(DC: 20 + Evocation Bonuses + Highest Mental Ability Score Modifier).</Description>
+         <Icon>ThunderSnow</Icon>
+         <DCVersus>Fortitude</DCVersus>
+         <AmountVector size="1">20</AmountVector>
+          <ModAbility>Intelligence</ModAbility>
+          <ModAbility>Wisdom</ModAbility>
+          <ModAbility>Charisma</ModAbility>
+         <School>Evocation</School>
+      </DC>
    </Spell>
    <Spell>
       <Name>Misty Step</Name>

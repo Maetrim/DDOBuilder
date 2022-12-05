@@ -5949,6 +5949,14 @@ void Character::ApplySpellEffects(const std::string & spellName, size_t castingL
         NotifyNewStance((*sit));
         ++sit;
     }
+    // if we have any DC objects notify about them
+    const std::list<DC> & dcs = spell.EffectDC();
+    std::list<DC>::const_iterator dcit = dcs.begin();
+    while (dcit != dcs.end())
+    {
+        NotifyNewDC((*dcit));
+        ++dcit;
+    }
     // and now the effects
     std::vector<Effect> effects = spell.UpdatedEffects(castingLevel);
     std::vector<Effect>::const_iterator it = effects.begin();
@@ -5971,6 +5979,14 @@ void Character::RevokeSpellEffects(const std::string & spellName, size_t casting
     {
         NotifyRevokeStance((*sit));
         ++sit;
+    }
+    // if we have any DC objects notify about them
+    const std::list<DC> & dcs = spell.EffectDC();
+    std::list<DC>::const_iterator dcit = dcs.begin();
+    while (dcit != dcs.end())
+    {
+        NotifyRevokeDC((*dcit));
+        ++dcit;
     }
     // and now the effects
     std::vector<Effect> effects = spell.UpdatedEffects(castingLevel);

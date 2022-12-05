@@ -8,6 +8,7 @@
 #include "SpellSchoolTypes.h"
 #include "Effect.h"
 #include "Stance.h"
+#include "DC.h"
 
 class Character;
 
@@ -48,6 +49,7 @@ class Spell :
                 DL_OPTIONAL_ENUM(_, EnergyType, Energy, Energy_Unknown, energyTypeMap) \
                 DL_OBJECT_LIST(_, Stance, StanceData) \
                 DL_OBJECT_VECTOR(_, Effect, Effects) \
+                DL_OBJECT_LIST(_, DC, EffectDC) \
                 DL_FLAG(_, Accelerate) \
                 DL_FLAG(_, Embolden) \
                 DL_FLAG(_, Empower) \
