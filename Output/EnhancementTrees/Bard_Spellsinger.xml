@@ -546,10 +546,7 @@ Rank 3: You gain the Magical Training feat.</Description>
       <EnhancementTreeItem>
          <Name>Spellsinger: Sonic Blast</Name>
          <InternalName>SSSonicBlast</InternalName>
-         <Description>Spell-Like Ability: Sonic Blast.
-Activation cost: 6/5/4 SP.
-Cooldown: 12/8/4 seconds.
-Metamagic Feats can be used at no additional cost.</Description>
+         <Description>Choose a spell like ability.</Description>
          <Icon>SSSonicBlast</Icon>
          <XPosition>3</XPosition>
          <YPosition>1</YPosition>
@@ -569,11 +566,46 @@ Metamagic Feats can be used at no additional cost.</Description>
                </Requirement>
             </RequiresOneOf>
          </Requirements>
-         <Effect>
-            <Type>SpellLikeAbility</Type>
-            <Bonus>Enhancement</Bonus>
-            <SpellLikeAbility>Sonic Blast</SpellLikeAbility>
-         </Effect>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Sonic Blast</Name>
+               <Description>Spell-Like Ability: Sonic Blast.
+Activation cost: 6/5/4 SP.
+Cooldown: 12/8/4 seconds.
+Metamagic Feats can be used at no additional cost.</Description>
+               <Icon>SSSonicBlast</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Clickie/>
+             <Requirements>
+                 <RequiresNoneOf>
+                    <Requirement>
+                        <Enhancement>BSSpellLikeAbilityI</Enhancement>
+                        <Selection>Sonic Blast</Selection>
+                    </Requirement>
+                </RequiresNoneOf>
+             </Requirements>
+                 <Effect>
+                    <Type>SpellLikeAbility</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <SpellLikeAbility>Sonic Blast</SpellLikeAbility>
+                 </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Cure Light Wounds</Name>
+               <Description>Spell-Like Ability: Cure Light Wounds.
+Activation cost: 6/5/4 SP.
+Cooldown: 12/8/4 seconds.
+Metamagic Feats can be used at no additional cost.</Description>
+               <Icon>CureLightWounds</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Clickie/>
+                 <Effect>
+                    <Type>SpellLikeAbility</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <SpellLikeAbility>Cure Light Wounds</SpellLikeAbility>
+                 </Effect>
+            </EnhancementSelection>
+         </Selector>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Spellsinger: Charlatan</Name>
@@ -939,10 +971,8 @@ Passive: You sing your Bardic Inspiriation as if you had 1 more level of Bard.</
       <EnhancementTreeItem>
          <Name>Spellsinger: Shout</Name>
          <InternalName>SSShout</InternalName>
-         <Description>Spell-Like Ability: Shout.
-Activation cost: 15/12/9 SP
-Cooldown: 12/9/6 seconds
-Metamagic Feats can be used at no additional cost.</Description>
+         <Description>Choose a spell like ability:
+</Description>
          <Icon>SSShout</Icon>
          <XPosition>2</XPosition>
          <YPosition>3</YPosition>
@@ -962,11 +992,36 @@ Metamagic Feats can be used at no additional cost.</Description>
                </Requirement>
             </RequiresOneOf>
          </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Shout</Name>
+               <Description>Gain Shout as a spell ike ability Activation cost: 15/12/9 SP
+Cooldown: 12/9/6 seconds
+Metamagic Feats can be used at no additional cost.</Description>
+               <Icon>SSShout</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Clickie/>
          <Effect>
             <Type>SpellLikeAbility</Type>
             <Bonus>Enhancement</Bonus>
             <SpellLikeAbility>Shout</SpellLikeAbility>
          </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Cure Moderate Wounds, Mass</Name>
+               <Description>Cure Light Wounds, Mass
+Activation cost: [15/12/9] SP.
+Cooldown: [12/9/6] seconds.</Description>
+               <Icon>CureModerateWoundsMass</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Clickie/>
+               <Effect>
+                  <Type>SpellLikeAbility</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <SpellLikeAbility>Cure Light Wounds, Mass</SpellLikeAbility>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Spellsinger: Spell Song Trance</Name>

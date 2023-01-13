@@ -708,14 +708,14 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
                     "Tower Shield MDB",
                     hItem,
                     TVI_LAST);
-            BreakdownItem * pMDBSheilds = new BreakdownItemSimple(
+            BreakdownItem * pMDBShields = new BreakdownItemSimple(
                     Breakdown_MaxDexBonusShields,
                     Effect_MaxDexBonusTowerShield,
                     "Tower Shield MDB",
                     &m_itemBreakdownTree,
                     hMDBShields);
-            m_itemBreakdownTree.SetItemData(hMDBShields, (DWORD)(void*)pMDBSheilds);
-            m_items.push_back(pMDBSheilds);
+            m_itemBreakdownTree.SetItemData(hMDBShields, (DWORD)(void*)pMDBShields);
+            m_items.push_back(pMDBShields);
         }
     }
 
