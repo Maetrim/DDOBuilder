@@ -2439,6 +2439,29 @@ std::vector<TrainableFeatTypes> Character::TrainableFeatTypeAtLevel(
         }
         break;
 
+    case Class_DruidBlightCaster:
+        // Blight Casters can select a wild shape at levelss 2, 11, 13, 17
+        if (classLevels[Class_DruidBlightCaster] == 2
+                || classLevels[Class_DruidBlightCaster] == 11
+                || classLevels[Class_DruidBlightCaster] == 13
+                || classLevels[Class_DruidBlightCaster] == 17)
+        {
+            trainable.push_back(TFT_DruidWildShape);
+        }
+        // Blight Casters can select a kin Form at levels 4, 8
+        if (classLevels[Class_DruidBlightCaster] == 4
+                || classLevels[Class_DruidBlightCaster] == 8)
+        {
+            trainable.push_back(TFT_KinForm);
+        }
+        // Blight Casters can select a togle imbue at levels 2 and 11
+        if (classLevels[Class_DruidBlightCaster] == 2
+                || classLevels[Class_DruidBlightCaster] == 11)
+        {
+            trainable.push_back(TFT_BlightCasterToggleImbue);
+        }
+        break;
+
     case Class_FavoredSoul:
         // favored souls can select a follower of faith at level 1
         // battle feat at level 2
@@ -2615,6 +2638,18 @@ std::vector<TrainableFeatTypes> Character::TrainableFeatTypeAtLevel(
         }
         break;
 
+    case Class_RangerDarkHunter:
+        // rangers gain a favored enemy feat at levels 1, 5, 10, 15 and 20
+        if (classLevels[Class_RangerDarkHunter] == 1
+                || classLevels[Class_RangerDarkHunter] == 5
+                || classLevels[Class_RangerDarkHunter] == 10
+                || classLevels[Class_RangerDarkHunter] == 15
+                || classLevels[Class_RangerDarkHunter] == 20)
+        {
+            trainable.push_back(TFT_DarkHunterFavoredEnemy);
+        }
+        break;
+
     case Class_Rogue:
         // rogues gain special abilities at levels 10, 13, 16 and 19
         if (classLevels[Class_Rogue] == 10
@@ -2659,6 +2694,44 @@ std::vector<TrainableFeatTypes> Character::TrainableFeatTypeAtLevel(
         }
         // warlocks can train a resistance feat at level 10
         if (classLevels[Class_Warlock] == 10)
+        {
+            trainable.push_back(TFT_WarlockResistance);
+        }
+        break;
+
+    case Class_WarlockAcolyteOfTheSkin:
+        // warlocks can choose their pact feat at level 1
+        if (classLevels[Class_WarlockAcolyteOfTheSkin] == 1)
+        {
+            trainable.push_back(TFT_TruePact);
+        }
+        // warlocks can select special pact abilities at levels 6 and 15
+        if (classLevels[Class_WarlockAcolyteOfTheSkin] == 6
+                || classLevels[Class_WarlockAcolyteOfTheSkin] == 15)
+        {
+            trainable.push_back(TFT_WarlockPactAbility);
+        }
+        // warlocks can select pact spells at levels 1, 5, 9, 14, 17 and 19
+        // note that the pact spell at level 1 is handled by the pact feat
+        if (classLevels[Class_WarlockAcolyteOfTheSkin] == 5
+                || classLevels[Class_WarlockAcolyteOfTheSkin] == 9
+                || classLevels[Class_WarlockAcolyteOfTheSkin] == 14
+                || classLevels[Class_WarlockAcolyteOfTheSkin] == 17
+                || classLevels[Class_WarlockAcolyteOfTheSkin] == 19)
+        {
+            trainable.push_back(TFT_WarlockPactSpell);
+        }
+        // warlocks can select save abilities at levels 4, 8, 12, 16 and 20
+        if (classLevels[Class_WarlockAcolyteOfTheSkin] == 4
+                || classLevels[Class_WarlockAcolyteOfTheSkin] == 8
+                || classLevels[Class_WarlockAcolyteOfTheSkin] == 12
+                || classLevels[Class_WarlockAcolyteOfTheSkin] == 16
+                || classLevels[Class_WarlockAcolyteOfTheSkin] == 20)
+        {
+            trainable.push_back(TFT_WarlockPactSaveBonus);
+        }
+        // warlocks can train a resistance feat at level 10
+        if (classLevels[Class_WarlockAcolyteOfTheSkin] == 10)
         {
             trainable.push_back(TFT_WarlockResistance);
         }

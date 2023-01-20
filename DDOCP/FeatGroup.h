@@ -26,6 +26,7 @@ class FeatGroup :
                 DL_FLAG(_, IsArtificerBonus) \
                 DL_FLAG(_, IsBattle) \
                 DL_FLAG(_, IsBelovedOf) \
+                DL_FLAG(_, IsBlightCasterImbueToggle) \
                 DL_FLAG(_, IsChildOf) \
                 DL_FLAG(_, IsDamageReduction) \
                 DL_FLAG(_, IsDilettante) \
@@ -38,8 +39,10 @@ class FeatGroup :
                 DL_FLAG(_, IsEpicDestinyFeat) \
                 DL_FLAG(_, IsEpicFeat) \
                 DL_FLAG(_, IsFavoredEnemy) \
+                DL_FLAG(_, IsFavoredEnemyDarkHunter) \
                 DL_FLAG(_, IsFighterBonus) \
                 DL_FLAG(_, IsFollowerOf) \
+                DL_FLAG(_, IsKinForm) \
                 DL_FLAG(_, IsHeart) \
                 DL_FLAG(_, IsRogueSpecialAbility) \
                 DL_FLAG(_, IsStandardFeat) \

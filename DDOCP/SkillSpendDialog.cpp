@@ -781,6 +781,7 @@ void CSkillSpendDialog::OnButtonAutoSpendSkillPoints()
                     skills[Skill_SpellCraft].AddWeighting(100);
                     break;
                 case Class_Druid:
+                case Class_DruidBlightCaster:
                     skills[Skill_Concentration].AddWeighting(100);
                     skills[Skill_SpellCraft].AddWeighting(100);
                     break;
@@ -804,11 +805,18 @@ void CSkillSpendDialog::OnButtonAutoSpendSkillPoints()
                     skills[Skill_Spot].AddWeighting(100);
                     skills[Skill_Search].AddWeighting(100);
                     break;
+                case Class_RangerDarkHunter:
+                    skills[Skill_DisableDevice].AddWeighting(100);
+                    skills[Skill_OpenLock].AddWeighting(100);
+                    skills[Skill_Spot].AddWeighting(100);
+                    skills[Skill_Search].AddWeighting(100);
+                    break;
                 case Class_Sorcerer:
                     skills[Skill_Concentration].AddWeighting(100);
                     skills[Skill_SpellCraft].AddWeighting(100);
                     break;
                 case Class_Warlock:
+                case Class_WarlockAcolyteOfTheSkin:
                     skills[Skill_Concentration].AddWeighting(100);
                     skills[Skill_SpellCraft].AddWeighting(100);
                     break;

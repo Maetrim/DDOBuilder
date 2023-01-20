@@ -100,6 +100,9 @@ size_t Spell::SpellLevel(ClassType ct) const
     case Class_Druid:
         level = Druid();
         break;
+    case Class_DruidBlightCaster:
+        level = BlightCaster();
+        break;
     case Class_FavoredSoul:
         level = FavoredSoul();
         break;
@@ -110,11 +113,17 @@ size_t Spell::SpellLevel(ClassType ct) const
     case Class_Ranger:
         level = Ranger();
         break;
+    case Class_RangerDarkHunter:
+        level = DarkHunter();
+        break;
     case Class_Sorcerer:
         level = Sorcerer();
         break;
     case Class_Warlock:
         level = Warlock();
+        break;
+    case Class_WarlockAcolyteOfTheSkin:
+        level = AcolyteOfTheSkin();
         break;
     case Class_Wizard:
         level = Wizard();

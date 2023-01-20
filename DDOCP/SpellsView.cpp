@@ -228,6 +228,9 @@ void CSpellsView::DetermineSpellViews()
                 case Class_Druid:
                     page = new CSpellsPage(Class_Druid, Ability_Wisdom, IDS_DRUID_SPELLS);
                     break;
+                case Class_DruidBlightCaster:
+                    page = new CSpellsPage(Class_DruidBlightCaster, Ability_Wisdom, IDS_BLIGHTCASTER_SPELLS);
+                    break;
                 case Class_FavoredSoul:
                     page = new CSpellsPage(Class_FavoredSoul, Ability_Wisdom, IDS_FAVOREDSOUL_SPELLS);
                     break;
@@ -240,11 +243,17 @@ void CSpellsView::DetermineSpellViews()
                 case Class_Ranger:
                     page = new CSpellsPage(Class_Ranger, Ability_Wisdom, IDS_RANGER_SPELLS);
                     break;
+                case Class_RangerDarkHunter:
+                    page = new CSpellsPage(Class_RangerDarkHunter, Ability_Wisdom, IDS_DARKHUNTER_SPELLS);
+                    break;
                 case Class_Sorcerer:
                     page = new CSpellsPage(Class_Sorcerer, Ability_Charisma, IDS_SORCERER_SPELLS);
                     break;
                 case Class_Warlock:
                     page = new CSpellsPage(Class_Warlock, Ability_Charisma, IDS_WARLOCK_SPELLS);
+                    break;
+                case Class_WarlockAcolyteOfTheSkin:
+                    page = new CSpellsPage(Class_WarlockAcolyteOfTheSkin, Ability_Charisma, IDS_ACOLYTEOFTHESKIN_SPELLS);
                     break;
                 case Class_Wizard:
                     page = new CSpellsPage(Class_Wizard, Ability_Intelligence, IDS_WIZARD_SPELLS);

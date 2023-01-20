@@ -1,0 +1,889 @@
+<Enhancements>
+  <EnhancementTree>
+    <Name>Blight Caster</Name>
+    <Version>1</Version>
+    <Requirements>
+      <Requirement>
+        <Class>Blight Caster</Class>
+      </Requirement>
+    </Requirements>
+    <Icon>Druid</Icon>
+    <Background>DruidBackground</Background>
+    <!--Core Items-->
+    <EnhancementTreeItem>
+      <Name>Blight Caster: The Cycle of Decays</Name>
+      <InternalName>BlightCore1</InternalName>
+      <Description>You gain 5 Force, Poison, Negative, and Acid Spell Power per coe in this tree.</Description>
+      <Icon>BlightTheCycleOfDecays</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>0</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Blight Caster</Class>
+          <Level>1</Level>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Blight Caster: Spread the Blight</Name>
+      <InternalName>BlightCore2</InternalName>
+      <Description>Your offensive spells now apply a 10 second debuff called Blight: reduces saves by 1 and incoming positive healing by 20%</Description>
+      <Icon>BlightSpreadTheBlight</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Blight Caster</Class>
+          <Level>3</Level>
+        </Requirement>
+        <Requirement>
+          <Enhancement>BlightCore1</Enhancement>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Blight Caster: Death Eater</Name>
+      <InternalName>BlightCore3</InternalName>
+      <Description>You gain 1 temporary hit point equal to your Wisdom score whenever you kill and enemy (Creaters 2 levels below you do not count). These hit points remain until damage removes them or the quest ends. This can stack 5 times and is refreshed on each kill.</Description>
+      <Icon>BlightDeathEater</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Blight Caster</Class>
+          <Level>6</Level>
+        </Requirement>
+        <Requirement>
+          <Enhancement>BlightCore2</Enhancement>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Blight Caster: Blight upon Blight</Name>
+      <InternalName>BlightCore4</InternalName>
+      <Description>You gain Know the End which acts as a permanent Death Block. Blight effect is improved to reduces saves by 2 and incoming positive healing by 40% for 10 seconds.</Description>
+      <Icon>BlightBlightUponBlight</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Blight Caster</Class>
+          <Level>12</Level>
+        </Requirement>
+        <Requirement>
+          <Enhancement>BlightCore3</Enhancement>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Blight Caster: Vile Eruption</Name>
+      <InternalName>BlightCore5</InternalName>
+      <Description>Earth Quake now deal 2d6+1 acid damage every 3 seconds in addition to it's regular damage.</Description>
+      <Icon>BlightVileEruption</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Blight Caster</Class>
+          <Level>18</Level>
+        </Requirement>
+        <Requirement>
+          <Enhancement>BlightCore4</Enhancement>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Blight Caster: Master of Decay</Name>
+      <InternalName>BlightCore6</InternalName>
+      <Description>You gain Creeping Doom as a spell like ability.
+You gain +2 Wisdom and Constitution.
+Blight now reduces saves by 4 and positive healing by 60% for 10 seconds.</Description>
+      <Icon>BlightMasterOfDecay</Icon>
+      <XPosition>5</XPosition>
+      <YPosition>0</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>40</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Blight Caster</Class>
+          <Level>20</Level>
+        </Requirement>
+        <Requirement>
+          <Enhancement>BlightCore5</Enhancement>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <!--Tier 1-->
+    <EnhancementTreeItem>
+      <Name>Blight caster: Prickly</Name>
+      <InternalName>BlightPrickly</InternalName>
+      <Description>you gain +[1/2/3] Physical resistance rating.
+Rank 3: +1 Damage to all weapon attacks.</Description>
+      <Icon>BlightPrickly</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Blight Caster</Class>
+          <Level>1</Level>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Blight caster: Kiss of the Blight</Name>
+      <InternalName>BlightKissOfTheBlight</InternalName>
+      <Description>you gain [5/10/15]% Absorption against Poison and Acid Damage.</Description>
+      <Icon>BlightKissOfTheBlight</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Blight Caster</Class>
+          <Level>1</Level>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Blight Caster: Thorn or Bile I</Name>
+      <InternalName>BlightThornOrBileI</InternalName>
+      <Description>Selector either Thorn Strike or Acid Spray as a spell like ability.</Description>
+      <Icon>BlightThornOrBile</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Clickie/>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Class>Blight Caster</Class>
+          <Level>1</Level>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Acid Spray</Name>
+          <Description>You gain Acid Splash as a spell like ability.</Description>
+          <Icon>BlightAcidSpray</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie/>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Thorn Strike</Name>
+          <Description>You gain Thorn Strike as a spell like ability.</Description>
+          <Icon>BlightThornOrBile</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie/>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Blight Caster: Sharp Edges I</Name>
+      <InternalName>BlightSharpEdgesI</InternalName>
+      <Description>Gain +1% Spell Critical Chance with Physical, Negative, Poison and Acid Spells.</Description>
+      <Icon>BlightSharpEdges</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Blight Caster</Class>
+          <Level>1</Level>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Blight Caster: Lore of the Great Plagues</Name>
+      <InternalName>BlightLoreOfTheGreatPlagues</InternalName>
+      <Description>You gain a +[1/2/3] saving throw bonus against Poison and Disease.
+Rank 3: You gain 5 Poison and Negative Spell Power.</Description>
+      <Icon>BlightLoreOfTheGreatPlagues</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Blight Caster</Class>
+          <Level>1</Level>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <!--Tier 2-->
+    <EnhancementTreeItem>
+      <Name>Blight Caster: Defiled Growth</Name>
+      <InternalName>BlightDefiledGrowth</InternalName>
+      <Description>Your Entangle, Spike Growth and Grasping Thorns spells now cause 1d4 Negative energy damage per spell level every 2 seconds. If you have Death Eater you are healed for 1d2 hit points per level standing in these effects.</Description>
+      <Icon>BlightDefiledGrowth</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="3">2 2 2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Blight Caster</Class>
+          <Level>2</Level>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Blight Caster: Efficient Metamagics I</Name>
+      <InternalName>BlightEfficientMetamagicI</InternalName>
+      <Description>Choose a metamagic to reduce the costs of.</Description>
+      <Icon>EfficientMetamagic</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="3">2 2 2</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Blight Caster</Class>
+          <Level>2</Level>
+        </Requirement>
+      </Requirements>
+         <Selector>
+            <Exclude>BomEfficientMetamagicII</Exclude>
+            <Exclude>ATEfficientMetamagic</Exclude>
+            <Exclude>ATEfficientMetamagicII</Exclude>
+            <Exclude>DDDAEfficientMetamagicI</Exclude>
+            <Exclude>DDDAEfficientMetamagicII</Exclude>
+            <Exclude>DDDAEfficientMetamagicIII</Exclude>
+            <Exclude>SHImprovedMetamagicsI</Exclude>
+            <Exclude>SHImprovedMetamagicsII</Exclude>
+            <Exclude>AoVEfficientMetamagicI</Exclude>
+            <Exclude>AoVEfficientMetamagicII</Exclude>
+            <Exclude>ASEfficientMetamagicI</Exclude>
+            <Exclude>ASEfficientMetamagicII</Exclude>
+            <Exclude>ESEfficientMetamagicI</Exclude>
+            <Exclude>ESEfficientMetamagicII</Exclude>
+            <Exclude>FSEfficientMetamagicI</Exclude>
+            <Exclude>FSEfficientMetamagicII</Exclude>
+            <Exclude>WSEfficientMetamagicI</Exclude>
+            <Exclude>WSEfficientMetamagicII</Exclude>
+            <Exclude>AMEfficientMetamagicLeft</Exclude>
+            <Exclude>AMEfficientMetamagicI</Exclude>
+            <Exclude>AMEfficientMetamagicRight</Exclude>
+            <Exclude>PaleEfficientMetamagic</Exclude>
+            <EnhancementSelection>
+               <Name>Efficient Empower</Name>
+               <Description>Using the Empower Spell Metamagic costs you 2/4/6 fewer Spell Points. </Description>
+               <Icon>EfficientEmpower</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Requirements>
+                  <Requirement>
+                     <Feat>Empower Spell</Feat>
+                  </Requirement>
+               </Requirements>
+               <Effect>
+                  <Type>AdditionalSpellPointCost</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AmountVector size="3">-2 -4 -6</AmountVector>
+                  <Stance>Empower</Stance>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Efficient Maximize</Name>
+               <Description>Using the Maximize Spell Metamagic costs you 3/6/9 fewer Spell Points. </Description>
+               <Icon>EfficientMaximize</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Requirements>
+                  <Requirement>
+                     <Feat>Maximize Spell</Feat>
+                  </Requirement>
+               </Requirements>
+               <Effect>
+                  <Type>AdditionalSpellPointCost</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AmountVector size="3">-3 -6 -9</AmountVector>
+                  <Stance>Maximize</Stance>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Efficient Quicken</Name>
+               <Description>Using the Quicken Spell Metamagic costs you 1/2/4 fewer Spell Points.</Description>
+               <Icon>EfficientQuicken</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Requirements>
+                  <Requirement>
+                     <Feat>Quicken Spell</Feat>
+                  </Requirement>
+               </Requirements>
+               <Effect>
+                  <Type>AdditionalSpellPointCost</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AmountVector size="3">-1 -2 -4</AmountVector>
+                  <Stance>Quicken</Stance>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Blight Caster: Thorn or Bile II</Name>
+      <InternalName>BlightThornOrBileII</InternalName>
+      <Description>Selector either Splinter Bolt or Melf's Acid Arrow as a spell like ability.</Description>
+      <Icon>BlightThornOrBile</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>5</MinSpent>
+      <Clickie/>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Class>Blight Caster</Class>
+          <Level>2</Level>
+        </Requirement>
+        <Requirement>
+          <Enhancement>BlightThornOrBileI</Enhancement>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Splinter Bolt</Name>
+          <Description>You gain Splinter Bolt as a spell like ability.</Description>
+          <Icon>BlightSplinterBolt</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie/>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Melf's Acid Arrow</Name>
+          <Description>You gain Melf's Acid Arrow as a spell like ability.</Description>
+          <Icon>BlightMelfsAcidArrow</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie/>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Blight Caster: Sharp Edges II</Name>
+      <InternalName>BlightSharpEdgesII</InternalName>
+      <Description>Gain +1% Spell Critical Chance with Physical, Negative, Poison and Acid Spells.</Description>
+      <Icon>BlightSharpEdges</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Blight Caster</Class>
+          <Level>2</Level>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Blight Caster: Every Rose has it's Thorn</Name>
+      <InternalName>BlightEveryRoseHasItsThorn</InternalName>
+      <Description>When you cast the Spike Growth spell it does double damage.</Description>
+      <Icon>BlightEveryRoseHasItsThorn</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>2</YPosition>
+      <CostPerRank size="3">2 2 2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>5</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Blight Caster</Class>
+          <Level>2</Level>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <!--Tier 3-->
+    <EnhancementTreeItem>
+      <Name>Blight Caster: Out Break</Name>
+      <InternalName>BlightOutBreak</InternalName>
+      <Description>Your Contagion and Insidious Spores spell now  also apply to enemies near your target.</Description>
+      <Icon>BlightOutBreak</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="3">2 2 2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Blight Caster</Class>
+          <Level>3</Level>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Blight Caster: Efficient Metamagics II</Name>
+      <InternalName>BlightEfficientMetamagicII</InternalName>
+      <Description>Choose a metamagic to reduce the costs of.</Description>
+      <Icon>EfficientMetamagic</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Blight Caster</Class>
+          <Level>3</Level>
+        </Requirement>
+      </Requirements>
+         <Selector>
+            <Exclude>BomEfficientMetamagicII</Exclude>
+            <Exclude>ATEfficientMetamagic</Exclude>
+            <Exclude>ATEfficientMetamagicII</Exclude>
+            <Exclude>DDDAEfficientMetamagicI</Exclude>
+            <Exclude>DDDAEfficientMetamagicII</Exclude>
+            <Exclude>DDDAEfficientMetamagicIII</Exclude>
+            <Exclude>SHImprovedMetamagicsI</Exclude>
+            <Exclude>SHImprovedMetamagicsII</Exclude>
+            <Exclude>AoVEfficientMetamagicI</Exclude>
+            <Exclude>AoVEfficientMetamagicII</Exclude>
+            <Exclude>ASEfficientMetamagicI</Exclude>
+            <Exclude>ASEfficientMetamagicII</Exclude>
+            <Exclude>ESEfficientMetamagicI</Exclude>
+            <Exclude>ESEfficientMetamagicII</Exclude>
+            <Exclude>FSEfficientMetamagicI</Exclude>
+            <Exclude>FSEfficientMetamagicII</Exclude>
+            <Exclude>WSEfficientMetamagicI</Exclude>
+            <Exclude>WSEfficientMetamagicII</Exclude>
+            <Exclude>AMEfficientMetamagicLeft</Exclude>
+            <Exclude>AMEfficientMetamagicI</Exclude>
+            <Exclude>AMEfficientMetamagicRight</Exclude>
+            <Exclude>PaleEfficientMetamagic</Exclude>
+            <Exclude>BlightEfficientMetamagicI</Exclude>
+            <EnhancementSelection>
+               <Name>Efficient Empower</Name>
+               <Description>Using the Empower Spell Metamagic costs you 2/4/6 fewer Spell Points. </Description>
+               <Icon>EfficientEmpower</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Requirements>
+                  <Requirement>
+                     <Feat>Empower Spell</Feat>
+                  </Requirement>
+               </Requirements>
+               <Effect>
+                  <Type>AdditionalSpellPointCost</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AmountVector size="3">-2 -4 -6</AmountVector>
+                  <Stance>Empower</Stance>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Efficient Maximize</Name>
+               <Description>Using the Maximize Spell Metamagic costs you 3/6/9 fewer Spell Points. </Description>
+               <Icon>EfficientMaximize</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Requirements>
+                  <Requirement>
+                     <Feat>Maximize Spell</Feat>
+                  </Requirement>
+               </Requirements>
+               <Effect>
+                  <Type>AdditionalSpellPointCost</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AmountVector size="3">-3 -6 -9</AmountVector>
+                  <Stance>Maximize</Stance>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Efficient Quicken</Name>
+               <Description>Using the Quicken Spell Metamagic costs you 1/2/4 fewer Spell Points.</Description>
+               <Icon>EfficientQuicken</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Requirements>
+                  <Requirement>
+                     <Feat>Quicken Spell</Feat>
+                  </Requirement>
+               </Requirements>
+               <Effect>
+                  <Type>AdditionalSpellPointCost</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <AmountVector size="3">-1 -2 -4</AmountVector>
+                  <Stance>Quicken</Stance>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Blight Caster: Enveloping Swarm</Name>
+      <InternalName>BlightEnvelopingSwarm</InternalName>
+      <Description>Spell Like Ability: A swarm of voracious insects envelops your target dealing 2d6 Acid damage + 1d6 for every 3 Druid levels every 2 seconds for 16 seconds.
+Cooldown: [16/12/8] seconds
+Cost: [8/6/4] SP.</Description>
+      <Icon>BlightEnvelopingSwarm</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+      <Clickie/>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Class>Blight Caster</Class>
+          <Level>3</Level>
+        </Requirement>
+        <Requirement>
+          <Enhancement>BlightThornOrBileII</Enhancement>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Blight Caster: Sharp Edges III</Name>
+      <InternalName>BlightSharpEdgesIII</InternalName>
+      <Description>Gain +1% Spell Critical Chance with Physical, Negative, Poison and Acid Spells.</Description>
+      <Icon>BlightSharpEdges</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Blight Caster</Class>
+          <Level>3</Level>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Blight Caster: Ability I</Name>
+      <InternalName>BlightAbilityI</InternalName>
+      <Description>Choose between Dexterity, Intelligence, or Wisdom.</Description>
+      <Icon>DexIntWis</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>10</MinSpent>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Class>Blight Caster</Class>
+          <Level>3</Level>
+        </Requirement>
+      </Requirements>
+        <Selector>
+            <EnhancementSelection>
+                <Name>+1 Dexterity</Name>
+                <Description>+1 Dexterity</Description>
+                <Icon>Dexterity</Icon>
+                <CostPerRank size="1">2</CostPerRank>
+                <Effect>
+                    <Type>AbilityBonus</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <Ability>Dexterity</Ability>
+                    <Amount>1</Amount>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+                <Name>+1 Intelligence</Name>
+                <Description>+1 Intelligence</Description>
+                <Icon>Intelligence</Icon>
+                <CostPerRank size="1">2</CostPerRank>
+                <Effect>
+                    <Type>AbilityBonus</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <Ability>Intelligence</Ability>
+                    <Amount>1</Amount>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+                <Name>+1 Wisdom</Name>
+                <Description>+1 Wisdom</Description>
+                <Icon>Wisdom</Icon>
+                <CostPerRank size="1">2</CostPerRank>
+                <Effect>
+                    <Type>AbilityBonus</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <Ability>Wisdom</Ability>
+                    <Amount>1</Amount>
+                </Effect>
+            </EnhancementSelection>
+        </Selector>
+    </EnhancementTreeItem>
+    <!--Tier 4-->
+    <EnhancementTreeItem>
+      <Name>Blight Caster: Fast Acting Poison</Name>
+      <InternalName>BlightFastActingPoison</InternalName>
+      <Description>The Poison spell now does 1d6 Poison damage per caster level every 3 seconds for 15 seconds in addition to its original effect. A successful Fortitude save applies this dot at half strength.</Description>
+      <Icon>BlightFastActingPoison</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="3">2 2 2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Blight Caster</Class>
+          <Level>4</Level>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Blight caster: Murder of Crows</Name>
+      <InternalName>BlightMurderOfCrows</InternalName>
+      <Description>A swarm of crows blasts through you and a narrow path ahead. Enemies in the way
+take 1d3 Piercing damage per Druid level and must save vs confusing and blind
+separately DC: 20 + Druid level + Conjuration DC.
+
+Rank 3: If you have a crow summon active from the Falconry tree when you used
+this ability you gain the Murder in your Eye effect for 10 seconds; All your
+spells and attacks apply 1d6 Piercing damage to blind targets for every Druid
+level. This damage can only apply once every 2 seconds.</Description>
+      <Icon>BlightMurderOfCrows</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>20</MinSpent>
+      <Clickie/>
+      <Requirements>
+        <Requirement>
+          <Class>Blight Caster</Class>
+          <Level>4</Level>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Blight caster: Thorn or Bile III</Name>
+      <InternalName>BlightThornOrBileIII</InternalName>
+      <Description>Selector either Thorn Bloom or Acid Rain as a spell like ability.</Description>
+      <Icon>BlightThornOrBile</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>20</MinSpent>
+      <Clickie/>
+      <ArrowUp/>
+      <Requirements>
+        <Requirement>
+          <Class>Blight Caster</Class>
+          <Level>4</Level>
+        </Requirement>
+        <Requirement>
+          <Enhancement>BlightEnvelopingSwarm</Enhancement>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Thorn Bloom</Name>
+          <Description>You gain Thorn Bloom as a spell like ability.</Description>
+          <Icon>BlightThornBloom</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie/>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Acid Rain</Name>
+          <Description>You gain Acid Rain as a spell like ability.</Description>
+          <Icon>BlightAcidRain</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie/>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Blight Caster: Sharp Edges IV</Name>
+      <InternalName>BlightSharpEdgesIV</InternalName>
+      <Description>Gain +1% Spell Critical Chance with Physical, Negative, Poison and Acid Spells.</Description>
+      <Icon>BlightSharpEdges</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Blight Caster</Class>
+          <Level>4</Level>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Blight Caster: Ability II</Name>
+      <InternalName>BlightAbilityII</InternalName>
+      <Description>Choose between Dexterity, Intelligence, or Wisdom.</Description>
+      <Icon>DexIntWis</Icon>
+      <XPosition>4</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+        <Requirement>
+          <Class>Blight Caster</Class>
+          <Level>4</Level>
+        </Requirement>
+        <Requirement>
+          <Enhancement>BlightAbilityI</Enhancement>
+        </Requirement>
+      </Requirements>
+        <Selector>
+            <EnhancementSelection>
+                <Name>+1 Dexterity</Name>
+                <Description>+1 Dexterity</Description>
+                <Icon>Dexterity</Icon>
+                <CostPerRank size="1">2</CostPerRank>
+                <Effect>
+                    <Type>AbilityBonus</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <Ability>Dexterity</Ability>
+                    <Amount>1</Amount>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+                <Name>+1 Intelligence</Name>
+                <Description>+1 Intelligence</Description>
+                <Icon>Intelligence</Icon>
+                <CostPerRank size="1">2</CostPerRank>
+                <Effect>
+                    <Type>AbilityBonus</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <Ability>Intelligence</Ability>
+                    <Amount>1</Amount>
+                </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+                <Name>+1 Wisdom</Name>
+                <Description>+1 Wisdom</Description>
+                <Icon>Wisdom</Icon>
+                <CostPerRank size="1">2</CostPerRank>
+                <Effect>
+                    <Type>AbilityBonus</Type>
+                    <Bonus>Enhancement</Bonus>
+                    <Ability>Wisdom</Ability>
+                    <Amount>1</Amount>
+                </Effect>
+            </EnhancementSelection>
+        </Selector>
+    </EnhancementTreeItem>
+    <!--Tier 5-->
+    <EnhancementTreeItem>
+      <Name>Blight Caster: Coated Torns</Name>
+      <InternalName>BlightCoatedThorns</InternalName>
+      <Description>Choose an option.</Description>
+      <Icon>BlightCoatedThorns</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>12</MinLevel>
+        </Requirement>
+        <Requirement>
+          <Class>Blight Caster</Class>
+          <Level>5</Level>
+        </Requirement>
+      </Requirements>
+      <Selector>
+        <EnhancementSelection>
+          <Name>Poisoned Thorns</Name>
+          <Description>Your Splinter Bolt and Thorn Spells now also cause an additional 2 points of Poison damage for every spell level. This scales with spell power.</Description>
+          <Icon>BlightCoatedThorns</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>Vile Thorns</Name>
+          <Description>Your Splinter Bolt and Thorn Spells now also cause an addiitonal 1 point of Acid damage for every spell level. This scales with spell power.</Description>
+          <Icon>BlightAcidRain</Icon>
+          <CostPerRank size="1">2</CostPerRank>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Blight Caster: Everything Decays</Name>
+      <InternalName>BlightEverythingDecays</InternalName>
+      <Description>Gain [5/10/15] Acid and Poison spell Power.
+Rank 3: Your spells remove Acid and Poison immunity on hostile targets for 30 seconds.</Description>
+      <Icon>BlightEverythingDecays</Icon>
+      <XPosition>1</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>12</MinLevel>
+        </Requirement>
+        <Requirement>
+          <Class>Blight Caster</Class>
+          <Level>5</Level>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Blight Caster: Grasping Thorns</Name>
+      <InternalName>BlightGraspingThorns</InternalName>
+      <Description>Spell Like Ability: Thorny Vines erupt from the ground seizing all enemies in the area. Save vs Reflex or be Entangled. On Successful save the targets have their movement slowed by 35%. Targets also take 1d4 Piercing damage every 2 seconds per caster level. This double is doubled on targets which are entangled.</Description>
+      <Icon>BlightGraspingThorns</Icon>
+      <XPosition>2</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>30</MinSpent>
+      <Clickie/>
+      <Tier5/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>12</MinLevel>
+        </Requirement>
+        <Requirement>
+          <Class>Blight Caster</Class>
+          <Level>5</Level>
+        </Requirement>
+        <Requirement>
+          <Enhancement>BlightThornOrBileIII</Enhancement>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    <EnhancementTreeItem>
+      <Name>Blight Caster: Doomsayer</Name>
+      <InternalName>BlightDoomsayer</InternalName>
+      <Description>Gain +1 Bonus to Conjuration, Evocation and Necromancy DCs.</Description>
+      <Icon>BlightDoomsayer</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>5</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>30</MinSpent>
+      <Tier5/>
+      <Requirements>
+        <Requirement>
+          <MinLevel>12</MinLevel>
+        </Requirement>
+        <Requirement>
+          <Class>Blight Caster</Class>
+          <Level>5</Level>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+  </EnhancementTree>
+</Enhancements>

@@ -1790,6 +1790,19 @@ void CBreakdownsView::AddClassCasterLevels(HTREEITEM hParent)
     }
     {
         HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Blight Caster Caster Level",
+                hParent,
+                TVI_LAST);
+        BreakdownItem * pDruid = new BreakdownItemClassCasterLevel(
+                Class_DruidBlightCaster,
+                Breakdown_CasterLevel_BlightCaster,
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pDruid);
+        m_items.push_back(pDruid);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
                 "Favored Soul Caster Level",
                 hParent,
                 TVI_LAST);
@@ -1853,7 +1866,20 @@ void CBreakdownsView::AddClassCasterLevels(HTREEITEM hParent)
         m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pRanger);
         m_items.push_back(pRanger);
     }
-    {
+     {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Dark Hunter Caster Level",
+                hParent,
+                TVI_LAST);
+        BreakdownItem * pRanger = new BreakdownItemClassCasterLevel(
+                Class_RangerDarkHunter,
+                Breakdown_CasterLevel_DarkHunter,
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pRanger);
+        m_items.push_back(pRanger);
+    }
+   {
         HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
                 "Warlock Caster Level",
                 hParent,
@@ -1861,6 +1887,19 @@ void CBreakdownsView::AddClassCasterLevels(HTREEITEM hParent)
         BreakdownItem * pWarlock = new BreakdownItemClassCasterLevel(
                 Class_Warlock,
                 Breakdown_CasterLevel_Warlock,
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pWarlock);
+        m_items.push_back(pWarlock);
+    }
+   {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Acolyte of the Skin Caster Level",
+                hParent,
+                TVI_LAST);
+        BreakdownItem * pWarlock = new BreakdownItemClassCasterLevel(
+                Class_WarlockAcolyteOfTheSkin,
+                Breakdown_CasterLevel_AcolyteOfTheSkin,
                 &m_itemBreakdownTree,
                 hItem);
         m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pWarlock);
