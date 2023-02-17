@@ -1337,12 +1337,18 @@ bool CanTrainClass(
 
     case Class_Druid:
     case Class_DruidBlightCaster:
-    case Class_WarlockAcolyteOfTheSkin:
         // any neutral variant
         canTrain = (alignment == Alignment_TrueNeutral)
                 || (alignment == Alignment_ChaoticNeutral)
                 || (alignment == Alignment_LawfulNeutral)
                 || (alignment == Alignment_NeutralGood);
+        break;
+
+    case Class_WarlockAcolyteOfTheSkin:
+        // any neutral non-good variant
+        canTrain = (alignment == Alignment_TrueNeutral)
+                || (alignment == Alignment_ChaoticNeutral)
+                || (alignment == Alignment_LawfulNeutral);
         break;
 
     case Class_Monk:

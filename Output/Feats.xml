@@ -2001,7 +2001,7 @@ steps on the path to understanding the way of the sea.</Description>
          <AmountVector size="3">0 5 10</AmountVector>
       </Effect>
       <Effect>
-         <DisplayName>Grandmaster of Flowers: Disciple of Material</DisplayName>
+         <DisplayName>Grandmaster of Flowers: Disciple of Morality</DisplayName>
          <Type>MRR</Type>
          <Bonus>Destiny</Bonus>
          <AmountVector size="3">0 5 10</AmountVector>
@@ -2826,10 +2826,6 @@ damage instead of half damage.</Description>
       <Icon>Evasion</Icon>
       <AutomaticAcquisition>
          <Class>Ranger</Class>
-         <Level>9</Level>
-      </AutomaticAcquisition>
-      <AutomaticAcquisition>
-         <Class>Dark Hunter</Class>
          <Level>9</Level>
       </AutomaticAcquisition>
       <AutomaticAcquisition>
@@ -5949,6 +5945,14 @@ and impact.</Description>
          <AmountVector size="3">0 1 2</AmountVector>
          <Weapon>Dagger</Weapon>
       </Effect>
+        <Effect>
+            <DisplayName>Dark Hunter: Blade Specialization</DisplayName>
+            <Type>CriticalMultiplier</Type>
+            <Bonus>Competence</Bonus>
+            <AmountVector size="2">1 2</AmountVector>
+            <Weapon>All</Weapon>
+            <ApplyAsItemEffect/>
+        </Effect>
    </Feat>
    <Feat>
       <Name>Improved Critical: Ranged Weapons</Name>
@@ -6065,9 +6069,14 @@ This feat does not stack with item effects that double threat range like keen an
       <Description>You gain damage reduction 1/adamantine, or improve your existing damage
 reduction by 1/adamantine.</Description>
       <Requirements>
-         <Requirement>
-            <Race>Warforged</Race>
-         </Requirement>
+          <RequiresOneOf>
+             <Requirement>
+                <Race>Warforged</Race>
+             </Requirement>
+             <Requirement>
+                <Race>Bladeforged</Race>
+             </Requirement>
+        </RequiresOneOf>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>Warforged</Icon>
@@ -9065,6 +9074,11 @@ physical resistance when wearing medium armor.</Description>
          <Class>Paladin</Class>
          <Level>1</Level>
       </AutomaticAcquisition>
+      <AutomaticAcquisition>
+         <IgnoreRequirements/>
+         <Class>Dark Hunter</Class>
+         <Level>1</Level>
+      </AutomaticAcquisition>
    </Feat>
    <Feat>
       <Name>Mental Toughness</Name>
@@ -11283,6 +11297,12 @@ equal to your Dexterity.)</Description>
       <AutomaticAcquisition>
          <Race>Drow</Race>
       </AutomaticAcquisition>
+         <Effect>
+            <Type>Doubleshot</Type>
+            <Bonus>Feat</Bonus>
+            <FullAbility>Dexterity</FullAbility>
+             <Stance>Shuriken</Stance>
+         </Effect>
    </Feat>
    <Feat>
       <Name>Simple Weapon Proficiency: Club</Name>
@@ -16505,7 +16525,6 @@ effectively mesmerizing them.</Description>
          <IncompatibleStance>Shroud of the Vampire</IncompatibleStance>
          <IncompatibleStance>Shroud of the Wraith</IncompatibleStance>
          <IncompatibleStance>Shroud of the Lich</IncompatibleStance>
-         <IncompatibleStance>Angelic Form</IncompatibleStance>
          <IncompatibleStance>Avatar of Nature</IncompatibleStance>
          <IncompatibleStance>Shadow Form</IncompatibleStance>
          <IncompatibleStance>Aasimar: Ascendant Bond: Protector</IncompatibleStance>
@@ -16545,7 +16564,6 @@ effectively mesmerizing them.</Description>
          <IncompatibleStance>Shroud of the Vampire</IncompatibleStance>
          <IncompatibleStance>Shroud of the Wraith</IncompatibleStance>
          <IncompatibleStance>Shroud of the Lich</IncompatibleStance>
-         <IncompatibleStance>Angelic Form</IncompatibleStance>
          <IncompatibleStance>Avatar of Nature</IncompatibleStance>
          <IncompatibleStance>Shadow Form</IncompatibleStance>
          <IncompatibleStance>Aasimar: Ascendant Bond: Protector</IncompatibleStance>
@@ -16585,7 +16603,6 @@ effectively mesmerizing them.</Description>
          <IncompatibleStance>Shroud of the Vampire</IncompatibleStance>
          <IncompatibleStance>Shroud of the Wraith</IncompatibleStance>
          <IncompatibleStance>Shroud of the Lich</IncompatibleStance>
-         <IncompatibleStance>Angelic Form</IncompatibleStance>
          <IncompatibleStance>Avatar of Nature</IncompatibleStance>
          <IncompatibleStance>Shadow Form</IncompatibleStance>
          <IncompatibleStance>Aasimar: Ascendant Bond: Protector</IncompatibleStance>
@@ -16625,7 +16642,6 @@ effectively mesmerizing them.</Description>
          <IncompatibleStance>Shroud of the Vampire</IncompatibleStance>
          <IncompatibleStance>Shroud of the Wraith</IncompatibleStance>
          <IncompatibleStance>Shroud of the Lich</IncompatibleStance>
-         <IncompatibleStance>Angelic Form</IncompatibleStance>
          <IncompatibleStance>Avatar of Nature</IncompatibleStance>
          <IncompatibleStance>Shadow Form</IncompatibleStance>
          <IncompatibleStance>Aasimar: Ascendant Bond: Protector</IncompatibleStance>
@@ -16698,7 +16714,6 @@ You gain +2 racial bonus to constitution, +10% exceptional bonus to AC</Descript
          <IncompatibleStance>Shroud of the Vampire</IncompatibleStance>
          <IncompatibleStance>Shroud of the Wraith</IncompatibleStance>
          <IncompatibleStance>Shroud of the Lich</IncompatibleStance>
-         <IncompatibleStance>Angelic Form</IncompatibleStance>
          <IncompatibleStance>Avatar of Nature</IncompatibleStance>
          <IncompatibleStance>Shadow Form</IncompatibleStance>
          <IncompatibleStance>Aasimar: Ascendant Bond: Protector</IncompatibleStance>
@@ -16768,7 +16783,6 @@ You gain a +10% Combat Style bonus to attack speed, +3 to attack while flanking,
          <IncompatibleStance>Shroud of the Vampire</IncompatibleStance>
          <IncompatibleStance>Shroud of the Wraith</IncompatibleStance>
          <IncompatibleStance>Shroud of the Lich</IncompatibleStance>
-         <IncompatibleStance>Angelic Form</IncompatibleStance>
          <IncompatibleStance>Avatar of Nature</IncompatibleStance>
          <IncompatibleStance>Shadow Form</IncompatibleStance>
          <IncompatibleStance>Aasimar: Ascendant Bond: Protector</IncompatibleStance>
@@ -16855,7 +16869,6 @@ bonus to AC. Gain 20% Strikethrough chance.</Description>
          <IncompatibleStance>Shroud of the Vampire</IncompatibleStance>
          <IncompatibleStance>Shroud of the Wraith</IncompatibleStance>
          <IncompatibleStance>Shroud of the Lich</IncompatibleStance>
-         <IncompatibleStance>Angelic Form</IncompatibleStance>
          <IncompatibleStance>Avatar of Nature</IncompatibleStance>
          <IncompatibleStance>Shadow Form</IncompatibleStance>
          <IncompatibleStance>Aasimar: Ascendant Bond: Protector</IncompatibleStance>
@@ -16930,7 +16943,6 @@ spell power per attack. +1 Imbue Dice</Description>
          <IncompatibleStance>Shroud of the Vampire</IncompatibleStance>
          <IncompatibleStance>Shroud of the Wraith</IncompatibleStance>
          <IncompatibleStance>Shroud of the Lich</IncompatibleStance>
-         <IncompatibleStance>Angelic Form</IncompatibleStance>
          <IncompatibleStance>Avatar of Nature</IncompatibleStance>
          <IncompatibleStance>Shadow Form</IncompatibleStance>
          <IncompatibleStance>Aasimar: Ascendant Bond: Protector</IncompatibleStance>
@@ -17057,7 +17069,6 @@ spell power per attack. +3 imbue Dice</Description>
          <IncompatibleStance>Shroud of the Vampire</IncompatibleStance>
          <IncompatibleStance>Shroud of the Wraith</IncompatibleStance>
          <IncompatibleStance>Shroud of the Lich</IncompatibleStance>
-         <IncompatibleStance>Angelic Form</IncompatibleStance>
          <IncompatibleStance>Avatar of Nature</IncompatibleStance>
          <IncompatibleStance>Shadow Form</IncompatibleStance>
          <IncompatibleStance>Aasimar: Ascendant Bond: Protector</IncompatibleStance>
@@ -17192,7 +17203,6 @@ You gain a +20% combat style bonus to melee attack speed, +5 to attack while fla
          <IncompatibleStance>Shroud of the Vampire</IncompatibleStance>
          <IncompatibleStance>Shroud of the Wraith</IncompatibleStance>
          <IncompatibleStance>Shroud of the Lich</IncompatibleStance>
-         <IncompatibleStance>Angelic Form</IncompatibleStance>
          <IncompatibleStance>Avatar of Nature</IncompatibleStance>
          <IncompatibleStance>Shadow Form</IncompatibleStance>
          <IncompatibleStance>Aasimar: Ascendant Bond: Protector</IncompatibleStance>
@@ -17705,12 +17715,24 @@ This feat can be stacked up to three times.</Description>
    <Feat>
       <Name>Past Life: Acolyte of the Skin</Name>
       <Description>You were an Acolyte of the Skin in a past life.
-UNKNOWN BONUS AT THIS TIME
+You are troubled sometimes by a burning sensation on your palms. Each time you
+acquire this feat you gain +1 Magical resistance rating and +5 Fire Spell Power.
 This feat can be stacked up to three times.</Description>
       <Requirements/>
       <MaxTimesAcquire>3</MaxTimesAcquire>
       <Acquire>HeroicPastLife</Acquire>
       <Icon>PastLifeWarlock</Icon>
+      <Effect>
+         <Type>MRR</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
+      </Effect>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>5</Amount>
+         <SpellPower>Fire</SpellPower>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Past Life: Wizard</Name>
@@ -32251,6 +32273,10 @@ Action Boost bonus to Movement Speed for 6 seconds.</Description>
       <Requirements>
          <Requirement>
             <MinLevel>31</MinLevel>
+         </Requirement>
+         <Requirement>
+            <Ability>Constitution</Ability>
+            <Amount>21</Amount>
          </Requirement>
       </Requirements>
       <Acquire>Train</Acquire>

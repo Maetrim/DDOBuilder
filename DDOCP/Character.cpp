@@ -4691,7 +4691,15 @@ void Character::RevokeGearEffects()
             std::vector<Effect>::const_iterator it = effects.begin();
             while (it != effects.end())
             {
-                NotifyItemEffectRevoked(item.Name(), (*it));
+                if (i == Inventory_Ring2 || i == Inventory_Weapon2)
+                {
+                    // stop duplicate items in multiple slots effects from stacking
+                    NotifyItemEffectRevoked(item.Name() + " ", (*it));
+                }
+                else
+                {
+                    NotifyItemEffectRevoked(item.Name(), (*it));
+                }
                 ++it;
             }
             const std::list<DC> & dcs = item.EffectDC();
@@ -4919,7 +4927,15 @@ void Character::ApplyGearEffects()
             std::vector<Effect>::const_iterator it = effects.begin();
             while (it != effects.end())
             {
-                NotifyItemEffect(item.Name(), (*it));
+                if (i == Inventory_Ring2 || i == Inventory_Weapon2)
+                {
+                    // stop duplicate items in multiple slots effects from stacking
+                    NotifyItemEffect(item.Name() + " ", (*it));
+                }
+                else
+                {
+                    NotifyItemEffect(item.Name(), (*it));
+                }
                 ++it;
             }
             const std::list<DC> & dcs = item.EffectDC();
