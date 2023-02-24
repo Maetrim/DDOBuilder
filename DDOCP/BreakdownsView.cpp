@@ -1331,13 +1331,27 @@ void CBreakdownsView::CreateMagicalBreakdowns()
     // Warlock Eldritch blast
     {
         HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
-                "Eldritch Blast",
+                "Eldritch Blast D6s",
                 hParent,
                 TVI_LAST);
-        BreakdownItem * pEB = new BreakdownItemDice(
-                Breakdown_EldritchBlast,
-                Effect_EldritchBlast,
-                "Eldritch Blast",
+        BreakdownItem * pEB = new BreakdownItemSimple(
+                Breakdown_EldritchBlastD6,
+                Effect_EldritchBlastD6,
+                "Eldritch Blast (D6's)",
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pEB);
+        m_items.push_back(pEB);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Eldritch Blast D8s",
+                hParent,
+                TVI_LAST);
+        BreakdownItem * pEB = new BreakdownItemSimple(
+                Breakdown_EldritchBlastD8,
+                Effect_EldritchBlastD8,
+                "Eldritch Blast (D8's)",
                 &m_itemBreakdownTree,
                 hItem);
         m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pEB);

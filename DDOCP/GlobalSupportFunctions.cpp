@@ -630,7 +630,6 @@ std::vector<TrainableFeatTypes> ClassSpecificFeatTypes(ClassType type)
             types.push_back(TFT_WarlockPactAbility);
             types.push_back(TFT_WarlockPactSaveBonus);
             types.push_back(TFT_WarlockResistance);
-            types.push_back(TFT_WarlockPactSpell);
             break;
         case Class_Wizard:
             types.push_back(TFT_WizardMetamagic);
@@ -1509,6 +1508,10 @@ bool IsInGroup(TrainableFeatTypes type, const FeatGroup & group)
 
     case TFT_RogueSpecialAbility:
         inGroup = group.HasIsRogueSpecialAbility();
+        break;
+
+    case TFT_TruePact:
+        inGroup = group.HasIsTruePact();
         break;
 
     case TFT_WarlockPact:

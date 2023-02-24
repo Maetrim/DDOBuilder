@@ -1413,9 +1413,14 @@ those past lives before this benefit reactivates.</Description>
                <Feat>Past Life: Cleric (Dark Apostate)</Feat>
             </Requirement>
          </RequiresOneOf>
-         <Requirement>
-            <Feat>Past Life: Druid</Feat>
-         </Requirement>
+          <RequiresOneOf>
+             <Requirement>
+                <Feat>Past Life: Druid (Blight Caster)</Feat>
+             </Requirement>
+             <Requirement>
+                <Feat>Past Life: Druid</Feat>
+             </Requirement>
+          </RequiresOneOf>
          <Requirement>
             <Feat>Past Life: Favored Soul</Feat>
          </Requirement>
@@ -1436,15 +1441,25 @@ those past lives before this benefit reactivates.</Description>
          <Requirement>
             <Feat>Past Life: Rogue</Feat>
          </Requirement>
-         <Requirement>
-            <Feat>Past Life: Ranger</Feat>
-         </Requirement>
+          <RequiresOneOf>
+             <Requirement>
+                <Feat>Past Life: Ranger (Dark Hunter)</Feat>
+             </Requirement>
+             <Requirement>
+                <Feat>Past Life: Ranger</Feat>
+             </Requirement>
+         </RequiresOneOf>
          <Requirement>
             <Feat>Past Life: Sorcerer</Feat>
          </Requirement>
-         <Requirement>
-            <Feat>Past Life: Warlock</Feat>
-         </Requirement>
+         <RequiresOneOf>
+             <Requirement>
+                <Feat>Past Life: Warlock (Acolyte of the Skin)</Feat>
+             </Requirement>
+             <Requirement>
+                <Feat>Past Life: Warlock</Feat>
+             </Requirement>
+         </RequiresOneOf>
          <Requirement>
             <Feat>Past Life: Wizard</Feat>
          </Requirement>
@@ -2918,10 +2933,10 @@ attack styles.)</Description>
                   <Class>Ranger</Class>
                   <Level>1</Level>
                </Requirement>
-            <Requirement>
-               <Class>Dark Hunter</Class>
-               <Level>1</Level>
-            </Requirement>
+               <Requirement>
+                  <Class>Dark Hunter</Class>
+                  <Level>1</Level>
+               </Requirement>
             </RequiresOneOf>
          </Requirements>
       </AutomaticAcquisition>
@@ -5426,18 +5441,18 @@ This toggle is exclusive with Warlock Pact toggles.</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>DilettanteWarlock</Icon>
-         <Stance>
-            <Name>Half-Elf Dilettante: Warlock</Name>
-            <Icon>DilettanteWarlock</Icon>
-            <Description>Toggle: You deal 1d4 extra Fire damage per Imbue Dice with attacks and spells.
+      <Stance>
+         <Name>Half-Elf Dilettante: Warlock</Name>
+         <Icon>DilettanteWarlock</Icon>
+         <Description>Toggle: You deal 1d4 extra Fire damage per Imbue Dice with attacks and spells.
 This trigger at most once every two seconds.</Description>
-            <Group>Imbue</Group>
-         </Stance>
-         <Effect>
-            <Type>ImbueDice</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>1</Amount>
-         </Effect>
+         <Group>Imbue</Group>
+      </Stance>
+      <Effect>
+         <Type>ImbueDice</Type>
+         <Bonus>Enhancement</Bonus>
+         <Amount>1</Amount>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Half-Elf Dilettante: Wizard</Name>
@@ -5945,14 +5960,14 @@ and impact.</Description>
          <AmountVector size="3">0 1 2</AmountVector>
          <Weapon>Dagger</Weapon>
       </Effect>
-        <Effect>
-            <DisplayName>Dark Hunter: Blade Specialization</DisplayName>
-            <Type>CriticalMultiplier</Type>
-            <Bonus>Competence</Bonus>
-            <AmountVector size="2">1 2</AmountVector>
-            <Weapon>All</Weapon>
-            <ApplyAsItemEffect/>
-        </Effect>
+      <Effect>
+         <DisplayName>Dark Hunter: Blade Specialization</DisplayName>
+         <Type>CriticalMultiplier</Type>
+         <Bonus>Competence</Bonus>
+         <AmountVector size="2">1 2</AmountVector>
+         <Weapon>All</Weapon>
+         <ApplyAsItemEffect/>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Improved Critical: Ranged Weapons</Name>
@@ -6069,14 +6084,14 @@ This feat does not stack with item effects that double threat range like keen an
       <Description>You gain damage reduction 1/adamantine, or improve your existing damage
 reduction by 1/adamantine.</Description>
       <Requirements>
-          <RequiresOneOf>
-             <Requirement>
-                <Race>Warforged</Race>
-             </Requirement>
-             <Requirement>
-                <Race>Bladeforged</Race>
-             </Requirement>
-        </RequiresOneOf>
+         <RequiresOneOf>
+            <Requirement>
+               <Race>Warforged</Race>
+            </Requirement>
+            <Requirement>
+               <Race>Bladeforged</Race>
+            </Requirement>
+         </RequiresOneOf>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>Warforged</Icon>
@@ -9447,16 +9462,16 @@ This feat can be taken up to three times.
 This feat gives no benefit to druids in elemental forms.</Description>
       <MaxTimesAcquire>3</MaxTimesAcquire>
       <Requirements>
-          <RequiresOneOf>
-             <Requirement>
-                <Class>Blight Caster</Class>
-                <Level>3</Level>
-             </Requirement>
-             <Requirement>
-                <Class>Druid</Class>
-                <Level>3</Level>
-             </Requirement>
-            </RequiresOneOf>
+         <RequiresOneOf>
+            <Requirement>
+               <Class>Blight Caster</Class>
+               <Level>3</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Druid</Class>
+               <Level>3</Level>
+            </Requirement>
+         </RequiresOneOf>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>NaturalFighting</Icon>
@@ -9528,8 +9543,7 @@ This feat gives no benefit to druids in elemental forms.</Description>
       <Description>Provides a +2 bonus to the character's Disable Device and Open Lock skills.</Description>
       <Requirements>
          <Requirement>
-            <Class>Rogue</Class>
-            <Level>1</Level>
+            <Feat>Trapfinding</Feat>
          </Requirement>
       </Requirements>
       <Acquire>Train</Acquire>
@@ -9576,13 +9590,13 @@ If you have an Orb or Runearm in your Offhand, gain +1 Imbue Dice</Description>
          <Stance>Single Weapon Fighting</Stance>
          <Stance>Empty Offhand</Stance>
       </Effect>
-         <Effect>
-            <Type>ImbueDice</Type>
-            <Bonus>Feat</Bonus>
-            <Amount>1</Amount>
-            <AnyOfStance>Orb</AnyOfStance>
-            <AnyOfStance>Rune Arm</AnyOfStance>
-         </Effect>
+      <Effect>
+         <Type>ImbueDice</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
+         <AnyOfStance>Orb</AnyOfStance>
+         <AnyOfStance>Rune Arm</AnyOfStance>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Opportunist</Name>
@@ -11038,6 +11052,50 @@ Tower Shield: 40%</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>ShieldDeflection</Icon>
+         <Effect>
+            <Type>EnergyAbsorbance</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>20</Amount>
+            <Energy>Acid</Energy>
+            <Energy>Cold</Energy>
+            <Energy>Electric</Energy>
+            <Energy>Fire</Energy>
+            <Stance>Buckler</Stance>
+            <Stance>Blocking</Stance>
+         </Effect>
+         <Effect>
+            <Type>EnergyAbsorbance</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>25</Amount>
+            <Energy>Acid</Energy>
+            <Energy>Cold</Energy>
+            <Energy>Electric</Energy>
+            <Energy>Fire</Energy>
+            <Stance>Small Shield</Stance>
+            <Stance>Blocking</Stance>
+         </Effect>
+         <Effect>
+            <Type>EnergyAbsorbance</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>30</Amount>
+            <Energy>Acid</Energy>
+            <Energy>Cold</Energy>
+            <Energy>Electric</Energy>
+            <Energy>Fire</Energy>
+            <Stance>Large Shield</Stance>
+            <Stance>Blocking</Stance>
+         </Effect>
+         <Effect>
+            <Type>EnergyAbsorbance</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>40</Amount>
+            <Energy>Acid</Energy>
+            <Energy>Cold</Energy>
+            <Energy>Electric</Energy>
+            <Energy>Fire</Energy>
+            <Stance>Tower Shield</Stance>
+            <Stance>Blocking</Stance>
+         </Effect>
    </Feat>
    <Feat>
       <Name>Shield Mastery</Name>
@@ -11297,12 +11355,12 @@ equal to your Dexterity.)</Description>
       <AutomaticAcquisition>
          <Race>Drow</Race>
       </AutomaticAcquisition>
-         <Effect>
-            <Type>Doubleshot</Type>
-            <Bonus>Feat</Bonus>
-            <FullAbility>Dexterity</FullAbility>
-             <Stance>Shuriken</Stance>
-         </Effect>
+      <Effect>
+         <Type>Doubleshot</Type>
+         <Bonus>Feat</Bonus>
+         <FullAbility>Dexterity</FullAbility>
+         <Stance>Shuriken</Stance>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Simple Weapon Proficiency: Club</Name>
@@ -15164,9 +15222,14 @@ chance they break free. Does not affect bosses. There is no saving throw.</Descr
          <IsWarlockPactAbility/>
       </FeatGroup>
       <Requirements>
-         <Requirement>
-            <Feat>Warlock: Pact: Fiend</Feat>
-         </Requirement>
+          <RequiresOneOf>
+             <Requirement>
+                <Feat>Warlock: Pact: Fiend</Feat>
+             </Requirement>
+             <Requirement>
+                <Feat>True Patron: Fiend</Feat>
+             </Requirement>
+          </RequiresOneOf>
          <Requirement>
             <Class>Warlock</Class>
             <Level>6</Level>
@@ -15286,32 +15349,12 @@ chance they break free. Does not affect bosses. There is no saving throw.</Descr
    </Feat>
    <Feat>
       <Name>Warlock: Eldritch Blast Damage</Name>
-      <Description>+1d6 Eldritch Blast base Damage</Description>
+      <Description>+1d8 Eldritch Blast base Damage</Description>
       <MaxTimesAcquire>5</MaxTimesAcquire>
       <Requirements/>
       <Acquire>Automatic</Acquire>
       <Icon>EldritchBlastDamage</Icon>
       <AutomaticAcquisition>
-         <Class>Acolyte of the Skin</Class>
-         <Level>4</Level>
-      </AutomaticAcquisition>
-      <AutomaticAcquisition>
-         <Class>Acolyte of the Skin</Class>
-         <Level>8</Level>
-      </AutomaticAcquisition>
-      <AutomaticAcquisition>
-         <Class>Acolyte of the Skin</Class>
-         <Level>12</Level>
-      </AutomaticAcquisition>
-      <AutomaticAcquisition>
-         <Class>Acolyte of the Skin</Class>
-         <Level>16</Level>
-      </AutomaticAcquisition>
-      <AutomaticAcquisition>
-         <Class>Acolyte of the Skin</Class>
-         <Level>20</Level>
-      </AutomaticAcquisition>
-      <AutomaticAcquisition>
          <Class>Warlock</Class>
          <Level>4</Level>
       </AutomaticAcquisition>
@@ -15331,20 +15374,17 @@ chance they break free. Does not affect bosses. There is no saving throw.</Descr
          <Class>Warlock</Class>
          <Level>20</Level>
       </AutomaticAcquisition>
-      <Effect>
-         <Type>EldritchBlast</Type>
-         <Bonus>Feat</Bonus>
-         <Dice>
-            <Number size="5">1 2 3 4 5</Number>
-            <Sides size="5">6 6 6 6 6</Sides>
-         </Dice>
-      </Effect>
+         <Effect>
+            <Type>EldritchBlastD8</Type>
+            <Bonus>Enhancement</Bonus>
+             <Amount>1</Amount>
+         </Effect>
    </Feat>
    <Feat>
       <Name>Warlock: Eldritch Blast Focused</Name>
       <Description>Eldritch blast Shape: Toggle on to turn your basic attack into a ranged
 magical bolt dealing 1d6 force damage. This is treated as an evocation spell,
-and damage sales with 100% spell power. It is also affected normally by spell
+and damage sales with 125% spell power. It is also affected normally by spell
 critical chance and spell critical damage. Gaining more warlock levels grants
 feats that increase this damage. This is not affected by metamagic feats, nor
 by melee and ranged feats. medium armor, heavy armor and shields can cause
@@ -15398,9 +15438,14 @@ is instead paralyzed and helpless with fear for 6 seconds.</Description>
          <IsWarlockPactAbility/>
       </FeatGroup>
       <Requirements>
-         <Requirement>
-            <Feat>Warlock: Pact: Fiend</Feat>
-         </Requirement>
+          <RequiresOneOf>
+             <Requirement>
+                <Feat>Warlock: Pact: Fiend</Feat>
+             </Requirement>
+             <Requirement>
+                <Feat>True Patron: Fiend</Feat>
+             </Requirement>
+          </RequiresOneOf>
          <Requirement>
             <Class>Warlock</Class>
             <Level>15</Level>
@@ -15574,52 +15619,12 @@ with no save. Does not affecct bosses.</Description>
    </Feat>
    <Feat>
       <Name>Warlock: Pact Damage</Name>
-      <Description>+1d4 Eldritch Blast base Damage</Description>
+      <Description>+1d6 Eldritch Blast base Damage</Description>
       <MaxTimesAcquire>10</MaxTimesAcquire>
       <Requirements/>
       <Acquire>Automatic</Acquire>
       <Icon>EldritchBlastDamage</Icon>
       <AutomaticAcquisition>
-         <Class>Acolyte of the Skin</Class>
-         <Level>2</Level>
-      </AutomaticAcquisition>
-      <AutomaticAcquisition>
-         <Class>Acolyte of the Skin</Class>
-         <Level>4</Level>
-      </AutomaticAcquisition>
-      <AutomaticAcquisition>
-         <Class>Acolyte of the Skin</Class>
-         <Level>6</Level>
-      </AutomaticAcquisition>
-      <AutomaticAcquisition>
-         <Class>Acolyte of the Skin</Class>
-         <Level>8</Level>
-      </AutomaticAcquisition>
-      <AutomaticAcquisition>
-         <Class>Acolyte of the Skin</Class>
-         <Level>10</Level>
-      </AutomaticAcquisition>
-      <AutomaticAcquisition>
-         <Class>Acolyte of the Skin</Class>
-         <Level>12</Level>
-      </AutomaticAcquisition>
-      <AutomaticAcquisition>
-         <Class>Acolyte of the Skin</Class>
-         <Level>14</Level>
-      </AutomaticAcquisition>
-      <AutomaticAcquisition>
-         <Class>Acolyte of the Skin</Class>
-         <Level>16</Level>
-      </AutomaticAcquisition>
-      <AutomaticAcquisition>
-         <Class>Acolyte of the Skin</Class>
-         <Level>18</Level>
-      </AutomaticAcquisition>
-      <AutomaticAcquisition>
-         <Class>Acolyte of the Skin</Class>
-         <Level>20</Level>
-      </AutomaticAcquisition>
-      <AutomaticAcquisition>
          <Class>Warlock</Class>
          <Level>2</Level>
       </AutomaticAcquisition>
@@ -15659,14 +15664,11 @@ with no save. Does not affecct bosses.</Description>
          <Class>Warlock</Class>
          <Level>20</Level>
       </AutomaticAcquisition>
-      <Effect>
-         <Type>EldritchBlast</Type>
-         <Bonus>Feat</Bonus>
-         <Dice>
-            <Number size="10">1 2 3 4 5 6 7 8 9 10</Number>
-            <Sides size="10">4 4 4 4 4 4 4 4 4 4</Sides>
-         </Dice>
-      </Effect>
+         <Effect>
+            <Type>EldritchBlastD6</Type>
+            <Bonus>Enhancement</Bonus>
+             <Amount>1</Amount>
+         </Effect>
    </Feat>
    <Feat>
       <Name>Warlock: Pact: Fey</Name>
@@ -15674,7 +15676,7 @@ with no save. Does not affecct bosses.</Description>
 secrets that were forgotten before the mortal races were born. This being's
 motivations are often inscrutable and sometimes whimsical and might involve
 a striving for greater magical power or the settling of age-old grudges.
-Toggle on: Your eldritch Blast deals +1 Sonic damage, plus 1d4 per two Warlock levels.
+Toggle on: Your eldritch Blast deals +1 Sonic damage, plus 1d6 per two Warlock levels.
 This damage is halved on a successful Reflex saving throw vs
 DC(19 + Charisma Mod + Evocation Bonuses)
 Adds Spells to your spell book at level
@@ -15687,7 +15689,7 @@ Adds Spells to your spell book at level
       <Stance>
          <Name>Eldritch Blasting</Name>
          <Icon>EpicEldritchBlast</Icon>
-         <Description>Your eldritch Blast deals +1 Sonic damage, plus 1d4 per two Warlock levels.
+         <Description>Your eldritch Blast deals +1 Sonic damage, plus 1d6 per two Warlock levels.
 This damage is halved on a successful Reflex saving throw vs
 DC(19 + Charisma Mod + Evocation Bonuses)</Description>
          <IncompatibleStance>Eldritch Aura</IncompatibleStance>
@@ -15707,7 +15709,7 @@ DC(19 + Charisma Mod + Evocation Bonuses)</Description>
       </Effect>
       <DC>
          <Name>Warlock: Pact: Fey</Name>
-         <Description>Toggle on: Your eldritch Blast deals +1 Sonic damage, plus 1d4 per two Warlock levels.
+         <Description>Toggle on: Your eldritch Blast deals +1 Sonic damage, plus 1d6 per two Warlock levels.
 This damage is halved on a successful Reflex saving throw.</Description>
          <Icon>EpicEldritchBlast</Icon>
          <DCVersus>Reflex</DCVersus>
@@ -15721,7 +15723,7 @@ This damage is halved on a successful Reflex saving throw.</Description>
       <Description>You have made a pact with a fiend from the lower planes of existence,
 a being whose aims are evil, even if you strive against those aims. Such beings
 desire the corruption or destruction of all things, ultimately including you.
-Toggle on: Your eldritch Blast deals +1 Fire damage, plus 1d4 per two Warlock levels.
+Toggle on: Your eldritch Blast deals +1 Fire damage, plus 1d6 per two Warlock levels.
 This damage is halved on a successful Fortitude saving throw vs
 DC(19 + Charisma Mod + Evocation Bonuses). Cannot be activated if Good.
 Adds Spells to your spell book at level
@@ -15734,7 +15736,7 @@ Adds Spells to your spell book at level
       <Stance>
          <Name>Eldritch Blasting</Name>
          <Icon>EpicEldritchBlast</Icon>
-         <Description>Your eldritch Blast deals +1 Fire damage, plus 1d4 per two Warlock levels.
+         <Description>Your eldritch Blast deals +1 Fire damage, plus 1d6 per two Warlock levels.
 This damage is halved on a successful Fortitude saving throw vs
 DC(19 + Charisma Mod + Evocation Bonuses)</Description>
          <IncompatibleStance>Eldritch Aura</IncompatibleStance>
@@ -15766,7 +15768,7 @@ DC(19 + Charisma Mod + Evocation Bonuses)</Description>
       </Effect>
       <DC>
          <Name>Warlock: Pact: Fiend</Name>
-         <Description>Toggle on: Your eldritch Blast deals +1 Fire damage, plus 1d4 per two Warlock levels.
+         <Description>Toggle on: Your eldritch Blast deals +1 Fire damage, plus 1d6 per two Warlock levels.
 This damage is halved on a successful Fortitude saving throw.</Description>
          <Icon>EpicEldritchBlast</Icon>
          <DCVersus>Fortitude</DCVersus>
@@ -15777,7 +15779,7 @@ This damage is halved on a successful Fortitude saving throw.</Description>
    </Feat>
    <Feat>
       <Name>Warlock: Pact: Great Old One</Name>
-      <Description>Toggle on: Your eldritch Blast deals +1 Acid damage, plus 1d4 per two
+      <Description>Toggle on: Your eldritch Blast deals +1 Acid damage, plus 1d6 per two
 Warlock levels. This damage is halved on a successful Will saving throw vs
 DC(19 + Charisma Mod + Evocation Bonuses). Can not be activated if Lawful.
 Adds Spells to your spell book at level 1, 5, 9, 14, 17, 19:
@@ -15790,7 +15792,7 @@ Adds Spells to your spell book at level 1, 5, 9, 14, 17, 19:
       <Stance>
          <Name>Eldritch Blasting</Name>
          <Icon>EpicEldritchBlast</Icon>
-         <Description>Your eldritch Blast deals +1 Acid damage, plus 1d4 per two
+         <Description>Your eldritch Blast deals +1 Acid damage, plus 1d6 per two
 Warlock levels. This damage is halved on a successful Will saving throw vs
 DC(19 + Charisma Mod + Evocation Bonuses)</Description>
          <IncompatibleStance>Eldritch Aura</IncompatibleStance>
@@ -15819,7 +15821,7 @@ DC(19 + Charisma Mod + Evocation Bonuses)</Description>
       </Effect>
       <DC>
          <Name>Warlock: Pact: Great Old One</Name>
-         <Description>Toggle on: Your eldritch Blast deals +1 Acid damage, plus 1d4 per two
+         <Description>Toggle on: Your eldritch Blast deals +1 Acid damage, plus 1d6 per two
 Warlock levels. This damage is halved on a successful Will saving throw.</Description>
          <Icon>EpicEldritchBlast</Icon>
          <DCVersus>Will</DCVersus>
@@ -15835,7 +15837,7 @@ themselves to an unconventional method of worship. You will learn to channel
 the light and air around you into a righteous weapon, and utilize holy abilities
 to help your friends and pass judgement upon your enemies.
 
-Toggle on: Your eldritch Blast deals +1 Electric damage, plus 1d4 per two Warlock levels.
+Toggle on: Your eldritch Blast deals +1 Electric damage, plus 1d6 per two Warlock levels.
 This damage is halved on a successful Reflex saving throw vs
 DC(19 + Charisma Mod + Evocation Bonuses)
 Adds Spells to your spell book at level
@@ -15848,7 +15850,7 @@ Adds Spells to your spell book at level
       <Stance>
          <Name>Eldritch Blasting</Name>
          <Icon>EpicEldritchBlast</Icon>
-         <Description>Your eldritch Blast deals +1 Sonic damage, plus 1d4 per two Warlock levels.
+         <Description>Your eldritch Blast deals +1 Sonic damage, plus 1d6 per two Warlock levels.
 This damage is halved on a successful Reflex saving throw vs
 DC(19 + Charisma Mod + Evocation Bonuses)</Description>
          <IncompatibleStance>Eldritch Aura</IncompatibleStance>
@@ -15883,7 +15885,7 @@ DC(19 + Charisma Mod + Evocation Bonuses)</Description>
       </Effect>
       <DC>
          <Name>Warlock: Pact: Celestial</Name>
-         <Description>Toggle on: Your eldritch Blast deals +1 Electric damage, plus 1d4 per two Warlock levels.
+         <Description>Toggle on: Your eldritch Blast deals +1 Electric damage, plus 1d6 per two Warlock levels.
 This damage is halved on a successful Reflex saving throw.</Description>
          <Icon>EpicEldritchBlast</Icon>
          <DCVersus>Reflex</DCVersus>
@@ -15897,7 +15899,7 @@ This damage is halved on a successful Reflex saving throw.</Description>
       <Description>Your patron is of the Abyss - a pit of darkness beyond comprehension, a desire and a
 hunger beyond meaning itself. Tread carefully.
 
-Toggle on: Your eldritch Blast deals +1 Negative damage, plus 1d4 per two Warlock levels.
+Toggle on: Your eldritch Blast deals +1 Negative damage, plus 1d6 per two Warlock levels.
 This damage is halved on a successful Fortitude saving throw vs
 DC(19 + Charisma Mod + Evocation Bonuses)
 Adds Spells to your spell book at level
@@ -15910,7 +15912,7 @@ Adds Spells to your spell book at level
       <Stance>
          <Name>Eldritch Blasting</Name>
          <Icon>EpicEldritchBlast</Icon>
-         <Description>Your eldritch Blast deals +1 Negative damage, plus 1d4 per two Warlock levels.
+         <Description>Your eldritch Blast deals +1 Negative damage, plus 1d6 per two Warlock levels.
 This damage is halved on a successful Fortitude saving throw vs
 DC(19 + Charisma Mod + Evocation Bonuses)</Description>
          <IncompatibleStance>Eldritch Aura</IncompatibleStance>
@@ -15942,7 +15944,7 @@ DC(19 + Charisma Mod + Evocation Bonuses)</Description>
       </Effect>
       <DC>
          <Name>Warlock: Pact: The Abyss</Name>
-         <Description>Toggle on: Your eldritch Blast deals +1 Negative damage, plus 1d4 per two Warlock levels.
+         <Description>Toggle on: Your eldritch Blast deals +1 Negative damage, plus 1d6 per two Warlock levels.
 This damage is halved on a successful Fortitude saving throw.</Description>
          <Icon>EpicEldritchBlast</Icon>
          <DCVersus>Fortitude</DCVersus>
@@ -15957,7 +15959,7 @@ This damage is halved on a successful Fortitude saving throw.</Description>
       The bitter cold and frreezing winds will chill you to your bones, but if you can
 master the power granted to you, great things will surely come your way...
 
-Toggle on: Your eldritch Blast deals +1 Cold damage, plus 1d4 per two Warlock levels.
+Toggle on: Your eldritch Blast deals +1 Cold damage, plus 1d6 per two Warlock levels.
 This damage is halved on a successful Will saving throw vs
 DC(19 + Charisma Mod + Evocation Bonuses)
 Adds Spells to your spell book at level
@@ -15970,7 +15972,7 @@ Adds Spells to your spell book at level
       <Stance>
          <Name>Eldritch Blasting</Name>
          <Icon>EpicEldritchBlast</Icon>
-         <Description>Your eldritch Blast deals +1 Cold damage, plus 1d4 per two Warlock levels.
+         <Description>Your eldritch Blast deals +1 Cold damage, plus 1d6 per two Warlock levels.
 This damage is halved on a successful Will saving throw vs
 DC(19 + Charisma Mod + Evocation Bonuses)</Description>
          <IncompatibleStance>Eldritch Aura</IncompatibleStance>
@@ -15990,7 +15992,7 @@ DC(19 + Charisma Mod + Evocation Bonuses)</Description>
       </Effect>
       <DC>
          <Name>Warlock: Pact: The Carceri Storm</Name>
-         <Description>Toggle on: Your eldritch Blast deals +1 Cold damage, plus 1d4 per two Warlock levels.
+         <Description>Toggle on: Your eldritch Blast deals +1 Cold damage, plus 1d6 per two Warlock levels.
 This damage is halved on a successful Fortitude saving throw.</Description>
          <Icon>EpicEldritchBlast</Icon>
          <DCVersus>Will</DCVersus>
@@ -16477,222 +16479,6 @@ effectively mesmerizing them.</Description>
       </Effect>
    </Feat>
    <Feat>
-      <Name>Biting Acid</Name>
-      <Description>1d6 acid damage with all melee attacks. Scales with spell power. This can only be used in Wolf or Hive forms.</Description>
-      <FeatGroup>
-         <IsBlightCasterImbueToggle/>
-      </FeatGroup>
-      <Requirements>
-         <Requirement>
-            <Class>Blight Caster</Class>
-            <Level>2</Level>
-         </Requirement>
-      </Requirements>
-      <Acquire>Train</Acquire>
-      <Icon>WildShapeWolf</Icon>
-   </Feat>
-   <Feat>
-      <Name>Biting Poison</Name>
-      <Description>1d8 poison damage with all melee attacks. Scales with spell power. This can only be used in Wolf or Hive forms.</Description>
-      <FeatGroup>
-         <IsBlightCasterImbueToggle/>
-      </FeatGroup>
-      <Requirements>
-         <Requirement>
-            <Class>Blight Caster</Class>
-            <Level>2</Level>
-         </Requirement>
-      </Requirements>
-      <Acquire>Train</Acquire>
-      <Icon>WildShapeWolf</Icon>
-   </Feat>
-   <Feat>
-      <Name>Wild Shape: Plague Wolf</Name>
-      <Description>TBD</Description>
-      <FeatGroup>
-         <IsDruidWildShape/>
-      </FeatGroup>
-      <Stance>
-         <Name>Plague Wolf</Name>
-         <Icon>WildShapeBear</Icon>
-         <Description>You transform into a Plague Wolf gaining animal specific abilities</Description>
-         <IncompatibleStance>Air Elemental</IncompatibleStance>
-         <IncompatibleStance>Earth Elemental</IncompatibleStance>
-         <IncompatibleStance>Fire Elemental</IncompatibleStance>
-         <IncompatibleStance>Water Elemental</IncompatibleStance>
-         <IncompatibleStance>Celestial Spirit</IncompatibleStance>
-         <IncompatibleStance>Shroud of the Zombie</IncompatibleStance>
-         <IncompatibleStance>Shroud of the Vampire</IncompatibleStance>
-         <IncompatibleStance>Shroud of the Wraith</IncompatibleStance>
-         <IncompatibleStance>Shroud of the Lich</IncompatibleStance>
-         <IncompatibleStance>Avatar of Nature</IncompatibleStance>
-         <IncompatibleStance>Shadow Form</IncompatibleStance>
-         <IncompatibleStance>Aasimar: Ascendant Bond: Protector</IncompatibleStance>
-         <IncompatibleStance>Aasimar: Ascendant Bond: Fallen</IncompatibleStance>
-         <IncompatibleStance>Aasimar Scourge: Divine Form</IncompatibleStance>
-         <IncompatibleStance>Wolf</IncompatibleStance>
-         <IncompatibleStance>Dire Bear</IncompatibleStance>
-         <IncompatibleStance>Winter Wolf</IncompatibleStance>
-         <IncompatibleStance>Shadow Shrouding</IncompatibleStance>
-         <Group>Major Form</Group>
-      </Stance>
-      <Requirements>
-         <Requirement>
-            <Class>Blight Caster</Class>
-            <Level>2</Level>
-         </Requirement>
-      </Requirements>
-      <Acquire>Train</Acquire>
-      <Icon>WildShapeWolf</Icon>
-   </Feat>
-   <Feat>
-      <Name>Wild Shape: Thorne Knight</Name>
-      <Description>TBD</Description>
-      <FeatGroup>
-         <IsDruidWildShape/>
-      </FeatGroup>
-      <Stance>
-         <Name>Thorne Knight</Name>
-         <Icon>WildShapeBear</Icon>
-         <Description>You transform into Thorne Knight gaining animal specific abilities</Description>
-         <IncompatibleStance>Air Elemental</IncompatibleStance>
-         <IncompatibleStance>Earth Elemental</IncompatibleStance>
-         <IncompatibleStance>Fire Elemental</IncompatibleStance>
-         <IncompatibleStance>Water Elemental</IncompatibleStance>
-         <IncompatibleStance>Celestial Spirit</IncompatibleStance>
-         <IncompatibleStance>Shroud of the Zombie</IncompatibleStance>
-         <IncompatibleStance>Shroud of the Vampire</IncompatibleStance>
-         <IncompatibleStance>Shroud of the Wraith</IncompatibleStance>
-         <IncompatibleStance>Shroud of the Lich</IncompatibleStance>
-         <IncompatibleStance>Avatar of Nature</IncompatibleStance>
-         <IncompatibleStance>Shadow Form</IncompatibleStance>
-         <IncompatibleStance>Aasimar: Ascendant Bond: Protector</IncompatibleStance>
-         <IncompatibleStance>Aasimar: Ascendant Bond: Fallen</IncompatibleStance>
-         <IncompatibleStance>Aasimar Scourge: Divine Form</IncompatibleStance>
-         <IncompatibleStance>Wolf</IncompatibleStance>
-         <IncompatibleStance>Dire Bear</IncompatibleStance>
-         <IncompatibleStance>Winter Wolf</IncompatibleStance>
-         <IncompatibleStance>Shadow Shrouding</IncompatibleStance>
-         <Group>Major Form</Group>
-      </Stance>
-      <Requirements>
-         <Requirement>
-            <Class>Blight Caster</Class>
-            <Level>13</Level>
-         </Requirement>
-      </Requirements>
-      <Acquire>Train</Acquire>
-      <Icon>WildShapeWolf</Icon>
-   </Feat>
-   <Feat>
-      <Name>Wild Shape: Hive Master</Name>
-      <Description>TBD</Description>
-      <FeatGroup>
-         <IsDruidWildShape/>
-      </FeatGroup>
-      <Stance>
-         <Name>Hive Master</Name>
-         <Icon>WildShapeBear</Icon>
-         <Description>You transform into Hive Master gaining animal specific abilities</Description>
-         <IncompatibleStance>Air Elemental</IncompatibleStance>
-         <IncompatibleStance>Earth Elemental</IncompatibleStance>
-         <IncompatibleStance>Fire Elemental</IncompatibleStance>
-         <IncompatibleStance>Water Elemental</IncompatibleStance>
-         <IncompatibleStance>Celestial Spirit</IncompatibleStance>
-         <IncompatibleStance>Shroud of the Zombie</IncompatibleStance>
-         <IncompatibleStance>Shroud of the Vampire</IncompatibleStance>
-         <IncompatibleStance>Shroud of the Wraith</IncompatibleStance>
-         <IncompatibleStance>Shroud of the Lich</IncompatibleStance>
-         <IncompatibleStance>Avatar of Nature</IncompatibleStance>
-         <IncompatibleStance>Shadow Form</IncompatibleStance>
-         <IncompatibleStance>Aasimar: Ascendant Bond: Protector</IncompatibleStance>
-         <IncompatibleStance>Aasimar: Ascendant Bond: Fallen</IncompatibleStance>
-         <IncompatibleStance>Aasimar Scourge: Divine Form</IncompatibleStance>
-         <IncompatibleStance>Wolf</IncompatibleStance>
-         <IncompatibleStance>Dire Bear</IncompatibleStance>
-         <IncompatibleStance>Winter Wolf</IncompatibleStance>
-         <IncompatibleStance>Shadow Shrouding</IncompatibleStance>
-         <Group>Major Form</Group>
-      </Stance>
-      <Requirements>
-         <Requirement>
-            <Class>Blight Caster</Class>
-            <Level>13</Level>
-         </Requirement>
-      </Requirements>
-      <Acquire>Train</Acquire>
-      <Icon>WildShapeWolf</Icon>
-   </Feat>
-   <Feat>
-      <Name>Wild Shape: Blighted Wolf</Name>
-      <Description>TBD</Description>
-      <FeatGroup>
-         <IsDruidWildShape/>
-      </FeatGroup>
-      <Stance>
-         <Name>Blighted Wolf</Name>
-         <Icon>WildShapeBear</Icon>
-         <Description>You transform into a Blighted Wolf gaining animal specific abilities</Description>
-         <IncompatibleStance>Air Elemental</IncompatibleStance>
-         <IncompatibleStance>Earth Elemental</IncompatibleStance>
-         <IncompatibleStance>Fire Elemental</IncompatibleStance>
-         <IncompatibleStance>Water Elemental</IncompatibleStance>
-         <IncompatibleStance>Celestial Spirit</IncompatibleStance>
-         <IncompatibleStance>Shroud of the Zombie</IncompatibleStance>
-         <IncompatibleStance>Shroud of the Vampire</IncompatibleStance>
-         <IncompatibleStance>Shroud of the Wraith</IncompatibleStance>
-         <IncompatibleStance>Shroud of the Lich</IncompatibleStance>
-         <IncompatibleStance>Avatar of Nature</IncompatibleStance>
-         <IncompatibleStance>Shadow Form</IncompatibleStance>
-         <IncompatibleStance>Aasimar: Ascendant Bond: Protector</IncompatibleStance>
-         <IncompatibleStance>Aasimar: Ascendant Bond: Fallen</IncompatibleStance>
-         <IncompatibleStance>Aasimar Scourge: Divine Form</IncompatibleStance>
-         <IncompatibleStance>Wolf</IncompatibleStance>
-         <IncompatibleStance>Dire Bear</IncompatibleStance>
-         <IncompatibleStance>Winter Wolf</IncompatibleStance>
-         <IncompatibleStance>Shadow Shrouding</IncompatibleStance>
-         <Group>Major Form</Group>
-      </Stance>
-      <Requirements>
-         <Requirement>
-            <Class>Blight Caster</Class>
-            <Level>11</Level>
-         </Requirement>
-      </Requirements>
-      <Acquire>Train</Acquire>
-      <Icon>WildShapeWolf</Icon>
-   </Feat>
-   <Feat>
-      <Name>Wild Shape: Thorn-Kin</Name>
-      <Description>You create a suit of living thorny wood around your body armoring you from harm. Note: Note this will be gearset over-ride instead of an animal form so the player will fight with their regular weapons. Basically you become a knight in plate mail made of wood and thorns.</Description>
-      <FeatGroup>
-         <IsKinForm/>
-      </FeatGroup>
-      <Requirements>
-         <Requirement>
-            <Class>Blight Caster</Class>
-            <Level>4</Level>
-         </Requirement>
-      </Requirements>
-      <Acquire>Train</Acquire>
-      <Icon/>
-   </Feat>
-   <Feat>
-      <Name>Wild Shape: Hive Keeper</Name>
-      <Description>You give part of yourself to the hive, gaining insect like reflexes and senses. Your bodily fluids become poisonous to others, and the swarm is always close.</Description>
-      <FeatGroup>
-         <IsKinForm/>
-      </FeatGroup>
-      <Requirements>
-         <Requirement>
-            <Class>Blight Caster</Class>
-            <Level>4</Level>
-         </Requirement>
-      </Requirements>
-      <Acquire>Train</Acquire>
-      <Icon/>
-   </Feat>
-   <Feat>
       <Name>Wild Shape: Bear</Name>
       <Description>You can transform into Bear form.
 Bear now allows you to Strikethrough as long as you are not in the Defensive
@@ -16723,6 +16509,12 @@ You gain +2 racial bonus to constitution, +10% exceptional bonus to AC</Descript
          <IncompatibleStance>Dire Bear</IncompatibleStance>
          <IncompatibleStance>Winter Wolf</IncompatibleStance>
          <IncompatibleStance>Shadow Shrouding</IncompatibleStance>
+         <IncompatibleStance>Plague Wolf</IncompatibleStance>
+         <IncompatibleStance>Blighted Wolf</IncompatibleStance>
+         <IncompatibleStance>Thorn-Kin</IncompatibleStance>
+         <IncompatibleStance>Hive Keeper</IncompatibleStance>
+         <IncompatibleStance>Thorn Knight</IncompatibleStance>
+         <IncompatibleStance>Hive Master</IncompatibleStance>
          <Group>Major Form</Group>
       </Stance>
       <Requirements>
@@ -16792,6 +16584,12 @@ You gain a +10% Combat Style bonus to attack speed, +3 to attack while flanking,
          <IncompatibleStance>Dire Bear</IncompatibleStance>
          <IncompatibleStance>Winter Wolf</IncompatibleStance>
          <IncompatibleStance>Shadow Shrouding</IncompatibleStance>
+         <IncompatibleStance>Plague Wolf</IncompatibleStance>
+         <IncompatibleStance>Blighted Wolf</IncompatibleStance>
+         <IncompatibleStance>Thorn-Kin</IncompatibleStance>
+         <IncompatibleStance>Hive Keeper</IncompatibleStance>
+         <IncompatibleStance>Thorn Knight</IncompatibleStance>
+         <IncompatibleStance>Hive Master</IncompatibleStance>
          <Group>Major Form</Group>
       </Stance>
       <Requirements>
@@ -16878,6 +16676,12 @@ bonus to AC. Gain 20% Strikethrough chance.</Description>
          <IncompatibleStance>Wolf</IncompatibleStance>
          <IncompatibleStance>Winter Wolf</IncompatibleStance>
          <IncompatibleStance>Shadow Shrouding</IncompatibleStance>
+         <IncompatibleStance>Plague Wolf</IncompatibleStance>
+         <IncompatibleStance>Blighted Wolf</IncompatibleStance>
+         <IncompatibleStance>Thorn-Kin</IncompatibleStance>
+         <IncompatibleStance>Hive Keeper</IncompatibleStance>
+         <IncompatibleStance>Thorn Knight</IncompatibleStance>
+         <IncompatibleStance>Hive Master</IncompatibleStance>
          <Group>Major Form</Group>
       </Stance>
       <Requirements>
@@ -16953,6 +16757,12 @@ spell power per attack. +1 Imbue Dice</Description>
          <IncompatibleStance>Dire Bear</IncompatibleStance>
          <IncompatibleStance>Winter Wolf</IncompatibleStance>
          <IncompatibleStance>Shadow Shrouding</IncompatibleStance>
+         <IncompatibleStance>Plague Wolf</IncompatibleStance>
+         <IncompatibleStance>Blighted Wolf</IncompatibleStance>
+         <IncompatibleStance>Thorn-Kin</IncompatibleStance>
+         <IncompatibleStance>Hive Keeper</IncompatibleStance>
+         <IncompatibleStance>Thorn Knight</IncompatibleStance>
+         <IncompatibleStance>Hive Master</IncompatibleStance>
          <Group>Major Form</Group>
       </Stance>
       <Requirements>
@@ -16982,7 +16792,7 @@ spell power per attack. +1 Imbue Dice</Description>
          <Immunity>Sleep</Immunity>
          <Stance>Fire Elemental</Stance>
       </Effect>
-            <Effect>
+      <Effect>
          <Type>Immunity</Type>
          <Bonus>Racial</Bonus>
          <Immunity>Paralysis</Immunity>
@@ -17000,35 +16810,35 @@ spell power per attack. +1 Imbue Dice</Description>
          <Amount>100</Amount>
          <Stance>Fire Elemental</Stance>
       </Effect>
-         <Effect>
-            <Type>CasterLevel</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>3</Amount>
-            <Stance>Fire Elemental</Stance>
-            <Energy>Fire</Energy>
-         </Effect>
-         <Effect>
-            <Type>MaxCasterLevel</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>3</Amount>
-            <Stance>Fire Elemental</Stance>
-            <Energy>Fire</Energy>
-         </Effect>
-         <Effect>
-            <Type>CasterLevel</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>-3</Amount>
-            <Stance>Fire Elemental</Stance>
-            <Energy>Cold</Energy>
-         </Effect>
-         <Effect>
-            <Type>MaxCasterLevel</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>-3</Amount>
-            <Stance>Fire Elemental</Stance>
-            <Energy>Cold</Energy>
-         </Effect>
-    <Effect>
+      <Effect>
+         <Type>CasterLevel</Type>
+         <Bonus>Enhancement</Bonus>
+         <Amount>3</Amount>
+         <Stance>Fire Elemental</Stance>
+         <Energy>Fire</Energy>
+      </Effect>
+      <Effect>
+         <Type>MaxCasterLevel</Type>
+         <Bonus>Enhancement</Bonus>
+         <Amount>3</Amount>
+         <Stance>Fire Elemental</Stance>
+         <Energy>Fire</Energy>
+      </Effect>
+      <Effect>
+         <Type>CasterLevel</Type>
+         <Bonus>Enhancement</Bonus>
+         <Amount>-3</Amount>
+         <Stance>Fire Elemental</Stance>
+         <Energy>Cold</Energy>
+      </Effect>
+      <Effect>
+         <Type>MaxCasterLevel</Type>
+         <Bonus>Enhancement</Bonus>
+         <Amount>-3</Amount>
+         <Stance>Fire Elemental</Stance>
+         <Energy>Cold</Energy>
+      </Effect>
+      <Effect>
          <Type>EnergyAbsorbance</Type>
          <Bonus>Feat</Bonus>
          <Energy>Fire</Energy>
@@ -17042,12 +16852,12 @@ spell power per attack. +1 Imbue Dice</Description>
          <Amount>-15</Amount>
          <Stance>Fire Elemental</Stance>
       </Effect>
-         <Effect>
-            <Type>ImbueDice</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>3</Amount>
-            <Stance>Fire Elemental</Stance>
-         </Effect>
+      <Effect>
+         <Type>ImbueDice</Type>
+         <Bonus>Enhancement</Bonus>
+         <Amount>3</Amount>
+         <Stance>Fire Elemental</Stance>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Wild Shape: Water Elemental</Name>
@@ -17079,6 +16889,12 @@ spell power per attack. +3 imbue Dice</Description>
          <IncompatibleStance>Dire Bear</IncompatibleStance>
          <IncompatibleStance>Winter Wolf</IncompatibleStance>
          <IncompatibleStance>Shadow Shrouding</IncompatibleStance>
+         <IncompatibleStance>Plague Wolf</IncompatibleStance>
+         <IncompatibleStance>Blighted Wolf</IncompatibleStance>
+         <IncompatibleStance>Thorn-Kin</IncompatibleStance>
+         <IncompatibleStance>Hive Keeper</IncompatibleStance>
+         <IncompatibleStance>Thorn Knight</IncompatibleStance>
+         <IncompatibleStance>Hive Master</IncompatibleStance>
          <Group>Major Form</Group>
       </Stance>
       <Requirements>
@@ -17096,34 +16912,34 @@ spell power per attack. +3 imbue Dice</Description>
          <Amount>20</Amount>
          <Stance>Water Elemental</Stance>
       </Effect>
-         <Effect>
-            <Type>CasterLevel</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>3</Amount>
-            <Stance>Water Elemental</Stance>
-            <Energy>Cold</Energy>
-         </Effect>
-         <Effect>
-            <Type>MaxCasterLevel</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>3</Amount>
-            <Stance>Water Elemental</Stance>
-            <Energy>Cold</Energy>
-         </Effect>
-         <Effect>
-            <Type>CasterLevel</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>-3</Amount>
-            <Stance>Water Elemental</Stance>
-            <Energy>Fire</Energy>
-         </Effect>
-         <Effect>
-            <Type>MaxCasterLevel</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>-3</Amount>
-            <Stance>Water Elemental</Stance>
-            <Energy>Fire</Energy>
-         </Effect>
+      <Effect>
+         <Type>CasterLevel</Type>
+         <Bonus>Enhancement</Bonus>
+         <Amount>3</Amount>
+         <Stance>Water Elemental</Stance>
+         <Energy>Cold</Energy>
+      </Effect>
+      <Effect>
+         <Type>MaxCasterLevel</Type>
+         <Bonus>Enhancement</Bonus>
+         <Amount>3</Amount>
+         <Stance>Water Elemental</Stance>
+         <Energy>Cold</Energy>
+      </Effect>
+      <Effect>
+         <Type>CasterLevel</Type>
+         <Bonus>Enhancement</Bonus>
+         <Amount>-3</Amount>
+         <Stance>Water Elemental</Stance>
+         <Energy>Fire</Energy>
+      </Effect>
+      <Effect>
+         <Type>MaxCasterLevel</Type>
+         <Bonus>Enhancement</Bonus>
+         <Amount>-3</Amount>
+         <Stance>Water Elemental</Stance>
+         <Energy>Fire</Energy>
+      </Effect>
       <Effect>
          <Type>SaveBonus</Type>
          <Bonus>Racial</Bonus>
@@ -17143,7 +16959,7 @@ spell power per attack. +3 imbue Dice</Description>
          <Immunity>Sleep</Immunity>
          <Stance>Water Elemental</Stance>
       </Effect>
-        <Effect>
+      <Effect>
          <Type>Immunity</Type>
          <Bonus>Racial</Bonus>
          <Immunity>Paralysis</Immunity>
@@ -17175,12 +16991,12 @@ spell power per attack. +3 imbue Dice</Description>
          <Amount>-15</Amount>
          <Stance>Water Elemental</Stance>
       </Effect>
-         <Effect>
-            <Type>ImbueDice</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>3</Amount>
-            <Stance>Water Elemental</Stance>
-         </Effect>
+      <Effect>
+         <Type>ImbueDice</Type>
+         <Bonus>Enhancement</Bonus>
+         <Amount>3</Amount>
+         <Stance>Water Elemental</Stance>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Wild Shape: Winter Wolf</Name>
@@ -17212,6 +17028,12 @@ You gain a +20% combat style bonus to melee attack speed, +5 to attack while fla
          <IncompatibleStance>Wolf</IncompatibleStance>
          <IncompatibleStance>Dire Bear</IncompatibleStance>
          <IncompatibleStance>Shadow Shrouding</IncompatibleStance>
+         <IncompatibleStance>Plague Wolf</IncompatibleStance>
+         <IncompatibleStance>Blighted Wolf</IncompatibleStance>
+         <IncompatibleStance>Thorn-Kin</IncompatibleStance>
+         <IncompatibleStance>Hive Keeper</IncompatibleStance>
+         <IncompatibleStance>Thorn Knight</IncompatibleStance>
+         <IncompatibleStance>Hive Master</IncompatibleStance>
          <Group>Major Form</Group>
       </Stance>
       <Requirements>
@@ -17485,7 +17307,7 @@ This feat can be stacked up to three times.</Description>
       </Effect>
    </Feat>
    <Feat>
-      <Name>Past Life: Blight Caster</Name>
+      <Name>Past Life: Druid (Blight Caster)</Name>
       <Description>You were a Blight caster in a past life.
 +5 Acid and Poison Spell Power.
 This feat can be stacked up to three times.</Description>
@@ -17632,7 +17454,7 @@ This feat can be stacked up to three times.</Description>
       </Effect>
    </Feat>
    <Feat>
-      <Name>Past Life: Dark Hunter</Name>
+      <Name>Past Life: Ranger (Dark Hunter)</Name>
       <Description>You were a Dark Hunter in a past life.
 Each time you acquire this feat you gain +1 Sneak Attack Attack and Damage.
 This feat can be stacked up to three times.</Description>
@@ -17713,7 +17535,7 @@ This feat can be stacked up to three times.</Description>
       </Effect>
    </Feat>
    <Feat>
-      <Name>Past Life: Acolyte of the Skin</Name>
+      <Name>Past Life: Warlock (Acolyte of the Skin)</Name>
       <Description>You were an Acolyte of the Skin in a past life.
 You are troubled sometimes by a burning sensation on your palms. Each time you
 acquire this feat you gain +1 Magical resistance rating and +5 Fire Spell Power.
@@ -19552,17 +19374,17 @@ In addition, while using a Longbow or Shortbow, you gain +1 Critical Multiplier.
          <Requirement>
             <MinLevel>21</MinLevel>
          </Requirement>
-          <RequiresOneOf>
-              <Requirement>
-                  <Race>Warforged</Race>
-              </Requirement>
-              <Requirement>
-                  <Race>Bladeforged</Race>
-              </Requirement>
-              <Requirement>
-                  <Feat>Improved Construct Essence</Feat>
-              </Requirement>
-          </RequiresOneOf>
+         <RequiresOneOf>
+            <Requirement>
+               <Race>Warforged</Race>
+            </Requirement>
+            <Requirement>
+               <Race>Bladeforged</Race>
+            </Requirement>
+            <Requirement>
+               <Feat>Improved Construct Essence</Feat>
+            </Requirement>
+         </RequiresOneOf>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>ConstructExemplar</Icon>
@@ -19638,7 +19460,7 @@ affected by Embolden Spell, but they consume 10 additional spell points.</Descri
    </Feat>
    <Feat>
       <Name>Epic Eldritch Blast</Name>
-      <Description>+2d6 Eldritch Blast dice, +1 per 2 Epic levels, max +7d6 dice at level 30.</Description>
+      <Description>+2d8 Eldritch Blast dice, +1 per 2 Epic levels, max +8d8 dice at level 30.</Description>
       <FeatGroup>
          <IsEpicFeat/>
       </FeatGroup>
@@ -19646,27 +19468,24 @@ affected by Embolden Spell, but they consume 10 additional spell points.</Descri
          <Requirement>
             <MinLevel>21</MinLevel>
          </Requirement>
-          <RequiresOneOf>
-             <Requirement>
-                <Class>Acolyte of the Skin</Class>
-                <Level>12</Level>
-             </Requirement>
-             <Requirement>
-                <Class>Warlock</Class>
-                <Level>12</Level>
-             </Requirement>
-            </RequiresOneOf>
+         <RequiresOneOf>
+            <Requirement>
+               <Class>Acolyte of the Skin</Class>
+               <Level>12</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Warlock</Class>
+               <Level>12</Level>
+            </Requirement>
+         </RequiresOneOf>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>EpicEldritchBlast</Icon>
-      <Effect>
-         <Type>EldritchBlast</Type>
-         <Bonus>Feat</Bonus>
-         <Dice>
-            <Number size="1">7</Number>
-            <Sides size="1">6</Sides>
-         </Dice>
-      </Effect>
+         <Effect>
+            <Type>EldritchBlastD8</Type>
+            <Bonus>Enhancement</Bonus>
+             <Amount>8</Amount>
+         </Effect>
    </Feat>
    <Feat>
       <Name>Epic Fortitude</Name>
@@ -21367,6 +21186,28 @@ Passive: +140 Maximum Spell Points</Description>
          <Amount>140</Amount>
       </Effect>
    </Feat>
+     <Feat>
+        <Name>Master of Thorns</Name>
+        <Description>Your Thorn Strike, Splinter Bolt, and Thorn Bloom spells gain +10 to
+their maximum caster level.
+Passive: +140 Maximum Spell Points</Description>
+      <FeatGroup>
+         <IsEpicFeat/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <MinLevel>24</MinLevel>
+         </Requirement>
+      </Requirements>
+        <Acquire>Train</Acquire>
+        <Icon>MasterOfThorns</Icon>
+      <!--Bonus spell level effects here-->
+      <Effect>
+         <Type>SpellPoints</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>140</Amount>
+      </Effect>
+     </Feat>
    <Feat>
       <Name>Master of Water</Name>
       <Description>Your Cold Ray, Snowball Swarm and Niac's Biting Cold spells gain +10 to
@@ -23053,9 +22894,14 @@ saving throw allowed. Cooldown timer of 210 seconds.</Description>
       </FeatGroup>
       <MaxTimesAcquire>5</MaxTimesAcquire>
       <Requirements>
-         <Requirement>
-            <Feat>Warlock: Pact: Fiend</Feat>
-         </Requirement>
+          <RequiresOneOf>
+             <Requirement>
+                <Feat>Warlock: Pact: Fiend</Feat>
+             </Requirement>
+             <Requirement>
+                <Feat>True Patron: Fiend</Feat>
+             </Requirement>
+          </RequiresOneOf>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>FiendishResilience</Icon>
@@ -23182,9 +23028,14 @@ saving throw allowed. Cooldown timer of 210 seconds.</Description>
          <IsWarlockResistance/>
       </FeatGroup>
       <Requirements>
-         <Requirement>
-            <Feat>Warlock: Pact: Fiend</Feat>
-         </Requirement>
+          <RequiresOneOf>
+             <Requirement>
+                <Feat>Warlock: Pact: Fiend</Feat>
+             </Requirement>
+             <Requirement>
+                <Feat>True Patron: Fiend</Feat>
+             </Requirement>
+          </RequiresOneOf>
          <Requirement>
             <Class>Warlock</Class>
             <Level>10</Level>
@@ -29907,7 +29758,7 @@ Cooldown: 3 Seconds</Description>
    </Feat>
    <Feat>
       <Name>Epic Pact Dice</Name>
-      <Description>Grants +1 Pact dice, +1 per 2 Epic Levels, for a max +7d4 Pact Dice at level 32</Description>
+      <Description>Grants +1 Pact dice, +1 per 2 Epic Levels, for a max +7d6 Pact Dice at level 32</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -29915,27 +29766,24 @@ Cooldown: 3 Seconds</Description>
          <Requirement>
             <MinLevel>22</MinLevel>
          </Requirement>
-          <RequiresOneOf>
-         <Requirement>
-            <Class>Acolyte of the Skin</Class>
-            <Level>12</Level>
-         </Requirement>
-         <Requirement>
-            <Class>Warlock</Class>
-            <Level>12</Level>
-         </Requirement>
-            </RequiresOneOf>
+         <RequiresOneOf>
+            <Requirement>
+               <Class>Acolyte of the Skin</Class>
+               <Level>12</Level>
+            </Requirement>
+            <Requirement>
+               <Class>Warlock</Class>
+               <Level>12</Level>
+            </Requirement>
+         </RequiresOneOf>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>EpicArcaneEldritchBlast</Icon>
-      <Effect>
-         <Type>EldritchBlast</Type>
-         <Bonus>Feat</Bonus>
-         <Dice>
-            <Number size="1">6</Number>
-            <Sides size="1">4</Sides>
-         </Dice>
-      </Effect>
+         <Effect>
+            <Type>EldritchBlastD6</Type>
+            <Bonus>Enhancement</Bonus>
+             <Amount>7</Amount>
+         </Effect>
    </Feat>
    <Feat>
       <Name>Epic Mage Armor</Name>
@@ -31056,22 +30904,22 @@ Activate to pop off to the land of dreams.</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>EmbodimentOfLaw</Icon>
-         <Effect>
-            <Type>PRR</Type>
-            <Bonus>Feat</Bonus>
-            <Amount>3</Amount>
-         </Effect>
-         <Effect>
-            <Type>MRR</Type>
-            <Bonus>Feat</Bonus>
-            <Amount>3</Amount>
-         </Effect>
-         <Effect>
-            <Type>ImbueDice</Type>
-            <Bonus>Feat</Bonus>
-            <Amount>2</Amount>
-             <Stance>Lawful</Stance>
-         </Effect>
+      <Effect>
+         <Type>PRR</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>3</Amount>
+      </Effect>
+      <Effect>
+         <Type>MRR</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>3</Amount>
+      </Effect>
+      <Effect>
+         <Type>ImbueDice</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>2</Amount>
+         <Stance>Lawful</Stance>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Fount of Life</Name>
@@ -31147,34 +30995,34 @@ Activate to pop off to the land of dreams.</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>HarbingerOfChaos</Icon>
-         <Effect>
-            <Type>Doublestrike</Type>
-            <Bonus>Feat</Bonus>
-            <Amount>2</Amount>
-         </Effect>
-         <Effect>
-            <Type>Doubleshot</Type>
-            <Bonus>Feat</Bonus>
-            <Amount>2</Amount>
-         </Effect>
-         <Effect>
-            <Type>ImbueDice</Type>
-            <Bonus>Feat</Bonus>
-            <Amount>2</Amount>
-             <Stance>Chaotic</Stance>
-         </Effect>
-         <Effect>
-            <DisplayName>Harbinger of Chaos / Scarred by Chaos</DisplayName>
-            <Type>Hitpoints</Type>
-            <Bonus>Destiny</Bonus>
-            <AmountVector size="2">0 50</AmountVector>
-         </Effect>
-         <Effect>
-            <DisplayName>Harbinger of Chaos / Scarred by Chaos</DisplayName>
-            <Type>PRR</Type>
-            <Bonus>Destiny</Bonus>
-            <AmountVector size="2">0 10</AmountVector>
-         </Effect>
+      <Effect>
+         <Type>Doublestrike</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>2</Amount>
+      </Effect>
+      <Effect>
+         <Type>Doubleshot</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>2</Amount>
+      </Effect>
+      <Effect>
+         <Type>ImbueDice</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>2</Amount>
+         <Stance>Chaotic</Stance>
+      </Effect>
+      <Effect>
+         <DisplayName>Harbinger of Chaos / Scarred by Chaos</DisplayName>
+         <Type>Hitpoints</Type>
+         <Bonus>Destiny</Bonus>
+         <AmountVector size="2">0 50</AmountVector>
+      </Effect>
+      <Effect>
+         <DisplayName>Harbinger of Chaos / Scarred by Chaos</DisplayName>
+         <Type>PRR</Type>
+         <Bonus>Destiny</Bonus>
+         <AmountVector size="2">0 10</AmountVector>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Spirit Blades</Name>
@@ -31625,11 +31473,11 @@ Gain +3 Imbue Dice
          <Bonus>Feat</Bonus>
          <Amount>20</Amount>
       </Effect>
-         <Effect>
-            <Type>ImbueDice</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>3</Amount>
-         </Effect>
+      <Effect>
+         <Type>ImbueDice</Type>
+         <Bonus>Enhancement</Bonus>
+         <Amount>3</Amount>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Scion of the Plane of Air</Name>
@@ -31693,11 +31541,11 @@ Gain +3 Imbue Dice
          <SpellPower>All</SpellPower>
          <Amount>10</Amount>
       </Effect>
-         <Effect>
-            <Type>ImbueDice</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>3</Amount>
-         </Effect>
+      <Effect>
+         <Type>ImbueDice</Type>
+         <Bonus>Enhancement</Bonus>
+         <Amount>3</Amount>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Scion of the Plane of Earth</Name>
@@ -31764,11 +31612,11 @@ Gain +3 Imbue Dice</Description>
          <SpellPower>All</SpellPower>
          <Amount>10</Amount>
       </Effect>
-         <Effect>
-            <Type>ImbueDice</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>3</Amount>
-         </Effect>
+      <Effect>
+         <Type>ImbueDice</Type>
+         <Bonus>Enhancement</Bonus>
+         <Amount>3</Amount>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Scion of the Plane of Fire</Name>
@@ -31831,11 +31679,11 @@ Gain +3 Imbue Dice</Description>
          <SpellPower>All</SpellPower>
          <Amount>10</Amount>
       </Effect>
-         <Effect>
-            <Type>ImbueDice</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>3</Amount>
-         </Effect>
+      <Effect>
+         <Type>ImbueDice</Type>
+         <Bonus>Enhancement</Bonus>
+         <Amount>3</Amount>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Scion of the Plane of Water</Name>
@@ -31899,11 +31747,11 @@ Gain +3 Imbue Dice</Description>
          <SpellPower>All</SpellPower>
          <Amount>10</Amount>
       </Effect>
-         <Effect>
-            <Type>ImbueDice</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>3</Amount>
-         </Effect>
+      <Effect>
+         <Type>ImbueDice</Type>
+         <Bonus>Enhancement</Bonus>
+         <Amount>3</Amount>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Scion of the Shadowfell</Name>
@@ -32224,11 +32072,11 @@ Action Boost bonus to Movement Speed for 6 seconds.</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>EnhancedElementalDice</Icon>
-         <Effect>
-            <Type>ImbueDice</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>1</Amount>
-         </Effect>
+      <Effect>
+         <Type>ImbueDice</Type>
+         <Bonus>Enhancement</Bonus>
+         <Amount>1</Amount>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Legendary Aim</Name>
@@ -32244,24 +32092,24 @@ Action Boost bonus to Movement Speed for 6 seconds.</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>LegendaryAim</Icon>
-         <Effect>
-            <Type>AttackBonus</Type>
-            <Bonus>Feat</Bonus>
-            <Amount>5</Amount>
-            <WeaponClass>Ranged</WeaponClass>
-         </Effect>
-         <Effect>
-            <Type>CriticalAttackBonus</Type>
-            <Bonus>Feat</Bonus>
-            <Amount>5</Amount>
-            <WeaponClass>Ranged</WeaponClass>
-         </Effect>
-         <Effect>
-            <Type>DodgeBypass</Type>
-            <Bonus>Feat</Bonus>
-            <Amount>5</Amount>
-            <WeaponClass>Ranged</WeaponClass>
-         </Effect>
+      <Effect>
+         <Type>AttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>5</Amount>
+         <WeaponClass>Ranged</WeaponClass>
+      </Effect>
+      <Effect>
+         <Type>CriticalAttackBonus</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>5</Amount>
+         <WeaponClass>Ranged</WeaponClass>
+      </Effect>
+      <Effect>
+         <Type>DodgeBypass</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>5</Amount>
+         <WeaponClass>Ranged</WeaponClass>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Legendary Toughness</Name>
@@ -32897,4 +32745,576 @@ Apotheosis or Druid Elemental Wild Shape form: +3 Caster Levels with those eleme
       <Acquire>Train</Acquire>
       <Icon>ElementalFormSpecialty</Icon>
    </Feat>
+   <!--Blight caster feats-->
+   <!--Kin Form Feats-->
+   <Feat>
+      <Name>Wild Shape: Thorn-Kin</Name>
+      <Description>Hybrid Form: You create a suit of living thorny wood around your body armoring
+you from harm.
+
+Gain +1 to caster level and max caster level of all Thorn and Poison spells.
+
+10% Exceptional bonus to Armor Class and 50% Fortification.
+
+You become 10% more Vulnerable to Fire.</Description>
+      <FeatGroup>
+         <IsKinForm/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <Class>Blight Caster</Class>
+            <Level>4</Level>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>WildShapeThornKin</Icon>
+      <Stance>
+         <Name>Thorn-Kin</Name>
+         <Icon>WildShapeThornKin</Icon>
+         <Description>Hybrid Form: You create a suit of living thorny wood around your body armoring
+you from harm.
+
+Gain +1 to caster level and max caster level of all Thorn and Poison spells.
+
+10% Exceptional bonus to Armor Class and 50% Fortification.
+
+You become 10% more Vulnerable to Fire.</Description>
+         <IncompatibleStance>Air Elemental</IncompatibleStance>
+         <IncompatibleStance>Earth Elemental</IncompatibleStance>
+         <IncompatibleStance>Fire Elemental</IncompatibleStance>
+         <IncompatibleStance>Water Elemental</IncompatibleStance>
+         <IncompatibleStance>Celestial Spirit</IncompatibleStance>
+         <IncompatibleStance>Shroud of the Zombie</IncompatibleStance>
+         <IncompatibleStance>Shroud of the Vampire</IncompatibleStance>
+         <IncompatibleStance>Shroud of the Wraith</IncompatibleStance>
+         <IncompatibleStance>Shroud of the Lich</IncompatibleStance>
+         <IncompatibleStance>Avatar of Nature</IncompatibleStance>
+         <IncompatibleStance>Shadow Form</IncompatibleStance>
+         <IncompatibleStance>Aasimar: Ascendant Bond: Protector</IncompatibleStance>
+         <IncompatibleStance>Aasimar: Ascendant Bond: Fallen</IncompatibleStance>
+         <IncompatibleStance>Aasimar Scourge: Divine Form</IncompatibleStance>
+         <IncompatibleStance>Wolf</IncompatibleStance>
+         <IncompatibleStance>Dire Bear</IncompatibleStance>
+         <IncompatibleStance>Winter Wolf</IncompatibleStance>
+         <IncompatibleStance>Shadow Shrouding</IncompatibleStance>
+         <IncompatibleStance>Plague Wolf</IncompatibleStance>
+         <IncompatibleStance>Blighted Wolf</IncompatibleStance>
+         <IncompatibleStance>Hive Keeper</IncompatibleStance>
+         <IncompatibleStance>Thorn Knight</IncompatibleStance>
+         <IncompatibleStance>Hive Master</IncompatibleStance>
+         <Group>Major Form</Group>
+      </Stance>
+   </Feat>
+   <Feat>
+      <Name>Wild Shape: Hive Keeper</Name>
+      <Description>Hybrid Form: You give part of yourself to the hive, gaining insect like reflexes
+and senses. Your bodily fluids become poisonous to others, and the swarm is
+your ally.
+
+Gain +1 to caster level and max caster level of all Acid and poison spells.
+
+Gain 25% Concealment and Evasion.
+
+Your reflex saves are increased by 1 every 3 Druid levels and you become 10% more
+Vulnerable to Cold.</Description>
+      <FeatGroup>
+         <IsKinForm/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <Class>Blight Caster</Class>
+            <Level>4</Level>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>WildShapeHiveKeeper</Icon>
+      <Stance>
+         <Name>Hive Keeper</Name>
+         <Icon>WildShapeHiveKeeper</Icon>
+         <Description>Hybrid Form: You give part of yourself to the hive, gaining insect like reflexes
+and senses. Your bodily fluids become poisonous to others, and the swarm is
+your ally.
+
+Gain +1 to caster level and max caster level of all Acid and poison spells.
+
+Gain 25% Concealment and Evasion.
+
+Your reflex saves are increased by 1 every 3 Druid levels and you become 10% more
+Vulnerable to Cold.</Description>
+         <IncompatibleStance>Air Elemental</IncompatibleStance>
+         <IncompatibleStance>Earth Elemental</IncompatibleStance>
+         <IncompatibleStance>Fire Elemental</IncompatibleStance>
+         <IncompatibleStance>Water Elemental</IncompatibleStance>
+         <IncompatibleStance>Celestial Spirit</IncompatibleStance>
+         <IncompatibleStance>Shroud of the Zombie</IncompatibleStance>
+         <IncompatibleStance>Shroud of the Vampire</IncompatibleStance>
+         <IncompatibleStance>Shroud of the Wraith</IncompatibleStance>
+         <IncompatibleStance>Shroud of the Lich</IncompatibleStance>
+         <IncompatibleStance>Avatar of Nature</IncompatibleStance>
+         <IncompatibleStance>Shadow Form</IncompatibleStance>
+         <IncompatibleStance>Aasimar: Ascendant Bond: Protector</IncompatibleStance>
+         <IncompatibleStance>Aasimar: Ascendant Bond: Fallen</IncompatibleStance>
+         <IncompatibleStance>Aasimar Scourge: Divine Form</IncompatibleStance>
+         <IncompatibleStance>Wolf</IncompatibleStance>
+         <IncompatibleStance>Dire Bear</IncompatibleStance>
+         <IncompatibleStance>Winter Wolf</IncompatibleStance>
+         <IncompatibleStance>Shadow Shrouding</IncompatibleStance>
+         <IncompatibleStance>Plague Wolf</IncompatibleStance>
+         <IncompatibleStance>Blighted Wolf</IncompatibleStance>
+         <IncompatibleStance>Thorn-Kin</IncompatibleStance>
+         <IncompatibleStance>Thorn Knight</IncompatibleStance>
+         <IncompatibleStance>Hive Master</IncompatibleStance>
+         <Group>Major Form</Group>
+      </Stance>
+   </Feat>
+   <!--Toggle Imbue-->
+   <Feat>
+      <Name>Biting Acid Imbue</Name>
+      <Description>Imbue Toggle: Your mouth drips with acid coating all your weapon attacks,
+dealing 1d6 Acid damage on hit, scaling with Acid Spell Power. Only applies in
+any Wolf or Hive Forms.</Description>
+      <FeatGroup>
+         <IsBlightCasterImbueToggle/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <Class>Blight Caster</Class>
+            <Level>2</Level>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>BitingAcid</Icon>
+      <Stance>
+         <Name>Biting Acid Imbue</Name>
+         <Icon>BitingAcid</Icon>
+         <Description>Imbue Toggle: Your mouth drips with acid coating all your weapon attacks,
+dealing 1d6 Acid damage on hit, scaling with Acid Spell Power. Only applies in
+any Wolf or Hive Forms.</Description>
+         <Group>Imbue</Group>
+      </Stance>
+   </Feat>
+   <Feat>
+      <Name>Biting Poison Imbue</Name>
+      <Description>Imbue Toggle: Your mouth drips with poison coating all your weapon attacks,
+dealing 1d8 Poison damage on hit, scaling with Poison Spell Power. Only applies
+in any Wolf or Hive Forms.</Description>
+      <FeatGroup>
+         <IsBlightCasterImbueToggle/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <Class>Blight Caster</Class>
+            <Level>2</Level>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>BitingPoison</Icon>
+      <Stance>
+         <Name>Biting Poison Imbue</Name>
+         <Icon>BitingPoison</Icon>
+         <Description>Imbue Toggle: Your mouth drips with poison coating all your weapon attacks,
+dealing 1d8 Poison damage on hit, scaling with Poison Spell Power. Only applies
+in any Wolf or Hive Forms.</Description>
+         <Group>Imbue</Group>
+      </Stance>
+   </Feat>
+   <!--Wild Shapes-->
+   <Feat>
+      <Name>Wild Shape: Plague Wolf</Name>
+      <Description>Animal Form: Transform into a Plague Wolf. While in this form, you gain a +10%
+Combat Style bonus to attack speed, a +3 bonus to attack while flanking, 10%
+bonus to moevement speed and you can use either the Biting Acid or Biting Poison
+Imbue. You gain a -2 penalty to Intelligence and Charisma. While in Wolf form you
+gain access to a number of spells and enhancements that require Wold form, but
+the cooldowns of your non-animal form spells are increased to 2.5 times their
+normal length.
+
+You now attack with toothe and claw using the stats of whatever weapon held in
+your right hand. Shields work normally but you cannot shield bash.
+
+You are considered an animal. If you are a Warforged, you are no longer considered
+a Living Construct, and can now be healed normally by Positive energy spells, and
+you become immune to repair spells.
+
+You cannot use wands or scrolls while in animal form.</Description>
+      <FeatGroup>
+         <IsDruidWildShape/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <Class>Blight Caster</Class>
+            <Level>2</Level>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>WildShapePlagueWolf</Icon>
+      <Stance>
+         <Name>Plague Wolf</Name>
+         <Icon>WildShapePlagueWolf</Icon>
+         <Description>You transform into a Plague Wolf gaining animal specific abilities</Description>
+         <IncompatibleStance>Air Elemental</IncompatibleStance>
+         <IncompatibleStance>Earth Elemental</IncompatibleStance>
+         <IncompatibleStance>Fire Elemental</IncompatibleStance>
+         <IncompatibleStance>Water Elemental</IncompatibleStance>
+         <IncompatibleStance>Celestial Spirit</IncompatibleStance>
+         <IncompatibleStance>Shroud of the Zombie</IncompatibleStance>
+         <IncompatibleStance>Shroud of the Vampire</IncompatibleStance>
+         <IncompatibleStance>Shroud of the Wraith</IncompatibleStance>
+         <IncompatibleStance>Shroud of the Lich</IncompatibleStance>
+         <IncompatibleStance>Avatar of Nature</IncompatibleStance>
+         <IncompatibleStance>Shadow Form</IncompatibleStance>
+         <IncompatibleStance>Aasimar: Ascendant Bond: Protector</IncompatibleStance>
+         <IncompatibleStance>Aasimar: Ascendant Bond: Fallen</IncompatibleStance>
+         <IncompatibleStance>Aasimar Scourge: Divine Form</IncompatibleStance>
+         <IncompatibleStance>Wolf</IncompatibleStance>
+         <IncompatibleStance>Dire Bear</IncompatibleStance>
+         <IncompatibleStance>Winter Wolf</IncompatibleStance>
+         <IncompatibleStance>Shadow Shrouding</IncompatibleStance>
+         <IncompatibleStance>Blighted Wolf</IncompatibleStance>
+         <IncompatibleStance>Thorn-Kin</IncompatibleStance>
+         <IncompatibleStance>Hive Keeper</IncompatibleStance>
+         <IncompatibleStance>Thorn Knight</IncompatibleStance>
+         <IncompatibleStance>Hive Master</IncompatibleStance>
+         <Group>Major Form</Group>
+      </Stance>
+   </Feat>
+   <Feat>
+      <Name>Wild Shape: Thorne Knight</Name>
+      <Description>Plant Form: You become a full Thorn Knight.
+
+Gain +3 to caster level and max caster level of all Thorn and Poison spells.
+
+10% Exceptional bonus to Armor Class and 100% Fortification.
+
+You gain 10% Absorption against Piercing attacks and 5% Absorption against
+Bludgeon attacks.
+
+You become 15% more Vulnerable to Fire and are now have immunity to most Sleep,
+Stun, Paralysis, Poison, and Mind-affecting spells and abilities.</Description>
+      <FeatGroup>
+         <IsDruidWildShape/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <Class>Blight Caster</Class>
+            <Level>13</Level>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>WildShapeThorneKnight</Icon>
+      <Stance>
+         <Name>Thorne Knight</Name>
+         <Icon>WildShapeThorneKnight</Icon>
+         <Description>You transform into Thorne Knight gaining animal specific abilities</Description>
+         <IncompatibleStance>Air Elemental</IncompatibleStance>
+         <IncompatibleStance>Earth Elemental</IncompatibleStance>
+         <IncompatibleStance>Fire Elemental</IncompatibleStance>
+         <IncompatibleStance>Water Elemental</IncompatibleStance>
+         <IncompatibleStance>Celestial Spirit</IncompatibleStance>
+         <IncompatibleStance>Shroud of the Zombie</IncompatibleStance>
+         <IncompatibleStance>Shroud of the Vampire</IncompatibleStance>
+         <IncompatibleStance>Shroud of the Wraith</IncompatibleStance>
+         <IncompatibleStance>Shroud of the Lich</IncompatibleStance>
+         <IncompatibleStance>Avatar of Nature</IncompatibleStance>
+         <IncompatibleStance>Shadow Form</IncompatibleStance>
+         <IncompatibleStance>Aasimar: Ascendant Bond: Protector</IncompatibleStance>
+         <IncompatibleStance>Aasimar: Ascendant Bond: Fallen</IncompatibleStance>
+         <IncompatibleStance>Aasimar Scourge: Divine Form</IncompatibleStance>
+         <IncompatibleStance>Wolf</IncompatibleStance>
+         <IncompatibleStance>Dire Bear</IncompatibleStance>
+         <IncompatibleStance>Winter Wolf</IncompatibleStance>
+         <IncompatibleStance>Shadow Shrouding</IncompatibleStance>
+         <IncompatibleStance>Plague Wolf</IncompatibleStance>
+         <IncompatibleStance>Blighted Wolf</IncompatibleStance>
+         <IncompatibleStance>Thorn-Kin</IncompatibleStance>
+         <IncompatibleStance>Hive Keeper</IncompatibleStance>
+         <IncompatibleStance>Hive Master</IncompatibleStance>
+         <Group>Major Form</Group>
+      </Stance>
+   </Feat>
+   <Feat>
+      <Name>Wild Shape: Hive Master</Name>
+      <Description>Swarm Form: You become one with the swarm.
+
+Gain +3 to caster level and max caster level of all Acid and Posion spells.
+
+Gain 50% Concealment and Improved Evasion.
+
+Your reflex saves are increased by 1 every 2 Druid levels.
+
+You are now ethereal to monsters when you tumble.
+
+You become 15% more Vulnerable to Cold and are Immune to Mind effects and Knock
+down.</Description>
+      <FeatGroup>
+         <IsDruidWildShape/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <Class>Blight Caster</Class>
+            <Level>13</Level>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>WildShapeHiveMaster</Icon>
+      <Stance>
+         <Name>Hive Master</Name>
+         <Icon>WildShapeHiveMaster</Icon>
+         <Description>You transform into Hive Master gaining animal specific abilities</Description>
+         <IncompatibleStance>Air Elemental</IncompatibleStance>
+         <IncompatibleStance>Earth Elemental</IncompatibleStance>
+         <IncompatibleStance>Fire Elemental</IncompatibleStance>
+         <IncompatibleStance>Water Elemental</IncompatibleStance>
+         <IncompatibleStance>Celestial Spirit</IncompatibleStance>
+         <IncompatibleStance>Shroud of the Zombie</IncompatibleStance>
+         <IncompatibleStance>Shroud of the Vampire</IncompatibleStance>
+         <IncompatibleStance>Shroud of the Wraith</IncompatibleStance>
+         <IncompatibleStance>Shroud of the Lich</IncompatibleStance>
+         <IncompatibleStance>Avatar of Nature</IncompatibleStance>
+         <IncompatibleStance>Shadow Form</IncompatibleStance>
+         <IncompatibleStance>Aasimar: Ascendant Bond: Protector</IncompatibleStance>
+         <IncompatibleStance>Aasimar: Ascendant Bond: Fallen</IncompatibleStance>
+         <IncompatibleStance>Aasimar Scourge: Divine Form</IncompatibleStance>
+         <IncompatibleStance>Wolf</IncompatibleStance>
+         <IncompatibleStance>Dire Bear</IncompatibleStance>
+         <IncompatibleStance>Winter Wolf</IncompatibleStance>
+         <IncompatibleStance>Shadow Shrouding</IncompatibleStance>
+         <IncompatibleStance>Thorn-Kin</IncompatibleStance>
+         <IncompatibleStance>Hive Keeper</IncompatibleStance>
+         <IncompatibleStance>Thorn Knight</IncompatibleStance>
+         <Group>Major Form</Group>
+      </Stance>
+   </Feat>
+   <Feat>
+      <Name>Wild Shape: Blighted Wolf</Name>
+      <Description>TBD</Description>
+      <FeatGroup>
+         <IsDruidWildShape/>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <Class>Blight Caster</Class>
+            <Level>11</Level>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>WildShapeBlightedWolf</Icon>
+      <Stance>
+         <Name>Blighted Wolf</Name>
+         <Icon>WildShapeBlightedWolf</Icon>
+         <Description>You transform into a Blighted Wolf gaining animal specific abilities</Description>
+         <IncompatibleStance>Air Elemental</IncompatibleStance>
+         <IncompatibleStance>Earth Elemental</IncompatibleStance>
+         <IncompatibleStance>Fire Elemental</IncompatibleStance>
+         <IncompatibleStance>Water Elemental</IncompatibleStance>
+         <IncompatibleStance>Celestial Spirit</IncompatibleStance>
+         <IncompatibleStance>Shroud of the Zombie</IncompatibleStance>
+         <IncompatibleStance>Shroud of the Vampire</IncompatibleStance>
+         <IncompatibleStance>Shroud of the Wraith</IncompatibleStance>
+         <IncompatibleStance>Shroud of the Lich</IncompatibleStance>
+         <IncompatibleStance>Avatar of Nature</IncompatibleStance>
+         <IncompatibleStance>Shadow Form</IncompatibleStance>
+         <IncompatibleStance>Aasimar: Ascendant Bond: Protector</IncompatibleStance>
+         <IncompatibleStance>Aasimar: Ascendant Bond: Fallen</IncompatibleStance>
+         <IncompatibleStance>Aasimar Scourge: Divine Form</IncompatibleStance>
+         <IncompatibleStance>Wolf</IncompatibleStance>
+         <IncompatibleStance>Dire Bear</IncompatibleStance>
+         <IncompatibleStance>Winter Wolf</IncompatibleStance>
+         <IncompatibleStance>Shadow Shrouding</IncompatibleStance>
+         <IncompatibleStance>Plague Wolf</IncompatibleStance>
+         <IncompatibleStance>Thorn-Kin</IncompatibleStance>
+         <IncompatibleStance>Hive Keeper</IncompatibleStance>
+         <IncompatibleStance>Thorn Knight</IncompatibleStance>
+         <IncompatibleStance>Hive Master</IncompatibleStance>
+         <Group>Major Form</Group>
+      </Stance>
+   </Feat>
+    <!--Acolyte of the skin feats-->
+    <Feat>
+      <Name>True Patron: Fiend</Name>
+      <Description>You have made a pact with a fiend from the lower planes of existence,
+a being whose aims are evil, even if you strive against those aims. Such beings
+desire the corruption or destruction of all things, ultimately including you.
+
+Pact Toggle: Your eldritch Blast deals +1 Fire damage, plus 1d6 per bonus Pact Dice.
+This damage is halved on a successful Fortitude saving throw vs
+DC(19 + Charisma Mod + Evocation Bonuses).</Description>
+      <Stance>
+        <Name>Eldritch Blasting</Name>
+        <Icon>EpicEldritchBlast</Icon>
+        <Description>Pact Toggle: Your eldritch Blast deals +1 Fire damage, plus 1d6 per bonus Pact Dice.
+This damage is halved on a successful Fortitude saving throw vs
+DC(19 + Charisma Mod + Evocation Bonuses).</Description>
+        <Group>Major Form</Group>
+      </Stance>
+      <FeatGroup>
+         <IsTruePact/>
+      </FeatGroup>
+      <Requirements>
+         <RequiresNoneOf>
+            <Requirement>
+               <Alignment>Lawful Good</Alignment>
+            </Requirement>
+            <Requirement>
+               <Alignment>Neutral Good</Alignment>
+            </Requirement>
+            <Requirement>
+               <Alignment>Chaotic Good</Alignment>
+            </Requirement>
+         </RequiresNoneOf>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>TruePatronFiend</Icon>
+      <DC>
+        <Name>True Patron: Fiend</Name>
+        <Description>Pact Toggle: Your eldritch Blast deals +1 Fire damage, plus 1d6 per bonus Pact Dice.
+This damage is halved on a successful Fortitude saving throw vs
+DC(19 + Charisma Mod + Evocation Bonuses).</Description>
+         <Icon>EpicEldritchBlast</Icon>
+         <DCVersus>Fortitude</DCVersus>
+         <AmountVector size="1">19</AmountVector>
+         <ModAbility>Charisma</ModAbility>
+         <School>Evocation</School>
+      </DC>
+    </Feat>
+    <Feat>
+      <Name>Fiendskin</Name>
+      <Description>You gain +1 Fire resistance per Warlock level</Description>
+      <FeatGroup>
+         <IsWarlockPactAbility/>
+      </FeatGroup>
+      <Icon>Fiendskin</Icon>
+       <Acquire>Train</Acquire>
+       <Requirements>
+         <Requirement>
+            <Class>Acolyte of the Skin</Class>
+            <Level>6</Level>
+         </Requirement>
+       </Requirements>
+         <Effect>
+            <Type>EnergyResistance</Type>
+            <Bonus>Feat</Bonus>
+            <AmountVector size="20">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</AmountVector>
+            <Class>Acolyte of the Skin</Class>
+             <Energy>Fire</Energy>
+         </Effect>
+    </Feat>
+     <!--New Eldritch Blast feats-->
+    <Feat>
+      <Name>Lesser Pact Attunement</Name>
+      <Description>You gain 2d8 Eldritch Blast base damage and 2d6 Eldritch Blast Pact Dice.</Description>
+      <Requirements/>
+      <Acquire>Automatic</Acquire>
+      <Icon>EldritchBlastAttunement</Icon>
+      <AutomaticAcquisition>
+        <Class>Acolyte of the Skin</Class>
+        <Level>1</Level>
+      </AutomaticAcquisition>
+         <Effect>
+            <Type>EldritchBlastD8</Type>
+            <Bonus>Enhancement</Bonus>
+             <Amount>2</Amount>
+         </Effect>
+         <Effect>
+            <Type>EldritchBlastD6</Type>
+            <Bonus>Enhancement</Bonus>
+             <Amount>2</Amount>
+         </Effect>
+    </Feat>
+    <Feat>
+      <Name>Pact Attunement</Name>
+      <Description>You gain 2d8 Eldritch Blast base damage and 2d6 Eldritch Blast Pact Dice.</Description>
+      <FeatGroup>
+         <IsStandardFeat/>
+         <IsEpicFeat/>
+      </FeatGroup>
+       <Requirements>
+          <Requirement>
+             <Feat>Lesser Pact Attunement</Feat>
+          </Requirement>
+         <Requirement>
+            <MinLevel>6</MinLevel>
+         </Requirement>
+       </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>EldritchBlastAttunement</Icon>
+      <AutomaticAcquisition>
+        <Class>Acolyte of the Skin</Class>
+        <Level>6</Level>
+      </AutomaticAcquisition>
+         <Effect>
+            <Type>EldritchBlastD8</Type>
+            <Bonus>Enhancement</Bonus>
+             <Amount>2</Amount>
+         </Effect>
+         <Effect>
+            <Type>EldritchBlastD6</Type>
+            <Bonus>Enhancement</Bonus>
+             <Amount>2</Amount>
+         </Effect>
+    </Feat>
+    <Feat>
+      <Name>Greater Pact Attunement</Name>
+      <Description>You gain 2d8 Eldritch Blast base damage and 2d6 Eldritch Blast Pact Dice.</Description>
+      <FeatGroup>
+         <IsStandardFeat/>
+         <IsEpicFeat/>
+      </FeatGroup>
+       <Requirements>
+          <Requirement>
+             <Feat>Pact Attunement</Feat>
+          </Requirement>
+         <Requirement>
+            <MinLevel>12</MinLevel>
+         </Requirement>
+       </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>EldritchBlastAttunement</Icon>
+      <AutomaticAcquisition>
+        <Class>Acolyte of the Skin</Class>
+        <Level>12</Level>
+      </AutomaticAcquisition>
+         <Effect>
+            <Type>EldritchBlastD8</Type>
+            <Bonus>Enhancement</Bonus>
+             <Amount>2</Amount>
+         </Effect>
+         <Effect>
+            <Type>EldritchBlastD6</Type>
+            <Bonus>Enhancement</Bonus>
+             <Amount>2</Amount>
+         </Effect>
+    </Feat>
+    <Feat>
+      <Name>Ultimate Pact Attunement</Name>
+      <Description>You gain 2d8 Eldritch Blast base damage and 2d6 Eldritch Blast Pact Dice.</Description>
+      <FeatGroup>
+         <IsStandardFeat/>
+         <IsEpicFeat/>
+      </FeatGroup>
+       <Requirements>
+          <Requirement>
+             <Feat>Greater Pact Attunement</Feat>
+          </Requirement>
+         <Requirement>
+            <MinLevel>18</MinLevel>
+         </Requirement>
+       </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>EldritchBlastAttunement</Icon>
+      <AutomaticAcquisition>
+        <Class>Acolyte of the Skin</Class>
+        <Level>18</Level>
+      </AutomaticAcquisition>
+         <Effect>
+            <Type>EldritchBlastD8</Type>
+            <Bonus>Enhancement</Bonus>
+             <Amount>2</Amount>
+         </Effect>
+         <Effect>
+            <Type>EldritchBlastD6</Type>
+            <Bonus>Enhancement</Bonus>
+             <Amount>2</Amount>
+         </Effect>
+    </Feat>
 </Feats>
