@@ -62,6 +62,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
             "Aymerick55, "
             "AzrielAngelus, "
             "Bjond, "
+            "Bowser_Koopa, "
             "Brakkart, "
             "BWRStennett, "
             "Caarb, "
@@ -124,6 +125,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
             "iplaywithdrums, "
             "Jalak21, "
             "jhnsnc, "
+            "jleverett751, "
             "jmonsky, "
             "Jokersir2, "
             "Kamatozer, "
@@ -216,6 +218,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
             "wolfdy, "
             "wolvemd, "
             "Wrunt, "
+            "wyldlock, "
             "Xycona, "
             "zilgabex, "
             "Zretch");

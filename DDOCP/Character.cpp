@@ -5953,10 +5953,13 @@ void Character::AutoTrainSingleSelectionFeats()
             switch (tfts[i])
             {
             case TFT_BelovedOf:
+            case TFT_BlightCasterToggleImbue:
             case TFT_ChildOf:
             case TFT_DamageReduction:
             case TFT_Deity:
+            case TFT_DruidWildShape:
             case TFT_DomainFeat:
+            case TFT_KinForm:
             case TFT_TruePact:
             case TFT_WarlockPactAbility:
             case TFT_WarlockPactSaveBonus:

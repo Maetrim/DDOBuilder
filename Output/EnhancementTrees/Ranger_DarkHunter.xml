@@ -988,8 +988,7 @@ Resistance rating by 10 and dealing an extra 1d20 Bleed damage per character lev
       <EnhancementTreeItem>
          <Name>Dark Hunter: Blade Specialization</Name>
          <InternalName>DHBladeSpecialization</InternalName>
-         <Description>You gain a +1 Competence bonus to Critical Damage Multiplier with your weapons.
-If you have Improved Critical Piercing, this bonus to Threat Range is doubled.</Description>
+         <Description>Select from Critical Threat Range or Critical Damage Multiplier.</Description>
          <Icon>DHBladeSpecialization</Icon>
          <XPosition>3</XPosition>
          <YPosition>5</YPosition>
@@ -1006,6 +1005,34 @@ If you have Improved Critical Piercing, this bonus to Threat Range is doubled.</
                <Level>5</Level>
             </Requirement>
          </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Blade Specialization - Damage Multiplier</Name>
+               <Description>You gain a +1 Competence bonus to Critical Damage Multiplier with your weapons.</Description>
+               <Icon>DHBladeSpecialization</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Effect>
+                  <Type>CriticalMultiplier</Type>
+                  <Bonus>Competence</Bonus>
+                  <Amount>1</Amount>
+                  <Weapon>All</Weapon>
+                  <ApplyAsItemEffect/>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Blade Specialization - Threat Range</Name>
+               <Description>You gain a +1 Competence bonus to Critical Threat Range with your weapons.</Description>
+               <Icon>DHBladeSpecialization</Icon>
+               <CostPerRank size="1">1</CostPerRank>
+               <Effect>
+                  <Type>CriticalRange</Type>
+                  <Bonus>Competence</Bonus>
+                  <Amount>1</Amount>
+                  <Weapon>All</Weapon>
+                  <ApplyAsItemEffect/>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
          <Effect>
             <DisplayName>Dark Hunter: Blade Specialization</DisplayName>
             <Type>CriticalMultiplier</Type>
