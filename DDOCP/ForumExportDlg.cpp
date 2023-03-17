@@ -179,7 +179,8 @@ void CForumExportDlg::PopulateExport()
                 AddEnergyResistances(forumExport);
                 break;
             case FES_FeatSelections:
-                AddFeatSelections(forumExport);
+            case FES_FeatSelectionsNoSkills:
+                AddFeatSelections(forumExport, m_SectionOrder[i] == FES_FeatSelections);
                 break;
             case FES_GrantedFeats:
                 AddGrantedFeats(forumExport);
@@ -557,7 +558,7 @@ void CForumExportDlg::AddBreakdown(
     }
 }
 
-void CForumExportDlg::AddFeatSelections(std::stringstream & forumExport)
+void CForumExportDlg::AddFeatSelections(std::stringstream & forumExport, bool bIncludeSkills)
 {
     forumExport << "Class and Feat Selection\r\n";
     forumExport << "------------------------------------------------------------------------------------------\r\n";
@@ -648,7 +649,10 @@ void CForumExportDlg::AddFeatSelections(std::stringstream & forumExport)
         {
             forumExport << "\r\n";
         }
-        AddSkillsAtLevel(level, forumExport);
+        if (bIncludeSkills)
+        {
+            AddSkillsAtLevel(level, forumExport);
+        }
     }
     forumExport << "\r\n";
 }

@@ -2448,7 +2448,7 @@ std::vector<TrainableFeatTypes> Character::TrainableFeatTypeAtLevel(
         break;
 
     case Class_DruidBlightCaster:
-        // Blight Casters can select a wild shape at levelss 2, 11, 13, 17
+        // Blight Casters can select a wild shape at levels 2, 11, 13, 17
         if (classLevels[Class_DruidBlightCaster] == 2
                 || classLevels[Class_DruidBlightCaster] == 11
                 || classLevels[Class_DruidBlightCaster] == 13
@@ -2462,7 +2462,7 @@ std::vector<TrainableFeatTypes> Character::TrainableFeatTypeAtLevel(
         {
             trainable.push_back(TFT_KinForm);
         }
-        // Blight Casters can select a togle imbue at levels 2 and 11
+        // Blight Casters can select a toggle imbue at levels 2 and 11
         if (classLevels[Class_DruidBlightCaster] == 2
                 || classLevels[Class_DruidBlightCaster] == 11)
         {
