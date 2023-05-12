@@ -5448,11 +5448,6 @@ This toggle is exclusive with Warlock Pact toggles.</Description>
 This trigger at most once every two seconds.</Description>
          <Group>Imbue</Group>
       </Stance>
-      <Effect>
-         <Type>ImbueDice</Type>
-         <Bonus>Enhancement</Bonus>
-         <Amount>1</Amount>
-      </Effect>
    </Feat>
    <Feat>
       <Name>Half-Elf Dilettante: Wizard</Name>
@@ -10719,7 +10714,7 @@ be interrupted by enemy attacks, but they consume 10 additional spell points.</D
       <Name>Quivering Palm</Name>
       <Description>The Monk delivers a fatal attack by sending waves of vibrations through the
 target with a weapon strike. The attack costs 30 Ki, and if it hits the victim
-must pass a Fortitude save (DC 10 + Monk level/2 + Wisdom modifier + Stun modifiers)
+must pass a Fortitude save (DC 10 + Monk level/2 + Wisdom modifier + General modifiers)
 or die. Quivering Palm gains DC bonuses from general tactical combat boosts,
 but not Sundering items. Whenever an enemy saves vs. Quivering Palm, you get
 a stacking +4 bonus to your Quivering Palm DC. This stack is dispelled when you
@@ -10749,7 +10744,7 @@ must pass a Fortitude save or die.</Description>
          <AmountVector size="1">10</AmountVector>
          <HalfClassLevel>Monk</HalfClassLevel>
          <ModAbility>Wisdom</ModAbility>
-         <Tactical>Stun</Tactical>
+         <Tactical>General</Tactical>
       </DC>
    </Feat>
    <Feat>
@@ -21393,17 +21388,27 @@ Search for difficult traps.)</Description>
       <Acquire>Train</Acquire>
       <Icon>WatchfulEye</Icon>
       <Effect>
-         <DisplayName>Shiradi Champion: Pierce Deception</DisplayName>
+         <DisplayName>Shiradi Champion: Pierce Deception / Watchful Eye</DisplayName>
          <Type>Doubleshot</Type>
          <Bonus>Destiny</Bonus>
-         <AmountVector size="3">0 0 5</AmountVector>
+         <AmountVector size="2">0 5</AmountVector>
       </Effect>
-      <Effect>
-         <DisplayName>Shiradi Champion: Pierce Deception</DisplayName>
-         <Type>Doubleshot</Type>
-         <Bonus>Destiny</Bonus>
-         <AmountVector size="3">0 0 5</AmountVector>
-      </Effect>
+   </Feat>
+   <Feat>
+       <!--This is a fake feat required to get the stacking for Shiradi to work correctly-->
+      <Name>Watchful Eye </Name>
+      <Description>If you pass withing 5 feet of a trap, you make a Search check to notice
+it as if actively Searching. (You still need the Trapfinding feat to successfully
+Search for difficult traps.)</Description>
+      <FeatGroup>
+      </FeatGroup>
+      <Requirements>
+         <Requirement>
+            <MinLevel>27</MinLevel>
+         </Requirement>
+      </Requirements>
+      <Acquire>Train</Acquire>
+      <Icon>WatchfulEye</Icon>
    </Feat>
    <Feat>
       <Name>Wellspring of Power</Name>
@@ -31139,6 +31144,18 @@ with no save. This may only trigger once every 12 seconds.</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>ScionOfCelestia</Icon>
+      <Effect>
+         <Type>SpellDC</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>2</Amount>
+         <School>Evocation</School>
+      </Effect>
+      <Effect>
+         <Type>SpellDC</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>2</Amount>
+         <School>All</School>
+      </Effect>
       <Effect>
          <Type>UniversalSpellPower</Type>
          <Bonus>Feat</Bonus>

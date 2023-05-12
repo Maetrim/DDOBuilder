@@ -20,21 +20,10 @@ BreakdownItemEDFCapped::~BreakdownItemEDFCapped()
 
 CString BreakdownItemEDFCapped::Value() const
 {
+    // EDF was removed and can no longer Cap an item total
     CString value;
-    // is this item capped to 0?
-    if (m_pCharacter != NULL
-            && m_pCharacter->IsStanceActive("Epic Defensive Fighting"))
-    {
-        // its capped due to EDF being enabled
-        value.Format(
-                "0 (Capped %.2f)",
-                Total());
-    }
-    else
-    {
-        // get the base class to format it
-        value = BreakdownItemSimple::Value();
-    }
+    // get the base class to format it
+    value = BreakdownItemSimple::Value();
     return value;
 }
 

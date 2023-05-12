@@ -1067,13 +1067,13 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
 
     {
         HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
-                "Imbue Dice",
+                "Bonus Imbue Dice",
                 hOffensiveParent,
                 TVI_LAST);
         BreakdownItem * pID = new BreakdownItemSneakAttackDice(
                 Breakdown_ImbueDice,
                 Effect_ImbueDice,
-                "Imbue Dice",
+                "Bonus Imbue Dice",
                 &m_itemBreakdownTree,
                 hItem);
         m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pID);
