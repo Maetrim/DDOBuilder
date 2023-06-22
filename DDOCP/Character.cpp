@@ -6857,6 +6857,7 @@ void Character::U51Destiny_RevokeEnhancement(
         NotifyAPSpentInTreeChanged(treeName);
         UpdateWeaponStances();
         SetAlignmentStances();
+        VerifyGear();
         UpdateCenteredStance();
     }
 }

@@ -169,6 +169,10 @@ bool Requirement::Met(
             }
         }
     }
+    if (HasFeatAnySource())
+    {
+        met = charData.IsFeatTrained(FeatAnySource(), true);
+    }
     if (HasAbility())
     {
         // must have this specific base ability value to train (Base + Tome + Level up only)

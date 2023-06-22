@@ -601,8 +601,8 @@ std::vector<TrainableFeatTypes> ClassSpecificFeatTypes(ClassType type)
             types.push_back(TFT_Deity);         // level 6
             break;
         case Class_PaladinSacredFist:
-            // although this class has Follower/Deity feats, these are auto assigned
-            // and thus do not appear in the list here
+            types.push_back(TFT_FollowerOf);    // level 1
+            types.push_back(TFT_Deity);         // level 6
             break;
         case Class_Ranger:
             types.push_back(TFT_RangerFavoredEnemy);
@@ -3172,7 +3172,7 @@ bool CanEquipTo2ndWeapon(
 {
     bool bAllowRuneArm = false;
     if (pCharacter != NULL
-            && pCharacter->IsFeatTrained("Artificer Rune Arm Use"))
+            && pCharacter->IsFeatTrained("Artificer Rune Arm Use", true))
     {
         bAllowRuneArm = true;
     }
@@ -3208,7 +3208,7 @@ bool LimitToRuneArm(Character * pCharacter)
 {
     bool bLimitToRuneArm = false;
     if (pCharacter != NULL
-            && pCharacter->IsFeatTrained("Artificer Rune Arm Use"))
+            && pCharacter->IsFeatTrained("Artificer Rune Arm Use", true))
     {
         Item item = pCharacter->ActiveGearSet().MainHand();
         switch (item.Weapon())

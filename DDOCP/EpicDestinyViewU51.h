@@ -73,7 +73,7 @@ class CEpicDestinyViewU51 :
         Character * m_pCharacter;
         std::list<EnhancementTree> m_availableTrees;
         CComboBox m_comboTreeSelect[MST_Number];
-        CIconButton m_destinyTrees[12];
+        CIconButton m_destinyTrees[13];
         CStatic m_staticPreview;
         std::vector<CEnhancementTreeDialog *> m_treeViews;
         std::vector<size_t> m_visibleTrees; // only some trees will be visible (indexes into m_treeViews)
