@@ -67,6 +67,7 @@ class Requirement :
                 DL_OPTIONAL_STRING(_, Selection) \
                 DL_OPTIONAL_STRING(_, Feat) \
                 DL_OPTIONAL_STRING(_, FeatAnySource) \
+                DL_OPTIONAL_STRING(_, Unique) \
                 DL_FLAG(_, ListAtSameFeatLevel)
 
         DL_DECLARE_ACCESS(Requirement_PROPERTIES)

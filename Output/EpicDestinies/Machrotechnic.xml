@@ -6,9 +6,9 @@
       <Icon>Machrotechnic</Icon>
       <Background>DestinyArcane</Background>
       <Requirements>
-        <Requirement>
+         <Requirement>
             <Feat>Machrotechnic</Feat>
-        </Requirement>
+         </Requirement>
       </Requirements>
       <IsEpicDestiny/>
       <!--tree core items-->
@@ -22,7 +22,7 @@ Each Core ability in this tree, including this one, grants the following:
 +1 Epic bonus to all Spell DCs
 +5 Melee power
 +4 Ranged Power
-+25 Hit Points
++15 Hit Points
 +25 Spell Points
 +5 Electric, Sonic, Rust, Repair, and Universal Spell Power.</Description>
          <Icon>PassiveStub</Icon>
@@ -54,7 +54,7 @@ Each Core ability in this tree, including this one, grants the following:
          <Effect>
             <Type>Hitpoints</Type>
             <Bonus>Destiny</Bonus>
-            <Amount>25</Amount>
+            <Amount>15</Amount>
          </Effect>
          <Effect>
             <Type>SpellPoints</Type>
@@ -138,7 +138,7 @@ toggled on to gain their effects on Rune Arms.</Description>
          <Effect>
             <Type>Hitpoints</Type>
             <Bonus>Destiny</Bonus>
-            <Amount>25</Amount>
+            <Amount>15</Amount>
          </Effect>
          <Effect>
             <Type>SpellPoints</Type>
@@ -220,7 +220,7 @@ spell now blocks 20 points of damage per caster level with no cap.</Description>
          <Effect>
             <Type>Hitpoints</Type>
             <Bonus>Destiny</Bonus>
-            <Amount>25</Amount>
+            <Amount>15</Amount>
          </Effect>
          <Effect>
             <Type>SpellPoints</Type>
@@ -261,7 +261,7 @@ your Epic and Legendary Knowledge feats.</Description>
          <YPosition>0</YPosition>
          <CostPerRank size="1">1</CostPerRank>
          <Ranks>1</Ranks>
-         <MinSpent>10</MinSpent>
+         <MinSpent>20</MinSpent>
          <Requirements>
             <Requirement>
                <MinLevel>32</MinLevel>
@@ -310,7 +310,7 @@ your Epic and Legendary Knowledge feats.</Description>
          <Effect>
             <Type>Hitpoints</Type>
             <Bonus>Destiny</Bonus>
-            <Amount>25</Amount>
+            <Amount>15</Amount>
          </Effect>
          <Effect>
             <Type>SpellPoints</Type>
@@ -418,6 +418,11 @@ Your Runearms charge [5/10/15]% faster.</Description>
             <AmountVector size="3">1 2 3</AmountVector>
             <Skill>Spell Craft</Skill>
             <Skill>Use Magic Device</Skill>
+         </Effect>
+         <Effect>
+            <Type>RuneArmRechargeRate</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">5 10 15</AmountVector>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -558,8 +563,8 @@ healing from all sources (except untyped).</Description>
          <Name>Machrotechnic: Rune Arm Use</Name>
          <InternalName>MachroRunaArmUse</InternalName>
          <Description>You gain the Rune Arm Use feat. Your Caster Level with Rune Arms is now based on
-the higher of half your Character Level versus your Artificer Level. If you
-already have the Rune Arm Use feat, +1 Stable Charge Tier.</Description>
+Character Level rather than your Artificer Level. If you already have the Rune
+Arm Use feat, +1 Stable Charge Tier.</Description>
          <Icon>PassiveStub</Icon>
          <XPosition>2</XPosition>
          <YPosition>2</YPosition>
@@ -574,6 +579,12 @@ already have the Rune Arm Use feat, +1 Stable Charge Tier.</Description>
          <Effect>
             <Type>GrantFeat</Type>
             <Bonus>Enhancement</Bonus>
+            <Feat>Artificer Rune Arm Use</Feat>
+         </Effect>
+         <Effect>
+            <Type>RuneArmStableCharge</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
             <Feat>Artificer Rune Arm Use</Feat>
          </Effect>
       </EnhancementTreeItem>
@@ -705,6 +716,13 @@ This is increased to 15% if you are wearing a Rune Arm.</Description>
             </Requirement>
          </Requirements>
          <Selector>
+            <Exclude>U51ShiradiChampionShiradiMagic</Exclude>
+            <Exclude>U51ShadowdancerSpellFocus</Exclude>
+            <Exclude>U51PrimalAvatarMagicOfTheOldWorld</Exclude>
+            <Exclude>U51MagusPartialEclipse</Exclude>
+            <Exclude>U51FatesingerTheMagicOfMusic</Exclude>
+            <Exclude>U51ExaltedAngelAngelicSpellFocus</Exclude>
+            <Exclude>U51DraconicIncarnationDraconicSpellFocus</Exclude>
             <EnhancementSelection>
                <Name>Abjuration</Name>
                <Description>+[1/2/3] Abjuration Spell DCs.</Description>
@@ -854,51 +872,28 @@ Rank 3: +5 Sonic, Electric, Repair, Rust, and Universal Spell Power.</Descriptio
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Machrotechnic: Strike Drive</Name>
-         <InternalName>MachroStrikeDrive</InternalName>
-         <Description>Install a Drive to enhance your Epic Strike.</Description>
+         <Name>Machrotechnic: Arcane Imbuement</Name>
+         <InternalName>MachroArcaneImbuement</InternalName>
+         <Description>+[1/2/3] bonus Imbue dice.</Description>
          <Icon>PassiveStub</Icon>
          <XPosition>3</XPosition>
          <YPosition>3</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
-         <Ranks>1</Ranks>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
          <MinSpent>10</MinSpent>
          <Requirements>
             <Requirement>
                <MinLevel>23</MinLevel>
             </Requirement>
          </Requirements>
-         <Selector>
-            <EnhancementSelection>
-               <Name>Blast Drive</Name>
-               <Description>Your Epic Strike now Stuns enemies struck for 3 seconds, assuming they fail
-their save. If you are using the Electric Epic Strike, this also Supercharges you.
-
-Supercharge: +30% Action boost bonus to Movement speed. Duration: 5 seconds.</Description>
-               <Icon>PassiveStub</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Dissonance Drive</Name>
-               <Description>Your Epic Strike now confuses enemies struck for 6 seconds, assuming they
-fail their save. If you are using the Sonic Epic Strike, they also take 3 stacks
-of Vulnerability and 3 stacks of Armor Destruction.</Description>
-               <Icon>PassiveStub</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-            </EnhancementSelection>
-            <EnhancementSelection>
-               <Name>Ruin Drive</Name>
-               <Description>Your Epic Strike now disassembles enemy constructs, dealing bonus Rust
-damage. If you are using the Repair Epic Strike, this also Supercharges you.
-
-Supercharge: -1 to each of your Metamagic costs. Duration: 5 seconds.</Description>
-               <Icon>PassiveStub</Icon>
-               <CostPerRank size="1">2</CostPerRank>
-            </EnhancementSelection>
-         </Selector>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Destiny</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Machrotechnic: Forcefield Generator II</Name>
+         <Name>Machrotechnic: Animated Aegis</Name>
          <InternalName>MachroForcefieldGeneratorII</InternalName>
          <Description>While using your Machrotechnic Destiny Mantle, you gain +5 Physical and Magical
 Resistance Rating. If you are wearing a Rune Arm, gain +10 instead.</Description>
@@ -982,25 +977,48 @@ Resistance Rating. If you are wearing a Rune Arm, gain +10 instead.</Description
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Machrotechnic: Arcane Imbuement</Name>
-         <InternalName>MachroArcaneImbuement</InternalName>
-         <Description>+[1/2/3] bonus Imbue dice.</Description>
+         <Name>Machrotechnic: Strike Drive</Name>
+         <InternalName>MachroStrikeDrive</InternalName>
+         <Description>Install a Drive to enhance your Epic Strike.</Description>
          <Icon>PassiveStub</Icon>
          <XPosition>1</XPosition>
          <YPosition>4</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
          <MinSpent>20</MinSpent>
          <Requirements>
             <Requirement>
                <MinLevel>26</MinLevel>
             </Requirement>
          </Requirements>
-        <Effect>
-            <Type>ImbueDice</Type>
-            <Bonus>Destiny</Bonus>
-            <AmountVector size="3">1 2 3</AmountVector>
-        </Effect>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Blast Drive</Name>
+               <Description>Your Epic Strike now Stuns enemies struck for 3 seconds, assuming they fail
+their save. If you are using the Electric Epic Strike, this also Supercharges you.
+
+Supercharge: +30% Action boost bonus to Movement speed. Duration: 5 seconds.</Description>
+               <Icon>PassiveStub</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Dissonance Drive</Name>
+               <Description>Your Epic Strike now confuses enemies struck for 6 seconds, assuming they
+fail their save. If you are using the Sonic Epic Strike, they also take 3 stacks
+of Vulnerability and 3 stacks of Armor Destruction.</Description>
+               <Icon>PassiveStub</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Ruin Drive</Name>
+               <Description>Your Epic Strike now disassembles enemy constructs, dealing bonus Rust
+damage. If you are using the Repair Epic Strike, this also Supercharges you.
+
+Supercharge: -1 to each of your Metamagic costs. Duration: 5 seconds.</Description>
+               <Icon>PassiveStub</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+            </EnhancementSelection>
+         </Selector>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Machrotechnic: Boost Drive</Name>
@@ -1089,7 +1107,7 @@ bonus Electric damage per caster level, scaling with Spell Power.</Description>
          </Selector>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Machrotechnic: Forcefield Generator III</Name>
+         <Name>Machrotechnic: Magical Recoil</Name>
          <InternalName>MachroForcefieldGeneratorIII</InternalName>
          <Description>+5 Electric, Sonic, Rust, Repair, and Universal Spell Power.
 While using your Machrotechnic Destiny Mantle, firing a Runearm grants you spell
@@ -1106,7 +1124,7 @@ resistance equal to your character level for 10 seconds.</Description>
                <MinLevel>26</MinLevel>
             </Requirement>
             <Requirement>
-                <Enhancement>MachroForcefieldGeneratorII</Enhancement>
+               <Enhancement>MachroForcefieldGeneratorII</Enhancement>
             </Requirement>
          </Requirements>
          <Effect>
@@ -1202,7 +1220,9 @@ Echo Drive: +1 Action boost bonus to Imbue Dice.</Description>
       <EnhancementTreeItem>
          <Name>Machrotechnic: Maximum Overdrive</Name>
          <InternalName>MachroMaximumOverdrive</InternalName>
-         <Description>Epic Moment: DNT TBD</Description>
+         <Description>Epic Moment: Maximum Overdrive: Shift into MAXIMUM OVERDRIVE.
+This grants you a 100% boost to Runearm Charge Speed and a 50% reduction in
+Spell Cooldowns for 30 seconds.</Description>
          <Icon>PassiveStub</Icon>
          <XPosition>3</XPosition>
          <YPosition>5</YPosition>
@@ -1233,7 +1253,7 @@ Maximum Hit Points. While you have a Runearm equipped, increase this bonus to 20
                <MinLevel>30</MinLevel>
             </Requirement>
             <Requirement>
-                <Enhancement>MachroForcefieldGeneratorIII</Enhancement>
+               <Enhancement>MachroForcefieldGeneratorIII</Enhancement>
             </Requirement>
          </Requirements>
          <Effect>

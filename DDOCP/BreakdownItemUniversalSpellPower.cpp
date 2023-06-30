@@ -59,6 +59,32 @@ void BreakdownItemUniversalSpellPower::CreateOtherEffects()
                 }
             }
         }
+        if (m_pCharacter->IsEnhancementTrained("U51DraconicIncarnationConduit", "", TT_epicDestiny)
+                && m_pCharacter->IsStanceActive("Quarterstaff"))
+        {
+            // find any "Implement" bonus we have and double it
+            double implementBonus = 0;
+            std::list<ActiveEffect> allActiveEffects = AllActiveEffects();
+            std::list<ActiveEffect>::iterator it = allActiveEffects.begin();
+            while (it != allActiveEffects.end())
+            {
+                if (it->Bonus() == Bonus_implement)
+                {
+                    implementBonus = it->TotalAmount(true);
+                }
+                ++it;
+            }
+            if (implementBonus > 0)
+            {
+                ActiveEffect implementBonusDoubling(
+                        Bonus_special,
+                        "Conduit + Quarterstaff",
+                        1,
+                        implementBonus,
+                        "");        // no tree
+                AddOtherEffect(implementBonusDoubling);
+            }
+        }
     }
 }
 

@@ -622,7 +622,7 @@ void CEpicDestinyViewU51::AddCustomButtons()
                     IT_ui,
                     (*it).Icon(),
                     &m_destinyTrees[buttonIndex].m_image,
-                    false);
+                    true);
             m_destinyTrees[buttonIndex].m_image.SetTransparentColor(c_transparentColour);
             ++buttonIndex;
             ++m_numDestinyButtons;

@@ -92,6 +92,8 @@ enum BreakdownType
     Breakdown_KiPassive,
     Breakdown_KiHit,
     Breakdown_KiCritical,
+    Breakdown_RuneArmRechargeRate,
+    Breakdown_RuneArmStableCharge,
     // skills
     Breakdown_SkillBalance,
     Breakdown_SkillBluff,

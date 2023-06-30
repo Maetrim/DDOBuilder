@@ -709,6 +709,13 @@ void Character::NotifyEnhancementEffect(
 {
     EffectTier et(effect, ranks);
     NotifyAll(&CharacterObserver::UpdateEnhancementEffect, this, enhancementName, et);
+    if (effect.Type() == Effect_Unique)
+    {
+        std::pair<std::string, std::string> item;
+        item.first = effect.Unique();
+        item.second = effect.Selection();
+        m_uniqueSelections.push_back(item);
+    }
 }
 
 void Character::NotifyEnhancementEffectRevoked(
@@ -718,6 +725,19 @@ void Character::NotifyEnhancementEffectRevoked(
 {
     EffectTier et(effect, tier);
     NotifyAll(&CharacterObserver::UpdateEnhancementEffectRevoked, this, name, et);
+    if (effect.Type() == Effect_Unique)
+    {
+        auto it = m_uniqueSelections.begin();
+        while (it != m_uniqueSelections.end())
+        {
+            if ((*it).first == effect.Unique())
+            {
+                m_uniqueSelections.erase(it);
+                break;
+            }
+            ++it;
+        }
+    }
 }
 
 void Character::NotifyEnhancementTrained(
@@ -6623,6 +6643,37 @@ void Character::SetNotes(const std::string & notes)
 {
     Set_Notes(notes);
     m_pDocument->SetModifiedFlag(TRUE);
+}
+
+bool Character::HasUnique(const std::string& name) const
+{
+    bool bHas = false;
+    auto it = m_uniqueSelections.begin();
+    while (it != m_uniqueSelections.end())
+    {
+        if ((*it).first == name)
+        {
+            bHas = true;
+        }
+        ++it;
+    }
+    return bHas;
+}
+
+bool Character::UniqueIs(const std::string& name, const std::string& value) const
+{
+    bool bIs = false;
+    auto it = m_uniqueSelections.begin();
+    while (it != m_uniqueSelections.end())
+    {
+        if ((*it).first == name
+                && (*it).second == value)
+        {
+            bIs = true;
+        }
+        ++it;
+    }
+    return bIs;
 }
 
 void Character::ResetBuild()

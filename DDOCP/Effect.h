@@ -125,6 +125,8 @@ enum EffectType
     Effect_RangedSneakAttackRange,
     Effect_Regeneration,
     Effect_RepairAmplification,
+    Effect_RuneArmRechargeRate,
+    Effect_RuneArmStableCharge,
     Effect_RustSusceptability,
     Effect_SaveBonus,
     Effect_SaveNoFailOn1,
@@ -159,6 +161,7 @@ enum EffectType
     Effect_TwistOfFate,
     Effect_UAPBonus,
     Effect_UnconsciousRange,
+    Effect_Unique,
     Effect_UniversalSpellLore,
     Effect_UniversalSpellPower,
     Effect_UniversalSpellCriticalDamage,
@@ -279,6 +282,8 @@ const XmlLib::enumMapEntry<EffectType> effectTypeMap[] =
     {Effect_RangedSneakAttackRange, L"RangedSneakAttackRange"},
     {Effect_Regeneration, L"Regeneration"},
     {Effect_RepairAmplification, L"RepairAmplification"},
+    {Effect_RuneArmRechargeRate, L"RuneArmRechargeRate"},
+    {Effect_RuneArmStableCharge, L"RuneArmStableCharge"},
     {Effect_RustSusceptability, L"RustSusceptability"},
     {Effect_SaveBonus, L"SaveBonus"},
     {Effect_SaveNoFailOn1, L"SaveNoFailOn1"},
@@ -312,6 +317,7 @@ const XmlLib::enumMapEntry<EffectType> effectTypeMap[] =
     {Effect_TurnMaxDice, L"TurnMaxDice"},
     {Effect_TwistOfFate, L"TwistOfFate"},
     {Effect_UAPBonus, L"UAPBonus"},
+    {Effect_Unique, L"Unique"},
     {Effect_UniversalSpellLore, L"UniversalSpellLore"},
     {Effect_UniversalSpellPower, L"UniversalSpellPower"},
     {Effect_UniversalSpellCriticalDamage, L"UniversalSpellCriticalDamage"},
@@ -375,6 +381,8 @@ class Effect :
                 DL_OPTIONAL_STRING(_, Feat) \
                 DL_OPTIONAL_STRING(_, WeaponGroup) \
                 DL_OPTIONAL_STRING(_, Spell) \
+                DL_OPTIONAL_STRING(_, Unique) \
+                DL_OPTIONAL_STRING(_, Selection) \
                 DL_OPTIONAL_SIMPLE(_, int, SpellLevel, 0) \
                 DL_STRING_VECTOR(_, Stance) \
                 DL_STRING_VECTOR(_, AnyOfStance) \

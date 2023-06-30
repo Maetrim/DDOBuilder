@@ -1279,6 +1279,34 @@ void CBreakdownsView::CreatePhysicalBreakdowns()
         m_itemBreakdownTree.SetItemData(hHelpless, (DWORD)(void*)pHelpless);
         m_items.push_back(pHelpless);
     }
+    {
+        HTREEITEM hRARR = m_itemBreakdownTree.InsertItem(
+                "Rune Arm Recharge Rate",
+                hOffensiveParent,
+                TVI_LAST);
+        BreakdownItem * pRARC = new BreakdownItemSimple(
+                Breakdown_RuneArmRechargeRate,
+                Effect_RuneArmRechargeRate,
+                "Rune Arm Recharge Rate",
+                &m_itemBreakdownTree,
+                hRARR);
+        m_itemBreakdownTree.SetItemData(hRARR, (DWORD)(void*)pRARC);
+        m_items.push_back(pRARC);
+    }
+    {
+        HTREEITEM hRASC = m_itemBreakdownTree.InsertItem(
+                "Rune Arm Stable Charge",
+                hOffensiveParent,
+                TVI_LAST);
+        BreakdownItem * pRASC = new BreakdownItemSimple(
+                Breakdown_RuneArmStableCharge,
+                Effect_RuneArmStableCharge,
+                "Rune Arm Stable Charge",
+                &m_itemBreakdownTree,
+                hRASC);
+        m_itemBreakdownTree.SetItemData(hRASC, (DWORD)(void*)pRASC);
+        m_items.push_back(pRASC);
+    }
 
     HTREEITEM hTacticalParent = m_itemBreakdownTree.InsertItem(
             "Tactical Breakdown Bonuses", 

@@ -98,6 +98,11 @@ for a total of +16.</Description>
             <AmountVector size="5">0 8 8 8 8</AmountVector>
             <Stacks>Rune Arm Tier</Stacks>
          </Effect>
+         <Effect>
+            <Type>RuneArmStableCharge</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Battle Engineer: Infused Armor I</Name>
@@ -211,6 +216,11 @@ for a total of +32.</Description>
             <AmountVector size="5">0 0 0 8 8</AmountVector>
             <Stacks>Rune Arm Tier</Stacks>
          </Effect>
+         <Effect>
+            <Type>RuneArmStableCharge</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Battle Engineer: Infused Armor II</Name>
@@ -298,7 +308,17 @@ Enhancement bonus on the weapon.</Description>
                <Class>Artificer</Class>
                <Level>20</Level>
             </Requirement>
+            <Requirement>
+               <Unique>Capstone Enhancement</Unique>
+               <Selection>BECore6</Selection>
+            </Requirement>
          </Requirements>
+         <Effect>
+            <Type>Unique</Type>
+            <Bonus>Enhancement</Bonus>
+            <Unique>Capstone Enhancement</Unique>
+            <Selection>BECore6</Selection>
+         </Effect>
          <Effect>
             <Type>AbilityBonus</Type>
             <Bonus>Enhancement</Bonus>
@@ -497,6 +517,11 @@ Your rune arms build charge [10/20/33]% faster.</Description>
                <Level>1</Level>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>RuneArmRechargeRate</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">10 20 33</AmountVector>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Battle Engineer: Item Defense</Name>
@@ -1304,13 +1329,13 @@ bonus for 20 seconds. (Cooldown: 30 seconds.)</Description>
                   <Weapon>Bastard Sword</Weapon>
                   <Weapon>Dwarven Axe</Weapon>
                </Effect>
-                 <Effect>
-                    <Type>Hitpoints</Type>
-                    <Bonus>Competence</Bonus>
-                    <Amount>20</Amount>
-                    <Percent/>
-                    <ApplyAsItemEffect/>
-                 </Effect>
+               <Effect>
+                  <Type>Hitpoints</Type>
+                  <Bonus>Competence</Bonus>
+                  <Amount>20</Amount>
+                  <Percent/>
+                  <ApplyAsItemEffect/>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Reconstructed Arms</Name>
@@ -1328,13 +1353,13 @@ Light Hammers, Warhammers and Morningstars.
                   <Weapon>Warhammer</Weapon>
                   <Weapon>Morningstar</Weapon>
                </Effect>
-                 <Effect>
-                    <Type>Hitpoints</Type>
-                    <Bonus>Competence</Bonus>
-                    <Amount>20</Amount>
-                    <Percent/>
-                    <ApplyAsItemEffect/>
-                 </Effect>
+               <Effect>
+                  <Type>Hitpoints</Type>
+                  <Bonus>Competence</Bonus>
+                  <Amount>20</Amount>
+                  <Percent/>
+                  <ApplyAsItemEffect/>
+               </Effect>
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>

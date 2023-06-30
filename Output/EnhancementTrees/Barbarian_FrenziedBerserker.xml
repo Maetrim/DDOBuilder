@@ -96,12 +96,12 @@ Cooldown: 30 seconds.</Description>
                <Enhancement>FBCore2</Enhancement>
             </Requirement>
          </Requirements>
-      <Stance>
-         <Name>Frenzy</Name>
-         <Icon>FBFrenzy</Icon>
-         <Description>Enter a frenzy, increasing your strength by +2 and adding Vicious to your
+         <Stance>
+            <Name>Frenzy</Name>
+            <Icon>FBFrenzy</Icon>
+            <Description>Enter a frenzy, increasing your strength by +2 and adding Vicious to your
 melee weapons (+2d6 damage). This damage scales with 100% Melee Power.</Description>
-      </Stance>
+         </Stance>
          <Effect>
             <Type>MeleePower</Type>
             <Bonus>Enhancement</Bonus>
@@ -188,12 +188,12 @@ Cooldown: 30 seconds.</Description>
                <Enhancement>FBCore4</Enhancement>
             </Requirement>
          </Requirements>
-      <Stance>
-         <Name>Death Frenzy</Name>
-         <Icon>FBDeathFrenzy</Icon>
-         <Description>Expend 20 hit points to enter a Death Frenzy for one minute: 
+         <Stance>
+            <Name>Death Frenzy</Name>
+            <Icon>FBDeathFrenzy</Icon>
+            <Description>Expend 20 hit points to enter a Death Frenzy for one minute: 
 +6 strength, +1 critical damage multiplier on rolls of 19-20.  +3 Imbue Dice.</Description>
-      </Stance>
+         </Stance>
          <Effect>
             <Type>MeleePower</Type>
             <Bonus>Enhancement</Bonus>
@@ -245,7 +245,17 @@ Cooldown: 2.5 minutes.</Description>
             <Requirement>
                <Enhancement>FBCore5</Enhancement>
             </Requirement>
+            <Requirement>
+               <Unique>Capstone Enhancement</Unique>
+               <Selection>FBCore6</Selection>
+            </Requirement>
          </Requirements>
+         <Effect>
+            <Type>Unique</Type>
+            <Bonus>Enhancement</Bonus>
+            <Unique>Capstone Enhancement</Unique>
+            <Selection>FBCore6</Selection>
+         </Effect>
          <Effect>
             <Type>CreateSlider</Type>
             <Bonus>Enhancement</Bonus>
@@ -628,25 +638,25 @@ damage and +[1/2/3] Melee Power.</Description>
                <Enhancement>FBBodyBlow</Enhancement>
             </Requirement>
          </Requirements>
-      <Stance>
-         <Name>Crazy Strike</Name>
-         <Icon>FBCrazyStrike</Icon>
-         <Description>When you hit with Cracking Attack, for 12 seconds you gain +[0.5/1/2][W]
+         <Stance>
+            <Name>Crazy Strike</Name>
+            <Icon>FBCrazyStrike</Icon>
+            <Description>When you hit with Cracking Attack, for 12 seconds you gain +[0.5/1/2][W]
 damage and +[1/2/3] Melee Power.</Description>
-      </Stance>
-        <Effect>
+         </Stance>
+         <Effect>
             <Type>WeaponBaseDamageBonus</Type>
             <Bonus>Enhancement</Bonus>
             <AmountVector size="3">0.5 1.0 2.0</AmountVector>
             <Stance>Crazy Strike</Stance>
             <Weapon>All</Weapon>
-        </Effect>
-        <Effect>
+         </Effect>
+         <Effect>
             <Type>MeleePower</Type>
             <Bonus>Enhancement</Bonus>
             <AmountVector size="3">1 2 3</AmountVector>
             <Stance>Crazy Strike</Stance>
-        </Effect>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Frenzied Berserker: Exhausting Blow</Name>
@@ -854,13 +864,13 @@ points every 4 seconds. This healing scales with 100% Melee Power.
                </Effect>
             </EnhancementSelection>
          </Selector>
-        <Effect>
+         <Effect>
             <Type>Hitpoints</Type>
             <Bonus>Competence</Bonus>
             <Amount>25</Amount>
             <Percent/>
             <ApplyAsItemEffect/>
-        </Effect>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Frenzied Berserker: Tantrum</Name>

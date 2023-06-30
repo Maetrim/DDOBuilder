@@ -185,6 +185,18 @@ bool Requirement::Met(
         // must have a specific alignment
         met &= (charData.Alignment() == m_Alignment);
     }
+    if (HasUnique())
+    {
+        // Unique option must not exist or not be us
+        if (charData.HasUnique(Unique()))
+        {
+            met &= charData.UniqueIs(Unique(), Selection());
+        }
+        else
+        {
+            met &= true;
+        }
+    }
     return met;
 }
 
@@ -287,6 +299,18 @@ bool Requirement::CanTrainEnhancement(
         ASSERT(HasAmount());
         size_t value = charData.AbilityAtLevel(Ability(), charData.MaxLevel(), true);
         met = (value >= Amount());
+    }
+    if (HasUnique())
+    {
+        // Unique option must not exist or not be us
+        if (charData.HasUnique(Unique()))
+        {
+            met &= charData.UniqueIs(Unique(), Selection());
+        }
+        else
+        {
+            met &= true;
+        }
     }
     return met;
 }
@@ -522,6 +546,19 @@ void Requirement::CreateRequirementStrings(
         description.Format("Requires: %s(%d)", EnumEntryText(Ability(), abilityTypeMap), Amount());
         requirements->push_back(description);
         met->push_back(charData.AbilityAtLevel(Ability(), level, true) >= Amount());
+    }
+    if (HasUnique())
+    {
+        // Unique option must not exist
+        description.Format("Requires no other %s", Unique().c_str());
+        requirements->push_back(description);
+        bool bMet = true;
+        // Unique option must not exist or not be us
+        if (charData.HasUnique(Unique()))
+        {
+            bMet = charData.UniqueIs(Unique(), Selection());
+        }
+        met->push_back(bMet);
     }
 }
 

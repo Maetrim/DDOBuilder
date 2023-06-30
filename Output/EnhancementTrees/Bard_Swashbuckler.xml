@@ -121,7 +121,7 @@ Light Pick: +1 Range</Description>
             <DisplayName>Swashbuckler: Swashbuckling</DisplayName>
             <Type>CriticalRange</Type>
             <Bonus>Competence</Bonus>
-            <AmountVector size ="3">0 1 2</AmountVector>
+            <AmountVector size="3">0 1 2</AmountVector>
             <ApplyAsItemEffect/>
             <Weapon>Dagger</Weapon>
             <Weapon>Shortsword</Weapon>
@@ -155,25 +155,25 @@ Light Pick: +1 Range</Description>
             <Weapon>Sickle</Weapon>
             <Weapon>Hand Axe</Weapon>
          </Effect>
-          <Effect>
-             <DisplayName>Swashbuckler: Swashbuckling</DisplayName>
-             <Type>CriticalRange</Type>
-             <Bonus>Competence</Bonus>
-             <AmountVector size="3">0 1 2</AmountVector>
-             <ApplyAsItemEffect/>
-             <Weapon>Throwing Dagger</Weapon>
-          </Effect>
-          <Effect>
-             <DisplayName>Swashbuckler: Swashbuckling</DisplayName>
-             <Type>CriticalRange</Type>
-             <Bonus>Competence</Bonus>
-             <AmountVector size="3">0 2 4</AmountVector>
-             <ApplyAsItemEffect/>
-             <Weapon>Dart</Weapon>
-             <Weapon>Shuriken</Weapon>
-             <Weapon>Throwing Axe</Weapon>
-             <Weapon>Throwing Hammer</Weapon>
-          </Effect>
+         <Effect>
+            <DisplayName>Swashbuckler: Swashbuckling</DisplayName>
+            <Type>CriticalRange</Type>
+            <Bonus>Competence</Bonus>
+            <AmountVector size="3">0 1 2</AmountVector>
+            <ApplyAsItemEffect/>
+            <Weapon>Throwing Dagger</Weapon>
+         </Effect>
+         <Effect>
+            <DisplayName>Swashbuckler: Swashbuckling</DisplayName>
+            <Type>CriticalRange</Type>
+            <Bonus>Competence</Bonus>
+            <AmountVector size="3">0 2 4</AmountVector>
+            <ApplyAsItemEffect/>
+            <Weapon>Dart</Weapon>
+            <Weapon>Shuriken</Weapon>
+            <Weapon>Throwing Axe</Weapon>
+            <Weapon>Throwing Hammer</Weapon>
+         </Effect>
          <Effect>
             <Type>CriticalMultiplier</Type>
             <Bonus>Competence</Bonus>
@@ -416,7 +416,17 @@ hand gains an additional +1 to its Enhancement bonus.</Description>
                <Class>Bard</Class>
                <Level>20</Level>
             </Requirement>
+            <Requirement>
+               <Unique>Capstone Enhancement</Unique>
+               <Selection>SBCore6</Selection>
+            </Requirement>
          </Requirements>
+         <Effect>
+            <Type>Unique</Type>
+            <Bonus>Enhancement</Bonus>
+            <Unique>Capstone Enhancement</Unique>
+            <Selection>SBCore6</Selection>
+         </Effect>
          <Effect>
             <Type>DodgeBonus</Type>
             <Bonus>Enhancement</Bonus>
@@ -864,13 +874,15 @@ Fighting line of feats.</Description>
       <EnhancementTreeItem>
          <Name>Swashbuckler: Resonant Arms</Name>
          <InternalName>SBResonantArms</InternalName>
-         <Description>1d6 Sonic damage per Imbue dice scaling with Sonic spell power.</Description>
+         <Description>Imbue Toggle: While Swashbuckling, the Finesseable or thrown Weapon in your main
+hand deals an additional 1d6 Sonic Damage. This Sonic damage scales with Spell Power.</Description>
          <Icon>SBResonantArms</Icon>
          <XPosition>2</XPosition>
          <YPosition>3</YPosition>
          <CostPerRank size="1">1</CostPerRank>
          <Ranks>1</Ranks>
          <MinSpent>10</MinSpent>
+         <Clickie/>
          <Requirements>
             <Requirement>
                <Class>Bard</Class>
@@ -879,7 +891,8 @@ Fighting line of feats.</Description>
          </Requirements>
          <Stance>
             <Name>Swashbuckler: Resonant Arms</Name>
-            <Description>1d6 Sonic damage per Imbue dice scaling with Sonic spell power.</Description>
+            <Description>Imbue Toggle: While Swashbuckling, the Finesseable or thrown Weapon in your main
+hand deals an additional 1d6 Sonic Damage. This Sonic damage scales with Spell Power.</Description>
             <Icon>SBResonantArms</Icon>
             <Group>Imbue</Group>
          </Stance>
@@ -1081,11 +1094,11 @@ Arm Weapon Imbue deals an additional 1d6 Sonic damage. </Description>
                   <Stance>Rune Arm</Stance>
                   <Weapon>All</Weapon>
                </Effect>
-             <Effect>
-                <Type>ImbueDice</Type>
-                <Bonus>Enhancement</Bonus>
-                <Amount>1</Amount>
-             </Effect>
+               <Effect>
+                  <Type>ImbueDice</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Amount>1</Amount>
+               </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Slap in the Face</Name>
@@ -1278,13 +1291,13 @@ Rank 3: +20% competence bonus to hit points.</Description>
             <AmountVector size="3">2 4 6</AmountVector>
             <Stance>Swashbuckling</Stance>
          </Effect>
-        <Effect>
+         <Effect>
             <Type>Hitpoints</Type>
             <Bonus>Competence</Bonus>
             <AmountVector size="3">0 0 20</AmountVector>
             <Percent/>
             <ApplyAsItemEffect/>
-        </Effect>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Swashbuckler: Exploit Weaknesses</Name>

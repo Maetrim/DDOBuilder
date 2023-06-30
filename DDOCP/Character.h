@@ -294,6 +294,9 @@ class Character :
         // Notes support
         void SetNotes(const std::string & notes);
 
+        bool HasUnique(const std::string& name) const;
+        bool UniqueIs(const std::string& name, const std::string& value) const;
+
      protected:
         // notifications
         void NotifyAvailableBuildPointsChanged();
@@ -480,6 +483,7 @@ class Character :
         std::list<TrainedFeat> m_grantedFeats;
         std::list<bool> m_grantedNotifyState;
         std::vector<SpellListAddition> m_additionalSpells;
+        std::list<std::pair<std::string, std::string> > m_uniqueSelections;
 
         bool m_bShowEpicOnly;
         bool m_bShowUnavailableFeats;

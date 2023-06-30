@@ -511,6 +511,13 @@ bool Effect::VerifyObject(std::stringstream * ss) const
                 ok = false;
             }
             break;
+        case Effect_Unique:
+            if (!HasUnique())
+            {
+                (*ss) << "Unique effect missing Unique field\n";
+                ok = false;
+            }
+            break;
     }
     if (HasAmountVector())
     {
