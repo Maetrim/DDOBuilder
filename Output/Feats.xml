@@ -13,7 +13,7 @@
    <Feat>
       <Name>Second Wind</Name>
       <Description>Active this ability to regain 50% of your max hit points.
-15 second cool down. You can used this once per rest, with an additional charges
+15 second cool down. You can use this once per rest, with an additional charge
 gained at Fighter levels 4, 8, 12, 16, 20. This can be used while Crowd Controlled.
 At level 8 in addition to the heal the following effects are cured:
 Ability damage, Blind, Confusion, Dazed, Dazzled, Deafened, Diseased, Exhausted,
@@ -5825,7 +5825,7 @@ smaller.</Description>
 You are now considered a Living Construct instead of your original race,
 gaining the following traits:   100% base healing from Repair spells and 100%
 damage from Rust.
-Immunity to Sleep, Hold Person, Energy Drain, Nasueated, Exhausted and Paralyzed
+Immunity to Sleep, Hold Person, Energy Drain, Nauseated, Exhausted and Paralyzed
 effects except those which physically hold you in place.
 Immunity to ability score damage from natural poisons and natural diseases
 (but are vulnerable to those that specifically affect wood or metal).
@@ -6008,7 +6008,7 @@ This feat does not stack with item effects that double threat range like keen an
          <DamageType>Slashing</DamageType>
       </Effect>
       <Effect>
-         <!--additional stack for crit range for battle axes, has no effect if Knight's training not selected-->
+         <!--additional stack for critical range for battle axes, has no effect if Knight's training not selected-->
          <DisplayName>Knight's Training</DisplayName>
          <Type>CriticalRange</Type>
          <Bonus>Morale</Bonus>
@@ -6142,7 +6142,7 @@ sneak attacks for a short period of time. This attack deals +2[W] damage.</Descr
       <Name>Improved Fortification</Name>
       <Description>Improves your warforged fortification, granting you immunity to sneak
 attacks and extra damage from critical hits. However, you lose the ability to
-be healed by spells from the healing subschool, such as cure light wounds.</Description>
+be healed by spells from the healing sub-school, such as cure light wounds.</Description>
       <FeatGroup>
          <IsStandardFeat/>
          <IsArtificerBonus/>
@@ -9242,7 +9242,7 @@ and your morale bonus to Will saves is increased to +4.</Description>
    </Feat>
    <Feat>
       <Name>Mithral Body</Name>
-      <Description>Docents you equip provide armor equivalent to Chainmail.
+      <Description>Docents you equip provide armor equivalent to Chain mail.
 This is treated as metallic light armor. You have a 15% arcane spell failure
 chance, -1 armor check penalty to certain skills and a +5 maximum dexterity bonus.</Description>
       <FeatGroup>
@@ -10472,7 +10472,7 @@ hit damage (before multipliers are applied).</Description>
 to strike their target. This feat also grants you the Offensive Ranged Stance
 'Archer's Focus', which lets you deal progressively more damage with ranged
 attacks while standing still. +5 Ranged Power per stack, Max stacks: 15
-or 25 wih Deepwood Stalker enhancement</Description>
+or 25 with Deepwood Stalker enhancement</Description>
       <FeatGroup>
          <IsStandardFeat/>
          <IsArtificerBonus/>
@@ -13902,6 +13902,7 @@ You will also gain a 2% Dodge bonus.</Description>
       <FeatGroup>
          <IsFighterBonus/>
          <IsStandardFeat/>
+         <IsMonkBonus/>
          <IsMonkBonus6/>
       </FeatGroup>
       <Requirements>
@@ -14345,6 +14346,7 @@ Cooldown: one minute.</Description>
          <IsStandardFeat/>
          <IsFighterBonus/>
          <IsMonkBonus/>
+         <IsMonkBonus6/>
       </FeatGroup>
       <Requirements>
          <Requirement>
@@ -28394,8 +28396,9 @@ Quarterstaves you wield gain a +2 Morale bonus to Critical Threat Range.</Descri
       <Name>Summer Court Favor Rewards</Name>
       <Description>Rank 1: +2 saves versus Fey creatures
 Rank 2: +5 HP.
-Rank 3: Access to the Feydark Illusionist Tree</Description>
-      <MaxTimesAcquire>3</MaxTimesAcquire>
+Rank 3: Access to the Feydark Illusionist Tree
+Rank 4: +2 Diplomacy and Perform</Description>
+      <MaxTimesAcquire>4</MaxTimesAcquire>
       <Requirements/>
       <Acquire>Favor</Acquire>
       <Icon>SummerCourt</Icon>
@@ -28403,7 +28406,7 @@ Rank 3: Access to the Feydark Illusionist Tree</Description>
          <DisplayName>Summer Court: Save Bonus</DisplayName>
          <Type>SaveBonus</Type>
          <Bonus>Feat</Bonus>
-         <AmountVector size="3">2 2 2</AmountVector>
+         <AmountVector size="4">2 2 2 2</AmountVector>
          <Save>All</Save>
          <Stance>Fey</Stance>
       </Effect>
@@ -28411,7 +28414,15 @@ Rank 3: Access to the Feydark Illusionist Tree</Description>
          <DisplayName>Summer Court: Hit Point Bonus</DisplayName>
          <Type>Hitpoints</Type>
          <Bonus>Feat</Bonus>
-         <AmountVector size="3">0 5 5</AmountVector>
+         <AmountVector size="4">0 5 5 5</AmountVector>
+      </Effect>
+      <Effect>
+         <DisplayName>Summer Court: Skill Bonus</DisplayName>
+         <Type>SkillBonus</Type>
+         <Bonus>Feat</Bonus>
+         <AmountVector size="4">0 0 0 2</AmountVector>
+         <Skill>Diplomacy</Skill>
+         <Skill>Perform</Skill>
       </Effect>
       <Effect>
          <Type>EnhancementTree</Type>
@@ -28473,8 +28484,9 @@ Rank 3: Favor 225 - Access to the Inquisitive tree</Description>
       <Name>Gate Keepers Favor Rewards</Name>
       <Description>Rank 1: Favor 75 - "Gatekeepers: Skill Bonus" - "This feat grants you +2 bonus to Concentration and Spot skills."
 Rank 2: Favor 150 - "Gatekeepers: Hit Point Bonus" - "This feat grants you +5 HP."
-Rank 3: favor 400 - Access to the Horizon Walker enhancement tree</Description>
-      <MaxTimesAcquire>3</MaxTimesAcquire>
+Rank 3: favor 400 - Access to the Horizon Walker enhancement tree
+Rank 4: +2 Saves versus Extraplanar Creatures</Description>
+      <MaxTimesAcquire>4</MaxTimesAcquire>
       <Requirements/>
       <Acquire>Favor</Acquire>
       <Icon>Gatekeepers</Icon>
@@ -28495,6 +28507,14 @@ Rank 3: favor 400 - Access to the Horizon Walker enhancement tree</Description>
       <Effect>
          <Type>EnhancementTree</Type>
          <Bonus>Enhancement</Bonus>
+      </Effect>
+      <Effect>
+         <DisplayName>Gatekeepers: Save Bonus vs Extraplanar</DisplayName>
+         <Type>SaveBonus</Type>
+         <Bonus>Feat</Bonus>
+         <AmountVector size="4">0 0 0 2</AmountVector>
+         <Save>All</Save>
+         <Stance>Extraplanar</Stance>
       </Effect>
    </Feat>
    <Feat>
@@ -28642,14 +28662,23 @@ Rank 3: Access to the Harper Agent Enhancement Tree.</Description>
       <Name>Keepers of a Feather Favor Rewards</Name>
       <Description>Rank 1: Grants a +2 saves bonus versus Undead
 Rank 2: Small Augment Bag
-Rank 3: Access to the Vistani Enhancement Tree</Description>
-      <MaxTimesAcquire>3</MaxTimesAcquire>
+Rank 3: Access to the Vistani Enhancement Tree
+Rank 4: +2 to Listen and Hide Skills</Description>
+      <MaxTimesAcquire>4</MaxTimesAcquire>
       <Requirements/>
       <Acquire>Favor</Acquire>
       <Icon>BlessingsOfAFeather</Icon>
       <Effect>
          <Type>EnhancementTree</Type>
          <Bonus>Enhancement</Bonus>
+      </Effect>
+      <Effect>
+         <DisplayName>Keepers of the Feather: Skill Bonus</DisplayName>
+         <Type>SkillBonus</Type>
+         <Bonus>Feat</Bonus>
+         <AmountVector size="4">0 0 0 2</AmountVector>
+         <Skill>Listen</Skill>
+         <Skill>Hide</Skill>
       </Effect>
    </Feat>
    <Feat>

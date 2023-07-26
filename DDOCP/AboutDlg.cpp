@@ -150,6 +150,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
             "KYRREHK, "
             "Laur, "
             "LittleTealeaf, "
+            "Lokinet-Github, "
             "LordTyphoon, "
             "Lupito, "
             "outlawless, "
