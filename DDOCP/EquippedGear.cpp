@@ -281,7 +281,8 @@ bool EquippedGear::IsSlotRestricted(
 void EquippedGear::SetItem(
         InventorySlotType slot,
         Character * pCharacter,
-        const Item & item)
+        const Item & item,
+        bool bAllowRemoveBadItems)
 {
     bool itemsRemoved = false;
     std:: stringstream ss;
@@ -332,15 +333,18 @@ void EquippedGear::SetItem(
             }
         }
     }
-   if (slot == Inventory_Weapon1
-            && !CanEquipTo2ndWeapon(pCharacter, item)
-            && HasItemInSlot(Inventory_Weapon2))
+    if (bAllowRemoveBadItems)
     {
-        ss << "The following item was removed because you cannot have an item in your off hand:\r\n\r\n";
-        ss << ItemInSlot(Inventory_Weapon2).Name();
-        // item in this slot now stops an item in weapon slot 2
-        ClearItem(Inventory_Weapon2);
-        itemsRemoved = true;
+        if (slot == Inventory_Weapon1
+                && !CanEquipTo2ndWeapon(pCharacter, item)
+                && HasItemInSlot(Inventory_Weapon2))
+        {
+            ss << "The following item was removed because you cannot have an item in your off hand:\r\n\r\n";
+            ss << ItemInSlot(Inventory_Weapon2).Name();
+            // item in this slot now stops an item in weapon slot 2
+            ClearItem(Inventory_Weapon2);
+            itemsRemoved = true;
+        }
     }
     if (itemsRemoved)
     {

@@ -20,7 +20,8 @@ class EquippedGear :
         bool IsSlotRestricted(InventorySlotType slot, Character * pChar) const;
         void SetItem(InventorySlotType slot,
                 Character * pCharacter,
-                const Item & item);
+                const Item & item,
+                bool bAllowRemoveBadItems = true);
         void ClearItem(InventorySlotType slot);
 
         void SetNumFiligrees(size_t count);

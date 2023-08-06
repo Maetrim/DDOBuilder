@@ -112,6 +112,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
             "Gizah10, "
             "Gizmo0815, "
             "gorocz, "
+            "gpgooiker, "
             "Gregen, "
             "Grunthorno, "
             "Gudlaugsson, "

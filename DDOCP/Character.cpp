@@ -6525,7 +6525,7 @@ void Character::UpdateGearToLatestVersions()
             if ((*it).HasItemInSlot((InventorySlotType)i))
             {
                 Item latestVersion = GetLatestVersionOfItem((*it).ItemInSlot((InventorySlotType)i));
-                (*it).SetItem((InventorySlotType)i, this, latestVersion);
+                (*it).SetItem((InventorySlotType)i, this, latestVersion, false);
             }
         }
         ++it;
