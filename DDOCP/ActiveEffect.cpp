@@ -567,6 +567,7 @@ CString ActiveEffect::AmountAsText(double multiplier) const
         break;
     }
     text.Replace(".00", "");
+    text.Replace(".0", "");
     if (m_bHasEnergy)
     {
         text += " ";
@@ -665,7 +666,7 @@ CString ActiveEffect::AmountAsPercent() const
         }
         break;
     case ET_amount:
-        text.Format("%.0f (%.0f%%)", m_percentageAmount, m_amount * NumStacks());
+        text.Format("%.0f (%.1f%%)", m_percentageAmount, m_amount * NumStacks());
         break;
     case ET_amountVector:
         {
@@ -679,7 +680,7 @@ CString ActiveEffect::AmountAsPercent() const
                     ::OutputDebugString((LPCTSTR)Name());
                     ::OutputDebugString(" has more stacks than amount vector\n");
                 }
-                text.Format("%.0f (%.0f%%)", m_percentageAmount, m_amounts[index]);
+                text.Format("%.0f (%.1f%%)", m_percentageAmount, m_amounts[index]);
             }
             else
             {
@@ -699,7 +700,7 @@ CString ActiveEffect::AmountAsPercent() const
                     ::OutputDebugString((LPCTSTR)Name());
                     ::OutputDebugString(" has more stacks than amount vector\n");
                 }
-                text.Format("%.0f (%.0f%%)", m_percentageAmount, m_amounts[index]);
+                text.Format("%.0f (%.1f%%)", m_percentageAmount, m_amounts[index]);
             }
             else
             {
@@ -708,10 +709,10 @@ CString ActiveEffect::AmountAsPercent() const
         }
         break;
     case ET_amountPerLevel:
-        text.Format("%.0f (%.0f%%)", m_percentageAmount, m_amountPerLevel * m_levelStacks);
+        text.Format("%.0f (%.1f%%)", m_percentageAmount, m_amountPerLevel * m_levelStacks);
         break;
     case ET_amountPerAp:
-        text.Format("%.0f (%.0f%%)", m_percentageAmount, m_amount * NumStacks());
+        text.Format("%.0f (%.1f%%)", m_percentageAmount, m_amount * NumStacks());
         break;
     case ET_immunity:
     case ET_DR:
@@ -723,6 +724,7 @@ CString ActiveEffect::AmountAsPercent() const
     }
     // optional effects such as its Fire damage
     text.Replace(".00", "");
+    text.Replace(".0", "");
     if (m_bHasEnergy)
     {
         text += " ";
@@ -1075,7 +1077,6 @@ bool ActiveEffect::operator<=(const ActiveEffect & other) const
 {
     bool lessThanOrEqual = false;
     if (m_bonusType != Bonus_stacking           // stacking bonus's always stack
-            && m_bonusType != Bonus_combatStyle // combat style bonus's always stack
             && m_bonusType != Bonus_destiny     // epic destiny bonus's always stack
             && m_bonusType != Bonus_reaper      // reaper bonus's always stack
             && m_bonusType != Bonus_mythic)    // combat style bonus's always stack

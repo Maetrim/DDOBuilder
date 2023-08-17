@@ -1621,7 +1621,8 @@ void CLevelUpView::PopulateGrantedFeats()
     if (m_pDocument != NULL)
     {
         // get the list of granted feats
-        const std::list<TrainedFeat> & grantedFeats = m_pCharacter->GrantedFeats();
+        std::list<TrainedFeat> grantedFeats = m_pCharacter->GrantedFeats();
+        grantedFeats.sort();
         m_imagesGrantedFeats.DeleteImageList();
         m_imagesGrantedFeats.Create(32, 32, ILC_COLOR32, 0, grantedFeats.size());
 

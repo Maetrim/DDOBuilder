@@ -1727,27 +1727,30 @@ three Barbarian levels thereafter.</Description>
          <Class>Barbarian</Class>
          <Level>2</Level>
       </AutomaticAcquisition>
-      <Effect>
-         <DisplayName>Barbarian DR</DisplayName>
-         <Bonus>Feat</Bonus>
-         <Type>DR</Type>
-         <Amount>1</Amount>
-         <DR>%</DR>
-      </Effect>
-      <Effect>
-         <DisplayName>Barbarian DR</DisplayName>
-         <Bonus>Feat</Bonus>
-         <Type>DR</Type>
-         <Amount>1</Amount>
-         <DR>%</DR>
-      </Effect>
-      <Effect>
-         <DisplayName>Barbarian DR</DisplayName>
-         <Bonus>Feat</Bonus>
-         <Type>DR</Type>
-         <Amount>1</Amount>
-         <DR>%</DR>
-      </Effect>
+         <Effect>
+            <DisplayName>Barbarian DR</DisplayName>
+            <Type>DR</Type>
+            <Bonus>Class</Bonus>
+            <Amount>1</Amount>
+            <DR>%</DR>
+            <ApplyAsItemEffect/>
+         </Effect>
+         <Effect>
+            <DisplayName>Barbarian DR</DisplayName>
+            <Type>DR</Type>
+            <Bonus>Class</Bonus>
+            <Amount>1</Amount>
+            <DR>%</DR>
+            <ApplyAsItemEffect/>
+         </Effect>
+         <Effect>
+            <DisplayName>Barbarian DR</DisplayName>
+            <Type>DR</Type>
+            <Bonus>Class</Bonus>
+            <Amount>1</Amount>
+            <DR>%</DR>
+            <ApplyAsItemEffect/>
+         </Effect>
    </Feat>
    <Feat>
       <Name>Damage Reduction 1% Increase</Name>
@@ -1782,13 +1785,14 @@ three Barbarian levels thereafter.</Description>
          <Class>Barbarian</Class>
          <Level>20</Level>
       </AutomaticAcquisition>
-      <Effect>
-         <DisplayName>Barbarian DR</DisplayName>
-         <Bonus>Feat</Bonus>
-         <Type>DR</Type>
-         <Amount>1</Amount>
-         <DR>%</DR>
-      </Effect>
+         <Effect>
+            <DisplayName>Barbarian DR</DisplayName>
+            <Type>DR</Type>
+            <Bonus>Class</Bonus>
+            <Amount>1</Amount>
+            <DR>%</DR>
+            <ApplyAsItemEffect/>
+         </Effect>
    </Feat>
    <Feat>
       <Name>Defensive Fighting</Name>
@@ -10706,10 +10710,10 @@ be interrupted by enemy attacks, but they consume 10 additional spell points.</D
       <Name>Quivering Palm</Name>
       <Description>The Monk delivers a fatal attack by sending waves of vibrations through the
 target with a weapon strike. The attack costs 30 Ki, and if it hits the victim
-must pass a Fortitude save (DC 10 + Monk level/2 + Wisdom modifier + General modifiers)
+must pass a Fortitude save (DC 10 + Monk level + Max[Dex, Wis] modifier + Assassinate bonuses)
 or die. Quivering Palm gains DC bonuses from general tactical combat boosts,
 but not Sundering items. Whenever an enemy saves vs. Quivering Palm, you get
-a stacking +4 bonus to your Quivering Palm DC. This stack is dispelled when you
+a stacking +2 bonus to your Quivering Palm DC. This stack is dispelled when you
 successfully kill someone with Quivering Palm (or 3 minutes pass).
 This ability emulates other death spells, so deathblock or death ward both grant
 immunity. Using Quivering Palm will drop you out of Sneak and remove any
@@ -10734,9 +10738,10 @@ must pass a Fortitude save or die.</Description>
          <Icon>QuiveringPalm</Icon>
          <DCVersus>Fortitude</DCVersus>
          <AmountVector size="1">10</AmountVector>
-         <HalfClassLevel>Monk</HalfClassLevel>
+         <ClassLevel>Monk</ClassLevel>
+         <ModAbility>Dexterity</ModAbility>
          <ModAbility>Wisdom</ModAbility>
-         <Tactical>General</Tactical>
+         <Tactical>Assassinate</Tactical>
       </DC>
    </Feat>
    <Feat>
@@ -19952,13 +19957,14 @@ You also gain +5 Physical and Magical Resistance Rating.</Description>
       </Requirements>
       <Acquire>Train</Acquire>
       <Icon>EpicBarbarianDamageReduction</Icon>
-      <Effect>
-         <DisplayName>Barbarian DR</DisplayName>
-         <Bonus>Feat</Bonus>
-         <Type>DR</Type>
-         <Amount>1</Amount>
-         <DR>%</DR>
-      </Effect>
+         <Effect>
+            <DisplayName>Barbarian DR</DisplayName>
+            <Type>DR</Type>
+            <Bonus>Class</Bonus>
+            <Amount>1</Amount>
+            <DR>%</DR>
+            <ApplyAsItemEffect/>
+         </Effect>
       <Effect>
          <Type>PRR</Type>
          <Bonus>Feat</Bonus>
@@ -28424,8 +28430,9 @@ Rank 4: +2 Diplomacy and Perform</Description>
    <Feat>
       <Name>Morgrave University Favor Rewards</Name>
       <Description>Rank 1: +2 to Search and Spell Craft
-Rank 2: +5 HP</Description>
-      <MaxTimesAcquire>2</MaxTimesAcquire>
+Rank 2: +5 HP
+Rank 3: +2 Saves versus Magical Beasts</Description>
+      <MaxTimesAcquire>3</MaxTimesAcquire>
       <Requirements/>
       <Acquire>Favor</Acquire>
       <Icon>MorgraveUniversity</Icon>
@@ -28442,6 +28449,13 @@ Rank 2: +5 HP</Description>
          <Type>Hitpoints</Type>
          <Bonus>Feat</Bonus>
          <AmountVector size="3">0 5 5</AmountVector>
+      </Effect>
+      <Effect>
+         <DisplayName>Morgrave University: Save Bonus</DisplayName>
+         <Type>SaveBonus</Type>
+         <Bonus>Feat</Bonus>
+         <AmountVector size="3">0 0 2</AmountVector>
+         <Stance>Magical Beasts</Stance>
       </Effect>
    </Feat>
    <Feat>
@@ -30009,6 +30023,7 @@ up to 10 times. One stack is removed every 3 seconds.</Description>
          <Type>Hitpoints</Type>
          <Bonus>Quality</Bonus>
          <AmountVector size="3">0 0 5</AmountVector>
+         <Feat>Deific Warding</Feat>
          <Percent/>
          <ApplyAsItemEffect/>
       </Effect>
@@ -30017,6 +30032,7 @@ up to 10 times. One stack is removed every 3 seconds.</Description>
          <Type>Hitpoints</Type>
          <Bonus>Quality</Bonus>
          <AmountVector size="3">0 0 5</AmountVector>
+         <Feat>Deific Warding</Feat>
          <Percent/>
          <ApplyAsItemEffect/>
       </Effect>
@@ -31435,6 +31451,7 @@ An additional +4 if you are centered.
          <Amount>4</Amount>
       </Effect>
       <Effect>
+         <DisplayName>Scion of the Astral Plane (Centered)</DisplayName>
          <Type>Doublestrike</Type>
          <Bonus>Feat</Bonus>
          <Amount>4</Amount>
@@ -31446,6 +31463,7 @@ An additional +4 if you are centered.
          <Amount>4</Amount>
       </Effect>
       <Effect>
+         <DisplayName>Scion of the Astral Plane (Centered)</DisplayName>
          <Type>Doubleshot</Type>
          <Bonus>Feat</Bonus>
          <Amount>4</Amount>

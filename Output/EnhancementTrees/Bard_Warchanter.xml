@@ -293,14 +293,14 @@ You have +20 hit points, and a Base Attack Bonus equal to your character level.
          <Name>Warchanter: Skaldic Scream</Name>
          <InternalName>WCCore6</InternalName>
          <Description>You inspire martial combat above and beyond.
-+2 Charisma, and +2 Constitution, +25 hit points.
++2 Charisma, and +2 Constitution, +25 hit points and +1 Imbue Dice.
+
 Activate this ability to scream the songs of your frozen ancestors,
 expending a Bard Song to force enemies in an area to make a Fortitude saving
 throw versus being frozen solid in frigid ice for 6 seconds.
-(DC 14 + Charisma Mod + 1/2 Bard Level + Stunning Modifiers).
+(DC 14 + Max[Dex/Cha] Mod + Bard Level + Stunning Modifiers).
 Even if they make the save, they take 20d20 Cold Damage and are significantly
-slowed for 6 seconds.
-+1 Imbue Dice</Description>
+slowed for 6 seconds.</Description>
          <Icon>WCWarmaster</Icon>
          <XPosition>5</XPosition>
          <YPosition>0</YPosition>
@@ -357,7 +357,8 @@ throw versus being frozen solid in frigid ice for 6 seconds.</Description>
             <Icon>WCWarmaster</Icon>
             <DCVersus>Fortitude</DCVersus>
             <AmountVector size="1">14</AmountVector>
-            <HalfClassLevel>Bard</HalfClassLevel>
+            <ClassLevel>Bard</ClassLevel>
+            <ModAbility>Dexterity</ModAbility>
             <ModAbility>Charisma</ModAbility>
             <Tactical>Stun</Tactical>
          </DC>
@@ -858,12 +859,9 @@ Rank 3: You are also immune to Fatigue, including Fatigue from Skaldic Rage.</De
          <Name>Warchanter: The Frozen Fury</Name>
          <InternalName>WCTheFrozenFury</InternalName>
          <Description>Make a melee attack with +[1/2/3][W] damage. Affected enemies must make a Fortitude
-save (10 + Charisma modifier + [0/¼/½] Bard Level + Stunning modifiers) or become
-frozen solid for number of seconds equal to your Bard levels.
-Cooldown: (12/9/6) seconds.
-Cost: 1 sp.
-Bosses cannot be frozen. Frozen enemies are helpless but gain DR 5/Adamantine.
-(Note: If you have Strikethrough, this attack can freeze multiple enemies.)</Description>
+save (10 + Max[Str/Dex/Cha] modifier + stunning modifiers) or become frozen solid
+for a number of seconds equal to your Bard level.
+Bosses cannot be frozen.</Description>
          <Icon>WCTheFrozenFury</Icon>
          <XPosition>3</XPosition>
          <YPosition>3</YPosition>
@@ -887,13 +885,14 @@ Bosses cannot be frozen. Frozen enemies are helpless but gain DR 5/Adamantine.
          <DC>
             <Name>The Frozen Fury</Name>
             <Description>Make a melee attack with +[1/2/3][W] damage. Affected enemies must make a Fortitude
-save (10 + Charisma modifier + [0/¼/½] Bard Level + Stunning modifiers) or become
-frozen solid for number of seconds equal to your Bard levels.
+save (10 + Max[Str/Dex/Cha] modifier + stunning modifiers) or become frozen solid
+for a number of seconds equal to your Bard level.
 Cooldown: (12/9/6) seconds.</Description>
             <Icon>WCTheFrozenFury</Icon>
             <DCVersus>Fotitude</DCVersus>
             <AmountVector size="1">10</AmountVector>
-            <HalfClassLevel>Bard</HalfClassLevel>
+            <ModAbility>Strength</ModAbility>
+            <ModAbility>Dexterity</ModAbility>
             <ModAbility>Charisma</ModAbility>
             <Tactical>Stun</Tactical>
          </DC>
@@ -1034,7 +1033,7 @@ Bosses cannot be frozen.</Description>
          <Icon>WCNorthwind</Icon>
          <XPosition>3</XPosition>
          <YPosition>4</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
+         <CostPerRank size="1">1</CostPerRank>
          <Ranks>3</Ranks>
          <MinSpent>20</MinSpent>
          <ArrowUp/>
@@ -1263,12 +1262,12 @@ ranged damage, and spell critical chance.</Description>
       <EnhancementTreeItem>
          <Name>Warchanter: Spinning Ice</Name>
          <InternalName>WCSpinningIce</InternalName>
-         <Description>Attack all enemies around you for +2[W] damage.
+         <Description>Attack all enemies around you for +[3/4/5][W] damage.
 Each affected enemy is frozen solid if they fail a Fortitude save
-(10/12/14 + Charisma modifier +[0/¼/½] Bard Level + Stunning modifiers)
+([10/12/14] + Max[Str/Dex/Cha] modifier + [0/½/1] Bard Level + Stunning modifiers)
 for a number of seconds equal to your half your Bard level.
 Bosses cannot be frozen.
-Activation cost: 6/4/2 SP. Cooldown 45/35/25 seconds.</Description>
+Activation cost: [6/4/2] SP. Cooldown [45/35/25] seconds.</Description>
          <Icon>WCSpinningIce</Icon>
          <XPosition>3</XPosition>
          <YPosition>5</YPosition>
@@ -1299,13 +1298,15 @@ Activation cost: 6/4/2 SP. Cooldown 45/35/25 seconds.</Description>
             <Name>Spinning Ice</Name>
             <Description>Attack all enemies around you for +2[W] damage.
 Each affected enemy is frozen solid if they fail a Fortitude save
-(10/12/14 + Charisma modifier +[0/¼/½] Bard Level + Stunning modifiers)
+([10/12/14] + Max[Str/Dex/Cha] modifier +[0/½/1] Bard Level + Stunning modifiers)
 for a number of seconds equal to your half your Bard level.
 Bosses cannot be frozen.</Description>
             <Icon>WCSpinningIce</Icon>
             <DCVersus>Fotitude</DCVersus>
             <AmountVector size="3">10 12 14</AmountVector>
-            <HalfClassLevel>Bard</HalfClassLevel>
+            <ClassLevel>Bard</ClassLevel>
+            <ModAbility>Strength</ModAbility>
+            <ModAbility>Dexterity</ModAbility>
             <ModAbility>Charisma</ModAbility>
             <Tactical>Stun</Tactical>
          </DC>

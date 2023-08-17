@@ -283,16 +283,20 @@ std::list<EnhancementTree> CEnhancementsView::DetermineTrees()
         {
             if (!selTrees.IsTreePresent((*tit).Name()))
             {
-                // tree not present, see if it can be assigned
-                for (size_t ti = 0; ti < MST_Number; ++ti)
+                // never auto assign universal trees
+                if (!(*tit).HasIsUniversalTree())
                 {
-                    std::string treeName = selTrees.Tree(ti);
-                    if (SelectedEnhancementTrees::IsNotSelected(treeName)
-                            || ((ti == 0) && treeName == c_noSelection))    // special case for racial tree
+                    // tree not present, see if it can be assigned
+                    for (size_t ti = 0; ti < MST_Number; ++ti)
                     {
-                        // no assignment yet for this tree, assign this tree to it
-                        selTrees.SetTree(ti, (*tit).Name());
-                        break;  // done
+                        std::string treeName = selTrees.Tree(ti);
+                        if (SelectedEnhancementTrees::IsNotSelected(treeName)
+                                || ((ti == 0) && treeName == c_noSelection))    // special case for racial tree
+                        {
+                            // no assignment yet for this tree, assign this tree to it
+                            selTrees.SetTree(ti, (*tit).Name());
+                            break;  // done
+                        }
                     }
                 }
             }

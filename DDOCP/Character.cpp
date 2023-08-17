@@ -3228,6 +3228,7 @@ void Character::Enhancement_RevokeEnhancement(
         const std::string& treeName,
         const std::string& revokedEnhancement)
 {
+    std::string revokedEnhancementCopy(revokedEnhancement);
     EnhancementSpendInTree * pItem = Enhancement_FindTree(treeName);
     if (pItem != NULL
             && pItem->Enhancements().size() > 0)
@@ -3237,7 +3238,7 @@ void Character::Enhancement_RevokeEnhancement(
         std::string revokedEnhancementSelection;
         size_t ranks = 0;
         size_t spent = pItem->RevokeEnhancement(
-                revokedEnhancement,
+                revokedEnhancementCopy,
                 &revokedEnhancementSelection,
                 &ranks);
         const EnhancementTree & eTree = GetEnhancementTree(treeName);
@@ -3258,7 +3259,7 @@ void Character::Enhancement_RevokeEnhancement(
         }
         // now notify all and sundry about the enhancement effects
         // get the list of effects this enhancement has
-        RevokeEnhancementEffects(treeName, revokedEnhancement, revokedEnhancementSelection, 1);
+        RevokeEnhancementEffects(treeName, revokedEnhancementCopy, revokedEnhancementSelection, 1);
         // determine whether we still have a tier 5 enhancement trained if the tree just had one
         // revoked in it
         if (HasTier5Tree() && Tier5Tree() == treeName)
@@ -3269,7 +3270,7 @@ void Character::Enhancement_RevokeEnhancement(
                 Clear_Tier5Tree();  // no longer a tier 5 trained
             }
         }
-        NotifyEnhancementRevoked(revokedEnhancement, revokedEnhancementSelection, wasTier5, true);
+        NotifyEnhancementRevoked(revokedEnhancementCopy, revokedEnhancementSelection, wasTier5, true);
         NotifyActionPointsChanged();
         NotifyAPSpentInTreeChanged(treeName);
         UpdateWeaponStances();
@@ -4328,6 +4329,7 @@ void Character::Reaper_RevokeEnhancement(
         const std::string& treeName,
         const std::string& revokedEnhancement)
 {
+    std::string revokedEnhancementCopy(revokedEnhancement);
     ReaperSpendInTree * pItem = Reaper_FindTree(treeName);
     if (pItem != NULL
             && pItem->Enhancements().size() > 0)
@@ -4336,13 +4338,13 @@ void Character::Reaper_RevokeEnhancement(
         std::string revokedEnhancementSelection;
         size_t ranks = 0;
         pItem->RevokeEnhancement(
-                revokedEnhancement,
+                revokedEnhancementCopy,
                 &revokedEnhancementSelection,
                 &ranks);
         // now notify all and sundry about the enhancement effects
         // get the list of effects this enhancement has
-        RevokeEnhancementEffects(treeName, revokedEnhancement, revokedEnhancementSelection, 1);
-        NotifyEnhancementRevoked(revokedEnhancement, revokedEnhancementSelection, false, true);
+        RevokeEnhancementEffects(treeName, revokedEnhancementCopy, revokedEnhancementSelection, 1);
+        NotifyEnhancementRevoked(revokedEnhancementCopy, revokedEnhancementSelection, false, true);
         NotifyAPSpentInTreeChanged(treeName);
         m_pDocument->SetModifiedFlag(TRUE);
     }
@@ -6217,7 +6219,6 @@ void Character::AddGrantedFeat(const std::string & featName)
         tf.Set_Type(TFT_GrantedFeat);
         tf.Set_LevelTrainedAt(1);
         m_grantedFeats.push_back(tf);
-        m_grantedFeats.sort();
         NotifyGrantedFeatsChanged();
 
         // now determine whether this granted feat is already trained
@@ -6880,6 +6881,7 @@ void Character::U51Destiny_RevokeEnhancement(
         const std::string& treeName,
         const std::string& revokedEnhancement)
 {
+    std::string revokedEnhancementCopy(revokedEnhancement);
     DestinySpendInTree * pItem = U51Destiny_FindTree(treeName);
     if (pItem != NULL
             && pItem->Enhancements().size() > 0)
@@ -6888,11 +6890,11 @@ void Character::U51Destiny_RevokeEnhancement(
         std::string revokedEnhancementSelection;
         size_t ranks = 0;
         int spent = pItem->RevokeEnhancement(
-                revokedEnhancement,
+                revokedEnhancementCopy,
                 &revokedEnhancementSelection,
                 &ranks);
         m_destinyTreeSpend -= spent;
-        RevokeEnhancementEffects(treeName, revokedEnhancement, revokedEnhancementSelection, 1);
+        RevokeEnhancementEffects(treeName, revokedEnhancementCopy, revokedEnhancementSelection, 1);
         // determine whether we still have a tier 5 enhancement trained if the tree just had one
         // revoked in it
         if (HasU51Destiny_Tier5Tree() && U51Destiny_Tier5Tree() == treeName)
@@ -6903,7 +6905,7 @@ void Character::U51Destiny_RevokeEnhancement(
                 Clear_U51Destiny_Tier5Tree();  // no longer a tier 5 trained
             }
         }
-        NotifyEnhancementRevoked(revokedEnhancement, revokedEnhancementSelection, false, true);
+        NotifyEnhancementRevoked(revokedEnhancementCopy, revokedEnhancementSelection, false, true);
         NotifyActionPointsChanged();
         NotifyAPSpentInTreeChanged(treeName);
         UpdateWeaponStances();

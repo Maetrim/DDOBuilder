@@ -1119,7 +1119,7 @@ stunned for three seconds (Perform + d20 saves for the Stun).
          <Icon>SBBatteringBarrage</Icon>
          <XPosition>2</XPosition>
          <YPosition>4</YPosition>
-         <CostPerRank size="1">2</CostPerRank>
+         <CostPerRank size="1">1</CostPerRank>
          <Ranks>2</Ranks>
          <MinSpent>20</MinSpent>
          <Requirements>
@@ -1203,7 +1203,7 @@ additional +1 for every five Bard levels.</Description>
       <EnhancementTreeItem>
          <Name>Swashbuckler: Thread the Needle</Name>
          <InternalName>SBThreadTheNeedle</InternalName>
-         <Description>While Swashbuckling, +5 Damage while the Precision feat is active.</Description>
+         <Description>While Swashbuckling, +5 Damage and +5% to hit while the Precision feat is active.</Description>
          <Icon>SBThreadTheNeedle</Icon>
          <XPosition>0</XPosition>
          <YPosition>5</YPosition>
@@ -1224,7 +1224,33 @@ additional +1 for every five Bard levels.</Description>
             </Requirement>
          </Requirements>
          <Effect>
+            <Type>AttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>5</Amount>
+            <Percent/>
+            <Stance>Swashbuckling</Stance>
+            <Stance>Precision</Stance>
+            <Weapon>All</Weapon>
+         </Effect>
+         <Effect>
+            <Type>CriticalAttackBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>5</Amount>
+            <Percent/>
+            <Stance>Swashbuckling</Stance>
+            <Stance>Precision</Stance>
+            <Weapon>All</Weapon>
+         </Effect>
+         <Effect>
             <Type>DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>5</Amount>
+            <Stance>Swashbuckling</Stance>
+            <Stance>Precision</Stance>
+            <Weapon>All</Weapon>
+         </Effect>
+         <Effect>
+            <Type>Seeker</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>5</Amount>
             <Stance>Swashbuckling</Stance>

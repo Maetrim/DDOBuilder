@@ -1088,7 +1088,7 @@ Spell Power for 6 seconds. This stacks up to 1/3/5 times.</Description>
       <EnhancementTreeItem>
          <Name>Earth Savant: Earthen Armor</Name>
          <InternalName>ESEarthenArmor</InternalName>
-         <Description>Gain a +1/+2 stacking bonus to your Armor Class.</Description>
+         <Description>Gain a +[3/6] stacking bonus to your Armor Class.</Description>
          <Icon>ESEarthenArmor</Icon>
          <XPosition>2</XPosition>
          <YPosition>4</YPosition>
@@ -1105,7 +1105,7 @@ Spell Power for 6 seconds. This stacks up to 1/3/5 times.</Description>
          <Effect>
             <Type>ACBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="2">1 2</AmountVector>
+            <AmountVector size="2">3 6</AmountVector>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -1239,7 +1239,7 @@ Spell Power for 6 seconds. This stacks up to 1/3/5 times.</Description>
          <InternalName>ESEarthGrab</InternalName>
          <Description>Earthen hands grasp your foe, rendering them helpless and dealing
 bludgeoning damage over time on a failed Reflex save
-(DC: 10 + Constitution Modifier + Sorcerer Level).
+(DC: 10 + Max[Con/Cha] Modifier + Sorcerer Level).
 (Activation Cost: 15 Spell Points. Cooldown: 15 seconds.)</Description>
          <Icon>ESEarthGrab</Icon>
          <XPosition>2</XPosition>
@@ -1275,6 +1275,7 @@ bludgeoning damage over time on a failed Reflex save.</Description>
             <AmountVector size="1">10</AmountVector>
             <ClassLevel>Sorcerer</ClassLevel>
             <ModAbility>Constitution</ModAbility>
+            <ModAbility>Charisma</ModAbility>
          </DC>
       </EnhancementTreeItem>
       <EnhancementTreeItem>

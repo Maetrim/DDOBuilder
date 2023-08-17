@@ -986,7 +986,8 @@ void CFeatsClassControl::OnRButtonUp(UINT nFlags, CPoint point)
     HitCheckItem ht = HitCheck(point);
     if (ht.Level() >= 0
             && ht.Level() < MAX_CLASS_LEVELS
-            && ht.Type() != HT_None)
+            && ht.Type() != HT_None
+            && ht.Type() != HT_Feat)
     {
         // yes, we can display a pop up menu
         ClientToScreen(&point);
@@ -1059,6 +1060,23 @@ void CFeatsClassControl::OnRButtonUp(UINT nFlags, CPoint point)
             }
         }
     }
+    else if (ht.Type() == HT_Feat)
+    {
+        std::vector<TrainableFeatTypes> tfts = m_availableFeats[ht.Level()];
+        TrainedFeat tf = m_pCharacter->GetTrainedFeat(
+                ht.Level(),
+                tfts[ht.Data()]);
+        if (tf.FeatName() != "")
+        {
+            // Revoke this Feat selection
+            m_pCharacter->TrainFeat(
+                    " No Selection",
+                    tfts[ht.Data()],
+                    ht.Level());
+            HideTip();
+        }
+    }
+
 }
 
 HitCheckItem CFeatsClassControl::HitCheck(CPoint mouse) const
