@@ -1,0 +1,100 @@
+<Items>
+    <Item>
+        <Name>Legendary Prototype V: Byproduct Disposal</Name>
+        <Icon>RuneArm_EpicArmOfTheArchons</Icon>
+        <Description>Prototype Notes V: I know these machines need to occasionally expel waste, but… this is disgusting. The resulting liquid is chewing through everything. Better fired at foes than onto me, I suppose.</Description>
+        <DropLocation>Quest: Enemy of My Enemy, End chest</DropLocation>
+        <MinLevel>32</MinLevel>
+        <Weapon>RuneArm</Weapon>
+        <DamageType>Slashing</DamageType>
+        <AttackModifier>Strength</AttackModifier>
+        <DamageModifier>Strength</DamageModifier>
+        <Requirements>
+            <Requirement>
+                <FeatAnySource>Artificer Rune Arm Use</FeatAnySource>
+            </Requirement>
+        </Requirements>
+        <EquipmentSlot>
+            <Weapon2/>
+        </EquipmentSlot>
+        <EffectDescription>Acid Shot:
+Target: Foe, Directional, Breakable
+School: Evocation
+Spell Resistance: No
+Fires a missile of acid that corrodes your enemies, At higher charge levels
+multiple projectiles are fired, dealing the listed damage with each projectile.
+Opponents stuck by these bolts receive a Will save for half damage.
+
+Charge Tier 1: 2d6+2, plus 1d2+1 per Artificer Level
+Charge Tier 2: 2d8+3, plus 1d4 per Artificer Level
+Charge Tier 3: 2d10+4, plus 1d6 per Artificer Level
+Charge Tier 4: 2d12+5, plus 1d8 per Artificer Level
+Charge Tier 5: 2d14+6, plus 1d10 per Artificer Level</EffectDescription>
+        <EffectDescription>Maximum Charge Tier 5: The maximum charge tier of this rune arm is tier 5.</EffectDescription>
+         <Effect>
+            <Type>CreateSlider</Type>
+            <Bonus>Enhancement</Bonus>
+            <Slider>Rune Arm Tier</Slider>
+            <AmountVector size="2">0 5</AmountVector>
+            <Amount>0</Amount>
+         </Effect>
+        <EffectDescription>Insightful Corrosion +76: Passive: +76 Insight Bonus to Acid Spell Power.</EffectDescription>
+        <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Insightful</Bonus>
+            <Amount>76</Amount>
+            <SpellPower>Acid</SpellPower>
+        </Effect>
+        <EffectDescription>Acid Lore +22%: Passive: Your Acid gain a +22% Equipment Bonus to their chance to Critical Hit.</EffectDescription>
+        <Effect>
+            <Type>SpellLore</Type>
+            <Bonus>Equipment</Bonus>
+            <Amount>22</Amount>
+            <SpellPower>Acid</SpellPower>
+        </Effect>
+        <EffectDescription>Rune Arm Focus +6: +6 Equipment bonus to DC of Rune Arms</EffectDescription>
+        <Effect>
+            <Type>TacticalDC</Type>
+            <Bonus>Equipment</Bonus>
+            <Amount>6</Amount>
+            <Tactical>Rune Arm</Tactical>
+        </Effect>
+        <EffectDescription>Efficient Metamagic - Empower II: The additional spell point cost for using the Empower Metamagic feat is reduced by 2 SP.</EffectDescription>
+        <Effect>
+            <Type>AdditionalSpellPointCost</Type>
+            <Bonus>Equipment</Bonus>
+            <Amount>-2</Amount>
+            <Stance>Empower</Stance>
+        </Effect>
+        <EffectDescription>Rune Arm Imbue Acid VI: Wearing this Rune Arm will imbue any weapon you wield, dealing 2 to 24 points of Acid damage per hit. This damage scales with 200% Melee or Ranged Power (whichever is higher).</EffectDescription>
+        <Effect>
+            <DisplayName>Rune Arm Imbue Acid VI</DisplayName>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Equipment</Bonus>
+            <Dice>
+                <Number size="1">2</Number>
+                <Sides size="1">12</Sides>
+                <Energy>Acid</Energy>
+            </Dice>
+            <Weapon>All</Weapon>
+        </Effect>
+        <Effect>
+            <DisplayName>Rune Arm Imbue Acid VI</DisplayName>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Equipment</Bonus>
+            <Dice>
+                <Number size="1">2</Number>
+                <Sides size="1">12</Sides>
+                <Energy>Acid</Energy>
+            </Dice>
+            <Weapon>All</Weapon>
+        </Effect>
+        <SetBonus>Legendary Forbidden Knowledge</SetBonus>
+        <ItemAugment>
+            <Type>Green</Type>
+        </ItemAugment>
+        <ItemAugment>
+            <Type>Yellow</Type>
+        </ItemAugment>
+    </Item>
+</Items>

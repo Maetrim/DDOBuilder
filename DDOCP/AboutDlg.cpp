@@ -160,6 +160,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
             "mathmatica, "
             "MaxPaxy, "
             "Maxxcore, "
+            "melynnn007, "
             "mhoida, "
             "mikameow, "
             "MIvanIsten, "

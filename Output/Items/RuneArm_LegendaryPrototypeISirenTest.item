@@ -1,0 +1,97 @@
+<Items>
+    <Item>
+        <Name>Legendary Prototype I: Siren Test</Name>
+        <Icon>RuneArm_EpicArmOfTheArchons</Icon>
+        <Description>Prototype Notes I: This form of Rune Arm has not been attempted previously. If successful, it could be the model for some future development.</Description>
+        <DropLocation>Quest: Vecna Denied, End chest</DropLocation>
+        <MinLevel>32</MinLevel>
+        <Weapon>RuneArm</Weapon>
+        <DamageType>Slashing</DamageType>
+        <AttackModifier>Strength</AttackModifier>
+        <DamageModifier>Strength</DamageModifier>
+        <Requirements>
+            <Requirement>
+                <FeatAnySource>Artificer Rune Arm Use</FeatAnySource>
+            </Requirement>
+        </Requirements>
+        <EquipmentSlot>
+            <Weapon2/>
+        </EquipmentSlot>
+        <EffectDescription>Sonic Blast:
+Target: Foe, Directional, Breakable
+School: Evocation
+Spell Resistance: No
+Deals sonic damage to targets with a burst of sound. Ay higher charge tiers the
+blast is larger. Opponents whithin the blast receive a Will save for half damage.
+
+Charge Tier 1: 1d6+1, plus 1 per Artificer Level
+Charge Tier 2: 2d8+3, plus 1d2 per Artificer Level
+Charge Tier 3: 3d10+6, plus 1d10 per Artificer Level
+Charge Tier 4: 4d12+10, plus 2d8 per Artificer Level
+Charge Tier 5: 5d14+15, plus 2d10 per Artificer Level</EffectDescription>
+        <EffectDescription>Maximum Charge Tier 5: The maximum charge tier of this rune arm is tier 5.</EffectDescription>
+         <Effect>
+            <Type>CreateSlider</Type>
+            <Bonus>Enhancement</Bonus>
+            <Slider>Rune Arm Tier</Slider>
+            <AmountVector size="2">0 5</AmountVector>
+            <Amount>0</Amount>
+         </Effect>
+        <EffectDescription>Insightful Resonance +76: Passive: +76 Insight Bonus to Sonic Spell Power.</EffectDescription>
+        <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Insightful</Bonus>
+            <Amount>76</Amount>
+            <SpellPower>Sonic</SpellPower>
+        </Effect>
+        <EffectDescription>Sonic Lore +22%: Passive: Your Sonic spells gain a +22% Equipment Bonus to their chance to Critical Hit.</EffectDescription>
+        <Effect>
+            <Type>SpellLore</Type>
+            <Bonus>Equipment</Bonus>
+            <Amount>22</Amount>
+            <SpellPower>Sonic</SpellPower>
+        </Effect>
+        <EffectDescription>Rune Arm Focus +6: +6 Equipment bonus to DC of Rune Arms</EffectDescription>
+        <Effect>
+            <Type>TacticalDC</Type>
+            <Bonus>Equipment</Bonus>
+            <Amount>6</Amount>
+            <Tactical>Rune Arm</Tactical>
+        </Effect>
+        <EffectDescription>Efficient Metamagic - Empower II: The additional spell point cost for using the Empower Metamagic feat is reduced by 2 SP.</EffectDescription>
+        <Effect>
+            <Type>AdditionalSpellPointCost</Type>
+            <Bonus>Equipment</Bonus>
+            <Amount>-2</Amount>
+            <Stance>Empower</Stance>
+        </Effect>
+        <EffectDescription>Rune Arm Imbue Sonic VI: Wearing this Rune Arm will imbue any weapon you wield, dealing 2 to 20 points of untyped damage per hit. Fire creatures take double damage. This damage scales with 200% Melee or Ranged Power (whichever is higher).</EffectDescription>
+        <Effect>
+            <Type>WeaponOtherDamageBonus</Type>
+            <Bonus>Equipment</Bonus>
+            <Dice>
+                <Number size="1">2</Number>
+                <Sides size="1">10</Sides>
+                <Energy>Untyped</Energy>
+            </Dice>
+            <Weapon>All</Weapon>
+        </Effect>
+        <Effect>
+            <Type>WeaponOtherCriticalDamageBonus</Type>
+            <Bonus>Equipment</Bonus>
+            <Dice>
+                <Number size="1">2</Number>
+                <Sides size="1">10</Sides>
+                <Energy>Untyped</Energy>
+            </Dice>
+            <Weapon>All</Weapon>
+        </Effect>
+        <SetBonus>Legendary Forbidden Knowledge</SetBonus>
+        <ItemAugment>
+            <Type>Green</Type>
+        </ItemAugment>
+        <ItemAugment>
+            <Type>Yellow</Type>
+        </ItemAugment>
+    </Item>
+</Items>
