@@ -118,7 +118,7 @@
          <InternalName>U51FuryOfTheWildCore4</InternalName>
          <Description>Using any of the feats Trip, Improved Trip, or Whirlwind Attack causes
 a whirlwind of force to burst from you striking nearby enemies for 1d10 bludgeon
-damage per character level. Scales with 200% Melee Power. Improved Trip also causes
+damage per character level. Scales with 150% Melee Power. Improved Trip also causes
 all affected enemies to be tripped unless they succeed at a Balance check (DC
 equal to Improved Trip).
 +20 Hit Points and +5 Melee Power.</Description>
@@ -412,10 +412,11 @@ Cooldown [10/8/6] seconds</Description>
       <EnhancementTreeItem>
          <Name>Fury of the Wild: Primal Scream</Name>
          <InternalName>U51FuryOfTheWildPrimalScream</InternalName>
-         <Description>Nearby Allies gain a +2 Morale bonus to Strength, Constitution and Dexterity for 5 minutes.
-This effect cannot be refreshed until the first one expires. Nearby Enemies take
-1d20 Sonic damage per character level and are Shaken for 30 seconds. Damage Scales
-the highest of 200% with Melee Power or Sonic Spell Power.
+         <Description>Nearby Enemies take 1d20 Sonic damage per character level and are Shaken for 30 seconds.
+This damage scales with the highest of 200% with Melee Power or 100% Sonic
+Spellpower. You and your allies gain a +2 Morale bonus to Strength, Constitution
+and Dexterity for 5 minutes. The Morale bonus cannot be refreshed until the
+first one expires.
 Cooldown: 30 seconds.</Description>
          <Icon>PrimalScream</Icon>
          <XPosition>3</XPosition>
@@ -613,14 +614,14 @@ Your Fury Destiny Mantle grants you an additional [3/6/9]% damage against helple
          <Selector>
             <EnhancementSelection>
                <Name>Furious Force</Name>
-               <Description>+1 Strength while Raging.
+               <Description>+[1/2/3] Strength while Raging.
 Increases Adrenaline damage bonus by [25/50/75]%.</Description>
                <Icon>FuryEternal</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Effect>
                   <Type>AbilityBonus</Type>
                   <Bonus>Destiny</Bonus>
-                  <AmountVector size="3">1 1 1</AmountVector>
+                  <AmountVector size="3">1 2 3</AmountVector>
                   <AnyOfStance>Beasthide Shifter: Shifted Form</AnyOfStance>
                   <AnyOfStance>Rage</AnyOfStance>
                   <AnyOfStance>Razorclaw Shifter: Shifted Form</AnyOfStance>
@@ -842,8 +843,8 @@ animal forms and Two Weapon Fighting.</Description>
          <Selector>
             <EnhancementSelection>
                <Name>Overwhelming Force</Name>
-               <Description>+[1/2/3] bonus to hit. Increases your Adrenaline effect by [25/50/75]% additional damage.
-Rank 3: Melee attacks under the effect of Adrenaline cause knock down on target for 4 seconds.</Description>
+               <Description>Adrenaline now grants an additional [25/50/75]% bonus todamage.
+Rank 3: Foes struck by your Adrenaline attacks are now knock down for 4 seconds.</Description>
                <Icon>ForceSelector</Icon>
                <CostPerRank size="1">1</CostPerRank>
             </EnhancementSelection>
@@ -871,28 +872,28 @@ bonus to all physical attacks.</Description>
                   <AnyOfStance>Dire Bear</AnyOfStance>
                   <Weapon>All</Weapon>
                </Effect>
+             <Effect>
+                <Type>AttackBonus</Type>
+                <Bonus>Destiny</Bonus>
+                <AmountVector size="3">1 2 3</AmountVector>
+                <Weapon>All</Weapon>
+             </Effect>
+             <Effect>
+                <Type>CriticalAttackBonus</Type>
+                <Bonus>Destiny</Bonus>
+                <AmountVector size="3">1 2 3</AmountVector>
+                <Weapon>All</Weapon>
+             </Effect>
             </EnhancementSelection>
          </Selector>
-         <Effect>
-            <Type>AttackBonus</Type>
-            <Bonus>Destiny</Bonus>
-            <AmountVector size="3">1 2 3</AmountVector>
-            <Weapon>All</Weapon>
-         </Effect>
-         <Effect>
-            <Type>CriticalAttackBonus</Type>
-            <Bonus>Destiny</Bonus>
-            <AmountVector size="3">1 2 3</AmountVector>
-            <Weapon>All</Weapon>
-         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Fury of the Wild: Unquenchable Rage</Name>
          <InternalName>U51FuryOfTheWildUnquenchableRage</InternalName>
-         <Description>Reduce all damage taken by [8/12/15]% for 6 seconds after you consume a Rage
+         <Description>Reduce all damage, except Untyped, by [8/12/15]% for 5 seconds after you consume a Rage
 charge or use Primal Scream.
-Rank 3: Now also applies a copy of the Heal spell to you which scales with the
-highest of Melee Power at 200% or Positive Spell Power.</Description>
+Rank 3: You also apply the effects of the Heal spell to yourself which scales
+with Melee Power.</Description>
          <Icon>TunnelVision</Icon>
          <XPosition>4</XPosition>
          <YPosition>4</YPosition>

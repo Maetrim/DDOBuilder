@@ -182,6 +182,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
             "pastorman1974, "
             "pcloke123, "
             "peng, "
+            "Pesh, "
             "pevergreen, "
             "philosopheckelman, "
             "PixieSlayer, "
@@ -234,6 +235,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
             "Wrunt, "
             "wyldlock, "
             "Xycona, "
+            "YoureNotDead, "
             "zilgabex, "
             "Zretch");
     m_bugReporters.SetSel(-1);    // nothing starts selected

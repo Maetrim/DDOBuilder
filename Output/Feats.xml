@@ -6282,7 +6282,7 @@ chance by 1%. Stacks with Mental Toughness.</Description>
       <Effect>
          <Type>SpellPoints</Type>
          <Bonus>Feat</Bonus>
-         <Amount>105</Amount>
+         <Amount>155</Amount>
       </Effect>
       <Effect>
          <Type>SpellLore</Type>
@@ -9190,7 +9190,7 @@ Also increases your spell critical chance by 1%.</Description>
       <Effect>
          <Type>SpellPoints</Type>
          <Bonus>Feat</Bonus>
-         <Amount>105</Amount>
+         <Amount>155</Amount>
       </Effect>
       <Effect>
          <Type>SpellLore</Type>
@@ -9491,6 +9491,8 @@ This feat gives no benefit to druids in elemental forms.</Description>
          <AnyOfStance>Bear</AnyOfStance>
          <AnyOfStance>Winter Wolf</AnyOfStance>
          <AnyOfStance>Dire Bear</AnyOfStance>
+         <AnyOfStance>Plague Wolf</AnyOfStance>
+         <AnyOfStance>Blighted Wolf</AnyOfStance>
       </Effect>
       <Effect>
          <Type>PRR</Type>
@@ -9500,6 +9502,8 @@ This feat gives no benefit to druids in elemental forms.</Description>
          <AnyOfStance>Bear</AnyOfStance>
          <AnyOfStance>Winter Wolf</AnyOfStance>
          <AnyOfStance>Dire Bear</AnyOfStance>
+         <AnyOfStance>Plague Wolf</AnyOfStance>
+         <AnyOfStance>Blighted Wolf</AnyOfStance>
       </Effect>
       <Effect>
          <Type>Doublestrike</Type>
@@ -9509,6 +9513,8 @@ This feat gives no benefit to druids in elemental forms.</Description>
          <AnyOfStance>Bear</AnyOfStance>
          <AnyOfStance>Winter Wolf</AnyOfStance>
          <AnyOfStance>Dire Bear</AnyOfStance>
+         <AnyOfStance>Plague Wolf</AnyOfStance>
+         <AnyOfStance>Blighted Wolf</AnyOfStance>
       </Effect>
       <Effect>
          <Type>Strikethrough</Type>
@@ -9780,8 +9786,7 @@ D&amp;D Dice: Deals 1d12 damage plus 1d12 damage additional per three caster lev
       <Effect>
          <Type>SpellPoints</Type>
          <Bonus>Feat</Bonus>
-         <Amount>5</Amount>
-         <AmountPerLevel>5</AmountPerLevel>
+         <Amount>155</Amount>
       </Effect>
       <Effect>
          <Type>SpellLikeAbility</Type>
@@ -11365,12 +11370,6 @@ equal to your Dexterity.)</Description>
          <IgnoreRequirements/>
          <Race>Drow</Race>
       </AutomaticAcquisition>
-      <Effect>
-         <Type>Doubleshot</Type>
-         <Bonus>Feat</Bonus>
-         <FullAbility>Dexterity</FullAbility>
-         <Stance>Shuriken</Stance>
-      </Effect>
    </Feat>
    <Feat>
       <Name>Simple Weapon Proficiency: Club</Name>
@@ -30941,6 +30940,8 @@ If in any Wolf form, you gain +20% competence bonus to maximum hit points and +2
          <Percent/>
          <AnyOfStance>Wolf</AnyOfStance>
          <AnyOfStance>Winter Wolf</AnyOfStance>
+         <AnyOfStance>Plague Wolf</AnyOfStance>
+         <AnyOfStance>Blighted Wolf</AnyOfStance>
       </Effect>
       <Effect>
          <Type>SneakAttackDice</Type>
@@ -30948,6 +30949,8 @@ If in any Wolf form, you gain +20% competence bonus to maximum hit points and +2
          <Amount>2</Amount>
          <AnyOfStance>Wolf</AnyOfStance>
          <AnyOfStance>Winter Wolf</AnyOfStance>
+         <AnyOfStance>Plague Wolf</AnyOfStance>
+         <AnyOfStance>Blighted Wolf</AnyOfStance>
       </Effect>
    </Feat>
    <Feat>
@@ -31109,7 +31112,7 @@ Activate to pop off to the land of dreams.</Description>
    </Feat>
    <Feat>
       <Name>Harbinger of Chaos</Name>
-      <Description>+2% Doublestrike and doubleshot. If you are Chaotic, you gain +2 Imbue diece.</Description>
+      <Description>+2% Doublestrike and doubleshot. If you are Chaotic, you gain +2 Imbue dice.</Description>
       <FeatGroup>
          <IsEpicDestinyFeat/>
       </FeatGroup>
@@ -32943,6 +32946,27 @@ You become 10% more Vulnerable to Fire.</Description>
          <IncompatibleStance>Hive Master</IncompatibleStance>
          <Group>Major Form</Group>
       </Stance>
+      <Effect>
+         <Type>ACBonus</Type>
+         <Bonus>Exceptional</Bonus>
+         <Amount>10</Amount>
+         <Percent/>
+         <Stance>Thorn-Kin</Stance>
+         <ApplyAsItemEffect/>
+      </Effect>
+      <Effect>
+         <Type>Fortification</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>50</Amount>
+         <Stance>Thorn-Kin</Stance>
+      </Effect>
+      <Effect>
+         <Type>EnergyResistance</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>-10</Amount>
+         <Energy>Fire</Energy>
+         <Stance>Thorn-Kin</Stance>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Wild Shape: Hive Keeper</Name>
@@ -33005,6 +33029,34 @@ Vulnerable to Cold.</Description>
          <IncompatibleStance>Hive Master</IncompatibleStance>
          <Group>Major Form</Group>
       </Stance>
+      <Effect>
+         <Type>Displacement</Type>
+         <Bonus>Enhancement</Bonus>
+         <Amount>25</Amount>
+         <Stance>Hive Keeper</Stance>
+         <ApplyAsItemEffect/>
+      </Effect>
+      <Effect>
+         <Type>GrantFeat</Type>
+         <Bonus>Feat</Bonus>
+         <Feat>Evasion</Feat>
+         <Stance>Hive Keeper</Stance>
+      </Effect>
+      <Effect>
+         <Type>EnergyResistance</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>-15</Amount>
+         <Energy>Cold</Energy>
+         <Stance>Hive Keeper</Stance>
+      </Effect>
+      <Effect>
+         <Type>SaveBonus</Type>
+         <Bonus>Feat</Bonus>
+         <AmountVector size="20">0 0 1 1 1 2 2 2 3 3 3 4 4 4 5 5 5 6 6 6</AmountVector>
+         <Class>Blight Caster</Class>
+         <Save>Reflex</Save>
+         <Stance>Hive Keeper</Stance>
+     </Effect>
    </Feat>
    <!--Toggle Imbue-->
    <Feat>
@@ -33135,6 +33187,44 @@ You cannot use wands or scrolls while in animal form.</Description>
          <IncompatibleStance>Hive Master</IncompatibleStance>
          <Group>Major Form</Group>
       </Stance>
+      <Effect>
+         <Type>Alacrity</Type>
+         <Bonus>Combat Style</Bonus>
+         <Amount>10</Amount>
+         <Weapon>All</Weapon>
+         <Stance>Plague Wolf</Stance>
+         <ApplyAsItemEffect/>
+      </Effect>
+      <Effect>
+         <Type>AbilityBonus</Type>
+         <Bonus>Penalty</Bonus>
+         <Amount>-2</Amount>
+         <Ability>Intelligence</Ability>
+         <Stance>Plague Wolf</Stance>
+      </Effect>
+      <Effect>
+         <Type>AbilityBonus</Type>
+         <Bonus>Penalty</Bonus>
+         <Amount>-2</Amount>
+         <Ability>Charisma</Ability>
+         <Stance>Plague Wolf</Stance>
+      </Effect>
+      <Effect>
+         <Type>AttackBonus</Type>
+         <Bonus>Enhancement</Bonus>
+         <Amount>3</Amount>
+         <Weapon>All</Weapon>
+         <Stance>Plague Wolf</Stance>
+         <Stance>Flanking</Stance>
+      </Effect>
+      <Effect>
+         <Type>CriticalAttackBonus</Type>
+         <Bonus>Enhancement</Bonus>
+         <Amount>3</Amount>
+         <Weapon>All</Weapon>
+         <Stance>Plague Wolf</Stance>
+         <Stance>Flanking</Stance>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Wild Shape: Thorne Knight</Name>
@@ -33189,6 +33279,27 @@ Stun, Paralysis, Poison, and Mind-affecting spells and abilities.</Description>
          <IncompatibleStance>Hive Master</IncompatibleStance>
          <Group>Major Form</Group>
       </Stance>
+      <Effect>
+         <Type>ACBonus</Type>
+         <Bonus>Exceptional</Bonus>
+         <Amount>10</Amount>
+         <Percent/>
+         <Stance>Thorne Knight</Stance>
+         <ApplyAsItemEffect/>
+      </Effect>
+      <Effect>
+         <Type>Fortification</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>100</Amount>
+         <Stance>Thorne Knight</Stance>
+      </Effect>
+      <Effect>
+         <Type>EnergyResistance</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>-15</Amount>
+         <Energy>Fire</Energy>
+         <Stance>Thorne Knight</Stance>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Wild Shape: Hive Master</Name>
@@ -33242,20 +33353,41 @@ down.</Description>
          <IncompatibleStance>Thorn Knight</IncompatibleStance>
          <Group>Major Form</Group>
       </Stance>
+      <Effect>
+         <Type>Displacement</Type>
+         <Bonus>Enhancement</Bonus>
+         <Amount>50</Amount>
+         <Stance>Hive Master</Stance>
+         <ApplyAsItemEffect/>
+      </Effect>
+      <Effect>
+         <Type>GrantFeat</Type>
+         <Bonus>Feat</Bonus>
+          <Feat>Improved Evasion</Feat>
+         <Stance>Hive Master</Stance>
+      </Effect>
+      <Effect>
+         <Type>EnergyResistance</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>-15</Amount>
+         <Energy>Cold</Energy>
+         <Stance>Hive Master</Stance>
+      </Effect>
    </Feat>
    <Feat>
       <Name>Wild Shape: Blighted Wolf</Name>
       <Description>Animal Form: Transform into a Blighted Wolf. While in this form, you gain a +10% Combat
 Style bonus to attack speed, 15% bonus to movement speed, and a 10% Profane bonus
-to Max Hit Points. You suffer a -2 penalty to Intelligence and Charisma and take
-15% more damage from fire. Whil ein Blighted Wolf form you gain access to a number
-of spells and enhancements that require Wolf form, but the cooldowns of your non-animal
-form spells are increased to 2.5 times their normal length.
+to Max Hit Points and +1 Imbue Dice. You suffer a -2 penalty to Intelligence and
+Charisma and take 15% more damage from fire. While in Blighted Wolf form you gain
+access to a number of spells and enhancements that require Wolf form, but the
+cooldowns of your non-animal form spells are increased to 2.5 times their normal
+length.
 
 You now attack with tooth and claw using the stats of whatever weapon held in your
 right hand. Shields work normally but you cannot shield bash.
 
-Filled with blight you are considered a plant, gaining 100% FOrtification, immunity
+Filled with blight you are considered a plant, gaining 100% Fortification, immunity
 to stun, mind effects and drwoning. If you are a Warforged, you are no longer
 considered a Living Construct, and can now be healed normally by positive energy
 spells, and you become immune to repair spells.
@@ -33301,6 +33433,41 @@ You cannot use wands or scrolls while in animal form.</Description>
          <IncompatibleStance>Hive Master</IncompatibleStance>
          <Group>Major Form</Group>
       </Stance>
+      <Effect>
+         <Type>Alacrity</Type>
+         <Bonus>Combat Style</Bonus>
+         <Amount>10</Amount>
+         <Weapon>All</Weapon>
+         <Stance>Blighted Wolf</Stance>
+         <ApplyAsItemEffect/>
+      </Effect>
+      <Effect>
+         <Type>AbilityBonus</Type>
+         <Bonus>Penalty</Bonus>
+         <Amount>-2</Amount>
+         <Ability>Intelligence</Ability>
+         <Stance>Blighted Wolf</Stance>
+      </Effect>
+      <Effect>
+         <Type>AbilityBonus</Type>
+         <Bonus>Penalty</Bonus>
+         <Amount>-2</Amount>
+         <Ability>Charisma</Ability>
+         <Stance>Blighted Wolf</Stance>
+      </Effect>
+      <Effect>
+         <Type>ImbueDice</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>1</Amount>
+         <Stance>Blighted Wolf</Stance>
+      </Effect>
+      <Effect>
+         <Type>EnergyResistance</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>-15</Amount>
+         <Energy>Fire</Energy>
+         <Stance>Blighted Wolf</Stance>
+      </Effect>
    </Feat>
    <!--Acolyte of the skin feats-->
    <Feat>

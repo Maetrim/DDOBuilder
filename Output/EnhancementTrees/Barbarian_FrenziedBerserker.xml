@@ -36,8 +36,7 @@
       <EnhancementTreeItem>
          <Name>Frenzied Berserker: Frenzied Toughness I</Name>
          <InternalName>FBCore2</InternalName>
-         <Description>+20 hit points and +10 Healing Amplification.
-You deal 1d8 Bane Damage which scales with Melee power.</Description>
+         <Description>+20 hit points and +10 Healing Amplification.</Description>
          <Icon>Toughness</Icon>
          <XPosition>1</XPosition>
          <YPosition>0</YPosition>
@@ -64,21 +63,16 @@ You deal 1d8 Bane Damage which scales with Melee power.</Description>
             <Bonus>Enhancement</Bonus>
             <Amount>10</Amount>
          </Effect>
-         <Stance>
-            <Name>Frenzied Berserker: Imbue</Name>
-            <Icon>Toughness</Icon>
-            <Description>1d8 Bane damage for each Imbue dice that scales with Melee power.</Description>
-            <Group>Imbue</Group>
-         </Stance>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Frenzied Berserker: Frenzy</Name>
          <InternalName>FBCore3</InternalName>
-         <Description>Enter a frenzy, increasing your strength by +2 and adding Vicious to your
-melee weapons (+2d6 damage). This damage scales with 100% Melee Power.
+         <Description>Imbue Toggle: Expend 10 HP to coat your weapon in blood, entering a frenzy.
+This Frenzy adds 1d8 Bane damage to your attacks, scaling with 100% Melee Power.
 Passive: +5 Melee Power
 Activation Cost: 10 Hit Points.
-Cooldown: 30 seconds.</Description>
+Cooldown: 30 seconds.
+Note: Imbue only works with Melee weapons.</Description>
          <Icon>FBFrenzy</Icon>
          <XPosition>2</XPosition>
          <YPosition>0</YPosition>
@@ -99,8 +93,9 @@ Cooldown: 30 seconds.</Description>
          <Stance>
             <Name>Frenzy</Name>
             <Icon>FBFrenzy</Icon>
-            <Description>Enter a frenzy, increasing your strength by +2 and adding Vicious to your
-melee weapons (+2d6 damage). This damage scales with 100% Melee Power.</Description>
+            <Description>Imbue Toggle: Expend 10 HP to coat your weapon in blood, entering a frenzy.
+This Frenzy adds 1d8 Bane damage to your attacks, scaling with 100% Melee Power.</Description>
+            <Group>Imbue</Group>
          </Stance>
          <Effect>
             <Type>MeleePower</Type>
@@ -108,18 +103,11 @@ melee weapons (+2d6 damage). This damage scales with 100% Melee Power.</Descript
             <Amount>5</Amount>
          </Effect>
          <Effect>
-            <Type>AbilityBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>2</Amount>
-            <Ability>Strength</Ability>
-            <Stance>Frenzy</Stance>
-         </Effect>
-         <Effect>
             <Type>WeaponOtherDamageBonus</Type>
             <Bonus>Enhancement</Bonus>
             <Dice>
-               <Number size="1">2</Number>
-               <Sides size="1">6</Sides>
+               <Number size="1">1</Number>
+               <Sides size="1">8</Sides>
                <ScalesWithMeleePower/>
             </Dice>
             <WeaponClass>Melee</WeaponClass>
