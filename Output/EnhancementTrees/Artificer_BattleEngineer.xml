@@ -161,10 +161,14 @@ is charged to Charge Tier 3, for a total of +24.</Description>
       <EnhancementTreeItem>
          <Name>Battle Engineer: Infused Weapons II</Name>
          <InternalName>BECore4</InternalName>
-         <Description>Your equipped weapon in your main hand gains an additional +1 to its
+      <Description>You gain a +1 Competence Bonus to Critical Multiplier with Crossbows, Bastard Swords,
+Dwarven Axes, Light Hammers, Warhammers, and Morningstars.
+
+Your equipped weapon in your main hand gains an additional +1 to its
 Enhancement bonus, for a total of +2. You also gain an additional +1 bonus to
 your attack roll to confirm a critical hit, and a +1 bonus to the damage of
 your critical hits (before multipliers), for a total of +2.
+
 Your equipped rune arm gains +1 stable charge tier. In addition, it grants you
 an additional +8 Universal Spell Power when it is charged to Charge Tier 4,
 for a total of +32.</Description>
@@ -191,10 +195,9 @@ for a total of +32.</Description>
             <Weapon>All</Weapon>
          </Effect>
          <Effect>
-            <Type>SpellPower</Type>
+            <Type>UniversalSpellPower</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>8</Amount>
-            <SpellPower>All</SpellPower>
             <Stance>Rune Arm</Stance>
          </Effect>
          <Effect>
@@ -220,6 +223,24 @@ for a total of +32.</Description>
             <Type>RuneArmStableCharge</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>1</Amount>
+         </Effect>
+         <Effect>
+            <Type>CriticalMultiplier</Type>
+            <Bonus>Competence</Bonus>
+            <Amount>1</Amount>
+            <ApplyAsItemEffect/>
+            <WeaponClass>Crossbows</WeaponClass>
+         </Effect>
+         <Effect>
+            <Type>CriticalMultiplier</Type>
+            <Bonus>Competence</Bonus>
+            <Amount>1</Amount>
+            <ApplyAsItemEffect/>
+            <Weapon>Bastard Sword</Weapon>
+            <Weapon>Dwarven Axe</Weapon>
+            <Weapon>Light Hammer</Weapon>
+            <Weapon>Warhammer</Weapon>
+            <Weapon>Morningstar</Weapon>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -286,11 +307,9 @@ it is charged to Charge Tier 5, for a total of +40.</Description>
       <EnhancementTreeItem>
          <Name>Battle Engineer: Master Engineer</Name>
          <InternalName>BECore6</InternalName>
-         <Description>You gain +4 Intelligence.
+      <Description>You gain +4 Intelligence.
 The Enhancement bonus of your armor and your equipped weapon in your main hand
 are each increased by an additional +1, for a total of +3.
-You gain a +1 Competence bonus to Critical Multiplier with Crossbows,
-Bastard Swords, Dwarven Axes, Light Hammers, Warhammers, and Morningstars.
 Your equipped weapon in your main hand is now a Spellcasting Implement,
 providing a +3 Implement bonus to Universal Spell Power for every +1
 Enhancement bonus on the weapon.</Description>
@@ -335,24 +354,6 @@ Enhancement bonus on the weapon.</Description>
             <Type>EnchantArmor</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>1</Amount>
-         </Effect>
-         <Effect>
-            <Type>CriticalMultiplier</Type>
-            <Bonus>Competence</Bonus>
-            <Amount>1</Amount>
-            <ApplyAsItemEffect/>
-            <WeaponClass>Crossbows</WeaponClass>
-         </Effect>
-         <Effect>
-            <Type>CriticalMultiplier</Type>
-            <Bonus>Competence</Bonus>
-            <Amount>1</Amount>
-            <ApplyAsItemEffect/>
-            <Weapon>Bastard Sword</Weapon>
-            <Weapon>Dwarven Axe</Weapon>
-            <Weapon>Light Hammer</Weapon>
-            <Weapon>Warhammer</Weapon>
-            <Weapon>Morningstar</Weapon>
          </Effect>
          <Effect>
             <Type>ImplementInYourHands</Type>

@@ -1909,7 +1909,8 @@ bool Character::IsStanceActive(const std::string & name, WeaponType wt) const
     }
     if (name == "FavoredWeapon")
     {
-        ret = m_Stances.IsStanceActive("Favored Weapon");   // check the weapon group
+        ret = pStancesView->IsStanceActive("Favored Weapon", wt);
+        //ret = m_Stances.IsStanceActive("Favored Weapon");   // check the weapon group
         // must also have at least 10 favored soul levels for this to apply
         // for Grace/Knowledge of battle
         if (ClassLevels(Class_FavoredSoul) < 10)

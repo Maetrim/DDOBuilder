@@ -149,7 +149,8 @@ Activation Cost: 15 Ki. Cooldown: 15 seconds</Description>
          <InternalName>NSCore5</InternalName>
          <Description>Ki Activate: You turn yourself invisible and create a dummy that attracts
 the attention of nearby enemies.
-For the next 20 seconds, gain +5 Sneak Attack Dice.
+While you are centered, you gain a +1 Competence bonus to your Critical Multiplier.
+For the next 20 seconds, gain +5 Sneak Attack Dice and +5 to Assassinate DCs.
 Activation Cost: 50 Ki. Cooldown: 3 minutes</Description>
          <Icon>NSDiversion</Icon>
          <XPosition>4</XPosition>
@@ -168,13 +169,20 @@ Activation Cost: 50 Ki. Cooldown: 3 minutes</Description>
                <Level>18</Level>
             </Requirement>
          </Requirements>
+         <Effect>
+            <Type>CriticalMultiplier</Type>
+            <Bonus>Competence</Bonus>
+            <Amount>1</Amount>
+            <ApplyAsItemEffect/>
+            <Weapon>All</Weapon>
+            <Stance>Centered</Stance>
+         </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Ninja Spy: Ninja Master</Name>
          <InternalName>NSCore6</InternalName>
          <Description>You gain +2 Dexterity and +2 Wisdom, +5 Sneak Attack Dice.
-While you are centered, you gain a +1 Competence bonus to you Critical Multiplier.
-Any weapon you wield while centered gains the Vorpal ability.
+Any weapons you wield while centered gains the Vorpal ability.
 If another ability allows you to remain centered while wielding other types
 of melee weapon, then those weapons will also gain these effects.</Description>
          <Icon>NSNinjaMaster</Icon>
@@ -218,14 +226,6 @@ of melee weapon, then those weapons will also gain these effects.</Description>
             <Type>SneakAttackDice</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>5</Amount>
-         </Effect>
-         <Effect>
-            <Type>CriticalMultiplier</Type>
-            <Bonus>Competence</Bonus>
-            <Amount>1</Amount>
-            <ApplyAsItemEffect/>
-            <Weapon>All</Weapon>
-            <Stance>Centered</Stance>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -1059,7 +1059,7 @@ Passive: +1 to Hit and Damage while Centered, does not apply to Handwraps or Qua
          <Description>Ki Bomb Spell-Like Ability: Throws a fragile eggshell imbued with ninja magic
 that explodes into light, blinding opponents for 6 seconds on a failed reflex
 save and momentarily dazing opponents on a failed fortitude save. Both saving
-throws have DC equal to (10/14/18 + Monk Level + Wisdom Modifier).
+throws have DC equal to ([10/14/18] + Monk Level + Wisdom Modifier + Assassinate).
 (Activation Cost: 20 Ki. Cooldown: 30 seconds)</Description>
          <Icon>NSFlashBang</Icon>
          <XPosition>1</XPosition>
@@ -1089,6 +1089,7 @@ save and momentarily dazing opponents on a failed fortitude save.</Description>
             <AmountVector size="3">10 14 18</AmountVector>
             <ClassLevel>Monk</ClassLevel>
             <ModAbility>Wisdom</ModAbility>
+            <Tactical>Assassinate</Tactical>
          </DC>
          <DC>
             <Name>Ninja Spy: Flash Bang (Daze)</Name>
@@ -1438,13 +1439,13 @@ Passive: +1 to Hit and +2 Damage while Centered, does not apply to Handwraps or 
       <EnhancementTreeItem>
          <Name>Ninja Spy: Deadly Exploits</Name>
          <InternalName>NSDeadlyExploits</InternalName>
-         <Description>Your Poison Exploit now deals 1d[30/40/50] poison damage per stack of
-Ninja Poison removed.</Description>
+         <Description>Your Poison Exploit now deals double damage, and scales with the higher of Melee
+or Ranged Power.</Description>
          <Icon>NSDeadlyExploits</Icon>
          <XPosition>1</XPosition>
          <YPosition>4</YPosition>
          <CostPerRank size="1">2</CostPerRank>
-         <Ranks>3</Ranks>
+         <Ranks>1</Ranks>
          <MinSpent>20</MinSpent>
          <Requirements>
             <Requirement>
@@ -1557,7 +1558,7 @@ Ninja Poison removed.</Description>
          <InternalName>NSTouchOfDeath</InternalName>
          <Description>Dark Ki Melee Attack: You strike a living opponent down with twisted Ki, dealing
 500 additional negative energy damage. Your opponent takes half damage on a
-successful Fortitude save (DC = 10 + Wisdom modifier + your monk level).
+successful Fortitude save (DC = 10 + Wisdom modifier + monk level + Assassinate).
 (Activation Cost: 50 Ki. Cooldown: 15 seconds)
 Passive: +3 to Hit and Damage while Centered, does not apply to Handwraps or Quarterstaves.</Description>
          <Icon>NSTouchOfDeath</Icon>
@@ -1688,6 +1689,7 @@ successful Fortitude save.</Description>
             <AmountVector size="1">10</AmountVector>
             <ClassLevel>Monk</ClassLevel>
             <ModAbility>Wisdom</ModAbility>
+            <Tactical>Assassinate</Tactical>
          </DC>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -1776,7 +1778,7 @@ Kamas and Shuriken gain double this bonus.</Description>
       <EnhancementTreeItem>
          <Name>Ninja Spy: Crippling Strike</Name>
          <InternalName>NSCripplingStrike</InternalName>
-         <Description>You gain the Rogue ability, Crippling Strike.
+         <Description>You gain the Rogue ability, Crippling Strike and +3 Assassinate DCs.
 (On Sneak Attack: 2 Strength damage.)</Description>
          <Icon>NSCripplingStrike</Icon>
          <XPosition>2</XPosition>
@@ -1801,6 +1803,12 @@ Kamas and Shuriken gain double this bonus.</Description>
             <Type>GrantFeat</Type>
             <Bonus>Enhancement</Bonus>
             <Feat>Crippling Strike</Feat>
+         </Effect>
+         <Effect>
+            <Type>TacticalDC</Type>
+            <Bonus>Enhancement</Bonus>
+            <Tactical>Assassinate</Tactical>
+            <Amount>3</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>

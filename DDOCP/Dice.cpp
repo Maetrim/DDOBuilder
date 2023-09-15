@@ -52,14 +52,14 @@ void Dice::Write(XmlLib::SaxWriter * writer) const
 
 size_t Dice::Number(size_t index) const
 {
-    ASSERT(index < m_Number.size());
+    //ASSERT(index < m_Number.size());
     index = min(index, m_Number.size() -1 );
     return m_Number[index];
 }
 
 size_t Dice::Sides(size_t index) const
 {
-    ASSERT(index < m_Sides.size());
+    //ASSERT(index < m_Sides.size());
     index = min(index, m_Sides.size() -1 );
     return m_Sides[index];
 }
@@ -68,7 +68,7 @@ int Dice::Bonus(size_t index) const
 {
     if (m_hasBonus)
     {
-        ASSERT(index < m_Bonus.size());
+        //ASSERT(index < m_Bonus.size());
         index = min(index, m_Bonus.size() -1 );
         return m_Bonus[index];
     }

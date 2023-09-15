@@ -147,7 +147,7 @@ void BreakdownItemWeaponDamageBonus::UpdateFeatEffect(
         {
             // add to the list of available stats for this weapon
             ASSERT(effect.HasAbility());
-            AddAbility(effect.Ability());  // duplicates are fine
+            AddAbility(effect.Ability(), effect.Stance(), Weapon());  // duplicates are fine
             CreateOtherEffects();
             Populate();
         }
@@ -170,7 +170,7 @@ void BreakdownItemWeaponDamageBonus::UpdateFeatEffectRevoked(
         if (effect.Type() == Effect_WeaponDamageAbility)
         {
             ASSERT(effect.HasAbility());
-            RemoveFirstAbility(effect.Ability());
+            RemoveFirstAbility(effect.Ability(), effect.Stance(), Weapon());
             CreateOtherEffects();
             Populate();
         }
@@ -194,7 +194,7 @@ void BreakdownItemWeaponDamageBonus::UpdateItemEffect(
         {
             // add to the list of available stats for this weapon
             ASSERT(effect.HasAbility());
-            AddAbility(effect.Ability());  // duplicates are fine
+            AddAbility(effect.Ability(), effect.Stance(), Weapon());  // duplicates are fine
             CreateOtherEffects();
             Populate();
         }
@@ -217,7 +217,7 @@ void BreakdownItemWeaponDamageBonus::UpdateItemEffectRevoked(
         if (effect.Type() == Effect_WeaponDamageAbility)
         {
             ASSERT(effect.HasAbility());
-            RemoveFirstAbility(effect.Ability());
+            RemoveFirstAbility(effect.Ability(), effect.Stance(), Weapon());
             CreateOtherEffects();
             Populate();
         }
@@ -241,7 +241,7 @@ void BreakdownItemWeaponDamageBonus::UpdateEnhancementEffect(
         {
             // add to the list of available stats for this weapon
             ASSERT(effect.m_effect.HasAbility());
-            AddAbility(effect.m_effect.Ability());  // duplicates are fine
+            AddAbility(effect.m_effect.Ability(), effect.m_effect.Stance(), Weapon());  // duplicates are fine
             CreateOtherEffects();
             Populate();
         }
@@ -264,7 +264,7 @@ void BreakdownItemWeaponDamageBonus::UpdateEnhancementEffectRevoked(
         if (effect.m_effect.Type() == Effect_WeaponDamageAbility)
         {
             ASSERT(effect.m_effect.HasAbility());
-            RemoveFirstAbility(effect.m_effect.Ability());
+            RemoveFirstAbility(effect.m_effect.Ability(), effect.m_effect.Stance(), Weapon());
             CreateOtherEffects();
             Populate();
         }

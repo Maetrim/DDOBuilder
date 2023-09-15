@@ -237,11 +237,12 @@ void BreakdownItemWeaponAttackBonus::UpdateFeatEffectRevoked(
     if (AffectsUs(effect))
     {
         // handle special affects that change our list of available stats
-        if (effect.HasAbility())
+        if (effect.Type() == Effect_WeaponAttackAbility)
         {
             ASSERT(effect.HasAbility());
             RemoveFirstAbility(effect.Ability(), effect.Stance(), Weapon());
             CreateOtherEffects();
+            Populate();
         }
         else
         {
@@ -294,11 +295,12 @@ void BreakdownItemWeaponAttackBonus::UpdateItemEffectRevoked(
     if (AffectsUs(effect))
     {
         // handle special affects that change our list of available stats
-        if (effect.HasAbility())
+        if (effect.Type() == Effect_WeaponAttackAbility)
         {
             ASSERT(effect.HasAbility());
             RemoveFirstAbility(effect.Ability(), effect.Stance(), Weapon());
             CreateOtherEffects();
+            Populate();
         }
         else
         {
@@ -351,11 +353,12 @@ void BreakdownItemWeaponAttackBonus::UpdateEnhancementEffectRevoked(
     if (AffectsUs(effect.m_effect))
     {
         // handle special affects that change our list of available stats
-        if (effect.m_effect.HasAbility())
+        if (effect.m_effect.Type() == Effect_WeaponAttackAbility)
         {
             ASSERT(effect.m_effect.HasAbility());
             RemoveFirstAbility(effect.m_effect.Ability(), effect.m_effect.Stance(), Weapon());
             CreateOtherEffects();
+            Populate();
         }
         else
         {
