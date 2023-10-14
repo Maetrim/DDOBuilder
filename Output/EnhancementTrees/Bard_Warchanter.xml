@@ -14,6 +14,7 @@
       </Requirements>
       <Icon>Bard</Icon>
       <Background>BardBackground</Background>
+      <!--Core Items-->
       <EnhancementTreeItem>
          <Name>Warchanter: Skaldic Rage / Skaldic Constitution</Name>
          <InternalName>WCCore1</InternalName>
@@ -368,6 +369,7 @@ throw versus being frozen solid in frigid ice for 6 seconds.</Description>
             <Amount>1</Amount>
          </Effect>
       </EnhancementTreeItem>
+      <!--Tier 1-->
       <EnhancementTreeItem>
          <Name>Warchanter: Inspired Bravery</Name>
          <InternalName>WCInspiredBravery</InternalName>
@@ -559,6 +561,7 @@ Rank 3: +1 Bard Song</Description>
             <AmountVector size="3">0 0 1</AmountVector>
          </Effect>
       </EnhancementTreeItem>
+      <!--Tier 2-->
       <EnhancementTreeItem>
          <Name>Warchanter: Boast</Name>
          <InternalName>WCBoast</InternalName>
@@ -653,7 +656,8 @@ Cooldown: 8 seconds.</Description>
       <EnhancementTreeItem>
          <Name>Warchanter: Iced Edges</Name>
          <InternalName>WCIcedEdges</InternalName>
-         <Description>+1d6 cold damage with attacks.</Description>
+         <Description>Imbue Toggle: You deal an additional 1d8 cold damage with attacks, scaling with
+75% Cold Spell Power.</Description>
          <Icon>WCIcedEdges</Icon>
          <XPosition>3</XPosition>
          <YPosition>2</YPosition>
@@ -672,6 +676,13 @@ Cooldown: 8 seconds.</Description>
                </Requirement>
             </RequiresOneOf>
          </Requirements>
+         <Stance>
+            <Name>Iced Edges</Name>
+            <Icon>WCIcedEdges</Icon>
+            <Description>Imbue Toggle: You deal an additional 1d8 cold damage with attacks, scaling with
+75% Cold Spell Power.</Description>
+            <Group>Imbue</Group>
+         </Stance>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Warchanter Action Boost: Sprint</Name>
@@ -697,6 +708,7 @@ Cooldown: 8 seconds.</Description>
             </RequiresOneOf>
          </Requirements>
       </EnhancementTreeItem>
+      <!--Tier 3-->
       <EnhancementTreeItem>
          <Name>Warchanter: Balad Melody: Ironskin</Name>
          <InternalName>WCIronskinChant</InternalName>
@@ -858,9 +870,11 @@ Rank 3: You are also immune to Fatigue, including Fatigue from Skaldic Rage.</De
       <EnhancementTreeItem>
          <Name>Warchanter: The Frozen Fury</Name>
          <InternalName>WCTheFrozenFury</InternalName>
-         <Description>Make a melee attack with +[1/2/3][W] damage. Affected enemies must make a Fortitude
-save (10 + Max[Str/Dex/Cha] modifier + [0/½/1] Bard Level + stunning modifiers)
-or become frozen solid for a number of seconds equal to your Bard level.
+         <Description>Deals +[10/20/30]% Damage
+Melee attack: Affected enemies must make a Fortitude save (10 + Max[Str/Dex/Cha]
+modifier + [0/½/full] Bard Level + stunning modifiers) or become frozen solid
+for a number of seconds equal to your Bard level.
+
 Bosses cannot be frozen.</Description>
          <Icon>WCTheFrozenFury</Icon>
          <XPosition>3</XPosition>
@@ -948,6 +962,7 @@ Bosses cannot be frozen.</Description>
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
+      <!--Tier 4-->
       <EnhancementTreeItem>
          <Name>Warchanter: Ballad Melody: Recklessness</Name>
          <InternalName>WCRecklessChant</InternalName>
@@ -1106,6 +1121,7 @@ Bosses cannot be frozen.</Description>
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
+      <!--Tier 5-->
       <EnhancementTreeItem>
          <Name>Warchanter: Movement Booster</Name>
          <InternalName>WCMovementBooster</InternalName>
@@ -1263,12 +1279,14 @@ ranged damage, and spell critical chance.</Description>
       <EnhancementTreeItem>
          <Name>Warchanter: Spinning Ice</Name>
          <InternalName>WCSpinningIce</InternalName>
-         <Description>Attack all enemies around you for +[3/4/5][W] damage.
-Each affected enemy is frozen solid if they fail a Fortitude save
+         <Description>Deals +[30/40/50]% Damage
+Cleave Attack: Each enemy is frozen solid if they fail a Fortitude save
 ([10/12/14] + Max[Str/Dex/Cha] modifier + [0/½/1] Bard Level + Stunning modifiers)
 for a number of seconds equal to your half your Bard level.
+
 Bosses cannot be frozen.
-Activation cost: [6/4/2] SP. Cooldown [45/35/25] seconds.</Description>
+Activation cost: [6/4/2] SP.
+Cooldown [45/35/25] seconds.</Description>
          <Icon>WCSpinningIce</Icon>
          <XPosition>3</XPosition>
          <YPosition>5</YPosition>
@@ -1297,11 +1315,10 @@ Activation cost: [6/4/2] SP. Cooldown [45/35/25] seconds.</Description>
          </Requirements>
          <DC>
             <Name>Spinning Ice</Name>
-            <Description>Attack all enemies around you for +2[W] damage.
-Each affected enemy is frozen solid if they fail a Fortitude save
-([10/12/14] + Max[Str/Dex/Cha] modifier +[0/½/1] Bard Level + Stunning modifiers)
-for a number of seconds equal to your half your Bard level.
-Bosses cannot be frozen.</Description>
+            <Description>Deals +[30/40/50]% Damage
+Cleave Attack: Each enemy is frozen solid if they fail a Fortitude save
+([10/12/14] + Max[Str/Dex/Cha] modifier + [0/½/1] Bard Level + Stunning modifiers)
+for a number of seconds equal to your half your Bard level.</Description>
             <Icon>WCSpinningIce</Icon>
             <DCVersus>Fotitude</DCVersus>
             <AmountVector size="3">10 12 14</AmountVector>

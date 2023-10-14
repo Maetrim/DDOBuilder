@@ -3,7 +3,7 @@
    <EnhancementTree>
       <!--Arcane Archer Elf tree variant-->
       <Name>Arcane Archer (Elf)</Name>
-      <Version>1</Version>
+      <Version>2</Version>
       <Requirements>
          <RequiresOneOf>
             <Requirement>
@@ -22,12 +22,13 @@
       </Requirements>
       <Background>ElfBackground</Background>
       <Icon>Ranger</Icon>
+      <!--Core Items-->
       <EnhancementTreeItem>
          <Name>Arcane Archer (Elf)</Name>
          <InternalName>AAElfCore1</InternalName>
-         <Description>Equipped bows gain a +1 Enhancement bonus for each Arcane Archer core ability you possess.
-(This does not stack with the bow's existing Enhancement bonus.) All bows are
-treated as Implements in your hands, granting Spell Power.</Description>
+         <Description>Equipped bows gain a +1 Enhancement bonus for each Arcane Archer core ability
+you possess. (This does not stack with the bow's existing Enhancement bonus.)
+All bows are treated as Implements in your hands, granting Spell Power.</Description>
          <Icon>AAArcaneArcher</Icon>
          <XPosition>0</XPosition>
          <YPosition>0</YPosition>
@@ -185,8 +186,12 @@ damage reduction. Activation Cost: 20 spell points. Cooldown: 10 seconds.</Descr
       <EnhancementTreeItem>
          <Name>Arcane Archer (Elf): Shadow Arrows</Name>
          <InternalName>AAElfCore5</InternalName>
-         <Description>Arcane Archer Secondary Imbue Toggle: +5% Doubleshot chance with bows.
+         <Description>Secondary Imbue Toggle: +5% Doubleshot chance with bows.
 Activation Cost: 20 spell points. Cooldown: 10 seconds.
+
+Doubleshot: Your ranged attacks gain a percent chance to attack with an extra
+projectile. Repeating Crossbows have a reduced chance to produce extra shots.
+
 Passive: Equipped bows gains a +1 Competence bonus to Critical Damage Multiplier.
           </Description>
          <Icon>AAShadowArrows</Icon>
@@ -231,9 +236,12 @@ Passive: Equipped bows gains a +1 Competence bonus to Critical Damage Multiplier
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Arcane Archer (Elf): Master of Imbuement</Name>
+         <Name>Arcane Archer (Elf): Mystical Archer</Name>
          <InternalName>AAElfCore6</InternalName>
-         <Description>+4 Dexterity, +20% Doubleshot</Description>
+         <Description>+4 Dexterity, +20% Doubleshot.
+
+Doubleshot: Your ranged attacks gain a percent chance to attack with an extra
+projectile. Repeating Crossbows have a reduced chance to produce extra shots.</Description>
          <Icon>AAMasterOfImbuement</Icon>
          <XPosition>5</XPosition>
          <YPosition>0</YPosition>
@@ -276,6 +284,7 @@ Passive: Equipped bows gains a +1 Competence bonus to Critical Damage Multiplier
             <Amount>20</Amount>
          </Effect>
       </EnhancementTreeItem>
+      <!--Tier 1-->
       <EnhancementTreeItem>
          <Name>Arcane Archer (Elf): Conjure Arrows</Name>
          <InternalName>AAElfConjureArrows</InternalName>
@@ -293,14 +302,13 @@ These arrows are destroyed when you log out for an extended period of time.</Des
       <EnhancementTreeItem>
          <Name>Arcane Archer (Elf): True strike</Name>
          <InternalName>AAElfTrueStrike</InternalName>
-         <Description>Ranged Archery Attack: Perform a ranged attack with +20 to-hit.
-Rank 2/3: You receive a +[2/4] Insight bonus to hit for [6/12] seconds.
-Activation cost: 2 spell points. Cooldown: 3 seconds.</Description>
+         <Description>Ranged Archery Attack: Perform a ranged attack with +20 to hit.
+You receive a +4 Insight bonus to hit for 12 seconds. Cooldown: 3 seconds</Description>
          <Icon>AATrueStrike</Icon>
          <XPosition>1</XPosition>
          <YPosition>1</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
          <MinSpent>1</MinSpent>
          <Clickie/>
          <Requirements/>
@@ -310,7 +318,7 @@ Activation cost: 2 spell points. Cooldown: 3 seconds.</Description>
          <InternalName>AAElfEnergyOfTheWild</InternalName>
          <Description>+[30/60/100] maximum spell points.
 Rank 3: You gain the Magical Training feat.
-Antirequisite: Cannot take Rank 3 if you already have the Magical Training feat.</Description>
+Anti-requisite: Cannot take Rank 3 if you already have the Magical Training feat.</Description>
          <Icon>AAEnergyOfTheWild</Icon>
          <XPosition>2</XPosition>
          <YPosition>1</YPosition>
@@ -354,8 +362,8 @@ Passive: +5 Universal Spell Power</Description>
          <Selector>
             <EnhancementSelection>
                <Name>Corrosive Arrows</Name>
-               <Description>Arcane Archer Imbue Toggle: Your arrows gain the Corrosive ability,
-dealing 1d8 acid damage on hit, scaling with Spell Power.
+               <Description>Imbue Toggle: Your arrows gain the Corrosive, dealing 1d8 acid damage on
+hit, scaling with 75% of your Spell Power.
 Passive: +5 Universal Spell Power</Description>
                <Icon>AACorrosiveArrows</Icon>
                <CostPerRank size="1">2</CostPerRank>
@@ -363,16 +371,16 @@ Passive: +5 Universal Spell Power</Description>
                <Stance>
                   <Name>Corrosive Arrows</Name>
                   <Icon>AACorrosiveArrows</Icon>
-                  <Description>Arcane Archer Imbue Toggle: Your arrows gain the Corrosive ability,
-dealing 1d8 acid damage per Imbue Dice on hit, scaling with Spell Power.
+                    <Description>Imbue Toggle: Your arrows gain the Corrosive, dealing 1d8 acid damage on
+hit, scaling with 75% of your Spell Power.
 Passive: +5 Universal Spell Power</Description>
                   <Group>Imbue</Group>
                </Stance>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Flaming Arrows</Name>
-               <Description>Arcane Archer Imbue Toggle: Your arrows gain the Flaming ability,
-dealing 1d8 fire damage on hit, scaling with Spell Power.
+               <Description>Imbue Toggle: Your arrows gain the Flaming, dealing 1d8 fire damage on hit,
+scaling with 75% of your Spell Power.
 Passive: +5 Universal Spell Power</Description>
                <Icon>AAFlamingArrows</Icon>
                <CostPerRank size="1">2</CostPerRank>
@@ -380,16 +388,16 @@ Passive: +5 Universal Spell Power</Description>
                <Stance>
                   <Name>Flaming Arrows</Name>
                   <Icon>AAFlamingArrows</Icon>
-                  <Description>Arcane Archer Imbue Toggle: Your arrows gain the Flaming ability,
-dealing 1d8 fire damage per Imbue Dice on hit, scaling with Spell Power.
+                    <Description>Imbue Toggle: Your arrows gain the Flaming, dealing 1d8 fire damage on hit,
+scaling with 75% of your Spell Power.
 Passive: +5 Universal Spell Power</Description>
                   <Group>Imbue</Group>
                </Stance>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Frost Arrows</Name>
-               <Description>Arcane Archer Imbue Toggle: Your arrows gain the Frost ability,
-dealing 1d8 cold damage on hit, scaling with Spell Power.
+               <Description>Imbue Toggle: Your arrows gain the Frost, dealing 1d8 cold damage on hit,
+scaling with 75% of your Spell Power.
 Passive: +5 Universal Spell Power</Description>
                <Icon>AAFrostArrows</Icon>
                <CostPerRank size="1">2</CostPerRank>
@@ -397,16 +405,16 @@ Passive: +5 Universal Spell Power</Description>
                <Stance>
                   <Name>Frost Arrows</Name>
                   <Icon>AAFrostArrows</Icon>
-                  <Description>Arcane Archer Imbue Toggle: Your arrows gain the Frost ability,
-dealing 1d8 cold damage per Imbue Dice on hit, scaling with Spell Power.
+                    <Description>Imbue Toggle: Your arrows gain the Frost, dealing 1d8 cold damage on hit,
+scaling with 75% of your Spell Power.
 Passive: +5 Universal Spell Power</Description>
                   <Group>Imbue</Group>
                </Stance>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Shock Arrows</Name>
-               <Description>Arcane Archer Imbue Toggle: Your arrows gain the Shock ability,
-dealing 1d8 electrical damage on hit, scaling with Spell Power.
+               <Description>Imbue Toggle: Your arrows gain the Shock, dealing 1d8 electrical damage on
+hit, scaling with 75% of your Spell Power.
 Passive: +5 Universal Spell Power</Description>
                <Icon>AAShockArrows</Icon>
                <CostPerRank size="1">2</CostPerRank>
@@ -453,17 +461,20 @@ Passive: +5 Universal Spell Power</Description>
             <AmountVector size="3">1 2 3</AmountVector>
          </Effect>
       </EnhancementTreeItem>
+      <!--Tier 2-->
       <EnhancementTreeItem>
          <Name>Arcane Archer (Elf): Dispelling Shot</Name>
          <InternalName>AAElfDispellingShot</InternalName>
-         <Description>Ranged Archery Attack: Performs a ranged attack that deals +[1/2/3][W] damage
-and dispels [1/2/3] beneficial effects from your target.
-(Activation Cost: 5 SP. Cooldown: 3 seconds)</Description>
+         <Description>Deals +30% Damage.
+Ranged Archery Attack: Performs a ranged attack that dispels 3 beneficial effects
+from your target. 
+Activation Cost: 5 SP.
+Cooldown: 3 seconds</Description>
          <Icon>AADispellingShot</Icon>
          <XPosition>0</XPosition>
          <YPosition>2</YPosition>
          <CostPerRank size="1">2</CostPerRank>
-         <Ranks>3</Ranks>
+         <Ranks>1</Ranks>
          <MinSpent>5</MinSpent>
          <Clickie/>
          <Requirements/>
@@ -471,24 +482,25 @@ and dispels [1/2/3] beneficial effects from your target.
       <EnhancementTreeItem>
          <Name>Arcane Archer (Elf): Force Arrows</Name>
          <InternalName>AAElfForceArrows</InternalName>
-         <Description>Arcane Archer Imbue Toggle: You imbue your arrows with magical force.
-Your arrows gain On Hit: 1d4/1d6/1d6+(1d10-3d10 on crit) force damage and the
-Ghost Touch ability. (Activation Cost: 20 spell points. Cooldown: 10 seconds)
-Gaining additional Elemental Damage dice in the Arcane Archer tree increases
-Force Arrows dice. This damage also scales with Spell Power.</Description>
+         <Description>Imbue Toggle: You imbue your arrows with magical force.
+Your arrows gain On Hit: 1d8 force damage, Force Burst (On Critical: 1d10 to 3d10
+force damage based on weapon critical multiplier), and the Ghost Touch ability.
+This damage scales with 75% of your Spell Power.</Description>
          <Icon>AAForceArrows</Icon>
          <XPosition>1</XPosition>
          <YPosition>2</YPosition>
          <CostPerRank size="1">2</CostPerRank>
-         <Ranks>3</Ranks>
+         <Ranks>1</Ranks>
          <MinSpent>5</MinSpent>
          <Clickie/>
          <Requirements/>
          <Stance>
             <Name>Force Arrows</Name>
             <Icon>AAForceArrows</Icon>
-            <Description>Arcane Archer Imbue Toggle: You imbue your arrows with magical force.
-Your arrows gain On Hit: 1d8 force damage per Imbue Dice.</Description>
+            <Description>Imbue Toggle: You imbue your arrows with magical force.
+Your arrows gain On Hit: 1d8 force damage, Force Burst (On Critical: 1d10 to 3d10
+force damage based on weapon critical multiplier), and the Ghost Touch ability.
+This damage scales with 75% of your Spell Power.</Description>
             <Group>Imbue</Group>
          </Stance>
          <Effect>
@@ -502,15 +514,17 @@ Your arrows gain On Hit: 1d8 force damage per Imbue Dice.</Description>
       <EnhancementTreeItem>
          <Name>Arcane Archer (Elf): Inferno Shot</Name>
          <InternalName>AAElfInfernoShot</InternalName>
-         <Description>Ranged Archery Attack: Performs a ranged attack with +[0/1/2][W] damage.
-On Hit: Target gain 1 stack of Inferno (target takes 1d6 fire damage every 2
-seconds for 6 seconds. This effect can stack 20 times, and loses one stack on
-expiration.) (Activation cost: 6 SP. Cooldown 3 seconds)</Description>
+         <Description>Deals +10% Damage.
+Ranged Archery Attack: On Hit: Target gain 1 stack of Inferno (target takes 1d6
+fire damage every 2 seconds for 6 seconds. This effect can stack 20 times, and
+loses one stack on expiration.).
+Activation cost: 6 SP.
+Cooldown 3 seconds</Description>
          <Icon>AAInfernoShot</Icon>
          <XPosition>2</XPosition>
          <YPosition>2</YPosition>
          <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
+         <Ranks>1</Ranks>
          <MinSpent>5</MinSpent>
          <Clickie/>
          <Requirements/>
@@ -518,8 +532,7 @@ expiration.) (Activation cost: 6 SP. Cooldown 3 seconds)</Description>
       <EnhancementTreeItem>
          <Name>Arcane Archer (Elf): Elemental Arrows II</Name>
          <InternalName>AAElfElementalArrowsII</InternalName>
-         <Description>Select one of four elemental arrow imbues
-(Can't choose the same type again, deal +1 Damage dice with Elemental Arrows), or:
+         <Description>Select one of four elemental arrow imbues or Deal +2 Imbue dice
 Passive: +5 Universal Spell Power</Description>
          <Icon>AAElementalArrows</Icon>
          <XPosition>3</XPosition>
@@ -535,102 +548,75 @@ Passive: +5 Universal Spell Power</Description>
             </Requirement>
          </Requirements>
          <Selector>
+            <Exclude>AAElementalArrowsI</Exclude>
             <EnhancementSelection>
                <Name>Corrosive Arrows</Name>
-               <Description>Arcane Archer Imbue Toggle: Your arrows gain the Corrosive ability,
-dealing 1d8 acid damage on hit, scaling with Spell Power.
-Passive: +5 Universal Spell Power</Description>
+               <Description>Imbue Toggle: Your arrows gain the Corrosive, dealing 1d8 acid damage on
+hit, scaling with 75% of your Spell Power.
+Passive: +5 Universal Spell Power
++1 bonus Imbue Dice</Description>
                <Icon>AACorrosiveArrows</Icon>
                <CostPerRank size="1">2</CostPerRank>
                <Clickie/>
-               <Requirements>
-                  <RequiresNoneOf>
-                     <Requirement>
-                        <Enhancement>AAElfElementalArrowsI</Enhancement>
-                        <Selection>Corrosive Arrows</Selection>
-                     </Requirement>
-                  </RequiresNoneOf>
-               </Requirements>
                <Stance>
                   <Name>Corrosive Arrows</Name>
                   <Icon>AACorrosiveArrows</Icon>
-                  <Description>Arcane Archer Imbue Toggle: Your arrows gain the Corrosive ability,
-dealing 1d8 acid damage per Imbue Dice on hit, scaling with Spell Power.
+                    <Description>Imbue Toggle: Your arrows gain the Corrosive, dealing 1d8 acid damage on
+hit, scaling with 75% of your Spell Power.
 Passive: +5 Universal Spell Power</Description>
                   <Group>Imbue</Group>
                </Stance>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Flaming Arrows</Name>
-               <Description>Arcane Archer Imbue Toggle: Your arrows gain the Flaming ability,
-dealing 1d8 fire damage on hit, scaling with Spell Power.
-Passive: +5 Universal Spell Power</Description>
+               <Description>Imbue Toggle: Your arrows gain the Flaming, dealing 1d8 fire damage on hit,
+scaling with 75% of your Spell Power.
+Passive: +5 Universal Spell Power
++1 bonus Imbue Dice</Description>
                <Icon>AAFlamingArrows</Icon>
                <CostPerRank size="1">2</CostPerRank>
                <Clickie/>
-               <Requirements>
-                  <RequiresNoneOf>
-                     <Requirement>
-                        <Enhancement>AAElfElementalArrowsI</Enhancement>
-                        <Selection>Flaming Arrows</Selection>
-                     </Requirement>
-                  </RequiresNoneOf>
-               </Requirements>
                <Stance>
                   <Name>Flaming Arrows</Name>
                   <Icon>AAFlamingArrows</Icon>
-                  <Description>Arcane Archer Imbue Toggle: Your arrows gain the Flaming ability,
-dealing 1d8 fire damage per Imbue Dice on hit, scaling with Spell Power.
+                    <Description>Imbue Toggle: Your arrows gain the Flaming, dealing 1d8 fire damage on hit,
+scaling with 75% of your Spell Power.
 Passive: +5 Universal Spell Power</Description>
                   <Group>Imbue</Group>
                </Stance>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Frost Arrows</Name>
-               <Description>Arcane Archer Imbue Toggle: Your arrows gain the Frost ability,
-dealing 1d8 cold damage on hit, scaling with Spell Power.
-Passive: +5 Universal Spell Power</Description>
+               <Description>Imbue Toggle: Your arrows gain the Frost, dealing 1d8 cold damage on hit,
+scaling with 75% of your Spell Power.
+Passive: +5 Universal Spell Power
++1 bonus Imbue Dice</Description>
                <Icon>AAFrostArrows</Icon>
                <CostPerRank size="1">2</CostPerRank>
                <Clickie/>
-               <Requirements>
-                  <RequiresNoneOf>
-                     <Requirement>
-                        <Enhancement>AAElfElementalArrowsI</Enhancement>
-                        <Selection>Frost Arrows</Selection>
-                     </Requirement>
-                  </RequiresNoneOf>
-               </Requirements>
                <Stance>
                   <Name>Frost Arrows</Name>
                   <Icon>AAFrostArrows</Icon>
-                  <Description>Arcane Archer Imbue Toggle: Your arrows gain the Frost ability,
-dealing 1d8 cold damage per Imbue Dice on hit, scaling with Spell Power.
+                    <Description>Imbue Toggle: Your arrows gain the Frost, dealing 1d8 cold damage on hit,
+scaling with 75% of your Spell Power.
 Passive: +5 Universal Spell Power</Description>
                   <Group>Imbue</Group>
                </Stance>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Shock Arrows</Name>
-               <Description>Arcane Archer Imbue Toggle: Your arrows gain the Shock ability,
-dealing 1d8 electrical damage on hit, scaling with Spell Power.
-Passive: +5 Universal Spell Power</Description>
+               <Description>Imbue Toggle: Your arrows gain the Shock, dealing 1d8 electrical damage on
+hit, scaling with 75% of your Spell Power.
+Passive: +5 Universal Spell Power
++1 bonus Imbue Dice</Description>
                <Icon>AAShockArrows</Icon>
                <CostPerRank size="1">2</CostPerRank>
                <Clickie/>
-               <Requirements>
-                  <RequiresNoneOf>
-                     <Requirement>
-                        <Enhancement>AAElfElementalArrowsI</Enhancement>
-                        <Selection>Shock Arrows</Selection>
-                     </Requirement>
-                  </RequiresNoneOf>
-               </Requirements>
                <Stance>
                   <Name>Shock Arrows</Name>
                   <Icon>AAShockArrows</Icon>
-                  <Description>Arcane Archer Imbue Toggle: Your arrows gain the Shock ability,
-dealing 1d8 electrical damage per Imbue Dice on hit, scaling with Spell Power.
+                    <Description>Imbue Toggle: Your arrows gain the Shock, dealing 1d8 electrical damage on
+hit, scaling with 75% of your Spell Power.
 Passive: +5 Universal Spell Power</Description>
                   <Group>Imbue</Group>
                </Stance>
@@ -644,10 +630,15 @@ Passive: +5 Universal Spell Power</Description>
                <Effect>
                   <Type>ImbueDice</Type>
                   <Bonus>Enhancement</Bonus>
-                  <Amount>2</Amount>
+                  <Amount>1</Amount>
                </Effect>
             </EnhancementSelection>
          </Selector>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+         </Effect>
          <Effect>
             <Type>UniversalSpellPower</Type>
             <Bonus>Enhancement</Bonus>
@@ -683,31 +674,35 @@ Passive: +5 Universal Spell Power</Description>
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
+      <!--Tier 3-->
       <EnhancementTreeItem>
          <Name>Arcane Archer (Elf): Shattermantle Shot</Name>
          <InternalName>AAElfShattermantleShot</InternalName>
-         <Description>Ranged Archery Attack: Performs a ranged attack with +[1/2/3][W] damage.
-On hit: Target gains [1/2/3] stack of Reduced Spell Resistance (-1 Spell Resistance.
-This effect can stack 100 times) on Vorpal Hit: Shattermantle (-100 spell
-Resistance for 10 seconds. Will DC [10/14/18] + Half Character Level + Wisdom Modifier negates.)
-(Activation Cost: 4 SP. Cooldown: 3 seconds)</Description>
+         <Description>Ranged Archery Attack: On hit: Target gains 3 stacks of Reduced Spell Resistance
+(-1 Spell Resistance. This effect can stack 100 times).
+On Vorpal Hit: Shattermantle (-100 spell Resistance for 10 seconds.
+Will DC 18 + Half Total Level + Wisdom Modifier negates.)
+Activation Cost: 4 SP.
+Cooldown: 3 seconds</Description>
          <Icon>AAShattermantleShot</Icon>
          <XPosition>0</XPosition>
          <YPosition>3</YPosition>
          <CostPerRank size="1">1</CostPerRank>
-         <Ranks>3</Ranks>
+         <Ranks>1</Ranks>
          <MinSpent>10</MinSpent>
          <Clickie/>
          <Requirements/>
          <DC>
             <Name>Arcane Archer (Elf): Shattermantle Shot</Name>
-            <Description>Ranged Archery Attack: Performs a ranged attack with +[1/2/3][W] damage.
-On hit: Target gains [1/2/3] stack of Reduced Spell Resistance (-1 Spell Resistance.
-This effect can stack 100 times) on Vorpal Hit: Shattermantle (-100 spell
-Resistance for 10 seconds.</Description>
+            <Description>Ranged Archery Attack: On hit: Target gains 3 stacks of Reduced Spell Resistance
+(-1 Spell Resistance. This effect can stack 100 times).
+On Vorpal Hit: Shattermantle (-100 spell Resistance for 10 seconds.
+Will DC 18 + Half Total Level + Wisdom Modifier negates.)
+Activation Cost: 4 SP.
+Cooldown: 3 seconds</Description>
             <Icon>AAShattermantleShot</Icon>
             <DCVersus>Will</DCVersus>
-            <AmountVector size="3">10 14 18</AmountVector>
+            <AmountVector size="1">18</AmountVector>
             <HalfClassLevel>All</HalfClassLevel>
             <ModAbility>Wisdom</ModAbility>
          </DC>
@@ -715,8 +710,10 @@ Resistance for 10 seconds.</Description>
       <EnhancementTreeItem>
          <Name>Arcane Archer (Elf): Terror Arrows</Name>
          <InternalName>AAElfTerrorArrows</InternalName>
-         <Description>Arcane Archer Imbue Toggle: You imbue your arrows with negative energy.
-(Activation Cost: 20 SP. Cooldown: 10 seconds)
+         <Description>Imbue Toggle: You imbue your arrows with negative energy.
+Activation Cost: 20 SP.
+Cooldown: 10 seconds
+
 On Hit: Target is feared. (Will save vs. DC: 20 + Wisdom Modifier + Enchantment Spell Bonuses)
 On Vorpal: Target is subject to a Phantasmal Killer effect.
 Passive: +1 bonus to DC of Enchantment Spells</Description>
@@ -737,9 +734,8 @@ Passive: +1 bonus to DC of Enchantment Spells</Description>
          </Effect>
          <DC>
             <Name>Arcane Archer (Elf): Terror Arrows</Name>
-            <Description>Arcane Archer Imbue Toggle: You imbue your arrows with negative energy.
-(Activation Cost: 20 SP. Cooldown: 10 seconds)
-On Hit: Target is feared.
+            <Description>Imbue Toggle: You imbue your arrows with negative energy.
+On Hit: Target is feared. (Will save vs. DC: 20 + Wisdom Modifier + Enchantment Spell Bonuses)
 On Vorpal: Target is subject to a Phantasmal Killer effect.</Description>
             <Icon>AATerrorArrows</Icon>
             <DCVersus>Will</DCVersus>
@@ -752,7 +748,7 @@ On Vorpal: Target is subject to a Phantasmal Killer effect.</Description>
          <Name>Arcane Archer (Elf): Soul Magic</Name>
          <InternalName>AAElfSoulMagic</InternalName>
          <Description>Every time you strike an enemy with your bow, you have a 15% chance to gain 10
-temporary spell points that last for one minute.
+temporary spell points that last for 1 minute.
 +10 Universal Spell Power.</Description>
          <Icon>AASoulMagic</Icon>
          <XPosition>2</XPosition>
@@ -762,9 +758,8 @@ temporary spell points that last for one minute.
          <MinSpent>10</MinSpent>
          <Requirements/>
          <Effect>
-            <Type>SpellPower</Type>
+            <Type>UniversalSpellPower</Type>
             <Bonus>Enhancement</Bonus>
-            <SpellPower>All</SpellPower>
             <Amount>10</Amount>
          </Effect>
       </EnhancementTreeItem>
@@ -772,7 +767,7 @@ temporary spell points that last for one minute.
          <Name>Arcane Archer (Elf): Elemental Arrows III</Name>
          <InternalName>AAElfElementalArrowsIII</InternalName>
          <Description>Select one of four elemental arrow imbues (Can't choose the same type again),
-or Elemental Damage. Passive: +5 Universal Spell Power</Description>
+or +1 Imbue Dice. Passive: +5 Universal Spell Power</Description>
          <Icon>AAElementalArrows</Icon>
          <XPosition>3</XPosition>
          <YPosition>3</YPosition>
@@ -787,118 +782,76 @@ or Elemental Damage. Passive: +5 Universal Spell Power</Description>
             </Requirement>
          </Requirements>
          <Selector>
+            <Exclude>AAElfElementalArrowsI1</Exclude>
+            <Exclude>AAElfElementalArrowsII</Exclude>
             <EnhancementSelection>
                <Name>Corrosive Arrows</Name>
-               <Description>Arcane Archer Imbue Toggle: Your arrows gain the Corrosive ability,
-dealing 1d8 acid damage on hit, scaling with Spell Power.
-Passive: +5 Universal Spell Power</Description>
+               <Description>Imbue Toggle: Your arrows gain the Corrosive, dealing 1d8 acid damage on
+hit, scaling with 75% of your Spell Power.
+Passive: +5 Universal Spell Power
++1 bonus Imbue Dice</Description>
                <Icon>AACorrosiveArrows</Icon>
                <CostPerRank size="1">2</CostPerRank>
                <Clickie/>
-               <Requirements>
-                  <RequiresNoneOf>
-                     <Requirement>
-                        <Enhancement>AAElfElementalArrowsI</Enhancement>
-                        <Selection>Corrosive Arrows</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>AAElfElementalArrowsII</Enhancement>
-                        <Selection>Corrosive Arrows</Selection>
-                     </Requirement>
-                  </RequiresNoneOf>
-               </Requirements>
                <Stance>
                   <Name>Corrosive Arrows</Name>
                   <Icon>AACorrosiveArrows</Icon>
-                  <Description>Arcane Archer Imbue Toggle: Your arrows gain the Corrosive ability,
-dealing 1d8 acid damage per Imbue Dice on hit, scaling with Spell Power.
+                    <Description>Imbue Toggle: Your arrows gain the Corrosive, dealing 1d8 acid damage on
+hit, scaling with 75% of your Spell Power.
 Passive: +5 Universal Spell Power</Description>
                   <Group>Imbue</Group>
                </Stance>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Flaming Arrows</Name>
-               <Description>Arcane Archer Imbue Toggle: Your arrows gain the Flaming ability,
-dealing 1d8 fire damage on hit, scaling with Spell Power.
-Passive: +5 Universal Spell Power</Description>
+               <Description>Imbue Toggle: Your arrows gain the Flaming, dealing 1d8 fire damage on hit,
+scaling with 75% of your Spell Power.
+Passive: +5 Universal Spell Power
++1 bonus Imbue Dice</Description>
                <Icon>AAFlamingArrows</Icon>
                <CostPerRank size="1">2</CostPerRank>
                <Clickie/>
-               <Requirements>
-                  <RequiresNoneOf>
-                     <Requirement>
-                        <Enhancement>AAElfElementalArrowsI</Enhancement>
-                        <Selection>Flaming Arrows</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>AAElfElementalArrowsII</Enhancement>
-                        <Selection>Flaming Arrows</Selection>
-                     </Requirement>
-                  </RequiresNoneOf>
-               </Requirements>
                <Stance>
                   <Name>Flaming Arrows</Name>
                   <Icon>AAFlamingArrows</Icon>
-                  <Description>Arcane Archer Imbue Toggle: Your arrows gain the Flaming ability,
-dealing 1d8 fire damage per Imbue Dice on hit, scaling with Spell Power.
+                    <Description>Imbue Toggle: Your arrows gain the Flaming, dealing 1d8 fire damage on hit,
+scaling with 75% of your Spell Power.
 Passive: +5 Universal Spell Power</Description>
                   <Group>Imbue</Group>
                </Stance>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Frost Arrows</Name>
-               <Description>Arcane Archer Imbue Toggle: Your arrows gain the Frost ability,
-dealing 1d8 cold damage on hit, scaling with Spell Power.
-Passive: +5 Universal Spell Power</Description>
+               <Description>Imbue Toggle: Your arrows gain the Frost, dealing 1d8 cold damage on hit,
+scaling with 75% of your Spell Power.
+Passive: +5 Universal Spell Power
++1 bonus Imbue Dice</Description>
                <Icon>AAFrostArrows</Icon>
                <CostPerRank size="1">2</CostPerRank>
                <Clickie/>
-               <Requirements>
-                  <RequiresNoneOf>
-                     <Requirement>
-                        <Enhancement>AAElfElementalArrowsI</Enhancement>
-                        <Selection>Frost Arrows</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>AAElfElementalArrowsII</Enhancement>
-                        <Selection>Frost Arrows</Selection>
-                     </Requirement>
-                  </RequiresNoneOf>
-               </Requirements>
                <Stance>
                   <Name>Frost Arrows</Name>
                   <Icon>AAFrostArrows</Icon>
-                  <Description>Arcane Archer Imbue Toggle: Your arrows gain the Frost ability,
-dealing 1d8 cold damage per Imbue Dice on hit, scaling with Spell Power.
+                    <Description>Imbue Toggle: Your arrows gain the Frost, dealing 1d8 cold damage on hit,
+scaling with 75% of your Spell Power.
 Passive: +5 Universal Spell Power</Description>
                   <Group>Imbue</Group>
                </Stance>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Shock Arrows</Name>
-               <Description>Arcane Archer Imbue Toggle: Your arrows gain the Shock ability,
-dealing 1d8 electrical damage on hit, scaling with Spell Power.
-Passive: +5 Universal Spell Power</Description>
+               <Description>Imbue Toggle: Your arrows gain the Shock, dealing 1d8 electrical damage on
+hit, scaling with 75% of your Spell Power.
+Passive: +5 Universal Spell Power
++1 bonus Imbue Dice</Description>
                <Icon>AAShockArrows</Icon>
                <CostPerRank size="1">2</CostPerRank>
                <Clickie/>
-               <Requirements>
-                  <RequiresNoneOf>
-                     <Requirement>
-                        <Enhancement>AAElfElementalArrowsI</Enhancement>
-                        <Selection>Shock Arrows</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>AAElfElementalArrowsII</Enhancement>
-                        <Selection>Shock Arrows</Selection>
-                     </Requirement>
-                  </RequiresNoneOf>
-               </Requirements>
                <Stance>
                   <Name>Shock Arrows</Name>
                   <Icon>AAShockArrows</Icon>
-                  <Description>Arcane Archer Imbue Toggle: Your arrows gain the Shock ability,
-dealing 1d8 electrical damage per Imbue Dice on hit, scaling with Spell Power.
+                    <Description>Imbue Toggle: Your arrows gain the Shock, dealing 1d8 electrical damage on
+hit, scaling with 75% of your Spell Power.
 Passive: +5 Universal Spell Power</Description>
                   <Group>Imbue</Group>
                </Stance>
@@ -912,10 +865,15 @@ Passive: +5 Universal Spell Power</Description>
                <Effect>
                   <Type>ImbueDice</Type>
                   <Bonus>Enhancement</Bonus>
-                  <Amount>2</Amount>
+                  <Amount>1</Amount>
                </Effect>
             </EnhancementSelection>
          </Selector>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+         </Effect>
          <Effect>
             <Type>UniversalSpellPower</Type>
             <Bonus>Enhancement</Bonus>
@@ -961,15 +919,18 @@ Passive: +5 Universal Spell Power</Description>
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
+      <!--Tier 4-->
       <EnhancementTreeItem>
          <Name>Arcane Archer (Elf): Banishing Arrows</Name>
          <InternalName>AAElfBanishingArrows</InternalName>
-         <Description>Arcane Archer Imbue Toggle: (Activation Cost: 20 SP. Cooldown: 10 seconds)
-Your arrows gain On Vorpal: Banish an extraplanar creature back to their home plane.
-(Will save vs. DC 20 + Wisdom modifier + Enchantment Spell bonuses)
-On hit: Inflict Pull of Reality (-1 PRR/MRR, stacks up to 25 times. 5 stacks fade away every 3 seconds).
-Passive: +1 bonus to DC of Enchantment Spells
-Instant kill does not affect bosses.</Description>
+         <Description>Imbue Toggle: Your arrows gain On Vorpal: Banish an extra-planar creature back
+to their home plane. (Will save vs. DC 20 + Wisdom modifier + Enchantment Spell
+bonuses)
+On hit: Inflict Pull of Reality (-1 PRR/MRR, stacks up to 25 times. 5 stacks
+fade away every 3 seconds).
+Instant kill does not affect bosses.
+Activation Cost: 20 SP.
+Cooldown: 10 seconds</Description>
          <Icon>AABanishingArrows</Icon>
          <XPosition>0</XPosition>
          <YPosition>4</YPosition>
@@ -978,16 +939,11 @@ Instant kill does not affect bosses.</Description>
          <MinSpent>20</MinSpent>
          <Clickie/>
          <Requirements/>
-         <Effect>
-            <Type>SpellDC</Type>
-            <Bonus>Enhancement</Bonus>
-            <School>Enchantment</School>
-            <Amount>1</Amount>
-         </Effect>
          <DC>
             <Name>Arcane Archer (Elf): Banishing Arrows</Name>
-            <Description>Arcane Archer Imbue Toggle: (Activation Cost: 20 SP. Cooldown: 10 seconds)
-Your arrows gain On Vorpal: Banish an extraplanar creature back to their home plane.</Description>
+            <Description>Your arrows gain On Vorpal: Banish an extra-planar creature back to their home plane.
+On hit: Inflict Pull of Reality (-1 PRR/MRR, stacks up to 25 times. 5 stacks
+fade away every 3 seconds).</Description>
             <Icon>AABanishingArrows</Icon>
             <DCVersus>Will</DCVersus>
             <AmountVector size="1">20</AmountVector>
@@ -998,11 +954,13 @@ Your arrows gain On Vorpal: Banish an extraplanar creature back to their home pl
       <EnhancementTreeItem>
          <Name>Arcane Archer (Elf): Paralyzing Arrows</Name>
          <InternalName>AAElfParalyzingArrows</InternalName>
-         <Description>Arcane Archer Imbue Toggle: (Activation Cost: 20 SP. Cooldown: 10 seconds)
-You imbue your arrows with paralyzing force.
-On Hit: Target is paralyzed. (Will save vs. DC 20 + Wisdom modifier + Enchantment Spell Bonuses)
+         <Description>Imbue Toggle: You imbue your arrows with paralyzing force.
+On Hit: Target is paralyzed. (Will save vs. DC 20 + Wisdom modifier + Enchantment
+Spell Bonuses)
 On Save: -10% Movement and Attack speed.
-Passive: +1 bonus to DC of Enchantment Spells.</Description>
+Passive: +1 bonus to DC of Enchantment Spells.
+Activation Cost: 20 SP.
+Cooldown: 10 seconds</Description>
          <Icon>AAParalyzingArrows</Icon>
          <XPosition>1</XPosition>
          <YPosition>4</YPosition>
@@ -1023,9 +981,10 @@ Passive: +1 bonus to DC of Enchantment Spells.</Description>
          </Effect>
          <DC>
             <Name>Arcane Archer (Elf): Paralyzing Arrows</Name>
-            <Description>Arcane Archer Imbue Toggle: (Activation Cost: 20 SP. Cooldown: 10 seconds)
-You imbue your arrows with paralyzing force.
-On Hit: Target is paralyzed.</Description>
+            <Description>Imbue Toggle: You imbue your arrows with paralyzing force.
+On Hit: Target is paralyzed. (Will save vs. DC 20 + Wisdom modifier + Enchantment
+Spell Bonuses)
+On Save: -10% Movement and Attack speed.</Description>
             <Icon>AAParalyzingArrows</Icon>
             <DCVersus>Will</DCVersus>
             <AmountVector size="1">20</AmountVector>
@@ -1036,12 +995,14 @@ On Hit: Target is paralyzed.</Description>
       <EnhancementTreeItem>
          <Name>Arcane Archer (Elf): Smiting Arrows</Name>
          <InternalName>AAElfSmitingArrows</InternalName>
-         <Description>Arcane Archer Imbue Toggle: (Activation Cost: 20 SP. Cooldown: 10 seconds)
-Your arrows gain On Vorpal: Destroy a construct.
+         <Description>Imbue Toggle: Your arrows gain On Vorpal: Destroy a construct.
 (Will save vs. DC 20 + Wisdom modifier + Enchantment Spell Bonuses).
 Passive: +1 bonus to DC of Enchantment Spells.
-On Hit: Inflicts Deconstructed (Reduced attack speed, -25% Fortification, -25% healing from Repair)
-Instant kill does not affect bosses.</Description>
+On Hit: Inflicts Deconstructed (Reduced attack speed, -25% Fortification, -25%
+healing from Repair)
+Instant kill does not affect bosses.
+Activation Cost: 20 SP.
+Cooldown: 10 seconds</Description>
          <Icon>AASmitingArrows</Icon>
          <XPosition>2</XPosition>
          <YPosition>4</YPosition>
@@ -1058,8 +1019,11 @@ Instant kill does not affect bosses.</Description>
          </Effect>
          <DC>
             <Name>Arcane Archer (Elf): Smiting Arrows</Name>
-            <Description>Arcane Archer Imbue Toggle: (Activation Cost: 20 SP. Cooldown: 10 seconds)
-Your arrows gain On Vorpal: Destroy a construct.</Description>
+            <Description>Imbue Toggle: Your arrows gain On Vorpal: Destroy a construct.
+(Will save vs. DC 20 + Wisdom modifier + Enchantment Spell Bonuses).
+Passive: +1 bonus to DC of Enchantment Spells.
+On Hit: Inflicts Deconstructed (Reduced attack speed, -25% Fortification, -25%
+healing from Repair)</Description>
             <Icon>AASmitingArrows</Icon>
             <DCVersus>Will</DCVersus>
             <AmountVector size="1">20</AmountVector>
@@ -1071,7 +1035,7 @@ Your arrows gain On Vorpal: Destroy a construct.</Description>
          <Name>Arcane Archer (Elf): Elemental Arrows IV</Name>
          <InternalName>AAElfElementalArrowsIV</InternalName>
          <Description>Select one of four elemental arrow imbues (Can't choose the same type again),
-or Elemental Damage. Passive: +5 Universal Spell Power</Description>
+or +1 imbue Dice. Passive: +5 Universal Spell Power</Description>
          <Icon>AAElementalArrows</Icon>
          <XPosition>3</XPosition>
          <YPosition>4</YPosition>
@@ -1086,134 +1050,77 @@ or Elemental Damage. Passive: +5 Universal Spell Power</Description>
             </Requirement>
          </Requirements>
          <Selector>
+            <Exclude>AAElfElementalArrowsI</Exclude>
+            <Exclude>AAElfElementalArrowsII</Exclude>
+            <Exclude>AAElfElementalArrowsIII</Exclude>
             <EnhancementSelection>
                <Name>Corrosive Arrows</Name>
-               <Description>Arcane Archer Imbue Toggle: Your arrows gain the Corrosive ability,
-dealing 1d8 acid damage on hit, scaling with Spell Power.
-Passive: +5 Universal Spell Power</Description>
+               <Description>Imbue Toggle: Your arrows gain the Corrosive, dealing 1d8 acid damage on
+hit, scaling with 75% of your Spell Power.
+Passive: +5 Universal Spell Power
++1 bonus Imbue Dice</Description>
                <Icon>AACorrosiveArrows</Icon>
                <CostPerRank size="1">2</CostPerRank>
                <Clickie/>
-               <Requirements>
-                  <RequiresNoneOf>
-                     <Requirement>
-                        <Enhancement>AAElfElementalArrowsI</Enhancement>
-                        <Selection>Corrosive Arrows</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>AAElfElementalArrowsII</Enhancement>
-                        <Selection>Corrosive Arrows</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>AAElfElementalArrowsIII</Enhancement>
-                        <Selection>Corrosive Arrows</Selection>
-                     </Requirement>
-                  </RequiresNoneOf>
-               </Requirements>
                <Stance>
                   <Name>Corrosive Arrows</Name>
                   <Icon>AACorrosiveArrows</Icon>
-                  <Description>Arcane Archer Imbue Toggle: Your arrows gain the Corrosive ability,
-dealing 1d8 acid damage per Imbue Dice on hit, scaling with Spell Power.
+                    <Description>Imbue Toggle: Your arrows gain the Corrosive, dealing 1d8 acid damage on
+hit, scaling with 75% of your Spell Power.
 Passive: +5 Universal Spell Power</Description>
                   <Group>Imbue</Group>
                </Stance>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Flaming Arrows</Name>
-               <Description>Arcane Archer Imbue Toggle: Your arrows gain the Flaming ability,
-dealing 1d8 fire damage on hit, scaling with Spell Power.
-Passive: +5 Universal Spell Power</Description>
+               <Description>Imbue Toggle: Your arrows gain the Flaming, dealing 1d8 fire damage on hit,
+scaling with 75% of your Spell Power.
+Passive: +5 Universal Spell Power
++1 bonus Imbue Dice</Description>
                <Icon>AAFlamingArrows</Icon>
                <CostPerRank size="1">2</CostPerRank>
                <Clickie/>
-               <Requirements>
-                  <RequiresNoneOf>
-                     <Requirement>
-                        <Enhancement>AAElfElementalArrowsI</Enhancement>
-                        <Selection>Flaming Arrows</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>AAElfElementalArrowsII</Enhancement>
-                        <Selection>Flaming Arrows</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>AAElfElementalArrowsIII</Enhancement>
-                        <Selection>Flaming Arrows</Selection>
-                     </Requirement>
-                  </RequiresNoneOf>
-               </Requirements>
                <Stance>
                   <Name>Flaming Arrows</Name>
                   <Icon>AAFlamingArrows</Icon>
-                  <Description>Arcane Archer Imbue Toggle: Your arrows gain the Flaming ability,
-dealing 1d8 fire damage per Imbue Dice on hit, scaling with Spell Power.
+                    <Description>Imbue Toggle: Your arrows gain the Flaming, dealing 1d8 fire damage on hit,
+scaling with 75% of your Spell Power.
 Passive: +5 Universal Spell Power</Description>
                   <Group>Imbue</Group>
                </Stance>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Frost Arrows</Name>
-               <Description>Arcane Archer Imbue Toggle: Your arrows gain the Frost ability,
-dealing 1d8 cold damage on hit, scaling with Spell Power.
-Passive: +5 Universal Spell Power</Description>
+               <Description>Imbue Toggle: Your arrows gain the Frost, dealing 1d8 cold damage on hit,
+scaling with 75% of your Spell Power.
+Passive: +5 Universal Spell Power
++1 bonus Imbue Dice</Description>
                <Icon>AAFrostArrows</Icon>
                <CostPerRank size="1">2</CostPerRank>
                <Clickie/>
-               <Requirements>
-                  <RequiresNoneOf>
-                     <Requirement>
-                        <Enhancement>AAElfElementalArrowsI</Enhancement>
-                        <Selection>Frost Arrows</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>AAElfElementalArrowsII</Enhancement>
-                        <Selection>Frost Arrows</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>AAElfElementalArrowsIII</Enhancement>
-                        <Selection>Frost Arrows</Selection>
-                     </Requirement>
-                  </RequiresNoneOf>
-               </Requirements>
                <Stance>
                   <Name>Frost Arrows</Name>
                   <Icon>AAFrostArrows</Icon>
-                  <Description>Arcane Archer Imbue Toggle: Your arrows gain the Frost ability,
-dealing 1d8 cold damage per Imbue Dice on hit, scaling with Spell Power.
+                    <Description>Imbue Toggle: Your arrows gain the Frost, dealing 1d8 cold damage on hit,
+scaling with 75% of your Spell Power.
 Passive: +5 Universal Spell Power</Description>
                   <Group>Imbue</Group>
                </Stance>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Shock Arrows</Name>
-               <Description>Arcane Archer Imbue Toggle: Your arrows gain the Shock ability,
-dealing 1d8 electrical damage on hit, scaling with Spell Power.
-Passive: +5 Universal Spell Power</Description>
+               <Description>Imbue Toggle: Your arrows gain the Shock, dealing 1d8 electrical damage on
+hit, scaling with 75% of your Spell Power.
+Passive: +5 Universal Spell Power
++1 bonus Imbue Dice</Description>
                <Icon>AAShockArrows</Icon>
                <CostPerRank size="1">2</CostPerRank>
                <Clickie/>
-               <Requirements>
-                  <RequiresNoneOf>
-                     <Requirement>
-                        <Enhancement>AAElfElementalArrowsI</Enhancement>
-                        <Selection>Shock Arrows</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>AAElfElementalArrowsII</Enhancement>
-                        <Selection>Shock Arrows</Selection>
-                     </Requirement>
-                     <Requirement>
-                        <Enhancement>AAElfElementalArrowsIII</Enhancement>
-                        <Selection>Shock Arrows</Selection>
-                     </Requirement>
-                  </RequiresNoneOf>
-               </Requirements>
                <Stance>
                   <Name>Shock Arrows</Name>
                   <Icon>AAShockArrows</Icon>
-                  <Description>Arcane Archer Imbue Toggle: Your arrows gain the Shock ability,
-dealing 1d8 electrical damage per Imbue Dice on hit, scaling with Spell Power.
+                    <Description>Imbue Toggle: Your arrows gain the Shock, dealing 1d8 electrical damage on
+hit, scaling with 75% of your Spell Power.
 Passive: +5 Universal Spell Power</Description>
                   <Group>Imbue</Group>
                </Stance>
@@ -1227,10 +1134,15 @@ Passive: +5 Universal Spell Power</Description>
                <Effect>
                   <Type>ImbueDice</Type>
                   <Bonus>Enhancement</Bonus>
-                  <Amount>2</Amount>
+                  <Amount>1</Amount>
                </Effect>
             </EnhancementSelection>
          </Selector>
+         <Effect>
+            <Type>ImbueDice</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+         </Effect>
          <Effect>
             <Type>UniversalSpellPower</Type>
             <Bonus>Enhancement</Bonus>
@@ -1279,10 +1191,12 @@ Passive: +5 Universal Spell Power</Description>
             </EnhancementSelection>
          </Selector>
       </EnhancementTreeItem>
+      <!--Tier 5-->
       <EnhancementTreeItem>
          <Name>Arcane Archer (Elf): Moonbow</Name>
          <InternalName>AAElfMoonbow</InternalName>
-         <Description>While wielding a bow, once every 30 seconds you gain 20 temporary spell points for 10 seconds.
+         <Description>While wielding a bow, once every 30 seconds you gain 20 temporary spell points
+for 10 seconds.
 +10 Universal Spell Power</Description>
          <Icon>AAMoonbow</Icon>
          <XPosition>0</XPosition>
@@ -1326,8 +1240,9 @@ Passive: +5 Universal Spell Power</Description>
       <EnhancementTreeItem>
          <Name>Arcane Archer (Elf): Final Strike</Name>
          <InternalName>AAElfFinalStrike</InternalName>
-         <Description>The first enemy hit triggers an area attack that inflicts Vulnerability and deals damage.
-More injured enemies receive increased damage.</Description>
+         <Description>Ranged Archery Attack: The first enemy hit triggers an area attack that inflicts
+Vulnerability and deals damage that scales with Ranged Power. More injured enemies
+receive increased damage.</Description>
          <Icon>AAFinalStrike</Icon>
          <XPosition>2</XPosition>
          <YPosition>5</YPosition>
@@ -1367,13 +1282,19 @@ More injured enemies receive increased damage.</Description>
                <Description>Your elemental arrow imbues gain On Critical: 1d10-3d10 elemental damage
 based on critical multiplier and an additional effect:
 
-Corrosive Arrows: Your arrows gain the Destruction ability.
+Corrosive Arrows: Your arrows gain the Destruction ability. (On Damage: target
+receives a -1 AC and -1% Fortification for the next 20 seconds. If the effect is
+reapplied before it wears off, the effect will stack and the duration will reset.
+This effect can be stacked up to 15 times.)
+
 Flaming Arrows: Your arrows gain On Critical Hit: Target gains 1 stack of Burning
 (Target takes 1d6 fire damage every 2 seconds for 6 second. This effect can
 stack 20 times and loses one stack on expiration.)
+
 Frost Arrows: Your arrows gain On Critical Hit: Target gains 1 stack of Lethargy
 (You have -1 to all Saving throws. Non-bosses also move and attack 5% slower.
 This effect stacks up to 5 times.)
+
 Shock Arrows: Your arrows gain On Critical Hit: Vulnerable
 (Target takes 1% more damage for 3 seconds. This effect stacks up to 20 times
 and loses one stack on expiration.)</Description>
@@ -1382,8 +1303,8 @@ and loses one stack on expiration.)</Description>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Elemental Damage</Name>
-               <Description>+2 Damage dice with Elemental Arrows (Corrosive, Frost, Shock, Flaming, Force)
-Passive: +5 Universal Spell Power</Description>
+               <Description>+2 bonus Imbue Dice
++5 Universal Spell Power</Description>
                <Icon>AAImprovedElementalArrows</Icon>
                <CostPerRank size="1">2</CostPerRank>
                <Effect>
@@ -1403,8 +1324,8 @@ Passive: +5 Universal Spell Power</Description>
       <EnhancementTreeItem>
          <Name>Arcane Archer (Elf): Runebow</Name>
          <InternalName>AAElfRunebow</InternalName>
-         <Description>Bows you wield gain an additional +2 enhancement bonus.
-This is considered a Magic Weapon effect. (Does not stack with the spell Enchant Weapons.)</Description>
+         <Description>Bows you wield gain an additional +2 Enhancement bonus.
+This is considered a Magic Weapon effect.</Description>
          <Icon>AARunebow</Icon>
          <XPosition>4</XPosition>
          <YPosition>5</YPosition>

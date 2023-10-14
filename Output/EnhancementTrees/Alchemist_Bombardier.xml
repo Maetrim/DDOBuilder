@@ -1,7 +1,7 @@
 <Enhancements>
    <EnhancementTree>
       <Name>Bombardier</Name>
-      <Version>1</Version>
+      <Version>2</Version>
       <Requirements>
          <Requirement>
             <Class>Alchemist</Class>
@@ -13,7 +13,9 @@
       <EnhancementTreeItem>
          <Name>Bombardier: Alchemical Resistance</Name>
          <InternalName>BomCore1</InternalName>
-         <Description>+2 Magical Resistance Rating</Description>
+         <Description>+1 Fortitude save. Each core ability you take in this tree beyond the first grants
++5 Fire, Cold, Acid, Electric, and poison Spell Power, as well as +1 Burning
+Ambition Dice.</Description>
          <Icon>BomAlchemicalResistance</Icon>
          <XPosition>0</XPosition>
          <YPosition>0</YPosition>
@@ -27,9 +29,10 @@
             </Requirement>
          </Requirements>
          <Effect>
-            <Type>MRR</Type>
+            <Type>SaveBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <Amount>2</Amount>
+            <Amount>1</Amount>
+            <Save>Fortitude</Save>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -37,7 +40,8 @@
          <InternalName>BomCore2</InternalName>
          <Description>All equipped weapons are considered Spellcasting Implements.
 
-While in Pyrite Reaction, you gain +5 Fire, Cold, Electric, Acid, and Poison Spell Power.</Description>
+While in Pyrite Reaction, you gain +2% Fire, Cold, Electric, Acid, and Poison
+Spell Critical Damage.</Description>
          <Icon>BomArcaneOil</Icon>
          <XPosition>1</XPosition>
          <YPosition>0</YPosition>
@@ -62,12 +66,22 @@ While in Pyrite Reaction, you gain +5 Fire, Cold, Electric, Acid, and Poison Spe
             <SpellPower>Electric</SpellPower>
             <SpellPower>Acid</SpellPower>
             <SpellPower>Poison</SpellPower>
-            <Stance>Pyrite</Stance>
          </Effect>
          <Effect>
             <Type>ImplementInYourHands</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>1</Amount>
+         </Effect>
+         <Effect>
+            <Type>SpellCriticalDamage</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <SpellPower>Fire</SpellPower>
+            <SpellPower>Cold</SpellPower>
+            <SpellPower>Electric</SpellPower>
+            <SpellPower>Acid</SpellPower>
+            <SpellPower>Poison</SpellPower>
+            <Stance>Pyrite</Stance>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -92,71 +106,76 @@ While in Pyrite Reaction, you gain +5 Fire, Cold, Electric, Acid, and Poison Spe
          <Selector>
             <EnhancementSelection>
                <Name>Liquid Power: Acid</Name>
-               <Description>You gain +1 Caster Level with Acid Spells.
+               <Description>You gain +3 Caster Level with Acid Spells.
 
-While in Pyrite Reaction, you gain +5 Fire, Cold, Electric, Acid, and Poison Spell Power</Description>
+While in Pyrite Reaction, you gain +2% Fire, Cold, Electric, Acid, and Poison
+Spell Critical Damage.</Description>
                <Icon>BomLiquidPowerAcid</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Effect>
                   <Type>CasterLevel</Type>
                   <Bonus>Feat</Bonus>
-                  <Amount>1</Amount>
+                  <Amount>3</Amount>
                   <Energy>Acid</Energy>
                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Liquid Power: Cold</Name>
-               <Description>You gain +1 Caster Level with Cold Spells.
+               <Description>You gain +3 Caster Level with Cold Spells.
 
-While in Pyrite Reaction, you gain +5 Fire, Cold, Electric, Acid, and Poison Spell Power</Description>
+While in Pyrite Reaction, you gain +2% Fire, Cold, Electric, Acid, and Poison
+Spell Critical Damage.</Description>
                <Icon>BomLiquidPowerCold</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Effect>
                   <Type>CasterLevel</Type>
                   <Bonus>Feat</Bonus>
-                  <Amount>1</Amount>
+                  <Amount>3</Amount>
                   <Energy>Cold</Energy>
                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Liquid Power: Electric</Name>
-               <Description>You gain +1 Caster Level with Electric Spells.
+               <Description>You gain +3 Caster Level with Electric Spells.
 
-While in Pyrite Reaction, you gain +5 Fire, Cold, Electric, Acid, and Poison Spell Power</Description>
+While in Pyrite Reaction, you gain +2% Fire, Cold, Electric, Acid, and Poison
+Spell Critical Damage.</Description>
                <Icon>BomLiquidPowerElectric</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Effect>
                   <Type>CasterLevel</Type>
                   <Bonus>Feat</Bonus>
-                  <Amount>1</Amount>
+                  <Amount>3</Amount>
                   <Energy>Electric</Energy>
                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Liquid Power: Fire</Name>
-               <Description>You gain +1 Caster Level with Fire Spells.
+               <Description>You gain +3 Caster Level with Fire Spells.
 
-While in Pyrite Reaction, you gain +5 Fire, Cold, Electric, Acid, and Poison Spell Power</Description>
+While in Pyrite Reaction, you gain +2% Fire, Cold, Electric, Acid, and Poison
+Spell Critical Damage.</Description>
                <Icon>BomLiquidPowerFire</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Effect>
                   <Type>CasterLevel</Type>
                   <Bonus>Feat</Bonus>
-                  <Amount>1</Amount>
+                  <Amount>3</Amount>
                   <Energy>Fire</Energy>
                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Liquid Power: Poison</Name>
-               <Description>You gain +1 Caster Level with Poison Spells.
+               <Description>You gain +3 Caster Level with Poison Spells.
 
-While in Pyrite Reaction, you gain +5 Fire, Cold, Electric, Acid, and Poison Spell Power</Description>
+While in Pyrite Reaction, you gain +2% Fire, Cold, Electric, Acid, and Poison
+Spell Critical Damage.</Description>
                <Icon>BomLiquidPowerPoison</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Effect>
                   <Type>CasterLevel</Type>
                   <Bonus>Feat</Bonus>
-                  <Amount>1</Amount>
+                  <Amount>3</Amount>
                   <Energy>Poison</Energy>
                </Effect>
             </EnhancementSelection>
@@ -165,6 +184,16 @@ While in Pyrite Reaction, you gain +5 Fire, Cold, Electric, Acid, and Poison Spe
             <Type>SpellPower</Type>
             <Bonus>Enhancement</Bonus>
             <Amount>5</Amount>
+            <SpellPower>Fire</SpellPower>
+            <SpellPower>Cold</SpellPower>
+            <SpellPower>Electric</SpellPower>
+            <SpellPower>Acid</SpellPower>
+            <SpellPower>Poison</SpellPower>
+         </Effect>
+         <Effect>
+            <Type>SpellCriticalDamage</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
             <SpellPower>Fire</SpellPower>
             <SpellPower>Cold</SpellPower>
             <SpellPower>Electric</SpellPower>
@@ -193,77 +222,93 @@ While in Pyrite Reaction, you gain +5 Fire, Cold, Electric, Acid, and Poison Spe
             </Requirement>
          </Requirements>
          <Selector>
+            <Exclude>BomCore3</Exclude>
             <EnhancementSelection>
                <Name>Liquid Power: Acid</Name>
-               <Description>You gain +1 Caster Level with Acid Spells.
+               <Description>You gain +3 Caster Level with Acid Spells.
 
-While in Pyrite Reaction, you gain +2% Fire, Cold, Electric, Acid, and Poison Spell Critical Damage.</Description>
+While in Pyrite Reaction, you gain +2% Fire, Cold, Electric, Acid, and Poison
+Spell Critical Damage.</Description>
                <Icon>BomLiquidPowerAcidII</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Effect>
                   <Type>CasterLevel</Type>
                   <Bonus>Feat</Bonus>
-                  <Amount>1</Amount>
+                  <Amount>3</Amount>
                   <Energy>Acid</Energy>
                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Liquid Power: Cold</Name>
-               <Description>You gain +1 Caster Level with Cold Spells.
+               <Description>You gain +3 Caster Level with Cold Spells.
 
-While in Pyrite Reaction, you gain +2% Fire, Cold, Electric, Acid, and Poison Spell Critical Damage.</Description>
+While in Pyrite Reaction, you gain +2% Fire, Cold, Electric, Acid, and Poison
+Spell Critical Damage.</Description>
                <Icon>BomLiquidPowerColdII</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Effect>
                   <Type>CasterLevel</Type>
                   <Bonus>Feat</Bonus>
-                  <Amount>1</Amount>
+                  <Amount>3</Amount>
                   <Energy>Cold</Energy>
                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Liquid Power: Electric</Name>
-               <Description>You gain +1 Caster Level with Electric Spells.
+               <Description>You gain +3 Caster Level with Electric Spells.
 
-While in Pyrite Reaction, you gain +2% Fire, Cold, Electric, Acid, and Poison Spell Critical Damage.</Description>
+While in Pyrite Reaction, you gain +2% Fire, Cold, Electric, Acid, and Poison
+Spell Critical Damage.</Description>
                <Icon>BomLIquidPowerElectricII</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Effect>
                   <Type>CasterLevel</Type>
                   <Bonus>Feat</Bonus>
-                  <Amount>1</Amount>
+                  <Amount>3</Amount>
                   <Energy>Electric</Energy>
                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Liquid Power: Fire</Name>
-               <Description>You gain +1 Caster Level with Fire Spells.
+               <Description>You gain +3 Caster Level with Fire Spells.
 
-While in Pyrite Reaction, you gain +2% Fire, Cold, Electric, Acid, and Poison Spell Critical Damage.</Description>
+While in Pyrite Reaction, you gain +2% Fire, Cold, Electric, Acid, and Poison
+Spell Critical Damage.</Description>
                <Icon>BomLiquidPowerFireII</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Effect>
                   <Type>CasterLevel</Type>
                   <Bonus>Feat</Bonus>
-                  <Amount>1</Amount>
+                  <Amount>3</Amount>
                   <Energy>Fire</Energy>
                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Liquid Power: Poison</Name>
-               <Description>You gain +1 Caster Level with Poison Spells.
+               <Description>You gain +3 Caster Level with Poison Spells.
 
-While in Pyrite Reaction, you gain +2% Fire, Cold, Electric, Acid, and Poison Spell Critical Damage.</Description>
+While in Pyrite Reaction, you gain +2% Fire, Cold, Electric, Acid, and Poison
+Spell Critical Damage.</Description>
                <Icon>BomLiquidPowerPoisonII</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Effect>
                   <Type>CasterLevel</Type>
                   <Bonus>Feat</Bonus>
-                  <Amount>1</Amount>
+                  <Amount>3</Amount>
                   <Energy>Poison</Energy>
                </Effect>
             </EnhancementSelection>
          </Selector>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>5</Amount>
+            <SpellPower>Fire</SpellPower>
+            <SpellPower>Cold</SpellPower>
+            <SpellPower>Electric</SpellPower>
+            <SpellPower>Acid</SpellPower>
+            <SpellPower>Poison</SpellPower>
+         </Effect>
          <Effect>
             <Type>SpellCriticalDamage</Type>
             <Bonus>Enhancement</Bonus>
@@ -296,82 +341,103 @@ While in Pyrite Reaction, you gain +2% Fire, Cold, Electric, Acid, and Poison Sp
             </Requirement>
          </Requirements>
          <Selector>
+            <Exclude>BomCore3</Exclude>
+            <Exclude>BomCore4</Exclude>
             <EnhancementSelection>
                <Name>Liquid Power: Acid</Name>
-               <Description>You gain +1 Caster Level with Acid Spells, and 1 extra Burning Ambition Dice.
+               <Description>You gain +3 Caster Level with Acid Spells.
 
-While in Pyrite Reaction, you gain +1 Conjuration DC.</Description>
+While in Pyrite Reaction, you gain +2% Fire, Cold, Electric, Acid, and Poison
+Spell Critical Damage.</Description>
                <Icon>BomLiquidPowerAcidIII</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Effect>
                   <Type>CasterLevel</Type>
                   <Bonus>Feat</Bonus>
-                  <Amount>1</Amount>
+                  <Amount>3</Amount>
                   <Energy>Acid</Energy>
                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Liquid Power: Cold</Name>
-               <Description>You gain +1 Caster Level with Cold Spells, and 1 extra Burning Ambition Dice.
+               <Description>You gain +3 Caster Level with Cold Spells.
 
-While in Pyrite Reaction, you gain +1 Conjuration DC.</Description>
+While in Pyrite Reaction, you gain +2% Fire, Cold, Electric, Acid, and Poison
+Spell Critical Damage.</Description>
                <Icon>BomLiquidPowerColdIII</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Effect>
                   <Type>CasterLevel</Type>
                   <Bonus>Feat</Bonus>
-                  <Amount>1</Amount>
+                  <Amount>3</Amount>
                   <Energy>Cold</Energy>
                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Liquid Power: Electric</Name>
-               <Description>You gain +1 Caster Level with Electric Spells, and 1 extra Burning Ambition Dice.
+               <Description>You gain +3 Caster Level with Electric Spells.
 
-While in Pyrite Reaction, you gain +1 Conjuration DC.</Description>
+While in Pyrite Reaction, you gain +2% Fire, Cold, Electric, Acid, and Poison
+Spell Critical Damage.</Description>
                <Icon>BomLiquidPowerElectricIII</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Effect>
                   <Type>CasterLevel</Type>
                   <Bonus>Feat</Bonus>
-                  <Amount>1</Amount>
+                  <Amount>3</Amount>
                   <Energy>Electric</Energy>
                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Liquid Power: Fire</Name>
-               <Description>You gain +1 Caster Level with Fire Spells, and 1 extra Burning Ambition Dice.
+               <Description>You gain +3 Caster Level with Fire Spells.
 
-While in Pyrite Reaction, you gain +1 Conjuration DC.</Description>
+While in Pyrite Reaction, you gain +2% Fire, Cold, Electric, Acid, and Poison
+Spell Critical Damage.</Description>
                <Icon>BomLiquidPowerFireIII</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Effect>
                   <Type>CasterLevel</Type>
                   <Bonus>Feat</Bonus>
-                  <Amount>1</Amount>
+                  <Amount>3</Amount>
                   <Energy>Fire</Energy>
                </Effect>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>Liquid Power: Poison</Name>
-               <Description>You gain +1 Caster Level with Poison Spells, and 1 extra Burning Ambition Dice.
+               <Description>You gain +3 Caster Level with Poison Spells.
 
-While in Pyrite Reaction, you gain +1 Conjuration DC.</Description>
+While in Pyrite Reaction, you gain +2% Fire, Cold, Electric, Acid, and Poison
+Spell Critical Damage.</Description>
                <Icon>BomLiquidPowerPoisonIII</Icon>
                <CostPerRank size="1">1</CostPerRank>
                <Effect>
                   <Type>CasterLevel</Type>
                   <Bonus>Feat</Bonus>
-                  <Amount>1</Amount>
+                  <Amount>3</Amount>
                   <Energy>Poison</Energy>
                </Effect>
             </EnhancementSelection>
          </Selector>
          <Effect>
-            <Type>SpellDC</Type>
+            <Type>SpellPower</Type>
             <Bonus>Enhancement</Bonus>
-            <Amount>1</Amount>
-            <School>Conjuration</School>
+            <Amount>5</Amount>
+            <SpellPower>Fire</SpellPower>
+            <SpellPower>Cold</SpellPower>
+            <SpellPower>Electric</SpellPower>
+            <SpellPower>Acid</SpellPower>
+            <SpellPower>Poison</SpellPower>
+         </Effect>
+         <Effect>
+            <Type>SpellCriticalDamage</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <SpellPower>Fire</SpellPower>
+            <SpellPower>Cold</SpellPower>
+            <SpellPower>Electric</SpellPower>
+            <SpellPower>Acid</SpellPower>
+            <SpellPower>Poison</SpellPower>
             <Stance>Pyrite</Stance>
          </Effect>
       </EnhancementTreeItem>
@@ -408,8 +474,9 @@ While in Pyrite Reaction, you gain +1 Conjuration DC.</Description>
          <Selector>
             <EnhancementSelection>
                <Name>SLA: Multivial of Acid</Name>
-               <Description>Passive: +4 Intelligence, and 2 extra Burning Ambition Dice.
-While in Pyrite Reaction, you gain +2 to Conjuration DCs.
+               <Description>Passive: +4 Intelligence, +2 Conjuration DCs.
+While in Pyrite Reaction, you gain +2% Fire, Cold, Electric, Acid, and Poison
+Spell Critical Damage.
 
 SLA: Multivial of Acid
 Metamagic: Empower, Maximize, Quicken, Enlarge, Eschew Materials
@@ -426,8 +493,9 @@ Cooldown 12 seconds</Description>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>SLA: Multivial of Flame</Name>
-               <Description>Passive: +4 Intelligence, and 2 extra Burning Ambition Dice.
-While in Pyrite Reaction, you gain +2 to Conjuration DCs.
+               <Description>Passive: +4 Intelligence, +2 Conjuration DCs.
+While in Pyrite Reaction, you gain +2% Fire, Cold, Electric, Acid, and Poison
+Spell Critical Damage.
 
 SLA: Multivial of Flame
 Metamagic: Empower, Maximize, Quicken, Enlarge, Eschew Materials
@@ -444,8 +512,9 @@ Cooldown 12 seconds</Description>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>SLA: Multivial of Frost</Name>
-               <Description>Passive: +4 Intelligence, and 2 extra Burning Ambition Dice.
-While in Pyrite Reaction, you gain +2 to Conjuration DCs.
+               <Description>Passive: +4 Intelligence, +2 Conjuration DCs.
+While in Pyrite Reaction, you gain +2% Fire, Cold, Electric, Acid, and Poison
+Spell Critical Damage.
 
 SLA: Multivial of Frost
 Metamagic: Empower, Maximize, Quicken, Enlarge, Eschew Materials
@@ -462,8 +531,9 @@ Cooldown 12 seconds</Description>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>SLA: Multivial of Sparks</Name>
-               <Description>Passive: +4 Intelligence, and 2 extra Burning Ambition Dice.
-While in Pyrite Reaction, you gain +2 to Conjuration DCs.
+               <Description>Passive: +4 Intelligence, +2 Conjuration DCs.
+While in Pyrite Reaction, you gain +2% Fire, Cold, Electric, Acid, and Poison
+Spell Critical Damage.
 
 SLA: Multivial of Sparks
 Metamagic: Empower, Maximize, Quicken, Enlarge, Eschew Materials
@@ -480,8 +550,9 @@ Cooldown 12 seconds</Description>
             </EnhancementSelection>
             <EnhancementSelection>
                <Name>SLA: Multivial of Poison</Name>
-               <Description>Passive: +4 Intelligence, and 2 extra Burning Ambition Dice.
-While in Pyrite Reaction, you gain +2 to Conjuration DCs.
+               <Description>Passive: +4 Intelligence, +2 Conjuration DCs.
+While in Pyrite Reaction, you gain +2% Fire, Cold, Electric, Acid, and Poison
+Spell Critical Damage.
 
 SLA: Multivial of Poison
 Metamagic: Empower, Maximize, Quicken, Enlarge, Eschew Materials
@@ -508,6 +579,26 @@ Cooldown 12 seconds</Description>
             <Bonus>Enhancement</Bonus>
             <Amount>2</Amount>
             <School>Conjuration</School>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>5</Amount>
+            <SpellPower>Fire</SpellPower>
+            <SpellPower>Cold</SpellPower>
+            <SpellPower>Electric</SpellPower>
+            <SpellPower>Acid</SpellPower>
+            <SpellPower>Poison</SpellPower>
+         </Effect>
+         <Effect>
+            <Type>SpellCriticalDamage</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <SpellPower>Fire</SpellPower>
+            <SpellPower>Cold</SpellPower>
+            <SpellPower>Electric</SpellPower>
+            <SpellPower>Acid</SpellPower>
+            <SpellPower>Poison</SpellPower>
             <Stance>Pyrite</Stance>
          </Effect>
       </EnhancementTreeItem>
@@ -516,13 +607,14 @@ Cooldown 12 seconds</Description>
          <Name>Bombardier: Spellvial Selection</Name>
          <InternalName>BomSpellVialSelection</InternalName>
          <Description>Select an Element to specialize in.</Description>
-         <Icon>BomSpellvialSelection</Icon>
+         <Icon>BomSpellvialSelectionII</Icon>
          <XPosition>0</XPosition>
          <YPosition>1</YPosition>
          <CostPerRank size="1">1</CostPerRank>
          <Ranks>3</Ranks>
          <MinSpent>1</MinSpent>
          <Clickie/>
+         <ArrowUp/>
          <Requirements>
             <Requirement>
                <Class>Alchemist</Class>
@@ -772,36 +864,133 @@ that cast spells, and +[1/3/6] to the save DCs of your offensive wands.</Descrip
       </EnhancementTreeItem>
       <!--Tier 2 Enhancements-->
       <EnhancementTreeItem>
-         <Name>Bombardier: SLA: Rapid Condensation</Name>
-         <InternalName>BomRapidCondensation</InternalName>
-         <Description>SLA: Rapid Condensation
-Metamagic: Quicken, Accelerate
-Spell Point Cost: 4/3/2
-Cooldown 12/8/4 seconds
-Primer Elemetnt: Gildleaf
-
-Throw a bottle that explodes on impact, rapidly condensing water in the air
-with a magical reaction that forms a cloud of obscuring mist. This cloud
-obscures all friends within the area, granting them 20% Concealment.
-Fire spells will burn this chemical reaction out of the air, dispelling it.</Description>
-         <Icon>BomRapidCondensation</Icon>
+         <Name>Bombardier: Spellvial Selection II</Name>
+         <InternalName>BomSpellvialSelectionII</InternalName>
+         <Description>Select an Element to specialize in. You may not select the same element you chose
+in Spellvial Selection I.</Description>
+         <Icon>BomSpellvialSelectionII</Icon>
          <XPosition>0</XPosition>
          <YPosition>2</YPosition>
          <CostPerRank size="1">1</CostPerRank>
          <Ranks>3</Ranks>
          <MinSpent>5</MinSpent>
          <Clickie/>
+         <ArrowUp/>
          <Requirements>
             <Requirement>
                <Class>Alchemist</Class>
                <Level>2</Level>
             </Requirement>
          </Requirements>
-         <Effect>
+      <Selector>
+        <Exclude>BomSpellVialSelection</Exclude>
+        <EnhancementSelection>
+          <Name>SLA: Venom Vial</Name>
+          <Description>SLA: Vial of Venom
+Metamagic: Empower, Maximize, Quicken, Heighten, Enlarge, Eschew Materials
+Spell Point Cost: 4
+Cooldown 12 seconds
+Primer Element: Crimsonite
+
+Conjuring a bottle of magical poison, you throw a projectile at a single foe
+that deals 3 to 8 Poison damage per caster level, max caster level 10.
+This poison will leave the enemy Contaminated.
+
+DND Dice: Deals 1d6+2 Poison damage per caster level, max 10d6+20</Description>
+          <Icon>BomVenomVial</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie/>
+          <Effect>
             <Type>SpellLikeAbility</Type>
             <Bonus>Enhancement</Bonus>
-            <SpellLikeAbility>Rapid Condensation</SpellLikeAbility>
-         </Effect>
+            <SpellLikeAbility>Venom Vial</SpellLikeAbility>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>SLA: Vial of Acid</Name>
+          <Description>SLA: Vial of Acid
+Metamagic: Empower, Maximize, Quicken, Heighten, Enlarge, Eschew Materials
+Spell Point Cost: 4
+Cooldown 12 seconds
+Primer Element: Crimsonite
+
+Conjuring a bottle of caustic liquid, you throw a projectile at a single foe
+that deals 3 to 8 Acid damage per caster level, max caster level 10.
+
+DND Dice: Deals 1d6+2 Acid damage per caster level, max 10d6+20</Description>
+          <Icon>BomVialOfAcid</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie/>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellLikeAbility>Vial of Acid</SpellLikeAbility>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>SLA: Vial of Flame</Name>
+          <Description>SLA: Vial of Flame
+Metamagic: Empower, Maximize, Quicken, Heighten, Enlarge, Eschew Materials
+Spell Point Cost: 4
+Cooldown 12 seconds
+Primer Element: Crimsonite
+
+Conjuring a bottle of burning liquid, you throw a projectile at a single foe
+that deals 3 to 8 Fire damage per caster level, max caster level 10.
+
+DND Dice: Deals 1d6+2 Fire damage per caster level, max 10d6+20</Description>
+          <Icon>BomVialOfFlame</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie/>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellLikeAbility>Vial of Flame</SpellLikeAbility>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>SLA: Vial of Frost</Name>
+          <Description>SLA: Vial of Frost
+Metamagic: Empower, Maximize, Quicken, Heighten, Enlarge, Eschew Materials
+Spell Point Cost: 4
+Cooldown 12 seconds
+Primer Element: Crimsonite
+
+Conjuring a bottle of freezing liquid, you throw a projectile at a single foe
+that deals 3 to 8 Cold damage per caster level, max caster level 10.
+
+DND Dice: Deals 1d6+2 Cold damage per caster level, max 10d6+20</Description>
+          <Icon>BomVialOfFrost</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie/>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellLikeAbility>Vial of Frost</SpellLikeAbility>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>SLA: Vial of Sparks</Name>
+          <Description>SLA: Vial of Sparks
+Metamagic: Empower, Maximize, Quicken, Heighten, Enlarge, Eschew Materials
+Spell Point Cost: 4
+Cooldown 12 seconds
+Primer Element: Crimsonite
+
+Conjuring a bottle of reactive material, you throw a projectile at a single foe
+that deals 3 to 8 Electric damage per caster level, max caster level 10.
+
+DND Dice: Deals 1d6+2 Electric damage per caster level, max 10d6+20</Description>
+          <Icon>BomVialOfSparks</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie/>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellLikeAbility>Vial of Sparks</SpellLikeAbility>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Bombardier: Efficient Metamagics I</Name>
@@ -994,6 +1183,135 @@ This can trigger up to once every 12 seconds.
          </Requirements>
       </EnhancementTreeItem>
       <!--Tier 3 Enhancements-->
+    <EnhancementTreeItem>
+      <Name>Bombardier: Spellvial Selection III</Name>
+      <InternalName>BomSpellvialSelectionIII</InternalName>
+      <Description>Select an Element to specialize in. You may not select the same element you chose
+in Spellvial Selection I or Spellvial Selection II.</Description>
+      <Icon>BomSpellvialSelectionII</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>3</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>10</MinSpent>
+      <Clickie/>
+      <Requirements>
+            <Requirement>
+               <Class>Alchemist</Class>
+               <Level>3</Level>
+            </Requirement>
+      </Requirements>
+      <Selector>
+        <Exclude>BomSpellVialSelection</Exclude>
+        <Exclude>BomSpellvialSelectionII</Exclude>
+        <EnhancementSelection>
+          <Name>SLA: Venom Vial</Name>
+          <Description>SLA: Vial of Venom
+Metamagic: Empower, Maximize, Quicken, Heighten, Enlarge, Eschew Materials
+Spell Point Cost: 4
+Cooldown 12 seconds
+Primer Element: Crimsonite
+
+Conjuring a bottle of magical poison, you throw a projectile at a single foe
+that deals 3 to 8 Poison damage per caster level, max caster level 10.
+This poison will leave the enemy Contaminated.
+
+DND Dice: Deals 1d6+2 Poison damage per caster level, max 10d6+20</Description>
+          <Icon>BomVenomVial</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie/>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellLikeAbility>Venom Vial</SpellLikeAbility>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>SLA: Vial of Acid</Name>
+          <Description>SLA: Vial of Acid
+Metamagic: Empower, Maximize, Quicken, Heighten, Enlarge, Eschew Materials
+Spell Point Cost: 4
+Cooldown 12 seconds
+Primer Element: Crimsonite
+
+Conjuring a bottle of caustic liquid, you throw a projectile at a single foe
+that deals 3 to 8 Acid damage per caster level, max caster level 10.
+
+DND Dice: Deals 1d6+2 Acid damage per caster level, max 10d6+20</Description>
+          <Icon>BomVialOfAcid</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie/>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellLikeAbility>Vial of Acid</SpellLikeAbility>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>SLA: Vial of Flame</Name>
+          <Description>SLA: Vial of Flame
+Metamagic: Empower, Maximize, Quicken, Heighten, Enlarge, Eschew Materials
+Spell Point Cost: 4
+Cooldown 12 seconds
+Primer Element: Crimsonite
+
+Conjuring a bottle of burning liquid, you throw a projectile at a single foe
+that deals 3 to 8 Fire damage per caster level, max caster level 10.
+
+DND Dice: Deals 1d6+2 Fire damage per caster level, max 10d6+20</Description>
+          <Icon>BomVialOfFlame</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie/>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellLikeAbility>Vial of Flame</SpellLikeAbility>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>SLA: Vial of Frost</Name>
+          <Description>SLA: Vial of Frost
+Metamagic: Empower, Maximize, Quicken, Heighten, Enlarge, Eschew Materials
+Spell Point Cost: 4
+Cooldown 12 seconds
+Primer Element: Crimsonite
+
+Conjuring a bottle of freezing liquid, you throw a projectile at a single foe
+that deals 3 to 8 Cold damage per caster level, max caster level 10.
+
+DND Dice: Deals 1d6+2 Cold damage per caster level, max 10d6+20</Description>
+          <Icon>BomVialOfFrost</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie/>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellLikeAbility>Vial of Frost</SpellLikeAbility>
+          </Effect>
+        </EnhancementSelection>
+        <EnhancementSelection>
+          <Name>SLA: Vial of Sparks</Name>
+          <Description>SLA: Vial of Sparks
+Metamagic: Empower, Maximize, Quicken, Heighten, Enlarge, Eschew Materials
+Spell Point Cost: 4
+Cooldown 12 seconds
+Primer Element: Crimsonite
+
+Conjuring a bottle of reactive material, you throw a projectile at a single foe
+that deals 3 to 8 Electric damage per caster level, max caster level 10.
+
+DND Dice: Deals 1d6+2 Electric damage per caster level, max 10d6+20</Description>
+          <Icon>BomVialOfSparks</Icon>
+          <CostPerRank size="1">1</CostPerRank>
+          <Clickie/>
+          <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellLikeAbility>Vial of Sparks</SpellLikeAbility>
+          </Effect>
+        </EnhancementSelection>
+      </Selector>
+    </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Bombardier: Efficient Metamagics II</Name>
          <InternalName>BomEfficientMetamagicII</InternalName>
@@ -1091,9 +1409,10 @@ This can trigger up to once every 12 seconds.
          </Selector>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
-         <Name>Bombardier: Swift Ambition</Name>
-         <InternalName>BomSwiftAmbition</InternalName>
-         <Description>While your Reaction is Pyrite, you gain +1 Reflex Save, +1 for every 5 Alchemist levels you have.</Description>
+         <Name>Bombardier: Holistic Ambition</Name>
+         <InternalName>BomHolisticAmbition</InternalName>
+         <Description>While your Reaction is Pyrite, you gain +1 Fortitude Save, +1 for every 5 Alchemist
+levels you have.</Description>
          <Icon>BomSwiftAmbition</Icon>
          <XPosition>2</XPosition>
          <YPosition>3</YPosition>
@@ -1111,7 +1430,7 @@ This can trigger up to once every 12 seconds.
             <Bonus>Enhancement</Bonus>
             <AmountVector size="20">1 1 1 1 2 2 2 2 2 3 3 3 3 3 4 4 4 4 4 5</AmountVector>
             <Class>Alchemist</Class>
-            <Save>Reflex</Save>
+            <Save>Fortitude</Save>
             <Stance>Pyrite</Stance>
          </Effect>
       </EnhancementTreeItem>
@@ -1209,7 +1528,7 @@ you Invisible and Displaced for 12 seconds.</Description>
          <Icon>BomEfficientHeighten</Icon>
          <XPosition>1</XPosition>
          <YPosition>4</YPosition>
-         <CostPerRank size="1">1</CostPerRank>
+         <CostPerRank size="1">2</CostPerRank>
          <Ranks>2</Ranks>
          <MinSpent>20</MinSpent>
          <Requirements>
@@ -1268,9 +1587,11 @@ you Invisible and Displaced for 12 seconds.</Description>
          <Name>Bombardier: Burning Ambition</Name>
          <InternalName>BomBurningAmbition</InternalName>
          <Description>When your Reaction is Pyrite, your offensive Crimsonite and Gildleaf Alchemist
-spells will ignite you enemies magic, dealing additional damage. This damage
-determines its element based on the element of the spell cast.
-This ability begins at 1d4 damage, adding abother 1d4 for each Burning Ambition
+spells will ignite your enemies with magic, dealing additional damage. This damage
+determines its element based on the element of the spell cast. Different elements
+can be ignited at the same time.
+
+This ability begins at 1d4 damage, adding another 1d4 for each Burning Ambition
 die you get from other abilities. This damage scales with Spell Power.</Description>
          <Icon>BomBurningAmbition</Icon>
          <XPosition>2</XPosition>

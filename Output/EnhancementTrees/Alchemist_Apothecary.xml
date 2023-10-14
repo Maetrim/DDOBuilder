@@ -1,7 +1,7 @@
 <Enhancements>
    <EnhancementTree>
       <Name>Apothecary</Name>
-      <Version>1</Version>
+      <Version>2</Version>
       <Requirements>
          <Requirement>
             <Class>Alchemist</Class>
@@ -13,7 +13,8 @@
       <EnhancementTreeItem>
          <Name>Apothecary: Determination</Name>
          <InternalName>ApothCore1</InternalName>
-         <Description>+1 to your Will Saving throws.</Description>
+      <Description>+1 to your Will Saving throws. Each Core Ability you take in this tree beyond the
+first grants +5 Positive and Negative Spell Power.</Description>
          <Icon>ApothDetermination</Icon>
          <XPosition>0</XPosition>
          <YPosition>0</YPosition>
@@ -36,9 +37,10 @@
       <EnhancementTreeItem>
          <Name>Apothecary: Alchemical Shield</Name>
          <InternalName>ApothCore2</InternalName>
-         <Description>While in Cloth armor or Composite Body, your equipped armor or docent grants
+      <Description>While in Cloth armor or Composite Body, your equipped armor or docent grants
 you a +4 Alchemical bonus to Armor Class and immunity to Magic Missiles.
-While your Reaction is Verdanite, +5 Positive and Negative Spell Power</Description>
+While your Reaction is Verdanite, you get +2% Positive and Negative Spell Critical
+Damage.</Description>
          <Icon>ApothAlchemicalShield</Icon>
          <XPosition>1</XPosition>
          <YPosition>0</YPosition>
@@ -74,11 +76,18 @@ While your Reaction is Verdanite, +5 Positive and Negative Spell Power</Descript
             <SpellPower>Negative</SpellPower>
             <Stance>Verdanite</Stance>
          </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>5</Amount>
+        <SpellPower>Positive</SpellPower>
+        <SpellPower>Negative</SpellPower>
+      </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Apothecary: Curative Admixture: Cure Serious Wounds</Name>
          <InternalName>ApothCore3</InternalName>
-         <Description>Curative Admixture: Cure Serious Wounds
+      <Description>Curative Admixture: Cure Serious Wounds
 Metamagic: Empower, Empower Heal, Maximize, Intensify
 Spell Point Cost: 4
 Cooldown 8 seconds
@@ -86,11 +95,10 @@ Cooldown 8 seconds
 Infuses a Cure Serious Wounds potion with magical energy, hurling it towards
 your target in an arc. The potion explodes in a small AOE that deals 3d6+6
 plus 1 per caster level (maximum caster level 15) positive energy damage to
-nearby living allies and enemy undead. This infusion is affected by
-Artificer/Alchemist Knowledge: Potions.
+nearby living allies and enemy undead.
 
-Passive: +1 Spell Penetration
-While your Reaction is Verdanite, +5 Positive and Negative Spell Power</Description>
+While your Reaction is Verdanite, you get +2% Positive and Negative Spell
+Critical Damage.</Description>
          <Icon>ApothCurativeAdmixtureCureSeriousWounds</Icon>
          <XPosition>2</XPosition>
          <YPosition>0</YPosition>
@@ -113,18 +121,20 @@ While your Reaction is Verdanite, +5 Positive and Negative Spell Power</Descript
             <SpellLikeAbility>Curative Admixture: Cure Serious Wounds</SpellLikeAbility>
          </Effect>
          <Effect>
-            <Type>SpellPenetrationBonus</Type>
+            <Type>SpellCriticalDamage</Type>
             <Bonus>Enhancement</Bonus>
-            <Amount>1</Amount>
-         </Effect>
-         <Effect>
-            <Type>SpellPower</Type>
-            <Bonus>Enhancement</Bonus>
-            <Amount>5</Amount>
+            <Amount>2</Amount>
             <SpellPower>Positive</SpellPower>
             <SpellPower>Negative</SpellPower>
             <Stance>Verdanite</Stance>
          </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>5</Amount>
+        <SpellPower>Positive</SpellPower>
+        <SpellPower>Negative</SpellPower>
+      </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Apothecary: Spill the Bad Stuff</Name>
@@ -141,7 +151,7 @@ to be Blinded, Dazed, Silenced, Tripped, Stunned, or Paralyzed.
 (Fortitude save negates).
 
 Passive: While your Reaction is Verdanite, you get +2% Positive and Negative Spell
-Critical Damage and 5% Magical Efficiency (reduced spell point cost).</Description>
+Critical Damage.</Description>
          <Icon>ApothSpillTheBadStuff</Icon>
          <XPosition>3</XPosition>
          <YPosition>0</YPosition>
@@ -171,6 +181,13 @@ Critical Damage and 5% Magical Efficiency (reduced spell point cost).</Descripti
             <SpellPower>Negative</SpellPower>
             <Stance>Verdanite</Stance>
          </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>5</Amount>
+        <SpellPower>Positive</SpellPower>
+        <SpellPower>Negative</SpellPower>
+      </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Apothecary: Curative Admixture: Heal</Name>
@@ -182,11 +199,12 @@ Cooldown 12 seconds
 Primer Element: Gildleaf
 
 Infuses a Heal potion with magical energy, hurling it towards your target in an arc.
-The potion explodes in a small AOE that deals 3d6+6 plus 1 per caster level
+The potion explodes in a small AOE that deals 10 points per caster level
 (maximum caster level 15) of positive energy damage to nearby living allies and
 enemy undead. This also grants you the Spell-Like Ability: Curative Admixture: Harm.
 
-Passive: While your Reaction is Verdanite, +1 Transmutation DCs.</Description>
+Passive: While your Reaction is Verdanite, you get +2% Positive and Negative Spell
+Critical Damage.</Description>
          <Icon>ApothCuractiveAdmixtureHeal</Icon>
          <XPosition>4</XPosition>
          <YPosition>0</YPosition>
@@ -214,20 +232,29 @@ Passive: While your Reaction is Verdanite, +1 Transmutation DCs.</Description>
             <SpellLikeAbility>Curative Admixture: Harm</SpellLikeAbility>
          </Effect>
          <Effect>
-            <Type>SpellDC</Type>
+            <Type>SpellCriticalDamage</Type>
             <Bonus>Enhancement</Bonus>
-            <Amount>1</Amount>
-            <School>Transmutation</School>
+            <Amount>2</Amount>
+            <SpellPower>Positive</SpellPower>
+            <SpellPower>Negative</SpellPower>
             <Stance>Verdanite</Stance>
          </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>5</Amount>
+        <SpellPower>Positive</SpellPower>
+        <SpellPower>Negative</SpellPower>
+      </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Apothecary: Genius Never Dies</Name>
          <InternalName>ApothCore6</InternalName>
          <Description>+4 Intelligence. +20 Concentration. +1000 Unconscious Range.
-You gain the Diehard feat. +1 Spell Penetration.
+You gain the Diehard feat. +1 Spell Penetration, +2 Transmutation DCs.
 
-Passive: While your Reaction is Verdanite, +2 Transmutation DCs.</Description>
+While your Reaction is Verdanite, you get +2% Positive and Negative Spell
+Critical Damage.</Description>
          <Icon>ApothGeniusNeverDies</Icon>
          <XPosition>5</XPosition>
          <YPosition>0</YPosition>
@@ -268,7 +295,7 @@ Passive: While your Reaction is Verdanite, +2 Transmutation DCs.</Description>
          <Effect>
             <Type>UnconsciousRange</Type>
             <Bonus>Enhancement</Bonus>
-            <Amount>1000</Amount>
+            <Amount>-1000</Amount>
          </Effect>
          <Effect>
             <Type>SpellPenetrationBonus</Type>
@@ -280,8 +307,27 @@ Passive: While your Reaction is Verdanite, +2 Transmutation DCs.</Description>
             <Bonus>Enhancement</Bonus>
             <Amount>2</Amount>
             <School>Transmutation</School>
+         </Effect>
+         <Effect>
+            <Type>GrantFeat</Type>
+            <Bonus>Enhancement</Bonus>
+             <Feat>Diehard</Feat>
+         </Effect>
+         <Effect>
+            <Type>SpellCriticalDamage</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>2</Amount>
+            <SpellPower>Positive</SpellPower>
+            <SpellPower>Negative</SpellPower>
             <Stance>Verdanite</Stance>
          </Effect>
+      <Effect>
+        <Type>SpellPower</Type>
+        <Bonus>Enhancement</Bonus>
+        <Amount>5</Amount>
+        <SpellPower>Positive</SpellPower>
+        <SpellPower>Negative</SpellPower>
+      </Effect>
       </EnhancementTreeItem>
       <!--Tier 1 Enhancements-->
       <EnhancementTreeItem>
@@ -408,7 +454,7 @@ Rank 3: +1 Will Saves</Description>
       <EnhancementTreeItem>
          <Name>Apothecary: Energy of the Scholar</Name>
          <InternalName>ApothEnergyOfTheScholar</InternalName>
-         <Description>+[30/60/90] Maximum Spell Points</Description>
+         <Description>+[30/60/100] Maximum Spell Points</Description>
          <Icon>ApothEnergyOfTheScholar</Icon>
          <XPosition>3</XPosition>
          <YPosition>1</YPosition>
@@ -424,7 +470,7 @@ Rank 3: +1 Will Saves</Description>
          <Effect>
             <Type>SpellPoints</Type>
             <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">30 60 90</AmountVector>
+            <AmountVector size="3">30 60 100</AmountVector>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -742,6 +788,25 @@ Safety First!</Description>
          </Selector>
       </EnhancementTreeItem>
       <!--Tier 4 Enhancements-->
+    <EnhancementTreeItem>
+      <Name>Apothecary: Apothecary's Satchel</Name>
+      <InternalName>ApothApothecarySatchel</InternalName>
+      <Description>Spells you cast cost 5% less Spell Points.
+
+It has pockets!</Description>
+      <Icon>ApothApothecarySatchel</Icon>
+      <XPosition>0</XPosition>
+      <YPosition>4</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>20</MinSpent>
+      <Requirements>
+            <Requirement>
+               <Class>Alchemist</Class>
+               <Level>4</Level>
+            </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
       <EnhancementTreeItem>
          <Name>Apothecary: Insulated Boots</Name>
          <InternalName>ApothInsulatedBoots</InternalName>
@@ -988,8 +1053,8 @@ The mark of a true Apothecary, and helpful when handling volatile materials.</De
       <EnhancementTreeItem>
          <Name>Apothecary: Master Apothecary</Name>
          <InternalName>ApothMasterApothecary</InternalName>
-         <Description>You have no Max Caster Level with Curative Admixtures and any Gildleaf Alchemist Spells.
-+2 Transmutation DCs, and +1 Spell Penetration.</Description>
+      <Description>You have no Max Caster Level with Curative Admixtures and any Gildleaf Alchemist Spells.
++2 Transmutation DCs, and +2 Spell Penetration.</Description>
          <Icon>ApothMasterApothecary</Icon>
          <XPosition>2</XPosition>
          <YPosition>5</YPosition>
@@ -1018,7 +1083,7 @@ The mark of a true Apothecary, and helpful when handling volatile materials.</De
          <Effect>
             <Type>SpellPenetrationBonus</Type>
             <Bonus>Enhancement</Bonus>
-            <Amount>1</Amount>
+            <Amount>2</Amount>
          </Effect>
       </EnhancementTreeItem>
       <EnhancementTreeItem>
@@ -1078,7 +1143,8 @@ Mesmerized, Paralyzed, Petrified, or Stunned must make a Fortitude save
          <Selector>
             <EnhancementSelection>
                <Name>Deadly Neurotoxin</Name>
-               <Description>Offensive Gildleaf or Ceruleite Spells will reduce your targets Armor Class and Magical Resistance rating by -1 per stack, max 5.</Description>
+          <Description>Offensive Gildleaf or Ceruleite Spells will reduce your targets Armor Class and
+Magical Resistance rating by -1 per stack, max 5.</Description>
                <Icon>ApothDeadlyNeurotoxin</Icon>
                <CostPerRank size="1">1</CostPerRank>
             </EnhancementSelection>
