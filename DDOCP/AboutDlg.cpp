@@ -49,6 +49,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
     SetDlgItemText(IDC_STATIC_SETBONUS_COUNT, text);
 
     m_bugReporters.SetWindowText(
+            "84monta, "
             "aaron250, "
             "Aganthor, "
             "Amateretsu, "
@@ -193,6 +194,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
             "Rawel, "
             "Remmer75, "
             "RetroDark, "
+            "Riareos, "
             "rnett, "
             "saphyron, "
             "Sardabot, "

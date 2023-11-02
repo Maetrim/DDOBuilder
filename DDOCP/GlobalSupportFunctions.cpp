@@ -1102,10 +1102,14 @@ size_t SkillPoints(
 {
     // determine the number of skill points for this class at this level
     // for the given race and intelligence
-    size_t skillPoints = 0;
+    int skillPoints = 0;
     // basic number for the class first
     switch (type)
     {
+    case Class_Unknown:
+        skillPoints = 0;
+        break;
+
     case Class_Cleric:
     case Class_ClericDarkApostate:
     case Class_Fighter:
@@ -1161,7 +1165,7 @@ size_t SkillPoints(
     {
         skillPoints *= 4;
     }
-    return skillPoints;
+    return static_cast<size_t>(skillPoints);
 }
 
 void SelectComboboxEntry(

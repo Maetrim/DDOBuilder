@@ -85,6 +85,7 @@ Character::Character() :
         }
         m_Levels.push_back(lt);
     }
+    UpdateSkillPoints();
 }
 
 Character::Character(CDDOCPDoc * pDoc) :
@@ -129,6 +130,7 @@ Character::Character(CDDOCPDoc * pDoc) :
     m_ActiveGear = "Standard";
 
     AttachObserver(this);       // we observe ourselves
+    UpdateSkillPoints();
 }
 
 DL_DEFINE_ACCESS(Character_PROPERTIES)
