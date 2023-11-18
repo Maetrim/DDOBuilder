@@ -876,6 +876,7 @@ bool IsClassSkill(ClassType type, SkillType skill)
                 || type == Class_Bard
                 || type == Class_BardStormsinger
                 || type == Class_Cleric
+                || type == Class_ClericDarkApostate
                 || type == Class_Druid
                 || type == Class_DruidBlightCaster
                 || type == Class_FavoredSoul

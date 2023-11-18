@@ -53,6 +53,22 @@ CItemSelectDialog::CItemSelectDialog(
     {
         m_armorType = Armor_Docent;
     }
+    std::vector<ItemAugment> currentAugments = m_item.Augments();
+    bool bFound = false;
+    for (size_t i = 0; i < currentAugments.size(); ++i)
+    {
+        if (currentAugments[i].Type() == "Deck Curse")
+        {
+            bFound = true;
+        }
+    }
+    if (!bFound)
+    {
+        // ensure we have a Deck Curse augment for any existsing gear
+        AddAugment(&currentAugments, "Deck Curse", true);
+        // now set the slots on the item
+        m_item.Set_Augments(currentAugments);
+    }
 }
 
 CItemSelectDialog::~CItemSelectDialog()
@@ -123,19 +139,19 @@ BOOL CItemSelectDialog::OnInitDialog()
     CString text;
     switch(m_slot)
     {
-    case Inventory_Arrows: text = "Arrows"; break;
-    case Inventory_Armor: text = "Armor"; break;
-    case Inventory_Belt: text = "Belt"; break;
-    case Inventory_Boots: text = "Boots"; break;
+    case Inventory_Arrows:  text = "Arrows"; break;
+    case Inventory_Armor:   text = "Armor"; break;
+    case Inventory_Belt:    text = "Belt"; break;
+    case Inventory_Boots:   text = "Boots"; break;
     case Inventory_Bracers: text = "Bracers"; break;
-    case Inventory_Cloak: text = "Cloak"; break;
-    case Inventory_Gloves: text = "Gloves"; break;
+    case Inventory_Cloak:   text = "Cloak"; break;
+    case Inventory_Gloves:  text = "Gloves"; break;
     case Inventory_Goggles: text = "Goggles"; break;
-    case Inventory_Helmet: text = "Helm"; break;
+    case Inventory_Helmet:  text = "Helm"; break;
     case Inventory_Necklace: text = "Necklace"; break;
-    case Inventory_Quiver: text = "Quiver"; break;
+    case Inventory_Quiver:  text = "Quiver"; break;
     case Inventory_Ring1:
-    case Inventory_Ring2: text = "Ring"; break;
+    case Inventory_Ring2:   text = "Ring"; break;
     case Inventory_Trinket2:
     case Inventory_Trinket3:
     case Inventory_Trinket: text = "Trinket"; break;
@@ -1044,6 +1060,7 @@ void CItemSelectDialog::AddSpecialSlots()
         {
             AddAugment(&currentAugments, "Reaper Ring", true);
         }
+        AddAugment(&currentAugments, "Deck Curse", true);
         // now set the slots on the item
         m_item.Set_Augments(currentAugments);
     }

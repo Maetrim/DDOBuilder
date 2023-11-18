@@ -1116,7 +1116,8 @@ bool ActiveEffect::operator==(const ActiveEffect & other) const
             equal = (m_amounts == other.m_amounts);
             break;
         case ET_amountPerLevel:
-            equal = (m_amountPerLevel == other.m_amountPerLevel);
+            equal = (m_amountPerLevel == other.m_amountPerLevel)
+                    && (m_class == other.m_class);
             break;
         case ET_amountVectorPerClassLevel:
             equal = (m_amounts == other.m_amounts)
