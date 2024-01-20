@@ -279,7 +279,7 @@ Adept of Wind: Wind Stance now grants +2 Dexterity, a 10% Enhancement bonus to m
          <DisplayName>Ocean Stance: Dodge Cap</DisplayName>
          <Bonus>Feat</Bonus>
          <Type>DodgeCapBonus</Type>
-         <AmountVector size="4">0 4 6 8</AmountVector>
+         <AmountVector size="4">2 4 6 8</AmountVector>
          <Stance>Ocean Stance</Stance>
       </Effect>
       <Effect>
@@ -2173,7 +2173,7 @@ Divine Grace is capped at 2 + (3 x Paladin level). For multi-classing, this mean
    </Feat>
    <Feat>
       <Name>Dodge</Name>
-      <Description>Grants you a 3% Dodge bonus. Bug: Also grants +1 AC.</Description>
+      <Description>Grants you a 3% Dodge bonus.</Description>
       <FeatGroup>
          <IsStandardFeat/>
          <IsFighterBonus/>
@@ -2192,11 +2192,6 @@ Divine Grace is capped at 2 + (3 x Paladin level). For multi-classing, this mean
          <Type>DodgeBonus</Type>
          <Bonus>Feat</Bonus>
          <Amount>3</Amount>
-      </Effect>
-      <Effect>
-         <Type>ACBonus</Type>
-         <Bonus>Feat</Bonus>
-         <Amount>1</Amount>
       </Effect>
    </Feat>
    <Feat>
@@ -3907,7 +3902,7 @@ Grandmaster of Wind: Wind Stance now grants +4 Dexterity, a 15% Enhancement bonu
          <DisplayName>Ocean Stance: Dodge Cap</DisplayName>
          <Bonus>Feat</Bonus>
          <Type>DodgeCapBonus</Type>
-         <AmountVector size="4">0 4 6 8</AmountVector>
+         <AmountVector size="4">2 4 6 8</AmountVector>
          <Stance>Ocean Stance</Stance>
       </Effect>
       <Effect>
@@ -7521,7 +7516,7 @@ a cost of -2 Strength.</Description>
          <Description>Ocean Stance grants:
 +2/2/3/4 Wisdom
 +1/5/9/12% dodge,
-0/4/6/8% Dodge Cap
+2/4/6/8% Dodge Cap
 +2/3/4/5 to all Saving Throws
 at a cost of -2 Strength.</Description>
          <IncompatibleStance>Mountain Stance</IncompatibleStance>
@@ -7554,7 +7549,7 @@ at a cost of -2 Strength.</Description>
          <DisplayName>Ocean Stance: Dodge Cap</DisplayName>
          <Bonus>Feat</Bonus>
          <Type>DodgeCapBonus</Type>
-         <AmountVector size="4">0 4 6 8</AmountVector>
+         <AmountVector size="4">2 4 6 8</AmountVector>
          <Stance>Ocean Stance</Stance>
       </Effect>
       <Effect>
@@ -8885,7 +8880,7 @@ Master of Wind: Wind Stance now grants +3 Dexterity, a 12.5% Enhancement bonus t
          <DisplayName>Ocean Stance: Dodge Cap</DisplayName>
          <Bonus>Feat</Bonus>
          <Type>DodgeCapBonus</Type>
-         <AmountVector size="4">0 4 6 8</AmountVector>
+         <AmountVector size="4">2 4 6 8</AmountVector>
          <Stance>Ocean Stance</Stance>
       </Effect>
       <Effect>
@@ -17351,7 +17346,8 @@ This feat can be stacked up to three times.</Description>
       <Name>Past Life: Cleric (Dark Apostate)</Name>
       <Description>You were a Dark Apostate in a past life.
 You occasionally feel the presence of the heritical.
-Each time you acquire this feat you gain +5 to your Negative Healing Amplification.
+Each time you acquire this feat you gain +5 to your Negative Healing Amplification
+and Negative Spell Power.
 This feat can be stacked up to three times.</Description>
       <Requirements/>
       <MaxTimesAcquire>3</MaxTimesAcquire>
@@ -17361,6 +17357,12 @@ This feat can be stacked up to three times.</Description>
          <Type>NegativeHealingAmplification</Type>
          <Bonus>Feat</Bonus>
          <Amount>5</Amount>
+      </Effect>
+      <Effect>
+         <Type>SpellPower</Type>
+         <Bonus>Feat</Bonus>
+         <Amount>5</Amount>
+          <SpellPower>Negative</SpellPower>
       </Effect>
    </Feat>
    <Feat>
@@ -20682,7 +20684,7 @@ receiving an additional +1 bonus on save DCs.</Description>
       <Acquire>Automatic</Acquire>
       <Icon>EpicWill</Icon>
       <Effect>
-         <Type>FatePoint</Type>
+         <Type>U51FatePoint</Type>
          <Bonus>Feat</Bonus>
          <Amount>1</Amount>
       </Effect>
