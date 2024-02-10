@@ -794,6 +794,10 @@ void CSkillSpendDialog::OnButtonAutoSpendSkillPoints()
                     skills[Skill_Intimidate].AddWeighting(100);
                     skills[Skill_Balance].AddWeighting(100);
                     break;
+                case Class_FighterDragonLord:
+                    skills[Skill_Intimidate].AddWeighting(100);
+                    skills[Skill_Heal].AddWeighting(100);
+                    break;
                 case Class_Monk:
                     skills[Skill_Concentration].AddWeighting(100);
                     break;

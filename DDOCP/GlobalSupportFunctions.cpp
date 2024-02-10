@@ -596,6 +596,12 @@ std::vector<TrainableFeatTypes> ClassSpecificFeatTypes(ClassType type)
         case Class_Fighter:
             types.push_back(TFT_FighterBonus);
             break;
+        case Class_FighterDragonLord:
+            types.push_back(TFT_MinorDragonLordAura);
+            types.push_back(TFT_MajorDragonLordAura);
+            types.push_back(TFT_SuperiorDragonLordAura);
+            types.push_back(TFT_FighterBonus);
+            break;
         case Class_Paladin:
             types.push_back(TFT_FollowerOf);    // level 1
             types.push_back(TFT_Deity);         // level 6
@@ -858,6 +864,7 @@ bool IsClassSkill(ClassType type, SkillType skill)
                 || type == Class_Druid
                 || type == Class_DruidBlightCaster
                 || type == Class_FavoredSoul
+                || type == Class_FighterDragonLord
                 || type == Class_Monk
                 || type == Class_Paladin
                 || type == Class_PaladinSacredFist
@@ -880,6 +887,7 @@ bool IsClassSkill(ClassType type, SkillType skill)
                 || type == Class_Druid
                 || type == Class_DruidBlightCaster
                 || type == Class_FavoredSoul
+                || type == Class_FighterDragonLord
                 || type == Class_Monk
                 || type == Class_Paladin
                 || type == Class_PaladinSacredFist
@@ -913,6 +921,7 @@ bool IsClassSkill(ClassType type, SkillType skill)
                 || type == Class_Druid
                 || type == Class_DruidBlightCaster
                 || type == Class_FavoredSoul
+                || type == Class_FighterDragonLord
                 || type == Class_Paladin
                 || type == Class_PaladinSacredFist
                 || type == Class_Ranger
@@ -937,6 +946,7 @@ bool IsClassSkill(ClassType type, SkillType skill)
                 || type == Class_Druid
                 || type == Class_DruidBlightCaster
                 || type == Class_Fighter
+                || type == Class_FighterDragonLord
                 || type == Class_Paladin
                 || type == Class_PaladinSacredFist
                 || type == Class_Rogue
@@ -1114,6 +1124,7 @@ size_t SkillPoints(
     case Class_Cleric:
     case Class_ClericDarkApostate:
     case Class_Fighter:
+    case Class_FighterDragonLord:
     case Class_FavoredSoul:
     case Class_Paladin:
     case Class_PaladinSacredFist:
@@ -1367,6 +1378,7 @@ bool CanTrainClass(
     case Class_ClericDarkApostate:
     case Class_FavoredSoul:
     case Class_Fighter:
+    case Class_FighterDragonLord:
     case Class_Ranger:
     case Class_RangerDarkHunter:
     case Class_Rogue:
@@ -1484,6 +1496,18 @@ bool IsInGroup(TrainableFeatTypes type, const FeatGroup & group)
 
     case TFT_FighterBonus:
         inGroup = group.HasIsFighterBonus();
+        break;
+
+    case TFT_MinorDragonLordAura:
+        inGroup = group.HasIsMinorDragonLordAura();
+        break;
+
+    case TFT_MajorDragonLordAura:
+        inGroup = group.HasIsMajorDragonLordAura();
+        break;
+
+    case TFT_SuperiorDragonLordAura:
+        inGroup = group.HasIsSuperiorDragonLordAura();
         break;
 
     case TFT_HalfElfDilettanteBonus:
@@ -1642,6 +1666,7 @@ size_t ClassHitpoints(ClassType type)
         case Class_Epic:
         case Class_Legendary:
         case Class_Fighter:
+        case Class_FighterDragonLord:
         case Class_Paladin:
         case Class_PaladinSacredFist:
         case Class_Ranger:
@@ -1693,6 +1718,7 @@ size_t ClassSave(SaveType st, ClassType ct, size_t level)
             case Class_DruidBlightCaster:
             case Class_FavoredSoul:
             case Class_Fighter:
+            case Class_FighterDragonLord:
             case Class_Monk:
             case Class_Paladin:
             case Class_PaladinSacredFist:
@@ -1712,6 +1738,7 @@ size_t ClassSave(SaveType st, ClassType ct, size_t level)
             case Class_Druid:
             case Class_DruidBlightCaster:
             case Class_Fighter:
+            case Class_FighterDragonLord:
             case Class_Paladin:
             case Class_PaladinSacredFist:
             case Class_Sorcerer:
@@ -1753,6 +1780,7 @@ size_t ClassSave(SaveType st, ClassType ct, size_t level)
             case Class_Druid:
             case Class_DruidBlightCaster:
             case Class_FavoredSoul:
+            case Class_FighterDragonLord:
             case Class_Monk:
             case Class_Sorcerer:
             case Class_Warlock:
@@ -2117,6 +2145,9 @@ std::vector<size_t> SpellSlotsForClass(ClassType ct, size_t level)
         }
         break;
     case Class_Fighter:
+        // no spells of any level
+        break;
+    case Class_FighterDragonLord:
         // no spells of any level
         break;
     case Class_Monk:
@@ -2516,6 +2547,15 @@ CString TrainableFeatTypeLabel(TrainableFeatTypes type)
     case TFT_FighterBonus:
         text = "Fighter Bonus";
         break;
+    case TFT_MinorDragonLordAura:
+        text = "Minor Draconic Aura";
+        break;
+    case TFT_MajorDragonLordAura:
+        text = "Major Draconic Aura";
+        break;
+    case TFT_SuperiorDragonLordAura:
+        text = "Superior Draconic Aura";
+        break;
     case TFT_FollowerOf:
         text = "Follower of Faith";
         break;
@@ -2807,6 +2847,7 @@ double BAB(ClassType ct)
     {
     case Class_Barbarian:
     case Class_Fighter:
+    case Class_FighterDragonLord:
     case Class_Paladin:
     case Class_PaladinSacredFist:
     case Class_Ranger:
@@ -3697,6 +3738,7 @@ bool SameArchetype(ClassType ct1, ClassType ct2)
     size_t bardCount = 0;
     size_t clericCount = 0;
     size_t druidCount = 0;
+    size_t fighterCount = 0;
     size_t paladinCount = 0;
     size_t rangerCount = 0;
     size_t warlockCount = 0;
@@ -3713,6 +3755,10 @@ bool SameArchetype(ClassType ct1, ClassType ct2)
     case Class_Druid:
     case Class_DruidBlightCaster:
             druidCount++;
+            break;
+    case Class_Fighter:
+    case Class_FighterDragonLord:
+            fighterCount++;
             break;
     case Class_Paladin:
     case Class_PaladinSacredFist:
@@ -3741,6 +3787,10 @@ bool SameArchetype(ClassType ct1, ClassType ct2)
     case Class_DruidBlightCaster:
             druidCount++;
             break;
+    case Class_Fighter:
+    case Class_FighterDragonLord:
+            fighterCount++;
+            break;
     case Class_Paladin:
     case Class_PaladinSacredFist:
             paladinCount++;
@@ -3758,6 +3808,7 @@ bool SameArchetype(ClassType ct1, ClassType ct2)
     return (bardCount >= 2)
             || (clericCount >= 2)
             || (druidCount >= 2)
+            || (fighterCount >= 2)
             || (paladinCount >= 2)
             || (rangerCount >= 2)
             || (warlockCount >= 2);

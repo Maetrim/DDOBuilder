@@ -47,10 +47,13 @@ class FeatGroup :
                 DL_FLAG(_, IsRogueSpecialAbility) \
                 DL_FLAG(_, IsStandardFeat) \
                 DL_FLAG(_, IsLegendaryFeat) \
+                DL_FLAG(_, IsMajorDragonLordAura) \
+                DL_FLAG(_, IsMinorDragonLordAura) \
                 DL_FLAG(_, IsMonkBonus) \
                 DL_FLAG(_, IsMonkBonus6) \
                 DL_FLAG(_, IsMonkPhilosphy) \
                 DL_FLAG(_, IsMetamagic) \
+                DL_FLAG(_, IsSuperiorDragonLordAura) \
                 DL_FLAG(_, IsWarlockPact) \
                 DL_FLAG(_, IsWarlockPactAbility) \
                 DL_FLAG(_, IsWarlockResistance) \

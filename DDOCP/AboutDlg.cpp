@@ -134,6 +134,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
             "iAntiquary, "
             "IgorIvancic, "
             "iiNyxii, "
+            "imyopop, "
             "InfraRiot, "
             "iplaywithdrums, "
             "Jack Jarvis Esquire, "

@@ -11,7 +11,7 @@
       <Background>BarbarianBackground</Background>
       <Icon>Barbarian</Icon>
       <EnhancementTreeItem>
-         <Name>Ravager: Furious Rage</Name>
+         <Name>Ravager: Furious Rage (Barbarian)</Name>
          <InternalName>RavCore1</InternalName>
          <Description>When you are raging and miss your attack by rolling 1, you gain Fury for six seconds.
 Fury: +1 Rage bonus to attack and damage.
@@ -28,6 +28,11 @@ This effect stacks and one stack fades every six seconds.</Description>
                <Class>Barbarian</Class>
                <Level>1</Level>
             </Requirement>
+         <RequiresNoneOf>
+            <Requirement>
+               <Enhancement>DLRavCore1</Enhancement>
+            </Requirement>
+         </RequiresNoneOf>
          </Requirements>
          <Effect>
             <Type>CreateSlider</Type>
@@ -364,6 +369,20 @@ Damage is doubled when Two Handed Fighting.</Description>
             <AmountVector size="3">1 2 3</AmountVector>
             <Stance>Power Attack</Stance>
             <Weapon>All</Weapon>
+         </Effect>
+         <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Stance>Heavy Draw</Stance>
+            <WeaponClass>Thrown</WeaponClass>
+         </Effect>
+         <Effect>
+            <Type>DamageBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+            <Stance>Heavy Draw</Stance>
+            <WeaponClass>Bows</WeaponClass>
          </Effect>
          <Effect>
             <Type>DamageBonus</Type>

@@ -1309,7 +1309,7 @@ void Character::SetClass(size_t level, ClassType type)
     }
     // it is possible to select multiple archetype classes before assigning
     // levels. If they do this we need to revoke the archetype/default class
-    // selection at he point at which the first class level is set for the
+    // selection at the point at which the first class level is set for the
     // archetype/default
     size_t c1Levels = ClassLevels(Class1());
     size_t c2Levels = ClassLevels(Class2());
@@ -2204,8 +2204,16 @@ bool Character::IsClassRestricted(
     case Class_BardStormsinger:     bRestricted = (classLevels[Class_Bard] != 0); break;
     case Class_Cleric:              bRestricted = (classLevels[Class_ClericDarkApostate] != 0); break;
     case Class_ClericDarkApostate:  bRestricted = (classLevels[Class_Cleric] != 0); break;
+    case Class_Druid:               bRestricted = (classLevels[Class_DruidBlightCaster] != 0); break;
+    case Class_DruidBlightCaster:   bRestricted = (classLevels[Class_Druid] != 0); break;
+    case Class_Fighter:             bRestricted = (classLevels[Class_FighterDragonLord] != 0); break;
+    case Class_FighterDragonLord:   bRestricted = (classLevels[Class_Fighter] != 0); break;
     case Class_Paladin:             bRestricted = (classLevels[Class_PaladinSacredFist] != 0); break;
     case Class_PaladinSacredFist:   bRestricted = (classLevels[Class_Paladin] != 0); break;
+    case Class_Ranger:              bRestricted = (classLevels[Class_RangerDarkHunter] != 0); break;
+    case Class_RangerDarkHunter:    bRestricted = (classLevels[Class_Ranger] != 0); break;
+    case Class_Warlock:             bRestricted = (classLevels[Class_WarlockAcolyteOfTheSkin] != 0); break;
+    case Class_WarlockAcolyteOfTheSkin: bRestricted = (classLevels[Class_Warlock] != 0); break;
     }
     return bRestricted;
 }
@@ -2573,6 +2581,28 @@ std::vector<TrainableFeatTypes> Character::TrainableFeatTypeAtLevel(
         // fighters gain a bonus feat at level 1 and then all even levels thereafter
         if (classLevels[Class_Fighter] == 1
                 || classLevels[Class_Fighter] % 2 == 0)
+        {
+            trainable.push_back(TFT_FighterBonus);
+        }
+        break;
+
+    case Class_FighterDragonLord:
+        // Dragon lords  gain a bonus feat at all even levels except at 8/16
+        if (classLevels[Class_FighterDragonLord] == 1)
+        {
+            trainable.push_back(TFT_MinorDragonLordAura);
+        }
+        if (classLevels[Class_FighterDragonLord] == 8)
+        {
+            trainable.push_back(TFT_MajorDragonLordAura);
+        }
+        if (classLevels[Class_FighterDragonLord] == 16)
+        {
+            trainable.push_back(TFT_SuperiorDragonLordAura);
+        }
+        if (classLevels[Class_FighterDragonLord] % 2 == 0
+            && classLevels[Class_FighterDragonLord] != 8
+            && classLevels[Class_FighterDragonLord] != 16)
         {
             trainable.push_back(TFT_FighterBonus);
         }
