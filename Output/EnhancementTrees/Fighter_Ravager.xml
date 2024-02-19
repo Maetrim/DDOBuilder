@@ -1,826 +1,833 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Enhancements>
-  <EnhancementTree>
-    <Name>Ravager (Fighter)</Name>
-    <Version>1</Version>
-    <Requirements>
-      <Requirement>
-        <Class>Dragon Lord</Class>
-      </Requirement>
-    </Requirements>
-    <Icon>Fighter</Icon>
-    <Background>FighterBackground</Background>
-    <!--tree core items-->
-    <EnhancementTreeItem>
-      <Name>Ravager: Furious Rage (Dragon Lord)</Name>
-      <InternalName>DLRavCore1</InternalName>
-      <Description>When you miss your attack by rolling 1, you gain Fury for six seconds.
-Fury: +1 Rage bonus to attack and damage.
-This effect stacks and one stack fades every six seconds.</Description>
-      <Icon>RavFuriousrage</Icon>
-      <XPosition>0</XPosition>
-      <YPosition>0</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>1</Ranks>
-      <MinSpent>0</MinSpent>
+   <EnhancementTree>
+      <Name>Ravager (Ftr)</Name>
+      <Version>1</Version>
       <Requirements>
-        <Requirement>
-          <Class>Dragon Lord</Class>
-          <Level>1</Level>
-        </Requirement>
-        <RequiresNoneOf>
-          <Requirement>
-            <Enhancement>RavCore1</Enhancement>
-          </Requirement>
-        </RequiresNoneOf>
+         <Requirement>
+            <Class>Dragon Lord</Class>
+         </Requirement>
       </Requirements>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <InternalName>DLRavCore2</InternalName>
-      <Name>Ravager: Pain Touch I</Name>
-      <Description>Passive: +5 Melee power and +10 Healing Amplification</Description>
-      <Icon>RavPainTouch</Icon>
-      <XPosition>1</XPosition>
-      <YPosition>0</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>1</Ranks>
-      <MinSpent>5</MinSpent>
-      <Requirements>
-        <Requirement>
-          <Class>Dragon Lord</Class>
-          <Level>3</Level>
-        </Requirement>
-        <Requirement>
-          <Enhancement>DLRavCore1</Enhancement>
-        </Requirement>
-      </Requirements>
-      <Effect>
-        <Type>MeleePower</Type>
-        <Bonus>Enhancement</Bonus>
-        <Amount>5</Amount>
-      </Effect>
-      <Effect>
-        <Type>HealingAmplification</Type>
-        <Bonus>Enhancement</Bonus>
-        <Amount>10</Amount>
-      </Effect>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <InternalName>DLRavCore3</InternalName>
-      <Name>Ravager: Demoralizing Success</Name>
-      <Description>You gain +30 hit points and +10 healing amplification. When you score a vorpal
+      <Icon>Fighter</Icon>
+      <Background>FighterBackground</Background>
+      <!--tree core items-->
+      <EnhancementTreeItem>
+         <Name>Ravager: Furious Rage</Name>
+         <InternalName>DLRavCore1</InternalName>
+         <Description>When you miss your attack by rolling 1, you gain Fury for six seconds.
+
+Fury: +1 Rage bonus to attack and damage. This effect stacks and one stack fades
+every six seconds.
+
+You cannot take this enhancement if you have any points in the Barbarian's
+version of this tree.</Description>
+         <Icon>RavFuriousrage</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>0</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Dragon Lord</Class>
+               <Level>1</Level>
+            </Requirement>
+            <RequiresNoneOf>
+               <Requirement>
+                  <Enhancement>RavCore1</Enhancement>
+               </Requirement>
+            </RequiresNoneOf>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>DLRavCore2</InternalName>
+         <Name>Ravager: Pain Touch I</Name>
+         <Description>Passive: +5 Melee power and +5 Healing Amplification</Description>
+         <Icon>RavPainTouch</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Dragon Lord</Class>
+               <Level>3</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>DLRavCore1</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>MeleePower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>5</Amount>
+         </Effect>
+         <Effect>
+            <Type>HealingAmplification</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>5</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>DLRavCore3</InternalName>
+         <Name>Ravager: Demoralizing Success</Name>
+         <Description>You gain +15 hit points and +5 Healing Amplification. When you score a vorpal
 hit in melee, you inflict Crushing Despair on nearby enemies for 30 seconds on
 a failed DC 20 Will saving throw. You then inflict Vulnerable Will for
-15 seconds, regardless of the Crushing Despair saving throw.</Description>
-      <Icon>RavDemoralizingSuccess</Icon>
-      <XPosition>2</XPosition>
-      <YPosition>0</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>1</Ranks>
-      <MinSpent>10</MinSpent>
-      <Requirements>
-        <Requirement>
-          <Class>Dragon Lord</Class>
-          <Level>6</Level>
-        </Requirement>
-        <Requirement>
-          <Enhancement>DLRavCore2</Enhancement>
-        </Requirement>
-      </Requirements>
-      <Effect>
-        <Type>Hitpoints</Type>
-        <Bonus>Enhancement</Bonus>
-        <Amount>30</Amount>
-      </Effect>
-      <Effect>
-        <Type>HealingAmplification</Type>
-        <Bonus>Enhancement</Bonus>
-        <Amount>10</Amount>
-      </Effect>
-      <DC>
-        <Name>Ravager: Demoralizing Success</Name>
-        <Description>When you score a vorpal hit in melee, you inflict Crushing Despair on nearby
+15 seconds, regardless of the Crushing Despair saving throw.
+
+Crushing Despair: -2 penalty to Attack, Damage, Saving Throws, and Skill checks.
+
+Vulnerable Will: -3 to Will Saving throws.
+
+Vorpal Strike: Requires rolling 20 on the Attack roll and confirming the Critical
+hit.</Description>
+         <Icon>RavDemoralizingSuccess</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Dragon Lord</Class>
+               <Level>6</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>DLRavCore2</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>15</Amount>
+         </Effect>
+         <Effect>
+            <Type>HealingAmplification</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>5</Amount>
+         </Effect>
+         <DC>
+            <Name>Ravager: Demoralizing Success</Name>
+            <Description>When you score a vorpal hit in melee, you inflict Crushing Despair on nearby
 enemies for 30 seconds on a failed DC 20 Will saving throw.</Description>
-        <Icon>RavDemoralizingSuccess</Icon>
-        <DCType>Crushing Despair</DCType>
-        <DCVersus>Will</DCVersus>
-        <AmountVector size="1">20</AmountVector>
-      </DC>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <InternalName>DLRavCore4</InternalName>
-      <Name>Ravager: Pain Touch II</Name>
-      <Description>Passive: You gain +60 hit points, +5 Melee power and +20 healing amplification</Description>
-      <Icon>RavPainTouch</Icon>
-      <XPosition>3</XPosition>
-      <YPosition>0</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>1</Ranks>
-      <MinSpent>20</MinSpent>
-      <Requirements>
-        <Requirement>
-          <Class>Dragon Lord</Class>
-          <Level>12</Level>
-        </Requirement>
-        <Requirement>
-          <Enhancement>DLRavCore3</Enhancement>
-        </Requirement>
-      </Requirements>
-      <Effect>
-        <Type>Hitpoints</Type>
-        <Bonus>Enhancement</Bonus>
-        <Amount>60</Amount>
-      </Effect>
-      <Effect>
-        <Type>MeleePower</Type>
-        <Bonus>Enhancement</Bonus>
-        <Amount>5</Amount>
-      </Effect>
-      <Effect>
-        <Type>HealingAmplification</Type>
-        <Bonus>Enhancement</Bonus>
-        <Amount>20</Amount>
-      </Effect>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <InternalName>DLRavCore5</InternalName>
-      <Name>Ravager: Subsiding Fury</Name>
-      <Description>When you use Second Wind, you gain 3 stacks of Fury.
-Passive: You gain +100 hit points and +20 healing amplification</Description>
-      <Icon>RavSubsidingFury</Icon>
-      <XPosition>4</XPosition>
-      <YPosition>0</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>1</Ranks>
-      <MinSpent>30</MinSpent>
-      <Requirements>
-        <Requirement>
-          <Class>Dragon Lord</Class>
-          <Level>18</Level>
-        </Requirement>
-        <Requirement>
-          <Enhancement>DLRavCore4</Enhancement>
-        </Requirement>
-      </Requirements>
-      <Effect>
-        <Type>Hitpoints</Type>
-        <Bonus>Enhancement</Bonus>
-        <Amount>100</Amount>
-      </Effect>
-      <Effect>
-        <Type>HealingAmplification</Type>
-        <Bonus>Enhancement</Bonus>
-        <Amount>20</Amount>
-      </Effect>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <InternalName>DLRavCore6</InternalName>
-      <Name>Ravager: Visage of Terror</Name>
-      <Description>Terrorize up to six enemies, killing them with fear if they fail a Will
-save vs 10 + Constitution modifier + half Barbarian level. Enemies who make their
-saving throw are paralyzed with Fear for six seconds instead.
-Does not affect bosses. (Cooldown: 36 seconds)
-Passive:  +4 Constitution , +150 hit points and  +40 healing amplification</Description>
-      <Icon>RavVisageOfTerror</Icon>
-      <XPosition>5</XPosition>
-      <YPosition>0</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>1</Ranks>
-      <MinSpent>40</MinSpent>
-      <Clickie/>
-      <Requirements>
-        <Requirement>
-          <Class>Dragon Lord</Class>
-          <Level>20</Level>
-        </Requirement>
-        <Requirement>
-          <Enhancement>DLRavCore5</Enhancement>
-        </Requirement>
-        <Requirement>
-          <Unique>Capstone Enhancement</Unique>
-          <Selection>DLRavCore6</Selection>
-        </Requirement>
-      </Requirements>
-      <Effect>
-        <Type>Unique</Type>
-        <Bonus>Enhancement</Bonus>
-        <Unique>Capstone Enhancement</Unique>
-        <Selection>DLRavCore6</Selection>
-      </Effect>
-      <Effect>
-        <Type>AbilityBonus</Type>
-        <Bonus>Enhancement</Bonus>
-        <Amount>4</Amount>
-        <Ability>Constitution</Ability>
-      </Effect>
-      <Effect>
-        <Type>Hitpoints</Type>
-        <Bonus>Enhancement</Bonus>
-        <Amount>150</Amount>
-      </Effect>
-      <Effect>
-        <Type>HealingAmplification</Type>
-        <Bonus>Enhancement</Bonus>
-        <Amount>40</Amount>
-      </Effect>
-      <DC>
-        <Name>Visage of Terror</Name>
-        <Description>Terrorize up to six enemies, killing them with fear if they fail a Will
-save. Enemies who make their saving throw are paralyzed with Fear for six seconds instead.
-Does not affect bosses. (Cost 1 Rage. Cooldown: 30 seconds)</Description>
-        <Icon>RavVisageOfTerror</Icon>
-        <DCType>Death</DCType>
-        <DCVersus>Will</DCVersus>
-        <AmountVector size="1">10</AmountVector>
-        <ModAbility>Constitution</ModAbility>
-        <HalfClassLevel>Dragon Lord</HalfClassLevel>
-      </DC>
-    </EnhancementTreeItem>
-    <!--Tier 1 Enhancements-->
-    <EnhancementTreeItem>
-      <Name>Ravager: Ritual Scarring</Name>
-      <InternalName>DLRavRitualScarring</InternalName>
-      <Description>+[1/2/3] Intimidate, Haggle and Physical Resistance.</Description>
-      <Icon>RavRitualScarring</Icon>
-      <XPosition>0</XPosition>
-      <YPosition>1</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>1</Ranks>
-      <MinSpent>1</MinSpent>
-      <ArrowUp/>
-      <Requirements>
-        <Requirement>
-          <Class>Dragon Lord</Class>
-          <Level>1</Level>
-        </Requirement>
-      </Requirements>
-      <Effect>
-        <Type>SkillBonus</Type>
-        <Bonus>Enhancement</Bonus>
-        <Skill>Intimidate</Skill>
-        <Skill>Haggle</Skill>
-        <AmountVector size="3">1 2 3</AmountVector>
-      </Effect>
-      <Effect>
-        <Type>PRR</Type>
-        <Bonus>Enhancement</Bonus>
-        <AmountVector size="3">1 2 3</AmountVector>
-      </Effect>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Ravager: Hate</Name>
-      <InternalName>DLRavHate</InternalName>
-      <Description>Deals: +[10/20/30]% Damage
+            <Icon>RavDemoralizingSuccess</Icon>
+            <DCType>Crushing Despair</DCType>
+            <DCVersus>Will</DCVersus>
+            <AmountVector size="1">20</AmountVector>
+         </DC>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>DLRavCore4</InternalName>
+         <Name>Ravager: Pain Touch II</Name>
+         <Description>Passive: You gain +30 hit points, +5 Melee power and +10 Healing Amplification</Description>
+         <Icon>RavPainTouch</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Dragon Lord</Class>
+               <Level>12</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>DLRavCore3</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>30</Amount>
+         </Effect>
+         <Effect>
+            <Type>MeleePower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>5</Amount>
+         </Effect>
+         <Effect>
+            <Type>HealingAmplification</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>10</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>DLRavCore5</InternalName>
+         <Name>Ravager: Subsiding Fury</Name>
+         <Description>When you use Second Wind, you gain 3 stacks of Fury.
+
+Fury: +1 Rage bonus to attack and damage. This effect stacks and one stack fades
+every 12 seconds.
+
+Passive: You gain +50 hit points and +10 Healing Amplification</Description>
+         <Icon>RavSubsidingFury</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Dragon Lord</Class>
+               <Level>18</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>DLRavCore4</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>50</Amount>
+         </Effect>
+         <Effect>
+            <Type>HealingAmplification</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>10</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>DLRavCore6</InternalName>
+         <Name>Ravager: Visage of Terror</Name>
+         <Description>Terrorize up to six enemies, killing them with fear if they fail a Will Saving Throw
+(1d20 + your Intimidate skill). Enemies who make their saving throw are paralyzed
+with Fear for six seconds instead.
+
+Does not affect bosses, Raid Bosses, or monsters immune to Fear or Paralysis.
+Cooldown: 30 seconds
+
+Passive:  +4 Constitution , +75 hit points and  +20 healing amplification</Description>
+         <Icon>RavVisageOfTerror</Icon>
+         <XPosition>5</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>40</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Class>Dragon Lord</Class>
+               <Level>20</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>DLRavCore5</Enhancement>
+            </Requirement>
+            <Requirement>
+               <Unique>Capstone Enhancement</Unique>
+               <Selection>DLRavCore6</Selection>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Unique</Type>
+            <Bonus>Enhancement</Bonus>
+            <Unique>Capstone Enhancement</Unique>
+            <Selection>DLRavCore6</Selection>
+         </Effect>
+         <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>4</Amount>
+            <Ability>Constitution</Ability>
+         </Effect>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>75</Amount>
+         </Effect>
+         <Effect>
+            <Type>HealingAmplification</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>20</Amount>
+         </Effect>
+         <DC>
+            <Name>Visage of Terror</Name>
+            <Description>Terrorize up to six enemies, killing them with fear if they fail a Will Saving Throw
+(1d20 + your Intimidate skill). Enemies who make their saving throw are paralyzed
+with Fear for six seconds instead.</Description>
+            <Icon>RavVisageOfTerror</Icon>
+            <DCVersus>Will</DCVersus>
+            <Skill>Intimidate</Skill>
+         </DC>
+      </EnhancementTreeItem>
+      <!--Tier 1 Enhancements-->
+      <EnhancementTreeItem>
+         <Name>Ravager: Ritual Scarring</Name>
+         <InternalName>DLRavRitualScarring</InternalName>
+         <Description>+[1/2/3] Intimidate, Haggle and Physical Resistance.</Description>
+         <Icon>RavRitualScarring</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>1</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Dragon Lord</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Skill>Intimidate</Skill>
+            <Skill>Haggle</Skill>
+            <AmountVector size="3">1 2 3</AmountVector>
+         </Effect>
+         <Effect>
+            <Type>PRR</Type>
+            <Bonus>Enhancement</Bonus>
+            <AmountVector size="3">1 2 3</AmountVector>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Ravager: Hate</Name>
+         <InternalName>DLRavHate</InternalName>
+         <Description>Deals: +[10/20/30]% Damage
 Melee Attack: Generates extra threat.
 Cooldown: 6 seconds</Description>
-      <Icon>RavHate</Icon>
-      <XPosition>1</XPosition>
-      <YPosition>1</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
-      <MinSpent>1</MinSpent>
-      <ArrowUp/>
-      <Clickie/>
-      <Requirements>
-        <Requirement>
-          <Class>Dragon Lord</Class>
-          <Level>1</Level>
-        </Requirement>
-      </Requirements>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Ravager: Do You Like Pain?</Name>
-      <InternalName>DLRavDoYouLikePain</InternalName>
-      <Description>When you are hit: [20/40/60]% chance attacker loses 10 AC.</Description>
-      <Icon>RavDoYouLikePain</Icon>
-      <XPosition>2</XPosition>
-      <YPosition>1</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
-      <MinSpent>1</MinSpent>
-      <ArrowUp/>
-      <Requirements>
-        <Requirement>
-          <Class>Dragon Lord</Class>
-          <Level>1</Level>
-        </Requirement>
-      </Requirements>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Ravager: Draconic Power Attack</Name>
-      <InternalName>DLRavDraconicPowerAttack</InternalName>
-      <Description>Your Power Attack feat does [1/2/3] additional point(s) of bonus damage.
-Damage is doubled when Two Handed Fighting.</Description>
-      <Icon>RavBarbarianPowerAttack</Icon>
-      <XPosition>3</XPosition>
-      <YPosition>1</YPosition>
-      <CostPerRank size="1">2</CostPerRank>
-      <Ranks>1</Ranks>
-      <MinSpent>1</MinSpent>
-      <Clickie/>
-      <Requirements>
-        <Requirement>
-          <Class>Dragon Lord</Class>
-          <Level>1</Level>
-        </Requirement>
-        <Requirement>
-          <Feat>Power Attack</Feat>
-        </Requirement>
-      </Requirements>
+         <Icon>RavHate</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <ArrowUp/>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Class>Dragon Lord</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Ravager: Do You Like Pain?</Name>
+         <InternalName>DLRavDoYouLikePain</InternalName>
+         <Description>When you are hit: [20/40/60]% chance attacker loses 10 Armor Class.</Description>
+         <Icon>RavDoYouLikePain</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Dragon Lord</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Ravager: Draconic Power Attack</Name>
+         <InternalName>DLRavDraconicPowerAttack</InternalName>
+         <Description>Your Power Attack feat does [1/2/3] additional point(s) of bonus damage.</Description>
+         <Icon>RavBarbarianPowerAttack</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>1</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Class>Dragon Lord</Class>
+               <Level>1</Level>
+            </Requirement>
+            <Requirement>
+               <Feat>Power Attack</Feat>
+            </Requirement>
+         </Requirements>
          <Effect>
             <Type>DamageBonus</Type>
             <Bonus>Enhancement</Bonus>
             <AmountVector size="3">1 2 3</AmountVector>
-            <Stance>Power Attack</Stance>
+            <AnyOfStance>Power Attack</AnyOfStance>
+            <AnyOfStance>Heavy Draw</AnyOfStance>
             <Weapon>All</Weapon>
          </Effect>
          <Effect>
-            <Type>DamageBonus</Type>
+            <Type>Seeker</Type>
             <Bonus>Enhancement</Bonus>
             <AmountVector size="3">1 2 3</AmountVector>
-            <Stance>Heavy Draw</Stance>
-            <WeaponClass>Thrown</WeaponClass>
+            <AnyOfStance>Power Attack</AnyOfStance>
+            <AnyOfStance>Heavy Draw</AnyOfStance>
+            <Weapon>All</Weapon>
          </Effect>
-         <Effect>
-            <Type>DamageBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">1 2 3</AmountVector>
-            <Stance>Heavy Draw</Stance>
-            <WeaponClass>Bows</WeaponClass>
-         </Effect>
-         <Effect>
-            <Type>DamageBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <AmountVector size="3">1 2 3</AmountVector>
-            <Stance>Power Attack</Stance>
-            <WeaponClass>TwoHanded</WeaponClass>
-         </Effect>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Ravager: Extra Action Boost</Name>
-      <InternalName>DLRavHardyRage</InternalName>
-      <Description>+[1/2/3] Action Boost Charges.</Description>
-      <Icon>BEExtraActionBoost</Icon>
-      <XPosition>4</XPosition>
-      <YPosition>1</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
-      <MinSpent>1</MinSpent>
-      <Requirements>
-        <Requirement>
-          <Class>Dragon Lord</Class>
-          <Level>1</Level>
-        </Requirement>
-      </Requirements>
-    </EnhancementTreeItem>
-    <!--Tier 2 Enhancements-->
-    <EnhancementTreeItem>
-      <Name>Ravager: Fear me!</Name>
-      <InternalName>DLRavFearMe</InternalName>
-      <Description>When you intimidate, affected enemies are Shaken for 6 seconds
-(-2 penalty on attack rolls, saves, and skill checks).</Description>
-      <Icon>RavFearMe</Icon>
-      <XPosition>0</XPosition>
-      <YPosition>2</YPosition>
-      <CostPerRank size="1">2</CostPerRank>
-      <Ranks>1</Ranks>
-      <MinSpent>5</MinSpent>
-      <Requirements>
-        <Requirement>
-          <Class>Dragon Lord</Class>
-          <Level>2</Level>
-        </Requirement>
-        <Requirement>
-          <Enhancement>DLRavRitualScarring</Enhancement>
-        </Requirement>
-      </Requirements>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Ravager: Mutilate</Name>
-      <InternalName>DLRavMutilate</InternalName>
-      <Description>Hate additionally deals 1d[4/6/8] Charisma damage and 1d[4/6/8] Bane damage.
-The bane damage scales with 200% Melee Power.
-Cooldown: 10 seconds per monster on proccing its Charisma damage.</Description>
-      <Icon>RavMutilate</Icon>
-      <XPosition>1</XPosition>
-      <YPosition>2</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
-      <MinSpent>5</MinSpent>
-      <Requirements>
-        <Requirement>
-          <Class>Dragon Lord</Class>
-          <Level>2</Level>
-        </Requirement>
-        <Requirement>
-          <Enhancement>DLRavHate</Enhancement>
-        </Requirement>
-      </Requirements>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Ravager: I Like Pain</Name>
-      <InternalName>DLRavILikePain</InternalName>
-      <Description>When you are hit: Small chance to gain [50/100/150] Temporary HP.
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Ravager: Extra Action Boost</Name>
+         <InternalName>DLRavHardyRage</InternalName>
+         <Description>+[1/2/3] Action Boost Charges.</Description>
+         <Icon>BEExtraActionBoost</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Dragon Lord</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <!--Tier 2 Enhancements-->
+      <EnhancementTreeItem>
+         <Name>Ravager: Fear me!</Name>
+         <InternalName>DLRavFearMe</InternalName>
+         <Description>When you intimidate, affected enemies are Shaken for 6 seconds (-2 penalty on attack
+rolls, saves, and skill checks).</Description>
+         <Icon>RavFearMe</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Dragon Lord</Class>
+               <Level>2</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>DLRavRitualScarring</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Ravager: Mutilate</Name>
+         <InternalName>DLRavMutilate</InternalName>
+         <Description>Hate additionally deals 1d[4/6/8] Charisma damage and 1d[2/4/6] Bane damage.
+The bane damage scales with 200% Melee Power. Charisma damage from this attack
+can only affect a creature once every 10 seconds.</Description>
+         <Icon>RavMutilate</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Dragon Lord</Class>
+               <Level>2</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>DLRavHate</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Ravager: I Like Pain</Name>
+         <InternalName>DLRavILikePain</InternalName>
+         <Description>When you are hit: Small chance to gain [50/100/150] Temporary Hit Points.
 This gain scales with 100% Melee Power</Description>
-      <Icon>RavILikePain</Icon>
-      <XPosition>2</XPosition>
-      <YPosition>2</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
-      <MinSpent>5</MinSpent>
-      <LongArrowUp/>
-      <Requirements>
-        <Requirement>
-          <Class>Dragon Lord</Class>
-          <Level>2</Level>
-        </Requirement>
-        <Requirement>
-          <Enhancement>DLRavDoYouLikePain</Enhancement>
-        </Requirement>
-      </Requirements>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Ravager: Cruel Cut</Name>
-      <InternalName>DLRavCruelCut</InternalName>
-      <Description>Melee Attack: Deals [1/2/3]d6 extra constitution damage as long as you
-damage your target. (30 second cooldown)</Description>
-      <Icon>RavCruelCut</Icon>
-      <XPosition>3</XPosition>
-      <YPosition>2</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
-      <MinSpent>5</MinSpent>
-      <Clickie/>
-      <ArrowUp/>
-      <Requirements>
-        <Requirement>
-          <Class>Dragon Lord</Class>
-          <Level>2</Level>
-        </Requirement>
-      </Requirements>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Ravager: Action Boost: Melee Power</Name>
-      <InternalName>DLRavActionBoostMeleePower</InternalName>
-      <Description>Activate this ability to receive a +[10/20/30] Action Boost bonus to Melee
+         <Icon>RavILikePain</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <LongArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Dragon Lord</Class>
+               <Level>2</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>DLRavDoYouLikePain</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Ravager: Cruel Cut</Name>
+         <InternalName>DLRavCruelCut</InternalName>
+         <Description>Melee Attack: Deals [1/2/3]d6 extra Constitution damage as long as you damage your target.
+Cooldown: 20 seconds</Description>
+         <Icon>RavCruelCut</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Clickie/>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Dragon Lord</Class>
+               <Level>2</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Ravager: Action Boost: Melee Power</Name>
+         <InternalName>DLRavActionBoostMeleePower</InternalName>
+         <Description>Activate this ability to receive a +[10/20/30] Action Boost bonus to Melee
 and Ranged Power for 20 seconds.
 Cooldown: 30 seconds</Description>
-      <Icon>RavActionBoostMeleePower</Icon>
-      <XPosition>4</XPosition>
-      <YPosition>2</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
-      <MinSpent>5</MinSpent>
-      <Clickie/>
-      <Requirements>
-        <Requirement>
-          <Class>Dragon Lord</Class>
-          <Level>2</Level>
-        </Requirement>
-      </Requirements>
-    </EnhancementTreeItem>
-    <!--Tier 3 Enhancements-->
-    <EnhancementTreeItem>
-      <Name>Ravager: Aura of Fear</Name>
-      <InternalName>DLRavAuraOfFear</InternalName>
-      <Description>Nearby enemies receive a -2 penalty to Strength and Charisma.
+         <Icon>RavActionBoostMeleePower</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Class>Dragon Lord</Class>
+               <Level>2</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <!--Tier 3 Enhancements-->
+      <EnhancementTreeItem>
+         <Name>Ravager: Aura of Fear</Name>
+         <InternalName>DLRavAuraOfFear</InternalName>
+         <Description>Nearby enemies receive a -2 penalty to Strength and Charisma.
 Rank 2: Nearby enemies receive a -2 penalty to Strength, Charisma, Dexterity and Wisdom.
 Rank 3: Nearby enemies receive a -2 penalty to all ability scores.</Description>
-      <Icon>RavAuraOfFear</Icon>
-      <XPosition>0</XPosition>
-      <YPosition>3</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
-      <MinSpent>10</MinSpent>
-      <Requirements>
-        <Requirement>
-          <Class>Dragon Lord</Class>
-          <Level>3</Level>
-        </Requirement>
-      </Requirements>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Ravager: Slaughter</Name>
-      <InternalName>DLRavSlaughter</InternalName>
-      <Description>Deals: +[50/75/100]% Damage
+         <Icon>RavAuraOfFear</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Dragon Lord</Class>
+               <Level>3</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Ravager: Slaughter</Name>
+         <InternalName>DLRavSlaughter</InternalName>
+         <Description>Deals: +[50/75/100]% Damage
 Melee Attack: Deals high amounts of damage.
 Cooldown: 12 seconds</Description>
-      <Icon>RavSlaughter</Icon>
-      <XPosition>1</XPosition>
-      <YPosition>3</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
-      <MinSpent>10</MinSpent>
-      <Clickie/>
-      <ArrowUp/>
-      <Requirements>
-        <Requirement>
-          <Class>Dragon Lord</Class>
-          <Level>3</Level>
-        </Requirement>
-      </Requirements>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Ravager: Festering Wound</Name>
-      <InternalName>DLRavFesteringWound</InternalName>
-      <Description>Cruel Cut additionally inflicts [1/2/3] 5-second stacks of 1d6 Poison damage
+         <Icon>RavSlaughter</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Clickie/>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Dragon Lord</Class>
+               <Level>3</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Ravager: Festering Wound</Name>
+         <InternalName>DLRavFesteringWound</InternalName>
+         <Description>Cruel Cut additionally inflicts [1/2/3] 5-second stacks of 1d6 Poison damage
 every 2 seconds and that monster's positive energy healing is reduced by 50%
-for [5/10/15] seconds. Damage stacks fade one at a time.</Description>
-      <Icon>RavFesteringWound</Icon>
-      <XPosition>3</XPosition>
-      <YPosition>3</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
-      <MinSpent>10</MinSpent>
-      <ArrowUp/>
-      <Requirements>
-        <Requirement>
-          <Class>Dragon Lord</Class>
-          <Level>3</Level>
-        </Requirement>
-        <Requirement>
-          <Enhancement>DLRavCruelCut</Enhancement>
-        </Requirement>
-      </Requirements>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Ravager: Ability I</Name>
-      <InternalName>DLRavAbilityScoreI</InternalName>
-      <Description>Choose either Constitution or Strength</Description>
-      <Icon>StrCon</Icon>
-      <XPosition>4</XPosition>
-      <YPosition>3</YPosition>
-      <CostPerRank size="1">2</CostPerRank>
-      <Ranks>1</Ranks>
-      <MinSpent>10</MinSpent>
-      <ArrowUp/>
-      <Requirements>
-        <Requirement>
-          <Class>Dragon Lord</Class>
-          <Level>3</Level>
-        </Requirement>
-      </Requirements>
-      <Selector>
-        <EnhancementSelection>
-          <Name>+1 Constitution</Name>
-          <Description>+1 Constitution</Description>
-          <Icon>Constitution</Icon>
-          <CostPerRank size="1">2</CostPerRank>
-          <Effect>
-            <Type>AbilityBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Ability>Constitution</Ability>
-            <Amount>1</Amount>
-          </Effect>
-        </EnhancementSelection>
-        <EnhancementSelection>
-          <Name>+1 Strength</Name>
-          <Description>+1 Strength</Description>
-          <Icon>Strength</Icon>
-          <CostPerRank size="1">2</CostPerRank>
-          <Effect>
-            <Type>AbilityBonus</Type>
-            <Bonus>Enhancement</Bonus>
-            <Ability>Strength</Ability>
-            <Amount>1</Amount>
-          </Effect>
-        </EnhancementSelection>
-      </Selector>
-    </EnhancementTreeItem>
-    <!--Tier 4 Enhancements-->
-    <EnhancementTreeItem>
-      <Name>Ravager: Laughter</Name>
-      <InternalName>DLRavLaughter</InternalName>
-      <Description>When Slaughter damages an enemy, you gain three stacks of Fury.
-When Slaughter scores a critical hit on an enemy, you gain three more Fury
-(for a total of six) and gain 10 Melee Power for 15 seconds. </Description>
-      <Icon>RavLaughter</Icon>
-      <XPosition>1</XPosition>
-      <YPosition>4</YPosition>
-      <CostPerRank size="1">2</CostPerRank>
-      <Ranks>1</Ranks>
-      <MinSpent>20</MinSpent>
-      <Requirements>
-        <Requirement>
-          <Class>Dragon Lord</Class>
-          <Level>4</Level>
-        </Requirement>
-        <Requirement>
-          <Enhancement>DLRavSlaughter</Enhancement>
-        </Requirement>
-      </Requirements>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Ravager: I Hit Back!</Name>
-      <InternalName>DLRavIHitBack</InternalName>
-      <Description>When you are hit: 20% chance to deal [2/4/6]d8 bane damage to attacker.
+for [5/10/15] seconds. This Poison damage scales with 200% Melee Power. Damage
+stacks fade one at a time.</Description>
+         <Icon>RavFesteringWound</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Dragon Lord</Class>
+               <Level>3</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>DLRavCruelCut</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Ravager: Ability I</Name>
+         <InternalName>DLRavAbilityScoreI</InternalName>
+         <Description>Choose either Constitution or Strength</Description>
+         <Icon>StrCon</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Dragon Lord</Class>
+               <Level>3</Level>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>+1 Constitution</Name>
+               <Description>+1 Constitution</Description>
+               <Icon>Constitution</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Ability>Constitution</Ability>
+                  <Amount>1</Amount>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Strength</Name>
+               <Description>+1 Strength</Description>
+               <Icon>Strength</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Ability>Strength</Ability>
+                  <Amount>1</Amount>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <!--Tier 4 Enhancements-->
+      <EnhancementTreeItem>
+         <Name>Ravager: Laughter</Name>
+         <InternalName>DLRavLaughter</InternalName>
+         <Description>When Slaughter damages an enemy, you gain three stacks of Fury. When Slaughter scores
+a critical hit on an enemy, you gain three more Fury (for a total of six) and
+gain 10 Melee Power for 15 seconds.
+
+Fury: +1 Rage bonus to attack and damage. This effect stacks and one stack fades
+every six seconds.
+
+For many Ravagers, there's no Laughter without Slaughter.</Description>
+         <Icon>RavLaughter</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Dragon Lord</Class>
+               <Level>4</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>DLRavSlaughter</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Ravager: I Hit Back!</Name>
+         <InternalName>DLRavIHitBack</InternalName>
+         <Description>When you are hit: 20% chance to deal [2/4/6]d8 bane damage to attacker.
 This damage scales with 100% Melee Power.</Description>
-      <Icon>RavIHitBack</Icon>
-      <XPosition>2</XPosition>
-      <YPosition>4</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
-      <MinSpent>20</MinSpent>
-      <ArrowUp/>
-      <Requirements>
-        <Requirement>
-          <Class>Dragon Lord</Class>
-          <Level>4</Level>
-        </Requirement>
-        <Requirement>
-          <Enhancement>DLRavILikePain</Enhancement>
-        </Requirement>
-      </Requirements>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Ravager: Dismember</Name>
-      <InternalName>DLRavDismember</InternalName>
-      <Description>Cruel Cut increases Melee Power by 5 for 10 seconds.
-Cruel Cut additionally slows enemy movement speed, or slows attack speed,
-or deals 2d[4/6/8] bane damage, or deals 6d[4/6/8] bane damage.
-This bane damage scales with 200% Melee Power</Description>
-      <Icon>RavDismember</Icon>
-      <XPosition>3</XPosition>
-      <YPosition>4</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
-      <MinSpent>20</MinSpent>
-      <Requirements>
-        <Requirement>
-          <Class>Dragon Lord</Class>
-          <Level>4</Level>
-        </Requirement>
-        <Requirement>
-          <Enhancement>DLRavFesteringWound</Enhancement>
-        </Requirement>
-      </Requirements>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Ravager: Ability II</Name>
-      <InternalName>DLRavAbilityScoreII</InternalName>
-      <Description>Choose either Constitution or Strength</Description>
-      <Icon>StrCon</Icon>
-      <XPosition>4</XPosition>
-      <YPosition>4</YPosition>
-      <CostPerRank size="1">2</CostPerRank>
-      <Ranks>1</Ranks>
-      <MinSpent>20</MinSpent>
-      <Requirements>
-        <Requirement>
-          <Class>Dragon Lord</Class>
-          <Level>4</Level>
-        </Requirement>
-        <Requirement>
-          <Enhancement>DLRavAbilityScoreI</Enhancement>
-        </Requirement>
-      </Requirements>
-      <Selector>
-        <EnhancementSelection>
-          <Name>+1 Constitution</Name>
-          <Description>+1 Constitution</Description>
-          <Icon>Constitution</Icon>
-          <CostPerRank size="1">2</CostPerRank>
-          <Effect>
-            <Type>AbilityBonus</Type>
+         <Icon>RavIHitBack</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>20</MinSpent>
+         <ArrowUp/>
+         <Requirements>
+            <Requirement>
+               <Class>Dragon Lord</Class>
+               <Level>4</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>DLRavILikePain</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Ravager: Dismember</Name>
+         <InternalName>DLRavDismember</InternalName>
+         <Description>Cruel Cut increases Melee Power by 5 for 10 seconds. Cruel Cut additionally slows
+enemy movement speed, or slows attack speed, or deals 2d[4/6/8] Bane damage, or
+deals 6d[4/6/8] bane damage. This bane damage scales with 200% Melee Power</Description>
+         <Icon>RavDismember</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Dragon Lord</Class>
+               <Level>4</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>DLRavFesteringWound</Enhancement>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Ravager: Ability II</Name>
+         <InternalName>DLRavAbilityScoreII</InternalName>
+         <Description>Choose either Constitution or Strength</Description>
+         <Icon>StrCon</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Dragon Lord</Class>
+               <Level>4</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>DLRavAbilityScoreI</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>+1 Constitution</Name>
+               <Description>+1 Constitution</Description>
+               <Icon>Constitution</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Ability>Constitution</Ability>
+                  <Amount>1</Amount>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>+1 Strength</Name>
+               <Description>+1 Strength</Description>
+               <Icon>Strength</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Ability>Strength</Ability>
+                  <Amount>1</Amount>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <!--Tier 5 Enhancements-->
+      <EnhancementTreeItem>
+         <Name>Ravager: Blood Strength</Name>
+         <InternalName>DLRavBloodStrength</InternalName>
+         <Description>Each time you land a hit there is a 12% chance you heal positive damage equal
+to half your Dragon Lord level. Once per second, when you kill an opponent you
+are healed for 20 hit points (Enemies weaker than you will not always produce
+this effect). This healing scales with 100% Melee Power.</Description>
+         <Icon>RavBloodStrength</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>5</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>12</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Class>Dragon Lord</Class>
+               <Level>5</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Ravager: Bully</Name>
+         <InternalName>DLRavBully</InternalName>
+         <Description>You deal +[5/10/15]% damage to Helpless enemies.</Description>
+         <Icon>RavBully</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>5</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>12</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Class>Dragon Lord</Class>
+               <Level>5</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>DLRavIHitBack</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>HelplessDamage</Type>
             <Bonus>Enhancement</Bonus>
-            <Ability>Constitution</Ability>
-            <Amount>1</Amount>
-          </Effect>
-        </EnhancementSelection>
-        <EnhancementSelection>
-          <Name>+1 Strength</Name>
-          <Description>+1 Strength</Description>
-          <Icon>Strength</Icon>
-          <CostPerRank size="1">2</CostPerRank>
-          <Effect>
-            <Type>AbilityBonus</Type>
+            <AmountVector size="3">5 10 15</AmountVector>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Ravager: Uncanny Balance</Name>
+         <InternalName>DLRavUncannyBalance</InternalName>
+         <Description>You are immune to most knockdowns and slippery surfaces.
+
+You gain a +25% Competence bonus to Maximum Hit Points.</Description>
+         <Icon>RavUncannyBalance</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>5</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>12</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Class>Dragon Lord</Class>
+               <Level>5</Level>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Immunity</Type>
             <Bonus>Enhancement</Bonus>
-            <Ability>Strength</Ability>
-            <Amount>1</Amount>
-          </Effect>
-        </EnhancementSelection>
-      </Selector>
-    </EnhancementTreeItem>
-    <!--Tier 5 Enhancements-->
-    <EnhancementTreeItem>
-      <Name>Ravager: Blood Strength</Name>
-      <InternalName>DLRavBloodStrength</InternalName>
-      <Description>Each time you land a hit there is a 12% chance you heal positive damage equal
-to half your Barbarian level. Each time you kill an opponent you are healed for
-20 hit points. This healing scales with 100% Melee Power.
-Blood Strength has a one-second cooldown when you kill an enemy.</Description>
-      <Icon>RavBloodStrength</Icon>
-      <XPosition>1</XPosition>
-      <YPosition>5</YPosition>
-      <CostPerRank size="1">2</CostPerRank>
-      <Ranks>1</Ranks>
-      <MinSpent>30</MinSpent>
-      <Tier5/>
-      <Requirements>
-        <Requirement>
-          <MinLevel>12</MinLevel>
-        </Requirement>
-        <Requirement>
-          <Class>Dragon Lord</Class>
-          <Level>5</Level>
-        </Requirement>
-      </Requirements>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Ravager: Bully</Name>
-      <InternalName>DLRavBully</InternalName>
-      <Description>You deal +[5/10/15]% damage to helpless enemies.</Description>
-      <Icon>RavBully</Icon>
-      <XPosition>2</XPosition>
-      <YPosition>5</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>3</Ranks>
-      <MinSpent>30</MinSpent>
-      <Tier5/>
-      <Requirements>
-        <Requirement>
-          <MinLevel>12</MinLevel>
-        </Requirement>
-        <Requirement>
-          <Class>Dragon Lord</Class>
-          <Level>5</Level>
-        </Requirement>
-        <Requirement>
-          <Enhancement>DLRavIHitBack</Enhancement>
-        </Requirement>
-      </Requirements>
-      <Effect>
-        <Type>HelplessDamage</Type>
-        <Bonus>Enhancement</Bonus>
-        <AmountVector size="3">5 10 15</AmountVector>
-      </Effect>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Ravager: Uncanny Balance</Name>
-      <InternalName>DLRavUncannyBalance</InternalName>
-      <Description>You are immune to most knockdowns and slippery surfaces.
-+25% Competence bonus to Maximum Hit Points.</Description>
-      <Icon>RavUncannyBalance</Icon>
-      <XPosition>3</XPosition>
-      <YPosition>5</YPosition>
-      <CostPerRank size="1">2</CostPerRank>
-      <Ranks>1</Ranks>
-      <MinSpent>30</MinSpent>
-      <Tier5/>
-      <Requirements>
-        <Requirement>
-          <MinLevel>12</MinLevel>
-        </Requirement>
-        <Requirement>
-          <Class>Dragon Lord</Class>
-          <Level>5</Level>
-        </Requirement>
-      </Requirements>
-      <Effect>
-        <Type>Immunity</Type>
-        <Bonus>Enhancement</Bonus>
-        <Immunity>Knockdown</Immunity>
-      </Effect>
-      <Effect>
-        <Type>Immunity</Type>
-        <Bonus>Enhancement</Bonus>
-        <Immunity>Slippery Surfaces</Immunity>
-      </Effect>
-      <Effect>
-        <Type>Hitpoints</Type>
-        <Bonus>Competence</Bonus>
-        <Amount>25</Amount>
-        <Percent/>
-        <ApplyAsItemEffect/>
-      </Effect>
-    </EnhancementTreeItem>
-    <EnhancementTreeItem>
-      <Name>Ravager: Critical Rage</Name>
-      <InternalName>DLRavCriticalRage</InternalName>
-      <Description>+[1/2] Competence bonus to critical threat range.</Description>
-      <Icon>RavCriticalRage</Icon>
-      <XPosition>4</XPosition>
-      <YPosition>5</YPosition>
-      <CostPerRank size="1">1</CostPerRank>
-      <Ranks>2</Ranks>
-      <MinSpent>30</MinSpent>
-      <Tier5/>
-      <Requirements>
-        <Requirement>
-          <MinLevel>12</MinLevel>
-        </Requirement>
-        <Requirement>
-          <Class>Dragon Lord</Class>
-          <Level>5</Level>
-        </Requirement>
-      </Requirements>
-      <Effect>
-        <Type>CriticalRange</Type>
-        <Bonus>Competence</Bonus>
-        <AmountVector size="2">1 2</AmountVector>
-        <Weapon>All</Weapon>
-        <ApplyAsItemEffect/>
-      </Effect>
-    </EnhancementTreeItem>
-  </EnhancementTree>
+            <Immunity>Knockdown</Immunity>
+         </Effect>
+         <Effect>
+            <Type>Immunity</Type>
+            <Bonus>Enhancement</Bonus>
+            <Immunity>Slippery Surfaces</Immunity>
+         </Effect>
+         <Effect>
+            <Type>Hitpoints</Type>
+            <Bonus>Competence</Bonus>
+            <Amount>25</Amount>
+            <Percent/>
+            <ApplyAsItemEffect/>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <Name>Ravager: Critical Rage</Name>
+         <InternalName>DLRavCriticalRage</InternalName>
+         <Description>+[1/2] Competence bonus to Critical Threat Range with all weapons.</Description>
+         <Icon>RavCriticalRage</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>5</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>2</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <MinLevel>12</MinLevel>
+            </Requirement>
+            <Requirement>
+               <Class>Dragon Lord</Class>
+               <Level>5</Level>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>CriticalRange</Type>
+            <Bonus>Competence</Bonus>
+            <AmountVector size="2">1 2</AmountVector>
+            <Weapon>All</Weapon>
+         </Effect>
+      </EnhancementTreeItem>
+   </EnhancementTree>
 </Enhancements>

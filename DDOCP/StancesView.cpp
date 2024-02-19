@@ -390,6 +390,9 @@ void CStancesView::CreateStanceWindows()
     Stance emptyOffhand("Empty Offhand", "U51LightTheDark", "Your off-hand is empty");
     emptyOffhand.Set_AutoControlled();
     AddStance(emptyOffhand);
+    Stance favoredWeapon("Favored Weapon", "TurnTheTide", "You are wielding a Favored Weapon");
+    favoredWeapon.Set_AutoControlled();
+    AddStance(favoredWeapon);
     // add the auto controlled stances for each weapon type
     for (size_t wt = Weapon_Unknown; wt < Weapon_Count; ++wt)
     {

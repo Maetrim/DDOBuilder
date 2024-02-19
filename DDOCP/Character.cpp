@@ -5210,6 +5210,7 @@ void Character::UpdateWeaponStances()
     Stance swashbuckling("Swashbuckling", "", "");
     Stance thrown("Thrown Weapon", "", "");
     Stance emptyOffhand("Empty Offhand", "", "");
+    Stance favoredWeapon("Favored Weapon", "", "");
 
     if (gear.HasItemInSlot(Inventory_Weapon1)
             && gear.HasItemInSlot(Inventory_Weapon2))
@@ -5219,6 +5220,15 @@ void Character::UpdateWeaponStances()
         // 2 items equipped
         Item item1 = gear.ItemInSlot(Inventory_Weapon1);
         Item item2 = gear.ItemInSlot(Inventory_Weapon2);
+
+        if (IsStanceActive("Favored Weapon", item1.Weapon()))
+        {
+            ActivateStance(favoredWeapon);
+        }
+        else
+        {
+            DeactivateStance(favoredWeapon);
+        }
         // must be TWF or Sword and Board
         switch (item2.Weapon())
         {
@@ -5324,6 +5334,14 @@ void Character::UpdateWeaponStances()
     {
         // 1 item equipped
         Item item1 = gear.ItemInSlot(Inventory_Weapon1);
+        if (IsStanceActive("Favored Weapon", item1.Weapon()))
+        {
+            ActivateStance(favoredWeapon);
+        }
+        else
+        {
+            DeactivateStance(favoredWeapon);
+        }
         switch (item1.Weapon())
         {
         case Weapon_Quarterstaff:
@@ -5404,6 +5422,7 @@ void Character::UpdateWeaponStances()
     {
         // 1 off hand item equipped
         Item item1 = gear.ItemInSlot(Inventory_Weapon2);
+        DeactivateStance(favoredWeapon);
         DeactivateStance(thf);
         DeactivateStance(thf2);
         DeactivateStance(staff);
@@ -5433,6 +5452,7 @@ void Character::UpdateWeaponStances()
     else
     {
         // no items equipped
+        DeactivateStance(favoredWeapon);
         DeactivateStance(twf);
         DeactivateStance(thf);
         DeactivateStance(thf2);
