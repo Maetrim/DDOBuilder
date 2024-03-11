@@ -183,6 +183,27 @@ size_t Selector::MinSpent(
     return min;
 }
 
+size_t Selector::Ranks(
+        const std::string& selection,
+        size_t defaultRanks) const
+{
+    size_t ranks = defaultRanks;
+    std::list<EnhancementSelection>::const_iterator it = m_Selections.begin();
+    while (it != m_Selections.end())
+    {
+        if ((*it).Name() == selection)
+        {
+            if ((*it).HasRanks())
+            {
+                ranks = (*it).Ranks();
+            }
+            break;          // done
+        }
+        ++it;
+    }
+    return ranks;
+}
+
 bool Selector::CostVaries(const std::string& selection) const
 {
     bool varies = false;

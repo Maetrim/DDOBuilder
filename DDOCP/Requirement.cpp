@@ -242,15 +242,16 @@ bool Requirement::CanTrainEnhancement(
     if (HasEnhancement())
     {
         // this enhancement must be trained
+        std::string selection = HasSelection() ? Selection() : "";
         const TrainedEnhancement * te = charData.IsTrained(
                 Enhancement(),
-                HasSelection() ? Selection() : "",
+                selection,
                 TT_unknown);
         met &= (te != NULL);
         if (te != NULL)
         {
             const EnhancementTreeItem * pItem = FindEnhancement(Enhancement());
-            if (pItem->Ranks() == 1)
+            if (pItem->Ranks(selection) == 1)
             {
                 // if the source enhancement only has a single rank, then
                 // allow this one to be trained to its max ranks

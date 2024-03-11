@@ -429,7 +429,7 @@ void CEnhancementEditorDialog::OnKillFocusEditCost()
         m_editCost.GetWindowText(text);
         if (atoi(text) != (*it).Cost("", 0))
         {
-            std::vector<size_t> costs(it->Ranks(), atoi(text));
+            std::vector<size_t> costs(it->Ranks(""), atoi(text));
             (*it).Set_CostPerRank(costs);
             m_loadedTrees.front().Set_Items(items);
             UpdateTree();
@@ -447,7 +447,7 @@ void CEnhancementEditorDialog::OnKillFocusEditRanks()
         std::advance(it, sel);  // get correct item
         CString text;
         m_editRanks.GetWindowText(text);
-        if (atoi(text) != (*it).Ranks())
+        if (atoi(text) != (*it).Ranks(""))
         {
             (*it).Set_Ranks(atoi(text));
             m_loadedTrees.front().Set_Items(items);
@@ -502,7 +502,7 @@ void CEnhancementEditorDialog::OnSelendokEnhancement()
         CString text;
         text.Format("%d", (*it).Cost("", 0));
         m_editCost.SetWindowText(text);
-        text.Format("%d", (*it).Ranks());
+        text.Format("%d", (*it).Ranks(""));
         m_editRanks.SetWindowText(text);
         text.Format("%d", (*it).MinSpent());
         m_editMinSpent.SetWindowText(text);
@@ -851,7 +851,7 @@ void CEnhancementEditorDialog::OnKillfocusEditCost2()
             std::advance(sit, index);
             if ((*sit).Cost(0) != atoi(text))
             {
-                std::vector<size_t> costs(it->Ranks(), atoi(text));
+                std::vector<size_t> costs(it->Ranks(""), atoi(text));
                 (*sit).Set_CostPerRank(costs);
                 Selector lsel;
                 lsel.Set_Selections(selections);

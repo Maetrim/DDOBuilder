@@ -1,3 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Enhancements>
   <EnhancementTree>
     <Name>Machrotechnic</Name>
@@ -7,9 +8,10 @@
         <Feat>Machrotechnic</Feat>
       </Requirement>
     </Requirements>
-    <IsEpicDestiny/>
+    <IsEpicDestiny />
     <Icon>Machrotechnic</Icon>
     <Background>DestinyArcane</Background>
+    <!--tree Core items-->
     <EnhancementTreeItem>
       <Name>Machrotechnic: Maker's Touch</Name>
       <InternalName>MachrotechnicCore1</InternalName>
@@ -18,10 +20,10 @@
 Each Core ability in this tree, including this one, grants the following:
 
 +1 Epic bonus to all Spell DCs
-+5 Melee power
-+4 Ranged Power
 +15 Hit Points
 +25 Spell Points
++5 Melee power
++4 Ranged Power
 +5 Electric, Sonic, Rust, Repair, and Universal Spell Power.</Description>
       <Icon>MachroCore1</Icon>
       <XPosition>0</XPosition>
@@ -78,7 +80,7 @@ Each Core ability in this tree, including this one, grants the following:
         <Type>SpellDC</Type>
         <Bonus>Epic</Bonus>
         <Amount>1</Amount>
-        <ApplyAsItemEffect/>
+        <ApplyAsItemEffect />
         <School>All</School>
       </Effect>
     </EnhancementTreeItem>
@@ -162,7 +164,7 @@ toggled on to gain their effects on Rune Arms.</Description>
         <Type>SpellDC</Type>
         <Bonus>Epic</Bonus>
         <Amount>1</Amount>
-        <ApplyAsItemEffect/>
+        <ApplyAsItemEffect />
         <School>All</School>
       </Effect>
     </EnhancementTreeItem>
@@ -244,7 +246,7 @@ spell now blocks 20 points of damage per caster level with no cap.</Description>
         <Type>SpellDC</Type>
         <Bonus>Epic</Bonus>
         <Amount>1</Amount>
-        <ApplyAsItemEffect/>
+        <ApplyAsItemEffect />
         <School>All</School>
       </Effect>
     </EnhancementTreeItem>
@@ -252,7 +254,7 @@ spell now blocks 20 points of damage per caster level with no cap.</Description>
       <Name>Machrotechnic: Armored Augmentation</Name>
       <InternalName>MachrotechnicCore4</InternalName>
       <Description>+15% Fortification and +3 to each Healing Amplification. +15% Exceptional Bonus
-to Armor Class. Your caster level with Rune Arm shots now factors bonuses from
+to Armor Class. Your caster level with Rune Arm shots now factors in bonuses from
 your Epic and Legendary Knowledge feats.</Description>
       <Icon>MachroCore4</Icon>
       <XPosition>3</XPosition>
@@ -292,8 +294,8 @@ your Epic and Legendary Knowledge feats.</Description>
         <Type>ACBonus</Type>
         <Bonus>Exceptional</Bonus>
         <Amount>15</Amount>
-        <Percent/>
-        <ApplyAsItemEffect/>
+        <Percent />
+        <ApplyAsItemEffect />
       </Effect>
       <Effect>
         <Type>MeleePower</Type>
@@ -334,10 +336,11 @@ your Epic and Legendary Knowledge feats.</Description>
         <Type>SpellDC</Type>
         <Bonus>Epic</Bonus>
         <Amount>1</Amount>
-        <ApplyAsItemEffect/>
+        <ApplyAsItemEffect />
         <School>All</School>
       </Effect>
     </EnhancementTreeItem>
+    <!--Tier 1 Enhancements-->
     <EnhancementTreeItem>
       <Name>Machrotechnic: Sprockets</Name>
       <InternalName>MachroSprockets</InternalName>
@@ -396,8 +399,7 @@ Rating.</Description>
     <EnhancementTreeItem>
       <Name>Machrotechnic: Tinker Tailoring</Name>
       <InternalName>MachroTinkerTailoring</InternalName>
-      <Description>+[1/2/3] Spellcraft and Use Magic Device.
-Your Runearms charge [5/10/15]% faster.</Description>
+      <Description>+[1/2/3] Spellcraft and Use Magic Device. Your Rune Arms charge [5/10/15]% faster.</Description>
       <Icon>MachroTinkerTailoring</Icon>
       <XPosition>2</XPosition>
       <YPosition>1</YPosition>
@@ -425,14 +427,14 @@ Your Runearms charge [5/10/15]% faster.</Description>
     <EnhancementTreeItem>
       <Name>Machrotechnic: Epic Strike</Name>
       <InternalName>MachroEpicStrike</InternalName>
-      <Description>Select and Epic Strike!</Description>
+      <Description>Select an Epic Strike!</Description>
       <Icon>MachroEpicStrike</Icon>
       <XPosition>3</XPosition>
       <YPosition>1</YPosition>
       <CostPerRank size="1">2</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>1</MinSpent>
-      <Clickie/>
+      <Clickie />
       <Requirements>
         <Requirement>
           <MinLevel>20</MinLevel>
@@ -441,48 +443,50 @@ Your Runearms charge [5/10/15]% faster.</Description>
       <Selector>
         <EnhancementSelection>
           <Name>Galvanic Blast</Name>
-          <Description>Galvanic Blast
-Metamagic: Quicken
-Spell Resistance: NoSpell Point Cost: 20
-Cooldown: 15 seconds.
-Epic Strike: A storm of fearsome Electricity explodes from within you, dealing
-1d6+6 Electric damage per caster level to all enemies nearby.
+          <Description>Epic Strike: A storm of fearsome Electricity explodes from within you, dealing
+1d6+6 Electric damage per caster level to all enemies nearby. This damage has no
+save, but secondary effects from your drives do.
+Metamagic: Empower, Maximize, Quicken, Heighten, Embolden, Intensify
+Spell Resistance: No
+Spell Point Cost: 20
+Cooldown: 10 seconds.
 
 Every Epic Strike shares a cooldown with every other Epic Strike. Using this
 ability will put every Epic Strike onto this ability's cooldown.</Description>
           <Icon>MachroEpicStrike</Icon>
           <CostPerRank size="1">2</CostPerRank>
-          <Clickie/>
+          <Clickie />
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Mending Burst</Name>
-          <Description>Mending Burst
-Metamagic: Quicken
-Spell Resistance: NoSpell Point Cost: 20
-Cooldown: 15 seconds.
-Epic Strike: A field of magical energy explodes from within you, repairing all
+          <Description>Epic Strike: A field of magical energy explodes from within you, repairing all
 allies nearby for 3d6+6 Repair healing +1 per caster level.
+Metamagic: Empower, Maximize, Quicken, heighten, Embolden, Intensify
+Spell Resistance: No
+Spell Point Cost: 20
+Cooldown: 6 seconds.
 
 Every Epic Strike shares a cooldown with every other Epic Strike. Using this
 ability will put every Epic Strike onto this ability's cooldown.</Description>
           <Icon>MachroMendingBurst</Icon>
           <CostPerRank size="1">2</CostPerRank>
-          <Clickie/>
+          <Clickie />
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Sonic Boom</Name>
-          <Description>Sonic Boom
-Metamagic: Quicken
-Spell Resistance: NoSpell Point Cost: 20
-Cooldown: 15 seconds.
-Epic Strike: A wave of concussive sound explodes from within you, dealing 1d6+6
-Sonic damage per caster level to all enemies nearby.
+          <Description>Epic Strike: A wave of concussive sound explodes from within you, dealing 1d6+6
+Sonic damage per caster level to all enemies nearby. This damage has no save,
+but secondary effects from your drives do.
+Metamagic: Empower, Maximize, Quicken, heighten, Embolden, Intensify
+Spell Resistance: No
+Spell Point Cost: 20
+Cooldown: 10 seconds.
 
 Every Epic Strike shares a cooldown with every other Epic Strike. Using this
 ability will put every Epic Strike onto this ability's cooldown.</Description>
           <Icon>MachroSonicBoom</Icon>
           <CostPerRank size="1">2</CostPerRank>
-          <Clickie/>
+          <Clickie />
         </EnhancementSelection>
       </Selector>
     </EnhancementTreeItem>
@@ -515,6 +519,7 @@ Rank 3: You no longer automatically fail Reflex saving throws on a natural 1.</D
         <Save>Reflex</Save>
       </Effect>
     </EnhancementTreeItem>
+    <!--Tier 2 Enhancements-->
     <EnhancementTreeItem>
       <Name>Machrotechnic: Fluidity</Name>
       <InternalName>MachroFluidity</InternalName>
@@ -541,14 +546,14 @@ Rank 3: You no longer automatically fail Reflex saving throws on a natural 1.</D
       <InternalName>MachroRadiantPrison</InternalName>
       <Description>Target non-boss foe is sealed away for 8 seconds in an Unbreakable Forcefield
 with no save. In this Forcefield, they cannot act, but take 95% less damage and
-healing from all sources (except untyped).</Description>
+healing from all sources (except Untyped).</Description>
       <Icon>MachroRadiantPrison</Icon>
       <XPosition>1</XPosition>
       <YPosition>2</YPosition>
       <CostPerRank size="1">2</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>5</MinSpent>
-      <Clickie/>
+      <Clickie />
       <Requirements>
         <Requirement>
           <MinLevel>20</MinLevel>
@@ -557,10 +562,11 @@ healing from all sources (except untyped).</Description>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Machrotechnic: Rune Arm Use</Name>
-      <InternalName>MachroRunaArmUse</InternalName>
+      <InternalName>MachroRuneArmUse</InternalName>
       <Description>You gain the Rune Arm Use feat. Your Caster Level with Rune Arms is now based on
-the higher of half your Character Level versus your Artificer Level. If you
-already have the Rune Arm Use feat, +1 Stable Charge Tier.</Description>
+the higher of half your Character Level versus your Artificer Level, and you use
+the highest of Intelligence, Wisdom, or Charisma to calculate its DCs. If you
+already had the Rune Arm Use feat, +1 Stable Charge Tier.</Description>
       <Icon>MachroRuneArmUse</Icon>
       <XPosition>2</XPosition>
       <YPosition>2</YPosition>
@@ -594,7 +600,7 @@ already have the Rune Arm Use feat, +1 Stable Charge Tier.</Description>
       <CostPerRank size="1">2</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>5</MinSpent>
-      <Clickie/>
+      <Clickie />
       <Requirements>
         <Requirement>
           <MinLevel>20</MinLevel>
@@ -603,35 +609,33 @@ already have the Rune Arm Use feat, +1 Stable Charge Tier.</Description>
       <Selector>
         <EnhancementSelection>
           <Name>Tonquin's Lightning Hammer</Name>
-          <Description>Lightning Hammer
-Metamagic: Empower, Maximize, Quicken, Heighten, Intensify
+          <Description>Form a hammer of pure lightning to strike foes in an area, dealing 1d6+6 Electric
+damage per caster level.
+Metamagic: Empower, Maximize, Quicken, Heighten, Embolden, Intensify
 Spell Resistance: No
 Spell Point Cost: 12
-Cooldown: 10 seconds.
-Form a hammer of pure lightning to strike foes in an area, dealing 1d6+6 Electric
-damage per caster level.</Description>
+Cooldown: 15 seconds.</Description>
           <Icon>MachroHammerTime</Icon>
           <CostPerRank size="1">2</CostPerRank>
-          <Clickie/>
+          <Clickie />
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Tonquin's Thunder Hammer</Name>
-          <Description>Thunder Hammer
-Metamagic: Empower, Maximize, Quicken, Heighten, Intensify
+          <Description>Form a hammer of pure thunder to strike foes in an area, dealing 1d6+6 Sonic
+damage per caster level.
+Metamagic: Empower, Maximize, Quicken, Heighten, Embolden, Intensify
 Spell Resistance: No
 Spell Point Cost: 12
-Cooldown: 10 seconds.
-Form a hammer of pure thunder to strike foes in an area, dealing 1d6+6 Sonic
-damage per caster level.</Description>
+Cooldown: 15 seconds.</Description>
           <Icon>MachroThunderHammer</Icon>
           <CostPerRank size="1">2</CostPerRank>
-          <Clickie/>
+          <Clickie />
         </EnhancementSelection>
       </Selector>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Machrotechnic: Forcefield Generator</Name>
-      <InternalName>MachroForcefieldGeneratorI</InternalName>
+      <InternalName>MachroAnimatedAegis</InternalName>
       <Description>Machrotechnic Destiny Mantle: You create a small animated object that floats with
 you. While active, you gain +15 Repair Amplification, and you absorb 10% of all
 Force, Piercing, Bludgeoning, Slashing, Electric, Sonic, and Rust damage you take.
@@ -642,22 +646,22 @@ This is increased to 15% if you are wearing a Rune Arm.</Description>
       <CostPerRank size="1">2</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>5</MinSpent>
-      <Clickie/>
-      <ArrowUp/>
+      <Clickie />
+      <ArrowUp />
+      <Requirements>
+        <Requirement>
+          <MinLevel>20</MinLevel>
+        </Requirement>
+      </Requirements>
       <Stance>
         <Name>Machrotechnic Destiny Mantle</Name>
-        <Icon>MachrotechnicDestinyMantle</Icon>
+        <Icon>ActiveStub</Icon>
         <Description>Machrotechnic Destiny Mantle: You create a small animated object that floats with
 you. While active, you gain +15 Repair Amplification, and you absorb 10% of all
 Force, Piercing, Bludgeoning, Slashing, Electric, Sonic, and Rust damage you take.
 This is increased to 15% if you are wearing a Rune Arm.</Description>
         <Group>Mantle</Group>
       </Stance>
-      <Requirements>
-        <Requirement>
-          <MinLevel>20</MinLevel>
-        </Requirement>
-      </Requirements>
       <Effect>
         <Type>RepairAmplification</Type>
         <Bonus>Destiny</Bonus>
@@ -668,7 +672,7 @@ This is increased to 15% if you are wearing a Rune Arm.</Description>
         <Type>EnergyAbsorbance</Type>
         <Bonus>Destiny</Bonus>
         <Amount>10</Amount>
-        <ApplyAsItemEffect/>
+        <ApplyAsItemEffect />
         <Stance>Machrotechnic Destiny Mantle</Stance>
         <Energy>Force</Energy>
         <Energy>Pierce</Energy>
@@ -683,7 +687,7 @@ This is increased to 15% if you are wearing a Rune Arm.</Description>
         <Type>EnergyAbsorbance</Type>
         <Bonus>Destiny</Bonus>
         <Amount>15</Amount>
-        <ApplyAsItemEffect/>
+        <ApplyAsItemEffect />
         <Stance>Machrotechnic Destiny Mantle</Stance>
         <Stance>Rune Arm</Stance>
         <Energy>Force</Energy>
@@ -695,10 +699,11 @@ This is increased to 15% if you are wearing a Rune Arm.</Description>
         <Energy>Rust</Energy>
       </Effect>
     </EnhancementTreeItem>
+    <!--Tier 3 Enhancements-->
     <EnhancementTreeItem>
       <Name>Machrotechnic: Spell Focus</Name>
       <InternalName>MachroSpellFocus</InternalName>
-      <Description>Select a Spell School to enhance!</Description>
+      <Description>Select a Spell School to enhance.</Description>
       <Icon>MachroSpellSchoolFocusAbjuration</Icon>
       <XPosition>0</XPosition>
       <YPosition>3</YPosition>
@@ -824,7 +829,7 @@ This is increased to 15% if you are wearing a Rune Arm.</Description>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Machrotechnic: Storm Core</Name>
-      <InternalName>MachroStormCOre</InternalName>
+      <InternalName>MachroStormCore</InternalName>
       <Description>+[1/2/3] Rune Arm DCs.
 Rank 3: +5 Sonic, Electric, Repair, Rust, and Universal Spell Power.</Description>
       <Icon>MachroStormCore</Icon>
@@ -882,7 +887,7 @@ Rank 3: +5 Sonic, Electric, Repair, Rust, and Universal Spell Power.</Descriptio
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Machrotechnic: Improved Aegis</Name>
-      <InternalName>MachroForcefieldGeneratorII</InternalName>
+      <InternalName>MachroImprovedAegis</InternalName>
       <Description>While using your Machrotechnic Destiny Mantle, you gain +5 Physical and Magical
 Resistance Rating. If you are wearing a Rune Arm, gain +10 instead.</Description>
       <Icon>MachroImprovedAegis</Icon>
@@ -891,20 +896,20 @@ Resistance Rating. If you are wearing a Rune Arm, gain +10 instead.</Description
       <CostPerRank size="1">2</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>10</MinSpent>
-      <ArrowUp/>
+      <ArrowUp />
       <Requirements>
         <Requirement>
           <MinLevel>23</MinLevel>
         </Requirement>
         <Requirement>
-          <Enhancement>MachroForcefieldGeneratorI</Enhancement>
+          <Enhancement>MachroAnimatedAegis</Enhancement>
         </Requirement>
       </Requirements>
       <Effect>
         <Type>PRR</Type>
         <Bonus>Destiny</Bonus>
         <Amount>10</Amount>
-        <ApplyAsItemEffect/>
+        <ApplyAsItemEffect />
         <Stance>Machrotechnic Destiny Mantle</Stance>
       </Effect>
       <Effect>
@@ -912,7 +917,7 @@ Resistance Rating. If you are wearing a Rune Arm, gain +10 instead.</Description
         <Type>PRR</Type>
         <Bonus>Destiny</Bonus>
         <Amount>15</Amount>
-        <ApplyAsItemEffect/>
+        <ApplyAsItemEffect />
         <Stance>Machrotechnic Destiny Mantle</Stance>
         <Stance>Rune Arm</Stance>
       </Effect>
@@ -920,7 +925,7 @@ Resistance Rating. If you are wearing a Rune Arm, gain +10 instead.</Description
         <Type>MRR</Type>
         <Bonus>Destiny</Bonus>
         <Amount>10</Amount>
-        <ApplyAsItemEffect/>
+        <ApplyAsItemEffect />
         <Stance>Machrotechnic Destiny Mantle</Stance>
       </Effect>
       <Effect>
@@ -928,11 +933,12 @@ Resistance Rating. If you are wearing a Rune Arm, gain +10 instead.</Description
         <Type>MRR</Type>
         <Bonus>Destiny</Bonus>
         <Amount>15</Amount>
-        <ApplyAsItemEffect/>
+        <ApplyAsItemEffect />
         <Stance>Machrotechnic Destiny Mantle</Stance>
         <Stance>Rune Arm</Stance>
       </Effect>
     </EnhancementTreeItem>
+    <!--Tier 4 Enhancements-->
     <EnhancementTreeItem>
       <Name>Machrotechnic: Galvanic Attunement</Name>
       <InternalName>MachroGalvanicAttunement</InternalName>
@@ -982,31 +988,44 @@ Resistance Rating. If you are wearing a Rune Arm, gain +10 instead.</Description
         <EnhancementSelection>
           <Name>Blast Drive</Name>
           <Description>Your Machrotechnic Epic Strike now Stuns enemies struck for 3 seconds,
-assuming they fail a Fortitude save. If you are using the Electric Epic Strike,
-this also Supercharges you.
-(DC 20 + Highest of INT/WIS/CHA mod + Evocation DCs + bonus Rune Arm DCs)
+assuming they fail a Fortitude save (DC 20 + Highest of INT/WIS/CHA mod +
+Evocation DCs + bonus Rune Arm DCs)
+
+If you are using the Electric Epic or Sonic Epic Strikes, their damage is
+increased to 1d6+8 per caster level.
+
+If you are using the Electric Epic Strike, this also Supercharges you.
 
 Supercharge: +30% Action boost bonus to Movement speed. Duration: 5 seconds.</Description>
-          <Icon>MachroStrikeDrive</Icon>
+          <Icon>MachroStrikeBlastDrive</Icon>
           <CostPerRank size="1">2</CostPerRank>
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Dissonance Drive</Name>
           <Description>Your Machrotechnic Epic Strike now confuses enemies struck for 6 seconds,
-assuming they fail a Fortitude save. If you are using the Sonic Epic Strike, they
-also take 3 stacks of Vulnerability and 3 stacks of Armor Destruction.
-(DC 20 + Highest of INT/WIS/CHA mod + Evocation DCs + bonus Rune Arm DCs)</Description>
-          <Icon>MachroStrikeDrive</Icon>
+assuming they fail a Fortitude save (DC 20 + Highest of INT/WIS/CHA mod +
+Evocation DCs + bonus Rune Arm DCs).
+
+If you are using the Electric Epic or Sonic Epic Strikes, their damage is
+increased to 1d6+8 per caster level.
+
+If you are using the Sonic Epic Strike, they also take 3 stacks of Vulnerability
+and 3 stacks of Armor Destruction.</Description>
+          <Icon>MachroStrikeDissonanceDrive</Icon>
           <CostPerRank size="1">2</CostPerRank>
         </EnhancementSelection>
         <EnhancementSelection>
           <Name>Ruin Drive</Name>
           <Description>Your Machrotechnic Epic Strike now disassembles enemy constructs, dealing
-1d6+6 bonus Rust damage per caster level. If you are using the Repair Epic Strike,
-this also Supercharges you.
+1d6+6 bonus Rust damage per caster level.
+
+If you are using the Electric Epic or Sonic Epic Strikes, their damage is
+increased to 1d6+8 per caster level.
+
+If you are using the Repair Epic Strike, this also Supercharges you.
 
 Supercharge: -1 to each of your Metamagic costs. Duration: 5 seconds.</Description>
-          <Icon>MachroStrikeDrive</Icon>
+          <Icon>MachroStrikeRuinDrive</Icon>
           <CostPerRank size="1">2</CostPerRank>
         </EnhancementSelection>
       </Selector>
@@ -1099,7 +1118,7 @@ bonus Electric damage per caster level, scaling with Spell Power.</Description>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Machrotechnic: Magical Recoil</Name>
-      <InternalName>MachroForcefieldGeneratorIII</InternalName>
+      <InternalName>MachroMagicalRecoil</InternalName>
       <Description>+5 Electric, Sonic, Rust, Repair, and Universal Spell Power.
 While using your Machrotechnic Destiny Mantle, firing a Rune Arm grants you spell
 resistance equal to your character level for 10 seconds.</Description>
@@ -1109,13 +1128,13 @@ resistance equal to your character level for 10 seconds.</Description>
       <CostPerRank size="1">2</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>20</MinSpent>
-      <ArrowUp/>
+      <ArrowUp />
       <Requirements>
         <Requirement>
           <MinLevel>26</MinLevel>
         </Requirement>
         <Requirement>
-          <Enhancement>MachroForcefieldGeneratorII</Enhancement>
+          <Enhancement>MachroImprovedAegis</Enhancement>
         </Requirement>
       </Requirements>
       <Effect>
@@ -1133,6 +1152,7 @@ resistance equal to your character level for 10 seconds.</Description>
         <Amount>5</Amount>
       </Effect>
     </EnhancementTreeItem>
+    <!--Tier 5 Enhancements-->
     <EnhancementTreeItem>
       <Name>Machrotechnic: Spell DCs</Name>
       <InternalName>MachroSpellDCs</InternalName>
@@ -1143,7 +1163,7 @@ resistance equal to your character level for 10 seconds.</Description>
       <CostPerRank size="1">1</CostPerRank>
       <Ranks>3</Ranks>
       <MinSpent>30</MinSpent>
-      <Tier5/>
+      <Tier5 />
       <Requirements>
         <Requirement>
           <MinLevel>30</MinLevel>
@@ -1166,7 +1186,7 @@ resistance equal to your character level for 10 seconds.</Description>
       <CostPerRank size="1">1</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>30</MinSpent>
-      <Tier5/>
+      <Tier5 />
       <Requirements>
         <Requirement>
           <MinLevel>30</MinLevel>
@@ -1183,8 +1203,8 @@ resistance equal to your character level for 10 seconds.</Description>
     <EnhancementTreeItem>
       <Name>Machrotechnic: Armor of Legends</Name>
       <InternalName>MachroArmorOfLegends</InternalName>
-      <Description>The Epic Mage Armor feat's bonus is now untyped and grants +1 AC per character level.
-Furthermore, based on your installed Drives, you gain the following:
+      <Description>The Epic Mage Armor feat's bonus is now untyped and grants you +1 AC per character
+level. Furthermore, based on your installed Drives, you gain the following bonuses:
 
 Speed Drive: +5% Action boost bonus to Attack Speed.
 Efficiency Drive: +5% Action boost bonus to  Movement Speed.
@@ -1200,17 +1220,41 @@ Echo Drive: +1 Action boost bonus to Imbue Dice.</Description>
       <CostPerRank size="1">1</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>30</MinSpent>
-      <Tier5/>
+      <Tier5 />
       <Requirements>
         <Requirement>
           <MinLevel>30</MinLevel>
         </Requirement>
       </Requirements>
+      <Effect>
+         <DisplayName>Epic Mage Armor</DisplayName>
+         <Type>ACBonus</Type>
+         <Bonus>Armor</Bonus>
+         <AmountVector size="3">20 0 0</AmountVector>
+      </Effect>
+      <Effect>
+         <DisplayName>Epic Mage Armor + Armor of Legends</DisplayName>
+         <Type>ACBonus</Type>
+         <Bonus>Untyped</Bonus>
+         <AmountVector size="3">0 0 32</AmountVector>
+      </Effect>
+      <Effect>
+         <DisplayName>Epic Mage Armor</DisplayName>
+         <Type>ACBonus</Type>
+         <Bonus>Armor</Bonus>
+         <AmountVector size="3">20 0 0</AmountVector>
+      </Effect>
+      <Effect>
+         <DisplayName>Epic Mage Armor + Armor of Legends</DisplayName>
+         <Type>ACBonus</Type>
+         <Bonus>Untyped</Bonus>
+         <AmountVector size="3">0 0 32</AmountVector>
+      </Effect>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Machrotechnic: Maximum Overdrive</Name>
       <InternalName>MachroMaximumOverdrive</InternalName>
-      <Description>Epic Moment: Shift into MAXIMUM OVERDRIVE. This grants you a 100% boost to Rune Arm
+      <Description>Epic Moment: Shift into MAXIMUM OVERDRIVE. You gain a 100% boost to Rune Arm
 Charge Speed and Cooldown Speed, a 50% reduction in Spell Cooldowns, a 30% Action
 Boost bonus to Attack Speed, and a 50% Action Boost bonus to movement speed for
 30 seconds.
@@ -1221,8 +1265,8 @@ Cooldown: 5 minutes.</Description>
       <CostPerRank size="1">1</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>30</MinSpent>
-      <Clickie/>
-      <Tier5/>
+      <Clickie />
+      <Tier5 />
       <Requirements>
         <Requirement>
           <MinLevel>30</MinLevel>
@@ -1231,38 +1275,38 @@ Cooldown: 5 minutes.</Description>
     </EnhancementTreeItem>
     <EnhancementTreeItem>
       <Name>Machrotechnic: Forcefield Generator</Name>
-      <InternalName>MachroForcefieldGeneratorIV</InternalName>
+      <InternalName>MachroForcefieldGenerator</InternalName>
       <Description>While using your Machrotechnic Destiny Mantle, you gain a +10% Insight bonus to
-Maximum Hit Points. While you have a Runearm equipped, increase this bonus to 20%.</Description>
+Maximum Hit Points. While you have a Rune Arm equipped, increase this bonus to 20%.</Description>
       <Icon>MachroForcefieldGenerator2</Icon>
       <XPosition>4</XPosition>
       <YPosition>5</YPosition>
       <CostPerRank size="1">1</CostPerRank>
       <Ranks>1</Ranks>
       <MinSpent>30</MinSpent>
-      <Tier5/>
+      <Tier5 />
       <Requirements>
         <Requirement>
           <MinLevel>30</MinLevel>
         </Requirement>
         <Requirement>
-          <Enhancement>MachroForcefieldGeneratorIII</Enhancement>
+          <Enhancement>MachroMagicalRecoil</Enhancement>
         </Requirement>
       </Requirements>
       <Effect>
         <Type>Hitpoints</Type>
         <Bonus>Insightful</Bonus>
         <Amount>10</Amount>
-        <Percent/>
-        <ApplyAsItemEffect/>
+        <Percent />
+        <ApplyAsItemEffect />
       </Effect>
       <Effect>
         <DisplayName>Machrotechnic: Forcefield Generator + Rune Arm</DisplayName>
         <Type>Hitpoints</Type>
         <Bonus>Insightful</Bonus>
         <Amount>20</Amount>
-        <Percent/>
-        <ApplyAsItemEffect/>
+        <Percent />
+        <ApplyAsItemEffect />
       </Effect>
     </EnhancementTreeItem>
   </EnhancementTree>

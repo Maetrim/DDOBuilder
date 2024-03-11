@@ -534,6 +534,7 @@ bool BreakdownItemWeapon::IsDamageType(WeaponDamageType type) const
             case Weapon_Kukri:
             case Weapon_Longsword:
             case Weapon_Scimitar:
+            case Weapon_Shuriken:
             case Weapon_Sickle:
                 isUs = true;
                 break;

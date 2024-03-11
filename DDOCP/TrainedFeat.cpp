@@ -46,6 +46,10 @@ void TrainedFeat::EndElement()
     {
         m_FeatName = "Epic Pact Dice";
     }
+    if (m_FeatName == "Tactical Mastery")
+    {
+        m_FeatName = "Tactical Master";
+    }
     SaxContentElement::EndElement();
     DL_END(TrainedFeat_PROPERTIES)
     // update TFT_Special to correct type

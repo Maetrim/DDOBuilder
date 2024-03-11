@@ -1230,7 +1230,7 @@ void CForumExportDlg::AddEnhancementTree(
                 name = name.substr(name.find(':') + 2);
             }
             forumExport << name;
-            if (item->Ranks() > 1)
+            if (item->Ranks(name) > 1)
             {
                 forumExport << " - " << (*it).Ranks() << " Ranks";
             }
@@ -1278,7 +1278,7 @@ void CForumExportDlg::AddEpicDestinyTree(
                 name = name.substr(name.find(':') + 2);
             }
             forumExport << name;
-            if (item->Ranks() > 1)
+            if (item->Ranks(name) > 1)
             {
                 forumExport << " - " << (*it).Ranks() << " Ranks";
             }
@@ -1322,9 +1322,9 @@ void CForumExportDlg::AddReaperTree(
             // remove "Treename: " from the output for every individual enhancement
             std::string name = item->DisplayName((*it).HasSelection() ? (*it).Selection() : "");
             forumExport << name;
-            if (item->Ranks() > 1)
+            if (item->Ranks(name) > 1)
             {
-                forumExport << " - " << item->Ranks() << " Ranks";
+                forumExport << " - " << item->Ranks(name) << " Ranks";
             }
             forumExport << "\r\n";
         }

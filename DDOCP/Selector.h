@@ -22,6 +22,7 @@ class Selector :
         std::list<Stance> Stances(const std::string & selection) const;
 
         size_t MinSpent(const std::string& selection, size_t defaultMinSpent) const;
+        size_t Ranks(const std::string& selection, size_t defaultRanks) const;
         bool CostVaries(const std::string& selection) const;
         size_t Cost(const std::string& selection, size_t rank) const;
         const std::vector<size_t>& ItemCosts(const std::string& selection) const;

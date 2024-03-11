@@ -329,14 +329,14 @@ void CInfoTip::SetEnhancementTreeItem(
     m_cost.Format("Cost %d", pItem->Cost(selection, 0));
     if (pItem->CostVaries(selection))
     {
-        for (size_t rank = 1; rank < pItem->Ranks(); ++rank)
+        for (size_t rank = 1; rank < pItem->Ranks(selection); ++rank)
         {
             CString rankCost;
             rankCost.Format("/%d", pItem->Cost(selection, rank));
             m_cost += rankCost;
         }
     }
-    m_ranks.Format("  Ranks %d", pItem->Ranks());
+    m_ranks.Format("  Ranks %d", pItem->Ranks(selection));
 }
 
 void CInfoTip::SetEnhancementSelectionItem(

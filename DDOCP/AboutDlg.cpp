@@ -190,6 +190,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
             "nymcraian, "
             "Oliphant, "
             "Orcao, "
+            "orelgs, "
             "Ozmandias42, "
             "pastorman1974, "
             "pcloke123, "
