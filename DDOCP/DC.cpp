@@ -149,6 +149,14 @@ int DC::CalculateDC(const Character * pCharacter) const
         int tacticalBonus = (int)pBI->Total();
         value += tacticalBonus;
     }
+    // add any tactical breakdown bonus
+    if (m_hasTactical2)
+    {
+        BreakdownType bt = TacticalToBreakdown(m_Tactical2);
+        BreakdownItem * pBI = FindBreakdown(bt);
+        int tacticalBonus = (int)pBI->Total();
+        value += tacticalBonus;
+    }
     // spell school bonuses, all of these get added if present
     std::list<SpellSchoolType>::const_iterator sit = m_School.begin();
     while (sit != m_School.end())
@@ -323,6 +331,19 @@ std::string DC::DCBreakdown(const Character * pCharacter) const
         BreakdownItem * pBI = FindBreakdown(bt);
         int tacticalBonus = (int)pBI->Total();
         ss << EnumEntryText(m_Tactical, tacticalTypeMap) << "(" << tacticalBonus << ")";
+    }
+    // add any tactical breakdown bonus
+    if (m_hasTactical2)
+    {
+        if (!first)
+        {
+            ss << " + ";
+        }
+        first = false;
+        BreakdownType bt = TacticalToBreakdown(m_Tactical2);
+        BreakdownItem * pBI = FindBreakdown(bt);
+        int tacticalBonus = (int)pBI->Total();
+        ss << EnumEntryText(m_Tactical2, tacticalTypeMap) << "(" << tacticalBonus << ")";
     }
     // spell school bonuses, all of these get added if present
     std::list<SpellSchoolType>::const_iterator sit = m_School.begin();

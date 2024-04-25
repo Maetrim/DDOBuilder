@@ -219,6 +219,7 @@ BOOL CEpicDestinyViewU51::OnEraseBkgnd(CDC* pDC)
         IDC_BUTTON_DESTINY_TREE10,
         IDC_BUTTON_DESTINY_TREE11,
         IDC_BUTTON_DESTINY_TREE12,
+        IDC_BUTTON_DESTINY_TREE13,
         0 // end marker
     };
 

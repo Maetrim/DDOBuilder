@@ -6902,7 +6902,7 @@ void Character::U51Destiny_TrainEnhancement(
             selection,
             cost,
             pTreeItem->MinSpent(selection),
-            false,
+            pTreeItem->HasTier5(),
             &ranks);
     m_destinyTreeSpend += spent;
     ASSERT(pTreeItem != NULL);

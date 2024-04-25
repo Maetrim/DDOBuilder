@@ -864,7 +864,6 @@ bool IsClassSkill(ClassType type, SkillType skill)
                 || type == Class_Druid
                 || type == Class_DruidBlightCaster
                 || type == Class_FavoredSoul
-                || type == Class_FighterDragonLord
                 || type == Class_Monk
                 || type == Class_Paladin
                 || type == Class_PaladinSacredFist
@@ -887,7 +886,6 @@ bool IsClassSkill(ClassType type, SkillType skill)
                 || type == Class_Druid
                 || type == Class_DruidBlightCaster
                 || type == Class_FavoredSoul
-                || type == Class_FighterDragonLord
                 || type == Class_Monk
                 || type == Class_Paladin
                 || type == Class_PaladinSacredFist
@@ -921,7 +919,6 @@ bool IsClassSkill(ClassType type, SkillType skill)
                 || type == Class_Druid
                 || type == Class_DruidBlightCaster
                 || type == Class_FavoredSoul
-                || type == Class_FighterDragonLord
                 || type == Class_Paladin
                 || type == Class_PaladinSacredFist
                 || type == Class_Ranger
@@ -962,6 +959,7 @@ bool IsClassSkill(ClassType type, SkillType skill)
                 || type == Class_BardStormsinger
                 || type == Class_FavoredSoul
                 || type == Class_Fighter
+                || type == Class_FighterDragonLord
                 || type == Class_Monk
                 || type == Class_Ranger
                 || type == Class_RangerDarkHunter
@@ -1015,6 +1013,7 @@ bool IsClassSkill(ClassType type, SkillType skill)
     case Skill_Repair:
         if (type == Class_Artificer
                 || type == Class_Fighter
+                || type == Class_FighterDragonLord
                 || type == Class_Rogue
                 || type == Class_Wizard)
         {
@@ -1069,6 +1068,7 @@ bool IsClassSkill(ClassType type, SkillType skill)
                 || type == Class_Druid
                 || type == Class_DruidBlightCaster
                 || type == Class_Fighter
+                || type == Class_FighterDragonLord
                 || type == Class_Monk
                 || type == Class_Ranger
                 || type == Class_RangerDarkHunter
