@@ -135,6 +135,7 @@ enum BreakdownType
     Breakdown_CasterLevel_Paladin,
     Breakdown_CasterLevel_SacredFist,
     Breakdown_CasterLevel_Sorcerer,
+    Breakdown_CasterLevel_SorcererWildMage,
     Breakdown_CasterLevel_Ranger,
     Breakdown_CasterLevel_DarkHunter,
     Breakdown_CasterLevel_Warlock,

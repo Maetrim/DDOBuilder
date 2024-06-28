@@ -249,6 +249,9 @@ void CSpellsView::DetermineSpellViews()
                 case Class_Sorcerer:
                     page = new CSpellsPage(Class_Sorcerer, Ability_Charisma, IDS_SORCERER_SPELLS);
                     break;
+                case Class_SorcererWildMage:
+                    page = new CSpellsPage(Class_SorcererWildMage, Ability_Charisma, IDS_WILDMAGE_SPELLS);
+                    break;
                 case Class_Warlock:
                     page = new CSpellsPage(Class_Warlock, Ability_Charisma, IDS_WARLOCK_SPELLS);
                     break;

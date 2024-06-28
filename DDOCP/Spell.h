@@ -75,6 +75,7 @@ class Spell :
                 DL_OPTIONAL_SIMPLE(_, int, SacredFist, 0) \
                 DL_OPTIONAL_SIMPLE(_, int, Ranger, 0) \
                 DL_OPTIONAL_SIMPLE(_, int, Sorcerer, 0) \
+                DL_OPTIONAL_SIMPLE(_, int, WildMage, 0) \
                 DL_OPTIONAL_SIMPLE(_, int, Warlock, 0) \
                 DL_OPTIONAL_SIMPLE(_, int, Wizard, 0) \
                 DL_OPTIONAL_SIMPLE(_, int, MaxCasterLevel, 0)

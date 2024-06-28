@@ -1,0 +1,1010 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Enhancements>
+   <EnhancementTree>
+      <Name>Wild Mage</Name>
+      <Version>1</Version>
+      <Requirements>
+         <Requirement>
+            <Class>Wild Mage</Class>
+         </Requirement>
+      </Requirements>
+      <Icon>Sorcerer</Icon>
+      <Background>SorcererBackground</Background>
+      <!--tree core items-->
+      <EnhancementTreeItem>
+         <InternalName>WMCore1</InternalName>
+         <Name>Wild Mage: Determination</Name>
+         <Description>+1 Will Saving Throw and +10 Chaos Spell Power. (Chaos Spell Power is often part
+of Alignment Spell Power on items).</Description>
+         <Icon>WMDetermination</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>0</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Wild Mage</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SaveBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <Save>Will</Save>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount size="1">10</Amount>
+            <SpellPower>Chaos</SpellPower>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>WMCore2</InternalName>
+         <Name>Wild Mage: Boldness</Name>
+         <Description>+1 Caster Level with Chaos Spells. +10 Chaos Spell Power, +10 Universal Spell Power.</Description>
+         <Icon>WMBoldness</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Wild Mage</Class>
+               <Level>3</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>WMCore1</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>Chaos</SpellPower>
+            <Amount>1</Amount>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount size="1">10</Amount>
+            <SpellPower>Chaos</SpellPower>
+         </Effect>
+         <Effect>
+            <Type>UniversalSpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount size="1">10</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>WMCore3</InternalName>
+         <Name>Wild Mage: Riches of Randomness</Name>
+         <Description>Once per Rest, target an unopened chest and twist fate for a chance at better
+rewards for the entire party. Chests can only be improved in this way one time,
+and there is a chance of failure based on your Charisma. (There is no special
+drawback on failure). Some chests cannot be improved in this manner. This effect
+does not stack with Treasure Finding from the Greater Dragonmark of Finding.
+Cooldown: 15 seconds.
+
+Passive: +10 Chaos Spell Power.</Description>
+         <Icon>WMRichesOfRandomness</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Class>Wild Mage</Class>
+               <Level>6</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>WMCore2</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount size="1">10</Amount>
+            <SpellPower>Chaos</SpellPower>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>WMCore4</InternalName>
+         <Name>Wild Mage: Entropic Energy</Name>
+         <Description>You gain +1 Caster Level and +1 Max caster Level with all spells. +10 Chaos Spell
+Power, +10 universal Spell Power, +1% chance of incurring a Wild Magic Surge when
+casting a spell. You may use Riches of Randomness one additional time per Rest.</Description>
+         <Icon>WMEntropicEnergy</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Wild Mage</Class>
+               <Level>12</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>WMCore3</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>All</SpellPower>
+            <Amount>1</Amount>
+         </Effect>
+         <Effect>
+            <Type>MaxCasterLevel</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>All</SpellPower>
+            <Amount>1</Amount>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount size="1">10</Amount>
+            <SpellPower>Chaos</SpellPower>
+         </Effect>
+         <Effect>
+            <Type>UniversalSpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount size="1">10</Amount>
+         </Effect>
+         <Effect>
+            <Type>WildsurgeChance</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>WMCore5</InternalName>
+         <Name>Wild Mage: Reject Limits</Name>
+         <Description>+1 Caster Level and +1 Max caster Level with all spells, +10 Chaos Spell Power,
++10 Universal Spell Power.</Description>
+         <Icon>WMRejectLimits</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Wild Mage</Class>
+               <Level>18</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>WMCore4</Enhancement>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>All</SpellPower>
+            <Amount>1</Amount>
+         </Effect>
+         <Effect>
+            <Type>MaxCasterLevel</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellPower>All</SpellPower>
+            <Amount>1</Amount>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount size="1">10</Amount>
+            <SpellPower>Chaos</SpellPower>
+         </Effect>
+         <Effect>
+            <Type>UniversalSpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount size="1">10</Amount>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>WMCore6</InternalName>
+         <Name>Wild Mage: Channel Entropy</Name>
+         <Description>SLA: A field of chaotic energy strikes the target and nearby enemies, dealing
+1d6+18 Chaos damage per caster level (max 380 to 480 at caster level 20).
+A successful Will save reduces the damage by half.
+
+Passive: +4 Charisma, +10 Chaos Spell Power, +10 Universal Spell Power, +1% chance
+of incurring a Wild Magic Surge when casting a spell, +1% Spell Critical Damage
+with all spells.</Description>
+         <Icon>WMChannelEntropy</Icon>
+         <XPosition>5</XPosition>
+         <YPosition>0</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>40</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Class>Wild Mage</Class>
+               <Level>20</Level>
+            </Requirement>
+            <Requirement>
+               <Enhancement>WMCore5</Enhancement>
+            </Requirement>
+            <Requirement>
+               <Unique>Capstone Enhancement</Unique>
+               <Selection>WMCore6</Selection>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>Unique</Type>
+            <Bonus>Enhancement</Bonus>
+            <Unique>Capstone Enhancement</Unique>
+            <Selection>WMCore6</Selection>
+         </Effect>
+         <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellLikeAbility>Channel Entropy</SpellLikeAbility>
+         </Effect>
+         <Effect>
+            <Type>AbilityBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount size="1">4</Amount>
+            <Ability>Charisma</Ability>
+         </Effect>
+         <Effect>
+            <Type>SpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount size="1">10</Amount>
+            <SpellPower>Chaos</SpellPower>
+         </Effect>
+         <Effect>
+            <Type>UniversalSpellPower</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount size="1">10</Amount>
+         </Effect>
+         <Effect>
+            <Type>WildsurgeChance</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+         </Effect>
+         <Effect>
+            <Type>SpellLore</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount>1</Amount>
+            <SpellPower>All</SpellPower>
+         </Effect>
+      </EnhancementTreeItem>
+      <!--Tier 1 Enhancements-->
+      <EnhancementTreeItem>
+         <InternalName>WMChaosBolt</InternalName>
+         <Name>Wild Mage: Chaos Bolt</Name>
+         <Description>Fires a small orb of Chaos at a target, doing 1d6+2 Chaos Damage per caster level
+(Max 10d6+20 at caster level 10).
+Cost: [4/3/2] Spell Points
+Cooldown: [12/8/4] seconds.</Description>
+         <Icon>WMChaosBolt</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Class>Wild Mage</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellLikeAbility>Chaos Bolt</SpellLikeAbility>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>WMChaosControlI</InternalName>
+         <Name>Wild Mage: Chaos Control I</Name>
+         <Description>If you would get a very Bad Wild Magic Surge, you get a Bad Surge instead.</Description>
+         <Icon>WMChaosControlI</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Wild Mage</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>WMStudentOfChaosI</InternalName>
+         <Name>Wild Mage: Student of Chaos I</Name>
+         <Description>+[1/2/3]% chance of incurring a Wild Magic Surge when casting a spell,
++[1/2/3]% Spell Critical Damage with all spells.</Description>
+         <Icon>WMStudentOfChaosI</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Wild Mage</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>WildsurgeChance</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount size="3">1 2 3</Amount>
+         </Effect>
+         <Effect>
+            <Type>SpellCriticalDamage</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount size="3">1 2 3</Amount>
+            <SpellPower>All</SpellPower>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>WMTidesOfChaosI</InternalName>
+         <Name>Wild Mage: Tides of Chaos I</Name>
+         <Description>Once per minute, you gain a +[1/2/3] bonus to one of Reflex, Fortitude, or Will
+Saving Throws for one minute.</Description>
+         <Icon>WMTidesOfChaosI</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Wild Mage</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>WMSkills</InternalName>
+         <Name>Wild Mage: Skills</Name>
+         <Description>+[1/2/3] Spellcraft, Concentration, and Bluff.</Description>
+         <Icon>WMSkills</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>1</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>1</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Wild Mage</Class>
+               <Level>1</Level>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SkillBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount size="3">1 2 3</Amount>
+            <Skill>Bluff</Skill>
+            <Skill>Concentration</Skill>
+            <Skill>Spellcraft</Skill>
+         </Effect>
+      </EnhancementTreeItem>
+      <!--Tier 2 Enhancements-->
+      <EnhancementTreeItem>
+         <InternalName>WMActionBoostWildMagic</InternalName>
+         <Name>Wild Mage: Action Boost: Wild Magic</Name>
+         <Description>For the next 20 seconds, you gain a +[5/10/15]% Action Boost Bonus to your chance
+of incurring a Wild Magic Surge when casting a spell. Also grants a Wild Surge
+Luck bonus to increase the odds of positive surges.</Description>
+         <Icon>WMActionBoostWildMagic</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Class>Wild Mage</Class>
+               <Level>2</Level>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>WildsurgeChance</Type>
+            <Bonus>Action Boost</Bonus>
+            <Amount size="3">5 10 15</Amount>
+            <Stance>Action Boost</Stance>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>WMChaosControlII</InternalName>
+         <Name>Wild Mage: Chaos Control II</Name>
+         <Description>If you would get a Bad Wild Magic Surge, you get a Neutral Surge instead.</Description>
+         <Icon>WMChaosControlII</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Wild Mage</Class>
+               <Level>2</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>WMStudentOfChaosII</InternalName>
+         <Name>Wild Mage: Student of Chaos II</Name>
+         <Description>+[1/2/3]% chance of incurring a Wild Magic Surge when casting a spell.
++[1/2/3]% Spell Critical Damage with all spells.</Description>
+         <Icon>WMStudentOfChaosII</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Wild Mage</Class>
+               <Level>2</Level>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>WildsurgeChance</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount size="3">1 2 3</Amount>
+         </Effect>
+         <Effect>
+            <Type>SpellCriticalDamage</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount size="3">1 2 3</Amount>
+            <SpellPower>All</SpellPower>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>WMTidesOfChaosII</InternalName>
+         <Name>Wild Mage: Tides of Chaos II</Name>
+         <Description>Once per minute, when you incur a Wild Magic Surge, you gain one of a variety of
+buffs that scale with your Wild Mage level that last for 20 seconds.</Description>
+         <Icon>WMTidesOfChaosII</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Wild Mage</Class>
+               <Level>2</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>WMLuckyDodge</InternalName>
+         <Name>Wild Mage: Lucky Dodge</Name>
+         <Description>+[1/2/3]% Dodge while wearing no Armor.
+Rank 3: In addition, while wearing no Armor, you gain +1d6 to Dodge Cap. This
+die is rerolled once per minute.</Description>
+         <Icon>WMLuckyDodge</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>2</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>5</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Wild Mage</Class>
+               <Level>2</Level>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>DodgeBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount size="3">1 2 3</Amount>
+            <Stance>Cloth Armor</Stance>
+         </Effect>
+         <Effect>
+            <Type>DodgeCapBonus</Type>
+            <Bonus>Enhancement</Bonus>
+            <Rank>3</Rank>
+            <Amount size="1">6</Amount>
+            <Stance>Cloth Armor</Stance>
+         </Effect>
+      </EnhancementTreeItem>
+      <!--Tier 3 Enhancements-->
+      <EnhancementTreeItem>
+         <InternalName>WMChaosSphere</InternalName>
+         <Name>Wild Mage: Chaos Sphere</Name>
+         <Description>Launch a chaotic orb that explodes on impact, dealing 1d6 Chaos Damage per caster
+level (up to a max of 10d6 Chaos Damage at caster level 10) to targets in the
+area. A successful Will save reduces the damage by half. This SLA uses the
+highest of your INT, Wis, and CHA in its DC calculation, and uses the higher of
+your Evocation and Conjuration DCs for its spell school.
+Cost: [8/6/4] Spell Points
+Cooldown: [12/8/6] seconds.</Description>
+         <Icon>WMChaosSphere</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Class>Wild Mage</Class>
+               <Level>3</Level>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellLikeAbility>Chaos Sphere</SpellLikeAbility>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>WMPowerInChaos</InternalName>
+         <Name>Wild Mage: Power in Chaos</Name>
+         <Description>Toggle: You gain +2 Caster Level and Max Caster Level with all spells, but are able
+to receive Very Bad and Bad Surges even if you have Chaos Control I or II.
+Cooldown: 6 seconds.</Description>
+         <Icon>WMPowerInChaos</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Class>Wild Mage</Class>
+               <Level>3</Level>
+            </Requirement>
+         </Requirements>
+         <Stance>
+            <Name>Power in Chaos</Name>
+            <Icon>WMPowerInChaos</Icon>
+            <Description>Toggle: You gain +2 Caster Level and Max Caster Level with all spells, but are able
+to receive Very Bad and Bad Surges even if you have Chaos Control I or II.</Description>
+            <Group>User</Group>
+         </Stance>
+         <Effect>
+            <Type>CasterLevel</Type>
+            <Bonus>Enhancement</Bonus>
+            <Class>Alchemist</Class>
+            <Amount size="1">2</Amount>
+            <Stance>Power in Chaos</Stance>
+         </Effect>
+         <Effect>
+            <Type>MaxCasterLevel</Type>
+            <Bonus>Enhancement</Bonus>
+            <Class>Alchemist</Class>
+            <Amount size="1">2</Amount>
+            <Stance>Power in Chaos</Stance>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>WMStudentOfChaosIII</InternalName>
+         <Name>Wild Mage: Student of Chaos III</Name>
+         <Description>+[1/2/3]% chance of incurring a Wild Magic Surge when casting a spell.
++[1/2/3]% Spell Critical Damage with all spells.</Description>
+         <Icon>WMStudentOfChaosIII</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Wild Mage</Class>
+               <Level>3</Level>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>WildsurgeChance</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount size="3">1 2 3</Amount>
+         </Effect>
+         <Effect>
+            <Type>SpellCriticalDamage</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount size="3">1 2 3</Amount>
+            <SpellPower>All</SpellPower>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>WMPrismaticMind</InternalName>
+         <Name>Wild Mage: Prismatic Mind</Name>
+         <Description>Color Spray now deals 1d6 Chaos Damage per Caster Level in addition to its other
+effects. A successful Will saves reduces the damage by half.
+Rank 2: Also affects Greater Color Spray and Prismatic Ray.
+Rank 3: Also affects Prismatic Strike and Prismatic Spray.</Description>
+         <Icon>WMPrismaticMind</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Wild Mage</Class>
+               <Level>3</Level>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>WildsurgeChance</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount size="3">1 2 3</Amount>
+         </Effect>
+         <Effect>
+            <Type>SpellCriticalDamage</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount size="3">1 2 3</Amount>
+            <SpellPower>All</SpellPower>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>WMAbilityI</InternalName>
+         <Name>Wild Mage: Ability I</Name>
+         <Description>Select an ability between Intelligence, Wisdom and Charisma.</Description>
+         <Icon>IntWisCha</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>3</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>10</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Wild Mage</Class>
+               <Level>3</Level>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Intelligence</Name>
+               <Description>+1 Intelligence</Description>
+               <Icon>Intelligence</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Amount>1</Amount>
+                  <Ability>Intelligence</Ability>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Wisdom</Name>
+               <Description>+1 Wisdom</Description>
+               <Icon>Wisdom</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Amount>1</Amount>
+                  <Ability>Wisdom</Ability>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Charisma</Name>
+               <Description>+1 Charisma</Description>
+               <Icon>Charisma</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Amount>1</Amount>
+                  <Ability>Charisma</Ability>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <!--Tier 4 Enhancements-->
+      <EnhancementTreeItem>
+         <InternalName>WMUnpredictableConsequences</InternalName>
+         <Name>Wild Mage: Unpredictable Consequences</Name>
+         <Description>Your Chaos Bolt, Chaos Sphere, Chaos Hammer, and Channel Entropy spells and SLAs now
+add additional damage, debuff, or crown controls effects when cast. If the target
+saves for half damage, the additional effects are negated.</Description>
+         <Icon>WMUnpredictableConsequences</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Wild Mage</Class>
+               <Level>4</Level>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>WMUnstableSorcery</InternalName>
+         <Name>Wild Mage: Unstable Sorcery</Name>
+         <Description>Select an option.</Description>
+         <Icon>WMUnstableSorcery</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Wild Mage</Class>
+               <Level>4</Level>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Mixed Magics</Name>
+               <Description>Your Caster Level with spells is now equal to your Character Level instead of
+individual class levels (max 20). This does not change the caster level of Rune
+Arms, Wands, Scrolls, or other Items.</Description>
+               <Icon>WMMixedMagics</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Unstable Sorcery</Name>
+               <Description>While wearing no armor, you gain 2% Spell Critical Damage.</Description>
+               <Icon>WMUnstableSorcery</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>SpellCriticalDamage</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Amount size="1">2</Amount>
+                  <SpellPower>All</SpellPower>
+                  <Stance>Cloth Armor</Stance>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>WMStudentOfChaosIV</InternalName>
+         <Name>Wild Mage: </Name>
+         <Description>+[1/2/3]% chance of incurring a Wild Magic Surge when casting a spell,
++[1/2/3]% Spell Critical Damage with all spells.</Description>
+         <Icon>WMStudentOfChaosIV</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Wild Mage</Class>
+               <Level>4</Level>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>WildsurgeChance</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount size="3">1 2 3</Amount>
+         </Effect>
+         <Effect>
+            <Type>SpellCriticalDamage</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount size="3">1 2 3</Amount>
+            <SpellPower>All</SpellPower>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>WMTidesOfChaosIII</InternalName>
+         <Name>Wild Mage: Tides of Chaos III</Name>
+         <Description>+[2/4/6]% Spell Critical Chance with Chaos spells.</Description>
+         <Icon>WMTidesOfChaosIII</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>3</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Wild Mage</Class>
+               <Level>4</Level>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SpellLore</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount size="3">2 4 6</Amount>
+            <SpellPower>Chaos</SpellPower>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>WMAbilityII</InternalName>
+         <Name>Wild Mage: Ability II</Name>
+         <Description>Select an ability between Intelligence, Wisdom and Charisma.</Description>
+         <Icon>IntWisCha</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>4</YPosition>
+         <CostPerRank size="1">2</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>20</MinSpent>
+         <Requirements>
+            <Requirement>
+               <Class>Wild Mage</Class>
+               <Level>4</Level>
+            </Requirement>
+         </Requirements>
+         <Selector>
+            <EnhancementSelection>
+               <Name>Intelligence</Name>
+               <Description>+1 Intelligence</Description>
+               <Icon>Intelligence</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Amount>1</Amount>
+                  <Ability>Intelligence</Ability>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Wisdom</Name>
+               <Description>+1 Wisdom</Description>
+               <Icon>Wisdom</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Amount>1</Amount>
+                  <Ability>Wisdom</Ability>
+               </Effect>
+            </EnhancementSelection>
+            <EnhancementSelection>
+               <Name>Charisma</Name>
+               <Description>+1 Charisma</Description>
+               <Icon>Charisma</Icon>
+               <CostPerRank size="1">2</CostPerRank>
+               <Effect>
+                  <Type>AbilityBonus</Type>
+                  <Bonus>Enhancement</Bonus>
+                  <Amount>1</Amount>
+                  <Ability>Charisma</Ability>
+               </Effect>
+            </EnhancementSelection>
+         </Selector>
+      </EnhancementTreeItem>
+      <!--Tier 5 Enhancements-->
+      <EnhancementTreeItem>
+         <InternalName>WMWildStrike</InternalName>
+         <Name>Wild Mage: Wild Strike</Name>
+         <Description>Surround target adversary with rainbows, dealing 1d6+6 Chaos Damage per caster level
+(Maximum damage 10d6+60 at caster level 10). Every 2 seconds for 8 seconds,
+affected enemies take a random effect.
+Cost: 25 Spell Points
+Cooldown: 6 seconds</Description>
+         <Icon>WMWildStrike</Icon>
+         <XPosition>0</XPosition>
+         <YPosition>5</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Class>Wild Mage</Class>
+               <Level>5</Level>
+            </Requirement>
+            <Requirement>
+               <MinLevel>12</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SpellLikeAbility</Type>
+            <Bonus>Enhancement</Bonus>
+            <SpellLikeAbility>Wild Strike</SpellLikeAbility>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>WMBendLuck</InternalName>
+         <Name>Wild Mage: Bend Luck</Name>
+         <Description>You gain Bend Luck: Whenever you fail a Saving Throw, you reroll that Saving throw
+and take the second result. This stacks with Slippery Mind, but does not stack
+with other sources of Bend Luck.</Description>
+         <Icon>WMBendLuck</Icon>
+         <XPosition>1</XPosition>
+         <YPosition>5</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <Class>Wild Mage</Class>
+               <Level>5</Level>
+            </Requirement>
+            <Requirement>
+               <MinLevel>12</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>WMRapidSurge</InternalName>
+         <Name>Wild Mage: Rapid Surge</Name>
+         <Description>Activate to trigger a short session where you get a lot of surges very quickly.
+Also grants a Wild Surge Luck bonus to increase the chance of positive surges.</Description>
+         <Icon>WMRapidSurge</Icon>
+         <XPosition>2</XPosition>
+         <YPosition>5</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Clickie/>
+         <Requirements>
+            <Requirement>
+               <Class>Wild Mage</Class>
+               <Level>5</Level>
+            </Requirement>
+            <Requirement>
+               <MinLevel>12</MinLevel>
+            </Requirement>
+         </Requirements>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>WMRandomDeflector</InternalName>
+         <Name>Wild Mage: Random Deflector</Name>
+         <Description>While wearing no armor, you gain +1d100 MRR Cap. This die is rerolled once per minute.</Description>
+         <Icon>WMRandomDeflector</Icon>
+         <XPosition>3</XPosition>
+         <YPosition>5</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <Class>Wild Mage</Class>
+               <Level>5</Level>
+            </Requirement>
+            <Requirement>
+               <MinLevel>12</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>MRRCap</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount size="1">50</Amount>
+            <Stance>Cloth Armor</Stance>
+         </Effect>
+      </EnhancementTreeItem>
+      <EnhancementTreeItem>
+         <InternalName>WMTidesOfChaosIV</InternalName>
+         <Name>Wild Mage: Tides of Chaos IV</Name>
+         <Description>-2 to all Spell DCs. Whenever you cast a spell with a DC, you add 1d6 to the DC of that spell.</Description>
+         <Icon>WMTidesOfChaosIV</Icon>
+         <XPosition>4</XPosition>
+         <YPosition>5</YPosition>
+         <CostPerRank size="1">1</CostPerRank>
+         <Ranks>1</Ranks>
+         <MinSpent>30</MinSpent>
+         <Tier5/>
+         <Requirements>
+            <Requirement>
+               <Class>Wild Mage</Class>
+               <Level>5</Level>
+            </Requirement>
+            <Requirement>
+               <MinLevel>12</MinLevel>
+            </Requirement>
+         </Requirements>
+         <Effect>
+            <Type>SpellDC</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount size="1">-1</Amount>
+            <School>All</School>
+         </Effect>
+         <Effect>
+            <Type>SpellDC</Type>
+            <Bonus>Enhancement</Bonus>
+            <Amount size="1">3</Amount>
+            <School>All</School>
+         </Effect>
+      </EnhancementTreeItem>
+   </EnhancementTree>
+</Enhancements>

@@ -5481,7 +5481,6 @@ void Character::UpdateWeaponStances()
             ActivateStance(thf2);
         }
         DeactivateStance(twf);
-        DeactivateStance(thf);
         DeactivateStance(swf);
         ActivateStance(unarmed);
         DeactivateStance(staff);

@@ -119,6 +119,9 @@ size_t Spell::SpellLevel(ClassType ct) const
     case Class_Sorcerer:
         level = Sorcerer();
         break;
+    case Class_SorcererWildMage:
+        level = WildMage();
+        break;
     case Class_Warlock:
         level = Warlock();
         break;

@@ -816,6 +816,7 @@ void CSkillSpendDialog::OnButtonAutoSpendSkillPoints()
                     skills[Skill_Search].AddWeighting(100);
                     break;
                 case Class_Sorcerer:
+                case Class_SorcererWildMage:
                     skills[Skill_Concentration].AddWeighting(100);
                     skills[Skill_SpellCraft].AddWeighting(100);
                     break;

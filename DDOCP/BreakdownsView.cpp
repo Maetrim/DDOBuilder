@@ -1897,6 +1897,19 @@ void CBreakdownsView::AddClassCasterLevels(HTREEITEM hParent)
     }
     {
         HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
+                "Wild Mage Caster Level",
+                hParent,
+                TVI_LAST);
+        BreakdownItem * pSorc = new BreakdownItemClassCasterLevel(
+                Class_SorcererWildMage,
+                Breakdown_CasterLevel_SorcererWildMage,
+                &m_itemBreakdownTree,
+                hItem);
+        m_itemBreakdownTree.SetItemData(hItem, (DWORD)(void*)pSorc);
+        m_items.push_back(pSorc);
+    }
+    {
+        HTREEITEM hItem = m_itemBreakdownTree.InsertItem(
                 "Ranger Caster Level",
                 hParent,
                 TVI_LAST);

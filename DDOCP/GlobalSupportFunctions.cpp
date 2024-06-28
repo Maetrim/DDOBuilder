@@ -454,6 +454,13 @@ std::vector<Spell> FilterSpells(const Character * pChar, ClassType ct, int level
                 isClassLevelSpell = true;
             }
             break;
+        case Class_SorcererWildMage:
+            if ((*si).HasWildMage()
+                    && (*si).WildMage() == level)
+            {
+                isClassLevelSpell = true;
+            }
+            break;
         case Class_Warlock:
             if ((*si).HasWarlock()
                     && (*si).Warlock() == level)
@@ -641,6 +648,7 @@ std::vector<TrainableFeatTypes> ClassSpecificFeatTypes(ClassType type)
             types.push_back(TFT_WizardMetamagic);
             break;
         case Class_Sorcerer:
+        case Class_SorcererWildMage:
         case Class_Barbarian:
         case Class_Bard:
         case Class_BardStormsinger:
@@ -848,6 +856,7 @@ bool IsClassSkill(ClassType type, SkillType skill)
                 || type == Class_BardStormsinger
                 || type == Class_Rogue
                 || type == Class_Sorcerer
+                || type == Class_SorcererWildMage
                 || type == Class_Warlock
                 || type == Class_WarlockAcolyteOfTheSkin)
         {
@@ -870,6 +879,7 @@ bool IsClassSkill(ClassType type, SkillType skill)
                 || type == Class_Ranger
                 || type == Class_RangerDarkHunter
                 || type == Class_Sorcerer
+                || type == Class_SorcererWildMage
                 || type == Class_Warlock
                 || type == Class_WarlockAcolyteOfTheSkin
                 || type == Class_Wizard)
@@ -1041,6 +1051,7 @@ bool IsClassSkill(ClassType type, SkillType skill)
                 || type == Class_DruidBlightCaster
                 || type == Class_FavoredSoul
                 || type == Class_Sorcerer
+                || type == Class_SorcererWildMage
                 || type == Class_Warlock
                 || type == Class_WarlockAcolyteOfTheSkin
                 || type == Class_Wizard)
@@ -1129,6 +1140,7 @@ size_t SkillPoints(
     case Class_Paladin:
     case Class_PaladinSacredFist:
     case Class_Sorcerer:
+    case Class_SorcererWildMage:
     case Class_Warlock:
     case Class_WarlockAcolyteOfTheSkin:
     case Class_Wizard:
@@ -1248,6 +1260,7 @@ int RacialModifier(
         if (race == Race_Drow
                 || race == Race_Halfling
                 || race == Race_Elf
+                || race == Race_Eladrin
                 || race == Race_Kobold
                 || race == Race_KoboldShamen
                 || race == Race_WoodElf
@@ -1315,6 +1328,7 @@ int RacialModifier(
         }
         if (race == Race_Drow
                 || race == Race_Dragonborn
+                || race == Race_EladrinChaosmancer
                 || race == Race_Tiefling
                 || race == Race_TieflingScoundrel)
         {
@@ -1383,6 +1397,7 @@ bool CanTrainClass(
     case Class_RangerDarkHunter:
     case Class_Rogue:
     case Class_Sorcerer:
+    case Class_SorcererWildMage:
     case Class_Warlock:
     case Class_Wizard:
         // these classes can be any alignment
@@ -1642,6 +1657,7 @@ size_t ClassHitpoints(ClassType type)
         // d6 classes
         case Class_Alchemist:
         case Class_Sorcerer:
+        case Class_SorcererWildMage:
         case Class_Wizard:
         case Class_Warlock:
         case Class_WarlockAcolyteOfTheSkin:
@@ -1705,6 +1721,7 @@ size_t ClassSave(SaveType st, ClassType ct, size_t level)
             case Class_BardStormsinger:
             case Class_Rogue:
             case Class_Sorcerer:
+            case Class_SorcererWildMage:
             case Class_Warlock:
             case Class_WarlockAcolyteOfTheSkin:
             case Class_Wizard:
@@ -1742,6 +1759,7 @@ size_t ClassSave(SaveType st, ClassType ct, size_t level)
             case Class_Paladin:
             case Class_PaladinSacredFist:
             case Class_Sorcerer:
+            case Class_SorcererWildMage:
             case Class_Warlock:
             case Class_WarlockAcolyteOfTheSkin:
             case Class_Wizard:
@@ -1783,6 +1801,7 @@ size_t ClassSave(SaveType st, ClassType ct, size_t level)
             case Class_FighterDragonLord:
             case Class_Monk:
             case Class_Sorcerer:
+            case Class_SorcererWildMage:
             case Class_Warlock:
             case Class_WarlockAcolyteOfTheSkin:
             case Class_Wizard:
@@ -2213,6 +2232,7 @@ std::vector<size_t> SpellSlotsForClass(ClassType ct, size_t level)
         // no spells of any level
         break;
     case Class_Sorcerer:
+    case Class_SorcererWildMage:
         switch (level)
         {
             case  0: break; // no spells, as no class levels in sorcerer
@@ -2327,6 +2347,7 @@ size_t ClassSpellPoints(ClassType ct, size_t level)
         break;
     case Class_FavoredSoul:
     case Class_Sorcerer:
+    case Class_SorcererWildMage:
         // Level        1    2    3    4    5    6    7    8    9   10   11   12   13   14    15    16    17    18    19    20
         spPerLevel += 100, 150, 200, 250, 300, 355, 415, 480, 550, 625, 705, 790, 880, 975, 1075, 1180, 1290, 1405, 1525, 1650;
         break;
@@ -2361,6 +2382,7 @@ AbilityType ClassCastingStat(ClassType ct)
     case Class_Bard:
     case Class_BardStormsinger:
     case Class_Sorcerer:
+    case Class_SorcererWildMage:
     case Class_Warlock:
     case Class_WarlockAcolyteOfTheSkin:
         at = Ability_Charisma;
@@ -2874,6 +2896,7 @@ double BAB(ClassType ct)
         break;
 
     case Class_Sorcerer:
+    case Class_SorcererWildMage:
     case Class_Wizard:
         // 0.5 BAB class
         bab = 0.5;
@@ -3431,6 +3454,7 @@ BreakdownType ClassToCasterLevelsBreakdown(ClassType ct)
     case Class_Paladin: bt = Breakdown_CasterLevel_Paladin; break;
     case Class_PaladinSacredFist: bt = Breakdown_CasterLevel_SacredFist; break;
     case Class_Sorcerer: bt = Breakdown_CasterLevel_Sorcerer; break;
+    case Class_SorcererWildMage: bt = Breakdown_CasterLevel_SorcererWildMage; break;
     case Class_Ranger: bt = Breakdown_CasterLevel_Ranger; break;
     case Class_RangerDarkHunter: bt = Breakdown_CasterLevel_DarkHunter; break;
     case Class_Warlock: bt = Breakdown_CasterLevel_Warlock; break;
@@ -3514,6 +3538,9 @@ size_t CasterLevel(Character * pCharacter, ClassType c)
         break;
     case Class_Sorcerer:
         casterLevel = (size_t)FindBreakdown(Breakdown_CasterLevel_Sorcerer)->Total();
+        break;
+    case Class_SorcererWildMage:
+        casterLevel = (size_t)FindBreakdown(Breakdown_CasterLevel_SorcererWildMage)->Total();
         break;
     case Class_Ranger:
         casterLevel = (size_t)FindBreakdown(Breakdown_CasterLevel_Ranger)->Total();
